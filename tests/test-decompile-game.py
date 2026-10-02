@@ -19,6 +19,30 @@ spec.loader.exec_module(tool)
 
 
 class ExportTests(unittest.TestCase):
+    def test_annotated_export_requires_successful_markup(self):
+        executable = REPO / "working/game-nocd/Chaos.exe"
+        real_run = tool.subprocess.run
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            for annotations_ok in (False, True):
+                def fake_run(command, **kwargs):
+                    if "ExportGameDecompilation.java" not in command:
+                        return real_run(command, **kwargs)
+                    self.assertIn("AnnotateRouteMilestone.java", command)
+                    output = Path(command[command.index("ExportGameDecompilation.java") + 1])
+                    (output / "export-summary.json").write_text('{"succeeded":7,"failed":0}')
+                    kwargs["stdout"].write(
+                        "Applied hash-checked route milestone names, signatures and partial types.\n"
+                        if annotations_ok else "ERROR: annotation script failed\n")
+                    return SimpleNamespace(returncode=0)
+
+                with patch.object(tool, "REPO", root), \
+                     patch.object(tool, "find_headless", return_value=Path("/fixture/analyzeHeadless")), \
+                     patch.object(tool, "prepare_native", side_effect=lambda p: p), \
+                     patch.object(tool.subprocess, "run", side_effect=fake_run):
+                    self.assertEqual(self.run_tool(str(executable), "--annotated"),
+                                     0 if annotations_ok else 1)
+
     def test_arm_native_build_preserves_user_install(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

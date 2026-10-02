@@ -87,6 +87,7 @@ def main() -> int:
                         default=REPO / "working/game-nocd/Chaos.exe")
     parser.add_argument("--ghidra", type=Path, help="Ghidra directory or analyzeHeadless path")
     parser.add_argument("--all", action="store_true", help="decompile all discovered functions")
+    parser.add_argument("--annotated", action="store_true", help="apply reproducible route markup before export")
     parser.add_argument("--disassembly-only", action="store_true", help="use objdump only")
     args = parser.parse_args()
     executable = args.executable.resolve()
@@ -102,6 +103,7 @@ def main() -> int:
     output = Path(tempfile.mkdtemp(prefix="nocd-", dir=parent))
     metadata = {"input": str(executable), "sha256": digest,
                 "status": "disassembly_only", "functions": FUNCTIONS,
+                "annotated": args.annotated,
                 "ghidra": str(headless) if headless else None}
     manifest = output / "manifest.json"
 
@@ -131,7 +133,10 @@ def main() -> int:
     headless = prepare_native(headless)
     metadata["ghidra"] = str(headless)
     command = [str(headless), str(project), "MagicMayhem", "-import", str(executable),
-               "-scriptPath", str(REPO / "tools/ghidra"), "-postScript",
+               "-scriptPath", str(REPO / "tools/ghidra")]
+    if args.annotated:
+        command += ["-postScript", "AnnotateRouteMilestone.java"]
+    command += ["-postScript",
                "ExportGameDecompilation.java", str(output), "all" if args.all else "routes",
                "-max-cpu", "2", "-analysisTimeoutPerFile", "600"]
     metadata["command"] = command
@@ -149,8 +154,13 @@ def main() -> int:
         result = subprocess.run(command, env=environment, stdout=log, stderr=subprocess.STDOUT)
     report = output / "export-summary.json"
     summary = json.loads(report.read_text()) if report.exists() else None
+    annotations_applied = (args.annotated and
+        "Applied hash-checked route milestone names, signatures and partial types." in
+        (output / "ghidra.log").read_text())
+    metadata["annotations_applied"] = annotations_applied
     complete = (result.returncode == 0 and summary is not None
-                and summary["succeeded"] > 0 and summary["failed"] == 0)
+                and summary["succeeded"] > 0 and summary["failed"] == 0
+                and (not args.annotated or annotations_applied))
     metadata["status"] = "decompiled" if complete else "ghidra_failed_or_partial"
     metadata["export_summary"] = summary
     metadata["exit_status"] = result.returncode

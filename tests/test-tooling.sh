@@ -17,6 +17,9 @@ python3 -m py_compile \
     "$REPO_DIR/tools/decompile-game.py" \
     "$REPO_DIR/tools/inventory-game-files.py"
 python3 "$REPO_DIR/tests/test-decompile-game.py"
+python3 "$REPO_DIR/tools/verify-decompilation-baseline.py"
+python3 "$REPO_DIR/tests/test-decompilation-baseline.py"
+"$REPO_DIR/tests/test-reconstruction.sh"
 "$REPO_DIR/run-asahi.sh" --help >/dev/null
 "$REPO_DIR/tools/cfg-precedence-experiment.py" --help >/dev/null
 "$REPO_DIR/tools/cfg-writer-experiment.py" --help >/dev/null

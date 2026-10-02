@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "executable": {
+    "name": "Chaos.exe",
+    "build": "supplied no-CD",
+    "sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "preferred_image_base": "0x00400000"
+  },
+  "tools": {
+    "ghidra": "12.1.4 PUBLIC",
+    "objdump": "GNU objdump 2.46.1-1.fc44",
+    "native_decompiler": "release bundled C++ source; make -j2 ARCH_TYPE= ghidra_opt; Linux ARM64"
+  },
+  "export_date": "2026-10-02",
+  "assembly_normalization": "Only the input filename header is normalized to Chaos.exe; bytes and instructions unchanged.",
+  "functions": {
+    "route_request": "0x00512800",
+    "route_search": "0x0054b800",
+    "expand_neighbors": "0x004ebae0",
+    "heuristic": "0x004ec780",
+    "wrap_x": "0x0040e290",
+    "wrap_y": "0x0040e8a0",
+    "copy_z": "0x0040eeb0"
+  },
+  "artifacts": {
+    "raw/0040e290.c": "33c1b86ee6cff7c7adc26e19a56434350dafbca495de8443a165de583d485c5f",
+    "raw/0040e8a0.c": "5430d1fc98bf3d7005f5b8eb4539980a977414e2f2057f1396dc7ad7d0733983",
+    "raw/0040eeb0.c": "c6f3024480bd817e13ebd6df8ccaf6f4483469c26296c951337333781ace2df8",
+    "raw/004ebae0.c": "d4e658a89dd2e9edeb6289722dad1a13a69eb90f3bd88912d28c8f56e930b42a",
+    "raw/004ec780.c": "e98d10f62a0b42690b887d6821bf47c79310c9f26885920a6e1cfe0d9d3804d1",
+    "raw/00512800.c": "8d6c8d9f95927b5a964fd1e01ae10dec9f7631dfb7d35e29cef16e84e019c15d",
+    "raw/0054b800.c": "23bffcdf48864678088fd33e648d00d754163a3898727e184f533f9af66b075c",
+    "assembly/copy_z.asm": "11c7f9fc4916b215a3fa12ed4375ca620559002bdd100040da26197f4364f707",
+    "assembly/expand_neighbors.asm": "efceae0afdf481b60f987adf61c574a7c070a9369f1cd3cb8d65fd2b239cac05",
+    "assembly/heuristic.asm": "0c569e9ef44e5919071c7ce67ab0992b109414d16e646a7a0caf5491f9e7b62b",
+    "assembly/route_request.asm": "b0fd1a2f4424772c988d370abcf00cd9927702837f57a006e6a76c84832a658c",
+    "assembly/route_search.asm": "b88124b1e64249c927c19b21ce024ca497c8ecdaa0506e3d94543a46e3603a9a",
+    "assembly/wrap_x.asm": "29723d470542cb307aaf40124bc3519ad19357a1c6366d18ee4f556929327585",
+    "assembly/wrap_y.asm": "cb541df971819101f35807fa12b8a77fd1044a4c541c81a23a0ab6a24054f5d1"
+  }
+}

@@ -40,6 +40,11 @@ than inferred gameplay meaning. Live confirmation remains necessary.
 
 ## Route request: 0x00512800
 
+Follow-up alias finding: `0x00690354` equals route context base `0x00690148`
+plus `0x20c`. The wrapper's pre-search store is the context initialization byte,
+not an independent global. The readable model preserves this alias; search can
+change it. See `reconstruction/pathfinding/README.md` for the tested milestone.
+
 The entire wrapper (`0x00512800..0x00512894`) was inspected, along with
 its coordinate constructors. ECX supplies the object pointer; four DWORD
 stack arguments are removed by `ret 0x10`. Inferred signature:
