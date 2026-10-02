@@ -1,0 +1,20 @@
+# Copyrighted source media and supplied binaries
+/original/
+
+# Generated game installations and experiment output
+/working/*
+!/working/.gitkeep
+
+# Temporary files produced by repository tools
+*.partial
+*.tmp
+__pycache__/
+*.pyc
+/error.log
+/research/original-files.tsv.partial.*
+/research/original-files.tsv.verify.*
+
+# Local reverse-engineering project state
+*.ghidra
+*.gpr
+*.rep/
