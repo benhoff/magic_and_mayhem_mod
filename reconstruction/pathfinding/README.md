@@ -87,7 +87,8 @@ These tests validate a reconstruction against independently asserted static
 observations. They do **not** prove live-game equivalence. Remaining validation:
 capture arguments and state for a simple route, blocked target, budget
 exhaustion and several simultaneous orders; compare those traces to the model.
-No live tracing/hook installation is included in this milestone.
+The opt-in trace controller below is available; no live-equivalence claim or
+replacement hook is included in this milestone.
 
 Actual Ghidra validation on 2026-10-02: annotated run
 `working/decompiled/nocd-96ofmeq_/` applied the script successfully, exported
@@ -100,3 +101,44 @@ and dedicated reconstruction/baseline tests pass.
 
 Next static milestone: recover queue/node/waypoint structures and the heuristic,
 then reconstruct search with its original budget and partial-route behavior.
+
+## Route capture and replay
+
+Run `./tools/trace-route-experiment.py` without arguments. It stages a new
+disposable game copy and attempts up to ten complete calls within 180 seconds
+after arming. Once it prints “Tracing is armed,” load a map/save and issue
+movement orders. `--seconds 300 --calls 3` adjusts the bounds; `--prepare-only`
+stages evidence without launching. Close other Chaos.exe instances first.
+All runs get fresh directories under `working/experiments/route-trace/`.
+
+The controller checks the executable hash, discovers the loaded image base,
+requires x86 registers and verifies instruction bytes before installing four
+temporary debugger breakpoints. It pairs entry, search-call, search-result and
+return observations by thread and stack address. Logs and manifests preserve
+failures too. Successful cleanup removes breakpoints and detaches; failed
+capture terminates only its own debuggee. A `cleanup_unverified` result needs
+manual inspection. It never patches the executable on disk or kills wineserver.
+Debugging pauses execution, so these captures cannot benchmark performance.
+
+`./tools/validate-route-trace.py` defaults to the newest run with calls.jsonl.
+It builds the C++ replay and compares normalized coordinates, arguments, budget,
+flags, return value and the entire copied snapshot. The original search output
+is supplied as measured input: a match validates only the wrapper, **not the
+pathfinding search algorithm**. Reports preserve trace/model hashes and capture
+origin; no samples is an unsuccessful result. Manually label scenarios rather
+than assuming an AI call belongs to your order.
+
+Current live limitation, observed 2026-10-02: on this ARM64 Wine 11.18 staging
+setup, both native WineDbg and the installed i386 PE debugger expose a context
+without `$eip`. Native DLL overrides and a uniquely named debugger copy did not
+resolve it. Latest evidence: `working/experiments/route-trace/run-0yycduv3/`;
+status incomplete, image base 0x00400000, no breakpoints installed, own game
+terminated, both input and copied executable hashes unchanged. There are no
+live route samples yet. A debugger/runtime combination exposing the target's
+x86 context is needed before live validation can proceed; the cause of this
+runtime limitation remains unconfirmed.
+
+`python3 tests/test-route-trace.py` checks parsers, fail-closed architecture
+handling and synthetic replay/mismatch cases. Synthetic results are not game
+evidence. See [WineDbg's command reference](https://raw.githubusercontent.com/wine-mirror/wine/master/programs/winedbg/winedbg.man.in)
+for the debugger command interface used by the controller.
