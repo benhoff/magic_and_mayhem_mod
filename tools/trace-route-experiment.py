@@ -281,7 +281,7 @@ def main() -> int:
     subprocess.run(["cp", "-a", "--reflink=auto", str(source), str(game)], check=True)
     if hashlib.sha256((game / "Chaos.exe").read_bytes()).hexdigest() != HASH:
         raise RuntimeError("Disposable game-copy hash mismatch")
-    manifest = {"sha256": HASH, "utc": datetime.now(timezone.utc).isoformat(),
+    manifest = {"sha256": HASH, "origin": "live_winedbg", "utc": datetime.now(timezone.utc).isoformat(),
                 "status": "prepared", "calls_limit": args.calls, "seconds": args.seconds,
                 "scenario": "unclassified; human scenario labels not inferred",
                 "game_copy": str(game), "cleanup": "not_started"}
@@ -293,10 +293,16 @@ def main() -> int:
     environment["WINEPREFIX"] = str(REPO / "working/wineprefix")
     environment["WINEDEBUG"] = "fixme-all"
     if debugger_path.endswith(".exe"):
+        debugger_source = Path(debugger_path).resolve()
+        staged_debugger = evidence / "RouteTraceDbg.exe"
+        shutil.copy2(debugger_source, staged_debugger)
+        manifest["debugger_source"] = str(debugger_source)
+        manifest["debugger_sha256"] = hashlib.sha256(staged_debugger.read_bytes()).hexdigest()
+        debugger_path = str(staged_debugger)
         # Otherwise Wine may substitute its ARM built-in winedbg for the named
         # i386 PE, leaving only ARM register names visible to the controller.
         environment["WINEDLLOVERRIDES"] = (
-            environment.get("WINEDLLOVERRIDES", "") + ";winedbg=n").lstrip(";")
+            environment.get("WINEDLLOVERRIDES", "") + ";winedbg=n;RouteTraceDbg=n").lstrip(";")
     command = ([shutil.which("wine"), debugger_path] if debugger_path.endswith(".exe")
                else [debugger_path]) + [str(game / "Chaos.exe")]
     manifest["command"] = command
