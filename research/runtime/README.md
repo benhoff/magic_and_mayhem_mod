@@ -11,3 +11,5 @@ confidence, and whether it remains stable across launches.
   partial manual pseudocode, search-state observations and automated export setup.
 - [Tracked raw decompilation](decompiled/nocd/README.md): seven unedited
   Ghidra exports preserved separately from future readable reconstructions.
+- [Readable route-request milestone](../../reconstruction/pathfinding/README.md):
+  reproducible annotations, packed layout prefixes and tested host-side models.

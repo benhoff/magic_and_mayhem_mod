@@ -26,6 +26,17 @@ zero failures, executable unchanged. The complete project and log remain local.
 Each raw file's header references that run's `manifest.json`; this README
 records its relevant provenance for the tracked snapshot.
 
+`assembly/` preserves the corresponding instruction listings. Only the input
+filename header has been normalized to `Chaos.exe` for portability. The
+portable `manifest.json` pins the executable, tool versions and SHA-256 of all
+14 artifacts. Verify with `./tools/verify-decompilation-baseline.py`; add
+`--executable working/game-nocd/Chaos.exe` to check the listed bytes against
+the exact working PE as well. Do not edit these baseline files.
+
+Reproducible markup lives in `tools/ghidra/AnnotateRouteMilestone.java` and
+readable, tested models in `reconstruction/pathfinding/`. Neither replaces
+this baseline or modifies the game executable.
+
 Reproduce with `./tools/decompile-game.py`. It creates a fresh ignored evidence
 directory and never replaces this snapshot. See
 [route research](../../route-decompilation.md) for interpretation and caveats.
