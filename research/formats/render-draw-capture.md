@@ -102,3 +102,30 @@ presentation shader, writes `opengl-presented.png`, and records a raw RGBA hash.
 The Python reference checks that hash against independently converted native
 output. Palette-entry flags do not supply alpha; presentation alpha is 255.
 The capture format itself remains version 1.
+
+## Separate surface failure log
+
+New render experiments set `MNM_RENDER_FAILURE_LOG` to their
+`surface-failures.log`, recorded in the experiment manifest. It is separate from
+`events.bin` and remains eligible after that successful-event inventory caps.
+The file is created only on a negative HRESULT. Lines contain:
+
+```text
+phase HRESULT thread_id surface_pointer interface_kind flags
+```
+
+All five numeric values are eight hexadecimal digits. Phases are
+`primary_lock`, `primary_unlock`, `observer_lock`, `observer_unlock`,
+`application_lock`, `application_unlock`, `application_blt`,
+`application_bltfast`, or `application_flip`. Application phases describe the
+original forwarded API result; primary/observer phases describe bridge readback.
+The observer restores LastError, forwards application results unchanged, and
+performs no additional surface locks for logging.
+
+Identical phase/value tuples are deduplicated. Each phase gets at most eight
+unique entries; total storage is bounded to 64 entries. Nonblocking contention
+can drop an entry, so an empty log is not proof of absence of errors. A missing
+file can also mean the path could not be created. Successful calls are omitted.
+Pointers and thread IDs are evidence for that process only, not stable identities
+across launches. Primary Unlock failures are now recorded rather than ignored
+for diagnostic purposes; this does not repair or retry a failed Unlock.

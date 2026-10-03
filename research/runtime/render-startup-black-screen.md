@@ -231,3 +231,39 @@ attachment inspection are unreliable in this runtime; the underlying game freeze
 and primary Lock HRESULT remain unresolved. The launcher now warns against
 Ctrl+C and explains how to select an existing game thread if already stopped in
 this fault. `info thread` lists threads; bare `thread` is not a listing command.
+
+## Normal-launch new-game surface error
+
+The user reached the menu and started a new game without WineDbg in
+`run-p66k189j`, then reported the exact DirectDraw surface-already-locked-by-
+another-thread error. This is distinct from debugger interrupt faults.
+The mapped header records 103 published 800x600 frames, status 1, and one
+successful creation. Metadata records history capture enabled, movies not skipped,
+and no explicit software-rendering graphics variables. Quartz movie errors and
+Wine/Mesa graphics warnings recur in `run-20261003T170031Z.YdADG5`.
+
+The event file reached 2,048 entries: 836 successful application Lock calls,
+835 successful Unlock calls, 362 successful BltFast calls, nine successful
+CreateSurface calls and six successful Blt calls. Its final record is a
+successful Lock. That difference is just the truncation boundary, not evidence
+of a leaked lock. The inventory contains no failed HRESULT and cannot identify
+the later error. Bridge observer locks bypass this application event inventory.
+
+The bridge now logs negative application and observer HRESULTs separately in a
+bounded, deduplicated `surface-failures.log`, including thread, surface,
+interface and flags. Per-phase limits reserve space for later application
+failures instead of allowing repeated primary readback failures to consume it.
+This diagnoses the failing call; no ownership override, speculative lock retry,
+or broad serialization has been introduced. The actual cause remains unresolved.
+
+For a comparable normal launch, close the failed game and reopen:
+
+```bash
+./tools/run-qt-shell.sh --capture-history
+```
+
+Start a new game once. If the error recurs, inspect the new experiment's
+`surface-failures.log`. Do not use debugger interruption for this reproduction.
+The new synthetic primary-busy fixture verifies recorded HRESULT/thread/flags,
+deduplication, no Unlock after a failed Lock, zero published frames, and preserved
+application result/LastError. Existing Wine/native/Qt capture checks still pass.

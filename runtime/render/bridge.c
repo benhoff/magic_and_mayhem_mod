@@ -4,6 +4,7 @@ API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
 API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 API u32 WIN GetFileSize(HANDLE,u32*);
 API u32 WIN GetTickCount(void);
+API u32 WIN GetCurrentThreadId(void);
 #define STREAM_SIZE (64+2048*2048*4)
 typedef i32 (WIN *Query)(void*,const u8*,void**);
 typedef i32 (WIN *CreateSurface)(void*,void*,void**,void*);
@@ -81,7 +82,8 @@ static void capture(void* object){
     last_capture=now;
 #endif
     zero(desc,sizeof(desc));desc[0]=t->kind>=14?124:108;
-    if(((Lock)t->original[25])(object,0,desc,0x4810,0)<0){__atomic_store_n(stream+9,2,__ATOMIC_RELEASE);goto done;}
+    i32 lock_result=((Lock)t->original[25])(object,0,desc,0x4810,0);
+    if(lock_result<0){render_failure("primary_lock",lock_result,object,t->kind,0x4810);__atomic_store_n(stream+9,2,__ATOMIC_RELEASE);goto done;}
     u32 width=desc[3],height=desc[2],bits=desc[21],bytes=bits/8;
     i32 pitch=(i32)desc[4];u8* pixels=(u8*)desc[9];u8 palette[1024];const u8* colors=0;
     int ok=0;
@@ -106,7 +108,8 @@ static void capture(void* object){
             __atomic_store_n(stream+4,sequence+2,__ATOMIC_RELEASE);
         }
     }
-    ((Unlock)t->original[32])(object,t->kind>=14?0:pixels);
+    i32 unlock_result=((Unlock)t->original[32])(object,t->kind>=14?0:pixels);
+    render_failure("primary_unlock",unlock_result,object,t->kind,0);
     if(!ok)__atomic_store_n(stream+9,3,__ATOMIC_RELEASE);
 done:
     SetLastError(saved_error);__sync_lock_release(&capture_busy);
@@ -117,6 +120,7 @@ static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,voi
     int token=history_enter();struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
     if(token && !c)history_gap(6);
     SetLastError(error);i32 status=((Blt)t->original[5])(object,dest,source,rect,flags,effects);error=GetLastError();
+    render_failure("application_blt",status,object,t->kind,flags);
     end_draw(c,object,status);draw_event(1,caller,object,source,flags,status,dest,rect);
     if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
 }
@@ -126,6 +130,7 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
     int token=history_enter();struct DrawCapture* c=begin_draw(object,0,source,rect,flags,0,2,x,y,caller);
     if(token && !c)history_gap(6);
     SetLastError(error);i32 status=((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
+    render_failure("application_bltfast",status,object,t->kind,flags);
     end_draw(c,object,status);
     /* For a Fast event, left/top are x/y; right/bottom are deliberately zero. */
     u32 dest[4]={x,y,0,0};draw_event(2,caller,object,source,flags,status,dest,rect);
@@ -135,12 +140,14 @@ static i32 WIN flip(void* object,void* target,u32 flags){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);struct HistoryFlip pending;
     if(token)history_flip_before(object,target,flags,&pending);
     SetLastError(entry);i32 status=((Flip)t->original[11])(object,target,flags);u32 error=GetLastError();
+    render_failure("application_flip",status,object,t->kind,flags);
     if(token)history_flip_after(object,&pending,status);
     draw_event(3,(u32)__builtin_return_address(0),object,target,flags,status,0,0);
     if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_lock(void* object,void* rect,void* desc,u32 flags,HANDLE event){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Lock)t->original[25])(object,rect,desc,flags,event);u32 error=GetLastError();
+    render_failure("application_lock",status,object,t->kind,flags);
     if(token)history_lock(object,rect,desc,flags,status);
     draw_event(4,(u32)__builtin_return_address(0),object,0,flags,status,rect,0);history_leave(token);SetLastError(error);return status;
 }
@@ -148,6 +155,7 @@ static i32 WIN surface_unlock(void* object,void* rect){
     u32 error=GetLastError();int token=history_enter();struct Snapshot pending;zero(&pending,sizeof(pending));
     if(token)history_unlock_before(object,rect,&pending);SetLastError(error);
     struct Table* t=lookup(object);i32 status=((Unlock)t->original[32])(object,rect);error=GetLastError();
+    render_failure("application_unlock",status,object,t->kind,0);
     if(token)history_unlock_after(object,&pending,status);
     draw_event(5,(u32)__builtin_return_address(0),object,0,0,status,0,0);history_leave(token);SetLastError(error);return status;
 }
@@ -259,7 +267,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     if(!mapping)return 1;
     stream=MapViewOfFile(mapping,2,0,0,STREAM_SIZE);CloseHandle(mapping);
     if(!stream || !same(stream,"MNMGL001",8) || stream[2]!=1 || stream[3]!=64){stream=0;return 1;}
-    init_draw_capture();
+    init_failure_diagnostics();init_draw_capture();
     stream[9]=4; /* loaded, waiting for presentation */
     u32 base=(u32)GetModuleHandleA(0),protection;
     /* Staging verifies full image SHA-256. Runtime also guards its import thunk. */

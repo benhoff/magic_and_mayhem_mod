@@ -10,7 +10,7 @@ REPO=Path(__file__).resolve().parent.parent
 def build(selftest=False):
     spec=importlib.util.spec_from_file_location('shadow_build',REPO/'tools/build-shadow-bridge.py')
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    imports=dict(module.IMPORTS,CreateFileMappingA=24,MapViewOfFile=20,GetFileSize=8,GetTickCount=0)
+    imports=dict(module.IMPORTS,CreateFileMappingA=24,MapViewOfFile=20,GetFileSize=8,GetTickCount=0,GetCurrentThreadId=0)
     root=REPO/('working/build/render-selftest' if selftest else 'working/build/render');root.mkdir(parents=True,exist_ok=True)
     definition=root/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{name}@{size}\n' for name,size in imports.items()))
     subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'kernel32.lib')],check=True)
