@@ -140,6 +140,7 @@ static struct DrawCapture* begin_draw(void* object,const void* dest,void* source
 fail:
     discard_draw(c);return 0;
 }
+#include "surface_commands.h"
 static void end_draw(struct DrawCapture* c,void* object,i32 result){
     if(!c)return;
     struct Table* t=lookup(object);u32 d[31];
@@ -151,7 +152,7 @@ static void end_draw(struct DrawCapture* c,void* object,i32 result){
         int ok=write_all(file,c->header,128) && write_all(file,c->src.data,c->src.length) &&
                write_all(file,c->before.data,c->before.length) && write_all(file,c->after.data,c->after.length);
         if(ok && c->header[28])ok=write_all(file,c->src.palette,1024) && write_all(file,c->before.palette,1024);
-        CloseHandle(file);draw_complete=1; /* Never overwrite even an incomplete file. */
+        CloseHandle(file);if(ok)write_surface_commands(c);draw_complete=1; /* Never overwrite even an incomplete file. */
         (void)ok; /* The offline parser rejects truncated files. */
     }
 done:discard_draw(c);

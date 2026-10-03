@@ -26,3 +26,10 @@ source and destination-before/after pixels. Replay with
 **Launch game**; opening it alone does not run the game. See
 [drawing evidence and procedure](../../research/runtime/render-drawing-inventory.md)
 and [capture format](../../research/formats/render-draw-capture.md).
+
+Each completed draw capture also exports `commands-0001.bin`, an ordered
+checkpoint session for the persistent native renderer. Preview it with
+`./tools/run-qt-shell.sh --commands CAPTURE_DIRECTORY/commands-0001.bin`.
+No extra observer locks or COM calls are needed. These are replay-owned surface
+lifetimes; continuous game lifetime, writable locks and palette hooks are still
+pending. See [command format](../../research/formats/render-surface-commands.md).

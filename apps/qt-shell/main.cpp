@@ -2,6 +2,8 @@
 #include "gl_viewport.hpp"
 #include "frame_stream.hpp"
 #include "blit.hpp"
+#include "commands.hpp"
+#include <QFile>
 #include <QSurfaceFormat>
 #include <QUuid>
 #include <memory>
@@ -150,6 +152,7 @@ int main(int argc,char** argv){
                     "  --capture-draws       Record a small blit when launching with OpenGL\n"
                     "  --smoke-test          Open and close the shell without launching a game\n"
                     "  --opengl-test         Check texture presentation with known pixels\n"
+                    "  --commands FILE       Replay captured surface commands in a standalone viewport\n"
                     "  --surface-demo        Show persistent renderer surfaces and palette cycling\n"
                     "  --surface-test        Verify rendered surfaces through Qt framebuffer readback\n"
                     "  --stream-test FILE    Check a synthetic frame stream through OpenGL\n"
@@ -161,6 +164,7 @@ int main(int argc,char** argv){
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
     parser.addOption({"capture-draws","Record bounded drawing evidence when the game is launched."});
     parser.addOption({"opengl-test","Test OpenGL texture presentation with known pixels."});
+    parser.addOption({"commands","Replay a bounded surface-command file without launching the game.","file"});
     parser.addOption({"surface-demo","Show native renderer surfaces and palette cycling without launching the game."});
     parser.addOption({"surface-test","Test persistent native surfaces through Qt presentation."});
     parser.addOption({"stream-test","Verify a bridge stream through the OpenGL viewport.","file"});
@@ -172,6 +176,33 @@ int main(int argc,char** argv){
         QWidget fixture;fixture.setWindowTitle("MagicMayhem");fixture.resize(800,600);
         auto* layout=new QVBoxLayout(&fixture);layout->addWidget(new QLabel("External viewport fixture",&fixture));fixture.show();
         QTimer::singleShot(10000,&app,&QCoreApplication::quit);return app.exec();
+    }
+    if(parser.isSet("commands")){
+        try {
+            QFile file(parser.value("commands"));
+            if(!file.open(QIODevice::ReadOnly) || file.size()>mnm::render::maxCommandBytes)
+                throw std::runtime_error("Cannot read bounded command stream");
+            const auto commands=mnm::render::decodeCommands(file.read(mnm::render::maxCommandBytes+1));
+            const auto result=mnm::render::replayCommands(commands);
+            GlViewport viewport;viewport.setWindowTitle("Magic & Mayhem — captured command replay");
+            viewport.resize(640,480);viewport.setFrame(result.presentation);viewport.show();
+            if(parser.isSet("smoke-test"))QTimer::singleShot(500,&app,[&]{
+                if(!viewport.ready()){app.exit(6);return;}
+                const auto actual=viewport.grabFramebuffer();const auto& image=result.presentation;
+                const auto scale=qMin(double(actual.width())/image.width(),double(actual.height())/image.height());
+                const int w=qRound(image.width()*scale),h=qRound(image.height()*scale);
+                const int left=(actual.width()-w)/2,top=actual.height()-h-(actual.height()-h)/2;
+                bool ok=true;
+                for(int y=0;y<3;++y)for(int x=0;x<3;++x){
+                    const int px=(2*x+1)*w/6,py=(2*y+1)*h/6;
+                    const int ix=qMin(image.width()-1,int((px+0.5)*image.width()/w));
+                    const int iy=qMin(image.height()-1,int((py+0.5)*image.height()/h));
+                    if(actual.pixelColor(left+px,top+py)!=image.pixelColor(ix,iy))ok=false;
+                }
+                app.exit(ok?0:7);
+            });
+            return app.exec();
+        }catch(const std::exception& error){std::fprintf(stderr,"Command replay failed: %s\n",error.what());return 8;}
     }
     if(parser.isSet("opengl-test") || parser.isSet("stream-test") || parser.isSet("surface-test") || parser.isSet("surface-demo")){
         FrameStream stream;QImage image;
