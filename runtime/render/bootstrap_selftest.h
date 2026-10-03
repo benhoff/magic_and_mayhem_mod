@@ -6,6 +6,8 @@ struct BsSurface {void** table;struct BsSurface* state;u32 width,height,bits,pri
 struct BsRect {i32 left,top,right,bottom;};
 static struct BsSurface *bs_alias,*bs_created;
 static u32 bs_locks,bs_unlocks,bs_descriptions,bs_queries,bs_draws,bs_creates,bs_fail,bs_nested;
+static int bs_is_flip(void){return bootstrap_mode[0]=='f' && bootstrap_mode[1]=='l';}
+static struct BsSurface* bs_back;static u32 bs_attachments,bs_flips,bs_attachment_mutations;
 static u32* bs_stream;static HANDLE bs_events;
 static struct BsSurface* bs_state(void* object){struct BsSurface* s=object;return s->state?s->state:s;}
 static void bs_entry(void){if(GetLastError()!=0x77)ExitProcess(150);SetLastError(0x88);}
@@ -14,6 +16,7 @@ static void bs_put(u8* at,u32 bytes,u32 value){for(u32 i=0;i<bytes;++i)at[i]=(u8
 static void bs_desc(struct BsSurface* s,u32* d){
     d[1]=0x1007;d[2]=s->height;d[3]=s->width;d[18]=32;d[19]=0x40;d[21]=s->bits;
     d[22]=s->bits==16?0xf800:0xff0000;d[23]=s->bits==16?0x7e0:0xff00;d[24]=s->bits==16?0x1f:0xff;d[26]=s->primary?0x200:0x840;
+    if(bs_is_flip()){d[26]=s->primary?0x238:0x1c;if(s->primary){d[1]|=0x20;d[5]=bs_mode("flip-chain")?2:1;if(bs_mode("flip-count-missing"))d[1]&=~0x20u;}}
 }
 static i32 WIN bs_description(void* object,u32* d){
     bs_entry();++bs_descriptions;struct BsSurface* s=bs_state(object);if(d[0]!=(((struct BsSurface*)object)->kind>=14?124u:108u))ExitProcess(151);
@@ -93,15 +96,68 @@ static void bs_seed(struct BsSurface* s){
         if(((i32 (WIN *)(void*,void*))s->table[22])(s,changed)!=23 || GetLastError()!=0x88)ExitProcess(179);}
     SetLastError(0x77);if(((i32 (WIN *)(void*,void*))s->table[32])(s,s->kind>=14?0:(void*)d[9])!=19 || GetLastError()!=0x88)ExitProcess(166);
 }
+static i32 WIN bs_attached(void* object,u32* caps,void** out){
+    bs_entry();++bs_attachments;if(!bs_state(object)->primary || caps[0]!=4)ExitProcess(180);
+    *out=bs_back;return bs_mode("flip-attachment-failed")?-1:23;
+}
+static i32 WIN bs_add_attachment(void* object,void* other){
+    bs_entry();if(!bs_state(object)->primary || other!=bs_back)ExitProcess(188);++bs_attachment_mutations;return 23;
+}
+static i32 WIN bs_delete_attachment(void* object,u32 flags,void* other){
+    if(flags)ExitProcess(189);return bs_add_attachment(object,other);
+}
+static i32 WIN bs_flip(void* object,void* target,u32 flags){
+    bs_entry();++bs_flips;++bs_draws;struct BsSurface* front=bs_state(object);
+    if(front->held || bs_back->held || flags!=(bs_mode("flip-flags")?0x10u:1u) ||
+       target!=(bs_mode("flip-alias")?(void*)bs_alias:bs_mode("flip-target")?(void*)bs_back:bs_mode("flip-wrong-target")?(void*)bs_alias:0))ExitProcess(181);
+    if(bs_mode("flip-retry") && bs_flips==1)return -1;
+    if(bs_mode("flip-nested")){u32 d[31]={0};d[0]=124;SetLastError(0x77);
+        if(((i32 (WIN *)(void*,void*))front->table[22])(front,d)!=23)ExitProcess(182);}
+    u8* data=front->pixels;front->pixels=bs_back->pixels;bs_back->pixels=data;SetLastError(0x88);return 17;
+}
+static void bs_do_flip(struct BsSurface* front){
+    SetLastError(0x77);i32 result=((i32 (WIN *)(void*,void*,u32))front->table[11])(front,
+        bs_mode("flip-alias")?bs_alias:bs_mode("flip-target")?bs_back:bs_mode("flip-wrong-target")?bs_alias:0,bs_mode("flip-flags")?0x10:1);
+    if(result!=(bs_mode("flip-retry") && bs_flips==1?-1:17) || GetLastError()!=0x88)ExitProcess(183);
+    bs_record(front);
+}
+static void bs_test_flips(struct BsSurface* front,struct BsSurface* back,struct BsSurface* sprite){
+    bs_back=back;u32 d[31]={124};SetLastError(0x77);
+    if(((i32 (WIN *)(void*,void*))back->table[22])(back,d)!=23 || GetLastError()!=0x88)ExitProcess(184);
+    u32 caps[4]={4};void* out=0;
+    if(!bs_mode("flip-unobserved")){SetLastError(0x77);
+        i32 status=((i32 (WIN *)(void*,void*,void**))front->table[12])(front,caps,&out);
+        if(status!=(bs_mode("flip-attachment-failed")?-1:23) || GetLastError()!=0x88 || out!=back)ExitProcess(185);}
+    if(bs_mode("flip-mutated")){
+        SetLastError(0x77);if(((i32 (WIN *)(void*,u32,void*))front->table[8])(front,0,back)!=23 || GetLastError()!=0x88)ExitProcess(190);
+        SetLastError(0x77);if(((i32 (WIN *)(void*,void*))front->table[3])(front,back)!=23 || GetLastError()!=0x88)ExitProcess(191);
+    }
+    if(bs_mode("flip-alias")){
+        static const u8 iid[16]={0x81,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
+        SetLastError(0x77);if(((i32 (WIN *)(void*,const void*,void**))back->table[0])(back,iid,&out)!=23 || out!=bs_alias || GetLastError()!=0x88)ExitProcess(187);
+    }
+    if(bs_mode("flip-retry"))bs_do_flip(front);
+    bs_do_flip(front);
+    int supported=bs_mode("flip-alias") || bs_mode("flip-budget") || bs_mode("flip-rotate") || bs_mode("flip-target") || bs_mode("flip-retry") || bs_mode("flip-no-reseed");
+    if(supported){
+        if(!bs_mode("flip-no-reseed"))bs_seed(back);
+        bs_do_flip(front);
+        if(!bs_mode("flip-no-reseed")){bs_seed(sprite);bs_draw(back,sprite,1,0,0);bs_do_flip(front);}
+    }
+    if(bs_mode("flip-budget"))for(u32 i=0;i<15;++i)bs_do_flip(front);
+    if(bs_locks!=(supported && !bs_mode("flip-no-reseed")?3u:1u) || bs_unlocks!=bs_locks || bs_queries!=(u32)bs_mode("flip-alias") ||
+       bs_descriptions!=2u+(u32)bs_mode("flip-nested") || bs_attachments!=!bs_mode("flip-unobserved") || bs_attachment_mutations!=(bs_mode("flip-mutated")?2u:0u))ExitProcess(186);
+    ExitProcess(0);
+}
 static void test_bootstrap(void){
     static void* table[33],*alias_table[33];table[0]=(void*)&bs_query;table[5]=(void*)&bs_blt;table[7]=(void*)&bs_fast;
-    table[22]=(void*)&bs_description;table[25]=(void*)&bs_lock;table[32]=(void*)&bs_unlock;table[28]=(void*)&bs_clipper;table[29]=(void*)&bs_key;
+    table[3]=(void*)&bs_add_attachment;table[8]=(void*)&bs_delete_attachment;table[11]=(void*)&bs_flip;table[12]=(void*)&bs_attached;table[22]=(void*)&bs_description;table[25]=(void*)&bs_lock;table[32]=(void*)&bs_unlock;table[28]=(void*)&bs_clipper;table[29]=(void*)&bs_key;
     for(u32 i=0;i<33;++i)alias_table[i]=table[i];
     static struct BsSurface source,target,sprite,alias;
     source.table=target.table=sprite.table=table;source.kind=target.kind=sprite.kind=bs_mode("legacy")?12:14;
     source.width=target.width=800;source.height=target.height=600;sprite.width=sprite.height=2;
     source.bits=target.bits=sprite.bits=bs_mode("rgb24")?24:bs_mode("rgb32")?32:16;target.primary=!bs_mode("offscreen");
-    alias.table=alias_table;alias.state=&target;alias.kind=11;bs_alias=&alias;
+    alias.table=alias_table;alias.state=bs_mode("flip-alias")?&source:&target;alias.kind=11;bs_alias=&alias;
     struct BsSurface* surfaces[3]={&source,&target,&sprite};u32 bytes=source.bits/8;
     for(u32 i=0;i<3;++i){struct BsSurface* s=surfaces[i];u32 length=s->width*s->height*bytes;
         s->pixels=HeapAlloc(GetProcessHeap(),0,length);s->locked=HeapAlloc(GetProcessHeap(),0,(s->width*bytes+8)*s->height);if(!s->pixels || !s->locked)ExitProcess(167);
@@ -128,6 +184,7 @@ static void test_bootstrap(void){
         if(status!=(bs_mode("failed-description")?-1:23) || GetLastError()!=0x88)ExitProcess(174);
         SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[28])(&target,0)!=23 || GetLastError()!=0x88)ExitProcess(175);
     }
+    if(bs_is_flip())bs_test_flips(&target,&source,&sprite);
     struct BsSurface* destination=&target;
     if(bs_mode("alias")){
         static const u8 iid[16]={0x81,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};void* output=0;SetLastError(0x77);

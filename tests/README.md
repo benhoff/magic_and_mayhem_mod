@@ -187,3 +187,9 @@ OpenGL command replay and Qt framebuffer readback. It verifies application
 descriptor provenance, full opaque initialization, incremental updates and
 rejection of incomplete or contradictory metadata. No game launch is needed.
 See [bootstrap evidence](../research/runtime/opengl-primary-bootstrap.md).
+
+`./tools/test-render-owned-flips.py` checks application-observed two-buffer chains,
+failed Flips, explicit/aliased targets, unknown back pixels, incremental updates,
+chain mutation, operation limits and conservative rejection. Independent native
+engine pixels must match ordered stream snapshots and Qt framebuffer readback.
+See [owned Flip evidence](../research/runtime/opengl-owned-flips.md).

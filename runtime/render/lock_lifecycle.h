@@ -100,6 +100,6 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
             if(pending->primary)game_publish_pixels(s);
         }
     }
-    if(slot && result>=0 && s->data){game_surface_sync();game_surface_store(pending->object,s,pending->primary);}
+    if(slot && result>=0 && s->data){game_surface_sync();game_surface_store(pending->object,s,pending->primary,slot->desc);}
     free_snapshot(s);__sync_lock_release(&game_locks_busy);
 }

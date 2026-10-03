@@ -50,8 +50,9 @@ now be initialized only by the full opaque overwrite described in the
 Successful BltBatch, GetDC and Restore also invalidate affected pixels and
 in-flight Lock checkpoints. A mutation nested inside original Unlock cannot
 commit its earlier copy. Restore
-removes source-key provenance. Flip currently invalidates the capture epoch rather
-than guessing a rotation. Flip routing remains separate work;
+removes source-key provenance. The subsequent [owned Flip chunk](opengl-owned-flips.md)
+rotates pixels for observed two-buffer RGB chains and invalidates the capture
+epoch for unsupported successful Flips;
 [primary blit presentation](opengl-game-owned-primary.md) is implemented. Final Release, contention and unknown successful Unlocks preserve the
 existing conservative epoch invalidation. CreateSurface clears old identity and
 property records before accepting a reused address. Joining two independently

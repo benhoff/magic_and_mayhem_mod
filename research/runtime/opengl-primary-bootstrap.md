@@ -95,5 +95,6 @@ PE32 i386; source and binary hashes are in `working/build/render/manifest.json`.
 
 Confidence: confirmed scoped synthetic x86 -> owned RGB pixels -> OpenGL replay
 and Qt presentation. Real-game API coverage and driver equivalence remain
-unvalidated. Flip/backbuffer rotation, indexed palette propagation, implicit or
-unobserved descriptors and continuous frame boundaries remain separate work.
+unvalidated. The subsequent [Flip chunk](opengl-owned-flips.md) handles observed two-buffer
+RGB rotation. Indexed palette propagation, implicit or unobserved descriptors,
+broader chains and continuous frame boundaries remain separate work.
