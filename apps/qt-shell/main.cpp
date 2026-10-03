@@ -1,4 +1,6 @@
 #include "window_host.hpp"
+#include "media_cli.hpp"
+#include "media_broker.hpp"
 #include "gl_viewport.hpp"
 #include "frame_stream.hpp"
 #include "input_forwarder.hpp"
@@ -31,7 +33,7 @@
 
 class Shell final:public QMainWindow {
 public:
-    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks) {
+    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
         viewport_=new QWidget(this);layout_=new QVBoxLayout(viewport_);
         layout_->setContentsMargins(0,0,0,0);viewport_->setMinimumSize(800,600);
@@ -65,7 +67,7 @@ public:
         poll_.setInterval(250);connect(&poll_,&QTimer::timeout,this,[this]{discover();});
         inputTimer_.setInterval(50);connect(&inputTimer_,&QTimer::timeout,this,[this]{if(input_)input_->heartbeat();});
         frames_.setInterval(16);connect(&frames_,&QTimer::timeout,this,[this]{
-            if(!stream_)return;
+            if(!stream_ || (media_ && media_->movieActive()))return;
             if(!gl_->error().isEmpty()){frames_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
             auto frame=stream_->nextFrame();
             if(!frame.isNull()){gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();
@@ -128,6 +130,13 @@ private:
             if(!inputState_->create(inputPath)){finished();statusBar()->showMessage("Cannot create game input channel.");return;}
             input_->setState(inputState_.get());inputTimer_.start();
             arguments={"--stream",path,"--input",inputPath};elapsed_.restart();frames_.start();
+            if(nativeMedia_){
+                media_=std::make_unique<MediaBroker>(*gl_,QDir(repo_).filePath("working/game-nocd"));
+                media_->frame=[this](QImage image){gl_->setFrame(std::move(image));placeholder_->hide();gl_->show();gl_->setFocus();};
+                media_->movieChanged=[this](bool playing){input_->suspend(playing);statusBar()->showMessage(playing?"Playing movie in Qt. Press Escape to skip.":"Movie finished; resuming game frames.");};
+                if(!media_->create(path+".media")){finished();statusBar()->showMessage("Cannot create native media channel.");return;}
+                arguments.append({"--media-channel",path+".media"});
+            }
             if(captureDraws_)arguments.append("--capture-draws");
             if(captureHistory_)arguments.append("--capture-history");
             if(skipMovies_)arguments.append("--skip-movies");
@@ -151,6 +160,7 @@ private:
         if(elapsed_.elapsed()>30000){poll_.stop();retry_->setEnabled(true);statusBar()->showMessage("Window not found yet. Check the launch log, then click Attach game.");}
     }
     void finished(){
+        media_.reset();if(input_)input_->suspend(false);
         if(input_)input_->setTarget(0);
         if(input_)input_->setState(nullptr);
         inputTimer_.stop();inputState_.reset();
@@ -159,7 +169,7 @@ private:
         detach();poll_.stop();frames_.stop();retry_->setEnabled(false);checking_=false;
         launch_->setEnabled(opengl_ || host_.available());check_->setEnabled(true);
     }
-    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
@@ -171,6 +181,9 @@ int main(int argc,char** argv){
     // Help remains available from terminals without a graphical display.
     for(int i=1;i<argc;++i)if(QString::fromLocal8Bit(argv[i])=="--help" || QString::fromLocal8Bit(argv[i])=="-h"){
         std::printf("Usage: mnm-qt-shell [--repo DIRECTORY] [--renderer opengl|native]\n"
+                    "  --native-media        Opt in to Qt movies and supported file sounds\n"
+                    "  --media FILE          Preview AVI/WAV media without the game\n"
+                    "  --media-test          Decode a preview silently and write --media-report FILE\n"
                     "  --software-rendering  Use Mesa software rendering for Qt and Wine\n"
                     "  --capture-locks       Capture bounded game-owned Lock/Unlock buffers\n"
                     "  --no-readback         Diagnostic: disable extra surface locks; use the Wine window\n"
@@ -194,6 +207,7 @@ int main(int argc,char** argv){
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);
     QApplication app(argc,argv);QCoreApplication::setApplicationName("mnm-qt-shell");
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
+    addMediaOptions(parser);
     parser.addOption({"software-rendering","Use Mesa software rendering for this shell and its Wine child."});
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
     parser.addOption({"capture-locks","Capture bounded game-owned locks; disables observer readback."});
@@ -210,6 +224,8 @@ int main(int argc,char** argv){
     parser.addOption({"smoke-test","Open the shell briefly without launching the game."});
     parser.addOption({"embedding-test","Test an external fixture window; does not run the game."});
     parser.addOption({"fixture-window","Internal external-window fixture."});parser.process(app);
+    if(parser.isSet("media") || parser.isSet("media-server-test"))return runMedia(app,parser);
+    if(parser.isSet("media-test") || parser.isSet("media-probe"))parser.showHelp(2);
     if(parser.isSet("fixture-window")){
         QWidget fixture;fixture.setWindowTitle("MagicMayhem");fixture.resize(800,600);
         auto* layout=new QVBoxLayout(&fixture);layout->addWidget(new QLabel("External viewport fixture",&fixture));fixture.show();
@@ -297,8 +313,8 @@ int main(int argc,char** argv){
     }
     const auto renderer=parser.value("renderer");
     if(renderer!="opengl" && renderer!="native")parser.showHelp(2);
-    if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback") || parser.isSet("capture-locks")) && renderer!="opengl")parser.showHelp(2);
-    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),parser.isSet("capture-locks"));shell.show();
+    if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback") || parser.isSet("capture-locks") || parser.isSet("native-media")) && renderer!="opengl")parser.showHelp(2);
+    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),parser.isSet("capture-locks"),parser.isSet("native-media"));shell.show();
     if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);
     if(parser.isSet("embedding-test")){
         if(!shell.host().available())return 2;

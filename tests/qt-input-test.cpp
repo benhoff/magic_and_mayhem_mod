@@ -86,6 +86,13 @@ int main(int argc,char** argv){
         mouse(QEvent::MouseButtonPress,{500,300},Qt::MiddleButton,Qt::MiddleButton);events();input.setTarget(0);
         received=events();require(received.size()==1 && received[0].detail==2 && (received[0].response_type&0x7f)==XCB_BUTTON_RELEASE,"Unbind must release held button");
         key(QEvent::KeyPress);require(events().empty(),"Unbound viewport forwarded input");
+        input.setTarget(target);key(QEvent::KeyPress);events();input.suspend(true);
+        received=events();require(received.size()==1 && (received[0].response_type&0x7f)==XCB_KEY_RELEASE,"Movie must release held input");
+        require(!(stateKey(65)&0x80000000u),"Movie must clear polling keys");
+        key(QEvent::KeyPress);mouse(QEvent::MouseMove,{500,300},Qt::NoButton,{});wheel(120);
+        require(events().empty(),"Movie must suppress game input");
+        input.suspend(false);key(QEvent::KeyPress);key(QEvent::KeyRelease);
+        require(events().size()==2,"Game input must resume after movie");input.setTarget(0);
         const auto competing=create(desktop,800,600);sync();require(!host.inputWindow(desktop,{800,600}),"Ambiguous clients must not bind");
         xcb_destroy_window(connection,competing);sync();input.setTarget(target);
         xcb_destroy_window(connection,target);sync();key(QEvent::KeyPress);require(!input.target(),"Destroyed target must disable forwarding");

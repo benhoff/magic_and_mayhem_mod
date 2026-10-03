@@ -17,3 +17,5 @@ Current findings:
 - [Mode-0 CFG writer](cfg-writer.md)
 - [Shared RGBA frame stream](render-frame-stream.md)
 - [Native blit capture and draw events](render-draw-capture.md)
+
+- [Qt media request channel](render-media-channel.md)

@@ -17,6 +17,7 @@ public:
     void release();
     void setState(InputState* state){release();state_=state;}
     void heartbeat();
+    void suspend(bool value){if(value)release();suspended_=value;heartbeat();}
 protected:
     bool eventFilter(QObject* object,QEvent* event) override;
 private:
@@ -25,5 +26,5 @@ private:
     void modifiers(Qt::KeyboardModifiers modifiers,int key=0);
     GlViewport& viewport_;WindowHost& host_;xcb_window_t target_=0;
     QSet<uint8_t> keys_,buttons_;QPoint position_;int wheel_=0;
-    QHash<uint8_t,unsigned> virtualKeys_;InputState* state_=nullptr;
+    bool suspended_=false;QHash<uint8_t,unsigned> virtualKeys_;InputState* state_=nullptr;
 };
