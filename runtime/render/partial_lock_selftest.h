@@ -62,12 +62,13 @@ static i32 WIN pl_blt(void* object,void* dst,void* source,void* rect,u32 flags,v
 }
 static void pl_file(const char* path,const void* data,u32 size){u32 written;HANDLE f=CreateFileA(path,0x40000000,1,0,1,0x80,0);
     if(f==(HANDLE)-1 || !WriteFile(f,data,size,&written,0) || written!=size)ExitProcess(214);CloseHandle(f);}
+static void (*pl_record_hook)(void);
 static void pl_record(void){
     char path[]="original-00000000.bin";static const char hex[]="0123456789abcdef";
     for(u32 i=0;i<8;++i)path[9+i]=hex[(pl_step>>(28-i*4))&15];pl_file(path,pl_surface.native,16*(pl_surface.bits/8));
     if(pl_has_palette()){char colors_path[]="colors-00000000.bin";
         for(u32 i=0;i<8;++i)colors_path[7+i]=hex[(pl_step>>(28-i*4))&15];pl_file(colors_path,pl_colors,1024);}
-    char frame_path[]="frame-00000000.bin";for(u32 i=0;i<8;++i)frame_path[6+i]=hex[(pl_step>>(28-i*4))&15];pl_file(frame_path,bs_stream,bs_stream[10]?128:64);++pl_step;
+    char frame_path[]="frame-00000000.bin";for(u32 i=0;i<8;++i)frame_path[6+i]=hex[(pl_step>>(28-i*4))&15];pl_file(frame_path,bs_stream,bs_stream[10]?128:64);if(pl_record_hook)pl_record_hook();++pl_step;
 }
 static void pl_cycle(i32* rect,u32 flags,u32 value){
     u32 d[31]={0};d[0]=pl_surface.kind>=14?124:108;u32 failed=pl_fail_lock;
@@ -99,7 +100,7 @@ static u8* pl_big_pixels;static u32 pl_big_locks,pl_big_unlocks;
 static i32 WIN pl_big_lock(void* object,void* rect,u32* d,u32 flags,HANDLE event){
     (void)object;if(GetLastError()!=0x77 || flags!=1 || event)ExitProcess(230);++pl_big_locks;
     for(u32 i=0;i<8*1024*1024;++i)pl_big_pixels[i]=0x55;
-    d[1]=1;d[2]=2048;d[3]=1024;d[4]=4096;d[9]=(u32)(pl_big_pixels+(rect?((i32*)rect)[1]*4096+((i32*)rect)[0]*4:0));
+    d[1]=1;d[2]=pl_mode("session-bytes")?1024:2048;d[3]=pl_mode("session-bytes")?2048:1024;d[4]=d[3]*4;d[9]=(u32)(pl_big_pixels+(rect?((i32*)rect)[1]*(i32)d[4]+((i32*)rect)[0]*4:0));
     d[19]=0x40;d[21]=32;d[22]=0xff0000;d[23]=0xff00;d[24]=0xff;d[26]=0x40;SetLastError(0x88);return 13;
 }
 static i32 WIN pl_big_unlock(void* object,void* rect){
@@ -125,7 +126,7 @@ static void test_partial_lock(void){
     HANDLE f=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(f==(HANDLE)-1)ExitProcess(221);
     HANDLE mapping=CreateFileMappingA(f,0,4,0,64+2048*2048*4,0);CloseHandle(f);if(!mapping)ExitProcess(222);
     bs_stream=MapViewOfFile(mapping,2,0,0,64+2048*2048*4);CloseHandle(mapping);if(!bs_stream)ExitProcess(223);
-    if(pl_mode("memory-budget") || pl_mode("replay-budget"))pl_big_test();
+    if(pl_mode("memory-budget") || pl_mode("replay-budget") || pl_mode("session-bytes"))pl_big_test();
     static void* table[33];table[25]=(void*)&pl_lock;table[32]=(void*)&pl_unlock;table[27]=(void*)&pl_restore;table[22]=(void*)&pl_description;table[28]=(void*)&pl_clipper;table[5]=(void*)&pl_blt;table[31]=(void*)&pl_palette_assign;
     pl_surface.table=table;pl_surface.kind=pl_mode("legacy")?11:pl_mode("surface2")?12:pl_mode("surface7")?17:14;
     pl_surface.bits=(pl_mode("indexed") || pl_has_palette())?8:pl_mode("rgb24")?24:pl_mode("rgb32")?32:16;

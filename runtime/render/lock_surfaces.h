@@ -21,7 +21,7 @@ static void game_surface_drop(struct GameSurface* s){
     s->generation=++game_surface_generation;
 }
 static void game_surface_sync(void){
-    game_alias_sync();
+    game_alias_sync();game_session_sync();
     for(u32 i=0;i<32;++i)if(game_locks[i].object && game_locks[i].epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED))game_lock_clear(game_locks+i);
     for(u32 i=0;i<32;++i)if(game_surfaces[i].object && game_surfaces[i].epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED)){
         game_surface_drop(game_surfaces+i);zero(game_surfaces+i,sizeof(game_surfaces[i]));
@@ -41,15 +41,17 @@ static int game_surface_enter(void){
     if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1)){__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);return 0;}
     game_surface_sync();return 1;
 }
-static void game_surface_invalidate_locked(void* object){
+static void game_surface_pixels_invalidate_locked(void* object){
     for(u32 i=0;i<32;++i)if(game_surfaces[i].object && game_alias_same(object,game_surfaces[i].object))game_surface_drop(game_surfaces+i);
     for(u32 i=0;i<32;++i)if(game_alias_same(object,game_locks[i].object))game_lock_clear(game_locks+i);
 }
+static void game_surface_invalidate_locked(void* object){game_session_invalidate(object);game_surface_pixels_invalidate_locked(object);}
 static void game_surface_alias(void* object){
     u32 count=0;
     for(u32 i=0;i<32;++i)if(game_surfaces[i].object && game_alias_same(object,game_surfaces[i].object))++count;
     /* Independently observed interfaces may have conflicting pixel/properties.
      * Require a new checkpoint rather than choosing an arbitrary record. */
+    if(count>1)game_session_invalidate(object);
     if(count>1)for(u32 i=0;i<32;++i)if(game_alias_same(object,game_locks[i].object))game_lock_clear(game_locks+i);
     if(count>1)for(u32 i=0;i<32;++i)if(game_surfaces[i].object && game_alias_same(object,game_surfaces[i].object)){
         game_surface_drop(game_surfaces+i);zero(game_surfaces+i,sizeof(game_surfaces[i]));
@@ -91,6 +93,7 @@ static void game_surface_described(void* object,u32 kind,const u32* d,i32 result
 }
 static void game_surface_created(void* object,u32 kind,const u32* d){
     if(!game_surface_enter())return;
+    game_session_invalidate(object);
     for(u32 i=0;i<32;++i)if(game_surfaces[i].object && game_alias_same(object,game_surfaces[i].object)){
         game_surface_drop(game_surfaces+i);zero(game_surfaces+i,sizeof(game_surfaces[i]));
     }
@@ -189,6 +192,7 @@ static void game_blit_after(struct GameBlit* p,i32 result){
     int palette_ready=p->dst.bits!=8 || game_surface_colors(dst,p->dst.palette);
     HANDLE file=palette_ready?CreateFileA(path,0x40000000,1,0,1,0x80,0):(HANDLE)-1;u32 sequence=0,header[4];copy(header,"MNMCMD01",8);header[2]=1;header[3]=16;
     int ok=file!=(HANDLE)-1 && write_all(file,header,16) && command_create_native(file,&sequence,1,&p->src) && command_create(file,&sequence,2,&p->dst) && command_record(file,&sequence,3,p->fields,40,0,0);
+    game_session_blit_begin(p);
     u32 bytes=p->src.bits/8;u32* f=p->fields;
     for(u32 y=0;y<f[5]-f[3];++y)for(u32 x=0;x<f[4]-f[2];++x){
         u8* in=p->src.data+((f[3]+y)*p->src.width+f[2]+x)*bytes;
@@ -196,6 +200,7 @@ static void game_blit_after(struct GameBlit* p,i32 result){
         u32 value=0;for(u32 i=0;i<bytes;++i)value|=(u32)in[i]<<(8*i);
         if(!f[8] || value!=f[9])copy(out,in,bytes);
     }
+    game_session_blit_end(p,dst->primary);
     u32 source_id=1,target_id=2;
     if(ok)ok=command_record(file,&sequence,5,&target_id,4,p->dst.data,p->dst.length) && command_record(file,&sequence,6,&target_id,4,0,0) && command_record(file,&sequence,7,&source_id,4,0,0) && command_record(file,&sequence,7,&target_id,4,0,0) && command_record(file,&sequence,8,0,0,0,0);
     if(file!=(HANDLE)-1)CloseHandle(file);

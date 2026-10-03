@@ -8,9 +8,19 @@ static void game_lock_clear(struct GameLock* slot){
     if(slot->base.data)__atomic_sub_fetch(&lock_capture_reserved,slot->base.length,__ATOMIC_RELAXED);
     free_snapshot(&slot->base);zero(slot,sizeof(*slot));
 }
+static u32 game_session_enabled;
+struct GameSurface;struct GameBlit;
+static void game_session_gap(u32);
+static void game_session_sync(void);
+static void game_session_invalidate(void*);
+static void game_session_blit_begin(struct GameBlit*);
+static void game_session_blit_end(struct GameBlit*,u32);
+static void game_session_palette(struct GameSurface*);
+static void game_session_palette_changed(void*);
 static char lock_capture_path[512];
 static u32 lock_capture_path_length;
 static void init_lock_lifecycle(void){
+    char session[8];game_session_enabled=GetEnvironmentVariableA("MNM_RENDER_OWNED_SESSION",session,8)==1 && session[0]=='1';
     u32 length=GetEnvironmentVariableA("MNM_RENDER_LOCK_CAPTURE_DIR",lock_capture_path,sizeof(lock_capture_path));
     if(length && length+28<sizeof(lock_capture_path))lock_capture_path_length=length;
 }
@@ -19,6 +29,7 @@ static void init_lock_lifecycle(void){
 #include "lock_surfaces.h"
 #include "lock_palette.h"
 #include "lock_updates.h"
+#include "owned_session.h"
 static void game_lock_retire(void* object){
     if(!lock_capture_path_length)return;
     if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1)){__atomic_store_n(&game_alias_reset_pending,1,__ATOMIC_RELEASE);__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);return;}
@@ -45,7 +56,7 @@ static void game_lock_observed(void* object,struct Table* table,void* rect,const
         surface->pixels.r==desc[22] && surface->pixels.g==desc[23] && surface->pixels.b==desc[24];
     if(partial){copy(&base,&surface->pixels,sizeof(base));surface->pixels.data=0;
         game_surface_bytes-=base.length;__atomic_add_fetch(&lock_capture_reserved,base.length,__ATOMIC_RELAXED);}
-    game_surface_invalidate_locked(object);
+    game_surface_pixels_invalidate_locked(object);
     struct GameLock* slot=0;
     for(u32 i=0;i<32;++i)if(game_alias_same(game_locks[i].object,object)){slot=game_locks+i;break;}
     if(!slot)for(u32 i=0;i<32;++i)if(!game_locks[i].active || game_locks[i].epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED)){slot=game_locks+i;break;}
@@ -61,6 +72,7 @@ static void game_lock_observed(void* object,struct Table* table,void* rect,const
             if(partial){slot->rectangle=rect;copy(&slot->region,region,16);copy(&slot->base,&base,sizeof(base));base.data=0;}
         }
     }
+    if(slot && !slot->active)game_session_invalidate(object);
     if(base.data)__atomic_sub_fetch(&lock_capture_reserved,base.length,__ATOMIC_RELAXED);free_snapshot(&base);
     lock_diagnostic(reason,object,table->kind,(u32)rect,flags,result,0,diagnostic_desc);
     __sync_lock_release(&game_locks_busy);
@@ -123,6 +135,7 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
                 if(write_all(file,header,header[3]))write_all(file,s->data,s->length);CloseHandle(file);
             }
             game_update_commands(slot,s,id);
+            game_session_unlock(slot,s,pending->primary);
             if(pending->primary && s->bits!=8)game_publish_pixels(s);
         }
     }
@@ -130,6 +143,6 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
         struct GameSurface* surface=game_surface_find(pending->object,0);
         if(surface && surface->primary && surface->pixels.bits==8)game_surface_publish(surface);
     }
-    if(slot && result>=0)game_lock_clear(slot);
+    if(slot && result>=0){if(!s->data && !pending->pixels.width)game_session_invalidate(pending->object);game_lock_clear(slot);}
     free_snapshot(s);__sync_lock_release(&game_locks_busy);
 }

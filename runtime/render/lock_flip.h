@@ -61,9 +61,10 @@ static void game_flip_after(struct GameFlip* pending,i32 result){
         __atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);game_surface_sync();
         lock_diagnostic("flip_invalidated",pending->front,0,0,0,result,0,0);
     }else{
+        game_session_flip_begin(front,back);
         struct Snapshot old;copy(&old,&front->pixels,sizeof(old));copy(&front->pixels,&back->pixels,sizeof(old));copy(&back->pixels,&old,sizeof(old));
         front->generation=++game_surface_generation;back->generation=++game_surface_generation;++game_flip_count;
-        game_flip_commands(front,back);
+        game_flip_commands(front,back);game_session_flip_end(front,back);
         lock_diagnostic(game_surface_publish(front)?"flip_presented":"flip_presentation_skipped",pending->front,0,(u32)pending->back,0,result,0,0);
     }
     __sync_lock_release(&game_locks_busy);
