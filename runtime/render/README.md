@@ -38,11 +38,16 @@ observed final Release; indexed palette hooks are documented below. See [command
 history after the first accepted draw. It records continuing copies, full-surface
 writable Lock/Unlock updates and final Release lifetimes, sharing IDs across
 recognized aliases and assigning fresh IDs after object-address reuse. Unsupported
-operations/gaps invalidate replay. Shared palette assignment/entry updates are supported; flip replacement remains
-pending. Synthetic x86 validation: `./tools/test-render-history.py`.
+operations/gaps invalidate replay. Shared palette assignment/entry updates are supported; verified double-buffer flips are supported within seeded histories. Synthetic x86 validation: `./tools/test-render-history.py`.
 See [scope and evidence](../../research/runtime/opengl-surface-history.md).
 
 Indexed history validation: `./tools/test-render-palettes.py`. Shared palette
 updates and surface reassignment emit palette records without converting native
 indices; CHECK_RGBA verifies original displayed colors independently. See
 [palette scope/evidence](../../research/runtime/opengl-indexed-palettes.md).
+
+Double-buffer flip validation: `./tools/test-render-flips.py`. Front/back native
+storage swaps retain logical palettes and surface identities. Native checks on
+both sides and Qt presentation checks cover repeated flips and failed retries.
+Longer chains, stereo/field flips and incomplete readback invalidate history.
+See [flip scope/evidence](../../research/runtime/opengl-double-buffer-flips.md).

@@ -206,6 +206,13 @@ void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,s
     g.glBindVertexArray(p.vao);g.glDrawArrays(GL_TRIANGLES,0,3);g.glBindVertexArray(0);p.program->release();g.glDisable(GL_SCISSOR_TEST);
     p.check();++p.counters.copies;
 }
+void GlBlitter::swapContents(SurfaceId first,SurfaceId second){
+    auto& p=*impl_;p.thread();auto& a=p.get(first);auto& b=p.get(second);
+    if(first==second || a.width!=b.width || a.height!=b.height ||
+       a.format.bits!=b.format.bits || a.format.masks!=b.format.masks)
+        throw std::runtime_error("Aliased or incompatible surface swap");
+    std::swap(a.native,b.native);
+}
 void GlBlitter::setPalette(SurfaceId id,unsigned first,const std::vector<Rgb>& colors){
     auto& p=*impl_;p.thread();auto& s=p.get(id);
     if(s.format.bits!=8 || colors.empty() || first>=256 || colors.size()>256-first)throw std::runtime_error("Invalid indexed palette update");

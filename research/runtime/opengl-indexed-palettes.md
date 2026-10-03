@@ -103,7 +103,8 @@ game palette usage, physical GPUs, internal COM callbacks and concurrent game
 calls remain unvalidated. Reentrant/overlapping observed calls invalidate the
 history; these hooks do not establish complete DirectDraw coverage. Existing
 16-operation, 240-record and 64 MiB history bounds still apply; successful palette
-setters count toward the operation bound. Flips/backbuffer swaps remain pending.
+setters count toward the operation bound. Flips were pending in this palette chunk;
+the subsequent [double-buffer extension](opengl-double-buffer-flips.md) adds guarded swaps.
 
 The capture command remains ready, with no automatic game launch:
 

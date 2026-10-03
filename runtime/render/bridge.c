@@ -132,8 +132,10 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
     if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN flip(void* object,void* target,u32 flags){
-    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Flip)t->original[11])(object,target,flags);u32 error=GetLastError();
-    if(token && status>=0)history_gap(6);
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);struct HistoryFlip pending;
+    if(token)history_flip_before(object,target,flags,&pending);
+    SetLastError(entry);i32 status=((Flip)t->original[11])(object,target,flags);u32 error=GetLastError();
+    if(token)history_flip_after(object,&pending,status);
     draw_event(3,(u32)__builtin_return_address(0),object,target,flags,status,0,0);
     if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
 }

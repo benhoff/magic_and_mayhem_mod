@@ -57,7 +57,7 @@ def main():
     for source,target,executable in ((REPO/'renderer',build,'mnm-render-commands'),(REPO/'apps/qt-shell',qt_build,'mnm-qt-shell')):
         subprocess.run(['cmake','-S',str(source),'-B',str(target)],check=True)
         subprocess.run(['cmake','--build',str(target),'--target',executable,'--parallel','4'],check=True)
-    env=os.environ.copy();env.pop('MNM_HISTORY_SELFTEST',None)
+    env=os.environ.copy();env.pop("MNM_FLIP_SELFTEST",None);env.pop('MNM_HISTORY_SELFTEST',None)
     env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'),WINEDEBUG='-all',MNM_RENDER_HISTORY='1',
         MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'),QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1')
     reports=[]
