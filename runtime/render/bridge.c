@@ -58,7 +58,9 @@ static u32 guid_kind(const u8* guid){
 static void install_table(void*,u32);
 static i32 WIN query(void* object,const u8* guid,void** result){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Query)t->original[0])(object,guid,result);u32 error=GetLastError();
-    if(status>=0 && result && *result && guid){u32 kind=guid_kind(guid);if(kind)install_table(*result,kind);if(token){if(t->kind==20)history_palette_alias(object,*result);else history_alias(object,*result);}}
+    if(status>=0 && result && *result && guid){u32 kind=guid_kind(guid);if(kind)install_table(*result,kind);
+        if(t->kind>=11 && t->kind<=17 && kind>=11 && kind<=17)game_alias_observed(object,*result,kind);
+        if(token){if(t->kind==20)history_palette_alias(object,*result);else history_alias(object,*result);}}
     history_leave(token);SetLastError(error);return status;
 }
 static u32 WIN surface_release(void* object){
@@ -157,9 +159,10 @@ static i32 WIN surface_lock(void* object,void* rect,void* desc,u32 flags,HANDLE 
 }
 static i32 WIN surface_unlock(void* object,void* rect){
     u32 error=GetLastError();int token=history_enter();struct Snapshot pending;zero(&pending,sizeof(pending));
-    struct GameUnlock game_pending;game_unlock_before(object,rect,&game_pending);
+    struct Table* t=lookup(object);
+    struct GameUnlock game_pending;game_unlock_before(object,t->kind,rect,&game_pending);
     if(token)history_unlock_before(object,rect,&pending);SetLastError(error);
-    struct Table* t=lookup(object);i32 status=((Unlock)t->original[32])(object,rect);error=GetLastError();
+    i32 status=((Unlock)t->original[32])(object,rect);error=GetLastError();
     game_unlock_after(&game_pending,status);
     render_failure("application_unlock",status,object,t->kind,0);
     if(token)history_unlock_after(object,&pending,status);
