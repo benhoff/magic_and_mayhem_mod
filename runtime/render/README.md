@@ -75,3 +75,12 @@ keeps game-call logging but disables all primary/history/snapshot readback locks
 Use the Wine window: Qt frames and pixel checkpoints are intentionally disabled.
 This mode tests whether observer readback is needed to reproduce the error.
 Application Lock calls are still forwarded unchanged.
+
+`./tools/run-qt-shell.sh --capture-locks` opts into bounded game-owned Lock/Unlock
+capture and automatically disables observer readback. It copies writable full
+surfaces before the game's Unlock and commits only on successful Unlock. Native
+snapshots go to the experiment's `lock-capture/`; only directly locked primary
+RGB surfaces can produce Qt frames. Offscreen Blt/Flip propagation and indexed
+palette association remain outstanding. See
+[format and lifecycle](../../research/formats/render-game-lock-capture.md).
+Run `./tools/test-render-lock-lifecycle.py` for the PE32 Wine lifecycle fixtures.
