@@ -19,6 +19,7 @@ gaps), payload byte count. Payload follows immediately, without alignment.
 | 5 CHECK | uint32 ID; full expected native pixels, used only for comparison |
 | 6 PRESENT | uint32 ID; resolve native pixels/palette into a Qt RGBA image |
 | 7 DESTROY | uint32 ID |
+| 11 SWAP | Two uint32 IDs; exchange native pixel storage, keep palettes attached to their IDs |
 | 10 CHECK_RGBA | uint32 ID; full expected RGBA8888 pixels, comparison only |
 | 8 END | Empty payload; all surfaces must have been destroyed and at least one PRESENT recorded |
 
@@ -35,7 +36,7 @@ The parser validates the complete session before initializing OpenGL. Bounds:
 2048x2048 per surface. Updates/copies must be entirely in bounds. Copies require
 identical formats and distinct IDs. Unknown opcodes, invalid lengths, missing
 END, trailing records/bytes, sequence gaps, stale IDs and invalid palettes fail.
-Clipping, stretching, overlapping self-copies, fills, flips, effects and format
+Clipping, stretching, overlapping self-copies, fills, longer flip chains, effects and format
 conversion are not represented in this version. No unsupported call is silently
 translated into an apparently complete live stream.
 
@@ -105,3 +106,16 @@ successful surface reassignment. Palette changes can emit PRESENT without COPY;
 they leave native indices intact. Per-entry flags are excluded, alpha stays 255.
 Null detachment and unsupported palette capabilities invalidate history.
 [Palette evidence and limits](../runtime/opengl-indexed-palettes.md).
+
+SWAP (opcode 11) requires distinct live IDs with identical dimensions, bit depth
+and RGB masks. It exchanges native textures without uploading pixels or drawing
+a copy. Palettes, resource IDs and presentation textures stay attached to the
+logical surfaces. Later CHECK/PRESENT resolves the exchanged storage. Unsupported
+older consumers reject this new opcode. The envelope remains version 1.
+
+Within an already seeded history, the bridge now emits SWAP for verified
+primary/front + single backbuffer pairs. It checks both native inputs before
+Flip and both original outputs afterward, then presents the front. Successful
+unsupported flips still emit GAP 6; failed flips emit no SWAP. Discovery is
+repeated per call and does not retain COM references across application calls.
+See [flip scope and evidence](../runtime/opengl-double-buffer-flips.md).

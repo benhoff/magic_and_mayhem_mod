@@ -79,6 +79,8 @@ canonical surface identity/lifetime tracking and recording writable Lock/Unlock
 updates, palette changes and unsupported-call gaps. Reentrant/concurrent or
 unobserved operations must invalidate coverage rather than imply exact replay.
 Validate each addition against synthetic interfaces before attempting real-game
-render replacement. Flips require an explicit surface-content/swap model.
+render replacement. These follow-ups now exist as [bounded histories](opengl-surface-history.md),
+[indexed palettes](opengl-indexed-palettes.md), and [double-buffer swaps](opengl-double-buffer-flips.md).
+Real-game command routing and broader flip-chain coverage remain pending.
 
 Protocol: [surface commands](../formats/render-surface-commands.md).

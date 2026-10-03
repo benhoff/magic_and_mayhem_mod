@@ -167,3 +167,5 @@ static void history_finish(void){
     int token=history_enter();if(!token)return;
     history_finish_owned();history_leave(token);
 }
+
+#include "flip_history.h"

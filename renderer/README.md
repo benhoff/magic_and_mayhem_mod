@@ -65,7 +65,7 @@ captured-after input. A `QGuiApplication` must exist, and the blitter must be
 created, used and destroyed on the GUI thread. It owns a separate offscreen
 context and restores the caller's context around operations.
 
-Persistent API: `create`, `destroy`, `update`, `copy`, `setPalette`, `read`,
+Persistent API: `create`, `destroy`, `update`, `copy`, `swapContents`, `setPalette`, `read`,
 and `present`. Surface handles are unique process-local IDs; destroyed or foreign
 handles are rejected. `copy` retains both textures and performs no native upload
 or readback. `update` uploads only a changed rectangle. `read` explicitly returns
@@ -136,3 +136,10 @@ CHECK_RGBA records compare presentation with original color evidence, and the CL
 reports `color_checks`. Expected color bytes are comparison inputs only. Palette
 changes may present a frame without another copy or native upload. Validation:
 `./tools/test-render-palettes.py`; see [palette evidence](../research/runtime/opengl-indexed-palettes.md).
+
+Double-buffer histories now replay SWAP commands without native upload or copy.
+`swapContents` exchanges two compatible native textures; palettes and IDs stay
+attached to their logical surfaces. Tests cover indexed and RGB swaps and reject
+incompatible dimensions/formats, stale handles and aliases. Integrated x86 Wine
+validation: `./tools/test-render-flips.py`; see
+[flip evidence and limits](../research/runtime/opengl-double-buffer-flips.md).

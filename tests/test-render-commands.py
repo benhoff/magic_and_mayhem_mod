@@ -94,6 +94,29 @@ def main():
         assert report['checks'] == 25 and report['presentations'] == 2
         assert report['surface_stats']['uploads'] == 27 and report['surface_stats']['copies'] == 24
 
+    for bits in (8,16,24,32):
+        masks={8:(0,0,0),16:(0xf800,0x7e0,0x1f),24:(0xff0000,0xff00,0xff),32:(0xff0000,0xff00,0xff)}[bits]
+        def native(values):return b''.join(v.to_bytes(bits//8,'little') for v in values)
+        a=[1,2];b=[3,4]
+        records=[(1,pack(1,2,1,bits,*masks)+native(a)),(1,pack(2,2,1,bits,*masks)+native(b))]
+        palettes={1:[[i,0,0] for i in range(256)],2:[[0,i,255-i] for i in range(256)]}
+        if bits==8:
+            for sid in (1,2):records.append((4,pack(sid,0,256)+bytes(sum(palettes[sid],[]))))
+        for step in range(5):
+            records.append((11,pack(1,2)));a,b=b,a
+            for sid,values in ((1,a),(2,b)):
+                records.append((5,pack(sid)+native(values)))
+                rgba=bytearray()
+                for value in values:
+                    rgb=palettes[sid][value] if bits==8 else [((value&mask)//(mask&-mask))*255//(mask//(mask&-mask)) for mask in masks]
+                    rgba.extend([*rgb,255])
+                records.append((10,pack(sid)+bytes(rgba)))
+                records.append((6,pack(sid)))
+        records.extend([(7,pack(1)),(7,pack(2)),(8,b'')])
+        report=run(f'swap-{bits}',records,native(b),bytes(rgba))
+        assert report['checks']==10 and report['color_checks']==10 and report['presentations']==10
+        assert report['surface_stats']['uploads']==2 and report['surface_stats']['copies']==0
+
     valid = [(1,pack(1,1,1,8,0,0,0)+b'\x03'), (5,pack(1)+b'\x03'), (6,pack(1)), (7,pack(1)), (8,b'')]
     bad_cases = [[],valid[:-1],valid+[(8,b'')],[(9,b'')],valid[:1]+[(1,valid[0][1])]+valid[1:],
         valid[:3]+[(7,pack(2))]+valid[3:],valid[:4]+[(1,valid[0][1])]+valid[4:],
@@ -112,6 +135,12 @@ def main():
         valid[:1]+[(10,pack(1)+b'\0\0')]+valid[1:],
         valid[:1]+[(10,pack(2)+bytes(4))]+valid[1:],
         valid[:1]+[(10,pack(1)+bytes(4))]+valid[1:]]
+    pair=[(1,pack(2,1,1,8,0,0,0)+b'\x07')]
+    for payload in (pack(1,1),pack(1,3),pack(1),pack(1,2,0)):
+        bad_cases.append(valid[:1]+pair+[(11,payload)]+valid[1:])
+    bad_cases.append(valid[:1]+[(1,pack(2,2,1,8,0,0,0)+b'\x07\x08'),(11,pack(1,2))]+valid[1:])
+    bad_cases.append(valid[:1]+[(1,pack(2,1,1,16,0xf800,0x7e0,0x1f)+bytes(2)),(11,pack(1,2))]+valid[1:])
+    bad_cases.append(valid[:1]+pair+[(7,pack(2)),(11,pack(1,2))]+valid[1:])
     for i, records in enumerate(bad_cases):run(f'reject-{i}', records, bad=True)
     for i, raw in enumerate((stream(valid)[:-1],stream(valid)+b'x',HEADER[:15],
                              HEADER+pack(1,2,len(valid[0][1]))+valid[0][1])):

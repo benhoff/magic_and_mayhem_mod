@@ -1,7 +1,8 @@
 # Bounded RGB surface history
 
 The subsequent [indexed palette extension](opengl-indexed-palettes.md) adds
-8-bit histories and palette hooks. Findings below describe the initial RGB chunk.
+8-bit histories and palette hooks. The later [double-buffer flip extension](opengl-double-buffer-flips.md)
+adds guarded front/back swaps. Findings below describe the initial RGB chunk.
 
 ## Confirmed implementation
 

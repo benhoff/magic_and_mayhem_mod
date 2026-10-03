@@ -63,6 +63,10 @@ std::vector<SurfaceCommand> decodeCommands(const QByteArray& data){
                     w[4]-w[2]<=unsigned(d.width) && w[5]-w[3]<=unsigned(d.height) &&
                     w[6]<=unsigned(d.width)-(w[4]-w[2]) && w[7]<=unsigned(d.height)-(w[5]-w[3]),"Copy outside surface");
             require(w[8]<=1 && (w[8] || !w[9]) && (s.format.bits==32 || w[9]<(1u<<s.format.bits)),"Invalid copy key");
+        }else if(c.operation==11){
+            fields(2);require(length==8,"Invalid swap length");const auto& a=get(c.words[0]);const auto& b=get(c.words[1]);
+            require(c.words[0]!=c.words[1] && a.width==b.width && a.height==b.height &&
+                    a.format.bits==b.format.bits && a.format.masks==b.format.masks,"Aliased or incompatible surface swap");
         }else if(c.operation==4){
             fields(3);const auto& s=get(c.words[0]);const auto first=c.words[1],count=c.words[2];
             require(s.format.bits==8 && count && first<256 && count<=256-first && length==12+count*3,"Invalid palette command");
@@ -96,6 +100,7 @@ CommandResult replayCommands(const std::vector<SurfaceCommand>& commands){
         case 2:gl.update(handles.at(w[0]),int(w[1]),int(w[2]),c.image);break;
         case 3:gl.copy(handles.at(w[0]),handles.at(w[1]),{int(w[2]),int(w[3]),int(w[4]),int(w[5])},int(w[6]),int(w[7]),
                       w[8]?std::optional<std::uint32_t>(w[9]):std::nullopt);break;
+        case 11:gl.swapContents(handles.at(w[0]),handles.at(w[1]));break;
         case 4:gl.setPalette(handles.at(w[0]),w[1],c.colors);break;
         case 5:require(encodeNative(gl.read(handles.at(w[0])),bits.at(w[0]))==c.expected,"Original native pixels disagree with command replay");++result.checks;break;
         case 6:result.native=encodeNative(gl.read(handles.at(w[0])),bits.at(w[0]));result.presentation=gl.present(handles.at(w[0]));++result.presents;break;
