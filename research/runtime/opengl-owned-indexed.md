@@ -71,7 +71,8 @@ capture, not continuous replacement rendering.
 
 The subsequent [indexed copy/Flip chunk](opengl-owned-indexed-copies.md) extends
 native propagation and destination palette resolution, and emits bounded
-indexed copy/swap replay files. Partial CPU Locks, complex operations and
+indexed copy/swap replay files. [Partial CPU Locks](opengl-partial-locks.md) now
+have a bounded merge implementation; complex operations and
 continuous presentation remain separate work.
 
 ## Offline validation and confidence

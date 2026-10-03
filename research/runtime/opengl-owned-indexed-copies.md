@@ -105,7 +105,8 @@ pixels. Palette reassignment follows identity across repeated rotations.
 
 Confidence: confirmed scoped synthetic x86 -> owned indices -> CPU/native OpenGL
 copy and swap replay -> palette-resolved Qt presentation. Real-game API coverage,
-driver equivalence and continuous gameplay remain unvalidated. Partial CPU Locks,
+driver equivalence and continuous gameplay remain unvalidated.
+[Partial CPU Locks](opengl-partial-locks.md) now have a bounded merge implementation;
 complex clipping/effects, format conversion, larger chains and uninterrupted
 replacement presentation remain separate work.
 
