@@ -233,3 +233,18 @@ Python copies and native OpenGL output/RGBA hashes. Upload counts exclude CHECK
 bytes. It verifies poisoned CHECK rejection, indexed palette changes while
 locked, exclusive-create failure, and the replay-byte budget with 2048-row
 patches. Recording failures must preserve native commits and application calls.
+
+## Native media without the game
+
+`python3 tools/test-native-media.py` creates its own AVI/WAV fixtures and
+checks exact Qt-decoded RGBA/PCM, movie completion/skip, sound looping/stopping,
+NOSTOP, fallback and the PE32 calling convention. It uses Xvfb and a dedicated
+Wine test prefix. It does not validate audible output or run Chaos.exe.
+
+When live testing becomes possible, open `./tools/run-qt-shell.sh --native-media`
+and click Launch game. Check that the intro is visible and audible in Qt,
+Escape reaches the menu, a new map starts, movie playback returns to game
+frames, and held keys/buttons are released across movie transitions. Exercise
+one-shot/looped WAV sounds and normal DirectSound effects together. Close the
+game normally and check that relaunch creates a fresh media channel. Record
+observed results separately from the offline checks.

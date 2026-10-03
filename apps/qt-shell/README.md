@@ -7,7 +7,7 @@ The host can be x86-64 while the injected frame bridge and game are PE32 i386.
 
 ## Build and open
 
-Requires CMake, a C++17 compiler, Qt 6.5+ Widgets / OpenGLWidgets / OpenGL
+Requires CMake, a C++17 compiler, Qt 6.8+ Widgets / OpenGLWidgets / OpenGL / Multimedia
 libraries, pkg-config and XCB development files. The frame bridge additionally
 requires Clang, llvm-dlltool, lld-link and Wine. The current host supplies these
 and Qt 6.11.2. No game is launched merely by opening the application.
@@ -119,3 +119,26 @@ It selects Mesa software GL before Qt starts and passes that environment to Wine
 The viewport now reports hook/DirectDraw startup stages after ten seconds without
 a frame, and reports creation/hook failures immediately. No registry changes are
 made. See [startup evidence and limitations](../../research/runtime/render-startup-black-screen.md).
+
+## Native movies and file sounds
+
+Opt in with `./tools/run-qt-shell.sh --native-media`. Movies and supported
+WinMM WAV file calls then run through Qt, with movie frames in the OpenGL
+viewport. Escape skips movies; game input is suspended during playback.
+DirectSound effects/voices remain in Wine. Default launches retain legacy
+multimedia. Live startup and audible output still need validation.
+
+Preview media without launching the game:
+
+```bash
+./tools/run-qt-shell.sh --media working/game-nocd/FMV/Intro0.avi
+./tools/run-qt-shell.sh --media "working/game-nocd/Sounds/Spell click.wav"
+python3 tools/test-native-media.py
+```
+
+Standalone playback supports Space (pause), Escape (stop), and +/- (volume).
+The offline test compares exact synthetic movie pixels and PCM samples and
+checks the x86 broker lifecycle. `--media-test --media-report FILE` silently
+measures a preview; add `--media-probe` to stop after a movie frame and PCM
+buffer. See [runtime scope/evidence](../../research/runtime/qt-native-media.md)
+and [channel layout](../../research/formats/render-media-channel.md).

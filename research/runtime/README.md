@@ -44,3 +44,6 @@ confidence, and whether it remains stable across launches.
 
 - [Partial CPU Lock reconstruction](opengl-partial-locks.md): detached complete
   checkpoints, rectangle merges, successful Unlock commits and offline x86/Qt tests.
+
+- [Qt movies and file sounds](qt-native-media.md): optional x86 movie/WinMM hooks,
+  native decoding and bounded broker lifecycle; DirectSound remains in Wine.

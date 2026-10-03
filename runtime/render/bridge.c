@@ -39,6 +39,7 @@ static struct Table* lookup(void* object){
 }
 static void install_table(void*,u32);
 #include "input_polling.h"
+#include "media_bridge.h"
 static i32 WIN input_cooperative(void* object,void* window,u32 flags){
     struct Table* table=lookup(object);i32 result=((i32 (WIN *)(void*,void*,u32))table->original[20])(object,window,flags);
     if(result>=0 && window)input_window=window;return result;
@@ -377,7 +378,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     if(!mapping)return 1;
     stream=MapViewOfFile(mapping,2,0,0,STREAM_SIZE);CloseHandle(mapping);
     if(!stream || !same(stream,"MNMGL001",8) || stream[2]!=1 || stream[3]!=64){stream=0;return 1;}
-    input_init();
+    input_init();media_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();
     if(lock_capture_path_length)readback_disabled=1;
@@ -396,7 +397,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     iat[0]=(void*)&enumerate_draw;iat[1]=(void*)&create_draw;iat[0x31]=(void*)&proc_address;
     u32 ignored;VirtualProtect(iat,0xc8,protection,&ignored);
 #ifndef MNM_RENDER_SELFTEST
-    input_install(base);
+    input_install(base);media_install(base);
 #endif
     __atomic_store_n(stream+9,5,__ATOMIC_RELEASE);return 1;
 }

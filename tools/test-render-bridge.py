@@ -24,6 +24,7 @@ def main():
     (root/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
     env=os.environ.copy();env.pop('MNM_RENDER_LOCK_CAPTURE_DIR',None);env.pop('MNM_LOCK_LIFECYCLE_SELFTEST',None);env.pop('MNM_RENDER_NO_READBACK',None);env.pop('MNM_PRIMARY_LOCK_FAILURE_SELFTEST',None);env.pop('MNM_RENDER_FAILURE_LOG',None);env.pop("MNM_FLIP_SELFTEST",None);env['WINEPREFIX']=str(REPO/'working/tests/render-wine');env['WINEDEBUG']='-all'
     env.pop("MNM_STARTUP_SELFTEST",None);env.pop('MNM_RENDER_CAPTURE_DIR',None);env.pop('MNM_RENDER_HISTORY',None);env.pop('MNM_HISTORY_SELFTEST',None);env.pop('MNM_PALETTE_SELFTEST',None)
+    env.pop('MNM_RENDER_MEDIA',None);env.pop('MNM_MEDIA_SELFTEST',None)
     env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\')
     with (root/'wine.log').open('w') as log:
         subprocess.run(['wine',str(root/'selftest.exe')],cwd=root,env=env,stdout=log,stderr=log,check=True,timeout=60)

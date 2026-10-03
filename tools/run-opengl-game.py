@@ -61,6 +61,7 @@ def disable_cd_music(game):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stream',type=Path,required=True);parser.add_argument('--stage-only',action='store_true')
+    parser.add_argument('--media-channel',type=Path,help='Opt-in pre-created Qt movie/file-sound channel')
     parser.add_argument('--input',type=Path,help='Pre-created Qt keyboard/cursor polling channel')
     parser.add_argument('--capture-draws',action='store_true',help='Record bounded draw events and one small native-pixel blit')
     parser.add_argument('--capture-history',action='store_true',help='Opt in to bounded indexed/RGB surface history; implies --capture-draws')
@@ -77,6 +78,11 @@ def main():
         if not input_path.is_relative_to(REPO/'working'):raise ValueError('Input channel must be under working/')
         with input_path.open('rb') as file:
             if input_path.stat().st_size!=1088 or file.read(16)!=b'MNMINK01\x01\0\0\0\x40\x04\0\0':raise ValueError('Invalid input channel')
+    media_path=args.media_channel.resolve() if args.media_channel else None
+    if media_path:
+        if not media_path.is_relative_to(REPO/'working'):raise ValueError('Media channel must be under working/')
+        with media_path.open('rb') as file:
+            if media_path.stat().st_size!=2048 or file.read(16)!=b'MNMMED01'+(1).to_bytes(4,'little')+(2048).to_bytes(4,'little'):raise ValueError('Invalid media channel')
     stage=load('shadow_stage','tools/prepare-shadow-experiment.py');source=REPO/'working/game-nocd';data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=stage.HASH:raise ValueError('Unsupported game hash')
     dll=load('render_build','tools/build-render-bridge.py').build()
@@ -90,6 +96,7 @@ def main():
     cd_edits=disable_cd_music(game)
     metadata={'cd_music_disabled':True,'cd_music_preference_edits':cd_edits,'capture_locks':args.capture_locks,'no_readback':args.no_readback or args.capture_locks,'failure_log':str(root/'surface-failures.log'),'skip_movies':args.skip_movies,'movie_preference_edits':movie_edits,'origin':'directdraw_opengl_presentation','source_sha256':stage.HASH,'stream':str(stream),
               'staged_sha256':hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest(),'capture_history':args.capture_history,'graphics_environment':{key:os.environ.get(key,'') for key in ('LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WINE_D3D_CONFIG')},'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest()}
+    metadata['media_channel']=str(media_path) if media_path else None
     metadata['input_channel']=str(input_path) if input_path else None
     if args.capture_locks:
         lock_capture=root/'lock-capture';lock_capture.mkdir();metadata['lock_capture_directory']=str(lock_capture);metadata['lock_lifecycle_log']=str(lock_capture/'lifecycle.log')
@@ -100,6 +107,8 @@ def main():
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n');print(f'Render experiment: {root}',flush=True)
     if args.stage_only:return 0
     env=os.environ.copy();env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\');env['MNM_RENDER_EXPERIMENT']=str(root);env.pop('MNM_RUNNER',None)
+    env.pop('MNM_RENDER_MEDIA',None)
+    if media_path:env['MNM_RENDER_MEDIA']='Z:'+str(media_path).replace('/','\\')
     env.pop('MNM_RENDER_INPUT',None)
     if input_path:env['MNM_RENDER_INPUT']='Z:'+str(input_path).replace('/','\\')
     env.pop('MNM_RENDER_LOCK_CAPTURE_DIR',None)

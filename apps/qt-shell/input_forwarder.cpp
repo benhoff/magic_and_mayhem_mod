@@ -58,11 +58,11 @@ void InputForwarder::release(){
     keys_.clear();buttons_.clear();wheel_=0;
     virtualKeys_.clear();if(state_){state_->clear();state_->publish(false,position_,viewport_.frameSize());}
 }
-void InputForwarder::heartbeat(){if(state_)state_->publish(target_ && viewport_.hasFocus() && viewport_.isVisible(),position_,viewport_.frameSize());}
+void InputForwarder::heartbeat(){if(state_)state_->publish(!suspended_ && target_ && viewport_.hasFocus() && viewport_.isVisible(),position_,viewport_.frameSize());}
 bool InputForwarder::eventFilter(QObject* object,QEvent* event){
     if(object!=&viewport_)return false;
     if(event->type()==QEvent::FocusOut || event->type()==QEvent::Hide || event->type()==QEvent::WindowDeactivate){release();return false;}
-    if(!target_)return false;
+    if(suspended_ || !target_)return false;
     if(event->type()==QEvent::ShortcutOverride){event->accept();return true;}
     if(event->type()==QEvent::KeyPress || event->type()==QEvent::KeyRelease){
         auto* key=static_cast<QKeyEvent*>(event);const auto code=key->nativeScanCode();
