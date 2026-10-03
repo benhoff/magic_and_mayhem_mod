@@ -40,7 +40,7 @@ def main():
     build=REPO/'working/build/renderer'
     subprocess.run(['cmake','-S',str(REPO/'renderer'),'-B',str(build)],check=True)
     subprocess.run(['cmake','--build',str(build),'--target','mnm-render-commands','--parallel','4'],check=True)
-    env=os.environ.copy();env.pop("MNM_FLIP_SELFTEST",None);env.pop('MNM_PALETTE_SELFTEST',None);env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'),WINEDEBUG='-all',
+    env=os.environ.copy();env.pop("MNM_STARTUP_SELFTEST",None);env.pop("MNM_FLIP_SELFTEST",None);env.pop('MNM_PALETTE_SELFTEST',None);env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'),WINEDEBUG='-all',
         MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'),MNM_RENDER_HISTORY='1',QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1')
     qt_build=REPO/'working/build/qt-shell'
     subprocess.run(['cmake','-S',str(REPO/'apps/qt-shell'),'-B',str(qt_build)],check=True)

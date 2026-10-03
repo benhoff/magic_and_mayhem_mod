@@ -1,5 +1,13 @@
 #include "../shadow/win32_min.h"
 API void WIN RenderInstallForTest(void*,u32);
+API i32 WIN RenderCreateForTest(void*,void*,void**,void*);
+static char startup_mode[16];
+static i32 WIN startup_create(void* guid,void** result,void* outer){
+    if(guid!=(void*)0x1234 || outer!=(void*)0x5678 || GetLastError()!=0x77)ExitProcess(80);
+    static void* table[7];static void** draw=table;
+    SetLastError(0x88);*result=startup_mode[0]=='o'?&draw:0;
+    return startup_mode[0]=='f'?(i32)0x887600ff:0;
+}
 static u16 pixels[8]={0xf800,0xf800,0x07e0,0x07e0,0x001f,0x001f,0xffff,0xffff};
 static u32 locks,unlocks,calls;
 static i32 WIN query(void* object,const void* guid,void** output){(void)object;(void)guid;(void)output;return -1;}
@@ -19,6 +27,13 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "palette_selftest.h"
 #include "flip_selftest.h"
 void start(void){
+    if(GetEnvironmentVariableA("MNM_STARTUP_SELFTEST",startup_mode,sizeof(startup_mode))){
+        void* result=0;SetLastError(0x77);
+        i32 status=RenderCreateForTest((void*)&startup_create,(void*)0x1234,&result,(void*)0x5678);
+        if(status!=(startup_mode[0]=='f'?(i32)0x887600ff:0) || GetLastError()!=0x88 ||
+           (startup_mode[0]=='o'?result==0:result!=0))ExitProcess(81);
+        ExitProcess(0);
+    }
     void* table[33]={0};table[0]=(void*)&query;table[5]=(void*)&blt;table[11]=(void*)&flip;
     table[22]=(void*)&description;table[25]=(void*)&lock;table[32]=(void*)&unlock;
     void** object=table;RenderInstallForTest(&object,14);

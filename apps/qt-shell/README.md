@@ -109,3 +109,10 @@ demo opens with `./tools/run-qt-shell.sh --surface-demo`, performs native indexe
 updates/copies, and cycles a palette entry without launching a game.
 `--surface-test` verifies its displayed pixels through Qt framebuffer readback.
 See [surface API and evidence](../../research/runtime/opengl-persistent-surfaces.md).
+
+If Wine opens a black window, try
+`./tools/run-qt-shell.sh --software-rendering --capture-history` in a new shell.
+It selects Mesa software GL before Qt starts and passes that environment to Wine.
+The viewport now reports hook/DirectDraw startup stages after ten seconds without
+a frame, and reports creation/hook failures immediately. No registry changes are
+made. See [startup evidence and limitations](../../research/runtime/render-startup-black-screen.md).

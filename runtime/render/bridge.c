@@ -229,12 +229,21 @@ static void install_table(void* object,u32 kind){
 done:__sync_lock_release(&table_busy);
 }
 static i32 WIN create_draw(void* guid,void** result,void* outer){
+    __atomic_store_n(stream+9,6,__ATOMIC_RELEASE); /* Entered DirectDrawCreate. */
+    __atomic_add_fetch(stream+12,1,__ATOMIC_RELAXED);
     i32 status=original_create(guid,result,outer);u32 error=GetLastError();
-    if(status>=0 && result && *result)install_table(*result,1);SetLastError(error);return status;
+    __atomic_store_n(stream+11,(u32)status,__ATOMIC_RELAXED);
+    if(status>=0 && result && *result)install_table(*result,1);
+    u32 state=status<0?8:result && *result && lookup(*result)?7:10;
+    __atomic_store_n(stream+9,state,__ATOMIC_RELEASE);
+    SetLastError(error);return status;
 }
 __declspec(dllexport) void RenderAnchor(void){}
 #ifdef MNM_RENDER_SELFTEST
 __declspec(dllexport) void WIN RenderInstallForTest(void* surface,u32 kind){install_table(surface,kind);}
+__declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid,void** result,void* outer){
+    original_create=original;return create_draw(guid,result,outer);
+}
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
@@ -254,9 +263,9 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     u32 base=(u32)GetModuleHandleA(0),protection;
     /* Staging verifies full image SHA-256. Runtime also guards its import thunk. */
     static const u8 thunk[6]={0xff,0x25,0x14,0x50,0x5c,0};
-    if(base!=0x400000 || !readable((void*)(base+0x19755a),6) || !same((void*)(base+0x19755a),thunk,6))return 1;
+    if(base!=0x400000 || !readable((void*)(base+0x19755a),6) || !same((void*)(base+0x19755a),thunk,6)){stream[9]=9;return 1;}
     void** iat=(void**)(base+0x1c5014);
-    if(!readable(iat,4) || !VirtualProtect(iat,4,4,&protection))return 1;
+    if(!readable(iat,4) || !VirtualProtect(iat,4,4,&protection)){stream[9]=9;return 1;}
     original_create=(CreateDraw)*iat;*iat=(void*)&create_draw;
-    u32 ignored;VirtualProtect(iat,4,protection,&ignored);return 1;
+    u32 ignored;VirtualProtect(iat,4,protection,&ignored);__atomic_store_n(stream+9,5,__ATOMIC_RELEASE);return 1;
 }
