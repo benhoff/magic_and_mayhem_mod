@@ -1,6 +1,6 @@
 /* Owned RGB checkpoints; only application calls establish pixels and properties.
  * All access is under game_locks_busy. No observer COM calls or references. */
-struct GameSurface {void* object;u32 epoch,generation,clip_known,clip,key_known,key,primary,layout_known;struct Snapshot pixels;};
+struct GameSurface {void* object;u32 epoch,generation,clip_known,clip,key_known,key,primary,layout_known,caps,back_count,back_count_known;void* back;struct Snapshot pixels;};
 static struct GameSurface game_surfaces[32];
 static u32 game_surface_bytes,game_surface_generation,game_blit_count,game_blit_bytes;
 #define GAME_SURFACE_LIMIT (64u*1024u*1024u)
@@ -75,6 +75,7 @@ static void game_surface_describe_locked(void* object,u32 kind,const u32* d){
     }
     pixels->width=d[3];pixels->height=d[2];pixels->bits=d[21];pixels->flags=d[19];
     pixels->r=d[22];pixels->g=d[23];pixels->b=d[24];pixels->length=d[3]*d[2]*(d[21]/8);
+    s->caps=d[26];s->back_count_known=(d[1]&0x20)!=0;s->back_count=s->back_count_known?d[5]:0;
     s->layout_known=1;s->primary=(d[26]&0x200)!=0;s->generation=++game_surface_generation;
     lock_diagnostic("surface_metadata",object,kind,0,0,0,0,d);
 }
@@ -111,11 +112,14 @@ static void game_surface_key(void* object,u32 flags,int valid,const u32* key){
     __sync_lock_release(&game_locks_busy);
 }
 /* Transfer the pre-Unlock copy only after the original Unlock succeeded. */
-static void game_surface_store(void* object,struct Snapshot* pixels,u32 primary){
+static void game_surface_store(void* object,struct Snapshot* pixels,u32 primary,const u32* descriptor){
     struct GameSurface* s=game_surface_find(object,1);
     if(!s)return;
     game_surface_drop(s);
     if(pixels->bits==8 || !pixels->data || pixels->length>GAME_SURFACE_LIMIT-game_surface_bytes-__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED))return;
+    s->caps=(descriptor[1]&1)?descriptor[26]:0;
+    if(descriptor[0]>=124 && (descriptor[27] || descriptor[28] || descriptor[29]))s->caps=0;
+    s->back_count_known=(descriptor[1]&0x20)!=0;s->back_count=s->back_count_known?descriptor[5]:0;
     s->primary=primary;s->layout_known=1;copy(&s->pixels,pixels,sizeof(*pixels));pixels->data=0;game_surface_bytes+=s->pixels.length;
 }
 struct GameBlit {struct Snapshot src,dst;void *source,*target;u32 source_generation,target_generation,epoch,fields[10],valid,bootstrap;};

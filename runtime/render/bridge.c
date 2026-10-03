@@ -40,6 +40,7 @@ static struct Table* lookup(void* object){
 static void install_table(void*,u32);
 #include "draw_capture.h"
 #include "lock_lifecycle.h"
+#include "lock_flip.h"
 static u32 guid_kind(const u8* guid){
     static const u8 ids[8][16]={
       {0x80,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},
@@ -77,6 +78,23 @@ static i32 WIN create_surface(void* object,void* desc,void** result,void* outer)
     if(status>=0 && result && *result){install_table(*result,t->kind+10);game_surface_created(*result,t->kind+10,valid?input:0);}
     draw_event(6,(u32)__builtin_return_address(0),object,status>=0 && result?*result:0,0,status,0,0);
     SetLastError(error);return status;
+}
+static i32 WIN surface_attached(void* object,u32* caps,void** result){
+    u32 entry=GetLastError();struct Table* t=lookup(object);u32 requested[4]={0};u32 size=t->kind>=14?16:4;
+    int valid=readable(caps,size);if(valid)copy(requested,caps,size);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,void*,void**))t->original[12])(object,caps,result);u32 error=GetLastError();
+    if(status>=0 && result && *result){install_table(*result,t->kind);game_attached_observed(object,*result,valid?requested:0);}
+    SetLastError(error);return status;
+}
+static i32 WIN surface_add_attached(void* object,void* other){
+    u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,void*))t->original[3])(object,other);u32 error=GetLastError();
+    if(status>=0)__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);SetLastError(error);return status;
+}
+static i32 WIN surface_delete_attached(void* object,u32 flags,void* other){
+    u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,u32,void*))t->original[8])(object,flags,other);u32 error=GetLastError();
+    if(status>=0)__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);SetLastError(error);return status;
 }
 static i32 WIN surface_desc(void* object,u32* desc){
     u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
@@ -156,9 +174,10 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
 }
 static i32 WIN flip(void* object,void* target,u32 flags){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);struct HistoryFlip pending;
+    struct GameFlip owned;game_flip_before(object,target,flags,&owned);
     if(token)history_flip_before(object,target,flags,&pending);
     SetLastError(entry);i32 status=((Flip)t->original[11])(object,target,flags);u32 error=GetLastError();
-    if(status>=0){__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);game_surface_invalidate(object);}
+    game_flip_after(&owned,status);
     render_failure("application_flip",status,object,t->kind,flags);
     if(token)history_flip_after(object,&pending,status);
     draw_event(3,(u32)__builtin_return_address(0),object,target,flags,status,0,0);
@@ -257,6 +276,9 @@ static void install_table(void* object,u32 kind){
         __atomic_store_n(vt+7,(void*)&blt_fast,__ATOMIC_RELEASE);
         __atomic_store_n(vt+11,(void*)&flip,__ATOMIC_RELEASE);
         if(lock_capture_path_length){
+            __atomic_store_n(vt+12,(void*)&surface_attached,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+3,(void*)&surface_add_attached,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+8,(void*)&surface_delete_attached,__ATOMIC_RELEASE);
             __atomic_store_n(vt+22,(void*)&surface_desc,__ATOMIC_RELEASE);
             __atomic_store_n(vt+6,(void*)&surface_batch,__ATOMIC_RELEASE);
             __atomic_store_n(vt+17,(void*)&surface_dc,__ATOMIC_RELEASE);

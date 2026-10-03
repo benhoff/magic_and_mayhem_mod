@@ -153,3 +153,9 @@ synthetic zero destination-before image is not original-driver pixel evidence.
 Additional diagnostic reasons are `surface_metadata`, `surface_metadata_failed`,
 `surface_metadata_rejected`, `blit_bootstrap_ready`, `blit_initialized` and
 `blit_incomplete_initialization`.
+
+[Owned two-buffer Flip routing](../runtime/opengl-owned-flips.md) uses the existing
+RGBA stream and adds no snapshot format. Diagnostic reasons are `flip_attachment`,
+`flip_untracked`, `flip_unsupported`, `flip_limit`, `flip_ready`, `flip_failed`,
+`flip_invalidated`, `flip_presented` and `flip_presentation_skipped`. Repeated
+identical diagnostics are deduplicated; their count is not an operation count.

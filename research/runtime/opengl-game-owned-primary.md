@@ -41,8 +41,9 @@ change the original draw or turn an offscreen surface into a primary.
 This is still bounded capture, not uninterrupted replacement rendering. The
 existing 16 Lock snapshots, 16 blit operations and memory/file budgets apply.
 After a failed or unsupported draw, or after the budget expires, Qt keeps its
-last complete frame; its counter does not advance. Flip-based presentation,
-indexed palette handling and actual frame boundaries remain separate work.
+last complete frame; its counter does not advance. The subsequent [owned Flip chunk](opengl-owned-flips.md) handles observed
+two-buffer RGB chains. Indexed palette handling and continuous frame boundaries
+remain separate work.
 
 The subsequent [bootstrap chunk](opengl-primary-bootstrap.md) initializes a
 never-Locked destination from a complete opaque overwrite and observed application

@@ -32,3 +32,6 @@ confidence, and whether it remains stable across launches.
 - [Primary bootstrap from application descriptors](opengl-primary-bootstrap.md):
   never-Locked RGB initialization by complete opaque copies, with 800x600 offline
   x86/CPU/OpenGL/Qt validation.
+
+- [Owned RGB Flip routing](opengl-owned-flips.md): observed two-buffer chains,
+  native pixel rotation and Qt publication without observer COM calls.
