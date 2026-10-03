@@ -13,6 +13,9 @@ endif()
 add_executable(route-replay route_replay.cpp)
 target_link_libraries(route-replay PRIVATE mnm_pathfinding)
 
+add_executable(neighbor-replay route_neighbor_replay.cpp)
+target_link_libraries(neighbor-replay PRIVATE mnm_pathfinding)
+
 include(CTest)
 if(BUILD_TESTING)
     foreach(component IN ITEMS route-request route-search route-neighbors route-creature-acceptance route-movement route-cell route-occupancy route-validity route-cell-validity route-record-query route-cell-support route-boundary route-clearance route-scalar route-world)
@@ -29,6 +32,8 @@ if(BUILD_TESTING)
         add_test(NAME route-world-tooling COMMAND "${CMAKE_COMMAND}" -E env
             "MNM_ROUTE_REPLAY=$<TARGET_FILE:route-replay>"
             "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/../../tests/test-route-world.py")
+        add_test(NAME neighbor-shadow-tooling COMMAND "${Python3_EXECUTABLE}"
+            "${CMAKE_CURRENT_SOURCE_DIR}/../../tests/test-neighbor-shadow.py")
         add_test(NAME search-sequence-tooling COMMAND "${Python3_EXECUTABLE}"
             "${CMAKE_CURRENT_SOURCE_DIR}/../../tests/test-search-sequence.py")
     endif()

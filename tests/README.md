@@ -125,3 +125,10 @@ resets and unsafe continuation rejection. `tests/test-search-sequence.py` uses
 scripted debugger events to test common entry/return capture and pairing without
 a game. CTest runs this tooling suite too (17 tests total). See
 [sequence evidence](../research/runtime/pathfinding-search-sequence.md).
+
+`python3 tests/test-neighbor-shadow.py` checks synthetic PE import staging,
+payload/budget mismatch detection and malformed expansion rejection. It also
+runs in reconstruction CTest. `./tools/test-shadow-bridge.py` additionally
+builds the PE32 DLL and runs the synthetic ABI/capture harness in a dedicated
+Wine prefix, then compares its output against `neighbor-replay`. That test
+requires Wine IPC and does not launch the game or validate engine behavior.

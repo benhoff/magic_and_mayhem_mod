@@ -347,3 +347,12 @@ reproduced both saved calls exactly and correctly classified its terminal event.
 handling and synthetic replay/mismatch cases. Synthetic results are not game
 evidence. See [WineDbg's command reference](https://raw.githubusercontent.com/wine-mirror/wine/master/programs/winedbg/winedbg.man.in)
 for the debugger command interface used by the controller.
+
+## Logging-only neighbor capture
+
+A PE32 bridge now captures one original standard creature expansion at
+`0x004ebae0`, leaving the engine in control. `neighbor-replay` compares all
+candidate bytes against the owned world reconstruction afterward. The added
+DLL import and hook have passed a synthetic Wine harness; actual gameplay
+validation is pending. See [scope, evidence and commands](../../research/runtime/pathfinding-neighbor-shadow.md)
+and [capture format](../../research/formats/neighbor-expansion-capture.md).
