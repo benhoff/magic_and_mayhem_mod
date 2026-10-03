@@ -10,20 +10,24 @@ static void init_lock_lifecycle(void){
     if(length && length+28<sizeof(lock_capture_path))lock_capture_path_length=length;
 }
 #include "lock_diagnostics.h"
+#include "lock_aliases.h"
 static void game_lock_retire(void* object){
     if(!lock_capture_path_length)return;
-    if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1)){__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);return;}
-    /* Alias releases cannot be identified without extra COM calls: invalidate conservatively. */
+    if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1)){__atomic_store_n(&game_alias_reset_pending,1,__ATOMIC_RELEASE);__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);return;}
+    game_alias_sync();
+    /* Final Release invalidates the whole observed interface component. */
     __atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);
-    for(u32 i=0;i<32;++i)if(game_locks[i].object==object)zero(game_locks+i,sizeof(game_locks[i]));
+    for(u32 i=0;i<32;++i)if(game_alias_same(game_locks[i].object,object))zero(game_locks+i,sizeof(game_locks[i]));
+    game_alias_retire(object);
     __sync_lock_release(&game_locks_busy);
 }
 static void game_lock_observed(void* object,struct Table* table,void* rect,const u32* desc,u32 flags,i32 result){
     if(!lock_capture_path_length)return;
     if(result<0){lock_diagnostic("lock_failed",object,table->kind,(u32)rect,flags,result,0,0);return;}
     if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1)){__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);return;}
+    game_alias_sync();
     struct GameLock* slot=0;
-    for(u32 i=0;i<32;++i)if(game_locks[i].object==object){slot=game_locks+i;break;}
+    for(u32 i=0;i<32;++i)if(game_alias_same(game_locks[i].object,object)){slot=game_locks+i;break;}
     if(!slot)for(u32 i=0;i<32;++i)if(!game_locks[i].active || game_locks[i].epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED)){slot=game_locks+i;break;}
     const char* reason="lock_capacity";u32 diagnostic_desc[31];zero(diagnostic_desc,sizeof(diagnostic_desc));
     if(slot){
@@ -41,16 +45,17 @@ static void game_lock_observed(void* object,struct Table* table,void* rect,const
     __sync_lock_release(&game_locks_busy);
 }
 struct GameUnlock {struct Snapshot pixels;void* object;u32 generation,owner,kind,flags,primary;};
-static void game_unlock_before(void* object,void* argument,struct GameUnlock* pending){
+static void game_unlock_before(void* object,u32 unlock_kind,void* argument,struct GameUnlock* pending){
     zero(pending,sizeof(*pending));
     if(!lock_capture_path_length)return;
     if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1)){__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);return;}
+    game_alias_sync();
     const char* reason="unlock_unmatched";struct GameLock* matched=0;
     for(u32 i=0;i<32;++i){struct GameLock* slot=game_locks+i;
-        if(slot->object!=object || !slot->active || slot->epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED))continue;
-        matched=slot;pending->object=object;pending->generation=slot->generation;
+        if(!slot->active || !game_alias_same(slot->object,object) || slot->epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED))continue;
+        matched=slot;pending->object=slot->object;pending->generation=slot->generation;
         if(slot->owner!=GetCurrentThreadId()){reason="unlock_owner";break;}
-        if(slot->kind>=14?argument!=0:argument!=(void*)slot->desc[9]){reason="unlock_argument";break;}
+        if(unlock_kind>=14?argument!=0:argument!=(void*)slot->desc[9]){reason="unlock_argument";break;}
         u32* d=slot->desc;u32 width=d[3],height=d[2],bits=d[21];i32 pitch=(i32)d[4];
         if(!width || width>2048 || !height || height>2048 || !supported_format(d) || pitch==(-2147483647-1)){reason="unlock_layout";break;}
         if(bits!=8 && (!render_mask(d[22],bits) || !render_mask(d[23],bits) || !render_mask(d[24],bits) ||

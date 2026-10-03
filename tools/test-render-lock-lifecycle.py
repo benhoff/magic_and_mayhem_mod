@@ -18,7 +18,7 @@ def main():
     stage=load('render_stage','tools/prepare-shadow-experiment.py')
     parent=REPO/'working/tests/render-lock-lifecycle';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));reports=[]
-    for mode in ('modern','negative','unlock-retry','offscreen','indexed','failed-lock','readonly','partial','bad-mask'):
+    for mode in ('modern','negative','unlock-retry','offscreen','indexed','failed-lock','readonly','partial','bad-mask','alias-legacy','transitive-modern','qi-failed','x-unobserved','z-reused'):
         case=root/mode;case.mkdir();capture=case/'capture';capture.mkdir();stream=case/'frame.bin'
         with stream.open('wb') as f:f.write(b'MNMGL001'+struct.pack('<2I',1,64)+bytes(48));f.truncate(64+2048*2048*4)
         shutil.copy2(dll,case/dll.name)
@@ -31,13 +31,15 @@ def main():
         lines=[line.split() for line in (capture/'lifecycle.log').read_text().splitlines()]
         assert all(len(line)==20 for line in lines)
         reasons={line[0] for line in lines}
-        expected_reason={'failed-lock':'lock_failed','readonly':'lock_readonly','partial':'lock_partial','bad-mask':'unlock_masks'}.get(mode,'unlock_copied')
+        expected_reason={'failed-lock':'lock_failed','readonly':'lock_readonly','partial':'lock_partial','bad-mask':'unlock_masks','qi-failed':'unlock_unmatched','x-unobserved':'unlock_unmatched'}.get(mode,'unlock_copied')
         assert expected_reason in reasons,(mode,reasons)
+        if mode in ('alias-legacy','transitive-modern','z-reused'):assert 'alias_observed' in reasons
+        if mode=='z-reused':assert 'unlock_unmatched' in reasons
         if mode=='unlock-retry':assert 'unlock_failed' in reasons and 'unlock_succeeded' in reasons
-        files=list(capture.glob('lock-*.bin'));expected=mode in ('modern','negative','unlock-retry','offscreen','indexed')
+        files=list(capture.glob('lock-*.bin'));expected=mode in ('modern','negative','unlock-retry','offscreen','indexed','alias-legacy','transitive-modern','z-reused')
         assert len(files)==int(expected),(mode,files)
         with stream.open('rb') as f:header=struct.unpack('<16I',f.read(64));rgba=f.read(16)
-        primary=mode in ('modern','negative','unlock-retry')
+        primary=mode in ('modern','negative','unlock-retry','alias-legacy','transitive-modern','z-reused')
         assert header[10]==int(primary),(mode,header)
         if expected:
             data=files[0].read_bytes();h=struct.unpack('<16I',data[:64]);payload=data[64:]

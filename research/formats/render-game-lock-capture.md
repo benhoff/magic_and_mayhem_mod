@@ -31,9 +31,14 @@ read after the original Unlock. API arguments, HRESULT and LastError are preserv
 No extra COM Lock, Unlock, Query or retained reference is required by this
 lifecycle. At most 32 descriptors are tracked. Unknown successful Unlocks,
 final releases and tracker contention conservatively invalidate the capture
-epoch; missed/aliased events do not establish valid provenance. Cross-interface
-Unlock matching is not implemented. New successful Locks replace earlier
-metadata, preventing reuse of an older pointer at the same object address.
+epoch. Cross-interface Unlock matching uses only relationships observed in
+successful application QueryInterface calls for supported surface interfaces.
+Transitive aliases are supported; no fixed pointer offset or extra query is used.
+Unlock argument validation follows the unlocking interface's ABI. Final Release
+retires the entire observed component; a contended final Release requests a full
+alias reset before the next lookup. The graph has at most 64 relationships;
+saturation clears provenance. New successful Locks replace earlier metadata,
+preventing reuse of an older pointer at the same object address.
 
 Captures require nonzero dimensions up to 2048x2048, 8/16/24/32-bit supported
 native formats, valid nonoverlapping RGB masks, and readable rows. Negative pitch
@@ -77,14 +82,16 @@ row padding is stored.
 
 ## Evidence and confidence
 
-`tools/test-render-lock-lifecycle.py` runs actual PE32 hooks under Wine. Nine
+`tools/test-render-lock-lifecycle.py` runs actual PE32 hooks under Wine. Fourteen
 fixtures cover modern primary RGB, legacy negative pitch, failed Unlock retry,
 offscreen RGB, indexed bytes, failed Lock, read-only Lock, partial Lock and
-invalid overlapping masks. The original Unlock poisons its buffer; exact output
+invalid overlapping masks, legacy interface aliases, transitive modern aliases,
+failed QueryInterface with a nonnull output, unobserved aliases and address reuse
+after final Release. The original Unlock poisons its buffer; exact output
 bytes prove copying before invalidation. Fixtures assert exactly one original
 Lock, original Unlock counts/arguments/results/LastError, no output on rejected
 locks and no offscreen/indexed primary frame. Evidence:
-`working/tests/render-lock-lifecycle/run-sk_p4mn8/report.json`.
+`working/tests/render-lock-lifecycle/run-vhif07ea/report.json`.
 
 Confidence: confirmed synthetic lifecycle and ABI behavior. Real-game lifecycle
 captures and uninterrupted new-game play remain unvalidated. Blit/flip propagation,
@@ -110,6 +117,8 @@ reason object current_thread kind argument lock_flags HRESULT owner_thread
 ```
 
 `argument` is the supplied rectangle pointer on Lock or Unlock's argument.
+For `alias_observed`, it is the returned interface pointer; `object` is the
+interface on which the successful application QueryInterface was called.
 Descriptor fields are zero when unavailable. Pitch is the raw signed 32-bit
 value represented in hex. Thread/pointer values are launch-specific.
 
@@ -124,6 +133,6 @@ Records can be dropped under contention or file errors, so absence is not proof
 that no application call occurred. Contention conservatively invalidates capture
 provenance rather than reading a pointer whose lifecycle could have been missed.
 
-The nine PE32 fixtures now assert the expected reasons, including rejected
+The fourteen PE32 fixtures now assert the expected reasons, including rejected
 read-only/partial/invalid-mask locks and a failed Unlock followed by success,
 while retaining their pixel-poisoning and unchanged-ABI checks.

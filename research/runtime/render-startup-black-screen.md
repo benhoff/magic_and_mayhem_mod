@@ -380,3 +380,31 @@ format/masks, owner/current thread and the supplied Unlock argument. A fresh
 normal `--capture-locks` launch will distinguish interface/argument matching from
 format, partial/read-only locks, or other rejected cases. No extra surface locks
 or interactive debugger commands are required.
+
+
+## Confirmed cross-interface Lock/Unlock mismatch
+
+Evidence: user gameplay experiment `run-9vglav41/lock-capture/lifecycle.log`.
+The bridge accepted Lock on Surface2 `0x016869bc`, but rejected Unlock on
+`0x016869c0` as `unlock_unmatched`, with argument `0x058f0030` matching the
+recorded pixel pointer. Other observed pairs include `0x0174fb54` /
+`0x0174fb58` and `0x0172b99c` / `0x0172b9a0`. Confidence: confirmed differing
+interface tokens and matching pixel arguments explain the tracker rejection.
+Their four-byte difference is launch-specific evidence, not a general alias rule.
+
+The accepted descriptor has size 108, dimensions 800x600, pitch 1600, 16-bit
+RGB565 masks and caps `0x840` (offscreen/system memory). These are not directly
+locked primary surfaces, so fixing snapshot capture alone does not establish Qt
+presentation. Following successful blits to the primary remains a separate step.
+
+The tracker now links supported surface interfaces only after successful
+application QueryInterface calls, including transitive relationships. It checks
+Unlock's ABI using the unlocking interface rather than the locking interface.
+No extra COM query or surface Lock is issued. Failed queries and unobserved
+aliases cannot establish provenance; final Release retires the component to
+prevent pointer reuse from inheriting aliases. Relationships and snapshots remain
+bounded. Fourteen synthetic PE32 lifecycle fixtures validate these cases and
+original-call counts, results, arguments, LastError and pre-Unlock pixel copies.
+A fresh real-game launch is still needed to confirm this fix on the user's
+surface pairs; success means `unlock_copied`, `unlock_succeeded` and native
+`lock-*.bin` files rather than only `unlock_unmatched`.
