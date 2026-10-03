@@ -9,3 +9,5 @@ route-request model. Run `./tests/test-reconstruction.sh` alone for the C++17
 model with address/undefined-behavior sanitizers, or
 `python3 tests/test-decompilation-baseline.py` for checksum/PE-byte verification
 and tamper rejection. These are host/static tests, not live-game equivalence.
+
+`python3 tests/test-launcher.py` checks gamescope command composition and direct Wine fallback. Use `./run-x86.sh` on the x86 host.
