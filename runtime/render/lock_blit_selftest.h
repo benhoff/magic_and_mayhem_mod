@@ -1,6 +1,12 @@
 /* Independent fake engine: padded lock storage is poisoned at Unlock; original
  * blits read separate native backing storage and dump their own expected output. */
+API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
+API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 static char lock_blit_mode[32];
+static u32 lb_primary,lb_primary_unknown;
+static u32* lb_frame;
+static HANDLE lb_frame_events;
+static struct LbSurface* lb_primary_surface;
 static int lb_mode(const char* name){u32 i=0;while(name[i] && name[i]==lock_blit_mode[i])++i;return !name[i] && !lock_blit_mode[i];}
 struct LbSurface {void** table;struct LbSurface* state;u32 width,height,bits,held,clip,key_active,key,kind;u8 pixels[64],locked[80];};
 struct LbRect {i32 left,top,right,bottom;};
@@ -10,12 +16,28 @@ static struct LbSurface* lb_state(void* object){struct LbSurface* s=object;retur
 static void lb_entry(void){if(GetLastError()!=0x77)ExitProcess(110);SetLastError(0x88);}
 static u32 lb_pixel(const u8* at,u32 bytes){u32 value=0;for(u32 i=0;i<bytes;++i)value|=(u32)at[i]<<(i*8);return value;}
 static void lb_put(u8* at,u32 bytes,u32 value){for(u32 i=0;i<bytes;++i)at[i]=(u8)(value>>(i*8));}
+static void lb_frame_record(const char* prefix,u32 id,const u8* native,u32 length){
+    if(!lb_frame)return;
+    u32 event[2]={prefix[0]=='s',id},event_written=0;
+    if(!WriteFile(lb_frame_events,event,8,&event_written,0) || event_written!=8)ExitProcess(141);
+    char path[64];u32 at=0;while(prefix[at]){path[at]=prefix[at];++at;}
+    static const char hex[]="0123456789abcdef";
+    for(u32 i=0;i<8;++i)path[at+i]=hex[(id>>(28-4*i))&15];
+    path[at+8]='.';path[at+9]='b';path[at+10]='i';path[at+11]='n';path[at+12]=0;
+    u32 size=lb_frame[10]?64+lb_frame[5]*lb_frame[6]*4:64,written=0;
+    if(lb_frame[4]&1)ExitProcess(134);
+    HANDLE file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
+    if(file==(HANDLE)-1 || !WriteFile(file,lb_frame,size,&written,0) || written!=size)ExitProcess(135);CloseHandle(file);
+    if(native){path[at+9]='r';path[at+10]='a';path[at+11]='w';file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
+        if(file==(HANDLE)-1 || !WriteFile(file,native,length,&written,0) || written!=length)ExitProcess(136);CloseHandle(file);}
+}
 static i32 WIN lb_lock(void* object,void* rect,u32* d,u32 flags,HANDLE event){
     lb_entry();struct LbSurface* s=lb_state(object);if(s->held || rect || flags!=1 || event)ExitProcess(111);
     ++lb_locks;s->held=1;u32 row=s->width*(s->bits/8),pitch=row+2;
     for(u32 y=0;y<s->height;++y)for(u32 x=0;x<row;++x)s->locked[y*pitch+x]=s->pixels[y*row+x];
     d[1]=1;d[2]=s->height;d[3]=s->width;d[4]=pitch;d[9]=(u32)s->locked;d[19]=0x40;d[21]=s->bits;
-    d[22]=s->bits==16?0xf800:0xff0000;d[23]=s->bits==16?0x7e0:0xff00;d[24]=s->bits==16?0x1f:0xff;d[26]=0x840;return 13;
+    d[22]=s->bits==16?0xf800:0xff0000;d[23]=s->bits==16?0x7e0:0xff00;d[24]=s->bits==16?0x1f:0xff;d[26]=s==lb_primary_surface?0x200:0x840;
+    if(s==lb_primary_surface && lb_primary_unknown)d[1]=0;return 13;
 }
 static i32 WIN lb_unlock(void* object,void* argument){
     lb_entry();struct LbSurface* s=lb_state(object);if(!s->held || argument)ExitProcess(112);
@@ -45,7 +67,7 @@ static void lb_seed(struct LbSurface* s);
 static i32 lb_copy(void* object,void* destination,void* source,void* rectangle,u32 flags,u32 fast,u32 x,u32 y){
     lb_entry();++lb_blits;if(lb_fail_next){lb_fail_next=0;return -1;}
     struct LbSurface *a=lb_state(source),*b=lb_state(object);if(a->held || b->held)ExitProcess(115);
-    if(lb_mode("reentrant"))lb_seed(a);
+    if(lb_mode("reentrant")){lb_seed(a);SetLastError(0x88);}
     struct LbRect r={0,0,(i32)a->width,(i32)a->height};if(rectangle)r=*(struct LbRect*)rectangle;
     i32 dx=(i32)x,dy=(i32)y;if(!fast && destination){dx=((struct LbRect*)destination)->left;dy=((struct LbRect*)destination)->top;}
     if(!fast && !destination)dx=dy=0;
@@ -63,6 +85,7 @@ static void lb_seed(struct LbSurface* s){
     typedef i32 (WIN *L)(void*,void*,void*,u32,HANDLE);typedef i32 (WIN *U)(void*,void*);
     u32 d[31]={124};SetLastError(0x77);if(((L)s->table[25])(s,0,d,1,0)!=13 || GetLastError()!=0x88)ExitProcess(117);
     SetLastError(0x77);if(((U)s->table[32])(s,0)!=19 || GetLastError()!=0x88)ExitProcess(118);
+    lb_frame_record("seed-frame-",lb_locks,s->pixels,s->width*s->height*(s->bits/8));
 }
 static void lb_draw(struct LbSurface* dst,struct LbSurface* src,u32 fast,u32 flags){
     typedef i32 (WIN *B)(void*,void*,void*,void*,u32,void*);typedef i32 (WIN *F)(void*,u32,u32,void*,void*,u32);
@@ -77,6 +100,7 @@ static void lb_draw(struct LbSurface* dst,struct LbSurface* src,u32 fast,u32 fla
     struct LbSurface* state=lb_state(dst);u32 written=0,length=state->width*state->height*(state->bits/8);
     HANDLE file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
     if(file==(HANDLE)-1 || !WriteFile(file,state->pixels,length,&written,0) || written!=length)ExitProcess(129);CloseHandle(file);
+    lb_frame_record("draw-frame-",lb_blits,0,0);
 }
 static void test_lock_blits(void){
     static void* table[33],*alias_table[33];table[0]=(void*)&lb_query;table[2]=(void*)&lb_release;table[5]=(void*)&lb_blt;table[7]=(void*)&lb_fast;
@@ -89,6 +113,16 @@ static void test_lock_blits(void){
     u32 values[4]={0xf800,0,0x7e0,0xffff};if(bits>16){values[0]=0x80aabbcc;values[1]=0;values[2]=0x112233;values[3]=0x445566;}
     for(u32 i=0;i<4;++i)lb_put(a.pixels+i*bytes,bytes,values[i]);
     for(u32 i=0;i<12;++i){lb_put(b.pixels+i*bytes,bytes,0x1f);lb_put(c.pixels+i*bytes,bytes,0x1234);}
+    char option[8];lb_primary=GetEnvironmentVariableA("MNM_LOCK_BLIT_PRIMARY_SELFTEST",option,sizeof(option))!=0;
+    lb_primary_unknown=GetEnvironmentVariableA("MNM_LOCK_BLIT_PRIMARY_UNKNOWN_SELFTEST",option,sizeof(option))!=0;
+    if(lb_primary){
+        lb_frame_events=CreateFileA("frame-events.bin",0x40000000,1,0,1,0x80,0);if(lb_frame_events==(HANDLE)-1)ExitProcess(142);
+        lb_primary_surface=(lb_mode("chain")||lb_mode("update")||lb_mode("rgb24")||lb_mode("rgb32")||lb_mode("budget"))?&c:&b;
+        char path[512];if(!GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path)))ExitProcess(137);
+        HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)ExitProcess(138);
+        HANDLE mapping=CreateFileMappingA(file,0,4,0,64+2048*2048*4,0);CloseHandle(file);if(!mapping)ExitProcess(139);
+        lb_frame=MapViewOfFile(mapping,2,0,0,64+2048*2048*4);CloseHandle(mapping);if(!lb_frame)ExitProcess(140);
+    }
     RenderInstallForTest(&a,14);RenderInstallForTest(&alias,11);
     if(lb_mode("created")){
         static void* draw_table[7];draw_table[6]=(void*)&lb_create;void** draw=draw_table;lb_created_surface=&b;
@@ -105,23 +139,24 @@ static void test_lock_blits(void){
         u32 failed=lb_mode("key-failed");lb_fail_next=failed;key[0]=key[1]=0xf800;SetLastError(0x77);
         if(((K)table[29])(&a,8,failed?key:0)!=(failed?-1:23) || GetLastError()!=0x88)ExitProcess(123);
     }
-    struct LbSurface* source=&a;
+    struct LbSurface *source=&a,*target=&b;
+    if(lb_mode("destination-alias")){alias.state=&b;lb_alias=&alias;}
     if(lb_mode("alias-conflict")){SetLastError(0x77);if(((K)alias_table[29])(&alias,8,key)!=23 || GetLastError()!=0x88)ExitProcess(132);}
-    if(lb_mode("alias")||lb_mode("release")||lb_mode("alias-conflict")){
+    if(lb_mode("alias")||lb_mode("release")||lb_mode("alias-conflict")||lb_mode("destination-alias")){
         static const u8 iid[16]={0x81,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};void* result=0;
-        SetLastError(0x77);if(((i32 (WIN *)(void*,const void*,void**))table[0])(&a,iid,&result)!=23 || result!=&alias || GetLastError()!=0x88)ExitProcess(124);source=&alias;
+        SetLastError(0x77);if(((i32 (WIN *)(void*,const void*,void**))table[0])(lb_mode("destination-alias")?&b:&a,iid,&result)!=23 || result!=&alias || GetLastError()!=0x88)ExitProcess(124);if(lb_mode("destination-alias"))target=&alias;else source=&alias;
     }
     if(lb_mode("release")){SetLastError(0x77);if(((u32 (WIN *)(void*))alias_table[2])(&alias)!=0 || GetLastError()!=0x88)ExitProcess(125);}
     if(lb_mode("restore")){SetLastError(0x77);if(((i32 (WIN *)(void*))table[27])(&b)!=23 || GetLastError()!=0x88)ExitProcess(126);}
     if(lb_mode("failed")){lb_fail_next=1;lb_draw(&b,source,0,0x1000000);}
     if(lb_mode("unsupported")||lb_mode("reseed")){lb_draw(&b,source,0,0x4000000);if(lb_mode("reseed"))lb_seed(&b);}
     if(lb_mode("self"))lb_draw(&b,&b,0,0x1000000);
-    lb_draw(&b,source,keyed,keyed?0x11:0x1000000);
+    lb_draw(target,source,keyed||lb_mode("destination-alias"),keyed?0x11:lb_mode("destination-alias")?0x10:0x1000000);
     u32 draw_count=1+(lb_mode("failed")||lb_mode("unsupported")||lb_mode("reseed")||lb_mode("self"));
     if(lb_mode("update")){lb_put(a.pixels,bytes,0x7ff);lb_seed(&a);lb_draw(&b,&a,1,0x10);++draw_count;}
     if(lb_mode("chain")||lb_mode("update")||lb_mode("rgb24")||lb_mode("rgb32")){lb_draw(&c,&b,1,0x10);++draw_count;}
     if(lb_mode("budget"))for(u32 i=0;i<17;++i){lb_draw(&c,&b,1,0x10);++draw_count;}
-    if(lb_blits!=draw_count || lb_queries!=(lb_mode("alias")||lb_mode("release")||lb_mode("alias-conflict")) || lb_keys!=(keyed+(lb_mode("key-failed")||lb_mode("key-removed"))+lb_mode("alias-conflict")) || lb_clippers!=2u-lb_mode("created") || lb_creates!=(u32)lb_mode("created") || lb_releases!=(u32)lb_mode("release") || lb_locks!=3u-lb_mode("untracked")+lb_mode("reseed")+lb_mode("update")+lb_mode("reentrant") || lb_unlocks!=lb_locks)ExitProcess(127);
+    if(lb_blits!=draw_count || lb_queries!=(lb_mode("alias")||lb_mode("release")||lb_mode("alias-conflict")||lb_mode("destination-alias")) || lb_keys!=(keyed+(lb_mode("key-failed")||lb_mode("key-removed"))+lb_mode("alias-conflict")) || lb_clippers!=2u-lb_mode("created") || lb_creates!=(u32)lb_mode("created") || lb_releases!=(u32)lb_mode("release") || lb_locks!=3u-lb_mode("untracked")+lb_mode("reseed")+lb_mode("update")+lb_mode("reentrant") || lb_unlocks!=lb_locks)ExitProcess(127);
     struct LbSurface* expected=(lb_mode("chain")||lb_mode("update")||lb_mode("rgb24")||lb_mode("rgb32")||lb_mode("budget"))?&c:&b;
     HANDLE file=CreateFileA("expected.bin",0x40000000,1,0,1,0x80,0);u32 written=0,length=expected->width*expected->height*bytes;
     if(file==(HANDLE)-1 || !WriteFile(file,expected->pixels,length,&written,0) || written!=length)ExitProcess(128);CloseHandle(file);ExitProcess(0);

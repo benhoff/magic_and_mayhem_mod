@@ -265,11 +265,19 @@ int main(int argc,char** argv){
             if(!viewport.ready()){std::fprintf(stderr,"OpenGL failed: %s\n",qPrintable(viewport.error()));app.exit(6);return;}
             auto actual=viewport.grabFramebuffer();
             bool ok=true;
-            for(int y=0;y<2;++y)for(int x=0;x<2;++x){
-                const QColor expected=y?(x?Qt::white:Qt::blue):(x?Qt::green:Qt::red);
-                if(actual.pixelColor(actual.width()/2+(x?80:-80),actual.height()/2+(y?40:-40))!=expected)ok=false;
+            const double scale=qMin(double(actual.width())/image.width(),double(actual.height())/image.height());
+            const int width=qRound(image.width()*scale),height=qRound(image.height()*scale);
+            const int left=(actual.width()-width)/2,top=(actual.height()-height+1)/2;
+            const int columns=qMin(image.width(),32),rows=qMin(image.height(),32);
+            for(int y=0;y<rows;++y)for(int x=0;x<columns;++x){
+                const int sx=int((x+0.5)*image.width()/columns),sy=int((y+0.5)*image.height()/rows);
+                const int dx=left+int((sx+0.5)*width/image.width()),dy=top+int((sy+0.5)*height/image.height());
+                const int expectedX=qMin(image.width()-1,int((dx-left+0.5)*image.width()/width));
+                const int expectedY=qMin(image.height()-1,int((dy-top+0.5)*image.height()/height));
+                if(actual.pixelColor(dx,dy)!=image.pixelColor(expectedX,expectedY))ok=false;
             }
-            if(actual.pixelColor(actual.width()/2,10)!=QColor(Qt::black))ok=false;
+            if(top>1 && actual.pixelColor(actual.width()/2,top/2)!=QColor(Qt::black))ok=false;
+            if(left>1 && actual.pixelColor(left/2,actual.height()/2)!=QColor(Qt::black))ok=false;
             app.exit(ok?0:7);
         });return app.exec();
     }

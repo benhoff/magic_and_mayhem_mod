@@ -172,3 +172,11 @@ fake-engine outputs, Python copies and OpenGL replay must agree. Cases cover
 chains, aliases, key changes, failed calls, CPU reseeding, subrectangles, limits
 and conservative invalidation; see
 [scope and provenance](../research/runtime/opengl-game-owned-blits.md).
+
+`./tools/test-render-lock-blits.py --primary` checks live primary routing from
+synthetic x86 Lock/Unlock and Blt/BltFast calls. Per-operation counters and RGBA
+bytes are compared with independent fake-engine pixels; the final frame passes
+through the Qt/OpenGL viewport. `--unknown-primary-caps` verifies that the primary
+bit without returned caps provenance cannot publish. The same test validates
+arbitrary-color downscaled and portrait frame streams; see
+[primary routing evidence](../research/runtime/opengl-game-owned-primary.md).

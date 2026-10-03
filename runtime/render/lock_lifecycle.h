@@ -97,17 +97,9 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
                 header[12]=s->r;header[13]=s->g;header[14]=s->b;header[15]=s->length;
                 if(write_all(file,header,64))write_all(file,s->data,s->length);CloseHandle(file);
             }
-            /* Only directly locked primary RGB surfaces are presentation frames. No offscreen guesses. */
-            if(pending->primary && s->bits!=8 && __sync_bool_compare_and_swap(&capture_busy,0,1)){
-                u32 sequence=__atomic_load_n(stream+4,__ATOMIC_RELAXED);
-                __atomic_store_n(stream+4,sequence+1,__ATOMIC_SEQ_CST);
-                if(render_pixels((u8*)stream+64,s->width,s->height,s->data,(i32)(s->width*(s->bits/8)),s->bits,s->r,s->g,s->b,0)){
-                    stream[5]=s->width;stream[6]=s->height;stream[7]=s->width*4;stream[8]=1;++stream[10];stream[9]=1;
-                }
-                __atomic_store_n(stream+4,sequence+2,__ATOMIC_RELEASE);__sync_lock_release(&capture_busy);
-            }
+            if(pending->primary)game_publish_pixels(s);
         }
     }
-    if(slot && result>=0 && s->data){game_surface_sync();game_surface_store(pending->object,s);}
+    if(slot && result>=0 && s->data){game_surface_sync();game_surface_store(pending->object,s,pending->primary);}
     free_snapshot(s);__sync_lock_release(&game_locks_busy);
 }

@@ -79,10 +79,10 @@ Application Lock calls are still forwarded unchanged.
 `./tools/run-qt-shell.sh --capture-locks` opts into bounded game-owned Lock/Unlock
 capture and automatically disables observer readback. It copies writable full
 surfaces before the game's Unlock and commits only on successful Unlock. Native
-snapshots go to the experiment's `lock-capture/`; only directly locked primary
-RGB surfaces can produce Qt frames. Supported offscreen RGB Blt/BltFast copies
-now produce offline replay files from owned Lock checkpoints; live presentation,
-Flip and indexed palette association remain outstanding. See
+snapshots go to the experiment's `lock-capture/`. Known primary RGB destinations
+now produce Qt frames after successful Unlock and supported reconstructed blits.
+Offscreen RGB Blt/BltFast copies also produce offline replay files. Unseeded
+primaries, Flip and indexed palettes remain outstanding. See
 [format and lifecycle](../../research/formats/render-game-lock-capture.md).
 Run `./tools/test-render-lock-lifecycle.py` for the PE32 Wine lifecycle fixtures
 and `./tools/test-render-lock-blits.py` for independent CPU/OpenGL propagation
@@ -92,3 +92,7 @@ Disposable render installations disable CD music in staged `[SOUND]` preferences
 to avoid the confirmed pre-DirectDraw `CDROM ERROR !` driver dialog. The manifest
 records this edit and its hashes; plaintext/encrypted copies are both handled.
 This does not change the source installation's preferences.
+
+For reconstructed-primary publication, run `./tools/test-render-lock-blits.py --primary`;
+`--unknown-primary-caps` checks rejection without returned caps provenance.
+See [primary scope and evidence](../../research/runtime/opengl-game-owned-primary.md).

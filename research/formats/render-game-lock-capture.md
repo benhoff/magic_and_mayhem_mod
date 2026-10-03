@@ -11,7 +11,8 @@ The disposable experiment contains `lock-capture/` and records its path plus
 forces observer readback off when this directory is configured. Use the Wine
 window for input. This is a bounded lifecycle experiment, not complete live
 presentation: supported offscreen RGB Blt/BltFast now propagate into bounded
-offline replay files; Flip and live presentation from those copies remain pending.
+offline replay files. Reconstructed destinations with observed primary identity
+can also publish live frames; Flip presentation remains pending.
 See [game-owned blits](../runtime/opengl-game-owned-blits.md).
 
 ## Lifecycle and acceptance
@@ -51,9 +52,10 @@ later chunk. Read-only and rectangular updates are also deferred.
 At most 16 committed snapshots and 64 MiB of committed plus pending pixel storage
 are allowed per process. Transient copies are freed after every Unlock attempt.
 Limits and contention drop capture work, never the application's call.
-Only a directly locked primary RGB surface with explicitly returned DDSD_CAPS /
-DDSCAPS_PRIMARYSURFACE can publish a frame, after successful Unlock, using the
-existing RGBA stream. Offscreen or indexed snapshots cannot publish guessed
+A primary RGB surface with explicitly returned DDSD_CAPS /
+DDSCAPS_PRIMARYSURFACE can publish a frame after successful Unlock or supported
+reconstructed blits, using the existing RGBA stream. Primary identity comes from
+a committed complete Lock checkpoint. Offscreen or indexed snapshots cannot publish guessed
 frames. Publication is bounded by the same capture limit.
 
 ## Snapshot file
@@ -96,7 +98,7 @@ locks and no offscreen/indexed primary frame. Evidence:
 `working/tests/render-lock-lifecycle/run-vhif07ea/report.json`.
 
 Confidence: confirmed synthetic lifecycle and ABI behavior. Real-game lifecycle
-captures and uninterrupted new-game play remain unvalidated. Live blit/flip presentation,
+captures and uninterrupted new-game play remain unvalidated. Unseeded primaries and Flip presentation,
 partial updates, indexed palettes and complete Qt gameplay presentation remain
 outstanding.
 
@@ -143,3 +145,6 @@ Supported RGB propagation writes `blit-00000001.bin`, etc. in this same director
 These use `MNMCMD01`, not the Lock snapshot header described above. Their CHECK
 pixels are reconstructed output rather than original-engine readbacks. See
 [provenance, limits and tests](../runtime/opengl-game-owned-blits.md).
+
+See [primary routing and offline tests](../runtime/opengl-game-owned-primary.md)
+for publication conditions and the remaining initialization boundary.
