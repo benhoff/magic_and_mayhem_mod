@@ -13,3 +13,6 @@ confidence, and whether it remains stable across launches.
   Ghidra exports preserved separately from future readable reconstructions.
 - [Readable route-request milestone](../../reconstruction/pathfinding/README.md):
   reproducible annotations, packed layout prefixes and tested host-side models.
+- [Qt/OpenGL presentation](opengl-presentation.md): PE32 frame capture and native viewport.
+- [Drawing inventory and replay](render-drawing-inventory.md): build-specific
+  surface wrappers and bounded opaque/source-keyed copy evidence.

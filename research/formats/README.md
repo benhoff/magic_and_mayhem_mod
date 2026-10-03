@@ -15,3 +15,5 @@ Current findings:
 - [Encrypted CFG container](encrypted-cfg.md)
 - [CFG plaintext/encrypted precedence](cfg-precedence.md)
 - [Mode-0 CFG writer](cfg-writer.md)
+- [Shared RGBA frame stream](render-frame-stream.md)
+- [Native blit capture and draw events](render-draw-capture.md)

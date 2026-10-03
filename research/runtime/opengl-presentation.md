@@ -19,7 +19,7 @@ is in [hook candidates](hook-candidates.md).
 
 `runtime/render/bridge.c` intercepts the guarded DirectDrawCreate import and
 recognizes DirectDraw 1/2/4/7 and surface 1/2/4/7 interfaces. Shared vtable hooks
-forward QueryInterface, CreateSurface, Blt and Flip. Original return values and
+forward QueryInterface, CreateSurface, Blt, BltFast and Flip. Original return values and
 last-error state are retained. A successfully presented primary surface triggers
 GetSurfaceDesc and a nonblocking, read-only Lock with NOSYSLOCK. The bridge
 converts valid 8-bit palettes or masked 16/24/32-bit RGB into opaque RGBA and
@@ -76,6 +76,10 @@ UI, effects and map transitions. Inspect stream status when no frames arrive;
 that may indicate primary-surface locking or a presentation path outside the
 currently intercepted methods. Retain the original output until these checks
 are complete.
+
+The next implementation adds a [static drawing inventory and bounded native-pixel
+blit capture/replay](render-drawing-inventory.md), enabled with `--capture-draws`.
+It validates a small copy operation before moving drawing into OpenGL.
 
 Then implement input forwarding/focus/cursor mapping and verify it before
 hiding the original window. Replacing engine drawing requires separately

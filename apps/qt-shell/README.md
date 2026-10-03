@@ -19,7 +19,7 @@ and Qt 6.11.2. No game is launched merely by opening the application.
 Click **Launch game** to build the render DLL, stage a hash-checked disposable
 game copy, and run it through `tools/run-game.sh`. The game uses a separate
 800x600 Wine desktop. Its primary DirectDraw surface is copied after successful
-Blt/Flip calls, converted to RGBA, and displayed in Qt via OpenGL with nearest
+Blt/BltFast/Flip calls, converted to RGBA, and displayed in Qt via OpenGL with nearest
 filtering and aspect-preserving letterboxing. The launch log and normal launcher
 logs remain available. **Check installation** uses the existing launcher checks.
 
@@ -73,7 +73,13 @@ through Qt/OpenGL framebuffer readback. It uses a dedicated test prefix and
 never launches the game. It does not prove that the original game's surface
 presentation or input works.
 
-CLI: `--repo DIRECTORY`, `--renderer opengl|native`, `--smoke-test` (no game),
+For opt-in drawing evidence, open `./tools/run-qt-shell.sh --capture-draws` and
+click **Launch game** when ready. It records a bounded API inventory and one
+small opaque/source-keyed copy for offline pixel comparison. The launch log
+prints its capture directory. This is a drawing reconstruction aid; see
+[capture and replay procedure](../../research/runtime/render-drawing-inventory.md).
+
+CLI: `--repo DIRECTORY`, `--renderer opengl|native`, `--capture-draws`, `--smoke-test` (no game),
 `--opengl-test` (known pixels) and `--stream-test FILE` (synthetic readback).
 Use `--renderer native --smoke-test` with the offscreen Qt backend.
 
