@@ -22,6 +22,7 @@ python3 "$REPO_DIR/tests/test-decompilation-baseline.py"
 python3 "$REPO_DIR/tests/test-route-trace.py"
 python3 "$REPO_DIR/tests/test-search-support.py"
 python3 "$REPO_DIR/tests/test-search-sequence.py"
+python3 "$REPO_DIR/tests/test-neighbor-shadow.py"
 "$REPO_DIR/tools/trace-route-experiment.py" --help >/dev/null
 "$REPO_DIR/tools/validate-route-trace.py" --help >/dev/null
 "$REPO_DIR/tests/test-reconstruction.sh"
