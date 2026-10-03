@@ -28,7 +28,8 @@ Options handled here:
 
 Other options are forwarded to tools/run-game.sh, including --clean,
 -w/--window, -s/--scale, -f/--fullscreen, --window-size, --seconds,
---prefix, --wine, and --runner.
+--size, --game-size, --gamescope-arg, --no-gamescope, --prefix, --wine,
+and --runner. Gamescope is enabled by default.
 EOF
 }
 
@@ -64,6 +65,7 @@ require_host() {
 
 install_fedora_tools() {
     local -a packages=()
+    command -v gamescope >/dev/null 2>&1 || packages+=(gamescope)
     command -v unshield >/dev/null 2>&1 || packages+=(unshield)
     command -v FEXBash >/dev/null 2>&1 || packages+=(fex-emu)
     command -v muvm >/dev/null 2>&1 || packages+=(muvm)

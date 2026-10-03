@@ -16,6 +16,11 @@ RUNNER_WRAPPER=${MNM_RUNNER:-}
 PREFIX_PATH=${WINEPREFIX:-$WORKING_DIR/wineprefix}
 DISPLAY_MODE=fullscreen
 DESKTOP_SIZE=
+USE_GAMESCOPE=1
+GAMESCOPE_BINARY=${MNM_GAMESCOPE_BIN:-gamescope}
+GAME_SIZE=800x600
+OUTPUT_SIZE=1280x960
+declare -a GAMESCOPE_ARGUMENTS=()
 declare -a GAME_ARGUMENTS=()
 declare -a RUN_COMMAND=()
 
@@ -30,10 +35,15 @@ Commands:
 
 Options:
   --clean              Use the retail executable instead of the no-CD build.
-  -w, --window         Run in a 1280x960 Wine desktop window.
-  -s, --scale          Size the Wine desktop to the current display.
-  -f, --fullscreen     Use the game's native fullscreen mode (default).
-  --window-size WxH    Run in a Wine desktop window of the requested size.
+  -w, --window         Run in a 1280x960 gamescope window.
+  -s, --scale          Size the output to the current display.
+  -f, --fullscreen     Fullscreen gamescope output (default).
+  --size WxH           Output size (default: 1280x960); keeps the display mode.
+  --window-size WxH    Set output size and select windowed mode.
+  --game-size WxH      Gamescope virtual display size (default: 800x600).
+  --gamescope          Enable gamescope (default; fit + nearest scaling).
+  --no-gamescope       Use Wine directly; -w/-s use a Wine virtual desktop.
+  --gamescope-arg ARG   Append one gamescope argument; repeat for extra options.
   --wine PATH          Wine executable. On aarch64 it is run through muvm.
   --runner PATH        Custom wrapper that accepts Chaos.exe and its arguments.
   --prefix DIRECTORY   Wine prefix (default: working/wineprefix).
@@ -41,7 +51,17 @@ Options:
   --yes                Confirm use of a prefix outside working/ non-interactively.
   -h, --help           Show this help.
 
-Environment equivalents: MNM_WINE_BIN, MNM_RUNNER, and WINEPREFIX.
+Environment equivalents: MNM_WINE_BIN, MNM_RUNNER, WINEPREFIX,
+and MNM_GAMESCOPE_BIN (gamescope executable).
+
+Examples:
+  ./run-x86.sh -w --size 1600x1200
+  ./run-x86.sh -f --game-size 640x480
+  ./run-x86.sh --gamescope-arg -r --gamescope-arg 60
+  ./run-x86.sh --no-gamescope -w
+
+With --no-gamescope, --size selects a Wine desktop window; --game-size and
+--gamescope-arg require gamescope. Arguments after -- go to the game.
 EOF
 }
 
@@ -146,7 +166,7 @@ resolve_runtime() {
     host_arch=$(uname -m)
 
     if [[ -n $RUNNER_WRAPPER ]]; then
-        [[ $DISPLAY_MODE == fullscreen ]] ||
+        [[ $USE_GAMESCOPE == 1 || $DISPLAY_MODE == fullscreen ]] ||
             die 'Window and scaling flags require Wine directly; they cannot be combined with --runner'
         command -v "$RUNNER_WRAPPER" >/dev/null 2>&1 ||
             [[ -x $RUNNER_WRAPPER ]] || die "Custom runner is not executable: $RUNNER_WRAPPER"
@@ -179,7 +199,7 @@ resolve_runtime() {
         wine_candidate=$(command -v "$wine_candidate")
     fi
 
-    if [[ $DISPLAY_MODE != fullscreen ]]; then
+    if (( ! USE_GAMESCOPE )) && [[ $DISPLAY_MODE != fullscreen ]]; then
         wine_arguments=(explorer "/desktop=MagicMayhem,$DESKTOP_SIZE" "$GAME_EXE" "${GAME_ARGUMENTS[@]}")
     else
         wine_arguments=("$GAME_EXE" "${GAME_ARGUMENTS[@]}")
@@ -199,6 +219,27 @@ resolve_runtime() {
     fi
 }
 
+wrap_gamescope() {
+    (( USE_GAMESCOPE )) || return 0
+    command -v "$GAMESCOPE_BINARY" >/dev/null 2>&1 ||
+        [[ -x $GAMESCOPE_BINARY ]] ||
+        die 'gamescope is not available; install gamescope or use --no-gamescope'
+    if [[ $GAMESCOPE_BINARY == */* ]]; then
+        GAMESCOPE_BINARY=$(realpath -e -- "$GAMESCOPE_BINARY")
+    else
+        GAMESCOPE_BINARY=$(command -v "$GAMESCOPE_BINARY")
+    fi
+    local -a scope_arguments=(
+        -w "${GAME_SIZE%x*}" -h "${GAME_SIZE#*x}"
+        -W "${OUTPUT_SIZE%x*}" -H "${OUTPUT_SIZE#*x}"
+        -S fit -F nearest
+    )
+    [[ $DISPLAY_MODE != fullscreen ]] || scope_arguments+=(-f)
+    RUN_COMMAND=("$GAMESCOPE_BINARY" "${scope_arguments[@]}"
+        "${GAMESCOPE_ARGUMENTS[@]}" -- "${RUN_COMMAND[@]}")
+    RUNTIME_DESCRIPTION="gamescope ($GAME_SIZE -> $OUTPUT_SIZE), $RUNTIME_DESCRIPTION"
+}
+
 preflight() {
     command -v file >/dev/null 2>&1 || die 'file is required for executable validation'
     command -v realpath >/dev/null 2>&1 || die 'realpath is required for runner validation'
@@ -210,10 +251,14 @@ preflight() {
         window) [[ -n $DESKTOP_SIZE ]] || DESKTOP_SIZE=1280x960 ;;
         scale) detect_display_size ;;
     esac
+    if (( USE_GAMESCOPE )) && [[ $DISPLAY_MODE == scale ]]; then
+        OUTPUT_SIZE=$DESKTOP_SIZE
+    fi
     [[ -n ${DISPLAY:-} || -n ${WAYLAND_DISPLAY:-} ]] ||
         die 'No graphical display is available (DISPLAY and WAYLAND_DISPLAY are unset)'
     confirm_external_prefix
     resolve_runtime
+    wrap_gamescope
 }
 
 print_command() {
@@ -236,6 +281,9 @@ write_environment_log() {
         printf 'runtime=%s\n' "$RUNTIME_DESCRIPTION"
         printf 'display_mode=%s\n' "$DISPLAY_MODE"
         printf 'desktop_size=%s\n' "${DESKTOP_SIZE:-native}"
+        printf 'gamescope=%s\n' "$USE_GAMESCOPE"
+        printf 'game_size=%s\n' "$GAME_SIZE"
+        printf 'output_size=%s\n' "$OUTPUT_SIZE"
         printf 'wineprefix=%s\n' "$PREFIX_PATH"
         printf 'host_arch=%s\n' "$(uname -m)"
         printf 'kernel=%s\n' "$(uname -sr)"
@@ -292,13 +340,30 @@ fi
 while [[ $# -gt 0 ]]; do
     case $1 in
         --clean) VARIANT=clean; shift ;;
-        -w|--window) DISPLAY_MODE=window; DESKTOP_SIZE=1280x960; shift ;;
+        -w|--window) DISPLAY_MODE=window; DESKTOP_SIZE=; shift ;;
         -s|--scale) DISPLAY_MODE=scale; DESKTOP_SIZE=; shift ;;
         -f|--fullscreen) DISPLAY_MODE=fullscreen; DESKTOP_SIZE=; shift ;;
+        --gamescope) USE_GAMESCOPE=1; shift ;;
+        --no-gamescope) USE_GAMESCOPE=0; shift ;;
+        --size)
+            [[ $# -ge 2 ]] || { usage >&2; exit 2; }
+            validate_size "$2"
+            OUTPUT_SIZE=$2; DESKTOP_SIZE=$2
+            shift 2
+            ;;
+        --game-size)
+            [[ $# -ge 2 ]] || { usage >&2; exit 2; }
+            validate_size "$2"
+            GAME_SIZE=$2; shift 2
+            ;;
+        --gamescope-arg)
+            [[ $# -ge 2 && -n $2 && $2 != -- ]] || die '--gamescope-arg requires one argument (other than --)'
+            GAMESCOPE_ARGUMENTS+=("$2"); shift 2
+            ;;
         --window-size)
             [[ $# -ge 2 ]] || { usage >&2; exit 2; }
             validate_size "$2"
-            DISPLAY_MODE=window; DESKTOP_SIZE=$2; shift 2
+            DISPLAY_MODE=window; DESKTOP_SIZE=$2; OUTPUT_SIZE=$2; shift 2
             ;;
         --wine)
             [[ $# -ge 2 ]] || { usage >&2; exit 2; }
@@ -322,6 +387,13 @@ while [[ $# -gt 0 ]]; do
         *) usage >&2; exit 2 ;;
     esac
 done
+
+if (( ! USE_GAMESCOPE )); then
+    # Direct Wine has no separate output size; use a virtual desktop.
+    [[ $DISPLAY_MODE != fullscreen || -z $DESKTOP_SIZE ]] || DISPLAY_MODE=window
+    [[ $GAME_SIZE == 800x600 && ${#GAMESCOPE_ARGUMENTS[@]} == 0 ]] ||
+        die '--game-size and --gamescope-arg require gamescope'
+fi
 
 preflight
 printf 'Preflight passed for working/game-%s.\n' "$VARIANT"

@@ -23,24 +23,30 @@ python3 "$REPO_DIR/tests/test-decompilation-baseline.py"
 "$REPO_DIR/run-asahi.sh" --help >/dev/null
 "$REPO_DIR/tools/cfg-precedence-experiment.py" --help >/dev/null
 "$REPO_DIR/tools/cfg-writer-experiment.py" --help >/dev/null
-encode_preview=$("$REPO_DIR/tools/encode-cfg.py")
+decode_test_dir=$(mktemp -d)
+trap 'rm -rf -- "$decode_test_dir"' EXIT
+# Derive plaintext from the clean installation instead of requiring a game run
+# to have materialized working/runtime/.../CFG/tables.cfg.
+"$REPO_DIR/tools/decode-cfg.py" \
+    "$REPO_DIR/working/game-clean/CFG/Encrypted/tables.cfg" \
+    --output-dir "$decode_test_dir/input" >/dev/null
+encode_preview=$("$REPO_DIR/tools/encode-cfg.py" "$decode_test_dir/input/tables.cfg")
 grep -Fq 'mode=0' <<<"$encode_preview"
 grep -Fq 'round_trip=valid' <<<"$encode_preview"
 "$REPO_DIR/tools/run-game.sh" --help >/dev/null
+python3 "$REPO_DIR/tests/test-launcher.py"
 cfg_report=$("$REPO_DIR/tools/decode-cfg.py")
 [[ $(grep -c $'\tvalid$' <<<"$cfg_report") -eq 11 ]]
 grep -Fq $'creature.cfg\t2\t4878\t21599' <<<"$cfg_report"
 inventory_report=$("$REPO_DIR/tools/inventory-game-files.py")
 grep -Fq 'Files: 4834' <<<"$inventory_report"
-decode_test_dir=$(mktemp -d)
-trap 'rm -rf -- "$decode_test_dir"' EXIT
 "$REPO_DIR/tools/encode-cfg.py" \
-    "$REPO_DIR/working/runtime/game-nocd/CFG/tables.cfg" \
+    "$decode_test_dir/input/tables.cfg" \
     --output "$decode_test_dir/tables.cfg" >/dev/null
 encoded_report=$("$REPO_DIR/tools/decode-cfg.py" "$decode_test_dir/tables.cfg")
 grep -Fq $'tables.cfg\t0\t881\t881' <<<"$encoded_report"
 if "$REPO_DIR/tools/encode-cfg.py" \
-    "$REPO_DIR/working/runtime/game-nocd/CFG/tables.cfg" \
+    "$decode_test_dir/input/tables.cfg" \
     --output "$decode_test_dir/tables.cfg" </dev/null >/dev/null 2>&1; then
     printf 'Encoder unexpectedly replaced an existing output.\n' >&2
     exit 1
@@ -60,15 +66,15 @@ fi
 "$REPO_DIR/tools/decode-cfg.py" \
     "$REPO_DIR/working/game-clean/CFG/Encrypted/creature.cfg" \
     --output-dir "$decode_test_dir" --force >/dev/null
-"$REPO_DIR/tools/run-game.sh" check \
+"$REPO_DIR/tools/run-game.sh" check --no-gamescope \
     --runner "$REPO_DIR/tests/fixtures/fake-game-runner.sh"
-window_check=$("$REPO_DIR/tools/run-game.sh" check \
+window_check=$("$REPO_DIR/tools/run-game.sh" check --no-gamescope \
     --wine "$REPO_DIR/tests/fixtures/fake-wine.sh" --window)
 grep -Fq '/desktop=MagicMayhem\,1280x960' <<<"$window_check"
-scale_check=$(MNM_DISPLAY_SIZE=1512x982 "$REPO_DIR/tools/run-game.sh" check \
+scale_check=$(MNM_DISPLAY_SIZE=1512x982 "$REPO_DIR/tools/run-game.sh" check --no-gamescope \
     --wine "$REPO_DIR/tests/fixtures/fake-wine.sh" --scale)
 grep -Fq '/desktop=MagicMayhem\,1512x982' <<<"$scale_check"
-MNM_FAKE_RUN_SECONDS=60 "$REPO_DIR/tools/run-game.sh" smoke \
+MNM_FAKE_RUN_SECONDS=60 "$REPO_DIR/tools/run-game.sh" smoke --no-gamescope \
     --seconds 1 --runner "$REPO_DIR/tests/fixtures/fake-game-runner.sh"
 "$REPO_DIR/tools/original-manifest.sh"
 "$REPO_DIR/tools/prepare-working.sh" stage-media
