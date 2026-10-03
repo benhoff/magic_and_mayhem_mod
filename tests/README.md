@@ -180,3 +180,10 @@ through the Qt/OpenGL viewport. `--unknown-primary-caps` verifies that the prima
 bit without returned caps provenance cannot publish. The same test validates
 arbitrary-color downscaled and portrait frame streams; see
 [primary routing evidence](../research/runtime/opengl-game-owned-primary.md).
+
+`./tools/test-render-bootstrap.py` checks never-Locked 800x600 RGB destinations
+through synthetic x86 hooks, independent fake-engine pixels, Python copies,
+OpenGL command replay and Qt framebuffer readback. It verifies application
+descriptor provenance, full opaque initialization, incremental updates and
+rejection of incomplete or contradictory metadata. No game launch is needed.
+See [bootstrap evidence](../research/runtime/opengl-primary-bootstrap.md).

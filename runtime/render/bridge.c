@@ -70,11 +70,20 @@ static u32 WIN surface_release(void* object){
     if(token)history_release(h,remaining);history_leave(token);SetLastError(error);return remaining;
 }
 static i32 WIN create_surface(void* object,void* desc,void** result,void* outer){
-    struct Table* t=lookup(object);i32 status=((CreateSurface)t->original[6])(object,desc,result,outer);u32 error=GetLastError();
-    if(status>=0 && result && *result){install_table(*result,t->kind+10);game_surface_created(*result);}
+    u32 entry=GetLastError();struct Table* t=lookup(object);u32 input[31];zero(input,sizeof(input));
+    u32 size=t->kind>=4?124:108;int valid=lock_capture_path_length && readable(desc,size) && *(u32*)desc==size;
+    if(valid)copy(input,desc,size);SetLastError(entry);
+    i32 status=((CreateSurface)t->original[6])(object,desc,result,outer);u32 error=GetLastError();
+    if(status>=0 && result && *result){install_table(*result,t->kind+10);game_surface_created(*result,t->kind+10,valid?input:0);}
     draw_event(6,(u32)__builtin_return_address(0),object,status>=0 && result?*result:0,0,status,0,0);
     SetLastError(error);return status;
 }
+static i32 WIN surface_desc(void* object,u32* desc){
+    u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((Description)t->original[22])(object,desc);u32 error=GetLastError();
+    game_surface_described(object,t->kind,desc,status);SetLastError(error);return status;
+}
+
 static void capture(void* object){
     if(readback_disabled || !stream || !__sync_bool_compare_and_swap(&capture_busy,0,1))return;
     u32 saved_error=GetLastError();
@@ -248,6 +257,7 @@ static void install_table(void* object,u32 kind){
         __atomic_store_n(vt+7,(void*)&blt_fast,__ATOMIC_RELEASE);
         __atomic_store_n(vt+11,(void*)&flip,__ATOMIC_RELEASE);
         if(lock_capture_path_length){
+            __atomic_store_n(vt+22,(void*)&surface_desc,__ATOMIC_RELEASE);
             __atomic_store_n(vt+6,(void*)&surface_batch,__ATOMIC_RELEASE);
             __atomic_store_n(vt+17,(void*)&surface_dc,__ATOMIC_RELEASE);
             __atomic_store_n(vt+27,(void*)&surface_restore,__ATOMIC_RELEASE);

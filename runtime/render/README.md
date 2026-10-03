@@ -81,8 +81,8 @@ capture and automatically disables observer readback. It copies writable full
 surfaces before the game's Unlock and commits only on successful Unlock. Native
 snapshots go to the experiment's `lock-capture/`. Known primary RGB destinations
 now produce Qt frames after successful Unlock and supported reconstructed blits.
-Offscreen RGB Blt/BltFast copies also produce offline replay files. Unseeded
-primaries, Flip and indexed palettes remain outstanding. See
+Offscreen RGB Blt/BltFast copies also produce offline replay files. A complete opaque copy can also initialize a never-Locked destination using
+observed application descriptors. Flip and indexed palettes remain outstanding. See
 [format and lifecycle](../../research/formats/render-game-lock-capture.md).
 Run `./tools/test-render-lock-lifecycle.py` for the PE32 Wine lifecycle fixtures
 and `./tools/test-render-lock-blits.py` for independent CPU/OpenGL propagation
@@ -96,3 +96,7 @@ This does not change the source installation's preferences.
 For reconstructed-primary publication, run `./tools/test-render-lock-blits.py --primary`;
 `--unknown-primary-caps` checks rejection without returned caps provenance.
 See [primary scope and evidence](../../research/runtime/opengl-game-owned-primary.md).
+
+Run `./tools/test-render-bootstrap.py` to test 800x600 initialization without
+Locking the destination, then incremental copies through Qt/OpenGL. See
+[metadata provenance and evidence](../../research/runtime/opengl-primary-bootstrap.md).

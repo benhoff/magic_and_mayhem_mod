@@ -25,8 +25,8 @@ preserved; no observer Lock, Unlock, GetColorKey, GetClipper or QueryInterface i
 issued. Application QueryInterface results establish interface aliases.
 
 Supported copies are in-bounds, unscaled, distinct tracked RGB identities with
-identical bits and masks. Source dimensions are at most 256x256 and destinations
-at most 2048x2048. Blt accepts WAIT (`0x01000000`) and KEYSRC (`0x00008000`);
+identical bits and masks. Source and destination dimensions are at most 2048x2048 after the
+[primary bootstrap extension](opengl-primary-bootstrap.md). Blt accepts WAIT (`0x01000000`) and KEYSRC (`0x00008000`);
 BltFast accepts WAIT (`0x10`) and SRCCOLORKEY (`1`), with optional exact source keys.
 Source keys must come from a successful observed SetColorKey(SRCBLT) call with
 matching low/high native values. Failed property changes preserve old values;
@@ -44,13 +44,15 @@ supported BltFast is sufficient for this boundary. API references:
 A successful unsupported or untracked draw invalidates the destination. Later
 copies cannot inherit stale pixels; a new complete Lock/Unlock checkpoint can
 reseed it. Self-copy, effects, stretching, conversion, destination keys, unknown
-source keys, clipping and unavailable complete destination pixels are rejected.
+source keys and clipping are rejected. An unavailable complete destination can
+now be initialized only by the full opaque overwrite described in the
+[bootstrap contract](opengl-primary-bootstrap.md).
 Successful BltBatch, GetDC and Restore also invalidate affected pixels and
 in-flight Lock checkpoints. A mutation nested inside original Unlock cannot
 commit its earlier copy. Restore
 removes source-key provenance. Flip currently invalidates the capture epoch rather
-than guessing a rotation; routing Flip and live primary presentation are later
-chunks. Final Release, contention and unknown successful Unlocks preserve the
+than guessing a rotation. Flip routing remains separate work;
+[primary blit presentation](opengl-game-owned-primary.md) is implemented. Final Release, contention and unknown successful Unlocks preserve the
 existing conservative epoch invalidation. CreateSurface clears old identity and
 property records before accepting a reused address. Joining two independently
 tracked aliases discards conflicting checkpoints and properties.
@@ -67,13 +69,15 @@ not a game-speed render replacement or a benchmark.
 
 `lock-capture/blit-00000001.bin`, etc. use the existing `MNMCMD01` protocol:
 CREATE source, CREATE destination-before, BLIT, CHECK reconstructed destination,
-PRESENT destination, DESTROY both, END. Inputs contain only owned checkpoint
-pixels. The CHECK is a reconstruction result, **not an original-driver readback**.
+PRESENT destination, DESTROY both, END. Inputs contain owned checkpoint
+pixels, except that bootstrap uses a synthetic zero destination-before image
+whose every pixel is overwritten by the opaque full copy. The CHECK is a reconstruction result, **not an original-driver readback**.
 It establishes agreement of the CPU propagation and independent OpenGL replay;
 real-game driver equivalence still requires separate evidence. PRESENT is an
 offline replay instruction. The following [primary routing chunk](opengl-game-owned-primary.md)
 now also publishes supported reconstructed destinations whose primary identity
-was established by a complete game-owned Lock/Unlock checkpoint.
+was established by a complete game-owned Lock/Unlock checkpoint or validated
+application metadata.
 
 Replay a completed file without the game:
 
