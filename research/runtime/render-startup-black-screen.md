@@ -159,3 +159,53 @@ unchanged source hash without launching the game. All eight Qt shell CTests pass
 The user's `commands-0001.bin` replays successfully through Qt/OpenGL under
 Xvfb/software rendering with framebuffer sample checks. This validates the
 captured checkpoint, not uninterrupted gameplay or the incomplete history.
+
+## Follow-up: movie bypass does not resolve startup
+
+User runs `run-f9hulkut` and `run-g8y5d95e` both record the movie bypass,
+software GL environment, no history capture, status 5, zero frames, zero
+DirectDrawCreate calls and zero observed enumeration calls. Their initial logs
+are empty beyond launcher messages. The user confirms a fresh plain
+`./tools/run-game.sh` reaches the menu. Therefore the bypass is not a resolution;
+the replacement launch path must be investigated before further movie tuning.
+The plain comparison does not yet separate staging, import hooks, desktop
+wrapping and the software-rendering environment.
+
+A live WineDbg attachment to Wine PID 0x13c actually targeted the newer
+`run-g8y5d95e`, not the already closed earlier run. Its initial snapshot stopped
+on a newly created thread 0x188 at inaccessible EIP `0xffbb10ec`, and the launch
+log subsequently recorded that page fault. No original game-thread stack was
+collected. The timing and new thread make a debugger-induced attachment fault a
+candidate, not proof of the original hang. Evidence is in the earlier run's
+`live-debug/debugger.log`; the second attempted attachment records access denied
+in the newer run's `live-debug/debugger.log`. Native GDB inspection was blocked
+by Linux ptrace permissions. A temporary PE32 context-reader could not inspect
+the target after it closed; it supplies no evidence about the startup cause.
+No automatic full-game relaunch was performed.
+
+`tools/debug-render-startup.py` prepares a copied PE32 i386 WineDbg and launches
+an existing hash-verified staged executable from the outset. It checks both game
+and bridge hashes and the mapped stream, restores the experiment's recorded
+graphics environment, and leaves extra draw/history capture off. Its debugger
+DLL override forces the copied x86 executable. It does not attach to a live game,
+change system/prefix settings or patch another binary. It omits the explorer
+desktop wrapper, an explicit diagnostic difference to keep in the comparison.
+
+After closing other game/debugger windows, run:
+
+```bash
+./tools/debug-render-startup.py working/experiments/opengl-render/run-g8y5d95e
+```
+
+The tool prints debugger commands for startup `0x004e8d80` and drawing setup
+`0x004e986a`. At stops, record `bt` and `info reg`; use `cont` to reach the next
+stop. If it waits, interrupt from the debugger terminal and collect `bt` and
+`info thread`. Use `detach`, then `quit` to leave the game running. Terminal
+output may be saved using `script`; preparation metadata is in `startup-debug/`.
+
+Validation: `--prepare-only` verifies the actual staged game without launching
+it. The copied PE32 debugger launched the pinned-image API-only probe, read
+`$eip`, obtained a stack and continued to a normal exit under Xvfb in
+`working/tests/render-import/run-6sehwgda/startup-debug-test/`. The probe does not
+execute the game loop. This validates the debugger launch path, not the cause or
+resolution of the user's hang. Confidence in the startup root cause remains low.
