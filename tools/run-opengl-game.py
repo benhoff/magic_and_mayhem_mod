@@ -55,6 +55,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stream',type=Path,required=True);parser.add_argument('--stage-only',action='store_true')
     parser.add_argument('--capture-draws',action='store_true',help='Record bounded draw events and one small native-pixel blit')
     parser.add_argument('--capture-history',action='store_true',help='Opt in to bounded indexed/RGB surface history; implies --capture-draws')
+    parser.add_argument('--capture-locks',action='store_true',help='Capture bounded game-owned Lock/Unlock buffers without extra locks')
     parser.add_argument('--no-readback',action='store_true',help='Diagnostic: log game calls without extra surface locks or Qt frames')
     parser.add_argument('--skip-movies',action='store_true',help='Disable movie playback only in the disposable staged preferences')
     args=parser.parse_args();args.capture_draws |= args.capture_history
@@ -72,14 +73,19 @@ def main():
     (game/'Chaos.exe').write_bytes(stage.add_import(data,dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
     shutil.copy2(dll,game/dll.name);shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     movie_edits=skip_movies(game) if args.skip_movies else []
-    metadata={'no_readback':args.no_readback,'failure_log':str(root/'surface-failures.log'),'skip_movies':args.skip_movies,'movie_preference_edits':movie_edits,'origin':'directdraw_opengl_presentation','source_sha256':stage.HASH,'stream':str(stream),
+    metadata={'capture_locks':args.capture_locks,'no_readback':args.no_readback or args.capture_locks,'failure_log':str(root/'surface-failures.log'),'skip_movies':args.skip_movies,'movie_preference_edits':movie_edits,'origin':'directdraw_opengl_presentation','source_sha256':stage.HASH,'stream':str(stream),
               'staged_sha256':hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest(),'capture_history':args.capture_history,'graphics_environment':{key:os.environ.get(key,'') for key in ('LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WINE_D3D_CONFIG')},'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest()}
+    if args.capture_locks:
+        lock_capture=root/'lock-capture';lock_capture.mkdir();metadata['lock_capture_directory']=str(lock_capture)
+        print(f'Game lock capture: {lock_capture}',flush=True)
     if args.capture_draws:
         capture=root/'draw-capture';capture.mkdir();metadata['draw_capture_directory']=str(capture)
         print(f'Draw capture: {capture}',flush=True)
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n');print(f'Render experiment: {root}',flush=True)
     if args.stage_only:return 0
     env=os.environ.copy();env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\');env['MNM_RENDER_EXPERIMENT']=str(root);env.pop('MNM_RUNNER',None)
+    env.pop('MNM_RENDER_LOCK_CAPTURE_DIR',None)
+    if args.capture_locks:env['MNM_RENDER_LOCK_CAPTURE_DIR']='Z:'+str(lock_capture).replace('/','\\')
     env.pop('MNM_RENDER_NO_READBACK',None)
     if args.no_readback:env['MNM_RENDER_NO_READBACK']='1'
     env['MNM_RENDER_FAILURE_LOG']='Z:'+metadata['failure_log'].replace('/','\\')

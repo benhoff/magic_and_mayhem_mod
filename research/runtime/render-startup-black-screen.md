@@ -304,3 +304,20 @@ evidence implicating readback, but one timing-sensitive run is not definitive.
 The synthetic mode fixture asserts zero primary Lock/Unlock calls, unchanged
 forwarded Blt/Flip results and LastError, and zero published frames. Existing
 capture regression remains separate; this is not a completed render replacement.
+
+## First implementation of game-owned capture
+
+The user's `run-iknkhwup` has `no_readback: true`, successful application events
+and no surface failure file at inspection; the user reports successful new-game
+play. This implicates observer readback as a contributor, but is not proof of a
+specific interleaving or a failed observer Unlock.
+
+An opt-in lifecycle implementation now tracks and copies full writable
+application locks before their original Unlock, commits only successful Unlocks,
+and forces additional readback off. `--capture-locks` enables it independently
+of the old history. Nine PE32 fixtures pass, including poisoned pixel storage,
+legacy/modern Unlock ABI, negative pitch, Unlock retry, rejected locks and
+separation of offscreen/indexed snapshots from primary frame publication.
+The mode is bounded diagnostic capture; full Blt/Flip-based presentation remains
+unimplemented. Real-game validation is pending; do not describe this as an
+end-to-end renderer fix. See `research/formats/render-game-lock-capture.md`.

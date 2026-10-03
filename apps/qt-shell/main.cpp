@@ -30,7 +30,7 @@
 
 class Shell final:public QMainWindow {
 public:
-    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback) {
+    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
         viewport_=new QWidget(this);layout_=new QVBoxLayout(viewport_);
         layout_->setContentsMargins(0,0,0,0);viewport_->setMinimumSize(800,600);
@@ -69,7 +69,7 @@ public:
             if(!frame.isNull()){gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();
                 statusBar()->showMessage("OpenGL presentation active. Use the separate game window for input.");}
             else if(stream_->status()==2 || stream_->status()==3 || stream_->status()==8 || stream_->status()==9 || stream_->status()==10 || stream_->status()==13 || elapsed_.elapsed()>10000){
-                const QString diagnostic=noReadback_?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":stream_->diagnostic();statusBar()->showMessage(diagnostic);
+                const QString diagnostic=(noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":stream_->diagnostic();statusBar()->showMessage(diagnostic);
                 if(placeholder_->isVisible())placeholder_->setText(diagnostic);
             }
         });
@@ -126,8 +126,9 @@ private:
             if(captureHistory_)arguments.append("--capture-history");
             if(skipMovies_)arguments.append("--skip-movies");
             if(noReadback_)arguments.append("--no-readback");
+            if(captureLocks_)arguments.append("--capture-locks");
             gl_->hide();placeholder_->show();
-            placeholder_->setText(noReadback_?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":"Waiting for the first DirectDraw frame…");
+            placeholder_->setText(captureLocks_?"Capturing game-owned locks. Use the Wine window; offscreen blit presentation is not implemented yet.":(noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":"Waiting for the first DirectDraw frame…");
         }
         process_.start(launcher,arguments);
         if(!check && !opengl_){elapsed_.restart();poll_.start();statusBar()->showMessage("Waiting for the game window…");}
@@ -140,11 +141,11 @@ private:
     }
     void finished(){
         if(opengl_ && !checking_ && stream_ && placeholder_->isVisible())
-            placeholder_->setText(noReadback_?"Diagnostic game launcher stopped. Qt frame capture was disabled.":"Game launcher stopped before a frame was captured. Last state:\n"+stream_->diagnostic());
+            placeholder_->setText((noReadback_ && !captureLocks_)?"Diagnostic game launcher stopped. Qt frame capture was disabled.":"Game launcher stopped before a frame was captured. Last state:\n"+stream_->diagnostic());
         detach();poll_.stop();frames_.stop();retry_->setEnabled(false);checking_=false;
         launch_->setEnabled(opengl_ || host_.available());check_->setEnabled(true);
     }
-    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
@@ -157,6 +158,7 @@ int main(int argc,char** argv){
     for(int i=1;i<argc;++i)if(QString::fromLocal8Bit(argv[i])=="--help" || QString::fromLocal8Bit(argv[i])=="-h"){
         std::printf("Usage: mnm-qt-shell [--repo DIRECTORY] [--renderer opengl|native]\n"
                     "  --software-rendering  Use Mesa software rendering for Qt and Wine\n"
+                    "  --capture-locks       Capture bounded game-owned Lock/Unlock buffers\n"
                     "  --no-readback         Diagnostic: disable extra surface locks; use the Wine window\n"
                     "  --skip-movies         Disable movies in the disposable OpenGL installation\n"
                     "  --capture-draws       Record a small blit when launching with OpenGL\n"
@@ -180,6 +182,7 @@ int main(int argc,char** argv){
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
     parser.addOption({"software-rendering","Use Mesa software rendering for this shell and its Wine child."});
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
+    parser.addOption({"capture-locks","Capture bounded game-owned locks; disables observer readback."});
     parser.addOption({"no-readback","Diagnostic: log game calls without extra surface locks or Qt frames."});
     parser.addOption({"skip-movies","Disable movies only in the disposable OpenGL installation."});
     parser.addOption({"capture-history","Record a bounded indexed/RGB surface history; implies draw capture."});
@@ -272,8 +275,8 @@ int main(int argc,char** argv){
     }
     const auto renderer=parser.value("renderer");
     if(renderer!="opengl" && renderer!="native")parser.showHelp(2);
-    if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback")) && renderer!="opengl")parser.showHelp(2);
-    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"));shell.show();
+    if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback") || parser.isSet("capture-locks")) && renderer!="opengl")parser.showHelp(2);
+    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),parser.isSet("capture-locks"));shell.show();
     if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);
     if(parser.isSet("embedding-test")){
         if(!shell.host().available())return 2;
