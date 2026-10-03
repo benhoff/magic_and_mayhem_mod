@@ -17,6 +17,11 @@ static u32 draw_attempts,draw_complete,event_count;
 static int write_all(HANDLE file,const void* data,u32 length){
     u32 written=0;return WriteFile(file,data,length,&written,0) && written==length;
 }
+static void observer_release(void* object){
+    struct Table* t=lookup(object);
+    ((ReleaseObject)(t?t->original[2]:(*(void***)object)[2]))(object);
+}
+static int history_wants_draw(void);
 static void init_draw_capture(void){
     u32 size=GetEnvironmentVariableA("MNM_RENDER_CAPTURE_DIR",draw_path,sizeof(draw_path));
     if(!size || size+20>=sizeof(draw_path)){draw_path[0]=0;return;}
@@ -63,8 +68,8 @@ static int distinct_surfaces(void* a,struct Table* ta,void* b,struct Table* tb){
     void *ia=0,*ib=0;int ok=0;
     if(((Query)ta->original[0])(a,unknown,&ia)>=0 && ia &&
        ((Query)tb->original[0])(b,unknown,&ib)>=0 && ib)ok=ia!=ib;
-    if(ia)((ReleaseObject)(*(void***)ia)[2])(ia);
-    if(ib)((ReleaseObject)(*(void***)ib)[2])(ib);
+    if(ia)observer_release(ia);
+    if(ib)observer_release(ib);
     return ok;
 }
 static void free_snapshot(struct Snapshot* s){if(s->data)HeapFree(GetProcessHeap(),0,s->data);s->data=0;}
@@ -108,7 +113,7 @@ static struct DrawCapture* begin_draw(void* object,const void* dest,void* source
        (operation==1 ? (flags&~0x09008000u) : (flags&~0x31u)) ||
        !__sync_bool_compare_and_swap(&draw_busy,0,1))return 0;
     struct DrawCapture* c=0;
-    if(draw_complete || draw_attempts>=8 || !readable(source,4))goto fail;
+    if((!history_wants_draw() && (draw_complete || draw_attempts>=8)) || !readable(source,4))goto fail;
     struct Table *ts=lookup(source),*td=lookup(object);
     if(!ts || ts->kind<10 || !td)goto fail;
     u32 sd[31],dd[31];struct Rect sr,dr;
@@ -141,12 +146,14 @@ fail:
     discard_draw(c);return 0;
 }
 #include "surface_commands.h"
+#include "surface_history.h"
 static void end_draw(struct DrawCapture* c,void* object,i32 result){
     if(!c)return;
     struct Table* t=lookup(object);u32 d[31];
-    if(result<0 || !surface_description(object,t,d) || !snapshot(object,t,d,&c->after))goto done;
-    if(!same(&c->before,&c->after,32) || (c->header[28] && !same(c->before.palette,c->after.palette,1024)))goto done;
-    c->header[9]=(u32)result;
+    if(result<0 || !surface_description(object,t,d) || !snapshot(object,t,d,&c->after)){if(history_wants_draw())history_gap(6);goto done;}
+    if(!same(&c->before,&c->after,32) || (c->header[28] && !same(c->before.palette,c->after.palette,1024))){if(history_wants_draw())history_gap(6);goto done;}
+    c->header[9]=(u32)result;int seed=!history_started;history_draw(c,object);if(seed)history_leave(1);
+    if(draw_complete)goto done;
     HANDLE file=CreateFileA(draw_path,0x40000000,1,0,1,0x80,0);
     if(file!=(HANDLE)-1){
         int ok=write_all(file,c->header,128) && write_all(file,c->src.data,c->src.length) &&

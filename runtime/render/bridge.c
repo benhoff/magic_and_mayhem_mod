@@ -51,9 +51,14 @@ static u32 guid_kind(const u8* guid){
 }
 static void install_table(void*,u32);
 static i32 WIN query(void* object,const u8* guid,void** result){
-    struct Table* t=lookup(object);i32 status=((Query)t->original[0])(object,guid,result);u32 error=GetLastError();
-    if(status>=0 && result && *result && guid){u32 kind=guid_kind(guid);if(kind)install_table(*result,kind);}
-    SetLastError(error);return status;
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Query)t->original[0])(object,guid,result);u32 error=GetLastError();
+    if(status>=0 && result && *result && guid){u32 kind=guid_kind(guid);if(kind)install_table(*result,kind);if(token)history_alias(object,*result);}
+    history_leave(token);SetLastError(error);return status;
+}
+static u32 WIN surface_release(void* object){
+    u32 entry=GetLastError();int token=history_enter();struct HistorySurface* h=token?history_find(object):0;
+    struct Table* t=lookup(object);SetLastError(entry);u32 remaining=((ReleaseObject)t->original[2])(object),error=GetLastError();
+    if(token)history_release(h,remaining);history_leave(token);SetLastError(error);return remaining;
 }
 static i32 WIN create_surface(void* object,void* desc,void** result,void* outer){
     struct Table* t=lookup(object);i32 status=((CreateSurface)t->original[6])(object,desc,result,outer);u32 error=GetLastError();
@@ -107,33 +112,62 @@ done:
 static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,void* effects){
     u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
     struct Table* t=lookup(object);
-    struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
+    int token=history_enter();struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
+    if(token && !c)history_gap(6);
     SetLastError(error);i32 status=((Blt)t->original[5])(object,dest,source,rect,flags,effects);error=GetLastError();
     end_draw(c,object,status);draw_event(1,caller,object,source,flags,status,dest,rect);
-    if(status>=0)capture(object);SetLastError(error);return status;
+    if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 flags){
     u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
     struct Table* t=lookup(object);
-    struct DrawCapture* c=begin_draw(object,0,source,rect,flags,0,2,x,y,caller);
+    int token=history_enter();struct DrawCapture* c=begin_draw(object,0,source,rect,flags,0,2,x,y,caller);
+    if(token && !c)history_gap(6);
     SetLastError(error);i32 status=((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
     end_draw(c,object,status);
     /* For a Fast event, left/top are x/y; right/bottom are deliberately zero. */
     u32 dest[4]={x,y,0,0};draw_event(2,caller,object,source,flags,status,dest,rect);
-    if(status>=0)capture(object);SetLastError(error);return status;
+    if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN flip(void* object,void* target,u32 flags){
-    struct Table* t=lookup(object);i32 status=((Flip)t->original[11])(object,target,flags);
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Flip)t->original[11])(object,target,flags);u32 error=GetLastError();
+    if(token && status>=0)history_gap(6);
     draw_event(3,(u32)__builtin_return_address(0),object,target,flags,status,0,0);
-    if(status>=0)capture(object);return status;
+    if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_lock(void* object,void* rect,void* desc,u32 flags,HANDLE event){
-    struct Table* t=lookup(object);i32 status=((Lock)t->original[25])(object,rect,desc,flags,event);
-    draw_event(4,(u32)__builtin_return_address(0),object,0,flags,status,rect,0);return status;
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Lock)t->original[25])(object,rect,desc,flags,event);u32 error=GetLastError();
+    if(token)history_lock(object,rect,desc,flags,status);
+    draw_event(4,(u32)__builtin_return_address(0),object,0,flags,status,rect,0);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_unlock(void* object,void* rect){
-    struct Table* t=lookup(object);i32 status=((Unlock)t->original[32])(object,rect);
-    draw_event(5,(u32)__builtin_return_address(0),object,0,0,status,0,0);return status;
+    u32 error=GetLastError();int token=history_enter();struct Snapshot pending;zero(&pending,sizeof(pending));
+    if(token)history_unlock_before(object,rect,&pending);SetLastError(error);
+    struct Table* t=lookup(object);i32 status=((Unlock)t->original[32])(object,rect);error=GetLastError();
+    if(token)history_unlock_after(object,&pending,status);
+    draw_event(5,(u32)__builtin_return_address(0),object,0,0,status,0,0);history_leave(token);SetLastError(error);return status;
+}
+static i32 WIN surface_restore(void* object){
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*))t->original[27])(object);u32 error=GetLastError();
+    if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
+}
+static i32 WIN surface_dc(void* object,void** output){
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((GetObject)t->original[17])(object,output);u32 error=GetLastError();
+    if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
+}
+static i32 surface_property(void* object,void* value,u32 slot){
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,void*))t->original[slot])(object,value);u32 error=GetLastError();
+    if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
+}
+static i32 WIN surface_palette(void* object,void* palette){return surface_property(object,palette,31);}
+static i32 WIN surface_clipper(void* object,void* clipper){return surface_property(object,clipper,28);}
+static i32 WIN surface_batch(void* object,void* batch,u32 count,u32 flags){
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,void*,u32,u32))t->original[6])(object,batch,count,flags);u32 error=GetLastError();
+    if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
 }
 static void install_table(void* object,u32 kind){
     if(!stream || !readable(object,4) || !__sync_bool_compare_and_swap(&table_busy,0,1))return;
@@ -150,6 +184,12 @@ static void install_table(void* object,u32 kind){
         __atomic_store_n(vt+7,(void*)&blt_fast,__ATOMIC_RELEASE);
         __atomic_store_n(vt+11,(void*)&flip,__ATOMIC_RELEASE);
         if(draw_path[0]){
+            __atomic_store_n(vt+2,(void*)&surface_release,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+6,(void*)&surface_batch,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+17,(void*)&surface_dc,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+27,(void*)&surface_restore,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+28,(void*)&surface_clipper,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+31,(void*)&surface_palette,__ATOMIC_RELEASE);
             __atomic_store_n(vt+25,(void*)&surface_lock,__ATOMIC_RELEASE);
             __atomic_store_n(vt+32,(void*)&surface_unlock,__ATOMIC_RELEASE);
         }
@@ -167,6 +207,7 @@ __declspec(dllexport) void WIN RenderInstallForTest(void* surface,u32 kind){inst
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
+    if(reason==0){history_finish();return 1;}
     if(reason!=1)return 1;
     char path[512];u32 size=GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path));
     if(!size || size>=sizeof(path))return 1;

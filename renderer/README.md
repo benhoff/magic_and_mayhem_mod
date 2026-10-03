@@ -122,3 +122,11 @@ and hashes; output paths must be new. Invalid ordering, unsupported operations,
 and mismatching original-pixel checks fail. Expected pixels are never GPU inputs.
 See [protocol](../research/formats/render-surface-commands.md) and
 [evidence and remaining hooks](../research/runtime/opengl-surface-command-replay.md).
+
+For a bounded sequence rather than a single draw, prepare capture with
+`./tools/run-qt-shell.sh --capture-history`, then replay
+`history-0001.bin` using the same `--commands` option. Supported RGB copies and
+full-surface CPU updates retain surface IDs across recognized COM aliases until
+Release or the recorder boundary. A capture GAP or native CHECK mismatch fails
+replay. See [history coverage](../research/runtime/opengl-surface-history.md);
+synthetic x86 tests run with `./tools/test-render-history.py`.

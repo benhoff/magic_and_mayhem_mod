@@ -1,5 +1,9 @@
 # x86 capture to persistent OpenGL command replay
 
+Subsequent work adds a separate [bounded RGB history](opengl-surface-history.md)
+with writable locks and observed Release. The findings below describe the
+single-draw checkpoint producer.
+
 ## Finding and confidence
 
 Confirmed with synthetic Wine PE32 surfaces: the bridge exports a completed

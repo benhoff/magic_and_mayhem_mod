@@ -77,6 +77,9 @@ std::vector<SurfaceCommand> decodeCommands(const QByteArray& data){
             else {pixelCount-=std::size_t(s.width)*s.height;live.erase(c.words[0]);}
         }else if(c.operation==8){
             require(!length && live.empty() && presented,"Incomplete command session");ended=true;
+        }else if(c.operation==9){
+            fields(1);require(length==4,"Invalid capture-gap record");
+            throw std::runtime_error("Capture history contains a gap (reason "+std::to_string(c.words[0])+")");
         }else throw std::runtime_error("Unsupported command opcode");
         commands.push_back(std::move(c));
     }

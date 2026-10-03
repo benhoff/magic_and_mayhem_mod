@@ -58,7 +58,34 @@ existing capture guard, regardless of the broader consumer limit.
 These CREATE/DESTROY records delimit replay checkpoints. They do **not** assert
 that the game created/released those COM objects at that point. UPDATE and
 incremental palette records are supported and synthetically tested by the
-consumer; the bridge does not yet capture application CPU writes or palette
-mutations as a continuous ordered history. The file describes one accepted draw,
+consumer; the checkpoint producer does not emit them. The opt-in history producer below
+additionally records RGB CPU writes and lifetime observations; indexed palette
+mutation tracking remains pending. The file describes one accepted draw,
 not every call preceding it or a full frame. Unsupported calls remain visible
 only in the separate bounded `events.bin` inventory.
+
+## Bounded history producer and GAP
+
+`--capture-history` enables `runtime/render/surface_history.h`, producing
+`history-0001.bin` separately from the checkpoint file. It uses the same version
+1 header/records. Opcode **9 GAP** has one uint32 reason and always makes replay
+fail (there is no recovery/END after it):
+
+| Reason | Meaning |
+|---|---|
+| 1 | Overlapping/reentrant observed calls or busy termination |
+| 2 | Recorder capacity/allocation limit |
+| 3 | Unsupported/unbalanced application lock, changed lock layout, or locked termination/Release |
+| 4 | Uncovered canonical identity or interface alias |
+| 5 | Indexed history not supported yet |
+| 6 | Unsupported/failed draw coverage, readback, flip, restore, GDI/DC, clipping or palette operation |
+
+CHECK mismatches also fail replay even if the file contains a valid END.
+Earlier consumers reject GAP as an unknown opcode; current consumers report its
+reason. The history begins at the first eligible RGB draw, lazily seeds later
+surfaces from draw inputs, and emits full-surface CPU UPDATEs after successful
+writable Unlocks. Subsequent copies check native input/output instead of
+reuploading snapshots. Final COM Release emits DESTROY; bounded-stop/detach
+cleanup may also destroy replay resources without claiming COM destruction.
+The 16-operation recorder limit is stricter than the general consumer limits.
+See [coverage and evidence](../runtime/opengl-surface-history.md).
