@@ -16,32 +16,34 @@ def load(name,file):
     spec=importlib.util.spec_from_file_location(name,REPO/file)
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
 
-def skip_movies(game):
+def patch_staged_preferences(game,section_name,settings):
     """Edit only staged preferences, including the higher-precedence container."""
     plain=game/'CFG/prefs.cfg'; packed=game/'CFG/Encrypted/prefs.cfg'
     encoder=load('movie_cfg_encoder','tools/encode-cfg.py')
     decoder=encoder.load_decoder(REPO)
     paths=[path for path in (plain,packed) if path.exists()]
-    if not paths:raise ValueError('No staged movie preferences found')
+    if not paths:raise ValueError('No staged preferences found')
     edits=[]
     for path in paths:
         before=path.read_bytes()
         text=decoder.decode(before)[1] if path==packed else before
-        video=False;counts={'PlayFMV':0,'PlayFMVOut':0};lines=[]
+        active=False;counts={name:0 for name in settings};lines=[]
+        names={name.lower():name for name in settings}
+        pattern=rb'(\s*('+b'|'.join(re.escape(name.encode('ascii')) for name in settings)+rb')\s*=\s*)(TRUE|FALSE)([ \t]*(?:;[^\r\n]*)?)(\r?\n)?$'
         for line in text.splitlines(keepends=True):
             section=re.match(rb'\s*\[([^]]+)\]',line)
-            if section:video=section[1].upper()==b'VIDEO'
-            match=re.match(rb'(\s*(PlayFMVOut|PlayFMV)\s*=\s*)(TRUE|FALSE)([ \t]*(?:;[^\r\n]*)?)(\r?\n)?$',line,re.I) if video else None
+            if section:active=section[1].upper()==section_name.encode('ascii').upper()
+            match=re.match(pattern,line,re.I) if active else None
             if match:
                 key=match[2].decode('ascii').lower()
-                name='PlayFMVOut' if key=='playfmvout' else 'PlayFMV'
+                name=names[key]
                 counts[name]+=1
-                line=match[1]+b'FALSE'+match[4]+(match[5] or b'')
+                line=match[1]+settings[name].encode('ascii')+match[4]+(match[5] or b'')
             lines.append(line)
-        if any(count!=1 for count in counts.values()):raise ValueError(f'Ambiguous movie preferences: {path}')
+        if any(count!=1 for count in counts.values()):raise ValueError(f'Ambiguous staged preferences: {path}')
         changed=b''.join(lines)
         after=encoder.encode(changed,decoder)[0] if path==packed else changed
-        if path==packed and decoder.decode(after)[1]!=changed:raise ValueError('Movie CFG round trip failed')
+        if path==packed and decoder.decode(after)[1]!=changed:raise ValueError('Staged preference CFG round trip failed')
         edits.append((path,before,after))
     # Validate every copy before writing any staged preference.
     result=[]
@@ -50,6 +52,12 @@ def skip_movies(game):
         result.append({'path':str(path.relative_to(game)),'before_sha256':hashlib.sha256(before).hexdigest(),
                        'after_sha256':hashlib.sha256(after).hexdigest()})
     return result
+
+def skip_movies(game):
+    return patch_staged_preferences(game,'VIDEO',{'PlayFMV':'FALSE','PlayFMVOut':'FALSE'})
+
+def disable_cd_music(game):
+    return patch_staged_preferences(game,'SOUND',{'CDMusicEnabled':'FALSE'})
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stream',type=Path,required=True);parser.add_argument('--stage-only',action='store_true')
@@ -73,7 +81,8 @@ def main():
     (game/'Chaos.exe').write_bytes(stage.add_import(data,dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
     shutil.copy2(dll,game/dll.name);shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     movie_edits=skip_movies(game) if args.skip_movies else []
-    metadata={'capture_locks':args.capture_locks,'no_readback':args.no_readback or args.capture_locks,'failure_log':str(root/'surface-failures.log'),'skip_movies':args.skip_movies,'movie_preference_edits':movie_edits,'origin':'directdraw_opengl_presentation','source_sha256':stage.HASH,'stream':str(stream),
+    cd_edits=disable_cd_music(game)
+    metadata={'cd_music_disabled':True,'cd_music_preference_edits':cd_edits,'capture_locks':args.capture_locks,'no_readback':args.no_readback or args.capture_locks,'failure_log':str(root/'surface-failures.log'),'skip_movies':args.skip_movies,'movie_preference_edits':movie_edits,'origin':'directdraw_opengl_presentation','source_sha256':stage.HASH,'stream':str(stream),
               'staged_sha256':hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest(),'capture_history':args.capture_history,'graphics_environment':{key:os.environ.get(key,'') for key in ('LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WINE_D3D_CONFIG')},'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest()}
     if args.capture_locks:
         lock_capture=root/'lock-capture';lock_capture.mkdir();metadata['lock_capture_directory']=str(lock_capture)

@@ -27,6 +27,18 @@ class MoviePreferences(unittest.TestCase):
             stage.skip_movies(game)
             self.assertEqual(plain.read_bytes(),expected)
 
+    def test_cd_music_both_formats(self):
+        with tempfile.TemporaryDirectory() as directory:
+            game=Path(directory);(game/'CFG/Encrypted').mkdir(parents=True)
+            text=b'[VIDEO]\r\nPlayFMV=TRUE\r\nCDMusicEnabled=TRUE\r\n[SOUND]\r\nSoundEnabled=TRUE\r\nCDMusicEnabled=TRUE ; audio disc\r\n'
+            plain=game/'CFG/prefs.cfg';packed=game/'CFG/Encrypted/prefs.cfg'
+            plain.write_bytes(text);packed.write_bytes(encoder.encode(text,decoder)[0])
+            records=stage.disable_cd_music(game)
+            expected=text.replace(b'CDMusicEnabled=TRUE ; audio',b'CDMusicEnabled=FALSE ; audio')
+            self.assertEqual(plain.read_bytes(),expected)
+            self.assertEqual(decoder.decode(packed.read_bytes())[1],expected)
+            self.assertEqual(len(records),2)
+
     def test_ambiguous_copy_prevents_all_writes(self):
         with tempfile.TemporaryDirectory() as directory:
             game=Path(directory);(game/'CFG/Encrypted').mkdir(parents=True)
