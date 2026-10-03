@@ -19,6 +19,11 @@ python3 -m py_compile \
 python3 "$REPO_DIR/tests/test-decompile-game.py"
 python3 "$REPO_DIR/tools/verify-decompilation-baseline.py"
 python3 "$REPO_DIR/tests/test-decompilation-baseline.py"
+python3 "$REPO_DIR/tests/test-route-trace.py"
+python3 "$REPO_DIR/tests/test-search-support.py"
+python3 "$REPO_DIR/tests/test-search-sequence.py"
+"$REPO_DIR/tools/trace-route-experiment.py" --help >/dev/null
+"$REPO_DIR/tools/validate-route-trace.py" --help >/dev/null
 "$REPO_DIR/tests/test-reconstruction.sh"
 "$REPO_DIR/run-asahi.sh" --help >/dev/null
 "$REPO_DIR/tools/cfg-precedence-experiment.py" --help >/dev/null

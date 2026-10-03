@@ -5,7 +5,6 @@ import hashlib
 import json
 import os
 from pathlib import Path
-import shutil
 import struct
 import subprocess
 import sys
@@ -89,10 +88,12 @@ def main() -> int:
         if differences:
             failures.append({"call": index + 1, "differences": differences})
     summary = {"calls_checked": len(records), "failures": failures,
+        "origin": manifest.get("origin", "unknown"),
         "matched": bool(records) and not failures, "scope": "wrapper only; measured search output supplied",
         "trace_sha256": hashlib.sha256((evidence / "calls.jsonl").read_bytes()).hexdigest(),
         "model_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in
-            (REPO / "reconstruction/pathfinding").glob("route_request.*")},
+            [*(REPO / "reconstruction/pathfinding").glob("route_request.*"),
+             REPO / "reconstruction/pathfinding/replay_trace.cpp"]},
         "capture_complete": manifest.get("status") == "captured"}
     (output / "report.json").write_text(json.dumps(summary, indent=2) + "\n")
     print(f"Checked {len(records)} captured calls; {len(failures)} mismatching calls. Report: {output / 'report.json'}")
