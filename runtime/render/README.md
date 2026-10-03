@@ -118,5 +118,7 @@ checks, palette-resolved OpenGL command replay and Qt readback. See
 [indexed propagation evidence](../../research/runtime/opengl-owned-indexed-copies.md).
 
 Run `./tools/test-render-partial-locks.py` for x86 rectangular Lock merges,
-retry/ownership rejection and Qt framebuffer checks without launching the game.
+retry/ownership rejection, native UPDATE replay and Qt framebuffer checks
+without launching the game. Accepted partial writes now produce `update-N.bin`
+replay sessions from owned base images and native row uploads.
 See [partial ownership and evidence](../../research/runtime/opengl-partial-locks.md).

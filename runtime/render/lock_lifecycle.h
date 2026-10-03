@@ -18,6 +18,7 @@ static void init_lock_lifecycle(void){
 #include "lock_aliases.h"
 #include "lock_surfaces.h"
 #include "lock_palette.h"
+#include "lock_updates.h"
 static void game_lock_retire(void* object){
     if(!lock_capture_path_length)return;
     if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1)){__atomic_store_n(&game_alias_reset_pending,1,__ATOMIC_RELEASE);__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);return;}
@@ -121,6 +122,7 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
                 if(partial)copy(header+16,&slot->region,16);
                 if(write_all(file,header,header[3]))write_all(file,s->data,s->length);CloseHandle(file);
             }
+            game_update_commands(slot,s,id);
             if(pending->primary && s->bits!=8)game_publish_pixels(s);
         }
     }

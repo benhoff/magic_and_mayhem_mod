@@ -67,13 +67,48 @@ outside pixels are inherited, inside pixels are copied before original Unlock.
 It is not an independent full driver readback. See the
 [format specification](../formats/render-game-lock-capture.md).
 
+## Native UPDATE replay
+
+After a partial Unlock commits, `runtime/render/lock_updates.h` can write
+`lock-capture/update-N.bin`. Its serial matches the corresponding `lock-N.bin`.
+It uses the existing `MNMCMD01` format and requires no consumer protocol change:
+CREATE the detached complete base as session-local ID 1, optionally attach a
+complete observed palette, UPDATE each normalized row at its original x/y,
+CHECK the full reconstructed result, PRESENT, DESTROY and END.
+
+One row per UPDATE avoids another packed-region allocation. Each record has
+height 1; logical order and bytes are independent of driver pitch and padding.
+Only bytes inside the observed rectangle are uploaded after CREATE. CHECK bytes
+are comparison data and are never uploads. CREATE and CHECK derive from owned
+reconstruction state; they are not independent driver readbacks. CREATE/DESTROY
+here delimit a replay checkpoint, not the application's COM lifetime.
+
+For indexed surfaces, replay requires a complete application-observed palette.
+Use its colors at successful Unlock for the entire replay, including inherited
+indices outside the rectangle. A palette update while the surface is locked
+must not publish the detached old checkpoint. Unknown colors skip replay while
+retaining the accepted raw index snapshot. Offscreen updates can produce replay
+PRESENT records without publishing a live primary frame.
+
+Replay files have a separate cumulative 64 MiB allowance, including every header,
+record and palette byte. No more than 15 partial records can follow an initial
+checkpoint within the existing 16-snapshot bound. At most 2048 row updates keep
+a session below the consumer's 4096-record bound. File/byte limits, palette gaps
+and exclusive-create failures skip recording while native commit and application
+HRESULT/LastError continue normally. A failed or rejected Unlock emits no update
+session. File serial gaps are expected. Interrupted writes lack a complete END
+and fail decoding.
+
+Diagnostic reasons are `update_recorded`, `update_palette_unobserved`,
+`update_limit` and `update_file_failed`. The latter also covers a failed write.
+
 ## Offline validation and confidence
 
 ```bash
 ./tools/test-render-partial-locks.py
 ```
 
-Twenty-one synthetic PE32 cases run actual bridge hooks under Wine, without Chaos.exe
+Twenty-five synthetic PE32 cases run actual bridge hooks under Wine, without Chaos.exe
 or original artifacts. They cover Surface1/2/4/7 Unlock ABIs, RGB16/24/32,
 negative padded pitch, raw indices without observed palette, sequential overlapping
 updates, failed Lock, failed Unlock with a changed live region before retry,
@@ -81,8 +116,7 @@ missing base, read-only/discard flags, mismatched layout, changed rectangle,
 wrong Unlock argument, Restore invalidation and capture saturation. A separate
 8-MiB fixture reaches 64 MiB of cumulative checkpoints before attempting a
 rectangular update, checking that detached storage cannot wrap budget arithmetic.
-A following
-opaque blit initializes a primary from the reconstructed offscreen surface;
+A following opaque blit initializes a primary from the reconstructed offscreen surface;
 its recorded native replay must match the fake engine's independent pixels.
 
 Each original Unlock poisons all exposed lock memory. Exact complete checkpoint
@@ -92,7 +126,18 @@ on a failed attempt. Original call counts, forwarded arguments, HRESULT and
 LastError are checked. Published images also pass framebuffer readback through
 Qt's actual OpenGL viewport under Xvfb/Mesa software rendering.
 
-Evidence: all 21 cases passed in
+Every replay file is decoded by an independent Python UPDATE oracle and the
+native integer OpenGL renderer. CREATE/base, row coordinates and payloads must
+match independent fake-engine bytes; full native output and palette-resolved
+RGBA hashes must agree. Upload statistics prove only CREATE plus the recorded
+rows were uploaded. A poisoned CHECK must fail with no native export. Added
+fixtures cover observed indexed palettes, a palette change during Lock, a
+pre-existing output file and 2048-row updates. The replay-byte limit fixture
+continues to commit all seven 8-MiB checkpoints while allowing only three
+UPDATE sessions under 64 MiB; later replay rejection cannot stop native commits.
+
+
+Initial merge evidence: all 21 cases passed in
 `working/tests/render-partial-locks/run-3g1xqchh/report.json`. The report records
 PE32 DLL SHA-256, snapshot/frame counts and rejection reasons. All 14 previous
 lifecycle cases passed in
@@ -104,7 +149,20 @@ palette cases passed in
 The production DLL builds as PE32 Intel i386; hashes and source provenance are
 recorded in `working/build/render/manifest.json`.
 
-Confidence: confirmed synthetic x86 ownership, merge and publication behavior.
+UPDATE replay evidence: all 25 cases and 32 native replay sessions passed in
+`working/tests/render-partial-locks/run-vzihgfbg/report.json`. Each of the three
+maximum-height replays has 2053 commands and 2049 uploads (CREATE plus 2048 rows).
+The report records native output, RGBA and command hashes, OpenGL driver details,
+frame counts and diagnostic reasons. All 14 lifecycle regressions passed in
+`working/tests/render-lock-lifecycle/run-sc91qe97/report.json`. RGB chain, key and
+destination-alias cases passed in
+`working/tests/render-lock-blits/run-_r8iuplq/report.json`; indexed opaque-copy and
+rotation cases passed in
+`working/tests/render-indexed-copies/run-3vcucmdm/report.json`.
+
+
+Confidence: confirmed synthetic x86 ownership, merge, native UPDATE replay and
+palette-resolved publication behavior.
 Real-game rectangular descriptor/pointer observations and uninterrupted gameplay
 remain unvalidated. Concurrent regions, partial initialization without a full
-checkpoint, standalone UPDATE command capture and continuous capture are deferred.
+checkpoint and continuous capture are deferred.

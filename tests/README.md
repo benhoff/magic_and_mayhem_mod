@@ -214,3 +214,9 @@ RGBA frames and Qt OpenGL readback. It covers modern/legacy Unlocks, negative
 pitch, retries, invalidation, rejection and limits, then uses a merged checkpoint
 for primary blit initialization. No game is launched. See
 [partial Lock scope](../research/runtime/opengl-partial-locks.md).
+
+The partial-Lock suite also compares emitted UPDATE sessions with independent
+Python copies and native OpenGL output/RGBA hashes. Upload counts exclude CHECK
+bytes. It verifies poisoned CHECK rejection, indexed palette changes while
+locked, exclusive-create failure, and the replay-byte budget with 2048-row
+patches. Recording failures must preserve native commits and application calls.

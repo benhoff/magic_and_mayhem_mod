@@ -119,3 +119,20 @@ Flip and both original outputs afterward, then presents the front. Successful
 unsupported flips still emit GAP 6; failed flips emit no SWAP. Discovery is
 repeated per call and does not retain COM references across application calls.
 See [flip scope and evidence](../runtime/opengl-double-buffer-flips.md).
+
+## Game-owned partial UPDATE checkpoints
+
+`--capture-locks` now writes bounded `update-N.bin` sessions after accepted
+partial CPU Unlocks, using `runtime/render/lock_updates.h`. Each serial matches
+its reconstructed `MNMLOCK2` snapshot. ID 1 starts with the previous complete
+owned image; optional PALETTE assigns current observed colors. One UPDATE per
+locked row uploads native bytes at the rectangle's original position, followed
+by full CHECK, PRESENT, DESTROY and END. Row height is 1; padding and negative
+pitch have already been normalized. There is no new opcode or version.
+
+The CHECK is reconstructed output, validated independently in synthetic tests;
+it is not a post-Unlock driver readback. PRESENT in an offscreen replay does not
+claim that surface was a live primary. Missing palettes, failed/rejected Unlocks
+and recording limits cannot fabricate complete sessions. Replay has a separate
+64 MiB cumulative allowance, counting all serialized bytes, and at most 2048
+UPDATE records per file. See [scope and evidence](../runtime/opengl-partial-locks.md).
