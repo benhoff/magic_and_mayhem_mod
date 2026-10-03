@@ -71,7 +71,7 @@ static u32 WIN surface_release(void* object){
 }
 static i32 WIN create_surface(void* object,void* desc,void** result,void* outer){
     struct Table* t=lookup(object);i32 status=((CreateSurface)t->original[6])(object,desc,result,outer);u32 error=GetLastError();
-    if(status>=0 && result && *result)install_table(*result,t->kind+10);
+    if(status>=0 && result && *result){install_table(*result,t->kind+10);game_surface_created(*result);}
     draw_event(6,(u32)__builtin_return_address(0),object,status>=0 && result?*result:0,0,status,0,0);
     SetLastError(error);return status;
 }
@@ -124,7 +124,9 @@ static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,voi
     struct Table* t=lookup(object);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
     if(token && !c)history_gap(6);
+    struct GameBlit propagated;game_blit_before(object,dest,source,rect,flags,effects,0,0,0,&propagated);
     SetLastError(error);i32 status=((Blt)t->original[5])(object,dest,source,rect,flags,effects);error=GetLastError();
+    game_blit_after(&propagated,status);
     render_failure("application_blt",status,object,t->kind,flags);
     end_draw(c,object,status);draw_event(1,caller,object,source,flags,status,dest,rect);
     if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
@@ -134,7 +136,9 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
     struct Table* t=lookup(object);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,0,source,rect,flags,0,2,x,y,caller);
     if(token && !c)history_gap(6);
+    struct GameBlit propagated;game_blit_before(object,0,source,rect,flags,0,1,x,y,&propagated);
     SetLastError(error);i32 status=((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
+    game_blit_after(&propagated,status);
     render_failure("application_bltfast",status,object,t->kind,flags);
     end_draw(c,object,status);
     /* For a Fast event, left/top are x/y; right/bottom are deliberately zero. */
@@ -145,6 +149,7 @@ static i32 WIN flip(void* object,void* target,u32 flags){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);struct HistoryFlip pending;
     if(token)history_flip_before(object,target,flags,&pending);
     SetLastError(entry);i32 status=((Flip)t->original[11])(object,target,flags);u32 error=GetLastError();
+    if(status>=0){__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);game_surface_invalidate(object);}
     render_failure("application_flip",status,object,t->kind,flags);
     if(token)history_flip_after(object,&pending,status);
     draw_event(3,(u32)__builtin_return_address(0),object,target,flags,status,0,0);
@@ -171,16 +176,19 @@ static i32 WIN surface_unlock(void* object,void* rect){
 static i32 WIN surface_restore(void* object){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*))t->original[27])(object);u32 error=GetLastError();
+    if(status>=0){game_surface_invalidate(object);game_surface_key(object,8,0,0);}
     if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_dc(void* object,void** output){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((GetObject)t->original[17])(object,output);u32 error=GetLastError();
+    if(status>=0)game_surface_invalidate(object);
     if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
 }
 static i32 surface_property(void* object,void* value,u32 slot){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,void*))t->original[slot])(object,value);u32 error=GetLastError();
+    if(status>=0 && slot==28)game_surface_clipper(object,value);
     if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_palette(void* object,void* palette){
@@ -207,10 +215,18 @@ static i32 WIN palette_initialize(void* object,void* draw,u32 flags,void* entrie
     if(token && status>=0 && history_palette_resolve(object))history_gap(5);
     history_leave(token);SetLastError(error);return status;
 }
+static i32 WIN surface_color_key(void* object,u32 flags,u32* key){
+    u32 entry=GetLastError(),saved[2]={0};int valid=!key || readable(key,8);if(key && valid)copy(saved,key,8);
+    struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,u32,void*))t->original[29])(object,flags,key);u32 error=GetLastError();
+    if(status>=0)game_surface_key(object,flags,valid,key?saved:0);
+    SetLastError(error);return status;
+}
 static i32 WIN surface_clipper(void* object,void* clipper){return surface_property(object,clipper,28);}
 static i32 WIN surface_batch(void* object,void* batch,u32 count,u32 flags){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,void*,u32,u32))t->original[6])(object,batch,count,flags);u32 error=GetLastError();
+    if(status>=0)game_surface_invalidate(object);
     if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
 }
 static void install_table(void* object,u32 kind){
@@ -232,6 +248,11 @@ static void install_table(void* object,u32 kind){
         __atomic_store_n(vt+7,(void*)&blt_fast,__ATOMIC_RELEASE);
         __atomic_store_n(vt+11,(void*)&flip,__ATOMIC_RELEASE);
         if(lock_capture_path_length){
+            __atomic_store_n(vt+6,(void*)&surface_batch,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+17,(void*)&surface_dc,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+27,(void*)&surface_restore,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+28,(void*)&surface_clipper,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+29,(void*)&surface_color_key,__ATOMIC_RELEASE);
             __atomic_store_n(vt+2,(void*)&surface_release,__ATOMIC_RELEASE);
             __atomic_store_n(vt+25,(void*)&surface_lock,__ATOMIC_RELEASE);
             __atomic_store_n(vt+32,(void*)&surface_unlock,__ATOMIC_RELEASE);

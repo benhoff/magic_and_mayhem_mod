@@ -11,6 +11,7 @@ static void init_lock_lifecycle(void){
 }
 #include "lock_diagnostics.h"
 #include "lock_aliases.h"
+#include "lock_surfaces.h"
 static void game_lock_retire(void* object){
     if(!lock_capture_path_length)return;
     if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1)){__atomic_store_n(&game_alias_reset_pending,1,__ATOMIC_RELEASE);__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);return;}
@@ -25,7 +26,8 @@ static void game_lock_observed(void* object,struct Table* table,void* rect,const
     if(!lock_capture_path_length)return;
     if(result<0){lock_diagnostic("lock_failed",object,table->kind,(u32)rect,flags,result,0,0);return;}
     if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1)){__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);return;}
-    game_alias_sync();
+    game_surface_sync();
+    game_surface_invalidate_locked(object);
     struct GameLock* slot=0;
     for(u32 i=0;i<32;++i)if(game_alias_same(game_locks[i].object,object)){slot=game_locks+i;break;}
     if(!slot)for(u32 i=0;i<32;++i)if(!game_locks[i].active || game_locks[i].epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED)){slot=game_locks+i;break;}
@@ -63,7 +65,7 @@ static void game_unlock_before(void* object,u32 unlock_kind,void* argument,struc
         u32 stride=width*(bits/8),magnitude=(u32)(pitch<0?-pitch:pitch),offset=(height-1)*magnitude,at=d[9];
         if(magnitude<stride || magnitude>32768 || (pitch<0 && at<offset) ||
            !readable((void*)(pitch<0?at-offset:at),offset+stride)){reason="unlock_memory";break;}
-        if(lock_capture_count>=16 || stride*height>64*1024*1024-lock_capture_bytes-__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED)){reason="unlock_limit";break;}
+        if(lock_capture_count>=16 || stride*height>64*1024*1024-lock_capture_bytes-__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED) || stride*height>GAME_SURFACE_LIMIT-game_surface_bytes-__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED)){reason="unlock_limit";break;}
         struct Snapshot* s=&pending->pixels;s->data=HeapAlloc(GetProcessHeap(),0,stride*height);if(!s->data){reason="unlock_allocation";break;}
         __atomic_add_fetch(&lock_capture_reserved,stride*height,__ATOMIC_RELAXED);
         s->width=width;s->height=height;s->bits=bits;s->flags=d[19];s->r=d[22];s->g=d[23];s->b=d[24];s->length=stride*height;
@@ -106,5 +108,6 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
             }
         }
     }
+    if(slot && result>=0 && s->data){game_surface_sync();game_surface_store(pending->object,s);}
     free_snapshot(s);__sync_lock_release(&game_locks_busy);
 }

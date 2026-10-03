@@ -20,3 +20,7 @@ confidence, and whether it remains stable across launches.
   three-way pixel comparison and synthetic x86 capture validation.
 - [Persistent OpenGL surfaces](opengl-persistent-surfaces.md): retained native
   textures, ordered updates/copies, palette cycling and Qt presentation.
+
+- [Game-owned RGB blit propagation](opengl-game-owned-blits.md): retained Lock/Unlock
+  checkpoints, bounded Blt/BltFast replay without observer surface locks, and
+  independent synthetic x86/CPU/OpenGL checks.

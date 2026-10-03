@@ -80,10 +80,13 @@ Application Lock calls are still forwarded unchanged.
 capture and automatically disables observer readback. It copies writable full
 surfaces before the game's Unlock and commits only on successful Unlock. Native
 snapshots go to the experiment's `lock-capture/`; only directly locked primary
-RGB surfaces can produce Qt frames. Offscreen Blt/Flip propagation and indexed
-palette association remain outstanding. See
+RGB surfaces can produce Qt frames. Supported offscreen RGB Blt/BltFast copies
+now produce offline replay files from owned Lock checkpoints; live presentation,
+Flip and indexed palette association remain outstanding. See
 [format and lifecycle](../../research/formats/render-game-lock-capture.md).
-Run `./tools/test-render-lock-lifecycle.py` for the PE32 Wine lifecycle fixtures.
+Run `./tools/test-render-lock-lifecycle.py` for the PE32 Wine lifecycle fixtures
+and `./tools/test-render-lock-blits.py` for independent CPU/OpenGL propagation
+checks. See [blit contract and evidence](../../research/runtime/opengl-game-owned-blits.md).
 
 Disposable render installations disable CD music in staged `[SOUND]` preferences
 to avoid the confirmed pre-DirectDraw `CDROM ERROR !` driver dialog. The manifest
