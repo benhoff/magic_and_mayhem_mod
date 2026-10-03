@@ -49,6 +49,13 @@ Outputs use exclusive creation; existing files are never overwritten.
 
 ## Current bridge producer scope
 
+The optional [owned ordered session](../runtime/opengl-owned-session.md) uses
+this same format for uploads, copies, swaps and palette changes in one file.
+`session-00000001.bin` has session-local observed alias IDs, up to 16 accepted
+operations and explicit cleanup. Opcode 9 GAP carries a uint32 diagnostic
+reason and terminates an incomplete file without END; the consumer rejects it.
+These bounded sessions are replay checkpoints, not full game lifetimes.
+
 With `--capture-draws`, a successfully written `blit-0001.bin` also produces
 `commands-0001.bin` beside it. Existing snapshots supply CREATE for source ID 1
 and destination ID 2, optional palettes, COPY, CHECK against original destination

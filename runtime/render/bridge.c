@@ -360,7 +360,7 @@ __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
-    if(reason==0){history_finish();return 1;}
+    if(reason==0){game_session_finish();history_finish();return 1;}
     if(reason!=1)return 1;
     char path[512];u32 size=GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path));
     if(!size || size>=sizeof(path))return 1;

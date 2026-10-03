@@ -122,3 +122,9 @@ retry/ownership rejection, native UPDATE replay and Qt framebuffer checks
 without launching the game. Accepted partial writes now produce `update-N.bin`
 replay sessions from owned base images and native row uploads.
 See [partial ownership and evidence](../../research/runtime/opengl-partial-locks.md).
+
+`MNM_RENDER_OWNED_SESSION=1 ./tools/run-qt-shell.sh --capture-locks` additionally
+records one bounded ordered session combining owned uploads, copies, Flips and
+palette changes. Run `./tools/test-render-owned-session.py` without the game for
+CPU/OpenGL replay, independent engine pixel comparisons, Qt readback and
+incompleteness checks. See [scope and limits](../../research/runtime/opengl-owned-session.md).

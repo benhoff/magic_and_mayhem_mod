@@ -43,7 +43,7 @@ static void game_surface_palette(void* object,void* palette){
     if(!game_surface_enter())return;struct GameSurface* s=game_surface_find(object,1);
     if(s){s->palette=palette;s->generation=++game_surface_generation;
         lock_diagnostic("palette_attached",object,0,(u32)palette,0,0,0,0);
-        if(s->primary && s->pixels.bits==8)game_surface_publish(s);}
+        game_session_palette(s);if(s->primary && s->pixels.bits==8)game_surface_publish(s);}
     __sync_lock_release(&game_locks_busy);
 }
 static void game_palette_alias(void* object,void* alias){
@@ -63,6 +63,7 @@ static void game_palette_caps(void* object,u32 caps){
     if(!game_surface_enter())return;struct GamePalette* p=game_palette_find(object,1);
     if(p){if(!game_palette_supported(caps) || !game_palette_supported(p->caps))zero(p->known,sizeof(p->known));
         p->caps=caps;p->generation=++game_surface_generation;
+        if(!game_palette_complete(p))game_session_palette_changed(object);
         lock_diagnostic(game_palette_supported(caps)?"palette_caps":"palette_caps_rejected",object,20,0,caps,0,0,0);}
     __sync_lock_release(&game_locks_busy);
 }
@@ -85,6 +86,7 @@ static void game_palette_after(void* object,u32 first,u32 count,void* entries,in
         else zero(p->known,sizeof(p->known));
         p->generation=++game_surface_generation;
         lock_diagnostic(valid?"palette_entries":"palette_invalidated",object,20,first,count,result,0,0);
+        game_session_palette_changed(object);
         if(valid)game_palette_republish(p);
     }
     __sync_lock_release(&game_locks_busy);
@@ -97,6 +99,6 @@ static void game_palette_created(void* object,u32 caps,const u8* colors){
 }
 static void game_palette_invalidated(void* object){
     if(!game_surface_enter())return;struct GamePalette* p=game_palette_find(object,0);
-    if(p){zero(p->known,sizeof(p->known));p->caps=0;p->generation=++game_surface_generation;}
+    if(p){zero(p->known,sizeof(p->known));p->caps=0;p->generation=++game_surface_generation;game_session_palette_changed(object);}
     __sync_lock_release(&game_locks_busy);
 }

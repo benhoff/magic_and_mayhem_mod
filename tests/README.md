@@ -215,6 +215,13 @@ pitch, retries, invalidation, rejection and limits, then uses a merged checkpoin
 for primary blit initialization. No game is launched. See
 [partial Lock scope](../research/runtime/opengl-partial-locks.md).
 
+`./tools/test-render-owned-session.py` tests one ordered replay containing owned
+full/partial uploads, copies, two-buffer swaps and indexed palette changes.
+Synthetic x86 fixtures supply independent native pixels and colors for CPU,
+OpenGL and Qt comparisons. Negative cases cover failed original calls, Restore,
+held Locks, exclusive file creation failure and capture bounds. No game launch
+or original artifact is needed. See [ordered session evidence](../research/runtime/opengl-owned-session.md).
+
 The partial-Lock suite also compares emitted UPDATE sessions with independent
 Python copies and native OpenGL output/RGBA hashes. Upload counts exclude CHECK
 bytes. It verifies poisoned CHECK rejection, indexed palette changes while
