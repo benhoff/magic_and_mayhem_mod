@@ -96,3 +96,9 @@ raw little-endian pixels, with tight rows and the same logical row order as the
 capture. Its dimensions/format/hashes are in the JSON report. The captured-after
 pixels are comparison evidence only; they are not supplied to the shader.
 The report includes separate CPU/capture, OpenGL/capture and OpenGL/CPU checks.
+
+OpenGL replay also reads the capture's destination palette/RGB masks for its
+presentation shader, writes `opengl-presented.png`, and records a raw RGBA hash.
+The Python reference checks that hash against independently converted native
+output. Palette-entry flags do not supply alpha; presentation alpha is 255.
+The capture format itself remains version 1.

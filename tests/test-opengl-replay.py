@@ -23,8 +23,9 @@ def main():
 
     def run(name, data, valid=True):
         source, output = root/(name+'.bin'), root/(name+'-native.bin')
+        preview = root/(name+'.png')
         source.write_bytes(data)
-        result = subprocess.run([str(executable), str(source), '--output', str(output)],
+        result = subprocess.run([str(executable), str(source), '--output', str(output), '--preview', str(preview)],
                                 capture_output=True, text=True, timeout=20)
         (root/(name+'.log')).write_text(result.stderr)
         report = json.loads(result.stdout)
@@ -35,14 +36,25 @@ def main():
             assert output.read_bytes() == expected, name
             assert report['capture_sha256'] == hashlib.sha256(data).hexdigest()
             assert report['output_sha256'] == hashlib.sha256(expected).hexdigest()
+            rgb = replay.ppm(replay.decode(data), expected).split(b'\n', 3)[3]
+            rgba = b''.join(rgb[i:i+3]+b'\xff' for i in range(0, len(rgb), 3))
+            assert report['presentation_rgba_sha256'] == hashlib.sha256(rgba).hexdigest()
+            assert preview.read_bytes().startswith(b'\x89PNG\r\n\x1a\n')
+            assert report['surface_stats']['uploads'] == 2 and report['surface_stats']['copies'] == 1
+            assert report['surface_stats']['presentations'] == 1
             results.append(report)
         else:
-            assert not output.exists(), name
+            assert not output.exists() and not preview.exists(), name
         return source, output
 
     for bits in (8, 16, 24, 32):
         for keyed in (False, True):
             run(f'copy-{bits}-{keyed}', fixtures.fixture(bits, keyed, fast=keyed))
+    # PALETTEENTRY flags are not an alpha channel. Presentation stays opaque.
+    flagged = bytearray(fixtures.fixture(8));c = replay.decode(flagged)
+    palette_start = 128+len(c['source'])+2*len(c['before'])+1024
+    for entry in range(256):flagged[palette_start+entry*4+3]=entry
+    run('palette-flags', flagged)
     # GPU inputs cannot include the captured output; poison it deliberately.
     data = bytearray(fixtures.fixture(32)); data[128+4*4] ^= 0x80  # Different before image.
     c = replay.decode(data); after_offset = 128+len(c['source'])+len(c['before'])

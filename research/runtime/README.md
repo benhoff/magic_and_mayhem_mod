@@ -18,3 +18,5 @@ confidence, and whether it remains stable across launches.
   surface wrappers and bounded opaque/source-keyed copy evidence.
 - [OpenGL blit replay](opengl-blit-replay.md): native integer shader copies,
   three-way pixel comparison and synthetic x86 capture validation.
+- [Persistent OpenGL surfaces](opengl-persistent-surfaces.md): retained native
+  textures, ordered updates/copies, palette cycling and Qt presentation.

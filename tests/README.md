@@ -157,3 +157,10 @@ detect poisoned captured output, reject malformed files and preserve a caller's
 Qt context. `./tools/test-render-bridge.py` also compares fresh x86 Wine captures
 through the OpenGL blitter before checking Qt frame presentation. Tests use
 isolated Xvfb and Mesa software rendering. See [renderer instructions](../renderer/README.md).
+
+`render-surfaces-test` additionally verifies 192 ordered updates/copies on retained
+GPU surfaces, palette changes without native rewrites, GPU RGB/indexed conversion,
+stale/foreign handles, budget limits and destination preservation after invalid
+commands. Qt CTest includes `qt-shell-surfaces`, which displays the new renderer's
+palette-resolved image and checks framebuffer colors and orientation. Capture
+integration checks native pixels and GPU presentation hashes separately.

@@ -1,6 +1,7 @@
 #include "window_host.hpp"
 #include "gl_viewport.hpp"
 #include "frame_stream.hpp"
+#include "blit.hpp"
 #include <QSurfaceFormat>
 #include <QUuid>
 #include <memory>
@@ -23,6 +24,7 @@
 #include <QVBoxLayout>
 #include <QWindow>
 #include <cstdio>
+#include <exception>
 
 class Shell final:public QMainWindow {
 public:
@@ -148,6 +150,8 @@ int main(int argc,char** argv){
                     "  --capture-draws       Record a small blit when launching with OpenGL\n"
                     "  --smoke-test          Open and close the shell without launching a game\n"
                     "  --opengl-test         Check texture presentation with known pixels\n"
+                    "  --surface-demo        Show persistent renderer surfaces and palette cycling\n"
+                    "  --surface-test        Verify rendered surfaces through Qt framebuffer readback\n"
                     "  --stream-test FILE    Check a synthetic frame stream through OpenGL\n"
                     "  --embedding-test      Check an external fixture window\n");return 0;
     }
@@ -157,6 +161,8 @@ int main(int argc,char** argv){
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
     parser.addOption({"capture-draws","Record bounded drawing evidence when the game is launched."});
     parser.addOption({"opengl-test","Test OpenGL texture presentation with known pixels."});
+    parser.addOption({"surface-demo","Show native renderer surfaces and palette cycling without launching the game."});
+    parser.addOption({"surface-test","Test persistent native surfaces through Qt presentation."});
     parser.addOption({"stream-test","Verify a bridge stream through the OpenGL viewport.","file"});
     parser.addOption({"repo","Repository directory.","directory",QDir::currentPath()});
     parser.addOption({"smoke-test","Open the shell briefly without launching the game."});
@@ -167,9 +173,21 @@ int main(int argc,char** argv){
         auto* layout=new QVBoxLayout(&fixture);layout->addWidget(new QLabel("External viewport fixture",&fixture));fixture.show();
         QTimer::singleShot(10000,&app,&QCoreApplication::quit);return app.exec();
     }
-    if(parser.isSet("opengl-test") || parser.isSet("stream-test")){
+    if(parser.isSet("opengl-test") || parser.isSet("stream-test") || parser.isSet("surface-test") || parser.isSet("surface-demo")){
         FrameStream stream;QImage image;
-        if(parser.isSet("stream-test")){
+        std::unique_ptr<mnm::render::GlBlitter> renderer;mnm::render::SurfaceId surface=0;
+        if(parser.isSet("surface-test") || parser.isSet("surface-demo")){
+            try {
+                renderer=std::make_unique<mnm::render::GlBlitter>();
+                const mnm::render::PixelFormat format{8,{}};
+                surface=renderer->create({4,2,{3,3,3,3,3,3,3,3}},format);
+                const auto sprite=renderer->create({2,1,{1,1}},format);
+                renderer->update(surface,0,0,{2,1,{0,0}});renderer->update(surface,0,1,{2,1,{2,2}});
+                renderer->copy(sprite,surface,{0,0,2,1},2,0);renderer->destroy(sprite);
+                renderer->setPalette(surface,0,{{255,255,0},{0,255,0},{0,0,255},{255,255,255}});
+                renderer->setPalette(surface,0,{{255,0,0}});image=renderer->present(surface);
+            }catch(const std::exception& error){std::fprintf(stderr,"Renderer failed: %s\n",error.what());return 8;}
+        }else if(parser.isSet("stream-test")){
             if(!stream.open(parser.value("stream-test")))return 4;
             image=stream.nextFrame();if(image.isNull())return 5;
         }else{
@@ -178,6 +196,16 @@ int main(int argc,char** argv){
                 image.setPixelColor(x,y,y?(x<2?Qt::blue:Qt::white):(x<2?Qt::red:Qt::green));
         }
         GlViewport viewport;viewport.resize(640,480);viewport.setFrame(image);viewport.show();
+        QTimer paletteTimer;
+        if(parser.isSet("surface-demo")){
+            viewport.setWindowTitle("Magic & Mayhem — native surface palette demo");
+            bool yellow=false;
+            QObject::connect(&paletteTimer,&QTimer::timeout,&app,[&]{
+                try {yellow=!yellow;renderer->setPalette(surface,0,{{255,std::uint8_t(yellow?255:0),0}});
+                    viewport.setFrame(renderer->present(surface));}
+                catch(const std::exception& error){std::fprintf(stderr,"Renderer failed: %s\n",error.what());app.exit(8);}
+            });paletteTimer.start(500);return app.exec();
+        }
         QTimer::singleShot(500,&app,[&]{
             if(!viewport.ready()){std::fprintf(stderr,"OpenGL failed: %s\n",qPrintable(viewport.error()));app.exit(6);return;}
             auto actual=viewport.grabFramebuffer();
