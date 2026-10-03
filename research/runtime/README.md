@@ -38,3 +38,6 @@ confidence, and whether it remains stable across launches.
 
 - [Owned indexed primary presentation](opengl-owned-indexed.md): raw Lock/Unlock
   indices, observed 256-color palettes and recoloring without observer calls.
+
+- [Owned indexed copies and Flips](opengl-owned-indexed-copies.md): raw index/key
+  propagation, destination/front palettes and native OpenGL replay evidence.

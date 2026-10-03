@@ -32,10 +32,11 @@ static i32 WIN ip_initialize(void* object,void* draw,u32 flags,void* entries){
     copy_bytes(((struct IpInterface*)object)->state->colors,entries,1024);return 23;
 }
 static i32 WIN ip_assign(void* object,void* palette){
-    bs_entry();++ip_assigns;if(object!=ip_front)ExitProcess(198);
+    bs_entry();++ip_assigns;struct BsSurface* surface=bs_state(object);
     if(bs_mode("idx-assign-failed"))return -1;
     if(palette)++((struct IpInterface*)palette)->state->refs;
-    if(ip_attached)--ip_attached->state->refs;ip_attached=palette;return 23;
+    if(surface->palette)--((struct IpInterface*)surface->palette)->state->refs;
+    surface->palette=palette;if(surface==ip_front)ip_attached=palette;return 23;
 }
 static i32 WIN ip_get(void* object,void** result){
     bs_entry();++ip_gets;if(object!=ip_front || !ip_attached)ExitProcess(199);
@@ -84,7 +85,7 @@ static void ip_test(struct BsSurface* front){
         if(((i32 (WIN *)(void*,u32,void*,void**,void*))draw_table[5])(&draw,0x44,colors,&result,0)!=23 || result!=&ip_a.base || GetLastError()!=0x88)ExitProcess(206);
         ip_set(&ip_a.base);
     }else{
-        if(bs_mode("idx-get-palette")){ip_attached=&ip_a.base;++ip_a.refs;void* result=0;SetLastError(0x77);
+        if(bs_mode("idx-get-palette")){ip_attached=&ip_a.base;front->palette=ip_attached;++ip_a.refs;void* result=0;SetLastError(0x77);
             if(((i32 (WIN *)(void*,void**))surface[20])(front,&result)!=23 || result!=ip_attached || GetLastError()!=0x88)ExitProcess(207);ip_record();
         }else ip_set(&ip_a.base);
         RenderInstallForTest(&ip_a.base,20);

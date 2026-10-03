@@ -1,6 +1,6 @@
-/* Bounded checkpoint session from a validated original-engine draw. IDs are
- * session-local, not COM pointers. This does not claim a complete live stream.
- * No additional observer calls or locks: reuse the accepted draw's snapshots.
+/* Native command serialization shared by observer checkpoints and owned
+ * reconstructions. CHECK provenance belongs to the caller. Session-local IDs
+ * do not claim a complete live stream. No observer calls occur in these helpers.
  */
 static int command_record(HANDLE file,u32* sequence,u32 operation,const void* fields,u32 field_length,
                           const void* bytes,u32 byte_length){
@@ -8,9 +8,12 @@ static int command_record(HANDLE file,u32* sequence,u32 operation,const void* fi
     return write_all(file,header,12) && (!field_length || write_all(file,fields,field_length)) &&
            (!byte_length || write_all(file,bytes,byte_length));
 }
-static int command_create(HANDLE file,u32* sequence,u32 id,const struct Snapshot* s){
+static int command_create_native(HANDLE file,u32* sequence,u32 id,const struct Snapshot* s){
     u32 fields[7]={id,s->width,s->height,s->bits,s->bits==8?0:s->r,s->bits==8?0:s->g,s->bits==8?0:s->b};
-    if(!command_record(file,sequence,1,fields,28,s->data,s->length))return 0;
+    return command_record(file,sequence,1,fields,28,s->data,s->length);
+}
+static int command_create(HANDLE file,u32* sequence,u32 id,const struct Snapshot* s){
+    if(!command_create_native(file,sequence,id,s))return 0;
     if(s->bits==8){
         u32 p[3]={id,0,256};u8 rgb[768];
         for(u32 i=0;i<256;++i)copy(rgb+i*3,s->palette+i*4,3);

@@ -7,6 +7,7 @@ static u32 game_surface_bytes,game_surface_generation,game_blit_count,game_blit_
 /* Publish owned pixels only. The guard/sequence protocol is shared with the
  * legacy producer; readers never consume a partially written RGBA frame. */
 static int game_surface_publish(struct GameSurface*);
+static int game_surface_colors(struct GameSurface*,u8*);
 static int game_publish_pixels(const struct Snapshot* s){
     if(!stream || !s->data || !__sync_bool_compare_and_swap(&capture_busy,0,1))return 0;
     u32 sequence=__atomic_load_n(stream+4,__ATOMIC_RELAXED);
@@ -150,7 +151,7 @@ static void game_blit_before(void* target,void* destination,void* source,void* r
     if(src==dst || effects || (fast?(flags&~0x11u):(flags&~0x01008000u)) || (!fast && (!dst->clip_known || dst->clip)))goto done;
     if(game_blit_count>=16){reason="blit_limit";goto done;}
     struct Snapshot *a=&src->pixels,*b=&dst->pixels;
-    if(a->bits==8 || b->bits==8 || a->bits!=b->bits || a->r!=b->r || a->g!=b->g || a->b!=b->b || a->width>2048 || a->height>2048)goto done;
+    if(a->bits!=b->bits || a->r!=b->r || a->g!=b->g || a->b!=b->b || a->width>2048 || a->height>2048)goto done;
     struct Rect sr={0,0,(i32)a->width,(i32)a->height},dr={0,0,(i32)b->width,(i32)b->height};
     if(rectangle){if(!readable(rectangle,16))goto done;copy(&sr,rectangle,16);}
     if(!inside(&sr,a->width,a->height))goto done;
@@ -158,14 +159,14 @@ static void game_blit_before(void* target,void* destination,void* source,void* r
     else if(destination){if(!readable(destination,16))goto done;copy(&dr,destination,16);}
     if(!inside(&dr,b->width,b->height) || dr.right-dr.left!=sr.right-sr.left || dr.bottom-dr.top!=sr.bottom-sr.top)goto done;
     u32 keyed=fast?(flags&1)!=0:(flags&0x8000)!=0;
-    if(keyed && !src->key_known)goto done;
+    if(keyed && (!src->key_known || (a->bits==8 && src->key>255)))goto done;
     if(!b->data){
         /* Synthetic blank storage is permitted only when every pixel will be
          * overwritten. It is not evidence of the original destination pixels. */
         if(keyed || dr.left || dr.top || (u32)dr.right!=b->width || (u32)dr.bottom!=b->height){reason="blit_incomplete_initialization";goto done;}
         p->bootstrap=1;
     }
-    if(a->length+b->length*2+256>GAME_SURFACE_LIMIT-game_blit_bytes){reason="blit_limit";goto done;}
+    if(a->length+b->length*2+(a->bits==8?1280:256)>GAME_SURFACE_LIMIT-game_blit_bytes){reason="blit_limit";goto done;}
     if(!game_surface_clone(&p->src,a) || !(p->bootstrap?game_surface_blank(&p->dst,b):game_surface_clone(&p->dst,b))){reason="blit_memory";game_blit_free(p);goto done;}
     p->fields[0]=1;p->fields[1]=2;p->fields[2]=(u32)sr.left;p->fields[3]=(u32)sr.top;
     p->fields[4]=(u32)sr.right;p->fields[5]=(u32)sr.bottom;
@@ -178,13 +179,14 @@ static void game_blit_after(struct GameBlit* p,i32 result){
     if(result<0){lock_diagnostic("blit_failed",p->target,0,(u32)p->source,0,result,0,0);game_blit_free(p);return;}
     if(!game_surface_enter()){game_blit_free(p);return;}
     struct GameSurface *src=p->source?game_surface_find(p->source,0):0,*dst=game_surface_find(p->target,0);
-    if(!p->valid || game_blit_count>=16 || p->src.length+p->dst.length*2+256>GAME_SURFACE_LIMIT-game_blit_bytes || p->epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED) || !src || !dst || src->generation!=p->source_generation || dst->generation!=p->target_generation){
+    if(!p->valid || game_blit_count>=16 || p->src.length+p->dst.length*2+(p->src.bits==8?1280:256)>GAME_SURFACE_LIMIT-game_blit_bytes || p->epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED) || !src || !dst || src->generation!=p->source_generation || dst->generation!=p->target_generation){
         game_surface_invalidate_locked(p->target);lock_diagnostic("blit_invalidated",p->target,0,(u32)p->source,0,result,0,0);goto done;
     }
     char path[544];copy(path,lock_capture_path,lock_capture_path_length);char* tail=path+lock_capture_path_length;
     copy(tail,"\\blit-",6);failure_hex(tail+6,++game_blit_count);copy(tail+14,".bin",5);
-    HANDLE file=CreateFileA(path,0x40000000,1,0,1,0x80,0);u32 sequence=0,header[4];copy(header,"MNMCMD01",8);header[2]=1;header[3]=16;
-    int ok=file!=(HANDLE)-1 && write_all(file,header,16) && command_create(file,&sequence,1,&p->src) && command_create(file,&sequence,2,&p->dst) && command_record(file,&sequence,3,p->fields,40,0,0);
+    int palette_ready=p->dst.bits!=8 || game_surface_colors(dst,p->dst.palette);
+    HANDLE file=palette_ready?CreateFileA(path,0x40000000,1,0,1,0x80,0):(HANDLE)-1;u32 sequence=0,header[4];copy(header,"MNMCMD01",8);header[2]=1;header[3]=16;
+    int ok=file!=(HANDLE)-1 && write_all(file,header,16) && command_create_native(file,&sequence,1,&p->src) && command_create(file,&sequence,2,&p->dst) && command_record(file,&sequence,3,p->fields,40,0,0);
     u32 bytes=p->src.bits/8;u32* f=p->fields;
     for(u32 y=0;y<f[5]-f[3];++y)for(u32 x=0;x<f[4]-f[2];++x){
         u8* in=p->src.data+((f[3]+y)*p->src.width+f[2]+x)*bytes;
@@ -195,11 +197,11 @@ static void game_blit_after(struct GameBlit* p,i32 result){
     u32 source_id=1,target_id=2;
     if(ok)ok=command_record(file,&sequence,5,&target_id,4,p->dst.data,p->dst.length) && command_record(file,&sequence,6,&target_id,4,0,0) && command_record(file,&sequence,7,&source_id,4,0,0) && command_record(file,&sequence,7,&target_id,4,0,0) && command_record(file,&sequence,8,0,0,0,0);
     if(file!=(HANDLE)-1)CloseHandle(file);
-    game_blit_bytes+=p->src.length+p->dst.length*2+256;
+    game_blit_bytes+=p->src.length+p->dst.length*2+(p->src.bits==8?1280:256);
     game_surface_drop(dst);copy(&dst->pixels,&p->dst,sizeof(p->dst));p->dst.data=0;game_surface_bytes+=dst->pixels.length;
     __atomic_sub_fetch(&lock_capture_reserved,dst->pixels.length,__ATOMIC_RELAXED);
     if(p->bootstrap)lock_diagnostic("blit_initialized",p->target,0,(u32)p->source,0,result,0,0);
     if(dst->primary)lock_diagnostic(game_surface_publish(dst)?"blit_presented":"blit_presentation_skipped",p->target,0,(u32)p->source,0,result,0,0);
-    lock_diagnostic(ok?"blit_propagated":"blit_file_failed",p->target,0,(u32)p->source,0,result,0,0);
+    lock_diagnostic(!palette_ready?"blit_palette_unobserved":ok?"blit_propagated":"blit_file_failed",p->target,0,(u32)p->source,0,result,0,0);
  done:game_blit_free(p);__sync_lock_release(&game_locks_busy);
 }
