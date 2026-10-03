@@ -57,3 +57,15 @@ For a black startup screen, use
 Mesa software rendering for the shell and its Wine child. Startup diagnostics
 now distinguish the hook stage, DirectDraw initialization and an HRESULT failure.
 See [real-game startup investigation](../../research/runtime/render-startup-black-screen.md).
+
+The loader/import integration fixture `./tools/test-render-import.py` verifies
+the pinned PE layout and both adapter enumeration paths before DirectDrawCreate.
+It replaces the original entry point and exits after the API calls; it does not
+run the game loop. Startup status now also identifies adapter enumeration.
+
+For a post-startup movie/surface ownership failure, retry with
+`./tools/run-qt-shell.sh --software-rendering --skip-movies` and leave draw/history
+capture off initially. Movie preferences change only in the disposable experiment
+copy; both plaintext and encrypted preferences are handled. See the startup
+investigation for evidence and limitations. This is an isolated diagnostic
+workaround, not a confirmed movie decoder or surface ownership fix.

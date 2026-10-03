@@ -61,3 +61,101 @@ Validation report: `working/tests/render/run-c9vopdrc/report.json` includes all
 three startup fixtures and the existing Wine/native/Qt frame and draw checks.
 All eight Qt shell CTests passed, including the explicit software-rendering
 fixture and frame-reader diagnostic coverage. Production PE32 builds succeeded.
+
+## Follow-up: armed hook with no calls
+
+The user's software-rendering run `working/experiments/opengl-render/run-rh6zsxhs/`
+has status 5, zero create calls, zero frames and an empty event inventory. The
+user reports a black window throughout and subsequently closed it. A live stack
+could not be obtained because Chaos.exe was no longer running. No new full-game
+launch was performed automatically.
+
+`./tools/test-render-import.py` now stages a **fixture**, not a playable game:
+it verifies the pinned source SHA, adds the same bridge import, and replaces the
+entry point with a small scripted sequence of API calls followed by ExitProcess.
+The original game entry and game loop never run. The original source is checked
+unchanged afterward. This tests the real PE base, thunk/IAT locations and loader
+ordering that the older mock fixtures bypassed.
+
+The original creation-only fixture passed at
+`working/tests/render-import/run-_ckhm_uj/report.json`. Expanded fixtures passed
+both imported EnumerateA and dynamically resolved EnumerateExA, followed by
+DirectDrawCreate, under Xvfb/software rendering. The same sequence also passed on
+the active NVIDIA display at `working/tests/render-import/run-68kjmrix/`. Thus
+an import overwrite or universally broken adapter initialization has not been
+reproduced. The actual game's earlier initialization still needs a live stack.
+
+Static evidence: `0x0058f0c0` resolves DirectDrawEnumerateExA with GetProcAddress
+(IAT `0x005c50d4`), calls it at `0x0058f102`, or falls back to the imported
+DirectDrawEnumerateA thunk `0x00597560` at `0x0058f10c`. Actual drawing setup later
+calls DirectDrawCreate at `0x0058a9c3` / `0x0058aaa4`. The game creates drawing
+surfaces at startup `0x004e986a` before optional Intro0/Intro1 movie calls around
+`0x004e992b` / `0x004e996c`; skipping movies is not justified as a fix for a
+never-called drawing setup hook.
+
+The bridge now observes both enumeration paths without changing their callbacks
+or flags. Its GetProcAddress hook substitutes only the named EnumerateExA export
+from ddraw.dll. Expected creation/enumeration thunks and the pinned image base are
+checked before any import writes. Qt reports enumeration in progress, completion
+or failure, and replaces a stale waiting placeholder when the launcher ends.
+Microsoft documents the dynamic API lookup in
+[DirectDrawEnumerateExA](https://learn.microsoft.com/en-us/windows/win32/api/ddraw/nf-ddraw-directdrawenumerateexa).
+Confidence: confirmed static calls and controlled API/loader fixtures; the
+specific real-game stall remains unconfirmed.
+
+Reopen the updated shell with the same software/capture command above. If the
+black screen recurs, leave the Wine window running so a live stack can be read.
+Changing more startup settings without that evidence would be guesswork.
+
+Final callback/context fixture evidence:
+`working/tests/render-import/run-6sehwgda/report.json` (software/Xvfb) checks that
+both real enumeration callbacks ran before the intercepted creation. Existing
+bridge regression evidence: `working/tests/render/run-0_vw3pl_/report.json`.
+All eight Qt shell regression CTests pass with the extended diagnostic reader.
+
+## Follow-up: frames captured, then a surface ownership error
+
+The user's `run-g34xhs0b` manifest points to
+`working/runtime/render/frame-6858c311-72fe-474c-b712-c606e34becc3.bin`.
+Its header records one successful DirectDrawCreate, status 1, and 49 published
+800x600 RGBA frames. This is a later failure than the zero-call run above.
+The recorded graphics variables are empty: this run did not select the explicit
+software-rendering fallback. Its capped event inventory has successful surface
+creation, locks/unlocks and blits. History ends with GAP reason 6 (unsupported
+operation), not reason 1 (concurrent history access).
+
+The user recalls an error inside the Wine window about another thread owning
+rendering. The pinned executable contains error descriptions saying access to a
+surface or palette is refused when already locked by another thread. This matches
+the recollection but does not establish the actual HRESULT or offending call.
+The Wine log `working/logs/run-20261003T162725Z.YPJcO9` records Quartz media-type
+failure `0x8007000e`, allocator decommit waiting and sample failure `0x80040211`.
+Movie decoding is therefore a candidate; capture readback also briefly locks
+surfaces, and its involvement has not been ruled out. No ownership checks have
+been removed or application calls serialized as a speculative fix.
+
+`--skip-movies` now sets `PlayFMV` and `PlayFMVOut` to FALSE only in the disposable
+experiment's `[VIDEO]` preferences. It updates both plaintext and encrypted
+preferences if present, validates both before writing either, verifies encoded
+round trips, and records before/after hashes in the experiment manifest. It
+changes no source installation or game balance settings. Start a fresh shell:
+
+```bash
+./tools/run-qt-shell.sh --software-rendering --skip-movies
+```
+
+Click **Launch game**. Leave draw/history capture off on this first retry to
+remove its additional observer locks. The frame bridge still performs readback;
+this is not a capture-free baseline. If this succeeds, repeat with
+`--capture-history` to separate movie and observer interactions. If it still
+hangs, keep the Wine window open for inspection. The bypass is a diagnostic
+workaround, not a confirmed resolution of the underlying ownership failure.
+
+Validation: `tests/render-movie-preferences-test.py` covers independent plaintext
+and encrypted edits, preservation of unrelated settings/comments/line endings,
+idempotence and rejection of ambiguous preferences without partial writes.
+Stage-only experiment `run-ea231lr3` verifies the actual working preferences and
+unchanged source hash without launching the game. All eight Qt shell CTests pass.
+The user's `commands-0001.bin` replays successfully through Qt/OpenGL under
+Xvfb/software rendering with framebuffer sample checks. This validates the
+captured checkpoint, not uninterrupted gameplay or the incomplete history.

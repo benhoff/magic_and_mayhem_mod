@@ -30,7 +30,7 @@
 
 class Shell final:public QMainWindow {
 public:
-    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory) {
+    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
         viewport_=new QWidget(this);layout_=new QVBoxLayout(viewport_);
         layout_->setContentsMargins(0,0,0,0);viewport_->setMinimumSize(800,600);
@@ -68,7 +68,7 @@ public:
             auto frame=stream_->nextFrame();
             if(!frame.isNull()){gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();
                 statusBar()->showMessage("OpenGL presentation active. Use the separate game window for input.");}
-            else if(stream_->status()==2 || stream_->status()==3 || stream_->status()==8 || stream_->status()==9 || stream_->status()==10 || elapsed_.elapsed()>10000){
+            else if(stream_->status()==2 || stream_->status()==3 || stream_->status()==8 || stream_->status()==9 || stream_->status()==10 || stream_->status()==13 || elapsed_.elapsed()>10000){
                 const QString diagnostic=stream_->diagnostic();statusBar()->showMessage(diagnostic);
                 if(placeholder_->isVisible())placeholder_->setText(diagnostic);
             }
@@ -124,6 +124,7 @@ private:
             arguments={"--stream",path};elapsed_.restart();frames_.start();
             if(captureDraws_)arguments.append("--capture-draws");
             if(captureHistory_)arguments.append("--capture-history");
+            if(skipMovies_)arguments.append("--skip-movies");
             gl_->hide();placeholder_->show();
             placeholder_->setText("Waiting for the first DirectDraw frame…");
         }
@@ -137,10 +138,12 @@ private:
         if(elapsed_.elapsed()>30000){poll_.stop();retry_->setEnabled(true);statusBar()->showMessage("Window not found yet. Check the launch log, then click Attach game.");}
     }
     void finished(){
+        if(opengl_ && !checking_ && stream_ && placeholder_->isVisible())
+            placeholder_->setText("Game launcher stopped before a frame was captured. Last state:\n"+stream_->diagnostic());
         detach();poll_.stop();frames_.stop();retry_->setEnabled(false);checking_=false;
         launch_->setEnabled(opengl_ || host_.available());check_->setEnabled(true);
     }
-    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
@@ -153,6 +156,7 @@ int main(int argc,char** argv){
     for(int i=1;i<argc;++i)if(QString::fromLocal8Bit(argv[i])=="--help" || QString::fromLocal8Bit(argv[i])=="-h"){
         std::printf("Usage: mnm-qt-shell [--repo DIRECTORY] [--renderer opengl|native]\n"
                     "  --software-rendering  Use Mesa software rendering for Qt and Wine\n"
+                    "  --skip-movies         Disable movies in the disposable OpenGL installation\n"
                     "  --capture-draws       Record a small blit when launching with OpenGL\n"
                     "  --capture-history     Record a bounded indexed/RGB surface history when launching\n"
                     "  --smoke-test          Open and close the shell without launching a game\n"
@@ -174,6 +178,7 @@ int main(int argc,char** argv){
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
     parser.addOption({"software-rendering","Use Mesa software rendering for this shell and its Wine child."});
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
+    parser.addOption({"skip-movies","Disable movies only in the disposable OpenGL installation."});
     parser.addOption({"capture-history","Record a bounded indexed/RGB surface history; implies draw capture."});
     parser.addOption({"capture-draws","Record bounded drawing evidence when the game is launched."});
     parser.addOption({"opengl-test","Test OpenGL texture presentation with known pixels."});
@@ -264,8 +269,8 @@ int main(int argc,char** argv){
     }
     const auto renderer=parser.value("renderer");
     if(renderer!="opengl" && renderer!="native")parser.showHelp(2);
-    if((parser.isSet("capture-draws") || parser.isSet("capture-history")) && renderer!="opengl")parser.showHelp(2);
-    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"));shell.show();
+    if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies")) && renderer!="opengl")parser.showHelp(2);
+    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"));shell.show();
     if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);
     if(parser.isSet("embedding-test")){
         if(!shell.host().available())return 2;
