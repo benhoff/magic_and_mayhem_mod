@@ -35,6 +35,7 @@ static struct Table* lookup(void* object){
     for(u32 i=0;i<__atomic_load_n(&table_count,__ATOMIC_ACQUIRE);++i)if(tables[i].vtable==table)return tables+i;
     return 0;
 }
+static void install_table(void*,u32);
 #include "draw_capture.h"
 static u32 guid_kind(const u8* guid){
     static const u8 ids[8][16]={
@@ -47,16 +48,18 @@ static u32 guid_kind(const u8* guid){
       {0x30,0x86,0x2b,0x0b,0x35,0xad,0xd0,0x11,0x8e,0xa6,0,0x60,0x97,0x97,0xea,0x5b},
       {0x80,0x5a,0x67,0x06,0x9b,0x3b,0xd2,0x11,0xb9,0x2f,0,0x60,0x97,0x97,0xea,0x5b}};
     static const u32 kinds[8]={1,2,4,7,11,12,14,17};
+    static const u8 palette[16]={0x84,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
+    if(same(guid,palette,16))return 20;
     for(u32 i=0;i<8;++i)if(same(guid,ids[i],16))return kinds[i];return 0;
 }
 static void install_table(void*,u32);
 static i32 WIN query(void* object,const u8* guid,void** result){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Query)t->original[0])(object,guid,result);u32 error=GetLastError();
-    if(status>=0 && result && *result && guid){u32 kind=guid_kind(guid);if(kind)install_table(*result,kind);if(token)history_alias(object,*result);}
+    if(status>=0 && result && *result && guid){u32 kind=guid_kind(guid);if(kind)install_table(*result,kind);if(token){if(t->kind==20)history_palette_alias(object,*result);else history_alias(object,*result);}}
     history_leave(token);SetLastError(error);return status;
 }
 static u32 WIN surface_release(void* object){
-    u32 entry=GetLastError();int token=history_enter();struct HistorySurface* h=token?history_find(object):0;
+    u32 entry=GetLastError();int token=history_enter();struct HistorySurface* h=token?history_surface_resolve(object):0;
     struct Table* t=lookup(object);SetLastError(entry);u32 remaining=((ReleaseObject)t->original[2])(object),error=GetLastError();
     if(token)history_release(h,remaining);history_leave(token);SetLastError(error);return remaining;
 }
@@ -90,10 +93,9 @@ static void capture(void* object){
                 void* pal=0;
                 typedef i32 (WIN *GetPalette)(void*,void**);
                 typedef i32 (WIN *GetEntries)(void*,u32,u32,u32,void*);
-                typedef u32 (WIN *Release)(void*);
                 if(((GetPalette)t->original[20])(object,&pal)>=0 && pal){
                     void** vt=*(void***)pal;if(((GetEntries)vt[4])(pal,0,0,256,palette)>=0)colors=palette;
-                    ((Release)vt[2])(pal);
+                    observer_release(pal);
                 }
             }
             u32 sequence=__atomic_load_n(stream+4,__ATOMIC_RELAXED);
@@ -162,7 +164,30 @@ static i32 surface_property(void* object,void* value,u32 slot){
     i32 status=((i32 (WIN *)(void*,void*))t->original[slot])(object,value);u32 error=GetLastError();
     if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
 }
-static i32 WIN surface_palette(void* object,void* palette){return surface_property(object,palette,31);}
+static i32 WIN surface_palette(void* object,void* palette){
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,void*))t->original[31])(object,palette);u32 error=GetLastError();
+    if(token && status>=0)history_set_palette(object,palette);
+    history_leave(token);SetLastError(error);return status;
+}
+static u32 WIN palette_release(void* object){
+    u32 entry=GetLastError();int token=history_enter();struct HistoryPalette* p=token?history_palette_resolve(object):0;
+    struct Table* t=lookup(object);SetLastError(entry);
+    u32 remaining=((ReleaseObject)t->original[2])(object),error=GetLastError();
+    if(token)history_palette_release(p,remaining);history_leave(token);SetLastError(error);return remaining;
+}
+static i32 WIN palette_entries(void* object,u32 flags,u32 first,u32 count,void* entries){
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,u32,u32,u32,void*))t->original[6])(object,flags,first,count,entries);u32 error=GetLastError();
+    if(token && status>=0)history_palette_entries(object,flags,first,count);
+    history_leave(token);SetLastError(error);return status;
+}
+static i32 WIN palette_initialize(void* object,void* draw,u32 flags,void* entries){
+    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,void*,u32,void*))t->original[5])(object,draw,flags,entries);u32 error=GetLastError();
+    if(token && status>=0 && history_palette_resolve(object))history_gap(5);
+    history_leave(token);SetLastError(error);return status;
+}
 static i32 WIN surface_clipper(void* object,void* clipper){return surface_property(object,clipper,28);}
 static i32 WIN surface_batch(void* object,void* batch,u32 count,u32 flags){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
@@ -172,14 +197,18 @@ static i32 WIN surface_batch(void* object,void* batch,u32 count,u32 flags){
 static void install_table(void* object,u32 kind){
     if(!stream || !readable(object,4) || !__sync_bool_compare_and_swap(&table_busy,0,1))return;
     if(lookup(object))goto done;
-    u32 count=__atomic_load_n(&table_count,__ATOMIC_RELAXED),length=kind<10?7:33,protection;
+    u32 count=__atomic_load_n(&table_count,__ATOMIC_RELAXED),length=(kind<10 || kind==20)?7:33,protection;
     void** vt=*(void***)object;
     if(count>=32 || !readable(vt,length*4) || !VirtualProtect(vt,length*4,0x40,&protection))goto done;
     struct Table* t=tables+count;t->vtable=vt;t->kind=kind;copy(t->original,vt,length*4);
     __atomic_store_n(&table_count,count+1,__ATOMIC_RELEASE);
     __atomic_store_n(vt,(void*)&query,__ATOMIC_RELEASE);
     if(kind<10)__atomic_store_n(vt+6,(void*)&create_surface,__ATOMIC_RELEASE);
-    else {
+    else if(kind==20){
+        __atomic_store_n(vt+2,(void*)&palette_release,__ATOMIC_RELEASE);
+        __atomic_store_n(vt+5,(void*)&palette_initialize,__ATOMIC_RELEASE);
+        __atomic_store_n(vt+6,(void*)&palette_entries,__ATOMIC_RELEASE);
+    }else {
         __atomic_store_n(vt+5,(void*)&blt,__ATOMIC_RELEASE);
         __atomic_store_n(vt+7,(void*)&blt_fast,__ATOMIC_RELEASE);
         __atomic_store_n(vt+11,(void*)&flip,__ATOMIC_RELEASE);

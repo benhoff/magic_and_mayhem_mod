@@ -95,7 +95,7 @@ static int snapshot(void* object,struct Table* t,const u32* expected,struct Snap
         if(((GetObject)t->original[20])(object,&palette)<0 || !palette)goto done;
         void** vt=*(void***)palette;
         i32 result=((GetEntries)vt[4])(palette,0,0,256,s->palette);
-        ((ReleaseObject)vt[2])(palette);if(result<0)goto done;
+        observer_release(palette);if(result<0)goto done;
     }
     ok=1;
 done:

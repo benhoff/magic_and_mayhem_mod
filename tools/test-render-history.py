@@ -40,17 +40,17 @@ def main():
     build=REPO/'working/build/renderer'
     subprocess.run(['cmake','-S',str(REPO/'renderer'),'-B',str(build)],check=True)
     subprocess.run(['cmake','--build',str(build),'--target','mnm-render-commands','--parallel','4'],check=True)
-    env=os.environ.copy();env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'),WINEDEBUG='-all',
+    env=os.environ.copy();env.pop('MNM_PALETTE_SELFTEST',None);env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'),WINEDEBUG='-all',
         MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'),MNM_RENDER_HISTORY='1',QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1')
     qt_build=REPO/'working/build/qt-shell'
     subprocess.run(['cmake','-S',str(REPO/'apps/qt-shell'),'-B',str(qt_build)],check=True)
     subprocess.run(['cmake','--build',str(qt_build),'--target','mnm-qt-shell','--parallel','4'],check=True)
     reports=[]
-    for mode in ('ok','unlock','lock','budget','partial','flip','reentrant','gap','surface-restore','change-palette','dc','terminated-lock','detach'):
+    for mode in ('ok','unlock','lock','budget','partial','flip','reentrant','gap','surface-restore','change-palette','dc','terminated-lock','detach','external-alias'):
         run=root/mode;run.mkdir();env['MNM_RENDER_CAPTURE_DIR']='Z:'+str(run).replace('/','\\');env['MNM_HISTORY_SELFTEST']=mode
         with (run/'wine.log').open('w') as log:
             subprocess.run(['wine',str(root/'selftest.exe')],cwd=root,env=env,stdout=log,stderr=log,check=True,timeout=60)
-        commands=records((run/'history-0001.bin').read_bytes());valid=mode in ('ok','unlock','lock','budget','detach')
+        commands=records((run/'history-0001.bin').read_bytes());valid=mode in ('ok','unlock','lock','budget','detach','external-alias')
         result=subprocess.run(['xvfb-run','-a',str(build/'mnm-render-commands'),str(run/'history-0001.bin'),
             '--output',str(run/'native.bin'),'--preview',str(run/'preview.png')],env=env,capture_output=True,text=True,timeout=20)
         report=json.loads(result.stdout);assert result.returncode==(0 if valid else 2),(mode,report,result.stderr)
@@ -60,7 +60,7 @@ def main():
             assert creates==[1,2,3] and sorted(destroys)==[1,2,3],(mode,creates,destroys)
             assert commands[-1]==(8,b'')
             updates=sum(op==2 for op,p in commands);copies=sum(op==3 for op,p in commands)
-            assert updates==(0 if mode=='lock' else 2) and copies==(14 if mode=='budget' else 4)
+            assert updates==(0 if mode=='lock' else 1 if mode=='external-alias' else 2) and copies==(14 if mode=='budget' else 3 if mode=='external-alias' else 4)
             first=0xffff if mode=='lock' else 0xf81f
             expected=struct.pack('<12H',0x1f,0x1f,0x1f,0x1f,0x1f,first,0,0xf800,0x1f,0x7e0,0,0xffff)
             assert (run/'native.bin').read_bytes()==expected,mode

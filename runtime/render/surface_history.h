@@ -1,14 +1,15 @@
-/* Opt-in bounded RGB history. Every observed gap makes the file unreplayable.
+/* Opt-in bounded native-pixel history. Every observed gap makes the file unreplayable.
  * Application locks are never reacquired while held; all observer COM releases
  * bypass hooks. No references are retained and no dead objects are dereferenced.
  */
-struct HistorySurface {u32 id,live;void* aliases[16];u32 aliases_count,desc[31],locked,writable;};
+struct HistoryPalette;
+struct HistorySurface {struct HistoryPalette* palette;void* canonical;u32 id,live;void* aliases[16];u32 aliases_count,desc[31],locked,writable;};
 static struct HistorySurface history_surfaces[16];
 static HANDLE history_handle;
 static HANDLE history_current(void){return __atomic_load_n(&history_handle,__ATOMIC_ACQUIRE);}
 static void history_set(HANDLE file){__atomic_store_n(&history_handle,file,__ATOMIC_RELEASE);}
 static volatile i32 history_busy,history_invalid;
-static u32 history_started,history_sequence,history_bytes,history_operations;
+static u32 history_started,history_sequence,history_bytes,history_operations,history_presented;
 static int history_wants_draw(void){return history_current() && !__atomic_load_n(&history_invalid,__ATOMIC_ACQUIRE);}
 static void history_gap(u32 reason){
     if(!history_current())return;
@@ -41,6 +42,15 @@ static struct HistorySurface* history_find(void* object){
         for(u32 j=0;j<history_surfaces[i].aliases_count;++j)if(history_surfaces[i].aliases[j]==object)return history_surfaces+i;
     return 0;
 }
+static struct HistorySurface* history_surface_resolve(void* object){
+    struct HistorySurface* h=history_find(object);if(h)return h;
+    struct Table* t=lookup(object);void* identity=0;
+    static const u8 unknown[16]={0,0,0,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46};
+    if(!t || t->kind<11 || t->kind>17 || ((Query)t->original[0])(object,unknown,&identity)<0 || !identity){history_gap(4);return 0;}
+    h=history_find(identity);observer_release(identity);if(!h)return 0;
+    if(h->aliases_count>=16){history_gap(2);return 0;}h->aliases[h->aliases_count++]=object;return h;
+}
+#include "palette_history.h"
 static void history_finish_owned(void){
     if(!history_current())return;
     if(__atomic_load_n(&history_invalid,__ATOMIC_ACQUIRE)){history_gap(1);return;}
@@ -66,14 +76,14 @@ static struct HistorySurface* history_surface(void* object,const struct Snapshot
     }
     for(u32 i=0;i<16;++i)if(!history_surfaces[i].id){
         struct HistorySurface* h=history_surfaces+i;
-        if(s->bits==8){history_gap(5);return 0;}
-        h->id=i+1;h->live=1;h->desc[2]=s->height;h->desc[3]=s->width;h->desc[21]=s->bits;
+        h->id=i+1;h->live=1;h->canonical=identity;h->desc[19]=s->bits==8?0x60:0x40;h->desc[2]=s->height;h->desc[3]=s->width;h->desc[21]=s->bits;
         h->desc[22]=s->r;h->desc[23]=s->g;h->desc[24]=s->b;h->aliases[0]=object;h->aliases_count=1;
         // Canonical identity must use an already intercepted surface vtable.
         if(canonical_kind<11 || canonical_kind>17){history_gap(4);return 0;}
         if(identity!=object)h->aliases[h->aliases_count++]=identity;
-        u32 fields[7]={h->id,s->width,s->height,s->bits,s->r,s->g,s->b};
-        if(!history_record(1,fields,28,s->data,s->length))return 0;return h;
+        u32 fields[7]={h->id,s->width,s->height,s->bits,s->bits==8?0:s->r,s->bits==8?0:s->g,s->bits==8?0:s->b};
+        if(!history_record(1,fields,28,s->data,s->length))return 0;
+        if(s->bits==8 && (!history_palette_bind(h,0) || !history_color_snapshot(h,s)))return 0;return h;
     }
     history_gap(2);return 0;
 }
@@ -91,6 +101,7 @@ static void history_draw(const struct DrawCapture* c,void* object){
     if(!history_current())return;
     struct HistorySurface *src=history_surface((void*)c->header[29],&c->src),*dst=history_surface(object,&c->before);
     if(!history_current() || !src || !dst)return;
+    if(!history_palette_matches(src,&c->src) || !history_palette_matches(dst,&c->before) || !history_palette_matches(dst,&c->after))return;
     if(src==dst || src->locked || dst->locked){history_gap(3);return;}
     /* Before checks detect unexplained native changes instead of uploading them. */
     if(!history_record(5,&src->id,4,c->src.data,c->src.length) ||
@@ -99,6 +110,8 @@ static void history_draw(const struct DrawCapture* c,void* object){
                c->header[14],c->header[15],c->header[6],c->header[6]?c->header[7]:0};
     if(!history_record(3,f,40,0,0) || !history_record(5,&dst->id,4,c->after.data,c->after.length) ||
        !history_record(6,&dst->id,4,0,0))return;
+    history_presented=dst->id;
+    if(dst->desc[21]==8 && !history_color_check(dst))return;
     ++history_operations;
 }
 static void history_alias(void* object,void* alias){
@@ -109,8 +122,9 @@ static void history_alias(void* object,void* alias){
     if(h->aliases_count>=16){history_gap(2);return;}h->aliases[h->aliases_count++]=alias;
 }
 static void history_lock(void* object,const void* rect,const u32* d,u32 flags,i32 status){
-    struct HistorySurface* h=history_find(object);if(!history_current() || !h || status<0)return;
-    if(rect || !readable(d,108) || h->locked || (flags&~0x4831u) || !supported_format(d) || d[21]==8 ||
+    if(status<0)return;
+    struct HistorySurface* h=history_surface_resolve(object);if(!history_current() || !h)return;
+    if(rect || !readable(d,108) || h->locked || (flags&~0x4831u) || !supported_format(d) ||
        d[2]!=h->desc[2] || d[3]!=h->desc[3] || !same(d+21,h->desc+21,16)){history_gap(3);return;}
     copy(h->desc,d,108);h->locked=1;h->writable=!(flags&0x10);
 }
@@ -137,7 +151,8 @@ static void history_unlock_after(void* object,struct Snapshot* s,i32 status){
             if(history_record(2,f,20,s->data,s->length)){
                 struct Snapshot after;zero(&after,sizeof(after));
                 if(!snapshot(object,lookup(object),h->desc,&after))history_gap(6);
-                else {history_record(5,&h->id,4,after.data,after.length);free_snapshot(&after);}
+                else {if(history_palette_matches(h,&after))history_record(5,&h->id,4,after.data,after.length);free_snapshot(&after);
+                    if(history_current() && h->desc[21]==8)history_color_check(h);}
                 ++history_operations;
             }}
     }
@@ -146,7 +161,7 @@ static void history_unlock_after(void* object,struct Snapshot* s,i32 status){
 static void history_release(struct HistorySurface* h,u32 remaining){
     if(!history_current() || !h || remaining)return;
     if(h->locked){history_gap(3);return;}
-    history_record(7,&h->id,4,0,0);h->live=0;
+    history_record(7,&h->id,4,0,0);h->live=0;history_palette_retire(h->palette);
 }
 static void history_finish(void){
     int token=history_enter();if(!token)return;

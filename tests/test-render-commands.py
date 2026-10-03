@@ -88,7 +88,9 @@ def main():
                 for mask in masks:
                     low = mask & -mask;rgb.append(((value & mask)//low)*255//(mask//low))
             rgba.extend([*rgb,255])
+        records.insert(-2,(10,pack(33)+bytes(rgba)))
         report = run(f'sequence-{bits}', records, native(target), bytes(rgba))
+        assert report['color_checks'] == 1
         assert report['checks'] == 25 and report['presentations'] == 2
         assert report['surface_stats']['uploads'] == 27 and report['surface_stats']['copies'] == 24
 
@@ -106,7 +108,10 @@ def main():
         valid[:2]+valid[3:],valid[:3]+[(8,b'')],
         valid[:4]+[(2,pack(1,0,0,1,1)+b'\x02')]+valid[4:],
         [(1,pack(i,1,1,8,0,0,0)+b'\x03') for i in range(1,66)]+[(8,b'')],
-        valid[:1]+[(5,pack(1)+b'\x03')]*4096+valid[2:]]
+        valid[:1]+[(5,pack(1)+b'\x03')]*4096+valid[2:],
+        valid[:1]+[(10,pack(1)+b'\0\0')]+valid[1:],
+        valid[:1]+[(10,pack(2)+bytes(4))]+valid[1:],
+        valid[:1]+[(10,pack(1)+bytes(4))]+valid[1:]]
     for i, records in enumerate(bad_cases):run(f'reject-{i}', records, bad=True)
     for i, raw in enumerate((stream(valid)[:-1],stream(valid)+b'x',HEADER[:15],
                              HEADER+pack(1,2,len(valid[0][1]))+valid[0][1])):
