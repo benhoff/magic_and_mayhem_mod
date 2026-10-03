@@ -132,3 +132,14 @@ runs in reconstruction CTest. `./tools/test-shadow-bridge.py` additionally
 builds the PE32 DLL and runs the synthetic ABI/capture harness in a dedicated
 Wine prefix, then compares its output against `neighbor-replay`. That test
 requires Wine IPC and does not launch the game or validate engine behavior.
+
+The Qt application has its own CMake/CTest project in `apps/qt-shell/`.
+`ctest --test-dir working/build/qt-shell --output-on-failure` checks headless
+startup and, when Xvfb is installed, discovery, embedding and detachment of an
+external fixture window. These tests do not launch the game. See the
+[Qt shell instructions](../apps/qt-shell/README.md).
+
+The Qt project's OpenGL presentation tests cover raw palette/RGB conversion,
+shared frame validation and GPU framebuffer readback. `./tools/test-render-bridge.py`
+adds a synthetic PE32 Wine surface producer and verifies its actual mapped bytes
+through Qt/OpenGL. It requires Wine and Xvfb IPC; it does not launch the game.
