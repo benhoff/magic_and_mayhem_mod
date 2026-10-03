@@ -17,6 +17,10 @@ static int game_palette_complete(const struct GamePalette* p){
     if(!p || !game_palette_supported(p->caps))return 0;
     for(u32 i=0;i<8;++i)if(p->known[i]!=0xffffffffu)return 0;return 1;
 }
+static int game_surface_colors(struct GameSurface* surface,u8* colors){
+    struct GamePalette* p=game_palette_find(surface->palette,0);if(!game_palette_complete(p))return 0;
+    copy(colors,p->colors,1024);return 1;
+}
 static int game_surface_publish(struct GameSurface* surface){
     struct Snapshot* pixels=&surface->pixels;
     if(pixels->bits!=8)return game_publish_pixels(pixels);

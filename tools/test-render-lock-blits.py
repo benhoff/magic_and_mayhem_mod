@@ -50,6 +50,13 @@ def cpu_replay(data):
                     pixel = src[a:a + stride]
                     if not keyed or int.from_bytes(pixel, 'little') != key:
                         dst[b:b + stride] = pixel
+        elif op == 4:
+            sid, first, count = struct.unpack_from('<3I', payload)
+            assert sid in surfaces and count and first < 256 and count <= 256 - first and len(payload) == 12 + count * 3
+        elif op == 11:
+            a, b = struct.unpack('<2I', payload)
+            assert a != b and surfaces[a][:3] == surfaces[b][:3]
+            surfaces[a], surfaces[b] = surfaces[b], surfaces[a]
         elif op == 5:
             sid, = struct.unpack_from('<I', payload)
             assert payload[4:] == surfaces[sid][3]
@@ -61,7 +68,7 @@ def cpu_replay(data):
             del surfaces[sid]
         else:
             assert op == 8 and size == 0 and at == len(data) and not surfaces
-    assert sequence == 8 and output is not None
+    assert sequence >= 8 and output is not None
     return output
 
 

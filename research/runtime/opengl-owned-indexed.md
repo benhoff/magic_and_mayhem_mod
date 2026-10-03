@@ -69,10 +69,10 @@ Indexed publication has a separate 16-frame bound per launch. Exhaustion skips
 publication while preserving application calls. This is bounded evidence
 capture, not continuous replacement rendering.
 
-Indexed Blt/BltFast and Flip propagation are explicitly rejected in this chunk;
-a successful unsupported operation invalidates destination pixels or the Flip
-epoch. Their native-index copy/rotation rules and palette-at-destination semantics
-remain separate work. No new command-file palette records are emitted here.
+The subsequent [indexed copy/Flip chunk](opengl-owned-indexed-copies.md) extends
+native propagation and destination palette resolution, and emits bounded
+indexed copy/swap replay files. Partial CPU Locks, complex operations and
+continuous presentation remain separate work.
 
 ## Offline validation and confidence
 

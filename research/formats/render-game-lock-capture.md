@@ -101,9 +101,9 @@ locks and no offscreen/indexed primary frame without observed palette state. Evi
 
 Confidence: confirmed synthetic lifecycle and ABI behavior. Real-game lifecycle
 captures and uninterrupted new-game play remain unvalidated. Subsequent chunks
-implement full opaque RGB initialization, observed two-buffer RGB Flips and
-indexed primary palette updates. Partial CPU locks, indexed blit/Flip propagation
-and complete Qt gameplay presentation remain outstanding.
+implement full opaque initialization, observed two-buffer RGB/indexed Flips,
+indexed copy propagation and primary palette updates. Partial CPU locks and
+complete Qt gameplay presentation remain outstanding.
 
 ## Lifecycle rejection diagnostics
 
@@ -167,4 +167,9 @@ identical diagnostics are deduplicated; their count is not an operation count.
 snapshot format. Palette state is separate from `MNMLOCK1` index bytes. Additional
 diagnostic reasons are `indexed_presented`, `palette_attached`, `palette_caps`,
 `palette_caps_rejected`, `palette_entries`, `palette_invalidated` and
-`palette_ambiguous`. Indexed blit/Flip propagation is still rejected.
+`palette_ambiguous`. The [indexed propagation extension](../runtime/opengl-owned-indexed-copies.md)
+now emits bounded `blit-N.bin` and `flip-N.bin` command files using the existing
+palette and swap opcodes. Unknown colors skip replay/publication while retaining
+accepted native indices. Unknown old-front pixels also skip Flip replay. Serial
+gaps are expected for skipped files. Additional diagnostic reasons are
+`blit_palette_unobserved`, `flip_recorded` and `flip_file_failed`.

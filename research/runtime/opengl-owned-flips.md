@@ -90,3 +90,7 @@ Final rotation, budget and attachment-mutation checks passed after restricting
 active-Lock checks to the current capture epoch:
 `working/tests/render-owned-flips/run-vzlfv60r/report.json`. The production DLL
 rebuilt as PE32 i386; hashes are recorded in `working/build/render/manifest.json`.
+
+The subsequent [indexed copy/Flip chunk](opengl-owned-indexed-copies.md) adds
+matching indexed layouts, palette-at-front resolution and bounded native swap
+replay files without rotating palette assignment.

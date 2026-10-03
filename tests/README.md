@@ -200,3 +200,10 @@ snapshots and Qt framebuffer readback. It verifies creation, aliases, partial
 entry coverage, reassignment, failures, nested mutation, limits, final Release,
 negative pitch and legacy Unlock, with exact application API call counts.
 See [owned indexed evidence](../research/runtime/opengl-owned-indexed.md).
+
+`./tools/test-render-indexed-copies.py` compares independent engine indices/colors
+with Python copy/swap replay, native OpenGL command output and palette-resolved
+RGBA hashes, ordered frame snapshots and Qt framebuffer readback. It covers
+opaque initialization, index keys, aliases, legacy/negative pitch, failures,
+nested updates, delayed palettes and distinct-palette buffer rotation. See
+[indexed propagation scope](../research/runtime/opengl-owned-indexed-copies.md).
