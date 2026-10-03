@@ -24,9 +24,11 @@ filtering and aspect-preserving letterboxing. The launch log and normal launcher
 logs remain available. **Check installation** uses the existing launcher checks.
 
 **This first migration changes final presentation, not engine drawing.** The
-original DirectDraw renderer remains active. Use the separate Wine game window
-for keyboard/mouse input: forwarding input from the OpenGL viewport is not yet
-implemented. Live map rendering remains unvalidated; synthetic producer-to-Qt
+original DirectDraw renderer remains active. On X11/XWayland, click the OpenGL
+image to forward keyboard/mouse input to the matching new game client. Shared
+polling state supplies the bridge's Windows key/cursor API hooks. Focus loss
+releases held inputs. The separate Wine window remains available; actual game
+input/focus behavior still needs validation. Live map rendering remains unvalidated; synthetic producer-to-Qt
 readback passes. The native game output is retained during that validation.
 
 Every launch gets a new shared frame file in `working/runtime/render/` and a
@@ -58,6 +60,7 @@ cmake -S apps/qt-shell -B working/build/qt-shell
 cmake --build working/build/qt-shell --parallel 4
 ctest --test-dir working/build/qt-shell --output-on-failure
 ./tools/test-render-bridge.py
+./tools/test-render-input.py
 ```
 
 CTest checks pixel conversion (palette, RGB565, RGB24, RGB32, negative pitch,

@@ -222,6 +222,12 @@ OpenGL and Qt comparisons. Negative cases cover failed original calls, Restore,
 held Locks, exclusive file creation failure and capture bounds. No game launch
 or original artifact is needed. See [ordered session evidence](../research/runtime/opengl-owned-session.md).
 
+`./tools/test-render-input.py` verifies Qt-written cursor/virtual-key state
+through synthetic PE32 polling hooks, including press generations, LastError,
+stale/invalid snapshots and guarded IAT/cooperative-window behavior. Qt CTests
+also exercise actual targeted X11 keyboard/mouse events and DPI scaling.
+See [input scope and evidence](../research/runtime/qt-input-forwarding.md).
+
 The partial-Lock suite also compares emitted UPDATE sessions with independent
 Python copies and native OpenGL output/RGBA hashes. Upload counts exclude CHECK
 bytes. It verifies poisoned CHECK rejection, indexed palette changes while

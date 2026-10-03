@@ -38,6 +38,11 @@ static struct Table* lookup(void* object){
     return 0;
 }
 static void install_table(void*,u32);
+#include "input_polling.h"
+static i32 WIN input_cooperative(void* object,void* window,u32 flags){
+    struct Table* table=lookup(object);i32 result=((i32 (WIN *)(void*,void*,u32))table->original[20])(object,window,flags);
+    if(result>=0 && window)input_window=window;return result;
+}
 #include "draw_capture.h"
 #include "lock_lifecycle.h"
 #include "lock_flip.h"
@@ -291,13 +296,14 @@ static i32 WIN surface_batch(void* object,void* batch,u32 count,u32 flags){
 static void install_table(void* object,u32 kind){
     if(!stream || !readable(object,4) || !__sync_bool_compare_and_swap(&table_busy,0,1))return;
     if(lookup(object))goto done;
-    u32 count=__atomic_load_n(&table_count,__ATOMIC_RELAXED),length=(kind<10 || kind==20)?7:33,protection;
+    u32 count=__atomic_load_n(&table_count,__ATOMIC_RELAXED),length=kind<10?(input_words?21:7):kind==20?7:33,protection;
     void** vt=*(void***)object;
     if(count>=32 || !readable(vt,length*4) || !VirtualProtect(vt,length*4,0x40,&protection))goto done;
     struct Table* t=tables+count;t->vtable=vt;t->kind=kind;copy(t->original,vt,length*4);
     __atomic_store_n(&table_count,count+1,__ATOMIC_RELEASE);
     __atomic_store_n(vt,(void*)&query,__ATOMIC_RELEASE);
     if(kind<10){__atomic_store_n(vt+6,(void*)&create_surface,__ATOMIC_RELEASE);
+        if(input_words)__atomic_store_n(vt+20,(void*)&input_cooperative,__ATOMIC_RELEASE);
         if(lock_capture_path_length)__atomic_store_n(vt+5,(void*)&create_palette,__ATOMIC_RELEASE);
     }
     else if(kind==20){
@@ -371,6 +377,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     if(!mapping)return 1;
     stream=MapViewOfFile(mapping,2,0,0,STREAM_SIZE);CloseHandle(mapping);
     if(!stream || !same(stream,"MNMGL001",8) || stream[2]!=1 || stream[3]!=64){stream=0;return 1;}
+    input_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();
     if(lock_capture_path_length)readback_disabled=1;
@@ -387,5 +394,9 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     original_enumerate=(EnumerateDraw)iat[0];original_create=(CreateDraw)iat[1];
     original_proc_address=(ProcAddress)iat[0x31];
     iat[0]=(void*)&enumerate_draw;iat[1]=(void*)&create_draw;iat[0x31]=(void*)&proc_address;
-    u32 ignored;VirtualProtect(iat,0xc8,protection,&ignored);__atomic_store_n(stream+9,5,__ATOMIC_RELEASE);return 1;
+    u32 ignored;VirtualProtect(iat,0xc8,protection,&ignored);
+#ifndef MNM_RENDER_SELFTEST
+    input_install(base);
+#endif
+    __atomic_store_n(stream+9,5,__ATOMIC_RELEASE);return 1;
 }

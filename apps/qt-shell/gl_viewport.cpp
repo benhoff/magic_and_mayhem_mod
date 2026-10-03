@@ -1,9 +1,26 @@
 #include "gl_viewport.hpp"
 #include <QOpenGLContext>
-GlViewport::GlViewport(QWidget* parent):QOpenGLWidget(parent){setMinimumSize(320,240);}
+#include <cmath>
+GlViewport::GlViewport(QWidget* parent):QOpenGLWidget(parent){setMinimumSize(320,240);setFocusPolicy(Qt::StrongFocus);setMouseTracking(true);}
 GlViewport::~GlViewport(){if(context()){disconnect(context(),nullptr,this,nullptr);makeCurrent();release();doneCurrent();}}
 void GlViewport::release(){if(texture_)glDeleteTextures(1,&texture_);texture_=0;vertices_.destroy();vao_.destroy();shader_.removeAllShaders();ready_=false;}
 void GlViewport::setFrame(QImage image){frame_=image.convertToFormat(QImage::Format_RGBA8888);dirty_=true;update();}
+QRectF GlViewport::imageRect() const{
+    if(frame_.isNull())return {};
+    const double ratio=devicePixelRatioF();
+    const int width=qRound(this->width()*ratio),height=qRound(this->height()*ratio);
+    const double scale=qMin(double(width)/frame_.width(),double(height)/frame_.height());
+    const int w=qRound(frame_.width()*scale),h=qRound(frame_.height()*scale);
+    // OpenGL measures the viewport's vertical offset from the bottom.
+    return QRectF((width-w)/2/ratio,(height-h-(height-h)/2)/ratio,w/ratio,h/ratio);
+}
+bool GlViewport::imagePoint(QPointF position,QPoint& point,bool clamp) const{
+    const auto rect=imageRect();if(rect.isEmpty())return false;
+    const double x=(position.x()-rect.x())*frame_.width()/rect.width();
+    const double y=(position.y()-rect.y())*frame_.height()/rect.height();
+    if(!clamp && (x<0 || y<0 || x>=frame_.width() || y>=frame_.height()))return false;
+    point={qBound(0,int(std::floor(x)),frame_.width()-1),qBound(0,int(std::floor(y)),frame_.height()-1)};return true;
+}
 void GlViewport::initializeGL(){
     initializeOpenGLFunctions();
     connect(context(),&QOpenGLContext::aboutToBeDestroyed,this,[this]{makeCurrent();release();doneCurrent();},Qt::DirectConnection);

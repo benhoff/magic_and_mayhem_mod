@@ -10,6 +10,9 @@ public:
     explicit GlViewport(QWidget* parent=nullptr);
     ~GlViewport() override;
     void setFrame(QImage image);
+    QSize frameSize() const{return frame_.size();}
+    QRectF imageRect() const;
+    bool imagePoint(QPointF position,QPoint& point,bool clamp=false) const;
     bool ready() const{return ready_;}
     QString error() const{return error_;}
 protected:
