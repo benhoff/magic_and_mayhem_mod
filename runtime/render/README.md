@@ -69,3 +69,9 @@ capture off initially. Movie preferences change only in the disposable experimen
 copy; both plaintext and encrypted preferences are handled. See the startup
 investigation for evidence and limitations. This is an isolated diagnostic
 workaround, not a confirmed movie decoder or surface ownership fix.
+
+For surface-busy isolation, `./tools/run-qt-shell.sh --capture-draws --no-readback`
+keeps game-call logging but disables all primary/history/snapshot readback locks.
+Use the Wine window: Qt frames and pixel checkpoints are intentionally disabled.
+This mode tests whether observer readback is needed to reproduce the error.
+Application Lock calls are still forwarded unchanged.

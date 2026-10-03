@@ -22,7 +22,7 @@ def main():
     shutil.copy2(dll,root/dll.name)
     stage=load('stage','tools/prepare-shadow-experiment.py')
     (root/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
-    env=os.environ.copy();env.pop('MNM_PRIMARY_LOCK_FAILURE_SELFTEST',None);env.pop('MNM_RENDER_FAILURE_LOG',None);env.pop("MNM_FLIP_SELFTEST",None);env['WINEPREFIX']=str(REPO/'working/tests/render-wine');env['WINEDEBUG']='-all'
+    env=os.environ.copy();env.pop('MNM_RENDER_NO_READBACK',None);env.pop('MNM_PRIMARY_LOCK_FAILURE_SELFTEST',None);env.pop('MNM_RENDER_FAILURE_LOG',None);env.pop("MNM_FLIP_SELFTEST",None);env['WINEPREFIX']=str(REPO/'working/tests/render-wine');env['WINEDEBUG']='-all'
     env.pop("MNM_STARTUP_SELFTEST",None);env.pop('MNM_RENDER_CAPTURE_DIR',None);env.pop('MNM_RENDER_HISTORY',None);env.pop('MNM_HISTORY_SELFTEST',None);env.pop('MNM_PALETTE_SELFTEST',None)
     env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\')
     with (root/'wine.log').open('w') as log:
@@ -46,6 +46,15 @@ def main():
                line[4:] == ['0000000e','00004810'] for line in failure_lines)
     with failure_stream.open('rb') as file:failure_header=struct.unpack('<16I',file.read(64))
     assert failure_header[9]==2 and failure_header[10]==0
+    passive_stream=root/'no-readback-frame.bin'
+    with passive_stream.open('wb') as file:
+        file.write(b'MNMGL001'+struct.pack('<2I',1,64)+bytes(48));file.truncate(64+2048*2048*4)
+    passive_env=env.copy();passive_env['MNM_RENDER_NO_READBACK']='1'
+    passive_env['MNM_RENDER_STREAM']='Z:'+str(passive_stream).replace('/','\\')
+    with (root/'no-readback-wine.log').open('w') as log:
+        subprocess.run(['wine',str(root/'selftest.exe')],cwd=root,env=passive_env,stdout=log,stderr=log,check=True,timeout=30)
+    with passive_stream.open('rb') as file:passive_header=struct.unpack('<16I',file.read(64))
+    assert passive_header[10]==0
     startup_reports=[]
     for mode,state,result in (('ok',7,0),('failed',8,0x887600ff),('null-result',10,0)):
         diagnostic=root/('startup-'+mode+'.bin')
@@ -100,7 +109,7 @@ def main():
     for mode in ('fast','blt'):
         subprocess.run(['xvfb-run','-a',str(REPO/'working/build/qt-shell/mnm-qt-shell'),
                         '--commands',str(root/mode/'commands-0001.bin'),'--smoke-test'],env=env,check=True,timeout=15)
-    (root/'report.json').write_text(json.dumps({'origin':'synthetic_wine_opengl','frames':count,'startup_diagnostics':startup_reports,'primary_lock_failure_log':failure_lines,'pixel_bytes_match':True,
+    (root/'report.json').write_text(json.dumps({'origin':'synthetic_wine_opengl','frames':count,'startup_diagnostics':startup_reports,'primary_lock_failure_log':failure_lines,'no_readback_forwarding_passed':True,'pixel_bytes_match':True,
         'qt_opengl_readback_match':True,'qt_command_replay_readback_match':True,'draw_captures':draw_reports},indent=2)+'\n')
     print(f'Wine-to-Qt/OpenGL frame bridge passed: {root}')
 if __name__=='__main__':main()

@@ -44,6 +44,11 @@ void start(void){
     SetLastError(0x77);
     if(((Blt)table[5])(&object,0,0,0,0,0)!=17 || GetLastError()!=0x88)ExitProcess(1);
     if(((Flip)table[11])(&object,0,0)!=23 || GetLastError()!=0x88)ExitProcess(2);
+    char no_readback[8];
+    if(GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))){
+        if(locks||unlocks||calls!=2)ExitProcess(4);
+        ExitProcess(0);
+    }
     if(locks!=2||unlocks!=(fail_primary_lock?0u:2u)||calls!=2)ExitProcess(4);
     if(fail_primary_lock)ExitProcess(0);
     char capture_path[512];

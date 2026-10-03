@@ -16,6 +16,7 @@ typedef i32 (WIN *Unlock)(void*,void*);
 typedef i32 (WIN *CreateDraw)(void*,void**,void*);
 static CreateDraw original_create;
 static u32* stream;
+static u32 readback_disabled;
 static volatile i32 capture_busy,table_busy;
 #ifndef MNM_RENDER_SELFTEST
 static u32 last_capture;
@@ -71,7 +72,7 @@ static i32 WIN create_surface(void* object,void* desc,void** result,void* outer)
     SetLastError(error);return status;
 }
 static void capture(void* object){
-    if(!stream || !__sync_bool_compare_and_swap(&capture_busy,0,1))return;
+    if(readback_disabled || !stream || !__sync_bool_compare_and_swap(&capture_busy,0,1))return;
     u32 saved_error=GetLastError();
     struct Table* t=lookup(object);
     u32 desc[31];zero(desc,sizeof(desc));desc[0]=t->kind>=14?124:108;
@@ -267,6 +268,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     if(!mapping)return 1;
     stream=MapViewOfFile(mapping,2,0,0,STREAM_SIZE);CloseHandle(mapping);
     if(!stream || !same(stream,"MNMGL001",8) || stream[2]!=1 || stream[3]!=64){stream=0;return 1;}
+    char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_failure_diagnostics();init_draw_capture();
     stream[9]=4; /* loaded, waiting for presentation */
     u32 base=(u32)GetModuleHandleA(0),protection;

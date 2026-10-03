@@ -75,6 +75,7 @@ static int distinct_surfaces(void* a,struct Table* ta,void* b,struct Table* tb){
 }
 static void free_snapshot(struct Snapshot* s){if(s->data)HeapFree(GetProcessHeap(),0,s->data);s->data=0;}
 static int snapshot(void* object,struct Table* t,const u32* expected,struct Snapshot* s){
+    if(readback_disabled)return 0;
     u32 d[31];zero(d,sizeof(d));d[0]=t->kind>=14?124:108;
     i32 lock_result=((Lock)t->original[25])(object,0,d,0x4810,0);
     if(lock_result<0){render_failure("observer_lock",lock_result,object,t->kind,0x4810);return 0;}
