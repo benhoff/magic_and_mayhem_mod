@@ -267,3 +267,40 @@ Start a new game once. If the error recurs, inspect the new experiment's
 The new synthetic primary-busy fixture verifies recorded HRESULT/thread/flags,
 deduplication, no Unlock after a failed Lock, zero published frames, and preserved
 application result/LastError. Existing Wine/native/Qt capture checks still pass.
+
+## Failure evidence and observer-free readback comparison
+
+`run-ugdn7zhm/surface-failures.log` records:
+
+```text
+application_bltfast 887601ae 00000140 0169ef24 0000000c 00000010
+```
+
+Confirmed: an original application BltFast returned `DDERR_SURFACEBUSY` on
+thread 0x140, destination 0x0169ef24, Surface2 interface (kind 12), flags 0x10
+(DDBLTFAST_WAIT). This call can fail because either source or destination is
+locked; the current failure record does not contain its source/caller. No failed
+observer Lock/Unlock was logged. That rules out an *observed* failed observer
+Unlock, not a successful observer lock overlapping another application's call.
+The event inventory has successful calls from engine wrappers at 0x58c05d,
+0x58c488, 0x58c5be, 0x58c9af and 0x58cbb2; it does not establish which wrapper
+made the later failed call. Do not interpret destination/thread pointers as
+stable across launches. Root cause remains unconfirmed.
+
+`--no-readback` now disables primary `capture()` and every observer `snapshot()`
+Lock. It retains import/surface hooks and original application calls. This is a
+comparison with the same staged executable and logging; no graphics driver or
+movie settings change. Extra draw capture can record application events but
+cannot produce pixel checkpoints/history under this mode. Qt clearly states
+that its frames are disabled and the separate Wine window must be used.
+
+```bash
+./tools/run-qt-shell.sh --capture-draws --no-readback
+```
+
+Start a new game in the Wine window. If the error persists, observer readback
+Lock calls are not required for that reproduction; if it disappears, that is
+evidence implicating readback, but one timing-sensitive run is not definitive.
+The synthetic mode fixture asserts zero primary Lock/Unlock calls, unchanged
+forwarded Blt/Flip results and LastError, and zero published frames. Existing
+capture regression remains separate; this is not a completed render replacement.
