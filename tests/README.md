@@ -164,3 +164,11 @@ stale/foreign handles, budget limits and destination preservation after invalid
 commands. Qt CTest includes `qt-shell-surfaces`, which displays the new renderer's
 palette-resolved image and checks framebuffer colors and orientation. Capture
 integration checks native pixels and GPU presentation hashes separately.
+
+`./tools/test-render-lock-blits.py` exercises game-owned RGB checkpoints and
+Blt/BltFast propagation through actual x86 hooks without launching the game.
+Owned pixels are tested after original Unlock poisons lock storage. Independent
+fake-engine outputs, Python copies and OpenGL replay must agree. Cases cover
+chains, aliases, key changes, failed calls, CPU reseeding, subrectangles, limits
+and conservative invalidation; see
+[scope and provenance](../research/runtime/opengl-game-owned-blits.md).

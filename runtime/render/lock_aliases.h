@@ -1,4 +1,5 @@
 /* Relationships come only from successful application QueryInterface calls. */
+static void game_surface_alias(void* object);
 struct GameAlias {void* from;void* to;};
 static struct GameAlias game_aliases[64];
 static u32 game_alias_reset_pending;
@@ -42,6 +43,7 @@ static void game_alias_observed(void* object,void* alias,u32 kind){
         u32 active=0;
         for(u32 i=0;i<32;++i)if(game_locks[i].active && game_locks[i].epoch==__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED) && game_alias_same(object,game_locks[i].object))++active;
         if(active>1)__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);
+        game_surface_alias(object);
         lock_diagnostic("alias_observed",object,kind,(u32)alias,0,0,0,0);
     }
     __sync_lock_release(&game_locks_busy);

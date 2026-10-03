@@ -10,7 +10,9 @@ The disposable experiment contains `lock-capture/` and records its path plus
 `capture_locks: true` and `no_readback: true` in `manifest.json`. The bridge
 forces observer readback off when this directory is configured. Use the Wine
 window for input. This is a bounded lifecycle experiment, not complete live
-presentation: it does not propagate offscreen buffers through Blt/Flip.
+presentation: supported offscreen RGB Blt/BltFast now propagate into bounded
+offline replay files; Flip and live presentation from those copies remain pending.
+See [game-owned blits](../runtime/opengl-game-owned-blits.md).
 
 ## Lifecycle and acceptance
 
@@ -94,7 +96,7 @@ locks and no offscreen/indexed primary frame. Evidence:
 `working/tests/render-lock-lifecycle/run-vhif07ea/report.json`.
 
 Confidence: confirmed synthetic lifecycle and ABI behavior. Real-game lifecycle
-captures and uninterrupted new-game play remain unvalidated. Blit/flip propagation,
+captures and uninterrupted new-game play remain unvalidated. Live blit/flip presentation,
 partial updates, indexed palettes and complete Qt gameplay presentation remain
 outstanding.
 
@@ -136,3 +138,8 @@ provenance rather than reading a pointer whose lifecycle could have been missed.
 The fourteen PE32 fixtures now assert the expected reasons, including rejected
 read-only/partial/invalid-mask locks and a failed Unlock followed by success,
 while retaining their pixel-poisoning and unchanged-ABI checks.
+
+Supported RGB propagation writes `blit-00000001.bin`, etc. in this same directory.
+These use `MNMCMD01`, not the Lock snapshot header described above. Their CHECK
+pixels are reconstructed output rather than original-engine readbacks. See
+[provenance, limits and tests](../runtime/opengl-game-owned-blits.md).

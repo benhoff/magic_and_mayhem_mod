@@ -28,7 +28,9 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "palette_selftest.h"
 #include "flip_selftest.h"
 #include "lock_lifecycle_selftest.h"
+#include "lock_blit_selftest.h"
 void start(void){
+    if(GetEnvironmentVariableA("MNM_LOCK_BLIT_SELFTEST",lock_blit_mode,sizeof(lock_blit_mode)))test_lock_blits();
     if(GetEnvironmentVariableA("MNM_LOCK_LIFECYCLE_SELFTEST",lifecycle_mode,sizeof(lifecycle_mode)))test_lock_lifecycle();
     if(GetEnvironmentVariableA("MNM_STARTUP_SELFTEST",startup_mode,sizeof(startup_mode))){
         void* result=0;SetLastError(0x77);
