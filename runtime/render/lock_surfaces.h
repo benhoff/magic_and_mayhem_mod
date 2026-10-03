@@ -1,16 +1,17 @@
-/* Owned RGB checkpoints; only application calls establish pixels and properties.
+/* Owned native checkpoints; only application calls establish pixels and properties.
  * All access is under game_locks_busy. No observer COM calls or references. */
-struct GameSurface {void* object;u32 epoch,generation,clip_known,clip,key_known,key,primary,layout_known,caps,back_count,back_count_known;void* back;struct Snapshot pixels;};
+struct GameSurface {void* object;u32 epoch,generation,clip_known,clip,key_known,key,primary,layout_known,caps,back_count,back_count_known;void *back,*palette;struct Snapshot pixels;};
 static struct GameSurface game_surfaces[32];
 static u32 game_surface_bytes,game_surface_generation,game_blit_count,game_blit_bytes;
 #define GAME_SURFACE_LIMIT (64u*1024u*1024u)
 /* Publish owned pixels only. The guard/sequence protocol is shared with the
  * legacy producer; readers never consume a partially written RGBA frame. */
+static int game_surface_publish(struct GameSurface*);
 static int game_publish_pixels(const struct Snapshot* s){
-    if(!stream || !s->data || s->bits==8 || !__sync_bool_compare_and_swap(&capture_busy,0,1))return 0;
+    if(!stream || !s->data || !__sync_bool_compare_and_swap(&capture_busy,0,1))return 0;
     u32 sequence=__atomic_load_n(stream+4,__ATOMIC_RELAXED);
     __atomic_store_n(stream+4,sequence+1,__ATOMIC_SEQ_CST);
-    int ok=render_pixels((u8*)stream+64,s->width,s->height,s->data,(i32)(s->width*(s->bits/8)),s->bits,s->r,s->g,s->b,0);
+    int ok=render_pixels((u8*)stream+64,s->width,s->height,s->data,(i32)(s->width*(s->bits/8)),s->bits,s->r,s->g,s->b,s->bits==8?s->palette:0);
     if(ok){stream[5]=s->width;stream[6]=s->height;stream[7]=s->width*4;stream[8]=1;++stream[10];stream[9]=1;}
     __atomic_store_n(stream+4,sequence+2,__ATOMIC_RELEASE);__sync_lock_release(&capture_busy);return ok;
 }
@@ -56,10 +57,11 @@ static void game_surface_describe_locked(void* object,u32 kind,const u32* d){
     struct GameSurface* s=game_surface_find(object,1);if(!s)return;
     u32 size=kind>=14?124:108;
     int valid=d && readable(d,size) && d[0]==size && (d[1]&0x1007)==0x1007 && d[18]==32 &&
-        d[3] && d[3]<=2048 && d[2] && d[2]<=2048 && d[19]==0x40 &&
-        (d[21]==16 || d[21]==24 || d[21]==32) && render_mask(d[22],d[21]) &&
-        render_mask(d[23],d[21]) && render_mask(d[24],d[21]) &&
-        !(d[22]&d[23]) && !(d[22]&d[24]) && !(d[23]&d[24]) &&
+        d[3] && d[3]<=2048 && d[2] && d[2]<=2048 &&
+        ((d[19]==0x60 && d[21]==8 && !(d[22] || d[23] || d[24])) ||
+         (d[19]==0x40 && (d[21]==16 || d[21]==24 || d[21]==32) && render_mask(d[22],d[21]) &&
+          render_mask(d[23],d[21]) && render_mask(d[24],d[21]) &&
+          !(d[22]&d[23]) && !(d[22]&d[24]) && !(d[23]&d[24]))) &&
         (kind<14 || !(d[27] || d[28] || d[29]));
     if(!valid){game_surface_invalidate_locked(object);s->layout_known=0;s->primary=0;
         lock_diagnostic("surface_metadata_rejected",object,kind,0,0,0,0,0);return;}
@@ -116,7 +118,7 @@ static void game_surface_store(void* object,struct Snapshot* pixels,u32 primary,
     struct GameSurface* s=game_surface_find(object,1);
     if(!s)return;
     game_surface_drop(s);
-    if(pixels->bits==8 || !pixels->data || pixels->length>GAME_SURFACE_LIMIT-game_surface_bytes-__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED))return;
+    if(!pixels->data || pixels->length>GAME_SURFACE_LIMIT-game_surface_bytes-__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED))return;
     s->caps=(descriptor[1]&1)?descriptor[26]:0;
     if(descriptor[0]>=124 && (descriptor[27] || descriptor[28] || descriptor[29]))s->caps=0;
     s->back_count_known=(descriptor[1]&0x20)!=0;s->back_count=s->back_count_known?descriptor[5]:0;
@@ -148,7 +150,7 @@ static void game_blit_before(void* target,void* destination,void* source,void* r
     if(src==dst || effects || (fast?(flags&~0x11u):(flags&~0x01008000u)) || (!fast && (!dst->clip_known || dst->clip)))goto done;
     if(game_blit_count>=16){reason="blit_limit";goto done;}
     struct Snapshot *a=&src->pixels,*b=&dst->pixels;
-    if(a->bits!=b->bits || a->r!=b->r || a->g!=b->g || a->b!=b->b || a->width>2048 || a->height>2048)goto done;
+    if(a->bits==8 || b->bits==8 || a->bits!=b->bits || a->r!=b->r || a->g!=b->g || a->b!=b->b || a->width>2048 || a->height>2048)goto done;
     struct Rect sr={0,0,(i32)a->width,(i32)a->height},dr={0,0,(i32)b->width,(i32)b->height};
     if(rectangle){if(!readable(rectangle,16))goto done;copy(&sr,rectangle,16);}
     if(!inside(&sr,a->width,a->height))goto done;
@@ -197,7 +199,7 @@ static void game_blit_after(struct GameBlit* p,i32 result){
     game_surface_drop(dst);copy(&dst->pixels,&p->dst,sizeof(p->dst));p->dst.data=0;game_surface_bytes+=dst->pixels.length;
     __atomic_sub_fetch(&lock_capture_reserved,dst->pixels.length,__ATOMIC_RELAXED);
     if(p->bootstrap)lock_diagnostic("blit_initialized",p->target,0,(u32)p->source,0,result,0,0);
-    if(dst->primary)lock_diagnostic(game_publish_pixels(&dst->pixels)?"blit_presented":"blit_presentation_skipped",p->target,0,(u32)p->source,0,result,0,0);
+    if(dst->primary)lock_diagnostic(game_surface_publish(dst)?"blit_presented":"blit_presentation_skipped",p->target,0,(u32)p->source,0,result,0,0);
     lock_diagnostic(ok?"blit_propagated":"blit_file_failed",p->target,0,(u32)p->source,0,result,0,0);
  done:game_blit_free(p);__sync_lock_release(&game_locks_busy);
 }

@@ -2,6 +2,7 @@
  * poisoned; only full opaque draws can establish a complete captured image. */
 static char bootstrap_mode[32];
 static int bs_mode(const char* text){u32 i=0;while(text[i] && text[i]==bootstrap_mode[i])++i;return !text[i] && !bootstrap_mode[i];}
+static int bs_is_indexed(void){return bootstrap_mode[0]=='i' && bootstrap_mode[1]=='d';}
 struct BsSurface {void** table;struct BsSurface* state;u32 width,height,bits,primary,kind,held;u8 *pixels,*locked;};
 struct BsRect {i32 left,top,right,bottom;};
 static struct BsSurface *bs_alias,*bs_created;
@@ -16,6 +17,7 @@ static void bs_put(u8* at,u32 bytes,u32 value){for(u32 i=0;i<bytes;++i)at[i]=(u8
 static void bs_desc(struct BsSurface* s,u32* d){
     d[1]=0x1007;d[2]=s->height;d[3]=s->width;d[18]=32;d[19]=0x40;d[21]=s->bits;
     d[22]=s->bits==16?0xf800:0xff0000;d[23]=s->bits==16?0x7e0:0xff00;d[24]=s->bits==16?0x1f:0xff;d[26]=s->primary?0x200:0x840;
+    if(s->bits==8){d[19]=0x60;d[22]=d[23]=d[24]=0;}
     if(bs_is_flip()){d[26]=s->primary?0x238:0x1c;if(s->primary){d[1]|=0x20;d[5]=bs_mode("flip-chain")?2:1;if(bs_mode("flip-count-missing"))d[1]&=~0x20u;}}
 }
 static i32 WIN bs_description(void* object,u32* d){
@@ -36,17 +38,17 @@ static i32 WIN bs_create(void* object,u32* d,void** output,void* outer){
     d[1]=0;d[3]=123;return 23;
 }
 static i32 WIN bs_lock(void* object,void* rect,u32* d,u32 flags,HANDLE event){
-    bs_entry();struct BsSurface* s=bs_state(object);if(s->primary || s->held || rect || flags!=1 || event)ExitProcess(154);
+    bs_entry();struct BsSurface* s=bs_state(object);if((s->primary && !bs_is_indexed()) || s->held || rect || flags!=1 || event)ExitProcess(154);
     ++bs_locks;s->held=1;u32 row=s->width*(s->bits/8),pitch=row+8;
-    for(u32 y=0;y<s->height;++y)for(u32 x=0;x<row;++x)s->locked[(bs_mode("negative")?s->height-1-y:y)*pitch+x]=s->pixels[y*row+x];
-    bs_desc(s,d);d[1]|=8;d[4]=bs_mode("negative")?(u32)-(i32)pitch:pitch;
-    d[9]=(u32)(s->locked+(bs_mode("negative")?(s->height-1)*pitch:0));return 13;
+    for(u32 y=0;y<s->height;++y)for(u32 x=0;x<row;++x)s->locked[((bs_mode("negative") || bs_mode("idx-negative"))?s->height-1-y:y)*pitch+x]=s->pixels[y*row+x];
+    bs_desc(s,d);d[1]|=8;d[4]=(bs_mode("negative") || bs_mode("idx-negative"))?(u32)-(i32)pitch:pitch;
+    d[9]=(u32)(s->locked+((bs_mode("negative") || bs_mode("idx-negative"))?(s->height-1)*pitch:0));return 13;
 }
 static i32 WIN bs_unlock(void* object,void* argument){
     bs_entry();struct BsSurface* s=bs_state(object);u32 row=s->width*(s->bits/8),pitch=row+8;
-    void* expected=s->kind>=14?0:s->locked+(bs_mode("negative")?(s->height-1)*pitch:0);
+    void* expected=s->kind>=14?0:s->locked+((bs_mode("negative") || bs_mode("idx-negative"))?(s->height-1)*pitch:0);
     if(!s->held || argument!=expected)ExitProcess(155);++bs_unlocks;s->held=0;
-    for(u32 y=0;y<s->height;++y)for(u32 x=0;x<row;++x)s->pixels[y*row+x]=s->locked[(bs_mode("negative")?s->height-1-y:y)*pitch+x];
+    for(u32 y=0;y<s->height;++y)for(u32 x=0;x<row;++x)s->pixels[y*row+x]=s->locked[((bs_mode("negative") || bs_mode("idx-negative"))?s->height-1-y:y)*pitch+x];
     for(u32 i=0;i<pitch*s->height;++i)s->locked[i]=0xcc;return 19;
 }
 static i32 WIN bs_clipper(void* object,void* clipper){(void)object;bs_entry();if(clipper)ExitProcess(156);return 23;}
@@ -149,14 +151,15 @@ static void bs_test_flips(struct BsSurface* front,struct BsSurface* back,struct 
        bs_descriptions!=2u+(u32)bs_mode("flip-nested") || bs_attachments!=!bs_mode("flip-unobserved") || bs_attachment_mutations!=(bs_mode("flip-mutated")?2u:0u))ExitProcess(186);
     ExitProcess(0);
 }
+#include "indexed_owned_selftest.h"
 static void test_bootstrap(void){
     static void* table[33],*alias_table[33];table[0]=(void*)&bs_query;table[5]=(void*)&bs_blt;table[7]=(void*)&bs_fast;
     table[3]=(void*)&bs_add_attachment;table[8]=(void*)&bs_delete_attachment;table[11]=(void*)&bs_flip;table[12]=(void*)&bs_attached;table[22]=(void*)&bs_description;table[25]=(void*)&bs_lock;table[32]=(void*)&bs_unlock;table[28]=(void*)&bs_clipper;table[29]=(void*)&bs_key;
     for(u32 i=0;i<33;++i)alias_table[i]=table[i];
     static struct BsSurface source,target,sprite,alias;
-    source.table=target.table=sprite.table=table;source.kind=target.kind=sprite.kind=bs_mode("legacy")?12:14;
+    source.table=target.table=sprite.table=table;source.kind=target.kind=sprite.kind=(bs_mode("legacy") || bs_mode("idx-legacy"))?12:14;
     source.width=target.width=800;source.height=target.height=600;sprite.width=sprite.height=2;
-    source.bits=target.bits=sprite.bits=bs_mode("rgb24")?24:bs_mode("rgb32")?32:16;target.primary=!bs_mode("offscreen");
+    source.bits=target.bits=sprite.bits=bs_is_indexed()?8:bs_mode("rgb24")?24:bs_mode("rgb32")?32:16;target.primary=!bs_mode("offscreen");
     alias.table=alias_table;alias.state=bs_mode("flip-alias")?&source:&target;alias.kind=11;bs_alias=&alias;
     struct BsSurface* surfaces[3]={&source,&target,&sprite};u32 bytes=source.bits/8;
     for(u32 i=0;i<3;++i){struct BsSurface* s=surfaces[i];u32 length=s->width*s->height*bytes;
@@ -165,7 +168,7 @@ static void test_bootstrap(void){
             u32 value=s->bits==16?(((x*3+y*7)&31)<<11)|(((x*5+y*11)&63)<<5)|((x+y*13)&31):
                 (((x*17+y*11)&255)<<16)|(((x*3+y*19)&255)<<8)|((x^y)&255)|(s->bits==32?0x80000000u:0);
             if(i==2)value=s->bits==16?(((x+y)&1)?0x7ff:0xffff):(((x+y)&1)?0xff00:0xff00ff)|(s->bits==32?0x80000000u:0);
-            bs_put(s->pixels+(y*s->width+x)*bytes,bytes,i==1?0xdead:value);
+            bs_put(s->pixels+(y*s->width+x)*bytes,bytes,i==1 && !bs_is_indexed()?0xdead:value);
         }
     }
     char path[512];if(!GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path)))ExitProcess(168);
@@ -173,7 +176,9 @@ static void test_bootstrap(void){
     HANDLE mapping=CreateFileMappingA(file,0,4,0,64+2048*2048*4,0);CloseHandle(file);if(!mapping)ExitProcess(170);
     bs_stream=MapViewOfFile(mapping,2,0,0,64+2048*2048*4);CloseHandle(mapping);if(!bs_stream)ExitProcess(171);
     bs_events=CreateFileA("events.bin",0x40000000,1,0,1,0x80,0);if(bs_events==(HANDLE)-1)ExitProcess(172);
-    RenderInstallForTest(&source,source.kind);RenderInstallForTest(&alias,11);bs_seed(&source);
+    RenderInstallForTest(&source,source.kind);RenderInstallForTest(&alias,11);
+    if(bs_is_indexed())ip_test(&target);
+    bs_seed(&source);
     if(bs_mode("created")){
         static void* draw_table[7];draw_table[6]=(void*)&bs_create;void** draw=draw_table;bs_created=&target;RenderInstallForTest(&draw,4);
         u32 d[31]={124};bs_desc(&target,d);void* output=0;SetLastError(0x77);

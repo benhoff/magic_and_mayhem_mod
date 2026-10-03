@@ -61,6 +61,7 @@ static i32 WIN query(void* object,const u8* guid,void** result){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Query)t->original[0])(object,guid,result);u32 error=GetLastError();
     if(status>=0 && result && *result && guid){u32 kind=guid_kind(guid);if(kind)install_table(*result,kind);
         if(t->kind>=11 && t->kind<=17 && kind>=11 && kind<=17)game_alias_observed(object,*result,kind);
+        if(t->kind==20 && kind==20)game_palette_alias(object,*result);
         if(token){if(t->kind==20)history_palette_alias(object,*result);else history_alias(object,*result);}}
     history_leave(token);SetLastError(error);return status;
 }
@@ -77,6 +78,30 @@ static i32 WIN create_surface(void* object,void* desc,void** result,void* outer)
     i32 status=((CreateSurface)t->original[6])(object,desc,result,outer);u32 error=GetLastError();
     if(status>=0 && result && *result){install_table(*result,t->kind+10);game_surface_created(*result,t->kind+10,valid?input:0);}
     draw_event(6,(u32)__builtin_return_address(0),object,status>=0 && result?*result:0,0,status,0,0);
+    SetLastError(error);return status;
+}
+static i32 WIN create_palette(void* object,u32 flags,void* entries,void** result,void* outer){
+    u32 entry=GetLastError();struct Table* t=lookup(object);u8 colors[1024];
+    int valid=game_palette_supported(flags) && readable(entries,1024);if(valid)copy(colors,entries,1024);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,u32,void*,void**,void*))t->original[5])(object,flags,entries,result,outer);u32 error=GetLastError();
+    if(status>=0 && result && *result){install_table(*result,20);game_palette_created(*result,flags,valid?colors:0);}
+    SetLastError(error);return status;
+}
+static i32 WIN palette_caps(void* object,u32* caps){
+    u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,u32*))t->original[3])(object,caps);u32 error=GetLastError();
+    if(status>=0 && readable(caps,4))game_palette_caps(object,*caps);SetLastError(error);return status;
+}
+static i32 WIN palette_get_entries(void* object,u32 flags,u32 first,u32 count,void* entries){
+    u32 entry=GetLastError();struct Table* t=lookup(object);struct GamePaletteUpdate pending;
+    game_palette_before(object,flags,first,count,entries,0,&pending);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,u32,u32,u32,void*))t->original[4])(object,flags,first,count,entries);u32 error=GetLastError();
+    game_palette_after(object,first,count,entries,1,&pending,status);SetLastError(error);return status;
+}
+static i32 WIN surface_get_palette(void* object,void** result){
+    u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
+    i32 status=((i32 (WIN *)(void*,void**))t->original[20])(object,result);u32 error=GetLastError();
+    if(status>=0 && result && *result){install_table(*result,20);game_surface_palette(object,*result);}
     SetLastError(error);return status;
 }
 static i32 WIN surface_attached(void* object,u32* caps,void** result){
@@ -222,6 +247,7 @@ static i32 surface_property(void* object,void* value,u32 slot){
 static i32 WIN surface_palette(void* object,void* palette){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,void*))t->original[31])(object,palette);u32 error=GetLastError();
+    if(status>=0){if(palette)install_table(palette,20);game_surface_palette(object,palette);}
     if(token && status>=0)history_set_palette(object,palette);
     history_leave(token);SetLastError(error);return status;
 }
@@ -229,17 +255,21 @@ static u32 WIN palette_release(void* object){
     u32 entry=GetLastError();int token=history_enter();struct HistoryPalette* p=token?history_palette_resolve(object):0;
     struct Table* t=lookup(object);SetLastError(entry);
     u32 remaining=((ReleaseObject)t->original[2])(object),error=GetLastError();
+    if(!remaining && lock_capture_path_length)__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);
     if(token)history_palette_release(p,remaining);history_leave(token);SetLastError(error);return remaining;
 }
 static i32 WIN palette_entries(void* object,u32 flags,u32 first,u32 count,void* entries){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
+    struct GamePaletteUpdate pending;game_palette_before(object,flags,first,count,entries,1,&pending);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,u32,u32,u32,void*))t->original[6])(object,flags,first,count,entries);u32 error=GetLastError();
+    game_palette_after(object,first,count,entries,0,&pending,status);
     if(token && status>=0)history_palette_entries(object,flags,first,count);
     history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN palette_initialize(void* object,void* draw,u32 flags,void* entries){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,void*,u32,void*))t->original[5])(object,draw,flags,entries);u32 error=GetLastError();
+    if(status>=0)game_palette_invalidated(object);
     if(token && status>=0 && history_palette_resolve(object))history_gap(5);
     history_leave(token);SetLastError(error);return status;
 }
@@ -266,8 +296,12 @@ static void install_table(void* object,u32 kind){
     struct Table* t=tables+count;t->vtable=vt;t->kind=kind;copy(t->original,vt,length*4);
     __atomic_store_n(&table_count,count+1,__ATOMIC_RELEASE);
     __atomic_store_n(vt,(void*)&query,__ATOMIC_RELEASE);
-    if(kind<10)__atomic_store_n(vt+6,(void*)&create_surface,__ATOMIC_RELEASE);
+    if(kind<10){__atomic_store_n(vt+6,(void*)&create_surface,__ATOMIC_RELEASE);
+        if(lock_capture_path_length)__atomic_store_n(vt+5,(void*)&create_palette,__ATOMIC_RELEASE);
+    }
     else if(kind==20){
+        if(lock_capture_path_length){__atomic_store_n(vt+3,(void*)&palette_caps,__ATOMIC_RELEASE);__atomic_store_n(vt+4,(void*)&palette_get_entries,__ATOMIC_RELEASE);
+        }
         __atomic_store_n(vt+2,(void*)&palette_release,__ATOMIC_RELEASE);
         __atomic_store_n(vt+5,(void*)&palette_initialize,__ATOMIC_RELEASE);
         __atomic_store_n(vt+6,(void*)&palette_entries,__ATOMIC_RELEASE);
@@ -276,6 +310,8 @@ static void install_table(void* object,u32 kind){
         __atomic_store_n(vt+7,(void*)&blt_fast,__ATOMIC_RELEASE);
         __atomic_store_n(vt+11,(void*)&flip,__ATOMIC_RELEASE);
         if(lock_capture_path_length){
+            __atomic_store_n(vt+20,(void*)&surface_get_palette,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+31,(void*)&surface_palette,__ATOMIC_RELEASE);
             __atomic_store_n(vt+12,(void*)&surface_attached,__ATOMIC_RELEASE);
             __atomic_store_n(vt+3,(void*)&surface_add_attached,__ATOMIC_RELEASE);
             __atomic_store_n(vt+8,(void*)&surface_delete_attached,__ATOMIC_RELEASE);

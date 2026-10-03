@@ -12,6 +12,7 @@ static void init_lock_lifecycle(void){
 #include "lock_diagnostics.h"
 #include "lock_aliases.h"
 #include "lock_surfaces.h"
+#include "lock_palette.h"
 static void game_lock_retire(void* object){
     if(!lock_capture_path_length)return;
     if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1)){__atomic_store_n(&game_alias_reset_pending,1,__ATOMIC_RELEASE);__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);return;}
@@ -97,9 +98,12 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
                 header[12]=s->r;header[13]=s->g;header[14]=s->b;header[15]=s->length;
                 if(write_all(file,header,64))write_all(file,s->data,s->length);CloseHandle(file);
             }
-            if(pending->primary)game_publish_pixels(s);
+            if(pending->primary && s->bits!=8)game_publish_pixels(s);
         }
     }
-    if(slot && result>=0 && s->data){game_surface_sync();game_surface_store(pending->object,s,pending->primary,slot->desc);}
+    if(slot && result>=0 && s->data){game_surface_sync();game_surface_store(pending->object,s,pending->primary,slot->desc);
+        struct GameSurface* surface=game_surface_find(pending->object,0);
+        if(surface && surface->primary && surface->pixels.bits==8)game_surface_publish(surface);
+    }
     free_snapshot(s);__sync_lock_release(&game_locks_busy);
 }
