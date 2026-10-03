@@ -199,8 +199,10 @@ After closing other game/debugger windows, run:
 
 The tool prints debugger commands for startup `0x004e8d80` and drawing setup
 `0x004e986a`. At stops, record `bt` and `info reg`; use `cont` to reach the next
-stop. If it waits, interrupt from the debugger terminal and collect `bt` and
-`info thread`. Use `detach`, then `quit` to leave the game running. Terminal
+stop. Avoid Ctrl+C on this WoW64 runtime: it also produced the inaccessible
+`0xffbb10ec` debugger-thread fault described below. If already stopped there,
+use `info thread`, select an original game thread with `thread 0xID`, and collect
+`bt`, `info reg`, and `x /32x $esp`. Use `detach`, then `quit` to leave the game running. Terminal
 output may be saved using `script`; preparation metadata is in `startup-debug/`.
 
 Validation: `--prepare-only` verifies the actual staged game without launching
@@ -209,3 +211,23 @@ it. The copied PE32 debugger launched the pinned-image API-only probe, read
 `working/tests/render-import/run-6sehwgda/startup-debug-test/`. The probe does not
 execute the game loop. This validates the debugger launch path, not the cause or
 resolution of the user's hang. Confidence in the startup root cause remains low.
+
+
+## Follow-up: startup breakpoints work; debugger interrupt faults
+
+The user launched the copied x86 debugger and reached both startup breakpoints.
+At `0x004e986a`, ESP is `0x0022f9f4` and EBP is `0x0000010a`; EBP is not a
+usable frame-chain pointer, so the single-frame WineDbg backtrace does not prove
+stack corruption. After continuing, the user reports a menu with incorrect
+colors and a freeze. The mapped header at inspection records status 2 (primary
+surface readback Lock failed), one successful creation and zero published frames.
+There is no evidence that Qt pixel conversion produced those menu colors.
+
+The user's subsequent Ctrl+C produced `0xffbb10ec` on a new stack at
+`0x06eeff44`, with only ntdll/thread startup frames. This repeats the attachment
+fault and is temporally associated with the debugger interrupt. It does not
+identify the original game thread's stall. Confidence: high that interrupt and
+attachment inspection are unreliable in this runtime; the underlying game freeze
+and primary Lock HRESULT remain unresolved. The launcher now warns against
+Ctrl+C and explains how to select an existing game thread if already stopped in
+this fault. `info thread` lists threads; bare `thread` is not a listing command.

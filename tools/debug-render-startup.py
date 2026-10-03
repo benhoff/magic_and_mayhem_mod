@@ -52,7 +52,8 @@ def main():
     print(f'Startup debugger evidence: {evidence}',flush=True)
     print('Close other game/debugger windows first. At Wine-dbg>, enter:',flush=True)
     print('  break *0x004e8d80\n  break *0x004e986a\n  cont',flush=True)
-    print('At each stop: bt, info reg, then cont. If it hangs, press Ctrl+C, then bt and info thread.',flush=True)
+    print('At each breakpoint: bt, info reg, then cont. Avoid Ctrl+C: this WoW64 runtime has faulted in its debugger interrupt thread.',flush=True)
+    print('If already stopped at 0xffbb10ec: info thread, then thread 0xID for an original Chaos.exe thread, then bt, info reg, x /32x $esp.',flush=True)
     print('To leave the game running: detach, then quit. Save terminal output with script if needed.',flush=True)
     if args.prepare_only:return 0
     os.chdir(game);os.execvpe(command[0],command,env)
