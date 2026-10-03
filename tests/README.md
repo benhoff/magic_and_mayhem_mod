@@ -143,3 +143,10 @@ The Qt project's OpenGL presentation tests cover raw palette/RGB conversion,
 shared frame validation and GPU framebuffer readback. `./tools/test-render-bridge.py`
 adds a synthetic PE32 Wine surface producer and verifies its actual mapped bytes
 through Qt/OpenGL. It requires Wine and Xvfb IPC; it does not launch the game.
+
+`python3 tests/test-render-capture.py` covers the bounded native-pixel blit replay,
+source keys, malformed evidence and event summaries. The Wine renderer test
+also checks actual x86 Blt/BltFast hooks with before/after snapshots, negative
+pitch, row padding, busy-surface rejection/retry, preserved API results,
+old-interface unlock arguments and one-capture limits. Evidence and live command:
+[drawing inventory](../research/runtime/render-drawing-inventory.md).

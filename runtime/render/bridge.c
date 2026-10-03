@@ -35,6 +35,7 @@ static struct Table* lookup(void* object){
     for(u32 i=0;i<__atomic_load_n(&table_count,__ATOMIC_ACQUIRE);++i)if(tables[i].vtable==table)return tables+i;
     return 0;
 }
+#include "draw_capture.h"
 static u32 guid_kind(const u8* guid){
     static const u8 ids[8][16]={
       {0x80,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},
@@ -57,6 +58,7 @@ static i32 WIN query(void* object,const u8* guid,void** result){
 static i32 WIN create_surface(void* object,void* desc,void** result,void* outer){
     struct Table* t=lookup(object);i32 status=((CreateSurface)t->original[6])(object,desc,result,outer);u32 error=GetLastError();
     if(status>=0 && result && *result)install_table(*result,t->kind+10);
+    draw_event(6,(u32)__builtin_return_address(0),object,status>=0 && result?*result:0,0,status,0,0);
     SetLastError(error);return status;
 }
 static void capture(void* object){
@@ -103,12 +105,35 @@ done:
     SetLastError(saved_error);__sync_lock_release(&capture_busy);
 }
 static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,void* effects){
-    struct Table* t=lookup(object);i32 status=((Blt)t->original[5])(object,dest,source,rect,flags,effects);
-    if(status>=0)capture(object);return status;
+    u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
+    struct Table* t=lookup(object);
+    struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
+    SetLastError(error);i32 status=((Blt)t->original[5])(object,dest,source,rect,flags,effects);error=GetLastError();
+    end_draw(c,object,status);draw_event(1,caller,object,source,flags,status,dest,rect);
+    if(status>=0)capture(object);SetLastError(error);return status;
+}
+static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 flags){
+    u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
+    struct Table* t=lookup(object);
+    struct DrawCapture* c=begin_draw(object,0,source,rect,flags,0,2,x,y,caller);
+    SetLastError(error);i32 status=((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
+    end_draw(c,object,status);
+    /* For a Fast event, left/top are x/y; right/bottom are deliberately zero. */
+    u32 dest[4]={x,y,0,0};draw_event(2,caller,object,source,flags,status,dest,rect);
+    if(status>=0)capture(object);SetLastError(error);return status;
 }
 static i32 WIN flip(void* object,void* target,u32 flags){
     struct Table* t=lookup(object);i32 status=((Flip)t->original[11])(object,target,flags);
+    draw_event(3,(u32)__builtin_return_address(0),object,target,flags,status,0,0);
     if(status>=0)capture(object);return status;
+}
+static i32 WIN surface_lock(void* object,void* rect,void* desc,u32 flags,HANDLE event){
+    struct Table* t=lookup(object);i32 status=((Lock)t->original[25])(object,rect,desc,flags,event);
+    draw_event(4,(u32)__builtin_return_address(0),object,0,flags,status,rect,0);return status;
+}
+static i32 WIN surface_unlock(void* object,void* rect){
+    struct Table* t=lookup(object);i32 status=((Unlock)t->original[32])(object,rect);
+    draw_event(5,(u32)__builtin_return_address(0),object,0,0,status,0,0);return status;
 }
 static void install_table(void* object,u32 kind){
     if(!stream || !readable(object,4) || !__sync_bool_compare_and_swap(&table_busy,0,1))return;
@@ -120,7 +145,15 @@ static void install_table(void* object,u32 kind){
     __atomic_store_n(&table_count,count+1,__ATOMIC_RELEASE);
     __atomic_store_n(vt,(void*)&query,__ATOMIC_RELEASE);
     if(kind<10)__atomic_store_n(vt+6,(void*)&create_surface,__ATOMIC_RELEASE);
-    else {__atomic_store_n(vt+5,(void*)&blt,__ATOMIC_RELEASE);__atomic_store_n(vt+11,(void*)&flip,__ATOMIC_RELEASE);}
+    else {
+        __atomic_store_n(vt+5,(void*)&blt,__ATOMIC_RELEASE);
+        __atomic_store_n(vt+7,(void*)&blt_fast,__ATOMIC_RELEASE);
+        __atomic_store_n(vt+11,(void*)&flip,__ATOMIC_RELEASE);
+        if(draw_path[0]){
+            __atomic_store_n(vt+25,(void*)&surface_lock,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+32,(void*)&surface_unlock,__ATOMIC_RELEASE);
+        }
+    }
     u32 ignored;VirtualProtect(vt,length*4,protection,&ignored);
 done:__sync_lock_release(&table_busy);
 }
@@ -144,6 +177,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     if(!mapping)return 1;
     stream=MapViewOfFile(mapping,2,0,0,STREAM_SIZE);CloseHandle(mapping);
     if(!stream || !same(stream,"MNMGL001",8) || stream[2]!=1 || stream[3]!=64){stream=0;return 1;}
+    init_draw_capture();
     stream[9]=4; /* loaded, waiting for presentation */
     u32 base=(u32)GetModuleHandleA(0),protection;
     /* Staging verifies full image SHA-256. Runtime also guards its import thunk. */

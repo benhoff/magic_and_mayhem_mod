@@ -23,6 +23,7 @@ def main():
     stage=load('stage','tools/prepare-shadow-experiment.py')
     (root/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
     env=os.environ.copy();env['WINEPREFIX']=str(REPO/'working/tests/render-wine');env['WINEDEBUG']='-all'
+    env.pop('MNM_RENDER_CAPTURE_DIR',None)
     env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\')
     with (root/'wine.log').open('w') as log:
         subprocess.run(['wine',str(root/'selftest.exe')],cwd=root,env=env,stdout=log,stderr=log,check=True,timeout=60)
@@ -30,10 +31,33 @@ def main():
     expected=bytes([255,0,0,255])*2+bytes([0,255,0,255])*2+bytes([0,0,255,255])*2+bytes([255,255,255,255])*2
     assert (sequence,width,height,pitch,format,status,count)==(4,4,2,16,1,1,2)
     assert data[64:96]==expected
+    replay=load('render_replay','tools/replay-render-capture.py')
+    draw_reports=[]
+    for mode in ('fast','blt'):
+        draw=root/mode;draw.mkdir();env['MNM_RENDER_CAPTURE_DIR']='Z:'+str(draw).replace('/','\\')
+        env['MNM_DRAW_SELFTEST_MODE']=mode
+        # Reset the shared presentation stream for each new producer process.
+        with stream.open('r+b') as file:file.seek(16);file.write(bytes(48))
+        with (draw/'wine.log').open('w') as log:
+            subprocess.run(['wine',str(root/'selftest.exe')],cwd=root,env=env,stdout=log,stderr=log,check=True,timeout=60)
+        captured=replay.decode((draw/'blit-0001.bin').read_bytes())
+        assert captured['operation']==('BltFast' if mode=='fast' else 'Blt')
+        assert captured['key']==((0,0) if mode=='fast' else None)
+        assert captured['source']==struct.pack('<6H',0xffff,0,0xf800,0x07e0,0,0xffff)
+        # Independent expected bytes, including the untouched destination border.
+        key_pixel=0x001f if mode=='fast' else 0
+        assert captured['after']==struct.pack('<12H',0x001f,0x001f,0x001f,0x001f,
+                                              0x001f,0xffff,key_pixel,0xf800,0x001f,0x07e0,key_pixel,0xffff)
+        comparison=replay.compare(captured,replay.replay(captured));assert comparison['matching']
+        inventory=replay.summarize_events((draw/'events.bin').read_bytes())
+        assert inventory['events']==8 and inventory['counts']['Lock']==1 and inventory['counts']['Unlock']==1
+        draw_reports.append({'operation':captured['operation'],'comparison':comparison,'inventory':inventory})
+        subprocess.run(['python3',str(REPO/'tools/replay-render-capture.py'),str(draw)],check=True)
     subprocess.run(['cmake','-S',str(REPO/'apps/qt-shell'),'-B',str(REPO/'working/build/qt-shell')],check=True)
     subprocess.run(['cmake','--build',str(REPO/'working/build/qt-shell'),'--parallel','4'],check=True)
     env['QT_QPA_PLATFORM']='xcb';env['LIBGL_ALWAYS_SOFTWARE']='1'
     subprocess.run(['xvfb-run','-a',str(REPO/'working/build/qt-shell/mnm-qt-shell'),'--stream-test',str(stream)],env=env,check=True,timeout=15)
-    (root/'report.json').write_text(json.dumps({'origin':'synthetic_wine_opengl','frames':count,'pixel_bytes_match':True,'qt_opengl_readback_match':True},indent=2)+'\n')
+    (root/'report.json').write_text(json.dumps({'origin':'synthetic_wine_opengl','frames':count,'pixel_bytes_match':True,
+        'qt_opengl_readback_match':True,'draw_captures':draw_reports},indent=2)+'\n')
     print(f'Wine-to-Qt/OpenGL frame bridge passed: {root}')
 if __name__=='__main__':main()
