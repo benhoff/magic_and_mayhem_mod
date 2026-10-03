@@ -41,3 +41,6 @@ confidence, and whether it remains stable across launches.
 
 - [Owned indexed copies and Flips](opengl-owned-indexed-copies.md): raw index/key
   propagation, destination/front palettes and native OpenGL replay evidence.
+
+- [Partial CPU Lock reconstruction](opengl-partial-locks.md): detached complete
+  checkpoints, rectangle merges, successful Unlock commits and offline x86/Qt tests.

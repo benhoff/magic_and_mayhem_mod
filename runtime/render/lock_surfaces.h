@@ -22,6 +22,7 @@ static void game_surface_drop(struct GameSurface* s){
 }
 static void game_surface_sync(void){
     game_alias_sync();
+    for(u32 i=0;i<32;++i)if(game_locks[i].object && game_locks[i].epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED))game_lock_clear(game_locks+i);
     for(u32 i=0;i<32;++i)if(game_surfaces[i].object && game_surfaces[i].epoch!=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED)){
         game_surface_drop(game_surfaces+i);zero(game_surfaces+i,sizeof(game_surfaces[i]));
     }
@@ -42,13 +43,14 @@ static int game_surface_enter(void){
 }
 static void game_surface_invalidate_locked(void* object){
     for(u32 i=0;i<32;++i)if(game_surfaces[i].object && game_alias_same(object,game_surfaces[i].object))game_surface_drop(game_surfaces+i);
-    for(u32 i=0;i<32;++i)if(game_alias_same(object,game_locks[i].object))zero(game_locks+i,sizeof(game_locks[i]));
+    for(u32 i=0;i<32;++i)if(game_alias_same(object,game_locks[i].object))game_lock_clear(game_locks+i);
 }
 static void game_surface_alias(void* object){
     u32 count=0;
     for(u32 i=0;i<32;++i)if(game_surfaces[i].object && game_alias_same(object,game_surfaces[i].object))++count;
     /* Independently observed interfaces may have conflicting pixel/properties.
      * Require a new checkpoint rather than choosing an arbitrary record. */
+    if(count>1)for(u32 i=0;i<32;++i)if(game_alias_same(object,game_locks[i].object))game_lock_clear(game_locks+i);
     if(count>1)for(u32 i=0;i<32;++i)if(game_surfaces[i].object && game_alias_same(object,game_surfaces[i].object)){
         game_surface_drop(game_surfaces+i);zero(game_surfaces+i,sizeof(game_surfaces[i]));
     }
@@ -92,7 +94,7 @@ static void game_surface_created(void* object,u32 kind,const u32* d){
     for(u32 i=0;i<32;++i)if(game_surfaces[i].object && game_alias_same(object,game_surfaces[i].object)){
         game_surface_drop(game_surfaces+i);zero(game_surfaces+i,sizeof(game_surfaces[i]));
     }
-    for(u32 i=0;i<32;++i)if(game_alias_same(object,game_locks[i].object))zero(game_locks+i,sizeof(game_locks[i]));
+    for(u32 i=0;i<32;++i)if(game_alias_same(object,game_locks[i].object))game_lock_clear(game_locks+i);
     game_alias_retire(object);
     struct GameSurface* s=game_surface_find(object,1);if(s){s->clip_known=1;s->clip=0;}
     if(d)game_surface_describe_locked(object,kind,d);
@@ -198,6 +200,7 @@ static void game_blit_after(struct GameBlit* p,i32 result){
     if(ok)ok=command_record(file,&sequence,5,&target_id,4,p->dst.data,p->dst.length) && command_record(file,&sequence,6,&target_id,4,0,0) && command_record(file,&sequence,7,&source_id,4,0,0) && command_record(file,&sequence,7,&target_id,4,0,0) && command_record(file,&sequence,8,0,0,0,0);
     if(file!=(HANDLE)-1)CloseHandle(file);
     game_blit_bytes+=p->src.length+p->dst.length*2+(p->src.bits==8?1280:256);
+    for(u32 i=0;i<32;++i)if(game_alias_same(p->target,game_locks[i].object))game_lock_clear(game_locks+i);
     game_surface_drop(dst);copy(&dst->pixels,&p->dst,sizeof(p->dst));p->dst.data=0;game_surface_bytes+=dst->pixels.length;
     __atomic_sub_fetch(&lock_capture_reserved,dst->pixels.length,__ATOMIC_RELAXED);
     if(p->bootstrap)lock_diagnostic("blit_initialized",p->target,0,(u32)p->source,0,result,0,0);

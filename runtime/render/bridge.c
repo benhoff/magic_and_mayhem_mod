@@ -209,8 +209,9 @@ static i32 WIN flip(void* object,void* target,u32 flags){
     if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_lock(void* object,void* rect,void* desc,u32 flags,HANDLE event){
-    u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Lock)t->original[25])(object,rect,desc,flags,event);u32 error=GetLastError();
-    game_lock_observed(object,t,rect,desc,flags,status);
+    u32 entry=GetLastError();struct Rect region;int region_valid=rect && readable(rect,16);if(region_valid)copy(&region,rect,16);
+    int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Lock)t->original[25])(object,rect,desc,flags,event);u32 error=GetLastError();
+    game_lock_observed(object,t,rect,region_valid?&region:0,desc,flags,status);
     render_failure("application_lock",status,object,t->kind,flags);
     if(token)history_lock(object,rect,desc,flags,status);
     draw_event(4,(u32)__builtin_return_address(0),object,0,flags,status,rect,0);history_leave(token);SetLastError(error);return status;

@@ -21,7 +21,8 @@ See [game-owned blits](../runtime/opengl-game-owned-blits.md).
 The actual application Lock is forwarded once with its original arguments.
 After success the bridge remembers a full-surface writable descriptor, interface,
 object and owning thread. Accepted flags are within `0x4831`, excluding READONLY.
-Partial locks, unsupported flags/descriptors and unsafe layouts are skipped.
+Rectangular updates require a matching complete owned checkpoint; unsupported
+flags/descriptors and unsafe layouts are skipped. See [partial Lock ownership](../runtime/opengl-partial-locks.md).
 The descriptor must have the correct size (108 for Surface1/2, 124 for Surface4/7).
 
 Before a matching application Unlock, on the locking thread, native rows are
@@ -48,7 +49,9 @@ Captures require nonzero dimensions up to 2048x2048, 8/16/24/32-bit supported
 native formats, valid nonoverlapping RGB masks, and readable rows. Negative pitch
 and padding are normalized to tightly packed top-row-first bytes. Indexed bytes
 are retained without querying a palette. The [owned indexed extension](../runtime/opengl-owned-indexed.md)
-uses application palette calls to associate colors and publish complete primaries. Read-only and rectangular updates are also deferred.
+uses application palette calls to associate colors and publish complete primaries.
+Read-only capture remains deferred. Rectangular writes now merge into a complete
+owned checkpoint; the live pointer is already relative to the locked rectangle.
 
 At most 16 committed snapshots and 64 MiB of committed plus pending pixel storage
 are allowed per process. Transient copies are freed after every Unlock attempt.
@@ -86,6 +89,23 @@ native pixels. Reject incomplete files (the declared payload must be present).
 Pointers/thread IDs apply only to the captured process. No palette or original
 row padding is stored.
 
+## Reconstructed partial snapshot
+
+Partial commits keep the `lock-N.bin` naming/sequence but use `MNMLOCK2`, version
+2, header length 80. Offsets 16–60 have the same meanings as version 1; width and
+height describe the full reconstructed surface. Four signed little-endian 32-bit
+rectangle coordinates follow at offsets 64, 68, 72 and 76: left, top, right,
+bottom, with exclusive right/bottom. Native payload begins at offset 80, and
+must have exactly the declared complete surface length.
+
+Pixels outside the rectangle come from the previous owned checkpoint, which
+may itself be reconstructed. Pixels inside were copied from the application's
+live Lock pointer before original Unlock. The file is committed only after
+successful Unlock and is **not a full original-engine readback**. No palette or
+row padding is stored. Readers must explicitly recognize the version/magic and
+reject inconsistent lengths, dimensions and rectangles. Full live copies retain
+version 1 without changing their format.
+
 ## Evidence and confidence
 
 `tools/test-render-lock-lifecycle.py` runs actual PE32 hooks under Wine. Fourteen
@@ -102,8 +122,8 @@ locks and no offscreen/indexed primary frame without observed palette state. Evi
 Confidence: confirmed synthetic lifecycle and ABI behavior. Real-game lifecycle
 captures and uninterrupted new-game play remain unvalidated. Subsequent chunks
 implement full opaque initialization, observed two-buffer RGB/indexed Flips,
-indexed copy propagation and primary palette updates. Partial CPU locks and
-complete Qt gameplay presentation remain outstanding.
+indexed copy propagation and primary palette updates. The [partial CPU Lock extension](../runtime/opengl-partial-locks.md)
+adds bounded merges; complete Qt gameplay presentation remains outstanding.
 
 ## Lifecycle rejection diagnostics
 
@@ -130,7 +150,9 @@ Descriptor fields are zero when unavailable. Pitch is the raw signed 32-bit
 value represented in hex. Thread/pointer values are launch-specific.
 
 Lock reasons: `lock_accepted`, `lock_failed`, `lock_partial`, `lock_readonly`,
-`lock_flags`, `lock_descriptor`, `lock_capacity`.
+`lock_flags`, `lock_descriptor`, `lock_capacity`, `lock_partial_accepted`.
+`lock_partial` now means a rectangular Lock was rejected, for example because
+its base, rectangle, flags or layout could not be established.
 Unlock reasons: `unlock_unmatched`, `unlock_owner`, `unlock_argument`,
 `unlock_layout`, `unlock_masks`, `unlock_memory`, `unlock_limit`,
 `unlock_allocation`, `unlock_copied`, `unlock_failed`, `unlock_succeeded`.

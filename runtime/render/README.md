@@ -78,7 +78,7 @@ Application Lock calls are still forwarded unchanged.
 
 `./tools/run-qt-shell.sh --capture-locks` opts into bounded game-owned Lock/Unlock
 capture and automatically disables observer readback. It copies writable full
-surfaces before the game's Unlock and commits only on successful Unlock. Native
+surfaces or merges rectangular updates into an existing complete checkpoint before the game's Unlock and commits only on successful Unlock. Native
 snapshots go to the experiment's `lock-capture/`. Known primary RGB destinations
 now produce Qt frames after successful Unlock and supported reconstructed blits.
 Offscreen RGB Blt/BltFast copies also produce offline replay files. A complete opaque copy can also initialize a never-Locked destination using
@@ -116,3 +116,7 @@ observed palette changes without observer calls. See
 Run `./tools/test-render-indexed-copies.py` for independent native-index copy/swap
 checks, palette-resolved OpenGL command replay and Qt readback. See
 [indexed propagation evidence](../../research/runtime/opengl-owned-indexed-copies.md).
+
+Run `./tools/test-render-partial-locks.py` for x86 rectangular Lock merges,
+retry/ownership rejection and Qt framebuffer checks without launching the game.
+See [partial ownership and evidence](../../research/runtime/opengl-partial-locks.md).

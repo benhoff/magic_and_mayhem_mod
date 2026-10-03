@@ -207,3 +207,10 @@ RGBA hashes, ordered frame snapshots and Qt framebuffer readback. It covers
 opaque initialization, index keys, aliases, legacy/negative pitch, failures,
 nested updates, delayed palettes and distinct-palette buffer rotation. See
 [indexed propagation scope](../research/runtime/opengl-owned-indexed-copies.md).
+
+`./tools/test-render-partial-locks.py` checks rectangular writes through actual
+PE32 hooks, independently owned native checkpoints, unchanged borders, ordered
+RGBA frames and Qt OpenGL readback. It covers modern/legacy Unlocks, negative
+pitch, retries, invalidation, rejection and limits, then uses a merged checkpoint
+for primary blit initialization. No game is launched. See
+[partial Lock scope](../research/runtime/opengl-partial-locks.md).
