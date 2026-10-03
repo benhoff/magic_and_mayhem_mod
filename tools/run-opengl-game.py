@@ -85,7 +85,7 @@ def main():
     metadata={'cd_music_disabled':True,'cd_music_preference_edits':cd_edits,'capture_locks':args.capture_locks,'no_readback':args.no_readback or args.capture_locks,'failure_log':str(root/'surface-failures.log'),'skip_movies':args.skip_movies,'movie_preference_edits':movie_edits,'origin':'directdraw_opengl_presentation','source_sha256':stage.HASH,'stream':str(stream),
               'staged_sha256':hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest(),'capture_history':args.capture_history,'graphics_environment':{key:os.environ.get(key,'') for key in ('LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WINE_D3D_CONFIG')},'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest()}
     if args.capture_locks:
-        lock_capture=root/'lock-capture';lock_capture.mkdir();metadata['lock_capture_directory']=str(lock_capture)
+        lock_capture=root/'lock-capture';lock_capture.mkdir();metadata['lock_capture_directory']=str(lock_capture);metadata['lock_lifecycle_log']=str(lock_capture/'lifecycle.log')
         print(f'Game lock capture: {lock_capture}',flush=True)
     if args.capture_draws:
         capture=root/'draw-capture';capture.mkdir();metadata['draw_capture_directory']=str(capture)

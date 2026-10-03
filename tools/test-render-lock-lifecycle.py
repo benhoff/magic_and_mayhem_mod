@@ -28,6 +28,12 @@ def main():
         env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'),WINEDEBUG='-all',MNM_LOCK_LIFECYCLE_SELFTEST=mode,
                    MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/','\\'),MNM_RENDER_STREAM='Z:'+str(stream).replace('/','\\'))
         with (case/'wine.log').open('w') as log:subprocess.run(['wine',str(case/'selftest.exe')],cwd=case,env=env,stdout=log,stderr=log,check=True,timeout=30)
+        lines=[line.split() for line in (capture/'lifecycle.log').read_text().splitlines()]
+        assert all(len(line)==20 for line in lines)
+        reasons={line[0] for line in lines}
+        expected_reason={'failed-lock':'lock_failed','readonly':'lock_readonly','partial':'lock_partial','bad-mask':'unlock_masks'}.get(mode,'unlock_copied')
+        assert expected_reason in reasons,(mode,reasons)
+        if mode=='unlock-retry':assert 'unlock_failed' in reasons and 'unlock_succeeded' in reasons
         files=list(capture.glob('lock-*.bin'));expected=mode in ('modern','negative','unlock-retry','offscreen','indexed')
         assert len(files)==int(expected),(mode,files)
         with stream.open('rb') as f:header=struct.unpack('<16I',f.read(64));rgba=f.read(16)
@@ -46,7 +52,7 @@ def main():
                 expected_rgba=bytes.fromhex('ff0000ff00ff00ff0000ffffffffffff')
                 if mode=='negative':expected_rgba=expected_rgba[8:]+expected_rgba[:8]
                 assert rgba==expected_rgba,(mode,rgba.hex())
-        reports.append({'mode':mode,'snapshots':len(files),'primary_frames':header[10]})
+        reports.append({'mode':mode,'snapshots':len(files),'primary_frames':header[10],'diagnostic_reasons':sorted(reasons)})
     (root/'report.json').write_text(json.dumps({'origin':'synthetic_game_owned_locks','cases':reports},indent=2)+'\n')
     print(f'Lock/Unlock lifecycle passed: {root}')
 if __name__=='__main__':main()
