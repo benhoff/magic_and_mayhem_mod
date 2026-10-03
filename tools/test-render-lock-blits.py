@@ -36,6 +36,15 @@ def cpu_replay(data):
             pixels = bytearray(payload[28:])
             assert len(pixels) == width * height * (bits // 8)
             surfaces[sid] = (width, height, bits // 8, pixels)
+        elif op == 2:
+            sid, x, y, width, height = struct.unpack_from('<5I', payload)
+            sw, sh, stride, pixels = surfaces[sid]
+            assert width and height and x + width <= sw and y + height <= sh
+            assert len(payload) == 20 + width * height * stride
+            for row in range(height):
+                begin = ((y + row) * sw + x) * stride
+                patch = 20 + row * width * stride
+                pixels[begin:begin + width * stride] = payload[patch:patch + width * stride]
         elif op == 3:
             source, target, sx, sy, right, bottom, dx, dy, keyed, key = struct.unpack('<10I', payload)
             width, height = right - sx, bottom - sy
@@ -68,7 +77,7 @@ def cpu_replay(data):
             del surfaces[sid]
         else:
             assert op == 8 and size == 0 and at == len(data) and not surfaces
-    assert sequence >= 8 and output is not None
+    assert sequence >= 6 and output is not None
     return output
 
 

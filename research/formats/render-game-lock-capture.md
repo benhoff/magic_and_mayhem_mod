@@ -195,3 +195,12 @@ palette and swap opcodes. Unknown colors skip replay/publication while retaining
 accepted native indices. Unknown old-front pixels also skip Flip replay. Serial
 gaps are expected for skipped files. Additional diagnostic reasons are
 `blit_palette_unobserved`, `flip_recorded` and `flip_file_failed`.
+
+Partial CPU writes can additionally produce `update-N.bin` using `MNMCMD01`.
+The serial matches the merged `lock-N.bin`. Sessions contain a complete owned
+base, one row UPDATE per locked row, a reconstructed CHECK, PRESENT and cleanup.
+Indexed sessions use current observed palette colors; unknown colors skip the
+session. Replay limits and file failures leave native commits/publication active.
+See [ownership, limits and replay tests](../runtime/opengl-partial-locks.md).
+Diagnostics add `update_recorded`, `update_palette_unobserved`, `update_limit`
+and `update_file_failed`.
