@@ -25,6 +25,23 @@ bool FrameStream::open(const QString& path){
 quint32 FrameStream::status() const {
     return mapping_?qFromLittleEndian(__atomic_load_n(reinterpret_cast<const quint32*>(mapping_+36),__ATOMIC_ACQUIRE)):0;
 }
+QString FrameStream::diagnostic() const {
+    switch(status()){
+    case 0:return "The frame bridge has not loaded. Check Wine startup and the launch log.";
+    case 1:return "OpenGL presentation active.";
+    case 2:return "DirectDraw frame readback failed to lock the primary surface.";
+    case 3:return "DirectDraw frame readback rejected the surface layout or palette.";
+    case 4:return "Frame bridge loaded; no startup diagnostics available from this older bridge.";
+    case 5:return "DirectDraw hook armed; waiting for the game to call DirectDrawCreate.";
+    case 6:return "Wine is initializing DirectDraw. If this persists, retry with --software-rendering.";
+    case 7:return "DirectDraw initialized; waiting for the first captured primary-surface frame.";
+    case 8:{const auto result=qFromLittleEndian(__atomic_load_n(reinterpret_cast<const quint32*>(mapping_+44),__ATOMIC_ACQUIRE));
+        return QString("DirectDrawCreate failed (HRESULT 0x%1). Check the Wine graphics log.").arg(result,8,16,QLatin1Char('0'));}
+    case 10:return "DirectDrawCreate returned without an intercepted drawing interface. Check bridge compatibility.";
+    case 9:return "Frame bridge could not install the guarded DirectDraw hook. No frames can be captured.";
+    default:return "Unknown frame bridge status.";
+    }
+}
 QImage FrameStream::nextFrame(){
     if(!mapping_)return {};
     const auto* words=reinterpret_cast<const quint32*>(mapping_);

@@ -51,3 +51,9 @@ storage swaps retain logical palettes and surface identities. Native checks on
 both sides and Qt presentation checks cover repeated flips and failed retries.
 Longer chains, stereo/field flips and incomplete readback invalidate history.
 See [flip scope/evidence](../../research/runtime/opengl-double-buffer-flips.md).
+
+For a black startup screen, use
+`./tools/run-qt-shell.sh --software-rendering --capture-history`. This opts into
+Mesa software rendering for the shell and its Wine child. Startup diagnostics
+now distinguish the hook stage, DirectDraw initialization and an HRESULT failure.
+See [real-game startup investigation](../../research/runtime/render-startup-black-screen.md).

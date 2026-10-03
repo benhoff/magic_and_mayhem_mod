@@ -68,8 +68,10 @@ public:
             auto frame=stream_->nextFrame();
             if(!frame.isNull()){gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();
                 statusBar()->showMessage("OpenGL presentation active. Use the separate game window for input.");}
-            else if(stream_->status()==2 || stream_->status()==3)
-                statusBar()->showMessage("Frame capture rejected a surface; check rendering evidence before replacing the native viewport.");
+            else if(stream_->status()==2 || stream_->status()==3 || stream_->status()==8 || stream_->status()==9 || stream_->status()==10 || elapsed_.elapsed()>10000){
+                const QString diagnostic=stream_->diagnostic();statusBar()->showMessage(diagnostic);
+                if(placeholder_->isVisible())placeholder_->setText(diagnostic);
+            }
         });
         if(!host_.available() && !opengl_){
             launch_->setEnabled(false);placeholder_->setText("Game embedding requires an X11 session or XWayland.\nStart this shell with QT_QPA_PLATFORM=xcb.");
@@ -119,7 +121,7 @@ private:
             QDir().mkpath(directory);const QString path=directory+"/frame-"+QUuid::createUuid().toString(QUuid::WithoutBraces)+".bin";
             stream_=std::make_unique<FrameStream>();
             if(!stream_->create(path)){finished();statusBar()->showMessage(stream_->error());return;}
-            arguments={"--stream",path};frames_.start();
+            arguments={"--stream",path};elapsed_.restart();frames_.start();
             if(captureDraws_)arguments.append("--capture-draws");
             if(captureHistory_)arguments.append("--capture-history");
             gl_->hide();placeholder_->show();
@@ -150,6 +152,7 @@ int main(int argc,char** argv){
     // Help remains available from terminals without a graphical display.
     for(int i=1;i<argc;++i)if(QString::fromLocal8Bit(argv[i])=="--help" || QString::fromLocal8Bit(argv[i])=="-h"){
         std::printf("Usage: mnm-qt-shell [--repo DIRECTORY] [--renderer opengl|native]\n"
+                    "  --software-rendering  Use Mesa software rendering for Qt and Wine\n"
                     "  --capture-draws       Record a small blit when launching with OpenGL\n"
                     "  --capture-history     Record a bounded indexed/RGB surface history when launching\n"
                     "  --smoke-test          Open and close the shell without launching a game\n"
@@ -160,9 +163,16 @@ int main(int argc,char** argv){
                     "  --stream-test FILE    Check a synthetic frame stream through OpenGL\n"
                     "  --embedding-test      Check an external fixture window\n");return 0;
     }
+    // Select the vendor before QApplication creates any graphics/display context.
+    for(int i=1;i<argc;++i)if(QString::fromLocal8Bit(argv[i])=="--software-rendering"){
+        qputenv("LIBGL_ALWAYS_SOFTWARE","1");qputenv("__GLX_VENDOR_LIBRARY_NAME","mesa");
+        const QString vendor="/usr/share/glvnd/egl_vendor.d/50_mesa.json";
+        if(QFile::exists(vendor))qputenv("__EGL_VENDOR_LIBRARY_FILENAMES",vendor.toLocal8Bit());
+    }
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);
     QApplication app(argc,argv);QCoreApplication::setApplicationName("mnm-qt-shell");
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
+    parser.addOption({"software-rendering","Use Mesa software rendering for this shell and its Wine child."});
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
     parser.addOption({"capture-history","Record a bounded indexed/RGB surface history; implies draw capture."});
     parser.addOption({"capture-draws","Record bounded drawing evidence when the game is launched."});

@@ -9,6 +9,7 @@ public:
     bool open(const QString& path);
     QImage nextFrame();
     quint32 status() const;
+    QString diagnostic() const;
     QString error() const{return error_;}
 private:
     bool map();QFile file_;uchar* mapping_=nullptr;quint32 lastFrame_=0;QString error_;
