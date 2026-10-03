@@ -88,3 +88,11 @@ This is a bounded startup sample, not a complete command stream or timing trace.
 `working/experiments/render-replay/`. Exit codes: 0 exact match, 1 mismatch,
 2 inconclusive. It compares the entire destination, including untouched borders.
 Read captures after exiting the game to avoid reading a file still being written.
+
+With `--backend opengl`, replay also validates this same capture using
+`renderer/capture.cpp`, executes the native integer shader, and writes
+`opengl-native.bin`: destination-width × destination-height × bytes-per-pixel
+raw little-endian pixels, with tight rows and the same logical row order as the
+capture. Its dimensions/format/hashes are in the JSON report. The captured-after
+pixels are comparison evidence only; they are not supplied to the shader.
+The report includes separate CPU/capture, OpenGL/capture and OpenGL/CPU checks.

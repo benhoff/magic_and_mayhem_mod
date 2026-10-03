@@ -87,6 +87,7 @@ Use `--renderer native --smoke-test` with the offscreen Qt backend.
 
 - `apps/qt-shell/`: UI, shared frame reader and OpenGL presentation.
 - `runtime/render/`: PE32 DirectDraw frame capture.
+- `renderer/`: native OpenGL drawing components and offline capture replay.
 - `runtime/shadow/`: PE32 pathfinding instrumentation.
 - `reconstruction/pathfinding/`: original engine models.
 - `tools/`: builds, staging, launches and verification.
@@ -96,3 +97,9 @@ and [shared frame format](../../research/formats/render-frame-stream.md).
 Qt interfaces: [QOpenGLWidget](https://doc.qt.io/qt-6/qopenglwidget.html),
 [foreign windows](https://doc.qt.io/qt-6/qwindow.html#fromWinId),
 [QProcess](https://doc.qt.io/qt-6/qprocess.html).
+
+The [native blit renderer](../../renderer/README.md) now executes captured
+opaque/source-keyed copies through OpenGL and compares native pixels. Run
+`./tools/replay-render-capture.py CAPTURE_DIRECTORY --backend opengl --headless`
+for that offline check. The shell's live viewport still presents original
+engine frames; routing live drawing through the new renderer is later work.

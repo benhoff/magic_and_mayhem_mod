@@ -32,6 +32,9 @@ def main():
     assert (sequence,width,height,pitch,format,status,count)==(4,4,2,16,1,1,2)
     assert data[64:96]==expected
     replay=load('render_replay','tools/replay-render-capture.py')
+    renderer_build=REPO/'working/build/renderer'
+    subprocess.run(['cmake','-S',str(REPO/'renderer'),'-B',str(renderer_build)],check=True)
+    subprocess.run(['cmake','--build',str(renderer_build),'--target','mnm-render-replay','--parallel','4'],check=True)
     draw_reports=[]
     for mode in ('fast','blt'):
         draw=root/mode;draw.mkdir();env['MNM_RENDER_CAPTURE_DIR']='Z:'+str(draw).replace('/','\\')
@@ -51,8 +54,10 @@ def main():
         comparison=replay.compare(captured,replay.replay(captured));assert comparison['matching']
         inventory=replay.summarize_events((draw/'events.bin').read_bytes())
         assert inventory['events']==8 and inventory['counts']['Lock']==1 and inventory['counts']['Unlock']==1
-        draw_reports.append({'operation':captured['operation'],'comparison':comparison,'inventory':inventory})
-        subprocess.run(['python3',str(REPO/'tools/replay-render-capture.py'),str(draw)],check=True)
+        subprocess.run(['python3',str(REPO/'tools/replay-render-capture.py'),str(draw),'--backend','opengl','--headless',
+                        '--gl-executable',str(renderer_build/'mnm-render-replay')],check=True)
+        draw_reports.append({'operation':captured['operation'],'comparison':comparison,'inventory':inventory,
+                             'opengl_replay_matches_capture_and_cpu':True})
     subprocess.run(['cmake','-S',str(REPO/'apps/qt-shell'),'-B',str(REPO/'working/build/qt-shell')],check=True)
     subprocess.run(['cmake','--build',str(REPO/'working/build/qt-shell'),'--parallel','4'],check=True)
     env['QT_QPA_PLATFORM']='xcb';env['LIBGL_ALWAYS_SOFTWARE']='1'

@@ -109,9 +109,11 @@ Staging-only validation created
 patched disposable executable and empty capture directory. The game was not
 started. The shell command above creates a fresh experiment when launched.
 
-Use the PPMs and caller addresses to classify the sample. Next implement the
-same small copy contract in the new OpenGL renderer and compare against this
-reference, then extend to selected CPU pixel-writing callers and sprite decoding.
+Use the PPMs and caller addresses to classify the sample. The same small copy
+contract is now implemented in the [native OpenGL renderer](opengl-blit-replay.md).
+Run replay with `--backend opengl --headless` to compare the shader result
+against both this reference and captured output. Selected CPU pixel-writing
+callers and sprite decoding remain later work.
 Input forwarding, full surface lifetime tracking, palette updates, clipping,
 effects, animation and complete in-game equivalence remain separate work.
 

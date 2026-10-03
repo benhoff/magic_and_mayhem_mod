@@ -150,3 +150,10 @@ also checks actual x86 Blt/BltFast hooks with before/after snapshots, negative
 pitch, row padding, busy-surface rejection/retry, preserved API results,
 old-interface unlock arguments and one-capture limits. Evidence and live command:
 [drawing inventory](../research/runtime/render-drawing-inventory.md).
+
+The new `renderer/` has its own CMake/CTest project. Its tests compare 196 native
+integer OpenGL draws with a CPU reference, verify capture parser agreement,
+detect poisoned captured output, reject malformed files and preserve a caller's
+Qt context. `./tools/test-render-bridge.py` also compares fresh x86 Wine captures
+through the OpenGL blitter before checking Qt frame presentation. Tests use
+isolated Xvfb and Mesa software rendering. See [renderer instructions](../renderer/README.md).
