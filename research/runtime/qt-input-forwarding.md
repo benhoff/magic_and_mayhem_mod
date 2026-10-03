@@ -30,9 +30,9 @@ slots:
 
 | API | IAT address |
 |---|---|
-| GetAsyncKeyState | `0x006c5204` |
-| GetCursorPos | `0x006c5210` |
-| GetKeyState | `0x006c5290` |
+| GetAsyncKeyState | `0x005c5204` |
+| GetCursorPos | `0x005c5210` |
+| GetKeyState | `0x005c5290` |
 
 Staging still checks the full executable hash and the original DirectDraw
 thunks. Before writing these slots, the input installer verifies all three
