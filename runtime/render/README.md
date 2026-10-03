@@ -83,7 +83,9 @@ snapshots go to the experiment's `lock-capture/`. Known primary RGB destinations
 now produce Qt frames after successful Unlock and supported reconstructed blits.
 Offscreen RGB Blt/BltFast copies also produce offline replay files. A complete opaque copy can also initialize a never-Locked destination using
 observed application descriptors. Observed two-buffer RGB Flip chains now publish owned backbuffer pixels.
-Indexed palettes and broader chains remain outstanding. See
+Complete indexed primary checkpoints now publish with observed 256-color palettes,
+and application palette updates recolor their retained indices. Indexed blits,
+indexed Flips and broader chains remain outstanding. See
 [format and lifecycle](../../research/formats/render-game-lock-capture.md).
 Run `./tools/test-render-lock-lifecycle.py` for the PE32 Wine lifecycle fixtures
 and `./tools/test-render-lock-blits.py` for independent CPU/OpenGL propagation
@@ -105,3 +107,7 @@ Locking the destination, then incremental copies through Qt/OpenGL. See
 Run `./tools/test-render-owned-flips.py` for two-buffer routing from application
 GetAttachedSurface and descriptor observations, without observer surface calls.
 See [Flip scope and evidence](../../research/runtime/opengl-owned-flips.md).
+
+Run `./tools/test-render-owned-palettes.py` for indexed primary snapshots and
+observed palette changes without observer calls. See
+[palette provenance and tests](../../research/runtime/opengl-owned-indexed.md).

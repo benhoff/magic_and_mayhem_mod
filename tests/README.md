@@ -193,3 +193,10 @@ failed Flips, explicit/aliased targets, unknown back pixels, incremental updates
 chain mutation, operation limits and conservative rejection. Independent native
 engine pixels must match ordered stream snapshots and Qt framebuffer readback.
 See [owned Flip evidence](../research/runtime/opengl-owned-flips.md).
+
+`./tools/test-render-owned-palettes.py` checks indexed primary capture and palette
+updates using independent synthetic engine indices/colors, ordered RGBA stream
+snapshots and Qt framebuffer readback. It verifies creation, aliases, partial
+entry coverage, reassignment, failures, nested mutation, limits, final Release,
+negative pitch and legacy Unlock, with exact application API call counts.
+See [owned indexed evidence](../research/runtime/opengl-owned-indexed.md).

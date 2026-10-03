@@ -12,7 +12,8 @@ forces observer readback off when this directory is configured. Use the Wine
 window for input. This is a bounded lifecycle experiment, not complete live
 presentation: supported offscreen RGB Blt/BltFast now propagate into bounded
 offline replay files. Reconstructed destinations with observed primary identity
-can also publish live frames; Flip presentation remains pending.
+can also publish live frames. Observed two-buffer RGB Flips are supported, and
+complete indexed primary checkpoints can publish with observed palette state.
 See [game-owned blits](../runtime/opengl-game-owned-blits.md).
 
 ## Lifecycle and acceptance
@@ -46,8 +47,8 @@ preventing reuse of an older pointer at the same object address.
 Captures require nonzero dimensions up to 2048x2048, 8/16/24/32-bit supported
 native formats, valid nonoverlapping RGB masks, and readable rows. Negative pitch
 and padding are normalized to tightly packed top-row-first bytes. Indexed bytes
-are retained without querying a palette; indexed color/palette association is a
-later chunk. Read-only and rectangular updates are also deferred.
+are retained without querying a palette. The [owned indexed extension](../runtime/opengl-owned-indexed.md)
+uses application palette calls to associate colors and publish complete primaries. Read-only and rectangular updates are also deferred.
 
 At most 16 committed snapshots and 64 MiB of committed plus pending pixel storage
 are allowed per process. Transient copies are freed after every Unlock attempt.
@@ -55,8 +56,9 @@ Limits and contention drop capture work, never the application's call.
 A primary RGB surface with explicitly returned DDSD_CAPS /
 DDSCAPS_PRIMARYSURFACE can publish a frame after successful Unlock or supported
 reconstructed blits, using the existing RGBA stream. Primary identity comes from
-a committed complete Lock checkpoint. Offscreen or indexed snapshots cannot publish guessed
-frames. Publication is bounded by the same capture limit.
+a committed complete Lock checkpoint or supported application metadata. Offscreen
+snapshots cannot publish; indexed primaries require separately observed complete
+palette state. Publication is bounded by the same capture limit.
 
 ## Snapshot file
 
@@ -94,13 +96,14 @@ failed QueryInterface with a nonnull output, unobserved aliases and address reus
 after final Release. The original Unlock poisons its buffer; exact output
 bytes prove copying before invalidation. Fixtures assert exactly one original
 Lock, original Unlock counts/arguments/results/LastError, no output on rejected
-locks and no offscreen/indexed primary frame. Evidence:
+locks and no offscreen/indexed primary frame without observed palette state. Evidence:
 `working/tests/render-lock-lifecycle/run-vhif07ea/report.json`.
 
 Confidence: confirmed synthetic lifecycle and ABI behavior. Real-game lifecycle
-captures and uninterrupted new-game play remain unvalidated. Unseeded primaries and Flip presentation,
-partial updates, indexed palettes and complete Qt gameplay presentation remain
-outstanding.
+captures and uninterrupted new-game play remain unvalidated. Subsequent chunks
+implement full opaque RGB initialization, observed two-buffer RGB Flips and
+indexed primary palette updates. Partial CPU locks, indexed blit/Flip propagation
+and complete Qt gameplay presentation remain outstanding.
 
 ## Lifecycle rejection diagnostics
 
@@ -159,3 +162,9 @@ RGBA stream and adds no snapshot format. Diagnostic reasons are `flip_attachment
 `flip_untracked`, `flip_unsupported`, `flip_limit`, `flip_ready`, `flip_failed`,
 `flip_invalidated`, `flip_presented` and `flip_presentation_skipped`. Repeated
 identical diagnostics are deduplicated; their count is not an operation count.
+
+[Owned indexed presentation](../runtime/opengl-owned-indexed.md) adds no binary
+snapshot format. Palette state is separate from `MNMLOCK1` index bytes. Additional
+diagnostic reasons are `indexed_presented`, `palette_attached`, `palette_caps`,
+`palette_caps_rejected`, `palette_entries`, `palette_invalidated` and
+`palette_ambiguous`. Indexed blit/Flip propagation is still rejected.

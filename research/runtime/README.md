@@ -35,3 +35,6 @@ confidence, and whether it remains stable across launches.
 
 - [Owned RGB Flip routing](opengl-owned-flips.md): observed two-buffer chains,
   native pixel rotation and Qt publication without observer COM calls.
+
+- [Owned indexed primary presentation](opengl-owned-indexed.md): raw Lock/Unlock
+  indices, observed 256-color palettes and recoloring without observer calls.
