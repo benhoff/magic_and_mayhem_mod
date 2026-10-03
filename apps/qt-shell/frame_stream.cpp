@@ -37,6 +37,10 @@ QString FrameStream::diagnostic() const {
     case 7:return "DirectDraw initialized; waiting for the first captured primary-surface frame.";
     case 8:{const auto result=qFromLittleEndian(__atomic_load_n(reinterpret_cast<const quint32*>(mapping_+44),__ATOMIC_ACQUIRE));
         return QString("DirectDrawCreate failed (HRESULT 0x%1). Check the Wine graphics log.").arg(result,8,16,QLatin1Char('0'));}
+    case 11:return "Wine is enumerating display adapters before DirectDrawCreate. Check the Wine graphics log.";
+    case 12:return "Display adapter enumeration completed; waiting for the game to create DirectDraw.";
+    case 13:{const auto result=qFromLittleEndian(__atomic_load_n(reinterpret_cast<const quint32*>(mapping_+52),__ATOMIC_ACQUIRE));
+        return QString("Display adapter enumeration failed (HRESULT 0x%1).").arg(result,8,16,QLatin1Char('0'));}
     case 10:return "DirectDrawCreate returned without an intercepted drawing interface. Check bridge compatibility.";
     case 9:return "Frame bridge could not install the guarded DirectDraw hook. No frames can be captured.";
     default:return "Unknown frame bridge status.";

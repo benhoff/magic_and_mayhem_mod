@@ -15,11 +15,13 @@ Wine writer to native Qt/OpenGL reader verified; real engine capture pending.
 | 20,24 | DWORDs | Width and height, each 1..2048 |
 | 28 | DWORD | Row byte stride, exactly width * 4 |
 | 32 | DWORD | Pixel format 1 = RGBA8888 |
-| 36 | DWORD | Status: 0 not loaded; 1 frame published; 2 lock failed; 3 rejected surface; 4 DLL loaded; 5 hook armed; 6 inside DirectDrawCreate; 7 drawing interface intercepted; 8 DirectDrawCreate failed; 9 hook guard/install failed; 10 drawing interface interception failed |
+| 36 | DWORD | Status: 0 not loaded; 1 frame published; 2 lock failed; 3 rejected surface; 4 DLL loaded; 5 hook armed; 6 inside DirectDrawCreate; 7 drawing interface intercepted; 8 DirectDrawCreate failed; 9 hook guard/install failed; 10 drawing interface interception failed; 11 enumerating display adapters; 12 enumeration completed; 13 enumeration failed |
 | 40 | DWORD | Count of published frames |
 | 44 | DWORD | Last DirectDrawCreate HRESULT (unsigned bit pattern) |
 | 48 | DWORD | Number of intercepted DirectDrawCreate calls |
-| 52..63 | bytes | Reserved zeros |
+| 52 | DWORD | Last adapter-enumeration HRESULT |
+| 56 | DWORD | Count of intercepted enumeration calls |
+| 60 | DWORD | Last enumeration kind: 1 EnumerateA, 2 EnumerateExA |
 | 64 | width * height * 4 bytes | Most recently published frame |
 
 Qt creates a unique sparse file before launch. The Windows bridge opens its
@@ -47,3 +49,12 @@ Qt to report initialization that has not returned. Status 7/8/10 is published
 after the HRESULT. The original call's arguments, HRESULT and LastError are
 preserved. Qt shows startup diagnostics after ten seconds without a frame and
 shows hard failures immediately. Successful frame capture restores status 1.
+
+The adapter extension observes the imported DirectDrawEnumerateA and the
+DirectDrawEnumerateExA pointer returned by the pinned executable's GetProcAddress
+slot. It substitutes only that named export from the already loaded ddraw.dll;
+ordinals, missing exports and unrelated lookups return their original pointers.
+Enumeration callbacks, contexts, flags, HRESULT and LastError are forwarded.
+Status 11 is visible while the original API (including application callbacks)
+is executing; 12/13 and the last enumeration result are published afterward.
+These states identify a stage, not the particular blocking instruction.

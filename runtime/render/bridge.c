@@ -238,6 +238,7 @@ static i32 WIN create_draw(void* guid,void** result,void* outer){
     __atomic_store_n(stream+9,state,__ATOMIC_RELEASE);
     SetLastError(error);return status;
 }
+#include "adapter_startup.h"
 __declspec(dllexport) void RenderAnchor(void){}
 #ifdef MNM_RENDER_SELFTEST
 __declspec(dllexport) void WIN RenderInstallForTest(void* surface,u32 kind){install_table(surface,kind);}
@@ -264,8 +265,12 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     /* Staging verifies full image SHA-256. Runtime also guards its import thunk. */
     static const u8 thunk[6]={0xff,0x25,0x14,0x50,0x5c,0};
     if(base!=0x400000 || !readable((void*)(base+0x19755a),6) || !same((void*)(base+0x19755a),thunk,6)){stream[9]=9;return 1;}
-    void** iat=(void**)(base+0x1c5014);
-    if(!readable(iat,4) || !VirtualProtect(iat,4,4,&protection)){stream[9]=9;return 1;}
-    original_create=(CreateDraw)*iat;*iat=(void*)&create_draw;
-    u32 ignored;VirtualProtect(iat,4,protection,&ignored);__atomic_store_n(stream+9,5,__ATOMIC_RELEASE);return 1;
+    static const u8 enum_thunk[6]={0xff,0x25,0x10,0x50,0x5c,0};
+    if(!readable((void*)(base+0x197560),6) || !same((void*)(base+0x197560),enum_thunk,6)){stream[9]=9;return 1;}
+    void** iat=(void**)(base+0x1c5010);
+    if(!readable(iat,0xc8) || !VirtualProtect(iat,0xc8,4,&protection)){stream[9]=9;return 1;}
+    original_enumerate=(EnumerateDraw)iat[0];original_create=(CreateDraw)iat[1];
+    original_proc_address=(ProcAddress)iat[0x31];
+    iat[0]=(void*)&enumerate_draw;iat[1]=(void*)&create_draw;iat[0x31]=(void*)&proc_address;
+    u32 ignored;VirtualProtect(iat,0xc8,protection,&ignored);__atomic_store_n(stream+9,5,__ATOMIC_RELEASE);return 1;
 }
