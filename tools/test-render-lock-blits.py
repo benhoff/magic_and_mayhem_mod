@@ -65,10 +65,56 @@ def cpu_replay(data):
     return output
 
 
+def check_primary_frames(case, mode, count, unknown):
+    bits = 24 if mode == 'rgb24' else 32 if mode == 'rgb32' else 16
+    masks = (0xf800, 0x7e0, 0x1f) if bits == 16 else (0xff0000, 0xff00, 0xff)
+    def rgba(native):
+        out = bytearray()
+        for at in range(0, len(native), bits // 8):
+            value = int.from_bytes(native[at:at + bits // 8], 'little')
+            for mask in masks:
+                low = mask & -mask
+                out.append(((value & mask) // low) * 255 // (mask // low))
+            out.append(255)
+        return bytes(out)
+    primary_c = mode in ('chain', 'update', 'rgb24', 'rgb32', 'budget')
+    seed_ids = {3 if primary_c else 1 if mode == 'untracked' else 2}
+    if mode == 'reseed':
+        seed_ids.add(4)
+    draw_ids = {index + (mode in ('failed', 'reseed')) for index in range(1, count + 1)}
+    if primary_c:
+        draw_ids &= set(range(2, 17)) if mode == 'budget' else {3 if mode == 'update' else 2}
+    last_counter, last_pixels = 0, b''
+    events = (case / 'frame-events.bin').read_bytes()
+    for seed, index in struct.iter_unpack('<II', events):
+        prefix = 'seed-frame' if seed else 'draw-frame'
+        raw = (case / f'{prefix}-{index:08x}.bin').read_bytes()
+        header = struct.unpack('<16I', raw[:64])
+        publish = not unknown and index in (seed_ids if seed else draw_ids)
+        expected_counter = last_counter + int(publish)
+        assert header[10] == expected_counter and header[4] == expected_counter * 2, (mode, seed, index, header)
+        if publish:
+            native = (case / f'seed-frame-{index:08x}.raw' if seed else case / f'original-{index:08x}.bin').read_bytes()
+            last_pixels = rgba(native)
+        assert raw[64:] == last_pixels, (mode, seed, index, 'RGBA differs from independent engine pixels')
+        if expected_counter:
+            assert header[5:10] == (4, 3, 16, 1, 1), (mode, header)
+        last_counter = expected_counter
+    with (case / 'frame.bin').open('rb') as f:
+        final = f.read(64 + len(last_pixels))
+    assert final == raw and last_counter == (0 if unknown else len(seed_ids) + len(draw_ids))
+    return last_counter
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--case", action="append", help="Run only named fixtures")
-    selected = parser.parse_args().case
+    parser.add_argument("--primary", action="store_true", help="Also validate live primary frame publication and Qt readback")
+    parser.add_argument("--unknown-primary-caps", action="store_true", help="Omit returned caps provenance; no frame may publish")
+    args = parser.parse_args()
+    if args.unknown_primary_caps and not args.primary:
+        parser.error("--unknown-primary-caps requires --primary")
+    selected = args.case
     dll = load('lock_blit_build', 'tools/build-render-bridge.py').build(True)
     stage = load('lock_blit_stage', 'tools/prepare-shadow-experiment.py')
     parent = REPO / 'working/tests/render-lock-blits'
@@ -77,11 +123,34 @@ def main():
     build = REPO / 'working/build/renderer'
     subprocess.run(['cmake', '-S', str(REPO / 'renderer'), '-B', str(build)], check=True)
     subprocess.run(['cmake', '--build', str(build), '--target', 'mnm-render-commands', '--parallel', '4'], check=True)
+    qt_build = REPO / 'working/build/qt-shell'
+    if args.primary:
+        subprocess.run(['cmake', '-S', str(REPO / 'apps/qt-shell'), '-B', str(qt_build)], check=True)
+        subprocess.run(['cmake', '--build', str(qt_build), '--target', 'mnm-qt-shell', '--parallel', '4'], check=True)
+    qt_layouts = []
+    if args.primary:
+        layout_env = os.environ.copy()
+        layout_env.update(QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1')
+        for width, height in ((800, 600), (129, 257)):
+            layout = root / f'layout-{width}x{height}.bin'
+            header = bytearray(64)
+            header[:8] = b'MNMGL001'
+            struct.pack_into('<9I', header, 8, 1, 64, 2, width, height, width * 4, 1, 1, 1)
+            pixels = bytes(channel for y in range(height) for x in range(width)
+                           for channel in ((x * 17 + y * 11) & 255, (x * 3 + y * 19) & 255, (x ^ y) & 255, 255))
+            with layout.open('wb') as f:
+                f.write(header)
+                f.write(pixels)
+                f.truncate(64 + 2048 * 2048 * 4)
+            result = subprocess.run(['xvfb-run', '-a', str(qt_build / 'mnm-qt-shell'), '--stream-test', str(layout)],
+                                    env=layout_env, capture_output=True, text=True, timeout=20)
+            assert result.returncode == 0, (width, height, result.stderr)
+            qt_layouts.append({'width': width, 'height': height, 'qt_readback': True})
     reports = []
     counts = {'chain': 2, 'keyed': 1, 'alias': 1, 'failed': 1, 'update': 3,
               'rgb24': 2, 'rgb32': 2, 'reseed': 1, 'key-failed': 1, 'budget': 16,
               'unsupported': 0, 'self': 0, 'untracked': 0, 'clipper': 0, 'restore': 0,
-              'key-removed': 0, 'release': 0, 'bounds': 0, 'subrect': 1, 'reentrant': 0, 'created': 1, 'alias-conflict': 0, 'unlock-restore': 0}
+              'key-removed': 0, 'release': 0, 'bounds': 0, 'subrect': 1, 'reentrant': 0, 'created': 1, 'alias-conflict': 0, 'unlock-restore': 0, 'destination-alias': 1}
     if selected:
         assert set(selected) <= counts.keys(), selected
         counts = {mode: counts[mode] for mode in selected}
@@ -101,6 +170,10 @@ def main():
                    MNM_LOCK_BLIT_SELFTEST=mode, MNM_RENDER_STREAM='Z:' + str(frame).replace('/', '\\'),
                    MNM_RENDER_LOCK_CAPTURE_DIR='Z:' + str(capture).replace('/', '\\'),
                    QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1')
+        if args.primary:
+            env['MNM_LOCK_BLIT_PRIMARY_SELFTEST'] = '1'
+            if args.unknown_primary_caps:
+                env['MNM_LOCK_BLIT_PRIMARY_UNKNOWN_SELFTEST'] = '1'
         with (case / 'wine.log').open('w') as log:
             subprocess.run(['wine', str(case / 'selftest.exe')], cwd=case, env=env,
                            stdout=log, stderr=log, check=True, timeout=30)
@@ -122,7 +195,15 @@ def main():
             replays.append(report)
         with frame.open('rb') as f:
             header = struct.unpack('<16I', f.read(64))
-        assert header[10] == 0, (mode, 'offscreen copies must not publish live frames')
+        if args.primary:
+            frames = check_primary_frames(case, mode, count, args.unknown_primary_caps)
+            if frames:
+                qt = subprocess.run(['xvfb-run', '-a', str(qt_build / 'mnm-qt-shell'), '--stream-test', str(frame)],
+                                    env=env, capture_output=True, text=True, timeout=20)
+                assert qt.returncode == 0, (mode, qt.stderr)
+        else:
+            frames = 0
+            assert header[10] == 0, (mode, 'offscreen copies must not publish live frames')
         reasons = {line.split()[0] for line in (capture / 'lifecycle.log').read_text().splitlines()}
         if count:
             assert 'blit_propagated' in reasons
@@ -130,10 +211,10 @@ def main():
             assert 'blit_invalidated' in reasons
         if mode == 'failed':
             assert 'blit_failed' in reasons
-        reports.append({'mode': mode, 'commands': count, 'replays': replays, 'reasons': sorted(reasons)})
+        reports.append({'mode': mode, 'commands': count, 'replays': replays, 'primary_frames': frames, 'qt_readback': args.primary and frames > 0, 'reasons': sorted(reasons)})
         print(f'Lock blit fixture {mode}: passed', flush=True)
     (root / 'report.json').write_text(json.dumps({'origin': 'synthetic_game_owned_blits',
-        'architecture': 'PE32 i386', 'dll_sha256': hashlib.sha256(dll.read_bytes()).hexdigest(),
+        'architecture': 'PE32 i386', 'primary_publication': args.primary, 'unknown_primary_caps': args.unknown_primary_caps, 'qt_layouts': qt_layouts, 'dll_sha256': hashlib.sha256(dll.read_bytes()).hexdigest(),
         'fixtures': reports}, indent=2) + '\n')
     print(f'Game-owned blit propagation passed: {root}')
 

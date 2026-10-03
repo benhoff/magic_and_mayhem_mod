@@ -71,7 +71,9 @@ PRESENT destination, DESTROY both, END. Inputs contain only owned checkpoint
 pixels. The CHECK is a reconstruction result, **not an original-driver readback**.
 It establishes agreement of the CPU propagation and independent OpenGL replay;
 real-game driver equivalence still requires separate evidence. PRESENT is an
-offline replay instruction and does not publish a live Qt primary frame.
+offline replay instruction. The following [primary routing chunk](opengl-game-owned-primary.md)
+now also publishes supported reconstructed destinations whose primary identity
+was established by a complete game-owned Lock/Unlock checkpoint.
 
 Replay a completed file without the game:
 

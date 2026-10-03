@@ -24,3 +24,7 @@ confidence, and whether it remains stable across launches.
 - [Game-owned RGB blit propagation](opengl-game-owned-blits.md): retained Lock/Unlock
   checkpoints, bounded Blt/BltFast replay without observer surface locks, and
   independent synthetic x86/CPU/OpenGL checks.
+
+- [Game-owned primary presentation](opengl-game-owned-primary.md): known primary
+  RGB blits reach the shared frame stream and Qt/OpenGL viewport, validated
+  offline with independent engine pixels and per-operation frame counters.
