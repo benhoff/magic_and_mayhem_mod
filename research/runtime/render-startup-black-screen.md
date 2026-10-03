@@ -321,3 +321,42 @@ separation of offscreen/indexed snapshots from primary frame publication.
 The mode is bounded diagnostic capture; full Blt/Flip-based presentation remains
 unimplemented. Real-game validation is pending; do not describe this as an
 end-to-end renderer fix. See `research/formats/render-game-lock-capture.md`.
+
+## Live startup blocker: CD-audio error dialog
+
+User lifecycle run `run-5bwpx2m5` has status 5, zero DirectDrawCreate and enumeration
+calls, no lock snapshots and no failure log. The user confirms the separate Wine
+window also has no menu. There is one live game process, Wine PID 0x138; no
+surface lifecycle callback has been reached in this run.
+
+A PE32 context helper used OpenProcess/ReadProcessMemory and balanced per-thread
+SuspendThread/GetThreadContext/ResumeThread calls, without debugger attachment or
+a remote interrupt thread. The main thread's frame chain ends at return address
+`0x004e984c`. Static code immediately before that is MessageBoxA through IAT
+`0x005c520c`, called at `0x004e9846`; this precedes drawing setup at `0x004e986a`.
+Reading the retained MessageBox arguments yields owner 0, text `0x005fd2a0`,
+caption `0x02a80310`, flags `0x00040030`. The exact strings are:
+
+- Caption: `CDROM ERROR !`
+- Text: `There is an undetectable problem in loading the specified device driver.`
+
+Evidence: `run-5bwpx2m5/thread-contexts.txt` and
+`thread-contexts-message.txt`; helper source/build is in
+`working/tests/live-thread-snapshot/`. It did not dismiss the dialog or restart
+the game. This confirms a modal startup dialog, rather than a lifecycle capture
+stall. It does not prove every earlier zero-call launch had the same dialog.
+
+The source prefs enable `[SOUND] CDMusicEnabled=TRUE`. Render staging now sets
+that key to FALSE in the disposable plaintext and encrypted preference copies,
+validates both before writing, verifies encoded round trips and records hashes
+plus `cd_music_disabled: true` in the manifest. It uses the configuration path
+rather than suppressing MessageBox errors or patching another instruction.
+This avoids attempted CD music initialization in new render experiments. Existing
+experiments retain their old preferences; restart into a new experiment to use it.
+
+Validation: three staged-media preference tests pass, covering both file formats,
+section scoping, preservation of other settings/comments and rejection without
+partial writes. Stage-only experiment `run-cl4gjl1v` verifies CD music disabled,
+lock capture enabled/readback disabled, and unchanged source preference hash.
+No automatic real-game launch was performed; successful menu startup with this
+change still requires the user's retry.

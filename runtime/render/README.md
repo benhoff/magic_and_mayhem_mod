@@ -84,3 +84,8 @@ RGB surfaces can produce Qt frames. Offscreen Blt/Flip propagation and indexed
 palette association remain outstanding. See
 [format and lifecycle](../../research/formats/render-game-lock-capture.md).
 Run `./tools/test-render-lock-lifecycle.py` for the PE32 Wine lifecycle fixtures.
+
+Disposable render installations disable CD music in staged `[SOUND]` preferences
+to avoid the confirmed pre-DirectDraw `CDROM ERROR !` driver dialog. The manifest
+records this edit and its hashes; plaintext/encrypted copies are both handled.
+This does not change the source installation's preferences.
