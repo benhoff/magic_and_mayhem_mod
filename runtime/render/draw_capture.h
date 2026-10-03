@@ -17,6 +17,7 @@ static u32 draw_attempts,draw_complete,event_count;
 static int write_all(HANDLE file,const void* data,u32 length){
     u32 written=0;return WriteFile(file,data,length,&written,0) && written==length;
 }
+#include "failure_diagnostics.h"
 static void observer_release(void* object){
     struct Table* t=lookup(object);
     ((ReleaseObject)(t?t->original[2]:(*(void***)object)[2]))(object);
@@ -75,7 +76,8 @@ static int distinct_surfaces(void* a,struct Table* ta,void* b,struct Table* tb){
 static void free_snapshot(struct Snapshot* s){if(s->data)HeapFree(GetProcessHeap(),0,s->data);s->data=0;}
 static int snapshot(void* object,struct Table* t,const u32* expected,struct Snapshot* s){
     u32 d[31];zero(d,sizeof(d));d[0]=t->kind>=14?124:108;
-    if(((Lock)t->original[25])(object,0,d,0x4810,0)<0)return 0;
+    i32 lock_result=((Lock)t->original[25])(object,0,d,0x4810,0);
+    if(lock_result<0){render_failure("observer_lock",lock_result,object,t->kind,0x4810);return 0;}
     i32 pitch=(i32)d[4];u8* pixels=(u8*)d[9];int ok=0;
     if(d[2]!=expected[2] || d[3]!=expected[3] || d[19]!=expected[19] ||
        !same(d+21,expected+21,16) || !supported_format(d))goto done;
@@ -99,7 +101,9 @@ static int snapshot(void* object,struct Table* t,const u32* expected,struct Snap
     }
     ok=1;
 done:
-    if(((Unlock)t->original[32])(object,t->kind>=14?0:pixels)<0)ok=0;
+    i32 unlock_result=((Unlock)t->original[32])(object,t->kind>=14?0:pixels);
+    render_failure("observer_unlock",unlock_result,object,t->kind,0);
+    if(unlock_result<0)ok=0;
     if(!ok)free_snapshot(s);return ok;
 }
 static void discard_draw(struct DrawCapture* c){
