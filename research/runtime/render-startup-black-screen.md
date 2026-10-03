@@ -360,3 +360,23 @@ partial writes. Stage-only experiment `run-cl4gjl1v` verifies CD music disabled,
 lock capture enabled/readback disabled, and unchanged source preference hash.
 No automatic real-game launch was performed; successful menu startup with this
 change still requires the user's retry.
+
+## Successful gameplay, but no lifecycle snapshots
+
+The user confirms menu/new-game startup works in `run-e5utrmvj`. Its manifest
+has CD music disabled, lock capture enabled and observer readback disabled.
+At inspection it has one successful DirectDrawCreate, status 7, zero Qt frames,
+no `lock-*.bin` snapshots and no surface-failure file. This establishes gameplay
+progress and absence of recorded failures, not successful real-game capture.
+The game was no longer running when a subsequent descriptor inspection was
+attempted; no debugger attachment was performed.
+
+The next step is to observe rejection reasons before implementing blit
+propagation. Static code uses different interface fields in some surface wrapper
+paths; cross-interface matching is a hypothesis, not a proven explanation for
+the zero snapshots. The bridge now writes bounded successful/rejected lifecycle
+metadata to `lock-capture/lifecycle.log`, including descriptor size/flags,
+format/masks, owner/current thread and the supplied Unlock argument. A fresh
+normal `--capture-locks` launch will distinguish interface/argument matching from
+format, partial/read-only locks, or other rejected cases. No extra surface locks
+or interactive debugger commands are required.

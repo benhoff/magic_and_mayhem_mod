@@ -90,3 +90,40 @@ Confidence: confirmed synthetic lifecycle and ABI behavior. Real-game lifecycle
 captures and uninterrupted new-game play remain unvalidated. Blit/flip propagation,
 partial updates, indexed palettes and complete Qt gameplay presentation remain
 outstanding.
+
+## Lifecycle rejection diagnostics
+
+New lock-capture experiments also record `lock-capture/lifecycle.log` (its path
+is `lock_lifecycle_log` in the manifest). This explains why an application lock
+was accepted or rejected, and why its Unlock produced no snapshot. It performs
+no additional COM or surface-lock calls. It preserves LastError. Records are
+nonblocking, deduplicated and bounded to 128 total, with at most four distinct
+records per reason, so repeated successful operations cannot consume all space
+before a rejection.
+
+Each text line has a reason followed by 19 eight-digit hexadecimal fields:
+
+```text
+reason object current_thread kind argument lock_flags HRESULT owner_thread
+       descriptor_size descriptor_flags width height pitch pixel_pointer
+       pixel_format_flags bits red_mask green_mask blue_mask surface_caps
+```
+
+`argument` is the supplied rectangle pointer on Lock or Unlock's argument.
+Descriptor fields are zero when unavailable. Pitch is the raw signed 32-bit
+value represented in hex. Thread/pointer values are launch-specific.
+
+Lock reasons: `lock_accepted`, `lock_failed`, `lock_partial`, `lock_readonly`,
+`lock_flags`, `lock_descriptor`, `lock_capacity`.
+Unlock reasons: `unlock_unmatched`, `unlock_owner`, `unlock_argument`,
+`unlock_layout`, `unlock_masks`, `unlock_memory`, `unlock_limit`,
+`unlock_allocation`, `unlock_copied`, `unlock_failed`, `unlock_succeeded`.
+The copied event occurs before the original Unlock; the succeeded/failed event
+occurs afterward. Success without a copied event is not evidence of a snapshot.
+Records can be dropped under contention or file errors, so absence is not proof
+that no application call occurred. Contention conservatively invalidates capture
+provenance rather than reading a pointer whose lifecycle could have been missed.
+
+The nine PE32 fixtures now assert the expected reasons, including rejected
+read-only/partial/invalid-mask locks and a failed Unlock followed by success,
+while retaining their pixel-poisoning and unchanged-ABI checks.
