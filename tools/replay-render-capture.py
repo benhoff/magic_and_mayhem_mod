@@ -4,8 +4,10 @@ import argparse
 from collections import Counter
 import hashlib
 import json
+import os
 from pathlib import Path
 import struct
+import subprocess
 import tempfile
 
 REPO = Path(__file__).resolve().parent.parent
@@ -129,14 +131,50 @@ def summarize_events(data):
             'scope': 'First 2048 observed calls; concurrent/reentrant events may be skipped; observer locks excluded'}
 
 
+def render_gl(path, output, executable=None, headless=False):
+    if executable is None:
+        build = REPO/'working/build/renderer'
+        subprocess.run(['cmake', '-S', str(REPO/'renderer'), '-B', str(build)], check=True)
+        subprocess.run(['cmake', '--build', str(build), '--target', 'mnm-render-replay', '--parallel', '4'], check=True)
+        executable = build/'mnm-render-replay'
+    executable = executable.resolve()
+    destination = output/'opengl-native.bin'
+    command = [str(executable), str(path.resolve()), '--output', str(destination)]
+    env = os.environ.copy()
+    if headless:
+        command = ['xvfb-run', '-a', *command]
+        env.update(QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1')
+    result = subprocess.run(command, env=env, capture_output=True, text=True, timeout=45)
+    (output/'opengl.log').write_text(result.stderr)
+    (output/'opengl-result.json').write_text(result.stdout)
+    if result.returncode:
+        raise ValueError(f'OpenGL renderer failed ({result.returncode}); see {output / "opengl.log"} and opengl-result.json')
+    metadata = json.loads(result.stdout)
+    if metadata.get('rendered') is not True:
+        raise ValueError('OpenGL renderer did not report completed rendering')
+    if destination.stat().st_size > 2048*2048*4:
+        raise ValueError('Oversized OpenGL output')
+    pixels = destination.read_bytes()
+    if hashlib.sha256(pixels).hexdigest() != metadata.get('output_sha256'):
+        raise ValueError('OpenGL output hash mismatch')
+    metadata['binary_sha256'] = hashlib.sha256(executable.read_bytes()).hexdigest()
+    return pixels, metadata
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('capture', type=Path, help='blit-0001.bin or its draw-capture directory')
+    parser.add_argument('--backend', choices=('cpu', 'opengl'), default='cpu')
+    parser.add_argument('--gl-executable', type=Path, help='Use this existing renderer build instead of building it')
+    parser.add_argument('--headless', action='store_true', help='Run OpenGL under isolated Xvfb with Mesa software rendering')
     args = parser.parse_args()
+    if args.backend != 'opengl' and (args.gl_executable or args.headless):
+        parser.error('--gl-executable and --headless require --backend opengl')
     path = args.capture / 'blit-0001.bin' if args.capture.is_dir() else args.capture
     parent = REPO/'working/experiments/render-replay'; parent.mkdir(parents=True, exist_ok=True)
     output = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
-    report = {'capture': str(path.resolve()), 'scope': 'Native opaque/source-key copy reference, not a complete renderer'}
+    report = {'capture': str(path.resolve()), 'backend': args.backend,
+              'scope': 'Native opaque/source-key copy, not a complete renderer'}
     status = 2
     try:
         events = path.parent/'events.bin'
@@ -149,12 +187,21 @@ def main():
         data = path.read_bytes(); capture = decode(data); actual = replay(capture)
         report.update({key: value for key, value in capture.items() if not isinstance(value, bytes)})
         report['capture_sha256'] = hashlib.sha256(data).hexdigest()
+        if args.backend == 'opengl':
+            reference = actual
+            report['cpu_comparison'] = compare(capture, reference)
+            actual, report['opengl'] = render_gl(path, output, args.gl_executable, args.headless)
+            if report['opengl'].get('capture_sha256') != report['capture_sha256']:
+                raise ValueError('Capture changed between CPU and OpenGL reads')
+            report['opengl_vs_cpu'] = compare(dict(capture, after=reference), actual)
+            (output/'cpu.ppm').write_bytes(ppm(capture, reference))
         report['comparison'] = compare(capture, actual)
         for name, pixels, source in [('source', capture['source'], True), ('before', capture['before'], False),
                                      ('captured', capture['after'], False), ('replayed', actual, False)]:
             (output/(name+'.ppm')).write_bytes(ppm(capture, pixels, source))
-        status = 0 if report['comparison']['matching'] else 1
-    except (ValueError, OSError) as error:
+        matching = report['comparison']['matching'] and report.get('opengl_vs_cpu', {}).get('matching', True)
+        status = 0 if matching else 1
+    except (ValueError, OSError, subprocess.SubprocessError) as error:
         report['inconclusive'] = str(error)
     (output/'report.json').write_text(json.dumps(report, indent=2) + '\n')
     print(f'Report: {output / "report.json"}')

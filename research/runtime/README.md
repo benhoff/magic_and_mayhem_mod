@@ -16,3 +16,5 @@ confidence, and whether it remains stable across launches.
 - [Qt/OpenGL presentation](opengl-presentation.md): PE32 frame capture and native viewport.
 - [Drawing inventory and replay](render-drawing-inventory.md): build-specific
   surface wrappers and bounded opaque/source-keyed copy evidence.
+- [OpenGL blit replay](opengl-blit-replay.md): native integer shader copies,
+  three-way pixel comparison and synthetic x86 capture validation.
