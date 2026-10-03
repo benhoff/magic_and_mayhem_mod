@@ -12,8 +12,9 @@ DDSCAPS_PRIMARYSURFACE (`0x200`). The primary bit alone, without the descriptor'
 caps-valid flag, does not establish identity. New checkpoints replace this
 provenance; aliases resolve through successful application QueryInterface calls.
 Conflicting aliases, final Release, capture epochs and new CreateSurface objects
-retain the previous conservative invalidation rules. CreateSurface alone does
-not invent primary pixels or caps provenance in this chunk.
+retain the previous conservative invalidation rules. The subsequent
+[bootstrap chunk](opengl-primary-bootstrap.md) also accepts explicit application
+descriptors as shape and identity provenance, without inventing initial pixels.
 
 After a supported successful Blt/BltFast, the tracker verifies source/destination
 generations, retains the reconstructed complete destination, and publishes RGBA
@@ -43,13 +44,11 @@ After a failed or unsupported draw, or after the budget expires, Qt keeps its
 last complete frame; its counter does not advance. Flip-based presentation,
 indexed palette handling and actual frame boundaries remain separate work.
 
-A primary that has never supplied a complete supported Lock checkpoint cannot
-receive reconstructed partial blits yet. A future full opaque overwrite can
-establish all its pixels if dimensions, format and primary identity are known
-from observed application metadata. That initialization, support for sources
-larger than the current 256x256 propagation contract, and subsequent incremental
-updates are necessary before claiming coverage of the observed 800x600 game
-surfaces. Actual game compatibility remains unvalidated.
+The subsequent [bootstrap chunk](opengl-primary-bootstrap.md) initializes a
+never-Locked destination from a complete opaque overwrite and observed application
+metadata. Sources up to 2048x2048 are supported within the existing budgets;
+800x600 initialization and incremental updates have synthetic coverage. Actual
+game compatibility remains unvalidated.
 
 ## Offline validation
 

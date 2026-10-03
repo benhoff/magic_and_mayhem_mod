@@ -147,4 +147,9 @@ pixels are reconstructed output rather than original-engine readbacks. See
 [provenance, limits and tests](../runtime/opengl-game-owned-blits.md).
 
 See [primary routing and offline tests](../runtime/opengl-game-owned-primary.md)
-for publication conditions and the remaining initialization boundary.
+for publication conditions. The [bootstrap extension](../runtime/opengl-primary-bootstrap.md)
+adds application descriptor metadata and complete opaque initialization; its
+synthetic zero destination-before image is not original-driver pixel evidence.
+Additional diagnostic reasons are `surface_metadata`, `surface_metadata_failed`,
+`surface_metadata_rejected`, `blit_bootstrap_ready`, `blit_initialized` and
+`blit_incomplete_initialization`.

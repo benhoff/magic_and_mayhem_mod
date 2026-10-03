@@ -28,3 +28,7 @@ confidence, and whether it remains stable across launches.
 - [Game-owned primary presentation](opengl-game-owned-primary.md): known primary
   RGB blits reach the shared frame stream and Qt/OpenGL viewport, validated
   offline with independent engine pixels and per-operation frame counters.
+
+- [Primary bootstrap from application descriptors](opengl-primary-bootstrap.md):
+  never-Locked RGB initialization by complete opaque copies, with 800x600 offline
+  x86/CPU/OpenGL/Qt validation.
