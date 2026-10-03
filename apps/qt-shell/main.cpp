@@ -1,6 +1,7 @@
 #include "window_host.hpp"
 #include "gl_viewport.hpp"
 #include "frame_stream.hpp"
+#include "input_forwarder.hpp"
 #include "blit.hpp"
 #include "commands.hpp"
 #include <QFile>
@@ -36,7 +37,7 @@ public:
         layout_->setContentsMargins(0,0,0,0);viewport_->setMinimumSize(800,600);
         placeholder_=new QLabel("Launch the game to open its viewport.",viewport_);
         placeholder_->setAlignment(Qt::AlignCenter);layout_->addWidget(placeholder_);setCentralWidget(viewport_);
-        if(opengl_){gl_=new GlViewport(viewport_);layout_->addWidget(gl_);gl_->hide();}
+        if(opengl_){gl_=new GlViewport(viewport_);layout_->addWidget(gl_);gl_->hide();input_=std::make_unique<InputForwarder>(*gl_,host_);}
         auto* toolbar=addToolBar("Game");toolbar->setMovable(false);
         launch_=new QPushButton("Launch game",this);toolbar->addWidget(launch_);
         check_=new QPushButton("Check installation",this);toolbar->addWidget(check_);
@@ -62,12 +63,13 @@ public:
             finished();statusBar()->showMessage(QString("Launcher exited with status %1.").arg(code));
         });
         poll_.setInterval(250);connect(&poll_,&QTimer::timeout,this,[this]{discover();});
+        inputTimer_.setInterval(50);connect(&inputTimer_,&QTimer::timeout,this,[this]{if(input_)input_->heartbeat();});
         frames_.setInterval(16);connect(&frames_,&QTimer::timeout,this,[this]{
             if(!stream_)return;
             if(!gl_->error().isEmpty()){frames_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
             auto frame=stream_->nextFrame();
             if(!frame.isNull()){gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();
-                statusBar()->showMessage("OpenGL presentation active. Use the separate game window for input.");}
+                statusBar()->showMessage(input_->target()?"OpenGL presentation active. Click the viewport to control the game.":"OpenGL presentation active. Waiting for the game input window…");}
             else if(stream_->status()==2 || stream_->status()==3 || stream_->status()==8 || stream_->status()==9 || stream_->status()==10 || stream_->status()==13 || elapsed_.elapsed()>10000){
                 const QString diagnostic=(noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":stream_->diagnostic();statusBar()->showMessage(diagnostic);
                 if(placeholder_->isVisible())placeholder_->setText(diagnostic);
@@ -121,31 +123,43 @@ private:
             QDir().mkpath(directory);const QString path=directory+"/frame-"+QUuid::createUuid().toString(QUuid::WithoutBraces)+".bin";
             stream_=std::make_unique<FrameStream>();
             if(!stream_->create(path)){finished();statusBar()->showMessage(stream_->error());return;}
-            arguments={"--stream",path};elapsed_.restart();frames_.start();
+            inputState_=std::make_unique<InputState>();
+            const auto inputPath=path+".input";
+            if(!inputState_->create(inputPath)){finished();statusBar()->showMessage("Cannot create game input channel.");return;}
+            input_->setState(inputState_.get());inputTimer_.start();
+            arguments={"--stream",path,"--input",inputPath};elapsed_.restart();frames_.start();
             if(captureDraws_)arguments.append("--capture-draws");
             if(captureHistory_)arguments.append("--capture-history");
             if(skipMovies_)arguments.append("--skip-movies");
             if(noReadback_)arguments.append("--no-readback");
             if(captureLocks_)arguments.append("--capture-locks");
             gl_->hide();placeholder_->show();
-            placeholder_->setText(captureLocks_?"Capturing game-owned locks. Use the Wine window; offscreen blit presentation is not implemented yet.":(noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":"Waiting for the first DirectDraw frame…");
+            placeholder_->setText((noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":"Waiting for the first DirectDraw frame…");
         }
         process_.start(launcher,arguments);
-        if(!check && !opengl_){elapsed_.restart();poll_.start();statusBar()->showMessage("Waiting for the game window…");}
+        if(!check){elapsed_.restart();poll_.start();statusBar()->showMessage("Waiting for the game window…");}
     }
     void discover(){
         const auto candidates=host_.desktops(excluded_);
+        if(opengl_){
+            xcb_window_t target=0;
+            if(candidates.size()==1 && !gl_->frameSize().isEmpty())target=host_.inputWindow(candidates.front(),gl_->frameSize());
+            input_->setTarget(target);return;
+        }
         if(candidates.size()==1 && attach(candidates.front()))return;
         if(candidates.size()>1){poll_.stop();retry_->setEnabled(true);statusBar()->showMessage("Multiple new game desktops found. Close extra desktops, then click Attach game.");return;}
         if(elapsed_.elapsed()>30000){poll_.stop();retry_->setEnabled(true);statusBar()->showMessage("Window not found yet. Check the launch log, then click Attach game.");}
     }
     void finished(){
+        if(input_)input_->setTarget(0);
+        if(input_)input_->setState(nullptr);
+        inputTimer_.stop();inputState_.reset();
         if(opengl_ && !checking_ && stream_ && placeholder_->isVisible())
             placeholder_->setText((noReadback_ && !captureLocks_)?"Diagnostic game launcher stopped. Qt frame capture was disabled.":"Game launcher stopped before a frame was captured. Last state:\n"+stream_->diagnostic());
         detach();poll_.stop();frames_.stop();retry_->setEnabled(false);checking_=false;
         launch_->setEnabled(opengl_ || host_.available());check_->setEnabled(true);
     }
-    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;

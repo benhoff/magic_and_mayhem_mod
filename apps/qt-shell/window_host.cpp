@@ -73,3 +73,41 @@ bool WindowHost::descendantOf(xcb_window_t window,xcb_window_t ancestor) const {
     }
     return false;
 }
+xcb_window_t WindowHost::inputWindow(xcb_window_t desktop,QSize size) const{
+    if(!available() || !desktop || size.isEmpty())return 0;
+    QVector<xcb_window_t> pending{desktop};xcb_window_t candidate=0;int visited=0;
+    for(int depth=0;depth<8 && !pending.isEmpty();++depth){
+        QVector<xcb_window_t> next,matches;
+        for(auto window:pending){
+            if(++visited>4096)return 0;
+            auto* attributes=xcb_get_window_attributes_reply(connection_,xcb_get_window_attributes(connection_,window),nullptr);
+            auto* geometry=xcb_get_geometry_reply(connection_,xcb_get_geometry(connection_,window),nullptr);
+            constexpr uint32_t inputMask=XCB_EVENT_MASK_KEY_PRESS|XCB_EVENT_MASK_KEY_RELEASE|XCB_EVENT_MASK_BUTTON_PRESS|XCB_EVENT_MASK_BUTTON_RELEASE|XCB_EVENT_MASK_POINTER_MOTION;
+            if(depth>0 && attributes && geometry && attributes->map_state==XCB_MAP_STATE_VIEWABLE && attributes->_class==XCB_WINDOW_CLASS_INPUT_OUTPUT &&
+               (attributes->all_event_masks&inputMask)==inputMask &&
+               geometry->width==size.width() && geometry->height==size.height())matches.append(window);
+            std::free(attributes);std::free(geometry);
+            auto* tree=xcb_query_tree_reply(connection_,xcb_query_tree(connection_,window),nullptr);
+            if(tree){const auto* children=xcb_query_tree_children(tree);
+                for(int i=0;i<xcb_query_tree_children_length(tree);++i)next.append(children[i]);
+                std::free(tree);}
+        }
+        if(matches.size()>1)return 0;
+        if(matches.size()==1)candidate=matches.front();
+        pending=next;
+    }
+    return candidate;
+}
+bool WindowHost::sendInput(xcb_window_t window,uint8_t type,uint8_t detail,uint16_t state,QPoint position) const{
+    if(!available() || !window)return false;
+    auto* coordinates=xcb_translate_coordinates_reply(connection_,xcb_translate_coordinates(connection_,window,root_,position.x(),position.y()),nullptr);
+    if(!coordinates)return false;
+    // Key, button and motion events have the same wire layout.
+    xcb_key_press_event_t event{};event.response_type=type;event.detail=detail;event.root=root_;event.event=window;
+    event.event_x=position.x();event.event_y=position.y();event.root_x=coordinates->dst_x;event.root_y=coordinates->dst_y;
+    event.state=state;event.same_screen=1;std::free(coordinates);
+    uint32_t mask=type==XCB_KEY_PRESS?XCB_EVENT_MASK_KEY_PRESS:type==XCB_KEY_RELEASE?XCB_EVENT_MASK_KEY_RELEASE:
+        type==XCB_BUTTON_PRESS?XCB_EVENT_MASK_BUTTON_PRESS:type==XCB_BUTTON_RELEASE?XCB_EVENT_MASK_BUTTON_RELEASE:XCB_EVENT_MASK_POINTER_MOTION;
+    auto* error=xcb_request_check(connection_,xcb_send_event_checked(connection_,0,window,mask,reinterpret_cast<const char*>(&event)));
+    const bool ok=!error;std::free(error);xcb_flush(connection_);return ok;
+}

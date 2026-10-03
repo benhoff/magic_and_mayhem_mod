@@ -32,7 +32,9 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "bootstrap_selftest.h"
 #include "partial_lock_selftest.h"
 #include "owned_session_selftest.h"
+#include "input_selftest.h"
 void start(void){
+    char input_mode[8];if(GetEnvironmentVariableA("MNM_INPUT_SELFTEST",input_mode,sizeof(input_mode)))test_input();
     if(GetEnvironmentVariableA("MNM_OWNED_SESSION_SELFTEST",os_mode,sizeof(os_mode)))test_owned_session();
     if(GetEnvironmentVariableA("MNM_PARTIAL_LOCK_SELFTEST",partial_mode,sizeof(partial_mode)))test_partial_lock();
     if(GetEnvironmentVariableA("MNM_BOOTSTRAP_SELFTEST",bootstrap_mode,sizeof(bootstrap_mode)))test_bootstrap();

@@ -4,6 +4,12 @@ A freestanding PE32 DLL captures completed primary-surface frames for the
 native Qt/OpenGL viewport. Build: `./tools/build-render-bridge.py`.
 Synthetic Wine-to-Qt readback: `./tools/test-render-bridge.py`.
 
+The OpenGL shell also creates an optional Qt input polling channel. Guarded
+USER32 hooks supply viewport key/cursor state while focused, and an observed
+SetCooperativeLevel HWND maps client coordinates to Windows screen coordinates.
+Run `./tools/test-render-input.py` without the game. See
+[input scope and evidence](../../research/runtime/qt-input-forwarding.md).
+
 The bridge intercepts the pinned executable's DirectDrawCreate IAT slot, follows
 recognized DirectDraw and surface QueryInterface results, and forwards original
 calls. Successful primary-surface Blt/BltFast/Flip calls trigger a bounded, read-only,
