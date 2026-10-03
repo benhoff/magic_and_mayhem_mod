@@ -103,3 +103,9 @@ opaque/source-keyed copies through OpenGL and compares native pixels. Run
 `./tools/replay-render-capture.py CAPTURE_DIRECTORY --backend opengl --headless`
 for that offline check. The shell's live viewport still presents original
 engine frames; routing live drawing through the new renderer is later work.
+
+The shell now links the renderer's persistent-surface module. Its independent
+demo opens with `./tools/run-qt-shell.sh --surface-demo`, performs native indexed
+updates/copies, and cycles a palette entry without launching a game.
+`--surface-test` verifies its displayed pixels through Qt framebuffer readback.
+See [surface API and evidence](../../research/runtime/opengl-persistent-surfaces.md).

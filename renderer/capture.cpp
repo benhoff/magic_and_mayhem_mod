@@ -3,9 +3,10 @@
 #include <array>
 #include <limits>
 #include <stdexcept>
+#include <utility>
 
 namespace mnm::render {
-Blit decodeCapture(const QByteArray& data){
+CaptureData decodeCaptureData(const QByteArray& data){
     const auto fail=[](const char* message){throw std::runtime_error(message);};
     if(data.size()<128 || data.size()>maxCaptureBytes || data.first(8)!="MNMBLT01")
         fail("Invalid or truncated MNMBLT01 capture");
@@ -49,9 +50,18 @@ Blit decodeCapture(const QByteArray& data){
         }
     };
     decode(c.source,128);decode(c.destination,128+h[26]);
-    // Captured-after and palettes are comparison/preview evidence, never GPU inputs.
-    validate(c);return c;
+    validate(c);
+    PixelFormat format{bits,bits==8?std::array<std::uint32_t,3>{}:std::array<std::uint32_t,3>{h[23],h[24],h[25]}};
+    std::vector<Rgb> palette;
+    if(bits==8){
+        const auto offset=qsizetype(128)+h[26]+2*h[27]+h[28];palette.resize(256);
+        for(unsigned i=0;i<256;++i)palette[i]={static_cast<std::uint8_t>(data[offset+i*4]),
+            static_cast<std::uint8_t>(data[offset+i*4+1]),static_cast<std::uint8_t>(data[offset+i*4+2])};
+    }
+    // Captured-after remains comparison evidence only. Palette flags aren't alpha.
+    return {std::move(c),format,std::move(palette)};
 }
+Blit decodeCapture(const QByteArray& data){return decodeCaptureData(data).command;}
 QByteArray encodeNative(const Image& image,unsigned bits){
     if(bits!=8 && bits!=16 && bits!=24 && bits!=32)throw std::runtime_error("Unsupported output pixel size");
     QByteArray out;out.resize(qsizetype(image.pixels.size())*(bits/8));qsizetype offset=0;

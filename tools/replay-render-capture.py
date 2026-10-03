@@ -139,7 +139,7 @@ def render_gl(path, output, executable=None, headless=False):
         executable = build/'mnm-render-replay'
     executable = executable.resolve()
     destination = output/'opengl-native.bin'
-    command = [str(executable), str(path.resolve()), '--output', str(destination)]
+    command = [str(executable), str(path.resolve()), '--output', str(destination), '--preview', str(output/'opengl-presented.png')]
     env = os.environ.copy()
     if headless:
         command = ['xvfb-run', '-a', *command]
@@ -194,6 +194,13 @@ def main():
             if report['opengl'].get('capture_sha256') != report['capture_sha256']:
                 raise ValueError('Capture changed between CPU and OpenGL reads')
             report['opengl_vs_cpu'] = compare(dict(capture, after=reference), actual)
+            # Verify GPU palette/mask conversion independently in byte space.
+            rgba = bytearray()
+            rgb = ppm(capture, actual).split(b'\n', 3)[3]
+            for offset in range(0, len(rgb), 3):rgba.extend(rgb[offset:offset+3]);rgba.append(255)
+            if hashlib.sha256(rgba).hexdigest() != report['opengl'].get('presentation_rgba_sha256'):
+                raise ValueError('OpenGL presentation differs from CPU palette/RGB conversion')
+            report['presentation_matches_cpu'] = True
             (output/'cpu.ppm').write_bytes(ppm(capture, reference))
         report['comparison'] = compare(capture, actual)
         for name, pixels, source in [('source', capture['source'], True), ('before', capture['before'], False),

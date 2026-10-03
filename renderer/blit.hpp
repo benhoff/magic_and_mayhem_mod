@@ -4,6 +4,8 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include <array>
+#include <QImage>
 
 namespace mnm::render {
 struct Image {
@@ -22,6 +24,13 @@ struct Blit {
 };
 void validate(const Blit& command);
 struct Driver {std::string vendor, renderer, version;};
+using SurfaceId=std::uint64_t;
+struct PixelFormat {unsigned bits=0;std::array<std::uint32_t,3> masks{};};
+struct Rgb {std::uint8_t red=0,green=0,blue=0;};
+struct RenderStats {
+    std::uint64_t uploads=0,copies=0,paletteUpdates=0,nativeReadbacks=0,presentations=0;
+    std::size_t surfaces=0,pixels=0;
+};
 
 // Qt GUI-thread owner of a dedicated OpenGL 3.3 context. No captured output is
 // supplied to draw(): only source pixels, the old destination and the command.
@@ -33,6 +42,17 @@ public:
     GlBlitter& operator=(const GlBlitter&)=delete;
     Image draw(const Blit& command);
     Driver driver() const;
+    // Persistent, renderer-owned surfaces: max 2048x2048, 64 handles, 16M pixels.
+    // Copies retain textures; read/present are explicit synchronization points.
+    SurfaceId create(const Image& image,PixelFormat format);
+    void destroy(SurfaceId surface);
+    void update(SurfaceId surface,int x,int y,const Image& patch);
+    void copy(SurfaceId source,SurfaceId destination,Rect rect,int x,int y,
+              std::optional<std::uint32_t> key=std::nullopt);
+    void setPalette(SurfaceId surface,unsigned first,const std::vector<Rgb>& colors);
+    Image read(SurfaceId surface);
+    QImage present(SurfaceId surface);
+    RenderStats stats() const;
 private:
     struct Impl;
     std::unique_ptr<Impl> impl_;

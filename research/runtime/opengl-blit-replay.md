@@ -97,6 +97,12 @@ DirectDraw interfaces are not evidence of every original engine drawing path.
 
 ## Next implementation boundary
 
+The following [persistent-surface milestone](opengl-persistent-surfaces.md)
+now retains renderer-owned textures, updates rectangular pixel regions, resolves
+palettes/RGB masks on the GPU and presents them in a standalone Qt demo. The
+single-command API described above remains a convenience wrapper for capture
+comparison. The lifecycle described below applies to that wrapper.
+
 This component uploads both input surfaces and reads the entire destination
 back for each call. That deliberately simple lifecycle provides comparable
 output, not game-speed rendering. The next independent chunk is persistent
