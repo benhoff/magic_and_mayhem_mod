@@ -151,7 +151,7 @@ int main(int argc,char** argv){
     for(int i=1;i<argc;++i)if(QString::fromLocal8Bit(argv[i])=="--help" || QString::fromLocal8Bit(argv[i])=="-h"){
         std::printf("Usage: mnm-qt-shell [--repo DIRECTORY] [--renderer opengl|native]\n"
                     "  --capture-draws       Record a small blit when launching with OpenGL\n"
-                    "  --capture-history     Record a bounded RGB surface history when launching\n"
+                    "  --capture-history     Record a bounded indexed/RGB surface history when launching\n"
                     "  --smoke-test          Open and close the shell without launching a game\n"
                     "  --opengl-test         Check texture presentation with known pixels\n"
                     "  --commands FILE       Replay captured surface commands in a standalone viewport\n"
@@ -164,7 +164,7 @@ int main(int argc,char** argv){
     QApplication app(argc,argv);QCoreApplication::setApplicationName("mnm-qt-shell");
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
-    parser.addOption({"capture-history","Record a bounded RGB surface history; implies draw capture."});
+    parser.addOption({"capture-history","Record a bounded indexed/RGB surface history; implies draw capture."});
     parser.addOption({"capture-draws","Record bounded drawing evidence when the game is launched."});
     parser.addOption({"opengl-test","Test OpenGL texture presentation with known pixels."});
     parser.addOption({"commands","Replay a bounded surface-command file without launching the game.","file"});

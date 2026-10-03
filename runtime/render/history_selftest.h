@@ -87,8 +87,9 @@ static void test_surface_history(void){
     if(hs.refs!=1 || hd.refs!=1)ExitProcess(54); /* Observer QI/Release is balanced. */
     static const u8 surface4[16]={0x30,0x86,0x2b,0x0b,0x35,0xad,0xd0,0x11,0x8e,0xa6,0,0x60,0x97,0x97,0xea,0x5b};
     void* alias=0;SetLastError(0x77);
-    if(((i32 (WIN *)(void*,const u8*,void**))old[0])(&hs.base,surface4,&alias) || alias!=&hs.alias || GetLastError()!=0x88)ExitProcess(55);
-    if(h_mode[0]=='s'){
+    if((h_mode[0]=='e'?h_query(&hs.base,surface4,&alias):((i32 (WIN *)(void*,const u8*,void**))old[0])(&hs.base,surface4,&alias)) || alias!=&hs.alias || GetLastError()!=0x88)ExitProcess(55);
+    if(h_mode[0]=='e'){ /* Alias returned outside the observed QI path. */
+    }else if(h_mode[0]=='s'){
         SetLastError(0x77);if(((i32 (WIN *)(void*))modern[27])(&hd.base)!=19 || GetLastError()!=0x88)ExitProcess(63);
     }else if(h_mode[0]=='c'){
         SetLastError(0x77);if(((i32 (WIN *)(void*,void*))modern[31])(&hd.base,(void*)0x1234)!=19 || GetLastError()!=0x88)ExitProcess(64);
@@ -107,7 +108,8 @@ static void test_surface_history(void){
     if(((i32 (WIN *)(void*,void*,u32*,u32,HANDLE))old[25])(&hs.base,0,d,0x4810,0) || GetLastError()!=0x88)ExitProcess(58);
     SetLastError(0x77);
     if(((i32 (WIN *)(void*,void*))old[32])(&hs.base,(void*)d[9]) || GetLastError()!=0x88)ExitProcess(59);
-    h_drop(alias,1);h_drop(&hs.base,0);
+    if(h_mode[0]=='e'){h_drop(&hs.base,1);h_drop(alias,0);}
+    else {h_drop(alias,1);h_drop(&hs.base,0);}
     if(h_mode[0]=='g'){ /* Lose ordering by changing native memory outside any recorded lock. */
         hd.pixels[0]=0xf81f;
     }

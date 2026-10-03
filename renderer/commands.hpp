@@ -18,7 +18,7 @@ std::vector<SurfaceCommand> decodeCommands(const QByteArray& data);
 struct CommandResult {
     QByteArray native;
     QImage presentation;
-    unsigned checks=0,presents=0;
+    unsigned checks=0,presents=0,colorChecks=0;
     RenderStats stats;
     Driver driver;
 };

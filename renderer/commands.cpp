@@ -77,6 +77,9 @@ std::vector<SurfaceCommand> decodeCommands(const QByteArray& data){
             else {pixelCount-=std::size_t(s.width)*s.height;live.erase(c.words[0]);}
         }else if(c.operation==8){
             require(!length && live.empty() && presented,"Incomplete command session");ended=true;
+        }else if(c.operation==10){
+            fields(1);const auto& s=get(c.words[0]);
+            require(length==4+unsigned(s.width*s.height)*4,"Invalid RGBA check length");c.expected=p.mid(4);
         }else if(c.operation==9){
             fields(1);require(length==4,"Invalid capture-gap record");
             throw std::runtime_error("Capture history contains a gap (reason "+std::to_string(c.words[0])+")");
@@ -98,6 +101,9 @@ CommandResult replayCommands(const std::vector<SurfaceCommand>& commands){
         case 6:result.native=encodeNative(gl.read(handles.at(w[0])),bits.at(w[0]));result.presentation=gl.present(handles.at(w[0]));++result.presents;break;
         case 7:gl.destroy(handles.at(w[0]));handles.erase(w[0]);bits.erase(w[0]);break;
         case 8:break;
+        case 10:{const auto image=gl.present(handles.at(w[0]));
+            require(QByteArray(reinterpret_cast<const char*>(image.constBits()),image.sizeInBytes())==c.expected,
+                    "Original RGBA colors disagree with command replay");++result.colorChecks;break;}
         default:throw std::runtime_error("Unsupported replay command");
         }
     }

@@ -1,5 +1,8 @@
 # Bounded RGB surface history
 
+The subsequent [indexed palette extension](opengl-indexed-palettes.md) adds
+8-bit histories and palette hooks. Findings below describe the initial RGB chunk.
+
 ## Confirmed implementation
 
 `runtime/render/surface_history.h` extends the opt-in x86 bridge beyond one

@@ -18,7 +18,7 @@ def load(name,file):
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stream',type=Path,required=True);parser.add_argument('--stage-only',action='store_true')
     parser.add_argument('--capture-draws',action='store_true',help='Record bounded draw events and one small native-pixel blit')
-    parser.add_argument('--capture-history',action='store_true',help='Opt in to bounded RGB surface history; implies --capture-draws')
+    parser.add_argument('--capture-history',action='store_true',help='Opt in to bounded indexed/RGB surface history; implies --capture-draws')
     args=parser.parse_args();args.capture_draws |= args.capture_history
     stream=args.stream.resolve()
     if not stream.is_relative_to(REPO/'working'):raise ValueError('Frame stream must be under working/')

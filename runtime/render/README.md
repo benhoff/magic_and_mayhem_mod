@@ -31,13 +31,18 @@ Each completed draw capture also exports `commands-0001.bin`, an ordered
 checkpoint session for the persistent native renderer. Preview it with
 `./tools/run-qt-shell.sh --commands CAPTURE_DIRECTORY/commands-0001.bin`.
 No extra observer locks or COM calls are needed. These are replay-owned surface
-lifetimes. The separate opt-in RGB history below adds writable locks and
-observed final Release; indexed palette hooks remain pending. See [command format](../../research/formats/render-surface-commands.md).
+lifetimes. The separate opt-in native history below adds writable locks and
+observed final Release; indexed palette hooks are documented below. See [command format](../../research/formats/render-surface-commands.md).
 
-`./tools/run-qt-shell.sh --capture-history` opts into a separate bounded RGB
+`./tools/run-qt-shell.sh --capture-history` opts into a separate bounded indexed/RGB
 history after the first accepted draw. It records continuing copies, full-surface
 writable Lock/Unlock updates and final Release lifetimes, sharing IDs across
 recognized aliases and assigning fresh IDs after object-address reuse. Unsupported
-operations/gaps invalidate replay. Indexed histories and flip replacement remain
+operations/gaps invalidate replay. Shared palette assignment/entry updates are supported; flip replacement remains
 pending. Synthetic x86 validation: `./tools/test-render-history.py`.
 See [scope and evidence](../../research/runtime/opengl-surface-history.md).
+
+Indexed history validation: `./tools/test-render-palettes.py`. Shared palette
+updates and surface reassignment emit palette records without converting native
+indices; CHECK_RGBA verifies original displayed colors independently. See
+[palette scope/evidence](../../research/runtime/opengl-indexed-palettes.md).

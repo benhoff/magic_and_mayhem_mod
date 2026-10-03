@@ -16,6 +16,7 @@ static i32 WIN blt(void* object,void* dst,void* src,void* rect,u32 flags,void* e
 static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(void)flags;++calls;SetLastError(0x88);return 23;}
 #include "draw_selftest.h"
 #include "history_selftest.h"
+#include "palette_selftest.h"
 void start(void){
     void* table[33]={0};table[0]=(void*)&query;table[5]=(void*)&blt;table[11]=(void*)&flip;
     table[22]=(void*)&description;table[25]=(void*)&lock;table[32]=(void*)&unlock;
@@ -28,7 +29,8 @@ void start(void){
     if(locks!=2||unlocks!=2||calls!=2)ExitProcess(4);
     char capture_path[512];
     if(GetEnvironmentVariableA("MNM_RENDER_CAPTURE_DIR",capture_path,sizeof(capture_path))){
-        char history[32];if(GetEnvironmentVariableA("MNM_HISTORY_SELFTEST",history,sizeof(history)))test_surface_history();
+        char history[32];if(GetEnvironmentVariableA("MNM_PALETTE_SELFTEST",history,sizeof(history)))test_palette_history();
+        else if(GetEnvironmentVariableA("MNM_HISTORY_SELFTEST",history,sizeof(history)))test_surface_history();
         else test_draw_capture();
     }
     ExitProcess(0);

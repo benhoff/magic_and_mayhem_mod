@@ -30,7 +30,7 @@ int main(int argc,char** argv){
             if(!png.open(QIODevice::WriteOnly|QIODevice::NewOnly))throw std::runtime_error(png.errorString().toStdString());
             if(!result.presentation.save(&png,"PNG") || !png.flush()){png.remove();throw std::runtime_error("Failed to write command preview");}
         }
-        report={{"rendered",true},{"commands",int(commands.size())},{"checks",int(result.checks)},{"presentations",int(result.presents)},
+        report={{"rendered",true},{"commands",int(commands.size())},{"checks",int(result.checks)},{"color_checks",int(result.colorChecks)},{"presentations",int(result.presents)},
             {"backend","opengl_native_integer"},{"vendor",QString::fromStdString(result.driver.vendor)},
             {"renderer",QString::fromStdString(result.driver.renderer)},{"version",QString::fromStdString(result.driver.version)},
             {"command_sha256",QString::fromLatin1(QCryptographicHash::hash(data,QCryptographicHash::Sha256).toHex())},

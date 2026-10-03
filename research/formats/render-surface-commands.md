@@ -19,6 +19,7 @@ gaps), payload byte count. Payload follows immediately, without alignment.
 | 5 CHECK | uint32 ID; full expected native pixels, used only for comparison |
 | 6 PRESENT | uint32 ID; resolve native pixels/palette into a Qt RGBA image |
 | 7 DESTROY | uint32 ID |
+| 10 CHECK_RGBA | uint32 ID; full expected RGBA8888 pixels, comparison only |
 | 8 END | Empty payload; all surfaces must have been destroyed and at least one PRESENT recorded |
 
 IDs are nonzero session-local identifiers, not interface addresses or persistent
@@ -59,8 +60,8 @@ These CREATE/DESTROY records delimit replay checkpoints. They do **not** assert
 that the game created/released those COM objects at that point. UPDATE and
 incremental palette records are supported and synthetically tested by the
 consumer; the checkpoint producer does not emit them. The opt-in history producer below
-additionally records RGB CPU writes and lifetime observations; indexed palette
-mutation tracking remains pending. The file describes one accepted draw,
+additionally records native CPU writes and lifetime observations; indexed palette
+mutation tracking is described in the bounded history section below. The file describes one accepted draw,
 not every call preceding it or a full frame. Unsupported calls remain visible
 only in the separate bounded `events.bin` inventory.
 
@@ -77,15 +78,30 @@ fail (there is no recovery/END after it):
 | 2 | Recorder capacity/allocation limit |
 | 3 | Unsupported/unbalanced application lock, changed lock layout, or locked termination/Release |
 | 4 | Uncovered canonical identity or interface alias |
-| 5 | Indexed history not supported yet |
+| 5 | Unsupported/missing palette, palette readback failure, or unexplained color change |
 | 6 | Unsupported/failed draw coverage, readback, flip, restore, GDI/DC, clipping or palette operation |
 
 CHECK mismatches also fail replay even if the file contains a valid END.
 Earlier consumers reject GAP as an unknown opcode; current consumers report its
-reason. The history begins at the first eligible RGB draw, lazily seeds later
+reason. The history begins at the first eligible indexed/RGB draw, lazily seeds later
 surfaces from draw inputs, and emits full-surface CPU UPDATEs after successful
 writable Unlocks. Subsequent copies check native input/output instead of
 reuploading snapshots. Final COM Release emits DESTROY; bounded-stop/detach
 cleanup may also destroy replay resources without claiming COM destruction.
 The 16-operation recorder limit is stricter than the general consumer limits.
 See [coverage and evidence](../runtime/opengl-surface-history.md).
+
+
+CHECK_RGBA (opcode 10) is a uint32 live surface ID followed by width × height × 4
+RGBA bytes in logical row order. The parser checks the exact payload length and
+lifetime before starting GL. Replay resolves the surface's current native pixels
+and palette/masks, compares all RGBA bytes, and reports `color_checks`. Expected
+colors are never uploads. Earlier consumers reject opcode 10 as unsupported;
+current writers retain the version 1 envelope with this additional opcode.
+
+Indexed histories initialize palettes from original GetPalette/GetEntries,
+fan out shared SetEntries ranges as PALETTE records, and emit full PALETTE on
+successful surface reassignment. Palette changes can emit PRESENT without COPY;
+they leave native indices intact. Per-entry flags are excluded, alpha stays 255.
+Null detachment and unsupported palette capabilities invalidate history.
+[Palette evidence and limits](../runtime/opengl-indexed-palettes.md).

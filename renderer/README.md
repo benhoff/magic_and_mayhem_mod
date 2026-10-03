@@ -109,7 +109,7 @@ The capture bridge now writes `commands-0001.bin` alongside an accepted blit.
 It describes replay-owned surface creation, palettes, a copy, an original-pixel
 check, presentation and destruction. The format also accepts explicit rectangular
 updates and incremental palette changes. This is a bounded checkpoint session;
-continuous game surface/COM lifecycle capture remains pending.
+the bounded history extension below records continuing operations.
 
 ```bash
 ./tools/run-qt-shell.sh --commands CAPTURE_DIRECTORY/commands-0001.bin
@@ -125,8 +125,14 @@ See [protocol](../research/formats/render-surface-commands.md) and
 
 For a bounded sequence rather than a single draw, prepare capture with
 `./tools/run-qt-shell.sh --capture-history`, then replay
-`history-0001.bin` using the same `--commands` option. Supported RGB copies and
+`history-0001.bin` using the same `--commands` option. Supported indexed/RGB copies and
 full-surface CPU updates retain surface IDs across recognized COM aliases until
 Release or the recorder boundary. A capture GAP or native CHECK mismatch fails
 replay. See [history coverage](../research/runtime/opengl-surface-history.md);
 synthetic x86 tests run with `./tools/test-render-history.py`.
+
+Indexed histories now track shared palettes, assignments and entry changes.
+CHECK_RGBA records compare presentation with original color evidence, and the CLI
+reports `color_checks`. Expected color bytes are comparison inputs only. Palette
+changes may present a frame without another copy or native upload. Validation:
+`./tools/test-render-palettes.py`; see [palette evidence](../research/runtime/opengl-indexed-palettes.md).
