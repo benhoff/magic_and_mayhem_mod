@@ -31,5 +31,13 @@ Each completed draw capture also exports `commands-0001.bin`, an ordered
 checkpoint session for the persistent native renderer. Preview it with
 `./tools/run-qt-shell.sh --commands CAPTURE_DIRECTORY/commands-0001.bin`.
 No extra observer locks or COM calls are needed. These are replay-owned surface
-lifetimes; continuous game lifetime, writable locks and palette hooks are still
-pending. See [command format](../../research/formats/render-surface-commands.md).
+lifetimes. The separate opt-in RGB history below adds writable locks and
+observed final Release; indexed palette hooks remain pending. See [command format](../../research/formats/render-surface-commands.md).
+
+`./tools/run-qt-shell.sh --capture-history` opts into a separate bounded RGB
+history after the first accepted draw. It records continuing copies, full-surface
+writable Lock/Unlock updates and final Release lifetimes, sharing IDs across
+recognized aliases and assigning fresh IDs after object-address reuse. Unsupported
+operations/gaps invalidate replay. Indexed histories and flip replacement remain
+pending. Synthetic x86 validation: `./tools/test-render-history.py`.
+See [scope and evidence](../../research/runtime/opengl-surface-history.md).

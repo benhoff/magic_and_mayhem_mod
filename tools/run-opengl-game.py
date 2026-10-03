@@ -18,7 +18,8 @@ def load(name,file):
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stream',type=Path,required=True);parser.add_argument('--stage-only',action='store_true')
     parser.add_argument('--capture-draws',action='store_true',help='Record bounded draw events and one small native-pixel blit')
-    args=parser.parse_args()
+    parser.add_argument('--capture-history',action='store_true',help='Opt in to bounded RGB surface history; implies --capture-draws')
+    args=parser.parse_args();args.capture_draws |= args.capture_history
     stream=args.stream.resolve()
     if not stream.is_relative_to(REPO/'working'):raise ValueError('Frame stream must be under working/')
     with stream.open('rb') as file:
@@ -33,14 +34,15 @@ def main():
     (game/'Chaos.exe').write_bytes(stage.add_import(data,dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
     shutil.copy2(dll,game/dll.name);shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     metadata={'origin':'directdraw_opengl_presentation','source_sha256':stage.HASH,'stream':str(stream),
-              'staged_sha256':hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest(),'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest()}
+              'staged_sha256':hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest(),'capture_history':args.capture_history,'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest()}
     if args.capture_draws:
         capture=root/'draw-capture';capture.mkdir();metadata['draw_capture_directory']=str(capture)
         print(f'Draw capture: {capture}',flush=True)
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n');print(f'Render experiment: {root}',flush=True)
     if args.stage_only:return 0
     env=os.environ.copy();env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\');env['MNM_RENDER_EXPERIMENT']=str(root);env.pop('MNM_RUNNER',None)
-    env.pop('MNM_RENDER_CAPTURE_DIR',None)
+    env.pop('MNM_RENDER_CAPTURE_DIR',None);env.pop('MNM_RENDER_HISTORY',None)
+    if args.capture_history:env['MNM_RENDER_HISTORY']='1'
     if args.capture_draws:env['MNM_RENDER_CAPTURE_DIR']='Z:'+str(capture).replace('/','\\')
     result=subprocess.run([str(REPO/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',str(REPO/'working/wineprefix-x86_64'),'--runner',str(REPO/'tools/render-game-runner.py')],env=env,check=False)
     for name,key in [('Chaos.exe','staged_sha256'),('MnmRender.dll','dll_sha256')]:

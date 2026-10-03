@@ -23,7 +23,7 @@ def main():
     stage=load('stage','tools/prepare-shadow-experiment.py')
     (root/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
     env=os.environ.copy();env['WINEPREFIX']=str(REPO/'working/tests/render-wine');env['WINEDEBUG']='-all'
-    env.pop('MNM_RENDER_CAPTURE_DIR',None)
+    env.pop('MNM_RENDER_CAPTURE_DIR',None);env.pop('MNM_RENDER_HISTORY',None);env.pop('MNM_HISTORY_SELFTEST',None)
     env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\')
     with (root/'wine.log').open('w') as log:
         subprocess.run(['wine',str(root/'selftest.exe')],cwd=root,env=env,stdout=log,stderr=log,check=True,timeout=60)
