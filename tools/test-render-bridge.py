@@ -34,7 +34,7 @@ def main():
     replay=load('render_replay','tools/replay-render-capture.py')
     renderer_build=REPO/'working/build/renderer'
     subprocess.run(['cmake','-S',str(REPO/'renderer'),'-B',str(renderer_build)],check=True)
-    subprocess.run(['cmake','--build',str(renderer_build),'--target','mnm-render-replay','--parallel','4'],check=True)
+    subprocess.run(['cmake','--build',str(renderer_build),'--target','mnm-render-replay','mnm-render-commands','--parallel','4'],check=True)
     draw_reports=[]
     for mode in ('fast','blt'):
         draw=root/mode;draw.mkdir();env['MNM_RENDER_CAPTURE_DIR']='Z:'+str(draw).replace('/','\\')
@@ -56,13 +56,25 @@ def main():
         assert inventory['events']==8 and inventory['counts']['Lock']==1 and inventory['counts']['Unlock']==1
         subprocess.run(['python3',str(REPO/'tools/replay-render-capture.py'),str(draw),'--backend','opengl','--headless',
                         '--gl-executable',str(renderer_build/'mnm-render-replay')],check=True)
-        draw_reports.append({'operation':captured['operation'],'comparison':comparison,'inventory':inventory,
+        command_env=env.copy();command_env['QT_QPA_PLATFORM']='xcb';command_env['LIBGL_ALWAYS_SOFTWARE']='1'
+        result=subprocess.run(['xvfb-run','-a',str(renderer_build/'mnm-render-commands'),str(draw/'commands-0001.bin'),
+                               '--output',str(draw/'commands-native.bin'),'--preview',str(draw/'commands.png')],
+                              env=command_env,capture_output=True,text=True,check=True,timeout=20)
+        command_report=json.loads(result.stdout)
+        assert (draw/'commands-native.bin').read_bytes()==captured['after']
+        assert command_report['checks']==1 and command_report['commands']==8
+        assert command_report['surface_stats']['uploads']==2 and command_report['surface_stats']['copies']==1
+        assert command_report['surface_stats']['surfaces']==0
+        draw_reports.append({'commands':command_report,'operation':captured['operation'],'comparison':comparison,'inventory':inventory,
                              'opengl_replay_matches_capture_and_cpu':True})
     subprocess.run(['cmake','-S',str(REPO/'apps/qt-shell'),'-B',str(REPO/'working/build/qt-shell')],check=True)
     subprocess.run(['cmake','--build',str(REPO/'working/build/qt-shell'),'--parallel','4'],check=True)
     env['QT_QPA_PLATFORM']='xcb';env['LIBGL_ALWAYS_SOFTWARE']='1'
     subprocess.run(['xvfb-run','-a',str(REPO/'working/build/qt-shell/mnm-qt-shell'),'--stream-test',str(stream)],env=env,check=True,timeout=15)
+    for mode in ('fast','blt'):
+        subprocess.run(['xvfb-run','-a',str(REPO/'working/build/qt-shell/mnm-qt-shell'),
+                        '--commands',str(root/mode/'commands-0001.bin'),'--smoke-test'],env=env,check=True,timeout=15)
     (root/'report.json').write_text(json.dumps({'origin':'synthetic_wine_opengl','frames':count,'pixel_bytes_match':True,
-        'qt_opengl_readback_match':True,'draw_captures':draw_reports},indent=2)+'\n')
+        'qt_opengl_readback_match':True,'qt_command_replay_readback_match':True,'draw_captures':draw_reports},indent=2)+'\n')
     print(f'Wine-to-Qt/OpenGL frame bridge passed: {root}')
 if __name__=='__main__':main()

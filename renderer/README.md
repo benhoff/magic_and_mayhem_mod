@@ -51,9 +51,9 @@ ctest --test-dir working/build/renderer --output-on-failure
 ./tools/test-render-bridge.py
 ```
 
-The five CTests cover CLI help, the existing CPU reference tests, 196 OpenGL
+The six CTests cover CLI help, the existing CPU reference tests, 196 OpenGL
 draws, 192 ordered persistent-surface updates/copies, palette cycling/lifetimes,
-and capture/CLI integration. The integrated Wine bridge test generates
+capture/CLI integration, and ordered command sessions. The integrated Wine bridge test generates
 fresh x86 captures, compares both copy paths through CPU/OpenGL, then checks
 the existing Qt frame presentation. All game-like interfaces in that test are
 synthetic; no map session is started.
@@ -102,3 +102,23 @@ direct shared-texture presentation remains later work.
 See [implementation and validation evidence](../research/runtime/opengl-blit-replay.md)
 and [capture format](../research/formats/render-draw-capture.md).
 Persistent API and evidence: [surfaces and presentation](../research/runtime/opengl-persistent-surfaces.md).
+
+## Replay ordered surface commands
+
+The capture bridge now writes `commands-0001.bin` alongside an accepted blit.
+It describes replay-owned surface creation, palettes, a copy, an original-pixel
+check, presentation and destruction. The format also accepts explicit rectangular
+updates and incremental palette changes. This is a bounded checkpoint session;
+continuous game surface/COM lifecycle capture remains pending.
+
+```bash
+./tools/run-qt-shell.sh --commands CAPTURE_DIRECTORY/commands-0001.bin
+working/build/renderer/mnm-render-commands CAPTURE_DIRECTORY/commands-0001.bin \
+  --output NEW_NATIVE_FILE --preview NEW_PNG_FILE
+```
+
+Both commands replay without launching the game. The CLI emits JSON statistics
+and hashes; output paths must be new. Invalid ordering, unsupported operations,
+and mismatching original-pixel checks fail. Expected pixels are never GPU inputs.
+See [protocol](../research/formats/render-surface-commands.md) and
+[evidence and remaining hooks](../research/runtime/opengl-surface-command-replay.md).
