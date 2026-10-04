@@ -47,6 +47,13 @@ QByteArray read(const mnm::assets::AssetStore& store, const QString& path, int l
     return {reinterpret_cast<const char*>(data.data()), qsizetype(data.size())};
 }
 
+Sections loadMenuLayout(const QString& root, const QString& directory, const QString& config) {
+    auto created=mnm::assets::AssetStore::create(std::filesystem::path(root.toStdString()));
+    if (auto* failure=std::get_if<mnm::assets::Error>(&created)) throw std::runtime_error(failure->detail);
+    const auto& store=std::get<mnm::assets::AssetStore>(created);
+    return parse(read(store,directory+"/"+config,65536));
+}
+
 MenuAssets loadMenuAssets(const QString& root, const QString& directory, const QString& config, const char* imageFormat, const QSize& imageSize, const QString& backgroundName) {
     auto created = mnm::assets::AssetStore::create(std::filesystem::path(root.toStdString()));
     if (auto* failure = std::get_if<mnm::assets::Error>(&created)) throw std::runtime_error(failure->detail);

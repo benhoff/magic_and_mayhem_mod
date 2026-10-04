@@ -32,9 +32,9 @@ The widget emits `sessionSelected(id)` or `cancelled()`; it knows no engine
 addresses, session handles or wire formats.
 
 Join's OK opens the sample session list, retaining the submitted username and
-transport in preview orchestration. Session OK reports pending intent and
-remains on the list. Cancel returns to the existing Join form and focuses OK;
-its local draft survives. Create remains a pending host request on its form.
+transport in preview orchestration. Session OK now opens the [sample guest lobby](multiplayer-lobby-qt.md);
+lobby Cancel returns to this list. Cancel returns to the existing Join form and focuses OK;
+its local draft survives. Create now opens the sample host lobby.
 Asset failure while opening selection leaves the Join form available and its
 draft intact. The CLI route also supplies a Join form as the Cancel destination.
 Preview orchestration keeps two explicitly labeled sample sessions; these are

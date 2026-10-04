@@ -1,4 +1,5 @@
 #include "multiplayer_setup_widget.hpp"
+#include "multiplayer-lobby-fixtures.hpp"
 #include "menu_preview.hpp"
 #include "quick_battle_menu_widget.hpp"
 #include <QApplication>
@@ -24,6 +25,7 @@ int main(int argc,char** argv){
   QTemporaryDir temporary;require(temporary.isValid(),"fixture directory");const auto root=temporary.path();require(QDir().mkpath(root+"/CFG"),"strings directory");
   QByteArray strings("[STRINGS]\n");for(int i=0;i<100;++i)strings+=QString("STR_%1=Fixture %2\n").arg(i,2,10,QLatin1Char('0')).arg(i).toLatin1();write(root+"/CFG/interface screens text.cfg",strings);
   QImage image(800,600,QImage::Format_RGB32);image.fill(QColor(90,120,150));
+  lobby_fixture::create(root,image);
   auto fixture=[&](bool create){
    const auto folder=root+(create?"/Interface/SetMultiplayerScreen":"/Interface/JoinMultiplayerScreen");require(QDir().mkpath(folder+"/800x600"),"screen directory");require(image.save(folder+"/800x600/Fixture 800-600.JPG","JPG"),"background");QByteArray cfg("[GLOBALS]\nBackgroundFile=Fixture\n");
    for(int i=0;i<(create?4:3);++i){const int top=(create?52:100)+i*60;cfg+=QString("[TEXT_%1]\nRect2=100,%2,700,%3\nFont=%4\nTextFlags=MIDDLE\nText=%5\n").arg(i+1).arg(top).arg(top+40).arg(i==0?"LARGE":"SMALL").arg(i).toLatin1();}
@@ -58,9 +60,10 @@ int main(int argc,char** argv){
   for(int button:{1,0}){quick->findChild<QPushButton*>(QString("quickBattleAction%1").arg(button))->click();app.processEvents();auto* screen=qobject_cast<MultiplayerSetupWidget*>(stack->currentWidget());require(screen&&screen->mode()==(button==1?MultiplayerSetupWidget::Mode::Join:MultiplayerSetupWidget::Mode::Create)&&screen->form().userName=="Sample player","Quick navigation opens matching form");screen->findChild<QPushButton*>("multiplayerOk")->click();if(button==1){
     auto* selection=qobject_cast<MultiplayerGameSelectionWidget*>(stack->currentWidget());require(selection&&selection->selectedSessionId().isEmpty(),"Join opens sample sessions without implicit selection");
     selection->findChild<QListWidget*>("multiplayerGameSelectionList")->setCurrentRow(1);selection->findChild<QPushButton*>("multiplayerGameSelectionOk")->click();
-    require(stack->currentWidget()==selection&&preview.statusBar()->currentMessage().contains("sample-island as Sample player"),"selected session reports retained Join context");
+    auto* lobby=qobject_cast<MultiplayerLobbyWidget*>(stack->currentWidget());require(lobby&&lobby->mode()==MultiplayerLobbyWidget::Mode::Join&&lobby->lobby().sessionId=="sample-island"&&lobby->lobby().players[1].name=="Sample player","selected session opens guest lobby with retained Join context");
+    lobby->findChild<QPushButton*>("multiplayerLobbyCancel")->click();require(stack->currentWidget()==selection,"guest Cancel returns selection");
     selection->findChild<QPushButton*>("multiplayerGameSelectionCancel")->click();require(stack->currentWidget()==screen&&screen->findChild<QPushButton*>("multiplayerOk")->hasFocus(),"session Cancel returns to Join and restores focus");
-   }else require(stack->currentWidget()==screen&&preview.statusBar()->currentMessage().contains("networking adapter pending"),"Create remains pending");screen->findChild<QLineEdit*>("multiplayerEdit1")->setText(button==1?"Remembered player":"Remembered game");screen->findChild<QPushButton*>("multiplayerCancel")->click();require(stack->currentWidget()==quick&&quick->findChild<QPushButton*>(QString("quickBattleAction%1").arg(button))->hasFocus(),"Cancel returns and restores initiating focus");quick->findChild<QPushButton*>(QString("quickBattleAction%1").arg(button))->click();require(screen->findChild<QLineEdit*>("multiplayerEdit1")->text()==(button==1?"Remembered player":"Remembered game"),"independent drafts survive reopening");screen->findChild<QPushButton*>("multiplayerCancel")->click();}
+   }else {auto* lobby=qobject_cast<MultiplayerLobbyWidget*>(stack->currentWidget());require(lobby&&lobby->mode()==MultiplayerLobbyWidget::Mode::Host&&lobby->lobby().gameName=="Sample game","Create opens host lobby");lobby->findChild<QPushButton*>("multiplayerLobbyCancel")->click();require(stack->currentWidget()==screen,"host Cancel returns Create");}screen->findChild<QLineEdit*>("multiplayerEdit1")->setText(button==1?"Remembered player":"Remembered game");screen->findChild<QPushButton*>("multiplayerCancel")->click();require(stack->currentWidget()==quick&&quick->findChild<QPushButton*>(QString("quickBattleAction%1").arg(button))->hasFocus(),"Cancel returns and restores initiating focus");quick->findChild<QPushButton*>(QString("quickBattleAction%1").arg(button))->click();require(screen->findChild<QLineEdit*>("multiplayerEdit1")->text()==(button==1?"Remembered player":"Remembered game"),"independent drafts survive reopening");screen->findChild<QPushButton*>("multiplayerCancel")->click();}
   require(preview.openMultiplayerGameSelection(root,&error),"standalone session route");
   auto* selection=preview.findChild<MultiplayerGameSelectionWidget*>();selection->findChild<QPushButton*>("multiplayerGameSelectionCancel")->click();
   auto* join=qobject_cast<MultiplayerSetupWidget*>(stack->currentWidget());require(join&&join->mode()==MultiplayerSetupWidget::Mode::Join,"standalone Cancel route");

@@ -114,3 +114,8 @@ Single Player Battle now has a [native setup preview](../runtime/single-player-b
 with configured sliders, supplied player/map data, text sprite placeholders and
 caller-aware Map Selection navigation. Original wizard catalogs, setup field
 mapping and battle launch remain unconnected.
+
+Multiplayer Battle Setup now has [native host/guest lobby previews](../runtime/multiplayer-lobby-qt.md)
+with separate shared/create/join layouts, supplied players/settings, local chat,
+Ready/Start intent and host Map Selection. Real networking and synchronized
+roster/settings contracts remain unconnected.

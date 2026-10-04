@@ -3,6 +3,7 @@
 #include "quick_battle_menu_widget.hpp"
 #include <QMetaEnum>
 #include <QPushButton>
+#include <QListWidget>
 #include <QStackedWidget>
 #include <QStatusBar>
 
@@ -153,17 +154,25 @@ bool MenuPreview::openMapSelection(const QString& root, QString* error) {
                 for (const auto& map:previewMaps()) if (map.id==id) setup.mapName=map.name;
                 singlePlayer_->setSetup(setup);
             }
+            if (mapReturnsToLobby_) {
+                auto lobby=mapReturnsToLobby_->lobby();lobby.mapId=id;
+                for (const auto& map:previewMaps()) if (map.id==id) lobby.mapName=map.name;
+                mapReturnsToLobby_->setLobby(lobby);
+            }
             returnFromMapSelection();
             statusBar()->showMessage(QString("Selected sample map %1 — engine adapter pending.").arg(id));
         });
     }
     const bool fromSingle=singlePlayer_ && screens_->currentWidget()==singlePlayer_;
+    auto* lobby=qobject_cast<MultiplayerLobbyWidget*>(screens_->currentWidget());
+    if (lobby && lobby->mode()!=MultiplayerLobbyWidget::Mode::Host) lobby=nullptr;
     if (!mapSelection_->loadAssets(root,error)) return false;
-    if (!mapSelection_->setMaps(previewMaps(),fromSingle?singlePlayer_->setup().mapId:"sample-forest",error)) return false;
-    mapReturnsToSinglePlayer_=fromSingle;
+    const auto selected=fromSingle?singlePlayer_->setup().mapId:lobby?lobby->lobby().mapId:"sample-forest";
+    if (!mapSelection_->setMaps(previewMaps(),selected,error)) return false;
+    mapReturnsToSinglePlayer_=fromSingle;mapReturnsToLobby_=lobby;
     screens_->setCurrentWidget(mapSelection_); mapSelection_->focusSelection();
     setWindowTitle(mapSelection_->windowTitle());
-    statusBar()->showMessage(fromSingle?"Sample maps. OK or Cancel returns to Single Player setup.":"Sample map list. OK or Cancel returns to the Quick Battle preview.");
+    statusBar()->showMessage(lobby?"Sample maps. OK or Cancel returns to the host lobby.":fromSingle?"Sample maps. OK or Cancel returns to Single Player setup.":"Sample map list. OK or Cancel returns to the Quick Battle preview.");
     return true;
 }
 
@@ -245,8 +254,9 @@ bool MenuPreview::openMultiplayer(const QString& root, MultiplayerSetupWidget::M
                 else statusBar()->showMessage(QString("Session selection preview failed: %1").arg(error));
                 return;
             }
-            const QString action=request.mode==MultiplayerSetupWidget::Mode::Join?"Join":"Create";
-            statusBar()->showMessage(QString("%1 request for %2 — engine networking adapter pending.").arg(action,request.userName));
+            QString error;
+            if (!openMultiplayerLobby(assetRoot_,MultiplayerLobbyWidget::Mode::Host,&error))
+                statusBar()->showMessage(QString("Host lobby preview failed: %1").arg(error));
         });
     }
     if (!screen->loadAssets(root,error)) return false;
@@ -267,7 +277,10 @@ bool MenuPreview::openMultiplayerGameSelection(const QString& root, QString* err
             statusBar()->showMessage("Join preview. Local input retained; networking adapter pending.");
         });
         connect(multiplayerSelection_,&MultiplayerGameSelectionWidget::sessionSelected,this,[this](const QString& id) {
-            statusBar()->showMessage(QString("Join session %1 as %2 — engine networking adapter pending.").arg(id,browsingRequest_.userName));
+            Q_UNUSED(id);
+            QString error;
+            if (!openMultiplayerLobby(assetRoot_,MultiplayerLobbyWidget::Mode::Join,&error))
+                statusBar()->showMessage(QString("Guest lobby preview failed: %1").arg(error));
         });
     }
     if (!multiplayerSelection_->loadAssets(root,error)) return false;
@@ -282,6 +295,12 @@ bool MenuPreview::openMultiplayerGameSelection(const QString& root, QString* err
 }
 
 void MenuPreview::returnFromMapSelection() {
+    if (mapReturnsToLobby_) {
+        auto* lobby=mapReturnsToLobby_;mapReturnsToLobby_=nullptr;
+        screens_->setCurrentWidget(lobby);setWindowTitle(lobby->windowTitle());
+        lobby->findChild<QPushButton*>("multiplayerLobbyMap")->setFocus(Qt::OtherFocusReason);
+        statusBar()->showMessage("Sample host lobby. Networking and Start remain pending.");return;
+    }
     if (!mapReturnsToSinglePlayer_) {showQuickBattle();return;}
     mapReturnsToSinglePlayer_=false;screens_->setCurrentWidget(singlePlayer_);setWindowTitle(singlePlayer_->windowTitle());
     singlePlayer_->findChild<QPushButton*>("singlePlayerMap")->setFocus(Qt::OtherFocusReason);
@@ -328,4 +347,75 @@ bool MenuPreview::openSinglePlayerBattle(const QString& root,QString* error) {
     if (!singlePlayer_->loadAssets(root,error)) return false;
     screens_->setCurrentWidget(singlePlayer_);singlePlayer_->focusFirstControl();setWindowTitle(singlePlayer_->windowTitle());
     statusBar()->showMessage("Sample players and settings; portrait/colour buttons cycle samples. Start remains pending.");return true;
+}
+
+bool MenuPreview::openMultiplayerLobby(const QString& root,MultiplayerLobbyWidget::Mode mode,QString* error) {
+    const bool host=mode==MultiplayerLobbyWidget::Mode::Host;
+    // Standalone previews need a concrete caller for Cancel.
+    if (host && !createMultiplayer_ && !openMultiplayer(root,MultiplayerSetupWidget::Mode::Create,error)) return false;
+    if (!host && !multiplayerSelection_ && !openMultiplayerGameSelection(root,error)) return false;
+    MultiplayerSetupWidget::Request request=browsingRequest_;
+    QString sessionId,gameName;
+    if (host) {
+        const auto form=createMultiplayer_->form();request.mode=MultiplayerSetupWidget::Mode::Create;
+        request.transport=form.transport;request.userName=form.userName.trimmed();request.gameName=form.gameName.trimmed();
+        sessionId="sample-host";gameName=request.gameName;
+    } else {
+        sessionId=multiplayerSelection_->selectedSessionId();
+        if (sessionId.isEmpty()) sessionId="sample-forest";
+        const auto selected=multiplayerSelection_->findChild<QListWidget*>("multiplayerGameSelectionList")->selectedItems();
+        gameName=selected.isEmpty()?"Sample forest battle":selected.front()->text();
+    }
+    auto*& screen=host?hostLobby_:joinLobby_;auto& context=host?hostLobbyContext_:joinLobbyContext_;
+    const auto key=sessionId+QChar(0)+gameName+QChar(0)+request.userName+QChar(0)+QString::number(int(request.transport));
+    if (!screen) {
+        screen=new MultiplayerLobbyWidget(mode,screens_);screens_->addWidget(screen);
+        connect(screen,&MultiplayerLobbyWidget::cancelled,this,[this,host] {
+            auto* caller=host?static_cast<QWidget*>(createMultiplayer_):static_cast<QWidget*>(multiplayerSelection_);
+            screens_->setCurrentWidget(caller);setWindowTitle(caller->windowTitle());
+            caller->findChild<QPushButton*>(host?"multiplayerOk":"multiplayerGameSelectionOk")->setFocus(Qt::OtherFocusReason);
+            statusBar()->showMessage("Returned from sample lobby; no network connection was made.");
+        });
+        connect(screen,&MultiplayerLobbyWidget::mapRequested,this,[this] {
+            QString error;if (!openMapSelection(assetRoot_,&error)) statusBar()->showMessage(QString("Map preview failed: %1").arg(error));
+        });
+        connect(screen,&MultiplayerLobbyWidget::startRequested,this,[this](const auto& lobby) {
+            statusBar()->showMessage(QString("Start host session %1 on %2 — engine networking adapter pending.").arg(lobby.sessionId,lobby.mapId));
+        });
+        connect(screen,&MultiplayerLobbyWidget::readyRequested,this,[this](bool ready) {
+            statusBar()->showMessage(ready?"Ready accepted locally — networking adapter pending.":"Ready cleared locally — networking adapter pending.");
+        });
+        connect(screen,&MultiplayerLobbyWidget::chatRequested,this,[this,screen](const QString& text) {
+            const auto lobby=screen->lobby();screen->appendMessage({lobby.players[lobby.localSlot].name,text});
+            statusBar()->showMessage("Local chat echo only — networking adapter pending.");
+        });
+        connect(screen,&MultiplayerLobbyWidget::playerChangeRequested,this,[screen](int slot) {
+            auto lobby=screen->lobby();auto& player=lobby.players[slot];
+            const int next=player.portraitText=="W1"?2:player.portraitText=="W2"?3:1;
+            player.portraitId=QString("sample-wizard-%1").arg(next);player.portraitText=QString("W%1").arg(next);screen->setLobby(lobby);
+        });
+        connect(screen,&MultiplayerLobbyWidget::colourChangeRequested,this,[screen](int slot) {
+            auto lobby=screen->lobby();auto& player=lobby.players[slot];const std::array<QString,4> colours{"Red","Blue","Green","Gold"};
+            int current=0;for (int i=0;i<4;++i) if (player.colourText==colours[i]) current=i;
+            const int next=(current+1)%4;player.colourId=QString("sample-colour-%1").arg(next);player.colourText=colours[next];screen->setLobby(lobby);
+        });
+        connect(screen,&MultiplayerLobbyWidget::playerRemovalRequested,this,[screen](int slot) {
+            auto lobby=screen->lobby();lobby.players[slot].active=false;screen->setLobby(lobby);
+        });
+    }
+    if (!screen->loadAssets(root,error)) return false;
+    if (context!=key) {
+        MultiplayerLobbyWidget::Lobby sample;sample.sessionId=sessionId;sample.gameName=gameName;sample.localSlot=host?0:1;
+        sample.mapId=previewMaps()[0].id;sample.mapName=previewMaps()[0].name;
+        const std::array<QString,4> colours{"Red","Blue","Green","Gold"};
+        for (int i=0;i<3;++i) {
+            auto& player=sample.players[i];player.active=true;player.name=i==sample.localSlot?request.userName:i==0?"Sample host":QString("Sample guest %1").arg(i);
+            player.portraitId="sample-wizard-1";player.portraitText="W1";player.colourId=QString("sample-colour-%1").arg(i);player.colourText=colours[i];
+        }
+        if (!screen->setLobby(sample,error)) return false;
+        screen->clearChat();screen->appendMessage({"Preview","Sample lobby — local chat only."});context=key;
+    }
+    (host?hostLobbyRequest_:joinLobbyRequest_)=request;
+    screens_->setCurrentWidget(screen);screen->focusFirstControl();setWindowTitle(host?"Magic & Mayhem — Host lobby preview":"Magic & Mayhem — Guest lobby preview");
+    statusBar()->showMessage("Sample lobby; no network connection. Chat echoes locally; Start/Ready remain pending.");return true;
 }
