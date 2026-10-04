@@ -4,7 +4,6 @@
 #include <QMetaType>
 #include <QWidget>
 #include <array>
-#include <optional>
 class QLabel;
 class QTimer;
 class RealmViewerWidget final : public QWidget {
@@ -37,7 +36,6 @@ public:
     QString regionAt(const QPoint& widgetPoint) const;
     // One bounded native presentation tick; also permits deterministic tests.
     void advanceAnimation();
-    std::optional<QPoint> pathPreviewPosition() const;
     void focusFirstControl();
 signals:
     void regionRequested(const RealmViewerWidget::Request&);
@@ -66,7 +64,7 @@ private:
     mnm::ui::MenuSpriteSheet flags_;
     mnm::ui::RealmViewerVisuals visuals_;
     QTimer* animationTimer_=nullptr;
-    quint64 animationTick_=0,pathTick_=0;
+    quint64 animationTick_=0;
     QString hoveredRegion_;
     std::array<QPushButton*,3> realms_{};
     QVector<mnm::ui::SpriteButton*> regions_;

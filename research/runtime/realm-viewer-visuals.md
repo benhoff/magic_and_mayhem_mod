@@ -32,10 +32,10 @@ selected flag rectangle is replaced by the map border; Qt's keyboard focus
 rectangle and unavailable indicator remain visible on flag shortcuts.
 
 ANI sequence zero provides the green flag's eleven frames. ANI sequence 50
-provides twelve walking-figure frames for the path preview. These are explicit
+provides twelve walking-figure frames retained for asset inspection only. These are explicit
 native display roles, not recovered campaign ownership/action IDs. Caller-selected
 static sprite ordinals other than zero retain their identity. The application
-compiles only these two consumed sequences, supports display/delay/back-to-start
+compiles only these two selected sequences, supports display/delay/back-to-start
 loop/terminal-stop records, validates their frame indices, offsets and control
 flow, and leaves unrelated sequences unexecuted and the source asset unchanged. Other ANI opcodes and sequence roles remain separate.
 Unused sequence 96 contains a stored back jump outside its own offset range;
@@ -44,20 +44,19 @@ this change does not normalize, execute or patch that sequence.
 Each display record's signed X/Y displacement is combined with its SPR origin.
 Flags convert the resulting foot-relative placement into the existing padded
 48x52 button canvas using a local anchor at (2,48). All eleven installed flag
-frames fit this canvas. The walking marker draws relative to its stored FP
-point directly. A QTimer supplies one native presentation tick every 40 ms;
+frames fit this canvas. No walking marker is drawn without a campaign travel contract. A QTimer supplies one native presentation tick every 40 ms;
 ANI delay N holds a frame for N+1 ticks. This timer rate is a preview policy,
 not evidence of the original animation clock. Hidden menus stop their timer and
 resume their retained animation phase when shown; no engine worker is involved.
 
-The available selected region previews its first stored FP path using the
-walking figure, one point every two native ticks, looping back to the first
-point. Selection/realm/campaign changes reset this path phase. The marker draws
-behind controls and cannot activate or move a region, change unlock state, or
-commit campaign travel. Original path direction choice, position-slot reservation,
-movement speed, character/direction animation selection and transition callbacks
-remain unverified. This visible route preview consumes the recovered path data
-without promoting it into campaign behavior.
+Hands-on correction, 2026-10-04: the user reported glitchy character display and
+continuous movement on region selection. The initial native policy looped the
+first FP route using one walking sequence regardless of campaign state or path
+direction. That unsolicited walking marker has been removed. Owned FP data and
+walking clip decoding remain available for inspection; region selection no
+longer starts travel. Original position-slot reservation, path direction,
+character/direction animation, speed and transition callbacks remain unverified.
+Flags continue animating and selected/hovered region borders remain visible.
 
 ## Bounds and validation
 
@@ -72,7 +71,7 @@ stored points; it does not use process pointers or original slot state.
 
 The synthetic `qt-realm-viewer-visuals` check covers mask boundaries/holes,
 colour-key transparency, ANI holds/loops, hover/click/double-click, availability,
-FP stepping/reset/loop, letterboxing/half scale, hidden timer lifetime, and
+absence of idle route markers, letterboxing/half scale, hidden timer lifetime, and
 transactional PCX/ANI reload rejection and path-coordinate bounds. The original
 Realm Viewer fixture now includes complete synthetic PCX/ANI/FP visual inputs.
 
@@ -82,7 +81,7 @@ Realm Viewer/Main smoke checks and the 21-menu font audit.
 The optional installed audit checks all 36 region IDs can be selected through
 their actual masks at 800x600, 400x300 and 1200x600; verifies ANI frame catalogs
 and flag placement bounds; and captures Celtic/Greek/Medieval highlights,
-flags and moving markers. Captures are under `working/tests/realm-visuals/`.
+flags (earlier captures also contain the now-removed walking marker). Captures are under `working/tests/realm-visuals/`.
 Visual inspection caught foot-relative flag frames clipping above their button;
 the cell-anchor conversion and installed bounds assertion now guard that case.
 These captures are native evidence, not paired original screenshot equivalence.
