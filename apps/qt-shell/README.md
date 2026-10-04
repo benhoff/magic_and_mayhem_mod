@@ -379,8 +379,11 @@ Preview Portmanteau with sample inventory and supplied spell mappings:
 ./tools/run-qt-shell.sh --spellbox
 ```
 
-Region Entry's Spellbox icon opens it too. Drag an item onto a talisman, or select
-both and Assign. Remove returns a copy; Preview emits local spell intent. OK
+Region Entry's Spellbox icon opens it too. Select an ingredient to see all three possible spells in the header. Click to
+carry it with the pointer, or drag it onto a talisman; hover previews the supplied
+spell artwork and placement commits it. Pick up a filled talisman and return it
+to the right-hand shelf to remove the spell. Right-click/Escape deselects a carried
+item. Assign/Remove remain available; Preview emits local spell intent. OK
 accepts locally and Cancel restores the accepted loadout. Original BMP/SPR art
 is used; sample recipes and native controls remain approximations. See
 [scope and validation](../../research/runtime/spellbox-qt.md).

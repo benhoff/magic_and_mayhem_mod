@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QKeyEvent>
 #include <QLabel>
+#include <QMouseEvent>
 #include <QRadioButton>
 #include <QStackedWidget>
 #include <QStatusBar>
@@ -46,8 +47,34 @@ int main(int argc,char**argv){QApplication app(argc,argv);try{
     write(folder+"/Spellboxtooltip.cfg",QByteArray(tips).replace("TRUE","FALSE"));require(!widget.loadAssets(root,&error)&&widget.draftRequest().assignments[2].itemId=="second-item","config rollback");write(folder+"/Spellboxtooltip.cfg",tips);
     menu_sprite_fixture::write(root,"Interface/SpellBox/800x600/Talisman.spr",94);require(!widget.loadAssets(root,&error),"sprite count rollback");menu_sprite_fixture::write(root,"Interface/SpellBox/800x600/Talisman.spr",95);
     write(folder+"/800x600/Portmanteau.bmp","invalid BMP");require(!widget.loadAssets(root,&error)&&widget.inventory().ownerId=="owner","image rollback");require(background.save(folder+"/800x600/Portmanteau.bmp","BMP")&&widget.loadAssets(root,&error),"restore assets");
-    widget.resize(1200,600);app.processEvents();require(widget.contentRect()==QRect(200,0,800,600)&&button("spellboxTalisman0")->geometry()==QRect(398,7,84,86)&&button("spellboxItem0")->geometry()==QRect(490,93,84,86),"wide placement");const auto captured=widget.grab().toImage();require(captured.pixelColor(10,10)==QColor(Qt::black)&&captured.pixelColor(600,590)==QColor(100,70,40),"native BMP and letterbox");require(captured.pixelColor(494,97)==QColor(Qt::green),"selected explicit item sprite and preserved origin");
+    widget.resize(1200,600);app.processEvents();require(widget.contentRect()==QRect(200,0,800,600)&&button("spellboxTalisman0")->geometry()==QRect(398,7,84,86)&&button("spellboxItem0")->geometry()==QRect(490,93,84,86),"wide placement");const auto captured=widget.grab().toImage();require(captured.pixelColor(10,10)==QColor(Qt::black)&&captured.pixelColor(600,590)==QColor(100,70,40),"native BMP and letterbox");require(captured.pixelColor(494,97)==QColor(100,70,40),"exhausted ingredient leaves its shelf empty");
     widget.resize(400,600);app.processEvents();require(button("spellboxItem0")->geometry()==QRect(145,197,42,43),"scaled native positions");
+    // Click-to-carry and hover are draft previews until an explicit drop.
+    widget.resize(800,600);app.processEvents();require(widget.setInventory(inv,&error),"pointer model reset");
+    require(widget.findChild<QLabel*>("spellboxRecipe1")->toolTip().contains("Law spell")&&widget.findChild<QLabel*>("spellboxRecipe2")->toolTip().contains("Neutral spell")&&widget.findChild<QLabel*>("spellboxRecipe3")->toolTip().contains("No supplied spell"),"selected ingredient shows all three recipes in header");
+    auto* ghost=widget.findChild<QLabel*>("spellboxCarriedArtwork");require(ghost&&!ghost->isVisible(),"no ingredient carried on open");
+    auto* ingredient=button("spellboxItem0");const QPoint sample=ingredient->pos()+QPoint(4,4);
+    const auto shelfBefore=widget.grab().toImage().pixelColor(sample);
+    QMouseEvent held(QEvent::MouseButtonPress,QPointF(ingredient->rect().center()),QPointF(ingredient->mapToGlobal(ingredient->rect().center())),Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+    QApplication::sendEvent(ingredient,&held);
+    require(widget.grab().toImage().pixelColor(sample)==QColor(100,70,40)&&widget.draftRequest().assignments[0].itemId.isEmpty(),"held ingredient disappears from shelf without assignment");
+    QMouseEvent released(QEvent::MouseButtonRelease,QPointF(-10,-10),QPointF(ingredient->mapToGlobal(QPoint(-10,-10))),Qt::LeftButton,Qt::NoButton,Qt::NoModifier);
+    QApplication::sendEvent(ingredient,&released);
+    require(widget.grab().toImage().pixelColor(sample)==shelfBefore&&ingredient->toolTip().contains("1 available"),"release restores ingredient without consuming inventory");
+    button("spellboxItem0")->click();require(ghost->isVisible(),"click picks up ingredient artwork");
+    auto move=[&](QWidget* target,QPoint point){QMouseEvent event(QEvent::MouseMove,QPointF(point),QPointF(target->mapToGlobal(point)),Qt::NoButton,Qt::NoButton,Qt::NoModifier);QApplication::sendEvent(target,&event);};
+    auto* law=button("spellboxTalisman0");move(law,law->rect().center());
+    require(law->toolTip().contains("Law spell")&&widget.draftRequest().assignments[0].itemId.isEmpty(),"hover shows resulting spell without assigning");
+    require(ghost->geometry().contains(widget.mapFromGlobal(law->mapToGlobal(law->rect().center()))),"ingredient follows pointer");
+    move(&widget,{700,550});require(law->toolTip().contains("empty"),"leaving talisman restores empty artwork");
+    move(law,law->rect().center());law->click();require(!ghost->isVisible()&&widget.draftRequest().assignments[0].itemId=="opaque-item"&&law->toolTip().contains("Law spell"),"drop commits transformed talisman");
+    law->click();require(ghost->isVisible(),"pick up assigned spell as ingredient");
+    auto* neutral=button("spellboxTalisman1");move(neutral,neutral->rect().center());neutral->click();
+    require(widget.draftRequest().assignments[0].itemId.isEmpty()&&widget.draftRequest().assignments[1].itemId=="opaque-item"&&!ghost->isVisible(),"move assigned copy without extra inventory");
+    neutral->click();QMouseEvent shelf(QEvent::MouseButtonPress,QPointF(700,550),QPointF(widget.mapToGlobal(QPoint(700,550))),Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);QApplication::sendEvent(&widget,&shelf);
+    require(widget.draftRequest().assignments[1].itemId.isEmpty()&&!ghost->isVisible()&&button("spellboxItem0")->toolTip().contains("1 available"),"empty shelf returns carried copy");
+    button("spellboxItem0")->click();QApplication::sendEvent(button("spellboxItem0"),&escape);require(!ghost->isVisible()&&cancels==1,"Escape deselects carried item before cancelling screen");
+    button("spellboxItem0")->click();widget.hide();require(!ghost->isVisible(),"hidden screen drops pointer overlay");widget.show();app.processEvents();
     // Exercise maximum supported model and all installed frame indices with fixtures.
     auto full=inv;full.items.clear();full.talismans.clear();for(int i=0;i<30;++i){auto it=inv.items[1];it.id=QString("full-item-%1").arg(i);it.artworkIndex=i%23;it.quantity=21;for(int a=0;a<3;++a)it.spells[a].artworkIndex=(i*3+a)%95;full.items.push_back(it);}for(int a=0;a<3;++a)for(int t=0;t<7;++t)full.talismans.push_back({QString("full-slot-%1-%2").arg(a).arg(t),SpellboxWidget::Alignment(a),{}});require(widget.setInventory(full,&error)&&widget.findChildren<QPushButton*>().size()==56,"bounded maximum grid");require(widget.setInventory(inv,&error),"shrink grid");
     require(QDir().mkpath(root+"/CFG"),"strings dir");QByteArray strings("[STRINGS]\n");for(int i=0;i<100;++i)strings+=QString("STR_%1=Label %2\n").arg(i,2,10,QLatin1Char('0')).arg(i).toLatin1();write(root+"/CFG/interface screens text.cfg",strings);menu_sprite_fixture::shared(root);
