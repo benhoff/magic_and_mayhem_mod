@@ -319,3 +319,12 @@ two-second synthetic tone with stop/restart; each device command has a 15-second
 timeout. Evidence under `working/tests/audio-output/` records hashes, logs and
 backend delivery separately from speaker audibility and game replacement.
 See [output scope](../research/runtime/native-audio-output.md).
+
+## Native voice bridge and staging
+
+`python3 tools/test-audio-bridge.py` tests command dispatch, owned PCM, mapped
+channel lifecycle and x86 COM routing through a silent broker. Wine is required
+for the ABI fixture; no game is launched. `python3 tools/test-audio-staging.py`
+checks the optional DLL import in a disposable installation, with original
+manifest verification before/after. These are separate from audible/live checks.
+See [contracts and evidence](../research/runtime/native-audio-voice-bridge.md).

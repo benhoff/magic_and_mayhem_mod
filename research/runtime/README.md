@@ -75,3 +75,6 @@ confidence, and whether it remains stable across launches.
 
 - [Native Qt audio output](native-audio-output.md): QAudioSink format negotiation,
   bounded push writes, lifecycle fixtures and host-backend tone/restart evidence.
+
+- [Native DirectSound voice bridge](native-audio-voice-bridge.md): optional x86 COM
+  routing into the mixer/Qt output, with ABI fixtures and guarded staging evidence.

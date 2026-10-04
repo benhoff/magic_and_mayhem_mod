@@ -3,8 +3,8 @@
 Native audio implementation belongs here, separate from the pinned engine
 models in `reconstruction/audio/`. It owns PCM buffers, sample uploads and
 independent voice state and offline stereo PCM mixing. Qt device output is
-available through a separate adapter; it does not implement a live DirectSound
-replacement. The game still uses Wine DirectSound.
+available through a separate adapter; complete DirectSound replacement has not
+been validated in the live game. Default launches still use Wine DirectSound.
 
 ```bash
 cmake -S audio -B working/build/audio
@@ -21,9 +21,10 @@ It verifies the immutable original manifest before/after and does not launch
 the game. Evidence is under `working/tests/audio-buffers/`.
 
 The build requires Qt 6.8+ Core and Multimedia for asset input and device
-output, plus Python 3 for the fixture tests. `mnm-audio` and the reconstruction retain standard C++ APIs;
-no Qt types enter those algorithms. The combined audio build runs nine CTests,
-including the three asset tests and an input-adapter fixture check. No Wine,
+output, plus Python 3 for the fixture tests. `mnm-audio` and the reconstruction
+retain standard C++ APIs; no Qt types enter those algorithms. The combined
+audio build runs buffer, voice, mixer, output and bridge CTests alongside the
+asset tests and an input-adapter fixture check. No Wine,
 display server, or audio output device is needed for native builds/tests.
 
 `Device` is thread confined. IDs identify voices within one Device; they are
@@ -113,4 +114,7 @@ These executable commands assume the runner built `working/build/audio-output`.
 Select a supported format before constructing Device at that rate; keep Device,
 voice controls and QtOutput on one Qt event-loop thread. See
 [output lifecycle and evidence](../research/runtime/native-audio-output.md).
-Next: native application/game voice integration and a separately validated live adapter. See [reconstruction boundaries](../research/runtime/directsound-buffer-setup.md).
+An optional x86 voice adapter now connects selected COM calls to the native
+mixer/output via a separate Qt broker. See
+[bridge contracts, tests and launch option](../research/runtime/native-audio-voice-bridge.md).
+Next: live voice coverage, unsupported-call inventory and audible/timing comparison. See [reconstruction boundaries](../research/runtime/directsound-buffer-setup.md).
