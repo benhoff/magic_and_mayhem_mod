@@ -1,5 +1,60 @@
 # Real-game black-screen startup investigation
 
+## 2026-10-04 hands-on default-readback failure
+
+User experiment `working/experiments/opengl-render/run-gpaw8536/`, launcher
+log `working/logs/run-20261004T155857Z.x2pwnG/`: the user reports a surface-locked
+dialog. The retained `surface-failures.log` contains
+`application_bltfast 887601ae 0000013c 00c095cc 0000000c 00000010`.
+Confirmed with high confidence within this run: the forwarded application
+Surface2 BltFast returned `DDERR_SURFACEBUSY`, with DDBLTFAST_WAIT. The manifest
+has `no_readback: false`, `capture_locks: false`, `skip_movies: false` and CD
+music disabled. Its bridge DLL SHA-256 is
+`a4a4c76fc86df21707041b02d84f40e82e333beb9b886c8f01786aa09a500849`;
+the source executable is the ledger's pinned No-CD build.
+
+This reproduces the busy-call symptom with default observer readback enabled.
+Neither the locked source/destination nor the responsible interleaving is
+identified. Mesa EGL, Wine pixel-format and Quartz errors are also present;
+their causal relationship remains unknown. No game was relaunched during this
+log inspection. Next bounded user comparison: `--capture-draws --no-readback`,
+using the separate Wine window, preserving graphics and movie settings. If that
+works, test `--capture-locks` separately for game-owned capture/presentation.
+
+Follow-up user comparison `run-88j862gr`, launcher log
+`working/logs/run-20261004T160112Z.OzSwgO/`: the user reports successful operation
+with `--capture-draws --no-readback` and the expected absence of Qt frames.
+This is live user evidence that the no-readback path works in this session,
+implicating observer readback as a contributor without identifying the exact
+interleaving. The same Mesa/pixel-format/Quartz diagnostics recur in the user's
+successful log, so their presence alone does not establish the cause of the
+surface-busy failure. Specific map/actions, duration and full movie behavior
+were not supplied. Game-owned capture and Qt presentation need a separate run.
+
+Game-owned follow-up `run-wuk2aaev`, launcher log
+`working/logs/run-20261004T160308Z.EuvE2v/`: the user reports the game works but
+Qt remains waiting for its first captured primary-surface frame. Manifest
+inspection confirms `capture_locks: true`, `no_readback: true`, movies enabled,
+the same bridge hash, and unchanged graphics environment. No surface-failure
+file exists at inspection. Sixteen `lock-*.bin` snapshots contain 800x600 RGB565
+pixels; the first is from one offscreen surface and the other fifteen from a
+second. Lifecycle evidence includes `unlock_copied`, `unlock_succeeded`,
+`blit_propagated`, `blit_initialized`, then `unlock_limit`. No presentation
+success is recorded. Logged snapshot descriptors have offscreen/system-memory
+caps `0x840`; the observed primary descriptor has caps `0x1000c200`.
+
+Confirmed with high confidence: observed cross-interface Unlock matching now
+works and real game-owned snapshots are produced; the 16-snapshot diagnostic
+budget is exhausted. Source inspection shows this budget gates subsequent
+pre-Unlock copying, rather than only file output. This can prevent later
+checkpoint/presentation progress. The retained evidence does not establish why
+the initial primary update was not captured, nor that removing the budget alone
+would make live presentation complete. Diagnostic logs deduplicate and retain
+at most four records per reason; their counts are not application call counts.
+Continuous bounded-memory checkpoint maintenance separate from bounded disk
+recording and evidence for primary update admission remain required. Original
+gameplay success is user observation; Qt presentation remains unvalidated.
+
 ## Confirmed evidence (2026-10-03)
 
 User run: `working/experiments/opengl-render/run-2lazh703/`.
