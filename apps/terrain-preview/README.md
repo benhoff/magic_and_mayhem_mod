@@ -71,3 +71,26 @@ original terrain queues and visibility decisions, independent complete image
 composition and explicit region rejection checks. See
 [MAP loading](../../research/formats/map-native-loading.md) and
 [map slice validation](../../research/runtime/native-map-terrain-preview.md).
+
+## Camera-selected terrain scene
+
+```sh
+working/build/terrain-preview/mnm-terrain-preview --root working/game-clean \
+  --map 'Realms\Celtic\Forest\CFsec01.map' --world \
+  --camera 20,20,20,19 --pan 256,64 --visibility
+```
+
+`--world` selects recovered orientation-zero traversal across map layers, with
+viewport admission, wrapping and actual camera-produced anchors. `--camera`
+is column,row,span,cut-level; `--pan` supplies base screen origin. Omit them for
+map center, span up to 20, all available layers and pan 256,64. World mode rejects
+other views, `--region` and `--overlap`. The native camera defaults are explicit
+configuration policy. Sprite clipping keeps the canvas bounded and a 16-frame
+upload cache keeps resource use bounded. This is ordinary terrain scene
+production: map initialization, lighting, water and entities remain separate.
+
+```sh
+python3 tools/test-world-terrain-preview.py NORMAL --sanitized SANITIZED
+```
+
+See [recovered traversal and validation](../../research/runtime/terrain-world-traversal.md).

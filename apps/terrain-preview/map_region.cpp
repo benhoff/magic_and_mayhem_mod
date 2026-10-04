@@ -14,4 +14,10 @@ std::vector<TerrainPreviewTile> mapRegionTiles(const assets::MapAsset& map,Terra
     }
     return result;
 }
+std::vector<TerrainPreviewTile> worldTerrainTiles(const assets::MapAsset& map,const reconstruction::TerrainCamera& camera){
+    const auto visits=reconstruction::traverseTerrain(map.width,map.height,map.layers,camera,{},[&](unsigned x,unsigned y,unsigned z){const auto& c=map.cell(x,y,z);return std::array<std::uint16_t,2>{c.flags8,c.flags10};});
+    std::vector<TerrainPreviewTile> tiles;tiles.reserve(visits.size());
+    for(const auto& v:visits){const auto& c=map.cell(v.column,v.row,v.layer);tiles.push_back({c.definition,{int(v.row),int(v.column),int(v.layer),v.anchorX,v.anchorY,v.priority,c.flags8,c.flags10,0},(std::size_t(v.layer)*map.height+v.row)*map.width+v.column});}
+    return tiles;
+}
 }

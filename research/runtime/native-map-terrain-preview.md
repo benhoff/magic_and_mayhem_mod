@@ -82,3 +82,7 @@ draws are rejected. This does not recover original camera projection or clipping
 The preview deliberately selects one plane and does not choose a highest surface.
 Full world traversal/admission, camera/priority production, lighting/palette
 chains, water/overlays, objects/creatures and live integration remain separate.
+
+The next [orientation-zero terrain scene milestone](terrain-world-traversal.md)
+adds recovered multi-layer camera traversal and bounded native clipping. It has
+separate evidence and does not broaden this one-plane slice comparison.

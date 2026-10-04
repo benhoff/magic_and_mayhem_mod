@@ -3,8 +3,8 @@
 #include <stdexcept>
 namespace mnm::preview {
 TerrainPreviewResult renderTerrain(render::GlBlitter& renderer,const assets::TerrainCatalog& catalog,
- const assets::Sprite& sprite,std::vector<TerrainPreviewTile> tiles,reconstruction::TerrainAdmission admission,bool visibility){
- if(tiles.empty() || tiles.size()>9 || sprite.frames.empty())throw std::invalid_argument("Terrain preview requires 1..9 tiles and a nonempty SPR");
+ const assets::Sprite& sprite,std::vector<TerrainPreviewTile> tiles,reconstruction::TerrainAdmission admission,bool visibility,bool world){
+ if((!world && (tiles.empty() || tiles.size()>9)) || tiles.size()>16384 || sprite.frames.empty())throw std::invalid_argument("Terrain preview tile/SPR bounds exceeded");
  TerrainPreviewResult result;std::vector<TerrainPreviewDraw> draws;std::vector<reconstruction::SpriteQueueEntry> sorted;
  for(std::size_t i=0;i<tiles.size();++i){auto& tile=tiles[i];
   if(tile.definition>=catalog.records.size())throw std::invalid_argument("Terrain definition outside TTD");
@@ -25,9 +25,12 @@ TerrainPreviewResult renderTerrain(render::GlBlitter& renderer,const assets::Ter
   std::map<std::uint32_t,std::unique_ptr<render::UploadedSpriteFrame>> uploads;
   for(std::size_t i=0;i<result.queue.size();++i){auto& d=result.queue[i].draw;d.kind=entries[i].kind;if(d.kind==-2)continue;
    const auto& frame=sprite.frames[d.frame];const auto x=std::int64_t(d.anchorX)-frame.originX,y=std::int64_t(d.anchorY)-frame.originY;
-   if(x<0 || y<0 || x+frame.width>512 || y+frame.height>256)throw std::invalid_argument("Selected terrain frame exceeds bounded preview canvas");
+   if(!world && (x<0 || y<0 || x+frame.width>512 || y+frame.height>256))throw std::invalid_argument("Selected terrain frame exceeds bounded preview canvas");
+   // Full scenes may touch many distinct frames; retain at most 16 uploads.
+   if(world && uploads.find(d.frame)==uploads.end() && uploads.size()>=16)uploads.erase(uploads.begin());
    auto& upload=uploads[d.frame];if(!upload)upload=std::make_unique<render::UploadedSpriteFrame>(renderer,sprite,d.frame);
-   upload->draw(canvas,d.anchorX,d.anchorY);
+   if(world)upload->drawClipped(canvas,d.anchorX,d.anchorY,{0,0,512,256});
+   else upload->draw(canvas,d.anchorX,d.anchorY);
   }
   result.pixels=renderer.read(canvas);result.image=renderer.present(canvas);
  }catch(...){renderer.destroy(canvas);throw;}

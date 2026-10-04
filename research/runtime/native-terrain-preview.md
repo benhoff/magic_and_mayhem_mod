@@ -44,8 +44,9 @@ Original shading is recorded but images use unshaded embedded palettes.
 
 An [owned MAP reader and bounded installed slice preview](native-map-terrain-preview.md)
 now supply actual definitions, depth coordinates and raw flag words. Remaining
-work includes full world traversal and upstream screen-anchor/priority
-production, lighting/palette chains, water/overlays and
+work beyond the [orientation-zero world traversal](terrain-world-traversal.md)
+includes other orientations, camera initialization and complete world admission,
+lighting/palette chains, water/overlays and
 object/creature terrain paths, visibility activation and live replacement.
 This milestone establishes a direct native installed-asset rendering path and
 keeps those broader claims separate in AS04/GP08 of the coverage ledger.
