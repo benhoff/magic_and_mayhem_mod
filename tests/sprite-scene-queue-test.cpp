@@ -63,6 +63,26 @@ int main(int argc,char** argv){
             }
             require(renderer.stats().surfaces==0 && renderer.stats().pixels==0);
         }
+        // Identical footprint: reverse pass hides the middle draw and leaves
+        // entry zero untouched. Compare complete pixels and clear on stop.
+        {
+            auto body=sprite(0),left=sprite(1),right=sprite(2);
+            for(auto* source:{&body,&left,&right})for(auto& f:source->frames){f.originX=f.originY=0;
+                f.auxiliaryData[0]={32,1,0,0,0,0,0,128};f.auxiliaryData[1]={0,0,0,128};}
+            auto ani=animation(0),one=animation(1),two=animation(2);
+            for(auto& r:ani.records)r.metadata={};
+            std::vector<preview::SpriteLayer> layers{{left,one,0,reconstruction::AttachmentPoint::first},{right,two,0,reconstruction::AttachmentPoint::second}};
+            preview::SpriteScene scene(renderer,body,ani,{0},false,{},std::move(layers));scene.setVisibility(true);
+            for(unsigned tick=0;tick<3;++tick){if(tick)scene.advance();scene.present();auto expected=preview::SpriteScene::background();
+                const auto queue=scene.drawQueue();
+                if(tick<2){require(queue.size()==3 && queue[0].kind==0 && queue[1].kind==-2 && queue[2].kind==0);
+                    const auto& f=right.frames[0];const auto& pixels=std::get<std::vector<std::uint16_t>>(f.pixels);
+                    for(unsigned y=0;y<3;++y)for(unsigned x=0;x<3;++x)if(f.opaqueMask[y*3+x])expected.pixels[(190+y)*512+256+x]=pixels[y*3+x];
+                }else require(queue.empty());
+                require(scene.read().pixels==expected.pixels);
+            }
+        }
+        require(renderer.stats().surfaces==0 && renderer.stats().pixels==0);
         std::cout<<"{\"frames\":"<<frames<<",\"cases\":"<<cases.size()<<",\"all_match\":true}\n";
     }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
 }

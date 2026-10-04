@@ -42,6 +42,8 @@ int main(int argc,char** argv)try{
     parser.addOption({"tile-size","Creature footprint in tiles (1 or 2)","tiles","1"});
     parser.addOption({"placement-view","Recovered offset adjustment value, independent of world projection","view","0"});
     parser.addOption({"queue-position","Explicit per-actor queue x,y,height,priority; repeat once per actor (independent of pixels)","x,y,height,priority"});
+    parser.addOption({"visibility","Apply the recovered SPR bitmask pass (normal draw kind; no terrain owners)"});
+    parser.addOption({"visibility-expanded","Use the original expanded visibility viewport bounds; requires visibility"});
     parser.addOption({"overlap","Preview fixture: place all actor anchors at the canvas center"});
     parser.addOption({"smoke-test","Close the window after the bounded preview completes"});
     parser.addOption({"export-dir","Export ticks synchronously to a new directory instead of opening a window","directory"});
@@ -78,7 +80,8 @@ int main(int argc,char** argv)try{
         if(numbers[2]<0)throw std::runtime_error("Queue height must be nonnegative");
         queueInputs.push_back({{numbers[0],numbers[1],numbers[2],numbers[3]},{{6,8,9}}});
     }
-    auto initialize=[&](mnm::preview::SpriteScene& scene){for(std::size_t i=0;i<sequences.size();++i){
+    if(parser.isSet("visibility-expanded") && !parser.isSet("visibility"))throw std::runtime_error("Expanded visibility needs --visibility");
+    auto initialize=[&](mnm::preview::SpriteScene& scene){scene.setVisibility(parser.isSet("visibility"),parser.isSet("visibility-expanded"));for(std::size_t i=0;i<sequences.size();++i){
         scene.setCreatureHealth(i,attachmentHealth);if(!queueInputs.empty())scene.setQueueInput(i,queueInputs[i]);
         if(parser.isSet("overlap"))scene.setAnchor(i,256,190);
     }};
@@ -150,7 +153,7 @@ int main(int argc,char** argv)try{
                     {"sprite",l.sprite?QJsonValue(qint64(*l.sprite)):QJsonValue(QJsonValue::Null)},
                     {"draw_anchor_x",l.drawAnchor?QJsonValue(l.drawAnchor->x):QJsonValue(QJsonValue::Null)},
                     {"draw_anchor_y",l.drawAnchor?QJsonValue(l.drawAnchor->y):QJsonValue(QJsonValue::Null)},{"event",l.event}});
-                QJsonArray order;for(const auto& draw:scene.drawQueue())order.append(QJsonObject{{"actor",qint64(draw.actor)},{"asset",qint64(draw.asset)},{"frame",qint64(draw.frame)},{"key",draw.key}});
+                QJsonArray order;for(const auto& draw:scene.drawQueue())order.append(QJsonObject{{"actor",qint64(draw.actor)},{"asset",qint64(draw.asset)},{"frame",qint64(draw.frame)},{"key",draw.key},{"kind",draw.kind}});
                 frames.append(QJsonObject{{"tick",int(tick)},{"draw_queue",order},{"actors",actors},{"layers",attached},{"native_sha256",hash(native)},
                     {"rgba_sha256",hash(QByteArray(reinterpret_cast<const char*>(image.constBits()),image.sizeInBytes()))}});
             }
@@ -161,7 +164,8 @@ int main(int argc,char** argv)try{
         const auto bytes=QJsonDocument(QJsonObject{{"ani",parser.value("ani")},{"sprite",spritePath},{"loop_policy",parser.isSet("loop")},
             {"layer_inputs",layerInputs},{"tile_size_xy",qint64(placement.tileSizeXY)},{"placement_view",qint64(placement.view)},
             {"attachment_health",attachmentHealth},{"attachment_remove_at",qint64(removeAt)},{"attachment_reenter_at",qint64(reenterAt)},
-            {"queue_policy","NoCD depth/sort contract; synthetic world positions and biases 6/8/9, no occlusion"},
+            {"visibility_policy",parser.isSet("visibility")},{"visibility_expanded",parser.isSet("visibility-expanded")},
+            {"queue_policy","NoCD depth/sort contract; synthetic world positions and biases 6/8/9; optional bitmask visibility, no terrain owners"},
             {"clock","one controller call per explicit preview tick; wall-clock interval is not recovered"},
             {"frames",frames},{"uploads",qint64(stats.uploads)},{"copies",qint64(stats.copies)},
             {"remaining_surfaces",int(stats.surfaces)},{"renderer",QString::fromStdString(driver.renderer)}}).toJson();

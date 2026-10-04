@@ -158,3 +158,9 @@ queue coordinates. See [queue contract](sprite-queue-order.md) and
 [overlapping native frame evidence](native-sprite-queue-scene.md). Earlier
 explicit insertion-order evidence remains historical; original world submission,
 visibility/occlusion and full-scene equivalence remain separate milestones.
+
+
+Selected SPR bitmask visibility now follows sorting when explicitly admitted
+with `--visibility`. It uses retained auxiliary planes and the original reverse
+pass, while terrain owners and original activation remain caller boundaries.
+See [native visibility evidence](native-sprite-visibility-scene.md).

@@ -70,3 +70,13 @@ frames. The CPU pixel oracle uses original queue orders, not the original
 whole-scene draw routine. Original visibility pass `0x005015f0`, lighting,
 terrain, all producer priorities/submission order, live clock and full native
 world rendering remain unimplemented/unverified.
+
+
+## Subsequent visibility milestone
+
+The previously unimplemented visibility helper/reverse pass now has selected
+offline original/native evidence and an explicit native preview option. See
+[visibility reconstruction](sprite-visibility.md) and
+[installed frame comparison](native-sprite-visibility-scene.md). Original terrain
+role production and activation/world ownership remain separate; the queue
+comparisons above describe the earlier pass-disabled milestone.
