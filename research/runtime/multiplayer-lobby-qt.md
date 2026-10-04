@@ -92,7 +92,7 @@ Asset failure leaves the caller and its draft available.
 ## Fidelity and validation
 
 Original art, labels and coordinates are preserved. System serif fonts, control
-colors, text portrait/colour placeholders, Ready check styling, message rendering
+colors, sprite state/disabled styling, Ready check styling, message rendering
 and scaled letterboxing remain approximations. The shared Handicap captions
 overlap the sliders; the native preview hides those captions and supplies
 accessible slider names. No original screenshot equivalence or live multiplayer
@@ -115,3 +115,9 @@ Original-manifest verification surrounds original-derived artifact use.
 Discovery, connection errors, authoritative rosters/settings, delivery and
 readiness synchronization, host migration, wizard catalogs and the engine
 command adapter remain outstanding.
+
+Portrait/colour selections now accept explicit artwork indices (0..11 and 0..7,
+-1 for text fallback), independent of opaque player IDs. Original SPR portraits,
+colour tokens and host boot controls have [integration evidence](menu-sprite-integration.md).
+Local/remote permissions are preserved; art selection does not imply networking
+or original wizard/catalog binding.

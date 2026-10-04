@@ -333,5 +333,10 @@ Engine progression remains pending. See [scope and validation](../../research/ru
 
 Menu backgrounds now use the native BMP/JPEG loader APIs. Character Screen also
 uses its installed stat-bar BMPs and caller-selected WizardFace JPEGs (the sample
-chooses face 0). Original sprite controls and fonts remain pending. See
+chooses face 0). Other sprite controls and original fonts remain pending. See
 [image integration and fidelity boundaries](../../research/runtime/menu-image-integration.md).
+
+Character Screen now renders original SPR talismans and adjustment controls;
+Region Entry renders its original face/book/portmanteau icons. Single Player and
+host/guest lobbies render supplied SPR portraits/colour tokens and boot controls.
+Fonts, sliders and engine actions remain pending. See [SPR integration](../../research/runtime/menu-sprite-integration.md).

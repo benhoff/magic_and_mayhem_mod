@@ -59,9 +59,11 @@ and a sample map; these are not recovered original defaults or gameplay changes.
 Start requires a map, an active human slot 0 and at least one active opponent.
 This guard is native preview policy, not a confirmed original game rule.
 
-All portrait and colour areas use text buttons instead of original sprites.
-They emit slot-specific change requests; preview orchestration cycles three
-sample portraits and four sample colour labels. The two original boot controls
+Portrait and colour areas render decoded original SPR art when the supplied
+Player provides portraitIndex (0..11) and colourIndex (0..7); -1 keeps text
+fallback. IDs remain opaque. They emit slot-specific change requests; preview
+orchestration cycles three sample portraits and four sample colour tokens.
+Boot controls render sheet frames 24/25/26. See [SPR integration](menu-sprite-integration.md). The two original boot controls
 emit removal requests for slots 2/3; orchestration marks those slots inactive.
 Their portrait buttons can restore a sample player. Inactive colour, handicap
 and removal controls are disabled. Colour uniqueness and actual wizard catalogs
@@ -81,7 +83,7 @@ while keeping the caller and draft available.
 ## Fidelity and validation
 
 Original background, labels and geometry are preserved. System serif fonts,
-control colors, slider handles, numeric formatting, sprite placeholders and
+control colors, slider handles, numeric formatting, sprite state/disabled styling and
 player selection interactions are approximations. Long labels shrink to fit
 within their configured rectangles. Scaling and black letterboxing are native
 policies. No screenshot comparison against the original running setup or live
@@ -100,5 +102,5 @@ sample actions, Quick/Map caller navigation, preserved drafts and failure paths.
 Installed-asset smoke and visual capture evidence is kept at
 `working/tests/single-player-battle-preview/preview.png`. Original-manifest
 checks surround original-derived artifact use. Engine settings/default recovery,
-wizard and map enumeration, portrait decoding, field mapping and actual battle
+wizard and map enumeration, original portrait/catalog binding, field mapping and actual battle
 creation remain outstanding.

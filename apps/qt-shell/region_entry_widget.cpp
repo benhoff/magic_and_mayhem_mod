@@ -1,5 +1,6 @@
 #include "region_entry_widget.hpp"
 #include "menu_assets.hpp"
+#include "menu_sprites.hpp"
 #include <QButtonGroup>
 #include <QFontMetrics>
 #include <QKeyEvent>
@@ -28,7 +29,7 @@ RegionEntryWidget::RegionEntryWidget(QWidget* parent):QWidget(parent) {
         connect(radios_[i],&QRadioButton::toggled,this,[this,i](bool checked){if (checked) region_.difficulty=Difficulty(i);});
     }
     auto button=[this](const QString& name,const QString& text) {
-        auto* result=new QPushButton(text,this);result->setObjectName(name);result->installEventFilter(this);
+        auto* result=new mnm::ui::SpriteButton(text,this);result->setObjectName(name);result->installEventFilter(this);
         result->setStyleSheet(mnm::ui::menuButtonStyle());result->setCursor(Qt::PointingHandCursor);return result;
     };
     const std::array<QString,3> labels{"Grimoire","Spellbox","Character"};
@@ -68,6 +69,8 @@ bool RegionEntryWidget::load(const QString& root,const Region& region,QString* e
     try {
         if (!validRegion(region)) throw std::runtime_error("Invalid Region Entry model");
         const auto assets=mnm::ui::loadMenuAssets(root,"Interface/RegionEntry","screen (Region Entry).cfg","JPG",QSize(800,600),QString(),artworkName(region));
+        const auto sprites=mnm::ui::loadMenuSprites(root,"Sprites/Buttons.spr");
+        std::array<std::array<mnm::ui::MenuSpriteFrame,3>,3> icons;
         const auto heading=assets.layout.value("TEXT_1");const auto headingRect=mnm::ui::rectangle(heading.value("Rect2"));
         if (heading.value("Font")!="LARGE" || heading.value("TextFlags")!="LEFT" || heading.value("Text").isEmpty())
             throw std::runtime_error("Invalid Region Entry heading role");
@@ -79,6 +82,7 @@ bool RegionEntryWidget::load(const QString& root,const Region& region,QString* e
             if (i<3) {
                 const auto icon=assets.layout.value(QString("STANDARDBUTTON_%1").arg(i+1));auxiliary[i]=mnm::ui::rectangle(icon.value("Rect2"));
                 const auto indexes=icon.value("SpriteIndexes").split(',');const int first=i==0?3:i==1?6:0;
+                icons[i]=mnm::ui::spriteStates(sprites,first);
                 if (indexes.size()!=3) throw std::runtime_error("Invalid Region Entry icon role");
                 for (int j=0;j<3;++j) if (indexes[j].trimmed()!=QString::number(first+j)) throw std::runtime_error("Unexpected Region Entry icon mapping");
             }
@@ -87,6 +91,7 @@ bool RegionEntryWidget::load(const QString& root,const Region& region,QString* e
         const auto enterRect=mnm::ui::rectangle(enter.value("Rect2")),cancelRect=mnm::ui::rectangle(cancel.value("Rect2"));
         if (enter.value("Font")!="LARGE" || cancel.value("Font")!="LARGE") throw std::runtime_error("Invalid Region Entry button font");
         const auto enterText=mnm::ui::textLabel(assets.strings,enter.value("Text")),cancelText=mnm::ui::textLabel(assets.strings,cancel.value("Text"));
+        for (int i=0;i<3;++i) static_cast<mnm::ui::SpriteButton*>(auxiliary_[i])->setSprites(icons[i],auxiliary[i].size());
         background_=assets.background;headingRectangle_=headingRect;radioRectangles_=radios;auxiliaryRectangles_=auxiliary;
         enterRectangle_=enterRect;cancelRectangle_=cancelRect;defaultHeading_=heading.value("Text");
         for (int i=0;i<4;++i) radios_[i]->setText(choices[i]);

@@ -42,7 +42,7 @@ SinglePlayerBattleWidget::SinglePlayerBattleWidget(QWidget* parent):QWidget(pare
         });
     }
     auto button=[this](const QString& name,const QString& text) {
-        auto* result=new QPushButton(text,this);result->setObjectName(name);result->installEventFilter(this);
+        auto* result=new mnm::ui::SpriteButton(text,this);result->setObjectName(name);result->installEventFilter(this);
         result->setStyleSheet(mnm::ui::menuButtonStyle());result->setCursor(Qt::PointingHandCursor);return result;
     };
     for (int i=0;i<4;++i) {
@@ -76,6 +76,8 @@ bool SinglePlayerBattleWidget::loadAssets(const QString& root,QString* error) {
     if (error) error->clear();
     try {
         const auto assets=mnm::ui::loadMenuAssets(root,"Interface/SinglePlayerBattle","screen (Single Player Battle).cfg");
+        const auto sprites=mnm::ui::loadMenuSprites(root,"Interface/MultiplayerBattleSetup/MultiPBattle Screen buttons 800-600.spr");
+        for (int i=0;i<21;++i) (void)mnm::ui::spriteStates(sprites,i*3);
         std::array<QRect,40> textRects;std::array<QString,40> texts;std::array<Qt::Alignment,40> alignments;
         for (int i=0;i<40;++i) {
             const auto entry=assets.layout.value(QString("TEXT_%1").arg(i+1));textRects[i]=mnm::ui::rectangle(entry.value("Rect2"));
@@ -105,6 +107,8 @@ bool SinglePlayerBattleWidget::loadAssets(const QString& root,QString* error) {
             buttonTexts[i]=mnm::ui::textLabel(assets.strings,entry.value("Text"));
         }
         if (!validSetup(setup(),minimum,maximum,step)) throw std::runtime_error("Battle setup outside configured slider ranges");
+        sprites_=sprites;
+        for (int i=0;i<int(remove_.size());++i) static_cast<mnm::ui::SpriteButton*>(remove_[i])->setSprites(mnm::ui::spriteStates(sprites,24),remove[i].size());
         background_=assets.background;labelRectangles_=textRects;sliderRectangles_=sliderRects;minimum_=minimum;maximum_=maximum;step_=step;
         portraitRectangles_=portraits;colourRectangles_=colours;removeRectangles_=remove;noPlayer_=texts[0];
         cancelRectangle_=buttons[0];startRectangle_=buttons[1];mapRectangle_=buttons[2];
@@ -123,8 +127,10 @@ bool SinglePlayerBattleWidget::validSetup(const Setup& value,const std::array<in
         const int n=i<13?value.values[i]:value.players[i-13].handicap;
         if (n<minimum[i] || n>maximum[i] || (n-minimum[i])%step[i]) return false;
     }
-    for (const auto& player:value.players)
+    for (const auto& player:value.players) {
+        if (player.portraitIndex<-1 || player.portraitIndex>11 || player.colourIndex<-1 || player.colourIndex>7) return false;
         if (player.active && (player.name.trimmed().isEmpty() || player.portraitId.isEmpty() || player.portraitText.isEmpty() || player.colourId.isEmpty() || player.colourText.isEmpty())) return false;
+    }
     return true;
 }
 bool SinglePlayerBattleWidget::setSetup(const Setup& value,QString* error) {
@@ -138,6 +144,9 @@ void SinglePlayerBattleWidget::populate() {
         const auto& player=setup_.players[i];labels_[i]->setText(player.active?player.name:noPlayer_);
         labels_[4+i]->setText(QString::number(player.handicap));labels_[4+i]->setVisible(player.active);
         portraits_[i]->setText(player.active?player.portraitText:"+");colours_[i]->setText(player.active?player.colourText:"—");
+        auto* portrait=static_cast<mnm::ui::SpriteButton*>(portraits_[i]);auto* colour=static_cast<mnm::ui::SpriteButton*>(colours_[i]);
+        if (player.active && player.portraitIndex>=0 && !sprites_.isEmpty()) portrait->setSprites(mnm::ui::spriteStates(sprites_,27+player.portraitIndex*3),portraitRectangles_[i].size());else portrait->clearSprites();
+        if (player.active && player.colourIndex>=0 && !sprites_.isEmpty()) colour->setSprites(mnm::ui::spriteStates(sprites_,player.colourIndex*3),colourRectangles_[i].size());else colour->clearSprites();
         portraits_[i]->setToolTip(player.active?player.name:"Choose sample player");colours_[i]->setToolTip(player.colourText);
         colours_[i]->setEnabled(player.active);sliders_[13+i]->setEnabled(player.active);
         if (i>=2) remove_[i-2]->setEnabled(player.active);

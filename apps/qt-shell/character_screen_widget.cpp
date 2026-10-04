@@ -1,5 +1,6 @@
 #include "character_screen_widget.hpp"
 #include "menu_assets.hpp"
+#include "menu_sprites.hpp"
 #include <QFontMetrics>
 #include <QKeyEvent>
 #include <QLabel>
@@ -51,8 +52,8 @@ QRect talismanRectangle(const QString& value) {
     const auto parts=value.split(',');
     if (parts.size()!=4 || parts[2].trimmed()!="0" || parts[3].trimmed()!="0") throw std::runtime_error("Invalid character sprite bar anchor");
     const int x=number(parts[0]),y=number(parts[1]);
-    if (x+350>800 || y+45>600) throw std::runtime_error("Character sprite bar outside canvas");
-    return {x,y+15,350,30}; // Native text replacement sized to the matching row.
+    if (x+350>800 || y+50>600) throw std::runtime_error("Character sprite bar outside canvas");
+    return {x,y,350,50}; // SPR anchors retain the signed frame origins.
 }
 }
 CharacterScreenWidget::CharacterScreenWidget(QWidget* parent):QWidget(parent) {
@@ -66,11 +67,11 @@ CharacterScreenWidget::CharacterScreenWidget(QWidget* parent):QWidget(parent) {
     for (int i=0;i<3;++i) {
         bars_[i]=new TexturedStatBar(this);bars_[i]->setObjectName(QString("characterStatBar%1").arg(i));bars_[i]->setRange(minimum_[i],maximum_[i]);
         bars_[i]->setFormat("%v / %m");bars_[i]->setStyleSheet("QProgressBar { color: #3e2313; background: transparent; border: 1px solid #ac915a; text-align: center; } QProgressBar::chunk { background: #ac915a; }");
-        talismans_[i]=new QLabel(this);talismans_[i]->setObjectName(QString("characterTalisman%1").arg(i));talismans_[i]->setAlignment(Qt::AlignCenter);
+        talismans_[i]=new mnm::ui::TalismanBar(this);talismans_[i]->setObjectName(QString("characterTalisman%1").arg(i));talismans_[i]->setAlignment(Qt::AlignCenter);
         talismans_[i]->setStyleSheet("color: #3e2313; background: transparent;");
     }
     auto button=[this](const QString& name,const QString& text) {
-        auto* result=new QPushButton(text,this);result->setObjectName(name);result->installEventFilter(this);result->setStyleSheet(mnm::ui::menuButtonStyle());
+        auto* result=new mnm::ui::SpriteButton(text,this);result->setObjectName(name);result->installEventFilter(this);result->setStyleSheet(mnm::ui::menuButtonStyle());
         result->setCursor(Qt::PointingHandCursor);return result;
     };
     for (int i=0;i<12;++i) {
@@ -113,6 +114,9 @@ bool CharacterScreenWidget::loadAssets(const QString& root,QString* error) {
                 if (entry.value("Text")!="\"\"") throw std::runtime_error("Invalid character rating role");
             } else texts[i]=mnm::ui::textLabel(assets.strings,entry.value("Text"));
         }
+        const auto sprites=mnm::ui::loadMenuSprites(root,"Interface/CharacterScreen/800x600/sprites.spr");
+        const auto increase=mnm::ui::spriteStates(sprites,6),decrease=mnm::ui::spriteStates(sprites,9);
+        for (int i=0;i<6;++i) if (sprites[i].image.isNull()) throw std::runtime_error("Missing talisman sprite");
         std::array<QImage,3> textures,faces;
         for (int i=0;i<3;++i) faces[i]=keyedPortrait(mnm::ui::loadMenuImage(root,QString("Interface/CharacterScreen/800x600/WizardFace%1.JPG").arg(i),QSize(400,300)));
         std::array<QRect,3> bars,talismans;std::array<int,6> minimum,maximum,increment;
@@ -130,6 +134,7 @@ bool CharacterScreenWidget::loadAssets(const QString& root,QString* error) {
                 textures[i]=mnm::ui::loadMenuImage(root,"Interface/CharacterScreen/800x600/"+name,QSize(bars[i].width()*2,bars[i].height()));
             }
             else {
+                if (maximum[i]>32) throw std::runtime_error("Too many character talisman slots");
                 talismans[i-3]=talismanRectangle(entry.value("Rect2"));
                 if (entry.value("SpriteIndexes")!=QString("%1,%2").arg(i-3).arg(i)) throw std::runtime_error("Invalid character talisman role");
             }
@@ -146,6 +151,8 @@ bool CharacterScreenWidget::loadAssets(const QString& root,QString* error) {
         if (!validCharacter(accepted_,minimum,maximum,increment)) throw std::runtime_error("Character snapshot outside configured domains");
         for (int i=0;i<6;++i) if (purchased_[i] && increment[i]!=increment_[i]) throw std::runtime_error("Character increment changed during pending edits");
         const auto draft=draftRequest();for (int i=0;i<6;++i) if (draft.values[i]>maximum[i]) throw std::runtime_error("Character draft outside configured domains");
+        for (int i=0;i<12;++i) static_cast<mnm::ui::SpriteButton*>(buttons_[i])->setSprites(i%2==0?increase:decrease,buttons[i].size());
+        for (int i=0;i<3;++i) static_cast<mnm::ui::TalismanBar*>(talismans_[i])->setSprites(sprites[i],sprites[i+3]);
         faces_=faces;
         for (int i=0;i<3;++i) static_cast<TexturedStatBar*>(bars_[i])->texture=textures[i];
         background_=assets.background;labelRectangles_=rectangles;barRectangles_=bars;talismanRectangles_=talismans;buttonRectangles_=buttons;
@@ -171,7 +178,7 @@ void CharacterScreenWidget::populate() {
         labels_[10+i]->setText(priced?QString::number(stat.upgradeCosts[n]):"—");
         buttons_[2*i]->setEnabled(!accepted_.id.isEmpty() && stat.upgradeAvailable && priced && stat.upgradeCosts[n]<=draft.remainingExperience && draft.values[i]<=maximum_[i]-increment_[i]);
         buttons_[2*i+1]->setEnabled(!accepted_.id.isEmpty() && n>0);
-        if (i<3) bars_[i]->setValue(draft.values[i]);else talismans_[i-3]->setText(QString("%1 / %2").arg(draft.values[i]).arg(maximum_[i]));
+        if (i<3) bars_[i]->setValue(draft.values[i]);else static_cast<mnm::ui::TalismanBar*>(talismans_[i-3])->setCounts(draft.values[i],maximum_[i]);
     }
     ok_->setEnabled(!accepted_.id.isEmpty());
 }

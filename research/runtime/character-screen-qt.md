@@ -37,15 +37,16 @@ caller-supplied rather than computed from those coefficients.
 Standard buttons at x 660 use sprite indices 6/7/8, while those at x 750 use
 9/10/11. Bounded offline native decoding of installed `800x600/sprites.spr`
 frames 6 and 9 produced the inspected contact sheet at
-`working/tests/character-screen-preview/buttons.png`; these show plus on the
-left and minus on the right. Both normal frames are 30x30 RGB565. Confidence is
+`working/tests/character-screen-preview/buttons.png`; these show opposing arrow glyphs for
+the left/right adjustment controls. Both normal frames are 30x30 RGB565. Confidence is
 high for decoded glyph/coordinate association; original event dispatch remains
-unobserved. The preview uses text +/− at those configured rectangles.
+unobserved. The preview now renders the corresponding SPR triplets at those rectangles;
+normal/hover/pressed assignment is a native policy pending live comparison.
 
 Sprite bars provide `Rect2=270,360/410/460,0,0`: these are anchors with zero
-right/bottom fields, not valid rectangular areas. The native text replacements
-are 350x30 at anchor+(0,15), aligned with the matching rows. This extent is native
-policy. The three configured STATBAR `Text` BMPs now supply the original bar
+right/bottom fields, not valid rectangular areas. Native rows are now 350x50
+at the supplied anchor, drawing coloured/grey SPR gems at 50-pixel intervals
+with each signed frame origin preserved. This row extent/spacing is native policy. The three configured STATBAR `Text` BMPs now supply the original bar
 textures. Installed 800x600 textures are 700x20, with a coloured 350x20 left
 half and grey 350x20 right half; the widget clips the coloured half by the
 current value and draws the grey half for the remainder. This rendering policy
@@ -103,8 +104,8 @@ its region/difficulty. Standalone `--character-screen` returns to Main Menu.
 Asset failure retains the caller and local snapshots.
 
 Original background, labels and rectangular control positions are reused.
-System serif fonts, text buttons/talisman counts, portrait transparency/placement,
-bar clipping and scaled letterboxing remain approximations. No original
+System serif fonts, sprite state/disabled styling, talisman spacing, portrait
+transparency/placement, bar clipping and scaled letterboxing remain approximations. No original
 screenshot equivalence or live progression validation is claimed. See
 [visual fidelity](battle-results-qt.md#visual-fidelity).
 
@@ -124,3 +125,5 @@ are retained at `working/tests/character-screen-preview/preview.png`.
 Original-manifest verification surrounds original-derived artifact use.
 Original pricing/indexing/refund rules, campaign snapshots, portrait progression mapping,
 character persistence and the engine command adapter remain outstanding.
+
+Original SPR controls and talisman art now have [integration evidence](menu-sprite-integration.md).

@@ -1,5 +1,6 @@
 #pragma once
 #include <QImage>
+#include "menu_sprites.hpp"
 #include <QMetaType>
 #include <QWidget>
 #include <array>
@@ -18,6 +19,7 @@ public:
         bool active = false;
         QString name, portraitId, portraitText, colourId, colourText;
         int handicap = 0;
+        int portraitIndex = -1, colourIndex = -1; // Explicit artwork selections; -1 retains text.
     };
     struct Setup {
         QString mapId, mapName;
@@ -50,6 +52,7 @@ private:
     void arrange();
     Setup setup_;
     QImage background_;
+    mnm::ui::MenuSpriteSheet sprites_;
     QString noPlayer_ = "No Player";
     std::array<QLabel*,40> labels_{};
     std::array<QRect,40> labelRectangles_{};

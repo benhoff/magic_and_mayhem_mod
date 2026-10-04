@@ -133,3 +133,7 @@ Engine pricing, historical refunds and campaign persistence remain unconnected.
 All implemented menu background images now use the native BMP/JPEG loader APIs.
 Character Screen also renders its configured BMP bar textures and explicitly
 selected face JPEGs. See [integration evidence and remaining sprite/font work](../runtime/menu-image-integration.md).
+
+Character gems/adjustment buttons, Region Entry icons and setup/lobby portraits,
+colour tokens and boot controls now render decoded SPR art. Explicit artwork
+indices remain separate from engine IDs. See [SPR integration and boundaries](../runtime/menu-sprite-integration.md).

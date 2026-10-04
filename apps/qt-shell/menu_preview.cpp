@@ -313,8 +313,8 @@ bool MenuPreview::openSinglePlayerBattle(const QString& root,QString* error) {
         const std::array<QString,4> colours{"Red","Blue","Green","Gold"};
         for (int i=0;i<4;++i) {
             auto& player=sample.players[i];player.active=true;player.name=i?QString("Sample AI %1").arg(i):"Sample player";
-            player.portraitId="sample-wizard-1";player.portraitText="W1";
-            player.colourId=QString("sample-colour-%1").arg(i);player.colourText=colours[i];
+            player.portraitId="sample-wizard-1";player.portraitText="W1";player.portraitIndex=0;
+            player.colourId=QString("sample-colour-%1").arg(i);player.colourText=colours[i];player.colourIndex=std::array<int,4>{1,2,0,6}[i];
         }
         singlePlayer_->setSetup(sample);
         connect(singlePlayer_,&SinglePlayerBattleWidget::cancelled,this,[this] {
@@ -329,7 +329,7 @@ bool MenuPreview::openSinglePlayerBattle(const QString& root,QString* error) {
         connect(singlePlayer_,&SinglePlayerBattleWidget::playerChangeRequested,this,[this](int slot) {
             auto setup=singlePlayer_->setup();auto& player=setup.players[slot];
             const int next=player.active?(player.portraitText=="W1"?2:player.portraitText=="W2"?3:1):1;
-            player.active=true;player.portraitId=QString("sample-wizard-%1").arg(next);player.portraitText=QString("W%1").arg(next);
+            player.active=true;player.portraitId=QString("sample-wizard-%1").arg(next);player.portraitText=QString("W%1").arg(next);player.portraitIndex=next-1;
             if (slot) player.name=QString("Sample AI %1 (W%2)").arg(slot).arg(next);
             singlePlayer_->setSetup(setup);
         });
@@ -337,7 +337,7 @@ bool MenuPreview::openSinglePlayerBattle(const QString& root,QString* error) {
             auto setup=singlePlayer_->setup();auto& player=setup.players[slot];
             const std::array<QString,4> colours{"Red","Blue","Green","Gold"};
             int current=0;for (int i=0;i<4;++i) if (player.colourText==colours[i]) current=i;
-            const int next=(current+1)%4;player.colourId=QString("sample-colour-%1").arg(next);player.colourText=colours[next];
+            const int next=(current+1)%4;player.colourId=QString("sample-colour-%1").arg(next);player.colourText=colours[next];player.colourIndex=std::array<int,4>{1,2,0,6}[next];
             singlePlayer_->setSetup(setup);
         });
         connect(singlePlayer_,&SinglePlayerBattleWidget::playerRemovalRequested,this,[this](int slot) {
@@ -392,12 +392,12 @@ bool MenuPreview::openMultiplayerLobby(const QString& root,MultiplayerLobbyWidge
         connect(screen,&MultiplayerLobbyWidget::playerChangeRequested,this,[screen](int slot) {
             auto lobby=screen->lobby();auto& player=lobby.players[slot];
             const int next=player.portraitText=="W1"?2:player.portraitText=="W2"?3:1;
-            player.portraitId=QString("sample-wizard-%1").arg(next);player.portraitText=QString("W%1").arg(next);screen->setLobby(lobby);
+            player.portraitId=QString("sample-wizard-%1").arg(next);player.portraitText=QString("W%1").arg(next);player.portraitIndex=next-1;screen->setLobby(lobby);
         });
         connect(screen,&MultiplayerLobbyWidget::colourChangeRequested,this,[screen](int slot) {
             auto lobby=screen->lobby();auto& player=lobby.players[slot];const std::array<QString,4> colours{"Red","Blue","Green","Gold"};
             int current=0;for (int i=0;i<4;++i) if (player.colourText==colours[i]) current=i;
-            const int next=(current+1)%4;player.colourId=QString("sample-colour-%1").arg(next);player.colourText=colours[next];screen->setLobby(lobby);
+            const int next=(current+1)%4;player.colourId=QString("sample-colour-%1").arg(next);player.colourText=colours[next];player.colourIndex=std::array<int,4>{1,2,0,6}[next];screen->setLobby(lobby);
         });
         connect(screen,&MultiplayerLobbyWidget::playerRemovalRequested,this,[screen](int slot) {
             auto lobby=screen->lobby();lobby.players[slot].active=false;screen->setLobby(lobby);
@@ -410,7 +410,7 @@ bool MenuPreview::openMultiplayerLobby(const QString& root,MultiplayerLobbyWidge
         const std::array<QString,4> colours{"Red","Blue","Green","Gold"};
         for (int i=0;i<3;++i) {
             auto& player=sample.players[i];player.active=true;player.name=i==sample.localSlot?request.userName:i==0?"Sample host":QString("Sample guest %1").arg(i);
-            player.portraitId="sample-wizard-1";player.portraitText="W1";player.colourId=QString("sample-colour-%1").arg(i);player.colourText=colours[i];
+            player.portraitId="sample-wizard-1";player.portraitText="W1";player.portraitIndex=0;player.colourId=QString("sample-colour-%1").arg(i);player.colourText=colours[i];player.colourIndex=std::array<int,4>{1,2,0,6}[i];
         }
         if (!screen->setLobby(sample,error)) return false;
         screen->clearChat();screen->appendMessage({"Preview","Sample lobby — local chat only."});context=key;
