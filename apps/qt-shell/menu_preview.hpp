@@ -10,6 +10,7 @@
 #include "multiplayer_setup_widget.hpp"
 #include "multiplayer_game_selection_widget.hpp"
 #include "single_player_battle_widget.hpp"
+#include "multiplayer_lobby_widget.hpp"
 class MainMenuWidget;
 class QuickBattleMenuWidget;
 class QStackedWidget;
@@ -29,6 +30,7 @@ public:
     bool openMultiplayer(const QString& root, MultiplayerSetupWidget::Mode mode, QString* error = nullptr);
     bool openMultiplayerGameSelection(const QString& root, QString* error = nullptr);
     bool openSinglePlayerBattle(const QString& root, QString* error = nullptr);
+    bool openMultiplayerLobby(const QString& root, MultiplayerLobbyWidget::Mode mode, QString* error = nullptr);
 private:
     void returnFromMapSelection();
     void returnFromPreferences();
@@ -43,6 +45,7 @@ private:
     QuickBattleResultWidget* quickResults_ = nullptr;
     MapSelectionWidget* mapSelection_ = nullptr;
     bool mapReturnsToSinglePlayer_ = false;
+    MultiplayerLobbyWidget* mapReturnsToLobby_ = nullptr;
     SinglePlayerBattleWidget* singlePlayer_ = nullptr;
     LoadGameWidget* loadGame_ = nullptr;
     SaveGameWidget* saveGame_ = nullptr;
@@ -53,5 +56,9 @@ private:
     MultiplayerSetupWidget* createMultiplayer_ = nullptr;
     MultiplayerGameSelectionWidget* multiplayerSelection_ = nullptr;
     MultiplayerSetupWidget::Request browsingRequest_;
+    MultiplayerLobbyWidget* hostLobby_ = nullptr;
+    MultiplayerLobbyWidget* joinLobby_ = nullptr;
+    QString hostLobbyContext_, joinLobbyContext_;
+    MultiplayerSetupWidget::Request hostLobbyRequest_, joinLobbyRequest_;
     QString assetRoot_;
 };

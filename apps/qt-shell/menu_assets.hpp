@@ -14,6 +14,7 @@ struct MenuAssets {
 MenuAssets loadMenuAssets(const QString& root, const QString& directory, const QString& config,
                          const char* imageFormat = "JPG", const QSize& imageSize = QSize(800, 600),
                          const QString& backgroundName = QString());
+Sections loadMenuLayout(const QString& root, const QString& directory, const QString& config);
 QRect rectangle(const QString& text);
 QString textLabel(const Sections& strings, const QString& textId);
 QRect menuContentRect(const QSize& size);

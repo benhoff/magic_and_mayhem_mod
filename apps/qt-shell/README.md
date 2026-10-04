@@ -299,3 +299,14 @@ Preview Single Player Battle Setup with sample players and configured sliders:
 It also opens from Quick Battle. Map Selection returns to this setup with edits
 retained; portrait/colour controls cycle local samples. Start emits a setup
 request without launching a game. See [scope and validation](../../research/runtime/single-player-battle-qt.md).
+
+Preview the multiplayer host or guest lobby:
+
+```bash
+./tools/run-qt-shell.sh --multiplayer-lobby host
+./tools/run-qt-shell.sh --multiplayer-lobby join
+```
+
+Create OK opens the host lobby; Join → session selection opens the guest lobby.
+Chat echoes locally. Host settings/Map and guest Ready use local sample state;
+networking and battle launch remain pending. See [scope and validation](../../research/runtime/multiplayer-lobby-qt.md).

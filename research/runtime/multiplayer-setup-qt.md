@@ -52,8 +52,8 @@ for editing. These policies do not establish original networking behavior.
 Both forms open from their respective native Quick Battle buttons or CLI flags.
 Cancel returns to Quick Battle with focus restored to the initiating button.
 Join OK now opens the [sample session selection preview](multiplayer-game-selection-qt.md);
-Cancel there returns to Join with its local input retained. Create OK reports
-networking-adapter-pending intent and stays on the form. Independent
+Cancel there returns to Join with its local input retained. Create OK now opens
+the [sample host lobby](multiplayer-lobby-qt.md). Lobby Cancel returns to Create. Independent
 local drafts survive reopening; sample inputs are supplied only on creation.
 No connecting/progress state or successful session is simulated.
 
