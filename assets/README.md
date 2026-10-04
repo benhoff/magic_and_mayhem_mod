@@ -218,3 +218,8 @@ The new `sprite-loader` CTest uses generated fixtures only. See the
 This rendering chunk decodes assets offline. Renderer integration, original
 lighting/effects/palette construction, fonts, ANI and live replacement remain
 separate work.
+
+The following chunk now supplies a separate [native sprite renderer adapter
+and preview](../research/runtime/native-sprite-rendering.md). It owns RGB565/mask
+uploads and applies signed origins; the assets library remains independent of
+the renderer and application widgets.

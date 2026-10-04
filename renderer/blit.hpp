@@ -48,7 +48,10 @@ public:
     void destroy(SurfaceId surface);
     void update(SurfaceId surface,int x,int y,const Image& patch);
     void copy(SurfaceId source,SurfaceId destination,Rect rect,int x,int y,
-              std::optional<std::uint32_t> key=std::nullopt);
+              std::optional<std::uint32_t> key=std::nullopt,
+              std::optional<SurfaceId> mask=std::nullopt);
+    // Optional indexed8 mask has source dimensions; zero discards the pixel.
+    // Masks use source coordinates, retain destination pixels and do not read back.
     // Exchange native storage only; palettes and handles retain their identity.
     void swapContents(SurfaceId first,SurfaceId second);
     void setPalette(SurfaceId surface,unsigned first,const std::vector<Rgb>& colors);

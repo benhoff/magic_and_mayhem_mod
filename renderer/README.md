@@ -103,6 +103,25 @@ See [implementation and validation evidence](../research/runtime/opengl-blit-rep
 and [capture format](../research/formats/render-draw-capture.md).
 Persistent API and evidence: [surfaces and presentation](../research/runtime/opengl-persistent-surfaces.md).
 
+## Render native SPR assets
+
+The integration project in `renderer/sprites` links the native SPR loader to
+owned RGB565 and coverage textures. Mask-based copies preserve opaque black,
+and frame placement subtracts signed origins from the draw anchor. Indexed
+sprites use their embedded palette with the validated unshaded RGB565 policy.
+
+```bash
+cmake -S renderer/sprites -B working/build/sprite-render
+cmake --build working/build/sprite-render --parallel 4
+ctest --test-dir working/build/sprite-render --output-on-failure
+python3 tools/test-sprite-render.py
+```
+
+`mnm-sprite-preview` loads through AssetFile and produces native pixels and a
+PNG using the OpenGL renderer, with no game launch. This is an offline asset
+milestone; clipping, original lighting/effects, animation and live scene loading
+remain separate. See [preview usage, contract and evidence](../research/runtime/native-sprite-rendering.md).
+
 ## Replay ordered surface commands
 
 The capture bridge now writes `commands-0001.bin` alongside an accepted blit.
