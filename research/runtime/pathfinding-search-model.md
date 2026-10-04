@@ -107,7 +107,11 @@ state at `0x005130d4..0x00513132`, sets its context initialization byte when
 inputs change (`0x00513136`), and uses
 separate budget globals at `0x006df188` and `0x006df18c`. Its setup assigns
 70 or 210 and subtracts consumed budget after returning. Confidence: high
-for this separate cached/budgeted call path; gameplay role remains unconfirmed.
+for this separate cached/budgeted call path. Follow-up 2026-10-04:
+`0x006df188` aliases creature manager `0x006def58 + 0x230`, initialized to 53
+by the budgeted pass called from the gameplay world update. See
+[world tick loop](world-tick-loop.md#budgeted-creature-work) for static evidence;
+complete caller-chain and live scheduling validation remain outstanding.
 
 **Confirmed:** `run-99zlrevg` contains eight samples returning to `0x0051cc96`,
 one to `0x0050bd13`, and one to `0x005213eb`. Every emitted count is one or two;

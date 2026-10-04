@@ -3,6 +3,13 @@
 Inspected 2026-10-03 using `objdump -p` and `objdump -d` on working
 executables. No original artifacts were consumed or modified.
 
+Follow-up static recovery, 2026-10-04: the No-CD message-loop dispatch,
+gameplay world-update entry `0x0046afc0`, creature passes, pacing and separate
+timer callbacks are now documented in [world tick loop](world-tick-loop.md).
+The timer wrapper/IAT addresses below describe the **clean** build only;
+No-CD equivalents are `0x00534ad0` / `0x00534b60` and `0x005c52e0` /
+`0x005c52b8`. Live gameplay thread ownership remains unobserved.
+
 ## Confirmed static findings (high confidence)
 
 - `working/game-clean/Chaos.exe`, SHA-256
@@ -44,5 +51,7 @@ See `render-startup-black-screen.md` for snapshot provenance.
 
 To confirm simulation ownership, trace timer callbacks and gameplay update,
 rendering, and route-search entries with thread IDs during actual gameplay.
+Use the build-specific observation candidates and scenarios in the
+[world-update recovery](world-tick-loop.md#smallest-next-live-observation).
 All VAs here refer to the identified executable's preferred image layout;
 they are not claims of stable runtime pointers across launches.

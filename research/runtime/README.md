@@ -14,6 +14,16 @@ confidence, and whether it remains stable across launches.
   evidence, live replacement status and rules for measuring progress.
 - [Threading evidence](threading.md): inspected timer/thread interfaces and
   limits of current simulation ownership findings.
+- [Original world tick loop](world-tick-loop.md): No-CD message-loop/gameplay
+  dispatch, world and creature updates, budgeted scheduling, pacing and separate
+  timer callbacks; hash-checked static export, without live validation.
+- [Original entity lifetimes](entity-lifetimes.md): creature slot allocation,
+  cleanup versus release, reuse and reference repair; secondary missile/effect
+  admission, third map-linked pool, and world teardown dependencies. Static only.
+- [Creature AI, combat and spells](creature-ai-combat-spells.md): command ingress,
+  behavior/action dispatch, staggered targeting, event-driven damage, cast and
+  effect paths, dependencies and remaining validation. Static only; includes a
+  [104-ID spell dispatch checklist](spell-dispatch-inventory.md).
 
 - [Executable hook candidates](hook-candidates.md): build-specific route,
   configuration lifecycle, and DirectDraw interception candidates; no hooks
