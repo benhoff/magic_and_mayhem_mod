@@ -24,3 +24,4 @@ Current findings:
 - [Raw asset interface byte comparison](asset-file-comparison.md)
 - [Pinned MMSprite rendering-asset evaluation](mmsprite-evaluation.md)
 - [Native indexed/direct-colour SPR loading](spr-native-loading.md)
+- [Native version-5 ANI tables](ani-native-loading.md)
