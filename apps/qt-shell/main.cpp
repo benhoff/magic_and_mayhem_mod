@@ -1,3 +1,4 @@
+#include "audio_cli.hpp"
 #include "voice_bridge.hpp"
 #include "window_host.hpp"
 #include "main_menu_widget.hpp"
@@ -191,6 +192,12 @@ int main(int argc,char** argv){
     // Help remains available from terminals without a graphical display.
     for(int i=1;i<argc;++i)if(QString::fromLocal8Bit(argv[i])=="--help" || QString::fromLocal8Bit(argv[i])=="-h"){
         std::printf("Usage: mnm-qt-shell [--repo DIRECTORY] [--renderer opengl|native]\n"
+                    "  --audio-catalog DIR   Preview reconstructed manager through Qt audio output\n"
+                    "  --audio-preflight     Report playable WAVs and missing assets without output\n"
+                    "  --audio-path-policy POLICY  literal or dequote-missing-leaf\n"
+                    "  --audio-report FILE   Save catalog/startup JSON\n"
+                    "  --audio-map ID        Map classifications/preload (default 1)\n"
+                    "  --audio-sound ID      Select a sound or group in the preview\n"
                     "  --native-media        Opt in to Qt movies and supported file sounds\n"
                     "  --native-voices       Experimental native mixer/Qt output for DirectSound voices\n"
                     "  --main-menu           Preview the native main menu without launching a game\n"
@@ -238,6 +245,7 @@ int main(int argc,char** argv){
     QApplication app(argc,argv);QCoreApplication::setApplicationName("mnm-qt-shell");
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
     addMediaOptions(parser);
+    addAudioOptions(parser);
     parser.addOption({"native-voices","Experimental native DirectSound voices through the PCM mixer and Qt output."});
     parser.addOption({"main-menu","Preview the native main menu without launching the game."});
     parser.addOption({"quick-battle-menu","Preview the native Quick Battle menu without launching the game."});
@@ -274,6 +282,8 @@ int main(int argc,char** argv){
     parser.addOption({"smoke-test","Open the shell briefly without launching the game."});
     parser.addOption({"embedding-test","Test an external fixture window; does not run the game."});
     parser.addOption({"fixture-window","Internal external-window fixture."});parser.process(app);
+    if(parser.isSet("audio-catalog"))return runAudio(app,parser);
+    if(parser.isSet("audio-preflight") || parser.isSet("audio-path-policy") || parser.isSet("audio-map") || parser.isSet("audio-sound") || parser.isSet("audio-report"))parser.showHelp(2);
     if(parser.isSet("media") || parser.isSet("media-server-test"))return runMedia(app,parser);
     if(parser.isSet("media-test") || parser.isSet("media-probe"))parser.showHelp(2);
     const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu") || parser.isSet("battle-results") || parser.isSet("quick-battle-results") || parser.isSet("map-selection") || parser.isSet("load-game") || parser.isSet("save-game") || parser.isSet("preferences") || parser.isSet("join-multiplayer") || parser.isSet("create-multiplayer") || parser.isSet("multiplayer-game-selection") || parser.isSet("single-player-battle") || parser.isSet("multiplayer-lobby") || parser.isSet("region-entry") || parser.isSet("character-screen") || parser.isSet("grimoire");

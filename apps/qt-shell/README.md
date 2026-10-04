@@ -351,3 +351,18 @@ Region Entry's Grimoire icon opens it too. Double-click or Enter opens an entry;
 Previous/Next and Page Up/Down browse pages. Artwork/Read toggles companion art.
 Close/Escape returns to the caller. Campaign knowledge and dynamic values remain
 pending. See [scope and validation](../../research/runtime/grimoire-qt.md).
+
+Native audio catalog/manager preview (no game):
+
+```sh
+./tools/run-qt-shell.sh --audio-catalog working/game-nocd/Sounds \
+  --audio-path-policy dequote-missing-leaf --audio-sound 812
+```
+
+The window lists ready/unavailable entries and provides Play, Stop Session and
+Restart Session. Omit the policy option for literal filenames. Add
+`--audio-preflight --audio-report working/audio-catalog.json` for a read-only
+catalog check without an audio device; exit 3 means a valid catalog with missing
+or unsupported entries. `--audio-map ID` selects classifications/permanent
+preload. [Session scope and offline checks](../../research/runtime/qt-audio-manager-session.md)
+keep this separate from live DirectSound replacement.

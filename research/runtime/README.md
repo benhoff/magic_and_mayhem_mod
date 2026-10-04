@@ -127,3 +127,6 @@ confidence, and whether it remains stable across launches.
 - [Audio source filenames](audio-source-filenames.md): recovered comment/file-open boundary, explicit native quoted-leaf compatibility and missing Stream evidence.
 
 - [TAG sprite-table correlation](tag-sprite-tables.md): installed names/ordinal/occurrence agreement, corrected leading-name classification and unresolved original consumption.
+
+- [Audio catalog preflight](audio-catalog-preflight.md): read-only PCM/source availability, randomized-group choices and explicit filename policy.
+- [Qt audio manager session](qt-audio-manager-session.md): application ownership, negotiated Qt sink connection, stable caller slots and offline queue/restart validation.
