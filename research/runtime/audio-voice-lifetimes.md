@@ -94,3 +94,6 @@ last owner. `working/build/audio-output/audio-lifetime-sanitize` passed
 AddressSanitizer, UndefinedBehaviorSanitizer and LeakSanitizer outside sandbox
 tracing. These tests use synthetic samples, no audio device and no Wine game.
 No x86 adapter code was changed in this chunk.
+
+Selected scheduler admission, eviction and volume-ordering blocks now have
+[separate reconstruction and fixture evidence](audio-voice-scheduler.md).
