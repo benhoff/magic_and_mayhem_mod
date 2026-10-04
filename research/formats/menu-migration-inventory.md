@@ -28,6 +28,12 @@ once would be incorrect. Some battle entries have no Rect1. A mode-aware
 widget using Rect2 and scaled 800x600 presentation is feasible, but the
 configuration does not establish which buttons the engine enables at runtime.
 
+Further inspection for the native Mini Menu confirms BMP panel assets:
+`800x600/Realm View Mini Menu 800-600.BMP` decodes to 600x400, and the
+640x480 counterpart decodes to 480x320. Confidence is high for decoded sizes;
+centering the panel is a native preview policy pending live placement evidence.
+See [implemented variants and validation](../runtime/mini-menu-qt.md).
+
 ## Standard Qt controls with additional data requirements
 
 | Screen | Declared controls beyond text/buttons | Remaining functional requirement |
