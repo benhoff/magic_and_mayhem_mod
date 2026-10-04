@@ -10,6 +10,13 @@ void NoCdAnimationPlayer::start(){
     if(records_[0].opcode==0)state_.displayedRecord=0;
     else dispatch(true);
 }
+void NoCdAnimationPlayer::switchSequence(std::vector<assets::AnimationRecord> sequence){
+    if(!state_.active || !state_.displayedRecord || sequence.empty() || sequence.size()>65536 ||
+       sequence.back().opcode!=6 || state_.pc>=sequence.size() || *state_.displayedRecord>=sequence.size() ||
+       sequence[*state_.displayedRecord].opcode!=0 || sequence[*state_.displayedRecord].argument<0)
+        throw std::runtime_error("Animation switch has no compatible active record positions");
+    records_=std::move(sequence);
+}
 std::int32_t NoCdAnimationPlayer::dispatch(bool initial){
     std::int32_t event=0;
     for(unsigned budget=0;budget<65536;++budget){

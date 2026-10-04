@@ -22,7 +22,7 @@ static void mapImage(const Bytes& b){
     if(p[0x64cb0]!=0x8b || p[0x64ec0]!=0x51 || p[0x65000]!=0x51)throw std::runtime_error("Controller entry bytes differ");
 }
 int main(int argc,char** argv)try{
-    if(argc!=6)throw std::runtime_error("Expected PE ANI sequence ticks break-tick (-1 disables)");
+    if(argc!=6 && argc!=8)throw std::runtime_error("Expected PE ANI sequence ticks break-tick [switch-sequence switch-tick]");
     mapImage(read(argv[1]));auto b=read(argv[2]);
     if(u32(b,0)!=0x00494e41 || u32(b,12)!=5 || u32(b,4)!=b.size())throw std::runtime_error("ANI version/header");
     const auto offsets=u32(b,20),count=u32(b,8);const auto base=44+std::uint64_t(offsets)*4;
@@ -41,10 +41,22 @@ int main(int argc,char** argv)try{
     using Start=void(__attribute__((thiscall)) *)(void*,unsigned,unsigned);
     using Tick=std::int32_t(__attribute__((thiscall)) *)(void*);
     reinterpret_cast<Start>(0x464cb0)(state,sequence,0);native.start();
-    const auto beginning=reinterpret_cast<std::uintptr_t>(b.data()+base+first*44);
+    auto beginning=reinterpret_cast<std::uintptr_t>(b.data()+base+first*44);
     std::cout<<'[';
     for(unsigned tick=0;tick<=ticks;++tick){
         std::int32_t event=0,nevent=0;
+        if(argc==8 && tick==std::stoul(argv[7])){
+            const auto target=std::stoul(argv[6]);if(target>=offsets-1)throw std::runtime_error("Switch sequence extent");
+            const auto a=u32(b,44+target*4),z=u32(b,48+target*4);
+            if(a>=z || z>count)throw std::runtime_error("Switch record extent");
+            std::vector<mnm::assets::AnimationRecord> replacement(z-a);
+            std::memcpy(replacement.data(),b.data()+base+a*44,replacement.size()*44);
+            native.switchSequence(std::move(replacement));
+            using Switch=void(__attribute__((thiscall)) *)(void*,unsigned);
+            if(*reinterpret_cast<unsigned char*>(0x464e20)!=0x53)throw std::runtime_error("Switch entry byte differs");
+            reinterpret_cast<Switch>(0x464e20)(state,target);
+            beginning=reinterpret_cast<std::uintptr_t>(b.data()+base+a*44);
+        }
         if(tick){if(int(tick)==breakTick){state[8]=1;native.requestBreak();}
             event=reinterpret_cast<Tick>(0x464ec0)(state);nevent=native.tick();}
         const auto pc=(state[6]-beginning)/44;
