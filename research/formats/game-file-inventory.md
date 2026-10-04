@@ -34,7 +34,7 @@ The executable identifying this installation has SHA-256
 | TTD | 17 | 11,154,108 | Proprietary `TTD\0` container |
 | SFT | 6 | 624,508 | [Native version-3 font reader](sft-native-loading.md); glyphs and contour profiles, offline only |
 | AVI | 5 | 83,940,352 | Standard RIFF/AVI |
-| DAT | 2 | 1,269,444 | Proprietary AI data |
+| DAT | 2 | 1,269,444 | [Native Brain/Experien readers](dat-native-loading.md); headerless AI records, offline only |
 | WBT | 2 | 346 | [Read-only automation statement loader](txt-wbt-native-loading.md); development scripts, not AI parameter definitions |
 | Other | 6 | 176,563 | BAK, DLL, DOC, EXE, INI, and WRI |
 
