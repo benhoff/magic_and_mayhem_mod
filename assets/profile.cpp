@@ -17,8 +17,11 @@ ProfileSnapshot ProfileSnapshot::parse(const std::vector<std::uint8_t>& bytes){
         start=end==text.npos?text.size():end+1;
         if(line.empty() || line.front()==';')continue;
         if(line.front()=='['){
-            if(line.back()!=']' || line.find(']',1)!=line.size()-1)throw std::invalid_argument("Malformed profile section");
-            current=folded(trim(std::string_view(line).substr(1,line.size()-2)));
+            const auto close=line.find(']',1);
+            if(close==line.npos)throw std::invalid_argument("Malformed profile section");
+            const auto suffix=trim(std::string_view(line).substr(close+1));
+            if(!suffix.empty() && suffix.front()!=';')throw std::invalid_argument("Malformed profile section suffix");
+            current=folded(trim(std::string_view(line).substr(1,close-1)));
             if(current.empty() || !result.sections_.emplace(current,std::vector<Entry>{}).second)throw std::invalid_argument("Empty/duplicate profile section");
             continue;
         }

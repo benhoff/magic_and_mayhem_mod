@@ -375,3 +375,9 @@ Compare installed files with
 `python3 tests/test-bmp-loader.py working/build/bmp/mnm-bmp-inspect --installation working/game-clean --report working/tests/bmp-loader/installed-comparison.json`.
 The installed run verifies originals before/after and records source hashes.
 See [BMP validation scope](../research/formats/bmp-native-loading.md).
+
+`./tools/test-installed-audio-profile.py [Sounds.ini]` verifies originals before
+and after comparing installed audio sections/values with PE32 Wine and decoding
+both catalogs through reconstructed tables. It never launches the game or opens
+an audio output device. See
+[installed profile comparison](../research/formats/installed-audio-profile-comparison.md).

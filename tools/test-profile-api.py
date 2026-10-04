@@ -19,6 +19,8 @@ Empty =
 [Map]
 10
 20
+[Commented] ; trailing header comment
+key=answer
 [Numbers]
 Decimal=42
 Zero=0
@@ -43,7 +45,7 @@ def main():
         result.check_returncode()
         return result.stdout.strip()
     build = REPO/'working/build/profile-api'
-    run('configure', ['cmake','-S',str(REPO/'assets'),'-B',str(build)])
+    run('configure', ['cmake','-S',str(REPO/'assets'),'-B',str(build),'-DBUILD_TESTING=OFF'])
     run('native-build', ['cmake','--build',str(build),'--target','mnm-profile-compare','--parallel','4'])
     imports = {'GetPrivateProfileStringA':24,'GetPrivateProfileSectionA':16,
                'GetPrivateProfileIntA':16,'GetFullPathNameA':16,'CreateFileA':28,
@@ -58,11 +60,11 @@ def main():
                          '/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{root/"reference.exe"}',
                          str(root/'reference.obj'),str(root/'kernel32.lib')])
     (root/'fixture.ini').write_bytes(FIXTURE.replace('\n','\r\n').encode('ascii'))
-    run('native',[str(build/'mnm-profile-compare')],cwd=root)
     env = {k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
     env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'), WINEDEBUG='-all')
     version = run('wine-version',['wine','--version'],env=env)
     run('wine',['wine',str(root/'reference.exe')],cwd=root,env=env)
+    run('native',[str(build/'mnm-profile-compare')],cwd=root)
     names = re.findall(r'^Q\((\w+),', (REPO/'tests/profile-api/queries.inc').read_text(),re.M)
     def records(path):
         data=path.read_bytes()

@@ -20,7 +20,8 @@ the source file changes; explicit reopen obtains a new snapshot. NUL, BOM,
 non-ASCII and other control bytes reject. This restriction is native policy,
 not evidence that the game's profile files use no other encoding.
 
-Section headers use `[name]` on their own trimmed line. Blank lines and leading
+Section headers use `[name]` on a trimmed line, optionally followed by a
+semicolon comment. This installed-file syntax is measured against Wine. Blank lines and leading
 semicolon comments are skipped. Entries require a section; sections and keys
 compare ASCII case-insensitively. Surrounding space/tab/CR is trimmed from lines,
 section names, keys and unquoted value storage. Entry order is retained. Bare
@@ -63,6 +64,7 @@ checks. Evidence: `working/tests/audio-native-manager/run-xauygdrw/report.json`;
 
 The [PE32 Wine profile API comparison](profile-api-comparison.md) now records
 29 selected calls, two supported semantic fixes and seven intentional native
-policy differences. Next compare installed profile/catalog reads under the
-guarded immutable-input workflow. Synthetic parsing and native PCM
+policy differences. The [installed profile/catalog comparison](installed-audio-profile-comparison.md)
+now establishes agreement of 499 calls and their derived catalog for the selected
+installed bytes under the guarded immutable-input workflow. Synthetic parsing and native PCM
 agreement do not establish original profile behavior or live replacement.

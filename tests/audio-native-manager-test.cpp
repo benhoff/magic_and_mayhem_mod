@@ -21,13 +21,13 @@ void profileContracts(){
     check(p.value("Sounds","30",260)=="empty ; literal inline","inline semicolon retained");
     check(p.value("Sounds","missing",4,"abcdef")=="abc" && p.value("Sounds","10",1).empty(),"default and string truncation capacities");
     check(p.value("missing","key",128,"  fallback  ")=="  fallback" && p.value("missing","key",128,"fallback\t")=="fallback\t","Wine fallback trims trailing spaces only");
-    auto map=a::ProfileSnapshot::parse(bytes("[Map]\n10\n20\n"));
+    auto map=a::ProfileSnapshot::parse(bytes("[Map] ; installed-style header comment\n10\n20\n"));
     check(map.section("Map",7).returned==5 && map.section("Map",7).entries.empty() && map.section("Map",8).returned==6 && map.section("Map",8).entries.size()==2,"Wine exact section boundary and native partial-content policy");
     auto list=p.section("Sounds",16384);check(list.entries==std::vector<std::string>({"10='Tone'","20=\" other \"","30=empty ; literal inline"}),"section quotes preserved and whitespace normalized");
     check(p.section("Sounds",4).returned==2 && p.section("Sounds",4).entries.empty(),"section truncation marker");
     check(p.section("7 Load Permanent",16384).entries==std::vector<std::string>({"10"}),"bare per-map entries");
     check(p.integer("optimisation","maxsimultaneoussounds",16)==4 && p.integer("missing","key",16)==16,"integer and missing fallback");
-    for(const auto& text:{"[A]\nx=1\nX=2\n","[A]\nx=1\n[a]\ny=2\n","orphan=1\n","[broken\nx=1\n"}){
+    for(const auto& text:{"[A]\nx=1\nX=2\n","[A]\nx=1\n[a]\ny=2\n","orphan=1\n","[broken\nx=1\n","[A] junk\nx=1\n"}){
         bool rejected=false;try{a::ProfileSnapshot::parse(bytes(text));}catch(const std::invalid_argument&){rejected=true;}check(rejected,"malformed/duplicate profile native rejection");
     }
     std::string many="[Many]\n";for(unsigned i=0;i<10000;++i)many+="k"+std::to_string(i)+"=value\n";
