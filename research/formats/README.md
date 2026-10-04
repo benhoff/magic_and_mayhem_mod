@@ -31,3 +31,5 @@ Current findings:
 - [Native persistence/progression readers](persistence-native-loading.md): owned CFG, realm, names and save readers; offline evidence and strict parsing policies.
 
 - [WZD wizard definitions and native loading](wzd-native-loading.md): typed stats, sparse resource selections and action records; offline comparison of all 101 installed files.
+
+- [Native CUR cursor loading](cur-native-loading.md): owned indexed images, AND/XOR planes and hotspots; offline comparison of all 20 installed files/22 images.

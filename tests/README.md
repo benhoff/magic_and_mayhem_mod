@@ -345,3 +345,12 @@ For all installed definitions, run
 This brackets artifact reads with immutable-manifest verification and compares
 all properties/typed values against an independent Python parser.
 See [schema and validation boundaries](../research/formats/wzd-native-loading.md).
+
+## CUR cursor assets
+
+The assets CTests include `cursor-loader` and `cursor-byte-comparison`.
+For all installed CURs, run
+`python3 tests/test-cursor-loader.py working/build/cursor/mnm-cursor-inspect --installation working/game-clean --report working/tests/cursor-loader/installed-comparison.json`.
+The runner verifies originals before/after and compares all image planes,
+palettes and hotspots against an independent Python decoder.
+See [CUR validation scope](../research/formats/cur-native-loading.md).
