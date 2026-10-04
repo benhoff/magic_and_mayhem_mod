@@ -397,3 +397,11 @@ Menu audio now reports output failures in a persistent status-bar label with
 current default output, and restores accepted effects gain without replaying
 old cues. Closing the preview cancels pending recovery. See
 [recovery scope and evidence](../../research/runtime/audio-output-recovery.md).
+
+## Persistent menu effects volume
+
+`--menu-audio` restores accepted effects volume before its first cue and saves it
+when Preferences is accepted. Cancel leaves the saved value unchanged. The
+user-scoped QSettings INI uses `MagicAndMayhemMod/QtShell` and the versioned key
+`audio/v1/effectsLevel`; other preferences remain local. See
+[implementation and offline restart evidence](../../research/runtime/menu-audio-preferences.md).

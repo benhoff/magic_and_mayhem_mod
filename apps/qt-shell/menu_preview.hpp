@@ -26,6 +26,7 @@ class MenuPreview final : public QMainWindow {
     Q_OBJECT
 public:
     explicit MenuPreview(QWidget* parent = nullptr);
+    bool setEffectsVolume(int level,QString* error=nullptr);
     void setAudioStatus(const QString& text,bool canRetry);
     bool loadAssets(const QString& root, bool startQuickBattle, QString* error = nullptr);
     bool openMiniMenu(const QString& root, MiniMenuWidget::Mode mode, QString* error = nullptr);
@@ -76,6 +77,8 @@ private:
     SaveGameWidget* saveGame_ = nullptr;
     bool saveReturnsToMini_ = false;
     PreferencesWidget* preferences_ = nullptr;
+    int effectsVolume_=-1000;
+    bool effectsVolumeSet_=false;
     bool preferencesReturnToMini_ = false;
     MultiplayerSetupWidget* joinMultiplayer_ = nullptr;
     MultiplayerSetupWidget* createMultiplayer_ = nullptr;

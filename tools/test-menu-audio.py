@@ -48,7 +48,7 @@ def main():
                'tools/test-menu-audio.py', 'audio/qt_output.cpp']
     sources += [str(p.relative_to(REPO)) for p in sorted((REPO / 'apps/qt-shell').glob('*widget.*pp'))]
     digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
-    report = {'scope': 'native menu semantic cues, accepted effects gain, shared manager and queue transitions',
+    report = {'scope': 'native menu semantic cues, persisted accepted effects gain, shared manager and queue transitions',
               'gameLaunched': False, 'installedAssetsRead': False, 'physicalAudioDeviceOpened': False,
               'testsPassed': True, 'sourceSha256': {p: digest(REPO / p) for p in sources},
               'binarySha256': {p: digest(BUILD / p) for p in ['menu-audio-test', 'audio-recovery-test', 'mnm-qt-shell', 'audio-session-test']}}

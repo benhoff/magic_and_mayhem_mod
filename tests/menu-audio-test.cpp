@@ -10,6 +10,9 @@
 #include <QPushButton>
 #include <QSlider>
 #include <QStackedWidget>
+#include <QSettings>
+#include <QFile>
+#include <QProcess>
 #include <cstring>
 #include <iostream>
 namespace r=mnm::reconstruction::audio;using audioFixture::check;
@@ -61,9 +64,23 @@ public:
 void click(QWidget& widget,const char* name){auto* button=widget.findChild<QPushButton*>(name);check(button,"button found");button->click();}
 }
 int main(int argc,char** argv){QApplication app(argc,argv);try{
+    if(argc==3 && QString::fromLocal8Bit(argv[1])=="--restore-preferences"){
+        const auto root=QString::fromLocal8Bit(argv[2]);QSettings store(root+"/preferences.ini",QSettings::IniFormat);
+        auto output=std::make_unique<Output>();auto* sink=output.get();MenuAudioController controller(std::move(output),{},nullptr,&store);
+        MenuPreview preview;QString error;check(preview.loadAssets(root,false,&error),qPrintable(error));controller.attach(preview);
+        check(controller.start(root+"/Sounds",r::NativeSourcePathPolicy::literal),"fresh process audio starts");
+        click(preview,"mainMenuAction0");check(sink->sample()==400,"fresh process first cue uses saved volume");
+        click(preview,"mainMenuAction3");auto* prefs=preview.findChild<PreferencesWidget*>();
+        check(prefs && prefs->settings().soundLevel== -2000,"fresh process lazy Preferences restores saved volume");
+        preview.close();return 0;
+    }
+
     QTemporaryDir temporary;check(temporary.isValid(),"fixture root");const auto root=temporary.path();fixtures(root);
     MenuPreview preview;QString error;check(preview.loadAssets(root,false,&error),qPrintable(error));preview.show();app.processEvents();
-    auto output=std::make_unique<Output>();auto* sink=output.get();MenuAudioController audio(std::move(output));audio.attach(preview);
+    const auto settingsPath=root+"/preferences.ini";
+    QSettings settings(settingsPath,QSettings::IniFormat);
+    auto output=std::make_unique<Output>();auto* sink=output.get();MenuAudioController audio(std::move(output),{},nullptr,&settings);audio.attach(preview);
+    check(audio.soundLevel()== -1000 && !QFile::exists(settingsPath),"missing settings use default without writing on startup");
     int failures=0;audio.failed=[&](const QString&){++failures;};check(audio.start(root+"/Sounds",r::NativeSourcePathPolicy::literal),"shared audio startup");auto* device=sink->device;
     click(preview,"mainMenuAction0");auto* action=preview.findChild<QPushButton*>("mainMenuAction0");
     QKeyEvent down(QEvent::KeyPress,Qt::Key_Space,Qt::NoModifier),up(QEvent::KeyRelease,Qt::Key_Space,Qt::NoModifier);
@@ -77,7 +94,11 @@ int main(int argc,char** argv){QApplication app(argc,argv);try{
     click(preview,"mainMenuAction3");auto* prefs=preview.findChild<PreferencesWidget*>();check(prefs && preview.findChild<QStackedWidget*>()->currentWidget()==prefs,"lazy preferences loaded and bound");
     auto* slider=prefs->findChild<QSlider*>("preferencesSlider2");slider->setValue(-2000);click(*prefs,"preferencesOk");
     check(audio.soundLevel()== -2000 && sink->sample()==400,"accepted volume applies to action in destination screen");
+    QSettings acceptedSettings(settingsPath,QSettings::IniFormat);
+    check(acceptedSettings.value("audio/v1/effectsLevel").toInt()== -2000,"accepted volume synced to independent INI reader");
+    QFile saved(settingsPath);check(saved.open(QIODevice::ReadOnly),"saved settings readable");const auto acceptedBytes=saved.readAll();saved.close();
     click(preview,"mainMenuAction3");slider->setValue(0);click(*prefs,"preferencesCancel");
+    check(saved.open(QIODevice::ReadOnly) && saved.readAll()==acceptedBytes,"cancel leaves saved file byte-identical");saved.close();
     check(audio.soundLevel()== -2000 && sink->sample()==400,"cancelled draft does not change shared volume");
     click(preview,"mainMenuAction3");prefs->findChild<QSlider*>("preferencesSlider1")->setValue(0);click(*prefs,"preferencesOk");
     check(audio.soundLevel()== -2000 && sink->sample()==400,"music preference does not alter effects gain");
@@ -98,15 +119,59 @@ int main(int argc,char** argv){QApplication app(argc,argv);try{
     click(preview,"quickBattleAction3");click(preview,"mainMenuAction3");slider->setValue(-2000);click(*prefs,"preferencesOk");
     sink->fail("Output disconnected");for(int i=0;i<3;++i)app.processEvents();
     check(!audio.running() && failures==2 && retry->isVisible() && audioLabel->text().contains("Output disconnected"),"asynchronous failure reported without another menu action");
-    click(preview,"mainMenuAction3");slider->setValue(-1000);click(*prefs,"preferencesOk");check(audio.soundLevel()== -1000,"accepted volume changes while output absent");
+    click(preview,"mainMenuAction3");slider->setValue(-2000);click(*prefs,"preferencesOk");check(audio.soundLevel()== -2000,"accepted volume changes while output absent");
+    QSettings offlineSettings(settingsPath,QSettings::IniFormat);check(offlineSettings.value("audio/v1/effectsLevel").toInt()== -2000,"offline accepted volume is persisted");
     sink->changedDevices();for(int i=0;i<3;++i)app.processEvents();
-    check(audio.running() && sink->sample()==0 && audio.soundLevel()== -1000,"device availability automatically restores accepted settings without old cues");
-    click(preview,"mainMenuAction0");check(sink->sample()==1265,"new action after recovery uses latest gain");
+    check(audio.running() && sink->sample()==0 && audio.soundLevel()== -2000,"device availability automatically restores accepted settings without old cues");
+    click(preview,"mainMenuAction0");check(sink->sample()==400,"new action after recovery uses latest gain");
     check(preview.openGrimoire(root,&error),qPrintable(error));click(*book,"grimoireNext");preview.close();check(!audio.running() && !sink->device,"window close clears audio even with active cue");
+    QProcess restart;restart.start(QCoreApplication::applicationFilePath(),{"--restore-preferences",root});
+    check(restart.waitForFinished(10000) && restart.exitStatus()==QProcess::NormalExit && restart.exitCode()==0,qPrintable("fresh process restart: "+restart.readAllStandardError()));
+    {
+        QSettings reopened(settingsPath,QSettings::IniFormat);
+        auto restartOutput=std::make_unique<Output>();auto* restartSink=restartOutput.get();
+        MenuAudioController restarted(std::move(restartOutput),{},nullptr,&reopened);
+        MenuPreview restartedPreview;check(restartedPreview.loadAssets(root,false,&error),qPrintable(error));restarted.attach(restartedPreview);
+        check(restarted.start(root+"/Sounds",r::NativeSourcePathPolicy::literal),"new session with disk settings starts");
+        click(restartedPreview,"mainMenuAction0");check(restartSink->sample()==400,"first cue before opening Preferences uses restored gain");
+        click(restartedPreview,"mainMenuAction3");auto* restoredPrefs=restartedPreview.findChild<PreferencesWidget*>();
+        check(restoredPrefs && restoredPrefs->settings().soundLevel== -2000 && restoredPrefs->findChild<QSlider*>("preferencesSlider2")->value()== -2000,"lazy Preferences shows restored effects level");
+        click(*restoredPrefs,"preferencesCancel");check(restarted.soundLevel()== -2000,"restart cancel keeps restored setting");
+        restartedPreview.close();
+    }
+    // Corrupt values never coerce to full volume. Startup does not repair/write
+    // the file; only an accepted preference changes this versioned key.
+    const QStringList values={"garbage","-2000.5","1","-10001","999999999999999999999","","true","@Invalid()","-10000","0","-2000"};
+    for(int i=0;i<values.size();++i){
+        const auto path=root+QString("/validation-%1.ini").arg(i);
+        save(path,"[audio]\nv1\\effectsLevel="+values[i].toUtf8()+"\n");
+        QFile before(path);check(before.open(QIODevice::ReadOnly),"invalid fixture readable");const auto bytes=before.readAll();before.close();
+        QSettings candidate(path,QSettings::IniFormat);
+        auto validationOutput=std::make_unique<Output>();auto* validationSink=validationOutput.get();
+        MenuAudioController controller(std::move(validationOutput),{},nullptr,&candidate);
+        const int expected=i<8? -1000:values[i].toInt();check(controller.soundLevel()==expected,"strict persisted integer and gain range validation");
+        MenuPreview candidatePreview;check(candidatePreview.loadAssets(root,false,&error),qPrintable(error));controller.attach(candidatePreview);
+        check(controller.start(root+"/Sounds",r::NativeSourcePathPolicy::literal),"validated persisted gain starts");
+        click(candidatePreview,"mainMenuAction0");const int sample=expected== -10000?0:expected==0?4000:expected== -2000?400:1265;
+        check(validationSink->sample()==sample,"restored boundary/default gain applied before first cue");
+        check(before.open(QIODevice::ReadOnly) && before.readAll()==bytes,"load and cues do not rewrite stored settings");before.close();candidatePreview.close();
+    }
+    {
+        // An existing directory is an unwritable INI destination even as root.
+        QSettings unwritable(root+"/Sounds",QSettings::IniFormat);
+        auto failedStoreOutput=std::make_unique<Output>();auto* failedStoreSink=failedStoreOutput.get();
+        MenuAudioController controller(std::move(failedStoreOutput),{},nullptr,&unwritable);
+        MenuPreview failedStorePreview;check(failedStorePreview.loadAssets(root,false,&error),qPrintable(error));controller.attach(failedStorePreview);
+        QString failure;controller.failed=[&](const QString& message){failure=message;};
+        check(controller.start(root+"/Sounds",r::NativeSourcePathPolicy::literal),"write failure fixture starts");
+        click(failedStorePreview,"mainMenuAction3");auto* failedPrefs=failedStorePreview.findChild<PreferencesWidget*>();
+        failedPrefs->findChild<QSlider*>("preferencesSlider2")->setValue(-2000);click(*failedPrefs,"preferencesOk");
+        check(failure.contains("Could not save effects volume") && controller.running() && failedStoreSink->sample()==400,"write error reported without losing accepted session gain");failedStorePreview.close();
+    }
     auto missingOutput=std::make_unique<Output>();auto* missing=missingOutput.get();MenuAudioController unavailable(std::move(missingOutput),{999,830});
     check(!unavailable.start(root+"/Sounds",r::NativeSourcePathPolicy::literal) && !unavailable.running() && !missing->device && !unavailable.lastError().isEmpty(),"unavailable mapping aborts audio instead of substitute");
     auto groupOutput=std::make_unique<Output>();auto* group=groupOutput.get();MenuAudioController randomized(std::move(groupOutput),{840,830});
     MenuPreview second;check(second.loadAssets(root,false,&error),qPrintable(error));randomized.attach(second);check(randomized.start(root+"/Sounds",r::NativeSourcePathPolicy::literal),"randomized cue mapping accepted");click(second,"mainMenuAction2");check(group->sample()== -632,"group cue resolves through manager admission");
     second.close();check(!randomized.running(),"independent preview closes its own session");
-    std::cout<<"Native menu audio passed; real widget actions, exact PCM, settings, shared ownership, transitions, page cues and failures; no game or physical sink\n";return 0;
+    std::cout<<"Native menu audio passed; real widget actions, exact PCM, persisted settings, shared ownership, transitions, page cues and failures; no game or physical sink\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}

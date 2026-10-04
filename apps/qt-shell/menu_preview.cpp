@@ -215,16 +215,29 @@ void MenuPreview::returnFromSaveGame() {
     statusBar()->showMessage("Mini Menu preview. Cancel or Escape returns to the main menu.");
 }
 
+bool MenuPreview::setEffectsVolume(int level,QString* error) {
+    if(level< -10000 || level>0){if(error)*error="Effects volume outside native range";return false;}
+    if(preferences_){
+        auto settings=preferences_->settings();settings.soundLevel=level;
+        if(!preferences_->setSettings(settings,error))return false;
+    }
+    effectsVolume_=level;effectsVolumeSet_=true;return true;
+}
+
 bool MenuPreview::openPreferences(const QString& root, QString* error) {
     if (!preferences_) {
         preferences_=new PreferencesWidget(screens_); screens_->addWidget(preferences_);
         connect(preferences_,&PreferencesWidget::cancelled,this,&MenuPreview::returnFromPreferences);
-        connect(preferences_,&PreferencesWidget::settingsApplied,this,[this](const PreferencesWidget::Settings&) {
+        connect(preferences_,&PreferencesWidget::settingsApplied,this,[this](const PreferencesWidget::Settings& settings) {
+            effectsVolume_=settings.soundLevel;effectsVolumeSet_=true;
             returnFromPreferences();
-            statusBar()->showMessage("Preferences accepted locally — engine adapter and persistence pending.");
+            statusBar()->showMessage("Preferences accepted locally.");
         });
     }
-    if (!preferences_->loadAssets(root,error) || !preferences_->setSettings(preferences_->settings(),error)) return false;
+    if (!preferences_->loadAssets(root,error)) return false;
+    auto settings=preferences_->settings();
+    if(effectsVolumeSet_)settings.soundLevel=effectsVolume_;
+    if(!preferences_->setSettings(settings,error))return false;
     preferencesReturnToMini_=mini_ && screens_->currentWidget()==mini_;
     activateScreen(preferences_); preferences_->focusFirstControl(); setWindowTitle(preferences_->windowTitle());
     statusBar()->showMessage("Local sample settings. OK accepts changes; Cancel restores the snapshot."); return true;
