@@ -83,7 +83,7 @@ movement predicates do not cover the whole creature update or AI system.
 | GP06 | Campaign, scenario scripting and triggers | No native replacement recorded |
 | GP07 | Saves and persistent state | No native replacement recorded |
 | GP08 | Terrain/sprite loading, animation and scene composition | Surface operations partly reconstructed; complete pipeline not replaced |
-| GP09 | In-game menus and interface logic | Native MainMenuWidget preview with synthetic asset/layout/input checks; original in-game logic retained; no menu action adapter or live replacement. [Scope](main-menu-qt-migration.md) |
+| GP09 | In-game menus and interface logic | Native MainMenuWidget and QuickBattleMenuWidget previews with synthetic asset/layout/input and navigation checks; original in-game logic retained; no menu action adapter or live replacement. [Main menu](main-menu-qt-migration.md), [Quick Battle](quick-battle-qt-menu.md) |
 
 ## Coverage measurements
 

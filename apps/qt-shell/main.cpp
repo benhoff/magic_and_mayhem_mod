@@ -1,5 +1,6 @@
 #include "window_host.hpp"
 #include "main_menu_widget.hpp"
+#include "menu_preview.hpp"
 #include "media_cli.hpp"
 #include "media_broker.hpp"
 #include "gl_viewport.hpp"
@@ -185,6 +186,7 @@ int main(int argc,char** argv){
         std::printf("Usage: mnm-qt-shell [--repo DIRECTORY] [--renderer opengl|native]\n"
                     "  --native-media        Opt in to Qt movies and supported file sounds\n"
                     "  --main-menu           Preview the native main menu without launching a game\n"
+                    "  --quick-battle-menu   Preview the native Quick Battle menu\n"
                     "  --menu-assets DIR     Installed assets for the main menu preview\n"
                     "  --menu-command-line   Show the conditional CommandLine Battle preview button\n"
                     "  --media FILE          Preview AVI/WAV media without the game\n"
@@ -214,6 +216,7 @@ int main(int argc,char** argv){
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
     addMediaOptions(parser);
     parser.addOption({"main-menu","Preview the native main menu without launching the game."});
+    parser.addOption({"quick-battle-menu","Preview the native Quick Battle menu without launching the game."});
     parser.addOption({"menu-assets","Installation root for main-menu assets.","directory"});
     parser.addOption({"menu-command-line","Show CommandLine Battle in the menu preview."});
     parser.addOption({"software-rendering","Use Mesa software rendering for this shell and its Wine child."});
@@ -234,24 +237,17 @@ int main(int argc,char** argv){
     parser.addOption({"fixture-window","Internal external-window fixture."});parser.process(app);
     if(parser.isSet("media") || parser.isSet("media-server-test"))return runMedia(app,parser);
     if(parser.isSet("media-test") || parser.isSet("media-probe"))parser.showHelp(2);
-    if((parser.isSet("menu-assets") || parser.isSet("menu-command-line")) && !parser.isSet("main-menu"))parser.showHelp(2);
-    if(parser.isSet("main-menu")){
-        QMainWindow preview;
-        auto* menu=new MainMenuWidget(&preview);
+    const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu");
+    if((parser.isSet("menu-assets") || parser.isSet("menu-command-line")) && !menuPreview)parser.showHelp(2);
+    if(parser.isSet("main-menu") && parser.isSet("quick-battle-menu"))parser.showHelp(2);
+    if(menuPreview){
+        MenuPreview preview;
         const auto root=parser.isSet("menu-assets")?parser.value("menu-assets"):QDir(parser.value("repo")).filePath("working/game-nocd");
         QString error;
-        if(!menu->loadAssets(root,&error)){
-            std::fprintf(stderr,"Main menu assets failed: %s\n",qPrintable(error));return 9;
+        if(!preview.loadAssets(root,parser.isSet("quick-battle-menu"),&error)){
+            std::fprintf(stderr,"Menu assets failed: %s\n",qPrintable(error));return 9;
         }
-        menu->setCommandLineBattleVisible(parser.isSet("menu-command-line"));
-        preview.setCentralWidget(menu);preview.resize(800,630);
-        preview.setWindowTitle(menu->windowTitle());
-        preview.statusBar()->showMessage("Menu preview. Game actions are not connected.");
-        QObject::connect(menu,&MainMenuWidget::actionRequested,&preview,[&](MainMenuWidget::Action action){
-            if(action==MainMenuWidget::Action::Quit){preview.close();return;}
-            const auto name=QMetaEnum::fromType<MainMenuWidget::Action>().valueToKey(int(action));
-            preview.statusBar()->showMessage(QString("Selected %1 — engine adapter pending.").arg(QString::fromLatin1(name)));
-        });
+        preview.findChild<MainMenuWidget*>()->setCommandLineBattleVisible(parser.isSet("menu-command-line"));
         preview.show();
         if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);
         return app.exec();

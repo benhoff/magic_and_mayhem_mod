@@ -24,6 +24,25 @@ The ordinary shell startup screen remains available with no preview option.
 Run `ctest --test-dir working/build/qt-shell -R qt-main-menu --output-on-failure`
 for synthetic asset loading, layout, presentation and action checks.
 
+## Native Quick Battle menu
+
+```bash
+./tools/run-qt-shell.sh --quick-battle-menu
+```
+
+The main menu preview now opens Quick Battle when its Quick Battle button is
+selected. Cancel or Escape returns to the main menu and restores focus. The
+four Quick Battle buttons expose semantic actions; Create Multiplayer, Join
+Multiplayer, and Create Single Player currently report their selection without
+launching a game. Both entry points require assets for both menus.
+
+The widget uses the installed background, heading, labels and button rectangles,
+with native keyboard navigation and scaled letterboxing. Shared menu loaders
+retain bounded read-only AssetStore access and transactional widget reloads.
+Use `--menu-assets DIRECTORY` to select another installation.
+
+See [scope and validation](../../research/runtime/quick-battle-qt-menu.md).
+
 Native Qt application code, separate from reconstructed engine algorithms.
 The default viewport presents captured engine frames through an OpenGL 3.3
 texture shader. A native Wine-window embedding backend remains available.
