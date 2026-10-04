@@ -25,6 +25,7 @@ Status loadManagerCatalog(ConfigurationBackend&,AdmissionCatalog&,CatalogObserve
 // Own stable host nodes, without pretending their pointers are x86 addresses.
 struct SourcePool {
     std::vector<std::unique_ptr<VoiceWrapper>> nodes;
+    std::vector<std::unique_ptr<VoiceWrapper>> ownedDuplicates; // Optional native host storage; ring roots may rotate here.
     VoiceWrapper* head=nullptr;
     VoiceWrapper disabled;
     std::uint32_t map=0,pinnedBytes=0;
