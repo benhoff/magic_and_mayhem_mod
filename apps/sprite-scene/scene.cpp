@@ -10,7 +10,7 @@ render::Image SpriteScene::background(){
 }
 SpriteScene::SpriteScene(render::GlBlitter& renderer,assets::Sprite sprite,const assets::Animation& animation,
                          const std::vector<std::uint32_t>& sequences,bool loop)
-    :renderer_(renderer),sprite_(std::move(sprite)),loop_(loop){
+    :renderer_(renderer),sprite_(std::move(sprite)),animation_(animation),loop_(loop){
     if(sequences.empty() || sequences.size()>4)throw std::runtime_error("Scene needs 1..4 explicit ANI sequences");
     for(auto sequence:sequences){
         if(animation.starts.size()<2 || sequence>=animation.starts.size()-1)throw std::runtime_error("Scene sequence index out of range");
@@ -24,6 +24,45 @@ SpriteScene::SpriteScene(render::GlBlitter& renderer,assets::Sprite sprite,const
     }
     const auto image=background();background_=renderer_.create(image,render::spriteFormat);
     try{canvas_=renderer_.create(image,render::spriteFormat);}catch(...){renderer_.destroy(background_);background_=0;throw;}
+}
+std::vector<assets::AnimationRecord> SpriteScene::sequence(std::uint32_t index) const{
+    if(animation_.starts.size()<2 || index>=animation_.starts.size()-1)throw std::runtime_error("Sequence index out of range");
+    const auto a=animation_.starts[index],z=animation_.starts[index+1];
+    if(a>=z || z>animation_.records.size())throw std::runtime_error("Sequence extent invalid");
+    std::vector<assets::AnimationRecord> result(animation_.records.begin()+a,animation_.records.begin()+z);
+    for(const auto& r:result)if(r.opcode==0 && (r.argument<0 || std::uint32_t(r.argument)>=sprite_.frames.size()))
+        throw std::runtime_error("Sequence references sprite outside paired SPR");
+    return result;
+}
+std::vector<std::uint32_t> SpriteScene::directionalGroups() const{
+    std::vector<std::uint32_t> groups;
+    for(std::uint32_t base=0;std::size_t(base)+8<animation_.starts.size();base+=8){
+        bool compatible=true;
+        try{
+            const auto first=sequence(base);
+            if(first.front().opcode==6)continue;
+            for(unsigned facing=1;facing<8 && compatible;++facing){const auto other=sequence(base+facing);
+                if(first.size()!=other.size()){compatible=false;break;}
+                for(std::size_t i=0;i<first.size();++i)if(first[i].opcode!=other[i].opcode ||
+                    (first[i].opcode!=0 && first[i].argument!=other[i].argument)){compatible=false;break;}
+            }
+        }catch(const std::runtime_error&){compatible=false;}
+        if(compatible)groups.push_back(base);
+    }
+    return groups;
+}
+void SpriteScene::selectGroup(std::size_t actor,std::uint32_t base,std::uint32_t facing){
+    const auto groups=directionalGroups();
+    if(actor>=players_.size() || facing>=8 || std::find(groups.begin(),groups.end(),base)==groups.end())
+        throw std::runtime_error("Actor/group/facing selection invalid");
+    reconstruction::NoCdAnimationPlayer replacement(sequence(base+facing));replacement.start();
+    players_[actor]=std::move(replacement);actors_[actor].sequence=base+facing;actors_[actor].event=0;
+}
+void SpriteScene::selectFacing(std::size_t actor,std::uint32_t facing){
+    if(actor>=players_.size() || facing>=8)throw std::runtime_error("Actor/facing selection invalid");
+    const auto base=actors_[actor].sequence-(actors_[actor].sequence%8);const auto groups=directionalGroups();
+    if(std::find(groups.begin(),groups.end(),base)==groups.end())throw std::runtime_error("Actor has no verified directional group");
+    players_[actor].switchSequence(sequence(base+facing));actors_[actor].sequence=base+facing;actors_[actor].event=0;
 }
 SpriteScene::~SpriteScene(){cache_.clear();if(canvas_)renderer_.destroy(canvas_);if(background_)renderer_.destroy(background_);}
 render::UploadedSpriteFrame& SpriteScene::upload(std::uint32_t frame){

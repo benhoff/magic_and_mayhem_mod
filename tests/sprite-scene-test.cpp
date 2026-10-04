@@ -32,6 +32,22 @@ int main(int argc,char** argv){
             require(renderer.stats().uploads>128*2,"Cache eviction path was not exercised");
         }
         require(renderer.stats().surfaces==0 && renderer.stats().pixels==0,"Scene textures leaked");
+        mnm::assets::Sprite directional;directional.storage=mnm::assets::SpriteStorage::rgb565;
+        mnm::assets::Animation groups;
+        for(unsigned f=0;f<32;++f){mnm::assets::SpriteFrame p;p.width=p.height=1;p.pixels=std::vector<std::uint16_t>{std::uint16_t(f+1)};p.opaqueMask={1};directional.frames.push_back(p);}
+        for(unsigned s=0;s<16;++s){groups.starts.push_back(groups.records.size());groups.records.push_back({0,int(s*2),{}});groups.records.push_back({0,int(s*2+1),{}});groups.records.push_back({6,-1,{}});}
+        groups.starts.push_back(groups.records.size());
+        {
+            mnm::preview::SpriteScene scene(renderer,std::move(directional),groups,{0},false);
+            require(scene.directionalGroups()==std::vector<std::uint32_t>({0,8}),"Directional group validation differs");
+            scene.advance();scene.advance();scene.selectFacing(0,7);
+            require(scene.actors()[0].sprite==15,"Facing change restarted animation");
+            scene.present();require(scene.read().pixels[190*512+256]==16,"Facing change rendered wrong SPR");
+            scene.selectGroup(0,8,3);require(scene.actors()[0].sprite==22,"Group change did not restart");
+            bool rejected=false;try{scene.selectFacing(0,8);}catch(const std::runtime_error&){rejected=true;}
+            require(rejected && scene.actors()[0].sprite==22,"Invalid selection mutated actor");
+        }
+        require(renderer.stats().surfaces==0,"Directional scene leaked surfaces");
         std::cout<<"80 four-actor scenes match; 128 distinct uploads, cache eviction, restart and cleanup pass\n";return 0;
     }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
 }

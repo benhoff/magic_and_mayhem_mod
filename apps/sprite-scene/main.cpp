@@ -1,6 +1,7 @@
 #include "scene.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QComboBox>
 #include <QCryptographicHash>
 #include <QDir>
 #include <QFile>
@@ -30,6 +31,7 @@ int main(int argc,char** argv)try{
     parser.addOption({"ticks","Steps per preview run (1..512; exports max 64)","count","32"});
     parser.addOption({"interval","Presentation interval in milliseconds; independent of game clock","ms","100"});
     parser.addOption({"loop","Preview policy: restart stopped sequences on the next step"});
+    parser.addOption({"facing-change","Apply one phase-preserving change at tick,actor,facing (numeric facing 0..7)","selection"});
     parser.addOption({"smoke-test","Close the window after the bounded preview completes"});
     parser.addOption({"export-dir","Export ticks synchronously to a new directory instead of opening a window","directory"});
     parser.process(app);
@@ -40,6 +42,15 @@ int main(int argc,char** argv)try{
     std::vector<std::uint32_t> sequences;for(const auto& field:parser.value("sequences").split(',')){
         const auto n=field.toUInt(&ok);if(!ok)throw std::runtime_error("Invalid sequence index");sequences.push_back(n);}
     if(sequences.empty() || sequences.size()>4)throw std::runtime_error("Select 1..4 sequences");
+    unsigned changeTick=0,changeActor=0,changeFacing=0;
+    if(parser.isSet("facing-change")){
+        const auto fields=parser.value("facing-change").split(',');
+        if(fields.size()!=3)throw std::runtime_error("Facing change needs tick,actor,facing");
+        auto number=[&](int i){const auto v=fields[i].toUInt(&ok);if(!ok)throw std::runtime_error("Invalid facing change number");return v;};
+        changeTick=number(0);changeActor=number(1);changeFacing=number(2);
+        if(!changeTick || changeTick>ticks || changeActor>=sequences.size() || changeFacing>=8)throw std::runtime_error("Facing change outside run limits");
+    }
+    auto change=[&](mnm::preview::SpriteScene& scene,unsigned tick){if(changeTick && tick==changeTick)scene.selectFacing(changeActor,changeFacing);};
     auto configured=mnm::assets::AssetStore::create(parser.value("root").toStdString(),{"C:/MagicMayhem"});
     if(const auto* e=std::get_if<mnm::assets::Error>(&configured))throw std::runtime_error(e->detail);
     auto store=std::get<mnm::assets::AssetStore>(std::move(configured));
@@ -66,7 +77,7 @@ int main(int argc,char** argv)try{
         {
             mnm::preview::SpriteScene scene(renderer,std::move(sprite),animation,sequences,parser.isSet("loop"));
             for(unsigned tick=0;tick<=ticks;++tick){
-                if(tick){scene.advance();}
+                if(tick){change(scene,tick);scene.advance();}
                 const auto image=scene.present();const auto native=packed(scene.read());
                 const auto stem=QString("frame-%1").arg(tick,3,10,QChar('0'));
                 writeNew(QDir(directory).filePath(stem+".565"),native);
@@ -92,10 +103,31 @@ int main(int argc,char** argv)try{
     auto* image=new QLabel;layout->addWidget(image);auto* controls=new QHBoxLayout;layout->addLayout(controls);
     auto* pause=new QPushButton("Pause");controls->addWidget(pause);auto* pace=new QSpinBox;pace->setRange(10,1000);pace->setValue(interval);pace->setSuffix(" ms");controls->addWidget(new QLabel("Presentation interval"));controls->addWidget(pace);
     QTimer timer;timer.setInterval(interval);unsigned tick=0;
-    auto refresh=[&]{image->setPixmap(QPixmap::fromImage(scene.present()));};refresh();
+    std::vector<QComboBox*> groupControls,facingControls;
+    auto refresh=[&]{image->setPixmap(QPixmap::fromImage(scene.present()));const auto states=scene.actors();
+        for(std::size_t i=0;i<groupControls.size();++i){const auto sequence=states[i].sequence;
+            groupControls[i]->setCurrentIndex(groupControls[i]->findData(sequence-sequence%8));facingControls[i]->setCurrentIndex(sequence%8);}
+    };refresh();
+    // Widgets call semantic scene actions; no executable offsets or pointers.
+    const auto groups=scene.directionalGroups();
+    for(std::size_t actor=0;actor<sequences.size();++actor){
+        auto* row=new QHBoxLayout;layout->addLayout(row);row->addWidget(new QLabel("Actor "+QString::number(actor)));
+        auto* group=new QComboBox;for(auto base:groups)group->addItem("Group "+QString::number(base),base);
+        const auto base=sequences[actor]-sequences[actor]%8;group->setCurrentIndex(group->findData(base));row->addWidget(group);
+        auto* facing=new QComboBox;for(unsigned f=0;f<8;++f)facing->addItem("Facing "+QString::number(f));facing->setCurrentIndex(sequences[actor]%8);row->addWidget(facing);
+        const bool supported=group->currentIndex()>=0;group->setEnabled(supported);facing->setEnabled(supported);
+        groupControls.push_back(group);facingControls.push_back(facing);
+        QObject::connect(group,&QComboBox::activated,&window,[&,actor,group,facing](int){try{
+            scene.selectGroup(actor,group->currentData().toUInt(),facing->currentIndex());refresh();
+            caption->setText("Group changed; animation restarted");
+        }catch(const std::exception& e){const auto selected=scene.actors()[actor].sequence;group->setCurrentIndex(group->findData(selected-selected%8));facing->setCurrentIndex(selected%8);caption->setText(QString::fromLocal8Bit(e.what()));}});
+        QObject::connect(facing,&QComboBox::activated,&window,[&,actor,facing](int){try{
+            scene.selectFacing(actor,facing->currentIndex());refresh();caption->setText("Facing changed; animation progress retained");
+        }catch(const std::exception& e){facing->setCurrentIndex(scene.actors()[actor].sequence%8);caption->setText(QString::fromLocal8Bit(e.what()));}});
+    }
     QObject::connect(pace,&QSpinBox::valueChanged,&timer,[&](int value){timer.setInterval(value);});
     QObject::connect(pause,&QPushButton::clicked,&timer,[&]{if(timer.isActive()){timer.stop();pause->setText("Resume");}else if(tick<ticks){timer.start();pause->setText("Pause");}});
     bool failed=false;
-    QObject::connect(&timer,&QTimer::timeout,&window,[&]{try{scene.advance();refresh();if(++tick==ticks){timer.stop();pause->setEnabled(false);caption->setText("Preview complete — "+QString::number(ticks)+" steps");if(parser.isSet("smoke-test"))app.quit();}}catch(const std::exception& e){timer.stop();caption->setText(QString::fromLocal8Bit(e.what()));pause->setEnabled(false);failed=true;if(parser.isSet("smoke-test"))app.quit();}});
+    QObject::connect(&timer,&QTimer::timeout,&window,[&]{try{change(scene,tick+1);scene.advance();refresh();if(++tick==ticks){timer.stop();pause->setEnabled(false);caption->setText("Preview complete — "+QString::number(ticks)+" steps");if(parser.isSet("smoke-test"))app.quit();}}catch(const std::exception& e){timer.stop();caption->setText(QString::fromLocal8Bit(e.what()));pause->setEnabled(false);failed=true;if(parser.isSet("smoke-test"))app.quit();}});
     window.show();timer.start();const auto status=app.exec();return failed?2:status;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 2;}

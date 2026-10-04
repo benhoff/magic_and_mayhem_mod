@@ -128,5 +128,9 @@ explicit preview composition policies. The pixel oracle is independent CPU
 reconstruction, not original whole-scene rendering. Earlier original sprite
 draw comparisons remain separately recorded; this milestone does not establish
 complete animation metadata, action selection, world scheduling or live scene
-equivalence. Recover action/direction mappings, phase-preserving switches and
-additional placement fields before replacing original creature presentation.
+equivalence. The subsequent
+[direction-selection milestone](animation-direction-selection.md) adds verified
+forward phase switches and numeric group/facing controls; its three-run
+[scene evidence](animation-direction-scene.json) includes a RedCap facing change
+before tick 7. Complete named action mappings and additional placement fields
+remain outstanding before replacing original creature presentation.
