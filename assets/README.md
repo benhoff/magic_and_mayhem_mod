@@ -317,3 +317,12 @@ The original reader/writer confirms 72-byte records and the separate size word.
 `mnm-evt-inspect ROOT PATH.evt` reports every field as JSON; name display uses
 Latin-1 while raw hex preserves all bytes. No trigger execution or transforms.
 See [layout, original evidence and validation](../research/formats/evt-native-loading.md).
+
+## TAG sprite-name tables
+
+`mnm-tag-loader` provides `decodeTag`/`loadTag` in `tag.hpp`: owned headerless
+12-byte records with eight raw name bytes and a DWORD occurrence index.
+Every installed table matches its companion SPR frame order.
+`mnm-tag-inspect ROOT PATH.tag` reports names, full raw hex and indices as JSON.
+No original TAG reader or runtime use is established; lookup is a consumer boundary.
+See [layout, correlation and validation](../research/formats/tag-native-loading.md).
