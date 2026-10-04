@@ -12,7 +12,7 @@ def main():
     try:
         spec=importlib.util.spec_from_file_location('audio_export',REPO/'tools/export-audio-support.py')
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-        module.RANGES.update(manager_constructor=(0x56dd80,0x56de44),source_pool=(0x56e910,0x56ee79),group_parser=(0x56ffc0,0x5700d6),schedule_pool=(0x5719b0,0x571aa9),table_find=(0x59e142,0x59e174))
+        module.RANGES.update(manager_constructor=(0x56dd80,0x56de44),manager_destructor=(0x56de50,0x56df00),source_pool=(0x56e910,0x56ee79),group_parser=(0x56ffc0,0x5700d6),schedule_pool=(0x5719b0,0x571aa9),table_find=(0x59e142,0x59e174))
         exe=REPO/'working/game-nocd/Chaos.exe';root=module.export(exe);data=exe.read_bytes()
         pe=struct.unpack_from('<I',data,0x3c)[0];count=struct.unpack_from('<H',data,pe+6)[0];table=pe+24+struct.unpack_from('<H',data,pe+20)[0]
         strings={}

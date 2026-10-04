@@ -16,7 +16,12 @@ std::string managerProfilePath(const std::string& root);
 std::vector<std::int32_t> soundTable(const ProfileSection&);
 std::vector<std::int32_t> groupMembers(const std::string&);
 // Selected table phase of 0x56df60; device/primary controls remain separate.
-Status loadManagerCatalog(ConfigurationBackend&,AdmissionCatalog&);
+struct CatalogObserver {
+    virtual ~CatalogObserver()=default;
+    virtual void sourceTableCreated(std::size_t count)=0;
+    virtual void groupTablesCreated(std::size_t count)=0;
+};
+Status loadManagerCatalog(ConfigurationBackend&,AdmissionCatalog&,CatalogObserver* observer=nullptr);
 // Own stable host nodes, without pretending their pointers are x86 addresses.
 struct SourcePool {
     std::vector<std::unique_ptr<VoiceWrapper>> nodes;
@@ -26,6 +31,7 @@ struct SourcePool {
 };
 // 0x56e910: release old roots, map classifications, size budget, ring, pinned preload.
 Status initializeSourcePool(ConfigurationBackend&,SourceCacheState&,SourcePool&,std::uint32_t map);
+void releaseSourcePool(LifetimeBackend&,SourcePool&);
 struct SchedulePool {
     std::vector<std::unique_ptr<ScheduleNode>> nodes;
     ScheduleNode* head=nullptr;

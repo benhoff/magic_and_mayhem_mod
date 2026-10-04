@@ -103,10 +103,10 @@ Address/undefined/leak sanitizer evidence is stored alongside that report.
 This is selected static reconstruction plus synthetic fixtures, not observation
 or live replacement. Windows quote/case/truncation/encoding semantics and CRT
 stat special-path behavior are delegated, not reconstructed by Qt asset loading.
-Device creation/cooperative-level ordering, primary setup, global-device
-publication, full constructor/destructor/table failure ownership and an aggregate
-manager startup controller remain separate work. Existing primary-control/setup
-models do not establish end-to-end startup equivalence.
+Selected aggregate device/primary startup, global-device publication and
+shutdown/destructor/table failure ownership now have
+[offline controller evidence](audio-manager-lifecycle.md). This does not establish
+original live startup equivalence or unsafe allocator failure behavior.
 
 Original null allocation, oversized stack-copy and count-0/1 scheduler cases can
 perform invalid accesses. The model rejects those domains rather than claiming

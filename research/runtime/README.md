@@ -112,6 +112,7 @@ confidence, and whether it remains stable across launches.
 - [Voice admission](audio-voice-admission.md): manager start gates, source lookup, duplicate retention, scheduler publication and source-ring rotation; offline/native PCM fixtures.
 - [Source cache](audio-source-cache.md): backward scoring, pinned/busy/duplicate guards, group preloads, destructive replacement and Qt-backed synthetic WAV admission; offline fixtures.
 - [Audio manager configuration](audio-manager-configuration.md): profile tables, randomized groups, map class lists, source budgets/preloads and scheduler pool initialization; offline fixtures.
+- [Audio manager lifecycle](audio-manager-lifecycle.md): aggregate startup, exact failure ownership, shutdown/destructor ordering and retained primary/scheduler resources; offline fixtures.
 
 - [Bounded native ANI/SPR scene](native-animation-scene.md): explicit sequence
   playback, owned upload cache, Qt preview and offline composition evidence.
