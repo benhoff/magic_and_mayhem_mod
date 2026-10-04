@@ -187,3 +187,9 @@ Treat grayscale as a diagnostic export policy only. Recover palette chains,
 lighting/effects and font/ANI contracts independently before claiming complete
 rendering equivalence. This work remains offline; no original live work is
 replaced and no gameplay balance changes are made.
+
+The next chunk now has a [native SPR loader](../formats/spr-native-loading.md).
+Use the same comparison runner with `--native-inspector` to validate all
+installed version-4 files through AssetFile and compare owned native samples
+with these original routines. Native evidence is kept in its own report so
+the initial reference-reader milestone remains separately recorded.

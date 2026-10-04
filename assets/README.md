@@ -113,7 +113,7 @@ python3 tools/test-asset-files.py
 ```
 
 The runner verifies the original manifest before/after (also on failures),
-builds the assets targets, runs the three CTests, inventories all regular loose
+builds the assets targets, runs the four CTests, inventories all regular loose
 files in `working/game-nocd`, and compares them against independent binary
 reads of the same files. Alternating requests use mixed-case relative Windows
 paths or mixed-case `C:\\MagicMayhem` paths through an explicit alias. It hashes
@@ -186,3 +186,35 @@ documentation review. The [Windows file API audit](../research/runtime/windows-f
 records remaining writes, save lifecycle, profiles, enumeration/metadata,
 path/drive policy, resources, and delegated loaders. This milestone does not
 replace the game's full filesystem subsystem or remove Wine from live play.
+
+## Native SPR loading
+
+`mnm-sprite-loader` provides `loadSprite(AssetFile&, SpriteLimits)` and
+`decodeSprite(bytes, SpriteLimits)` in `sprite_loader.hpp`. The public result
+uses standard C++ types and owns its palettes, pixels, masks and frame metadata.
+Only version-4 SPR is supported: indexed byte pixels with embedded palettes,
+or little-endian RGB565 words for palette-free sprites. Empty records remain
+empty. Transparent runs have a separate mask, so opaque colour zero is preserved.
+
+The loader validates file/frame/row extents, palette indices, run widths and
+explicit aggregate input/decoded/work budgets. It uses the existing Qt-backed
+AssetFile implementation, but decoding has no Qt or original-binary dependency.
+Errors include a frame/byte location; input failures preserve asset diagnostics.
+
+```bash
+working/build/assets/mnm-sprite-inspect --root working/game-clean \
+  --path 'Creatures\RedCap.spr' --frame 0
+python3 tools/compare-mmsprite-binary.py \
+  --native-inspector working/build/assets/mnm-sprite-inspect
+```
+
+The inspector closes input before emitting selected owned output as JSON; the
+comparison runner validates all installed SPRs and selected original i386 draw/
+conversion results with original-manifest checks before/after. The runner needs
+the pinned external reader, known executable builds and a 32-bit compiler/runtime.
+The new `sprite-loader` CTest uses generated fixtures only. See the
+[contract, limits and evidence](../research/formats/spr-native-loading.md).
+
+This rendering chunk decodes assets offline. Renderer integration, original
+lighting/effects/palette construction, fonts, ANI and live replacement remain
+separate work.
