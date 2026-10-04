@@ -28,3 +28,5 @@ Current findings:
 - [Native version-5 ANI tables](ani-native-loading.md)
 
 - [Native persistence/progression readers](persistence-native-loading.md): owned CFG, realm, names and save readers; offline evidence and strict parsing policies.
+
+- [WZD wizard definitions and native loading](wzd-native-loading.md): typed stats, sparse resource selections and action records; offline comparison of all 101 installed files.

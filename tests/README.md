@@ -336,3 +336,12 @@ Build `assets/` and run its CTests for `persistence-loaders` and
 `python3 tests/test-persistence-loaders.py working/build/persistence/mnm-persistence-inspect --installation working/game-clean`.
 It brackets installed artifact reads with immutable-manifest verification.
 See [validation scope](../research/formats/persistence-native-loading.md).
+
+## WZD wizard definitions
+
+The assets CTests include `wizard-loader` and `wizard-text-comparison`.
+For all installed definitions, run
+`python3 tests/test-wizard-loader.py working/build/wizard/mnm-wizard-inspect --installation working/game-clean --report working/tests/wizard-loader/installed-comparison.json`.
+This brackets artifact reads with immutable-manifest verification and compares
+all properties/typed values against an independent Python parser.
+See [schema and validation boundaries](../research/formats/wzd-native-loading.md).
