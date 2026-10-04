@@ -34,9 +34,11 @@ asset comparisons establish byte/decode agreement, not playback or loader
 equivalence. Displaying captured game frames in Qt does not replace original
 drawing. Hooks forwarding original operations count as observation.
 
-This baseline uses source inspection and linked documents' recorded results;
-their checks were not rerun for this documentation change. Existing uncommitted
-asset comparison work is provisional. No original artifacts were consumed.
+Most baseline rows use source inspection and linked documents' recorded results;
+their checks were not rerun for the original ledger change. Asset rows were
+updated after the six-chunk native asset workflow: installed raw-byte/PCM
+checks and the pinned Windows file API audit were rerun with original-manifest
+verification before/after. This does not promote those paths to live replacement.
 
 ## Subsystem coverage
 
@@ -52,7 +54,8 @@ asset comparison work is provisional. No original artifacts were consumed.
 | IN02 Input forwarding and selected polling APIs | Scoped event forwarding and three USER32 hooks; optional adapter | Synthetic Qt/X11 and Qt-to-x86 checks; high within scope. [Input](qt-input-forwarding.md) | Live menus, movement, scrolling and focus; original window/message handling retained |
 | ME01 Movies and supported WinMM file sounds | Scoped Qt playback/hooks; optional adapter with fallback | Synthetic ABI/lifecycle/decode and installed Intro0 decode probe; high within scope. [Media](qt-native-media.md) | Full live playback, audible output, skip/return and call frequency; unsupported calls remain legacy |
 | AU01 DirectSound setup, static PCM upload and duplicate storage | Scoped reconstructed setup/native storage; offline | Static/synthetic and 356 installed WAV comparisons; high for bytes/ownership. [Evidence](directsound-buffer-setup.md), [storage](../../audio/README.md) | Playback controls, voice scheduler, mixer, output and live adapter; game effects/voices remain Wine DirectSound |
-| AS01 Loose asset resolution and read-only handles | Scoped native backend; offline; installed comparison work provisional | Synthetic path/file/lifetime/error tests; high for native policies. [Assets](../../assets/README.md), [contract](../formats/asset-file-interface.md) | Installed raw-byte comparison and WAV integration; original loader compatibility unverified |
+| AS01 Loose asset resolution, read-only handles and WAV input | Scoped native backend and one offline loader; six-chunk milestone complete within scope | Synthetic path/file/lifetime/error tests, 4,834 installed raw files and 356 decoded WAVs; high for bytes/native policies. [Assets](../../assets/README.md), [raw evidence](../formats/asset-file-comparison.md), [WAV evidence](../formats/pcm-wav-loading.md) | Original wrapper compatibility, other native loaders, writable state and live integration remain unverified |
+| AS02 Windows file actions and delegated file access | Static audit only; no new runtime replacement | Pinned clean/No-CD/JPEG imports, IAT references and save temp-path evidence; high within static scope. [Audit](windows-file-api-audit.md) | Recover save/config/profile/listing/metadata/path contracts and DLL/COM loaders; imports are not live call coverage |
 | CF01 Encrypted configuration and lifecycle | Scoped decode/encode and experiment tools; preparation/inspection | Static and documented live precedence; high within findings. [Container](../formats/encrypted-cfg.md), [precedence](../formats/cfg-precedence.md), [writer](../formats/cfg-writer.md) | Config-driven mods are separate from engine replacement; native config manager not recorded |
 | TH01 Threading and modern scheduling | Static investigation; worker architecture proposed only | High for inspected timer/import facts; simulation ownership unknown. [Threading](threading.md) | Trace gameplay ownership and profile before changing concurrency or result timing |
 
@@ -117,5 +120,6 @@ Keep fallback as a separate outcome. Passing synthetic tests or staging alone
 does not justify promotion. No live replacement percentage is available yet.
 
 Smallest useful next evidence: live search sequence agreement, real-game draw
-operation inventory, media playback/return validation and installed raw asset
-comparisons. Add timing percentages after counters and boundaries exist.
+operation inventory, media playback/return validation, and native config/save
+file caller contracts. Installed raw asset and offline WAV input comparisons
+now pass. Add timing percentages after counters and boundaries exist.

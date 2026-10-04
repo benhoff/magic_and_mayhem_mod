@@ -4,6 +4,9 @@ Document runtime structures, functions, addresses, signatures, and hooks here.
 For each finding, record the executable hash, discovery method, evidence,
 confidence, and whether it remains stable across launches.
 
+- [Windows file API audit](windows-file-api-audit.md): pinned clean/No-CD/JPEG
+  imports and references, save temporary-file evidence, and native asset gaps.
+
 - [Engine modernization coverage ledger](coverage-ledger.md): subsystem scope,
   evidence, live replacement status and rules for measuring progress.
 - [Threading evidence](threading.md): inspected timer/thread interfaces and
@@ -56,3 +59,7 @@ confidence, and whether it remains stable across launches.
 - [DirectSound setup and sample ownership](directsound-buffer-setup.md): pinned
   primary/secondary creation, native PCM uploads and duplicate buffer lifecycle;
   offline reconstruction without game interception or audible output.
+
+- [DirectSound voice controls](directsound-voice-controls.md): observed playback,
+  volume/pan, status/reset and scheduler contracts, with offline tests and a
+  bounded frequency/cursor call audit.

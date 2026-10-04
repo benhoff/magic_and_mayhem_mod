@@ -251,6 +251,14 @@ observed results separately from the offline checks.
 
 ## Native audio buffers without the game
 
+The complete read-only asset milestone runs with
+`python3 tools/validate-native-assets.py`; add `--fixtures-only` to build/test
+without game or original artifacts. It records workflow logs/results and links
+the raw-file, PCM, and Windows API audit evidence. The audit has independent
+synthetic parser/reference tests in `tests/test-file-api-audit.py`. See
+[workflow and scope](../assets/README.md) and
+[remaining Windows file APIs](../research/runtime/windows-file-api-audit.md).
+
 The audio build now includes the Qt asset backend and five CTests.
 `audio-asset-input` checks the WAV adapter and upload CLI using independent
 synthetic PCM expectations, mixed-case Windows requests, mapped drive prefixes,
@@ -281,3 +289,9 @@ builds the native buffer model, runs lifecycle tests, and compares uploaded PCM
 against Python's independent WAV reader for every installed sound. It verifies
 original artifacts before and after. No game is launched and no audible output
 is produced. See [DirectSound setup scope](../research/runtime/directsound-buffer-setup.md).
+
+`python3 tools/test-audio-voices.py` exports the voice-control assembly and
+indirect-call audit, then runs fake-backend contracts alongside audio/asset
+regressions. It checks status failures, stop/reset ordering, volume caches and
+duplicate notifications, pan, looping and scheduler arithmetic. No game, audio
+device or live hook is used. See [voice scope](../research/runtime/directsound-voice-controls.md).

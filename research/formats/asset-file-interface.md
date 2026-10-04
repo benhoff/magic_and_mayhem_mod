@@ -9,6 +9,11 @@ native design decisions, not discovered original-game
 filesystem semantics. Compatibility with the original loader's path encoding,
 supported paths, and failure behavior remains unverified.
 
+Chunk 6 supplies `tools/validate-native-assets.py`, reviews implementation/test
+documentation, and audits remaining original Windows file operations. The
+six-chunk milestone is complete within its native read-only/offline WAV scope.
+See [file API gaps](../runtime/windows-file-api-audit.md) before expanding scope.
+
 Use Qt Core behind a standard C++17 interface. QString and QFile stay in the
 backend; reconstructed audio code remains independent of Qt. No GUI or event
 loop is required. Future interface, backend, and comparison CLI files belong

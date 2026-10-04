@@ -5,6 +5,24 @@ installed loose assets using Qt Core and C++17. The public APIs in
 `path_resolver.hpp` and `asset_file.hpp` use standard C++ types, allowing native
 loaders to consume them without Qt types entering reconstructed algorithms.
 
+The complete six-chunk read-only asset milestone is implemented. Run the
+combined workflow from the repository root:
+
+```bash
+python3 tools/validate-native-assets.py
+python3 tools/validate-native-assets.py --fixtures-only
+```
+
+The default runs raw installed-file comparison, decoded-WAV comparison, and
+the Windows file API audit, retaining a summary and step logs under
+`working/tests/native-assets/run-*/`. Each artifact-consuming runner verifies
+originals before/after, including failure paths. It assumes existing clean and
+No-CD working installations and the recorded original manifest; it does not
+install, launch, or modify the game. The audit additionally requires objdump.
+Fixture-only mode needs no game/original files and builds the combined audio
+suite plus synthetic audit tests. A failing step stops the workflow and records
+its exit status/log; a complete report requires every step to pass.
+
 ```bash
 cmake -S assets -B working/build/assets
 cmake --build working/build/assets --parallel 4
@@ -163,5 +181,8 @@ fixture tests. See [recorded installed validation](../research/formats/asset-fil
 Chunk 5 connects this interface to `audio::loadWave(AssetFile&)` and the offline
 reconstructed static-upload pipeline. The audio build also runs these asset
 tests; installed WAV checks retain independent Python PCM comparisons. See
-[audio usage](../audio/README.md). Chunk 6 completes the broader workflow and
-documentation review.
+[audio usage](../audio/README.md). Chunk 6 completes the combined workflow and
+documentation review. The [Windows file API audit](../research/runtime/windows-file-api-audit.md)
+records remaining writes, save lifecycle, profiles, enumeration/metadata,
+path/drive policy, resources, and delegated loaders. This milestone does not
+replace the game's full filesystem subsystem or remove Wine from live play.
