@@ -29,7 +29,7 @@ The executable identifying this installation has SHA-256
 | TAG | 85 | 1,570,692 | Headerless sprite-name/occurrence tables; [confirmed 12-byte records/native loading](tag-native-loading.md) |
 | BMP | 48 | 13,814,536 | Standard Windows bitmap |
 | TXT | 43 | 141,904 | Plaintext data |
-| FP | 41 | 132,356 | Proprietary `.FP\0` container |
+| FP | 41 | 132,356 | Version-2 Realm Viewer flag paths; [confirmed header/points/native loading](fp-native-loading.md) |
 | CUR | 20 | 10,984 | Standard Windows cursor |
 | TTD | 17 | 11,154,108 | Proprietary `TTD\0` container |
 | SFT | 6 | 624,508 | Proprietary `SFT\0` container |

@@ -326,3 +326,12 @@ Every installed table matches its companion SPR frame order.
 `mnm-tag-inspect ROOT PATH.tag` reports names, full raw hex and indices as JSON.
 No original TAG reader or runtime use is established; lookup is a consumer boundary.
 See [layout, correlation and validation](../research/formats/tag-native-loading.md).
+
+## FP Realm Viewer flag paths
+
+`mnm-fp-loader` provides `decodeFp`/`loadFp` in `fp.hpp`: owned version-2
+116-byte metadata and flat x/y payloads with preserved eight-slot path ranges
+and four flag positions. Active ranges and allocations are bounded.
+`mnm-fp-inspect ROOT PATH.FP` reports all header words and points as JSON.
+No flag allocation, movement, drawing or live UI integration is supplied.
+See [layout, original evidence and validation](../research/formats/fp-native-loading.md).

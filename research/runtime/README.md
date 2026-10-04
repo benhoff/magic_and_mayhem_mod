@@ -130,3 +130,5 @@ confidence, and whether it remains stable across launches.
 
 - [Audio catalog preflight](audio-catalog-preflight.md): read-only PCM/source availability, randomized-group choices and explicit filename policy.
 - [Qt audio manager session](qt-audio-manager-session.md): application ownership, negotiated Qt sink connection, stable caller slots and offline queue/restart validation.
+
+- [FP flag-path reader and Realm Viewer caller](fp-flag-path-loading.md): hash-pinned reader/constructor/getters, flag slots and UI loading boundary; static/offline evidence.
