@@ -340,3 +340,14 @@ Character Screen now renders original SPR talismans and adjustment controls;
 Region Entry renders its original face/book/portmanteau icons. Single Player and
 host/guest lobbies render supplied SPR portraits/colour tokens and boot controls.
 Fonts, sliders and engine actions remain pending. See [SPR integration](../../research/runtime/menu-sprite-integration.md).
+
+Preview the installed Grimoire with chapter contents, entries and original art:
+
+```bash
+./tools/run-qt-shell.sh --grimoire
+```
+
+Region Entry's Grimoire icon opens it too. Double-click or Enter opens an entry;
+Previous/Next and Page Up/Down browse pages. Artwork/Read toggles companion art.
+Close/Escape returns to the caller. Campaign knowledge and dynamic values remain
+pending. See [scope and validation](../../research/runtime/grimoire-qt.md).

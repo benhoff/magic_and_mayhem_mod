@@ -204,6 +204,7 @@ int main(int argc,char** argv){
                     "  --load-game           Preview Load Game with sample saves\n"
                     "  --multiplayer-game-selection  Preview sample multiplayer sessions\n"
                     "  --multiplayer-lobby MODE  Preview host or join lobby with local chat\n"
+                    "  --grimoire            Preview installed Grimoire pages and contents\n"
                     "  --character-screen    Preview local character improvements\n"
                     "  --region-entry        Preview a sample region and difficulty choices\n"
                     "  --single-player-battle Preview battle setup with sample players\n"
@@ -249,6 +250,7 @@ int main(int argc,char** argv){
     parser.addOption({"load-game","Preview Load Game with sample saves."});
     parser.addOption({"multiplayer-game-selection","Preview multiplayer session selection without discovery."});
     parser.addOption({"multiplayer-lobby","Preview multiplayer lobby: host or join.","mode"});
+    parser.addOption({"grimoire","Preview installed Grimoire chapters and entries."});
     parser.addOption({"character-screen","Preview Character Screen with supplied stats and upgrade costs."});
     parser.addOption({"region-entry","Preview Region Entry with supplied sample region data."});
     parser.addOption({"single-player-battle","Preview Single Player Battle setup without launching a game."});
@@ -274,9 +276,9 @@ int main(int argc,char** argv){
     parser.addOption({"fixture-window","Internal external-window fixture."});parser.process(app);
     if(parser.isSet("media") || parser.isSet("media-server-test"))return runMedia(app,parser);
     if(parser.isSet("media-test") || parser.isSet("media-probe"))parser.showHelp(2);
-    const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu") || parser.isSet("battle-results") || parser.isSet("quick-battle-results") || parser.isSet("map-selection") || parser.isSet("load-game") || parser.isSet("save-game") || parser.isSet("preferences") || parser.isSet("join-multiplayer") || parser.isSet("create-multiplayer") || parser.isSet("multiplayer-game-selection") || parser.isSet("single-player-battle") || parser.isSet("multiplayer-lobby") || parser.isSet("region-entry") || parser.isSet("character-screen");
+    const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu") || parser.isSet("battle-results") || parser.isSet("quick-battle-results") || parser.isSet("map-selection") || parser.isSet("load-game") || parser.isSet("save-game") || parser.isSet("preferences") || parser.isSet("join-multiplayer") || parser.isSet("create-multiplayer") || parser.isSet("multiplayer-game-selection") || parser.isSet("single-player-battle") || parser.isSet("multiplayer-lobby") || parser.isSet("region-entry") || parser.isSet("character-screen") || parser.isSet("grimoire");
     if((parser.isSet("menu-assets") || parser.isSet("menu-command-line")) && !menuPreview)parser.showHelp(2);
-    if(int(parser.isSet("main-menu"))+int(parser.isSet("quick-battle-menu"))+int(parser.isSet("mini-menu"))+int(parser.isSet("battle-results"))+int(parser.isSet("quick-battle-results"))+int(parser.isSet("map-selection"))+int(parser.isSet("load-game"))+int(parser.isSet("save-game"))+int(parser.isSet("preferences"))+int(parser.isSet("join-multiplayer"))+int(parser.isSet("create-multiplayer"))+int(parser.isSet("multiplayer-game-selection"))+int(parser.isSet("single-player-battle"))+int(parser.isSet("multiplayer-lobby"))+int(parser.isSet("region-entry"))+int(parser.isSet("character-screen"))>1)parser.showHelp(2);
+    if(int(parser.isSet("main-menu"))+int(parser.isSet("quick-battle-menu"))+int(parser.isSet("mini-menu"))+int(parser.isSet("battle-results"))+int(parser.isSet("quick-battle-results"))+int(parser.isSet("map-selection"))+int(parser.isSet("load-game"))+int(parser.isSet("save-game"))+int(parser.isSet("preferences"))+int(parser.isSet("join-multiplayer"))+int(parser.isSet("create-multiplayer"))+int(parser.isSet("multiplayer-game-selection"))+int(parser.isSet("single-player-battle"))+int(parser.isSet("multiplayer-lobby"))+int(parser.isSet("region-entry"))+int(parser.isSet("character-screen"))+int(parser.isSet("grimoire"))>1)parser.showHelp(2);
     if(parser.isSet("multiplayer-lobby") && parser.value("multiplayer-lobby")!="host" && parser.value("multiplayer-lobby")!="join")parser.showHelp(2);
     if(parser.isSet("mini-menu") && parser.value("mini-menu")!="campaign" && parser.value("mini-menu")!="battle")parser.showHelp(2);
     if(parser.isSet("battle-results") && parser.value("battle-results")!="victory" && parser.value("battle-results")!="defeat")parser.showHelp(2);
@@ -326,6 +328,9 @@ int main(int argc,char** argv){
         }
         if(parser.isSet("character-screen") && !preview.openCharacterScreen(root,&error)){
             std::fprintf(stderr,"Character Screen assets failed: %s\n",qPrintable(error));return 9;
+        }
+        if(parser.isSet("grimoire") && !preview.openGrimoire(root,&error)){
+            std::fprintf(stderr,"Grimoire assets failed: %s\n",qPrintable(error));return 9;
         }
         preview.findChild<MainMenuWidget*>()->setCommandLineBattleVisible(parser.isSet("menu-command-line"));
         preview.show();
