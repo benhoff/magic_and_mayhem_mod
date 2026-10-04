@@ -102,3 +102,9 @@ maps after full shutdown/startup. Live thread/cadence, original engine field
 coherence, audible transitions, external COM ownership, full profile encodings
 and adapter injection remain unverified. Next offline work is resolving the measured profile-comment/filename boundary
 before widening accepted inputs or wiring a live manager replacement.
+
+An explicit `NativeSourcePathPolicy::dequoteMissingLeaf` option now adapts a
+missing single-quoted WAV leaf after literal lookup, consistently for stat and
+WAV reads. The default remains literal. See
+[filename-boundary evidence](audio-source-filenames.md); this does not change
+reconstruction, generic AssetStore or installed configuration.

@@ -7,8 +7,8 @@ namespace {
 constexpr Status Invalid=-2147024809,Unsupported=-2147467263,Limit=-2147024882,Busy=-2005401430;
 }
 NativeManagerBackend::NativeManagerBackend(mnm::assets::AssetStore assets,AudioManager& manager,
-    std::function<std::uint32_t()> ticks,std::function<std::uint32_t()> random,std::uint32_t rate)
-    :assets_(std::move(assets)),manager_(manager),device_(16*1024*1024,128,rate),ticks_(std::move(ticks)),random_(std::move(random)){
+    std::function<std::uint32_t()> ticks,std::function<std::uint32_t()> random,std::uint32_t rate,NativeSourcePathPolicy sourcePaths)
+    :sourcePaths_(sourcePaths),assets_(std::move(assets)),manager_(manager),device_(16*1024*1024,128,rate),ticks_(std::move(ticks)),random_(std::move(random)){
     if(!ticks_ || !random_)throw std::invalid_argument("Native manager requires explicit clock and RNG policies");
 }
 NativeManagerBackend::~NativeManagerBackend(){device_.stopPrimary();} // Host device/session RAII, not original primary release evidence.
@@ -37,8 +37,19 @@ ProfileSection NativeManagerBackend::section(const std::string& name,std::uint32
 std::uint32_t NativeManagerBackend::profileValue(std::int32_t sound,std::string& out){out=profile().value("Sounds",std::to_string(sound),260);return std::uint32_t(out.size());}
 std::uint32_t NativeManagerBackend::groupValue(std::int32_t group,std::string& out){out=profile().value("Randomised",std::to_string(group),256);return std::uint32_t(out.size());}
 std::uint32_t NativeManagerBackend::profileInteger(const std::string& s,const std::string& k,std::uint32_t fallback){return profile().integer(s,k,fallback);}
+mnm::assets::Result<std::unique_ptr<mnm::assets::AssetFile>> NativeManagerBackend::openSourceFile(const std::string& path){
+    auto opened=assets_.open(path);
+    const auto* error=std::get_if<mnm::assets::Error>(&opened);
+    if(sourcePaths_!=NativeSourcePathPolicy::dequoteMissingLeaf || !error || error->code!=mnm::assets::ErrorCode::notFound)return opened;
+    const auto separator=path.find_last_of("/\\");const auto first=separator==path.npos?0:separator+1;
+    if(path.size()<first+7 || path[first]!='\'' || path[path.size()-5]!='\'')return opened;
+    auto suffix=path.substr(path.size()-4);for(auto& c:suffix)if(c>='A' && c<='Z')c=char(c-'A'+'a');
+    if(suffix!=".wav")return opened;
+    auto normalized=path;normalized.erase(normalized.size()-5,1);normalized.erase(first,1);
+    return assets_.open(normalized); // Same trusted-root resolver; no directory/alias/fallback substitution.
+}
 bool NativeManagerBackend::fileSize(const std::string& path,std::uint32_t& bytes){
-    auto opened=assets_.open(path);if(auto* e=std::get_if<mnm::assets::Error>(&opened)){failure(*e);return false;}
+    auto opened=openSourceFile(path);if(auto* e=std::get_if<mnm::assets::Error>(&opened)){failure(*e);return false;}
     auto size=std::get<std::unique_ptr<mnm::assets::AssetFile>>(opened)->size();
     if(auto* e=std::get_if<mnm::assets::Error>(&size)){failure(*e);return false;}
     const auto n=std::get<std::int64_t>(size);if(n<0 || std::uint64_t(n)>0xffffffffu){diagnostic_="File size exceeds DWORD adapter domain";return false;}
@@ -117,7 +128,7 @@ VoiceWrapper& NativeManagerBackend::allocateWrapper(){
     auto v=std::make_unique<VoiceWrapper>();v->identity=nextWrapper_++;manager_.sources.ownedDuplicates.push_back(std::move(v));return *manager_.sources.ownedDuplicates.back();
 }
 bool NativeManagerBackend::openWave(const std::string& path){
-    wave_.reset();diagnostic_.clear();assetError_.reset();auto opened=assets_.open(path);
+    wave_.reset();diagnostic_.clear();assetError_.reset();auto opened=openSourceFile(path);
     if(auto* e=std::get_if<mnm::assets::Error>(&opened)){failure(*e);return false;}
     try{wave_=mnm::audio::loadWave(*std::get<std::unique_ptr<mnm::assets::AssetFile>>(opened));return true;}
     catch(const mnm::audio::AssetInputError& e){failure(e.error());}

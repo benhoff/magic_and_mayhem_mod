@@ -418,3 +418,10 @@ The installed run verifies originals before/after and records source hashes.
 `python3 tools/export-evt-support.py --decompile` exports hash-pinned reader,
 writer and selected caller evidence through read-only Ghidra processing.
 See [EVT schema and validation scope](../research/formats/evt-native-loading.md).
+
+`./tools/test-installed-audio-manager.py --dequote-source-leaf` explicitly
+selects native quoted-leaf compatibility; literal behavior remains the default.
+The native manager regression tests also cover lookup precedence and resolver
+rejections. `./tools/export-audio-filenames.py` exports hash-pinned original
+filename/open instructions and records fresh or historical cabinet-list evidence.
+See [audio source filenames](../research/runtime/audio-source-filenames.md).

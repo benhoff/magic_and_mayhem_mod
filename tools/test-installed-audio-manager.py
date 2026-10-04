@@ -29,6 +29,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('sounds',nargs='?',type=Path,default=REPO/'working/game-nocd/Sounds')
     parser.add_argument('--executable',type=Path,help='Use a prebuilt fixture (also supports sanitizer builds)')
+    parser.add_argument('--dequote-source-leaf',action='store_true',help='Enable explicit native missing quoted-leaf compatibility')
     args=parser.parse_args();sounds=args.sounds.resolve()
     parent=REPO/'working/tests/installed-audio-manager';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(f'Installed manager evidence: {root}',flush=True)
@@ -47,7 +48,7 @@ def main():
         else:
             run('configure',['cmake','-S',str(REPO/'audio'),'-B',str(build),'-DBUILD_TESTING=OFF'])
             run('build',['cmake','--build',str(build),'--target','mnm-audio-installed-manager','--parallel','4']);binary=build/'mnm-audio-installed-manager'
-        run('native',[str(binary),str(sounds),str(root)])
+        run('native',[str(binary),str(sounds),str(root),*(['--dequote-source-leaf'] if args.dequote_source_leaf else [])])
         native=json.loads((root/'native.json').read_text());assert native['sourceIds']==source_ids
         assert {g['id']:g['members'] for g in native['groups']}==groups
         assert native['simultaneousLimit']==int(ini['Optimisation']['MaxSimultaneousSounds'])
@@ -66,6 +67,7 @@ def main():
             if stage!='upload' and expected in groups:expected=groups[expected][row.get('rng',0)%len(groups[expected])]
             if expected not in names:expected=410
             name=names[expected];path=files.get((name+'.wav').lower())
+            if path is None and args.dequote_source_leaf and len(name)>=2 and name[0]==name[-1]=="'":path=files.get((name[1:-1]+'.wav').lower())
             if path is None:
                 assert row['status']==-2147467259, row
                 classification='logical_group_without_wave' if expected in groups else 'missing_wave'
@@ -95,7 +97,7 @@ def main():
         assert (sounds/'Sounds.ini').read_bytes()==profile
         assert all(hashlib.sha256((sounds/name).read_bytes()).hexdigest()==digest for name,digest in before.items())
         sources=['tests/audio-installed-manager.cpp','tools/test-installed-audio-manager.py','reconstruction/audio/native_manager_backend.cpp','reconstruction/audio/manager_lifecycle.cpp','reconstruction/audio/manager_configuration.cpp','reconstruction/audio/source_cache.cpp','reconstruction/audio/voice_admission.cpp','audio/mixer.cpp','audio/buffers.cpp','audio/voices.cpp','audio/wave_loader.cpp','assets/profile.cpp','assets/asset_file.cpp','assets/path_resolver.cpp','reconstruction/audio/voice_scheduler.cpp','reconstruction/audio/voice_lifetime.cpp','reconstruction/audio/manager_contract.cpp','reconstruction/audio/dsound_setup.cpp']
-        report={'scope':'installed native manager/upload/admission/PCM/lifecycle; offline only, expected path failures retained',
+        report={'source_path_policy':native['sourcePathPolicy'],'scope':'installed native manager/upload/admission/PCM/lifecycle; offline only, expected path failures retained',
                 'game_launched':False,'audio_device_opened':False,'sounds_root':str(sounds),'cases':len(native['cases']),
                 'case_counts':counts,'pcm_cases_checked':checked,'one_shots_completed':completed,
                 'expected_failures':failures,'quoted_leaf_gap_ids':sorted(quoted),'unresolved_admission_sources':sorted({f['source'] for f in failures if f['stage'] in ('admission','group')}),'cleanup':True,'restart':True,

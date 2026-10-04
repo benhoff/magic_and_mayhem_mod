@@ -6,6 +6,8 @@
 #include <unordered_map>
 #include <unordered_set>
 namespace mnm::reconstruction::audio {
+// Explicit native adaptation; literal keeps the recovered filename boundary.
+enum class NativeSourcePathPolicy {literal, dequoteMissingLeaf};
 // Thread-confined native adapter. It opens no audio output device and invokes no
 // Windows API. Supplied manager and caller slots must outlive this backend.
 class NativeManagerBackend final:public ConfigurationBackend,public PrimaryBackend,
@@ -13,7 +15,7 @@ class NativeManagerBackend final:public ConfigurationBackend,public PrimaryBacke
 public:
     NativeManagerBackend(mnm::assets::AssetStore,AudioManager&,
                          std::function<std::uint32_t()> ticks,std::function<std::uint32_t()> random,
-                         std::uint32_t outputRate=48000);
+                         std::uint32_t outputRate=48000,NativeSourcePathPolicy sourcePaths=NativeSourcePathPolicy::literal);
     ~NativeManagerBackend() override;
     ManagerServices services(){return {*this,*this,*this,*this};}
     mnm::audio::Device& device(){return device_;}
@@ -67,6 +69,8 @@ public:
     Status unlockSource(std::uint32_t,std::uint8_t*,std::uint32_t) override;
     std::uint32_t waveDuration() override;
 private:
+    mnm::assets::Result<std::unique_ptr<mnm::assets::AssetFile>> openSourceFile(const std::string&);
+    NativeSourcePathPolicy sourcePaths_;
     static Status status(mnm::audio::Error);
     Status bind(mnm::audio::Error,mnm::audio::BufferId,std::uint32_t&);
     mnm::audio::BufferId native(std::uint32_t) const;
