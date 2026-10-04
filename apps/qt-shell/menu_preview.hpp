@@ -4,6 +4,7 @@
 #include "battle_result_widget.hpp"
 #include "quick_battle_result_widget.hpp"
 #include "map_selection_widget.hpp"
+#include "load_game_widget.hpp"
 class MainMenuWidget;
 class QuickBattleMenuWidget;
 class QStackedWidget;
@@ -17,6 +18,7 @@ public:
     bool openBattleResults(const QString& root, BattleResultWidget::Outcome outcome, QString* error = nullptr);
     bool openQuickBattleResults(const QString& root, QuickBattleResultWidget::PrimaryAction action, QString* error = nullptr);
     bool openMapSelection(const QString& root, QString* error = nullptr);
+    bool openLoadGame(const QString& root, QString* error = nullptr);
 private:
     void showMainMenu();
     void showQuickBattle();
@@ -27,4 +29,6 @@ private:
     BattleResultWidget* results_ = nullptr;
     QuickBattleResultWidget* quickResults_ = nullptr;
     MapSelectionWidget* mapSelection_ = nullptr;
+    LoadGameWidget* loadGame_ = nullptr;
+    QString assetRoot_;
 };

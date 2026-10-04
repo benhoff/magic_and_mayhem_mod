@@ -239,3 +239,13 @@ OK/Cancel navigation:
 OK emits an opaque map ID; both actions return to the Quick Battle preview.
 Installed map enumeration and engine selection remain pending. See
 [Map Selection scope and validation](../../research/runtime/map-selection-qt.md).
+
+Load Game provides a sample save list, editable filename and Load/Cancel actions:
+
+```bash
+./tools/run-qt-shell.sh --load-game
+```
+
+It also opens from the native Main menu. Exact supplied filename matches select
+a save; Load emits its opaque ID with engine integration pending. Cancel returns
+to Main. See [Load Game scope and validation](../../research/runtime/load-game-qt.md).

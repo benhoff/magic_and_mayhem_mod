@@ -14,6 +14,11 @@ MenuPreview::MenuPreview(QWidget* parent) : QMainWindow(parent) {
     setCentralWidget(screens_); resize(800, 630);
     connect(main_, &MainMenuWidget::actionRequested, this, [this](MainMenuWidget::Action action) {
         if (action == MainMenuWidget::Action::QuickBattle) { showQuickBattle(); return; }
+        if (action == MainMenuWidget::Action::LoadGame) {
+            QString error;
+            if (!openLoadGame(assetRoot_,&error)) statusBar()->showMessage(QString("Load Game preview failed: %1").arg(error));
+            return;
+        }
         if (action == MainMenuWidget::Action::Quit) { close(); return; }
         const auto name = QMetaEnum::fromType<MainMenuWidget::Action>().valueToKey(int(action));
         statusBar()->showMessage(QString("Selected %1 — engine adapter pending.").arg(QString::fromLatin1(name)));
@@ -26,6 +31,7 @@ MenuPreview::MenuPreview(QWidget* parent) : QMainWindow(parent) {
 }
 bool MenuPreview::loadAssets(const QString& root, bool startQuickBattle, QString* error) {
     if (!main_->loadAssets(root, error) || !quick_->loadAssets(root, error)) return false;
+    assetRoot_=root;
     if (startQuickBattle) showQuickBattle(); else showMainMenu();
     return true;
 }
@@ -119,4 +125,18 @@ bool MenuPreview::openMapSelection(const QString& root, QString* error) {
     setWindowTitle(mapSelection_->windowTitle());
     statusBar()->showMessage("Sample map list. OK or Cancel returns to the Quick Battle preview.");
     return true;
+}
+
+bool MenuPreview::openLoadGame(const QString& root, QString* error) {
+    if (!loadGame_) {
+        loadGame_=new LoadGameWidget(screens_); screens_->addWidget(loadGame_);
+        connect(loadGame_,&LoadGameWidget::cancelled,this,&MenuPreview::showMainMenu);
+        connect(loadGame_,&LoadGameWidget::loadRequested,this,[this](const QString& id) {
+            statusBar()->showMessage(QString("Selected sample save %1 — engine adapter pending.").arg(id));
+        });
+    }
+    if (!loadGame_->loadAssets(root,error)) return false;
+    if (!loadGame_->setSaves({{"sample-autosave","Sample autosave"},{"sample-campaign","Sample campaign save"},{"sample-before-battle","Sample before battle"}},"sample-autosave",error)) return false;
+    screens_->setCurrentWidget(loadGame_); loadGame_->focusSelection(); setWindowTitle(loadGame_->windowTitle());
+    statusBar()->showMessage("Sample saves. Load emits selection; Cancel returns to the main menu preview."); return true;
 }
