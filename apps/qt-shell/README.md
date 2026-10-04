@@ -450,3 +450,18 @@ Menu music also monitors output loss/default changes and shows **Retry music**.
 An availability event or explicit retry reopens the selected track from the
 beginning with its latest accepted volume; closure cancels recovery. See
 [music recovery and synthetic validation](../../research/runtime/menu-music-recovery.md).
+
+## Realm Viewer region shapes and animation
+
+The Realm Viewer now highlights regions with their original PCX border art,
+selects map regions through their silhouette pixels, animates the green flags,
+and previews the selected available region's first stored path with a walking
+marker. Keyboard-accessible flag shortcuts and availability guards remain active;
+hidden screens stop animation. Playback timing and route previews are native
+presentation policies, separate from campaign travel or engine commands.
+
+```bash
+QT_QPA_PLATFORM=offscreen working/build/qt-shell/realm-viewer-visuals-test working/game-nocd
+```
+
+See [visual asset integration and verification](../../research/runtime/realm-viewer-visuals.md).
