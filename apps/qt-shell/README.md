@@ -426,3 +426,22 @@ native menu preview, with or without `--menu-audio`. Music continues across menu
 navigation, stops on closure, and has its own status and saved accepted volume.
 Cancel keeps the accepted value. No default track is selected. See
 [controller, policy and offline evidence](../../research/runtime/native-menu-music.md).
+
+## Shared original menu fonts
+
+All migrated menus use the installed SFT heading, body, tooltip and quantity
+font shapes through a shared native loader/Qt font bridge. Buttons, labels,
+lists, editable fields, local chat and Grimoire prose use common font roles and
+canvas scaling, without synthetic bold. Sprite lettering retains its original
+image. All four installed font inputs must be valid; an entirely absent catalog
+uses an explicit common fallback for synthetic fixtures.
+
+```bash
+cmake --build working/build/qt-shell --target menu-font-test --parallel 4
+QT_QPA_PLATFORM=offscreen working/build/qt-shell/menu-font-test working/game-nocd
+```
+
+This integrates recovered transparency masks and origins into Qt's text system.
+Original palette shading, contour kerning, code pages and pixel-perfect text
+flow still require comparison. See
+[font integration evidence and policy](../../research/runtime/menu-font-integration.md).

@@ -41,6 +41,7 @@ bool MapSelectionWidget::loadAssets(const QString& root, QString* error) {
         const auto okText=mnm::ui::textLabel(assets.strings,ok.value("Text")),cancelText=mnm::ui::textLabel(assets.strings,cancel.value("Text"));
         if (heading.value("Font")!="LARGE" || heading.value("TextFlags")!="CENTRE" || list.value("Font")!="SMALL" || ok.value("Font")!="LARGE" || cancel.value("Font")!="LARGE")
             throw std::runtime_error("Invalid Map Selection font or alignment role");
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_=assets.background; headingRectangle_=headingRect; listRectangle_=listRect; okRectangle_=okRect; cancelRectangle_=cancelRect;
         heading_->setText(headingText); ok_->setText(okText); cancel_->setText(cancelText);
         arrange(); update(); return true;
@@ -81,9 +82,9 @@ void MapSelectionWidget::arrange() {
     const auto canvas=contentRect(); const double scale=canvas.width()/800.0;
     auto map=[&](const QRect& r){return QRect(canvas.x()+qRound(r.x()*scale),canvas.y()+qRound(r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));};
     heading_->setGeometry(map(headingRectangle_)); maps_->setGeometry(map(listRectangle_)); ok_->setGeometry(map(okRectangle_)); cancel_->setGeometry(map(cancelRectangle_));
-    QFont font("serif"); font.setBold(true); font.setPixelSize(qMax(10,qRound(26*scale)));
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale);
     heading_->setFont(font); ok_->setFont(font); cancel_->setFont(font);
-    font.setPixelSize(qMax(10,qRound(20*scale))); maps_->setFont(font);
+    font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Body,scale); maps_->setFont(font);
 }
 void MapSelectionWidget::resizeEvent(QResizeEvent* event) { QWidget::resizeEvent(event); arrange(); }
 void MapSelectionWidget::keyPressEvent(QKeyEvent* event) {

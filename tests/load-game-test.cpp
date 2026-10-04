@@ -48,7 +48,7 @@ int main(int argc,char** argv){
   QKeyEvent escape(QEvent::KeyPress,Qt::Key_Escape,Qt::NoModifier);QApplication::sendEvent(edit,&escape);require(cancelled==1,"Escape from edit");cancel->setFocus();QApplication::sendEvent(cancel,&enter);require(cancelled==2&&loaded==3,"Enter on Cancel");
   widget.resize(1200,600);app.processEvents();require(list->geometry()==QRect(365,233,470,267)&&edit->geometry()==QRect(363,150,474,42),"wide geometry");
   const auto capture=widget.grab().toImage();require(capture.pixelColor(10,10)==QColor(Qt::black)&&qAbs(capture.pixelColor(210,10).blue()-150)<4,"artwork and letterbox");
-  widget.resize(400,600);app.processEvents();require(edit->geometry()==QRect(82,225,237,21)&&list->font().pixelSize()==10,"scaled edit/list");
+  widget.resize(400,600);app.processEvents();require(edit->geometry()==QRect(82,225,237,21)&&list->font().pixelSize()==11,"scaled edit/list");
   write(config,QByteArray(layout).replace("Font=SMALL","Font=INVALID"));require(!widget.loadAssets(root,&error)&&!error.isEmpty()&&load->text()=="Load"&&list->count()==1,"transactional layout failure");write(config,layout);
   for(const auto& entry:std::array<std::pair<QString,QString>,2>{{{"MainScreen","screen (MainMenu).cfg"},{"QuickBattleMainMenu","Screen (Quick Battle Main Menu).cfg"}}}){
    const auto folder=root+"/Interface/"+entry.first;require(QDir().mkpath(folder+"/800x600"),"navigation directory");require(image.save(folder+"/800x600/Fixture 800-600.JPG","JPG"),"navigation image");QByteArray cfg("[GLOBALS]\nBackgroundFile=Fixture\n[TEXT_1]\nRect2=150,50,650,100\nText=0\n");

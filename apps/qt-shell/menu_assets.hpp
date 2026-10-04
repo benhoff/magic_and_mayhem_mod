@@ -1,4 +1,5 @@
 #pragma once
+#include "menu_fonts.hpp"
 #include <QImage>
 #include <QMap>
 #include <QRect>
@@ -9,6 +10,7 @@ struct MenuAssets {
     Sections layout;
     Sections strings;
     QImage background;
+    MenuFontSet fonts;
 };
 // Bounded read-only installed menu inputs. Throws on missing/invalid inputs.
 MenuAssets loadMenuAssets(const QString& root, const QString& directory, const QString& config,

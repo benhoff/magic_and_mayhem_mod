@@ -43,7 +43,7 @@ int main(int argc,char** argv){
   cancel->setFocus();QApplication::sendEvent(cancel,&enter);require(cancelled==2&&confirmed==2,"Enter on Cancel");
   widget.resize(1200,600);app.processEvents();require(widget.contentRect()==QRect(200,0,800,600)&&list->geometry()==QRect(365,175,470,270),"wide layout");
   const auto capture=widget.grab().toImage();require(capture.pixelColor(10,10)==QColor(Qt::black)&&qAbs(capture.pixelColor(210,10).blue()-150)<4,"background and letterbox");
-  widget.resize(400,600);app.processEvents();require(list->geometry()==QRect(83,238,235,135)&&list->font().pixelSize()==10,"scaled list and font");
+  widget.resize(400,600);app.processEvents();require(list->geometry()==QRect(83,238,235,135)&&list->font().pixelSize()==11,"scaled list and font");
   write(config,QByteArray(layout).replace("165,175,635,445","165,175,900,445"));require(!widget.loadAssets(root,&error)&&!error.isEmpty()&&list->count()==1&&ok->text()=="OK","invalid layout transactional");write(config,layout);
   list->setCurrentRow(0);list->itemActivated(list->currentItem());require(confirmed==3&&id=="forest","activation confirms current selected ID");
   require(widget.setSessions({},QString(),&error)&&list->count()==0&&!ok->isEnabled()&&widget.selectedSessionId().isEmpty(),"empty refresh clears selection");

@@ -30,12 +30,12 @@ public:
     int count=-1;
 protected:
     void paintEvent(QPaintEvent*) override {
-        QPainter p(this);p.setRenderHint(QPainter::SmoothPixmapTransform);p.scale(width()/84.0,height()/86.0);
+        QPainter p(this);p.setRenderHint(QPainter::SmoothPixmapTransform);p.scale(width()/84.0,height()/86.0);p.setFont(mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Tooltip));
         if(!isEnabled())p.setOpacity(.45);
         if(!frame.image.isNull())p.drawImage(-frame.origin,frame.image);
         else {p.setPen(QColor("#fff5d6"));p.drawText(QRect(2,4,80,77),Qt::AlignCenter|Qt::TextWordWrap,text());}
         p.setOpacity(1);if(selected||hasFocus()){p.setPen(QPen(selected?QColor("#ffdd88"):QColor("#fff5d6"),2));p.drawRoundedRect(QRect(1,1,81,83),6,6);}
-        if(count>=0){p.fillRect(QRect(59,65,24,20),QColor(20,12,8,210));p.setPen(Qt::white);p.drawText(QRect(59,65,24,20),Qt::AlignCenter,QString::number(count));}
+        if(count>=0){p.setFont(mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Yellow));p.fillRect(QRect(59,65,24,20),QColor(20,12,8,210));p.setPen(Qt::white);p.drawText(QRect(59,65,24,20),Qt::AlignCenter,QString::number(count));}
     }
     void mousePressEvent(QMouseEvent* e) override {start_=e->position().toPoint();QPushButton::mousePressEvent(e);}
     void mouseMoveEvent(QMouseEvent* e) override {
@@ -84,6 +84,7 @@ bool SpellboxWidget::setInventory(const Inventory& inv,QString* error) {
 }
 bool SpellboxWidget::loadAssets(const QString& root,QString* error) {
     try {
+        const auto fonts=mnm::ui::loadMenuFonts(root);
         auto background=mnm::ui::loadMenuImage(root,"Interface/SpellBox/800x600/Portmanteau.bmp",{800,600});
         auto items=mnm::ui::loadMenuSprites(root,"Interface/SpellBox/800x600/mitems.spr"),talismans=mnm::ui::loadMenuSprites(root,"Interface/SpellBox/800x600/Talisman.spr");
         if(items.size()!=23||talismans.size()!=95)throw std::runtime_error("Unexpected Spellbox sprite frame counts");
@@ -92,6 +93,7 @@ bool SpellboxWidget::loadAssets(const QString& root,QString* error) {
         const auto tips=mnm::ui::loadMenuLayout(root,"Interface/SpellBox","Spellboxtooltip.cfg");
         if(tips.value("HEADER").value("ValidConfig")!="TRUE")throw std::runtime_error("Invalid Spellbox tooltip configuration");
         std::array<QString,3> labels;for(int i=0;i<3;++i)labels[i]=mnm::ui::textLabel(tips,QString::number(4+i));
+        mnm::ui::installMenuFonts(this,fonts);
         background_=std::move(background);itemSprites_=std::move(items);talismanSprites_=std::move(talismans);alignmentNames_=labels;populate();if(error)error->clear();return true;
     }catch(const std::exception& e){return fail(error,QString::fromUtf8(e.what()));}
 }
@@ -142,7 +144,7 @@ void SpellboxWidget::populate() {
 }
 QRect SpellboxWidget::contentRect() const {return mnm::ui::menuContentRect(size());}
 void SpellboxWidget::arrange() {
-    const auto canvas=contentRect();const double scale=canvas.width()/800.0;auto place=[&](QWidget* w,QRect r){w->setGeometry(qRound(canvas.x()+r.x()*scale),qRound(canvas.y()+r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));auto f=w->font();f.setPixelSize(qMax(8,qRound(13*scale)));w->setFont(f);};
+    const auto canvas=contentRect();const double scale=canvas.width()/800.0;auto place=[&](QWidget* w,QRect r){w->setGeometry(qRound(canvas.x()+r.x()*scale),qRound(canvas.y()+r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));auto f=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Tooltip,scale);w->setFont(f);};
     for(int i=0;i<5;++i){place(actions_[i],QRect(292+i*99,9,94,28));}
     place(detail_,QRect(292,41,490,39));
     std::array<int,3> rows{};for(int t=0;t<talismans_.size();++t){const int a=int(draft_.talismans[t].alignment);place(talismans_[t],QRect(198-a*94,7+84*rows[a]++,84,86));}

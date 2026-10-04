@@ -82,6 +82,7 @@ bool PreferencesWidget::loadAssets(const QString& root, QString* error) {
         if (ok.value("Font")!="LARGE" || cancel.value("Font")!="LARGE") throw std::runtime_error("Invalid Preferences button font");
         const auto draft=draftSettings();
         if (!validSettings(accepted_,minimum,maximum) || !validSettings(draft,minimum,maximum)) throw std::runtime_error("Preferences state outside configured slider range");
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_=assets.background; labelRectangles_=labels; radioRectangles_=radios; sliderRectangles_=sliders; minimum_=minimum; maximum_=maximum;
         okRectangle_=okRect; cancelRectangle_=cancelRect; ok_->setText(okText); cancel_->setText(cancelText);
         for (int i=0;i<11;++i) { labels_[i]->setText(texts[i]); labels_[i]->setAlignment(Qt::Alignment(alignments[i])); labels_[i]->setVisible(!texts[i].isEmpty()); }
@@ -119,11 +120,11 @@ QRect PreferencesWidget::contentRect() const { return mnm::ui::menuContentRect(s
 void PreferencesWidget::arrange() {
     const auto canvas=contentRect(); const double scale=canvas.width()/800.0;
     auto map=[&](const QRect& r){return QRect(canvas.x()+qRound(r.x()*scale),canvas.y()+qRound(r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));};
-    QFont font("serif"); font.setBold(true); font.setPixelSize(qMax(10,qRound(20*scale)));
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Body,scale);
     for (int i=0;i<11;++i) { labels_[i]->setGeometry(map(labelRectangles_[i])); labels_[i]->setFont(font); }
     for (int i=0;i<12;++i) { radios_[i]->setGeometry(map(radioRectangles_[i])); radios_[i]->setFont(font); }
     for (int i=0;i<2;++i) sliders_[i]->setGeometry(map(sliderRectangles_[i]));
-    font.setPixelSize(qMax(10,qRound(26*scale))); labels_[0]->setFont(font); ok_->setFont(font); cancel_->setFont(font);
+    font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale); labels_[0]->setFont(font); ok_->setFont(font); cancel_->setFont(font);
     ok_->setGeometry(map(okRectangle_)); cancel_->setGeometry(map(cancelRectangle_));
 }
 void PreferencesWidget::resizeEvent(QResizeEvent* event) { QWidget::resizeEvent(event); arrange(); }

@@ -44,7 +44,7 @@ int main(int argc,char** argv) {
         results.totalPoints="127"; results.maximumPoints="300"; widget.setResults(results);
         require(text(3)->text()==results.rewards[0].achievement && text(3)->textFormat()==Qt::PlainText && text(16)->text()=="7","all rewards and plain text");
         require(text(18)->text()=="127" && text(19)->text()=="/  300" && text(17)->isVisible() && text(21)->isHidden(),"totals presentation");
-        require(text(2)->alignment().testFlag(Qt::AlignRight) && text(17)->font().pixelSize()==20,"alignment and font roles");
+        require(text(2)->alignment().testFlag(Qt::AlignRight) && text(17)->font().pixelSize()==22,"alignment and font roles");
         int calls=0; QObject::connect(&widget,&BattleResultWidget::continueRequested,&widget,[&]{++calls;});
         button->click(); require(calls==1,"OK intent");
         for (int key:{Qt::Key_Return,Qt::Key_Escape}) {

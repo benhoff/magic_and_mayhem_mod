@@ -39,7 +39,7 @@ int main(int argc,char** argv){
   widget.show();app.processEvents();
   auto label=[&](int n){return widget.findChild<QLabel*>(QString("quickResultText%1").arg(n));};
   auto button=[&](int n){return widget.findChild<QPushButton*>(QString("quickResultAction%1").arg(n));};
-  require(label(1)->text()=="Game Over" && label(5)->wordWrap() && label(5)->font().pixelSize()==20,"configured headings and font roles");
+  require(label(1)->text()=="Game Over" && label(5)->wordWrap() && label(5)->font().pixelSize()==22,"configured headings and font roles");
   require(label(7)->isHidden() && !button(0)->isEnabled() && !button(1)->isEnabled(),"empty model has no invented players or primary action");
   QuickBattleResultWidget::Results results;results.primaryAction=QuickBattleResultWidget::PrimaryAction::Continue;
   for(int i=0;i<4;++i){auto& p=results.players[i];p.active=true;p.name=QString("<b>Player %1</b>").arg(i+1);p.portraitText=QString("P%1").arg(i+1);p.kills=QString::number(10+i);p.deaths=QString::number(20+i);p.handicapBonus=QString::number(30+i);p.score=QString::number(40+i);}

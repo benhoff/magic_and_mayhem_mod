@@ -42,6 +42,7 @@ bool MainMenuWidget::loadAssets(const QString& installationRoot, QString* error)
             labels[i] = mnm::ui::textLabel(assets.strings, entry.value("Text"));
         }
         const auto versionRectangle = mnm::ui::rectangle(layout.value("TEXT_1").value("Rect2"));
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_ = std::move(assets.background);
         rectangles_ = rectangles;
         versionRectangle_ = versionRectangle;
@@ -69,14 +70,11 @@ void MainMenuWidget::arrange() {
     };
     for (int i = 0; i < 6; ++i) {
         buttons_[i]->setGeometry(map(rectangles_[i]));
-        QFont font("serif");
-        font.setBold(true);
-        font.setPixelSize(qMax(10, qRound((i == 5 ? 16 : 26) * scale)));
+        auto font=mnm::ui::menuFont(this,i==5?mnm::ui::MenuFontRole::Tooltip:mnm::ui::MenuFontRole::Heading,scale);
         buttons_[i]->setFont(font);
     }
     version_->setGeometry(map(versionRectangle_));
-    auto font = version_->font();
-    font.setPixelSize(qMax(10, qRound(16 * scale)));
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Tooltip,scale);
     version_->setFont(font);
 }
 void MainMenuWidget::resizeEvent(QResizeEvent* event) { QWidget::resizeEvent(event); arrange(); }

@@ -48,6 +48,7 @@ bool LoadGameWidget::loadAssets(const QString& root, QString* error) {
         const auto loadText=mnm::ui::textLabel(assets.strings,load.value("Text")),cancelText=mnm::ui::textLabel(assets.strings,cancel.value("Text"));
         if (heading.value("Font")!="LARGE" || heading.value("TextFlags")!="CENTRE" || list.value("Font")!="SMALL" || edit.value("Font")!="SMALL" || load.value("Font")!="LARGE" || cancel.value("Font")!="LARGE")
             throw std::runtime_error("Invalid Load Game font or alignment role");
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_=assets.background; headingRectangle_=headingRect; listRectangle_=listRect; editRectangle_=editRect; loadRectangle_=loadRect; cancelRectangle_=cancelRect;
         heading_->setText(headingText); load_->setText(loadText); cancel_->setText(cancelText); arrange(); update(); return true;
     } catch (const std::exception& failure) { if (error) *error=QString::fromUtf8(failure.what()); return false; }
@@ -87,8 +88,8 @@ void LoadGameWidget::arrange() {
     const auto canvas=contentRect(); const double scale=canvas.width()/800.0;
     auto map=[&](const QRect& r){return QRect(canvas.x()+qRound(r.x()*scale),canvas.y()+qRound(r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));};
     heading_->setGeometry(map(headingRectangle_)); saves_->setGeometry(map(listRectangle_)); fileName_->setGeometry(map(editRectangle_)); load_->setGeometry(map(loadRectangle_)); cancel_->setGeometry(map(cancelRectangle_));
-    QFont font("serif"); font.setBold(true); font.setPixelSize(qMax(10,qRound(26*scale))); heading_->setFont(font); load_->setFont(font); cancel_->setFont(font);
-    font.setPixelSize(qMax(10,qRound(20*scale))); saves_->setFont(font); fileName_->setFont(font);
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale); heading_->setFont(font); load_->setFont(font); cancel_->setFont(font);
+    font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Body,scale); saves_->setFont(font); fileName_->setFont(font);
 }
 void LoadGameWidget::resizeEvent(QResizeEvent* event) { QWidget::resizeEvent(event); arrange(); }
 bool LoadGameWidget::eventFilter(QObject* watched, QEvent* event) {

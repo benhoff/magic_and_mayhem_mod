@@ -109,6 +109,7 @@ bool SinglePlayerBattleWidget::loadAssets(const QString& root,QString* error) {
         if (!validSetup(setup(),minimum,maximum,step)) throw std::runtime_error("Battle setup outside configured slider ranges");
         sprites_=sprites;
         for (int i=0;i<int(remove_.size());++i) static_cast<mnm::ui::SpriteButton*>(remove_[i])->setSprites(mnm::ui::spriteStates(sprites,24),remove[i].size());
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_=assets.background;labelRectangles_=textRects;sliderRectangles_=sliderRects;minimum_=minimum;maximum_=maximum;step_=step;
         portraitRectangles_=portraits;colourRectangles_=colours;removeRectangles_=remove;noPlayer_=texts[0];
         cancelRectangle_=buttons[0];startRectangle_=buttons[1];mapRectangle_=buttons[2];
@@ -163,7 +164,7 @@ QRect SinglePlayerBattleWidget::contentRect() const {return mnm::ui::menuContent
 void SinglePlayerBattleWidget::arrange() {
     const auto canvas=contentRect();const double scale=canvas.width()/800.0;
     auto map=[&](const QRect& r){return QRect(canvas.x()+qRound(r.x()*scale),canvas.y()+qRound(r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));};
-    QFont font("serif");font.setBold(true);font.setPixelSize(qMax(10,qRound(20*scale)));
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Body,scale);
     for (int i=0;i<40;++i) {
         auto* label=labels_[i];label->setGeometry(map(labelRectangles_[i]));auto fitted=font;
         const int available=label->width()-(i>=14 && i<27?qRound(6*scale):0);
@@ -173,7 +174,7 @@ void SinglePlayerBattleWidget::arrange() {
     for (int i=0;i<17;++i) sliders_[i]->setGeometry(map(sliderRectangles_[i]));
     for (int i=0;i<4;++i) {
         portraits_[i]->setGeometry(map(portraitRectangles_[i]));colours_[i]->setGeometry(map(colourRectangles_[i]));
-        auto compact=font;compact.setPixelSize(qMax(10,qRound(12*scale)));portraits_[i]->setFont(compact);colours_[i]->setFont(compact);
+        auto compact=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Tooltip,scale);portraits_[i]->setFont(compact);colours_[i]->setFont(compact);
         if (i>=2) {remove_[i-2]->setGeometry(map(removeRectangles_[i-2]));remove_[i-2]->setFont(font);}
     }
     cancel_->setGeometry(map(cancelRectangle_));start_->setGeometry(map(startRectangle_));map_->setGeometry(map(mapRectangle_));

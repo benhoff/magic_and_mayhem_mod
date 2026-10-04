@@ -42,6 +42,7 @@ bool MiniMenuWidget::loadAssets(const QString& root, QString* error) {
             rectangles[i] = mnm::ui::rectangle(entry.value("Rect2"));
             labels[i] = mnm::ui::textLabel(assets.strings, entry.value("Text"));
         }
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_ = std::move(assets.background); rectangles_ = rectangles;
         for (int i = 0; i < 8; ++i) buttons_[i]->setText(labels[i]);
         arrange(); update(); return true;
@@ -69,7 +70,7 @@ void MiniMenuWidget::arrange() {
         const auto rect = rectangles_[i];
         buttons_[i]->setGeometry(canvas.x() + qRound(rect.x()*scale), canvas.y() + qRound(rect.y()*scale),
                                 qRound(rect.width()*scale), qRound(rect.height()*scale));
-        QFont font("serif"); font.setBold(true); font.setPixelSize(qMax(10, qRound(26*scale)));
+        auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale);
         buttons_[i]->setFont(font);
     }
 }
