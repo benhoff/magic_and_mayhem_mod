@@ -19,6 +19,11 @@ MenuPreview::MenuPreview(QWidget* parent) : QMainWindow(parent) {
             if (!openLoadGame(assetRoot_,&error)) statusBar()->showMessage(QString("Load Game preview failed: %1").arg(error));
             return;
         }
+        if (action == MainMenuWidget::Action::Preferences) {
+            QString error;
+            if (!openPreferences(assetRoot_,&error)) statusBar()->showMessage(QString("Preferences preview failed: %1").arg(error));
+            return;
+        }
         if (action == MainMenuWidget::Action::Quit) { close(); return; }
         const auto name = QMetaEnum::fromType<MainMenuWidget::Action>().valueToKey(int(action));
         statusBar()->showMessage(QString("Selected %1 — engine adapter pending.").arg(QString::fromLatin1(name)));
@@ -42,6 +47,11 @@ bool MenuPreview::openMiniMenu(const QString& root, MiniMenuWidget::Mode mode, Q
             if (action == MiniMenuWidget::Action::SaveGame) {
                 QString error;
                 if (!openSaveGame(assetRoot_,&error)) statusBar()->showMessage(QString("Save Game preview failed: %1").arg(error));
+                return;
+            }
+            if (action == MiniMenuWidget::Action::Preferences) {
+                QString error;
+                if (!openPreferences(assetRoot_,&error)) statusBar()->showMessage(QString("Preferences preview failed: %1").arg(error));
                 return;
             }
             if (action == MiniMenuWidget::Action::Cancel) { showMainMenu(); return; }
@@ -166,5 +176,28 @@ bool MenuPreview::openSaveGame(const QString& root, QString* error) {
 void MenuPreview::returnFromSaveGame() {
     if (!saveReturnsToMini_) { showMainMenu(); return; }
     screens_->setCurrentWidget(mini_); mini_->focusFirstAction(); setWindowTitle(mini_->windowTitle());
+    statusBar()->showMessage("Mini Menu preview. Cancel or Escape returns to the main menu.");
+}
+
+bool MenuPreview::openPreferences(const QString& root, QString* error) {
+    if (!preferences_) {
+        preferences_=new PreferencesWidget(screens_); screens_->addWidget(preferences_);
+        connect(preferences_,&PreferencesWidget::cancelled,this,&MenuPreview::returnFromPreferences);
+        connect(preferences_,&PreferencesWidget::settingsApplied,this,[this](const PreferencesWidget::Settings&) {
+            returnFromPreferences();
+            statusBar()->showMessage("Preferences accepted locally — engine adapter and persistence pending.");
+        });
+    }
+    if (!preferences_->loadAssets(root,error) || !preferences_->setSettings(preferences_->settings(),error)) return false;
+    preferencesReturnToMini_=mini_ && screens_->currentWidget()==mini_;
+    screens_->setCurrentWidget(preferences_); preferences_->focusFirstControl(); setWindowTitle(preferences_->windowTitle());
+    statusBar()->showMessage("Local sample settings. OK accepts changes; Cancel restores the snapshot."); return true;
+}
+void MenuPreview::returnFromPreferences() {
+    if (!preferencesReturnToMini_) {
+        showMainMenu(); main_->findChild<QPushButton*>("mainMenuAction3")->setFocus(Qt::OtherFocusReason); return;
+    }
+    screens_->setCurrentWidget(mini_); setWindowTitle(mini_->windowTitle());
+    mini_->findChild<QPushButton*>(mini_->mode()==MiniMenuWidget::Mode::Campaign?"miniMenuButton3":"miniMenuButton6")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Mini Menu preview. Cancel or Escape returns to the main menu.");
 }
