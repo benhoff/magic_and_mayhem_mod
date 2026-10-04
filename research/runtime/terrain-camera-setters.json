@@ -1,0 +1,270 @@
+{
+  "installed_sha256": {
+    "CFsec01.map": "69fa6e62aaf678d97cf0d8519bcbbaa783daaba75eb1e378c3ebb0f5ec369ee5",
+    "Terrain.ttd": "f644af06f634264786443b3fb30016d5cb4af0757aba760dde16ff2992463c85",
+    "Terrain.spr": "bbff01037b19eaf97c067dc742c2b93bb29f69d4862f0c811a9e2a33fff7b65b"
+  },
+  "build_sha256": {
+    "working/build/terrain-camera-frozen/mnm-terrain-preview": "03cc44bc65c7523bf9c5409f05e434b2522b69f84ea5a1130969f647c87e9216",
+    "working/build/terrain-camera-sanitized/mnm-terrain-preview": "820701a545670c20418d171aafd6779729f7e2f18c2d9ef907501f08c85d09aa"
+  },
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "source_sha256": {
+    "tests/terrain-camera-reference.cpp": "18d48767623529e7bb55a2943bb14f3162fc190c4d562b07c130e86728626987",
+    "tests/terrain-camera-test.cpp": "a30f6b40c95e77a9912c7213616727513d1619dd26044009a39edf955587e2ce",
+    "reconstruction/rendering/terrain_camera.cpp": "42f9a9c59d4c1e574fc4e0ed21f615d9b522242e39b52325643e99c7bc37f817",
+    "reconstruction/rendering/terrain_camera.hpp": "f6bacef97809b3d25c66f2e5f6990ba194970f10aa4fd569804a740629b56730",
+    "reconstruction/rendering/terrain_traversal.hpp": "dc49e73cb705b5d205d2d109bdf629f4891595e901139a2e416e50647feca9c9",
+    "apps/terrain-preview/main.cpp": "9d28addd9ee5b8a377da9d4a912f54c9c6d9a599377782805762691ff127a338"
+  },
+  "reference": {
+    "fixtures": 8192,
+    "state_comparisons": 139264,
+    "all_match": true
+  },
+  "scenes": [
+    {
+      "view": 0,
+      "scroll": [],
+      "pixels_sha256": "4baf0fc8bef2ddafc83b57a8a5f698e025b92ae78447df62e1f702713af57496",
+      "queue": 1493
+    },
+    {
+      "view": 0,
+      "scroll": [
+        "-32,0"
+      ],
+      "pixels_sha256": "07a34f41a4d6875e98e705475b549f995d83d890f3df752e60de085044d1afdc",
+      "queue": 1489
+    },
+    {
+      "view": 0,
+      "scroll": [
+        "19,-7",
+        "-91,41"
+      ],
+      "pixels_sha256": "dd4f3c3827ba18eab7fcc3ca45f68dd0076131d92db07b97fac6af3ab66f58dd",
+      "queue": 1494
+    },
+    {
+      "view": 0,
+      "scroll": [
+        "2048,-2048"
+      ],
+      "pixels_sha256": "64addb138d9b063c9cfed8e662ac41ba39a75f4bdb3d21e6f790ba9a4b9c6f3a",
+      "queue": 1440
+    },
+    {
+      "view": 1,
+      "scroll": [],
+      "pixels_sha256": "060ef4d856ec4730ccf3235a81a8442be4e6bd730917f6ec08676a368bb82e0f",
+      "queue": 2920
+    },
+    {
+      "view": 1,
+      "scroll": [
+        "-32,0"
+      ],
+      "pixels_sha256": "6180d210b2bd8267f4e1dc2e1122a66f673867fc6ed7a715bf961e271af6aec7",
+      "queue": 2970
+    },
+    {
+      "view": 1,
+      "scroll": [
+        "19,-7",
+        "-91,41"
+      ],
+      "pixels_sha256": "edd8a76fd0dff49fcca5fc3d1e701d44bbb33f3e1d11529e7ba8bfae62220215",
+      "queue": 2992
+    },
+    {
+      "view": 1,
+      "scroll": [
+        "2048,-2048"
+      ],
+      "pixels_sha256": "055243bdca6ba45bc6efa8e0c80f41fa5c745667fd7f97ac013f99df02e477ec",
+      "queue": 2966
+    },
+    {
+      "view": 2,
+      "scroll": [],
+      "pixels_sha256": "7ae5a89ce3288922d4c1695237729621e273f61bf16237627bc9cf874720892a",
+      "queue": 2614
+    },
+    {
+      "view": 2,
+      "scroll": [
+        "-32,0"
+      ],
+      "pixels_sha256": "3435e385b086177c911a210fc5711149a5e72fc0f11d3ff412c32dbd2321dab9",
+      "queue": 2591
+    },
+    {
+      "view": 2,
+      "scroll": [
+        "19,-7",
+        "-91,41"
+      ],
+      "pixels_sha256": "4f0345907786fa5c744c48db37ba928326b0a1b2e93e300ffefa205d2edd3c04",
+      "queue": 2698
+    },
+    {
+      "view": 2,
+      "scroll": [
+        "2048,-2048"
+      ],
+      "pixels_sha256": "8b38eca5347cb6c24dd3349a47e098172ebc852110a8bcff7b73f18765852f57",
+      "queue": 2650
+    },
+    {
+      "view": 3,
+      "scroll": [],
+      "pixels_sha256": "c2a108fb9dabb0ccd50d105685f67c173ed6f70d98138dca57e1190ea1ff8780",
+      "queue": 3090
+    },
+    {
+      "view": 3,
+      "scroll": [
+        "-32,0"
+      ],
+      "pixels_sha256": "2501c4debdd9a65d368fb138448d47c6a39a4e224e323ee54d21c3dde56c8729",
+      "queue": 3147
+    },
+    {
+      "view": 3,
+      "scroll": [
+        "19,-7",
+        "-91,41"
+      ],
+      "pixels_sha256": "7df4bc4ca94963d0a2d51ebabbe39dd3c8fa56394ce866f12ed4b5ae2afe54be",
+      "queue": 3318
+    },
+    {
+      "view": 3,
+      "scroll": [
+        "2048,-2048"
+      ],
+      "pixels_sha256": "e32f32a4787b1894316a49ab79cbac6dc5f786b21cc23ffb39990322d743b9c8",
+      "queue": 2681
+    }
+  ],
+  "scope": "Original selected camera setters; native scene smoke checks compare normal/sanitized builds, not original scene pixels",
+  "artifacts_sha256": {
+    "scene-3-15-sanitized.png": "dbcf51193da04b2f80e0757205486afa3bb90cafb493274bcace217110cea2c3",
+    "scene-3-13-normal.png": "7ab3578663f053c5ed51298123eaeac71a8c0be6dacd654d8784061a24a18b73",
+    "reference.json": "abe03a642feffb4aba3fdeebedb43d9121180cfde8970fece3a52c09fbef3e6a",
+    "scene-0-1-sanitized.png": "f13337ce38c8cc4269d9b9db8dab018cece4fa6436fe4468635f7fba585140dc",
+    "scene-3-15-normal.json": "6c8af25653ce0ad957f0644ac29e152bf0238b78b2a20d5ba5074ae0ab1fb745",
+    "scene-2-9-sanitized.png": "be0a7a3ebe7caa02604c0727a4cb17a2d54d4c9270f31d1e8c7808297caa22f5",
+    "scene-2-10-normal.json": "1f6562005645b1c49c5996144590136ae208006288d702f870b30d6feac9ea55",
+    "scene-2-10-normal.png": "45257c69716832b36dad05d73535fd2fa080fd5bd52ab07b2bb2dd46a92a8900",
+    "scene-3-14-normal.png": "0c9f0fa77fe4cc8c2986f6a49bfb1380b986cc89b6cc26d02d3cb5bf48c947b1",
+    "scene-1-4-normal.565": "060ef4d856ec4730ccf3235a81a8442be4e6bd730917f6ec08676a368bb82e0f",
+    "scene-2-8-normal.565": "7ae5a89ce3288922d4c1695237729621e273f61bf16237627bc9cf874720892a",
+    "scene-3-12-sanitized.json": "73ac011be5f8e232223768de3f9ad020c0389b5f87aaa15d51da8d340bf90a95",
+    "scene-2-9-normal.565": "3435e385b086177c911a210fc5711149a5e72fc0f11d3ff412c32dbd2321dab9",
+    "scene-3-14-sanitized.json": "8c8fa415dbecb5fb335fb32ec8813c500cb278247863fd5d9cc0a95bacb21749",
+    "scene-1-4-normal.png": "4169a33ff3b15f35c6e6715246fd177177ddc51d0183d12be1f671d002a3c0b4",
+    "scene-1-5-sanitized.json": "676fe4a8f27ef1000242362578eee477526b6fbed3ba05b87247ab830ebe3b1b",
+    "scene-0-3-normal.json": "f0232980a4b762fa64defe9f89c8c13d480c01f9994c68f686de28aef210ea00",
+    "scene-3-13-sanitized.565": "2501c4debdd9a65d368fb138448d47c6a39a4e224e323ee54d21c3dde56c8729",
+    "scene-1-5-normal.png": "b3a7e9b5f0cfef61d08b232fe2192549f516e991814b09f31ecb2ea9ef1d7bc7",
+    "scene-2-8-sanitized.json": "7f0f505c1a9aba757526a755f875b4a69fefa258c766cedb4a45444cf6a44d19",
+    "scene-2-8-normal.json": "7f0f505c1a9aba757526a755f875b4a69fefa258c766cedb4a45444cf6a44d19",
+    "scene-0-2-normal.json": "df5d53a7bb5630d0212fa35a7e6151711b648b1189cc8cfb10fe4b77364fae18",
+    "scene-3-14-sanitized.565": "7df4bc4ca94963d0a2d51ebabbe39dd3c8fa56394ce866f12ed4b5ae2afe54be",
+    "camera.asm": "68889297b2988387fdffd5e8d1577b7d9600dbc690c53cbab2d46d59355949df",
+    "scene-0-2-sanitized.565": "dd4f3c3827ba18eab7fcc3ca45f68dd0076131d92db07b97fac6af3ab66f58dd",
+    "scene-1-6-sanitized.json": "0e12ae0306d0b4455badc1c879fecd7aaf51c3a5d8b5b019d9f9d77838db2336",
+    "scene-0-0-sanitized.png": "6af4c053b9974cbcc57ac6a1af4ea8ba51a70cb8f02e5dc02534bd4bee6d2b36",
+    "scene-2-9-normal.json": "58d84a2f394eb73633160a2b2eb21be6e51f3de48e7f2f1008803e0207ee6422",
+    "scene-3-15-sanitized.565": "e32f32a4787b1894316a49ab79cbac6dc5f786b21cc23ffb39990322d743b9c8",
+    "scene-1-6-sanitized.png": "a490a581b48d20a0354050b87efea3a889d784497e770aa277224cb208c66b56",
+    "scene-1-4-sanitized.565": "060ef4d856ec4730ccf3235a81a8442be4e6bd730917f6ec08676a368bb82e0f",
+    "scene-1-7-sanitized.json": "9b40121d67b9fe87f2d53c17b36692c2ee6a028b60eba19e655fa676eb5cf793",
+    "scene-1-7-normal.json": "9b40121d67b9fe87f2d53c17b36692c2ee6a028b60eba19e655fa676eb5cf793",
+    "scene-3-12-normal.png": "e6f8556de1077b4f4c1c98ea026f21d2847c0dcd9bd16e7620992cfae88fd1c3",
+    "scene-0-3-sanitized.json": "f0232980a4b762fa64defe9f89c8c13d480c01f9994c68f686de28aef210ea00",
+    "scene-0-0-sanitized.json": "9609148aea21f899f9cb4bad2982792fa0bcdb838990975963acb977b5da2d83",
+    "original-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "scene-1-5-sanitized.565": "6180d210b2bd8267f4e1dc2e1122a66f673867fc6ed7a715bf961e271af6aec7",
+    "scene-2-11-sanitized.565": "8b38eca5347cb6c24dd3349a47e098172ebc852110a8bcff7b73f18765852f57",
+    "scene-2-10-sanitized.png": "45257c69716832b36dad05d73535fd2fa080fd5bd52ab07b2bb2dd46a92a8900",
+    "scene-2-10-sanitized.json": "1f6562005645b1c49c5996144590136ae208006288d702f870b30d6feac9ea55",
+    "scene-1-4-normal.json": "7e9d17bb6ca4d5bd84a0efdc8dcd6cf01c4e50484633a16677cc375b0bdc3197",
+    "scene-2-11-sanitized.png": "d4d6407e53de645728b7b056e2bccac1600422dc1a719a3dcaf6e06f208b2f79",
+    "scene-0-1-sanitized.565": "07a34f41a4d6875e98e705475b549f995d83d890f3df752e60de085044d1afdc",
+    "scene-3-12-normal.565": "c2a108fb9dabb0ccd50d105685f67c173ed6f70d98138dca57e1190ea1ff8780",
+    "scene-3-14-normal.json": "8c8fa415dbecb5fb335fb32ec8813c500cb278247863fd5d9cc0a95bacb21749",
+    "scene-0-3-normal.png": "2693379b661c7af5192889f47bb85b2bc0f671c91d02cad33d465df3185b5a00",
+    "scene-1-5-sanitized.png": "b3a7e9b5f0cfef61d08b232fe2192549f516e991814b09f31ecb2ea9ef1d7bc7",
+    "scene-0-2-normal.png": "9fd7aa40ce700233f964ac0bfb8a275461a32887a9c2bbde91ee03e104bb9bfc",
+    "scene-0-3-normal.565": "64addb138d9b063c9cfed8e662ac41ba39a75f4bdb3d21e6f790ba9a4b9c6f3a",
+    "scene-2-11-normal.json": "18854a035d7b228a9b75b45360a631d281d80dcd095311d52aace1535ca155ee",
+    "scene-2-8-normal.png": "3175f423a13d1cd5c93d1a76323c72b172c638cc75d2f4efdbe0a36c818f5181",
+    "scene-2-8-sanitized.png": "3175f423a13d1cd5c93d1a76323c72b172c638cc75d2f4efdbe0a36c818f5181",
+    "scene-1-5-normal.565": "6180d210b2bd8267f4e1dc2e1122a66f673867fc6ed7a715bf961e271af6aec7",
+    "scene-2-11-normal.565": "8b38eca5347cb6c24dd3349a47e098172ebc852110a8bcff7b73f18765852f57",
+    "scene-1-7-normal.png": "6cda3a80e4c1f86f6a411f18975edc862595784899e5b276c5b01b0a8834881b",
+    "scene-0-0-normal.json": "9609148aea21f899f9cb4bad2982792fa0bcdb838990975963acb977b5da2d83",
+    "scene-1-5-normal.json": "676fe4a8f27ef1000242362578eee477526b6fbed3ba05b87247ab830ebe3b1b",
+    "scene-1-6-sanitized.565": "edd8a76fd0dff49fcca5fc3d1e701d44bbb33f3e1d11529e7ba8bfae62220215",
+    "scene-0-1-normal.565": "07a34f41a4d6875e98e705475b549f995d83d890f3df752e60de085044d1afdc",
+    "scene-2-9-normal.png": "be0a7a3ebe7caa02604c0727a4cb17a2d54d4c9270f31d1e8c7808297caa22f5",
+    "scene-2-11-sanitized.json": "18854a035d7b228a9b75b45360a631d281d80dcd095311d52aace1535ca155ee",
+    "scene-0-2-normal.565": "dd4f3c3827ba18eab7fcc3ca45f68dd0076131d92db07b97fac6af3ab66f58dd",
+    "scene-2-11-normal.png": "d4d6407e53de645728b7b056e2bccac1600422dc1a719a3dcaf6e06f208b2f79",
+    "scene-0-0-normal.565": "4baf0fc8bef2ddafc83b57a8a5f698e025b92ae78447df62e1f702713af57496",
+    "scene-3-15-normal.565": "e32f32a4787b1894316a49ab79cbac6dc5f786b21cc23ffb39990322d743b9c8",
+    "scene-0-1-normal.png": "f13337ce38c8cc4269d9b9db8dab018cece4fa6436fe4468635f7fba585140dc",
+    "scene-2-10-normal.565": "4f0345907786fa5c744c48db37ba928326b0a1b2e93e300ffefa205d2edd3c04",
+    "scene-1-4-sanitized.png": "4169a33ff3b15f35c6e6715246fd177177ddc51d0183d12be1f671d002a3c0b4",
+    "scene-0-3-sanitized.565": "64addb138d9b063c9cfed8e662ac41ba39a75f4bdb3d21e6f790ba9a4b9c6f3a",
+    "scene-2-9-sanitized.json": "58d84a2f394eb73633160a2b2eb21be6e51f3de48e7f2f1008803e0207ee6422",
+    "scene-0-0-normal.png": "6af4c053b9974cbcc57ac6a1af4ea8ba51a70cb8f02e5dc02534bd4bee6d2b36",
+    "scene-1-4-sanitized.json": "7e9d17bb6ca4d5bd84a0efdc8dcd6cf01c4e50484633a16677cc375b0bdc3197",
+    "scene-2-10-sanitized.565": "4f0345907786fa5c744c48db37ba928326b0a1b2e93e300ffefa205d2edd3c04",
+    "scene-1-7-normal.565": "055243bdca6ba45bc6efa8e0c80f41fa5c745667fd7f97ac013f99df02e477ec",
+    "scene-1-6-normal.png": "a490a581b48d20a0354050b87efea3a889d784497e770aa277224cb208c66b56",
+    "sanitized-test": "b8fd01cb4065de4dfc01c24b764cf89bf7c352cf0347f69a91b7e46037e9ae57",
+    "scene-2-8-sanitized.565": "7ae5a89ce3288922d4c1695237729621e273f61bf16237627bc9cf874720892a",
+    "scene-1-6-normal.json": "0e12ae0306d0b4455badc1c879fecd7aaf51c3a5d8b5b019d9f9d77838db2336",
+    "reference": "2c8eb0b36be928e728824097db207d575532b7d60ee33dc820b464cbce87d23d",
+    "scene-3-13-normal.565": "2501c4debdd9a65d368fb138448d47c6a39a4e224e323ee54d21c3dde56c8729",
+    "scene-3-12-normal.json": "73ac011be5f8e232223768de3f9ad020c0389b5f87aaa15d51da8d340bf90a95",
+    "scene-3-15-normal.png": "dbcf51193da04b2f80e0757205486afa3bb90cafb493274bcace217110cea2c3",
+    "scene-3-15-sanitized.json": "6c8af25653ce0ad957f0644ac29e152bf0238b78b2a20d5ba5074ae0ab1fb745",
+    "scene-0-1-normal.json": "a8c245d053130b1bd16f3cccec816b9d3b38f9b98b9605faa9d8d078f3d0e3dc",
+    "scene-1-7-sanitized.565": "055243bdca6ba45bc6efa8e0c80f41fa5c745667fd7f97ac013f99df02e477ec",
+    "scene-0-1-sanitized.json": "a8c245d053130b1bd16f3cccec816b9d3b38f9b98b9605faa9d8d078f3d0e3dc",
+    "scene-1-6-normal.565": "edd8a76fd0dff49fcca5fc3d1e701d44bbb33f3e1d11529e7ba8bfae62220215",
+    "scene-3-14-normal.565": "7df4bc4ca94963d0a2d51ebabbe39dd3c8fa56394ce866f12ed4b5ae2afe54be",
+    "scene-0-3-sanitized.png": "2693379b661c7af5192889f47bb85b2bc0f671c91d02cad33d465df3185b5a00",
+    "scene-3-13-normal.json": "881bf7a54a5ee91666f46e487f92013ed20803bfceda650d7e1107afb06b7d93",
+    "scene-3-12-sanitized.png": "e6f8556de1077b4f4c1c98ea026f21d2847c0dcd9bd16e7620992cfae88fd1c3",
+    "scene-3-13-sanitized.json": "881bf7a54a5ee91666f46e487f92013ed20803bfceda650d7e1107afb06b7d93",
+    "scene-0-0-sanitized.565": "4baf0fc8bef2ddafc83b57a8a5f698e025b92ae78447df62e1f702713af57496",
+    "scene-1-7-sanitized.png": "6cda3a80e4c1f86f6a411f18975edc862595784899e5b276c5b01b0a8834881b",
+    "scene-3-12-sanitized.565": "c2a108fb9dabb0ccd50d105685f67c173ed6f70d98138dca57e1190ea1ff8780",
+    "scene-0-2-sanitized.json": "df5d53a7bb5630d0212fa35a7e6151711b648b1189cc8cfb10fe4b77364fae18",
+    "scene-3-13-sanitized.png": "7ab3578663f053c5ed51298123eaeac71a8c0be6dacd654d8784061a24a18b73",
+    "scene-0-2-sanitized.png": "9fd7aa40ce700233f964ac0bfb8a275461a32887a9c2bbde91ee03e104bb9bfc",
+    "scene-3-14-sanitized.png": "0c9f0fa77fe4cc8c2986f6a49bfb1380b986cc89b6cc26d02d3cb5bf48c947b1",
+    "scene-2-9-sanitized.565": "3435e385b086177c911a210fc5711149a5e72fc0f11d3ff412c32dbd2321dab9"
+  },
+  "artifact_directory": "working/tests/terrain-camera/run-vv7ozciv",
+  "source_baseline": {
+    "head": "609c4c24eb1168929dd6034b864e14566c998869",
+    "overlays": {
+      "apps/terrain-preview/main.cpp": "9d28addd9ee5b8a377da9d4a912f54c9c6d9a599377782805762691ff127a338",
+      "reconstruction/rendering/CMakeLists.txt": "ce8f9ee40c53b72d30d3b0d38ca693e5656b603276920449684403d85e0e0a2d",
+      "reconstruction/rendering/terrain_camera.cpp": "42f9a9c59d4c1e574fc4e0ed21f615d9b522242e39b52325643e99c7bc37f817",
+      "reconstruction/rendering/terrain_camera.hpp": "f6bacef97809b3d25c66f2e5f6990ba194970f10aa4fd569804a740629b56730",
+      "tests/terrain-camera-reference.cpp": "18d48767623529e7bb55a2943bb14f3162fc190c4d562b07c130e86728626987",
+      "tests/terrain-camera-test.cpp": "a30f6b40c95e77a9912c7213616727513d1619dd26044009a39edf955587e2ce"
+    }
+  },
+  "tool_sha256": "eb03f8297c76b0cd7b67435773fc54b17035511d47db486bc67c52d12531847e",
+  "original_before": "Verified 2927 original files against research/original-files.tsv",
+  "original_after": "Verified 2927 original files against research/original-files.tsv"
+}
