@@ -1,4 +1,5 @@
 #include "window_host.hpp"
+#include "main_menu_widget.hpp"
 #include "media_cli.hpp"
 #include "media_broker.hpp"
 #include "gl_viewport.hpp"
@@ -19,6 +20,7 @@
 #include <QFileInfo>
 #include <QLabel>
 #include <QMainWindow>
+#include <QMetaEnum>
 #include <QPlainTextEdit>
 #include <QProcess>
 #include <QProcessEnvironment>
@@ -182,6 +184,9 @@ int main(int argc,char** argv){
     for(int i=1;i<argc;++i)if(QString::fromLocal8Bit(argv[i])=="--help" || QString::fromLocal8Bit(argv[i])=="-h"){
         std::printf("Usage: mnm-qt-shell [--repo DIRECTORY] [--renderer opengl|native]\n"
                     "  --native-media        Opt in to Qt movies and supported file sounds\n"
+                    "  --main-menu           Preview the native main menu without launching a game\n"
+                    "  --menu-assets DIR     Installed assets for the main menu preview\n"
+                    "  --menu-command-line   Show the conditional CommandLine Battle preview button\n"
                     "  --media FILE          Preview AVI/WAV media without the game\n"
                     "  --media-test          Decode a preview silently and write --media-report FILE\n"
                     "  --software-rendering  Use Mesa software rendering for Qt and Wine\n"
@@ -208,6 +213,9 @@ int main(int argc,char** argv){
     QApplication app(argc,argv);QCoreApplication::setApplicationName("mnm-qt-shell");
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
     addMediaOptions(parser);
+    parser.addOption({"main-menu","Preview the native main menu without launching the game."});
+    parser.addOption({"menu-assets","Installation root for main-menu assets.","directory"});
+    parser.addOption({"menu-command-line","Show CommandLine Battle in the menu preview."});
     parser.addOption({"software-rendering","Use Mesa software rendering for this shell and its Wine child."});
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
     parser.addOption({"capture-locks","Capture bounded game-owned locks; disables observer readback."});
@@ -226,6 +234,28 @@ int main(int argc,char** argv){
     parser.addOption({"fixture-window","Internal external-window fixture."});parser.process(app);
     if(parser.isSet("media") || parser.isSet("media-server-test"))return runMedia(app,parser);
     if(parser.isSet("media-test") || parser.isSet("media-probe"))parser.showHelp(2);
+    if((parser.isSet("menu-assets") || parser.isSet("menu-command-line")) && !parser.isSet("main-menu"))parser.showHelp(2);
+    if(parser.isSet("main-menu")){
+        QMainWindow preview;
+        auto* menu=new MainMenuWidget(&preview);
+        const auto root=parser.isSet("menu-assets")?parser.value("menu-assets"):QDir(parser.value("repo")).filePath("working/game-nocd");
+        QString error;
+        if(!menu->loadAssets(root,&error)){
+            std::fprintf(stderr,"Main menu assets failed: %s\n",qPrintable(error));return 9;
+        }
+        menu->setCommandLineBattleVisible(parser.isSet("menu-command-line"));
+        preview.setCentralWidget(menu);preview.resize(800,630);
+        preview.setWindowTitle(menu->windowTitle());
+        preview.statusBar()->showMessage("Menu preview. Game actions are not connected.");
+        QObject::connect(menu,&MainMenuWidget::actionRequested,&preview,[&](MainMenuWidget::Action action){
+            if(action==MainMenuWidget::Action::Quit){preview.close();return;}
+            const auto name=QMetaEnum::fromType<MainMenuWidget::Action>().valueToKey(int(action));
+            preview.statusBar()->showMessage(QString("Selected %1 — engine adapter pending.").arg(QString::fromLatin1(name)));
+        });
+        preview.show();
+        if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);
+        return app.exec();
+    }
     if(parser.isSet("fixture-window")){
         QWidget fixture;fixture.setWindowTitle("MagicMayhem");fixture.resize(800,600);
         auto* layout=new QVBoxLayout(&fixture);layout->addWidget(new QLabel("External viewport fixture",&fixture));fixture.show();

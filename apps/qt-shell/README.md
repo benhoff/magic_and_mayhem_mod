@@ -1,5 +1,29 @@
 # Magic & Mayhem Qt shell
 
+## Native main menu preview
+
+```bash
+./tools/run-qt-shell.sh --main-menu
+```
+
+`MainMenuWidget` loads the installed 800x600 JPEG background, menu rectangles
+and labels through the read-only AssetStore. It preserves the 4:3 canvas with
+letterboxing and uses native focusable buttons (Tab/Shift-Tab and Space).
+Typography uses a system serif font; original SFT fonts are not reproduced.
+Missing/invalid assets print a diagnostic and exit with status 9.
+
+Use `--menu-assets DIRECTORY` for another installation. CommandLine Battle is
+hidden by default; `--menu-command-line` shows it for inspection. Version text
+is supplied by a future controller and is blank in the preview.
+
+The preview never launches the game. Buttons emit `actionRequested(Action)`;
+the preview reports selections in its status bar, and Quit closes the preview.
+Engine actions and live menu transitions still require the
+[menu adapter work](../../research/runtime/main-menu-qt-migration.md).
+The ordinary shell startup screen remains available with no preview option.
+Run `ctest --test-dir working/build/qt-shell -R qt-main-menu --output-on-failure`
+for synthetic asset loading, layout, presentation and action checks.
+
 Native Qt application code, separate from reconstructed engine algorithms.
 The default viewport presents captured engine frames through an OpenGL 3.3
 texture shader. A native Wine-window embedding backend remains available.
