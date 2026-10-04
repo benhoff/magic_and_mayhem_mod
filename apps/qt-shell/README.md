@@ -269,3 +269,13 @@ Preferences provides five radio groups and two sliders with local apply/cancel:
 It also opens from Main and either Mini Menu. OK accepts the local snapshot;
 Cancel rolls back edits. Engine settings and file persistence remain pending.
 See [Preferences scope and validation](../../research/runtime/preferences-qt.md).
+
+Join and Create Multiplayer use installed layouts and sample names:
+
+```bash
+./tools/run-qt-shell.sh --join-multiplayer
+./tools/run-qt-shell.sh --create-multiplayer
+```
+
+Both also open from Quick Battle. OK emits a typed request; Cancel returns to
+Quick Battle. Networking stays pending. See [multiplayer setup scope and validation](../../research/runtime/multiplayer-setup-qt.md).

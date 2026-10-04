@@ -30,6 +30,12 @@ MenuPreview::MenuPreview(QWidget* parent) : QMainWindow(parent) {
     });
     connect(quick_, &QuickBattleMenuWidget::actionRequested, this, [this](QuickBattleMenuWidget::Action action) {
         if (action == QuickBattleMenuWidget::Action::Cancel) { showMainMenu(); return; }
+        if (action==QuickBattleMenuWidget::Action::JoinMultiplayer || action==QuickBattleMenuWidget::Action::CreateMultiplayer) {
+            QString error;
+            const auto mode=action==QuickBattleMenuWidget::Action::JoinMultiplayer?MultiplayerSetupWidget::Mode::Join:MultiplayerSetupWidget::Mode::Create;
+            if (!openMultiplayer(assetRoot_,mode,&error)) statusBar()->showMessage(QString("Multiplayer preview failed: %1").arg(error));
+            return;
+        }
         const auto name = QMetaEnum::fromType<QuickBattleMenuWidget::Action>().valueToKey(int(action));
         statusBar()->showMessage(QString("Selected %1 — engine adapter pending.").arg(QString::fromLatin1(name)));
     });
@@ -200,4 +206,25 @@ void MenuPreview::returnFromPreferences() {
     screens_->setCurrentWidget(mini_); setWindowTitle(mini_->windowTitle());
     mini_->findChild<QPushButton*>(mini_->mode()==MiniMenuWidget::Mode::Campaign?"miniMenuButton3":"miniMenuButton6")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Mini Menu preview. Cancel or Escape returns to the main menu.");
+}
+
+bool MenuPreview::openMultiplayer(const QString& root, MultiplayerSetupWidget::Mode mode, QString* error) {
+    auto*& screen=mode==MultiplayerSetupWidget::Mode::Join?joinMultiplayer_:createMultiplayer_;
+    if (!screen) {
+        screen=new MultiplayerSetupWidget(mode,screens_); screens_->addWidget(screen);
+        MultiplayerSetupWidget::Form sample; sample.userName="Sample player";
+        if (mode==MultiplayerSetupWidget::Mode::Create) sample.gameName="Sample game";
+        screen->setForm(sample);
+        connect(screen,&MultiplayerSetupWidget::cancelled,this,[this,mode] {
+            showQuickBattle();
+            quick_->findChild<QPushButton*>(mode==MultiplayerSetupWidget::Mode::Join?"quickBattleAction1":"quickBattleAction0")->setFocus(Qt::OtherFocusReason);
+        });
+        connect(screen,&MultiplayerSetupWidget::requestSubmitted,this,[this](const MultiplayerSetupWidget::Request& request) {
+            const QString action=request.mode==MultiplayerSetupWidget::Mode::Join?"Join":"Create";
+            statusBar()->showMessage(QString("%1 request for %2 — engine networking adapter pending.").arg(action,request.userName));
+        });
+    }
+    if (!screen->loadAssets(root,error)) return false;
+    screens_->setCurrentWidget(screen); screen->focusFirstField(); setWindowTitle(screen->windowTitle());
+    statusBar()->showMessage("Sample multiplayer form. OK emits intent; Cancel returns to Quick Battle."); return true;
 }

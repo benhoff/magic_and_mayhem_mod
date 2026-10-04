@@ -7,6 +7,7 @@
 #include "load_game_widget.hpp"
 #include "save_game_widget.hpp"
 #include "preferences_widget.hpp"
+#include "multiplayer_setup_widget.hpp"
 class MainMenuWidget;
 class QuickBattleMenuWidget;
 class QStackedWidget;
@@ -23,6 +24,7 @@ public:
     bool openLoadGame(const QString& root, QString* error = nullptr);
     bool openSaveGame(const QString& root, QString* error = nullptr);
     bool openPreferences(const QString& root, QString* error = nullptr);
+    bool openMultiplayer(const QString& root, MultiplayerSetupWidget::Mode mode, QString* error = nullptr);
 private:
     void returnFromPreferences();
     void returnFromSaveGame();
@@ -40,5 +42,7 @@ private:
     bool saveReturnsToMini_ = false;
     PreferencesWidget* preferences_ = nullptr;
     bool preferencesReturnToMini_ = false;
+    MultiplayerSetupWidget* joinMultiplayer_ = nullptr;
+    MultiplayerSetupWidget* createMultiplayer_ = nullptr;
     QString assetRoot_;
 };
