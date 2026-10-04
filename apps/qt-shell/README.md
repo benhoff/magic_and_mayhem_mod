@@ -279,3 +279,13 @@ Join and Create Multiplayer use installed layouts and sample names:
 
 Both also open from Quick Battle. OK emits a typed request; Cancel returns to
 Quick Battle. Networking stays pending. See [multiplayer setup scope and validation](../../research/runtime/multiplayer-setup-qt.md).
+
+Preview Multiplayer Game Selection with supplied sample sessions:
+
+```bash
+./tools/run-qt-shell.sh --multiplayer-game-selection
+```
+
+Join OK also opens this screen; Cancel returns to Join with its draft retained.
+Session OK emits intent only. Discovery and joining remain pending. See
+[scope and validation](../../research/runtime/multiplayer-game-selection-qt.md).

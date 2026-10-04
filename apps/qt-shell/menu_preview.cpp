@@ -220,6 +220,12 @@ bool MenuPreview::openMultiplayer(const QString& root, MultiplayerSetupWidget::M
             quick_->findChild<QPushButton*>(mode==MultiplayerSetupWidget::Mode::Join?"quickBattleAction1":"quickBattleAction0")->setFocus(Qt::OtherFocusReason);
         });
         connect(screen,&MultiplayerSetupWidget::requestSubmitted,this,[this](const MultiplayerSetupWidget::Request& request) {
+            if (request.mode==MultiplayerSetupWidget::Mode::Join) {
+                QString error;
+                if (openMultiplayerGameSelection(assetRoot_,&error)) browsingRequest_=request;
+                else statusBar()->showMessage(QString("Session selection preview failed: %1").arg(error));
+                return;
+            }
             const QString action=request.mode==MultiplayerSetupWidget::Mode::Join?"Join":"Create";
             statusBar()->showMessage(QString("%1 request for %2 — engine networking adapter pending.").arg(action,request.userName));
         });
@@ -227,4 +233,31 @@ bool MenuPreview::openMultiplayer(const QString& root, MultiplayerSetupWidget::M
     if (!screen->loadAssets(root,error)) return false;
     screens_->setCurrentWidget(screen); screen->focusFirstField(); setWindowTitle(screen->windowTitle());
     statusBar()->showMessage("Sample multiplayer form. OK emits intent; Cancel returns to Quick Battle."); return true;
+}
+
+bool MenuPreview::openMultiplayerGameSelection(const QString& root, QString* error) {
+    // A standalone invocation also has a Join form to return to on Cancel.
+    if (!joinMultiplayer_ && !openMultiplayer(root,MultiplayerSetupWidget::Mode::Join,error)) return false;
+    if (!multiplayerSelection_) {
+        multiplayerSelection_=new MultiplayerGameSelectionWidget(screens_);
+        screens_->addWidget(multiplayerSelection_);
+        multiplayerSelection_->setSessions({{"sample-forest","Sample forest battle"},{"sample-island","Sample island battle"}});
+        connect(multiplayerSelection_,&MultiplayerGameSelectionWidget::cancelled,this,[this] {
+            screens_->setCurrentWidget(joinMultiplayer_); setWindowTitle(joinMultiplayer_->windowTitle());
+            joinMultiplayer_->findChild<QPushButton*>("multiplayerOk")->setFocus(Qt::OtherFocusReason);
+            statusBar()->showMessage("Join preview. Local input retained; networking adapter pending.");
+        });
+        connect(multiplayerSelection_,&MultiplayerGameSelectionWidget::sessionSelected,this,[this](const QString& id) {
+            statusBar()->showMessage(QString("Join session %1 as %2 — engine networking adapter pending.").arg(id,browsingRequest_.userName));
+        });
+    }
+    if (!multiplayerSelection_->loadAssets(root,error)) return false;
+    browsingRequest_.mode=MultiplayerSetupWidget::Mode::Join;
+    browsingRequest_.userName=joinMultiplayer_->form().userName.trimmed();
+    browsingRequest_.transport=joinMultiplayer_->form().transport;
+    browsingRequest_.gameName.clear();
+    screens_->setCurrentWidget(multiplayerSelection_); setWindowTitle(multiplayerSelection_->windowTitle());
+    multiplayerSelection_->focusSelection();
+    statusBar()->showMessage("Sample sessions; no discovery. Select a game and OK; Cancel returns to Join.");
+    return true;
 }

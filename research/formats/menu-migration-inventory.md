@@ -105,3 +105,7 @@ Engine enum mapping, settings snapshots and persistence remain unconnected.
 Join and Create Multiplayer now have [native setup previews](../runtime/multiplayer-setup-qt.md)
 with username/game-name inputs, exclusive transport choices and typed request
 intent. Join has a username field; session enumeration and networking remain open.
+
+Multiplayer Game Selection now has a [native session-list preview](../runtime/multiplayer-game-selection-qt.md)
+with stable caller-supplied IDs, guarded OK/Cancel and Join navigation.
+Live session discovery and joining remain unconnected.
