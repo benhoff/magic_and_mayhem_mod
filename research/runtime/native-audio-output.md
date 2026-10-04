@@ -83,3 +83,7 @@ fallback, and test audible output, device disconnection, long sessions,
 underruns and latency. No automatic device-change recovery, cross-thread voice
 command queue, float/multichannel output or original timing equivalence is
 claimed. Existing native mixer interpolation/allocation limits still apply.
+
+A later [optional x86 voice bridge](native-audio-voice-bridge.md) now connects
+selected game-facing contracts to this adapter. Its fixtures and staging are
+separate evidence; live game output remains unvalidated.
