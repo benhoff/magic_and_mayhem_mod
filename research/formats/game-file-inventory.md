@@ -18,7 +18,7 @@ The executable identifying this installation has SHA-256
 | JPG | 752 | 56,398,896 | Standard JPEG |
 | EVT | 685 | 156,400 | Proprietary `EVT\0` container |
 | MAP | 683 | 12,060,759 | Proprietary; no stable leading magic observed |
-| MPS | 683 | 389,488 | Proprietary `MPS\0` container |
+| MPS | 683 | 389,488 | Version-1 map placements; [confirmed 40-byte records/native loading](mps-native-loading.md) |
 | NOD | 683 | 12,746,278 | Proprietary `NOD\0` container |
 | WAV | 356 | 11,925,486 | Standard RIFF/WAVE |
 | SPR | 181 | 108,134,899 | Proprietary `SPR\0` container |

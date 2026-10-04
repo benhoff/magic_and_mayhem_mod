@@ -41,3 +41,5 @@ Current findings:
 - [Native BMP loading](bmp-native-loading.md): bounded 24-bit BI_RGB decoding, orientation/padding conversion and offline validation.
 
 - [Native JPEG loading](jpeg-native-loading.md): Qt JPEG backend with owned RGB output, explicit limits and installed corpus comparison.
+
+- [Native MPS map placement loading](mps-native-loading.md): original-reader-confirmed 40-byte records, opaque size metadata and owned offline input.

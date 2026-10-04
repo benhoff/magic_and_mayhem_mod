@@ -390,3 +390,13 @@ and after comparing installed audio sections/values with PE32 Wine and decoding
 both catalogs through reconstructed tables. It never launches the game or opens
 an audio output device. See
 [installed profile comparison](../research/formats/installed-audio-profile-comparison.md).
+
+## MPS map placements
+
+The asset CTests include `mps-loader` and `mps-record-comparison`.
+Compare installed files with
+`python3 tests/test-mps-loader.py working/build/mps/mnm-mps-inspect --installation working/game-clean --report working/tests/mps-loader/installed-comparison.json`.
+The installed run verifies originals before/after and records source hashes.
+`python3 tools/export-mps-support.py --decompile` exports hash-pinned static
+reader/caller evidence through read-only Ghidra processing.
+See [MPS schema and validation scope](../research/formats/mps-native-loading.md).
