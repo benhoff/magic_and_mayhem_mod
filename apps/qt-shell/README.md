@@ -259,3 +259,13 @@ Save Game previews supplied filenames with Save/Delete/Cancel actions:
 The campaign Mini Menu Save button also opens this screen. New names emit Save
 intent; existing-name overwrite and Delete require local confirmation. No files
 are written or deleted. See [Save Game scope and validation](../../research/runtime/save-game-qt.md).
+
+Preferences provides five radio groups and two sliders with local apply/cancel:
+
+```bash
+./tools/run-qt-shell.sh --preferences
+```
+
+It also opens from Main and either Mini Menu. OK accepts the local snapshot;
+Cancel rolls back edits. Engine settings and file persistence remain pending.
+See [Preferences scope and validation](../../research/runtime/preferences-qt.md).

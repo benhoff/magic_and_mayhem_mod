@@ -97,3 +97,7 @@ Load/Cancel actions. Actual save enumeration/loading remain unconnected.
 Save Game now has a [native naming/selection preview](../runtime/save-game-qt.md)
 with supplied save IDs, local overwrite/delete confirmation and caller-specific
 Cancel navigation. Actual persistence and engine overwrite rules remain open.
+
+Preferences now has a [native settings preview](../runtime/preferences-qt.md)
+with independent radio groups, configured slider bounds and local apply/cancel.
+Engine enum mapping, settings snapshots and persistence remain unconnected.
