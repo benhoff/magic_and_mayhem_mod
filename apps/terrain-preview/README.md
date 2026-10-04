@@ -125,3 +125,35 @@ xvfb-run -a env QT_QPA_PLATFORM=xcb LIBGL_ALWAYS_SOFTWARE=1 \
   ASAN_OPTIONS=detect_leaks=0 python3 tools/test-terrain-map.py \
   --source-root SOURCE_SNAPSHOT --preview NORMAL --sanitized SANITIZED
 ```
+
+## Explicit assembled terrain region
+
+```sh
+working/build/terrain-sections-frozen/mnm-terrain-preview \
+  --root working/game-clean --world --initialize-terrain --grid 2,2,20 \
+  --section Realms/Celtic/Forest/CFsec01.map,0,0,0,0,0 \
+  --section Realms/Celtic/Forest/CFsec01.map,20,0,1,0,1 \
+  --section Realms/Celtic/Forest/CFsec01.map,0,20,0,1,2 \
+  --section Realms/Celtic/Forest/CFsec01.map,20,20,1,1,3 \
+  --camera 20,20,20,19 --view 0 --visibility
+```
+
+`--grid columns,rows,side` requires one `--section` per slot, each specifying
+`path,sourceX,sourceY,column,row,rotation`. Sources share a layer count; square
+crops are bounded by each MAP. Rotations 0..3 apply recovered definition and
+flag transformations along with placement. Source assets remain unchanged.
+Object flags/references are explicitly projected out before rotation; geometry
+runs after assembly so section neighbors participate in surface admission.
+JSON records selections and whole-source projection counts under `map.assembly`.
+Grid dimensions are bounded to 128, layers to 32, and aggregate source storage
+to 2,097,152 cells. Grid excludes `--map`, requires initialization/world mode,
+and supports the existing explicit or recovered camera controls.
+
+This is explicit terrain assembly. Random region selection, runtime entities,
+lighting and live replacement remain separate. See
+[copy/rotation evidence](../../research/runtime/terrain-section-assembly.md).
+
+```sh
+xvfb-run -a python3 tools/test-terrain-sections.py \
+  --preview NORMAL --sanitized SANITIZED
+```
