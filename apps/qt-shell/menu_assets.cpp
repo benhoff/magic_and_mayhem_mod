@@ -1,5 +1,7 @@
 #include "menu_assets.hpp"
 #include "asset_file.hpp"
+#include "bmp.hpp"
+#include "jpeg.hpp"
 #include <array>
 #include <stdexcept>
 
@@ -47,6 +49,46 @@ QByteArray read(const mnm::assets::AssetStore& store, const QString& path, int l
     return {reinterpret_cast<const char*>(data.data()), qsizetype(data.size())};
 }
 
+namespace {
+QImage imageFromFile(const mnm::assets::AssetStore& store, const QString& path, const QSize& size) {
+    if (size.width()<=0 || size.height()<=0 || size.width()>1600 || size.height()>1200)
+        throw std::runtime_error("Invalid menu image size limit");
+    auto opened=store.open(path.toStdString());
+    if (auto* error=std::get_if<mnm::assets::Error>(&opened)) throw std::runtime_error(path.toStdString()+": "+error->detail);
+    auto& file=*std::get<std::unique_ptr<mnm::assets::AssetFile>>(opened);
+    auto convert=[&](const auto& decoded) {
+        if (int(decoded.width)!=size.width() || int(decoded.height)!=size.height())
+            throw std::runtime_error("Invalid menu image dimensions: "+path.toStdString());
+        // Copy before the owned decoder result goes out of scope. RGB rows need not be aligned.
+        QImage image(decoded.rgb.data(),int(decoded.width),int(decoded.height),int(decoded.width)*3,QImage::Format_RGB888);
+        auto owned=image.copy();
+        if (owned.isNull()) throw std::runtime_error("Menu image allocation failed");
+        return owned;
+    };
+    const auto extension=path.section('.',-1).toUpper();
+    if (extension=="BMP") {
+        mnm::assets::BmpLimits limits;limits.inputBytes=8*1024*1024;limits.width=size.width();limits.height=size.height();
+        limits.pixels=std::uint64_t(size.width())*size.height();limits.decodedBytes=limits.pixels*3;
+        const auto result=mnm::assets::loadBmp(file,limits);
+        if (auto* error=std::get_if<mnm::assets::BmpError>(&result)) throw std::runtime_error(path.toStdString()+": "+error->detail);
+        return convert(std::get<mnm::assets::BmpImage>(result));
+    }
+    if (extension=="JPG" || extension=="JPEG") {
+        mnm::assets::JpegLimits limits;limits.inputBytes=8*1024*1024;limits.width=size.width();limits.height=size.height();
+        limits.pixels=std::uint64_t(size.width())*size.height();limits.decodedBytes=limits.pixels*3;limits.codecImageBytes=limits.pixels*4;
+        const auto result=mnm::assets::loadJpeg(file,limits);
+        if (auto* error=std::get_if<mnm::assets::JpegError>(&result)) throw std::runtime_error(path.toStdString()+": "+error->detail);
+        return convert(std::get<mnm::assets::JpegImage>(result));
+    }
+    throw std::runtime_error("Unsupported menu image format");
+}
+}
+QImage loadMenuImage(const QString& root, const QString& path, const QSize& size) {
+    auto created=mnm::assets::AssetStore::create(std::filesystem::path(root.toStdString()));
+    if (auto* error=std::get_if<mnm::assets::Error>(&created)) throw std::runtime_error(error->detail);
+    return imageFromFile(std::get<mnm::assets::AssetStore>(created),path,size);
+}
+
 Sections loadMenuLayout(const QString& root, const QString& directory, const QString& config) {
     auto created=mnm::assets::AssetStore::create(std::filesystem::path(root.toStdString()));
     if (auto* failure=std::get_if<mnm::assets::Error>(&created)) throw std::runtime_error(failure->detail);
@@ -71,9 +113,9 @@ MenuAssets loadMenuAssets(const QString& root, const QString& directory, const Q
     }
     if (fileName=="." || fileName==".." || fileName.contains('/') || fileName.contains('\\') || fileName.contains(':'))
         throw std::runtime_error("Invalid menu background filename");
-    const auto image=read(store,directory+"/800x600/"+fileName,8*1024*1024);
-    if (!result.background.loadFromData(image, imageFormat) || result.background.size() != imageSize)
-        throw std::runtime_error("Invalid menu background dimensions or format");
+    if (fileName.section('.',-1).compare(QString::fromLatin1(imageFormat),Qt::CaseInsensitive)!=0)
+        throw std::runtime_error("Menu image filename disagrees with format");
+    result.background=imageFromFile(store,directory+"/800x600/"+fileName,imageSize);
     return result;
 }
 QString textLabel(const Sections& strings, const QString& textId) {

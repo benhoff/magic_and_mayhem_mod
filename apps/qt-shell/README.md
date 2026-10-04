@@ -330,3 +330,8 @@ Preview Character Improvement with sample stats and supplied upgrade costs:
 Region Entry's Character button also opens it. Plus purchases an increment;
 minus undoes a draft purchase. OK accepts locally; Cancel restores the snapshot.
 Engine progression remains pending. See [scope and validation](../../research/runtime/character-screen-qt.md).
+
+Menu backgrounds now use the native BMP/JPEG loader APIs. Character Screen also
+uses its installed stat-bar BMPs and caller-selected WizardFace JPEGs (the sample
+chooses face 0). Original sprite controls and fonts remain pending. See
+[image integration and fidelity boundaries](../../research/runtime/menu-image-integration.md).
