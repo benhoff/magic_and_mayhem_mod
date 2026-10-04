@@ -107,3 +107,38 @@ python3 tools/test-sprite-queue-scene.py --reference working/tests/sprite-queue/
 The first command prints its run directory. See
 [queue contract](../../research/runtime/sprite-queue-order.md) and
 [scene evidence](../../research/runtime/native-sprite-queue-scene.md).
+
+
+The recovered SPR bitmask visibility pass is available as an explicit option:
+
+```bash
+working/build/sprite-scene/mnm-sprite-scene-preview \
+  --root working/game-clean --ani Creatures/redcap.ani --sequences 0,4 \
+  --layer Creatures/bat.ani,0,1 --layer Creatures/eye.ani,0,2 \
+  --overlap --visibility --ticks 16
+```
+
+`--visibility` clears a fresh recovered coverage grid per frame and applies the
+original reverse pass after sorting. Hidden records remain in exported
+`draw_queue` with kind -2 and are skipped by drawing; other preview draws use
+normal kind 0. The first queue entry is intentionally unprocessed. Missing SPR
+auxiliary planes contribute no visibility shape. This does not generate masks
+from pixel transparency or recover original activation/terrain submission.
+
+`--visibility-expanded` requires `--visibility` and selects original 800/632
+projection/bounds instead of 640/512; it does not resize the preview canvas.
+There are no terrain-owner links in these creature/example-layer previews.
+The model's resolved owner flags are validated independently.
+
+Reproduce installed complete-frame checks against original visibility results:
+
+```bash
+python3 tools/test-sprite-visibility.py
+python3 tools/test-sprite-visibility-scene.py \
+  --queue-reference working/tests/sprite-queue/<queue-run>/report.json \
+  --visibility-reference working/tests/sprite-visibility/<visibility-run>/report.json
+```
+
+Use the run directories printed by the respective original comparison tools.
+See [visibility contract](../../research/runtime/sprite-visibility.md) and
+[native evidence](../../research/runtime/native-sprite-visibility-scene.md).

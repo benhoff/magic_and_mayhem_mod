@@ -128,11 +128,21 @@ std::vector<SceneDraw> SpriteScene::drawQueue() const{
     }
     reconstruction::sortSpriteQueue(queue);std::vector<SceneDraw> ordered;
     for(const auto& entry:queue)ordered.push_back(draws.at(entry.payload));
+    if(visibility_){
+        std::vector<reconstruction::SpriteVisibilityEntry> entries;
+        for(const auto& draw:ordered){const auto& source=draw.asset?layerAssets_.at(draw.asset-1).sprite:sprite_;
+            const auto& frame=source.frames.at(draw.frame);
+            entries.push_back({reconstruction::decodeSpriteVisibility(frame.auxiliaryData[0],frame.auxiliaryData[1],frame.originX,frame.originY),
+                draw.anchor.x,draw.anchor.y,draw.kind,0,{}});}
+        reconstruction::SpriteVisibilityGrid grid(expandedVisibility_);std::vector<reconstruction::VisibilityOwner> owners;
+        reconstruction::applySpriteVisibility(entries,grid,owners);
+        for(std::size_t i=0;i<ordered.size();++i)ordered[i].kind=entries[i].kind;
+    }
     return ordered;
 }
 QImage SpriteScene::present(){
     renderer_.copy(background_,canvas_,{0,0,512,256},0,0);
-    for(const auto& draw:drawQueue())upload(draw.frame,draw.asset).draw(canvas_,draw.anchor.x,draw.anchor.y);
+    for(const auto& draw:drawQueue())if(draw.kind!=-2)upload(draw.frame,draw.asset).draw(canvas_,draw.anchor.x,draw.anchor.y);
     return renderer_.present(canvas_);
 }
 render::Image SpriteScene::read(){return renderer_.read(canvas_);}
