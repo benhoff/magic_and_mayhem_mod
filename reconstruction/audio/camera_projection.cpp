@@ -50,4 +50,11 @@ PositionalControls cameraPositionalControls(const CameraState& c,bool large,Posi
     source.mapWidth=c.mapWidth;source.mapHeight=c.mapHeight;source.orientation=c.orientation;
     return positionalControls(source);
 }
+PositionalControls cameraPositionalControls(const CameraState& c,bool large,PositionalInput source,
+                                          const PositionalByteSource& bytes,std::uint32_t z){
+    const auto listener=audioListener(c,large);source.listenerX=listener.x;source.listenerY=listener.y;
+    source.mapWidth=c.mapWidth;source.mapHeight=c.mapHeight;source.orientation=c.orientation;
+    return positionalControls(source,bytes,z);
+}
+
 }

@@ -14,4 +14,6 @@ CameraPoint screenToMap(const CameraState&,CameraPoint screen); // 0x4f7d00
 CameraPoint audioListener(const CameraState&,bool largeScreen); // 0x5716ae call site
 // Provides decoded listener coordinates to the recovered positional arithmetic.
 PositionalControls cameraPositionalControls(const CameraState&,bool largeScreen,PositionalInput source);
+PositionalControls cameraPositionalControls(const CameraState&,bool largeScreen,PositionalInput source,
+                                          const PositionalByteSource&,std::uint32_t sourceZ);
 }
