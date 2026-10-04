@@ -118,6 +118,13 @@ Sprite parse(Reader& r, const SpriteLimits& limits) {
             if (offset && (offset < rowTableEnd || offset > f.encodedSize))
                 r.fail(SpriteErrorCode::malformedData, start + 32, "Auxiliary offset outside trailing frame data");
         }
+        for (unsigned plane=0;plane<2;++plane) {
+            const auto offset=f.auxiliaryOffsets[plane];if(!offset)continue;
+            auto stop=f.encodedSize;
+            for(const auto other:f.auxiliaryOffsets)if(other>offset)stop=std::min(stop,other);
+            budget(r, byteBudget, stop-offset, limits.decodedBytes, start+offset);
+            f.auxiliaryData[plane].assign(bytes.begin()+start+offset,bytes.begin()+start+stop);
+        }
         if (f.empty()) { sprite.frames.push_back(std::move(f)); continue; }
         const auto total = std::uint64_t(f.width) * f.height;
         const auto bytesPerPixel = palettes ? 1U : 2U;

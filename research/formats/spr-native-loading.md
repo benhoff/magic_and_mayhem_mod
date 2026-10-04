@@ -21,7 +21,8 @@ The result contains:
 - `SpriteStorage::rgb565`: owned `uint16_t` colour words and no palette/index;
   source words are explicitly decoded from little-endian bytes.
 - Each frame's owned top-down `opaqueMask`, dimensions, signed origins, exact
-  eight name bytes, encoded extent, and two raw auxiliary offsets.
+  eight name bytes, encoded extent, two raw auxiliary offsets and owned opaque
+  trailing-plane byte arrays.
 - Source version/byte count and the opaque header word at +20 (`headerFlags`);
   the name does not imply its flag meanings have been recovered.
 
@@ -33,7 +34,11 @@ dimensions and metadata with empty typed pixel/mask vectors.
 
 No shading tables, RGB555 conversion, blending, frame placement, animation
 timing, SFT font interpretation or auxiliary-plane effects are performed.
-Offsets preserve metadata only; auxiliary bytes are not retained or decoded.
+Auxiliary bytes are retained without interpreting their effects. Each nonzero
+offset owns bytes through the next strictly greater auxiliary offset, or frame
+end. Aliases own independent buffers. These bytes count toward `decodedBytes`;
+`scannedBytes` continues to bound repeated frame processing. Selected visibility
+interpretation is separate in [SPR visibility planes](spr-visibility-planes.md).
 
 ## Format scope and validation
 
@@ -61,8 +66,7 @@ must equal frame width. Indexed runs consume one byte per opaque pixel; direct
 runs consume two. Control ranges precede the pixel plane, row offsets are
 monotonic within their respective planes, and coloured bytes cannot cross a
 row's pixel extent. Padding between pixel rows/planes is allowed: installed
-files align the last row before auxiliary data. Unknown trailing planes remain
-outside decoded scope.
+files align the last row before auxiliary data. Trailing planes remain opaque owned data in this decoder.
 
 Both dimensions must be positive or both zero; mixed zero/nonzero dimensions
 are rejected as a native safety policy, whose original handling is unverified.
@@ -78,7 +82,7 @@ Default limits:
 | Frame entries | 4,096 |
 | Width / height | 2,048 each |
 | Aggregate decoded pixels | 16,777,216 |
-| Pixel and mask storage | 48 MiB |
+| Pixel, mask and auxiliary storage | 48 MiB |
 | Sum of processed frame extents | 32 MiB |
 
 Limits are explicit caller policies, not recovered engine limits. Frame extent
@@ -86,7 +90,7 @@ charges include aliases to bound repeated compressed work. Size arithmetic is
 checked against containing extents, cumulative budgets and host allocation
 range before output allocation. Palettes, frame metadata, temporary extent
 tables and the bounded input copy are additional memory; the decoded byte
-budget counts pixel/mask arrays. Allocation/length failures return a limit
+budget counts pixel/mask and auxiliary arrays. Allocation/length failures return a limit
 error. Actual memory exhaustion was not induced.
 
 `SpriteError` records category, byte offset, optional frame index and detail.

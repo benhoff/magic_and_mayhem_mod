@@ -90,10 +90,12 @@ int main() try {
     require(frame.name[1] == 0 && frame.name[2] == 255 && frame.name[7] == 'x' && frame.paletteIndex == 1, "Exact name/palette");
     require(sprite.headerFlags == 0x12345678 && frame.auxiliaryOffsets[0] == frame.encodedSize - 8, "Flags/auxiliary metadata");
     require(std::get<Bytes>(frame.pixels) == Bytes({0,0,255,2,0,1,0,0,3,0}), "Indexed runs/rows");
+    require(frame.auxiliaryData[0]==Bytes(4,0xa5) && frame.auxiliaryData[1]==Bytes(4,0xa5), "Owned auxiliary plane extents");
     require(frame.opaqueMask == Bytes({0,1,1,1,0,1,0,0,1,1}), "Opaque zero versus transparency");
     require(sprite.palettes[1][255].red == 255 && sprite.palettes[1][255].green == 11, "Owned palette bytes");
     require(sprite.frames[1].empty() && sprite.frames[1].opaqueMask.empty(), "Empty frame preserved");
     std::fill(bytes.begin(), bytes.end(), 0);
+    require(frame.auxiliaryData[0]==Bytes(4,0xa5) && frame.auxiliaryData[1]==Bytes(4,0xa5), "Source-independent auxiliary ownership");
     require(std::get<Bytes>(frame.pixels)[2] == 255 && sprite.palettes[1][255].red == 255, "Source-independent ownership");
     auto direct = take(decodeSprite(fixture(true)));
     require(direct.storage == SpriteStorage::rgb565 && direct.palettes.empty() && !direct.frames[0].paletteIndex, "Direct colour contract");

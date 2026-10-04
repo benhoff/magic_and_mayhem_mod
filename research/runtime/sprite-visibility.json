@@ -1,0 +1,21 @@
+{
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "source_and_input_sha256": {
+    "reconstruction/rendering/sprite_visibility.cpp": "08912357166dc8ab9a9858da6b9481dbf087d1748bbf3b492b18cf3d46d559eb",
+    "reconstruction/rendering/sprite_visibility.hpp": "ec3f1db9eefe5d565c2af8a144850c359573ed35de2232998469d08f08e659d7",
+    "tests/sprite-visibility-reference.cpp": "82a0bb3957fb0ddf141a9991ae6bc020bc6fac13738643727149b56e16e5a5a0",
+    "tools/test-sprite-visibility.py": "d3781869c114a324a48c23780715d50ad60b1439ff3e704555b995f57d1083c3",
+    "working/game-nocd/Chaos.exe": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+  },
+  "helper_sha256": "37e7f6da458cf9264fd1f97bd5008c48d082553163ddc36ad48732c230d2ac23",
+  "all_match": true,
+  "live_validated": false,
+  "summary": {
+    "helpers": 8192,
+    "passes": 1024,
+    "all_match": true
+  },
+  "scenes": [],
+  "scope": "Selected visibility helper and complete reverse pass; grid bytes, draw kinds and resolved terrain-owner flags; no live world inputs",
+  "artifact_directory": "working/tests/sprite-visibility/run-vg10fd5k"
+}
