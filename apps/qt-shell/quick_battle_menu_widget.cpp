@@ -41,6 +41,7 @@ bool QuickBattleMenuWidget::loadAssets(const QString& root, QString* error) {
         const auto heading = assets.layout.value("TEXT_1");
         const auto headingRect = mnm::ui::rectangle(heading.value("Rect2"));
         const auto headingText = mnm::ui::textLabel(assets.strings, heading.value("Text"));
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_ = std::move(assets.background);
         rectangles_ = rectangles;
         headingRectangle_ = headingRect;
@@ -65,12 +66,11 @@ void QuickBattleMenuWidget::arrange() {
     };
     for (int i = 0; i < 4; ++i) {
         buttons_[i]->setGeometry(map(rectangles_[i]));
-        QFont font("serif"); font.setBold(true);
-        font.setPixelSize(qMax(10, qRound((i == 3 ? 26 : 20)*scale)));
+        auto font=mnm::ui::menuFont(this,i==3?mnm::ui::MenuFontRole::Heading:mnm::ui::MenuFontRole::Body,scale);
         buttons_[i]->setFont(font);
     }
     heading_->setGeometry(map(headingRectangle_));
-    QFont font("serif"); font.setBold(true); font.setPixelSize(qMax(10, qRound(26*scale)));
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale);
     heading_->setFont(font);
 }
 void QuickBattleMenuWidget::resizeEvent(QResizeEvent* event) { QWidget::resizeEvent(event); arrange(); }

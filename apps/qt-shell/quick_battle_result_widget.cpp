@@ -65,6 +65,7 @@ bool QuickBattleResultWidget::loadAssets(const QString& root, QString* error) {
             buttonLabels[i]=mnm::ui::textLabel(assets.strings,entry.value("Text"));
             if (entry.value("Font")!="LARGE") throw std::runtime_error("Invalid Quick Battle result button font");
         }
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_=assets.background; rectangles_=rectangles; alignments_=alignments; fontSizes_=fonts;
         portraitRectangles_=portraits; buttonRectangles_=buttons;
         for (int i=0;i<26;++i) labels_[i]->setAlignment(Qt::Alignment(alignments_[i]));
@@ -105,12 +106,11 @@ void QuickBattleResultWidget::arrange() {
     const auto canvas=contentRect(); const double scale=canvas.width()/800.0;
     auto map=[&](const QRect& r){return QRect(canvas.x()+qRound(r.x()*scale),canvas.y()+qRound(r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));};
     for (int i=0;i<26;++i) {
-        labels_[i]->setGeometry(map(rectangles_[i])); QFont font("serif"); font.setBold(true);
-        font.setPixelSize(qMax(10,qRound(fontSizes_[i]*scale))); labels_[i]->setFont(font);
+        labels_[i]->setGeometry(map(rectangles_[i])); auto font=mnm::ui::menuFont(this,fontSizes_[i]==26?mnm::ui::MenuFontRole::Heading:mnm::ui::MenuFontRole::Body,scale); labels_[i]->setFont(font);
     }
-    QFont font("serif"); font.setBold(true); font.setPixelSize(qMax(10,qRound(26*scale)));
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale);
     for (int i=0;i<3;++i) { buttons_[i]->setGeometry(map(buttonRectangles_[i])); buttons_[i]->setFont(font); }
-    font.setPixelSize(qMax(10,qRound(16*scale)));
+    font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Tooltip,scale);
     for (int i=0;i<4;++i) { portraits_[i]->setGeometry(map(portraitRectangles_[i])); portraits_[i]->setFont(font); }
 }
 void QuickBattleResultWidget::resizeEvent(QResizeEvent* event) { QWidget::resizeEvent(event); arrange(); }

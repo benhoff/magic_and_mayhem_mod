@@ -73,6 +73,7 @@ bool MultiplayerSetupWidget::loadAssets(const QString& root, QString* error) {
         const auto okRect=mnm::ui::rectangle(ok.value("Rect2")),cancelRect=mnm::ui::rectangle(cancel.value("Rect2"));
         const auto okText=mnm::ui::textLabel(assets.strings,ok.value("Text")),cancelText=mnm::ui::textLabel(assets.strings,cancel.value("Text"));
         if (ok.value("Font")!="LARGE" || cancel.value("Font")!="LARGE") throw std::runtime_error("Invalid multiplayer button font");
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_=assets.background; labelRectangles_=labels; editRectangles_=edits; radioRectangles_=radios; okRectangle_=okRect; cancelRectangle_=cancelRect;
         for (int i=0;i<4;++i) labels_[i]->setText(texts[i]);
         for (int i=0;i<3;++i) radios_[i]->setText(choices[i]);
@@ -107,10 +108,10 @@ QRect MultiplayerSetupWidget::contentRect() const { return mnm::ui::menuContentR
 void MultiplayerSetupWidget::arrange() {
     const auto canvas=contentRect(); const double scale=canvas.width()/800.0;
     auto map=[&](const QRect& r){return QRect(canvas.x()+qRound(r.x()*scale),canvas.y()+qRound(r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));};
-    QFont font("serif"); font.setBold(true); font.setPixelSize(qMax(10,qRound(20*scale)));
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Body,scale);
     for (int i=0;i<4;++i) { labels_[i]->setGeometry(map(labelRectangles_[i])); labels_[i]->setFont(font); }
     for (int i=0;i<3;++i) { radios_[i]->setGeometry(map(radioRectangles_[i])); radios_[i]->setFont(font); }
-    font.setPixelSize(qMax(10,qRound(26*scale))); labels_[0]->setFont(font); ok_->setFont(font); cancel_->setFont(font);
+    font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale); labels_[0]->setFont(font); ok_->setFont(font); cancel_->setFont(font);
     for (int i=0;i<2;++i) { edits_[i]->setGeometry(map(editRectangles_[i])); edits_[i]->setFont(font); }
     ok_->setGeometry(map(okRectangle_)); cancel_->setGeometry(map(cancelRectangle_));
 }

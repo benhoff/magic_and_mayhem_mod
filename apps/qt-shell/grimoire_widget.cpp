@@ -88,6 +88,7 @@ GrimoireWidget::Spread GrimoireWidget::prepare(const QString& root,const mnm::ui
 bool GrimoireWidget::loadAssets(const QString& root,QString* error) {
     if(error)error->clear();
     try {
+        const auto fonts=mnm::ui::loadMenuFonts(root);
         auto book=mnm::ui::loadGrimoireBook(root);const auto spread=prepare(root,book,location_);
         const auto backdrop=mnm::ui::loadMenuImage(root,"Interface/Grimoire/800x600/Backdrop.JPG",QSize(800,600));
         const auto icons=mnm::ui::loadMenuSprites(root,"Interface/Grimoire/800x600/icons.spr"),turns=mnm::ui::loadMenuSprites(root,"Interface/Grimoire/Generic/PageTurns.spr");
@@ -99,6 +100,7 @@ bool GrimoireWidget::loadAssets(const QString& root,QString* error) {
         for(int i=0;i<16;++i){const auto prefix=QString("800x600_%1%2").arg(i%8+1).arg(i<8?"L":"R");const auto size=icons[2+(i%8)*4+(i<8?0:2)].image.size();rectangles[i]={coordinate(book.layout,"TABS",prefix+"X",800-size.width()),coordinate(book.layout,"TABS",prefix+"Y",600-size.height()),size.width(),size.height()};}
         // Validate every supplied tooltip before replacing an existing book/location.
         for(int i=0;i<9;++i)(void)mnm::ui::textLabel(book.tooltips,QString::number(i));
+        mnm::ui::installMenuFonts(this,fonts);
         book_=std::move(book);spread_=spread;backdrop_=backdrop;icons_=icons;turns_=turns;root_=root;tabRects_=rectangles;previousRect_=previous;nextRect_=next;closeRect_=close;
         static_cast<mnm::ui::SpriteButton*>(previous_)->setSprites({turns[0],turns[1],turns[1]},previous.size());static_cast<mnm::ui::SpriteButton*>(next_)->setSprites({turns[2],turns[3],turns[3]},next.size());static_cast<mnm::ui::SpriteButton*>(close_)->setSprites({icons[0],icons[1],icons[1]},close.size());close_->setToolTip(mnm::ui::textLabel(book_.tooltips,"0"));
         populate();arrange();update();return true;
@@ -131,7 +133,7 @@ void GrimoireWidget::arrange() {
     for(int i=0;i<16;++i){tabs_[i]->setGeometry(map(tabRects_[i]));}
     previous_->setGeometry(map(previousRect_));next_->setGeometry(map(nextRect_));close_->setGeometry(map(closeRect_));contents_->setGeometry(map(QRect(350,535,100,30)));artwork_->setGeometry(map(QRect(475,535,100,30)));
     title_->setGeometry(map(spread_.leftTitle));entries_->setGeometry(map(spread_.leftText));text_->setGeometry(map(spread_.rightText.isEmpty()?spread_.leftText:spread_.rightText));
-    QFont font("serif");font.setPixelSize(qMax(10,qRound(18*scale)));entries_->setFont(font);text_->setFont(font);contents_->setFont(font);artwork_->setFont(font);font.setBold(true);font.setPixelSize(qMax(10,qRound(24*scale)));while(font.pixelSize()>10&&QFontMetrics(font).horizontalAdvance(title_->text())>title_->width())font.setPixelSize(font.pixelSize()-1);title_->setFont(font);
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Body,scale);entries_->setFont(font);text_->setFont(font);contents_->setFont(mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Tooltip,scale));artwork_->setFont(contents_->font());font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale);while(font.pixelSize()>10&&QFontMetrics(font).horizontalAdvance(title_->text())>title_->width())font.setPixelSize(font.pixelSize()-1);title_->setFont(font);
 }
 void GrimoireWidget::resizeEvent(QResizeEvent* event){QWidget::resizeEvent(event);arrange();}
 bool GrimoireWidget::eventFilter(QObject* watched,QEvent* event) {

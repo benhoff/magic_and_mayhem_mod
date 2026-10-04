@@ -63,6 +63,7 @@ bool SaveGameWidget::loadAssets(const QString& root, QString* error) {
             throw std::runtime_error("Invalid Save Game font or alignment role");
         ++revision_; discardConfirmation();
         deleteRectangle_=deleteRect; delete_->setText(deleteText);
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_=assets.background; headingRectangle_=headingRect; listRectangle_=listRect; editRectangle_=editRect; saveRectangle_=loadRect; cancelRectangle_=cancelRect;
         heading_->setText(headingText); save_->setText(loadText); cancel_->setText(cancelText); arrange(); update(); return true;
     } catch (const std::exception& failure) { if (error) *error=QString::fromUtf8(failure.what()); return false; }
@@ -131,8 +132,8 @@ void SaveGameWidget::arrange() {
     const auto canvas=contentRect(); const double scale=canvas.width()/800.0;
     auto map=[&](const QRect& r){return QRect(canvas.x()+qRound(r.x()*scale),canvas.y()+qRound(r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));};
     heading_->setGeometry(map(headingRectangle_)); saves_->setGeometry(map(listRectangle_)); fileName_->setGeometry(map(editRectangle_)); save_->setGeometry(map(saveRectangle_)); cancel_->setGeometry(map(cancelRectangle_)); delete_->setGeometry(map(deleteRectangle_));
-    QFont font("serif"); font.setBold(true); font.setPixelSize(qMax(10,qRound(26*scale))); heading_->setFont(font); save_->setFont(font); cancel_->setFont(font); delete_->setFont(font);
-    font.setPixelSize(qMax(10,qRound(20*scale))); saves_->setFont(font); fileName_->setFont(font);
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale); heading_->setFont(font); save_->setFont(font); cancel_->setFont(font); delete_->setFont(font);
+    font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Body,scale); saves_->setFont(font); fileName_->setFont(font);
 }
 void SaveGameWidget::resizeEvent(QResizeEvent* event) { QWidget::resizeEvent(event); arrange(); }
 bool SaveGameWidget::eventFilter(QObject* watched, QEvent* event) {

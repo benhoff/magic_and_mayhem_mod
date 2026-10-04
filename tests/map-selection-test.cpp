@@ -48,7 +48,7 @@ int main(int argc,char** argv){
   cancel->setFocus();QApplication::sendEvent(cancel,&enter);require(cancelled==2&&confirmed==2,"Enter on Cancel");
   widget.resize(1200,600);app.processEvents();require(widget.contentRect()==QRect(200,0,800,600)&&list->geometry()==QRect(365,178,470,270),"wide layout");
   const auto capture=widget.grab().toImage();require(capture.pixelColor(10,10)==QColor(Qt::black)&&qAbs(capture.pixelColor(210,10).blue()-150)<4,"background and letterbox");
-  widget.resize(400,600);app.processEvents();require(list->geometry()==QRect(83,239,235,135)&&list->font().pixelSize()==10,"scaled list and font");
+  widget.resize(400,600);app.processEvents();require(list->geometry()==QRect(83,239,235,135)&&list->font().pixelSize()==11,"scaled list and font");
   write(config,QByteArray(layout).replace("165,178,635,448","165,178,900,448"));require(!widget.loadAssets(root,&error)&&!error.isEmpty()&&list->count()==1&&ok->text()=="OK","invalid layout transactional");write(config,layout);
   for(const auto& entry:std::array<std::pair<QString,QString>,2>{{{"MainScreen","screen (MainMenu).cfg"},{"QuickBattleMainMenu","Screen (Quick Battle Main Menu).cfg"}}}){
    const auto folder=root+"/Interface/"+entry.first;require(QDir().mkpath(folder+"/800x600"),"navigation directory");require(image.save(folder+"/800x600/Fixture 800-600.JPG","JPG"),"navigation image");

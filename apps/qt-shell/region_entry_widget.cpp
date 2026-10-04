@@ -93,6 +93,7 @@ bool RegionEntryWidget::load(const QString& root,const Region& region,QString* e
         if (enter.value("Font")!="LARGE" || cancel.value("Font")!="LARGE") throw std::runtime_error("Invalid Region Entry button font");
         const auto enterText=mnm::ui::textLabel(assets.strings,enter.value("Text")),cancelText=mnm::ui::textLabel(assets.strings,cancel.value("Text"));
         for (int i=0;i<3;++i) static_cast<mnm::ui::SpriteButton*>(auxiliary_[i])->setSprites(icons[i],auxiliary[i].size());
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_=assets.background;headingRectangle_=headingRect;radioRectangles_=radios;auxiliaryRectangles_=auxiliary;
         enterRectangle_=enterRect;cancelRectangle_=cancelRect;defaultHeading_=heading.value("Text");
         for (int i=0;i<4;++i) radios_[i]->setText(choices[i]);
@@ -112,10 +113,10 @@ QRect RegionEntryWidget::contentRect() const {return mnm::ui::menuContentRect(si
 void RegionEntryWidget::arrange() {
     const auto canvas=contentRect();const double scale=canvas.width()/800.0;
     auto map=[&](const QRect& r){return QRect(canvas.x()+qRound(r.x()*scale),canvas.y()+qRound(r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));};
-    QFont font("serif");font.setBold(true);font.setPixelSize(qMax(10,qRound(20*scale)));
+    auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Body,scale);
     for (int i=0;i<4;++i) {radios_[i]->setGeometry(map(radioRectangles_[i]));radios_[i]->setFont(font);}
     for (int i=0;i<3;++i) {auxiliary_[i]->setGeometry(map(auxiliaryRectangles_[i]));auxiliary_[i]->setFont(font);}
-    font.setPixelSize(qMax(10,qRound(26*scale)));enter_->setFont(font);cancel_->setFont(font);
+    font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale);enter_->setFont(font);cancel_->setFont(font);
     enter_->setGeometry(map(enterRectangle_));cancel_->setGeometry(map(cancelRectangle_));heading_->setGeometry(map(headingRectangle_));
     while (font.pixelSize()>10 && QFontMetrics(font).horizontalAdvance(heading_->text())>heading_->width()) font.setPixelSize(font.pixelSize()-1);
     heading_->setFont(font);

@@ -155,6 +155,7 @@ bool CharacterScreenWidget::loadAssets(const QString& root,QString* error) {
         for (int i=0;i<3;++i) static_cast<mnm::ui::TalismanBar*>(talismans_[i])->setSprites(sprites[i],sprites[i+3]);
         faces_=faces;
         for (int i=0;i<3;++i) static_cast<TexturedStatBar*>(bars_[i])->texture=textures[i];
+        mnm::ui::installMenuFonts(this,assets.fonts);
         background_=assets.background;labelRectangles_=rectangles;barRectangles_=bars;talismanRectangles_=talismans;buttonRectangles_=buttons;
         minimum_=minimum;maximum_=maximum;increment_=increment;okRectangle_=okRect;cancelRectangle_=cancelRect;ok_->setText(okText);cancel_->setText(cancelText);
         for (int i=0;i<17;++i) {labels_[i]->setText(texts[i]);labels_[i]->setAlignment(alignments[i]);}
@@ -201,20 +202,20 @@ QRect CharacterScreenWidget::contentRect() const {return mnm::ui::menuContentRec
 void CharacterScreenWidget::arrange() {
     const auto canvas=contentRect();const double scale=canvas.width()/800.0;
     auto map=[&](const QRect& r){return QRect(canvas.x()+qRound(r.x()*scale),canvas.y()+qRound(r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));};
-    QFont font("serif");font.setBold(true);
+    QFont font;
     for (int i=0;i<17;++i) {
-        labels_[i]->setGeometry(map(labelRectangles_[i]));font.setPixelSize(qMax(10,qRound((i==1 || i==9?20:26)*scale)));
+        labels_[i]->setGeometry(map(labelRectangles_[i]));font=mnm::ui::menuFont(this,i==1||i==9?mnm::ui::MenuFontRole::Body:mnm::ui::MenuFontRole::Heading,scale);
         while (i!=1 && font.pixelSize()>10 && QFontMetrics(font).horizontalAdvance(labels_[i]->text())>labels_[i]->width()) font.setPixelSize(font.pixelSize()-1);
         labels_[i]->setFont(font);
     }
-    font.setPixelSize(qMax(10,qRound(20*scale)));portrait_->setGeometry(map(accepted_.portraitIndex>=0?QRect(0,0,400,300):QRect(25,50,180,150)));portrait_->setFont(font);
+    font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Body,scale);portrait_->setGeometry(map(accepted_.portraitIndex>=0?QRect(0,0,400,300):QRect(25,50,180,150)));portrait_->setFont(font);
     if (accepted_.portraitIndex>=0 && !faces_[accepted_.portraitIndex].isNull()) {
         portrait_->setPixmap(QPixmap::fromImage(faces_[accepted_.portraitIndex]).scaled(portrait_->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
         portrait_->setAccessibleName(accepted_.portraitText.isEmpty()?accepted_.name:accepted_.portraitText);
     } else {portrait_->setPixmap(QPixmap());portrait_->setText(accepted_.portraitText);}
-    for (int i=0;i<3;++i) {talismans_[i]->setGeometry(map(talismanRectangles_[i]));talismans_[i]->setFont(font);bars_[i]->setGeometry(map(barRectangles_[i]));auto small=font;small.setPixelSize(qMax(10,qRound(14*scale)));bars_[i]->setFont(small);}
+    for (int i=0;i<3;++i) {talismans_[i]->setGeometry(map(talismanRectangles_[i]));talismans_[i]->setFont(font);bars_[i]->setGeometry(map(barRectangles_[i]));auto small=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Tooltip,scale);bars_[i]->setFont(small);}
     for (int i=0;i<12;++i) {buttons_[i]->setGeometry(map(buttonRectangles_[i]));buttons_[i]->setFont(font);}
-    font.setPixelSize(qMax(10,qRound(26*scale)));ok_->setFont(font);cancel_->setFont(font);ok_->setGeometry(map(okRectangle_));cancel_->setGeometry(map(cancelRectangle_));
+    font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale);ok_->setFont(font);cancel_->setFont(font);ok_->setGeometry(map(okRectangle_));cancel_->setGeometry(map(cancelRectangle_));
 }
 void CharacterScreenWidget::resizeEvent(QResizeEvent* event) {QWidget::resizeEvent(event);arrange();}
 bool CharacterScreenWidget::eventFilter(QObject* watched,QEvent* event) {

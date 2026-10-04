@@ -116,6 +116,7 @@ MenuAssets loadMenuAssets(const QString& root, const QString& directory, const Q
     if (fileName.section('.',-1).compare(QString::fromLatin1(imageFormat),Qt::CaseInsensitive)!=0)
         throw std::runtime_error("Menu image filename disagrees with format");
     result.background=imageFromFile(store,directory+"/800x600/"+fileName,imageSize);
+    result.fonts=loadMenuFonts(root);
     return result;
 }
 QString textLabel(const Sections& strings, const QString& textId) {

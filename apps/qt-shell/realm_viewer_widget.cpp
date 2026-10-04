@@ -35,6 +35,7 @@ bool RealmViewerWidget::setCampaign(const Campaign& campaign,QString* error) {
 }
 bool RealmViewerWidget::loadAssets(const QString& root,QString* error) {
     try {
+        const auto fonts=mnm::ui::loadMenuFonts(root);
         const std::array<QString,3> names{"Celtic","Greek","Medieval"};std::array<QImage,3> maps;
         for(int r=0;r<3;++r)maps[r]=mnm::ui::loadMenuImage(root,"Interface/RealmViewer/800x600/"+names[r]+"_Map.bmp",{800,600});
         auto flags=mnm::ui::loadMenuSprites(root,"Interface/RealmViewer/Generic/flags.spr");auto buttons=mnm::ui::loadMenuSprites(root,"Interface/RealmViewer/Generic/RlmBtn.spr");
@@ -44,6 +45,7 @@ bool RealmViewerWidget::loadAssets(const QString& root,QString* error) {
         const auto shared=mnm::ui::loadMenuSprites(root,"Sprites/Buttons.spr");const auto character=mnm::ui::spriteStates(shared,0);
         const auto tips=mnm::ui::loadMenuLayout(root,"Interface/RealmViewer","realmviewtooltip.cfg");if(tips.value("HEADER").value("ValidConfig")!="TRUE")throw std::runtime_error("Invalid Realm Viewer tooltip configuration");
         std::array<QString,4> labels;for(int i=0;i<4;++i)labels[i]=mnm::ui::textLabel(tips,QString::number(i));
+        mnm::ui::installMenuFonts(this,fonts);
         maps_=std::move(maps);flags_=std::move(flags);cancel_->setSprites(close,{94,39});enter_->setSprites(open,{94,39});enter_->setAccessibleName("Open selected region");
         static_cast<mnm::ui::SpriteButton*>(auxiliary_[0])->setSprites(spellbox,{94,39});static_cast<mnm::ui::SpriteButton*>(auxiliary_[1])->setSprites(grimoire,{94,39});static_cast<mnm::ui::SpriteButton*>(auxiliary_[2])->setSprites(character,{60,60});
         for(int i=0;i<4;++i){auxiliary_[i]->setToolTip(labels[i]);auxiliary_[i]->setAccessibleName(labels[i]);}populate();if(error)error->clear();return true;
@@ -71,7 +73,7 @@ void RealmViewerWidget::populate() {
 }
 QRect RealmViewerWidget::contentRect() const {return mnm::ui::menuContentRect(size());}
 void RealmViewerWidget::arrange() {
-    const auto canvas=contentRect();const double s=canvas.width()/800.0;auto place=[&](QWidget* widget,const QRect& r){widget->setGeometry(qRound(canvas.x()+r.x()*s),qRound(canvas.y()+r.y()*s),qRound(r.width()*s),qRound(r.height()*s));auto font=widget->font();font.setPixelSize(qMax(8,qRound(16*s)));widget->setFont(font);};
+    const auto canvas=contentRect();const double s=canvas.width()/800.0;auto place=[&](QWidget* widget,const QRect& r){widget->setGeometry(qRound(canvas.x()+r.x()*s),qRound(canvas.y()+r.y()*s),qRound(r.width()*s),qRound(r.height()*s));auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Tooltip,s);widget->setFont(font);};
     for(int r=0;r<3;++r){place(realms_[r],{530+90*r,10,84,39});}
     place(heading_,{600,550,190,39});const auto* region=selected();heading_->setText(QFontMetrics(heading_->font()).elidedText(region?region->name:campaign_.name,Qt::ElideRight,qMax(1,heading_->width()-12)));
     const auto& model=campaign_.regions[int(campaign_.realm)];for(int i=0;i<regions_.size();++i)place(regions_[i],QRect(model[i].flagPosition,QSize(48,52)));
