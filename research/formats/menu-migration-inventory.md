@@ -154,3 +154,9 @@ with original BMP/SPR art, bounded installed display names/FP positions, supplie
 availability and selected-region navigation. Main New Game opens it; Region Entry
 and direct auxiliary screens return to the map. Actual campaign progression and
 engine commands remain pending. [Asset evidence](realm-viewer-assets.md).
+
+Spell Research now has a native catalog/request view with Grimoire book artwork,
+chapter-five spell text, shared SFT fonts, and the original Realm Research button.
+No separate original research layout was found. The 42 preview display IDs and
+sample availability are separate from engine research rules/costs. See
+[scope and validation](../runtime/spell-research-qt.md).

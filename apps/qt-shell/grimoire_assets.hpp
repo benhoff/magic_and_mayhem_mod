@@ -6,6 +6,8 @@ struct GrimoireLevel {QStringList pages;QStringList dynamicLabels;};
 struct GrimoireEntry {int section=0,icon=0;QString title;QMap<int,GrimoireLevel> levels;};
 struct GrimoireChapter {QString title;bool sorted=false;QVector<GrimoireEntry> entries;};
 struct GrimoireBook {QVector<GrimoireChapter> chapters;Sections layout;Sections tooltips;QMap<QString,QString> artwork;};
+struct GrimoirePageArt {QImage image;QVector<QRect> areas;};
+GrimoirePageArt loadGrimoirePageArt(const QString& root,const QString& name);
 // Presentation catalog only; no campaign knowledge or recovered engine identity mapping.
 GrimoireBook loadGrimoireBook(const QString& root);
 }

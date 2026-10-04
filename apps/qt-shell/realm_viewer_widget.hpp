@@ -11,7 +11,7 @@ class RealmViewerWidget final : public QWidget {
 public:
     enum class Realm { Celtic, Greek, Medieval };
     Q_ENUM(Realm)
-    enum class AuxiliaryAction { Spellbox, Grimoire, Character, Options };
+    enum class AuxiliaryAction { Spellbox, Grimoire, Character, Options, SpellResearch };
     Q_ENUM(AuxiliaryAction)
     struct Region {
         QString id,name;int artworkNumber=1;QPoint flagPosition;int flagArtworkIndex=0;
@@ -21,7 +21,7 @@ public:
         QString id,name;
         std::array<QVector<Region>,3> regions;
         std::array<bool,3> realmAvailable{true,true,true};
-        std::array<bool,4> auxiliaryAvailable{true,true,true,true};
+        std::array<bool,5> auxiliaryAvailable{true,true,true,true,true};
         Realm realm=Realm::Celtic;
         std::array<QString,3> selectedRegionIds{};
     };
@@ -68,7 +68,7 @@ private:
     QString hoveredRegion_;
     std::array<QPushButton*,3> realms_{};
     QVector<mnm::ui::SpriteButton*> regions_;
-    std::array<QPushButton*,4> auxiliary_{};
+    std::array<QPushButton*,5> auxiliary_{};
     mnm::ui::SpriteButton* enter_=nullptr;
     mnm::ui::SpriteButton* cancel_=nullptr;
     QLabel* heading_=nullptr;

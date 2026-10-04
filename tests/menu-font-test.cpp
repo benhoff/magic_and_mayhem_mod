@@ -17,6 +17,7 @@
 #include "character_screen_widget.hpp"
 #include "grimoire_widget.hpp"
 #include "spellbox_widget.hpp"
+#include "spell_research_widget.hpp"
 #include "realm_viewer_widget.hpp"
 #include <QApplication>
 #include <QDir>
@@ -76,7 +77,7 @@ int main(int argc,char** argv){QApplication app(argc,argv);try{
         installed<MainMenuWidget>(root);installed<QuickBattleMenuWidget>(root);installed<MiniMenuWidget>(root);
         installed<QuickBattleResultWidget>(root);installed<MapSelectionWidget>(root);installed<LoadGameWidget>(root);installed<SaveGameWidget>(root);
         installed<PreferencesWidget>(root);installed<MultiplayerGameSelectionWidget>(root);installed<SinglePlayerBattleWidget>(root);
-        installed<RegionEntryWidget>(root);installed<CharacterScreenWidget>(root);installed<GrimoireWidget>(root);installed<SpellboxWidget>(root);installed<RealmViewerWidget>(root);
+        installed<RegionEntryWidget>(root);installed<CharacterScreenWidget>(root);installed<GrimoireWidget>(root);installed<SpellboxWidget>(root);installed<RealmViewerWidget>(root);installed<SpellResearchWidget>(root);
         QString error;
         for(auto mode:{MultiplayerSetupWidget::Mode::Join,MultiplayerSetupWidget::Mode::Create}){MultiplayerSetupWidget w(mode);require(w.loadAssets(root,&error),qPrintable(error));sizes(w);}
         for(auto mode:{MultiplayerLobbyWidget::Mode::Host,MultiplayerLobbyWidget::Mode::Join}){MultiplayerLobbyWidget w(mode);require(w.loadAssets(root,&error),qPrintable(error));sizes(w);}
@@ -95,7 +96,7 @@ int main(int argc,char** argv){QApplication app(argc,argv);try{
             if(QString(name)=="lobby"){auto w=std::make_unique<MultiplayerLobbyWidget>(MultiplayerLobbyWidget::Mode::Host);require(w->loadAssets(root,&error),qPrintable(error));capture=std::move(w);}
             capture->show();app.processEvents();require(capture->grab().save(QString("working/tests/menu-fonts/%1.png").arg(name)),"save font capture");
         }
-        std::puts("All 21 installed menu variants use SFT fonts across controls and sizes");
+        std::puts("All 22 installed menu variants use SFT fonts across controls and sizes");
     }
     std::puts("Menu font glyph mapping, masks, origins, metrics, bounds and fallback passed");return 0;
 }catch(const std::exception& e){std::fprintf(stderr,"%s\n",e.what());return 1;}}
