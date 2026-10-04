@@ -39,6 +39,11 @@ bool MenuPreview::openMiniMenu(const QString& root, MiniMenuWidget::Mode mode, Q
     if (!mini_) {
         mini_ = new MiniMenuWidget(screens_); screens_->addWidget(mini_);
         connect(mini_, &MiniMenuWidget::actionRequested, this, [this](MiniMenuWidget::Action action) {
+            if (action == MiniMenuWidget::Action::SaveGame) {
+                QString error;
+                if (!openSaveGame(assetRoot_,&error)) statusBar()->showMessage(QString("Save Game preview failed: %1").arg(error));
+                return;
+            }
             if (action == MiniMenuWidget::Action::Cancel) { showMainMenu(); return; }
             const auto name = QMetaEnum::fromType<MiniMenuWidget::Action>().valueToKey(int(action));
             statusBar()->showMessage(QString("Selected %1 — engine adapter pending.").arg(QString::fromLatin1(name)));
@@ -139,4 +144,27 @@ bool MenuPreview::openLoadGame(const QString& root, QString* error) {
     if (!loadGame_->setSaves({{"sample-autosave","Sample autosave"},{"sample-campaign","Sample campaign save"},{"sample-before-battle","Sample before battle"}},"sample-autosave",error)) return false;
     screens_->setCurrentWidget(loadGame_); loadGame_->focusSelection(); setWindowTitle(loadGame_->windowTitle());
     statusBar()->showMessage("Sample saves. Load emits selection; Cancel returns to the main menu preview."); return true;
+}
+
+bool MenuPreview::openSaveGame(const QString& root, QString* error) {
+    if (!saveGame_) {
+        saveGame_=new SaveGameWidget(screens_); screens_->addWidget(saveGame_);
+        connect(saveGame_,&SaveGameWidget::cancelled,this,&MenuPreview::returnFromSaveGame);
+        connect(saveGame_,&SaveGameWidget::saveRequested,this,[this](const QString& name,const QString& existingId) {
+            statusBar()->showMessage(QString("Requested sample %1: %2 — engine adapter pending.").arg(existingId.isEmpty()?"save":"overwrite",name));
+        });
+        connect(saveGame_,&SaveGameWidget::deleteRequested,this,[this](const QString& id) {
+            statusBar()->showMessage(QString("Requested sample deletion: %1 — engine adapter pending.").arg(id));
+        });
+    }
+    if (!saveGame_->loadAssets(root,error)) return false;
+    if (!saveGame_->setSaves({{"sample-autosave","Sample autosave"},{"sample-campaign","Sample campaign save"},{"sample-before-battle","Sample before battle"}},"sample-campaign",error)) return false;
+    saveReturnsToMini_=mini_ && screens_->currentWidget()==mini_;
+    screens_->setCurrentWidget(saveGame_); saveGame_->focusSelection(); setWindowTitle(saveGame_->windowTitle());
+    statusBar()->showMessage("Sample saves. Save/Delete emit intent; Cancel returns to the previous preview."); return true;
+}
+void MenuPreview::returnFromSaveGame() {
+    if (!saveReturnsToMini_) { showMainMenu(); return; }
+    screens_->setCurrentWidget(mini_); mini_->focusFirstAction(); setWindowTitle(mini_->windowTitle());
+    statusBar()->showMessage("Mini Menu preview. Cancel or Escape returns to the main menu.");
 }

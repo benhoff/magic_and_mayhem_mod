@@ -197,6 +197,7 @@ int main(int argc,char** argv){
                     "  --quick-battle-menu   Preview the native Quick Battle menu\n"
                     "  --mini-menu MODE      Preview the campaign or battle Mini Menu\n"
                     "  --quick-battle-results MODE Preview results: continue or spectate\n"
+                    "  --save-game           Preview Save Game with sample saves\n"
                     "  --load-game           Preview Load Game with sample saves\n"
                     "  --map-selection       Preview map selection with sample entries\n"
                     "  --battle-results MODE Preview victory or defeat with sample results\n"
@@ -233,6 +234,7 @@ int main(int argc,char** argv){
     parser.addOption({"quick-battle-menu","Preview the native Quick Battle menu without launching the game."});
     parser.addOption({"mini-menu","Preview the Mini Menu: campaign or battle.","mode"});
     parser.addOption({"quick-battle-results","Preview Quick Battle results: continue or spectate.","mode"});
+    parser.addOption({"save-game","Preview Save Game with sample saves."});
     parser.addOption({"load-game","Preview Load Game with sample saves."});
     parser.addOption({"map-selection","Preview Map Selection with sample entries."});
     parser.addOption({"battle-results","Preview battle results: victory or defeat.","mode"});
@@ -256,9 +258,9 @@ int main(int argc,char** argv){
     parser.addOption({"fixture-window","Internal external-window fixture."});parser.process(app);
     if(parser.isSet("media") || parser.isSet("media-server-test"))return runMedia(app,parser);
     if(parser.isSet("media-test") || parser.isSet("media-probe"))parser.showHelp(2);
-    const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu") || parser.isSet("battle-results") || parser.isSet("quick-battle-results") || parser.isSet("map-selection") || parser.isSet("load-game");
+    const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu") || parser.isSet("battle-results") || parser.isSet("quick-battle-results") || parser.isSet("map-selection") || parser.isSet("load-game") || parser.isSet("save-game");
     if((parser.isSet("menu-assets") || parser.isSet("menu-command-line")) && !menuPreview)parser.showHelp(2);
-    if(int(parser.isSet("main-menu"))+int(parser.isSet("quick-battle-menu"))+int(parser.isSet("mini-menu"))+int(parser.isSet("battle-results"))+int(parser.isSet("quick-battle-results"))+int(parser.isSet("map-selection"))+int(parser.isSet("load-game"))>1)parser.showHelp(2);
+    if(int(parser.isSet("main-menu"))+int(parser.isSet("quick-battle-menu"))+int(parser.isSet("mini-menu"))+int(parser.isSet("battle-results"))+int(parser.isSet("quick-battle-results"))+int(parser.isSet("map-selection"))+int(parser.isSet("load-game"))+int(parser.isSet("save-game"))>1)parser.showHelp(2);
     if(parser.isSet("mini-menu") && parser.value("mini-menu")!="campaign" && parser.value("mini-menu")!="battle")parser.showHelp(2);
     if(parser.isSet("battle-results") && parser.value("battle-results")!="victory" && parser.value("battle-results")!="defeat")parser.showHelp(2);
     if(parser.isSet("quick-battle-results") && parser.value("quick-battle-results")!="continue" && parser.value("quick-battle-results")!="spectate")parser.showHelp(2);
@@ -283,6 +285,9 @@ int main(int argc,char** argv){
         }
         if(parser.isSet("load-game") && !preview.openLoadGame(root,&error)){
             std::fprintf(stderr,"Load Game assets failed: %s\n",qPrintable(error));return 9;
+        }
+        if(parser.isSet("save-game") && !preview.openSaveGame(root,&error)){
+            std::fprintf(stderr,"Save Game assets failed: %s\n",qPrintable(error));return 9;
         }
         preview.findChild<MainMenuWidget*>()->setCommandLineBattleVisible(parser.isSet("menu-command-line"));
         preview.show();
