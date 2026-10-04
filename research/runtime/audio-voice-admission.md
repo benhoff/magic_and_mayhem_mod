@@ -30,11 +30,11 @@ Synthetic and native fixture agreement is not live call coverage.
    slots before subsequent operations fail; there is no transaction rollback.
 3. Search the sorted group-ID table (+0x240/+0x244). A match selects a member
    using `(randomWord & 0x7fffffff) % memberCount`. Search the sorted source-ID
-   table (+0x238/+0x23c); a miss selects index `0x19a`. The decoded catalog
+   table (+0x238/+0x23c); a hit retains the resolved sound ID; a miss selects ID `0x19a`. The decoded catalog
    preserves these operations while excluding raw table pointers and bsearch
    implementation details. Groups require a positive member count.
 4. Walk the source ring from manager +0x250 through wrapper +0x1c, comparing
-   source index +4. For the first matching wrapper, GetStatus success without
+   sound ID +4. For the first matching wrapper, GetStatus success without
    flag `0x2` allows reuse. A successful `0x2` (buffer-lost) query writes wrapper +0x0c = 2 and
    triggers the loader; any query error also triggers the loader. Playing flag
    `0x1` alone does not trigger loading. No matching source also calls the loader.
@@ -44,8 +44,9 @@ Synthetic and native fixture agreement is not live call coverage.
    sequence; it is not silently treated as a successful no-op.
 
 `AdmissionBackend::loadSource` delegates the much larger `0x0056f400` routine.
-Its source-cache selection, recursive group loading, filesystem/WAV work,
-allocation/recycling and failure cleanup are not reconstructed here. Fixtures
+Its selected source-cache decisions and replacement ownership now have separate
+[AU14 evidence](audio-source-cache.md); Windows profile and WinMM internals,
+source-pool initialization and live integration remain separate. Fixtures
 provide an existing ring member; a future loader adapter must establish any
 new member's ownership and topology before returning success.
 
@@ -64,7 +65,7 @@ The selected duplicate helper calls DuplicateSoundBuffer first, then allocates
 a fresh default-initialized 40-byte wrapper and starts it. Buffer duplication
 failure returns immediately without a wrapper, chain change or output write.
 After successful duplication, volume/pan/Play failure **does not undo** the
-new wrapper: source index, +8, +0x0c and duration are copied from the source,
+new wrapper: sound ID, +8, +0x0c and duration are copied from the source,
 the child is appended to the duplicate chain, source requested volume is
 written, and the helper's output is published even on control failure. The
 source's cached volume is unchanged. The outer manager returns immediately
@@ -79,7 +80,7 @@ caller output still identify the original wrapper that was just played.
 Do not substitute the new source-ring head for that playback identity.
 
 The final source-head promotion also runs on direct-start control failure.
-For a selected source differing from the current head's source index, detach
+For a selected source differing from the current head's sound ID, detach
 it and insert it immediately before the old head, then make it head. With
 equal indices, only rotate the head pointer. Duplicate and loader failures
 return before this step. Host source links represent +0x18/+0x1c separately
@@ -137,5 +138,11 @@ undefined-behavior and leak sanitizers outside sandbox tracing. These fixtures
 use no game assets, Wine, audio device or live game. The isolated PE32 COM fixture also passed with the corrected primary and
 secondary status flags: `working/tests/audio-bridge/run-rphs_f0n/report.json`,
 including stale-host retirement. That fixture launches only its synthetic
-selftest under Wine, never Chaos.exe. Source-cache loading at `0x0056f400` is
-the next separate offline contract.
+selftest under Wine, never Chaos.exe. Source-cache loading at `0x0056f400` now has separate
+[reconstruction and integration evidence](audio-source-cache.md).
+
+Correction reviewed with AU14 on 2026-10-04: the initial fixture/model returned
+source-table ordinals after ID lookup. `admissionSoundId` now preserves the
+resolved ID, matching the caller register and wrapper +4; class metadata uses
+the separate ordinal. Nonordinal ID and full loader-to-admission fixtures pass
+in the AU14 evidence report. The older AU13 report predates this correction.

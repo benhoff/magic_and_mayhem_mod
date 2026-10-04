@@ -11,13 +11,13 @@ struct AdmissionCatalog {
 };
 struct AdmissionBackend:SchedulerBackend {
     virtual std::uint32_t randomWord()=0; // 0x54e200; RNG itself not reconstructed.
-    virtual Status loadSource(std::int32_t index,VoiceWrapper*& output)=0; // 0x56f400
+    virtual Status loadSource(std::int32_t sound,VoiceWrapper*& output)=0; // 0x56f400
     virtual Status duplicateBuffer(std::uint32_t source,std::uint32_t& output)=0;
     // Return a fresh default-initialized wrapper with unique nonzero identity.
     // Own it until lifetime teardown. Allocation failure is outside recovered valid domain.
     virtual VoiceWrapper& allocateWrapper()=0;
 };
-std::int32_t admissionSourceIndex(AdmissionBackend&,const AdmissionCatalog&,std::int32_t requested);
+std::int32_t admissionSoundId(AdmissionBackend&,const AdmissionCatalog&,std::int32_t requested);
 // 0x572180 under active manager gates: successful buffer duplication appends/publishes
 // even on control failure.
 Status duplicateAndStart(AdmissionBackend&,VoiceWrapper&,std::int32_t volume,std::int32_t pan,

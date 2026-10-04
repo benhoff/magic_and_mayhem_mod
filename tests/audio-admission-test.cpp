@@ -35,10 +35,10 @@ struct Scene {
     r::ManagerState manager; r::AdmissionCatalog catalog{{},{10,20}};
     unsigned output=77; r::AdmissionRequest request;
     Scene(){
-        source.identity=1;source.buffer=11;source.sourceIndex=0;source.duration=32;source.field08=42;source.field0c=3;
-        other.identity=2;other.buffer=12;other.sourceIndex=1;
+        source.identity=1;source.buffer=11;source.sourceIndex=10;source.duration=32;source.field08=42;source.field0c=3;
+        other.identity=2;other.buffer=12;other.sourceIndex=20;
         source.previous=source.next=&other;other.previous=other.next=&source;
-        d1.identity=3;d1.buffer=13;d1.sourceIndex=0;d2.identity=4;d2.buffer=14;d2.sourceIndex=0;
+        d1.identity=3;d1.buffer=13;d1.sourceIndex=10;d2.identity=4;d2.buffer=14;d2.sourceIndex=10;
         slot.next=slot.previous=&slot;manager.initialized=manager.active=true;
         request.sound=10;request.volume=-100;request.pan=20;request.x=8;request.y=9;
         request.outputAddress=123;request.output=&output;
@@ -58,10 +58,10 @@ void gatesAndCatalog(){
     r::AdmissionCatalog c{{{5,{10,20,30}}},{10,20,30}};
     for(unsigned random:{0u,1u,2u,3u,0x80000001u,0xffffffffu}){
         Backend rng;rng.random=random;
-        check(r::admissionSourceIndex(rng,c,5)==int((random&0x7fffffffu)%3) && rng.calls=="R","group masked random selection");
+        check(r::admissionSoundId(rng,c,5)==c.groups[0].members[(random&0x7fffffffu)%3] && rng.calls=="R","group masked random selection");
     }
-    check(r::admissionSourceIndex(b,c,20)==1 && r::admissionSourceIndex(b,c,999)==0x19a,"sorted ID and fallback");
-    c.groups[0].members.clear();bool rejected=false;try{r::admissionSourceIndex(b,c,5);}catch(const std::invalid_argument&){rejected=true;}
+    check(r::admissionSoundId(b,c,20)==20 && r::admissionSoundId(b,c,999)==0x19a,"sorted ID and fallback");
+    c.groups[0].members.clear();bool rejected=false;try{r::admissionSoundId(b,c,5);}catch(const std::invalid_argument&){rejected=true;}
     check(rejected,"empty alias divisor rejected");
 }
 void duplicates(){
@@ -74,7 +74,7 @@ void duplicates(){
         check(b.calls==(fault==1?"DAV":fault==2?"DAVN":"DAVNP"),"duplicate control ordering");
         auto* child=b.owned[0].get();
         check(output==child && s.d2.duplicate==child && s.source.requestedVolume==-100 && s.source.cachedVolume==99,"append/publication persists on control failure");
-        check(child->cachedVolume==-100 && child->sourceIndex==0 && child->field08==42 && child->field0c==3 && child->duration==32,"copied duplicate metadata");
+        check(child->cachedVolume==-100 && child->sourceIndex==10 && child->field08==42 && child->field0c==3 && child->duration==32,"copied duplicate metadata");
     }
     Scene s;Backend b;b.duplicateFault=19;r::VoiceWrapper* output=&s.other;
     check(r::duplicateAndStart(b,s.source,-100,20,false,output)==19 && b.calls=="D" && output==&s.other && !s.source.duplicate,"duplicate API failure leaves chain and output");
@@ -98,7 +98,7 @@ void sourceRingAndCache(){
         Scene s;Backend b;r::VoiceWrapper third;third.identity=5;third.sourceIndex=2;
         s.other.next=&s.source;s.source.previous=&s.other;s.source.next=&third;
         third.previous=&s.source;third.next=&s.other;s.other.previous=&third;
-        if(sameIndex){s.other.sourceIndex=0;b.loaded=&s.source;b.queries={{7,0},{0,0}};}
+        if(sameIndex){s.other.sourceIndex=10;b.loaded=&s.source;b.queries={{7,0},{0,0}};}
         else b.queries={{0,0},{0,0}};
         check(!s.run(b) && s.head==&s.source,"source becomes head");
         auto* expectedNext=sameIndex?&third:&s.other;
@@ -116,7 +116,7 @@ void loadingAndRotation(){
         check(!s.run(b),"status/loading start");
         const bool reload=queryFault || (firstFlags&2);
         check(b.calls==std::string(reload?"QLQVNPT":"QQVNPT"),"loading gate calls");
-        check((b.loadedIndex==0)==reload,"first-query error or buffer-lost flag reloads");
+        check((b.loadedIndex==10)==reload,"first-query error or buffer-lost flag reloads");
         check(s.source.field0c==(!queryFault && (firstFlags&2)?2u:3u),"field0c writes only on successful bit2 query");
     }
     Scene failed;Backend loader;loader.queries={{8,0}};loader.loadFault=18;
