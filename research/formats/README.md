@@ -19,3 +19,4 @@ Current findings:
 - [Native blit capture and draw events](render-draw-capture.md)
 
 - [Qt media request channel](render-media-channel.md)
+- [PCM WAV loading](pcm-wav-loading.md)
