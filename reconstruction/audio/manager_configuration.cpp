@@ -24,13 +24,13 @@ void validate(const ProfileSection& s){
     }
     if(bytes!=s.returned)throw std::invalid_argument("Inconsistent decoded MULTI_SZ count");
 }
-void dispose(ConfigurationBackend& b,SourcePool& pool){
+}
+void releaseSourcePool(LifetimeBackend& b,SourcePool& pool){
     // Original traverses backward, starting at head->previous, ending at head.
     if(pool.head){auto* start=pool.head->previous;auto* v=start;
         do{auto* previous=v->previous;destroyWrapper(b,*v,1);v=previous;}while(v!=start);
     }
     pool.head=nullptr;pool.nodes.clear();
-}
 }
 std::string managerProfilePath(const std::string& root){
     const auto path=root+"\\Sounds.ini";
@@ -63,14 +63,17 @@ std::vector<std::int32_t> groupMembers(const std::string& text){
     }
     return result;
 }
-Status loadManagerCatalog(ConfigurationBackend& b,AdmissionCatalog& catalog){
+Status loadManagerCatalog(ConfigurationBackend& b,AdmissionCatalog& catalog,CatalogObserver* observer){
     try{
         auto ids=soundTable(b.section("Sounds",0x4000));if(ids.empty())return SourceLoadFailure;
         catalog.sourceIds=std::move(ids);
+        if(observer)observer->sourceTableCreated(catalog.sourceIds.size());
         auto groups=soundTable(b.section("Randomised",0x4000));
         catalog.groups.clear();
-        for(auto id:groups){std::string value;const auto n=b.groupValue(id,value);
-            catalog.groups.push_back({id,n?groupMembers(value):std::vector<std::int32_t>{}});
+        for(auto id:groups)catalog.groups.push_back({id,{}});
+        if(observer)observer->groupTablesCreated(groups.size());
+        for(auto& group:catalog.groups){std::string value;const auto n=b.groupValue(group.id,value);
+            if(n)group.members=groupMembers(value);
         }
         return 0;
     }catch(const std::invalid_argument&){return SourceLoadFailure;}
@@ -82,7 +85,7 @@ std::uint32_t dynamicSourceCapacity(std::uint32_t bytes){
 }
 Status initializeSourcePool(ConfigurationBackend& b,SourceCacheState& state,SourcePool& pool,std::uint32_t map){
     if(!state.manager.initialized)return 0;
-    dispose(b,pool);pool.map=map;state.classes.assign(state.catalog.sourceIds.size(),1);state.field22c=0;
+    releaseSourcePool(b,pool);pool.map=map;state.classes.assign(state.catalog.sourceIds.size(),1);state.field22c=0;
     for(auto sourceClass:{0u,2u}){
         auto section=b.section(std::to_string(map)+(sourceClass?" Load Temporary":" Load Permanent"),0x4000);
         try{validate(section);}catch(const std::invalid_argument&){return SourceLoadFailure;}
