@@ -26,9 +26,10 @@ contents and installed string labels.
 Auxiliary action names come from configuration comments and sprite-index roles.
 Confidence is high for those comments/indices; actual engine dispatch and
 availability have not been observed. The native widget validates the expected
-index groups and represents the icons as G/S/C text buttons with full tooltips
-and accessible names. It does not decode those sprites or claim equivalent
-hover/pressed artwork.
+index groups and renders the decoded Sprites/Buttons.spr triplets with full
+tooltips and accessible names. State assignment, disabled dimming and original
+file binding remain native policies pending live comparison; see
+[SPR integration](menu-sprite-integration.md).
 
 Unlike other menus, illustrations are named `Celtic_Region_01.JPG` without an
 `800-600` filename suffix. Read-only installed-file enumeration finds Celtic
@@ -79,7 +80,7 @@ retains local difficulty. Main Menu's New Game action remains unconnected:
 this preview does not establish the campaign flow or skip character creation.
 
 Original region art, configured labels and geometry are reused. System serif
-fonts, radio indicators, button colors and text icon placeholders remain
+fonts, radio indicators, button colors and sprite interaction styling remain
 approximations. No original screenshot equivalence or live campaign validation
 is claimed. See [visual fidelity](battle-results-qt.md#visual-fidelity).
 

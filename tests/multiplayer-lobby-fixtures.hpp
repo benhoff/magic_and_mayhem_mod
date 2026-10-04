@@ -1,4 +1,5 @@
 #pragma once
+#include "menu-sprite-fixtures.hpp"
 #include <QDir>
 #include <QFile>
 #include <QImage>
@@ -10,6 +11,7 @@ inline void write(const QString& path,const QByteArray& bytes){QFile file(path);
 inline QString rect(int x,int y,int w,int h){return QString("%1,%2,%3,%4").arg(x).arg(y).arg(x+w).arg(y+h);}
 struct Layouts {QString basePath,hostPath,joinPath;QByteArray base,host,join;};
 inline Layouts create(const QString& root,const QImage& image) {
+    menu_sprite_fixture::shared(root);
     const auto path=root+"/Interface/MultiplayerBattleSetup";require(QDir().mkpath(path+"/800x600")&&image.save(path+"/800x600/Fixture 800-600.JPG","JPG"),"lobby image");
     QByteArray layout("[GLOBALS]\nBackgroundFile=Fixture\n");
     for (int i=0;i<40;++i) {

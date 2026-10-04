@@ -1,3 +1,4 @@
+#include "menu-sprite-fixtures.hpp"
 #include "multiplayer_lobby_widget.hpp"
 #include "menu_preview.hpp"
 #include "multiplayer-lobby-fixtures.hpp"
@@ -20,7 +21,7 @@ int main(int argc,char**argv) {
  try {
     QTemporaryDir temporary;require(temporary.isValid(),"temporary root");const auto root=temporary.path();require(QDir().mkpath(root+"/CFG"),"strings directory");
     QByteArray strings("[STRINGS]\n");for(int i=0;i<100;++i){const auto text=i==11?"Cancel":i==52?"Map":i==53?"Start":i==54?"Ready":i==55?"No Player":i==56?"Handicap":"Label";strings+=QString("STR_%1=%2\n").arg(i,2,10,QLatin1Char('0')).arg(text).toLatin1();}write(root+"/CFG/interface screens text.cfg",strings);
-    QImage image(800,600,QImage::Format_RGB32);image.fill(QColor(90,120,150));const auto layouts=lobby_fixture::create(root,image);
+    menu_sprite_fixture::shared(root);QImage image(800,600,QImage::Format_RGB32);image.fill(QColor(90,120,150));const auto layouts=lobby_fixture::create(root,image);
     QKeyEvent enter(QEvent::KeyPress,Qt::Key_Return,Qt::NoModifier),repeat(QEvent::KeyPress,Qt::Key_Return,Qt::NoModifier,QString(),true),escape(QEvent::KeyPress,Qt::Key_Escape,Qt::NoModifier);
     for(auto mode:{MultiplayerLobbyWidget::Mode::Host,MultiplayerLobbyWidget::Mode::Join}) {
         const bool host=mode==MultiplayerLobbyWidget::Mode::Host;MultiplayerLobbyWidget widget(mode);QString error;require(widget.loadAssets(root,&error)&&error.isEmpty(),"base and mode assets");widget.show();app.processEvents();
@@ -30,6 +31,11 @@ int main(int argc,char**argv) {
         MultiplayerLobbyWidget::Lobby lobby;lobby.sessionId="opaque-session";lobby.gameName="Named game";lobby.mapId="opaque-map";lobby.mapName="Named map";lobby.localSlot=host?0:1;
         for(int i=0;i<4;++i) {lobby.players[i]={true,QString("Player %1").arg(i),"wizard","W1",QString::number(i),"Red",i*5};}
         require(widget.setLobby(lobby,&error)&&button("Start")->isEnabled(),"supplied lobby");widget.focusFirstControl();require(composer->hasFocus(),"chat focus");
+        auto pictured=lobby;const int local=lobby.localSlot;pictured.players[local].portraitIndex=11;pictured.players[local].colourIndex=7;require(widget.setLobby(pictured,&error),"explicit local sprite choices");
+        auto* portrait=button(QString("Portrait%1").arg(local));QEvent leave(QEvent::Leave);QApplication::sendEvent(portrait,&leave);portrait->clearFocus();
+        require(portrait->grab().toImage().pixelColor(3,2)==QColor(Qt::red),"local selected portrait rendered");
+        auto invalidArt=pictured;invalidArt.players[local].colourIndex=8;require(!widget.setLobby(invalidArt,&error)&&widget.lobby().players[local].colourIndex==7,"invalid local artwork rejected");
+        menu_sprite_fixture::write(root,"Interface/MultiplayerBattleSetup/MultiPBattle Screen buttons 800-600.spr",3);require(!widget.loadAssets(root,&error)&&widget.lobby().players[local].portraitIndex==11,"short SPR sheet rollback preserves lobby");menu_sprite_fixture::shared(root);require(widget.loadAssets(root,&error)&&widget.setLobby(lobby,&error),"sprite reload and text fallback");
         require(widget.findChild<QLabel*>("multiplayerLobbyText13")->text()=="Named game"&&widget.findChild<QLabel*>("multiplayerLobbyText14")->text()=="Named map"&&!widget.findChild<QLabel*>("multiplayerLobbyText9")->isVisible(),"dynamic title map and hidden overlapping caption");
         int starts=0,readyCount=0,cancels=0,maps=0,profile=-1,colour=-1,removed=-1,chats=0;bool ready=false;QString sent;MultiplayerLobbyWidget::Lobby submitted;
         QObject::connect(&widget,&MultiplayerLobbyWidget::startRequested,&widget,[&](const auto& value){++starts;submitted=value;});QObject::connect(&widget,&MultiplayerLobbyWidget::readyRequested,&widget,[&](bool value){++readyCount;ready=value;});QObject::connect(&widget,&MultiplayerLobbyWidget::cancelled,&widget,[&]{++cancels;});QObject::connect(&widget,&MultiplayerLobbyWidget::mapRequested,&widget,[&]{++maps;});QObject::connect(&widget,&MultiplayerLobbyWidget::playerChangeRequested,&widget,[&](int slot){profile=slot;});QObject::connect(&widget,&MultiplayerLobbyWidget::colourChangeRequested,&widget,[&](int slot){colour=slot;});QObject::connect(&widget,&MultiplayerLobbyWidget::playerRemovalRequested,&widget,[&](int slot){removed=slot;});QObject::connect(&widget,&MultiplayerLobbyWidget::chatRequested,&widget,[&](const QString& text){++chats;sent=text;});

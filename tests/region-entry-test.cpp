@@ -1,3 +1,4 @@
+#include "menu-sprite-fixtures.hpp"
 #include "region_entry_widget.hpp"
 #include "menu_assets.hpp"
 #include "menu_preview.hpp"
@@ -20,7 +21,7 @@ static void write(const QString& path,const QByteArray& bytes){QFile file(path);
 int main(int argc,char**argv) {
  QApplication app(argc,argv);
  try {
-    QTemporaryDir temporary;require(temporary.isValid(),"temporary root");const auto root=temporary.path();const auto folder=root+"/Interface/RegionEntry";
+    QTemporaryDir temporary;require(temporary.isValid(),"temporary root");const auto root=temporary.path();menu_sprite_fixture::shared(root);const auto folder=root+"/Interface/RegionEntry";
     require(QDir().mkpath(root+"/CFG")&&QDir().mkpath(folder+"/800x600"),"fixture directories");
     write(root+"/CFG/interface screens text.cfg","[STRINGS]\nSTR_00=Main\nSTR_01=Main\nSTR_02=Main\nSTR_03=Main\nSTR_04=Main\nSTR_05=Main\nSTR_11=Cancel\nSTR_78=Enter Region\nSTR_79=Initiate\nSTR_80=Apprentice\nSTR_81=Adept\nSTR_82=Wizard\n");
     const QByteArray layout("[GLOBAL]\n[TEXTBUTTON_1]\nFont=LARGE\nRect2=50,510,325,560\nText=78\n[TEXTBUTTON_2]\nFont=LARGE\nRect2=475,510,750,560\nText=11\n[STANDARDBUTTON_1]\nRect2=650,25,710,85\nSpriteIndexes=3,4,5\n[STANDARDBUTTON_2]\nRect2=715,25,775,85\nSpriteIndexes=6,7,8\n[STANDARDBUTTON_3]\nRect2=585,25,645,85\nSpriteIndexes=0,1,2\n[RADIOBUTTON_1]\nFont=SMALL\nRect2=50,90,225,115\nText=79\n[RADIOBUTTON_2]\nFont=SMALL\nRect2=225,90,400,115\nText=80\n[RADIOBUTTON_3]\nFont=SMALL\nRect2=400,90,575,115\nText=81\n[RADIOBUTTON_4]\nFont=SMALL\nRect2=575,90,750,115\nText=82\n[TEXT_1]\nFont=LARGE\nTextFlags=LEFT\nRect2=50,40,525,75\nText=Current Region\n");
@@ -40,6 +41,7 @@ int main(int argc,char**argv) {
     require(radio(0)->text()=="Initiate"&&radio(3)->text()=="Wizard","installed radio labels");
     widget.focusFirstControl();require(radio(3)->hasFocus(),"focus selected difficulty");QApplication::sendEvent(radio(3),&keyEnter);require(entered==5,"Enter from radio once");QApplication::sendEvent(radio(3),&repeat);require(entered==5,"Enter repeat suppressed");
     for(int i=0;i<3;++i){QApplication::sendEvent(auxiliary(i),&keyEnter);require(auxCount==i+1&&int(action)==i&&entered==5,"focused auxiliary semantic action");}
+    menu_sprite_fixture::write(root,"Sprites/Buttons.spr",3);require(!widget.loadAssets(root,&error)&&widget.region().id==region.id,"short Region icon sheet leaves model intact");menu_sprite_fixture::shared(root);require(widget.loadAssets(root,&error),"Region icon reload");
     require(auxiliary(0)->accessibleName()=="Grimoire"&&auxiliary(1)->toolTip()=="Spellbox"&&auxiliary(2)->accessibleName()=="Character","text icon accessibility");
     auto unavailable=widget.region();unavailable.enterAvailable=false;unavailable.auxiliaryAvailable[1]=false;require(widget.setRegion(unavailable),"availability update");enter->click();auxiliary(1)->click();QApplication::sendEvent(radio(0),&keyEnter);require(entered==5&&auxCount==3&&!enter->isEnabled()&&!auxiliary(1)->isEnabled()&&auxiliary(0)->isEnabled(),"caller availability guards");
     require(widget.setRegion(region),"restore region");auto invalid=region;invalid.artworkRealm=RegionEntryWidget::Realm(99);require(!widget.setRegion(invalid,&error)&&!error.isEmpty()&&widget.region().id=="opaque-region","invalid realm transactional");invalid=region;invalid.artworkNumber=9;require(!widget.setRegion(invalid,&error),"Celtic artwork range");invalid=region;invalid.difficulty=RegionEntryWidget::Difficulty(4);require(!widget.setRegion(invalid,&error),"invalid difficulty");invalid=region;invalid.name.clear();require(!widget.setRegion(invalid,&error),"partial region");invalid=region;invalid.name="two\nlines";require(!widget.setRegion(invalid,&error),"multiline heading rejected");

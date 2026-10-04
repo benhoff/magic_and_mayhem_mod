@@ -28,9 +28,9 @@ See [Character Screen policies](character-screen-qt.md).
 Confidence is high for configured filenames, installed dimensions and decoded
 asset appearance; bar clipping, JPEG blue-key threshold and portrait placement
 are native presentation choices. Original transparency, placement and live
-callback equivalence have not been validated. SPR-backed buttons, talismans,
-setup/lobby portraits/colours and SFT typography remain separate work. BMP/JPEG
-loaders alone do not decode those controls. Grimoire/Spellbox/Realm Viewer image
+callback equivalence have not been validated. SPR-backed Character/Region controls and setup/lobby portraits/colours now have
+[separate integration evidence](menu-sprite-integration.md). SFT typography and
+other sprite controls remain pending. BMP/JPEG loaders alone do not decode sprite controls. Grimoire/Spellbox/Realm Viewer image
 assets belong to screens not yet implemented in the menu preview.
 
 ## Validation

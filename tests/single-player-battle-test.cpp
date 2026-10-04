@@ -1,3 +1,4 @@
+#include "menu-sprite-fixtures.hpp"
 #include "single_player_battle_widget.hpp"
 #include "menu_preview.hpp"
 #include "quick_battle_menu_widget.hpp"
@@ -21,7 +22,7 @@ int main(int argc,char** argv) {
  QApplication app(argc,argv);
  try {
     QTemporaryDir temporary;require(temporary.isValid(),"temporary directory");const auto root=temporary.path();
-    QImage image(800,600,QImage::Format_RGB32);image.fill(QColor(90,120,150));
+    menu_sprite_fixture::shared(root);QImage image(800,600,QImage::Format_RGB32);image.fill(QColor(90,120,150));
     auto folder=[&](const QString& name) {
         const auto path=root+"/Interface/"+name;require(QDir().mkpath(path+"/800x600")&&image.save(path+"/800x600/Fixture 800-600.JPG","JPG"),"fixture image");return path;
     };
@@ -68,6 +69,11 @@ int main(int argc,char** argv) {
     SinglePlayerBattleWidget::Setup setup;setup.mapId="opaque-map";setup.mapName="<b>Sample map</b>";
     for(int i=0;i<4;++i) setup.players[i]={true,QString("Player %1").arg(i),"wizard","W1",QString::number(i),"Red",i*5};
     require(widget.setSetup(setup,&error)&&button("singlePlayerStart")->isEnabled()&&label(14)->text()==setup.mapName&&label(14)->textFormat()==Qt::PlainText,"valid model and literal map text");
+    auto pictured=setup;pictured.players[0].portraitIndex=11;pictured.players[0].colourIndex=7;require(widget.setSetup(pictured,&error),"explicit portrait and colour artwork");
+    button("singlePlayerPortrait0")->clearFocus();QEvent leave(QEvent::Leave);QApplication::sendEvent(button("singlePlayerPortrait0"),&leave);
+    require(button("singlePlayerPortrait0")->grab().toImage().pixelColor(3,2)==QColor(Qt::red)&&button("singlePlayerColour0")->grab().toImage().pixelColor(3,2)==QColor(Qt::red),"selected portrait and colour SPR rendering");
+    auto badArt=pictured;badArt.players[0].portraitIndex=12;require(!widget.setSetup(badArt,&error)&&widget.setup().players[0].portraitIndex==11,"portrait range rejected transactionally");badArt=pictured;badArt.players[3].active=false;badArt.players[3].colourIndex=8;require(!widget.setSetup(badArt,&error),"invalid inactive colour selection rejected");
+    menu_sprite_fixture::write(root,"Interface/MultiplayerBattleSetup/MultiPBattle Screen buttons 800-600.spr",3);require(!widget.loadAssets(root,&error)&&widget.setup().players[0].portraitIndex==11,"short SPR sheet retains model/art");menu_sprite_fixture::shared(root);require(widget.loadAssets(root,&error),"complete sheet reload");require(widget.setSetup(setup,&error),"text-only caller fallback");
     for(int i=0;i<17;++i){require(slider(i+1)->minimum()==minimum[i]&&slider(i+1)->maximum()==maximum[i]&&slider(i+1)->singleStep()==step[i],"configured ranges and steps");slider(i+1)->setValue(maximum[i]);require((i<13?label(28+i):label(5+i-13))->text()==QString::number(maximum[i]),"live numeric labels");}
     button("singlePlayerStart")->click();require(starts==1&&submitted.mapId=="opaque-map"&&submitted.values[3]==3000&&submitted.values[8]==20&&submitted.players[3].handicap==50,"typed complete setup request");
     slider(1)->setValue(56);require(slider(1)->value()==60&&widget.setup().values[0]==60,"pointer values snap to step");slider(14)->setValue(7);require(slider(14)->value()==5&&label(5)->text()=="5","handicap snap and label");
