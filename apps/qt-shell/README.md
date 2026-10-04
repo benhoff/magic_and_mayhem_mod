@@ -320,3 +320,13 @@ Preview Region Entry with a sample Celtic region and installed illustration:
 Four difficulty choices emit typed entry intent; G/S/C stand for Grimoire,
 Spellbox and Character. Cancel returns to Main Menu. Campaign flow and those
 engine screens remain pending. See [scope and validation](../../research/runtime/region-entry-qt.md).
+
+Preview Character Improvement with sample stats and supplied upgrade costs:
+
+```bash
+./tools/run-qt-shell.sh --character-screen
+```
+
+Region Entry's Character button also opens it. Plus purchases an increment;
+minus undoes a draft purchase. OK accepts locally; Cancel restores the snapshot.
+Engine progression remains pending. See [scope and validation](../../research/runtime/character-screen-qt.md).

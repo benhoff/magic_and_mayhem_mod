@@ -124,3 +124,8 @@ Region Entry now has a [native region/difficulty preview](../runtime/region-entr
 with supplied region IDs, per-region original illustrations, four exclusive
 difficulty choices and text Grimoire/Spellbox/Character intent buttons.
 Campaign flow, unlocking and engine entry remain unconnected.
+
+Character Screen now has a [native improvement preview](../runtime/character-screen-qt.md)
+with supplied character stats/cost schedules, configured increments, bounded
+local purchases/refunds and OK/Cancel. Region Entry's Character button opens it.
+Engine pricing, historical refunds and campaign persistence remain unconnected.
