@@ -433,6 +433,11 @@ bool MenuPreview::openRegionEntry(const QString& root,QString* error) {
             statusBar()->showMessage(QString("Enter %1 at %2 — campaign engine adapter pending.").arg(request.regionId,QString::fromLatin1(name)));
         });
         connect(regionEntry_,&RegionEntryWidget::auxiliaryRequested,this,[this](auto action) {
+            if (action==RegionEntryWidget::AuxiliaryAction::Character) {
+                QString error;
+                if (!openCharacterScreen(assetRoot_,&error)) statusBar()->showMessage(QString("Character preview failed: %1").arg(error));
+                return;
+            }
             const auto name=QMetaEnum::fromType<RegionEntryWidget::AuxiliaryAction>().valueToKey(int(action));
             statusBar()->showMessage(QString("%1 selected — campaign engine adapter pending.").arg(QString::fromLatin1(name)));
         });
@@ -440,4 +445,32 @@ bool MenuPreview::openRegionEntry(const QString& root,QString* error) {
     if (!regionEntry_->loadAssets(root,error)) return false;
     screens_->setCurrentWidget(regionEntry_);regionEntry_->focusFirstControl();setWindowTitle(regionEntry_->windowTitle());
     statusBar()->showMessage("Sample region; Enter and icon actions emit intent. Cancel returns to Main Menu.");return true;
+}
+
+bool MenuPreview::openCharacterScreen(const QString& root,QString* error) {
+    if (!characterScreen_) {
+        characterScreen_=new CharacterScreenWidget(screens_);screens_->addWidget(characterScreen_);
+        CharacterScreenWidget::Character sample;sample.id="sample-character";sample.name="Sample character";
+        sample.portraitText="Portrait";sample.rating="Sample apprentice";sample.experiencePoints=100;
+        const std::array<int,6> values{50,100,10,1,1,1};
+        for (int i=0;i<6;++i) {sample.stats[i].value=values[i];sample.stats[i].upgradeCosts={5,10,15,20};}
+        characterScreen_->setCharacter(sample);
+        connect(characterScreen_,&CharacterScreenWidget::cancelled,this,&MenuPreview::returnFromCharacterScreen);
+        connect(characterScreen_,&CharacterScreenWidget::characterAccepted,this,[this](const auto& request) {
+            returnFromCharacterScreen();
+            statusBar()->showMessage(QString("Character %1 accepted locally (%2 experience left) — progression adapter pending.").arg(request.characterId).arg(request.remainingExperience));
+        });
+    }
+    if (!characterScreen_->loadAssets(root,error)) return false;
+    characterReturnsToRegion_=regionEntry_ && screens_->currentWidget()==regionEntry_;
+    screens_->setCurrentWidget(characterScreen_);characterScreen_->focusFirstControl();setWindowTitle(characterScreen_->windowTitle());
+    statusBar()->showMessage("Sample upgrade costs. + purchases; − undoes draft purchases. OK accepts locally; Cancel restores.");return true;
+}
+void MenuPreview::returnFromCharacterScreen() {
+    if (!characterReturnsToRegion_) {
+        showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);return;
+    }
+    screens_->setCurrentWidget(regionEntry_);setWindowTitle(regionEntry_->windowTitle());
+    regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary2")->setFocus(Qt::OtherFocusReason);
+    statusBar()->showMessage("Region Entry preview. Character edits are local; campaign engine adapter pending.");
 }

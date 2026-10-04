@@ -12,6 +12,7 @@
 #include "single_player_battle_widget.hpp"
 #include "multiplayer_lobby_widget.hpp"
 #include "region_entry_widget.hpp"
+#include "character_screen_widget.hpp"
 class MainMenuWidget;
 class QuickBattleMenuWidget;
 class QStackedWidget;
@@ -33,7 +34,9 @@ public:
     bool openSinglePlayerBattle(const QString& root, QString* error = nullptr);
     bool openMultiplayerLobby(const QString& root, MultiplayerLobbyWidget::Mode mode, QString* error = nullptr);
     bool openRegionEntry(const QString& root, QString* error = nullptr);
+    bool openCharacterScreen(const QString& root, QString* error = nullptr);
 private:
+    void returnFromCharacterScreen();
     void returnFromMapSelection();
     void returnFromPreferences();
     void returnFromSaveGame();
@@ -63,5 +66,7 @@ private:
     QString hostLobbyContext_, joinLobbyContext_;
     MultiplayerSetupWidget::Request hostLobbyRequest_, joinLobbyRequest_;
     RegionEntryWidget* regionEntry_ = nullptr;
+    CharacterScreenWidget* characterScreen_ = nullptr;
+    bool characterReturnsToRegion_ = false;
     QString assetRoot_;
 };

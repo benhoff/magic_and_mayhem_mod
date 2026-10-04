@@ -71,8 +71,10 @@ letterboxing; long titles shrink within their configured rectangle.
 ## Preview orchestration and fidelity
 
 `--region-entry` supplies a sample Celtic region with the installed first
-Celtic illustration. Enter and G/S/C report adapter-pending intent and remain
-on the preview. Cancel returns to Main Menu and focuses New Game; reopening
+Celtic illustration. Enter and G/S report adapter-pending intent and remain
+on the preview. C opens the [native Character Improvement preview](character-screen-qt.md);
+its OK/Cancel return here with region/difficulty retained. Region Cancel returns
+to Main Menu and focuses New Game; reopening
 retains local difficulty. Main Menu's New Game action remains unconnected:
 this preview does not establish the campaign flow or skip character creation.
 
