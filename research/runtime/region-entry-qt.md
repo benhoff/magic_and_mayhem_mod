@@ -72,7 +72,7 @@ letterboxing; long titles shrink within their configured rectangle.
 ## Preview orchestration and fidelity
 
 `--region-entry` supplies a sample Celtic region with the installed first
-Celtic illustration. Enter and G/S report adapter-pending intent and remain
+Celtic illustration. Enter and Spellbox report adapter-pending intent and remain
 on the preview. C opens the [native Character Improvement preview](character-screen-qt.md);
 its OK/Cancel return here with region/difficulty retained. Region Cancel returns
 to Main Menu and focuses New Game; reopening
@@ -100,3 +100,5 @@ Installed-art smoke and a visually inspected capture are retained at
 surrounds original-derived artifact use. Campaign selection/unlocking, region
 ID and difficulty mapping, character/spell screens and the engine command
 adapter remain outstanding.
+
+Grimoire also opens its [native installed-book reader](grimoire-qt.md); Close/Escape restores the Region caller and Grimoire icon focus.

@@ -137,3 +137,8 @@ selected face JPEGs. See [integration evidence and remaining sprite/font work](.
 Character gems/adjustment buttons, Region Entry icons and setup/lobby portraits,
 colour tokens and boot controls now render decoded SPR art. Explicit artwork
 indices remain separate from engine IDs. See [SPR integration and boundaries](../runtime/menu-sprite-integration.md).
+
+Grimoire now has an [installed-book preview](../runtime/grimoire-qt.md) with eight
+chapter contents, bounded text parsing, entry/page browsing and original JPEG/SPR
+art. Region Entry's Grimoire icon opens it; campaign knowledge/research and dynamic
+stat bindings remain unconnected. Its [text format](grimoire-text.md) is documented.

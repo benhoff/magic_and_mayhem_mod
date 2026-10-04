@@ -433,6 +433,11 @@ bool MenuPreview::openRegionEntry(const QString& root,QString* error) {
             statusBar()->showMessage(QString("Enter %1 at %2 — campaign engine adapter pending.").arg(request.regionId,QString::fromLatin1(name)));
         });
         connect(regionEntry_,&RegionEntryWidget::auxiliaryRequested,this,[this](auto action) {
+            if (action==RegionEntryWidget::AuxiliaryAction::Grimoire) {
+                QString error;
+                if (!openGrimoire(assetRoot_,&error)) statusBar()->showMessage(QString("Grimoire preview failed: %1").arg(error));
+                return;
+            }
             if (action==RegionEntryWidget::AuxiliaryAction::Character) {
                 QString error;
                 if (!openCharacterScreen(assetRoot_,&error)) statusBar()->showMessage(QString("Character preview failed: %1").arg(error));
@@ -473,4 +478,21 @@ void MenuPreview::returnFromCharacterScreen() {
     screens_->setCurrentWidget(regionEntry_);setWindowTitle(regionEntry_->windowTitle());
     regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary2")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Region Entry preview. Character edits are local; campaign engine adapter pending.");
+}
+
+bool MenuPreview::openGrimoire(const QString& root,QString* error) {
+    if (!grimoire_) {
+        grimoire_=new GrimoireWidget(screens_);screens_->addWidget(grimoire_);
+        connect(grimoire_,&GrimoireWidget::closed,this,&MenuPreview::returnFromGrimoire);
+        connect(grimoire_,&GrimoireWidget::navigationFailed,this,[this](const QString& error){statusBar()->showMessage(QString("Grimoire page failed: %1").arg(error));});
+    }
+    if (!grimoire_->loadAssets(root,error)) return false;
+    grimoireReturnsToRegion_=regionEntry_ && screens_->currentWidget()==regionEntry_;
+    screens_->setCurrentWidget(grimoire_);setWindowTitle(grimoire_->windowTitle());grimoire_->focusFirstControl();
+    statusBar()->showMessage("Offline Grimoire: chapter contents and installed entries. Campaign knowledge and dynamic stats remain pending.");return true;
+}
+void MenuPreview::returnFromGrimoire() {
+    if (!grimoireReturnsToRegion_) {showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);return;}
+    screens_->setCurrentWidget(regionEntry_);setWindowTitle(regionEntry_->windowTitle());regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary0")->setFocus(Qt::OtherFocusReason);
+    statusBar()->showMessage("Region Entry preview. Campaign engine adapter pending.");
 }

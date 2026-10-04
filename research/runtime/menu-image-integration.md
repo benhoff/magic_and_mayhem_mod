@@ -30,8 +30,8 @@ asset appearance; bar clipping, JPEG blue-key threshold and portrait placement
 are native presentation choices. Original transparency, placement and live
 callback equivalence have not been validated. SPR-backed Character/Region controls and setup/lobby portraits/colours now have
 [separate integration evidence](menu-sprite-integration.md). SFT typography and
-other sprite controls remain pending. BMP/JPEG loaders alone do not decode sprite controls. Grimoire/Spellbox/Realm Viewer image
-assets belong to screens not yet implemented in the menu preview.
+other sprite controls remain pending. BMP/JPEG loaders alone do not decode sprite controls. Grimoire page images now have [reader evidence](grimoire-qt.md). Spellbox/Realm
+Viewer image assets belong to screens not yet implemented in the menu preview.
 
 ## Validation
 
