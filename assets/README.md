@@ -11,7 +11,8 @@ cmake --build working/build/assets --parallel 4
 ctest --test-dir working/build/assets --output-on-failure
 ```
 
-Requires Qt 6.8+ Core, CMake, and a C++17 compiler. No Wine, display server,
+Requires Qt 6.8+ Core, CMake, and a C++17 compiler; tests/validation also require
+Python 3. No Wine, display server,
 application event loop, game installation, or original artifacts are needed for
 the fixture tests. Test fixtures use QTemporaryDir and are removed on exit.
 
@@ -85,6 +86,78 @@ failure counts, premature EOF after a size query, and size/seek failures.
 Allocation-limit rejection is checked, but actual memory exhaustion is not
 forced. Real device failures and descriptor exhaustion are not induced.
 
-Next: chunks 4 and 5 compare installed raw bytes and connect the existing WAV
-pipeline. This increment reads only temporary fixtures and does not launch or
-hook the game.
+## Raw installed-file comparison
+
+Chunk 4 provides `mnm-asset-compare` and an installed-validation runner:
+
+```bash
+python3 tools/test-asset-files.py
+```
+
+The runner verifies the original manifest before/after (also on failures),
+builds the assets targets, runs the three CTests, inventories all regular loose
+files in `working/game-nocd`, and compares them against independent binary
+reads of the same files. Alternating requests use mixed-case relative Windows
+paths or mixed-case `C:\\MagicMayhem` paths through an explicit alias. It hashes
+both inventories before/after the full run and fails on mutation or differences.
+This checks interface fidelity; it does not certify clean-media provenance or
+decode proprietary formats. No game is launched or hooked.
+
+Use `--root DIRECTORY --reference-root REFERENCE_DIRECTORY` to compare a
+different installation/reference pair. Their union of relative filenames is
+compared, so either side's missing files cause failure. The runner rejects
+symlinks and non-ASCII relative names rather than silently omitting them.
+Fixture tests exercise the resolver's supported symlink behavior separately.
+Treat installations as stable during comparison.
+
+Evidence is generated under `working/tests/asset-files/run-*/`:
+
+- `manifest.json`: requests paired with absolute host reference paths.
+- `comparison.json`: per-asset sizes, first differing offset, SHA-256 hashes,
+  seek counts, completion flags, input stability, and errors; aggregate counts.
+- `report.json`: full-run input inventories, binary hash, validation scope,
+  file/byte counts, and overall input stability.
+- `original-before.log` / `original-after.log`: immutable-artifact checks.
+- `comparison.stderr`: CLI failure diagnostics.
+
+The comparison CLI also accepts a standalone JSON manifest, for example:
+
+```json
+[{"path":"sOuNdS\\Spell click.wav","reference":"/absolute/reference/Sounds/Spell click.wav"}]
+```
+
+```bash
+working/build/assets/mnm-asset-compare --root working/game-nocd \
+  --manifest working/tests/assets-manifest.json \
+  --report working/tests/assets-comparison.json
+```
+
+`--prefix PREFIX` is repeatable. Omit `--report` for JSON on stdout. Reports
+cannot overwrite the installation tree, manifest, or listed references. The
+CLI does not independently invoke repository original-manifest verification;
+use the runner for experiments consuming original artifacts.
+
+References are read using binary `std::ifstream`, independently of AssetStore.
+Sequential reads compare every byte in 32 KiB blocks and hash the interface's
+output. A second pass seeks through every block in reverse order and compares
+all bytes again, including short final blocks. It explicitly seeks to EOF and
+checks the next read. Empty files also pass through the EOF check. Memory is
+bounded by fixed-size byte buffers plus manifest/report metadata.
+
+Exit codes: 0 means every pair is equal and stable; 1 means stable differences;
+2 means errors, changed inputs, invalid configuration, or report-writing failure.
+Completed rows report `equal`, `different`, or `changed`; failed rows report
+`error` with structured category/operation/path/detail. First differing offsets
+are zero-based and include the first missing byte for length mismatches; equal
+rows use JSON null. Input stability is independent of whether interface bytes
+match the source. Snapshot checks cannot detect a transient change fully
+reverted between reads, and do not provide a transactional filesystem snapshot.
+
+The Python comparison CTest verifies hashes against Python hashlib, equality,
+binary and empty files, first differences across block boundaries, unequal
+lengths, earliest differences with reverse reads, missing files/references,
+ambiguous paths, invalid manifests, exit codes, and protected output paths.
+Concurrent mutation is detected by implementation guards but is not forced in
+fixture tests. See [recorded installed validation](../research/formats/asset-file-comparison.md).
+
+Next: chunk 5 connects the verified interface to the existing WAV pipeline.

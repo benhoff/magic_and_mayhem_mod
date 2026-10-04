@@ -3,7 +3,8 @@
 ## Status, scope, and evidence
 
 Chunk 1 is this design contract. Chunks 2 and 3's path resolver and read-only
-file access are implemented in `assets/`; installed-asset validation is pending. These are
+file access are implemented in `assets/`; chunk 4 validates installed raw bytes.
+These are
 native design decisions, not discovered original-game
 filesystem semantics. Compatibility with the original loader's path encoding,
 supported paths, and failure behavior remains unverified.
@@ -44,7 +45,8 @@ Both asset CTests pass with the same Qt/compiler versions. Temporary binary
 fixtures validate reads, seeks, sizes, ownership, limits, denied opens, and
 truncation; controlled streams validate partial/error propagation in generic
 helpers. Confidence: high for tested native behavior. Installed-file byte
-comparisons, native loader integration, and live-game behavior remain pending.
+comparisons are now recorded in [raw comparison evidence](asset-file-comparison.md);
+native loader integration and live-game behavior remain pending.
 
 ## Installation root and path rules
 

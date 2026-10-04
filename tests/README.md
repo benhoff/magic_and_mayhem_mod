@@ -261,6 +261,13 @@ partial reads and EOF, file/store/buffer ownership, allocation limits, denied
 opens, truncation, and controlled helper failure paths.
 See [asset test scope](../assets/README.md).
 
+CTest `asset-byte-comparison` validates the raw comparison CLI with temporary
+fixtures and independent Python hashes. `python3 tools/test-asset-files.py`
+then compares every installed loose file through sequential/seek reads,
+records input hashes and inventories, and verifies original artifacts before
+and after. It produces no decoded PCM or live-game evidence. See
+[installed byte-comparison evidence](../research/formats/asset-file-comparison.md).
+
 `python3 tools/test-audio-buffers.py` exports hash-guarded static audio evidence,
 builds the native buffer model, runs lifecycle tests, and compares uploaded PCM
 against Python's independent WAV reader for every installed sound. It verifies
