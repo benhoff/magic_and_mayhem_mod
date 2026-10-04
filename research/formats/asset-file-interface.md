@@ -4,7 +4,7 @@
 
 Chunk 1 is this design contract. Chunks 2 and 3's path resolver and read-only
 file access are implemented in `assets/`; chunk 4 validates installed raw bytes.
-These are
+Chunk 5 connects the offline native WAV loading/upload path. These are
 native design decisions, not discovered original-game
 filesystem semantics. Compatibility with the original loader's path encoding,
 supported paths, and failure behavior remains unverified.
@@ -46,7 +46,8 @@ fixtures validate reads, seeks, sizes, ownership, limits, denied opens, and
 truncation; controlled streams validate partial/error propagation in generic
 helpers. Confidence: high for tested native behavior. Installed-file byte
 comparisons are now recorded in [raw comparison evidence](asset-file-comparison.md);
-native loader integration and live-game behavior remain pending.
+native WAV loader integration is now implemented; live-game behavior remains
+pending. See [PCM loading and integration evidence](pcm-wav-loading.md).
 
 ## Installation root and path rules
 

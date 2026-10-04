@@ -160,4 +160,8 @@ ambiguous paths, invalid manifests, exit codes, and protected output paths.
 Concurrent mutation is detected by implementation guards but is not forced in
 fixture tests. See [recorded installed validation](../research/formats/asset-file-comparison.md).
 
-Next: chunk 5 connects the verified interface to the existing WAV pipeline.
+Chunk 5 connects this interface to `audio::loadWave(AssetFile&)` and the offline
+reconstructed static-upload pipeline. The audio build also runs these asset
+tests; installed WAV checks retain independent Python PCM comparisons. See
+[audio usage](../audio/README.md). Chunk 6 completes the broader workflow and
+documentation review.
