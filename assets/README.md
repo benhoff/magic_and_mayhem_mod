@@ -249,3 +249,15 @@ See the [API policies, inspector and validation](../research/formats/persistence
 These are offline readers; real save compatibility, writers, world restoration
 and application integration remain unvalidated. Animation and audio loaders
 remain separate services.
+
+## WZD wizard definitions
+
+`mnm-wizard-loader` exposes `decodeWizard`/`loadWizard` in `wizard.hpp` for
+owned typed stats, AI weights, sparse starting spells/objects/magic items,
+item flags and action records. Missing optional fields stay absent; exact source
+bytes and unknown properties are retained. `mnm-wizard-inspect ROOT PATH.wzd`
+prints all decoded values and the source hash as JSON.
+
+See [WZD schema, policies and validation](../research/formats/wzd-native-loading.md).
+All 101 installed files have offline reference comparisons. Original defaults,
+resource binding and live gameplay application remain separate milestones.
