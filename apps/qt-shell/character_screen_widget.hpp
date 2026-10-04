@@ -20,6 +20,7 @@ public:
     };
     struct Character {
         QString id, name, portraitText, rating;
+        int portraitIndex = -1; // -1: text fallback; 0..2: supplied installed face selection.
         int experiencePoints = 0;
         std::array<Stat,6> stats{};
     };
@@ -55,6 +56,7 @@ private:
     std::array<int,6> purchased_{};
     std::array<int,6> minimum_{},maximum_{200,800,40,7,7,7},increment_{5,20,1,1,1,1};
     QImage background_;
+    std::array<QImage,3> faces_{};
     std::array<QLabel*,17> labels_{};
     std::array<QRect,17> labelRectangles_{};
     QLabel* portrait_ = nullptr;

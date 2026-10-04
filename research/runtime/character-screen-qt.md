@@ -45,14 +45,24 @@ unobserved. The preview uses text +/− at those configured rectangles.
 Sprite bars provide `Rect2=270,360/410/460,0,0`: these are anchors with zero
 right/bottom fields, not valid rectangular areas. The native text replacements
 are 350x30 at anchor+(0,15), aligned with the matching rows. This extent is native
-policy. Numeric progress bars replace the three original stat bar bitmaps and
-colour behavior. The text portrait occupies native `(25,50,180,150)`, inferred
-from the unused left illustration area; there is no portrait rectangle in this
-CFG. Original face JPGs and sprite/bitmap bars are not decoded into the widget.
+policy. The three configured STATBAR `Text` BMPs now supply the original bar
+textures. Installed 800x600 textures are 700x20, with a coloured 350x20 left
+half and grey 350x20 right half; the widget clips the coloured half by the
+current value and draws the grey half for the remainder. This rendering policy
+is supported by asset inspection, not an observed original callback.
+
+A caller-supplied `portraitIndex` selects WizardFace0/1/2.JPG; -1 retains text
+fallback. Installed faces are 400x300 with a saturated blue backdrop. Native
+presentation keys pixels with R<40, G<40, B>200 transparent and places the full
+image at `(0,0,400,300)`, scaled with the canvas. The face aligns with the left
+background frame in the inspected preview. There is no portrait rectangle in
+this CFG; placement, blue-key threshold and face-to-progression mapping are
+native policies pending original comparison. See [image integration](menu-image-integration.md).
+The text fallback occupies `(25,50,180,150)`.
 
 ## Supplied snapshot, edits and requests
 
-`Character` carries an opaque ID, display name, portrait text, optional rating,
+`Character` carries an opaque ID, display name, portrait text/index, optional rating,
 experience points and six `Stat` records. Each Stat supplies its current value,
 an ordered vector of costs for successive purchases from that snapshot and
 upgrade availability. IDs are never interpreted as paths or engine addresses.
@@ -93,8 +103,8 @@ its region/difficulty. Standalone `--character-screen` returns to Main Menu.
 Asset failure retains the caller and local snapshots.
 
 Original background, labels and rectangular control positions are reused.
-System serif fonts, text portrait/buttons/talisman counts, numeric stat bars,
-colour styling and scaled letterboxing remain approximations. No original
+System serif fonts, text buttons/talisman counts, portrait transparency/placement,
+bar clipping and scaled letterboxing remain approximations. No original
 screenshot equivalence or live progression validation is claimed. See
 [visual fidelity](battle-results-qt.md#visual-fidelity).
 
@@ -112,5 +122,5 @@ sprite anchors, reload preservation, keyboard input, geometry/background and
 Region/standalone/error navigation. Installed-asset smoke and visual capture
 are retained at `working/tests/character-screen-preview/preview.png`.
 Original-manifest verification surrounds original-derived artifact use.
-Original pricing/indexing/refund rules, campaign snapshots, real portraits/bars,
+Original pricing/indexing/refund rules, campaign snapshots, portrait progression mapping,
 character persistence and the engine command adapter remain outstanding.

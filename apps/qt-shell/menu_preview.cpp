@@ -451,7 +451,7 @@ bool MenuPreview::openCharacterScreen(const QString& root,QString* error) {
     if (!characterScreen_) {
         characterScreen_=new CharacterScreenWidget(screens_);screens_->addWidget(characterScreen_);
         CharacterScreenWidget::Character sample;sample.id="sample-character";sample.name="Sample character";
-        sample.portraitText="Portrait";sample.rating="Sample apprentice";sample.experiencePoints=100;
+        sample.portraitText="Sample wizard portrait";sample.portraitIndex=0;sample.rating="Sample apprentice";sample.experiencePoints=100;
         const std::array<int,6> values{50,100,10,1,1,1};
         for (int i=0;i<6;++i) {sample.stats[i].value=values[i];sample.stats[i].upgradeCosts={5,10,15,20};}
         characterScreen_->setCharacter(sample);

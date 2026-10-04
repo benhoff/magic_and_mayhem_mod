@@ -5,9 +5,34 @@
 #include <QLabel>
 #include <QPainter>
 #include <QProgressBar>
+#include <QPixmap>
 #include <QPushButton>
 #include <stdexcept>
 namespace {
+class TexturedStatBar final : public QProgressBar {
+public:
+    explicit TexturedStatBar(QWidget* parent):QProgressBar(parent) {}
+    QImage texture;
+protected:
+    void paintEvent(QPaintEvent* event) override {
+        if (texture.isNull()) {QProgressBar::paintEvent(event);return;}
+        QPainter painter(this);painter.setRenderHint(QPainter::SmoothPixmapTransform);
+        const int half=texture.width()/2;
+        painter.drawImage(rect(),texture,QRect(half,0,half,texture.height()));
+        const int filled=qRound(width()*double(value()-minimum())/(maximum()-minimum()));
+        painter.save();painter.setClipRect(QRect(0,0,filled,height()));
+        painter.drawImage(rect(),texture,QRect(0,0,half,texture.height()));painter.restore();
+    }
+};
+QImage keyedPortrait(const QImage& source) {
+    auto image=source.convertToFormat(QImage::Format_ARGB32);
+    // Native presentation policy: remove JPEG's saturated blue backdrop, including codec noise.
+    for (int y=0;y<image.height();++y) {
+        auto* row=reinterpret_cast<QRgb*>(image.scanLine(y));
+        for (int x=0;x<image.width();++x) if (qRed(row[x])<40 && qGreen(row[x])<40 && qBlue(row[x])>200) row[x]=0;
+    }
+    return image;
+}
 int number(const QString& text) {
     bool ok=false;const int value=text.toInt(&ok);
     if (!ok || value<0 || value>1000000) throw std::runtime_error("Invalid character stat bound or increment");
@@ -37,9 +62,9 @@ CharacterScreenWidget::CharacterScreenWidget(QWidget* parent):QWidget(parent) {
         labels_[i]->setStyleSheet("color: #3e2313; background: transparent;");labels_[i]->setWordWrap(i==1);
     }
     portrait_=new QLabel(this);portrait_->setObjectName("characterPortrait");portrait_->setTextFormat(Qt::PlainText);portrait_->setAlignment(Qt::AlignCenter);portrait_->setWordWrap(true);
-    portrait_->setStyleSheet("color: #3e2313; background: transparent;");
+    portrait_->setStyleSheet("color: #3e2313; background: transparent;");portrait_->setAttribute(Qt::WA_TransparentForMouseEvents);portrait_->lower();
     for (int i=0;i<3;++i) {
-        bars_[i]=new QProgressBar(this);bars_[i]->setObjectName(QString("characterStatBar%1").arg(i));bars_[i]->setRange(minimum_[i],maximum_[i]);
+        bars_[i]=new TexturedStatBar(this);bars_[i]->setObjectName(QString("characterStatBar%1").arg(i));bars_[i]->setRange(minimum_[i],maximum_[i]);
         bars_[i]->setFormat("%v / %m");bars_[i]->setStyleSheet("QProgressBar { color: #3e2313; background: transparent; border: 1px solid #ac915a; text-align: center; } QProgressBar::chunk { background: #ac915a; }");
         talismans_[i]=new QLabel(this);talismans_[i]->setObjectName(QString("characterTalisman%1").arg(i));talismans_[i]->setAlignment(Qt::AlignCenter);
         talismans_[i]->setStyleSheet("color: #3e2313; background: transparent;");
@@ -61,7 +86,7 @@ CharacterScreenWidget::CharacterScreenWidget(QWidget* parent):QWidget(parent) {
 bool CharacterScreenWidget::validCharacter(const Character& character,const std::array<int,6>& minimum,const std::array<int,6>& maximum,const std::array<int,6>& increment) const {
     if (character.id.isEmpty()!=character.name.isEmpty() || !plainText(character.name,256) ||
         (!character.name.isEmpty() && character.name.trimmed().isEmpty()) || !plainText(character.portraitText,64) || !plainText(character.rating,128) ||
-        character.experiencePoints<0 || character.experiencePoints>1000000000) return false;
+        character.portraitIndex<-1 || character.portraitIndex>2 || character.experiencePoints<0 || character.experiencePoints>1000000000) return false;
     for (int i=0;i<6;++i) {
         const auto& stat=character.stats[i];
         if (stat.value<minimum[i] || stat.value>maximum[i] || stat.upgradeCosts.size()>1000 || stat.upgradeCosts.size()>(maximum[i]-stat.value)/increment[i]) return false;
@@ -88,6 +113,8 @@ bool CharacterScreenWidget::loadAssets(const QString& root,QString* error) {
                 if (entry.value("Text")!="\"\"") throw std::runtime_error("Invalid character rating role");
             } else texts[i]=mnm::ui::textLabel(assets.strings,entry.value("Text"));
         }
+        std::array<QImage,3> textures,faces;
+        for (int i=0;i<3;++i) faces[i]=keyedPortrait(mnm::ui::loadMenuImage(root,QString("Interface/CharacterScreen/800x600/WizardFace%1.JPG").arg(i),QSize(400,300)));
         std::array<QRect,3> bars,talismans;std::array<int,6> minimum,maximum,increment;
         const auto steps=assets.layout.value("STEPS_COSTS");
         const std::array<QString,6> incrementKeys{"Mana_IncrementAmount","Health_IncrementAmount","Control_IncrementAmount","Talisman_IncrementAmount","Talisman_IncrementAmount","Talisman_IncrementAmount"};
@@ -95,7 +122,13 @@ bool CharacterScreenWidget::loadAssets(const QString& root,QString* error) {
             const auto entry=assets.layout.value(QString(i<3?"STATBAR_%1":"SPRITEBAR_%1").arg(i%3+1));
             minimum[i]=number(entry.value("minValue"));maximum[i]=number(entry.value("maxValue"));increment[i]=number(steps.value(incrementKeys[i]));
             if (minimum[i]>=maximum[i] || increment[i]==0 || increment[i]>maximum[i]-minimum[i]) throw std::runtime_error("Invalid character stat domain");
-            if (i<3) bars[i]=mnm::ui::rectangle(entry.value("Rect2"));
+            if (i<3) {
+                bars[i]=mnm::ui::rectangle(entry.value("Rect2"));
+                const auto name=entry.value("Text");
+                if (name.isEmpty() || name.contains('/') || name.contains('\\') || name.contains(':') || !name.endsWith(".BMP",Qt::CaseInsensitive))
+                    throw std::runtime_error("Invalid character stat texture filename");
+                textures[i]=mnm::ui::loadMenuImage(root,"Interface/CharacterScreen/800x600/"+name,QSize(bars[i].width()*2,bars[i].height()));
+            }
             else {
                 talismans[i-3]=talismanRectangle(entry.value("Rect2"));
                 if (entry.value("SpriteIndexes")!=QString("%1,%2").arg(i-3).arg(i)) throw std::runtime_error("Invalid character talisman role");
@@ -113,6 +146,8 @@ bool CharacterScreenWidget::loadAssets(const QString& root,QString* error) {
         if (!validCharacter(accepted_,minimum,maximum,increment)) throw std::runtime_error("Character snapshot outside configured domains");
         for (int i=0;i<6;++i) if (purchased_[i] && increment[i]!=increment_[i]) throw std::runtime_error("Character increment changed during pending edits");
         const auto draft=draftRequest();for (int i=0;i<6;++i) if (draft.values[i]>maximum[i]) throw std::runtime_error("Character draft outside configured domains");
+        faces_=faces;
+        for (int i=0;i<3;++i) static_cast<TexturedStatBar*>(bars_[i])->texture=textures[i];
         background_=assets.background;labelRectangles_=rectangles;barRectangles_=bars;talismanRectangles_=talismans;buttonRectangles_=buttons;
         minimum_=minimum;maximum_=maximum;increment_=increment;okRectangle_=okRect;cancelRectangle_=cancelRect;ok_->setText(okText);cancel_->setText(cancelText);
         for (int i=0;i<17;++i) {labels_[i]->setText(texts[i]);labels_[i]->setAlignment(alignments[i]);}
@@ -130,7 +165,7 @@ CharacterScreenWidget::Request CharacterScreenWidget::draftRequest() const {
 }
 void CharacterScreenWidget::populate() {
     const auto draft=draftRequest();labels_[0]->setText(accepted_.name.isEmpty()?"Character":accepted_.name);labels_[8]->setText(QString::number(draft.remainingExperience));
-    labels_[16]->setText(accepted_.rating);labels_[16]->setVisible(!accepted_.rating.isEmpty());portrait_->setText(accepted_.portraitText);portrait_->setVisible(!accepted_.portraitText.isEmpty());
+    labels_[16]->setText(accepted_.rating);labels_[16]->setVisible(!accepted_.rating.isEmpty());portrait_->setText(accepted_.portraitText);portrait_->setVisible(accepted_.portraitIndex>=0 || !accepted_.portraitText.isEmpty());
     for (int i=0;i<6;++i) {
         const auto& stat=accepted_.stats[i];const int n=purchased_[i];const bool priced=n<stat.upgradeCosts.size();
         labels_[10+i]->setText(priced?QString::number(stat.upgradeCosts[n]):"—");
@@ -165,7 +200,11 @@ void CharacterScreenWidget::arrange() {
         while (i!=1 && font.pixelSize()>10 && QFontMetrics(font).horizontalAdvance(labels_[i]->text())>labels_[i]->width()) font.setPixelSize(font.pixelSize()-1);
         labels_[i]->setFont(font);
     }
-    font.setPixelSize(qMax(10,qRound(20*scale)));portrait_->setGeometry(map(QRect(25,50,180,150)));portrait_->setFont(font);
+    font.setPixelSize(qMax(10,qRound(20*scale)));portrait_->setGeometry(map(accepted_.portraitIndex>=0?QRect(0,0,400,300):QRect(25,50,180,150)));portrait_->setFont(font);
+    if (accepted_.portraitIndex>=0 && !faces_[accepted_.portraitIndex].isNull()) {
+        portrait_->setPixmap(QPixmap::fromImage(faces_[accepted_.portraitIndex]).scaled(portrait_->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
+        portrait_->setAccessibleName(accepted_.portraitText.isEmpty()?accepted_.name:accepted_.portraitText);
+    } else {portrait_->setPixmap(QPixmap());portrait_->setText(accepted_.portraitText);}
     for (int i=0;i<3;++i) {talismans_[i]->setGeometry(map(talismanRectangles_[i]));talismans_[i]->setFont(font);bars_[i]->setGeometry(map(barRectangles_[i]));auto small=font;small.setPixelSize(qMax(10,qRound(14*scale)));bars_[i]->setFont(small);}
     for (int i=0;i<12;++i) {buttons_[i]->setGeometry(map(buttonRectangles_[i]));buttons_[i]->setFont(font);}
     font.setPixelSize(qMax(10,qRound(26*scale)));ok_->setFont(font);cancel_->setFont(font);ok_->setGeometry(map(okRectangle_));cancel_->setGeometry(map(cancelRectangle_));

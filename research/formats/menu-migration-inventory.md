@@ -129,3 +129,7 @@ Character Screen now has a [native improvement preview](../runtime/character-scr
 with supplied character stats/cost schedules, configured increments, bounded
 local purchases/refunds and OK/Cancel. Region Entry's Character button opens it.
 Engine pricing, historical refunds and campaign persistence remain unconnected.
+
+All implemented menu background images now use the native BMP/JPEG loader APIs.
+Character Screen also renders its configured BMP bar textures and explicitly
+selected face JPEGs. See [integration evidence and remaining sprite/font work](../runtime/menu-image-integration.md).
