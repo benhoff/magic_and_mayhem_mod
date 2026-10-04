@@ -67,6 +67,12 @@ The default viewport presents captured engine frames through an OpenGL 3.3
 texture shader. A native Wine-window embedding backend remains available.
 The host can be x86-64 while the injected frame bridge and game are PE32 i386.
 
+See [project architecture](../../docs/architecture.md) for the proposed separation
+of QWidget presentation, session orchestration, and legacy adapters. The
+[main-menu migration assessment](../../research/runtime/main-menu-qt-migration.md)
+records the remaining integration work; those boundaries are not yet fully
+extracted from the current shell.
+
 ## Build and open
 
 Requires CMake, a C++17 compiler, Qt 6.8+ Widgets / OpenGLWidgets / OpenGL / Multimedia
