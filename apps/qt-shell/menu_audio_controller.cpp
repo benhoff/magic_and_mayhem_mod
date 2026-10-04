@@ -3,18 +3,12 @@
 #include "main_menu_widget.hpp"
 #include "quick_battle_menu_widget.hpp"
 #include <QStackedWidget>
-#include <QSettings>
-#include <QRegularExpression>
+#include "menu_audio_preferences.hpp"
 #include <stdexcept>
 MenuAudioController::MenuAudioController(std::unique_ptr<AudioSessionOutput> output,MenuAudioCues cues,QObject* parent,QSettings* settings)
     :QObject(parent),session_(std::move(output)),cues_(cues),settings_(settings){
     if(cues.activate<=0 || cues.pageTurn<=0)throw std::invalid_argument("Menu cues require positive catalog IDs");
-    if(settings_){
-        settings_->setFallbacksEnabled(false);
-        const auto value=settings_->value("audio/v1/effectsLevel").toString();
-        bool ok=false;const int level=value.toInt(&ok);
-        if(QRegularExpression("^-?[0-9]+$").match(value).hasMatch() && ok && level>= -10000 && level<=0)soundLevel_=level;
-    }
+    soundLevel_=menuAudioPreferences::read(settings,"audio/v1/effectsLevel",-1000);
     session_.changed=[this](AudioSessionState state,const QString& message){
         if(state==AudioSessionState::running){
             error_.clear();
@@ -41,7 +35,7 @@ void MenuAudioController::attach(MenuPreview& preview){
     connect(&preview,&MenuPreview::screenReady,this,[this](QWidget* screen){bind(screen);});
     connect(&preview,&MenuPreview::screenChanged,this,[this]{clear();});
     connect(&preview,&MenuPreview::closed,this,[this]{stop();});
-    connect(&preview,&QObject::destroyed,this,[this]{stop();preview_=nullptr;bound_.clear();});
+    connect(&preview,&QObject::destroyed,this,[this]{preview_=nullptr;bound_.clear();stop();});
     if(auto* stack=preview.findChild<QStackedWidget*>())for(int i=0;i<stack->count();++i)bind(stack->widget(i));
 }
 bool MenuAudioController::start(const QString& root,mnm::reconstruction::audio::NativeSourcePathPolicy policy){
@@ -93,10 +87,8 @@ void MenuAudioController::bind(QWidget* screen){
         if(level!=soundLevel_)applySoundLevel(level);
         connect(w,&PreferencesWidget::settingsApplied,this,[this](const auto& settings){
             applySoundLevel(settings.soundLevel);
-            if(settings_){
-                settings_->setValue("audio/v1/effectsLevel",soundLevel_);settings_->sync();
-                if(settings_->status()!=QSettings::NoError && failed)failed("Could not save effects volume; accepted value remains active for this session");
-            }
+            if(!menuAudioPreferences::save(settings_,"audio/v1/effectsLevel",soundLevel_) && failed)
+                failed("Could not save effects volume; accepted value remains active for this session");
             activate();
         });
         connect(w,&PreferencesWidget::cancelled,this,cue);

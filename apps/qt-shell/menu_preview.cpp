@@ -222,6 +222,20 @@ void MenuPreview::returnFromSaveGame() {
     statusBar()->showMessage("Mini Menu preview. Cancel or Escape returns to the main menu.");
 }
 
+bool MenuPreview::setMusicVolume(int level,QString* error) {
+    if(level< -10000 || level>0){if(error)*error="Music volume outside native range";return false;}
+    if(preferences_){
+        auto settings=preferences_->settings();settings.musicLevel=level;
+        if(!preferences_->setSettings(settings,error))return false;
+    }
+    musicVolume_=level;musicVolumeSet_=true;return true;
+}
+
+void MenuPreview::setMusicStatus(const QString& text) {
+    if(!musicStatus_){musicStatus_=new QLabel(this);musicStatus_->setObjectName("menuMusicStatus");statusBar()->addPermanentWidget(musicStatus_);}
+    musicStatus_->setText(text);musicStatus_->setVisible(!text.isEmpty());
+}
+
 bool MenuPreview::setEffectsVolume(int level,QString* error) {
     if(level< -10000 || level>0){if(error)*error="Effects volume outside native range";return false;}
     if(preferences_){
@@ -237,6 +251,7 @@ bool MenuPreview::openPreferences(const QString& root, QString* error) {
         connect(preferences_,&PreferencesWidget::cancelled,this,&MenuPreview::returnFromPreferences);
         connect(preferences_,&PreferencesWidget::settingsApplied,this,[this](const PreferencesWidget::Settings& settings) {
             effectsVolume_=settings.soundLevel;effectsVolumeSet_=true;
+            musicVolume_=settings.musicLevel;musicVolumeSet_=true;
             returnFromPreferences();
             statusBar()->showMessage("Preferences accepted locally.");
         });
@@ -244,6 +259,7 @@ bool MenuPreview::openPreferences(const QString& root, QString* error) {
     if (!preferences_->loadAssets(root,error)) return false;
     auto settings=preferences_->settings();
     if(effectsVolumeSet_)settings.soundLevel=effectsVolume_;
+    if(musicVolumeSet_)settings.musicLevel=musicVolume_;
     if(!preferences_->setSettings(settings,error))return false;
     preferencesReturnToMini_=mini_ && screens_->currentWidget()==mini_;
     preferencesReturnToRealm_=realmViewer_ && screens_->currentWidget()==realmViewer_;
