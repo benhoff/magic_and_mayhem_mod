@@ -4,6 +4,22 @@
 #include <algorithm>
 #include <stdexcept>
 namespace mnm::ui {
+GrimoirePageArt loadGrimoirePageArt(const QString& root,const QString& name) {
+    GrimoirePageArt page;page.image=loadMenuImage(root,"Interface/Grimoire/800x600/"+name,QSize(400,600)).convertToFormat(QImage::Format_ARGB32);
+    QRect area;
+    for (int y=0;y<600;++y) {
+        auto* row=reinterpret_cast<QRgb*>(page.image.scanLine(y));int left=400,right=-1,count=0;
+        for (int x=0;x<400;++x) {
+            const auto pixel=row[x];const bool magenta=qRed(pixel)>200 && qGreen(pixel)<60 && qBlue(pixel)>200;
+            if (magenta) {left=qMin(left,x);right=qMax(right,x);++count;}
+            if (magenta || (qRed(pixel)<40 && qGreen(pixel)<40 && qBlue(pixel)>200)) row[x]=0;
+        }
+        if (count>=50) {const QRect strip(left,y,right-left+1,1);area=area.isEmpty()?strip:area.united(strip);}
+        else if (!area.isEmpty()) {if (area.width()>=100 && area.height()>=20) page.areas.push_back(area);area=QRect();}
+    }
+    if (!area.isEmpty() && area.width()>=100 && area.height()>=20) page.areas.push_back(area);
+    return page;
+}
 namespace {
 QString clean(const QByteArray& source) {
     const auto text=QString::fromLatin1(source);QString output;int depth=0;

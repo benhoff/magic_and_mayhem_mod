@@ -15,6 +15,7 @@
 #include "character_screen_widget.hpp"
 #include "grimoire_widget.hpp"
 #include "spellbox_widget.hpp"
+#include "spell_research_widget.hpp"
 #include "realm_viewer_widget.hpp"
 #include <QMap>
 class MainMenuWidget;
@@ -47,6 +48,7 @@ public:
     bool openRealmViewer(const QString& root, QString* error = nullptr);
     bool openRegionEntry(const QString& root, QString* error = nullptr);
     bool openCharacterScreen(const QString& root, QString* error = nullptr);
+    bool openSpellResearch(const QString& root,QString* error=nullptr);
     bool openSpellbox(const QString& root, QString* error = nullptr);
     bool openGrimoire(const QString& root, QString* error = nullptr);
 signals:
@@ -65,6 +67,7 @@ private:
     void returnFromCharacterScreen();
     void returnFromGrimoire();
     void returnFromSpellbox();
+    void returnFromSpellResearch();
     void returnFromMapSelection();
     void returnFromPreferences();
     void returnFromSaveGame();
@@ -107,6 +110,8 @@ private:
     bool characterReturnsToRegion_ = false;
     GrimoireWidget* grimoire_ = nullptr;
     bool grimoireReturnsToRegion_ = false;
+    SpellResearchWidget* spellResearch_=nullptr;
+    bool researchReturnsToRealm_=false;
     SpellboxWidget* spellbox_ = nullptr;
     bool spellboxReturnsToRegion_ = false;
     RealmViewerWidget* realmViewer_ = nullptr;

@@ -474,3 +474,16 @@ QT_QPA_PLATFORM=offscreen working/build/qt-shell/realm-viewer-visuals-test worki
 ```
 
 See [visual asset integration and verification](../../research/runtime/realm-viewer-visuals.md).
+
+## Native Spell Research preview
+
+```bash
+./tools/run-qt-shell.sh --spell-research
+```
+
+Spell Research is also available from the Realm Viewer's original Research
+button. The native view uses Grimoire book art and 42 installed spell descriptions,
+shared SFT fonts, filtering and caller-supplied availability/learned states.
+Research emits an owner/spell request; campaign costs and progression are pending.
+Close returns to the map with focus restored. No separate original research
+layout was found; see [scope and evidence](../../research/runtime/spell-research-qt.md).

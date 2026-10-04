@@ -615,7 +615,7 @@ bool MenuPreview::openRealmViewer(const QString& root,QString* error) {
         connect(realmViewer_,&RealmViewerWidget::regionRequested,this,&MenuPreview::openRealmRegion);
         connect(realmViewer_,&RealmViewerWidget::auxiliaryRequested,this,[this](auto action){
             QString error;bool ok=false;
-            switch(action){case RealmViewerWidget::AuxiliaryAction::Spellbox:ok=openSpellbox(assetRoot_,&error);break;case RealmViewerWidget::AuxiliaryAction::Grimoire:ok=openGrimoire(assetRoot_,&error);break;case RealmViewerWidget::AuxiliaryAction::Character:ok=openCharacterScreen(assetRoot_,&error);break;case RealmViewerWidget::AuxiliaryAction::Options:ok=openPreferences(assetRoot_,&error);break;}
+            switch(action){case RealmViewerWidget::AuxiliaryAction::SpellResearch:ok=openSpellResearch(assetRoot_,&error);break;case RealmViewerWidget::AuxiliaryAction::Spellbox:ok=openSpellbox(assetRoot_,&error);break;case RealmViewerWidget::AuxiliaryAction::Grimoire:ok=openGrimoire(assetRoot_,&error);break;case RealmViewerWidget::AuxiliaryAction::Character:ok=openCharacterScreen(assetRoot_,&error);break;case RealmViewerWidget::AuxiliaryAction::Options:ok=openPreferences(assetRoot_,&error);break;}
             if(!ok)statusBar()->showMessage(QString("Realm auxiliary preview failed: %1").arg(error));
         });
     }
@@ -646,3 +646,19 @@ void MenuPreview::returnToRealmViewer(int auxiliary) {
     if(auxiliary<0)realmViewer_->focusFirstControl();else realmViewer_->findChild<QPushButton*>(QString("realmViewerAuxiliary%1").arg(auxiliary))->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Realm Viewer preview. Campaign progression and engine commands remain pending.");
 }
+
+bool MenuPreview::openSpellResearch(const QString& root,QString* error){
+    SpellResearchWidget::Catalog initial;
+    const bool first=!spellResearch_||spellResearch_->catalog().ownerId.isEmpty();
+    if(first){try{initial=SpellResearchWidget::installedPreviewCatalog(root);}catch(const std::exception& e){if(error)*error=QString::fromUtf8(e.what());return false;}}
+    if(!spellResearch_){spellResearch_=new SpellResearchWidget(screens_);screens_->addWidget(spellResearch_);
+        connect(spellResearch_,&SpellResearchWidget::cancelled,this,&MenuPreview::returnFromSpellResearch);
+        connect(spellResearch_,&SpellResearchWidget::researchRequested,this,[this](const auto& request){statusBar()->showMessage(QString("Research request for %1 from %2 — campaign adapter pending.").arg(request.spellId,request.ownerId));});
+    }
+    if(!spellResearch_->loadAssets(root,error))return false;
+    if(first&&!spellResearch_->setCatalog(initial,error))return false;
+    researchReturnsToRealm_=realmViewer_&&screens_->currentWidget()==realmViewer_;
+    activateScreen(spellResearch_);setWindowTitle(spellResearch_->windowTitle());spellResearch_->focusFirstControl();
+    statusBar()->showMessage("Offline Spell Research: original spell prose with sample availability; engine research rules and costs remain pending.");return true;
+}
+void MenuPreview::returnFromSpellResearch(){if(researchReturnsToRealm_){returnToRealmViewer(4);return;}showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);}
