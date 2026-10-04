@@ -76,6 +76,35 @@ bool AudioSession::play(std::int32_t sound,bool looping,std::int32_t volume,std:
     }catch(const std::exception& e){error_=QString::fromUtf8(e.what());}
     return false;
 }
+bool AudioSession::setMasterVolume(std::int32_t level){
+    checkThread();error_.clear();
+    if(!running()){error_="Audio session is not running";return false;}
+    if(level< -10000 || level>0){error_="Master volume outside native control range";return false;}
+    if(backend_->volume(manager_.cache.manager.primary,level)){error_="Cannot apply native master volume";return false;}
+    return true;
+}
+bool AudioSession::clearVoices(){
+    checkThread();error_.clear();
+    if(!running()){error_="Audio session is not running";return false;}
+    output_->stop(); // Discard already mixed PCM, including partial writes.
+    try{
+        // Host cancellation stops every cached root/duplicate, even if its
+        // recovered wall-clock deadline expired before the output consumed it.
+        auto* root=manager_.sources.head;
+        if(root)do{
+            for(auto* voice=root;voice;voice=voice->duplicate)if(voice->buffer){
+                if(backend_->stop(voice->buffer) || backend_->position(voice->buffer,0))
+                    throw std::runtime_error("Cannot reset native menu voice");
+            }
+            root=root->next;
+        }while(root!=manager_.sources.head);
+        r::clearSchedules(*backend_,manager_.schedules.head,true);
+        std::fill(slots_.begin(),slots_.end(),0u);
+        QString error;
+        if(!output_->start(backend_->device(),error))throw std::runtime_error(error.toStdString());
+        return true;
+    }catch(const std::exception& e){error_=QString::fromUtf8(e.what());stop();return false;}
+}
 void AudioSession::stop(){
     checkThread();output_->stop(); // Discard sink/queue before releasing any samples.
     if(backend_){

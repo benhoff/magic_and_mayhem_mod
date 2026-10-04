@@ -378,3 +378,16 @@ both and Assign. Remove returns a copy; Preview emits local spell intent. OK
 accepts locally and Cancel restores the accepted loadout. Original BMP/SPR art
 is used; sample recipes and native controls remain approximations. See
 [scope and validation](../../research/runtime/spellbox-qt.md).
+
+Opt in to native menu click/page-turn cues through the reconstructed audio manager:
+
+```sh
+./tools/run-qt-shell.sh --main-menu --menu-audio
+./tools/run-qt-shell.sh --grimoire --menu-audio
+```
+
+One session follows navigation and accepted Preferences sound volume; closing the
+preview stops it. Defaults 822/830 are native preview choices. Select other
+catalog IDs with `--menu-click-sound ID` / `--menu-page-sound ID`; choose filename
+compatibility with `--menu-audio-policy dequote-missing-leaf`. Music routing and
+original cue mappings remain pending. [Scope and offline tests](../../research/runtime/menu-audio-integration.md).

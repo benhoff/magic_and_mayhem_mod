@@ -27,6 +27,8 @@ public:
     bool start(const QString& soundsRoot,std::uint32_t map,
                mnm::reconstruction::audio::NativeSourcePathPolicy policy);
     bool play(std::int32_t sound,bool looping=false,std::int32_t volume=0,std::int32_t pan=0);
+    bool clearVoices();
+    bool setMasterVolume(std::int32_t level);
     void stop();
     bool running() const;
     QString lastError() const;

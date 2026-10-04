@@ -2,6 +2,7 @@
 #include "main_menu_widget.hpp"
 #include "quick_battle_menu_widget.hpp"
 #include <QMetaEnum>
+#include <QCloseEvent>
 #include <QPushButton>
 #include <QListWidget>
 #include <QStackedWidget>
@@ -79,19 +80,19 @@ bool MenuPreview::openMiniMenu(const QString& root, MiniMenuWidget::Mode mode, Q
         });
     }
     if (!mini_->loadAssets(root, error)) return false;
-    mini_->setMode(mode); screens_->setCurrentWidget(mini_); mini_->focusFirstAction();
+    mini_->setMode(mode); activateScreen(mini_); mini_->focusFirstAction();
     setWindowTitle(mini_->windowTitle());
     statusBar()->showMessage("Mini Menu preview. Cancel or Escape returns to the main menu.");
     return true;
 }
 void MenuPreview::showMainMenu() {
-    screens_->setCurrentWidget(main_);
+    activateScreen(main_);
     setWindowTitle(main_->windowTitle());
     main_->findChild<QPushButton*>("mainMenuAction2")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Menu preview. Game actions are not connected.");
 }
 void MenuPreview::showQuickBattle() {
-    screens_->setCurrentWidget(quick_);
+    activateScreen(quick_);
     setWindowTitle(quick_->windowTitle());
     quick_->focusFirstAction();
     statusBar()->showMessage("Quick Battle preview. Cancel or Escape returns to the main menu.");
@@ -114,7 +115,7 @@ bool MenuPreview::openBattleResults(const QString& root, BattleResultWidget::Out
         sample.rewards[0]={"Sample achievement", "40"};
         sample.rating="Sample rating";
     }
-    results_->setResults(sample); screens_->setCurrentWidget(results_); results_->focusContinue();
+    results_->setResults(sample); activateScreen(results_); results_->focusContinue();
     setWindowTitle(results_->windowTitle());
     statusBar()->showMessage("Sample results. OK returns to the main menu preview.");
     return true;
@@ -138,7 +139,7 @@ bool MenuPreview::openQuickBattleResults(const QString& root, QuickBattleResultW
         player.kills=QString::number(12-i*3); player.deaths=QString::number(i+1);
         player.handicapBonus=QString::number(i*5); player.score=QString::number(120-i*20);
     }
-    quickResults_->setResults(sample); screens_->setCurrentWidget(quickResults_); quickResults_->focusFirstAction();
+    quickResults_->setResults(sample); activateScreen(quickResults_); quickResults_->focusFirstAction();
     setWindowTitle(quickResults_->windowTitle());
     statusBar()->showMessage("Sample results. Continue opens Quick Battle; Quit returns to the main menu preview.");
     return true;
@@ -170,7 +171,7 @@ bool MenuPreview::openMapSelection(const QString& root, QString* error) {
     const auto selected=fromSingle?singlePlayer_->setup().mapId:lobby?lobby->lobby().mapId:"sample-forest";
     if (!mapSelection_->setMaps(previewMaps(),selected,error)) return false;
     mapReturnsToSinglePlayer_=fromSingle;mapReturnsToLobby_=lobby;
-    screens_->setCurrentWidget(mapSelection_); mapSelection_->focusSelection();
+    activateScreen(mapSelection_); mapSelection_->focusSelection();
     setWindowTitle(mapSelection_->windowTitle());
     statusBar()->showMessage(lobby?"Sample maps. OK or Cancel returns to the host lobby.":fromSingle?"Sample maps. OK or Cancel returns to Single Player setup.":"Sample map list. OK or Cancel returns to the Quick Battle preview.");
     return true;
@@ -186,7 +187,7 @@ bool MenuPreview::openLoadGame(const QString& root, QString* error) {
     }
     if (!loadGame_->loadAssets(root,error)) return false;
     if (!loadGame_->setSaves({{"sample-autosave","Sample autosave"},{"sample-campaign","Sample campaign save"},{"sample-before-battle","Sample before battle"}},"sample-autosave",error)) return false;
-    screens_->setCurrentWidget(loadGame_); loadGame_->focusSelection(); setWindowTitle(loadGame_->windowTitle());
+    activateScreen(loadGame_); loadGame_->focusSelection(); setWindowTitle(loadGame_->windowTitle());
     statusBar()->showMessage("Sample saves. Load emits selection; Cancel returns to the main menu preview."); return true;
 }
 
@@ -204,12 +205,12 @@ bool MenuPreview::openSaveGame(const QString& root, QString* error) {
     if (!saveGame_->loadAssets(root,error)) return false;
     if (!saveGame_->setSaves({{"sample-autosave","Sample autosave"},{"sample-campaign","Sample campaign save"},{"sample-before-battle","Sample before battle"}},"sample-campaign",error)) return false;
     saveReturnsToMini_=mini_ && screens_->currentWidget()==mini_;
-    screens_->setCurrentWidget(saveGame_); saveGame_->focusSelection(); setWindowTitle(saveGame_->windowTitle());
+    activateScreen(saveGame_); saveGame_->focusSelection(); setWindowTitle(saveGame_->windowTitle());
     statusBar()->showMessage("Sample saves. Save/Delete emit intent; Cancel returns to the previous preview."); return true;
 }
 void MenuPreview::returnFromSaveGame() {
     if (!saveReturnsToMini_) { showMainMenu(); return; }
-    screens_->setCurrentWidget(mini_); mini_->focusFirstAction(); setWindowTitle(mini_->windowTitle());
+    activateScreen(mini_); mini_->focusFirstAction(); setWindowTitle(mini_->windowTitle());
     statusBar()->showMessage("Mini Menu preview. Cancel or Escape returns to the main menu.");
 }
 
@@ -224,14 +225,14 @@ bool MenuPreview::openPreferences(const QString& root, QString* error) {
     }
     if (!preferences_->loadAssets(root,error) || !preferences_->setSettings(preferences_->settings(),error)) return false;
     preferencesReturnToMini_=mini_ && screens_->currentWidget()==mini_;
-    screens_->setCurrentWidget(preferences_); preferences_->focusFirstControl(); setWindowTitle(preferences_->windowTitle());
+    activateScreen(preferences_); preferences_->focusFirstControl(); setWindowTitle(preferences_->windowTitle());
     statusBar()->showMessage("Local sample settings. OK accepts changes; Cancel restores the snapshot."); return true;
 }
 void MenuPreview::returnFromPreferences() {
     if (!preferencesReturnToMini_) {
         showMainMenu(); main_->findChild<QPushButton*>("mainMenuAction3")->setFocus(Qt::OtherFocusReason); return;
     }
-    screens_->setCurrentWidget(mini_); setWindowTitle(mini_->windowTitle());
+    activateScreen(mini_); setWindowTitle(mini_->windowTitle());
     mini_->findChild<QPushButton*>(mini_->mode()==MiniMenuWidget::Mode::Campaign?"miniMenuButton3":"miniMenuButton6")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Mini Menu preview. Cancel or Escape returns to the main menu.");
 }
@@ -260,7 +261,7 @@ bool MenuPreview::openMultiplayer(const QString& root, MultiplayerSetupWidget::M
         });
     }
     if (!screen->loadAssets(root,error)) return false;
-    screens_->setCurrentWidget(screen); screen->focusFirstField(); setWindowTitle(screen->windowTitle());
+    activateScreen(screen); screen->focusFirstField(); setWindowTitle(screen->windowTitle());
     statusBar()->showMessage("Sample multiplayer form. OK emits intent; Cancel returns to Quick Battle."); return true;
 }
 
@@ -272,7 +273,7 @@ bool MenuPreview::openMultiplayerGameSelection(const QString& root, QString* err
         screens_->addWidget(multiplayerSelection_);
         multiplayerSelection_->setSessions({{"sample-forest","Sample forest battle"},{"sample-island","Sample island battle"}});
         connect(multiplayerSelection_,&MultiplayerGameSelectionWidget::cancelled,this,[this] {
-            screens_->setCurrentWidget(joinMultiplayer_); setWindowTitle(joinMultiplayer_->windowTitle());
+            activateScreen(joinMultiplayer_); setWindowTitle(joinMultiplayer_->windowTitle());
             joinMultiplayer_->findChild<QPushButton*>("multiplayerOk")->setFocus(Qt::OtherFocusReason);
             statusBar()->showMessage("Join preview. Local input retained; networking adapter pending.");
         });
@@ -288,7 +289,7 @@ bool MenuPreview::openMultiplayerGameSelection(const QString& root, QString* err
     browsingRequest_.userName=joinMultiplayer_->form().userName.trimmed();
     browsingRequest_.transport=joinMultiplayer_->form().transport;
     browsingRequest_.gameName.clear();
-    screens_->setCurrentWidget(multiplayerSelection_); setWindowTitle(multiplayerSelection_->windowTitle());
+    activateScreen(multiplayerSelection_); setWindowTitle(multiplayerSelection_->windowTitle());
     multiplayerSelection_->focusSelection();
     statusBar()->showMessage("Sample sessions; no discovery. Select a game and OK; Cancel returns to Join.");
     return true;
@@ -297,12 +298,12 @@ bool MenuPreview::openMultiplayerGameSelection(const QString& root, QString* err
 void MenuPreview::returnFromMapSelection() {
     if (mapReturnsToLobby_) {
         auto* lobby=mapReturnsToLobby_;mapReturnsToLobby_=nullptr;
-        screens_->setCurrentWidget(lobby);setWindowTitle(lobby->windowTitle());
+        activateScreen(lobby);setWindowTitle(lobby->windowTitle());
         lobby->findChild<QPushButton*>("multiplayerLobbyMap")->setFocus(Qt::OtherFocusReason);
         statusBar()->showMessage("Sample host lobby. Networking and Start remain pending.");return;
     }
     if (!mapReturnsToSinglePlayer_) {showQuickBattle();return;}
-    mapReturnsToSinglePlayer_=false;screens_->setCurrentWidget(singlePlayer_);setWindowTitle(singlePlayer_->windowTitle());
+    mapReturnsToSinglePlayer_=false;activateScreen(singlePlayer_);setWindowTitle(singlePlayer_->windowTitle());
     singlePlayer_->findChild<QPushButton*>("singlePlayerMap")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Single Player sample setup. Start emits intent; engine adapter pending.");
 }
@@ -345,7 +346,7 @@ bool MenuPreview::openSinglePlayerBattle(const QString& root,QString* error) {
         });
     }
     if (!singlePlayer_->loadAssets(root,error)) return false;
-    screens_->setCurrentWidget(singlePlayer_);singlePlayer_->focusFirstControl();setWindowTitle(singlePlayer_->windowTitle());
+    activateScreen(singlePlayer_);singlePlayer_->focusFirstControl();setWindowTitle(singlePlayer_->windowTitle());
     statusBar()->showMessage("Sample players and settings; portrait/colour buttons cycle samples. Start remains pending.");return true;
 }
 
@@ -372,7 +373,7 @@ bool MenuPreview::openMultiplayerLobby(const QString& root,MultiplayerLobbyWidge
         screen=new MultiplayerLobbyWidget(mode,screens_);screens_->addWidget(screen);
         connect(screen,&MultiplayerLobbyWidget::cancelled,this,[this,host] {
             auto* caller=host?static_cast<QWidget*>(createMultiplayer_):static_cast<QWidget*>(multiplayerSelection_);
-            screens_->setCurrentWidget(caller);setWindowTitle(caller->windowTitle());
+            activateScreen(caller);setWindowTitle(caller->windowTitle());
             caller->findChild<QPushButton*>(host?"multiplayerOk":"multiplayerGameSelectionOk")->setFocus(Qt::OtherFocusReason);
             statusBar()->showMessage("Returned from sample lobby; no network connection was made.");
         });
@@ -416,7 +417,7 @@ bool MenuPreview::openMultiplayerLobby(const QString& root,MultiplayerLobbyWidge
         screen->clearChat();screen->appendMessage({"Preview","Sample lobby — local chat only."});context=key;
     }
     (host?hostLobbyRequest_:joinLobbyRequest_)=request;
-    screens_->setCurrentWidget(screen);screen->focusFirstControl();setWindowTitle(host?"Magic & Mayhem — Host lobby preview":"Magic & Mayhem — Guest lobby preview");
+    activateScreen(screen);screen->focusFirstControl();setWindowTitle(host?"Magic & Mayhem — Host lobby preview":"Magic & Mayhem — Guest lobby preview");
     statusBar()->showMessage("Sample lobby; no network connection. Chat echoes locally; Start/Ready remain pending.");return true;
 }
 
@@ -453,7 +454,7 @@ bool MenuPreview::openRegionEntry(const QString& root,QString* error) {
         });
     }
     if (!regionEntry_->loadAssets(root,error)) return false;
-    screens_->setCurrentWidget(regionEntry_);regionEntry_->focusFirstControl();setWindowTitle(regionEntry_->windowTitle());
+    activateScreen(regionEntry_);regionEntry_->focusFirstControl();setWindowTitle(regionEntry_->windowTitle());
     statusBar()->showMessage("Sample region; Enter and icon actions emit intent. Cancel returns to Main Menu.");return true;
 }
 
@@ -473,14 +474,14 @@ bool MenuPreview::openCharacterScreen(const QString& root,QString* error) {
     }
     if (!characterScreen_->loadAssets(root,error)) return false;
     characterReturnsToRegion_=regionEntry_ && screens_->currentWidget()==regionEntry_;
-    screens_->setCurrentWidget(characterScreen_);characterScreen_->focusFirstControl();setWindowTitle(characterScreen_->windowTitle());
+    activateScreen(characterScreen_);characterScreen_->focusFirstControl();setWindowTitle(characterScreen_->windowTitle());
     statusBar()->showMessage("Sample upgrade costs. + purchases; − undoes draft purchases. OK accepts locally; Cancel restores.");return true;
 }
 void MenuPreview::returnFromCharacterScreen() {
     if (!characterReturnsToRegion_) {
         showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);return;
     }
-    screens_->setCurrentWidget(regionEntry_);setWindowTitle(regionEntry_->windowTitle());
+    activateScreen(regionEntry_);setWindowTitle(regionEntry_->windowTitle());
     regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary2")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Region Entry preview. Character edits are local; campaign engine adapter pending.");
 }
@@ -493,12 +494,12 @@ bool MenuPreview::openGrimoire(const QString& root,QString* error) {
     }
     if (!grimoire_->loadAssets(root,error)) return false;
     grimoireReturnsToRegion_=regionEntry_ && screens_->currentWidget()==regionEntry_;
-    screens_->setCurrentWidget(grimoire_);setWindowTitle(grimoire_->windowTitle());grimoire_->focusFirstControl();
+    activateScreen(grimoire_);setWindowTitle(grimoire_->windowTitle());grimoire_->focusFirstControl();
     statusBar()->showMessage("Offline Grimoire: chapter contents and installed entries. Campaign knowledge and dynamic stats remain pending.");return true;
 }
 void MenuPreview::returnFromGrimoire() {
     if (!grimoireReturnsToRegion_) {showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);return;}
-    screens_->setCurrentWidget(regionEntry_);setWindowTitle(regionEntry_->windowTitle());regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary0")->setFocus(Qt::OtherFocusReason);
+    activateScreen(regionEntry_);setWindowTitle(regionEntry_->windowTitle());regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary0")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Region Entry preview. Campaign engine adapter pending.");
 }
 
@@ -519,11 +520,24 @@ bool MenuPreview::openSpellbox(const QString& root,QString* error) {
     }
     if(!spellbox_->loadAssets(root,error))return false;
     spellboxReturnsToRegion_=regionEntry_ && screens_->currentWidget()==regionEntry_;
-    screens_->setCurrentWidget(spellbox_);setWindowTitle(spellbox_->windowTitle());spellbox_->focusFirstControl();
+    activateScreen(spellbox_);setWindowTitle(spellbox_->windowTitle());spellbox_->focusFirstControl();
     statusBar()->showMessage("Sample inventory/spells. Drag or select and Assign; Remove restores a copy. OK accepts locally; Cancel restores.");return true;
 }
 void MenuPreview::returnFromSpellbox() {
     if(!spellboxReturnsToRegion_){showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);return;}
-    screens_->setCurrentWidget(regionEntry_);setWindowTitle(regionEntry_->windowTitle());regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary1")->setFocus(Qt::OtherFocusReason);
+    activateScreen(regionEntry_);setWindowTitle(regionEntry_->windowTitle());regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary1")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Region Entry preview. Campaign engine adapter pending.");
+}
+
+void MenuPreview::activateScreen(QWidget* screen){
+    // Bind application adapters after the widget's navigation handlers exist.
+    emit screenReady(screen);
+    if(screens_->currentWidget()!=screen){
+        emit screenChanged();
+        screens_->setCurrentWidget(screen);
+    }
+}
+void MenuPreview::closeEvent(QCloseEvent* event){
+    QMainWindow::closeEvent(event);
+    if(event->isAccepted())emit closed();
 }

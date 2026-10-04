@@ -85,3 +85,9 @@ physical audible output is not claimed.
 Not established by these tests: audible physical-device quality/underruns,
 Qt backend unplug/recovery behavior, original thread/caller timing, live manager
 replacement, listener/camera updates, long-running gameplay or balance changes.
+
+The next native presentation integration is [menu audio](menu-audio-integration.md)
+(AU24). Its host `clearVoices` operation discards output PCM, stops/rewinds cached
+roots and duplicates, clears schedules, and restarts the sink without destroying
+the manager. `setMasterVolume` applies bounded native primary gain; neither
+operation changes recovered original scheduling policy.
