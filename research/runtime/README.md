@@ -125,3 +125,5 @@ confidence, and whether it remains stable across launches.
 - [EVT event-area reader/writer and callers](evt-area-loading.md): hash-pinned 72-byte schema, section-coordinate consumers and offline scope.
 
 - [Audio source filenames](audio-source-filenames.md): recovered comment/file-open boundary, explicit native quoted-leaf compatibility and missing Stream evidence.
+
+- [TAG sprite-table correlation](tag-sprite-tables.md): installed names/ordinal/occurrence agreement, corrected leading-name classification and unresolved original consumption.

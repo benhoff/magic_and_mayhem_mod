@@ -26,7 +26,7 @@ The executable identifying this installation has SHA-256
 | ANI | 136 | 5,478,380 | Proprietary `ANI\0` container |
 | PCX | 124 | 3,459,543 | Standard PCX |
 | WZD | 101 | 159,665 | Plaintext wizard data |
-| TAG | 85 | 1,570,692 | Proprietary, variants start `UA000S1\0`/`UC000S1\0` |
+| TAG | 85 | 1,570,692 | Headerless sprite-name/occurrence tables; [confirmed 12-byte records/native loading](tag-native-loading.md) |
 | BMP | 48 | 13,814,536 | Standard Windows bitmap |
 | TXT | 43 | 141,904 | Plaintext data |
 | FP | 41 | 132,356 | Proprietary `.FP\0` container |

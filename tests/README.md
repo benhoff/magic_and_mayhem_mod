@@ -425,3 +425,13 @@ The native manager regression tests also cover lookup precedence and resolver
 rejections. `./tools/export-audio-filenames.py` exports hash-pinned original
 filename/open instructions and records fresh or historical cabinet-list evidence.
 See [audio source filenames](../research/runtime/audio-source-filenames.md).
+
+## TAG sprite-name tables
+
+Asset CTests include `tag-loader` and `tag-record-comparison`.
+`python3 tests/test-tag-loader.py working/build/tag/mnm-tag-inspect --installation working/game-clean --report working/tests/tag-loader/installed-comparison.json`
+compares all fields, validates companion SPR name/occurrence agreement and
+rehashes installed inputs. Original manifests verify before/after.
+`python3 tools/export-tag-support.py` records reproducible structural evidence
+and the limited executable literal search; no original TAG reader is claimed.
+See [TAG validation scope](../research/formats/tag-native-loading.md).
