@@ -27,6 +27,7 @@ public:
     struct Request { QString regionId; Difficulty difficulty = Difficulty::Initiate; };
     explicit RegionEntryWidget(QWidget* parent = nullptr);
     bool loadAssets(const QString& root, QString* error = nullptr);
+    bool loadAssets(const QString& root, const Region& region, QString* error = nullptr);
     // Artwork selection is independent of the caller-owned region ID.
     // Once loaded, this changes model/art transactionally using the same root.
     bool setRegion(const Region& region, QString* error = nullptr);

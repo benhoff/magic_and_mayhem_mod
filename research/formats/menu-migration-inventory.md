@@ -148,3 +148,9 @@ with supplied item/talisman/spell IDs, original BMP/SPR art, local drag assignme
 keyboard alternatives and OK/Cancel. Region Entry's Spellbox icon opens it.
 Original recipes, campaign inventory and engine commands remain unconnected;
 [asset evidence and interpretations](spellbox-assets.md) are recorded separately.
+
+Realm Viewer now has an [offline campaign-map preview](../runtime/realm-viewer-qt.md)
+with original BMP/SPR art, bounded installed display names/FP positions, supplied
+availability and selected-region navigation. Main New Game opens it; Region Entry
+and direct auxiliary screens return to the map. Actual campaign progression and
+engine commands remain pending. [Asset evidence](realm-viewer-assets.md).

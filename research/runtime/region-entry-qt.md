@@ -106,3 +106,8 @@ Grimoire also opens its [native installed-book reader](grimoire-qt.md); Close/Es
 Spellbox navigation now opens the [native Portmanteau preview](spellbox-qt.md).
 Accept/Cancel returns with the current region/difficulty and Spellbox icon focus.
 Its accepted inventory draft is local; campaign loadout commands remain pending.
+
+[Realm Viewer](realm-viewer-qt.md) now supplies selected region models/artwork.
+Region Entry Cancel returns to that map flag, and difficulty is remembered locally
+per region. The root/model asset load is atomic; failed region art preserves the
+map caller and previous Entry model. Standalone Entry still returns to Main.

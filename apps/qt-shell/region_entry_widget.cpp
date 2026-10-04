@@ -64,6 +64,7 @@ bool RegionEntryWidget::setRegion(const Region& region,QString* error) {
     region_=region;populate();arrange();return true;
 }
 bool RegionEntryWidget::loadAssets(const QString& root,QString* error) {return load(root,region_,error);}
+bool RegionEntryWidget::loadAssets(const QString& root,const Region& region,QString* error) {return load(root,region,error);}
 bool RegionEntryWidget::load(const QString& root,const Region& region,QString* error) {
     if (error) error->clear();
     try {

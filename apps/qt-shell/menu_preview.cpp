@@ -1,6 +1,7 @@
 #include "menu_preview.hpp"
 #include "main_menu_widget.hpp"
 #include "quick_battle_menu_widget.hpp"
+#include "realm_viewer_assets.hpp"
 #include <QMetaEnum>
 #include <QCloseEvent>
 #include <QLabel>
@@ -8,6 +9,7 @@
 #include <QListWidget>
 #include <QStackedWidget>
 #include <QStatusBar>
+#include <stdexcept>
 
 namespace {
 const QVector<MapSelectionWidget::Map>& previewMaps() {
@@ -23,6 +25,11 @@ MenuPreview::MenuPreview(QWidget* parent) : QMainWindow(parent) {
     screens_->addWidget(main_); screens_->addWidget(quick_);
     setCentralWidget(screens_); resize(800, 630);
     connect(main_, &MainMenuWidget::actionRequested, this, [this](MainMenuWidget::Action action) {
+        if (action == MainMenuWidget::Action::NewGame) {
+            QString error;
+            if (!openRealmViewer(assetRoot_,&error)) statusBar()->showMessage(QString("Realm Viewer preview failed: %1").arg(error));
+            return;
+        }
         if (action == MainMenuWidget::Action::QuickBattle) { showQuickBattle(); return; }
         if (action == MainMenuWidget::Action::LoadGame) {
             QString error;
@@ -239,10 +246,12 @@ bool MenuPreview::openPreferences(const QString& root, QString* error) {
     if(effectsVolumeSet_)settings.soundLevel=effectsVolume_;
     if(!preferences_->setSettings(settings,error))return false;
     preferencesReturnToMini_=mini_ && screens_->currentWidget()==mini_;
+    preferencesReturnToRealm_=realmViewer_ && screens_->currentWidget()==realmViewer_;
     activateScreen(preferences_); preferences_->focusFirstControl(); setWindowTitle(preferences_->windowTitle());
     statusBar()->showMessage("Local sample settings. OK accepts changes; Cancel restores the snapshot."); return true;
 }
 void MenuPreview::returnFromPreferences() {
+    if(preferencesReturnToRealm_){returnToRealmViewer(3);return;}
     if (!preferencesReturnToMini_) {
         showMainMenu(); main_->findChild<QPushButton*>("mainMenuAction3")->setFocus(Qt::OtherFocusReason); return;
     }
@@ -435,12 +444,14 @@ bool MenuPreview::openMultiplayerLobby(const QString& root,MultiplayerLobbyWidge
     statusBar()->showMessage("Sample lobby; no network connection. Chat echoes locally; Start/Ready remain pending.");return true;
 }
 
-bool MenuPreview::openRegionEntry(const QString& root,QString* error) {
+bool MenuPreview::openRegionEntry(const QString& root,QString* error) {return showRegionEntry(root,nullptr,error);}
+bool MenuPreview::showRegionEntry(const QString& root,const RegionEntryWidget::Region* region,QString* error) {
     if (!regionEntry_) {
         regionEntry_=new RegionEntryWidget(screens_);screens_->addWidget(regionEntry_);
         RegionEntryWidget::Region sample;sample.id="sample-celtic-region-1";sample.name="Sample Celtic region 1";
         regionEntry_->setRegion(sample);
         connect(regionEntry_,&RegionEntryWidget::cancelled,this,[this] {
+            if(regionReturnsToRealm_){regionDifficulties_[entryCampaignId_][regionEntry_->region().id]=regionEntry_->region().difficulty;returnToRealmViewer();return;}
             showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);
         });
         connect(regionEntry_,&RegionEntryWidget::enterRequested,this,[this](const auto& request) {
@@ -467,9 +478,11 @@ bool MenuPreview::openRegionEntry(const QString& root,QString* error) {
             statusBar()->showMessage(QString("%1 selected — campaign engine adapter pending.").arg(QString::fromLatin1(name)));
         });
     }
-    if (!regionEntry_->loadAssets(root,error)) return false;
+    if (!(region?regionEntry_->loadAssets(root,*region,error):regionEntry_->loadAssets(root,error))) return false;
+    regionReturnsToRealm_=region && realmViewer_ && screens_->currentWidget()==realmViewer_;
+    entryCampaignId_=regionReturnsToRealm_?realmViewer_->campaign().id:QString();
     activateScreen(regionEntry_);regionEntry_->focusFirstControl();setWindowTitle(regionEntry_->windowTitle());
-    statusBar()->showMessage("Sample region; Enter and icon actions emit intent. Cancel returns to Main Menu.");return true;
+    statusBar()->showMessage("Sample region; Enter and icon actions emit intent. Cancel returns to the caller.");return true;
 }
 
 bool MenuPreview::openCharacterScreen(const QString& root,QString* error) {
@@ -488,10 +501,12 @@ bool MenuPreview::openCharacterScreen(const QString& root,QString* error) {
     }
     if (!characterScreen_->loadAssets(root,error)) return false;
     characterReturnsToRegion_=regionEntry_ && screens_->currentWidget()==regionEntry_;
+    characterReturnsToRealm_=realmViewer_ && screens_->currentWidget()==realmViewer_;
     activateScreen(characterScreen_);characterScreen_->focusFirstControl();setWindowTitle(characterScreen_->windowTitle());
     statusBar()->showMessage("Sample upgrade costs. + purchases; − undoes draft purchases. OK accepts locally; Cancel restores.");return true;
 }
 void MenuPreview::returnFromCharacterScreen() {
+    if(characterReturnsToRealm_){returnToRealmViewer(2);return;}
     if (!characterReturnsToRegion_) {
         showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);return;
     }
@@ -508,10 +523,12 @@ bool MenuPreview::openGrimoire(const QString& root,QString* error) {
     }
     if (!grimoire_->loadAssets(root,error)) return false;
     grimoireReturnsToRegion_=regionEntry_ && screens_->currentWidget()==regionEntry_;
+    grimoireReturnsToRealm_=realmViewer_ && screens_->currentWidget()==realmViewer_;
     activateScreen(grimoire_);setWindowTitle(grimoire_->windowTitle());grimoire_->focusFirstControl();
     statusBar()->showMessage("Offline Grimoire: chapter contents and installed entries. Campaign knowledge and dynamic stats remain pending.");return true;
 }
 void MenuPreview::returnFromGrimoire() {
+    if(grimoireReturnsToRealm_){returnToRealmViewer(1);return;}
     if (!grimoireReturnsToRegion_) {showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);return;}
     activateScreen(regionEntry_);setWindowTitle(regionEntry_->windowTitle());regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary0")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Region Entry preview. Campaign engine adapter pending.");
@@ -534,10 +551,12 @@ bool MenuPreview::openSpellbox(const QString& root,QString* error) {
     }
     if(!spellbox_->loadAssets(root,error))return false;
     spellboxReturnsToRegion_=regionEntry_ && screens_->currentWidget()==regionEntry_;
+    spellboxReturnsToRealm_=realmViewer_ && screens_->currentWidget()==realmViewer_;
     activateScreen(spellbox_);setWindowTitle(spellbox_->windowTitle());spellbox_->focusFirstControl();
     statusBar()->showMessage("Sample inventory/spells. Drag or select and Assign; Remove restores a copy. OK accepts locally; Cancel restores.");return true;
 }
 void MenuPreview::returnFromSpellbox() {
+    if(spellboxReturnsToRealm_){returnToRealmViewer(0);return;}
     if(!spellboxReturnsToRegion_){showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);return;}
     activateScreen(regionEntry_);setWindowTitle(regionEntry_->windowTitle());regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary1")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Region Entry preview. Campaign engine adapter pending.");
@@ -565,4 +584,44 @@ void MenuPreview::setAudioStatus(const QString& text,bool canRetry){
     }
     audioStatus_->setText(text);audioStatus_->setVisible(!text.isEmpty());
     audioRetry_->setVisible(canRetry);audioRetry_->setEnabled(canRetry);
+}
+
+
+bool MenuPreview::openRealmViewer(const QString& root,QString* error) {
+    if(!realmViewer_){
+        realmViewer_=new RealmViewerWidget(screens_);screens_->addWidget(realmViewer_);
+        connect(realmViewer_,&RealmViewerWidget::cancelled,this,[this]{showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);});
+        connect(realmViewer_,&RealmViewerWidget::regionRequested,this,&MenuPreview::openRealmRegion);
+        connect(realmViewer_,&RealmViewerWidget::auxiliaryRequested,this,[this](auto action){
+            QString error;bool ok=false;
+            switch(action){case RealmViewerWidget::AuxiliaryAction::Spellbox:ok=openSpellbox(assetRoot_,&error);break;case RealmViewerWidget::AuxiliaryAction::Grimoire:ok=openGrimoire(assetRoot_,&error);break;case RealmViewerWidget::AuxiliaryAction::Character:ok=openCharacterScreen(assetRoot_,&error);break;case RealmViewerWidget::AuxiliaryAction::Options:ok=openPreferences(assetRoot_,&error);break;}
+            if(!ok)statusBar()->showMessage(QString("Realm auxiliary preview failed: %1").arg(error));
+        });
+    }
+    // Validate catalog first; asset failures never move the caller or reset its model.
+    RealmViewerWidget::Campaign sample;const bool initial=realmViewer_->campaign().id.isEmpty();
+    if(initial){
+        try {const auto catalog=mnm::ui::loadRealmCatalog(root);sample.id="sample-campaign";sample.name="Sample campaign";
+            const std::array<QString,3> names{"celtic","greek","medieval"};
+            for(int r=0;r<3;++r)for(const auto& entry:catalog[r])sample.regions[r].push_back({QString("sample-%1-region-%2").arg(names[r]).arg(entry.artworkNumber),entry.name,entry.artworkNumber,entry.flagPosition,0,true,{true,true,true}});
+        }catch(const std::exception& e){if(error)*error=QString::fromUtf8(e.what());return false;}
+    }
+    if(!realmViewer_->loadAssets(root,error))return false;
+    if(initial&&!realmViewer_->setCampaign(sample,error))return false;
+    activateScreen(realmViewer_);setWindowTitle(realmViewer_->windowTitle());realmViewer_->focusFirstControl();
+    statusBar()->showMessage("Sample campaign: select a flag and OK, double-click, or Enter. All regions are exposed; progression adapter pending.");return true;
+}
+void MenuPreview::openRealmRegion(const RealmViewerWidget::Request& request) {
+    const auto campaign=realmViewer_->campaign();const int r=int(request.realm);
+    if(request.campaignId!=campaign.id||r<0||r>2)return;
+    for(const auto& source:campaign.regions[r])if(source.id==request.regionId&&source.available){
+        RegionEntryWidget::Region region;region.id=source.id;region.name=source.name;region.artworkRealm=RegionEntryWidget::Realm(r);region.artworkNumber=source.artworkNumber;
+        region.difficulty=regionDifficulties_.value(campaign.id).value(source.id,RegionEntryWidget::Difficulty::Initiate);region.auxiliaryAvailable=source.auxiliaryAvailable;
+        QString error;if(!showRegionEntry(assetRoot_,&region,&error))statusBar()->showMessage(QString("Region Entry preview failed: %1").arg(error));return;
+    }
+}
+void MenuPreview::returnToRealmViewer(int auxiliary) {
+    activateScreen(realmViewer_);setWindowTitle(realmViewer_->windowTitle());
+    if(auxiliary<0)realmViewer_->focusFirstControl();else realmViewer_->findChild<QPushButton*>(QString("realmViewerAuxiliary%1").arg(auxiliary))->setFocus(Qt::OtherFocusReason);
+    statusBar()->showMessage("Realm Viewer preview. Campaign progression and engine commands remain pending.");
 }
