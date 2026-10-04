@@ -10,6 +10,12 @@
 #include <QRadioButton>
 #include <stdexcept>
 namespace {
+class DifficultyRadio final : public QRadioButton {
+public:
+    explicit DifficultyRadio(QWidget* parent):QRadioButton(parent) {}
+protected:
+    bool hitButton(const QPoint& point) const override {return rect().contains(point);}
+};
 QString artworkName(const RegionEntryWidget::Region& region) {
     const std::array<QString,3> realms{"Celtic","Greek","Medieval"};
     return QString("%1_Region_%2.JPG").arg(realms[int(region.artworkRealm)]).arg(region.artworkNumber,2,10,QLatin1Char('0'));
@@ -21,11 +27,9 @@ RegionEntryWidget::RegionEntryWidget(QWidget* parent):QWidget(parent) {
     heading_->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);heading_->setStyleSheet("color: #3e2313; background: transparent;");
     difficulties_=new QButtonGroup(this);
     for (int i=0;i<4;++i) {
-        radios_[i]=new QRadioButton(this);radios_[i]->setObjectName(QString("regionEntryDifficulty%1").arg(i));
+        radios_[i]=new DifficultyRadio(this);radios_[i]->setObjectName(QString("regionEntryDifficulty%1").arg(i));
+        radios_[i]->setCursor(Qt::PointingHandCursor);
         difficulties_->addButton(radios_[i],i);radios_[i]->installEventFilter(this);
-        radios_[i]->setStyleSheet("QRadioButton { color: #3e2313; background: transparent; }"
-            "QRadioButton::indicator { width: 14px; height: 14px; border: 1px solid #ac915a; border-radius: 7px; background: transparent; }"
-            "QRadioButton::indicator:checked { background: #3e2313; }");
         connect(radios_[i],&QRadioButton::toggled,this,[this,i](bool checked){if (checked) region_.difficulty=Difficulty(i);});
     }
     auto button=[this](const QString& name,const QString& text) {
@@ -114,7 +118,18 @@ void RegionEntryWidget::arrange() {
     const auto canvas=contentRect();const double scale=canvas.width()/800.0;
     auto map=[&](const QRect& r){return QRect(canvas.x()+qRound(r.x()*scale),canvas.y()+qRound(r.y()*scale),qRound(r.width()*scale),qRound(r.height()*scale));};
     auto font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Body,scale);
-    for (int i=0;i<4;++i) {radios_[i]->setGeometry(map(radioRectangles_[i]));radios_[i]->setFont(font);}
+    for (int i=0;i<4;++i) {
+        radios_[i]->setGeometry(map(radioRectangles_[i]));radios_[i]->setFont(font);
+        const int indicator=qMax(5,qMin(qRound(14*scale),radios_[i]->height()-6));
+        radios_[i]->setStyleSheet(QString(
+            "QRadioButton { color:#3e2313; background:transparent; border:1px solid transparent; border-radius:3px; spacing:%1px; }"
+            "QRadioButton:hover { background:rgba(255,245,214,100); }"
+            "QRadioButton:checked { background:rgba(255,245,214,170); border-color:#ac915a; }"
+            "QRadioButton:focus { border-color:#3e2313; }"
+            "QRadioButton::indicator { width:%2px; height:%2px; border:1px solid #ac915a; border-radius:%3px; background:#fff5d6; }"
+            "QRadioButton::indicator:checked { background:#3e2313; border-color:#3e2313; }")
+            .arg(qMax(2,qRound(6*scale))).arg(indicator).arg((indicator+2)/2));
+    }
     for (int i=0;i<3;++i) {auxiliary_[i]->setGeometry(map(auxiliaryRectangles_[i]));auxiliary_[i]->setFont(font);}
     font=mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Heading,scale);enter_->setFont(font);cancel_->setFont(font);
     enter_->setGeometry(map(enterRectangle_));cancel_->setGeometry(map(cancelRectangle_));heading_->setGeometry(map(headingRectangle_));

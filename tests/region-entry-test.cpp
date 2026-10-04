@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QKeyEvent>
 #include <QLabel>
+#include <QMouseEvent>
 #include <QPushButton>
 #include <QRadioButton>
 #include <QStackedWidget>
@@ -38,6 +39,18 @@ int main(int argc,char**argv) {
     QApplication::sendEvent(radio(0),&keyEnter);require(entered==0,"empty Enter guarded");
     RegionEntryWidget::Region region;region.id="opaque-region";region.name="<b>Region name</b>";require(widget.setRegion(region,&error)&&heading->text()==region.name&&heading->textFormat()==Qt::PlainText&&enter->isEnabled(),"caller identity and plain-text region title");
     for(int i=0;i<4;++i){radio(i)->click();enter->click();require(entered==i+1&&request.regionId=="opaque-region"&&int(request.difficulty)==i&&int(widget.region().difficulty)==i,"all typed difficulty requests");int checked=0;for(int j=0;j<4;++j)checked+=radio(j)->isChecked();require(checked==1,"exclusive difficulty");}
+    // A click in the far end of the supplied option rectangle must select it,
+    // even outside the indicator/text; check native and half-size layouts.
+    for(const auto size:{QSize(800,600),QSize(400,300)}){
+        widget.resize(size);app.processEvents();
+        for(int i=0;i<4;++i){auto* choice=radio(i);const QPointF point(choice->width()-3,choice->height()/2);
+            QMouseEvent press(QEvent::MouseButtonPress,point,QPointF(choice->mapToGlobal(point.toPoint())),Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+            QMouseEvent release(QEvent::MouseButtonRelease,point,QPointF(choice->mapToGlobal(point.toPoint())),Qt::LeftButton,Qt::NoButton,Qt::NoModifier);
+            QApplication::sendEvent(choice,&press);QApplication::sendEvent(choice,&release);
+            require(choice->isChecked()&&int(widget.region().difficulty)==i,"full difficulty option hit area after resize");
+        }
+    }
+    widget.resize(800,600);app.processEvents();
     require(radio(0)->text()=="Initiate"&&radio(3)->text()=="Wizard","installed radio labels");
     widget.focusFirstControl();require(radio(3)->hasFocus(),"focus selected difficulty");QApplication::sendEvent(radio(3),&keyEnter);require(entered==5,"Enter from radio once");QApplication::sendEvent(radio(3),&repeat);require(entered==5,"Enter repeat suppressed");
     for(int i=0;i<3;++i){QApplication::sendEvent(auxiliary(i),&keyEnter);require(auxCount==i+1&&int(action)==i&&entered==5,"focused auxiliary semantic action");}
