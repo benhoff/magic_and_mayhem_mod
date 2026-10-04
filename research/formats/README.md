@@ -57,3 +57,5 @@ Current findings:
 - [Native TXT/WBT loading](txt-wbt-native-loading.md): exact text lines, typed scroll entries, read-only automation statements and complete installed comparisons.
 
 - [Native DAT AI input](dat-native-loading.md): separate Brain/Experien grammars, exact numeric bits and complete installed byte roundtrips.
+
+- [Legacy ANI/SPR loading](legacy-ani-spr-loading.md): source ANI v3/v4 expansion and SPR v2 shorter headers; complete installed input coverage.

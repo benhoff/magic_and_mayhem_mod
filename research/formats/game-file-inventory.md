@@ -21,9 +21,9 @@ The executable identifying this installation has SHA-256
 | MPS | 683 | 389,488 | Version-1 map placements; [confirmed 40-byte records/native loading](mps-native-loading.md) |
 | NOD | 683 | 12,746,278 | [Native version-1 node reader](nod-native-loading.md); packed connections and trailer, offline only |
 | WAV | 356 | 11,925,486 | Standard RIFF/WAVE |
-| SPR | 181 | 108,134,899 | Proprietary `SPR\0` container |
+| SPR | 181 | 108,134,899 | Native v4 and [legacy v2](legacy-ani-spr-loading.md) loading; all installed inputs |
 | CFG | 175 | 1,599,518 | 163 plaintext; 11 encrypted containers; one other |
-| ANI | 136 | 5,478,380 | Proprietary `ANI\0` container |
+| ANI | 136 | 5,478,380 | Native v5 and [legacy v3/v4](legacy-ani-spr-loading.md) loading; all installed inputs |
 | PCX | 124 | 3,459,543 | Standard PCX |
 | WZD | 101 | 159,665 | Plaintext wizard data |
 | TAG | 85 | 1,570,692 | Headerless sprite-name/occurrence tables; [confirmed 12-byte records/native loading](tag-native-loading.md) |

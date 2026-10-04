@@ -18,6 +18,8 @@ struct SpriteFrame {
     std::int32_t originX = 0, originY = 0;
     // Preserve all eight bytes, including padding/non-text bytes.
     std::array<std::uint8_t, 8> name{};
+    // Version-2 serialized palette word, preserved only as opaque data.
+    std::optional<std::uint32_t> legacyPaletteWord;
     std::optional<std::uint32_t> paletteIndex; // absent for direct RGB565
     std::uint32_t sourceOffset = 0, encodedSize = 0;
     // Original trailing-plane offsets: preserved, not interpreted as effects.
@@ -59,7 +61,7 @@ struct SpriteError {
 };
 using SpriteResult = std::variant<Sprite, SpriteError>;
 // Complete owned output or structured error. No borrowed source/file/palette
-// pointers survive. Only version-4 SPR is supported; SFT/ANI are separate.
+// pointers survive. Version-4 SPR and single-palette version-2 SPR; SFT/ANI are separate.
 SpriteResult decodeSprite(const std::vector<std::uint8_t>& bytes, const SpriteLimits& limits = {});
 SpriteResult loadSprite(AssetFile& input, const SpriteLimits& limits = {});
 }

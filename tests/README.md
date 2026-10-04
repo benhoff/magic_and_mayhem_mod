@@ -480,3 +480,10 @@ field and reconstructs all bytes. Asset CTest runs seven synthetic fixtures;
 `--installation working/game-clean --report working/dat-comparison.json` adds
 both installed files with manifest checks before/after and unchanged input
 hashes. See [DAT evidence](../research/formats/dat-native-loading.md).
+
+`legacy-asset-loader-test.cpp` checks ANI v3/v4 normalization and SPR v2
+ownership, empty/aliased frames, numeric metadata, masks and malformed extents.
+`test-legacy-asset-loaders.py ANI_INSPECTOR SPR_INSPECTOR` compares independent
+synthetic layouts; `--installation working/game-clean` compares every record
+in 136 ANI files and every pixel/field in all seven v2 SPRs, with immutable
+manifest guards. See [legacy evidence](../research/formats/legacy-ani-spr-loading.md).

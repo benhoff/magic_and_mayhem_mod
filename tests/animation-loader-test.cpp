@@ -18,7 +18,7 @@ int main()try{
     auto rejected=[](std::vector<std::uint8_t> input,AnimationErrorCode code,AnimationLimits limits={}){auto result=decodeAnimation(input,limits);require(std::holds_alternative<AnimationError>(result),"Malformed ANI accepted");require(std::get<AnimationError>(result).code==code,"ANI error category differs");};
     rejected({},AnimationErrorCode::malformedData);
     b=fixture();word(b,0,0);rejected(b,AnimationErrorCode::invalidFormat);
-    b=fixture();word(b,12,4);rejected(b,AnimationErrorCode::unsupportedVersion);
+    b=fixture();word(b,12,2);rejected(b,AnimationErrorCode::unsupportedVersion);
     b=fixture();word(b,4,200);rejected(b,AnimationErrorCode::malformedData);
     b=fixture();word(b,8,4);rejected(b,AnimationErrorCode::malformedData);
     b=fixture();word(b,20,1);rejected(b,AnimationErrorCode::malformedData);

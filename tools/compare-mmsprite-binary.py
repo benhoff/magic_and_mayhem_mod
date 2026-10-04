@@ -139,8 +139,11 @@ def compare_native(inspector, root, evidence, files, cases):
         if native['path'] != entry['path']:
             raise ValueError('Native request order/path differs')
         if file['version'] != 4:
-            if native['status'] != 'error' or native['code'] != 'unsupportedVersion':
-                raise ValueError('Native loader failed to reject legacy SPR version')
+            if file['version']!=2 or native['status']!='decoded' or native['version']!=2 or native['frame_count']!=file['frames']:
+                raise ValueError('Native legacy SPR decode differs')
+            data=(root/file['path']).read_bytes()
+            if native['storage']!='indexed8' or native['palettes_rgb_hex']!=[data[20:788].hex()] or native['header_flags']!=0:
+                raise ValueError('Native legacy palette/header differs')
         else:
             if native['status'] != 'decoded':
                 raise ValueError(f"Native decode failed for {file['path']}: {native}")
@@ -187,6 +190,7 @@ def compare_native(inspector, root, evidence, files, cases):
             'loader_source_sha256': sha((REPO / 'assets/sprite_loader.cpp').read_bytes()),
             'header_sha256': sha((REPO / 'assets/sprite_loader.hpp').read_bytes()),
             'decoded_files': len(supported), 'legacy_files_rejected': len(decoded) - len(supported),
+            'legacy_files_decoded': sum(f.get('version')==2 for f in supported),
             'decoded_frames': sum(f['frame_count'] for f in supported),
             'empty_frames': sum(f['empty_frames'] for f in supported),
             'decoded_pixels': sum(f['pixels'] for f in supported),

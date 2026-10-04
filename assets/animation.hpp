@@ -9,10 +9,12 @@ struct AnimationRecord {
     std::uint32_t opcode=0;
     std::int32_t argument=0;
     // Raw +8..+43 words, including eight name bytes and coordinate-like fields.
+    // v3 stores through +24; v4 through +32; absent trailing words are zero.
     // Their remaining placement/attachment semantics are not interpreted here.
     std::array<std::uint32_t,9> metadata{};
 };
 struct Animation {
+    // Source version; records always use the normalized 44-byte representation.
     std::uint32_t version=5,opaqueHeader=0;
     std::array<std::uint8_t,20> spriteName{};
     // Record indices; final entry is a terminal extent, not another sequence.
