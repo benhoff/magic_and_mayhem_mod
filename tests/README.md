@@ -408,3 +408,13 @@ group member, with independent WAV/PCM expectations and cleanup checks.
 hashes before/after; no game or output device is opened. See
 [installed native audio manager](../research/runtime/installed-native-audio-manager.md)
 for successful coverage and the remaining quoted-path/missing-Stream gaps.
+
+## EVT event areas
+
+The asset CTests include `evt-loader` and `evt-record-comparison`.
+Compare installed files with
+`python3 tests/test-evt-loader.py working/build/evt/mnm-evt-inspect --installation working/game-clean --report working/tests/evt-loader/installed-comparison.json`.
+The installed run verifies originals before/after and records source hashes.
+`python3 tools/export-evt-support.py --decompile` exports hash-pinned reader,
+writer and selected caller evidence through read-only Ghidra processing.
+See [EVT schema and validation scope](../research/formats/evt-native-loading.md).
