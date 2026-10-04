@@ -23,3 +23,9 @@ body displacement, both attachment points and the `TileSizeXY == 2` view
 adjustment. The player exposes an owned displayed-record snapshot. Run
 `python3 tools/test-animation-placement.py`; see the
 [helper contract and evidence](../../research/runtime/animation-placement-attachments.md).
+
+One selected attachment path now has a recovered numeric mode-1 contract:
+effect entry 36, admission base-plus-facing selection, nonzero-health visibility,
+mode-gated ticks and stop/reset. Reproduce with
+`python3 tools/test-animation-attachment.py`; see
+[the contract and boundaries](../../research/runtime/animation-mode-one-attachment.md).
