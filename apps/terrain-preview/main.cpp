@@ -19,7 +19,7 @@ int main(int argc,char** argv)try{
  p.addOption({"definitions","1..9 comma-separated TTD IDs","ids","5,9,13,17,21,25,29,33,37"});
  p.addOption({"map","Installed MAP request; replaces explicit definitions","path"});
  p.addOption({"region","MAP slice x,y,layer,width,height (width/height 1..3)","coordinates","0,0,0,3,3"});
- p.addOption({"world","Produce an orientation-zero terrain scene from MAP"});
+ p.addOption({"world","Produce a four-orientation terrain scene from MAP"});
  p.addOption({"camera","World column,row,span,cut-level","fields"});p.addOption({"pan","World base screen origin x,y","pixels","256,64"});
  p.addOption({"view","Raw view 0..3","index","0"});p.addOption({"visibility","Apply recovered visibility pass"});
  p.addOption({"overlap","Use one anchor for every tile"});p.addOption({"output","New output prefix; writes .565, .png and .json, then exits","prefix"});p.process(app);

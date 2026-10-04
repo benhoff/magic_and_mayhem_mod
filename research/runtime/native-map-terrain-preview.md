@@ -86,3 +86,6 @@ chains, water/overlays, objects/creatures and live integration remain separate.
 The next [orientation-zero terrain scene milestone](terrain-world-traversal.md)
 adds recovered multi-layer camera traversal and bounded native clipping. It has
 separate evidence and does not broaden this one-plane slice comparison.
+
+The [four-orientation extension](terrain-traversal-rotations.md) now covers
+the remaining camera traversals, including their distinct boundary behavior.
