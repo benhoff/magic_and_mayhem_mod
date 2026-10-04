@@ -196,6 +196,7 @@ int main(int argc,char** argv){
                     "  --main-menu           Preview the native main menu without launching a game\n"
                     "  --quick-battle-menu   Preview the native Quick Battle menu\n"
                     "  --mini-menu MODE      Preview the campaign or battle Mini Menu\n"
+                    "  --battle-results MODE Preview victory or defeat with sample results\n"
                     "  --menu-assets DIR     Installed assets for the main menu preview\n"
                     "  --menu-command-line   Show the conditional CommandLine Battle preview button\n"
                     "  --media FILE          Preview AVI/WAV media without the game\n"
@@ -228,6 +229,7 @@ int main(int argc,char** argv){
     parser.addOption({"main-menu","Preview the native main menu without launching the game."});
     parser.addOption({"quick-battle-menu","Preview the native Quick Battle menu without launching the game."});
     parser.addOption({"mini-menu","Preview the Mini Menu: campaign or battle.","mode"});
+    parser.addOption({"battle-results","Preview battle results: victory or defeat.","mode"});
     parser.addOption({"menu-assets","Installation root for main-menu assets.","directory"});
     parser.addOption({"menu-command-line","Show CommandLine Battle in the menu preview."});
     parser.addOption({"software-rendering","Use Mesa software rendering for this shell and its Wine child."});
@@ -248,10 +250,11 @@ int main(int argc,char** argv){
     parser.addOption({"fixture-window","Internal external-window fixture."});parser.process(app);
     if(parser.isSet("media") || parser.isSet("media-server-test"))return runMedia(app,parser);
     if(parser.isSet("media-test") || parser.isSet("media-probe"))parser.showHelp(2);
-    const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu");
+    const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu") || parser.isSet("battle-results");
     if((parser.isSet("menu-assets") || parser.isSet("menu-command-line")) && !menuPreview)parser.showHelp(2);
-    if(int(parser.isSet("main-menu"))+int(parser.isSet("quick-battle-menu"))+int(parser.isSet("mini-menu"))>1)parser.showHelp(2);
+    if(int(parser.isSet("main-menu"))+int(parser.isSet("quick-battle-menu"))+int(parser.isSet("mini-menu"))+int(parser.isSet("battle-results"))>1)parser.showHelp(2);
     if(parser.isSet("mini-menu") && parser.value("mini-menu")!="campaign" && parser.value("mini-menu")!="battle")parser.showHelp(2);
+    if(parser.isSet("battle-results") && parser.value("battle-results")!="victory" && parser.value("battle-results")!="defeat")parser.showHelp(2);
     if(menuPreview){
         MenuPreview preview;
         const auto root=parser.isSet("menu-assets")?parser.value("menu-assets"):QDir(parser.value("repo")).filePath("working/game-nocd");
@@ -261,6 +264,9 @@ int main(int argc,char** argv){
         }
         if(parser.isSet("mini-menu") && !preview.openMiniMenu(root,parser.value("mini-menu")=="campaign"?MiniMenuWidget::Mode::Campaign:MiniMenuWidget::Mode::Battle,&error)){
             std::fprintf(stderr,"Mini Menu assets failed: %s\n",qPrintable(error));return 9;
+        }
+        if(parser.isSet("battle-results") && !preview.openBattleResults(root,parser.value("battle-results")=="victory"?BattleResultWidget::Outcome::Victory:BattleResultWidget::Outcome::Defeat,&error)){
+            std::fprintf(stderr,"Battle result assets failed: %s\n",qPrintable(error));return 9;
         }
         preview.findChild<MainMenuWidget*>()->setCommandLineBattleVisible(parser.isSet("menu-command-line"));
         preview.show();

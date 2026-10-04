@@ -76,3 +76,8 @@ does not establish live replacements or change the coverage ledger milestone.
 Original-manifest verification is performed before and after installed asset
 inspection. No proprietary sprite/font decoding is required for a text/button
 approximation.
+
+Victory and Defeat now have [native result previews](../runtime/battle-results-qt.md)
+with explicit supplied display data. Original result population/visibility and
+continuation remain unconnected. Visual fidelity is documented separately from
+layout and functional validation.
