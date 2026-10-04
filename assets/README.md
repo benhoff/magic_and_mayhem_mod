@@ -335,3 +335,12 @@ and four flag positions. Active ranges and allocations are bounded.
 `mnm-fp-inspect ROOT PATH.FP` reports all header words and points as JSON.
 No flag allocation, movement, drawing or live UI integration is supplied.
 See [layout, original evidence and validation](../research/formats/fp-native-loading.md).
+
+## SFT fonts
+
+`mnm-sft-loader` provides `decodeSft`/`loadSft` and raw-byte `sftGlyphIndex`
+in `sft.hpp`: owned version-3 palettes, glyph bitmaps and row contour profiles.
+The private frame decoder is shared with SPR; native font input is Qt-independent.
+`mnm-sft-inspect ROOT PATH.sft [ATLAS.png]` emits complete JSON and an optional
+transparent diagnostic atlas. Original text spacing and UI font use are separate.
+See [layout and validation](../research/formats/sft-native-loading.md).

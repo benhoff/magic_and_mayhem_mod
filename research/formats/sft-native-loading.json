@@ -1,0 +1,167 @@
+{
+  "reviewed": "2026-10-04",
+  "scope": "Owned offline SFT version-3 input; static original evidence, no executed SFT oracle or live replacement",
+  "summary": {
+    "files": 6,
+    "source_bytes": 624508,
+    "glyphs": 1205,
+    "metric_rows": 26459,
+    "comparison_sha256": "37259fa3b18b76e78e688ce97059de1ab759f2ccd9ef0cb8586e732cc0a472d1"
+  },
+  "files": [
+    {
+      "path": "Sprites/Tooltip Text.sft",
+      "source_sha256": "339149c522191e8c8cd4c5dc3e94f6b03ac3659171894d9230083dd2f3f5c448",
+      "source_bytes": 93372,
+      "glyph_count": 223,
+      "row_count": 15,
+      "ascent": 12,
+      "descent": 3,
+      "palette_flag": 1,
+      "metric_glyph_count": 223
+    },
+    {
+      "path": "Sprites/body text 640.sft",
+      "source_sha256": "1c3e0fa5b5edb73bfc91586d36fa525429312ff56148761db08e42b7c507213c",
+      "source_bytes": 98188,
+      "glyph_count": 223,
+      "row_count": 18,
+      "ascent": 14,
+      "descent": 4,
+      "palette_flag": 1,
+      "metric_glyph_count": 223
+    },
+    {
+      "path": "Sprites/body text 800.sft",
+      "source_sha256": "188e7f64dd0439334b8a6b65c0d20de4aa051d8e11e7bb74e11dfa3b879d6d80",
+      "source_bytes": 114284,
+      "glyph_count": 223,
+      "row_count": 22,
+      "ascent": 17,
+      "descent": 5,
+      "palette_flag": 1,
+      "metric_glyph_count": 223
+    },
+    {
+      "path": "Sprites/heading text 640.sft",
+      "source_sha256": "e61954f2d244d0f54800a672c31f78ad8fff09df2e9a8996047ea4dd4568352a",
+      "source_bytes": 129996,
+      "glyph_count": 223,
+      "row_count": 26,
+      "ascent": 20,
+      "descent": 6,
+      "palette_flag": 1,
+      "metric_glyph_count": 223
+    },
+    {
+      "path": "Sprites/heading text 800.sft",
+      "source_sha256": "5208106ee09588e65c7241759bce28a5b9c7d670e2cfa49581c9b0567c612d1a",
+      "source_bytes": 154788,
+      "glyph_count": 223,
+      "row_count": 32,
+      "ascent": 24,
+      "descent": 8,
+      "palette_flag": 1,
+      "metric_glyph_count": 223
+    },
+    {
+      "path": "Sprites/yellowtext.sft",
+      "source_sha256": "ecbaf127077d4c8355a73426f380674c88616d103f61edaee803c742e4577b9f",
+      "source_bytes": 33880,
+      "glyph_count": 90,
+      "row_count": 14,
+      "ascent": 11,
+      "descent": 3,
+      "palette_flag": 1,
+      "metric_glyph_count": 90
+    }
+  ],
+  "static_evidence": {
+    "directory": "working/decompiled/sft-support-pxjq5rm6",
+    "report_sha256": "dedc39ad533d90b195f3a19407bf7a82a10a7433299316ab93acff28421333fe",
+    "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "ranges": {
+      "font_reader": [
+        4872928,
+        4873425
+      ],
+      "advance": [
+        4872416,
+        4872659
+      ],
+      "character_draw": [
+        4872672,
+        4872777
+      ],
+      "font_load_call": [
+        5600736,
+        5600915
+      ]
+    },
+    "artifacts_sha256": {
+      "font_load_call.asm": "e85de7d923007f598bb09f241b5632ec7ccc433065f9f93777590c3473a095de",
+      "advance.asm": "f82f4de0831c07c33231974cf0455e984991d771bbe0b7dfa988817796e4cf72",
+      "character_draw.asm": "124028e5a4deb26d204a789cef0528b2deeff81e200620ffeaa5d96b4f37ed02",
+      "font_reader.asm": "dd144ee7d9ee8bc323880c1bab346ad92665280d52cc71720cfea31ffa5b3523",
+      "pseudo/004a59e0.refs": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pseudo/004a5ae0.c": "8611b3483dea8c713b1149cb4fa11994455f535b39d51298633d4aaed99c16eb",
+      "pseudo/004a58e0.refs": "1a3581fa68c6a6d624a5854c07feeabc4c6ce3af7ea14379577f653d02bdc485",
+      "pseudo/004a59e0.c": "755b1ecbd06a0139942322bc0eafba66a21488e146d113690422ad6bc5aee317",
+      "pseudo/004a58e0.c": "bd7eaf9a0010593d842f4e114a0c1802a8c0b20d630d71ac3f639ef304dab59e",
+      "pseudo/005575b0.refs": "087e482a6b61316d94ac485167249504f6739afd144112c3794cead7d7abe48b",
+      "pseudo/004a5ae0.refs": "fa992974bfa2a820905f034cebfdd88906a25162030fb5c9dcaed1c8f2292fd3",
+      "pseudo/005575b0.c": "4cc39e6da402a00bb64120d360169743330b82433079dec70f275e90a1034dfb"
+    }
+  },
+  "comparison_report": {
+    "path": "working/tests/sft-loader/comparison.json",
+    "sha256": "1f25635b36fff1fec9525fb6fcfffeb20a4565fc3a167495999c8d0e54ad2dde"
+  },
+  "checks": {
+    "asset_ctests": 29,
+    "sanitized_tests": [
+      "sft-loader",
+      "sprite-loader",
+      "sft-glyph-comparison"
+    ],
+    "sanitizers": "ASan/UBSan; ASAN_OPTIONS=detect_leaks=0",
+    "original_manifest_before_after": true,
+    "installed_source_hashes_unchanged": true,
+    "atlas_inspected": "body text 640.png"
+  },
+  "tool_hashes": {
+    "assets/sft.hpp": "91a41125164f294985873e4812728886a10c763f7082275e04b99f1bd0483c3b",
+    "assets/sft.cpp": "e317648525c1bd53d0a25a84db2ff943041b392c39ba34afc8781ac7fee8e985",
+    "assets/sft_inspect_main.cpp": "381ba95e1a00624a17e944a0df11f6dcd6b3b1f79b383da170bf4e3764c3b535",
+    "assets/sprite_frame_decoder.hpp": "55ff6be0e30d13672c8fc2fab5c2328582fc3eb0ffdf4456d3b2c6ab1a0ec6ab",
+    "assets/sprite_loader.cpp": "86d39ad12409ffdd07709a85a500dc0f3c611ac1bf2baff579aff6a1c2cf382b",
+    "tests/sft-loader-test.cpp": "683abfed7943de55eb0a0029e70edba6e51fc4ed9d12d16255891b0833f76650",
+    "tests/test-sft-loader.py": "a43a672912bb8026ed5438a1a21e5db26faa54706c9b5c013b29da143860fa61",
+    "tools/export-sft-support.py": "b356613ca0b400eca661d95fa5782035dd29a405eeb8ecade970b15960b07c3e",
+    "tools/ghidra/ExportSftSupport.java": "cac333314bb5a8931ab229724482382a28b3dc11c68e7b86f7b058a1096a6266"
+  },
+  "spr_regression": {
+    "inspector_sha256": "cabb48e50f6bc35709d6b78b878935163f982cec7579072c3e2c0b59cec8c2f6",
+    "loader_source_sha256": "86d39ad12409ffdd07709a85a500dc0f3c611ac1bf2baff579aff6a1c2cf382b",
+    "header_sha256": "f7ee6dac4c411b01c7063e95d74a854d277a79b704b4dcfda537170b5781ad53",
+    "decoded_files": 174,
+    "legacy_files_rejected": 7,
+    "decoded_frames": 59407,
+    "empty_frames": 2297,
+    "decoded_pixels": 129297163,
+    "original_draw_matches": 91,
+    "original_conversion_matches": 77,
+    "request_modes": [
+      "mixed_case_relative_windows",
+      "mixed_case_aliased_windows"
+    ],
+    "input_closed_before_inspection": true,
+    "original_palette_builder_executed": false,
+    "live_game_validated": false,
+    "original_outputs": "working/tests/sprite-binary/run-3ti022p5",
+    "original_outputs_report_sha256": "b42e99078123d554f26795b195d304cafdb5c3fd1700fc40a7cfded94b49b5bb",
+    "scope": "Current native decoding vs retained original output; no fresh original execution",
+    "report_sha256": "14be38522a6a4bea07cf695e93f57976fa0add53836cf46c808d2b712c95ba63",
+    "fresh_original_attempt": "SIGSYS in isolated i386 harness; fallback compares current native output with retained original draw/conversion artifacts"
+  }
+}
