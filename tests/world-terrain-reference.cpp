@@ -31,7 +31,7 @@ static void put(void* p,unsigned off,std::uint32_t v){std::memcpy(static_cast<un
 static void require(bool ok){if(!ok)throw std::runtime_error("Terrain producer mismatch");}
 
 int main(int argc,char** argv)try{
- if(argc!=13)throw std::runtime_error("Expected PE TTD SPR decoded_MAP column row span cut panX panY visibility view");
+ if(argc!=13 && argc!=19)throw std::runtime_error("Expected PE TTD SPR decoded_MAP column row span cut panX panY visibility view");
  mapImage(read(argv[1]));const auto catalog=read(argv[2]),sprite=read(argv[3]),raw=read(argv[4]);
  const auto width=u32(raw,4),height=u32(raw,8),layers=u32(raw,12);const int column=std::stoi(argv[5]),row=std::stoi(argv[6]),span=std::stoi(argv[7]),cut=std::stoi(argv[8]),panX=std::stoi(argv[9]),panY=std::stoi(argv[10]),visibility=std::stoi(argv[11]),view=std::stoi(argv[12]);
  require(view>=0 && view<4 && width<=128 && height<=128 && layers<=32 && raw.size()==76+12*std::uint64_t(width)*height*layers && span>0 && unsigned(span)<=std::min(width,height) && column>=0 && unsigned(column)<width && row>=0 && unsigned(row)<height && cut>0 && unsigned(cut)<=layers);
@@ -48,6 +48,7 @@ int main(int argc,char** argv)try{
  std::array<unsigned char,0x260> scene{};Bytes grid(14577);std::vector<std::array<std::uint32_t,9>> queue(width*height*layers*3);
  put(scene.data(),0x21,reinterpret_cast<std::uintptr_t>(map.data()));put(scene.data(),0x25,reinterpret_cast<std::uintptr_t>(map.data()));put(scene.data(),0x2d,reinterpret_cast<std::uintptr_t>(collection.data()));
  for(const auto field:std::vector<std::pair<unsigned,int>>{{0x31,view},{0x23d,view},{0x11,panX},{0x15,panY},{0x39,column},{0x3d,row},{0x41,2*(span/2)},{0x59,span},{0x5d,span/2},{0x61,cut},{0x65,1},{0x91,int(0xffff0000)},{0x95,int(0xffff0000)}})put(scene.data(),field.first,field.second);
+ if(argc==19){const std::array<unsigned,6> offsets{{0x41,0x45,0x49,0x4d,0x51,0x55}};for(unsigned i=0;i<6;++i)put(scene.data(),offsets[i],std::stoi(argv[13+i]));}
  put(scene.data(),0x229,reinterpret_cast<std::uintptr_t>(queue.data()));put(scene.data(),0x22d,reinterpret_cast<std::uintptr_t>(queue.data()));put(scene.data(),0x235,queue.size());put(scene.data(),0x239,reinterpret_cast<std::uintptr_t>(grid.data()));
  std::array<int,4> viewport{{0,0,512,256}};using Traversal=void(__attribute__((thiscall)) *)(void*,void*);using Op=void(__attribute__((thiscall)) *)(void*);
  const std::array<unsigned,4> routines{{0x4f83f0,0x4fbe00,0x4fc3f0,0x4fc930}};reinterpret_cast<Traversal>(routines[view])(scene.data(),viewport.data());reinterpret_cast<Op>(0x4fff60)(scene.data()+0x229);if(visibility)reinterpret_cast<Op>(0x5015f0)(scene.data()+0x229);

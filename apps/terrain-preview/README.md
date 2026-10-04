@@ -111,3 +111,17 @@ working/build/terrain-camera-frozen/mnm-terrain-preview --root working/game-clea
 
 See [selected camera setters](../../research/runtime/terrain-camera-setters.md)
 for original-code comparisons, replay validation and remaining lifecycle work.
+
+`--world --initialize-terrain` prepares an owned ordinary-terrain map projection
+before traversal: references/object branches are omitted, selected classification
+flags are initialized and recovered edge/empty/enclosed-cell decisions are
+applied. Combine it with `--recovered-camera` for map-bound camera setup. The
+output records projection and geometry counts. Entities, lighting and the full
+original map lifecycle remain separate. See
+[geometry initialization](../../research/runtime/terrain-map-initialization.md).
+
+```sh
+xvfb-run -a env QT_QPA_PLATFORM=xcb LIBGL_ALWAYS_SOFTWARE=1 \
+  ASAN_OPTIONS=detect_leaks=0 python3 tools/test-terrain-map.py \
+  --source-root SOURCE_SNAPSHOT --preview NORMAL --sanitized SANITIZED
+```
