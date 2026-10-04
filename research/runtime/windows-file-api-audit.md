@@ -66,9 +66,13 @@ must not be interchanged. Representative VAs below use the **clean executable**.
 | File versions, modules/resources, COM, code pages | Both executables import VERSION APIs, LoadLibrary/GetProcAddress and encoding APIs; No-CD additionally names FindResource/LoadResource/LockResource/SizeofResource | Native resource/JPEG/COM-dependent loaders and original path code-page behavior are not established |
 
 The `Save\\__temp.vas` literal and the adjacent delete/move branches are
-confirmed static save-file lifecycle evidence. The full destination-path
-construction, overwrite rules, cleanup after interruption, and `.vas` format
-remain unknown; do not infer transactional guarantees from the name alone.
+confirmed static save-file lifecycle evidence. Subsequent pinned No-CD
+[persistence research](persistence-progression.md) recovers `.sav` destination
+construction, overwrite admission, the intermediate stream and final packing.
+It also establishes early destination truncation and unchecked final move/delete
+results. Crash cleanup and live durability remain unknown; the temporary name
+does not establish transactional guarantees. Do not transfer No-CD addresses
+to the clean executable.
 
 ## Narrow caller observations and compatibility implications
 

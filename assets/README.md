@@ -236,3 +236,16 @@ widgets. See [layout, limits and installed byte evidence](../research/formats/an
 The separate [No-CD forward player](../research/runtime/animation-forward-contract.md)
 recovers selected sprite/delay/repeat/jump/event/stop behavior through bounded
 original-code comparisons. It has no asserted wall-clock rate or live replacement.
+
+## Persistence and progression readers
+
+`mnm-persistence-loader` exposes read-only owned loaders in `persistence.hpp`
+for plaintext/packed CFG, RealmView configuration, region names, packed `.sav`,
+decoded `.vas` and extracted realm state. The container codec supports raw,
+RLE and LZSS data with checksums and limits. Save loaders parse the campaign
+blocks and retain the unresolved world tail as opaque bytes.
+
+See the [API policies, inspector and validation](../research/formats/persistence-native-loading.md).
+These are offline readers; real save compatibility, writers, world restoration
+and application integration remain unvalidated. Animation and audio loaders
+remain separate services.
