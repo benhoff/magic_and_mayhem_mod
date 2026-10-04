@@ -6,6 +6,13 @@
 #include <QStackedWidget>
 #include <QStatusBar>
 
+namespace {
+const QVector<MapSelectionWidget::Map>& previewMaps() {
+    static const QVector<MapSelectionWidget::Map> maps{{"sample-forest","Sample forest map"},{"sample-plains","Sample plains map"},{"sample-islands","Sample islands map"}};
+    return maps;
+}
+}
+
 MenuPreview::MenuPreview(QWidget* parent) : QMainWindow(parent) {
     screens_ = new QStackedWidget(this);
     main_ = new MainMenuWidget(screens_);
@@ -34,6 +41,11 @@ MenuPreview::MenuPreview(QWidget* parent) : QMainWindow(parent) {
             QString error;
             const auto mode=action==QuickBattleMenuWidget::Action::JoinMultiplayer?MultiplayerSetupWidget::Mode::Join:MultiplayerSetupWidget::Mode::Create;
             if (!openMultiplayer(assetRoot_,mode,&error)) statusBar()->showMessage(QString("Multiplayer preview failed: %1").arg(error));
+            return;
+        }
+        if (action==QuickBattleMenuWidget::Action::CreateSinglePlayer) {
+            QString error;
+            if (!openSinglePlayerBattle(assetRoot_,&error)) statusBar()->showMessage(QString("Single Player preview failed: %1").arg(error));
             return;
         }
         const auto name = QMetaEnum::fromType<QuickBattleMenuWidget::Action>().valueToKey(int(action));
@@ -134,17 +146,24 @@ bool MenuPreview::openQuickBattleResults(const QString& root, QuickBattleResultW
 bool MenuPreview::openMapSelection(const QString& root, QString* error) {
     if (!mapSelection_) {
         mapSelection_=new MapSelectionWidget(screens_); screens_->addWidget(mapSelection_);
-        connect(mapSelection_,&MapSelectionWidget::cancelled,this,&MenuPreview::showQuickBattle);
+        connect(mapSelection_,&MapSelectionWidget::cancelled,this,&MenuPreview::returnFromMapSelection);
         connect(mapSelection_,&MapSelectionWidget::mapSelected,this,[this](const QString& id) {
-            showQuickBattle();
+            if (mapReturnsToSinglePlayer_) {
+                auto setup=singlePlayer_->setup();setup.mapId=id;
+                for (const auto& map:previewMaps()) if (map.id==id) setup.mapName=map.name;
+                singlePlayer_->setSetup(setup);
+            }
+            returnFromMapSelection();
             statusBar()->showMessage(QString("Selected sample map %1 — engine adapter pending.").arg(id));
         });
     }
+    const bool fromSingle=singlePlayer_ && screens_->currentWidget()==singlePlayer_;
     if (!mapSelection_->loadAssets(root,error)) return false;
-    if (!mapSelection_->setMaps({{"sample-forest","Sample forest map"},{"sample-plains","Sample plains map"},{"sample-islands","Sample islands map"}},"sample-forest",error)) return false;
+    if (!mapSelection_->setMaps(previewMaps(),fromSingle?singlePlayer_->setup().mapId:"sample-forest",error)) return false;
+    mapReturnsToSinglePlayer_=fromSingle;
     screens_->setCurrentWidget(mapSelection_); mapSelection_->focusSelection();
     setWindowTitle(mapSelection_->windowTitle());
-    statusBar()->showMessage("Sample map list. OK or Cancel returns to the Quick Battle preview.");
+    statusBar()->showMessage(fromSingle?"Sample maps. OK or Cancel returns to Single Player setup.":"Sample map list. OK or Cancel returns to the Quick Battle preview.");
     return true;
 }
 
@@ -260,4 +279,53 @@ bool MenuPreview::openMultiplayerGameSelection(const QString& root, QString* err
     multiplayerSelection_->focusSelection();
     statusBar()->showMessage("Sample sessions; no discovery. Select a game and OK; Cancel returns to Join.");
     return true;
+}
+
+void MenuPreview::returnFromMapSelection() {
+    if (!mapReturnsToSinglePlayer_) {showQuickBattle();return;}
+    mapReturnsToSinglePlayer_=false;screens_->setCurrentWidget(singlePlayer_);setWindowTitle(singlePlayer_->windowTitle());
+    singlePlayer_->findChild<QPushButton*>("singlePlayerMap")->setFocus(Qt::OtherFocusReason);
+    statusBar()->showMessage("Single Player sample setup. Start emits intent; engine adapter pending.");
+}
+bool MenuPreview::openSinglePlayerBattle(const QString& root,QString* error) {
+    if (!singlePlayer_) {
+        singlePlayer_=new SinglePlayerBattleWidget(screens_);screens_->addWidget(singlePlayer_);
+        SinglePlayerBattleWidget::Setup sample;sample.mapId=previewMaps()[0].id;sample.mapName=previewMaps()[0].name;
+        const std::array<QString,4> colours{"Red","Blue","Green","Gold"};
+        for (int i=0;i<4;++i) {
+            auto& player=sample.players[i];player.active=true;player.name=i?QString("Sample AI %1").arg(i):"Sample player";
+            player.portraitId="sample-wizard-1";player.portraitText="W1";
+            player.colourId=QString("sample-colour-%1").arg(i);player.colourText=colours[i];
+        }
+        singlePlayer_->setSetup(sample);
+        connect(singlePlayer_,&SinglePlayerBattleWidget::cancelled,this,[this] {
+            showQuickBattle();quick_->findChild<QPushButton*>("quickBattleAction2")->setFocus(Qt::OtherFocusReason);
+        });
+        connect(singlePlayer_,&SinglePlayerBattleWidget::mapRequested,this,[this] {
+            QString error;if (!openMapSelection(assetRoot_,&error)) statusBar()->showMessage(QString("Map preview failed: %1").arg(error));
+        });
+        connect(singlePlayer_,&SinglePlayerBattleWidget::startRequested,this,[this](const auto& setup) {
+            statusBar()->showMessage(QString("Start Single Player on %1 — engine command adapter pending.").arg(setup.mapId));
+        });
+        connect(singlePlayer_,&SinglePlayerBattleWidget::playerChangeRequested,this,[this](int slot) {
+            auto setup=singlePlayer_->setup();auto& player=setup.players[slot];
+            const int next=player.active?(player.portraitText=="W1"?2:player.portraitText=="W2"?3:1):1;
+            player.active=true;player.portraitId=QString("sample-wizard-%1").arg(next);player.portraitText=QString("W%1").arg(next);
+            if (slot) player.name=QString("Sample AI %1 (W%2)").arg(slot).arg(next);
+            singlePlayer_->setSetup(setup);
+        });
+        connect(singlePlayer_,&SinglePlayerBattleWidget::colourChangeRequested,this,[this](int slot) {
+            auto setup=singlePlayer_->setup();auto& player=setup.players[slot];
+            const std::array<QString,4> colours{"Red","Blue","Green","Gold"};
+            int current=0;for (int i=0;i<4;++i) if (player.colourText==colours[i]) current=i;
+            const int next=(current+1)%4;player.colourId=QString("sample-colour-%1").arg(next);player.colourText=colours[next];
+            singlePlayer_->setSetup(setup);
+        });
+        connect(singlePlayer_,&SinglePlayerBattleWidget::playerRemovalRequested,this,[this](int slot) {
+            auto setup=singlePlayer_->setup();setup.players[slot].active=false;singlePlayer_->setSetup(setup);
+        });
+    }
+    if (!singlePlayer_->loadAssets(root,error)) return false;
+    screens_->setCurrentWidget(singlePlayer_);singlePlayer_->focusFirstControl();setWindowTitle(singlePlayer_->windowTitle());
+    statusBar()->showMessage("Sample players and settings; portrait/colour buttons cycle samples. Start remains pending.");return true;
 }
