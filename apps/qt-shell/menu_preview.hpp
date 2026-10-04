@@ -21,6 +21,7 @@ class QStackedWidget;
 
 // Standalone native navigation; no game process or legacy adapter.
 class MenuPreview final : public QMainWindow {
+    Q_OBJECT
 public:
     explicit MenuPreview(QWidget* parent = nullptr);
     bool loadAssets(const QString& root, bool startQuickBattle, QString* error = nullptr);
@@ -39,7 +40,14 @@ public:
     bool openCharacterScreen(const QString& root, QString* error = nullptr);
     bool openSpellbox(const QString& root, QString* error = nullptr);
     bool openGrimoire(const QString& root, QString* error = nullptr);
+signals:
+    void screenReady(QWidget* screen);
+    void screenChanged();
+    void closed();
+protected:
+    void closeEvent(QCloseEvent*) override;
 private:
+    void activateScreen(QWidget*);
     void returnFromCharacterScreen();
     void returnFromGrimoire();
     void returnFromSpellbox();

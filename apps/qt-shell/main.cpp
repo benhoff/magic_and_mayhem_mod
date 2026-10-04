@@ -1,3 +1,5 @@
+#include "menu_audio_controller.hpp"
+#include <QMediaDevices>
 #include "audio_cli.hpp"
 #include "voice_bridge.hpp"
 #include "window_host.hpp"
@@ -192,6 +194,9 @@ int main(int argc,char** argv){
     // Help remains available from terminals without a graphical display.
     for(int i=1;i<argc;++i)if(QString::fromLocal8Bit(argv[i])=="--help" || QString::fromLocal8Bit(argv[i])=="-h"){
         std::printf("Usage: mnm-qt-shell [--repo DIRECTORY] [--renderer opengl|native]\n"
+                    "  --menu-audio          Opt in to native preview click/page-turn cues\n"
+                    "  --menu-audio-policy POLICY  literal or dequote-missing-leaf\n"
+                    "  --menu-click-sound ID / --menu-page-sound ID  Preview cue IDs (822/830)\n"
                     "  --audio-catalog DIR   Preview reconstructed manager through Qt audio output\n"
                     "  --audio-preflight     Report playable WAVs and missing assets without output\n"
                     "  --audio-path-policy POLICY  literal or dequote-missing-leaf\n"
@@ -247,6 +252,10 @@ int main(int argc,char** argv){
     QCommandLineParser parser;parser.setApplicationDescription("Magic & Mayhem Qt development shell");parser.addHelpOption();
     addMediaOptions(parser);
     addAudioOptions(parser);
+    parser.addOption({"menu-audio","Native preview click/page-turn sounds through the manager and Qt sink."});
+    parser.addOption({"menu-audio-policy","Preview source filenames: literal or dequote-missing-leaf.","policy","literal"});
+    parser.addOption({"menu-click-sound","Native preview action cue catalog ID.","id","822"});
+    parser.addOption({"menu-page-sound","Native preview page-turn cue catalog ID.","id","830"});
     parser.addOption({"native-voices","Experimental native DirectSound voices through the PCM mixer and Qt output."});
     parser.addOption({"main-menu","Preview the native main menu without launching the game."});
     parser.addOption({"quick-battle-menu","Preview the native Quick Battle menu without launching the game."});
@@ -290,6 +299,8 @@ int main(int argc,char** argv){
     if(parser.isSet("media-test") || parser.isSet("media-probe"))parser.showHelp(2);
     const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu") || parser.isSet("battle-results") || parser.isSet("quick-battle-results") || parser.isSet("map-selection") || parser.isSet("load-game") || parser.isSet("save-game") || parser.isSet("preferences") || parser.isSet("join-multiplayer") || parser.isSet("create-multiplayer") || parser.isSet("multiplayer-game-selection") || parser.isSet("single-player-battle") || parser.isSet("multiplayer-lobby") || parser.isSet("region-entry") || parser.isSet("character-screen") || parser.isSet("grimoire") || parser.isSet("spellbox");
     if((parser.isSet("menu-assets") || parser.isSet("menu-command-line")) && !menuPreview)parser.showHelp(2);
+    if(parser.isSet("menu-audio") && !menuPreview)parser.showHelp(2);
+    if((parser.isSet("menu-audio-policy") || parser.isSet("menu-click-sound") || parser.isSet("menu-page-sound")) && !parser.isSet("menu-audio"))parser.showHelp(2);
     if(int(parser.isSet("main-menu"))+int(parser.isSet("quick-battle-menu"))+int(parser.isSet("mini-menu"))+int(parser.isSet("battle-results"))+int(parser.isSet("quick-battle-results"))+int(parser.isSet("map-selection"))+int(parser.isSet("load-game"))+int(parser.isSet("save-game"))+int(parser.isSet("preferences"))+int(parser.isSet("join-multiplayer"))+int(parser.isSet("create-multiplayer"))+int(parser.isSet("multiplayer-game-selection"))+int(parser.isSet("single-player-battle"))+int(parser.isSet("multiplayer-lobby"))+int(parser.isSet("region-entry"))+int(parser.isSet("character-screen"))+int(parser.isSet("grimoire"))+int(parser.isSet("spellbox"))>1)parser.showHelp(2);
     if(parser.isSet("multiplayer-lobby") && parser.value("multiplayer-lobby")!="host" && parser.value("multiplayer-lobby")!="join")parser.showHelp(2);
     if(parser.isSet("mini-menu") && parser.value("mini-menu")!="campaign" && parser.value("mini-menu")!="battle")parser.showHelp(2);
@@ -301,6 +312,20 @@ int main(int argc,char** argv){
         QString error;
         if(!preview.loadAssets(root,parser.isSet("quick-battle-menu"),&error)){
             std::fprintf(stderr,"Menu assets failed: %s\n",qPrintable(error));return 9;
+        }
+        std::unique_ptr<MenuAudioController> menuAudio;
+        if(parser.isSet("menu-audio")){
+            const auto policy=parser.value("menu-audio-policy");
+            if(policy!="literal" && policy!="dequote-missing-leaf")parser.showHelp(2);
+            bool clickOk=false,pageOk=false;
+            const int click=parser.value("menu-click-sound").toInt(&clickOk),page=parser.value("menu-page-sound").toInt(&pageOk);
+            if(!clickOk || !pageOk || click<=0 || page<=0)parser.showHelp(2);
+            menuAudio=std::make_unique<MenuAudioController>(makeQtSessionOutput(QMediaDevices::defaultAudioOutput()),MenuAudioCues{click,page});
+            menuAudio->attach(preview);
+            menuAudio->failed=[](const QString& message){std::fprintf(stderr,"Menu audio: %s\n",qPrintable(message));};
+            if(!menuAudio->start(QDir(root).filePath("Sounds"),policy=="literal"?mnm::reconstruction::audio::NativeSourcePathPolicy::literal:mnm::reconstruction::audio::NativeSourcePathPolicy::dequoteMissingLeaf)){
+                std::fprintf(stderr,"Menu audio startup failed: %s\n",qPrintable(menuAudio->lastError()));return 4;
+            }
         }
         if(parser.isSet("mini-menu") && !preview.openMiniMenu(root,parser.value("mini-menu")=="campaign"?MiniMenuWidget::Mode::Campaign:MiniMenuWidget::Mode::Battle,&error)){
             std::fprintf(stderr,"Mini Menu assets failed: %s\n",qPrintable(error));return 9;
