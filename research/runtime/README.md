@@ -98,3 +98,5 @@ confidence, and whether it remains stable across launches.
 - [Audio voice lifetimes](audio-voice-lifetimes.md): retirement versus destruction, duplicate cleanup and circular reusable scheduler records; offline contracts and fixtures.
 
 - [Audio voice scheduler](audio-voice-scheduler.md): free/expired selection, tail eviction, old-volume ordering and assignment; offline clock/ring/PCM fixtures.
+
+- [Positional audio](positional-audio.md): wrapped coordinates, approximate distance, signed map-byte attenuation, orientation pan and existing voice updates; offline fixtures.
