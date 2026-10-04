@@ -89,10 +89,119 @@ def mm565(rows, frame):
     return struct.pack('<' + 'H' * len(out), *out)
 
 
+def native_destination(file, frame, converted=False):
+    w, h = frame['width'], frame['height']
+    mask = bytes.fromhex(frame['mask_hex'])
+    packed = bytes.fromhex(frame['pixels_hex'])
+    direct = file['storage'] == 'rgb565'
+    if len(mask) != w * h or len(packed) != w * h * (2 if direct else 1):
+        raise ValueError('Native pixel/mask length differs from dimensions')
+    pixels = [p[0] for p in struct.iter_unpack('<H', packed)] if direct else list(packed)
+    palette = None if direct else bytes.fromhex(file['palettes_rgb_hex'][frame['palette_index']])
+    out = [0x1234] * ((w + 2) * (h + 2))
+    for i, (opaque, pixel) in enumerate(zip(mask, pixels)):
+        if opaque not in (0, 1) or (not opaque and pixel != 0):
+            raise ValueError('Invalid native mask or nonzero transparent slot')
+        if not opaque:
+            continue
+        if direct:
+            colour = ((pixel >> 1) & 0x7fe0) | (pixel & 31) if converted else pixel
+        else:
+            r, g, b = palette[pixel * 3:pixel * 3 + 3]
+            colour = (r >> 3) << 11 | (g >> 2) << 5 | (b >> 3)
+        out[(i // w + 1) * (w + 2) + i % w + 1] = colour
+    return struct.pack('<' + 'H' * len(out), *out)
+
+
+def compare_native(inspector, root, evidence, files, cases):
+    inspector_hash = sha(inspector.read_bytes())
+    samples = {}
+    for case in cases:
+        samples.setdefault(case['path'], []).append(case['frame'])
+    entries = []
+    for i, file in enumerate(files):
+        mixed = ''.join(c.upper() if n % 2 else c.lower() for n, c in enumerate(file['path'])).replace('/', '\\')
+        entries.append({'path': ('c:\\MagicMayhem\\' if i % 2 else '') + mixed,
+                        'frames': samples.get(file['path'], [])})
+    manifest = evidence / 'native-manifest.json'
+    manifest.write_text(json.dumps(entries, indent=2) + '\n')
+    completed = subprocess.run([str(inspector), '--root', str(root), '--prefix', 'C:/MagicMayhem',
+                                '--manifest', str(manifest)], capture_output=True, text=True, timeout=120)
+    (evidence / 'native-inspection.json').write_text(completed.stdout)
+    (evidence / 'native-inspection.stderr').write_text(completed.stderr)
+    if completed.returncode not in (0, 1):
+        completed.check_returncode()
+    decoded = json.loads(completed.stdout)['files']
+    if len(decoded) != len(files):
+        raise ValueError('Native inspection omitted inputs')
+    by_name = {}
+    for file, entry, native in zip(files, entries, decoded):
+        if native['path'] != entry['path']:
+            raise ValueError('Native request order/path differs')
+        if file['version'] != 4:
+            if native['status'] != 'error' or native['code'] != 'unsupportedVersion':
+                raise ValueError('Native loader failed to reject legacy SPR version')
+        else:
+            if native['status'] != 'decoded':
+                raise ValueError(f"Native decode failed for {file['path']}: {native}")
+            storage = 'indexed8' if file['palettes'] else 'rgb565'
+            if native['storage'] != storage or native['frame_count'] != file['frames'] or len(native['palettes_rgb_hex']) != file['palettes']:
+                raise ValueError('Native container metadata differs')
+            data = (root / file['path']).read_bytes()
+            if native['source_bytes'] != len(data) or native['header_flags'] != uint(data, 20):
+                raise ValueError('Native source size/header flags differ')
+            expected_palettes = [data[24 + p * 768:24 + (p + 1) * 768].hex() for p in range(file['palettes'])]
+            if native['palettes_rgb_hex'] != expected_palettes:
+                raise ValueError('Native embedded palette bytes differ')
+            base = 24 + file['palettes'] * 768 + file['frames'] * 4
+            for frame in native['frames']:
+                at = base + uint(data, 24 + file['palettes'] * 768 + frame['index'] * 4)
+                raw = struct.unpack_from('<IIIii', data, at)
+                expected = (raw[0], raw[1], raw[2], raw[3], raw[4], data[at + 20:at + 28].hex(),
+                            uint(data, at + 28) if file['palettes'] else None,
+                            [uint(data, at + 32), uint(data, at + 36)], at)
+                actual = (frame['encoded_size'], frame['width'], frame['height'], frame['origin_x'], frame['origin_y'],
+                          frame['name_hex'], frame['palette_index'], frame['auxiliary_offsets'], frame['source_offset'])
+                if actual != expected:
+                    raise ValueError('Native frame metadata differs from table-selected raw record')
+        by_name[file['path']] = native
+    for i, case in enumerate(cases):
+        native = by_name[case['path']]
+        selected = [f for f in native['frames'] if f['index'] == case['frame']]
+        if len(selected) != 1:
+            raise ValueError('Native sample omitted or duplicated')
+        frame = selected[0]
+        actual = (evidence / f'case-{i:03}.565').read_bytes()
+        case['native_matches_original'] = native_destination(native, frame) == actual
+        case['native_pixels_sha256'] = frame['pixels_sha256']
+        case['native_mask_sha256'] = frame['mask_sha256']
+        if native['storage'] == 'rgb565':
+            converted = (evidence / f'case-{i:03}.555').read_bytes()
+            case['native_conversion_matches_original'] = native_destination(native, frame, True) == converted
+        if not case['native_matches_original'] or case.get('native_conversion_matches_original') is False:
+            raise ValueError(f"Native/original mismatch: {case['path']} frame {case['frame']}")
+    if sha(inspector.read_bytes()) != inspector_hash:
+        raise ValueError('Native inspector changed during comparison')
+    supported = [f for f in decoded if f['status'] == 'decoded']
+    return {'inspector_sha256': inspector_hash,
+            'loader_source_sha256': sha((REPO / 'assets/sprite_loader.cpp').read_bytes()),
+            'header_sha256': sha((REPO / 'assets/sprite_loader.hpp').read_bytes()),
+            'decoded_files': len(supported), 'legacy_files_rejected': len(decoded) - len(supported),
+            'decoded_frames': sum(f['frame_count'] for f in supported),
+            'empty_frames': sum(f['empty_frames'] for f in supported),
+            'decoded_pixels': sum(f['pixels'] for f in supported),
+            'original_draw_matches': sum(c['native_matches_original'] for c in cases),
+            'original_conversion_matches': sum(c.get('native_conversion_matches_original', False) for c in cases),
+            'request_modes': ['mixed_case_relative_windows', 'mixed_case_aliased_windows'],
+            'input_closed_before_inspection': True,
+            'original_palette_builder_executed': False, 'live_game_validated': False}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=REPO / 'working/game-clean')
     parser.add_argument('--source', type=Path, default=REPO / 'working/MMSprite')
+    parser.add_argument('--native-inspector', type=Path, help='Also validate the compiled native SPR inspector')
     args = parser.parse_args()
     root, source = args.root.resolve(), args.source.resolve()
     helpers = runpy.run_path(str(REPO / 'tools/evaluate-mmsprite.py'))
@@ -202,6 +311,7 @@ def main():
                 raise ValueError(f'Asset changed: {relative}')
         if not cases:
             raise ValueError('No comparison samples')
+        native = compare_native(args.native_inspector.resolve(), root, evidence, files, cases) if args.native_inspector else None
         if sha(executable.read_bytes()) != HASH or sha(snapshot.read_bytes()) != HASH:
             raise ValueError('Executable changed')
         if sha(clean_executable.read_bytes()) != CLEAN_HASH:
@@ -211,6 +321,7 @@ def main():
         if any(sha((root / f['path']).read_bytes()) != f['sha256'] for f in files):
             raise ValueError('Installed SPR input changed')
         report = {'executable_sha256': HASH, 'upstream_revision': helpers['REVISION'],
+                  'native': native,
                   'clean_executable_sha256': CLEAN_HASH, 'clean_binary_executed': False,
                   'clean_static_ranges': {k: [hex(a), hex(b)] for k, (a, b) in CLEAN_RANGES.items()},
                   'root': str(root), 'ranges': {k: [hex(a), hex(b)] for k, (a, b) in RANGES.items()},
@@ -231,6 +342,8 @@ def main():
                   'artifacts_sha256': {p.name: sha(p.read_bytes()) for p in evidence.iterdir() if p.suffix == '.asm' or p.name == 'callers.json'}}
         (evidence / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
         print(json.dumps(report['summary'], indent=2), flush=True)
+        if native:
+            print(json.dumps(native, indent=2), flush=True)
         if any(not c['checked_row_model_matches_original'] or
                c.get('conversion_model_matches_original') is False for c in cases):
             raise ValueError('Original routine differs from checked row/conversion model')

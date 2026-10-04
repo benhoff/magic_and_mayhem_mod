@@ -23,3 +23,4 @@ Current findings:
 - [Read-only asset file interface contract](asset-file-interface.md)
 - [Raw asset interface byte comparison](asset-file-comparison.md)
 - [Pinned MMSprite rendering-asset evaluation](mmsprite-evaluation.md)
+- [Native indexed/direct-colour SPR loading](spr-native-loading.md)
