@@ -11,6 +11,7 @@ typedef i32 (WIN *Value)(void*,u32);
 typedef i32 (WIN *Read)(void*,u32*);
 typedef i32 (WIN *Play)(void*,u32,u32,u32);
 typedef i32 (WIN *Stop)(void*);
+typedef i32 (WIN *Format)(void*,void*);
 typedef i32 (WIN *Lock)(void*,u32,u32,void**,u32*,void**,u32*,u32);
 typedef i32 (WIN *Unlock)(void*,void*,u32,void*,u32);
 void start(void){
@@ -27,8 +28,17 @@ void start(void){
     CHECK(METHOD(device,3,CreateBuffer)(device,primaryDesc,&primary,0)==0);
     CHECK(METHOD(primary,12,Play)(primary,0,0,1)==0);u32 value=0;
     CHECK(METHOD(primary,9,Read)(primary,&value)==0 && value==3);
+    CHECK(METHOD(primary,15,Value)(primary,(u32)-2000)==0);
+    CHECK(METHOD(primary,6,Read)(primary,&value)==0 && value==(u32)-2000);
+    CHECK(METHOD(primary,15,Value)(primary,1)<0);
+    CHECK(METHOD(primary,6,Read)(primary,&value)==0 && value==(u32)-2000);
+    CHECK(METHOD(primary,12,Play)(primary,0,0,0)<0);
     CHECK(METHOD(primary,18,Stop)(primary)==0);
+    CHECK(METHOD(primary,9,Read)(primary,&value)==0 && value==0);
+    CHECK(METHOD(primary,15,Value)(primary,0)==0);
     u8 format[18]={1,0,1,0,0x44,0xac,0,0,0x88,0x58,1,0,2,0,16,0,0,0};
+    CHECK(METHOD(primary,14,Format)(primary,format)==0);
+    format[12]=1;CHECK(METHOD(primary,14,Format)(primary,format)<0);format[12]=2;
     u32 desc[5]={20,0xea,8,0,(u32)format};void* buffer=0;
     CHECK(METHOD(device,3,CreateBuffer)(device,desc,&buffer,0)==0 && buffer);
     void* memory=0;u32 bytes=0;
@@ -41,6 +51,8 @@ void start(void){
     CHECK(METHOD(buffer,15,Value)(buffer,(u32)-2000)==0);
     CHECK(METHOD(buffer,16,Value)(buffer,1000)==0);
     CHECK(METHOD(buffer,12,Play)(buffer,0,0,1)==0);
+    CHECK(METHOD(buffer,9,Read)(buffer,&value)==0 && value==3);
+    CHECK(METHOD(primary,18,Stop)(primary)==0);
     CHECK(METHOD(buffer,9,Read)(buffer,&value)==0 && value==3);
     void* child=0;CHECK(METHOD(device,5,Duplicate)(device,buffer,&child)==0 && child);
     CHECK(METHOD(child,9,Read)(child,&value)==0 && value==0);

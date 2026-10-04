@@ -29,6 +29,10 @@ struct VoiceInfo {
     std::int32_t volume=0,pan=0; // Hundredths of a decibel, not linear gain.
     std::uint32_t status() const{return playback==Playback::playing?(looping?3u:1u):0u;}
 };
+struct PrimaryState {
+    std::int32_t volume=0;bool explicitlyPlaying=false;std::optional<PcmFormat> format;
+    std::uint32_t status() const{return explicitlyPlaying?3u:0u;}
+};
 struct AdvanceResult {std::uint64_t consumed=0;bool completed=false;};
 
 // Thread-confined sample ownership, playback state and offline mixing. No device output.
@@ -56,6 +60,11 @@ public:
     std::optional<VoiceInfo> voice(BufferId id) const;
     // Interleaved signed stereo PCM; advances voices in the fixed output clock.
     Error mixStereo(std::size_t frames,std::vector<std::int16_t>& output);
+    PrimaryState primaryState() const{return primary_;}
+    Error setPrimaryVolume(std::int32_t value);
+    Error playPrimary(std::uint32_t flags=1);
+    void stopPrimary(){primary_.explicitlyPlaying=false;}
+    Error setPrimaryOutputFormat(const PcmFormat& format);
     std::uint32_t outputRate() const{return outputRate_;}
     static constexpr std::size_t maxMixFrames=65536;
     std::optional<BufferInfo> info(BufferId id) const;
@@ -69,6 +78,6 @@ private:
     static std::int32_t sample(const Buffer&,std::uint64_t frame,unsigned channel);
     std::unordered_map<BufferId,Buffer> buffers_;
     BufferId next_=1;std::uint64_t ticket_=1;std::size_t maxBytes_,maxBuffers_;
-    std::uint32_t outputRate_;
+    std::uint32_t outputRate_;PrimaryState primary_;
 };
 }

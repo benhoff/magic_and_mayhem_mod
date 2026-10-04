@@ -81,10 +81,10 @@ static i32 WIN set_speakers(struct Object* o,u32 value){(void)o;(void)value;retu
 static i32 WIN initialize(struct Object* o,void* guid){(void)o;(void)guid;return UNSUPPORTED;}
 static i32 WIN position(struct Object* o,u32* read,u32* write){(void)o;(void)read;(void)write;return UNSUPPORTED;}
 static i32 WIN get_format(struct Object* o,void* format,u32 size,u32* written){if(written)*written=18;if(!format)return written?0:INVALID;if(size<18)return INVALID;copy(format,o->format,18);return 0;}
-static i32 WIN get_volume(struct Object* o,i32* out){if(!out)return INVALID;*out=o->volume;return 0;}
+static i32 WIN get_volume(struct Object* o,i32* out){if(!out)return INVALID;if(o->kind==2)return request(MNM_AUDIO_PRIMARY_GET_VOLUME,0,0,0,0,0,0,(u32*)out);*out=o->volume;return 0;}
 static i32 WIN get_pan(struct Object* o,i32* out){if(!out)return INVALID;*out=o->pan;return 0;}
 static i32 WIN get_frequency(struct Object* o,u32* out){if(!out)return INVALID;copy(out,o->format+4,4);return 0;}
-static i32 WIN get_status(struct Object* o,u32* out){if(!out)return INVALID;if(o->kind==2){*out=o->playing;return 0;}return request(MNM_AUDIO_STATUS,o->id,0,0,0,0,0,out);}
+static i32 WIN get_status(struct Object* o,u32* out){if(!out)return INVALID;if(o->kind==2)return request(MNM_AUDIO_PRIMARY_STATUS,0,0,0,0,0,0,out);return request(MNM_AUDIO_STATUS,o->id,0,0,0,0,0,out);}
 static i32 WIN buffer_init(struct Object* o,void* device,void* desc){(void)o;(void)device;(void)desc;return UNSUPPORTED;}
 static i32 WIN lock(struct Object* o,u32 offset,u32 length,void** a,u32* na,void** b,u32* nb,u32 flags){
     if(o->kind!=3 || offset || flags)return UNSUPPORTED;
@@ -97,11 +97,11 @@ static i32 WIN unlock(struct Object* o,void* a,u32 na,void* b,u32 nb){
     i32 status=na?request(MNM_AUDIO_UPLOAD,o->id,0,na,0,0,a,0):0;
     HeapFree(GetProcessHeap(),0,o->staging);o->staging=0;o->locked=0;return status;
 }
-static i32 WIN play(struct Object* o,u32 a,u32 b,u32 flags){if(a || b || flags>1)return UNSUPPORTED;if(o->kind==2){o->playing=flags?3:1;return 0;}return request(MNM_AUDIO_PLAY,o->id,flags,0,0,0,0,0);}
-static i32 WIN stop(struct Object* o){if(o->kind==2){o->playing=0;return 0;}return request(MNM_AUDIO_STOP,o->id,0,0,0,0,0,0);}
+static i32 WIN play(struct Object* o,u32 a,u32 b,u32 flags){if(a || b || flags>1)return UNSUPPORTED;if(o->kind==2)return request(MNM_AUDIO_PRIMARY_PLAY,0,flags,0,0,0,0,0);return request(MNM_AUDIO_PLAY,o->id,flags,0,0,0,0,0);}
+static i32 WIN stop(struct Object* o){if(o->kind==2)return request(MNM_AUDIO_PRIMARY_STOP,0,0,0,0,0,0,0);return request(MNM_AUDIO_STOP,o->id,0,0,0,0,0,0);}
 static i32 WIN reset(struct Object* o,u32 pos){if(pos || o->kind!=3)return UNSUPPORTED;return request(MNM_AUDIO_RESET,o->id,0,0,0,0,0,0);}
-static i32 WIN set_format(struct Object* o,const u8* f){if(o->kind!=2)return UNSUPPORTED;if(!f)return INVALID;copy(o->format,f,18);return 0;}
-static i32 WIN set_volume(struct Object* o,i32 volume){if(volume< -10000 || volume>0)return INVALID;if(o->kind==2 && volume)return UNSUPPORTED;i32 status=o->kind==2?0:request(MNM_AUDIO_VOLUME,o->id,(u32)volume,0,0,0,0,0);if(!status)o->volume=volume;return status;}
+static i32 WIN set_format(struct Object* o,const u8* f){if(o->kind!=2)return UNSUPPORTED;if(!f)return INVALID;if(f[16] || f[17])return UNSUPPORTED;i32 status=request(MNM_AUDIO_PRIMARY_FORMAT,0,0,0,f,0,0,0);if(!status)copy(o->format,f,18);return status;}
+static i32 WIN set_volume(struct Object* o,i32 volume){if(volume< -10000 || volume>0)return INVALID;i32 status=request(o->kind==2?MNM_AUDIO_PRIMARY_VOLUME:MNM_AUDIO_VOLUME,o->id,(u32)volume,0,0,0,0,0);if(!status)o->volume=volume;return status;}
 static i32 WIN set_pan(struct Object* o,i32 pan){if(pan< -10000 || pan>10000)return INVALID;i32 status=o->kind==2?UNSUPPORTED:request(MNM_AUDIO_PAN,o->id,(u32)pan,0,0,0,0,0);if(!status)o->pan=pan;return status;}
 static i32 WIN frequency(struct Object* o,u32 value){(void)o;(void)value;return UNSUPPORTED;}
 static i32 WIN restore(struct Object* o){(void)o;return 0;}

@@ -78,3 +78,6 @@ confidence, and whether it remains stable across launches.
 
 - [Native DirectSound voice bridge](native-audio-voice-bridge.md): optional x86 COM
   routing into the mixer/Qt output, with ABI fixtures and guarded staging evidence.
+
+
+- [Primary audio manager](primary-audio-manager.md): saved volume, selected startup/disable/shutdown ordering, native master attenuation and x86 fixture evidence.

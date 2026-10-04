@@ -26,6 +26,7 @@ Error Device::mixStereo(std::size_t frames,std::vector<std::int16_t>& output){
         const auto& v=entry.second->voice;const auto volume=gain(v.volume);
         inputs.push_back({entry.second,volume*(v.pan>0?gain(-v.pan):1.0),volume*(v.pan<0?gain(v.pan):1.0)});
     }
+    const auto master=gain(primary_.volume);
     for(std::size_t frame=0;frame<frames;++frame){
         double left=0,right=0;
         for(const auto& input:inputs){
@@ -40,7 +41,7 @@ Error Device::mixStereo(std::size_t frames,std::vector<std::int16_t>& output){
             AdvanceResult advanced;advanceVoice(b,phase/outputRate_,advanced);
             b.phase=b.voice.playback==Playback::playing?std::uint32_t(phase%outputRate_):0;
         }
-        result[frame*2]=quantize(left);result[frame*2+1]=quantize(right);
+        result[frame*2]=quantize(left*master);result[frame*2+1]=quantize(right*master);
     }
     output.swap(result);return Error::ok;
 }
