@@ -1,6 +1,10 @@
 # Orientation-zero native terrain scene production
 
-This is the first world-scene milestone: owned MAP cells selected by recovered
+This records the first, orientation-zero world-scene milestone.
+The [four-orientation extension](terrain-traversal-rotations.md) now enables
+views 1..3 with separate evidence and corrects the earlier start-offset note.
+
+This first milestone covers: owned MAP cells selected by recovered
 camera traversal, ordinary terrain submission, original queue ordering and
 optional SPR visibility, followed by native clipped OpenGL presentation.
 It replaces the nine-tile local layout with a camera-selected multi-layer
@@ -66,11 +70,9 @@ may admit an anchor exactly on a far boundary. Native sprite clipping is a
 subsequent presentation policy, not a reconstruction of original draw clipping.
 
 The other traversal exports are `0x004fbe00`, `0x004fc3f0`, `0x004fc930`.
-They are statically inspected only. Their layer loops use receiver +0x61 rather
-than the orientation-zero header layer count; their clipping/run loops also
-differ. The +1/-1 start in the inspected orientation-one block must not be
-silently replaced with the diagonal field. Native world traversal rejects these
-orientations until separate original comparisons establish their contracts.
+Their executed contracts, distinct clipping/layer loops, diagonal starts and
+boundary carries are now recorded in the [four-orientation extension](terrain-traversal-rotations.md).
+The view-zero evidence below remains the original scoped milestone.
 
 ## Native application integration
 
@@ -97,7 +99,8 @@ the application currently keeps those corrections/priorities zero.
 
 Bounds: positive dimensions up to 128x128x32, camera within the map, span and
 diagonal no larger than either XY extent, cut 1..layers and mode 0/1. Signed
-arithmetic overflow and unsupported orientations reject. The 512x256 presentation
+arithmetic overflow and views outside 0..3 reject; rotated safety bounds are
+recorded in the extension. The 512x256 presentation
 limits visits to 16,384 and keeps at most 16 resident sprite uploads; existing
 renderer budgets also apply. Empty admitted scenes produce a background image.
 The previous explicit-definition and one-plane slice modes remain available.
@@ -141,6 +144,6 @@ restoring the ignored creature flag for owner comparisons. Native MAP bytes and
 flags are preserved, but references are not instantiated. Raw MAP flags are used
 without original post-load normalization. Celtic Forest has no first/second
 terrain frames; their producer branches retain separate synthetic evidence.
-Remaining work: three orientations and their exceptional boundaries, camera
+Remaining work beyond the four-orientation extension: camera
 initialization/updates, map initialization and surface/admission semantics,
 lighting/palette chains, water/overlays/objects/creatures, picking and live routing.

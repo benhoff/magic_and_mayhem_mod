@@ -80,11 +80,11 @@ working/build/terrain-preview/mnm-terrain-preview --root working/game-clean \
   --camera 20,20,20,19 --pan 256,64 --visibility
 ```
 
-`--world` selects recovered orientation-zero traversal across map layers, with
+`--world` selects recovered four-orientation traversal across map layers, with
 viewport admission, wrapping and actual camera-produced anchors. `--camera`
 is column,row,span,cut-level; `--pan` supplies base screen origin. Omit them for
-map center, span up to 20, all available layers and pan 256,64. World mode rejects
-other views, `--region` and `--overlap`. The native camera defaults are explicit
+map center, span up to 20, all available layers and pan 256,64. Use `--view 0..3` to select orientation. World mode rejects
+`--region` and `--overlap`. The native camera defaults are explicit
 configuration policy. Sprite clipping keeps the canvas bounded and a 16-frame
 upload cache keeps resource use bounded. This is ordinary terrain scene
 production: map initialization, lighting, water and entities remain separate.
@@ -93,4 +93,7 @@ production: map initialization, lighting, water and entities remain separate.
 python3 tools/test-world-terrain-preview.py NORMAL --sanitized SANITIZED
 ```
 
-See [recovered traversal and validation](../../research/runtime/terrain-world-traversal.md).
+Views 1..3 have an exclusive layer cut and retain distinct row clipping/reset
+behavior. Repeated visits share physical cell ownership. Unsafe grid carries
+are rejected before rendering; original runtime map initialization is still
+separate. See [four-orientation traversal and validation](../../research/runtime/terrain-traversal-rotations.md).

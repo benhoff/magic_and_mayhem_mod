@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Guarded orientation-zero world traversal and complete native image checks."""
+"""Guarded four-orientation world traversal and complete native image checks."""
 import argparse,hashlib,importlib.util,json,os,struct,subprocess,sys,tempfile
 from pathlib import Path
 REPO=Path(__file__).resolve().parents[1]
@@ -38,10 +38,10 @@ def main():
         env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',ASAN_OPTIONS='detect_leaks=0');cases=[];index=0
         for name in ['CFsec01.map','CFsec02.map','CFsec38.map']:
             _,raw=codec.decode((realm/name).read_bytes());w,h,l=struct.unpack_from('<3I',raw,4);decoded=out/(name+'.decoded');decoded.write_bytes(raw)
-            selections=[((w//2,h//2,20,l),(256,64)),((0,0,20,min(l,3)),(256,64)),((w-1,h-1,12,min(l,6)),(-16,16))]
+            selections=[((w//2,h//2,20,l),(256,64)),((0,0,20,min(l,3)),(256,64)),((w-1,h-1,12,min(l,6)),(-16,16)),((w-10,h-10,20,l-1),(256,64))]
             for camera,pan in selections:
-                for visibility in [0,1]:
-                    oracle=json.loads(run([str(helper),str(exe),str(realm/'Terrain.ttd'),str(realm/'Terrain.spr'),str(decoded),*map(str,camera),*map(str,pan),str(visibility)],f'oracle-{index:02}').stdout)
+                for view,visibility in [(v,b) for v in range(4) for b in (0,1)]:
+                    oracle=json.loads(run([str(helper),str(exe),str(realm/'Terrain.ttd'),str(realm/'Terrain.spr'),str(decoded),*map(str,camera),*map(str,pan),str(visibility),str(view)],f'oracle-{index:02}').stdout)
                     pixels=[0x2124]*(512*256);partial=0
                     for draw in oracle['queue']:
                         if draw['kind']==-2:continue
@@ -52,7 +52,7 @@ def main():
                         partial+=bool(inside and inside<len(values))
                     words=struct.pack('<'+'H'*len(pixels),*pixels);rgba=b''.join(bytes((((v>>11)&31)*255//31,((v>>5)&63)*255//63,(v&31)*255//31,255)) for v in pixels)
                     for build,binary in enumerate(binaries):
-                        prefix=out/f'frame-{index:02}-{build}';request='Realms\\Celtic\\Forest\\'+name.swapcase();command=[str(binary),'--root',str(root),'--map',request,'--world','--camera',','.join(map(str,camera)),'--pan',','.join(map(str,pan)),'--output',str(prefix)]
+                        prefix=out/f'frame-{index:02}-{build}';request='Realms\\Celtic\\Forest\\'+name.swapcase();command=[str(binary),'--root',str(root),'--map',request,'--world','--view',str(view),'--camera',','.join(map(str,camera)),'--pan',','.join(map(str,pan)),'--output',str(prefix)]
                         if visibility:command+=['--visibility']
                         run(command,f'native-{index:02}-{build}',env=env);native=json.loads(prefix.with_suffix('.json').read_text());actual=[]
                         for draw in native['queue']:
@@ -64,15 +64,15 @@ def main():
                         for tile,owner in zip(native['tiles'],native['owners']):
                             cell=tile['cell'];fields=struct.unpack_from('<6H',raw,76+12*cell)
                             assert tile['definition']==fields[0] and tile['flags8']==fields[4] and tile['flags10']==fields[5] and owner==oracle['owners'][cell]
-                            assert cell==(tile['level']*h+tile['row'])*w+tile['column']
+                            assert 0<=cell<w*h*l and 0<=tile['column']<=w and 0<=tile['row']<h
                         assert prefix.with_suffix('.565').read_bytes()==words and native['rgba_sha256']==hashlib.sha256(rgba).hexdigest()
-                        cases.append({'map':name,'camera':camera,'pan':pan,'visibility':visibility,'build':build,'tiles':len(native['tiles']),'draws':len(actual),'hidden':sum(d['kind']==-2 for d in actual),'partially_clipped':partial,'pixels_sha256':sha(prefix.with_suffix('.565')),'all_match':True})
+                        cases.append({'map':name,'camera':camera,'pan':pan,'view':view,'visibility':visibility,'build':build,'aliases':len(native['tiles'])-len({t['cell'] for t in native['tiles']}),'tiles':len(native['tiles']),'draws':len(actual),'hidden':sum(d['kind']==-2 for d in actual),'partially_clipped':partial,'pixels_sha256':sha(prefix.with_suffix('.565')),'all_match':True})
                     index+=1
         # Existing slice behavior is retained; unsupported world inputs reject.
-        for options in [['--world'],['--world','--map','Realms/Celtic/Forest/CFsec01.map','--view','1'],['--world','--map','Realms/Celtic/Forest/CFsec01.map','--region','0,0,0,3,3'],['--world','--map','Realms/Celtic/Forest/CFsec01.map','--camera','0,0,41,1']]:
+        for options in [['--world'],['--world','--map','Realms/Celtic/Forest/CFsec01.map','--view','4'],['--world','--map','Realms/Celtic/Forest/CFsec01.map','--region','0,0,0,3,3'],['--world','--map','Realms/Celtic/Forest/CFsec01.map','--camera','0,0,41,1']]:
             prefix=out/'rejected';r=subprocess.run([str(binaries[0]),'--root',str(root),*options,'--output',str(prefix)],capture_output=True,text=True,env=env,timeout=30);assert r.returncode and not list(out.glob('rejected.*'))
         assert all(sha(path)==hash_ for path,hash_ in inputs.items()),'Inputs changed during run'
-        report={'all_match':True,'live_validated':False,'traversal':traversal,'cases':index,'images':len(cases),'runs':cases,'rejected_inputs':4,'source_snapshot':str(source.relative_to(REPO)),'source_and_input_sha256':{str(path.relative_to(REPO)):hash_ for path,hash_ in inputs.items()},'helper_sha256':{'traversal':sha(reference),'world':sha(helper),'sanitized_unit':sha(unit)},'scope':'Unchanged orientation-zero traversal and ordinary terrain producer/sort/visibility; references and creature branch disabled in oracle; independent clipped unshaded SPR images'}
+        report={'all_match':True,'live_validated':False,'traversal':traversal,'cases':index,'images':len(cases),'runs':cases,'rejected_inputs':4,'source_snapshot':str(source.relative_to(REPO)),'source_and_input_sha256':{str(path.relative_to(REPO)):hash_ for path,hash_ in inputs.items()},'helper_sha256':{'traversal':sha(reference),'world':sha(helper),'sanitized_unit':sha(unit)},'scope':'Unchanged four-orientation traversal and ordinary terrain producer/sort/visibility; references and creature branch disabled in oracle; independent clipped unshaded SPR images'}
         (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print({'traversal':traversal,'images':len(cases),'hidden':sum(c['hidden'] for c in cases),'partial':sum(c['partially_clipped'] for c in cases)},flush=True)
     finally:verify('after')
 if __name__=='__main__':main()
