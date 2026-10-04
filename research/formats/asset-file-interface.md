@@ -2,8 +2,8 @@
 
 ## Status, scope, and evidence
 
-Chunk 1 is this design contract. Chunk 2's path resolver is implemented in
-`assets/`; file access and installed-asset validation are pending. These are
+Chunk 1 is this design contract. Chunks 2 and 3's path resolver and read-only
+file access are implemented in `assets/`; installed-asset validation is pending. These are
 native design decisions, not discovered original-game
 filesystem semantics. Compatibility with the original loader's path encoding,
 supported paths, and failure behavior remains unverified.
@@ -38,6 +38,13 @@ fixtures verify resolution and rejection policies, including permission-denied
 enumeration and symlink boundaries. Confidence: high for tested native policies;
 no installed assets or original loader were exercised. Qt 6.11.2 and GNU C++
 16.2.1 were used. See [build and test details](../../assets/README.md).
+
+File-access evidence: `assets/asset_file.cpp` and `tests/asset-file-test.cpp`.
+Both asset CTests pass with the same Qt/compiler versions. Temporary binary
+fixtures validate reads, seeks, sizes, ownership, limits, denied opens, and
+truncation; controlled streams validate partial/error propagation in generic
+helpers. Confidence: high for tested native behavior. Installed-file byte
+comparisons, native loader integration, and live-game behavior remain pending.
 
 ## Installation root and path rules
 
@@ -86,7 +93,8 @@ checking and opening. Do not cache directory listings initially.
 
 ## Operations and buffer ownership
 
-This is an operation contract, not a compilable header. Use signed 64-bit
+This table specifies behavior; `assets/asset_file.hpp` is the implemented API.
+Use signed 64-bit
 sizes/positions, checked conversions to allocation sizes, and structured
 results rather than sentinels or persistent last-error state.
 

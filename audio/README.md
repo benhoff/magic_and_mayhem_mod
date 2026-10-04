@@ -45,8 +45,9 @@ dump is raw PCM, not another WAV container. Source WAVs are read only.
 The planned Qt-backed input adapter is specified in the
 [asset file interface contract](../research/formats/asset-file-interface.md).
 It will replace direct upload-CLI file input while preserving the WAV parser,
-sample ownership, and upload checks. The contract and standalone path resolver
-are complete; the file backend and audio integration remain pending.
+sample ownership, and upload checks. The contract, standalone path resolver,
+and read-only file backend are complete; installed byte comparisons and audio
+integration remain pending.
 
 Next: reconstruct play/stop/loop, frequency/volume/pan and playback cursors;
 introduce independent voice state and an offline mixer before a Qt audio sink

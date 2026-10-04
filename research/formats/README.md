@@ -20,4 +20,4 @@ Current findings:
 
 - [Qt media request channel](render-media-channel.md)
 - [PCM WAV loading](pcm-wav-loading.md)
-- [Read-only asset file interface contract (resolver implemented; file I/O pending)](asset-file-interface.md)
+- [Read-only asset file interface contract (resolver/file I/O implemented; installed validation pending)](asset-file-interface.md)
