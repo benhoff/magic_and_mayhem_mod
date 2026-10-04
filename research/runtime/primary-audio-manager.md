@@ -101,3 +101,7 @@ Live initialization, scheduled retirement, transitions, audible output and
 original timing still need separate evidence. The manager reconstruction is
 not injected into the original engine; selected primary COM calls use the
 native implementation when the optional adapter is selected.
+
+Selected retirement, wrapper destruction and reusable-ring transforms now have
+[separate offline reconstruction](audio-voice-lifetimes.md). Full shutdown
+allocation and source-list ownership remain outside this manager model.

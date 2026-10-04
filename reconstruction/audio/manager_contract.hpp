@@ -13,8 +13,8 @@ struct ScheduledVoice {Schedule32* record;std::uint32_t buffer;std::uint32_t* ou
 struct ManagerBackend:VoiceBackend {
     virtual Status getVolume(std::uint32_t,std::int32_t&)=0;
     virtual std::uint32_t tickCount()=0;
-    // Shutdown delegates the wrapper/list operation at 0x004de090. Its entire
-    // implementation is deliberately not inferred from this call alone.
+    // Shutdown delegates retirement at 0x004de090, modeled in voice_lifetime.hpp.
+    // A backend supplies host wrapper and scheduler mappings.
     virtual void retireVoice(std::uint32_t voiceAddress)=0;
     virtual void releaseVoice(std::uint32_t buffer)=0;
     virtual void releaseDevice(std::uint32_t device)=0;
