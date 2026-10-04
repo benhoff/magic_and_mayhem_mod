@@ -3,11 +3,14 @@
 #include "no_cd.hpp"
 #include "placement.hpp"
 #include "attachment.hpp"
+#include "sprite_queue.hpp"
 #include <map>
 
 namespace mnm::preview {
 struct ActorState {std::uint32_t sequence=0;int anchorX=0,anchorY=0;std::optional<std::uint32_t> sprite;std::int32_t event=0;std::optional<reconstruction::AnimationOffset> drawAnchor;};
 struct ScenePlacement {std::uint32_t tileSizeXY=1,view=0;};
+struct SceneQueueInput {reconstruction::SpriteDepth position;std::array<std::int32_t,3> priorityBias{{6,8,9}};};
+struct SceneDraw {std::size_t actor=0;std::uint32_t asset=0,frame=0;reconstruction::AnimationOffset anchor;std::int32_t key=0;};
 struct SpriteLayer {assets::Sprite sprite;assets::Animation animation;std::uint32_t sequence=0;reconstruction::AttachmentPoint attachment=reconstruction::AttachmentPoint::first;bool modeOne=false;};
 struct LayerState {std::size_t actor=0,layer=0;std::uint32_t sequence=0;std::optional<std::uint32_t> sprite;std::optional<reconstruction::AnimationOffset> drawAnchor;std::int32_t event=0;};
 // Application orchestration only. Renderer and native asset services do not
@@ -25,6 +28,9 @@ public:
     std::vector<std::uint32_t> directionalGroups() const;
     void selectGroup(std::size_t actor,std::uint32_t base,std::uint32_t facing);
     void selectFacing(std::size_t actor,std::uint32_t facing);
+    void setQueueInput(std::size_t actor,SceneQueueInput input);
+    void setAnchor(std::size_t actor,int x,int y);
+    std::vector<SceneDraw> drawQueue() const;
     QImage present();
     render::Image read();
     std::vector<ActorState> actors() const;
@@ -42,6 +48,7 @@ private:
     std::vector<reconstruction::NoCdAnimationPlayer> players_;
     std::vector<ActorState> actors_;
     ScenePlacement placement_;
+    std::vector<SceneQueueInput> queueInputs_;
     std::vector<SpriteLayer> layerAssets_;
     std::vector<std::vector<reconstruction::NoCdAnimationPlayer>> layerPlayers_;
     std::vector<std::vector<std::int32_t>> layerEvents_;

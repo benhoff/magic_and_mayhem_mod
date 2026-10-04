@@ -41,6 +41,8 @@ int main(int argc,char** argv)try{
     parser.addOption({"attachment-reenter-at","Reenter mode one before this preview tick","tick"});
     parser.addOption({"tile-size","Creature footprint in tiles (1 or 2)","tiles","1"});
     parser.addOption({"placement-view","Recovered offset adjustment value, independent of world projection","view","0"});
+    parser.addOption({"queue-position","Explicit per-actor queue x,y,height,priority; repeat once per actor (independent of pixels)","x,y,height,priority"});
+    parser.addOption({"overlap","Preview fixture: place all actor anchors at the canvas center"});
     parser.addOption({"smoke-test","Close the window after the bounded preview completes"});
     parser.addOption({"export-dir","Export ticks synchronously to a new directory instead of opening a window","directory"});
     parser.process(app);
@@ -68,7 +70,18 @@ int main(int argc,char** argv)try{
     const auto removeAt=scheduled("attachment-remove-at"),reenterAt=scheduled("attachment-reenter-at");
     if(!modeOne && (parser.isSet("attachment-facing") || parser.isSet("attachment-health")))throw std::runtime_error("Attachment fixture options require mode one");
     if(modeOne && parser.isSet("layer"))throw std::runtime_error("Select the mode-one recipe or explicit layers");
-    auto initialize=[&](mnm::preview::SpriteScene& scene){for(std::size_t i=0;i<sequences.size();++i)scene.setCreatureHealth(i,attachmentHealth);};
+    std::vector<mnm::preview::SceneQueueInput> queueInputs;
+    const auto queueValues=parser.values("queue-position");
+    if(!queueValues.empty() && std::size_t(queueValues.size())!=sequences.size())throw std::runtime_error("Supply one queue position per actor");
+    for(const auto& value:queueValues){const auto parts=value.split(',');if(parts.size()!=4)throw std::runtime_error("Queue position needs x,y,height,priority");
+        std::array<std::int32_t,4> numbers{};for(unsigned i=0;i<4;++i){numbers[i]=parts[i].toInt(&ok);if(!ok)throw std::runtime_error("Invalid queue coordinate");}
+        if(numbers[2]<0)throw std::runtime_error("Queue height must be nonnegative");
+        queueInputs.push_back({{numbers[0],numbers[1],numbers[2],numbers[3]},{{6,8,9}}});
+    }
+    auto initialize=[&](mnm::preview::SpriteScene& scene){for(std::size_t i=0;i<sequences.size();++i){
+        scene.setCreatureHealth(i,attachmentHealth);if(!queueInputs.empty())scene.setQueueInput(i,queueInputs[i]);
+        if(parser.isSet("overlap"))scene.setAnchor(i,256,190);
+    }};
     auto change=[&](mnm::preview::SpriteScene& scene,unsigned tick){
         if(changeTick && tick==changeTick)scene.selectFacing(changeActor,changeFacing);
         for(std::size_t i=0;i<sequences.size();++i){if(removeAt && tick==removeAt)scene.setModeOneAttachment(i,false);if(reenterAt && tick==reenterAt)scene.setModeOneAttachment(i,true);}
@@ -137,7 +150,8 @@ int main(int argc,char** argv)try{
                     {"sprite",l.sprite?QJsonValue(qint64(*l.sprite)):QJsonValue(QJsonValue::Null)},
                     {"draw_anchor_x",l.drawAnchor?QJsonValue(l.drawAnchor->x):QJsonValue(QJsonValue::Null)},
                     {"draw_anchor_y",l.drawAnchor?QJsonValue(l.drawAnchor->y):QJsonValue(QJsonValue::Null)},{"event",l.event}});
-                frames.append(QJsonObject{{"tick",int(tick)},{"actors",actors},{"layers",attached},{"native_sha256",hash(native)},
+                QJsonArray order;for(const auto& draw:scene.drawQueue())order.append(QJsonObject{{"actor",qint64(draw.actor)},{"asset",qint64(draw.asset)},{"frame",qint64(draw.frame)},{"key",draw.key}});
+                frames.append(QJsonObject{{"tick",int(tick)},{"draw_queue",order},{"actors",actors},{"layers",attached},{"native_sha256",hash(native)},
                     {"rgba_sha256",hash(QByteArray(reinterpret_cast<const char*>(image.constBits()),image.sizeInBytes()))}});
             }
         }
@@ -147,6 +161,7 @@ int main(int argc,char** argv)try{
         const auto bytes=QJsonDocument(QJsonObject{{"ani",parser.value("ani")},{"sprite",spritePath},{"loop_policy",parser.isSet("loop")},
             {"layer_inputs",layerInputs},{"tile_size_xy",qint64(placement.tileSizeXY)},{"placement_view",qint64(placement.view)},
             {"attachment_health",attachmentHealth},{"attachment_remove_at",qint64(removeAt)},{"attachment_reenter_at",qint64(reenterAt)},
+            {"queue_policy","NoCD depth/sort contract; synthetic world positions and biases 6/8/9, no occlusion"},
             {"clock","one controller call per explicit preview tick; wall-clock interval is not recovered"},
             {"frames",frames},{"uploads",qint64(stats.uploads)},{"copies",qint64(stats.copies)},
             {"remaining_surfaces",int(stats.surfaces)},{"renderer",QString::fromStdString(driver.renderer)}}).toJson();

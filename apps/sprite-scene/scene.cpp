@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <limits>
+#include <cstring>
 
 namespace mnm::preview {
 static reconstruction::AnimationOffset anchor(std::int64_t x,std::int64_t y){
@@ -28,6 +29,7 @@ SpriteScene::SpriteScene(render::GlBlitter& renderer,assets::Sprite sprite,const
             throw std::runtime_error("Animation sprite index outside paired SPR");
         players_.emplace_back(std::move(records));players_.back().start();
         actors_.push_back({sequence,int((actors_.size()+1)*512/(sequences.size()+1)),190,{},0,{}});
+        queueInputs_.push_back({{std::int32_t((actors_.size()-1)*32),0,0,0},{{6,8,9}}});
         layerPlayers_.emplace_back();layerEvents_.emplace_back();
         health_.push_back(1);attachmentModes_.push_back(1);
         for(const auto& layer:layerAssets_){
@@ -104,15 +106,33 @@ void SpriteScene::advance(){
             else if(loop_ && !layerAssets_[l].modeOne && !player.state().active){player.start();layerEvents_[i][l]=0;}else layerEvents_[i][l]=player.tick();}
     }
 }
+void SpriteScene::setQueueInput(std::size_t actor,SceneQueueInput input){
+    reconstruction::spriteDepthKey(input.position,placement_.view);queueInputs_.at(actor)=input;
+}
+void SpriteScene::setAnchor(std::size_t actor,int x,int y){actors_.at(actor).anchorX=x;actors_.at(actor).anchorY=y;}
+std::vector<SceneDraw> SpriteScene::drawQueue() const{
+    std::vector<SceneDraw> draws;std::vector<reconstruction::SpriteQueueEntry> queue;
+    const auto states=actors();const auto attached=layers();
+    auto add=[&](std::size_t actor,std::uint32_t asset,std::uint32_t frame,reconstruction::AnimationOffset where){
+        const auto& input=queueInputs_.at(actor);auto position=input.position;
+        // Unsigned addition preserves PE32 wrap without signed C++ overflow.
+        const auto priority=std::uint32_t(position.priority)+std::uint32_t(input.priorityBias.at(asset));
+        std::memcpy(&position.priority,&priority,4);
+        const auto key=reconstruction::spriteDepthKey(position,placement_.view);
+        queue.push_back({key,std::uint32_t(draws.size())});draws.push_back({actor,asset,frame,where,key});
+    };
+    for(std::size_t i=0;i<states.size();++i){const auto& actor=states[i];
+        if(actor.sprite && actor.drawAnchor)add(i,0,*actor.sprite,*actor.drawAnchor);
+        for(const auto& layer:attached)if(layer.actor==i && layer.sprite && layer.drawAnchor)
+            add(i,std::uint32_t(layer.layer+1),*layer.sprite,*layer.drawAnchor);
+    }
+    reconstruction::sortSpriteQueue(queue);std::vector<SceneDraw> ordered;
+    for(const auto& entry:queue)ordered.push_back(draws.at(entry.payload));
+    return ordered;
+}
 QImage SpriteScene::present(){
     renderer_.copy(background_,canvas_,{0,0,512,256},0,0);
-    const auto states=actors();const auto attached=layers();
-    for(std::size_t i=0;i<states.size();++i){const auto& actor=states[i];
-        if(actor.sprite && actor.drawAnchor)upload(*actor.sprite).draw(canvas_,actor.drawAnchor->x,actor.drawAnchor->y);
-        // Explicit preview ordering, not the original world sort/occlusion queue.
-        for(const auto& layer:attached)if(layer.actor==i && layer.sprite && layer.drawAnchor)
-            upload(*layer.sprite,std::uint32_t(layer.layer+1)).draw(canvas_,layer.drawAnchor->x,layer.drawAnchor->y);
-    }
+    for(const auto& draw:drawQueue())upload(draw.frame,draw.asset).draw(canvas_,draw.anchor.x,draw.anchor.y);
     return renderer_.present(canvas_);
 }
 render::Image SpriteScene::read(){return renderer_.read(canvas_);}

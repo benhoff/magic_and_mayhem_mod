@@ -47,8 +47,9 @@ These example assets demonstrate placement; they are not a recovered RedCap
 attachment recipe. `--layer ANI,sequence,slot` accepts slots 1/2 and cannot
 contain commas in the path. Default `--tile-size 1` and `--placement-view 0`
 can be changed to footprint 2 and raw view 0..3. Children use independent
-players, explicit layer order and the shared 24-upload cache; child actions,
-lifecycle and original depth sorting remain outside this preview.
+players and the shared 24-upload cache. Visible bodies and children now use
+the recovered signed depth key and exact queue sort; world submission, occlusion,
+lighting and complete child action/lifecycle production remain outside this preview.
 
 Reproduce layered validation with `python3 tools/test-animation-layers.py`.
 See [placement, limitations and evidence](../../research/runtime/animation-placement-attachments.md).
@@ -72,3 +73,37 @@ recipe or explicit layers, and use a NORMAL-printer recipe configuration.
 
 Run `python3 tools/test-attachment-recipe-scene.py`; see
 [contract, evidence and limitations](../../research/runtime/native-attachment-recipe.md).
+
+
+Queue ordering is now applied before drawing. Default world inputs are synthetic:
+actor i uses `(x=32*i,y=0,height=0,priority=0)`, body bias 6, first child bias 8
+and second child bias 9. The second bias and explicit-layer roles are preview
+policies; the selected original body/mode-one path supplies the 6/8 relationship.
+Screen anchors and ANI/SPR offsets do not become world-depth coordinates.
+
+Use explicit queue inputs and overlapping anchors to inspect ordering:
+
+```bash
+working/build/sprite-scene/mnm-sprite-scene-preview \
+  --root working/game-clean --ani Creatures/redcap.ani --sequences 0,4 \
+  --queue-position 0,0,499,0 --queue-position 0,0,500,0 \
+  --placement-view 1 --overlap --ticks 16
+```
+
+Repeat `--queue-position x,y,height,priority` once per actor; values are signed
+32-bit except height must be nonnegative. `--overlap` places pixel anchors at
+(256,190); it does not change depth inputs. Exports include sorted actor/asset/
+frame IDs and signed keys in each frame's `draw_queue`. The same view value
+selects the recovered placement adjustment and queue rotation, without claiming
+world projection recovery.
+
+Reproduce queue/complete-frame comparisons after building the preview:
+
+```bash
+python3 tools/test-sprite-queue.py
+python3 tools/test-sprite-queue-scene.py --reference working/tests/sprite-queue/<run-directory>/report.json
+```
+
+The first command prints its run directory. See
+[queue contract](../../research/runtime/sprite-queue-order.md) and
+[scene evidence](../../research/runtime/native-sprite-queue-scene.md).
