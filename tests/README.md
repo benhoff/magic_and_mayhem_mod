@@ -301,3 +301,12 @@ fixtures only. It checks independent duplicate cursors/controls, one-shots,
 loops, reset/resume, commit/release behavior, rejected operations, 306 independent
 frame-step scenarios and a reconstructed-controller fixture. It reads no game
 or original assets and produces no audio. See [native state scope](../research/runtime/native-audio-voice-state.md).
+
+## Offline stereo audio mixing
+
+`python3 tools/test-audio-mixer.py` builds and runs all eight audio/asset tests
+using fixtures only. It records source and executable hashes under
+`working/tests/audio-mixer/`. The mixer checks 120 format/rate/loop scenarios
+against an independent rational PCM reference, exact split-block continuity,
+gains, clipping and buffer lifecycle. No game or audio device is required.
+See [scope and evidence](../research/runtime/native-audio-mixer.md).

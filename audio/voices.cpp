@@ -9,7 +9,7 @@ Error Device::play(BufferId id,std::uint32_t flags){
     if(flags&~1u)return Error::unsupported;
     auto& v=it->second.voice;
     // Explicit native completion policy: restarting a consumed one-shot rewinds.
-    if(v.frame==v.frames)v.frame=0;
+    if(v.frame==v.frames){v.frame=0;it->second.phase=0;}
     v.looping=(flags&1)!=0;v.playback=Playback::playing;return Error::ok;
 }
 Error Device::stop(BufferId id){
@@ -23,6 +23,7 @@ Error Device::resetPosition(BufferId id){
     if(it==buffers_.end())return Error::invalid;
     if(it->second.primary)return Error::unsupported;
     auto& v=it->second.voice;v.frame=0;
+    it->second.phase=0;
     if(v.playback==Playback::completed)v.playback=Playback::stopped;
     return Error::ok;
 }
@@ -44,9 +45,12 @@ Error Device::advanceFrames(BufferId id,std::uint64_t frames,AdvanceResult& outp
     const auto it=buffers_.find(id);
     if(it==buffers_.end())return Error::invalid;
     if(it->second.primary)return Error::unsupported;
-    auto& v=it->second.voice;
+    advanceVoice(it->second,frames,output);return Error::ok;
+}
+void Device::advanceVoice(Buffer& buffer,std::uint64_t frames,AdvanceResult& output){
+    auto& v=buffer.voice;
     output={};
-    if(v.playback!=Playback::playing || !frames)return Error::ok;
+    if(v.playback!=Playback::playing || !frames)return;
     const auto remaining=v.frames-v.frame;
     if(v.looping){
         const auto step=frames%v.frames;
@@ -54,9 +58,8 @@ Error Device::advanceFrames(BufferId id,std::uint64_t frames,AdvanceResult& outp
         output.consumed=frames;
     }else{
         output.consumed=std::min(frames,remaining);v.frame+=output.consumed;
-        if(v.frame==v.frames){v.playback=Playback::completed;output.completed=true;}
+        if(v.frame==v.frames){v.playback=Playback::completed;buffer.phase=0;output.completed=true;}
     }
-    return Error::ok;
 }
 std::optional<VoiceInfo> Device::voice(BufferId id) const{
     const auto it=buffers_.find(id);

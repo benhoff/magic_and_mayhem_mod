@@ -1,9 +1,9 @@
-# Native sample storage and voice state
+# Native audio storage, voice state and mixing
 
 Native audio implementation belongs here, separate from the pinned engine
 models in `reconstruction/audio/`. It owns PCM buffers, sample uploads and
-independent voice state. It does not implement a mixer, an audible device, or a live DirectSound
-replacement. The game still uses Wine DirectSound.
+independent voice state and offline stereo PCM mixing. It does not implement
+an audible device or a live DirectSound replacement. The game still uses Wine DirectSound.
 
 ```bash
 cmake -S audio -B working/build/audio
@@ -21,7 +21,7 @@ the game. Evidence is under `working/tests/audio-buffers/`.
 
 The build requires Qt 6.8+ Core for asset input and the CLI, plus Python 3 for
 the fixture tests. `mnm-audio` and the reconstruction retain standard C++ APIs;
-no Qt types enter those algorithms. The combined audio build runs seven CTests,
+no Qt types enter those algorithms. The combined audio build runs eight CTests,
 including the three asset tests and an input-adapter fixture check. No Wine,
 display server, or audio output device is needed for native builds/tests.
 
@@ -92,5 +92,10 @@ source-frame advancement. `voice(id)` reports state by value; `advanceFrames`
 does not produce samples. Use `python3 tools/test-audio-voice-state.py` for
 fixture-only validation. See [state policies and evidence](../research/runtime/native-audio-voice-state.md).
 
-Next: stereo mixing/sample-rate conversion, then Qt audio output and a live game
-adapter. See [reconstruction boundaries](../research/runtime/directsound-buffer-setup.md).
+Use `Device::mixStereo(frames, output)` to produce interleaved signed 16-bit
+stereo values at the fixed output rate (48 kHz by default). It advances voices,
+resamples with linear interpolation, applies volume/pan and clips the final sum.
+Use `python3 tools/test-audio-mixer.py` for fixture-only validation. See
+[mixer policies and evidence](../research/runtime/native-audio-mixer.md).
+
+Next: Qt audio output, then a live game adapter. See [reconstruction boundaries](../research/runtime/directsound-buffer-setup.md).

@@ -66,3 +66,6 @@ confidence, and whether it remains stable across launches.
 
 - [Native audio voice state](native-audio-voice-state.md): independent secondary
   cursors, controls, loops/completion and ownership, tested without audio output.
+
+- [Native stereo PCM mixer](native-audio-mixer.md): fixed output clock, interpolation,
+  volume/pan and clipping, tested offline without an audio device.
