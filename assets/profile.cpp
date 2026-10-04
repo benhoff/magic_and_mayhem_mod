@@ -36,14 +36,15 @@ ProfileListing ProfileSnapshot::section(std::string_view name,std::uint32_t capa
     if(capacity<2)throw std::invalid_argument("Section capacity must include two terminators");
     ProfileListing out;const auto found=sections_.find(folded(name));if(found==sections_.end())return out;
     std::uint64_t count=0;for(const auto& e:found->second)count+=e.raw.size()+1;
-    // Consumers reject truncation; partial enumeration is not exposed as complete.
-    if(count+1>capacity)return {capacity-2,{}};
+    // Wine marks an exact-fit list truncated too; consumers reject this marker.
+    // Partial enumeration is not exposed as complete.
+    if(count && count+1>=capacity)return {capacity-2,{}};
     for(const auto& e:found->second)out.entries.push_back(e.raw);
     out.returned=std::uint32_t(count);return out;
 }
 std::string ProfileSnapshot::value(std::string_view name,std::string_view key,std::uint32_t capacity,std::string_view fallback) const{
     if(!capacity)throw std::invalid_argument("String capacity must include a terminator");
-    auto value=std::string(fallback);const auto found=sections_.find(folded(name));
+    auto value=std::string(fallback);while(!value.empty() && value.back()==' ')value.pop_back();const auto found=sections_.find(folded(name));
     if(found!=sections_.end())for(const auto& e:found->second)if(folded(e.key)==folded(key) && e.value){value=unquote(*e.value);break;}
     if(value.size()>=capacity)value.resize(capacity-1);
     return value;

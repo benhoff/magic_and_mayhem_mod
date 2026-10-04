@@ -354,3 +354,8 @@ For all installed CURs, run
 The runner verifies originals before/after and compares all image planes,
 palettes and hotspots against an independent Python decoder.
 See [CUR validation scope](../research/formats/cur-native-loading.md).
+
+`./tools/test-profile-api.py` compares generated ASCII profile calls in a PE32
+Wine fixture with the native reader. It records exact bytes, integer rejections
+and intentional policy differences, without launching the game. See
+[profile API evidence](../research/formats/profile-api-comparison.md).
