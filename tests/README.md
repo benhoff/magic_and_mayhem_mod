@@ -376,6 +376,15 @@ Compare installed files with
 The installed run verifies originals before/after and records source hashes.
 See [BMP validation scope](../research/formats/bmp-native-loading.md).
 
+## JPEG RGB images
+
+The asset CTests include `jpeg-loader` and `jpeg-pixel-comparison`.
+They require Qt Gui/JPEG support and Python Pillow; no display server is needed.
+Compare installed files with
+`python3 tests/test-jpeg-loader.py working/build/jpeg/mnm-jpeg-inspect --installation working/game-clean --report working/tests/jpeg-loader/installed-comparison.json`.
+The installed run verifies originals before/after and records source hashes.
+See [JPEG validation scope](../research/formats/jpeg-native-loading.md).
+
 `./tools/test-installed-audio-profile.py [Sounds.ini]` verifies originals before
 and after comparing installed audio sections/values with PE32 Wine and decoding
 both catalogs through reconstructed tables. It never launches the game or opens
