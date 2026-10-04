@@ -93,3 +93,7 @@ enumeration and original battle setup/return semantics remain unconnected.
 Load Game now has a [native save-selection preview](../runtime/load-game-qt.md)
 with caller-supplied save IDs, synchronized filename/list controls and guarded
 Load/Cancel actions. Actual save enumeration/loading remain unconnected.
+
+Save Game now has a [native naming/selection preview](../runtime/save-game-qt.md)
+with supplied save IDs, local overwrite/delete confirmation and caller-specific
+Cancel navigation. Actual persistence and engine overwrite rules remain open.

@@ -249,3 +249,13 @@ Load Game provides a sample save list, editable filename and Load/Cancel actions
 It also opens from the native Main menu. Exact supplied filename matches select
 a save; Load emits its opaque ID with engine integration pending. Cancel returns
 to Main. See [Load Game scope and validation](../../research/runtime/load-game-qt.md).
+
+Save Game previews supplied filenames with Save/Delete/Cancel actions:
+
+```bash
+./tools/run-qt-shell.sh --save-game
+```
+
+The campaign Mini Menu Save button also opens this screen. New names emit Save
+intent; existing-name overwrite and Delete require local confirmation. No files
+are written or deleted. See [Save Game scope and validation](../../research/runtime/save-game-qt.md).

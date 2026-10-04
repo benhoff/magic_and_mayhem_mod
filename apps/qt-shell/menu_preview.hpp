@@ -5,6 +5,7 @@
 #include "quick_battle_result_widget.hpp"
 #include "map_selection_widget.hpp"
 #include "load_game_widget.hpp"
+#include "save_game_widget.hpp"
 class MainMenuWidget;
 class QuickBattleMenuWidget;
 class QStackedWidget;
@@ -19,7 +20,9 @@ public:
     bool openQuickBattleResults(const QString& root, QuickBattleResultWidget::PrimaryAction action, QString* error = nullptr);
     bool openMapSelection(const QString& root, QString* error = nullptr);
     bool openLoadGame(const QString& root, QString* error = nullptr);
+    bool openSaveGame(const QString& root, QString* error = nullptr);
 private:
+    void returnFromSaveGame();
     void showMainMenu();
     void showQuickBattle();
     QStackedWidget* screens_ = nullptr;
@@ -30,5 +33,7 @@ private:
     QuickBattleResultWidget* quickResults_ = nullptr;
     MapSelectionWidget* mapSelection_ = nullptr;
     LoadGameWidget* loadGame_ = nullptr;
+    SaveGameWidget* saveGame_ = nullptr;
+    bool saveReturnsToMini_ = false;
     QString assetRoot_;
 };
