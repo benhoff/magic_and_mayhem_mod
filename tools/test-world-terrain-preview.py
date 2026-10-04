@@ -59,7 +59,7 @@ def main():
                             d={k:v for k,v in draw.items() if k not in ('tile','role')};assert draw['role']==0;d['cell']=native['tiles'][draw['tile']]['cell'];actual.append(d)
                         assert actual==oracle['queue'],(name,camera,visibility,'queue')
                         assert native['world'] and native['remaining_surfaces']==0
-                        assert native['map']=={'path':request,'width':w,'height':h,'layers':l,'camera':list(camera),'pan':list(pan)}
+                        assert {key:native['map'][key] for key in ['path','width','height','layers','camera','pan']}=={'path':request,'width':w,'height':h,'layers':l,'camera':list(camera),'pan':list(pan)}
                         assert len(native['tiles'])==len(native['owners'])
                         for tile,owner in zip(native['tiles'],native['owners']):
                             cell=tile['cell'];fields=struct.unpack_from('<6H',raw,76+12*cell)

@@ -14,9 +14,16 @@ The original file loader is not executed by this milestone.
 
 Build-specific rendering interprets three four-view frame arrays at offsets
 0x84, 0xd0 and 0xe0. Those offsets are consumed by the unchanged original terrain
-producer and tested against every Celtic Forest record; the other bytes remain
-opaque. See [producer evidence](../runtime/terrain-submission.md).
+producer and tested against every Celtic Forest record; additional selected geometry fields are described below. Remaining bytes
+stay opaque. See [producer evidence](../runtime/terrain-submission.md).
 
 `terrain-catalog-owned-records` checks complete ownership and malformed extents
 in normal and ASan/UBSan builds. These tests and installed producer comparisons
 are separate from original loader equivalence and live replacement.
+
+Selected map initialization also consumes DWORD +0x94 (classification; the
+selected cell initializer tests equality with 0x10) and byte +0xa8 (neighbor
+connection predicates used by geometry admission). The catalog still owns and
+preserves these bytes without applying engine policy. See
+[map initialization and geometry evidence](../runtime/terrain-map-initialization.md)
+for field conditions, original execution and remaining boundaries.

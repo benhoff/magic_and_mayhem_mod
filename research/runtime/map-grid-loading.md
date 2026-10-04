@@ -52,3 +52,9 @@ full original MAP decode/initialization equivalence and live loading are pending
 A bounded native map slice is a separate application milestone; camera,
 world traversal, lighting, topmost-surface selection and entity creation are
 not implied by having an owned grid.
+
+Selected post-load cell fields and the complete original geometry/surface pass
+now have a separate [native initialization milestone](terrain-map-initialization.md).
+It prepares an owned ordinary-terrain projection for scene rendering, with
+explicit reference/object exclusions; the raw MAP reader remains unchanged.
+Full original map lifecycle and entity creation remain unverified.
