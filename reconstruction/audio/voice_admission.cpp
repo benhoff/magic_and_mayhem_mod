@@ -28,7 +28,7 @@ void rotateDuplicates(VoiceWrapper*& source){
     source=first;
 }
 }
-std::int32_t admissionSourceIndex(AdmissionBackend& b,const AdmissionCatalog& c,std::int32_t requested){
+std::int32_t admissionSoundId(AdmissionBackend& b,const AdmissionCatalog& c,std::int32_t requested){
     const auto group=std::lower_bound(c.groups.begin(),c.groups.end(),requested,
         [](const SoundGroup& g,int id){return g.id<id;});
     if(group!=c.groups.end() && group->id==requested){
@@ -37,7 +37,7 @@ std::int32_t admissionSourceIndex(AdmissionBackend& b,const AdmissionCatalog& c,
     }
     const auto source=std::lower_bound(c.sourceIds.begin(),c.sourceIds.end(),requested);
     if(source==c.sourceIds.end() || *source!=requested)return 0x19a;
-    return std::int32_t(source-c.sourceIds.begin());
+    return requested;
 }
 Status duplicateAndStart(AdmissionBackend& b,VoiceWrapper& source,int volume,int pan,bool loop,VoiceWrapper*& output){
     std::uint32_t buffer=0;auto result=b.duplicateBuffer(source.buffer,buffer);
@@ -55,7 +55,7 @@ Status admitVoice(AdmissionBackend& b,const ManagerState& manager,const Admissio
     if(!manager.initialized || !manager.active){if(request.output)*request.output=disabled;return 0;}
     auto* slot=selectSchedule(b,schedules,request.volume,true);
     if(!slot)return 0;
-    const auto index=admissionSourceIndex(b,catalog,request.sound);
+    const auto index=admissionSoundId(b,catalog,request.sound);
     auto* source=head;bool found=false;
     do{if(source->sourceIndex==index){found=true;break;}source=source->next;}while(source!=head);
     bool usable=false;

@@ -4,7 +4,7 @@ namespace mnm::reconstruction::audio {
 // Host annotations for the 40-byte wrapper; no process pointers are dereferenced.
 struct VoiceWrapper {
     std::uint32_t identity=0,buffer=0;
-    std::int32_t sourceIndex=-1;
+    std::int32_t sourceIndex=-1; // Historical name: +4 holds resolved sound ID, not table ordinal.
     std::uint32_t field08=0,field0c=2;
     std::int32_t requestedVolume=99,cachedVolume=99;
     VoiceWrapper* duplicate=nullptr;
