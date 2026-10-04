@@ -89,3 +89,7 @@ use text placeholders; original result data and action availability remain open.
 Map Selection now has a [native list preview](../runtime/map-selection-qt.md)
 with caller-supplied IDs, keyboard selection and OK/Cancel intent. Installed map
 enumeration and original battle setup/return semantics remain unconnected.
+
+Load Game now has a [native save-selection preview](../runtime/load-game-qt.md)
+with caller-supplied save IDs, synchronized filename/list controls and guarded
+Load/Cancel actions. Actual save enumeration/loading remain unconnected.
