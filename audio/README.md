@@ -1,8 +1,8 @@
-# Native sample storage
+# Native sample storage and voice state
 
 Native audio implementation belongs here, separate from the pinned engine
-models in `reconstruction/audio/`. This first chunk owns PCM buffers and sample
-uploads. It does not implement a mixer, an audible device, or a live DirectSound
+models in `reconstruction/audio/`. It owns PCM buffers, sample uploads and
+independent voice state. It does not implement a mixer, an audible device, or a live DirectSound
 replacement. The game still uses Wine DirectSound.
 
 ```bash
@@ -21,7 +21,7 @@ the game. Evidence is under `working/tests/audio-buffers/`.
 
 The build requires Qt 6.8+ Core for asset input and the CLI, plus Python 3 for
 the fixture tests. `mnm-audio` and the reconstruction retain standard C++ APIs;
-no Qt types enter those algorithms. The combined audio build runs five CTests,
+no Qt types enter those algorithms. The combined audio build runs seven CTests,
 including the three asset tests and an input-adapter fixture check. No Wine,
 display server, or audio output device is needed for native builds/tests.
 
@@ -87,5 +87,10 @@ remain separate from decoded PCM comparisons. See
 Selected play/stop/loop, volume/pan, status/reset and deadline contracts now have
 [offline reconstruction tests](../research/runtime/directsound-voice-controls.md).
 Frequency changes and arbitrary cursor queries remain conditional.
-Next: introduce independent voice state and an offline mixer before a Qt audio sink
-or live game hook. See [evidence and boundaries](../research/runtime/directsound-buffer-setup.md).
+Native `Device` now supports play, stop, zero reset, volume/pan and independent
+source-frame advancement. `voice(id)` reports state by value; `advanceFrames`
+does not produce samples. Use `python3 tools/test-audio-voice-state.py` for
+fixture-only validation. See [state policies and evidence](../research/runtime/native-audio-voice-state.md).
+
+Next: stereo mixing/sample-rate conversion, then Qt audio output and a live game
+adapter. See [reconstruction boundaries](../research/runtime/directsound-buffer-setup.md).

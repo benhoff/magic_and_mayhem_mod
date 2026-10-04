@@ -63,3 +63,6 @@ confidence, and whether it remains stable across launches.
 - [DirectSound voice controls](directsound-voice-controls.md): observed playback,
   volume/pan, status/reset and scheduler contracts, with offline tests and a
   bounded frequency/cursor call audit.
+
+- [Native audio voice state](native-audio-voice-state.md): independent secondary
+  cursors, controls, loops/completion and ownership, tested without audio output.
