@@ -310,3 +310,12 @@ using fixtures only. It records source and executable hashes under
 against an independent rational PCM reference, exact split-block continuity,
 gains, clipping and buffer lifecycle. No game or audio device is required.
 See [scope and evidence](../research/runtime/native-audio-mixer.md).
+
+## Qt PCM output without the game
+
+`python3 tools/test-audio-output.py` runs all nine audio/asset tests with fixtures
+only. Add `--device-test` to probe the default output and deliver a quiet
+two-second synthetic tone with stop/restart; each device command has a 15-second
+timeout. Evidence under `working/tests/audio-output/` records hashes, logs and
+backend delivery separately from speaker audibility and game replacement.
+See [output scope](../research/runtime/native-audio-output.md).
