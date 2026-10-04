@@ -30,7 +30,7 @@ void releaseSourcePool(LifetimeBackend& b,SourcePool& pool){
     if(pool.head){auto* start=pool.head->previous;auto* v=start;
         do{auto* previous=v->previous;destroyWrapper(b,*v,1);v=previous;}while(v!=start);
     }
-    pool.head=nullptr;pool.nodes.clear();
+    pool.head=nullptr;pool.nodes.clear();pool.ownedDuplicates.clear();
 }
 std::string managerProfilePath(const std::string& root){
     const auto path=root+"\\Sounds.ini";

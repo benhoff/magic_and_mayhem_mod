@@ -113,6 +113,7 @@ confidence, and whether it remains stable across launches.
 - [Source cache](audio-source-cache.md): backward scoring, pinned/busy/duplicate guards, group preloads, destructive replacement and Qt-backed synthetic WAV admission; offline fixtures.
 - [Audio manager configuration](audio-manager-configuration.md): profile tables, randomized groups, map class lists, source budgets/preloads and scheduler pool initialization; offline fixtures.
 - [Audio manager lifecycle](audio-manager-lifecycle.md): aggregate startup, exact failure ownership, shutdown/destructor ordering and retained primary/scheduler resources; offline fixtures.
+- [Native audio manager backend](native-audio-manager-backend.md): Qt profile/WAV input through recovered startup/admission to native PCM, duplicate ownership and teardown; offline integration.
 
 - [Bounded native ANI/SPR scene](native-animation-scene.md): explicit sequence
   playback, owned upload cache, Qt preview and offline composition evidence.

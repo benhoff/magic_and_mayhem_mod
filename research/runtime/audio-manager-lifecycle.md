@@ -120,6 +120,8 @@ Windows profile/CRT file semantics, real allocator/SEH faults, COM reference cou
 original saved-volume initialization and external primary ownership remain
 unverified. Retirement delegates to the recovered voice/lifetime backend; no raw
 process pointers are dereferenced. Device/thread/timing, audible transitions and
-live replacement remain separate milestones. Next offline work is a concrete
-native backend adapter connecting Qt asset/profile reads and native audio services
-to this controller, with end-to-end synthetic PCM evidence.
+live replacement remain separate milestones. A
+[native backend adapter](native-audio-manager-backend.md) now connects Qt
+asset/profile reads and native audio services to this controller, with end-to-end
+synthetic PCM evidence. Profile API equivalence and live integration remain
+separate milestones.
