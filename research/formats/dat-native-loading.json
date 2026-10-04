@@ -1,0 +1,289 @@
+{
+  "files": 2,
+  "source_bytes": 1269444,
+  "records": [
+    {
+      "path": "AI/Brain.dat",
+      "mode": "brain",
+      "source_bytes": 508440,
+      "source_sha256": "a88ab9b4c37badc71b36eaabad3f1f5d32013f0ca56948c7c1facae44652f922",
+      "records": 7,
+      "decoded_sha256": "b31ae9b70dfc831ccba72a2ca584ada3df61fbee6329cbc20279f1f7268f2bd1",
+      "models": [
+        {
+          "key": 6,
+          "dimension": 72,
+          "nodes": [
+            72,
+            72,
+            72
+          ]
+        },
+        {
+          "key": 8,
+          "dimension": 73,
+          "nodes": [
+            73,
+            73,
+            73
+          ]
+        },
+        {
+          "key": 9,
+          "dimension": 71,
+          "nodes": [
+            71,
+            71,
+            71
+          ]
+        },
+        {
+          "key": 11,
+          "dimension": 71,
+          "nodes": [
+            71,
+            71,
+            71
+          ]
+        },
+        {
+          "key": 12,
+          "dimension": 71,
+          "nodes": [
+            71,
+            71,
+            71
+          ]
+        },
+        {
+          "key": 13,
+          "dimension": 73,
+          "nodes": [
+            73,
+            73,
+            73
+          ]
+        },
+        {
+          "key": 14,
+          "dimension": 73,
+          "nodes": [
+            73,
+            73,
+            73
+          ]
+        }
+      ],
+      "node_records": 1512,
+      "matrix_words": 108882
+    },
+    {
+      "path": "AI/Experien.dat",
+      "mode": "experience",
+      "source_bytes": 761004,
+      "source_sha256": "4dc241ce7302300965a2ba3e4b35f0caf4182996e67fafdbe2b9ce3e0e52ab1e",
+      "records": 2500,
+      "decoded_sha256": "721dd165a89a532ee4f5570883bec5ecc9bd82c1b8f2738aa147b2a6d26e03e8",
+      "value_words": 180251,
+      "shapes": [
+        {
+          "key": 6,
+          "values": 72,
+          "count": 537
+        },
+        {
+          "key": 8,
+          "values": 73,
+          "count": 962
+        },
+        {
+          "key": 9,
+          "values": 71,
+          "count": 189
+        },
+        {
+          "key": 11,
+          "values": 71,
+          "count": 29
+        },
+        {
+          "key": 12,
+          "values": 71,
+          "count": 638
+        },
+        {
+          "key": 13,
+          "values": 73,
+          "count": 34
+        },
+        {
+          "key": 14,
+          "values": 73,
+          "count": 111
+        }
+      ],
+      "parameters": [
+        {
+          "words": [
+            3,
+            0
+          ],
+          "count": 720
+        },
+        {
+          "words": [
+            3,
+            1
+          ],
+          "count": 682
+        },
+        {
+          "words": [
+            3,
+            2
+          ],
+          "count": 1098
+        }
+      ]
+    }
+  ],
+  "reviewed": "2026-10-04",
+  "scope": "Owned offline DAT schemas; static original reader inspection, independent reference and exact byte reconstruction; no original reader execution or live replacement",
+  "static_evidence": {
+    "directory": "working/decompiled/dat-support-abl0no69",
+    "report_sha256": "ae07d4dce007e343567fba82a0dccda14163423b4713dcbbf6459497f78274ab",
+    "report": {
+      "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "script_sha256": "70434a63041b5cf2f2c525f262b4c602aee5d2c871b332ff5e63b5a24f0a8d13",
+      "ghidra_script_sha256": "b2a398c8023f35447fea54d65d50f590da27e6e4d958ca8f54538831ba155349",
+      "scope": "Static selected reader/caller evidence and installed byte inventory; no live observation",
+      "input_unchanged": true,
+      "ranges": {
+        "brain_file": [
+          4692496,
+          4693289
+        ],
+        "brain_record": [
+          4678208,
+          4678852
+        ],
+        "experience_file": [
+          4685104,
+          4691504
+        ],
+        "caller": [
+          4679510,
+          4679591
+        ],
+        "layer": [
+          4677216,
+          4678080
+        ],
+        "node_state": [
+          4676848,
+          4676943
+        ],
+        "experience_record": [
+          4679056,
+          4679329
+        ]
+      },
+      "summary": {
+        "files": 2,
+        "source_bytes": 1269444,
+        "first_words": {
+          "AI/Brain.dat": [
+            6,
+            72,
+            3,
+            1051074351,
+            72,
+            1111883776,
+            1178287104,
+            3205035453
+          ],
+          "AI/Experien.dat": [
+            8,
+            73,
+            2640,
+            960,
+            1920,
+            240,
+            20,
+            26
+          ]
+        }
+      },
+      "files": [
+        {
+          "path": "AI/Brain.dat",
+          "source_bytes": 508440,
+          "source_sha256": "a88ab9b4c37badc71b36eaabad3f1f5d32013f0ca56948c7c1facae44652f922",
+          "first_words": [
+            6,
+            72,
+            3,
+            1051074351,
+            72,
+            1111883776,
+            1178287104,
+            3205035453
+          ]
+        },
+        {
+          "path": "AI/Experien.dat",
+          "source_bytes": 761004,
+          "source_sha256": "4dc241ce7302300965a2ba3e4b35f0caf4182996e67fafdbe2b9ce3e0e52ab1e",
+          "first_words": [
+            8,
+            73,
+            2640,
+            960,
+            1920,
+            240,
+            20,
+            26
+          ]
+        }
+      ],
+      "artifacts_sha256": {
+        "brain_file.asm": "e3b517b72cfee506ddca8b016c22e8c57c5826fe83f3d84779bac348166b569b",
+        "layer.asm": "747b02640b520deecfa54fcbc0c0077929cd41ecbd3b63e848b33db8cf7aabf8",
+        "brain_record.asm": "b94ea17d8bab8d7cf1c6271b17441e154789e05a3cb146e475c5ce156f80bcaa",
+        "experience_file.asm": "42d6dd9315dfe4ebb7fa53970b0144a3c49d7d9ec1e0aa3f43325898490ec4ff",
+        "experience_record.asm": "e6ede1e19aadcaa1ebb2dd7d9e206e04c8e6d6b38d816aef9c611900fe6b9c98",
+        "caller.asm": "77d1e228c11a8cb2f305219deaffbb567d698121ddc73433d3dbf772d91cdce2",
+        "node_state.asm": "d657cf0bcc43267280a2444391cf0b93562dd85ff52bff663643afca46a647b9",
+        "pseudo/00479a10.refs": "7dc5f8873a90ccc6b9a00ab7038fc0c92c300fa10066e82aa92db33adb813bb8",
+        "pseudo/00475cf0.refs": "85eef3257957074a3539d95f732ea42d185874905480f4c5f274517ca12c3977",
+        "pseudo/00475cf0.c": "9d1394f6ff02709f4c6b3660c73b3f46bdf5a8a2de097ca4de14b7787d5141b4",
+        "pseudo/00475e60.c": "ad47fbde908d154eb5bb391cff0ad6ff1867e490f6a014e11b6cacca02260bab",
+        "pseudo/00477d30.c": "5e231bff6d40647d0665d3506d2e4b896e15d11c387e02de7c51f1c0985413bc",
+        "pseudo/00476240.c": "e22e92329a9c3792d4a8d836dd57ed48d6bc45cd56578562c6e21fee5034d03d",
+        "pseudo/00479a10.c": "bc31b839346266ab4b52f68228b843e19d0f1da97f062a97461f3bd8a7ecafd0",
+        "pseudo/00476590.refs": "02c231b832dc549475b7d53423502eb609dd3350e9c602f591a6bb7357bfdac5",
+        "pseudo/00476240.refs": "cfb153bed45cf03234b4ffd7115c41ce5f025cc5528c6bf534bfbf559eaa73a6",
+        "pseudo/00477d30.refs": "068f9d7ff7250977858a265d0dcee270e810be73dc520e15540aeee643694a5a",
+        "pseudo/00475e60.refs": "e5baf78f88304016177d782b1539020bd8ed8157a73a4b7cb3fa63512445de89",
+        "pseudo/00476590.c": "d35c669494309cf5062147979eb3e655c8fcc4d05dd77aadeb1c23bb5a8f8240"
+      }
+    }
+  },
+  "native_artifacts_sha256": {
+    "working/build/dat/mnm-dat-inspect": "c043210917b3727fac3299c8a4831af729075a36c984d0d5bf607825e75fa747",
+    "working/build/dat/libmnm-dat-loader.a": "2a082fe2fbbff0bb55ff74ddcacc494c3b73b2d062ccb682365d8797f0678f7d"
+  },
+  "comparison_script_sha256": "79168c77acabe051a339cafafe05809efb4dafad5919a662658ad28696a3183d",
+  "validation": {
+    "asset_ctests": 35,
+    "dat_sanitizer_ctests": 2,
+    "sanitizers": [
+      "address",
+      "undefined"
+    ],
+    "leak_detection": false,
+    "synthetic_comparisons": 7,
+    "original_manifest_before_after": true,
+    "installed_input_unchanged": true
+  }
+}

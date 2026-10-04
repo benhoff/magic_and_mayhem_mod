@@ -142,3 +142,5 @@ confidence, and whether it remains stable across launches.
 - [Native audio output recovery](audio-output-recovery.md): Qt device-change/failure notifications, persistent retry status, gain-preserving silent reopen and cancellation; synthetic validation.
 
 - [Native menu effects preferences](menu-audio-preferences.md): user-scoped Qt settings, acceptance/cancellation and synthetic fresh-process restart validation.
+
+- [DAT AI loading](dat-ai-loading.md): hash-pinned reader contracts, packed runtime/file separation and offline validation boundaries.

@@ -55,3 +55,5 @@ Current findings:
 - [Native NOD node loading](nod-native-loading.md): version-1 packed positions/connections, preserved metadata/trailer and complete installed byte roundtrips.
 
 - [Native TXT/WBT loading](txt-wbt-native-loading.md): exact text lines, typed scroll entries, read-only automation statements and complete installed comparisons.
+
+- [Native DAT AI input](dat-native-loading.md): separate Brain/Experien grammars, exact numeric bits and complete installed byte roundtrips.

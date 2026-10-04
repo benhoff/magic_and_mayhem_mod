@@ -361,3 +361,13 @@ See [layout and validation](../research/formats/nod-native-loading.md).
 Output owns exact bytes, line terminators and parsed values. WBT statements
 are never executed. `mnm-text-inspect ROOT PATH [text|scrolls|wbt]` emits JSON.
 See [syntax, limits and validation](../research/formats/txt-wbt-native-loading.md).
+
+## DAT AI input
+
+`mnm-dat-loader` provides `decodeBrainDat`/`loadBrainDat` and
+`decodeExperienceDat`/`loadExperienceDat` in `dat.hpp`. Explicit schema selection
+loads owned model/layer/state/matrix records or experience vectors/parameters,
+with all numeric DWORD bits preserved and bounded counts/storage.
+`mnm-dat-inspect brain|experience ROOT PATH.dat` emits complete JSON.
+Training, inference and live gameplay use remain separate.
+See [layout and validation](../research/formats/dat-native-loading.md).

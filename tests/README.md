@@ -472,3 +472,11 @@ ownership, malformed input and decoded allocation limits. The independent
 Python runner compares all 43 TXT/two WBT inputs and reconstructs original
 bytes from reported line data, with manifest/input-hash guards.
 See [reproduction and boundaries](../research/formats/txt-wbt-native-loading.md).
+
+`dat-loader-test.cpp` exercises headerless Brain/Experien ownership, exact numeric
+bits, every incomplete record prefix and decoded/count/input limits.
+`test-dat-loader.py` independently parses both schemas, compares every native
+field and reconstructs all bytes. Asset CTest runs seven synthetic fixtures;
+`--installation working/game-clean --report working/dat-comparison.json` adds
+both installed files with manifest checks before/after and unchanged input
+hashes. See [DAT evidence](../research/formats/dat-native-loading.md).
