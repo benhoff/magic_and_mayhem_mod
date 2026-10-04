@@ -48,6 +48,31 @@ int main(int argc,char** argv){
             require(rejected && scene.actors()[0].sprite==22,"Invalid selection mutated actor");
         }
         require(renderer.stats().surfaces==0,"Directional scene leaked surfaces");
+        auto makeSprite=[](unsigned colour,int ox,int oy){mnm::assets::Sprite result;result.storage=mnm::assets::SpriteStorage::rgb565;
+            for(unsigned i=0;i<2;++i){mnm::assets::SpriteFrame f;f.width=f.height=1;f.originX=ox;f.originY=oy;f.pixels=std::vector<std::uint16_t>{std::uint16_t(colour?colour+i:0)};f.opaqueMask={1};result.frames.push_back(f);}return result;};
+        auto makeAnimation=[](std::array<std::uint32_t,9> first,std::array<std::uint32_t,9> second){mnm::assets::Animation a;a.starts={0,3};a.records={{0,0,first},{0,1,second},{6,-1,{}}};return a;};
+        const auto parent=makeAnimation({std::uint32_t(-3),std::uint32_t(-4),0,0,0,10,std::uint32_t(-20),30,std::uint32_t(-40)},
+                                        {std::uint32_t(-5),std::uint32_t(-6),0,0,0,std::uint32_t(-10),std::uint32_t(-21),std::uint32_t(-30),std::uint32_t(-41)});
+        const auto first=makeAnimation({5,std::uint32_t(-6),0,0,0,0,0,0,0},{7,std::uint32_t(-8),0,0,0,0,0,0,0});
+        const auto second=makeAnimation({std::uint32_t(-9),10,0,0,0,0,0,0,0},{std::uint32_t(-11),12,0,0,0,0,0,0,0});
+        for(unsigned view=0;view<4;++view){
+            std::vector<mnm::preview::SpriteLayer> layers;
+            layers.push_back({makeSprite(0,1,2),first,0,mnm::reconstruction::AttachmentPoint::first});
+            layers.push_back({makeSprite(202,-1,-2),second,0,mnm::reconstruction::AttachmentPoint::second});
+            mnm::preview::SpriteScene scene(renderer,makeSprite(11,3,4),parent,{0},false,{2,view},std::move(layers));
+            const int shiftX=view==1?32:(view==3?-32:0),shiftY=view==2?-32:((view==1 || view==3)?-16:0);
+            for(unsigned tick=0;tick<4;++tick){if(tick)scene.advance();scene.present();auto expected=mnm::preview::SpriteScene::background();
+                const bool active=tick<3;const bool next=tick==2;
+                if(active){const int bx=256+(next?-5:-3)+shiftX-3,by=190+(next?-6:-4)+shiftY-4;
+                    const int lx=256+(next?-10:10)+shiftX+(next?7:5)-1,ly=190+(next?-21:-20)+shiftY+(next?-8:-6)-2;
+                    const int rx=256+(next?-30:30)+shiftX+(next?-11:-9)+1,ry=190+(next?-41:-40)+shiftY+(next?12:10)+2;
+                    expected.pixels[by*512+bx]=next?12:11;expected.pixels[ly*512+lx]=0;expected.pixels[ry*512+rx]=next?203:202;
+                    const auto state=scene.layers();require(state.size()==2 && state[0].drawAnchor->x==lx+1 && state[1].drawAnchor->y==ry-2,"Layer anchors differ");
+                }else require(!scene.layers()[0].sprite && !scene.layers()[1].sprite,"Stopped parent kept attachments visible");
+                require(scene.read().pixels==expected.pixels,"ANI offsets, independent origins, layer asset cache or opaque zero differ");
+            }
+        }
+        require(renderer.stats().surfaces==0,"Layered scenes leaked surfaces");
         std::cout<<"80 four-actor scenes match; 128 distinct uploads, cache eviction, restart and cleanup pass\n";return 0;
     }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
 }

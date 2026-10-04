@@ -134,3 +134,12 @@ forward phase switches and numeric group/facing controls; its three-run
 [scene evidence](animation-direction-scene.json) includes a RedCap facing change
 before tick 7. Complete named action mappings and additional placement fields
 remain outstanding before replacing original creature presentation.
+
+## Subsequent placement and layered preview milestone
+
+The preview now applies body ANI displacement and supports two explicit child
+ANI/SPR pairs per actor. The [placement contract](animation-placement-attachments.md)
+records recovered attachment fields, footprint adjustments, independent pixel
+comparisons and the remaining original sorting/lifecycle boundaries. Earlier
+evidence in this document describes the preceding preview milestone; its
+original selection/control findings remain separate from placement recovery.

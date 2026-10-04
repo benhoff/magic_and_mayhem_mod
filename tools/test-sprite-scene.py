@@ -28,7 +28,7 @@ def main():
         if sha(exe.read_bytes())!=HASH:raise ValueError('Executable hash differs')
         preview=REPO/'working/build/sprite-scene/mnm-sprite-scene-preview';preview_hash=sha(preview.read_bytes())
         sources=['apps/sprite-scene/scene.cpp','apps/sprite-scene/scene.hpp','apps/sprite-scene/main.cpp',
-                 'reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp',
+                 'reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp','reconstruction/animation/placement.cpp','reconstruction/animation/placement.hpp',
                  'assets/animation.cpp','assets/animation.hpp','renderer/sprites/sprite.cpp','renderer/blit.cpp',
                  'tools/test-sprite-scene.py','tests/animation-binary-reference.cpp']
         hashes={path:sha((REPO/path).read_bytes()) for path in sources}
@@ -43,6 +43,8 @@ def main():
             original[group]=json.loads(p.stdout);(out/f'original-sequence-{group}.json').write_text(p.stdout)
         p=subprocess.run([str(helper),str(exe),str(ani),'0','64','-1','7','7'],capture_output=True,text=True,timeout=5);p.check_returncode()
         switched=json.loads(p.stdout);(out/'original-facing-switch.json').write_text(p.stdout)
+        ani_bytes=ani.read_bytes();offset_count=struct.unpack_from('<I',ani_bytes,20)[0]
+        starts=struct.unpack_from('<'+str(offset_count)+'I',ani_bytes,44);record_base=44+4*offset_count
         b=spr.read_bytes();count,palettes=struct.unpack_from('<2I',b,12);base=24+768*palettes+count*4
         decoded={}
         def frame(index):
@@ -94,6 +96,10 @@ def main():
                     anchor=(170 if g==0 else 341,190)
                     if (actor['anchor_x'],actor['anchor_y'])!=anchor:raise ValueError('Scene anchor differs')
                     if selected is not None:
+                        record=record_base+(starts[sequence]+oracle[4])*44
+                        offset=struct.unpack_from('<ii',ani_bytes,record+8)
+                        anchor=(anchor[0]+offset[0],anchor[1]+offset[1])
+                        if (actor['draw_anchor_x'],actor['draw_anchor_y'])!=anchor:raise ValueError('ANI sprite placement differs')
                         ox,oy,pixels=frame(selected)
                         for x,y,value in pixels:
                             dx,dy=anchor[0]-ox+x,anchor[1]-oy+y
