@@ -400,3 +400,11 @@ The installed run verifies originals before/after and records source hashes.
 `python3 tools/export-mps-support.py --decompile` exports hash-pinned static
 reader/caller evidence through read-only Ghidra processing.
 See [MPS schema and validation scope](../research/formats/mps-native-loading.md).
+
+`./tools/test-installed-audio-manager.py [Sounds-directory]` exercises installed
+manager startup, direct upload, every catalog admission and every randomized
+group member, with independent WAV/PCM expectations and cleanup checks.
+`--executable` accepts an instrumented fixture. It verifies originals and input
+hashes before/after; no game or output device is opened. See
+[installed native audio manager](../research/runtime/installed-native-audio-manager.md)
+for successful coverage and the remaining quoted-path/missing-Stream gaps.
