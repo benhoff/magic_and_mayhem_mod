@@ -299,3 +299,12 @@ EXIF orientation and ICC color transforms are not applied.
 `mnm-jpeg-inspect ROOT PATH.jpg` reports dimensions and a complete RGB hash.
 Qt Gui/JPEG support is required; comparison tests also require Python Pillow.
 See [policies, validation and remaining integration](../research/formats/jpeg-native-loading.md).
+
+## MPS map placements
+
+`mnm-mps-loader` provides `decodeMps`/`loadMps` in `mps.hpp`: owned version-1
+placement lists with x/y/z, numeric/named kinds and six preserved parameters.
+The original reader confirms 40-byte records; the header size word is metadata.
+`mnm-mps-inspect ROOT PATH.mps` reports every field as JSON.
+See [layout, original evidence and validation](../research/formats/mps-native-loading.md).
+Kind 6 and complete per-kind meanings remain unrecovered; no world application.
