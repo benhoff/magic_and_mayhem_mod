@@ -81,3 +81,7 @@ Victory and Defeat now have [native result previews](../runtime/battle-results-q
 with explicit supplied display data. Original result population/visibility and
 continuation remain unconnected. Visual fidelity is documented separately from
 layout and functional validation.
+
+Quick Battle End now has [native result previews](../runtime/quick-battle-results-qt.md)
+with four supplied player slots and exclusive Spectate/Continue states. Portraits
+use text placeholders; original result data and action availability remain open.

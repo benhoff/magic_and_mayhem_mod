@@ -216,3 +216,15 @@ with sample results and native OK/Enter/Escape navigation:
 Fonts and text/button colors remain native approximations; original background
 artwork is reused, but visual equivalence has not been verified. See
 [result scope, validation and fidelity](../../research/runtime/battle-results-qt.md).
+
+Quick Battle result previews provide four sample players and mutually exclusive
+Continue/Spectate states:
+
+```bash
+./tools/run-qt-shell.sh --quick-battle-results continue
+./tools/run-qt-shell.sh --quick-battle-results spectate
+```
+
+Continue opens the native Quick Battle menu; Quit returns to Main. Spectate
+emits intent with the engine adapter pending. Portraits use text placeholders.
+See [layout, validation and remaining boundaries](../../research/runtime/quick-battle-results-qt.md).

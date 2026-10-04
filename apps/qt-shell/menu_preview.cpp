@@ -79,3 +79,27 @@ bool MenuPreview::openBattleResults(const QString& root, BattleResultWidget::Out
     statusBar()->showMessage("Sample results. OK returns to the main menu preview.");
     return true;
 }
+
+bool MenuPreview::openQuickBattleResults(const QString& root, QuickBattleResultWidget::PrimaryAction action, QString* error) {
+    if (!quickResults_) {
+        quickResults_=new QuickBattleResultWidget(screens_); screens_->addWidget(quickResults_);
+        connect(quickResults_,&QuickBattleResultWidget::actionRequested,this,[this](QuickBattleResultWidget::Action selected) {
+            if (selected==QuickBattleResultWidget::Action::Quit) { showMainMenu(); return; }
+            if (selected==QuickBattleResultWidget::Action::Continue) { showQuickBattle(); return; }
+            statusBar()->showMessage("Spectate selected — engine adapter pending.");
+        });
+    }
+    if (!quickResults_->loadAssets(root,error)) return false;
+    QuickBattleResultWidget::Results sample;
+    sample.primaryAction=action;
+    for (int i=0;i<4;++i) {
+        auto& player=sample.players[i]; player.active=true;
+        player.name=QString("Sample player %1").arg(i+1); player.portraitText=QString("P%1").arg(i+1);
+        player.kills=QString::number(12-i*3); player.deaths=QString::number(i+1);
+        player.handicapBonus=QString::number(i*5); player.score=QString::number(120-i*20);
+    }
+    quickResults_->setResults(sample); screens_->setCurrentWidget(quickResults_); quickResults_->focusFirstAction();
+    setWindowTitle(quickResults_->windowTitle());
+    statusBar()->showMessage("Sample results. Continue opens Quick Battle; Quit returns to the main menu preview.");
+    return true;
+}
