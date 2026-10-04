@@ -85,3 +85,7 @@ layout and functional validation.
 Quick Battle End now has [native result previews](../runtime/quick-battle-results-qt.md)
 with four supplied player slots and exclusive Spectate/Continue states. Portraits
 use text placeholders; original result data and action availability remain open.
+
+Map Selection now has a [native list preview](../runtime/map-selection-qt.md)
+with caller-supplied IDs, keyboard selection and OK/Cancel intent. Installed map
+enumeration and original battle setup/return semantics remain unconnected.
