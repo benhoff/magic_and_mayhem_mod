@@ -136,3 +136,7 @@ modeled separately. See [primary audio manager](primary-audio-manager.md).
 Selected scheduler selection, eviction, assignment and old-volume ordering now
 have [offline models and evidence](audio-voice-scheduler.md). Full manager start
 and wrapper-duplicate admission remain outside these models.
+
+Wrapped positional arithmetic, orientation pan, signed map-byte adjustment and
+existing voice updates now have [separate offline reconstruction](positional-audio.md).
+Camera projection and map lookup ownership remain separate inputs.
