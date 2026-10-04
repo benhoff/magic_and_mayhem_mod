@@ -419,3 +419,25 @@ bool MenuPreview::openMultiplayerLobby(const QString& root,MultiplayerLobbyWidge
     screens_->setCurrentWidget(screen);screen->focusFirstControl();setWindowTitle(host?"Magic & Mayhem — Host lobby preview":"Magic & Mayhem — Guest lobby preview");
     statusBar()->showMessage("Sample lobby; no network connection. Chat echoes locally; Start/Ready remain pending.");return true;
 }
+
+bool MenuPreview::openRegionEntry(const QString& root,QString* error) {
+    if (!regionEntry_) {
+        regionEntry_=new RegionEntryWidget(screens_);screens_->addWidget(regionEntry_);
+        RegionEntryWidget::Region sample;sample.id="sample-celtic-region-1";sample.name="Sample Celtic region 1";
+        regionEntry_->setRegion(sample);
+        connect(regionEntry_,&RegionEntryWidget::cancelled,this,[this] {
+            showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);
+        });
+        connect(regionEntry_,&RegionEntryWidget::enterRequested,this,[this](const auto& request) {
+            const auto name=QMetaEnum::fromType<RegionEntryWidget::Difficulty>().valueToKey(int(request.difficulty));
+            statusBar()->showMessage(QString("Enter %1 at %2 — campaign engine adapter pending.").arg(request.regionId,QString::fromLatin1(name)));
+        });
+        connect(regionEntry_,&RegionEntryWidget::auxiliaryRequested,this,[this](auto action) {
+            const auto name=QMetaEnum::fromType<RegionEntryWidget::AuxiliaryAction>().valueToKey(int(action));
+            statusBar()->showMessage(QString("%1 selected — campaign engine adapter pending.").arg(QString::fromLatin1(name)));
+        });
+    }
+    if (!regionEntry_->loadAssets(root,error)) return false;
+    screens_->setCurrentWidget(regionEntry_);regionEntry_->focusFirstControl();setWindowTitle(regionEntry_->windowTitle());
+    statusBar()->showMessage("Sample region; Enter and icon actions emit intent. Cancel returns to Main Menu.");return true;
+}

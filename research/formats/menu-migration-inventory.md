@@ -119,3 +119,8 @@ Multiplayer Battle Setup now has [native host/guest lobby previews](../runtime/m
 with separate shared/create/join layouts, supplied players/settings, local chat,
 Ready/Start intent and host Map Selection. Real networking and synchronized
 roster/settings contracts remain unconnected.
+
+Region Entry now has a [native region/difficulty preview](../runtime/region-entry-qt.md)
+with supplied region IDs, per-region original illustrations, four exclusive
+difficulty choices and text Grimoire/Spellbox/Character intent buttons.
+Campaign flow, unlocking and engine entry remain unconnected.

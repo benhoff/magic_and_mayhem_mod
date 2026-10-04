@@ -54,18 +54,24 @@ Sections loadMenuLayout(const QString& root, const QString& directory, const QSt
     return parse(read(store,directory+"/"+config,65536));
 }
 
-MenuAssets loadMenuAssets(const QString& root, const QString& directory, const QString& config, const char* imageFormat, const QSize& imageSize, const QString& backgroundName) {
+MenuAssets loadMenuAssets(const QString& root, const QString& directory, const QString& config, const char* imageFormat, const QSize& imageSize, const QString& backgroundName, const QString& imageFileName) {
     auto created = mnm::assets::AssetStore::create(std::filesystem::path(root.toStdString()));
     if (auto* failure = std::get_if<mnm::assets::Error>(&created)) throw std::runtime_error(failure->detail);
     const auto& store = std::get<mnm::assets::AssetStore>(created);
     MenuAssets result;
     result.layout = parse(read(store, directory + "/" + config, 65536));
     result.strings = parse(read(store, "CFG/interface screens text.cfg", 1024 * 1024));
-    auto name = backgroundName.isEmpty() ? result.layout.value("GLOBALS").value("BackgroundFile") : backgroundName;
-    if (name.startsWith('"') && name.endsWith('"')) name = name.mid(1, name.size() - 2);
-    if (name.isEmpty() || name.contains('/') || name.contains('\\') || name.contains(':'))
-        throw std::runtime_error("Invalid menu background name");
-    const auto image = read(store, directory + "/800x600/" + name + " 800-600." + QString::fromLatin1(imageFormat), 8 * 1024 * 1024);
+    QString fileName=imageFileName;
+    if (fileName.isEmpty()) {
+        auto name=backgroundName.isEmpty()?result.layout.value("GLOBALS").value("BackgroundFile"):backgroundName;
+        if (name.startsWith('"') && name.endsWith('"')) name=name.mid(1,name.size()-2);
+        if (name.isEmpty() || name.contains('/') || name.contains('\\') || name.contains(':'))
+            throw std::runtime_error("Invalid menu background name");
+        fileName=name+" 800-600."+QString::fromLatin1(imageFormat);
+    }
+    if (fileName=="." || fileName==".." || fileName.contains('/') || fileName.contains('\\') || fileName.contains(':'))
+        throw std::runtime_error("Invalid menu background filename");
+    const auto image=read(store,directory+"/800x600/"+fileName,8*1024*1024);
     if (!result.background.loadFromData(image, imageFormat) || result.background.size() != imageSize)
         throw std::runtime_error("Invalid menu background dimensions or format");
     return result;

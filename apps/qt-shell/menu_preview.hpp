@@ -11,6 +11,7 @@
 #include "multiplayer_game_selection_widget.hpp"
 #include "single_player_battle_widget.hpp"
 #include "multiplayer_lobby_widget.hpp"
+#include "region_entry_widget.hpp"
 class MainMenuWidget;
 class QuickBattleMenuWidget;
 class QStackedWidget;
@@ -31,6 +32,7 @@ public:
     bool openMultiplayerGameSelection(const QString& root, QString* error = nullptr);
     bool openSinglePlayerBattle(const QString& root, QString* error = nullptr);
     bool openMultiplayerLobby(const QString& root, MultiplayerLobbyWidget::Mode mode, QString* error = nullptr);
+    bool openRegionEntry(const QString& root, QString* error = nullptr);
 private:
     void returnFromMapSelection();
     void returnFromPreferences();
@@ -60,5 +62,6 @@ private:
     MultiplayerLobbyWidget* joinLobby_ = nullptr;
     QString hostLobbyContext_, joinLobbyContext_;
     MultiplayerSetupWidget::Request hostLobbyRequest_, joinLobbyRequest_;
+    RegionEntryWidget* regionEntry_ = nullptr;
     QString assetRoot_;
 };
