@@ -1,4 +1,5 @@
 #include "scene.hpp"
+#include "terrain_camera.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QLabel>
@@ -21,6 +22,8 @@ int main(int argc,char** argv)try{
  p.addOption({"region","MAP slice x,y,layer,width,height (width/height 1..3)","coordinates","0,0,0,3,3"});
  p.addOption({"world","Produce a four-orientation terrain scene from MAP"});
  p.addOption({"camera","World column,row,span,cut-level","fields"});p.addOption({"pan","World base screen origin x,y","pixels","256,64"});
+ p.addOption({"recovered-camera","Use recovered map binding, viewport and position setters"});
+ p.addOption({"scroll","Recovered screen-direction scroll x,y; repeat in order","pixels"});
  p.addOption({"view","Raw view 0..3","index","0"});p.addOption({"visibility","Apply recovered visibility pass"});
  p.addOption({"overlap","Use one anchor for every tile"});p.addOption({"output","New output prefix; writes .565, .png and .json, then exits","prefix"});p.process(app);
  bool ok=false;const auto view=p.value("view").toUInt(&ok);if(!ok || view>3 || !p.isSet("root"))throw std::runtime_error("Specify --root and view 0..3");
@@ -33,6 +36,7 @@ int main(int argc,char** argv)try{
  std::vector<mnm::preview::TerrainPreviewTile> tiles;
  QJsonObject mapInfo;mnm::reconstruction::TerrainCamera camera;
  const bool world=p.isSet("world");
+ if((p.isSet("recovered-camera") && (!world || p.isSet("camera") || p.isSet("pan"))) || (p.isSet("scroll") && !p.isSet("recovered-camera")))throw std::runtime_error("Recovered camera requires world and excludes camera/pan; scroll requires recovered camera");
  if((world && (!p.isSet("map") || p.isSet("region") || p.isSet("overlap"))) || (!world && (p.isSet("camera") || p.isSet("pan"))))throw std::runtime_error("--world requires --map; camera/pan require world; region/overlap require slice mode");
  if(p.isSet("map")){
   if(p.isSet("definitions"))throw std::runtime_error("Choose --map or --definitions");
@@ -44,8 +48,25 @@ int main(int argc,char** argv)try{
    camera.view=view;camera.column=map.width/2;camera.row=map.height/2;camera.span=std::min<std::uint32_t>(20,std::min(map.width,map.height));camera.cutLevel=map.layers;
    if(p.isSet("camera")){const auto values=p.value("camera").split(',');if(values.size()!=4)throw std::runtime_error("Camera requires column,row,span,cut-level");std::array<std::uint32_t,4> f{};for(unsigned i=0;i<4;++i){f[i]=values[i].toUInt(&ok);if(!ok || f[i]>128)throw std::runtime_error("Invalid camera field");}camera.column=f[0];camera.row=f[1];camera.span=f[2];camera.cutLevel=f[3];}
    const auto pan=p.value("pan").split(',');if(pan.size()!=2)throw std::runtime_error("Pan requires x,y");camera.f11=pan[0].toInt(&ok);if(!ok || camera.f11< -4096 || camera.f11>4096)throw std::runtime_error("Invalid horizontal pan");camera.f15=pan[1].toInt(&ok);if(!ok || camera.f15< -4096 || camera.f15>4096)throw std::runtime_error("Invalid vertical pan");
-   camera.diagonal=camera.span/2;camera.f41=2*camera.diagonal;tiles=mnm::preview::worldTerrainTiles(map,camera);
+   camera.diagonal=camera.span/2;camera.f41=2*camera.diagonal;
+   if(p.isSet("recovered-camera")){
+    mnm::reconstruction::bindTerrainCamera(camera,map.width,map.height,map.layers);
+    mnm::reconstruction::setTerrainCameraViewport(camera,{0,0,512,256});
+    // Preview policy selects map center at height zero; setters are recovered.
+    mnm::reconstruction::setTerrainCameraPosition(camera,map.width,map.height,map.layers,(map.width/2)*32,(map.height/2)*32,0);
+    camera.view=view;
+    for(const auto& value:p.values("scroll")){
+     const auto pair=value.split(',');if(pair.size()!=2)throw std::runtime_error("Scroll requires x,y");
+     const int dx=pair[0].toInt(&ok);if(!ok || dx< -4096 || dx>4096)throw std::runtime_error("Invalid horizontal scroll");
+     const int dy=pair[1].toInt(&ok);if(!ok || dy< -4096 || dy>4096)throw std::runtime_error("Invalid vertical scroll");
+     mnm::reconstruction::scrollTerrainCamera(camera,map.width,map.height,dx,dy);
+    }
+   }
+   tiles=mnm::preview::worldTerrainTiles(map,camera);
    mapInfo={{"path",p.value("map")},{"width",qint64(map.width)},{"height",qint64(map.height)},{"layers",qint64(map.layers)},{"camera",QJsonArray{camera.column,camera.row,int(camera.span),int(camera.cutLevel)}},{"pan",QJsonArray{camera.f11,camera.f15}}};
+   mapInfo.insert("recovered_camera",p.isSet("recovered-camera"));
+   mapInfo.insert("scroll",QJsonArray::fromStringList(p.values("scroll")));
+   mapInfo.insert("origin_fields",QJsonArray{camera.f41,camera.f45,camera.f49,camera.f4d,camera.f51,camera.f55});
   }else{
    tiles=mnm::preview::mapRegionTiles(map,{fields[0],fields[1],fields[2],fields[3],fields[4]},p.isSet("overlap"));
    mapInfo={{"path",p.value("map")},{"width",qint64(map.width)},{"height",qint64(map.height)},{"layers",qint64(map.layers)},{"region",p.value("region")}};

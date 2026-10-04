@@ -97,3 +97,17 @@ Views 1..3 have an exclusive layer cut and retain distinct row clipping/reset
 behavior. Repeated visits share physical cell ownership. Unsafe grid carries
 are rejected before rendering; original runtime map initialization is still
 separate. See [four-orientation traversal and validation](../../research/runtime/terrain-traversal-rotations.md).
+
+Use `--recovered-camera` for recovered map binding, viewport and position setters,
+plus repeatable `--scroll x,y` steps in screen-direction coordinates. It uses
+map-minimum span and selects map center at height zero as preview policy. It
+excludes `--camera` and `--pan`; `--scroll` requires this mode. Example:
+
+```sh
+working/build/terrain-camera-frozen/mnm-terrain-preview --root working/game-clean \
+  --map Realms/Celtic/Forest/CFsec01.map --world --recovered-camera \
+  --view 1 --scroll 19,-7 --scroll -91,41 --visibility
+```
+
+See [selected camera setters](../../research/runtime/terrain-camera-setters.md)
+for original-code comparisons, replay validation and remaining lifecycle work.
