@@ -13,8 +13,8 @@ absent/out-of-frame test-plane offset returns false. Supported frame planes
 are [documented separately](../formats/spr-visibility-planes.md).
 
 The origin is frame origin plus unsigned header bytes 2/3; subtract it from
-draw anchor with 32-bit wrap. The viewport flag at byte `0x006de6d5` selects
-W=640,H=512 or W=800,H=632. Anchors outside x=[-32,W+32), y=[-32,H) return
+draw anchor with 32-bit wrap. The DWORD viewport flag at `0x006de6d5` selects
+W=640,H=512 when zero, or W=800,H=632 when nonzero. Anchors outside x=[-32,W+32), y=[-32,H) return
 false without reading/updating the grid.
 
 For bounded anchors x,y, signed division truncates toward zero:
