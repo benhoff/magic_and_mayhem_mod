@@ -16,7 +16,13 @@ struct PositionalInput {
 // Inputs use decoded map coordinates. Listener is the output of 0x4f7d00;
 // screen/camera projection and map-byte lookup ownership are separate.
 std::int32_t wrappedDifference(std::int32_t source,std::int32_t listener,std::int32_t extent);
+struct PositionalByteSource {
+    virtual ~PositionalByteSource()=default;
+    virtual std::optional<std::int8_t> read(std::int32_t x,std::int32_t y,std::uint32_t z) const=0;
+};
 PositionalControls positionalControls(const PositionalInput&);
+// Deferred lookup: outside-range calls do not read storage; provider replaces mapByte.
+PositionalControls positionalControls(const PositionalInput&,const PositionalByteSource&,std::uint32_t sourceZ);
 // Selected 0x571460 update block, receiving recovered geometry outputs.
 // Scheduler notifications resolve wrapper identity; no game addresses here.
 struct PositionalBackend:LifetimeBackend {

@@ -17,7 +17,7 @@ std::int32_t wrappedDifference(std::int32_t source,std::int32_t listener,std::in
     if(delta>extent/2)delta-=extent; // Exact half-map tie remains positive.
     return std::int32_t(delta);
 }
-PositionalControls positionalControls(const PositionalInput& in){
+static PositionalControls controls(const PositionalInput& in,const PositionalByteSource* source,std::uint32_t z){
     if(in.orientation>3 || in.range<=0 || in.panWidth<=0)
         throw std::invalid_argument("Expected orientation 0..3 and positive range/pan width");
     static constexpr int biasX[]={-6,6,6,-6},biasY[]={-6,-6,6,6};
@@ -27,8 +27,9 @@ PositionalControls positionalControls(const PositionalInput& in){
     const auto distance=checked(2*std::max(ax,ay)+std::min(ax,ay))/2;
     PositionalControls out;if(distance>in.range)return out;
     out.volume=checked(std::int64_t(in.range-distance)*5000)/in.range-5000;
-    if(in.mapByte && *in.mapByte<in.byteThreshold){
-        const auto numerator=checked(std::int64_t(*in.mapByte)-in.byteThreshold);
+    const auto mapByte=source?source->read(in.sourceX,in.sourceY,z):in.mapByte;
+    if(mapByte && *mapByte<in.byteThreshold){
+        const auto numerator=checked(std::int64_t(*mapByte)-in.byteThreshold);
         const auto denominator=checked(-127ll-in.byteThreshold);
         if(!denominator)throw std::invalid_argument("Original map-byte divisor would be zero");
         const long double adjusted=(1.0L-static_cast<long double>(numerator)/denominator)*(out.volume+5000)-5000;
@@ -42,6 +43,10 @@ PositionalControls positionalControls(const PositionalInput& in){
     switch(in.orientation){case 0:lateral=difference/2;break;case 1:lateral=sum/2;break;
         case 2:lateral=-(difference/2);break;case 3:lateral=-(sum/2);break;}
     out.pan=positionalPan(lateral,in.panWidth);out.panWritten=true;return out;
+}
+PositionalControls positionalControls(const PositionalInput& in){return controls(in,nullptr,0);}
+PositionalControls positionalControls(const PositionalInput& in,const PositionalByteSource& source,std::uint32_t z){
+    return controls(in,&source,z);
 }
 Status updatePositionalVoice(PositionalBackend& b,VoiceWrapper*& slot,const PositionalControls& c,
                              bool worldPresent,bool enabled){
