@@ -273,3 +273,11 @@ and palette/plane hashes as JSON.
 See [CUR format, policies and validation](../research/formats/cur-native-loading.md).
 All 20 installed files/22 images match the independent offline decoder.
 Presentation, game-driven selection and live cursor integration remain separate.
+
+## PCX indexed images
+
+`mnm-pcx-loader` provides `decodePcx`/`loadPcx` in `pcx.hpp`: owned top-down
+8-bit indices, a 256-entry RGB palette, dimensions and header metadata.
+Version 5 RLE single-plane files are supported with bounded decoding.
+`mnm-pcx-inspect ROOT PATH.pcx` reports metadata and pixel/palette hashes.
+See [format, validation and remaining integration](../research/formats/pcx-native-loading.md).
