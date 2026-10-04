@@ -21,8 +21,17 @@ enum class Error {ok,invalid,unsupported,busy,badFormat,limit};
 struct Region {std::uint8_t* data=nullptr;std::size_t size=0;};
 struct WriteLock {BufferId owner=0;std::uint64_t ticket=0;Region first,second;};
 struct BufferInfo {bool primary=false;std::uint32_t flags=0;std::optional<PcmFormat> format;std::size_t bytes=0;std::uint64_t revision=0;};
+enum class Playback {stopped,playing,completed};
+struct VoiceInfo {
+    Playback playback=Playback::stopped;
+    bool looping=false;
+    std::uint64_t frame=0,frames=0;
+    std::int32_t volume=0,pan=0; // Hundredths of a decibel, not linear gain.
+    std::uint32_t status() const{return playback==Playback::playing?(looping?3u:1u):0u;}
+};
+struct AdvanceResult {std::uint64_t consumed=0;bool completed=false;};
 
-// Thread-confined sample ownership foundation. No device output or mixer yet.
+// Thread-confined sample ownership and source-frame playback state. No output/mixer yet.
 // Duplicated secondary voices share committed samples, with distinct identities.
 class Device {
 public:
@@ -37,13 +46,20 @@ public:
     Error release(BufferId id);
     Error lock(BufferId id,std::size_t offset,std::size_t bytes,std::uint32_t flags,WriteLock& output);
     Error unlock(const WriteLock& lock,std::size_t firstWritten,std::size_t secondWritten);
+    Error play(BufferId id,std::uint32_t flags=0); // Only 0 or 1 (whole-buffer looping).
+    Error stop(BufferId id); // Retain position; reset is a separate operation.
+    Error resetPosition(BufferId id);
+    Error setVolume(BufferId id,std::int32_t value); // [-10000,0].
+    Error setPan(BufferId id,std::int32_t value); // [-10000,10000].
+    Error advanceFrames(BufferId id,std::uint64_t frames,AdvanceResult& result);
+    std::optional<VoiceInfo> voice(BufferId id) const;
     std::optional<BufferInfo> info(BufferId id) const;
     std::vector<std::uint8_t> samples(BufferId id) const;
     std::size_t count() const{return buffers_.size();}
     static constexpr std::uint32_t capabilities=0x0f; // Native PCM policy: mono/stereo, 8/16-bit.
 private:
     struct Storage;
-    struct Buffer {bool primary;std::uint32_t flags;std::optional<PcmFormat> format;std::shared_ptr<Storage> storage;};
+    struct Buffer {bool primary;std::uint32_t flags;std::optional<PcmFormat> format;std::shared_ptr<Storage> storage;VoiceInfo voice{};};
     std::unordered_map<BufferId,Buffer> buffers_;
     BufferId next_=1;std::uint64_t ticket_=1;std::size_t maxBytes_,maxBuffers_;
 };

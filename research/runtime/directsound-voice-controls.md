@@ -126,5 +126,6 @@ also passed with leak checking enabled. Its output is
 `working/build/audio-voices/audio-voices-sanitize`; it needs no Qt event loop,
 game process or audio device. LeakSanitizer was run outside sandbox tracing.
 
-Next: independent native voice state, then stereo mixing/sample-rate conversion
-and QAudioSink output. These tests do not implement those later chunks.
+[Independent native voice state](native-audio-voice-state.md) now has separate
+fixture evidence. Next: stereo mixing/sample-rate conversion and QAudioSink
+output. Recovered-contract tests alone do not establish those native milestones.

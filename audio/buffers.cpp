@@ -63,13 +63,18 @@ Error Device::createStatic(std::uint32_t flags,const PcmFormat& format,std::size
     if(!validPcm(format))return Error::badFormat;
     if(!bytes || bytes%format.alignment)return Error::invalid;
     if(bytes>maxBytes_ || buffers_.size()>=maxBuffers_)return Error::limit;
-    auto storage=std::make_shared<Storage>(bytes);output=next_++;buffers_.emplace(output,Buffer{false,flags,format,std::move(storage)});return Error::ok;
+    auto storage=std::make_shared<Storage>(bytes);output=next_++;
+    Buffer buffer{false,flags,format,std::move(storage)};buffer.voice.frames=bytes/format.alignment;
+    buffers_.emplace(output,std::move(buffer));return Error::ok;
 }
 Error Device::duplicate(BufferId source,BufferId& output){
     auto it=buffers_.find(source);if(it==buffers_.end())return Error::invalid;
     if(it->second.primary)return Error::unsupported;
     if(buffers_.size()>=maxBuffers_)return Error::limit;
-    const auto buffer=it->second;output=next_++;buffers_.emplace(output,buffer);return Error::ok;
+    auto buffer=it->second;
+    // Duplicate controls, not playback activity or cursor. Samples stay shared.
+    buffer.voice.playback=Playback::stopped;buffer.voice.looping=false;buffer.voice.frame=0;
+    output=next_++;buffers_.emplace(output,std::move(buffer));return Error::ok;
 }
 Error Device::release(BufferId id){
     auto it=buffers_.find(id);if(it==buffers_.end())return Error::invalid;

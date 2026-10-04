@@ -295,3 +295,9 @@ indirect-call audit, then runs fake-backend contracts alongside audio/asset
 regressions. It checks status failures, stop/reset ordering, volume caches and
 duplicate notifications, pan, looping and scheduler arithmetic. No game, audio
 device or live hook is used. See [voice scope](../research/runtime/directsound-voice-controls.md).
+
+`python3 tools/test-audio-voice-state.py` verifies native playback state using
+fixtures only. It checks independent duplicate cursors/controls, one-shots,
+loops, reset/resume, commit/release behavior, rejected operations, 306 independent
+frame-step scenarios and a reconstructed-controller fixture. It reads no game
+or original assets and produces no audio. See [native state scope](../research/runtime/native-audio-voice-state.md).
