@@ -101,3 +101,7 @@ Cancel navigation. Actual persistence and engine overwrite rules remain open.
 Preferences now has a [native settings preview](../runtime/preferences-qt.md)
 with independent radio groups, configured slider bounds and local apply/cancel.
 Engine enum mapping, settings snapshots and persistence remain unconnected.
+
+Join and Create Multiplayer now have [native setup previews](../runtime/multiplayer-setup-qt.md)
+with username/game-name inputs, exclusive transport choices and typed request
+intent. Join has a username field; session enumeration and networking remain open.
