@@ -32,7 +32,7 @@ The executable identifying this installation has SHA-256
 | FP | 41 | 132,356 | Version-2 Realm Viewer flag paths; [confirmed header/points/native loading](fp-native-loading.md) |
 | CUR | 20 | 10,984 | Standard Windows cursor |
 | TTD | 17 | 11,154,108 | Proprietary `TTD\0` container |
-| SFT | 6 | 624,508 | Proprietary `SFT\0` container |
+| SFT | 6 | 624,508 | [Native version-3 font reader](sft-native-loading.md); glyphs and contour profiles, offline only |
 | AVI | 5 | 83,940,352 | Standard RIFF/AVI |
 | DAT | 2 | 1,269,444 | Proprietary AI data |
 | WBT | 2 | 346 | Plaintext AI data |

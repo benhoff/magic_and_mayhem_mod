@@ -445,3 +445,12 @@ original manifests before/after.
 `python3 tools/export-fp-support.py --decompile` exports hash-pinned static
 reader/constructor/point/flag-slot/caller evidence with read-only Ghidra processing.
 See [FP validation scope](../research/formats/fp-native-loading.md).
+
+## SFT font input
+
+Asset CTest includes `sft-loader` (ownership, lookup, malformed/truncated input
+and resource limits) and `sft-glyph-comparison` (independent profiles/frame/RLE
+decoding, direct/indexed glyphs, aliases, empty input and atlas transparency).
+Run the installed comparison and optional atlas export as documented in
+[SFT loading](../research/formats/sft-native-loading.md); it guards original
+inputs with manifest verification. Text layout and UI integration remain separate.

@@ -133,4 +133,6 @@ confidence, and whether it remains stable across launches.
 
 - [FP flag-path reader and Realm Viewer caller](fp-flag-path-loading.md): hash-pinned reader/constructor/getters, flag slots and UI loading boundary; static/offline evidence.
 
+- [SFT font reader and selected text consumers](sft-font-loading.md): hash-pinned reader, contour advances, glyph draw and font initialization; static/offline evidence.
+
 - [Native menu audio integration](menu-audio-integration.md): semantic cue routing, accepted effects gain and shared-session/queue transitions; offline widget/PCM tests.

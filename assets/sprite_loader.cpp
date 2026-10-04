@@ -1,4 +1,5 @@
 #include "sprite_loader.hpp"
+#include "sprite_frame_decoder.hpp"
 #include <algorithm>
 #include <cstring>
 #include <limits>
@@ -40,29 +41,25 @@ void budget(Reader& reader, std::uint64_t& used, std::uint64_t amount, std::uint
         reader.fail(SpriteErrorCode::limitExceeded, at, "Sprite exceeds configured aggregate budget");
     used += amount;
 }
-Sprite parse(Reader& r, const SpriteLimits& limits) {
-    const auto& bytes = r.bytes();
-    if (bytes.size() > limits.inputBytes) r.fail(SpriteErrorCode::limitExceeded, 0, "SPR exceeds input byte limit");
-    r.extent(0, 24, bytes.size());
-    if (r.u32(0) != 0x00525053) r.fail(SpriteErrorCode::invalidFormat, 0, "Expected SPR signature");
-    if (r.u32(4) != bytes.size()) r.fail(SpriteErrorCode::malformedData, 4, "Declared SPR size differs from input");
-    const auto version = r.u32(8);
-    if (version != 4) r.fail(SpriteErrorCode::unsupportedVersion, 8, "Only SPR version 4 is supported");
-    const auto count = r.u32(12), palettes = r.u32(16);
-    if (count > limits.frames) r.fail(SpriteErrorCode::limitExceeded, 12, "SPR frame count exceeds limit");
-    if (palettes > 4) r.fail(SpriteErrorCode::malformedData, 16, "SPR exceeds four embedded palettes");
-    const std::uint64_t table = 24 + std::uint64_t(palettes) * 768;
-    const auto base = table + std::uint64_t(count) * 4;
-    r.extent(24, base - 24, bytes.size());
+Sprite parseFrames(Reader& r,const SpriteLimits& limits,const detail::SpriteFrameLayout& layout) {
+    const auto& bytes=r.bytes();
+    if(bytes.size()>limits.inputBytes) r.fail(SpriteErrorCode::limitExceeded,0,"Sprite input byte limit exceeded");
+    const auto count=layout.count,palettes=layout.palettes,version=layout.version;
+    if(count>limits.frames) r.fail(SpriteErrorCode::limitExceeded,12,"Sprite frame count exceeds limit");
+    if(palettes>4) r.fail(SpriteErrorCode::malformedData,16,"Sprite exceeds four embedded palettes");
+    r.extent(layout.paletteOffset,std::uint64_t(palettes)*768,bytes.size());
+    const auto table=layout.table,base=layout.base;
+    r.extent(table,std::uint64_t(count)*4,bytes.size());
+    if(base!=table+std::uint64_t(count)*4) r.fail(SpriteErrorCode::malformedData,0,"Invalid frame data base");
     Sprite sprite;
     sprite.storage = palettes ? SpriteStorage::indexed8 : SpriteStorage::rgb565;
     sprite.version = version;
-    sprite.headerFlags = r.u32(20);
+    sprite.headerFlags = layout.flags;
     sprite.sourceBytes = bytes.size();
     sprite.palettes.resize(palettes);
     for (std::uint32_t p = 0; p < palettes; ++p) {
         for (std::size_t c = 0; c < 256; ++c) {
-            const auto at = 24 + p * 768 + c * 3;
+            const auto at = layout.paletteOffset + p * 768 + c * 3;
             sprite.palettes[p][c] = {bytes[at], bytes[at + 1], bytes[at + 2]};
         }
     }
@@ -179,6 +176,29 @@ Sprite parse(Reader& r, const SpriteLimits& limits) {
     }
     return sprite;
 }
+Sprite parse(Reader& r, const SpriteLimits& limits) {
+    const auto& bytes = r.bytes();
+    if (bytes.size() > limits.inputBytes) r.fail(SpriteErrorCode::limitExceeded, 0, "SPR exceeds input byte limit");
+    r.extent(0, 24, bytes.size());
+    if (r.u32(0) != 0x00525053) r.fail(SpriteErrorCode::invalidFormat, 0, "Expected SPR signature");
+    if (r.u32(4) != bytes.size()) r.fail(SpriteErrorCode::malformedData, 4, "Declared SPR size differs from input");
+    const auto version = r.u32(8);
+    if (version != 4) r.fail(SpriteErrorCode::unsupportedVersion, 8, "Only SPR version 4 is supported");
+    const auto count = r.u32(12), palettes = r.u32(16);
+    if (count > limits.frames) r.fail(SpriteErrorCode::limitExceeded, 12, "SPR frame count exceeds limit");
+    if (palettes > 4) r.fail(SpriteErrorCode::malformedData, 16, "SPR exceeds four embedded palettes");
+    const std::uint64_t table = 24 + std::uint64_t(palettes) * 768;
+    const auto base = table + std::uint64_t(count) * 4;
+    r.extent(24, base - 24, bytes.size());
+    return parseFrames(r,limits,{version,count,palettes,r.u32(20),24,table,base});
+}
+
+}
+SpriteResult detail::decodeSpriteFrames(const std::vector<std::uint8_t>& bytes,const SpriteFrameLayout& layout,const SpriteLimits& limits) {
+    try {Reader reader(bytes);return parseFrames(reader,limits,layout);}
+    catch(const Failure& failure) {return failure.error;}
+    catch(const std::bad_alloc&) {return SpriteError{SpriteErrorCode::limitExceeded,0,{},"Frame allocation failed",{}};}
+    catch(const std::length_error&) {return SpriteError{SpriteErrorCode::limitExceeded,0,{},"Frame allocation too large",{}};}
 }
 SpriteResult decodeSprite(const std::vector<std::uint8_t>& bytes, const SpriteLimits& limits) {
     try { Reader reader(bytes); return parse(reader, limits); }
