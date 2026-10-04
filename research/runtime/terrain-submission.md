@@ -61,8 +61,10 @@ confirmed; unrelated record meanings and full original catalog loading remain
 outside scope.
 
 The [owned MAP reader and installed slice preview](native-map-terrain-preview.md)
-now supply actual selected grid cells. Remaining boundaries: full world
-traversal, upstream anchor/base-priority production, picking side effects,
+now supply actual selected grid cells. [Orientation-zero world traversal](terrain-world-traversal.md)
+now supplies recovered camera anchors and wrap priorities for ordinary terrain.
+Remaining boundaries: other orientations, camera initialization, complete world
+admission, picking side effects,
 water/overlays/objects/creatures, lighting and
 palette chains, original whole-world rendering, visibility activation and live
 replacement. See the [bounded native preview](native-terrain-preview.md).

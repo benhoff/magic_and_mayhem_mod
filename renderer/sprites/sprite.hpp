@@ -16,6 +16,8 @@ public:
     // Top-left = anchor - signed origin. Fully in-bounds draws only, no clipping.
     // Empty frames are no-ops and allocate no surfaces.
     void draw(SurfaceId destination,int anchorX,int anchorY);
+    // Native destination clipping policy; viewport must lie within destination.
+    void drawClipped(SurfaceId destination,int anchorX,int anchorY,Rect viewport);
     bool empty() const {return width_==0;}
 private:
     GlBlitter& renderer_;

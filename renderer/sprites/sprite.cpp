@@ -1,5 +1,6 @@
 #include "sprite.hpp"
 #include <limits>
+#include <algorithm>
 #include <stdexcept>
 
 namespace mnm::render {
@@ -45,4 +46,15 @@ void UploadedSpriteFrame::draw(SurfaceId destination,int anchorX,int anchorY){
         throw std::runtime_error("Sprite placement outside renderer coordinates");
     renderer_.copy(pixels_,destination,{0,0,width_,height_},int(x),int(y),std::nullopt,mask_);
 }
+void UploadedSpriteFrame::drawClipped(SurfaceId destination,int anchorX,int anchorY,Rect viewport){
+    if(viewport.left<0 || viewport.top<0 || viewport.right<=viewport.left || viewport.bottom<=viewport.top)
+        throw std::invalid_argument("Invalid sprite clipping viewport");
+    if(empty())return;
+    const auto x=std::int64_t(anchorX)-originX_,y=std::int64_t(anchorY)-originY_;
+    const auto left=std::max<std::int64_t>(x,viewport.left),top=std::max<std::int64_t>(y,viewport.top);
+    const auto right=std::min<std::int64_t>(x+width_,viewport.right),bottom=std::min<std::int64_t>(y+height_,viewport.bottom);
+    if(left>=right || top>=bottom)return;
+    renderer_.copy(pixels_,destination,{int(left-x),int(top-y),int(right-x),int(bottom-y)},int(left),int(top),std::nullopt,mask_);
+}
+
 }
