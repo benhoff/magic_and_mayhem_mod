@@ -42,8 +42,10 @@ initial owner flags. There is no world map, simulation, camera or animation
 clock. Out-of-canvas sprite draws are rejected; this is not original clipping.
 Original shading is recorded but images use unshaded embedded palettes.
 
-Remaining work includes actual MAP tile decoding/traversal and upstream
-screen-anchor/priority production, lighting/palette chains, water/overlays and
+An [owned MAP reader and bounded installed slice preview](native-map-terrain-preview.md)
+now supply actual definitions, depth coordinates and raw flag words. Remaining
+work includes full world traversal and upstream screen-anchor/priority
+production, lighting/palette chains, water/overlays and
 object/creature terrain paths, visibility activation and live replacement.
 This milestone establishes a direct native installed-asset rendering path and
 keeps those broader claims separate in AS04/GP08 of the coverage ledger.
