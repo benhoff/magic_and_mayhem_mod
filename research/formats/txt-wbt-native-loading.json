@@ -1,0 +1,869 @@
+{
+  "reviewed": "2026-10-04",
+  "scope": "Owned offline exact-byte TXT input, native scroll grammar and read-only installed WBT subset; no original parser oracle or script execution",
+  "summary": {
+    "files": 45,
+    "source_bytes": 142250,
+    "lines": 2161,
+    "scroll_entries": 26,
+    "wbt_statements": 12,
+    "comparison_sha256": "972c6022ab11252b7dba0415b8d1cc8bb5e939c878344b49fee475f9e94ecc59"
+  },
+  "records": [
+    {
+      "path": "AI/BugSearch.wbt",
+      "mode": "wbt",
+      "source_bytes": 179,
+      "source_sha256": "f736beac319a6e2ea8dda871464acde3c40954c4c68eea619c8995ebd4f75355",
+      "lines": 6,
+      "entries": 0,
+      "statements": 6,
+      "decoded_sha256": "480d45caabd8f6ac85719f7e4eb24143608892af8264db80946e0159d0741b48"
+    },
+    {
+      "path": "AI/Train.wbt",
+      "mode": "wbt",
+      "source_bytes": 167,
+      "source_sha256": "bc3493bf74d114c9a7b75a90dc8969c52d8a342610015b4156699fab35d4d200",
+      "lines": 6,
+      "entries": 0,
+      "statements": 6,
+      "decoded_sha256": "70e0e38624af156ee8a5ae3569f66702e6afebe8d57ff8c00c6b138d358ce79d"
+    },
+    {
+      "path": "Interface/Grimoire/Grimoire.txt",
+      "mode": "text",
+      "source_bytes": 136325,
+      "source_sha256": "6fcd544b444e655a6689f738b34339090217870824776211b7d6f9e29b069c4b",
+      "lines": 1914,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "ab08765f6ddc5eb3470a31796f8ce2c045dd9419da3e3f660627a4c40baacb67"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_Region_01.txt",
+      "mode": "text",
+      "source_bytes": 18,
+      "source_sha256": "a382923a6ac729a96402297fca5331062b34385e2faa73b20be62b643eff7523",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "5901843e37fb9c44f8b391735f1265c36951bd6db2d5c42b8e64f9ae33e8ee59"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_Region_02.txt",
+      "mode": "text",
+      "source_bytes": 24,
+      "source_sha256": "ffbe5b9e6d280fe17e5bb862a303283fcf6dab8d3c1d41b0dbbadfc90250f212",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "70df5991e43edce3d7440c79be86456e8111bd38eb0efa76e653b7f7d592b6f3"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_03.txt",
+      "mode": "text",
+      "source_bytes": 34,
+      "source_sha256": "cbaece45a57c204a1201395854813691d174ea4da8d7bfe61a11e4caa52dd7d1",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "eac5aaacc0c5a516929478c7ed104b5c11769f472ebfbe3d7de6968bc08e1b6d"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_04.txt",
+      "mode": "text",
+      "source_bytes": 14,
+      "source_sha256": "c322c7b607c0931a7ff625ee610c1f06e31523a3e767723d37cccad8e8b90f1f",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "93ba7cb80924e121ab452101031a52da3d38d190c24fbf7ce6be53eadb5d6bab"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_05.txt",
+      "mode": "text",
+      "source_bytes": 18,
+      "source_sha256": "b1d22d866421a552b36e6e76d71c3d769596af6dd37ed89c22588b73aafa3ede",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "85219129464e4b10ec066b83adb150f113ad85fe25ff59ad950fec8e7260af59"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_06.txt",
+      "mode": "text",
+      "source_bytes": 17,
+      "source_sha256": "299d84d638355ee01a31c31743cbdf5c52d0bff4a3bbb73de521292bf3ab136c",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "596a7d15f06a982ec9c799b080f00c8c20a33ea30e30bea00ac232de6707bf4a"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_07.txt",
+      "mode": "text",
+      "source_bytes": 27,
+      "source_sha256": "b1503823b7966fc583d64358ec79c1c6ee4ec0f7634e19de42162a006033beba",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "665d41db01a81e0c4a47517c1c180263b8f660145c48b02167c52a08c201d90c"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_08.txt",
+      "mode": "text",
+      "source_bytes": 12,
+      "source_sha256": "c9ac859102dab6b14ab6439b4a37d65425e33ee6633b5c81cff3b752c3991de9",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "6fd432c1ae736fbb76e19538bcb279a72a615e8b10bd80325a018d418716f886"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_01.txt",
+      "mode": "text",
+      "source_bytes": 19,
+      "source_sha256": "e16f3dc91b91e665c46d7a9e52bf01330cd638947d658b7ca1633adc38a13ff9",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "5917f2cb04ca3a30482a46c0006feb9c9cca7eabf09f0cb339e123c408d4ff52"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_02.txt",
+      "mode": "text",
+      "source_bytes": 8,
+      "source_sha256": "ff8d926c7601ec41ab4b2ae1a6ebb39599912d2478dd159df1e6b7e7f888f89c",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "13b5bea9d460ec1c7022b8681b800d1f0230d8fb0e0499f1132964853bbde0a6"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_03.txt",
+      "mode": "text",
+      "source_bytes": 18,
+      "source_sha256": "0d485eb5122ead7e72cec0e1f647ef4f7b7b70ca9ef546e218879a43e2af8499",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "c3231ba7258e57a08dcf19697166f9086dae294278efa3cd1ed71c2d68903e82"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_04.txt",
+      "mode": "text",
+      "source_bytes": 6,
+      "source_sha256": "8f8dd674e9d9ce63f0b0b2976c36cbf19c874529ab55a229d210fe1abd375262",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "e5ced419181aeeb7c45c6151c45d61c5f7650c723971cb70e94621e818c305f5"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_05.txt",
+      "mode": "text",
+      "source_bytes": 9,
+      "source_sha256": "03b56d572e57be89b1be8d50197f3a013db36595e4e71b11dd373eb21898512b",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "e49dda9c9db0b6c0b9821f094bbc72d3929537312be6b1a594eddffeb9b9658c"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_06.txt",
+      "mode": "text",
+      "source_bytes": 4,
+      "source_sha256": "04de4a87737e77deceede88cc2d9e35b7aff6f53e97206c98f3e08b2bd4e6d90",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "df307f291b7cfad2d3bf4a4f0936416cdd8f50fd7485fbb82777669a1b20cd5c"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_07.txt",
+      "mode": "text",
+      "source_bytes": 6,
+      "source_sha256": "cabc984cbaeb89cfec6a181be2587d8bb26b87fadec27741223728522decd24c",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "beb95b4c833f82c221d34921f300917d87d19c543a7121bbf970231b3f9af961"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_08.txt",
+      "mode": "text",
+      "source_bytes": 7,
+      "source_sha256": "310b9009d55ec1dea389dba1388757179d590e688ec6ff94f8a66c43b83b6760",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "3c04287cede6539374757fc1559a394cb2d62e6627689d63ea244f213a93626f"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_09.txt",
+      "mode": "text",
+      "source_bytes": 16,
+      "source_sha256": "04bd3223ee0534530c8d81e29d882999b002ffcf43ff4ab833d66933afb0d74a",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "abae2f83ea08206e9619454f1e513e59f124c4038dac31d97db2347a30681ea4"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_10.txt",
+      "mode": "text",
+      "source_bytes": 6,
+      "source_sha256": "2f476c94907500908b6b654a3eecadf2599c53e619ca0df170b5a86bc8ed3d55",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "a260710415eaf368b019fd297aabb96acb56992625d623f933de4f74720d7a2f"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_11.txt",
+      "mode": "text",
+      "source_bytes": 6,
+      "source_sha256": "b13b1358513d00d324ae2a6d3379c5876353560350a04b4b936b57c8ca67cbfd",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "81ea572d11bed81dcb1dd7886b5aef6b75ea21f43277cc1fd7f980f96f9d1839"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_12.txt",
+      "mode": "text",
+      "source_bytes": 7,
+      "source_sha256": "76ba58b3b705b978d3a092230d318d6caf2c5b28d2b0d60af6138dbbe00f80cf",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "364e5e6c4bbc9ccbe92cd4b8160b55e844b942e04841481343dc09d5875fe778"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_09.txt",
+      "mode": "text",
+      "source_bytes": 7,
+      "source_sha256": "3fbb1bb2b78648b1d6ffc19f720f4f0833a2cf808446e9cc782ae8255043eff3",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "b45aa51617306f09b8e33b20ced301df9b2bd2c856c24011b3de4b4d1c4c9d8d"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_10.txt",
+      "mode": "text",
+      "source_bytes": 22,
+      "source_sha256": "e7f360c3c8f7c191f45679b5466e6aca9eb050f08332d188502b5b0f82c5309d",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "cba51eaf28122900f23bb435fe1b803b62e4e9baa8f9c72e81b64904842ac3b7"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_11.txt",
+      "mode": "text",
+      "source_bytes": 10,
+      "source_sha256": "5e93c24c131c99b74f357bb25ae13a5886697fb0dcd45fcd826f08971b9d109b",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "5bf4c9788c04a5ab69aafb7a44d764050f34dc4727db555b46e9248ced9333f5"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_12.txt",
+      "mode": "text",
+      "source_bytes": 16,
+      "source_sha256": "a15d3e3f5e42690f19e35b09124473fa4e02f607e65c5fa19fb66cfac3837061",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "0e394e50a2c0da3475f904f2e1c803d4ef419859bf0cb46b973d03cebb33ec59"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_13.txt",
+      "mode": "text",
+      "source_bytes": 16,
+      "source_sha256": "3076b297638a6aed6b7f684884afef2bfef9bdd8ce1272d41ba9751e3c6117f0",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "df6f0440f274885340e485ca05c9c84a8086c35f576cf700b725a741afc46d36"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_14.txt",
+      "mode": "text",
+      "source_bytes": 7,
+      "source_sha256": "16fe307a0757d53ffd0a7aa300966ae4a82cec57eb628bad40ed9cb5eeccc041",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "29ab78717f366d4337618a9f92b65d3a6d18f0eb70652bf8f748eb91ab77351d"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_15.txt",
+      "mode": "text",
+      "source_bytes": 8,
+      "source_sha256": "2e6fe4f8410ec8698ef5ca2450072b27b19d2d279a087c58d721b72cb9ff3f1d",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "4ecef43b1d2e1007434ef50553836795e2d52e48df32e511eede559a7545c253"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_16.txt",
+      "mode": "text",
+      "source_bytes": 11,
+      "source_sha256": "3a2849299a423f3d58e5ada9aef283c3120904a4bc8c04cdcb263868ed141f80",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "01d621c1617789df14e76a5501b7eea8a5ca13e57941f2e9fe038126f993da40"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_01.txt",
+      "mode": "text",
+      "source_bytes": 8,
+      "source_sha256": "b80055850d30bc15986786d7e944e95cdeb04e54eb43ec4ce5aa1941b2499ad1",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "363f2d7e3d0abb4b5e0282e786d969ec64d6ae5708037a802857d5aaca979d98"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_02.txt",
+      "mode": "text",
+      "source_bytes": 19,
+      "source_sha256": "a6a17c8738cb8de1d81abac6231c9ea1ecaf321f04777036414eda7c0e7733a5",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "22b76108d80483cfc655cdf732b70544a839695cfff703d4592d9bb2ea89d3a1"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_03.txt",
+      "mode": "text",
+      "source_bytes": 19,
+      "source_sha256": "27d644bb254ba0c8ed39ecff8a44ab3520dec8e30bf11532076b196431b0223f",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "31432c714dcfc83c1aa41bc03772e1c00b42481461c00c16120e2a2dda14ebf7"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_04.txt",
+      "mode": "text",
+      "source_bytes": 8,
+      "source_sha256": "e854830c3d270ac4878c031f87f837db4f94bdf09399dbe0b93b29d197d3442d",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "1bd611eca62c5e0671e42df80afe3b4e8fa9d554e4f00c04c0037bee16f56899"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_05.txt",
+      "mode": "text",
+      "source_bytes": 19,
+      "source_sha256": "d05a30e49ffdd6173920c48b2bed47e4b043729d59e8afa64791a5c88189f45d",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "9274647b0393ddea774a458362566b6573401103cefa629ecccf34cf12f3de05"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_06.txt",
+      "mode": "text",
+      "source_bytes": 11,
+      "source_sha256": "2d313eb19bb3e8f1bf1d78f9b340add56971b7adc198a4f4b3e59fb9219d3325",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "bb7d7cc652346f940eb5837b3ea9f5549942f29e98c910aebbc75e79a188fc69"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_07.txt",
+      "mode": "text",
+      "source_bytes": 20,
+      "source_sha256": "1596f7cf4d4fdd7dfd5a591ec100c9ea4c867557e8e79a469de5918ecbfaf2ba",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "6670d70ec943e5fd98e83a0a70034788a6090d11be6f751ff59ca6b2ffc32747"
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_08.txt",
+      "mode": "text",
+      "source_bytes": 15,
+      "source_sha256": "f96d0d0be108689910f8aa0000f5fff885f58692afe9c907c0ef46e9582e8eaa",
+      "lines": 1,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "7bf3718e036749a7b0e6b3fb6cca3eb51340cd608e51b0c33add8f2fc0393633"
+    },
+    {
+      "path": "Realms/Celtic/CelticregionNames.txt",
+      "mode": "text",
+      "source_bytes": 190,
+      "source_sha256": "55d45089ef84b6208aa0fa45b60e0de149108946b90926aa8db02ced5d3543bb",
+      "lines": 9,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "6c89cb826cf883830bf87829f64c5cd8f8b121da345e8847eb6c00f5c6e8199d"
+    },
+    {
+      "path": "Realms/Greek/GreekregionNames.txt",
+      "mode": "text",
+      "source_bytes": 158,
+      "source_sha256": "253eb32af0fd82db1df5ba23ab35190071df7843729b016cd780c2b4c6d775f5",
+      "lines": 14,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "8c8f4dce453b65a1b2b598bda154d96265dfffaf8b12dcb4725cb8282c750af5"
+    },
+    {
+      "path": "Realms/Medieval/MedievalregionNames.txt",
+      "mode": "text",
+      "source_bytes": 252,
+      "source_sha256": "6c218758c2a0dd0fd75daa48b75777df48bbf382a3cf21c5605657e071249080",
+      "lines": 17,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "8e8813991690acb1b21b853d30b12e823f488c624cdd955fed03d98a2b0b2317"
+    },
+    {
+      "path": "Realms/Multiplayer/MultiplayerregionNames.txt",
+      "mode": "text",
+      "source_bytes": 1191,
+      "source_sha256": "ce438e89d9ddfdc90b6ad85c938737eb734ceb229824bc652000bfe0580c1b74",
+      "lines": 45,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "0c193d5b7d4f8a4d127aea99b9c03cc8b04b2d894df5e0eaf215c2d280278cd6"
+    },
+    {
+      "path": "Sounds/Readme.txt",
+      "mode": "text",
+      "source_bytes": 265,
+      "source_sha256": "0359a05bd9b4a6a023cfb6f015d0c122fd8205a3ffe4c42dc66cbac0c010f280",
+      "lines": 6,
+      "entries": 0,
+      "statements": 0,
+      "decoded_sha256": "086603b1843f94b25f2f43a8859f3eecf3e6ec6d900a3d023802332371c72fc7"
+    },
+    {
+      "path": "Text/scrolls.txt",
+      "mode": "scrolls",
+      "source_bytes": 3031,
+      "source_sha256": "dc1c2396610cae9ec3d31cb570b5574d98845e439e57d361ed91404bbbe3dea6",
+      "lines": 108,
+      "entries": 26,
+      "statements": 0,
+      "decoded_sha256": "6a6b636635321a7819de9f3c80ddaf91b19a361aefa03af8c362257c2b4b5245"
+    }
+  ],
+  "inspection": [
+    {
+      "path": "AI/BugSearch.wbt",
+      "bytes": 179,
+      "sha256": "f736beac319a6e2ea8dda871464acde3c40954c4c68eea619c8995ebd4f75355",
+      "nul": 0,
+      "high": 0,
+      "endings": {
+        "\r\n": 6
+      }
+    },
+    {
+      "path": "AI/Train.wbt",
+      "bytes": 167,
+      "sha256": "bc3493bf74d114c9a7b75a90dc8969c52d8a342610015b4156699fab35d4d200",
+      "nul": 0,
+      "high": 0,
+      "endings": {
+        "\r\n": 6
+      }
+    },
+    {
+      "path": "Interface/Grimoire/Grimoire.txt",
+      "bytes": 136325,
+      "sha256": "6fcd544b444e655a6689f738b34339090217870824776211b7d6f9e29b069c4b",
+      "nul": 0,
+      "high": 0,
+      "endings": {
+        "\r\n": 1914
+      }
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_Region_01.txt",
+      "bytes": 18,
+      "sha256": "a382923a6ac729a96402297fca5331062b34385e2faa73b20be62b643eff7523",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_Region_02.txt",
+      "bytes": 24,
+      "sha256": "ffbe5b9e6d280fe17e5bb862a303283fcf6dab8d3c1d41b0dbbadfc90250f212",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_03.txt",
+      "bytes": 34,
+      "sha256": "cbaece45a57c204a1201395854813691d174ea4da8d7bfe61a11e4caa52dd7d1",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_04.txt",
+      "bytes": 14,
+      "sha256": "c322c7b607c0931a7ff625ee610c1f06e31523a3e767723d37cccad8e8b90f1f",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_05.txt",
+      "bytes": 18,
+      "sha256": "b1d22d866421a552b36e6e76d71c3d769596af6dd37ed89c22588b73aafa3ede",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_06.txt",
+      "bytes": 17,
+      "sha256": "299d84d638355ee01a31c31743cbdf5c52d0bff4a3bbb73de521292bf3ab136c",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_07.txt",
+      "bytes": 27,
+      "sha256": "b1503823b7966fc583d64358ec79c1c6ee4ec0f7634e19de42162a006033beba",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Celtic_region_08.txt",
+      "bytes": 12,
+      "sha256": "c9ac859102dab6b14ab6439b4a37d65425e33ee6633b5c81cff3b752c3991de9",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_01.txt",
+      "bytes": 19,
+      "sha256": "e16f3dc91b91e665c46d7a9e52bf01330cd638947d658b7ca1633adc38a13ff9",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_02.txt",
+      "bytes": 8,
+      "sha256": "ff8d926c7601ec41ab4b2ae1a6ebb39599912d2478dd159df1e6b7e7f888f89c",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_03.txt",
+      "bytes": 18,
+      "sha256": "0d485eb5122ead7e72cec0e1f647ef4f7b7b70ca9ef546e218879a43e2af8499",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_04.txt",
+      "bytes": 6,
+      "sha256": "8f8dd674e9d9ce63f0b0b2976c36cbf19c874529ab55a229d210fe1abd375262",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_05.txt",
+      "bytes": 9,
+      "sha256": "03b56d572e57be89b1be8d50197f3a013db36595e4e71b11dd373eb21898512b",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_06.txt",
+      "bytes": 4,
+      "sha256": "04de4a87737e77deceede88cc2d9e35b7aff6f53e97206c98f3e08b2bd4e6d90",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_07.txt",
+      "bytes": 6,
+      "sha256": "cabc984cbaeb89cfec6a181be2587d8bb26b87fadec27741223728522decd24c",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_08.txt",
+      "bytes": 7,
+      "sha256": "310b9009d55ec1dea389dba1388757179d590e688ec6ff94f8a66c43b83b6760",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_09.txt",
+      "bytes": 16,
+      "sha256": "04bd3223ee0534530c8d81e29d882999b002ffcf43ff4ab833d66933afb0d74a",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_10.txt",
+      "bytes": 6,
+      "sha256": "2f476c94907500908b6b654a3eecadf2599c53e619ca0df170b5a86bc8ed3d55",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_11.txt",
+      "bytes": 6,
+      "sha256": "b13b1358513d00d324ae2a6d3379c5876353560350a04b4b936b57c8ca67cbfd",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Greek_Region_12.txt",
+      "bytes": 7,
+      "sha256": "76ba58b3b705b978d3a092230d318d6caf2c5b28d2b0d60af6138dbbe00f80cf",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_09.txt",
+      "bytes": 7,
+      "sha256": "3fbb1bb2b78648b1d6ffc19f720f4f0833a2cf808446e9cc782ae8255043eff3",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_10.txt",
+      "bytes": 22,
+      "sha256": "e7f360c3c8f7c191f45679b5466e6aca9eb050f08332d188502b5b0f82c5309d",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_11.txt",
+      "bytes": 10,
+      "sha256": "5e93c24c131c99b74f357bb25ae13a5886697fb0dcd45fcd826f08971b9d109b",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_12.txt",
+      "bytes": 16,
+      "sha256": "a15d3e3f5e42690f19e35b09124473fa4e02f607e65c5fa19fb66cfac3837061",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_13.txt",
+      "bytes": 16,
+      "sha256": "3076b297638a6aed6b7f684884afef2bfef9bdd8ce1272d41ba9751e3c6117f0",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_14.txt",
+      "bytes": 7,
+      "sha256": "16fe307a0757d53ffd0a7aa300966ae4a82cec57eb628bad40ed9cb5eeccc041",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_15.txt",
+      "bytes": 8,
+      "sha256": "2e6fe4f8410ec8698ef5ca2450072b27b19d2d279a087c58d721b72cb9ff3f1d",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_Region_16.txt",
+      "bytes": 11,
+      "sha256": "3a2849299a423f3d58e5ada9aef283c3120904a4bc8c04cdcb263868ed141f80",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_01.txt",
+      "bytes": 8,
+      "sha256": "b80055850d30bc15986786d7e944e95cdeb04e54eb43ec4ce5aa1941b2499ad1",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_02.txt",
+      "bytes": 19,
+      "sha256": "a6a17c8738cb8de1d81abac6231c9ea1ecaf321f04777036414eda7c0e7733a5",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_03.txt",
+      "bytes": 19,
+      "sha256": "27d644bb254ba0c8ed39ecff8a44ab3520dec8e30bf11532076b196431b0223f",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_04.txt",
+      "bytes": 8,
+      "sha256": "e854830c3d270ac4878c031f87f837db4f94bdf09399dbe0b93b29d197d3442d",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_05.txt",
+      "bytes": 19,
+      "sha256": "d05a30e49ffdd6173920c48b2bed47e4b043729d59e8afa64791a5c88189f45d",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_06.txt",
+      "bytes": 11,
+      "sha256": "2d313eb19bb3e8f1bf1d78f9b340add56971b7adc198a4f4b3e59fb9219d3325",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_07.txt",
+      "bytes": 20,
+      "sha256": "1596f7cf4d4fdd7dfd5a591ec100c9ea4c867557e8e79a469de5918ecbfaf2ba",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Interface/RealmViewer/Generic/Medieval_region_08.txt",
+      "bytes": 15,
+      "sha256": "f96d0d0be108689910f8aa0000f5fff885f58692afe9c907c0ef46e9582e8eaa",
+      "nul": 0,
+      "high": 0,
+      "endings": {}
+    },
+    {
+      "path": "Realms/Celtic/CelticregionNames.txt",
+      "bytes": 190,
+      "sha256": "55d45089ef84b6208aa0fa45b60e0de149108946b90926aa8db02ced5d3543bb",
+      "nul": 0,
+      "high": 0,
+      "endings": {
+        "\r\n": 9
+      }
+    },
+    {
+      "path": "Realms/Greek/GreekregionNames.txt",
+      "bytes": 158,
+      "sha256": "253eb32af0fd82db1df5ba23ab35190071df7843729b016cd780c2b4c6d775f5",
+      "nul": 0,
+      "high": 0,
+      "endings": {
+        "\r\n": 14
+      }
+    },
+    {
+      "path": "Realms/Medieval/MedievalregionNames.txt",
+      "bytes": 252,
+      "sha256": "6c218758c2a0dd0fd75daa48b75777df48bbf382a3cf21c5605657e071249080",
+      "nul": 0,
+      "high": 0,
+      "endings": {
+        "\r\n": 16
+      }
+    },
+    {
+      "path": "Realms/Multiplayer/MultiplayerregionNames.txt",
+      "bytes": 1191,
+      "sha256": "ce438e89d9ddfdc90b6ad85c938737eb734ceb229824bc652000bfe0580c1b74",
+      "nul": 0,
+      "high": 0,
+      "endings": {
+        "\r\n": 44
+      }
+    },
+    {
+      "path": "Sounds/Readme.txt",
+      "bytes": 265,
+      "sha256": "0359a05bd9b4a6a023cfb6f015d0c122fd8205a3ffe4c42dc66cbac0c010f280",
+      "nul": 0,
+      "high": 0,
+      "endings": {
+        "\r\n": 5
+      }
+    },
+    {
+      "path": "Text/scrolls.txt",
+      "bytes": 3031,
+      "sha256": "dc1c2396610cae9ec3d31cb570b5574d98845e439e57d361ed91404bbbe3dea6",
+      "nul": 0,
+      "high": 0,
+      "endings": {
+        "\r\n": 108
+      }
+    }
+  ],
+  "comparison_report": {
+    "path": "working/tests/text-wbt/comparison.json",
+    "sha256": "58908dacb47df77e59ee6e54ddcdbc0826fc3d54ed8d3885592cbb4baea670f3"
+  },
+  "checks": {
+    "asset_ctests": 33,
+    "sanitized_tests": [
+      "text-wbt-loader",
+      "text-wbt-comparison"
+    ],
+    "sanitizers": "ASan/UBSan; ASAN_OPTIONS=detect_leaks=0",
+    "source_line_byte_roundtrip": true,
+    "original_manifest_before_after": true,
+    "installed_inputs_unchanged": true,
+    "wbt_commands_executed": false
+  },
+  "tool_hashes": {
+    "assets/text.hpp": "46e5665f828cdf0eff7a8a6f6f2222c143a2f855705122384cea4108a07adbc2",
+    "assets/text.cpp": "d0ea03cab975714d466682bfc00628dc9c856c96b14c8ba5996dc6b17081670f",
+    "assets/wbt.hpp": "a182d07bcddd3338157bc73d2bc935d72049bd45cb5fa6d81ceca136659d55e3",
+    "assets/wbt.cpp": "15691fbee7dcc7ea4d1209b3a3962f4b2a0df4b857d853ebfb7fea4ba67cd5a8",
+    "assets/text_inspect_main.cpp": "0ec9c3220e2ac1f388dc091c23e2f81f17f234f7c36c2a13b7f68fa384784e69",
+    "tests/text-loader-test.cpp": "ef9ce0135621c317f79146d5abdb7dd2aa8b10ef8aa9375d283a1f761de75b3b",
+    "tests/test-text-loader.py": "5144a1938ed52b1d4eed9e362643fb59ed6d08e8ba7540465e7ad717d62dc2dc"
+  }
+}

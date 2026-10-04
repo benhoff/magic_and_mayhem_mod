@@ -454,3 +454,21 @@ decoding, direct/indexed glyphs, aliases, empty input and atlas transparency).
 Run the installed comparison and optional atlas export as documented in
 [SFT loading](../research/formats/sft-native-loading.md); it guards original
 inputs with manifest verification. Text layout and UI integration remain separate.
+
+## NOD node input
+
+Asset CTest includes `nod-loader` (ownership, signed/raw fields, all truncated
+prefixes with repaired size words and storage limits) and `nod-record-comparison`
+(independent packed decoding and complete byte reconstruction). The installed
+comparison guards original inputs and compares all 683 files; see
+[NOD loading](../research/formats/nod-native-loading.md). Graph reconstruction
+and pathfinding integration remain separate.
+
+## TXT and WBT input
+
+Asset CTest includes `text-wbt-loader` and `text-wbt-comparison`: exact
+byte/line preservation, typed scrolls and the installed WBT statement subset,
+ownership, malformed input and decoded allocation limits. The independent
+Python runner compares all 43 TXT/two WBT inputs and reconstructs original
+bytes from reported line data, with manifest/input-hash guards.
+See [reproduction and boundaries](../research/formats/txt-wbt-native-loading.md).

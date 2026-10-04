@@ -344,3 +344,20 @@ The private frame decoder is shared with SPR; native font input is Qt-independen
 `mnm-sft-inspect ROOT PATH.sft [ATLAS.png]` emits complete JSON and an optional
 transparent diagnostic atlas. Original text spacing and UI font use are separate.
 See [layout and validation](../research/formats/sft-native-loading.md).
+
+## NOD navigation input
+
+`mnm-nod-loader` provides `decodeNod`/`loadNod` in `nod.hpp`: owned version-1
+node positions, 18 packed connection slots per node, opaque metadata/tail words
+and trailer. `mnm-nod-inspect ROOT PATH.nod` reports every field as JSON.
+No section transforms, graph assembly or pathfinding integration are supplied.
+See [layout and validation](../research/formats/nod-native-loading.md).
+
+## TXT and WBT input
+
+`mnm-text-loader` provides `decodeText`/`loadText` and typed
+`decodeScrollText`/`loadScrollText` in `text.hpp`; `wbt.hpp` adds
+`decodeWbt`/`loadWbt` for the installed automation-command subset.
+Output owns exact bytes, line terminators and parsed values. WBT statements
+are never executed. `mnm-text-inspect ROOT PATH [text|scrolls|wbt]` emits JSON.
+See [syntax, limits and validation](../research/formats/txt-wbt-native-loading.md).
