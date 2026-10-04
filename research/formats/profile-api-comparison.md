@@ -62,3 +62,8 @@ mapping, filesystem stat equivalence, concurrent file updates, live caller
 ordering or audio replacement. The next bounded compatibility step is an
 immutable-manifest-guarded installed profile/catalog comparison; it does not
 require playing the game.
+
+The [installed profile comparison](installed-audio-profile-comparison.md)
+subsequently found a trailing section-header comment in the actual input. A
+populated synthetic fixture now covers that accepted syntax, expanding this
+runner to 31 cases (24 exact matches, seven intentional policy differences).

@@ -23,6 +23,7 @@ Current findings:
 - [PCM WAV loading](pcm-wav-loading.md)
 - [Native audio profile input](profile-native-loading.md): bounded ASCII snapshots, case/quote/capacity policies and Qt file-to-audio integration; synthetic evidence.
 - [PE32 Wine profile API comparison](profile-api-comparison.md): 29 synthetic calls, measured whitespace/capacity fixes and explicit native policy differences.
+- [Installed audio profile/catalog comparison](installed-audio-profile-comparison.md): Qt/PE32 Wine agreement for 499 installed calls and derived source/group tables; offline only.
 - [Read-only asset file interface contract](asset-file-interface.md)
 - [Raw asset interface byte comparison](asset-file-comparison.md)
 - [Pinned MMSprite rendering-asset evaluation](mmsprite-evaluation.md)
