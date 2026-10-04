@@ -69,7 +69,7 @@ verification before/after. This does not promote those paths to live replacement
 | AS02 Windows file actions and delegated file access | Static audit only; no new runtime replacement | Pinned clean/No-CD/JPEG imports, IAT references and save temp-path evidence; high within static scope. [Audit](windows-file-api-audit.md) | Recover save/config/profile/listing/metadata/path contracts and DLL/COM loaders; imports are not live call coverage |
 | AS03 SPR loading and rendering asset formats | Native version-4 indexed/RGB565 loader and owned mask/origin-aware OpenGL upload; offline only | Reviewed 2026-10-04: 174 installed SPRs decoded (59,407 frames), 91 native OpenGL/original draw and presentation matches; fixture ownership/bounds/limits and ASan/UBSan checks. [Loading](../formats/spr-native-loading.md), [rendering](native-sprite-rendering.md) | Recover animation selection/timing and bounded scene composition; original palette construction, lighting/effects, SFT/ANI and live loader integration remain separate; seven legacy SPRs explicitly unsupported |
 | CF01 Encrypted configuration and lifecycle | Scoped decode/encode and experiment tools; preparation/inspection | Static and documented live precedence; high within findings. [Container](../formats/encrypted-cfg.md), [precedence](../formats/cfg-precedence.md), [writer](../formats/cfg-writer.md) | Config-driven mods are separate from engine replacement; native config manager not recorded |
-| TH01 Threading and modern scheduling | Static investigation; worker architecture proposed only | High for inspected timer/import facts; simulation ownership unknown. [Threading](threading.md) | Trace gameplay ownership and profile before changing concurrency or result timing |
+| TH01 Threading and modern scheduling | Static No-CD message-loop/world-update/pacing recovery; worker architecture proposed only | Reviewed 2026-10-04: high for static dispatch, creature passes and timer separation; live thread ownership unknown. [Threading](threading.md), [world loop](world-tick-loop.md) | Observe thread IDs, cadence, pause/alternate-screen behavior and scheduler budget before changing concurrency or result timing |
 
 ## Gameplay areas without recorded replacements
 
@@ -78,15 +78,16 @@ movement predicates do not cover the whole creature update or AI system.
 
 | ID | Area | Boundary |
 | --- | --- | --- |
-| GP01 | Commander orders and general creature AI | Route callers observed; complete orders/state machines/update loop not replaced |
-| GP02 | Combat, damage, targeting and spells | No native replacement recorded |
+| GP01 | Commander orders and general creature AI | Static No-CD command ingress, primary move/target/coordinate requests, partial queues/follow, complete behavior/action resolver tables, autonomous selector priority and staggered route/decision scheduling mapped. Handler bodies/status semantics and live equivalence remain incomplete; no native AI or commander feature replacement. [Evidence](creature-ai-combat-spells.md) |
+| GP02 | Combat, damage, targeting and spells | Static No-CD animation-triggered melee/ranged attacks, target scoring, defended versus direct health change, lethal/ongoing damage, cast admission and secondary effect dispatch mapped; selected summon/Cure/Blood Lust/projectile/explosion paths reviewed. [104-ID dispatch inventory](spell-dispatch-inventory.md) records pending effect contracts. Hash-checked 60-range exporter; no independent full combat/spell model, live validation or native replacement. [Evidence](creature-ai-combat-spells.md) |
 | GP03 | Per-creature veterancy | No implemented gameplay feature recorded |
 | GP04 | Mana generation, spending and economy | No native replacement or economy change recorded |
-| GP05 | Simulation clock and update ordering | Ownership, dependencies and timing compatibility not established |
+| GP05 | Simulation clock and update ordering | Static No-CD world-update entry `0x0046afc0`, counter candidate, ordered creature passes and pacing recovered; no native implementation or live ownership/timing validation. [Evidence](world-tick-loop.md) |
 | GP06 | Campaign, scenario scripting and triggers | No native replacement recorded |
 | GP07 | Saves and persistent state | No native replacement recorded |
 | GP08 | Terrain/sprite loading, animation and scene composition | Surface operations partly reconstructed; complete pipeline not replaced |
 | GP09 | In-game menus and interface logic | Native main, Quick Battle and campaign/battle Mini Menu previews with synthetic asset/layout/input and navigation checks; original in-game logic retained; hash-pinned callback/controller export and bounded forwarding observer, original-bytecode PE32 fixture and live Main → Quick → Cancel → Main trace; no menu action adapter or live replacement. [Engine observation](menu-engine-observation.md), [Main menu](main-menu-qt-migration.md), [Quick Battle](quick-battle-qt-menu.md), [Mini Menu](mini-menu-qt.md) |
+| GP10 | Entity lifetimes and ownership | Static No-CD creature allocation/reset/activation, cleanup versus release, slot reuse, selected reference repair and expiry recovered; secondary missile/effect admission/removal, third map-linked pool and teardown order mapped. Hash-checked exporter; no live observation or native replacement. Complete death states, backing-array ownership, save/load and reference audit remain open. [Evidence](entity-lifetimes.md) |
 
 ## Coverage measurements
 
