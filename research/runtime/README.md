@@ -4,6 +4,11 @@ Document runtime structures, functions, addresses, signatures, and hooks here.
 For each finding, record the executable hash, discovery method, evidence,
 confidence, and whether it remains stable across launches.
 
+- [Engine modernization coverage ledger](coverage-ledger.md): subsystem scope,
+  evidence, live replacement status and rules for measuring progress.
+- [Threading evidence](threading.md): inspected timer/thread interfaces and
+  limits of current simulation ownership findings.
+
 - [Executable hook candidates](hook-candidates.md): build-specific route,
   configuration lifecycle, and DirectDraw interception candidates; no hooks
   installed yet.
