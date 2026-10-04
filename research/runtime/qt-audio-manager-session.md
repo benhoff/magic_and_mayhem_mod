@@ -91,3 +91,8 @@ The next native presentation integration is [menu audio](menu-audio-integration.
 roots and duplicates, clears schedules, and restarts the sink without destroying
 the manager. `setMasterVolume` applies bounded native primary gain; neither
 operation changes recovered original scheduling policy.
+
+[AU25 output recovery](audio-output-recovery.md) extends this milestone with
+failure notifications, current-device refresh, persistent retry status and
+accepted-gain preservation. Hardware unplug/audible validation remains open;
+the added recovery evidence is synthetic.

@@ -18,12 +18,15 @@
 class MainMenuWidget;
 class QuickBattleMenuWidget;
 class QStackedWidget;
+class QLabel;
+class QPushButton;
 
 // Standalone native navigation; no game process or legacy adapter.
 class MenuPreview final : public QMainWindow {
     Q_OBJECT
 public:
     explicit MenuPreview(QWidget* parent = nullptr);
+    void setAudioStatus(const QString& text,bool canRetry);
     bool loadAssets(const QString& root, bool startQuickBattle, QString* error = nullptr);
     bool openMiniMenu(const QString& root, MiniMenuWidget::Mode mode, QString* error = nullptr);
     bool openBattleResults(const QString& root, BattleResultWidget::Outcome outcome, QString* error = nullptr);
@@ -41,6 +44,7 @@ public:
     bool openSpellbox(const QString& root, QString* error = nullptr);
     bool openGrimoire(const QString& root, QString* error = nullptr);
 signals:
+    void audioRetryRequested();
     void screenReady(QWidget* screen);
     void screenChanged();
     void closed();
@@ -56,6 +60,8 @@ private:
     void returnFromSaveGame();
     void showMainMenu();
     void showQuickBattle();
+    QLabel* audioStatus_=nullptr;
+    QPushButton* audioRetry_=nullptr;
     QStackedWidget* screens_ = nullptr;
     MainMenuWidget* main_ = nullptr;
     QuickBattleMenuWidget* quick_ = nullptr;

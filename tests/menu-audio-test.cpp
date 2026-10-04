@@ -6,6 +6,7 @@
 #include "grimoire-fixtures.hpp"
 #include <QApplication>
 #include <QKeyEvent>
+#include <QLabel>
 #include <QPushButton>
 #include <QSlider>
 #include <QStackedWidget>
@@ -53,6 +54,8 @@ public:
     void stop() override{if(device)check(device->count()>0,"sink discarded before samples destroyed");queue.reset();device=nullptr;}
     bool running() const override{return bool(queue);}
     QString error() const override{return {};}
+    void fail(const QString& message){stop();if(failed)failed(message);}
+    void changedDevices(){if(available)available();}
     std::int16_t sample(){writer.bytes.clear();writer.limit=100000;check(queue && queue->pump(writer,4),"pump cue");std::int16_t sample=0;check(writer.bytes.size()==4,"stereo frame");std::memcpy(&sample,writer.bytes.constData(),2);return sample;}
 };
 void click(QWidget& widget,const char* name){auto* button=widget.findChild<QPushButton*>(name);check(button,"button found");button->click();}
@@ -89,7 +92,16 @@ int main(int argc,char** argv){QApplication app(argc,argv);try{
     click(preview,"mainMenuAction3");slider->setValue(-10000);click(*prefs,"preferencesOk");check(sink->sample()==0 && audio.running(),"preview mute suppresses new cues without ending session");
     click(preview,"mainMenuAction3");slider->setValue(0);click(*prefs,"preferencesOk");check(sink->sample()==4000,"unmute uses accepted level");
     sink->refuse=true;click(preview,"mainMenuAction2");check(!audio.running() && !sink->device && failures==1,"transition sink failure cleans audio but keeps menu usable");
-    sink->refuse=false;check(audio.start(root+"/Sounds",r::NativeSourcePathPolicy::literal),"session recovers after output failure");
+    auto* retry=preview.findChild<QPushButton*>("menuAudioRetry");auto* audioLabel=preview.findChild<QLabel*>("menuAudioStatus");
+    check(retry && retry->isVisible() && retry->isEnabled() && audioLabel->text().contains("Synthetic sink failure"),"persistent failure status and retry affordance");
+    sink->refuse=false;retry->click();check(audio.running() && sink->sample()==0 && audioLabel->text()=="Audio ready" && !retry->isVisible(),"visible retry restores silent output");
+    click(preview,"quickBattleAction3");click(preview,"mainMenuAction3");slider->setValue(-2000);click(*prefs,"preferencesOk");
+    sink->fail("Output disconnected");for(int i=0;i<3;++i)app.processEvents();
+    check(!audio.running() && failures==2 && retry->isVisible() && audioLabel->text().contains("Output disconnected"),"asynchronous failure reported without another menu action");
+    click(preview,"mainMenuAction3");slider->setValue(-1000);click(*prefs,"preferencesOk");check(audio.soundLevel()== -1000,"accepted volume changes while output absent");
+    sink->changedDevices();for(int i=0;i<3;++i)app.processEvents();
+    check(audio.running() && sink->sample()==0 && audio.soundLevel()== -1000,"device availability automatically restores accepted settings without old cues");
+    click(preview,"mainMenuAction0");check(sink->sample()==1265,"new action after recovery uses latest gain");
     check(preview.openGrimoire(root,&error),qPrintable(error));click(*book,"grimoireNext");preview.close();check(!audio.running() && !sink->device,"window close clears audio even with active cue");
     auto missingOutput=std::make_unique<Output>();auto* missing=missingOutput.get();MenuAudioController unavailable(std::move(missingOutput),{999,830});
     check(!unavailable.start(root+"/Sounds",r::NativeSourcePathPolicy::literal) && !unavailable.running() && !missing->device && !unavailable.lastError().isEmpty(),"unavailable mapping aborts audio instead of substitute");

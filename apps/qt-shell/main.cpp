@@ -320,11 +320,12 @@ int main(int argc,char** argv){
             bool clickOk=false,pageOk=false;
             const int click=parser.value("menu-click-sound").toInt(&clickOk),page=parser.value("menu-page-sound").toInt(&pageOk);
             if(!clickOk || !pageOk || click<=0 || page<=0)parser.showHelp(2);
-            menuAudio=std::make_unique<MenuAudioController>(makeQtSessionOutput(QMediaDevices::defaultAudioOutput()),MenuAudioCues{click,page});
+            menuAudio=std::make_unique<MenuAudioController>(makeQtSessionOutput(),MenuAudioCues{click,page});
             menuAudio->attach(preview);
             menuAudio->failed=[](const QString& message){std::fprintf(stderr,"Menu audio: %s\n",qPrintable(message));};
             if(!menuAudio->start(QDir(root).filePath("Sounds"),policy=="literal"?mnm::reconstruction::audio::NativeSourcePathPolicy::literal:mnm::reconstruction::audio::NativeSourcePathPolicy::dequoteMissingLeaf)){
-                std::fprintf(stderr,"Menu audio startup failed: %s\n",qPrintable(menuAudio->lastError()));return 4;
+                std::fprintf(stderr,"Menu audio startup failed: %s\n",qPrintable(menuAudio->lastError()));
+                if(!menuAudio->canRecover())return 4;
             }
         }
         if(parser.isSet("mini-menu") && !preview.openMiniMenu(root,parser.value("mini-menu")=="campaign"?MiniMenuWidget::Mode::Campaign:MiniMenuWidget::Mode::Battle,&error)){

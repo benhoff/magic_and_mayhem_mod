@@ -13,6 +13,8 @@ public:
     ~MenuAudioController() override;
     void attach(MenuPreview&);
     bool start(const QString& soundsRoot,mnm::reconstruction::audio::NativeSourcePathPolicy);
+    bool recover();
+    bool canRecover() const{return session_.canRecover();}
     void stop();
     bool running() const{return session_.running();}
     int soundLevel() const{return soundLevel_;}

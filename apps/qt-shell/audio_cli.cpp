@@ -53,7 +53,7 @@ int runAudio(QApplication& app,const QCommandLineParser& p){
         for(const auto& g:preflight.groups)if(!g.playable)return 3;
         return 0;
     }
-    AudioSession session(makeQtSessionOutput(QMediaDevices::defaultAudioOutput()));
+    AudioSession session(makeQtSessionOutput());
     const bool started=session.start(p.value("audio-catalog"),map,policy);
     if(!save(p.value("audio-report"),report(session.preflight(),session.lastError(),session.outputRate())))return 8;
     if(!started){std::fprintf(stderr,"%s\n",session.lastError().toUtf8().constData());return 4;}
@@ -66,8 +66,13 @@ int runAudio(QApplication& app,const QCommandLineParser& p){
     auto* status=new QLabel("Ready. Missing entries are listed in the preflight report.",&window);
     auto* play=new QPushButton("Play",&window);auto* stop=new QPushButton("Stop session",&window);auto* restart=new QPushButton("Restart session",&window);
     layout->addWidget(choices);layout->addWidget(play);layout->addWidget(stop);layout->addWidget(restart);layout->addWidget(status);
+    session.changed=[&](AudioSessionState state,const QString& message){
+        status->setText(state==AudioSessionState::running?"Audio ready":state==AudioSessionState::recovering?"Restarting audio…":
+            state==AudioSessionState::failed?"Audio paused: "+message:"Audio stopped");
+        restart->setText(state==AudioSessionState::failed && session.canRecover()?"Retry audio":"Restart session");
+    };
     QObject::connect(play,&QPushButton::clicked,&window,[&]{status->setText(session.play(choices->currentData().toInt())?"Playing":session.lastError());});
     QObject::connect(stop,&QPushButton::clicked,&window,[&]{session.stop();status->setText("Stopped; queued PCM discarded");});
-    QObject::connect(restart,&QPushButton::clicked,&window,[&]{status->setText(session.start(p.value("audio-catalog"),map,policy)?"Ready":session.lastError());});
+    QObject::connect(restart,&QPushButton::clicked,&window,[&]{const bool ok=session.state()==AudioSessionState::failed && session.canRecover()?session.recover():session.start(p.value("audio-catalog"),map,policy);status->setText(ok?"Ready":session.lastError());});
     window.resize(520,200);window.show();return app.exec();
 }
