@@ -1,0 +1,41 @@
+#include "scene.hpp"
+#include <QApplication>
+#include <QCommandLineParser>
+#include <QLabel>
+#include <QFile>
+#include <QCryptographicHash>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <iostream>
+#include <stdexcept>
+namespace {
+void writeNew(const QString& path,const QByteArray& bytes){QFile file(path);if(!file.open(QIODevice::WriteOnly|QIODevice::NewOnly) || file.write(bytes)!=bytes.size() || !file.flush())throw std::runtime_error("Cannot write new preview output");}
+}
+int main(int argc,char** argv)try{
+ QApplication app(argc,argv);QCommandLineParser p;p.addHelpOption();
+ p.addOption({"root","Installed asset root","directory"});p.addOption({"realm","Realm directory","path","Realms/Celtic/Forest"});
+ p.addOption({"definitions","1..9 comma-separated TTD IDs","ids","5,9,13,17,21,25,29,33,37"});
+ p.addOption({"view","Raw view 0..3","index","0"});p.addOption({"visibility","Apply recovered visibility pass"});
+ p.addOption({"overlap","Use one anchor for every tile"});p.addOption({"output","New output prefix; writes .565, .png and .json, then exits","prefix"});p.process(app);
+ bool ok=false;const auto view=p.value("view").toUInt(&ok);if(!ok || view>3 || !p.isSet("root"))throw std::runtime_error("Specify --root and view 0..3");
+ auto configured=mnm::assets::AssetStore::create(p.value("root").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&configured))throw std::runtime_error(e->detail);
+ auto store=std::get<mnm::assets::AssetStore>(std::move(configured));
+ const auto open=[&](const char* name){auto result=store.open((p.value("realm")+"/"+name).toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&result))throw std::runtime_error(e->detail);return std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(result));};
+ auto ttd=open("Terrain.ttd"),spr=open("Terrain.spr");auto catalog=mnm::assets::loadTerrainCatalog(*ttd);auto sprite=mnm::assets::loadSprite(*spr);
+ if(auto* e=std::get_if<mnm::assets::TerrainCatalogError>(&catalog))throw std::runtime_error(e->detail);
+ if(auto* e=std::get_if<mnm::assets::SpriteError>(&sprite))throw std::runtime_error(e->detail);
+ std::vector<mnm::preview::TerrainPreviewTile> tiles;
+ for(const auto& value:p.value("definitions").split(',')){const auto id=value.toUInt(&ok);if(!ok || tiles.size()>=9)throw std::runtime_error("Expected 1..9 definition IDs");const int row=tiles.size()/3,col=tiles.size()%3;
+  tiles.push_back({id,{row,col,0,p.isSet("overlap")?256:256+32*(col-row),p.isSet("overlap")?160:96+16*(col+row),0,0,0,0}});}
+ mnm::render::GlBlitter renderer;const auto result=mnm::preview::renderTerrain(renderer,std::get<mnm::assets::TerrainCatalog>(catalog),std::get<mnm::assets::Sprite>(sprite),tiles,{view},p.isSet("visibility"));
+ if(p.isSet("output")){
+  QByteArray raw;for(auto word:result.pixels.pixels){raw.append(char(word&255));raw.append(char((word>>8)&255));}
+  const auto prefix=p.value("output");writeNew(prefix+".565",raw);QFile png(prefix+".png");if(!png.open(QIODevice::WriteOnly|QIODevice::NewOnly) || !result.image.save(&png,"PNG"))throw std::runtime_error("Cannot save new PNG");
+  QJsonArray queue;for(const auto& item:result.queue){const auto& d=item.draw;queue.append(QJsonObject{{"tile",qint64(item.tile)},{"frame",qint64(d.frame)},{"role",qint64(d.role)},{"key",d.key},{"kind",d.kind},{"x",d.anchorX},{"y",d.anchorY},{"shade",d.shade}});}
+  const auto rgba=result.image.convertToFormat(QImage::Format_RGBA8888);const auto rgbaHash=QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(rgba.constBits()),rgba.sizeInBytes()),QCryptographicHash::Sha256).toHex();
+  QJsonArray owners;for(const auto& owner:result.owners)owners.append(QJsonArray{owner.flags8,owner.flags10});
+  writeNew(prefix+".json",QJsonDocument(QJsonObject{{"view",qint64(view)},{"visibility",p.isSet("visibility")},{"queue",queue},{"owners",owners},{"rgba_sha256",QString::fromLatin1(rgbaHash)},{"live_validated",false},{"remaining_surfaces",qint64(renderer.stats().surfaces)}}).toJson());return 0;
+ }
+ QLabel widget;widget.setWindowTitle("Native terrain preview");widget.setPixmap(QPixmap::fromImage(result.image));widget.resize(512,256);widget.show();return app.exec();
+}catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
