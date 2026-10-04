@@ -391,3 +391,9 @@ preview stops it. Defaults 822/830 are native preview choices. Select other
 catalog IDs with `--menu-click-sound ID` / `--menu-page-sound ID`; choose filename
 compatibility with `--menu-audio-policy dequote-missing-leaf`. Music routing and
 original cue mappings remain pending. [Scope and offline tests](../../research/runtime/menu-audio-integration.md).
+
+Menu audio now reports output failures in a persistent status-bar label with
+**Retry audio**. It retries when Qt reports an available device, follows the
+current default output, and restores accepted effects gain without replaying
+old cues. Closing the preview cancels pending recovery. See
+[recovery scope and evidence](../../research/runtime/audio-output-recovery.md).

@@ -7,11 +7,27 @@
 MenuAudioController::MenuAudioController(std::unique_ptr<AudioSessionOutput> output,MenuAudioCues cues,QObject* parent)
     :QObject(parent),session_(std::move(output)),cues_(cues){
     if(cues.activate<=0 || cues.pageTurn<=0)throw std::invalid_argument("Menu cues require positive catalog IDs");
+    session_.changed=[this](AudioSessionState state,const QString& message){
+        if(state==AudioSessionState::running){
+            error_.clear();
+            if(!session_.preflight().playable(cues_.activate) || !session_.preflight().playable(cues_.pageTurn)){
+                error_="Selected menu cue is unavailable in catalog preflight";session_.stop();return;
+            }
+        }
+        if(preview_){
+            const auto text=state==AudioSessionState::running?QString("Audio ready"):
+                state==AudioSessionState::recovering?QString("Restarting audio…"):
+                state==AudioSessionState::failed?QString("Audio paused: %1").arg(message):QString("Audio stopped");
+            preview_->setAudioStatus(text,state==AudioSessionState::failed && session_.canRecover());
+        }
+        if(state==AudioSessionState::failed && failed)failed(message);
+    };
 }
-MenuAudioController::~MenuAudioController(){stop();}
+MenuAudioController::~MenuAudioController(){session_.changed={};stop();}
 void MenuAudioController::attach(MenuPreview& preview){
     if(preview_)throw std::logic_error("Menu audio controller already attached");
     preview_=&preview;
+    connect(&preview,&MenuPreview::audioRetryRequested,this,[this]{recover();});
     connect(&preview,&MenuPreview::screenReady,this,[this](QWidget* screen){bind(screen);});
     connect(&preview,&MenuPreview::screenChanged,this,[this]{clear();});
     connect(&preview,&MenuPreview::closed,this,[this]{stop();});
@@ -20,12 +36,16 @@ void MenuAudioController::attach(MenuPreview& preview){
 }
 bool MenuAudioController::start(const QString& root,mnm::reconstruction::audio::NativeSourcePathPolicy policy){
     error_.clear();
+    session_.setMasterVolume(soundLevel_);
     if(!session_.start(root,1,policy))return false;
     if(!session_.preflight().playable(cues_.activate) || !session_.preflight().playable(cues_.pageTurn)){
         error_="Selected menu cue is unavailable in catalog preflight";session_.stop();return false;
     }
     if(!session_.setMasterVolume(soundLevel_)){error_=session_.lastError();session_.stop();return false;}
     return true;
+}
+bool MenuAudioController::recover(){
+    error_.clear();session_.setMasterVolume(soundLevel_);return session_.recover();
 }
 void MenuAudioController::stop(){session_.stop();}
 void MenuAudioController::play(std::int32_t id){
@@ -36,12 +56,12 @@ void MenuAudioController::play(std::int32_t id){
 }
 void MenuAudioController::activate(){play(cues_.activate);}
 void MenuAudioController::pageTurn(){play(cues_.pageTurn);}
-void MenuAudioController::clear(){if(running() && !session_.clearVoices() && failed)failed(session_.lastError());}
+void MenuAudioController::clear(){if(running())session_.clearVoices();}
 void MenuAudioController::applySoundLevel(int level){
     if(level< -10000 || level>0){if(failed)failed("Menu sound level outside native range");return;}
     soundLevel_=level;
     clear(); // Accepted volume cannot leave queued PCM at the old gain.
-    if(running() && !session_.setMasterVolume(level) && failed)failed(session_.lastError());
+    if(!session_.setMasterVolume(level) && failed)failed(session_.lastError());
 }
 void MenuAudioController::bind(QWidget* screen){
     if(bound_.contains(screen))return;

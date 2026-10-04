@@ -91,3 +91,8 @@ audio scenarios for every screen remain unmeasured. Original cue choices,
 audible hardware quality, output unplug/recovery, rapid-navigation sink restart
 latency, music routing, persisted preferences and live original audio routing
 remain separate work.
+
+[AU25 output recovery](audio-output-recovery.md) extends this milestone with
+failure notifications, current-device refresh, persistent retry status and
+accepted-gain preservation. Hardware unplug/audible validation remains open;
+the added recovery evidence is synthetic.

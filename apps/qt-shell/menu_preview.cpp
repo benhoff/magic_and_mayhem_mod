@@ -3,6 +3,7 @@
 #include "quick_battle_menu_widget.hpp"
 #include <QMetaEnum>
 #include <QCloseEvent>
+#include <QLabel>
 #include <QPushButton>
 #include <QListWidget>
 #include <QStackedWidget>
@@ -540,4 +541,15 @@ void MenuPreview::activateScreen(QWidget* screen){
 void MenuPreview::closeEvent(QCloseEvent* event){
     QMainWindow::closeEvent(event);
     if(event->isAccepted())emit closed();
+}
+
+void MenuPreview::setAudioStatus(const QString& text,bool canRetry){
+    if(!audioStatus_){
+        audioStatus_=new QLabel(this);audioStatus_->setObjectName("menuAudioStatus");
+        audioRetry_=new QPushButton("Retry audio",this);audioRetry_->setObjectName("menuAudioRetry");
+        statusBar()->addPermanentWidget(audioStatus_);statusBar()->addPermanentWidget(audioRetry_);
+        connect(audioRetry_,&QPushButton::clicked,this,&MenuPreview::audioRetryRequested);
+    }
+    audioStatus_->setText(text);audioStatus_->setVisible(!text.isEmpty());
+    audioRetry_->setVisible(canRetry);audioRetry_->setEnabled(canRetry);
 }
