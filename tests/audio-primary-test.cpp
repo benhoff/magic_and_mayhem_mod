@@ -59,13 +59,13 @@ void nativePcm(){
     w[9]=22050;w[10]=2;w[11]=16;w[12]=4;w[13]=88200;w[14]=1;
     check(!rpc(MNM_AUDIO_PRIMARY_FORMAT).status && d.primaryState().format->rate==22050 && d.outputRate()==48000,"requested format independent of negotiated output clock");
     w[12]=2;check(rpc(MNM_AUDIO_PRIMARY_FORMAT).status && d.primaryState().format->alignment==4,"malformed primary format retains metadata");
-    check(rpc(MNM_AUDIO_PRIMARY_PLAY,0).status && !rpc(MNM_AUDIO_PRIMARY_PLAY,1).status && rpc(MNM_AUDIO_PRIMARY_STATUS).value==3,"primary requires looping");
+    check(rpc(MNM_AUDIO_PRIMARY_PLAY,0).status && !rpc(MNM_AUDIO_PRIMARY_PLAY,1).status && rpc(MNM_AUDIO_PRIMARY_STATUS).value==5,"primary requires looping");
     Wave wav{{1,1,48000,96000,2,16,0},{0x20,0x4e}};
     auto uploaded=rec::uploadStatic(d,wav);check(uploaded.error==Error::ok,"upload");const auto id=uploaded.buffer;d.play(id,1);
     BufferId child=0;d.duplicate(id,child);d.play(child,1);
     std::vector<std::int16_t> pcm;d.mixStereo(1,pcm);check(pcm==std::vector<std::int16_t>({4000,4000}),"master applied to sum before clipping");
-    rpc(MNM_AUDIO_PRIMARY_STOP);d.mixStereo(1,pcm);check(pcm[0]==4000 && !rpc(MNM_AUDIO_PRIMARY_STATUS).value && d.voice(id)->status()==3,"primary Stop leaves secondary mixing active");
-    rpc(MNM_AUDIO_PRIMARY_VOLUME,std::uint32_t(-10000));d.mixStereo(1,pcm);check(pcm[0]==0 && d.voice(id)->status()==3,"master mute does not stop voices");
+    rpc(MNM_AUDIO_PRIMARY_STOP);d.mixStereo(1,pcm);check(pcm[0]==4000 && !rpc(MNM_AUDIO_PRIMARY_STATUS).value && d.voice(id)->status()==5,"primary Stop leaves secondary mixing active");
+    rpc(MNM_AUDIO_PRIMARY_VOLUME,std::uint32_t(-10000));d.mixStereo(1,pcm);check(pcm[0]==0 && d.voice(id)->status()==5,"master mute does not stop voices");
     check(rpc(MNM_AUDIO_PRIMARY_VOLUME,1).status && d.primaryState().volume==-10000,"invalid master volume retains state");
     rpc(MNM_AUDIO_PRIMARY_VOLUME,0);d.mixStereo(1,pcm);check(pcm[0]==32767,"restore master volume clips normally");
     d.release(id);d.release(child);d.stopPrimary();d.mixStereo(1,pcm);check(pcm[0]==0 && d.count()==0,"released voices leave silence");

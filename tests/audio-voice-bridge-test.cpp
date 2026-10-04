@@ -17,7 +17,7 @@ int main(int argc,char** argv){
     w[8]=9;check(run(MNM_AUDIO_UPLOAD,id,0,pcm).status && d.samples(id)[0]==0,"truncated payload rejected atomically");w[8]=8;
     check(!run(MNM_AUDIO_VOLUME,id,std::uint32_t(-2000)).status && !run(MNM_AUDIO_PAN,id,2000).status,"signed controls");
     check(run(MNM_AUDIO_VOLUME,id,1).status && d.voice(id)->volume==-2000,"invalid controls retain state");
-    check(!run(MNM_AUDIO_PLAY,id,1).status && run(MNM_AUDIO_STATUS,id).value==3,"loop status");
+    check(!run(MNM_AUDIO_PLAY,id,1).status && run(MNM_AUDIO_STATUS,id).value==5,"loop status");
     reply=run(MNM_AUDIO_DUPLICATE,id);check(!reply.status,"duplicate");const auto child=reply.value;
     check(!run(MNM_AUDIO_RELEASE,id).status && !run(MNM_AUDIO_PLAY,child).status,"duplicate survives source");
     std::vector<std::int16_t> output;check(d.mixStereo(5,output)==Error::ok,"mix wire voice");

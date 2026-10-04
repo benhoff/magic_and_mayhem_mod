@@ -27,11 +27,12 @@ struct VoiceInfo {
     bool looping=false;
     std::uint64_t frame=0,frames=0;
     std::int32_t volume=0,pan=0; // Hundredths of a decibel, not linear gain.
-    std::uint32_t status() const{return playback==Playback::playing?(looping?3u:1u):0u;}
+    // DirectSound status bits: playing 0x1, buffer lost 0x2, looping 0x4.
+    std::uint32_t status() const{return playback==Playback::playing?(looping?5u:1u):0u;}
 };
 struct PrimaryState {
     std::int32_t volume=0;bool explicitlyPlaying=false;std::optional<PcmFormat> format;
-    std::uint32_t status() const{return explicitlyPlaying?3u:0u;}
+    std::uint32_t status() const{return explicitlyPlaying?5u:0u;}
 };
 struct AdvanceResult {std::uint64_t consumed=0;bool completed=false;};
 

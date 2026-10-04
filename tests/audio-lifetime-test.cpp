@@ -81,9 +81,9 @@ void nativeOwnership(){
     check(d.lock(id,0,2,0,lock)==Error::ok,"lock");lock.first.data[0]=0x10;lock.first.data[1]=0x27;
     check(d.unlock(lock,2,0)==Error::ok && d.duplicate(id,childId)==Error::ok,"upload and duplicate");
     d.play(id,1);d.play(childId,1);Native b(d);auto child=wrapper(2,childId);auto source=wrapper(1,id,&child);
-    rec::retireVoice(b,source,false,false,true);check(!d.voice(id)->status() && d.voice(childId)->status()==3 && d.count()==2,"retire source leaves duplicate playing and samples owned");
+    rec::retireVoice(b,source,false,false,true);check(!d.voice(id)->status() && d.voice(childId)->status()==5 && d.count()==2,"retire source leaves duplicate playing and samples owned");
     d.release(id);source.buffer=0;std::vector<std::int16_t> pcm;d.mixStereo(1,pcm);
-    check(pcm[0]==10000 && d.voice(childId)->status()==3,"source release leaves independently owned duplicate samples");
+    check(pcm[0]==10000 && d.voice(childId)->status()==5,"source release leaves independently owned duplicate samples");
     rec::releaseSourceContents(b,source);check(d.count()==0 && !source.duplicate,"recursive cleanup retires final duplicate");
     b.calls.clear();rec::releaseSourceContents(b,source);check(b.calls.empty(),"repeated native contents cleanup");
 }

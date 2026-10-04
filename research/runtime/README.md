@@ -106,6 +106,7 @@ confidence, and whether it remains stable across launches.
 
 - [Audio camera projection](audio-camera-projection.md): camera origin, four-orientation screen-to-map projection, wrapping and listener integration; offline fixtures.
 - [Audio attenuation map](audio-attenuation-map.md): signed-byte lookup, enable/distance gates, shared world ownership and bounded owned snapshots; offline fixtures.
+- [Voice admission](audio-voice-admission.md): manager start gates, source lookup, duplicate retention, scheduler publication and source-ring rotation; offline/native PCM fixtures.
 
 - [Bounded native ANI/SPR scene](native-animation-scene.md): explicit sequence
   playback, owned upload cache, Qt preview and offline composition evidence.

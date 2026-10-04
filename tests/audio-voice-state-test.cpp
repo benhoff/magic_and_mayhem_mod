@@ -33,7 +33,7 @@ void oneShot(){
 }
 void looping(){
     Device d;auto id=make(d,7);AdvanceResult a;
-    ok(d.play(id,1));ok(d.advanceFrames(id,6,a));check(d.voice(id)->frame==6 && d.voice(id)->status()==3,"loop state");
+    ok(d.play(id,1));ok(d.advanceFrames(id,6,a));check(d.voice(id)->frame==6 && d.voice(id)->status()==5,"loop state");
     ok(d.advanceFrames(id,std::numeric_limits<std::uint64_t>::max(),a));
     check(d.voice(id)->frame==0 && a.consumed==std::numeric_limits<std::uint64_t>::max() && !a.completed,"huge loop advance without overflow");
     ok(d.advanceFrames(id,21,a));check(d.voice(id)->frame==0 && a.consumed==21,"whole loops");
@@ -70,7 +70,7 @@ void rejectsAndFormats(){
     ok(d.setVolume(id,-10000));ok(d.setPan(id,10000));ok(d.play(id,1));
     check(d.setVolume(id,1)==Error::invalid && d.setVolume(id,-10001)==Error::invalid &&
           d.setPan(id,10001)==Error::invalid && d.setPan(id,-10001)==Error::invalid && d.play(id,2)==Error::unsupported,"controls and flags bounded");
-    check(d.voice(id)->volume==-10000 && d.voice(id)->pan==10000 && d.voice(id)->status()==3,"rejection preserves state");
+    check(d.voice(id)->volume==-10000 && d.voice(id)->pan==10000 && d.voice(id)->status()==5,"rejection preserves state");
     ok(d.setVolume(id,0));ok(d.setPan(id,-10000));check(d.voice(id)->frame==0,"control limits do not advance");
     check(d.stop(999)==Error::invalid && d.resetPosition(999)==Error::invalid && d.setVolume(999,0)==Error::invalid && d.setPan(999,0)==Error::invalid,"missing identities");
     for(unsigned channels:{1u,2u})for(unsigned bits:{8u,16u}){
