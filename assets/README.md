@@ -381,3 +381,12 @@ SPR loading accepts v4 and single-palette v2, including the shorter file/frame
 headers and an owned optional `legacyPaletteWord`. All installed ANI/SPR files
 are supported; original runtime integration remains separate.
 See [legacy schemas and validation](../research/formats/legacy-ani-spr-loading.md).
+
+## Saved battle/world structures
+
+`save_world.hpp` adds explicit `decodeWorldState`/`loadWorldState` and
+`decodeSavedWorld`: owned raw bytes and named nested ranges for maps, creature,
+missile/effect pools and optional state. The persistence inspector adds `world`,
+`sav-world` and `vas-world` types; existing envelope inspection remains available.
+This structural reader does not restore resources, pointers or simulation state.
+See [grammar, validation and limits](../research/formats/save-world-native-loading.md).

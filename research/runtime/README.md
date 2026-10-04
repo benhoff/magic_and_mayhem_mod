@@ -150,3 +150,5 @@ confidence, and whether it remains stable across launches.
 - [Native menu music](native-menu-music.md): explicit looping track, independent saved volume, Qt playback adapter and synthetic lifecycle validation.
 
 - [Native menu music output recovery](menu-music-recovery.md): device ID monitoring, separate retry, retained track/gain and bounded synthetic recovery validation.
+
+- [Save-world serializers](save-world-serialization.md): paired world/nested record grammar and selected isolated original writer captures; structural native loading remains separate from restoration.
