@@ -103,3 +103,20 @@ bool MenuPreview::openQuickBattleResults(const QString& root, QuickBattleResultW
     statusBar()->showMessage("Sample results. Continue opens Quick Battle; Quit returns to the main menu preview.");
     return true;
 }
+
+bool MenuPreview::openMapSelection(const QString& root, QString* error) {
+    if (!mapSelection_) {
+        mapSelection_=new MapSelectionWidget(screens_); screens_->addWidget(mapSelection_);
+        connect(mapSelection_,&MapSelectionWidget::cancelled,this,&MenuPreview::showQuickBattle);
+        connect(mapSelection_,&MapSelectionWidget::mapSelected,this,[this](const QString& id) {
+            showQuickBattle();
+            statusBar()->showMessage(QString("Selected sample map %1 — engine adapter pending.").arg(id));
+        });
+    }
+    if (!mapSelection_->loadAssets(root,error)) return false;
+    if (!mapSelection_->setMaps({{"sample-forest","Sample forest map"},{"sample-plains","Sample plains map"},{"sample-islands","Sample islands map"}},"sample-forest",error)) return false;
+    screens_->setCurrentWidget(mapSelection_); mapSelection_->focusSelection();
+    setWindowTitle(mapSelection_->windowTitle());
+    statusBar()->showMessage("Sample map list. OK or Cancel returns to the Quick Battle preview.");
+    return true;
+}

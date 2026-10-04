@@ -228,3 +228,14 @@ Continue/Spectate states:
 Continue opens the native Quick Battle menu; Quit returns to Main. Spectate
 emits intent with the engine adapter pending. Portraits use text placeholders.
 See [layout, validation and remaining boundaries](../../research/runtime/quick-battle-results-qt.md).
+
+Map Selection previews three sample entries with native list selection and
+OK/Cancel navigation:
+
+```bash
+./tools/run-qt-shell.sh --map-selection
+```
+
+OK emits an opaque map ID; both actions return to the Quick Battle preview.
+Installed map enumeration and engine selection remain pending. See
+[Map Selection scope and validation](../../research/runtime/map-selection-qt.md).
