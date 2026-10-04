@@ -359,3 +359,11 @@ See [CUR validation scope](../research/formats/cur-native-loading.md).
 Wine fixture with the native reader. It records exact bytes, integer rejections
 and intentional policy differences, without launching the game. See
 [profile API evidence](../research/formats/profile-api-comparison.md).
+
+## PCX indexed images
+
+The asset CTests include `pcx-loader` and `pcx-byte-comparison`.
+Compare installed files with
+`python3 tests/test-pcx-loader.py working/build/pcx/mnm-pcx-inspect --installation working/game-clean --report working/tests/pcx-loader/installed-comparison.json`.
+The installed run verifies originals before/after and records source hashes.
+See [PCX validation scope](../research/formats/pcx-native-loading.md).
