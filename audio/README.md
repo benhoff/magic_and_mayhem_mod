@@ -84,6 +84,8 @@ paths, rejected output locations, and CLI errors. Raw installed-file checks
 remain separate from decoded PCM comparisons. See
 [WAV integration evidence](../research/formats/pcm-wav-loading.md).
 
-Next: reconstruct play/stop/loop, frequency/volume/pan and playback cursors;
-introduce independent voice state and an offline mixer before a Qt audio sink
+Selected play/stop/loop, volume/pan, status/reset and deadline contracts now have
+[offline reconstruction tests](../research/runtime/directsound-voice-controls.md).
+Frequency changes and arbitrary cursor queries remain conditional.
+Next: introduce independent voice state and an offline mixer before a Qt audio sink
 or live game hook. See [evidence and boundaries](../research/runtime/directsound-buffer-setup.md).

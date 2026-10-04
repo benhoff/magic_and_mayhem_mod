@@ -1,5 +1,9 @@
 # DirectSound setup reconstruction
 
+Selected voice-control blocks are annotated in `voice_contract.*`, using a
+fakeable backend for call-order/failure tests. This remains separate from native
+playback state and output. See [voice contracts and scope](../../research/runtime/directsound-voice-controls.md).
+
 This directory contains build-specific engine models, not native application
 code. `dsound_setup` reconstructs device request parameters, primary and static
 secondary descriptors, the primary setup call sequence, and the successful

@@ -109,8 +109,10 @@ Confidence is high for the selected static contracts and offline ownership/
 sample-byte behavior. Actual call coverage, COM reference counting, device
 cooperation, audible output and live voice timing are unvalidated.
 
-Next: reconstruct per-voice play/stop/loop and volume/pan/frequency/cursor state,
-then build an offline mixer with independent PCM output expectations. Only
+Selected [voice-control contracts](directsound-voice-controls.md) now cover
+play/stop/loop, volume/pan, status/reset and deadlines with offline tests.
+Next: independent native voice state, then an offline mixer with independent
+PCM output expectations. Frequency/cursor extensions remain conditional. Only
 after that should an isolated x86 adapter route observed game buffers into the
 native mixer and Qt audio sink. No gameplay algorithm, configuration, binary or
 audio balance changes were made in this chunk.
