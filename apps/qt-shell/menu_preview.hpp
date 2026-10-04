@@ -29,7 +29,7 @@ class MenuPreview final : public QMainWindow {
 public:
     explicit MenuPreview(QWidget* parent = nullptr);
     bool setMusicVolume(int level,QString* error=nullptr);
-    void setMusicStatus(const QString& text);
+    void setMusicStatus(const QString& text,bool canRetry=false);
     bool setEffectsVolume(int level,QString* error=nullptr);
     void setAudioStatus(const QString& text,bool canRetry);
     bool loadAssets(const QString& root, bool startQuickBattle, QString* error = nullptr);
@@ -51,6 +51,7 @@ public:
     bool openGrimoire(const QString& root, QString* error = nullptr);
 signals:
     void audioRetryRequested();
+    void musicRetryRequested();
     void screenReady(QWidget* screen);
     void screenChanged();
     void closed();
@@ -70,6 +71,7 @@ private:
     void showMainMenu();
     void showQuickBattle();
     QLabel* musicStatus_=nullptr;
+    QPushButton* musicRetry_=nullptr;
     QLabel* audioStatus_=nullptr;
     QPushButton* audioRetry_=nullptr;
     QStackedWidget* screens_ = nullptr;

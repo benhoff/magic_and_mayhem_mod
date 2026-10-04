@@ -9,6 +9,7 @@
 #include <QMediaPlayer>
 #include <QVideoSink>
 #include <functional>
+class QAudioDevice;
 
 // One finite movie or WinMM-style file-sound channel, owned by the Qt thread.
 class NativePlayback final:public QObject {
@@ -19,6 +20,7 @@ public:
     void stop(unsigned result=MNM_MEDIA_V1_STATUS_CANCELLED);
     void pause(bool value);
     void setVolume(float volume);
+    void setAudioDevice(const QAudioDevice& device);
     bool active() const{return !finished_;}
     QJsonObject report() const;
     std::function<void(QImage)> frame;

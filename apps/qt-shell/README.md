@@ -445,3 +445,8 @@ This integrates recovered transparency masks and origins into Qt's text system.
 Original palette shading, contour kerning, code pages and pixel-perfect text
 flow still require comparison. See
 [font integration evidence and policy](../../research/runtime/menu-font-integration.md).
+
+Menu music also monitors output loss/default changes and shows **Retry music**.
+An availability event or explicit retry reopens the selected track from the
+beginning with its latest accepted volume; closure cancels recovery. See
+[music recovery and synthetic validation](../../research/runtime/menu-music-recovery.md).

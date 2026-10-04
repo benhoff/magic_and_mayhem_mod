@@ -27,14 +27,16 @@ destruction stops playback and invalidates queued notifications. During widget
 destruction, both music and effects controllers clear their presentation pointer
 before stopping, avoiding updates after the derived widget has been destroyed.
 
-The states are stopped, loading, playing and failed. Loaded-media acceptance
+The states are stopped, loading, playing, failed and recovering. Loaded-media acceptance
 advances loading to playing; this status is not measured evidence of audible
 output. Errors stop the channel, retain the accepted gain and display a separate
 persistent music diagnostic. Effects status/retry remains independent. Controller
 notifications are deferred off the decoder's callback stack, coalesced by session
 generation, and guarded against closure, restart and controller destruction.
-Missing devices fail startup clearly; music does not automatically retry on
-hardware changes. An explicit controller start or a new shell launch retries it.
+Missing devices fail startup clearly. The subsequent
+[music recovery chunk](menu-music-recovery.md) adds a separate Retry music action
+and availability/default-device recovery while retaining the selected track and
+accepted gain; each retry starts from the beginning.
 
 ## Preferences
 
@@ -83,3 +85,7 @@ music/effects coexistence, device disconnection/default-device changes, latency,
 long sessions and live original-game music replacement remain unverified.
 No game, installed/original assets or physical audio device was used; no
 immutable-input experiment was required.
+
+The original evidence above records the initial integration milestone. Current
+output recovery and its additional fixture are recorded in
+[Native menu music output recovery](menu-music-recovery.md).

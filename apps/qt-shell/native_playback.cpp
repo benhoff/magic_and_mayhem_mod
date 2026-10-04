@@ -71,6 +71,7 @@ void NativePlayback::finish(unsigned result){
 void NativePlayback::stop(unsigned result){finish(result);}
 void NativePlayback::pause(bool value){if(finished_)return;if(value)player_.pause();else player_.play();}
 void NativePlayback::setVolume(float volume){output_.setVolume(std::clamp(volume,0.0f,1.0f));}
+void NativePlayback::setAudioDevice(const QAudioDevice& device){output_.setDevice(device);}
 QJsonObject NativePlayback::report() const{
     return {{"path",path_},{"result",int(result_)},{"error",error_},{"accepted",accepted_},{"video_frames",int(videoFrames_)},
         {"pixel_format",pixelFormat_},{"first_frame_quadrants",firstColors_},{"width",videoSize_.width()},{"height",videoSize_.height()},{"first_frame_rgba_sha256",QString::fromLatin1(firstFrameHash_)},
