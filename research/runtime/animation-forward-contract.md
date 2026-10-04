@@ -61,8 +61,10 @@ the original controller's break field; original live setter/caller coverage is
 not established.
 
 The static `0x00464e20` method changes numeric sequence while preserving the
-relative next/display record positions and other state. This path, reverse
-mode and reverse scan counters are not implemented or executed by this model.
+relative next/display record positions and other state. The subsequent
+[direction-switch milestone](animation-direction-selection.md) implements and
+executes this selected forward path. Reverse mode and reverse scan counters
+remain outside the model.
 Selected callers combine configuration-derived sequence bases with direction
 indices, including `&7` patterns at `0x004948c7`/`0x0049499b`; this supports a
 bounded directional-table interpretation but does not identify compass ordering
@@ -113,5 +115,5 @@ The native fixture additionally checks invalid extents, jump escape and dispatch
 budget failure. ASan/UBSan pass with leak checking disabled.
 
 Confidence is high for these selected forward states. It does not establish
-all sequences/ticks, the older conversion paths, reverse/directional switching,
+all sequences/ticks, the older conversion paths, reverse switching,
 gameplay event handling, all record metadata or live scheduling equivalence.

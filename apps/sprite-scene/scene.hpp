@@ -15,6 +15,11 @@ public:
     SpriteScene(const SpriteScene&)=delete;
     SpriteScene& operator=(const SpriteScene&)=delete;
     void advance();
+    // Explicit preview selection: group changes restart; facing changes retain
+    // phase. Groups have validated matching opcode/control record positions.
+    std::vector<std::uint32_t> directionalGroups() const;
+    void selectGroup(std::size_t actor,std::uint32_t base,std::uint32_t facing);
+    void selectFacing(std::size_t actor,std::uint32_t facing);
     QImage present();
     render::Image read();
     std::vector<ActorState> actors() const;
@@ -24,6 +29,8 @@ private:
     render::UploadedSpriteFrame& upload(std::uint32_t frame);
     render::GlBlitter& renderer_;
     assets::Sprite sprite_;
+    assets::Animation animation_;
+    std::vector<assets::AnimationRecord> sequence(std::uint32_t index) const;
     std::vector<reconstruction::NoCdAnimationPlayer> players_;
     std::vector<ActorState> actors_;
     std::map<std::uint32_t,std::unique_ptr<render::UploadedSpriteFrame>> cache_;

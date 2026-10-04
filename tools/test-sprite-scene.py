@@ -41,6 +41,8 @@ def main():
         for group in (0,4):
             p=subprocess.run([str(helper),str(exe),str(ani),str(group),'64','-1'],capture_output=True,text=True,timeout=5);p.check_returncode()
             original[group]=json.loads(p.stdout);(out/f'original-sequence-{group}.json').write_text(p.stdout)
+        p=subprocess.run([str(helper),str(exe),str(ani),'0','64','-1','7','7'],capture_output=True,text=True,timeout=5);p.check_returncode()
+        switched=json.loads(p.stdout);(out/'original-facing-switch.json').write_text(p.stdout)
         b=spr.read_bytes();count,palettes=struct.unpack_from('<2I',b,12);base=24+768*palettes+count*4
         decoded={}
         def frame(index):
@@ -70,9 +72,9 @@ def main():
         results=[]
         base_command=[str(preview),
                       '--root',str(root),'--ani','c:\\MagicMayhem\\cReAtUrEs\\rEdCaP.aNi','--sequences','0,4']
-        for loop in (False,True):
-            directory=out/('loop' if loop else 'stop')
-            command=base_command+['--ticks','64','--export-dir',str(directory)]+(['--loop'] if loop else [])
+        for loop,switch in ((False,False),(True,False),(False,True)):
+            directory=out/('facing' if switch else ('loop' if loop else 'stop'))
+            command=base_command+['--ticks','64','--export-dir',str(directory)]+(['--loop'] if loop else [])+(['--facing-change','7,0,7'] if switch else [])
             p=subprocess.run(command,capture_output=True,text=True,timeout=60);(out/f'{directory.name}.stderr').write_text(p.stderr);p.check_returncode()
             report=json.loads(p.stdout);positions={0:0,4:0};matches=[]
             if report['loop_policy']!=loop or len(report['frames'])!=65 or report['remaining_surfaces']!=0:raise ValueError('Scene bounds/lifetimes differ')
@@ -80,12 +82,14 @@ def main():
                 if rendered['tick']!=tick or len(rendered['actors'])!=2:raise ValueError('Scene trace order differs')
                 expected=background.copy()
                 for actor,g in zip(rendered['actors'],(0,4)):
+                    reference=switched if switch and g==0 else original[g]
                     if tick:
-                        previous=original[g][positions[g]]
+                        previous=reference[positions[g]]
                         positions[g]=0 if loop and not previous[5] else positions[g]+1
-                    oracle=original[g][positions[g]]
+                    oracle=reference[positions[g]]
                     selected=oracle[2] if oracle[2]>=0 else None
-                    if actor['sequence']!=g or actor['sprite']!=selected or actor['event']!=oracle[1] or actor['anchor_y']!=190:
+                    sequence=7 if switch and g==0 and tick>=7 else g
+                    if actor['sequence']!=sequence or actor['sprite']!=selected or actor['event']!=oracle[1] or actor['anchor_y']!=190:
                         raise ValueError(f'Scene selection/event differs from original at tick {tick}')
                     anchor=(170 if g==0 else 341,190)
                     if (actor['anchor_x'],actor['anchor_y'])!=anchor:raise ValueError('Scene anchor differs')
@@ -100,9 +104,9 @@ def main():
                 if actual!=packed or rendered['native_sha256']!=sha(packed) or rendered['rgba_sha256']!=sha(expected_rgba):
                     raise ValueError(f'Scene native pixels/presentation differs at tick {tick}')
                 matches.append({'tick':tick,'native_sha256':sha(actual),'rgba_sha256':sha(expected_rgba),'matched':True})
-            results.append({'loop_policy':loop,'frames':65,'original_selection_event_matches':65,'independent_pixel_presentation_matches':65,
+            results.append({'loop_policy':loop,'facing_switch':switch,'frames':65,'original_selection_event_matches':65,'independent_pixel_presentation_matches':65,
                             'uploads':report['uploads'],'copies':report['copies'],'renderer':report['renderer'],'frames_sha256':matches})
-        p=subprocess.run(base_command+['--ticks','3','--interval','10','--smoke-test'],capture_output=True,text=True,timeout=20)
+        p=subprocess.run(base_command+['--ticks','3','--interval','10','--smoke-test','--facing-change','2,0,7'],capture_output=True,text=True,timeout=20)
         (out/'window-smoke.stderr').write_text(p.stderr);p.check_returncode()
         # New-directory output must reject an existing export without altering it.
         old=sha((out/'stop/report.json').read_bytes())
@@ -113,8 +117,8 @@ def main():
         report={'scope':'Bounded two-actor scene; explicit sequences and preview policies, not a recovered whole scene/game clock',
                 'preview_sha256':preview_hash,'source_sha256':hashes,'inputs_sha256':inputs,'input_unchanged':True,
                 'live_game_validated':False,'window_timer_smoke_passed':True,'existing_output_protected':True,
-                'summary':{'scene_frames':130,'actor_states':260,'original_selection_event_matches':260,
-                           'independent_pixel_presentation_matches':130,'distinct_sprites':len(decoded)},'runs':results}
+                'summary':{'scene_frames':195,'actor_states':390,'original_selection_event_matches':390,
+                           'independent_pixel_presentation_matches':195,'distinct_sprites':len(decoded)},'runs':results}
         (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report['summary']),flush=True)
     finally:verify('after')
 if __name__=='__main__':main()

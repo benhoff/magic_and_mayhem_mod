@@ -12,5 +12,8 @@ ctest --test-dir working/build/animation-model --output-on-failure
 
 Installed/original comparison: `python3 tools/test-animation-contract.py`.
 See [contract, addresses, safety policies and evidence](../../research/runtime/animation-forward-contract.md).
-Reverse playback, phase-preserving direction changes, action selection and
-gameplay event consumers remain outside this implementation.
+Phase-preserving forward switches are implemented and compared separately with
+`python3 tools/test-animation-switch.py`; see
+[selection evidence](../../research/runtime/animation-direction-selection.md).
+Reverse playback, complete named action selection and gameplay event consumers
+remain outside this implementation.

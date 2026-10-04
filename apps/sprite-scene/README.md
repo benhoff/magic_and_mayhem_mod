@@ -21,5 +21,13 @@ bounded native/PNG frames instead of opening the window (maximum 64 steps).
 The scene holds at most 24 uploads and four actors; no clipping or gameplay
 event handling is performed.
 
+Each actor has numeric group/facing controls when the paired ANI contains a
+compatible group of eight. Group selection restarts; facing selection retains
+animation progress and timing. These are structural groups, not verified named
+gameplay actions. Stopped actors can be restarted by selecting a group again.
+`--facing-change 7,0,7` schedules actor 0's change to facing 7 before tick 7,
+for a repeatable window/export run. See
+[selection contract](../../research/runtime/animation-direction-selection.md).
+
 Installed validation: `python3 tools/test-sprite-scene.py`.
 See [contract, export usage and evidence](../../research/runtime/native-animation-scene.md).

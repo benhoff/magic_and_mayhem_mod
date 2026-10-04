@@ -1,0 +1,2847 @@
+{
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "reconstruction/animation/no_cd.cpp": "376ebaeb4e8a0ee5a768f3366b086068875f0018772c9cd32481a725c04d77c8",
+    "reconstruction/animation/no_cd.hpp": "3ed987c24ba478bd91c1346a73d9f4005cfd48fe9f52711a30853a9fe80bb5b1",
+    "tests/animation-binary-reference.cpp": "6c8fc0ff4f13d3caeeafa1183788740864f04b57682680fcda3f562b801705ae",
+    "tools/test-animation-switch.py": "a9ae6888f3294e63eb1a9686094c58cd05488be907adaab615f1a1fd2fc536e0",
+    "working/game-nocd/Chaos.exe": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "working/game-clean/Creatures/16Mb_Anims/Ariadne.ani": "8a4762c240aaa3d90b8bfa26514da9407265662f2e269eecae37441c43464e84",
+    "working/game-clean/Creatures/16Mb_Anims/Chaos.ani": "0f85ced73e04e6426a1ee06016ff7bed4f4dc0afad25f69e8414ee2e89ae659c",
+    "working/game-clean/Creatures/16Mb_Anims/Greek Male.ani": "4120854b90f93060e27cb70d062a86a50aeec3660617b3d46a462b86f5985e77",
+    "working/game-clean/Creatures/16Mb_Anims/Law.ani": "888116fd139eb4daa65c9481f29cbcec600841aa4aaedbbaa15ad12630d15f00",
+    "working/game-clean/Creatures/16Mb_Anims/Lucan.ani": "bdbfaf894ec1ff1d0aec7e46cfc41d736f30e8beead36eeae812d746bff7f0c6",
+    "working/game-clean/Creatures/16Mb_Anims/Med02.ani": "2c8e9f89f7fb1a4befa9e6986b76a4a90c00bccfe2fa31e58bb4f53748ec921c",
+    "working/game-clean/Creatures/16Mb_Anims/Medwizard01.ani": "5d99d39b0a5036bfcdc0a9f31655828d42dc366cb629bdf411efe46ae720e9e2",
+    "working/game-clean/Creatures/16Mb_Anims/Percival.ani": "8716ee9e43793c974b50993c056138e3db4ce1d1726da271f17c4f5a77d3fe45",
+    "working/game-clean/Creatures/16Mb_Anims/Sophia.ani": "9fc13b03ce3bda82e9379cefb8766a2e636ed6403e01d1a7474146790d97fea0",
+    "working/game-clean/Creatures/16Mb_Anims/Wizard5.ani": "007cfceacda4679544e39c12bc128e486cd8df38fd097f211668196d6c7f02ce",
+    "working/game-clean/Creatures/16Mb_Anims/basilisk.ani": "67bf6710d2cad418c4aa50a0d339c1cffab404f1104b5bf34cc2dfcb3bdb647d",
+    "working/game-clean/Creatures/16Mb_Anims/bat.ani": "e728aa4b00e996f844f4ed3f689917e38e8d368f92f9408edc6990a8d0636706",
+    "working/game-clean/Creatures/16Mb_Anims/brownie.ani": "0ea4cf3cdafe6ea0c078760f09dfd1dcab671fdbdb9515ac370de1d40e9ef7bf",
+    "working/game-clean/Creatures/16Mb_Anims/celticwizard.ani": "74f6cdceb8067d797493cf2daa449f05952c3b09b405404cd14ee8c675cb698c",
+    "working/game-clean/Creatures/16Mb_Anims/centaur.ani": "bc198e8f632406a0c4975b493348e9c6a26a256c79f1a5986722da1fc136c8cb",
+    "working/game-clean/Creatures/16Mb_Anims/crocodile.ani": "8e500a937f64c23676c353f0cd36f4612595d67cf154ab09b6c9e97a99bb753e",
+    "working/game-clean/Creatures/16Mb_Anims/dog.ani": "1054f2cdfd69815a9bf2028c5d84d49f41c2b2701eed684dedc764ecd515189f",
+    "working/game-clean/Creatures/16Mb_Anims/dragon.ani": "ad5cd401fdeae33c1f48d7adf0c0438749e110a43c516e78bfdb1b67c52e5353",
+    "working/game-clean/Creatures/16Mb_Anims/elf.ani": "9c07273590edeb503e1bec4c5b3cc7c31459025531a283e860b01c9e8d0c4da6",
+    "working/game-clean/Creatures/16Mb_Anims/eye.ani": "a310abac20827ca6c12e3fdf6ff2d33bb7489d33ea2ecc73986ad844dbf545c9",
+    "working/game-clean/Creatures/16Mb_Anims/faun.ani": "5ffbd2dd398ec9797ff2bf879459eb4a582f7e1cd1e1b11ae3cc4be6e07af90a",
+    "working/game-clean/Creatures/16Mb_Anims/greek female.ani": "70ed169ac45d396c30d56a89e22bdebcf674d507e653ae879896e11f7d9fe4c3",
+    "working/game-clean/Creatures/16Mb_Anims/griffin.ani": "124357757399261125f6baa2346c5059e4a035b6706ad6a92d46bd9c85f77129",
+    "working/game-clean/Creatures/16Mb_Anims/hermes.ani": "36e78d6de6596881345659f3565c5dbb8768496874f72ade4ff851387a81cc12",
+    "working/game-clean/Creatures/16Mb_Anims/hero.ani": "04f3f6c8758d4cf8f1fbb8d1d7568ef621a15cb477aa44177c66e34a6ebaf823",
+    "working/game-clean/Creatures/16Mb_Anims/log.ani": "a79e81e491b27e49d0f859b93e55ef3df02e71f1221041f8800cd8348c6b9106",
+    "working/game-clean/Creatures/16Mb_Anims/manticore.ani": "02f59d21c0be4a915fe9c5c67e218e0769402be8a2786f7582e8a2899a60b692",
+    "working/game-clean/Creatures/16Mb_Anims/overlord.ani": "b3cbe9a64142f83052ba99647a95099d6765c50d2ba823f3fda91b36d8639c62",
+    "working/game-clean/Creatures/16Mb_Anims/phoenix.ani": "1a4d45bc0fa8f2eacb93a757c95a5518346e78d6be364027fde3ff0bf8808094",
+    "working/game-clean/Creatures/16Mb_Anims/redcap.ani": "f1f5f861098c212ed0260b46896a57a8d964777803b85b1d8120e464f372cb2f",
+    "working/game-clean/Creatures/16Mb_Anims/skeleton.ani": "4633de4758a68dec4de669bf2eebe29610024bf5a57bd6c273345d8290d8ed91",
+    "working/game-clean/Creatures/16Mb_Anims/troll.ani": "0244a8309b17fe15d6666a85e86dfb56b3bbe5273d89c37709ffa0f0e221ecd3",
+    "working/game-clean/Creatures/16Mb_Anims/unicorn.ani": "61acd43f32798971c616f57b95a1dd6fc38d6e4fbfda7f10d5becedd6e6493c8",
+    "working/game-clean/Creatures/16Mb_Anims/vampire.ani": "b52441dba0151bb1acf8e67f5ea4b5d9d6177a15ad894fd463caf7b3dd126f8c",
+    "working/game-clean/Creatures/16Mb_Anims/wizard1.ani": "e0b052079edb0a7573e759691f87654543f431c78999793cc9ca953b56ca779e",
+    "working/game-clean/Creatures/16Mb_Anims/wizard2.ani": "5b6b40dcc3f11aecb6da183b96890c737efcf1a2d627f5c579622042b6cd04cf",
+    "working/game-clean/Creatures/16Mb_Anims/wizard3.ani": "84cb4acacf8831ff6ce157ca989c911ce7394a044d95e9dc21b436e301f1cc29",
+    "working/game-clean/Creatures/16Mb_Anims/wizard4.ani": "79f9dfcca4f9f83191d84fc6415868c87ccc93c7c5c9ad3711cb8a398e11f8f0",
+    "working/game-clean/Creatures/16Mb_Anims/wizard6.ani": "473ab88ef5bf7d0ee724f308fd8fd493291d0bf658521d05eba0cb5926152a4c",
+    "working/game-clean/Creatures/16Mb_Anims/wraith.ani": "f66d8eca8456cc3d22f3350218fe13609d740fbdc13af2ee0afce4ffb673acae",
+    "working/game-clean/Creatures/16Mb_Anims/zombie.ani": "86137107ca408c345df1fcaae0c8c7ce43ae90fad8094145c7fae861e55c3cd2",
+    "working/game-clean/Creatures/Ariadne.ani": "ef3089f24030f4ca2572f64083b136c71b5c3db217b14881aa3d4615011e6b8b",
+    "working/game-clean/Creatures/Chaos.ani": "1c62d14229abea86aed460a82a328efb4f8986914327a506c81e4f5ff07ff2cb",
+    "working/game-clean/Creatures/Greek Male.ani": "586746551163356b746120820be204a65fc0abc762af0fcc7237675cecd71024",
+    "working/game-clean/Creatures/Hermes.ani": "36e78d6de6596881345659f3565c5dbb8768496874f72ade4ff851387a81cc12",
+    "working/game-clean/Creatures/Law.ani": "8e0cb4570206a4d7a4d99fde0a94eeee171b53818fb56279cc55791875d408d1",
+    "working/game-clean/Creatures/Lucan.ani": "f1825e99764f57098b62f23e83f1564f7384374f6df7851dc924e5cee428b07f",
+    "working/game-clean/Creatures/Med02.ani": "bcde07cb9c4b495512840d1b795ee661746f9f8501cfc0fe8497272e9c332e0c",
+    "working/game-clean/Creatures/Medwizard01.ani": "5e8bf59ea4a2dab4d3af32b094d7da37788a224f28841fba6e200450152cd5f0",
+    "working/game-clean/Creatures/Overlord.ani": "72f2b2677e26d489aba60b2cc07d0b7eb9fb7eb9dd7e1b6cde7a533db6aae651",
+    "working/game-clean/Creatures/Percival.ani": "2e7c0b192ccbf87e4b46abb897eff691b859d959a859d69b6b0c127d3ad33b4a",
+    "working/game-clean/Creatures/Wizard5.ani": "87e526b1e2a34225eb43f903ee794718cafe888f4eaea717d00314e541720886",
+    "working/game-clean/Creatures/basilisk.ani": "a50b8a3d7adb12b3de08c2a90e8f2b4dca2c01ecc73f65e3c0e166fb81b7f5a3",
+    "working/game-clean/Creatures/bat.ani": "f4b3b645d0fb559e7585f85aa789a8aec63b830e5876f7f69c779b2546985425",
+    "working/game-clean/Creatures/brownie.ani": "5df279e91dc1fc60284aac56e7ad870c27169bc6b7855640f0de0c5d69fad050",
+    "working/game-clean/Creatures/celticwizard.ani": "9d1cfd661d73d8f655e8d349189002b6c17c32eaa1f406c43b39bd257125c4a0",
+    "working/game-clean/Creatures/centaur.ani": "1ca349dfd3dd053b3371056704fa999ac971df80ad581850aa468bf3cbcce4a8",
+    "working/game-clean/Creatures/crocodile.ani": "9e0071f2ffd3b726ae01590836a4dee306f88a25556e66654510bac1353e2fef",
+    "working/game-clean/Creatures/dog.ani": "0cb82b79f8a0f83938148f80cfcbb6b9ec4d3798af04cc3ad65e71c0eff441ed",
+    "working/game-clean/Creatures/dragon.ani": "818794ea6c213a45c7d214fc254c82c8e084881dc9841aea431635ba5abfc8aa",
+    "working/game-clean/Creatures/elf.ani": "26deb59bb3ad9b8cef8f32cdab1e8cf337da134a9ed4e552006e346af9ab4758",
+    "working/game-clean/Creatures/eye.ani": "309efc3a20ff66ab0800edc5500ef11ddd59ec53e3bf1f544d5def7911c39a33",
+    "working/game-clean/Creatures/faun.ani": "c6bb2822eec52fc554383b2812db5441e4ae968699d37a0ff141b9b60322ae20",
+    "working/game-clean/Creatures/greek female.ani": "cd2b71696788e899765f1617728eaf06d72b244d968c0aaa34421e1dd328c9b3",
+    "working/game-clean/Creatures/griffin.ani": "99443a0c88e89f1862f619c7db7b64c83cc2c7ad565b8021312375edeb0b35ad",
+    "working/game-clean/Creatures/hero.ani": "e996f294d37b331ebc753d28c751ab251f5de9f8f017460ddaafc18ae9d6dca3",
+    "working/game-clean/Creatures/manticore.ani": "1ad9dfa1b0a2102ad90893974af6ab6dcd0e04742a06a9cbec4151bbb33221a9",
+    "working/game-clean/Creatures/phoenix.ani": "8b827d05aa2a21f5746fd676b8e927afb445501be09b0db662d22701e45cf8cc",
+    "working/game-clean/Creatures/redcap.ani": "6af0d77f2a8a95f44ccc6d09f4330191757a584e4deb8b9417a98f8cd402902e",
+    "working/game-clean/Creatures/skeleton.ani": "c55214920ef4fdc3ad87b0e461331dba56fa12388f8f895eac75916f444d05ea",
+    "working/game-clean/Creatures/troll.ani": "b4aa1aa7701239c96552e7e8c6845f8ba02ecaef53440f78c1a2b301d3ec8d1e",
+    "working/game-clean/Creatures/unicorn.ani": "162b3ad41bd58ace352a4539d47d7cc6b55c53ab8fda589b5855c13232704f16",
+    "working/game-clean/Creatures/vampire.ani": "cb27f9cce791dd5e5e67fb3fd49afdef877080cfa3be982577b77cf771a4fbfb",
+    "working/game-clean/Creatures/wizard1.ani": "9b50f49c022ad69c1b3875e19b4878466f8740a3adf29c23d3ed61c3ba3b1da7",
+    "working/game-clean/Creatures/wizard2.ani": "b60e9e2343ddfe909f313a395a8be9c446873bed1a8fddcacedeae0769098c6e",
+    "working/game-clean/Creatures/wizard3.ani": "95bac448da38f081828f3d030f39a21da2475014b215a59a11395151365f7b22",
+    "working/game-clean/Creatures/wizard4.ani": "f7d8120f028e6da9603e14fcb552019af8a2b0e889d154f57c3923acf6faebc1",
+    "working/game-clean/Creatures/wizard6.ani": "369b58a74c52d29c15002d160b1d4da2963dedb0a354309bc0aebf3e681b3e9b",
+    "working/game-clean/Creatures/wraith.ani": "bfc4eaa76e8e8321c9e18663a79d2892f1c16fe15e49cb26316f1e4a15d2b192",
+    "working/game-clean/Creatures/zombie.ani": "317a8a6fca354411e825576ab7179343e099d40a352d382a498c20773fca828f",
+    "working/game-clean/Interface/RealmViewer/Generic/flags.ani": "4d159b3927591f4caf0b82e9cec5cb6a1676f64b6a906b16a1f19dc604d8f773",
+    "working/game-clean/Realms/Celtic/Forest/doors.ani": "07ea89ca79aae70e07d7bfdc0e9d7adbff73c5b8e0cf8e1a84dedc991fbfecf5",
+    "working/game-clean/Realms/Celtic/Forest/terrain.ani": "4e7f8e5e36fa0cdd8059b60d24f1eff9b110160c7fd817dc1b21be93da349704",
+    "working/game-clean/Realms/Celtic/Plains/doors.ani": "313f098bb91cc3ef9ab3875ad4faf90873ac1c372d83410cc4815110baa5f506",
+    "working/game-clean/Realms/Celtic/Plains/terrain.ani": "83dbacd835197699f10f4d60ba83cedadc788c04ce355b5ed3cdeb4346082a50",
+    "working/game-clean/Realms/Celtic/Swamp/doors.ani": "20016f5fce93b928e1a5701d8713a1a0c15d3a1453fa409bebf251647098960f",
+    "working/game-clean/Realms/Celtic/Swamp/terrain.ani": "52e98dd4192d9155e8f08b0a6828a859c3220c156a6a7def7ce1c84a3feb3ebe",
+    "working/game-clean/Realms/Celtic/Tutorial/doors.ani": "07ea89ca79aae70e07d7bfdc0e9d7adbff73c5b8e0cf8e1a84dedc991fbfecf5",
+    "working/game-clean/Realms/Celtic/Tutorial/terrain.ani": "4e7f8e5e36fa0cdd8059b60d24f1eff9b110160c7fd817dc1b21be93da349704",
+    "working/game-clean/Realms/Celtic/Village/doors.ani": "43d9437d29baec4b8e5a19f22106c0631bffcfd91ab1d1130f907e9b668bdcc1",
+    "working/game-clean/Realms/Celtic/Village/terrain.ani": "202a24edaa1812b2abdb54ca7684dd983d24eed8f618fdce1c31544e4bccdbf1",
+    "working/game-clean/Realms/Greek/Delphi/Doors.ani": "422aff8e95aae9ffd98f5a390b9e67c223a2954736d37b5aad52fa0819c357ae",
+    "working/game-clean/Realms/Greek/Forest/doors.ani": "422aff8e95aae9ffd98f5a390b9e67c223a2954736d37b5aad52fa0819c357ae",
+    "working/game-clean/Realms/Greek/Forest/terrain.ani": "2d9e2f3543ef184d73d825b5d178e3d2a87252c6ad6aa123c82ce5187e74af6b",
+    "working/game-clean/Realms/Greek/Labyrinth/Terrain.ani": "64e041e8535ff51eddcfd2b996645a78d056558d46f1cea5b442a91e4ea9bf6e",
+    "working/game-clean/Realms/Greek/Mountains/terrain.ani": "d6e22122cd158d16030d47781c36ca5e1ef81a8972a728975d345fb505638841",
+    "working/game-clean/Realms/Greek/Plains/terrain.ani": "40746e7edca5ab2359fcdb55a8430777af9976bd5fed87ae43b5ebbdf9a7e1e3",
+    "working/game-clean/Realms/Greek/Village/Doors.ani": "422aff8e95aae9ffd98f5a390b9e67c223a2954736d37b5aad52fa0819c357ae",
+    "working/game-clean/Realms/Greek/Village/terrain.ani": "c18043d0c44ec1b5f2c458dc0f672648b686cd3583997d38c2296e1cb0597936",
+    "working/game-clean/Realms/Medieval/Camelot/doors.ani": "0cf9088147b957dc6ae94c71f9811d5486ee38acfcd1eb6757ff568ccc1bb812",
+    "working/game-clean/Realms/Medieval/Camelot/terrain.ani": "51d38797cfd3ce6a1806ae2934650ee40780500da30acc30da7c00ad3b19f8ec",
+    "working/game-clean/Realms/Medieval/Carbonek/doors.ani": "a66dc7890208a5bef6db12412e1c400bebfee95298f22a028a760f8600b17180",
+    "working/game-clean/Realms/Medieval/Dinas/doors.ani": "e211ecc23a08d41e3ec8383bb90d26e32b3ad870137ca5336528dac2f39e9dc7",
+    "working/game-clean/Realms/Medieval/Forest/terrain.ani": "2b2202e44413403a3d9f13466ecc35bf13c8566a6bb48fb33bcd43be29357234",
+    "working/game-clean/Realms/Medieval/Mountains/doors.ani": "e211ecc23a08d41e3ec8383bb90d26e32b3ad870137ca5336528dac2f39e9dc7",
+    "working/game-clean/Realms/Medieval/Mountains/terrain.ani": "faec26056922ea9bc0591c903a89f8076da4750f2f86c557f0d93ee47cad3ac7",
+    "working/game-clean/Realms/Medieval/Pendragon/doors.ani": "3ee6671bd543971acc7b055fa28125a9a2a6c313022ffb6a08914c748b9c3842",
+    "working/game-clean/Realms/Medieval/Plains1/doors.ani": "a66dc7890208a5bef6db12412e1c400bebfee95298f22a028a760f8600b17180",
+    "working/game-clean/Realms/Medieval/Plains1/terrain.ani": "65d3adf8d0e463c93fdfe00a0e80a56a41a0d1f7589b53616d1b73fc99890798",
+    "working/game-clean/Realms/Medieval/Plains2/Terrain.ani": "a81e201b60b6a0d12014be7ff98b7090339a79c558f4798b0530dd0f0a8babd9",
+    "working/game-clean/Realms/Medieval/Plains2/doors.ani": "3ee6671bd543971acc7b055fa28125a9a2a6c313022ffb6a08914c748b9c3842",
+    "working/game-clean/Realms/Medieval/Swamp/terrain.ani": "e13da3505b11311c055405a426cba36fb54297ac7b402e84b5da98bac66a2ac3",
+    "working/game-clean/Realms/Medieval/Village/doors.ani": "88c986553ffd34a2826dc33c0aadcb41cc1c0eedf7c886e076e07ae011c57fa1",
+    "working/game-clean/Realms/Medieval/Village/terrain.ani": "a00b0ca3579ebbdc23947d7cb2602440d717d7f4da4ae54626ce88de6dcce2ab",
+    "working/game-clean/Sprites/Effects5.ani": "c2c7d023d7b12965070a0d07086f31a998fd5f7662b89877855946764a480859",
+    "working/game-clean/Sprites/Effects6.ani": "bf875ab96e5673185b2df24dab0df91ddb17f35d409627c9d25dbc8109a47f72",
+    "working/game-clean/Sprites/effects2.ani": "42bb1450f9ad8f8fdc149ee9f6e1570a9acb0b1fb1125e3d15db656971a4a4af",
+    "working/game-clean/Sprites/effects4.ani": "ff7cd8a055a42ff5053be3e5e9d7b7398b5afc76f0519fe62a831edaa1e1e8aa"
+  },
+  "helper_sha256": "ad10818059481d2cbdc16771cc8477a86a1870e63b81de79dda744222c7d7beb",
+  "compile_command": [
+    "g++",
+    "-m32",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I/home/hoff/swdev/magic_and_mayhem_mod/assets",
+    "-I/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/animation",
+    "/home/hoff/swdev/magic_and_mayhem_mod/tests/animation-binary-reference.cpp",
+    "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/animation/no_cd.cpp",
+    "-o",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/animation-switch/run-mraqfj_r/reference"
+  ],
+  "input_unchanged": true,
+  "live_validated": false,
+  "summary": {
+    "traces": 2140,
+    "states": 70620,
+    "installed_assets": 118,
+    "all_match": true
+  },
+  "static_artifacts": {
+    "direction_lookup.asm": "eed0a52048d9720f0b9c44d9d8a2a905e519a7b249bd07ce4fc512da63b0ccd1",
+    "facing.asm": "24ff756a9408093f654dadce59986a5ad321cc5b5234c0f1be2ced7e0d238e1e",
+    "group_validator.asm": "19c85f8b3264db4635adb3a6fea5585b36f7f94490d5632023b85bb2814d768e",
+    "attached_facing.asm": "c3ba36bd4e8bbce83f8a63718108814a6ad106a82d4ac620e9820109965537ba",
+    "configured_action.asm": "5b61332140884473b8561468c6b08688cd5913a3f183480c68a8295bfb2ae995",
+    "switch.asm": "6e9517de000bdffce7f1470c89733955197dac6deaebd086c748ae564e8ae1a5"
+  },
+  "evidence_directory": "working/tests/animation-switch/run-mraqfj_r",
+  "full_report_sha256": "9b1eaa4001332d7b1001fc8d02fc0a4786f123d21a6feb8b17a4f81d94bf0e79",
+  "cases_by_asset": [
+    {
+      "asset": "Creatures/16Mb_Anims/Ariadne.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/Chaos.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/Greek Male.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/Law.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/Lucan.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/Med02.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/Medwizard01.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/Percival.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/Sophia.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/Wizard5.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/basilisk.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/bat.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/brownie.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/celticwizard.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/centaur.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/crocodile.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/dog.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/dragon.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/elf.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/eye.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/faun.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/greek female.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/griffin.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/hermes.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/hero.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/log.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/manticore.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/overlord.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/phoenix.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/redcap.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/skeleton.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/troll.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/unicorn.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/vampire.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/wizard1.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/wizard2.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/wizard3.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/wizard4.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/wizard6.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/wraith.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/16Mb_Anims/zombie.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Ariadne.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Chaos.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Greek Male.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Hermes.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Law.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Lucan.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Med02.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Medwizard01.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Overlord.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Percival.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/Wizard5.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/basilisk.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/bat.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/brownie.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/celticwizard.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/centaur.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/crocodile.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/dog.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/dragon.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/elf.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/eye.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/faun.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/greek female.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/griffin.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/hero.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/manticore.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/phoenix.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/redcap.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/skeleton.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/troll.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/unicorn.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/vampire.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/wizard1.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/wizard2.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/wizard3.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/wizard4.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/wizard6.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/wraith.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Creatures/zombie.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Interface/RealmViewer/Generic/flags.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        8
+      ],
+      "target_sequences": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Celtic/Forest/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Celtic/Forest/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Celtic/Plains/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Celtic/Plains/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Celtic/Swamp/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Celtic/Swamp/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Celtic/Tutorial/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Celtic/Tutorial/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Celtic/Village/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Celtic/Village/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Greek/Delphi/Doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Greek/Forest/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Greek/Forest/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Greek/Labyrinth/Terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Greek/Mountains/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Greek/Plains/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Greek/Village/Doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Greek/Village/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Camelot/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Camelot/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Carbonek/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Dinas/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Forest/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Mountains/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Mountains/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Pendragon/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Plains1/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Plains1/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Plains2/Terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Plains2/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Swamp/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Village/doors.ani",
+      "traces": 7,
+      "states": 231,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Realms/Medieval/Village/terrain.ani",
+      "traces": 14,
+      "states": 462,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "switch_ticks": [
+        0,
+        3
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Sprites/Effects5.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        16
+      ],
+      "target_sequences": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Sprites/Effects6.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        8
+      ],
+      "target_sequences": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Sprites/effects2.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        8
+      ],
+      "target_sequences": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "Sprites/effects4.ani",
+      "traces": 21,
+      "states": 693,
+      "source_sequences": [
+        8
+      ],
+      "target_sequences": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "switch_ticks": [
+        0,
+        3,
+        7
+      ],
+      "all_match": true
+    },
+    {
+      "asset": "synthetic controls",
+      "traces": 5,
+      "states": 165,
+      "source_sequences": [
+        0
+      ],
+      "target_sequences": [
+        1
+      ],
+      "switch_ticks": [
+        0,
+        2,
+        3,
+        5,
+        7
+      ],
+      "all_match": true
+    }
+  ]
+}
