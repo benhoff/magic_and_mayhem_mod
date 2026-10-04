@@ -12,11 +12,18 @@ ctest --test-dir working/build/audio --output-on-failure
 python3 tools/test-audio-buffers.py
 ```
 
-The integration check reads every installed WAV with Python's independent WAV
-reader, uploads through the reconstructed static path, duplicates the voice,
+The integration check reads every installed WAV through AssetStore/loadWave
+using mixed-case relative and mapped drive-absolute Windows requests, compares
+with Python's independent WAV reader, uploads through the reconstructed static path, duplicates the voice,
 releases its source, and compares the survivor's sample dump byte for byte.
 It verifies the immutable original manifest before/after and does not launch
 the game. Evidence is under `working/tests/audio-buffers/`.
+
+The build requires Qt 6.8+ Core for asset input and the CLI, plus Python 3 for
+the fixture tests. `mnm-audio` and the reconstruction retain standard C++ APIs;
+no Qt types enter those algorithms. The combined audio build runs five CTests,
+including the three asset tests and an input-adapter fixture check. No Wine,
+display server, or audio output device is needed for native builds/tests.
 
 `Device` is thread confined. IDs identify voices within one Device; they are
 not process pointers. Secondary duplicates share committed storage. A lock
@@ -42,12 +49,40 @@ working/build/audio/mnm-audio-upload "working/game-nocd/Sounds/Spell click.wav" 
 The JSON output describes format, copied bytes, revision and retirement. The
 dump is raw PCM, not another WAV container. Source WAVs are read only.
 
-The planned Qt-backed input adapter is specified in the
+For installation-relative Windows requests:
+
+```bash
+working/build/audio/mnm-audio-upload --assets working/game-nocd \
+  --path 'sOuNdS\SPELL CLICK.WAV' --dump working/tests/spell-click-pcm.bin
+working/build/audio/mnm-audio-upload --assets working/game-nocd \
+  --prefix 'C:\MagicMayhem' --path 'c:\magicmayhem\Sounds\Spell click.wav' \
+  --dump working/tests/spell-click-pcm.bin
+```
+
+The positional host-path form remains supported: its parent becomes the asset
+root and its filename the request. Use either one host path or the paired
+`--assets`/`--path` options. `--prefix` is repeatable in installation-root mode.
+Output must be outside the configured asset root, protecting input files from
+accidental replacement. Existing dump output is replaced only after successful
+input parsing and upload. Invalid CLI combinations exit 2; input/parser/upload
+failures exit 1; success exits 0.
+
+The Qt-backed input adapter is specified in the
 [asset file interface contract](../research/formats/asset-file-interface.md).
-It will replace direct upload-CLI file input while preserving the WAV parser,
-sample ownership, and upload checks. The contract, standalone path resolver,
-and read-only file backend are complete, and installed raw byte comparisons
-pass. Connecting this input interface to the audio pipeline remains pending.
+`mnm-audio-loader` implements `loadWave(AssetFile&)` by bounded `readWhole`
+followed by the existing strict `readWave` parser. It rewinds the file and
+retains the 32 MiB input limit; Device retains the 16 MiB sample limit. Asset
+failures throw `AssetInputError` carrying structured diagnostics; parser
+failures preserve existing runtime errors. Returned PCM owns its bytes.
+The upload CLI closes its input before calling reconstructed `uploadStatic`,
+then checks duplication and source-voice retirement exactly as before.
+
+Chunk 5 completes this first native input/loader connection. Fixture tests
+check legacy and explicit request modes, nested case matching, exact PCM after
+input closure, malformed files, the input/sample limits, missing/traversing
+paths, rejected output locations, and CLI errors. Raw installed-file checks
+remain separate from decoded PCM comparisons. See
+[WAV integration evidence](../research/formats/pcm-wav-loading.md).
 
 Next: reconstruct play/stop/loop, frequency/volume/pan and playback cursors;
 introduce independent voice state and an offline mixer before a Qt audio sink

@@ -31,5 +31,10 @@ error/partial-read behavior. Native storage is in `audio/`; playback and the
 game's higher-level voice scheduler are future work.
 
 Build/tests are described in [audio/README.md](../../audio/README.md).
+Native `audio::loadWave(AssetFile&)` now feeds the strict parser through the
+Qt-backed read-only interface. The offline upload CLI closes input before
+`uploadStatic`; reconstructed setup/upload algorithms and native PCM policies
+remain unchanged. This is a native input adapter, not reconstruction of the
+original manager's file/config loader or WinMM error behavior.
 Static evidence and address confidence are in
 [DirectSound setup](../../research/runtime/directsound-buffer-setup.md).

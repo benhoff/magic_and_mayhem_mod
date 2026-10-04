@@ -96,6 +96,15 @@ writes, invalid/repeated unlock, release while locked, and allocation limits.
 The lifecycle suite also passed with AddressSanitizer, UndefinedBehaviorSanitizer
 and LeakSanitizer in `working/build/audio-sanitize`.
 
+The native offline pipeline now reads through Qt-backed AssetStore and
+`audio::loadWave(AssetFile&)`, closing input before reconstructed upload.
+Updated run `working/tests/audio-buffers/run-fbodze_l/report.json` again matches
+all 356 WAVs / 11,908,772 PCM bytes through mixed-case relative and explicitly
+mapped Windows paths. Five combined audio/asset CTests and original-manifest
+checks before/after pass. See [input integration evidence](../formats/pcm-wav-loading.md).
+The adapter preserves the parser and static upload policies; it is not a
+reconstruction of original manager file loading or a live hook.
+
 Confidence is high for the selected static contracts and offline ownership/
 sample-byte behavior. Actual call coverage, COM reference counting, device
 cooperation, audible output and live voice timing are unvalidated.

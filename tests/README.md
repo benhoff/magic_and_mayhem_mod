@@ -251,6 +251,14 @@ observed results separately from the offline checks.
 
 ## Native audio buffers without the game
 
+The audio build now includes the Qt asset backend and five CTests.
+`audio-asset-input` checks the WAV adapter and upload CLI using independent
+synthetic PCM expectations, mixed-case Windows requests, mapped drive prefixes,
+legacy host paths, input/sample size limits, and rejected inputs/output paths.
+The upload CLI closes its file before PCM upload, exercising ownership beyond
+input lifetime. Installed checks below use the same interface, with Python's
+WAV reader as the independent decoded-output reference.
+
 Native asset path resolution has an independent fixture-only check:
 `cmake -S assets -B working/build/assets`, then build that directory and run
 `ctest --test-dir working/build/assets --output-on-failure`. It exercises
