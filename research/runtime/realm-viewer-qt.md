@@ -65,9 +65,11 @@ clamped at the top as a native placement policy. Native realm selectors occupy
 that these controls do not obscure the 36 sample flags. Cancel/OK/Spell Selection/
 Grimoire use the original RlmBtn visual pairs at X=10/110/210/310,Y=550,94x39;
 Character uses the shared face triplet at (410,530,60,60); Options is native text
-at (480,550,94,39). Font, hit rectangles, hover/pressed pairing and placement remain
-approximate. PCX region silhouettes/borders, flags.ani/path movement, Spell Research,
-original fonts and exact screenshot equivalence are not implemented/verified.
+at (480,550,94,39). Hover/pressed pairing and control placement remain native approximations.
+Original SFT mask fonts are covered by [shared font integration](menu-font-integration.md).
+PCX region silhouettes/borders, flags.ani and stored-route previews are now
+covered by [visual integration](realm-viewer-visuals.md). Spell Research and exact
+original screenshot/transition equivalence remain unimplemented/unverified.
 
 ## Verification
 

@@ -19,8 +19,8 @@ contract; UI placement and campaign bindings are native interpretations.
 The application catalog reads 8 Celtic, 12 Greek and 16 Medieval name/FP pairs.
 These ranges match the existing Region Entry image-selection bounds; they are
 not evidence of the entire original campaign's region/state space. Other generic
-FP/border/silhouette ordinals exist. Map variants at 640x480, PCX silhouette/border
-inputs and flags.ani also exist; they are not consumed by this widget.
+FP/border/silhouette ordinals exist. Map variants at 640x480 also exist. PCX silhouette/border inputs and flags.ani
+are now consumed by the [native visual integration](../runtime/realm-viewer-visuals.md).
 No dedicated Realm Viewer control-rectangle CFG was found in its directory.
 
 The native catalog reads names through AssetStore with a 1 KiB bound, trims
@@ -37,6 +37,32 @@ Flag frame sizes span 15..41 by 36..44 pixels; RlmBtn frames alternate 94x39
 with origin (0,0), and 93x38 with origin (-1,-1). Pairing visual counterparts
 as normal versus hover/pressed is a native choice, not a recovered event mapping.
 The shared Character icon comes from Sprites/Buttons.spr frames 0..2.
-Campaign IDs, ownership/banner IDs, availability, unlock conditions, region
-hit shapes, movement/animation and exact original fonts/control placement remain
-outside this asset evidence.
+Campaign IDs, ownership/banner IDs, availability, unlock conditions and original
+movement/animation callbacks and control placement remain outside this asset
+evidence. Native shape/animation consumption is described below.
+
+## PCX and ANI visual inputs
+
+Follow-up inspection, 2026-10-04: all 36 selected silhouette/border pairs decode
+through the native PCX reader as 800x600 images with origin (0,0). Silhouettes
+contain only indices zero and one: zero is blue background, one is magenta
+membership. Border background palette indices vary (e.g. Celtic 01: 249,
+Greek 01: 253, Medieval 01: 255), but their RGB is exactly (0,0,255). Border
+images include region texture and a bright outline; they are not just thin lines.
+The native display keys exact blue to transparency and uses silhouette indices
+for hit testing. Original draw/callback keying remains unverified.
+
+`Generic/flags.ani` is version five: 440 records, 101 sequences, associated
+`Flags.spr`. Sequence zero holds eleven green-flag frames (0..10), sets delay
+one and loops back to its start. Sequence 50 cycles twelve figure frames
+(48..59) and loops with default delay zero. Their display metadata offsets are
+respectively (-2,-47) and (-18,-41), relative to the display anchor; original
+SPR origins remain part of placement. Native roles and timer rate are separate
+from original campaign/action bindings. Unused sequence 96 has a relative jump
+outside its own sequence range; the native viewer does not execute it.
+
+The selected 36 FP files contain 75 paths/15,424 stored points, all in the
+800x600 canvas. Each available selected region now displays a bounded native
+preview of its first route. This does not establish original route choice,
+slot reservation, ownership, speed or travel transitions. See
+[visual policies and validation](../runtime/realm-viewer-visuals.md).

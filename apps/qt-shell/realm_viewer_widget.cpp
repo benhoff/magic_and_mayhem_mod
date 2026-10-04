@@ -2,6 +2,10 @@
 #include "menu_assets.hpp"
 #include <QFontMetrics>
 #include <QKeyEvent>
+#include <QMouseEvent>
+#include <QTimer>
+#include <QShowEvent>
+#include <QHideEvent>
 #include <QLabel>
 #include <QPainter>
 #include <QSet>
@@ -12,6 +16,7 @@ bool failure(QString* error,const QString& text){if(error)*error=text;return fal
 std::array<mnm::ui::MenuSpriteFrame,3> pair(const mnm::ui::MenuSpriteSheet& frames,int first){if(first<0||first+1>=frames.size()||frames[first].image.isNull()||frames[first+1].image.isNull())throw std::runtime_error("Missing Realm Viewer button pair");return {frames[first],frames[first+1],frames[first+1]};}
 }
 RealmViewerWidget::RealmViewerWidget(QWidget* parent):QWidget(parent) {
+    setMouseTracking(true);animationTimer_=new QTimer(this);animationTimer_->setObjectName("realmViewerAnimationTimer");animationTimer_->setInterval(40);connect(animationTimer_,&QTimer::timeout,this,&RealmViewerWidget::advanceAnimation);
     resize(800,600);setMinimumSize(320,240);setWindowTitle("Magic & Mayhem — Realm Viewer preview");
     auto button=[this](const QString& object,const QString& text){auto* b=new mnm::ui::SpriteButton(text,this);b->setObjectName(object);b->installEventFilter(this);b->setCursor(Qt::PointingHandCursor);b->setStyleSheet("QPushButton {color:#fff5d6;background:rgba(20,20,20,175);border:1px solid #ac915a;} QPushButton:checked,QPushButton:hover,QPushButton:focus {background:#51402a;} QPushButton:disabled {color:#888;}");return b;};
     const std::array<QString,3> names{"Celtic","Greek","Medieval"};for(int r=0;r<3;++r){realms_[r]=button(QString("realmViewerRealm%1").arg(r),names[r]);realms_[r]->setCheckable(true);connect(realms_[r],&QPushButton::clicked,this,[this,r]{selectRealm(Realm(r));});}
@@ -30,6 +35,7 @@ bool RealmViewerWidget::valid(const Campaign& c) {
 }
 bool RealmViewerWidget::setCampaign(const Campaign& campaign,QString* error) {
     if(!valid(campaign))return failure(error,"Invalid supplied Realm Viewer campaign");
+    hoveredRegion_.clear();setToolTip({});unsetCursor();pathTick_=0;
     campaign_=campaign;for(int r=0;r<3;++r)if(campaign_.selectedRegionIds[r].isEmpty()&&!campaign_.regions[r].isEmpty())campaign_.selectedRegionIds[r]=campaign_.regions[r].first().id;
     populate();if(error)error->clear();return true;
 }
@@ -41,35 +47,36 @@ bool RealmViewerWidget::loadAssets(const QString& root,QString* error) {
         auto flags=mnm::ui::loadMenuSprites(root,"Interface/RealmViewer/Generic/flags.spr");auto buttons=mnm::ui::loadMenuSprites(root,"Interface/RealmViewer/Generic/RlmBtn.spr");
         if(flags.size()!=89||buttons.size()!=12)throw std::runtime_error("Unexpected Realm Viewer sprite frame counts");
         for(const auto& frame:flags)if(frame.image.isNull())throw std::runtime_error("Empty Realm Viewer flag frame");
+        auto visuals=mnm::ui::loadRealmViewerVisuals(root,flags);
         const auto close=pair(buttons,0),open=pair(buttons,2),spellbox=pair(buttons,4),grimoire=pair(buttons,8);
         const auto shared=mnm::ui::loadMenuSprites(root,"Sprites/Buttons.spr");const auto character=mnm::ui::spriteStates(shared,0);
         const auto tips=mnm::ui::loadMenuLayout(root,"Interface/RealmViewer","realmviewtooltip.cfg");if(tips.value("HEADER").value("ValidConfig")!="TRUE")throw std::runtime_error("Invalid Realm Viewer tooltip configuration");
         std::array<QString,4> labels;for(int i=0;i<4;++i)labels[i]=mnm::ui::textLabel(tips,QString::number(i));
         mnm::ui::installMenuFonts(this,fonts);
-        maps_=std::move(maps);flags_=std::move(flags);cancel_->setSprites(close,{94,39});enter_->setSprites(open,{94,39});enter_->setAccessibleName("Open selected region");
+        maps_=std::move(maps);flags_=std::move(flags);visuals_=std::move(visuals);animationTick_=0;pathTick_=0;hoveredRegion_.clear();setToolTip({});unsetCursor();cancel_->setSprites(close,{94,39});enter_->setSprites(open,{94,39});enter_->setAccessibleName("Open selected region");
         static_cast<mnm::ui::SpriteButton*>(auxiliary_[0])->setSprites(spellbox,{94,39});static_cast<mnm::ui::SpriteButton*>(auxiliary_[1])->setSprites(grimoire,{94,39});static_cast<mnm::ui::SpriteButton*>(auxiliary_[2])->setSprites(character,{60,60});
         for(int i=0;i<4;++i){auxiliary_[i]->setToolTip(labels[i]);auxiliary_[i]->setAccessibleName(labels[i]);}populate();if(error)error->clear();return true;
     }catch(const std::exception& e){return failure(error,QString::fromUtf8(e.what()));}
 }
 const RealmViewerWidget::Region* RealmViewerWidget::selected() const {const int r=int(campaign_.realm);for(const auto& region:campaign_.regions[r])if(region.id==campaign_.selectedRegionIds[r])return &region;return nullptr;}
 bool RealmViewerWidget::selectRegion(const QString& id,QString* error) {
-    for(const auto& region:campaign_.regions[int(campaign_.realm)])if(region.id==id){const bool changed=campaign_.selectedRegionIds[int(campaign_.realm)]!=id;campaign_.selectedRegionIds[int(campaign_.realm)]=id;populate();if(error)error->clear();if(changed)emit selectionChanged(id);return true;}
+    for(const auto& region:campaign_.regions[int(campaign_.realm)])if(region.id==id){const bool changed=campaign_.selectedRegionIds[int(campaign_.realm)]!=id;campaign_.selectedRegionIds[int(campaign_.realm)]=id;if(changed)pathTick_=0;populate();if(error)error->clear();if(changed)emit selectionChanged(id);return true;}
     return failure(error,"Unknown region in selected realm");
 }
 bool RealmViewerWidget::selectRealm(Realm realm,QString* error) {
     const int r=int(realm);if(r<0||r>2||!campaign_.realmAvailable[r])return failure(error,"Unavailable supplied realm");
-    const bool changed=realm!=campaign_.realm;campaign_.realm=realm;populate();if(error)error->clear();if(changed)emit realmChanged(realm);return true;
+    const bool changed=realm!=campaign_.realm;campaign_.realm=realm;hoveredRegion_.clear();setToolTip({});unsetCursor();pathTick_=0;populate();if(error)error->clear();if(changed)emit realmChanged(realm);return true;
 }
 void RealmViewerWidget::enter(){const auto* region=selected();if(region&&region->available)emit regionRequested(Request{campaign_.id,region->id,campaign_.realm,region->artworkNumber});}
 void RealmViewerWidget::populate() {
     const auto& model=campaign_.regions[int(campaign_.realm)];while(regions_.size()>model.size())delete regions_.takeLast();while(regions_.size()<model.size()){
         const int i=regions_.size();auto* b=new mnm::ui::SpriteButton({},this);b->setObjectName(QString("realmViewerRegion%1").arg(i));b->installEventFilter(this);b->setCursor(Qt::PointingHandCursor);b->setStyleSheet(mnm::ui::menuButtonStyle());connect(b,&QPushButton::clicked,this,[this,i]{selectRegion(campaign_.regions[int(campaign_.realm)][i].id);});regions_.push_back(b);b->show();
     }
-    for(int i=0;i<regions_.size();++i){const auto& region=model[i];auto* b=regions_[i];b->setText(region.name);b->setAccessibleName(region.name+(region.available?"":" — unavailable"));b->setToolTip(b->accessibleName());if(region.flagArtworkIndex>=0&&!flags_.isEmpty()){const auto& f=flags_[region.flagArtworkIndex];b->setSprites({f,f,f},{48,52});}else b->clearSprites();}
+    for(int i=0;i<regions_.size();++i){const auto& region=model[i];auto* b=regions_[i];b->setText(region.name);b->setAccessibleName(region.name+(region.available?"":" — unavailable"));b->setToolTip(b->accessibleName());}
     for(int r=0;r<3;++r){realms_[r]->setEnabled(campaign_.realmAvailable[r]);realms_[r]->setChecked(r==int(campaign_.realm));}
     const auto* region=selected();enter_->setEnabled(region&&region->available);heading_->setToolTip(region?region->name:campaign_.name);heading_->setAccessibleName(region?region->name:campaign_.name);
     for(int a=0;a<4;++a){auxiliary_[a]->setEnabled(!campaign_.id.isEmpty()&&campaign_.auxiliaryAvailable[a]);}
-    arrange();update();
+    refreshFlags();arrange();update();
 }
 QRect RealmViewerWidget::contentRect() const {return mnm::ui::menuContentRect(size());}
 void RealmViewerWidget::arrange() {
@@ -88,5 +95,50 @@ bool RealmViewerWidget::eventFilter(QObject* watched,QEvent* event) {
     return QWidget::eventFilter(watched,event);
 }
 void RealmViewerWidget::keyPressEvent(QKeyEvent* key){if(key->key()==Qt::Key_Escape){if(!key->isAutoRepeat())emit cancelled();key->accept();}else QWidget::keyPressEvent(key);}
-void RealmViewerWidget::paintEvent(QPaintEvent*) {QPainter p(this);p.fillRect(rect(),Qt::black);const auto canvas=contentRect();const auto& map=maps_[int(campaign_.realm)];if(!map.isNull())p.drawImage(canvas,map);const auto& model=campaign_.regions[int(campaign_.realm)];for(int i=0;i<model.size();++i){if(model[i].id==campaign_.selectedRegionIds[int(campaign_.realm)]){p.setPen(QPen(QColor("#ffdd88"),2));p.drawRect(regions_[i]->geometry().adjusted(-2,-2,2,2));}if(!model[i].available){p.setPen(Qt::white);p.drawLine(regions_[i]->geometry().topLeft(),regions_[i]->geometry().bottomRight());}}}
+QString RealmViewerWidget::regionAt(const QPoint& point) const {
+    const auto canvas=contentRect();if(!canvas.contains(point)||canvas.width()<1||canvas.height()<1)return {};
+    const QPoint map(int(qint64(point.x()-canvas.x())*800/canvas.width()),int(qint64(point.y()-canvas.y())*600/canvas.height()));
+    const int realm=int(campaign_.realm);const auto& shapes=visuals_.regions[realm];
+    // Stable artwork order resolves the small shared silhouette edges.
+    for(int art=1;art<=shapes.size();++art)if(shapes[art-1].contains(map))for(const auto& region:campaign_.regions[realm])if(region.artworkNumber==art)return region.id;
+    return {};
+}
+void RealmViewerWidget::refreshFlags(){
+    const auto& model=campaign_.regions[int(campaign_.realm)];
+    for(int i=0;i<regions_.size();++i){const auto& region=model[i];if(region.flagArtworkIndex>=0&&!flags_.isEmpty()){
+        // Only the supplied green flag (frame zero) opts into sequence zero.
+        // Other caller-selected sprite ordinals retain their explicit identity.
+        auto f=region.flagArtworkIndex==0&&!visuals_.animations.isEmpty()?mnm::ui::realmFlagFrame(visuals_.animations[0],animationTick_):flags_[region.flagArtworkIndex];
+        // ANI positions are relative to a foot anchor; the accessible flag
+        // control has a top-left origin and a padded 48x52 logical canvas.
+        if(region.flagArtworkIndex==0&&!visuals_.animations.isEmpty())f.origin-=QPoint(2,48);
+        regions_[i]->setSprites({f,f,f},{48,52});
+    }else regions_[i]->clearSprites();}
+}
+std::optional<QPoint> RealmViewerWidget::pathPreviewPosition() const {
+    const auto* region=selected();const auto& shapes=visuals_.regions[int(campaign_.realm)];
+    if(!region||!region->available||region->artworkNumber>shapes.size()||visuals_.animations.size()<=50)return {};
+    const auto& paths=shapes[region->artworkNumber-1].paths;if(paths.isEmpty()||paths[0].size()<2)return {};
+    return paths[0][int((pathTick_/2)%quint64(paths[0].size()))];
+}
+void RealmViewerWidget::advanceAnimation(){++animationTick_;++pathTick_;refreshFlags();update();}
+void RealmViewerWidget::mouseMoveEvent(QMouseEvent* e){
+    const auto id=regionAt(e->position().toPoint());if(id!=hoveredRegion_){hoveredRegion_=id;QString tip;for(const auto& region:campaign_.regions[int(campaign_.realm)])if(region.id==id)tip=region.name+(region.available?"":" — unavailable");setToolTip(tip);setCursor(id.isEmpty()?Qt::ArrowCursor:Qt::PointingHandCursor);update();}QWidget::mouseMoveEvent(e);
+}
+void RealmViewerWidget::mousePressEvent(QMouseEvent* e){if(e->button()==Qt::LeftButton){const auto id=regionAt(e->position().toPoint());if(!id.isEmpty()){selectRegion(id);focusFirstControl();e->accept();return;}}QWidget::mousePressEvent(e);}
+void RealmViewerWidget::mouseDoubleClickEvent(QMouseEvent* e){if(e->button()==Qt::LeftButton){const auto id=regionAt(e->position().toPoint());if(!id.isEmpty()){selectRegion(id);enter();e->accept();return;}}QWidget::mouseDoubleClickEvent(e);}
+void RealmViewerWidget::leaveEvent(QEvent* e){hoveredRegion_.clear();setToolTip({});unsetCursor();update();QWidget::leaveEvent(e);}
+void RealmViewerWidget::showEvent(QShowEvent* e){QWidget::showEvent(e);animationTimer_->start();}
+void RealmViewerWidget::hideEvent(QHideEvent* e){animationTimer_->stop();QWidget::hideEvent(e);}
+void RealmViewerWidget::paintEvent(QPaintEvent*) {
+    QPainter p(this);p.fillRect(rect(),Qt::black);const auto canvas=contentRect();const int realm=int(campaign_.realm);const auto& map=maps_[realm];if(!map.isNull())p.drawImage(canvas,map);
+    p.save();p.setClipRect(canvas);p.translate(canvas.topLeft());p.scale(canvas.width()/800.0,canvas.height()/600.0);
+    const auto& model=campaign_.regions[realm];const auto& shapes=visuals_.regions[realm];
+    for(const auto& region:model)if(region.artworkNumber<=shapes.size()&&(region.id==campaign_.selectedRegionIds[realm]||region.id==hoveredRegion_)){const auto& shape=shapes[region.artworkNumber-1];p.drawImage(shape.borderRect.topLeft(),shape.border);}
+    // A selected available region previews its first stored FP route with the
+    // walking figure from ANI sequence 50. This is display policy, not travel.
+    if(const auto point=pathPreviewPosition()){const auto& frame=mnm::ui::realmFlagFrame(visuals_.animations[50],animationTick_);p.drawImage(*point-frame.origin,frame.image);}
+    p.restore();
+    for(int i=0;i<model.size();++i){if(shapes.isEmpty()&&model[i].id==campaign_.selectedRegionIds[realm]){p.setPen(QPen(QColor("#ffdd88"),2));p.drawRect(regions_[i]->geometry().adjusted(-2,-2,2,2));}if(!model[i].available){p.setPen(Qt::white);p.drawLine(regions_[i]->geometry().topLeft(),regions_[i]->geometry().bottomRight());}}
+}
 void RealmViewerWidget::resizeEvent(QResizeEvent* event){QWidget::resizeEvent(event);arrange();}
