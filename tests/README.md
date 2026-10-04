@@ -256,6 +256,9 @@ Native asset path resolution has an independent fixture-only check:
 `ctest --test-dir working/build/assets --output-on-failure`. It exercises
 Windows path aliases, component case matching, rejection policies, symlink
 containment, and filesystem errors without reading game/original artifacts.
+The same CTest suite also runs `asset-file-io`, covering binary read/seek/size,
+partial reads and EOF, file/store/buffer ownership, allocation limits, denied
+opens, truncation, and controlled helper failure paths.
 See [asset test scope](../assets/README.md).
 
 `python3 tools/test-audio-buffers.py` exports hash-guarded static audio evidence,

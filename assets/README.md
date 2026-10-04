@@ -1,9 +1,9 @@
 # Native asset access
 
-Chunk 2 implements read-only path resolution for installed loose assets using
-Qt Core and C++17. It does not open/read asset contents yet. The public API in
-`path_resolver.hpp` uses standard C++ types, allowing native loaders to consume
-it without Qt types entering reconstructed algorithms.
+Chunks 2 and 3 implement path resolution and owned read-only file handles for
+installed loose assets using Qt Core and C++17. The public APIs in
+`path_resolver.hpp` and `asset_file.hpp` use standard C++ types, allowing native
+loaders to consume them without Qt types entering reconstructed algorithms.
 
 ```bash
 cmake -S assets -B working/build/assets
@@ -44,5 +44,47 @@ that permits creating links. Linux fixture validation is confirmed; other host
 platforms and original-game path compatibility remain unvalidated. The root
 must remain trusted and stable during resolution.
 
-Next: chunk 3 adds owned read-only handles and read/seek/size operations;
-chunks 4 and 5 compare installed bytes and connect the existing WAV pipeline.
+## Read-only handles
+
+Create an `AssetStore` with the same root/prefix configuration, then call
+`open(request)`. It returns `Result<std::unique_ptr<AssetFile>>`; inspect the
+variant for an `Error` before taking ownership. Handles are noncopyable, have
+independent positions, close on destruction, and can outlive the store.
+
+`AssetFile` exposes `size()`, `position()`, absolute `seek(offset)`, and
+`read(destination, capacity)`. Sizes/counts/offsets are signed 64-bit integers.
+Size and position return `Result<std::int64_t>`; seek returns `Status` (a
+`Result<std::monostate>`). Read returns `ReadResult` with a transferred count
+and optional error. The caller owns the destination; the backend retains no
+pointers. Negative counts/offsets, null nonempty destinations, and seeks past
+EOF fail before changing position. Seeking to EOF and null zero-length reads
+are allowed. Thread confinement applies to every handle.
+
+`readExact` loops over successful short reads, preserving partial counts and
+I/O errors. EOF before the requested count returns `unexpectedEof`. Failed
+reads leave any transferred bytes in the caller's destination. `readWhole`
+requires an explicit size limit, allocates an owned byte vector, seeks to zero,
+and reads the entire reported size. It returns complete output or an error;
+successful output remains valid after the file closes. Rejecting a limit occurs
+before allocation/seek. The generic helpers work with any `AssetFile` backend.
+
+The QFile backend uses binary ReadOnly/Unbuffered mode and caps each read at
+64 KiB, so callers must handle short reads or use `readExact`. It performs no
+text conversion, exposes no write operation, and caches no file size. On Linux,
+Qt may report a denied open as generic OpenError; immediately captured errno
+provides the permission/missing/resource category without parsing error text.
+Unknown backend failures remain `ioError`. Non-Linux error mapping remains
+unvalidated. Files must remain stable during normal use; this is not a snapshot.
+
+`asset-file-io` verifies binary bytes (including NUL, CRLF, and high bytes),
+positions, independent handles, empty files, EOF/partial exact reads, seek
+bounds, size limits, multi-read files, source preservation, store/handle/buffer
+lifetimes, permission-denied opens, and truncation without stale read-ahead.
+A controlled `AssetFile` fixture checks repeated short reads, partial I/O
+failure counts, premature EOF after a size query, and size/seek failures.
+Allocation-limit rejection is checked, but actual memory exhaustion is not
+forced. Real device failures and descriptor exhaustion are not induced.
+
+Next: chunks 4 and 5 compare installed raw bytes and connect the existing WAV
+pipeline. This increment reads only temporary fixtures and does not launch or
+hook the game.
