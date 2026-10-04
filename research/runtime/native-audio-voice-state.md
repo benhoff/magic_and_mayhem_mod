@@ -100,8 +100,9 @@ production bridge or a test of x86 calling conventions.
 Confidence is high for deterministic native state and ownership under these
 tests. Audible parity, hardware timing, interpolation, pitch changes, arbitrary
 byte seeks, primary playback and game scheduler allocation remain outside scope.
-Next: stereo PCM mixing and sample-rate conversion, followed by QAudioSink
-output and a separately tested x86 adapter.
+Stereo PCM mixing and sample-rate conversion now have separate
+[offline evidence](native-audio-mixer.md). Next: QAudioSink output and a
+separately tested x86 adapter.
 
 Successful fixture evidence (2026-10-04):
 `working/tests/audio-voice-state/run-y8kk406m/report.json`, with all seven

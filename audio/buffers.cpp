@@ -45,7 +45,9 @@ struct Device::Storage {
     BufferId owner=0;std::uint64_t ticket=0,revision=0;
     std::size_t offset=0,first=0,second=0;
 };
-Device::Device(std::size_t bytes,std::size_t buffers):maxBytes_(bytes),maxBuffers_(buffers){}
+Device::Device(std::size_t bytes,std::size_t buffers,std::uint32_t rate):maxBytes_(bytes),maxBuffers_(buffers),outputRate_(rate){
+    if(!rate)throw std::invalid_argument("Output sample rate must be nonzero");
+}
 Device::~Device()=default;
 Error Device::createPrimary(std::uint32_t flags,BufferId& output){
     if(flags!=0x81)return Error::unsupported;
@@ -74,6 +76,7 @@ Error Device::duplicate(BufferId source,BufferId& output){
     auto buffer=it->second;
     // Duplicate controls, not playback activity or cursor. Samples stay shared.
     buffer.voice.playback=Playback::stopped;buffer.voice.looping=false;buffer.voice.frame=0;
+    buffer.phase=0;
     output=next_++;buffers_.emplace(output,std::move(buffer));return Error::ok;
 }
 Error Device::release(BufferId id){
@@ -111,5 +114,12 @@ std::optional<BufferInfo> Device::info(BufferId id) const{
 std::vector<std::uint8_t> Device::samples(BufferId id) const{
     const auto it=buffers_.find(id);if(it==buffers_.end() || !it->second.storage)throw std::runtime_error("Not a secondary buffer");
     return it->second.storage->committed;
+}
+std::int32_t Device::sample(const Buffer& buffer,std::uint64_t frame,unsigned channel){
+    const auto& f=*buffer.format;
+    const auto offset=std::size_t(frame)*f.alignment+(f.channels==1?0:channel)*(f.bits/8);
+    const auto* p=buffer.storage->committed.data()+offset;
+    if(f.bits==8)return (std::int32_t(p[0])-128)*256;
+    const auto value=u16(p);return value<32768?std::int32_t(value):std::int32_t(value)-65536;
 }
 }

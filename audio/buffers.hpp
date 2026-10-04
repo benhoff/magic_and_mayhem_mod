@@ -31,11 +31,12 @@ struct VoiceInfo {
 };
 struct AdvanceResult {std::uint64_t consumed=0;bool completed=false;};
 
-// Thread-confined sample ownership and source-frame playback state. No output/mixer yet.
+// Thread-confined sample ownership, playback state and offline mixing. No device output.
 // Duplicated secondary voices share committed samples, with distinct identities.
 class Device {
 public:
-    explicit Device(std::size_t maxBufferBytes=16*1024*1024,std::size_t maxBuffers=128);
+    explicit Device(std::size_t maxBufferBytes=16*1024*1024,std::size_t maxBuffers=128,
+                    std::uint32_t outputRate=48000);
     ~Device();
     Device(const Device&)=delete;
     Device& operator=(const Device&)=delete;
@@ -53,14 +54,21 @@ public:
     Error setPan(BufferId id,std::int32_t value); // [-10000,10000].
     Error advanceFrames(BufferId id,std::uint64_t frames,AdvanceResult& result);
     std::optional<VoiceInfo> voice(BufferId id) const;
+    // Interleaved signed stereo PCM; advances voices in the fixed output clock.
+    Error mixStereo(std::size_t frames,std::vector<std::int16_t>& output);
+    std::uint32_t outputRate() const{return outputRate_;}
+    static constexpr std::size_t maxMixFrames=65536;
     std::optional<BufferInfo> info(BufferId id) const;
     std::vector<std::uint8_t> samples(BufferId id) const;
     std::size_t count() const{return buffers_.size();}
     static constexpr std::uint32_t capabilities=0x0f; // Native PCM policy: mono/stereo, 8/16-bit.
 private:
     struct Storage;
-    struct Buffer {bool primary;std::uint32_t flags;std::optional<PcmFormat> format;std::shared_ptr<Storage> storage;VoiceInfo voice{};};
+    struct Buffer {bool primary;std::uint32_t flags;std::optional<PcmFormat> format;std::shared_ptr<Storage> storage;VoiceInfo voice{};std::uint32_t phase=0;};
+    static void advanceVoice(Buffer&,std::uint64_t frames,AdvanceResult&);
+    static std::int32_t sample(const Buffer&,std::uint64_t frame,unsigned channel);
     std::unordered_map<BufferId,Buffer> buffers_;
     BufferId next_=1;std::uint64_t ticket_=1;std::size_t maxBytes_,maxBuffers_;
+    std::uint32_t outputRate_;
 };
 }
