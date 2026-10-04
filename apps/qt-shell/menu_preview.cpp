@@ -56,3 +56,26 @@ void MenuPreview::showQuickBattle() {
     quick_->focusFirstAction();
     statusBar()->showMessage("Quick Battle preview. Cancel or Escape returns to the main menu.");
 }
+
+bool MenuPreview::openBattleResults(const QString& root, BattleResultWidget::Outcome outcome, QString* error) {
+    if (!results_) {
+        results_=new BattleResultWidget(screens_); screens_->addWidget(results_);
+        connect(results_,&BattleResultWidget::continueRequested,this,&MenuPreview::showMainMenu);
+    }
+    if (!results_->loadAssets(root,outcome,error)) return false;
+    BattleResultWidget::Results sample;
+    sample.title=outcome==BattleResultWidget::Outcome::Victory?"Victory!":"Defeat!";
+    if (outcome==BattleResultWidget::Outcome::Victory) {
+        sample.rewards[0]={"Sample achievement", "120"};
+        sample.rewards[1]={"Sample bonus", "80"};
+        sample.totalPoints="200"; sample.maximumPoints="300";
+    } else {
+        sample.summary="Sample defeat message";
+        sample.rewards[0]={"Sample achievement", "40"};
+        sample.rating="Sample rating";
+    }
+    results_->setResults(sample); screens_->setCurrentWidget(results_); results_->focusContinue();
+    setWindowTitle(results_->windowTitle());
+    statusBar()->showMessage("Sample results. OK returns to the main menu preview.");
+    return true;
+}

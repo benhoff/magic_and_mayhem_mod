@@ -204,3 +204,15 @@ checks the x86 broker lifecycle. `--media-test --media-report FILE` silently
 measures a preview; add `--media-probe` to stop after a movie frame and PCM
 buffer. See [runtime scope/evidence](../../research/runtime/qt-native-media.md)
 and [channel layout](../../research/formats/render-media-channel.md).
+
+Battle result previews use the installed Victory/Defeat artwork and layouts,
+with sample results and native OK/Enter/Escape navigation:
+
+```bash
+./tools/run-qt-shell.sh --battle-results victory
+./tools/run-qt-shell.sh --battle-results defeat
+```
+
+Fonts and text/button colors remain native approximations; original background
+artwork is reused, but visual equivalence has not been verified. See
+[result scope, validation and fidelity](../../research/runtime/battle-results-qt.md).
