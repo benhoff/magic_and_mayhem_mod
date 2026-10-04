@@ -122,6 +122,11 @@ PNG using the OpenGL renderer, with no game launch. This is an offline asset
 milestone; clipping, original lighting/effects, animation and live scene loading
 remain separate. See [preview usage, contract and evidence](../research/runtime/native-sprite-rendering.md).
 
+A separate [ANI/SPR scene application](../apps/sprite-scene/README.md) now
+composes these uploads using selected recovered forward-animation ticks. It
+provides a bounded Qt window and synchronous frame exports; its layout, pacing
+and optional restart behavior remain explicit preview policies.
+
 ## Replay ordered surface commands
 
 The capture bridge now writes `commands-0001.bin` alongside an accepted blit.
