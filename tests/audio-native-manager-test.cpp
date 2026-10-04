@@ -82,4 +82,26 @@ void missingAndBoundedInputs(){
     check(std::holds_alternative<a::ProfileSnapshot>(loaded) && std::get<a::ProfileSnapshot>(loaded).value("sounds","10",260)=="tone","Qt profile loader rewinds before parsing");
     write(root/"Huge.ini",std::vector<std::uint8_t>(a::ProfileInputLimit+1,'x'));check(!b.openProfile("C:\\Mnm\\Sounds\\Huge.ini") && b.assetError()->code==a::ErrorCode::limitExceeded,"bounded Qt profile read");
 }
-int main(){try{profileContracts();endToEnd();missingAndBoundedInputs();std::cout<<"Qt profile/WAV to aggregate manager, duplicate PCM, rotation and teardown passed\n";return 0;}catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}
+void sourceFilenamePolicy(){
+    QTemporaryDir dir;check(dir.isValid(),"filename policy directory");const auto root=std::filesystem::path(dir.path().toStdString());
+    const auto tone=wav(4000),literal=wav(-2000);write(root/"Tone.wav",tone);
+    write(root/"Sounds.ini",bytes("[Sounds]\n10='Tone' ; installed-style comment\n"));
+    r::AudioManager strictManager,compatibleManager;r::ManagerGlobals strictGlobals,compatibleGlobals;
+    r::NativeManagerBackend strict(store(root),strictManager,[]{return 100u;},[]{return 0u;});
+    r::NativeManagerBackend compatible(store(root),compatibleManager,[]{return 100u;},[]{return 0u;},48000,r::NativeSourcePathPolicy::dequoteMissingLeaf);
+    auto startup=[](r::NativeManagerBackend& backend,r::AudioManager& manager,r::ManagerGlobals& globals){
+        check(!r::initializeManager(backend.services(),manager,globals,0,0,"C:\\Mnm\\Sounds") && !r::initializeSourcePool(backend,manager.cache,manager.sources,1),"filename policy startup");
+    };
+    startup(strict,strictManager,strictGlobals);startup(compatible,compatibleManager,compatibleGlobals);
+    r::VoiceWrapper* voice=nullptr;
+    check(strict.loadSource(10,voice)==r::SourceLoadFailure && strict.assetError()->code==a::ErrorCode::notFound,"literal baseline remains strict");
+    check(!compatible.loadSource(10,voice) && voice && compatible.bufferSamples(voice->buffer)==std::vector<std::uint8_t>(tone.begin()+44,tone.end()),"explicit compatibility loads commented source PCM");
+    unsigned size=0;check(compatible.fileSize("C:\\Mnm\\Sounds\\'Tone'.WaV",size) && size==tone.size(),"stat and WAV open share missing-leaf adaptation");
+    write(root/"'Tone'.wav",literal);check(!r::initializeSourcePool(compatible,compatibleManager.cache,compatibleManager.sources,1),"clear cache before literal precedence");
+    voice=nullptr;check(!compatible.loadSource(10,voice) && compatible.bufferSamples(voice->buffer)==std::vector<std::uint8_t>(literal.begin()+44,literal.end()),"existing literal quoted file wins over unquoted alternate");
+    for(const auto& path:{"C:\\Mnm\\Sounds\\'Missing'.wav","C:\\Mnm\\Sounds\\'Tone.wav","C:\\Mnm\\Sounds\\'Tone'.ogg","C:\\Mnm\\Sounds\\../'Tone'.wav"})check(!compatible.openWave(path),"no missing-name, unbalanced-quote, extension or traversal repair");
+    std::filesystem::remove(root/"'Tone'.wav");write(root/"TONE.WAV",tone);
+    check(!compatible.openWave("C:\\Mnm\\Sounds\\'Tone'.wav") && compatible.assetError()->code==a::ErrorCode::ambiguousPath,"dequoted lookup preserves resolver ambiguity rejection");
+    r::destroyManager(strict.services(),strictManager,strictGlobals);r::destroyManager(compatible.services(),compatibleManager,compatibleGlobals);
+}
+int main(){try{sourceFilenamePolicy();profileContracts();endToEnd();missingAndBoundedInputs();std::cout<<"Qt profile/WAV to aggregate manager, duplicate PCM, rotation and teardown passed\n";return 0;}catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}

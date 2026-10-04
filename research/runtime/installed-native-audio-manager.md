@@ -86,3 +86,8 @@ cleanup under the controlled fixture. Actual original schedule timing, tuning
 conversion, nonempty installed map classifications/preload budgets, COM/primary
 ownership, active-map changes, live thread/cadence and audible replacement remain
 unverified. No game configuration or gameplay balance was changed.
+
+The [filename boundary investigation](audio-source-filenames.md) confirms the
+selected recovered scan/file-wrapper behavior and provides an explicit native
+compatibility mode for the four quoted leaves. Literal-default evidence above
+is preserved; Stream remains a missing payload.

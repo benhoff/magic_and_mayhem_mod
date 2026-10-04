@@ -123,3 +123,5 @@ confidence, and whether it remains stable across launches.
 - [Installed native audio manager](installed-native-audio-manager.md): catalog/upload/admission, independent PCM previews, completion and cleanup; quoted-path/missing-file gaps remain explicit.
 
 - [EVT event-area reader/writer and callers](evt-area-loading.md): hash-pinned 72-byte schema, section-coordinate consumers and offline scope.
+
+- [Audio source filenames](audio-source-filenames.md): recovered comment/file-open boundary, explicit native quoted-leaf compatibility and missing Stream evidence.

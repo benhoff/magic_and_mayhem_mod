@@ -11,17 +11,18 @@ void check(bool value,const char* message){if(!value)throw std::runtime_error(me
 QJsonArray ids(const std::vector<std::int32_t>& values){QJsonArray out;for(auto i:values)out.append(i);return out;}
 std::string hash(const std::vector<std::uint8_t>& bytes){return QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(bytes.data()),bytes.size()),QCryptographicHash::Sha256).toHex().toStdString();}
 int main(int argc,char** argv){try{
-    if(argc!=3)throw std::runtime_error("Usage: audio-installed-manager SOUNDS_ROOT EVIDENCE_ROOT");
+    if(argc!=3 && (argc!=4 || std::string(argv[3])!="--dequote-source-leaf"))throw std::runtime_error("Usage: audio-installed-manager SOUNDS_ROOT EVIDENCE_ROOT [--dequote-source-leaf]");
+    const auto policy=argc==4?r::NativeSourcePathPolicy::dequoteMissingLeaf:r::NativeSourcePathPolicy::literal;
     const auto evidence=std::filesystem::path(argv[2]);std::filesystem::create_directories(evidence/"pcm");
     auto made=a::AssetStore::create(argv[1],{"C:\\Mnm\\Sounds"});check(std::holds_alternative<a::AssetStore>(made),"trusted sounds root");
     r::AudioManager manager;r::ManagerGlobals globals;unsigned clock=100,random=0,slot=0,second=0;
-    r::NativeManagerBackend backend(std::get<a::AssetStore>(std::move(made)),manager,[&]{return clock;},[&]{return random;});
+    r::NativeManagerBackend backend(std::get<a::AssetStore>(std::move(made)),manager,[&]{return clock;},[&]{return random;},48000,policy);
     auto startup=[&](unsigned map){check(!r::initializeManager(backend.services(),manager,globals,0,0,"C:\\Mnm\\Sounds"),"installed startup");check(!r::initializeSourcePool(backend,manager.cache,manager.sources,map),"installed source pool");};
     startup(1);check(globals.simultaneousLimit==12 && manager.cache.manager.active,"installed active manager/limit");
     const auto sources=manager.cache.catalog.sourceIds;const auto groups=manager.cache.catalog.groups;
     QJsonObject report{{"game_launched",false},{"audio_device_opened",false},{"sourceIds",ids(sources)},{"outputRate",int(backend.device().outputRate())}};QJsonArray groupReport,cases;
     for(const auto& group:groups)groupReport.append(QJsonObject{{"id",group.id},{"members",ids(group.members)}});
-    report.insert("groups",groupReport);report.insert("poolNodes",int(manager.sources.nodes.size()));
+    report.insert("sourcePathPolicy",argc==4?"dequoteMissingLeaf":"literal");report.insert("groups",groupReport);report.insert("poolNodes",int(manager.sources.nodes.size()));
     auto snapshot=[&](QJsonObject& row,r::VoiceWrapper& voice){
         const auto samples=backend.bufferSamples(voice.buffer);row.insert("pcm_sha256",QString::fromStdString(hash(samples)));row.insert("pcm_bytes",int(samples.size()));row.insert("source",voice.sourceIndex);row.insert("duration",int(voice.duration));
     };
