@@ -47,7 +47,7 @@ QByteArray read(const mnm::assets::AssetStore& store, const QString& path, int l
     return {reinterpret_cast<const char*>(data.data()), qsizetype(data.size())};
 }
 
-MenuAssets loadMenuAssets(const QString& root, const QString& directory, const QString& config) {
+MenuAssets loadMenuAssets(const QString& root, const QString& directory, const QString& config, const char* imageFormat, const QSize& imageSize) {
     auto created = mnm::assets::AssetStore::create(std::filesystem::path(root.toStdString()));
     if (auto* failure = std::get_if<mnm::assets::Error>(&created)) throw std::runtime_error(failure->detail);
     const auto& store = std::get<mnm::assets::AssetStore>(created);
@@ -58,9 +58,9 @@ MenuAssets loadMenuAssets(const QString& root, const QString& directory, const Q
     if (name.startsWith('"') && name.endsWith('"')) name = name.mid(1, name.size() - 2);
     if (name.isEmpty() || name.contains('/') || name.contains('\\') || name.contains(':'))
         throw std::runtime_error("Invalid menu background name");
-    const auto image = read(store, directory + "/800x600/" + name + " 800-600.JPG", 8 * 1024 * 1024);
-    if (!result.background.loadFromData(image, "JPG") || result.background.size() != QSize(800, 600))
-        throw std::runtime_error("Expected an 800x600 JPEG menu background");
+    const auto image = read(store, directory + "/800x600/" + name + " 800-600." + QString::fromLatin1(imageFormat), 8 * 1024 * 1024);
+    if (!result.background.loadFromData(image, imageFormat) || result.background.size() != imageSize)
+        throw std::runtime_error("Invalid menu background dimensions or format");
     return result;
 }
 QString textLabel(const Sections& strings, const QString& textId) {

@@ -1,5 +1,6 @@
 #pragma once
 #include <QMainWindow>
+#include "mini_menu_widget.hpp"
 class MainMenuWidget;
 class QuickBattleMenuWidget;
 class QStackedWidget;
@@ -9,10 +10,12 @@ class MenuPreview final : public QMainWindow {
 public:
     explicit MenuPreview(QWidget* parent = nullptr);
     bool loadAssets(const QString& root, bool startQuickBattle, QString* error = nullptr);
+    bool openMiniMenu(const QString& root, MiniMenuWidget::Mode mode, QString* error = nullptr);
 private:
     void showMainMenu();
     void showQuickBattle();
     QStackedWidget* screens_ = nullptr;
     MainMenuWidget* main_ = nullptr;
     QuickBattleMenuWidget* quick_ = nullptr;
+    MiniMenuWidget* mini_ = nullptr;
 };

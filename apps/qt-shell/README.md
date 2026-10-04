@@ -43,6 +43,25 @@ Use `--menu-assets DIRECTORY` to select another installation.
 
 See [scope and validation](../../research/runtime/quick-battle-qt-menu.md).
 
+## Native Mini Menu previews
+
+```bash
+./tools/run-qt-shell.sh --mini-menu campaign
+./tools/run-qt-shell.sh --mini-menu battle
+```
+
+Campaign shows Load Game, Save Game, Preferences, Quit Game and Cancel.
+Battle shows Preferences, Quit Battle and Cancel. Cancel/Escape returns to the
+main-menu preview; other buttons report semantic intent without game actions.
+The inactive variant's controls are hidden and disabled, including during
+keyboard navigation. These previews do not pause or resume the game.
+
+The installed 600x400 BMP panel is centered in an 800x600 canvas with scaled
+buttons and letterboxing. Original panel placement and typography still need
+live comparison. Mini Menu assets load only when requested; main and Quick
+Battle assets are also needed for preview navigation. See
+[scope and validation](../../research/runtime/mini-menu-qt.md).
+
 Native Qt application code, separate from reconstructed engine algorithms.
 The default viewport presents captured engine frames through an OpenGL 3.3
 texture shader. A native Wine-window embedding backend remains available.

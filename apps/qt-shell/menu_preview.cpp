@@ -29,6 +29,21 @@ bool MenuPreview::loadAssets(const QString& root, bool startQuickBattle, QString
     if (startQuickBattle) showQuickBattle(); else showMainMenu();
     return true;
 }
+bool MenuPreview::openMiniMenu(const QString& root, MiniMenuWidget::Mode mode, QString* error) {
+    if (!mini_) {
+        mini_ = new MiniMenuWidget(screens_); screens_->addWidget(mini_);
+        connect(mini_, &MiniMenuWidget::actionRequested, this, [this](MiniMenuWidget::Action action) {
+            if (action == MiniMenuWidget::Action::Cancel) { showMainMenu(); return; }
+            const auto name = QMetaEnum::fromType<MiniMenuWidget::Action>().valueToKey(int(action));
+            statusBar()->showMessage(QString("Selected %1 — engine adapter pending.").arg(QString::fromLatin1(name)));
+        });
+    }
+    if (!mini_->loadAssets(root, error)) return false;
+    mini_->setMode(mode); screens_->setCurrentWidget(mini_); mini_->focusFirstAction();
+    setWindowTitle(mini_->windowTitle());
+    statusBar()->showMessage("Mini Menu preview. Cancel or Escape returns to the main menu.");
+    return true;
+}
 void MenuPreview::showMainMenu() {
     screens_->setCurrentWidget(main_);
     setWindowTitle(main_->windowTitle());
