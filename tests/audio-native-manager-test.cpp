@@ -20,6 +20,9 @@ void profileContracts(){
     check(p.value("sOuNdS","10",260)=="Tone" && p.value("Sounds","20",260)==" other ","case-insensitive keys and surrounding quotes");
     check(p.value("Sounds","30",260)=="empty ; literal inline","inline semicolon retained");
     check(p.value("Sounds","missing",4,"abcdef")=="abc" && p.value("Sounds","10",1).empty(),"default and string truncation capacities");
+    check(p.value("missing","key",128,"  fallback  ")=="  fallback" && p.value("missing","key",128,"fallback\t")=="fallback\t","Wine fallback trims trailing spaces only");
+    auto map=a::ProfileSnapshot::parse(bytes("[Map]\n10\n20\n"));
+    check(map.section("Map",7).returned==5 && map.section("Map",7).entries.empty() && map.section("Map",8).returned==6 && map.section("Map",8).entries.size()==2,"Wine exact section boundary and native partial-content policy");
     auto list=p.section("Sounds",16384);check(list.entries==std::vector<std::string>({"10='Tone'","20=\" other \"","30=empty ; literal inline"}),"section quotes preserved and whitespace normalized");
     check(p.section("Sounds",4).returned==2 && p.section("Sounds",4).entries.empty(),"section truncation marker");
     check(p.section("7 Load Permanent",16384).entries==std::vector<std::string>({"10"}),"bare per-map entries");

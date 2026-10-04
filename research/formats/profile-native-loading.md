@@ -31,12 +31,13 @@ stricter than the decoded table model, which can represent duplicate ID slack.
 Section reads preserve stored value quote marks and emit normalized `key=value`
 or bare-key strings. The returned count includes each string terminator but not
 the final MULTI_SZ terminator. If capacity cannot fit the whole list plus its final
-terminator, the reader returns `capacity - 2` and no purportedly complete entries.
+terminator and one spare byte (the measured Wine exact-fit boundary), the reader returns `capacity - 2` and no purportedly complete entries.
 Partial section contents are intentionally not exposed; the audio caller rejects
 that marker. String reads remove matching single/double quotes around the whole
 value and reserve one byte for termination when truncating. Inline semicolons
 remain literal data; the recovered source-entry comment scan is a separate step.
-Missing string keys use the caller default. Missing integer keys use the caller
+Missing string keys use the caller default after removing trailing ASCII spaces
+(leading spaces and trailing tabs remain). Missing integer keys use the caller
 fallback; present integers require complete unsigned decimal with no sign, hex,
 trailing junk or DWORD overflow. Malformed integers reject explicitly.
 
@@ -46,7 +47,7 @@ The selected case/quote/count behavior is informed by Microsoft's
 and [GetPrivateProfileInt documentation](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getprivateprofileinta).
 Those references do not establish that every normalization/rejection policy above
 matches historical Windows or Wine. UTF/ANSI conversion, registry mapping,
-repeated sections/keys, default-space behavior, complete numeric conversion,
+repeated sections/keys, complete numeric conversion,
 partial enumeration and concurrent file update semantics remain outside scope.
 The underlying store additionally enforces trusted-root/path resolution policies.
 
@@ -60,7 +61,8 @@ Native audio integration adds actual WAV preloads/admission/mixing and lifecycle
 checks. Evidence: `working/tests/audio-native-manager/run-xauygdrw/report.json`;
 29 current audio/assets CTests and address/undefined/leak sanitizer checks pass.
 
-Next compatibility evidence should compare the supported profile calls with a
-small PE32 Windows/Wine fixture, then compare installed profile/catalog reads
-under the guarded immutable-input workflow. Synthetic parsing and native PCM
+The [PE32 Wine profile API comparison](profile-api-comparison.md) now records
+29 selected calls, two supported semantic fixes and seven intentional native
+policy differences. Next compare installed profile/catalog reads under the
+guarded immutable-input workflow. Synthetic parsing and native PCM
 agreement do not establish original profile behavior or live replacement.
