@@ -119,3 +119,14 @@ if(BUILD_TESTING)
     add_test(NAME audio-asset-input COMMAND "${Python3_EXECUTABLE}"
         "${CMAKE_CURRENT_SOURCE_DIR}/../tests/test-audio-asset-input.py" $<TARGET_FILE:mnm-audio-upload>)
 endif()
+
+add_library(mnm-audio-preflight STATIC ../reconstruction/audio/catalog_preflight.cpp)
+target_link_libraries(mnm-audio-preflight PUBLIC mnm-audio-native-manager)
+target_compile_options(mnm-audio-preflight PRIVATE -Wall -Wextra -Werror -pedantic)
+
+if(BUILD_TESTING)
+    add_executable(audio-catalog-preflight-test ../tests/audio-catalog-preflight-test.cpp)
+    target_link_libraries(audio-catalog-preflight-test PRIVATE mnm-audio-preflight Qt6::Core)
+    target_compile_options(audio-catalog-preflight-test PRIVATE -Wall -Wextra -Werror -pedantic)
+    add_test(NAME audio-catalog-preflight COMMAND audio-catalog-preflight-test)
+endif()
