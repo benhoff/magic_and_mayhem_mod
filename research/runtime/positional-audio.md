@@ -97,3 +97,7 @@ produces silence, clears caller slot and retains the sample buffer.
 UndefinedBehaviorSanitizer and LeakSanitizer outside sandbox tracing. Runtime
 bridge code was not changed. Live audible/timing behavior and geometry input
 mapping still require separate evidence.
+
+The complete selected camera projection and origin helper now have
+[separate offline reconstruction and integration fixtures](audio-camera-projection.md).
+Map-byte lookup/ownership and live input mapping remain outstanding.
