@@ -10,6 +10,12 @@ import subprocess
 import tempfile
 REPO=Path(__file__).resolve().parent.parent
 
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol
+
+
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 
@@ -20,7 +26,7 @@ def main():
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));reports=[]
     for mode in ('modern','negative','unlock-retry','offscreen','indexed','failed-lock','readonly','partial','bad-mask','alias-legacy','transitive-modern','qi-failed','x-unobserved','z-reused'):
         case=root/mode;case.mkdir();capture=case/'capture';capture.mkdir();stream=case/'frame.bin'
-        with stream.open('wb') as f:f.write(b'MNMGL001'+struct.pack('<2I',1,64)+bytes(48));f.truncate(64+2048*2048*4)
+        with stream.open('wb') as f:f.write(frame_protocol.initial_header());f.truncate(frame_protocol.SIZE)
         shutil.copy2(dll,case/dll.name)
         (case/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
         env=os.environ.copy()

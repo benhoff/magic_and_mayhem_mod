@@ -8,6 +8,12 @@ import subprocess
 import tempfile
 REPO=Path(__file__).resolve().parents[1]
 
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol
+
+
 def main():
     parent=REPO/'working/tests/audio-staging';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent))
@@ -18,7 +24,7 @@ def main():
     try:
         stream=root/'frame.bin'
         with stream.open('wb') as out:
-            out.write(b'MNMGL001'+struct.pack('<II',1,64)+bytes(48));out.truncate(64+2048*2048*4)
+            out.write(frame_protocol.initial_header());out.truncate(frame_protocol.SIZE)
         channel=root/'voices.bin'
         with channel.open('wb') as out:
             out.write(b'MNMAUD01'+struct.pack('<II',2,128+16*1024*1024));out.truncate(128+16*1024*1024)

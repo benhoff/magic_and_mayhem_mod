@@ -12,6 +12,12 @@ import tempfile
 
 REPO=Path(__file__).resolve().parents[1]
 
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol
+
+
 
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path)
@@ -33,7 +39,7 @@ def main():
     parent=REPO/'working/tests/render-flips';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));frame=root/'frame.bin'
     with frame.open('wb') as f:
-        f.write(b'MNMGL001'+struct.pack('<II',1,64)+bytes(48));f.truncate(64+2048*2048*4)
+        f.write(frame_protocol.initial_header());f.truncate(frame_protocol.SIZE)
     shutil.copy2(dll,root/dll.name)
     stage=load('stage','tools/prepare-shadow-experiment.py')
     (root/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))

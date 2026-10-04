@@ -14,6 +14,12 @@ import wave
 
 REPO = Path(__file__).resolve().parents[1]
 
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol, media_v1 as media_protocol
+
+
 
 def load(name, path):
     spec = importlib.util.spec_from_file_location(name, REPO / path)
@@ -72,15 +78,15 @@ def main():
     (root / 'selftest.exe').write_bytes(stage.add_import((dll.parent / 'selftest.exe').read_bytes(), dll='MnmRender.dll', symbol_name='RenderAnchor', section_name=b'.mnmgl'))
     stream = root / 'frame.bin'
     with stream.open('wb') as file:
-        file.write(b'MNMGL001' + struct.pack('<II', 1, 64) + bytes(48))
-        file.truncate(64+2048*2048*4)
+        file.write(frame_protocol.initial_header())
+        file.truncate(frame_protocol.SIZE)
     channel = root / 'media.bin'
     history = root / 'broker.json'
     with (root / 'broker.log').open('w') as log:
         server = subprocess.Popen(['xvfb-run', '-a', str(shell), '--media-server-test', str(channel), '--assets', str(assets), '--media-count', '8', '--media-report', str(history)], env=env, stdout=log, stderr=log)
         try:
             deadline = time.monotonic()+5
-            while not channel.exists() or channel.stat().st_size != 2048:
+            while not channel.exists() or channel.stat().st_size != media_protocol.SIZE:
                 if server.poll() is not None or time.monotonic()>deadline:
                     raise RuntimeError('Media server failed to create its channel')
                 time.sleep(0.02)

@@ -9,6 +9,12 @@ import shutil
 
 REPO=Path(__file__).resolve().parent.parent
 
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol
+
+
 def prepare(root):
     root=root.resolve()
     if not root.is_relative_to(REPO/'working/experiments/opengl-render'):
@@ -20,7 +26,7 @@ def prepare(root):
     stream=Path(manifest['stream']).resolve()
     if not stream.is_relative_to(REPO/'working'):raise ValueError('Unexpected stream location')
     with stream.open('rb') as file:
-        if file.read(16)!=b'MNMGL001\x01\0\0\0\x40\0\0\0' or stream.stat().st_size!=64+2048*2048*4:
+        if not frame_protocol.valid_header(file.read(frame_protocol.HEADER_SIZE), stream.stat().st_size):
             raise ValueError('Invalid existing frame stream')
     source=Path('/usr/lib/wine/i386-windows/winedbg.exe')
     data=source.read_bytes()

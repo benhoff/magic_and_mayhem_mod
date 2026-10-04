@@ -1,3 +1,4 @@
+#include "../../protocols/include/mnm/frame_v1.h"
 /* Mixed ordered operations, with independent engine storage on both buffers. */
 static char os_mode[32];static u32 os_event,os_subject,os_status,os_blt_calls,os_flip_calls,os_query_calls,os_fail;
 static u32 os_partial;
@@ -32,7 +33,7 @@ static void os_record(void){
     char front[]="front-00000000.bin",back[]="back-00000000.bin";static const char hex[]="0123456789abcdef";
     for(u32 i=0;i<8;++i){front[6+i]=hex[(pl_step>>(28-i*4))&15];back[5+i]=front[6+i];}
     pl_file(front,pl_target.native,32);pl_file(back,pl_surface.native,32);
-    u32 event[6]={pl_step,os_event,os_subject,os_status,bs_stream[10],os_partial},written;
+    u32 event[6]={pl_step,os_event,os_subject,os_status,bs_stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4],os_partial},written;
     if(!WriteFile(os_events,event,24,&written,0) || written!=24)ExitProcess(254);
 }
 static void os_copy(void){u32 failed=os_fail;SetLastError(0x77);
@@ -41,7 +42,7 @@ static void os_swap(void){u32 failed=os_fail;SetLastError(0x77);
     if(((i32 (WIN *)(void*,void*,u32))pl_target.table[11])(&pl_target,0,1)!=(failed?-1:23) || GetLastError()!=0x88)ExitProcess(256);pl_record();}
 static void test_owned_session(void){
     char path[512];GetEnvironmentVariableA("MNM_RENDER_STREAM",path,512);HANDLE f=CreateFileA(path,0xc0000000,3,0,3,0x80,0);
-    HANDLE mapping=CreateFileMappingA(f,0,4,0,64+2048*2048*4,0);CloseHandle(f);bs_stream=MapViewOfFile(mapping,2,0,0,64+2048*2048*4);CloseHandle(mapping);if(!bs_stream)ExitProcess(257);
+    HANDLE mapping=CreateFileMappingA(f,0,4,0,MNM_FRAME_V1_SIZE,0);CloseHandle(f);bs_stream=MapViewOfFile(mapping,2,0,0,MNM_FRAME_V1_SIZE);CloseHandle(mapping);if(!bs_stream)ExitProcess(257);
     static void* table[33];table[0]=(void*)&os_query;table[5]=(void*)&os_blt;table[11]=(void*)&os_flip;table[12]=(void*)&os_attached;
     table[22]=(void*)&os_desc;table[25]=(void*)&os_lock;table[27]=(void*)&pl_restore;table[28]=(void*)&pl_clipper;table[32]=(void*)&os_unlock;
     static void* alias_table[33];for(u32 i=0;i<33;++i)alias_table[i]=table[i];os_alias.table=alias_table;

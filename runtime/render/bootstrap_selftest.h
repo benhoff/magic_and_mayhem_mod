@@ -1,3 +1,4 @@
+#include "../../protocols/include/mnm/frame_v1.h"
 /* Never Lock the primary. The fake engine's independent backing pixels start
  * poisoned; only full opaque draws can establish a complete captured image. */
 static char bootstrap_mode[32];
@@ -84,10 +85,10 @@ static void bs_record(struct BsSurface* target){
     u32 length=target->width*target->height*(target->bits/8),written=0;
     HANDLE file=CreateFileA(native,0x40000000,1,0,1,0x80,0);
     if(file==(HANDLE)-1 || !WriteFile(file,target->pixels,length,&written,0) || written!=length)ExitProcess(161);CloseHandle(file);
-    length=bs_stream[10]?64+bs_stream[5]*bs_stream[6]*4:64;
+    length=bs_stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4]?64+bs_stream[MNM_FRAME_V1_WIDTH_OFFSET/4]*bs_stream[MNM_FRAME_V1_HEIGHT_OFFSET/4]*4:64;
     file=CreateFileA(frame,0x40000000,1,0,1,0x80,0);
-    if(file==(HANDLE)-1 || !WriteFile(file,bs_stream,length,&written,0) || written!=length || bs_stream[4]&1)ExitProcess(162);CloseHandle(file);
-    u32 event[2]={bs_draws,bs_stream[10]};if(!WriteFile(bs_events,event,8,&written,0) || written!=8)ExitProcess(163);
+    if(file==(HANDLE)-1 || !WriteFile(file,bs_stream,length,&written,0) || written!=length || bs_stream[MNM_FRAME_V1_SEQUENCE_OFFSET/4]&1)ExitProcess(162);CloseHandle(file);
+    u32 event[2]={bs_draws,bs_stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4]};if(!WriteFile(bs_events,event,8,&written,0) || written!=8)ExitProcess(163);
 }
 static void bs_draw(struct BsSurface* target,struct BsSurface* source,u32 fast,u32 keyed,u32 partial){
     struct BsRect sr={0,0,(i32)source->width,(i32)source->height},dr={0,0,(i32)target->width,(i32)target->height};
@@ -180,8 +181,8 @@ static void test_bootstrap(void){
     }
     char path[512];if(!GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path)))ExitProcess(168);
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)ExitProcess(169);
-    HANDLE mapping=CreateFileMappingA(file,0,4,0,64+2048*2048*4,0);CloseHandle(file);if(!mapping)ExitProcess(170);
-    bs_stream=MapViewOfFile(mapping,2,0,0,64+2048*2048*4);CloseHandle(mapping);if(!bs_stream)ExitProcess(171);
+    HANDLE mapping=CreateFileMappingA(file,0,4,0,MNM_FRAME_V1_SIZE,0);CloseHandle(file);if(!mapping)ExitProcess(170);
+    bs_stream=MapViewOfFile(mapping,2,0,0,MNM_FRAME_V1_SIZE);CloseHandle(mapping);if(!bs_stream)ExitProcess(171);
     bs_events=CreateFileA("events.bin",0x40000000,1,0,1,0x80,0);if(bs_events==(HANDLE)-1)ExitProcess(172);
     RenderInstallForTest(&source,source.kind);RenderInstallForTest(&alias,11);
     if(bs_is_indexed() && (bootstrap_mode[3]=='c' || bootstrap_mode[3]=='f'))ic_test(&target,&source,&sprite,&alias);

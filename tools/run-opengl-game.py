@@ -12,6 +12,12 @@ import subprocess
 import tempfile
 REPO=Path(__file__).resolve().parent.parent
 
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol, input_v1 as input_protocol, media_v1 as media_protocol
+
+
 def load(name,file):
     spec=importlib.util.spec_from_file_location(name,REPO/file)
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
@@ -73,17 +79,17 @@ def main():
     stream=args.stream.resolve()
     if not stream.is_relative_to(REPO/'working'):raise ValueError('Frame stream must be under working/')
     with stream.open('rb') as file:
-        if stream.stat().st_size!=64+2048*2048*4 or file.read(16)!=b'MNMGL001\x01\0\0\0\x40\0\0\0':raise ValueError('Invalid pre-created frame stream')
+        if not frame_protocol.valid_header(file.read(frame_protocol.HEADER_SIZE), stream.stat().st_size):raise ValueError('Invalid pre-created frame stream')
     input_path=args.input.resolve() if args.input else None
     if input_path:
         if not input_path.is_relative_to(REPO/'working'):raise ValueError('Input channel must be under working/')
         with input_path.open('rb') as file:
-            if input_path.stat().st_size!=1088 or file.read(16)!=b'MNMINK01\x01\0\0\0\x40\x04\0\0':raise ValueError('Invalid input channel')
+            if not input_protocol.valid_header(file.read(input_protocol.HEADER_SIZE), input_path.stat().st_size):raise ValueError('Invalid input channel')
     media_path=args.media_channel.resolve() if args.media_channel else None
     if media_path:
         if not media_path.is_relative_to(REPO/'working'):raise ValueError('Media channel must be under working/')
         with media_path.open('rb') as file:
-            if media_path.stat().st_size!=2048 or file.read(16)!=b'MNMMED01'+(1).to_bytes(4,'little')+(2048).to_bytes(4,'little'):raise ValueError('Invalid media channel')
+            if not media_protocol.valid_header(file.read(media_protocol.HEADER_SIZE), media_path.stat().st_size):raise ValueError('Invalid media channel')
     voice_path=args.voice_channel.resolve() if args.voice_channel else None
     if voice_path:
         if not voice_path.is_relative_to(REPO/'working'):raise ValueError('Voice channel must be under working/')

@@ -12,6 +12,12 @@ import subprocess
 import tempfile
 
 REPO = Path(__file__).resolve().parents[1]
+
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol
+
 CASES = ('modern', 'legacy', 'surface2', 'surface7', 'negative', 'rgb24', 'rgb32',
          'indexed', 'chain', 'retry', 'failed-lock', 'no-base', 'readonly', 'discard',
          'layout', 'changed', 'argument', 'invalidate', 'budget', 'blit', 'memory-budget',
@@ -141,8 +147,8 @@ def main():
             (capture / 'update-00000002.bin').write_bytes(b'existing-file-sentinel')
         stream = case / 'frame.bin'
         with stream.open('wb') as f:
-            f.write(b'MNMGL001' + struct.pack('<II', 1, 64) + bytes(48))
-            f.truncate(64 + 2048 * 2048 * 4)
+            f.write(frame_protocol.initial_header())
+            f.truncate(frame_protocol.SIZE)
         shutil.copy2(dll, case / dll.name)
         (case / 'selftest.exe').write_bytes(stage.add_import((dll.parent / 'selftest.exe').read_bytes(),
             dll='MnmRender.dll', symbol_name='RenderAnchor', section_name=b'.mnmgl'))

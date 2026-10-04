@@ -5,9 +5,11 @@ import importlib.util
 import json
 from pathlib import Path
 import subprocess
+import sys
 REPO=Path(__file__).resolve().parent.parent
 
 def build(selftest=False):
+    subprocess.run([sys.executable, str(REPO/"protocols/generate.py"), "--check"], check=True)
     spec=importlib.util.spec_from_file_location('shadow_build',REPO/'tools/build-shadow-bridge.py')
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     imports=dict(module.IMPORTS,CreateFileMappingA=24,MapViewOfFile=20,GetFileSize=8,GetTickCount=0,GetCurrentThreadId=0,GetProcAddress=8,Sleep=4)
@@ -21,7 +23,11 @@ def build(selftest=False):
     exports=['/export:RenderInstallForTest=_RenderInstallForTest@8','/export:RenderCreateForTest=_RenderCreateForTest@16','/export:RenderInputForTest=_RenderInputForTest@12','/export:RenderMediaForTest=_RenderMediaForTest@12'] if selftest else []
     dll=root/'MnmRender.dll'
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib')],check=True)
-    (root/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()}},indent=2)+'\n')
+    protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))
+    protocol_sources=protocol_headers+sorted((REPO/'protocols/schemas').glob('*-v1.json'))+[REPO/'protocols/generate.py']
+    (root/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
+        'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()},
+        'protocol_sources':{str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest() for p in protocol_sources}},indent=2)+'\n')
     if selftest:
         definition=root/'render.def';definition.write_text('LIBRARY MnmRender.dll\nEXPORTS\nRenderInstallForTest@8\nRenderCreateForTest@16\nRenderInputForTest@12\nRenderMediaForTest@12\n')
         subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'render.lib')],check=True)

@@ -13,6 +13,12 @@ import tempfile
 
 REPO = Path(__file__).resolve().parents[1]
 
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol
+
+
 
 def load(name, path):
     spec = importlib.util.spec_from_file_location(name, REPO / path)
@@ -149,15 +155,17 @@ def main():
         layout_env.update(QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1')
         for width, height in ((800, 600), (129, 257)):
             layout = root / f'layout-{width}x{height}.bin'
-            header = bytearray(64)
-            header[:8] = b'MNMGL001'
-            struct.pack_into('<9I', header, 8, 1, 64, 2, width, height, width * 4, 1, 1, 1)
+            header = bytearray(frame_protocol.initial_header())
+            header[:frame_protocol.MAGIC_SIZE] = frame_protocol.MAGIC
+            struct.pack_into('<7I', header, frame_protocol.SEQUENCE_OFFSET, 2, width, height,
+                             width * frame_protocol.BYTES_PER_PIXEL, frame_protocol.PIXEL_FORMAT_RGBA8888,
+                             frame_protocol.STATUS_FRAME_PUBLISHED, 1)
             pixels = bytes(channel for y in range(height) for x in range(width)
                            for channel in ((x * 17 + y * 11) & 255, (x * 3 + y * 19) & 255, (x ^ y) & 255, 255))
             with layout.open('wb') as f:
                 f.write(header)
                 f.write(pixels)
-                f.truncate(64 + 2048 * 2048 * 4)
+                f.truncate(frame_protocol.SIZE)
             result = subprocess.run(['xvfb-run', '-a', str(qt_build / 'mnm-qt-shell'), '--stream-test', str(layout)],
                                     env=layout_env, capture_output=True, text=True, timeout=20)
             assert result.returncode == 0, (width, height, result.stderr)
@@ -176,8 +184,8 @@ def main():
         capture.mkdir(parents=True)
         frame = case / 'frame.bin'
         with frame.open('wb') as f:
-            f.write(b'MNMGL001' + struct.pack('<II', 1, 64) + bytes(48))
-            f.truncate(64 + 2048 * 2048 * 4)
+            f.write(frame_protocol.initial_header())
+            f.truncate(frame_protocol.SIZE)
         shutil.copy2(dll, case / dll.name)
         (case / 'selftest.exe').write_bytes(stage.add_import((dll.parent / 'selftest.exe').read_bytes(),
             dll='MnmRender.dll', symbol_name='RenderAnchor', section_name=b'.mnmgl'))

@@ -10,6 +10,12 @@ import subprocess
 import tempfile
 REPO=Path(__file__).resolve().parent.parent
 
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol
+
+
 def load(name,file):
     spec=importlib.util.spec_from_file_location(name,REPO/file)
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
@@ -18,7 +24,7 @@ def main():
     dll=load('render_build','tools/build-render-bridge.py').build(True)
     parent=REPO/'working/tests/render';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));stream=root/'frame.bin'
-    with stream.open('wb') as file:file.write(b'MNMGL001'+struct.pack('<2I',1,64)+bytes(48));file.truncate(64+2048*2048*4)
+    with stream.open('wb') as file:file.write(frame_protocol.initial_header());file.truncate(frame_protocol.SIZE)
     shutil.copy2(dll,root/dll.name)
     stage=load('stage','tools/prepare-shadow-experiment.py')
     (root/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
@@ -34,7 +40,7 @@ def main():
     assert data[64:96]==expected
     failure_stream=root/'failure-frame.bin'
     with failure_stream.open('wb') as file:
-        file.write(b'MNMGL001'+struct.pack('<2I',1,64)+bytes(48));file.truncate(64+2048*2048*4)
+        file.write(frame_protocol.initial_header());file.truncate(frame_protocol.SIZE)
     failure_env=env.copy();failure_env['MNM_PRIMARY_LOCK_FAILURE_SELFTEST']='1'
     failure_env['MNM_RENDER_STREAM']='Z:'+str(failure_stream).replace('/','\\')
     failure_log=root/'surface-failures.log'
@@ -49,7 +55,7 @@ def main():
     assert failure_header[9]==2 and failure_header[10]==0
     passive_stream=root/'no-readback-frame.bin'
     with passive_stream.open('wb') as file:
-        file.write(b'MNMGL001'+struct.pack('<2I',1,64)+bytes(48));file.truncate(64+2048*2048*4)
+        file.write(frame_protocol.initial_header());file.truncate(frame_protocol.SIZE)
     passive_env=env.copy();passive_env['MNM_RENDER_NO_READBACK']='1'
     passive_env['MNM_RENDER_STREAM']='Z:'+str(passive_stream).replace('/','\\')
     with (root/'no-readback-wine.log').open('w') as log:
@@ -60,7 +66,7 @@ def main():
     for mode,state,result in (('ok',7,0),('failed',8,0x887600ff),('null-result',10,0)):
         diagnostic=root/('startup-'+mode+'.bin')
         with diagnostic.open('wb') as file:
-            file.write(b'MNMGL001'+struct.pack('<2I',1,64)+bytes(48));file.truncate(64+2048*2048*4)
+            file.write(frame_protocol.initial_header());file.truncate(frame_protocol.SIZE)
         probe_env=env.copy();probe_env['MNM_STARTUP_SELFTEST']=mode;probe_env['MNM_RENDER_STREAM']='Z:'+str(diagnostic).replace('/','\\')
         with (root/('startup-'+mode+'.log')).open('w') as log:
             subprocess.run(['wine',str(root/'selftest.exe')],cwd=root,env=probe_env,stdout=log,stderr=log,check=True,timeout=60)

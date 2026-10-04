@@ -1,4 +1,5 @@
 #pragma once
+#include "../../protocols/include/mnm/media_v1.h"
 #include <QAudioBufferOutput>
 #include <QAudioOutput>
 #include <QCryptographicHash>
@@ -15,7 +16,7 @@ public:
     NativePlayback(bool movie,bool audible);
     ~NativePlayback() override;
     void start(const QString& path,bool loop=false);
-    void stop(unsigned result=4);
+    void stop(unsigned result=MNM_MEDIA_V1_STATUS_CANCELLED);
     void pause(bool value);
     void setVolume(float volume);
     bool active() const{return !finished_;}

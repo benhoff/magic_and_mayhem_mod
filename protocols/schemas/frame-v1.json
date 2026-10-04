@@ -1,0 +1,153 @@
+{
+  "name": "frame",
+  "version": 1,
+  "magic": "MNMGL001",
+  "size": 16777280,
+  "header_size": 64,
+  "byte_order": "little",
+  "fields": [
+    {
+      "name": "magic",
+      "offset": 0,
+      "size": 8,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "version",
+      "offset": 8,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "declared_size",
+      "offset": 12,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "sequence",
+      "offset": 16,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "width",
+      "offset": 20,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "height",
+      "offset": 24,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "stride",
+      "offset": 28,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "pixel_format",
+      "offset": 32,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "status",
+      "offset": 36,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "frame_count",
+      "offset": 40,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "create_hresult",
+      "offset": 44,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "create_count",
+      "offset": 48,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "enumeration_hresult",
+      "offset": 52,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "enumeration_count",
+      "offset": 56,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "enumeration_kind",
+      "offset": 60,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "pixels",
+      "offset": 64,
+      "size": 16777216,
+      "owner": "producer",
+      "type": "bytes"
+    }
+  ],
+  "constants": {
+    "max_width": 2048,
+    "max_height": 2048,
+    "bytes_per_pixel": 4
+  },
+  "enums": {
+    "pixel_format": {
+      "rgba8888": 1
+    },
+    "status": {
+      "not_loaded": 0,
+      "frame_published": 1,
+      "lock_failed": 2,
+      "surface_rejected": 3,
+      "dll_loaded": 4,
+      "hook_armed": 5,
+      "inside_create": 6,
+      "interface_intercepted": 7,
+      "create_failed": 8,
+      "hook_failed": 9,
+      "interception_failed": 10,
+      "enumerating": 11,
+      "enumeration_complete": 12,
+      "enumeration_failed": 13
+    },
+    "enumeration_kind": {
+      "enumerate_a": 1,
+      "enumerate_ex_a": 2
+    }
+  },
+  "declared_size_kind": "header_size"
+}

@@ -1,4 +1,5 @@
 #pragma once
+#include "../../protocols/include/mnm/frame_v1.h"
 /* Included after the host's u8/u32/i32 typedefs. RGBA bytes, top row first. */
 static u8 render_channel(u32 value,u32 mask){
     if(!mask)return 0;
@@ -12,7 +13,7 @@ static int render_mask(u32 mask,u32 bits){
 }
 static int render_pixels(u8* rgba,u32 width,u32 height,const u8* pixels,i32 pitch,
                          u32 bits,u32 red,u32 green,u32 blue,const u8* palette){
-    if(!width||!height||width>2048||height>2048||!pixels)return 0;
+    if(!width||!height||width>MNM_FRAME_V1_MAX_WIDTH||height>MNM_FRAME_V1_MAX_HEIGHT||!pixels)return 0;
     if(bits!=8 && bits!=16 && bits!=24 && bits!=32)return 0;
     const u32 bytes=bits/8;
     if(pitch==(-2147483647-1) || (u32)(pitch<0?-pitch:pitch)<width*bytes)return 0;
