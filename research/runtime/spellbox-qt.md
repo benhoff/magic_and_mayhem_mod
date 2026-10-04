@@ -20,15 +20,42 @@ alignments, dangling assignments, missing assigned spells, and assignments
 exceeding quantity are rejected before model mutation. These are preview policies;
 original inventory capacities and stack rules remain unverified.
 
-Select an item and talisman, then Assign, or drag an item to a talisman. Assignment
-replaces that slot's previous item and releases its copy; a missing supplied spell
-or exhausted item prevents it. Remove or dragging a filled talisman to an item
-shelf returns its copy locally. Shelf counts show unassigned copies. A drag back
-to a shelf uses the source talisman, regardless of the destination item cell;
-empty shelf areas are not drop targets. Cross-widget/external/stale drag inputs
-are rejected by source ownership and a model revision token. Single-frame cells
-retain QPushButton focus, keyboard and accessible labels rather than treating
-adjacent SPR frames as hover states.
+Original reference checked on 2026-10-04: the installed tutorial explicitly
+describes right-hand ingredient shelves, left-hand talisman trays, drag-to-create
+and drag-back-to-remove. The original English manual, printed page 10 (PDF page
+7), also describes a selected ingredient at the top of the box with all three
+possible spells, and spell hover tooltips. Its screenshot confirms the shelf/tray
+layout. Reference: [original manual](https://oldgamesdownload.com/wp-content/uploads/manuals/magic-and-mayhem_win_manual_en_t0c.pdf).
+This is primary documentation/static screenshot evidence, not live mouse-event
+observation. A desktop capture attempt failed due to unavailable X authorization.
+
+The native mock now shows the selected ingredient and all three caller-supplied
+spell artworks/tooltips in a header. Clicking an available ingredient picks up
+artwork that follows the pointer until placed or deselected; ordinary held-button
+dragging remains supported with ingredient drag artwork. Hovering a talisman
+temporarily shows the resulting supplied spell without assigning it. Dropping
+commits that spell artwork. Picking up a filled talisman permits moving its
+existing copy to another alignment or returning it to a shelf, including empty
+shelf background. Shelf quantity is conserved; exhausted shelf artwork is hidden.
+Right-click or the first Escape puts down a carried ingredient without mutating
+the draft; Escape otherwise restores the accepted draft and cancels the screen.
+Hidden screens clear pointer overlays. Click-to-carry and its cancellation are
+user-requested native behavior; the manual only confirms held-button dragging.
+
+An available ingredient's shelf artwork is hidden immediately on left-button
+press and remains hidden during held dragging. Release or completion/cancellation
+of the native drag restores shelf presentation using the resulting inventory;
+a committed last-copy assignment still leaves the shelf empty. This temporary
+visual state does not reserve or consume inventory, and hiding the cell clears
+it. The synthetic Spellbox check compares shelf pixels while held and after an
+outside release, and verifies that the quantity and assignments are unchanged.
+
+Assign/Remove remain keyboard-accessible alternatives. Missing supplied spells
+or exhausted copies prevent assignment. Drag ownership and model revision tokens
+reject external/cross-widget/stale sources. A hover changes presentation only;
+Preview remains a separate typed semantic request. Native quantity/control
+policies remain distinct from original engine contracts. Mana-cost rings are
+not shown because the supplied model contains no recovered spell costs/max mana.
 
 Preview emits typed owner/talisman/item/spell IDs for the selected item and
 alignment without changing assignments. OK emits the complete typed loadout,
@@ -42,7 +69,8 @@ Original decoded colour and alpha masks are preserved, including opaque black
 and signed SPR origins. The 800x600 canvas scales with 4:3 letterboxing. Native
 cell placement follows visible tray/shelf areas: talisman columns X=198/104/10,
 Y=7+84*row; items X=290+83*column, Y=93+102*row, six per shelf. Cells use 84x86.
-An authored command row and selection details occupy the carved header.
+Selected ingredient/three-spell art occupies the carved header with an authored
+command row underneath.
 Selection outlines, quantity labels, system fonts, Assign/Remove/Preview/OK/Cancel
 controls and stack handling are native presentation. No original runtime
 screenshot equivalence has been verified. Original navigation tooltips are

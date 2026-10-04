@@ -163,6 +163,29 @@ have separate evidence. Original in-game menus and actions remain active.
 | UI14 Native menu SFT fonts | Shared native SFT-to-Qt outline registration and Heading/Body/Tooltip/Yellow roles across all migrated controls; offline only | 24 targeted Qt checks; synthetic glyph mapping/mask/origin/advance/bounds checks, 21 installed variants at three canvas sizes, editing/tooltips/shared lifetime audit and five inspected captures. [Evidence](menu-font-integration.md) | Original palette/coverage shading, contour kerning, punctuation/code pages, wrapping and live text/screenshot equivalence remain unverified; native spacing/rasterization policy is explicit |
 | UI15 Native Realm Viewer shapes/animation | Original PCX border overlays and binary mask hit testing, ANI green flags; unsolicited FP-route figure removed after hands-on feedback; offline only | 25 targeted Qt checks; synthetic shape holes/keying, input/availability, timing/loops, hidden timer and reload rollback checks; all 36 installed regions selectable at three sizes, all eleven flag frames fit, and three inspected map captures. [Evidence](realm-viewer-visuals.md) | Original colour-key callbacks, animation clock/roles, direction/route/slot choice, movement speed and campaign travel/engine commands remain unverified; native preview policies explicit |
 
+2026-10-04 hands-on menu corrections (UI07/UI12/UI15): difficulty options now
+show explicit empty/filled indicators, selected-row emphasis and full-rectangle
+click targets that scale with the canvas. Realm selection no longer starts an
+unsupported walking-figure loop. Portmanteau now provides the selected ingredient
+and three supplied spell artworks in a header, ingredient pointer/drag artwork,
+transient talisman hover previews, assignment artwork and returns to occupied or
+empty shelf areas. The original manual (printed page 10) and installed tutorial
+confirm the header and drag/create/remove pattern; click-to-carry/cancellation
+follows the user's requested mock behavior, not a recovered input contract.
+Focused synthetic Realm visual, Region Entry and Spellbox checks pass, including
+new scaled hit-area, idle-marker, hover-without-assignment, conserved-copy move,
+shelf-return and pointer cleanup cases. Original manifest verifies before/after
+reference inspection. No paired original runtime interaction/visual comparison
+or live replacement is claimed. Spell recipes, mana rings and campaign travel
+remain unresolved; see [Portmanteau evidence](spellbox-qt.md),
+[difficulty policy](region-entry-qt.md) and [map visuals](realm-viewer-visuals.md).
+
+UI12 held-drag follow-up: ingredient shelf artwork now disappears during a held
+left-button pickup and restores on release/cancel according to available copies.
+The shell builds and `qt-spellbox` passes with synthetic held/released shelf-pixel
+and unchanged quantity/assignment checks. This is native presentation validation;
+original input equivalence remains unverified (same Portmanteau evidence).
+
 ## Shared frame, input and media protocol ownership
 
 Reviewed 2026-10-04. `protocols/` owns the v1 wire schemas, generated C/C++ and

@@ -46,9 +46,15 @@ private:
     void preview();
     void accept();
     void cancel();
+    void carry(int item,int sourceTalisman=-1);
+    void putDown();
+    void pointerAt(const QPoint&);
+    bool placeCarried(int talisman);
+    void returnCarried();
     bool dropCell(bool item,int index,SpellboxCell* source);
     Inventory accepted_,draft_;
     int selectedItem_=-1,selectedTalisman_=-1;
+    int carriedItem_=-1,carriedTalisman_=-1,hoveredTalisman_=-1;
     quint64 revision_=0;
     QImage background_;
     mnm::ui::MenuSpriteSheet itemSprites_,talismanSprites_;
@@ -56,6 +62,8 @@ private:
     QVector<SpellboxCell*> items_,talismans_;
     std::array<QPushButton*,5> actions_{};
     QLabel* detail_=nullptr;
+    QLabel* carriedArt_=nullptr;
+    std::array<QLabel*,4> recipeArt_{};
 };
 Q_DECLARE_METATYPE(SpellboxWidget::Request)
 Q_DECLARE_METATYPE(SpellboxWidget::Preview)
