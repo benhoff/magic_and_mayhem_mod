@@ -248,3 +248,11 @@ frames, and held keys/buttons are released across movie transitions. Exercise
 one-shot/looped WAV sounds and normal DirectSound effects together. Close the
 game normally and check that relaunch creates a fresh media channel. Record
 observed results separately from the offline checks.
+
+## Native audio buffers without the game
+
+`python3 tools/test-audio-buffers.py` exports hash-guarded static audio evidence,
+builds the native buffer model, runs lifecycle tests, and compares uploaded PCM
+against Python's independent WAV reader for every installed sound. It verifies
+original artifacts before and after. No game is launched and no audible output
+is produced. See [DirectSound setup scope](../research/runtime/directsound-buffer-setup.md).

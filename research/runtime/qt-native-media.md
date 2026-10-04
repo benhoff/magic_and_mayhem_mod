@@ -99,8 +99,9 @@ verification before and after. The production bridge is PE32 i386.
 
 Confidence is high for offline decode and synthetic ABI/lifecycle behavior.
 Audible output, full movie playback, live startup and return to a game/map have
-not been validated. Next audio reconstruction is DirectSound device/buffer
-creation, sample ownership, play/stop/loop cursors, volume/pan/frequency and
-voice retirement, followed by an independently testable native mixer. CD music
+not been validated. [DirectSound device/buffer creation and sample ownership](directsound-buffer-setup.md)
+now have a separate offline reconstruction. Remaining audio work is play/stop/loop
+cursors, volume/pan/frequency and voice retirement, followed by an independently
+testable native mixer and isolated game adapter. CD music
 is already disabled in disposable OpenGL staging; this chunk does not replace
 the original CD playback path.

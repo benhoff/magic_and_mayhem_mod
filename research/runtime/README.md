@@ -47,3 +47,7 @@ confidence, and whether it remains stable across launches.
 
 - [Qt movies and file sounds](qt-native-media.md): optional x86 movie/WinMM hooks,
   native decoding and bounded broker lifecycle; DirectSound remains in Wine.
+
+- [DirectSound setup and sample ownership](directsound-buffer-setup.md): pinned
+  primary/secondary creation, native PCM uploads and duplicate buffer lifecycle;
+  offline reconstruction without game interception or audible output.
