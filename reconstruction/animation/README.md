@@ -17,3 +17,9 @@ Phase-preserving forward switches are implemented and compared separately with
 [selection evidence](../../research/runtime/animation-direction-selection.md).
 Reverse playback, complete named action selection and gameplay event consumers
 remain outside this implementation.
+
+Selected sprite/attachment placement is recovered separately in `placement.hpp`:
+body displacement, both attachment points and the `TileSizeXY == 2` view
+adjustment. The player exposes an owned displayed-record snapshot. Run
+`python3 tools/test-animation-placement.py`; see the
+[helper contract and evidence](../../research/runtime/animation-placement-attachments.md).

@@ -11,8 +11,10 @@ int main()try{
     require(player.tick()==0 && player.tick()==0 && player.sprite()==18,"Delay did not retain current sprite");
     require(player.tick()==-7 && player.sprite()==18,"Event did not retain sprite");
     const auto retained=player.state();
+    const auto displayed=player.displayedRecord();
     auto target=std::vector<mnm::assets::AnimationRecord>{{0,27,{}},{1,8,{}},{0,28,{}},{5,9,{}},{6,-1,{}}};
     player.switchSequence(target);
+    require(displayed && displayed->argument==18,"Displayed record snapshot borrowed switched storage");
     require(player.sprite()==28 && player.state().pc==retained.pc && player.state().delay==2 && player.state().elapsed==retained.elapsed,
             "Switch restarted or changed delay/display phase");
     rejected([&]{player.switchSequence({{0,99,{}},{6,-1,{}}});});
