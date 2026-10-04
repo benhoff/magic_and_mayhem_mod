@@ -157,3 +157,26 @@ lighting and live replacement remain separate. See
 xvfb-run -a python3 tools/test-terrain-sections.py \
   --preview NORMAL --sanitized SANITIZED
 ```
+
+## Installed authored region
+
+```sh
+working/build/terrain-region-frozen/mnm-terrain-preview \
+  --root working/game-clean --region-config 'Realms\Celtic\Celtic.cfg' \
+  --region-id 6 --world --initialize-terrain --view 0 --visibility
+```
+
+`--region-config` and `--region-id` select a complete authored recipe from the
+installed realm CFG. Celtic regions 6 and 9 are supported installed examples.
+The service selects MAP files from Path and TTD/SPR from SpritePath, expands
+multi-block sections around their authored anchors with wrapping, and supports
+mixed source layer counts. Empty layers above shorter sources remain empty.
+Geometry initializes after the assembled grid is complete. JSON provenance is
+under `map.recipe`; source assets remain unchanged.
+
+This mode excludes `--map`, `--grid`, `--section` and `--realm`, and requires
+world mode plus initialization. Recipes needing Random candidates or wildcard
+placement/rotation are rejected. General edge correction, entity placement,
+lighting and water remain separate. See
+[authored-region evidence](../../research/runtime/terrain-authored-regions.md)
+and [recipe syntax](../../research/formats/region-terrain-recipes.md).

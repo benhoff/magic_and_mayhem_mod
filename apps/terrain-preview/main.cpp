@@ -2,6 +2,7 @@
 #include "terrain_camera.hpp"
 #include "terrain_map.hpp"
 #include "terrain_sections.hpp"
+#include "region_loader.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QLabel>
@@ -21,6 +22,8 @@ int main(int argc,char** argv)try{
  p.addOption({"root","Installed asset root","directory"});p.addOption({"realm","Realm directory","path","Realms/Celtic/Forest"});
  p.addOption({"definitions","1..9 comma-separated TTD IDs","ids","5,9,13,17,21,25,29,33,37"});
  p.addOption({"map","Installed MAP request; replaces explicit definitions","path"});
+ p.addOption({"region-config","Realm CFG containing an authored region recipe","path"});
+ p.addOption({"region-id","Region recipe numeric ID","id"});
  p.addOption({"grid","Explicit complete section grid columns,rows,side","dimensions"});
  p.addOption({"section","MAP path,sourceX,sourceY,column,row,rotation; repeat for every grid slot","selection"});
  p.addOption({"region","MAP slice x,y,layer,width,height (width/height 1..3)","coordinates","0,0,0,3,3"});
@@ -34,7 +37,13 @@ int main(int argc,char** argv)try{
  bool ok=false;const auto view=p.value("view").toUInt(&ok);if(!ok || view>3 || !p.isSet("root"))throw std::runtime_error("Specify --root and view 0..3");
  auto configured=mnm::assets::AssetStore::create(p.value("root").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&configured))throw std::runtime_error(e->detail);
  auto store=std::get<mnm::assets::AssetStore>(std::move(configured));
- const auto open=[&](const char* name){auto result=store.open((p.value("realm")+"/"+name).toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&result))throw std::runtime_error(e->detail);return std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(result));};
+ std::optional<mnm::assets::RegionRecipe> recipe;QString realm=p.value("realm");
+ if(p.isSet("region-config")){
+  if(!p.isSet("region-id") || !p.isSet("world") || !p.isSet("initialize-terrain") || p.isSet("map") || p.isSet("grid") || p.isSet("section") || p.isSet("realm"))throw std::runtime_error("Region config requires region-id, world and initialize-terrain; excludes map/grid/section/realm");
+  const auto id=p.value("region-id").toUInt(&ok);if(!ok || id>99)throw std::runtime_error("Invalid region ID");
+  recipe=mnm::preview::loadTerrainRecipe(store,p.value("region-config").toStdString(),id);realm=QString::fromStdString(recipe->spritePath);
+ }else if(p.isSet("region-id"))throw std::runtime_error("Region ID requires region config");
+ const auto open=[&](const char* name){auto result=store.open((realm+"/"+name).toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&result))throw std::runtime_error(e->detail);return std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(result));};
  auto ttd=open("Terrain.ttd"),spr=open("Terrain.spr");auto catalog=mnm::assets::loadTerrainCatalog(*ttd);auto sprite=mnm::assets::loadSprite(*spr);
  if(auto* e=std::get_if<mnm::assets::TerrainCatalogError>(&catalog))throw std::runtime_error(e->detail);
  if(auto* e=std::get_if<mnm::assets::SpriteError>(&sprite))throw std::runtime_error(e->detail);
@@ -44,14 +53,19 @@ int main(int argc,char** argv)try{
  if((p.isSet("grid") && (!world || !p.isSet("initialize-terrain") || p.isSet("map"))) || (p.isSet("section") && !p.isSet("grid")))throw std::runtime_error("Grid requires world, initialize-terrain and sections; excludes map");
  if(p.isSet("initialize-terrain") && !world)throw std::runtime_error("Terrain initialization requires world mode");
  if((p.isSet("recovered-camera") && (!world || p.isSet("camera") || p.isSet("pan"))) || (p.isSet("scroll") && !p.isSet("recovered-camera")))throw std::runtime_error("Recovered camera requires world and excludes camera/pan; scroll requires recovered camera");
- if((world && ((!p.isSet("map") && !p.isSet("grid")) || p.isSet("region") || p.isSet("overlap"))) || (!world && (p.isSet("camera") || p.isSet("pan"))))throw std::runtime_error("--world requires --map; camera/pan require world; region/overlap require slice mode");
- if(p.isSet("map") || p.isSet("grid")){
-  if(p.isSet("definitions"))throw std::runtime_error("Choose --map or --definitions");
+ if((world && ((!p.isSet("map") && !p.isSet("grid") && !recipe) || p.isSet("region") || p.isSet("overlap"))) || (!world && (p.isSet("camera") || p.isSet("pan"))))throw std::runtime_error("--world requires map, grid or region-config; camera/pan require world; region/overlap require slice mode");
+ if(p.isSet("map") || p.isSet("grid") || recipe){
+  if(p.isSet("definitions"))throw std::runtime_error("Choose map/grid/region-config or definitions");
   const auto values=p.value("region").split(',');if(values.size()!=5)throw std::runtime_error("Region requires x,y,layer,width,height");
   std::array<std::uint32_t,5> fields{};for(unsigned i=0;i<5;++i){fields[i]=values[i].toUInt(&ok);if(!ok)throw std::runtime_error("Region coordinates must be unsigned integers");}
   const auto load=[&](const QString& path){auto opened=store.open(path.toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&opened))throw std::runtime_error(e->detail);auto file=std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(opened));auto loaded=mnm::assets::loadMap(*file);if(auto* e=std::get_if<mnm::assets::PersistenceError>(&loaded))throw std::runtime_error(e->detail);return std::get<mnm::assets::MapAsset>(std::move(loaded));};
-  mnm::assets::MapAsset map;QJsonObject assemblyInfo;
-  if(p.isSet("grid")){
+  mnm::assets::MapAsset map;QJsonObject assemblyInfo,recipeInfo;
+  if(recipe){
+   auto loaded=mnm::preview::loadFixedTerrainRegion(store,*recipe,std::get<mnm::assets::TerrainCatalog>(catalog));
+   QJsonArray blocks;for(const auto& b:loaded.plan.blocks)blocks.append(QJsonObject{{"path",QString::fromStdString(loaded.paths[b.source])},{"source_x",int(b.sourceX)},{"source_y",int(b.sourceY)},{"column",int(b.column)},{"row",int(b.row)},{"rotation",int(b.rotation)}});
+   recipeInfo={{"config",p.value("region-config")},{"id",int(recipe->id)},{"name",QString::fromStdString(recipe->name)},{"sprite_path",realm},{"side",int(loaded.plan.side)},{"blocks",blocks},{"projected_source_objects",int(loaded.assembly.projectedObjects)},{"projected_source_references",int(loaded.assembly.projectedReferences)}};
+   map=std::move(loaded.assembly.map);
+  }else if(p.isSet("grid")){
    const auto dimensions=p.value("grid").split(',');if(dimensions.size()!=3)throw std::runtime_error("Grid requires columns,rows,side");
    std::array<unsigned,3> grid{};for(unsigned i=0;i<3;++i){grid[i]=dimensions[i].toUInt(&ok);if(!ok || !grid[i] || grid[i]>128)throw std::runtime_error("Invalid grid field");}
    const auto selections=p.values("section");if(selections.size()>16384)throw std::runtime_error("Too many sections");
@@ -97,6 +111,7 @@ int main(int argc,char** argv)try{
    }
    tiles=mnm::preview::worldTerrainTiles(map,camera);
    mapInfo={{"path",p.value("map")},{"width",qint64(map.width)},{"height",qint64(map.height)},{"layers",qint64(map.layers)},{"camera",QJsonArray{camera.column,camera.row,int(camera.span),int(camera.cutLevel)}},{"pan",QJsonArray{camera.f11,camera.f15}}};
+   if(recipe)mapInfo.insert("recipe",recipeInfo);
    if(p.isSet("grid"))mapInfo.insert("assembly",assemblyInfo);
    if(p.isSet("initialize-terrain"))mapInfo.insert("terrain_geometry",geometryInfo);
    mapInfo.insert("recovered_camera",p.isSet("recovered-camera"));
