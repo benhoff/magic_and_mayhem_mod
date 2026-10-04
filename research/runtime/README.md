@@ -81,3 +81,6 @@ confidence, and whether it remains stable across launches.
 
 
 - [Primary audio manager](primary-audio-manager.md): saved volume, selected startup/disable/shutdown ordering, native master attenuation and x86 fixture evidence.
+
+- [Native SPR rendering](native-sprite-rendering.md): owned mask/RGB565 uploads,
+  origin placement, offline previews and selected original draw comparisons.

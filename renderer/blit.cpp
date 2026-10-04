@@ -51,6 +51,8 @@ void main(){
 })";
 constexpr auto fragmentSource=R"(#version 330 core
 uniform usampler2D sourcePixels;
+uniform usampler2D sourceMask;
+uniform bool hasMask;
 uniform ivec2 sourceOrigin;
 uniform ivec2 destinationOrigin;
 uniform bool hasKey;
@@ -58,6 +60,7 @@ uniform uint sourceKey;
 layout(location=0) out uint nativePixel;
 void main(){
     ivec2 at=ivec2(gl_FragCoord.xy)-destinationOrigin+sourceOrigin;
+    if(hasMask && texelFetch(sourceMask,at,0).r==0u)discard;
     uint pixel=texelFetch(sourcePixels,at,0).r;
     if(hasKey && pixel==sourceKey)discard;
     nativePixel=pixel;
@@ -189,18 +192,27 @@ void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
     g.glPixelStorei(GL_UNPACK_ALIGNMENT,4);g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.pixels.data());
     p.check();++p.counters.uploads;
 }
-void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key){
+void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key,
+                     std::optional<SurfaceId> mask){
     auto& p=*impl_;p.thread();auto& src=p.get(source);auto& dst=p.get(destination);
     if(source==destination)throw std::runtime_error("Self-copy is unsupported");
     if(src.format.bits!=dst.format.bits || src.format.masks!=dst.format.masks)throw std::runtime_error("Copy requires identical native formats");
     if(r.left<0 || r.top<0 || r.right<=r.left || r.bottom<=r.top || r.right>src.width || r.bottom>src.height ||
        x<0 || y<0 || x>dst.width-(r.right-r.left) || y>dst.height-(r.bottom-r.top))throw std::runtime_error("Copy rectangle is out of bounds");
     if(key && src.format.bits<32 && *key>((std::uint32_t{1}<<src.format.bits)-1))throw std::runtime_error("Source key exceeds its format");
+    if(mask){
+        auto& m=p.get(*mask);
+        if(*mask==destination || m.format.bits!=8 || m.width!=src.width || m.height!=src.height)
+            throw std::runtime_error("Copy mask must be an indexed source-sized surface distinct from destination");
+    }
     Current current(p.context,&p.surface);auto& g=p.gl;p.attach(dst.native,dst.width,dst.height);
     g.glEnable(GL_SCISSOR_TEST);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);
     g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,src.native);
+    g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,mask?p.get(*mask).native:src.native);
     if(!p.program->bind())throw std::runtime_error("Cannot bind copy shader");
     g.glUniform1i(p.program->uniformLocation("sourcePixels"),0);
+    g.glUniform1i(p.program->uniformLocation("sourceMask"),1);
+    g.glUniform1i(p.program->uniformLocation("hasMask"),mask.has_value());
     g.glUniform2i(p.program->uniformLocation("sourceOrigin"),r.left,r.top);g.glUniform2i(p.program->uniformLocation("destinationOrigin"),x,y);
     g.glUniform1i(p.program->uniformLocation("hasKey"),key.has_value());g.glUniform1ui(p.program->uniformLocation("sourceKey"),key.value_or(0));
     g.glBindVertexArray(p.vao);g.glDrawArrays(GL_TRIANGLES,0,3);g.glBindVertexArray(0);p.program->release();g.glDisable(GL_SCISSOR_TEST);
