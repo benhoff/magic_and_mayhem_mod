@@ -107,7 +107,7 @@ int main() try {
     rejects(Bytes{}, SpriteErrorCode::malformedData);
     rejects(changed(0, 0), SpriteErrorCode::invalidFormat);
     rejects(changed(4, b.size() + 1), SpriteErrorCode::malformedData);
-    rejects(changed(8, 2), SpriteErrorCode::unsupportedVersion);
+    rejects(changed(8, 3), SpriteErrorCode::unsupportedVersion);
     rejects(changed(16, 5), SpriteErrorCode::malformedData);
     rejects(changed(12, 4097), SpriteErrorCode::limitExceeded);
     rejects(changed(base - 8, 0xffffffffU), SpriteErrorCode::malformedData);

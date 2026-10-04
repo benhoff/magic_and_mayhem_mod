@@ -34,7 +34,7 @@ four-byte offset table. Version 5 reads remaining records directly; sequence
 count `0x00464b20` returns header offset-count minus one. Sequence selection at
 `0x00464b30` computes `records + offsets[sequence] * 44`. Original version-3/4
 paths expand older 28/36-byte records into the 44-byte in-memory representation;
-those conversions are outside the native loader's current scope.
+those conversions are now implemented; see [legacy loading](legacy-ani-spr-loading.md).
 
 The pinned MMSprite notes were a useful starting point, but their speculative
 action labels are not promoted to confirmed game contracts. Numeric sequence
@@ -53,7 +53,7 @@ Input errors retain the structured asset error.
 Defaults cap input at 8 MiB, records at 65,536 and sequences at 4,096. Signature,
 declared size, count/record/table extents, increasing offset ranges and terminal
 stops are validated before unsafe indexing. Allocation/length failures return
-limit errors. Versions other than 5 return `unsupportedVersion`; signatures
+limit errors. Versions outside 3, 4 and 5 return `unsupportedVersion`; signatures
 other than ANI return `invalidFormat`. These strict native malformed-input
 policies are not claims of original failure equivalence. Unsupported older
 ANI files are known original-supported formats, not presumed invalid assets.
@@ -93,8 +93,8 @@ headers' record counts agree with the independently measured payload.
 
 The [native comparison](../runtime/animation-forward-contract.json) confirms
 all 133 supported files' offsets, filenames, opaque header words and record
-bytes through mixed-case relative/aliased Windows requests. All three older
-files return `unsupportedVersion`. The unit fixture covers ownership, raw
+bytes through mixed-case relative/aliased Windows requests. This original milestone rejected the three older
+files; [legacy loading](legacy-ani-spr-loading.md) now covers them. The unit fixture covers ownership, raw
 metadata/signed values, malformed/truncated headers, table/record extents,
 terminal stops and input/count budgets. It passes ASan/UBSan with leak checking
 disabled for this environment.
@@ -102,3 +102,6 @@ disabled for this environment.
 Confidence is high for this layout, installed decode and native ownership/
 validation policies. Timing/control evidence is recorded separately in the
 [forward controller contract](../runtime/animation-forward-contract.md).
+
+The newer legacy milestone preserves source versions 3/4 and normalizes their
+records; historical version-5 oracle counts above retain their original scope.

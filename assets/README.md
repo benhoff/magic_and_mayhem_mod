@@ -192,7 +192,7 @@ replace the game's full filesystem subsystem or remove Wine from live play.
 `mnm-sprite-loader` provides `loadSprite(AssetFile&, SpriteLimits)` and
 `decodeSprite(bytes, SpriteLimits)` in `sprite_loader.hpp`. The public result
 uses standard C++ types and owns its palettes, pixels, masks and frame metadata.
-Only version-4 SPR is supported: indexed byte pixels with embedded palettes,
+Version-4 SPR supports indexed byte pixels with embedded palettes,
 or little-endian RGB565 words for palette-free sprites. Empty records remain
 empty. Transparent runs have a separate mask, so opaque colour zero is preserved.
 
@@ -227,9 +227,10 @@ the renderer and application widgets.
 
 ## Native ANI tables
 
-`mnm-animation-loader` reads owned version-5 ANI header/offset/record data through
+`mnm-animation-loader` reads owned version-3/4/5 ANI header/offset/record data through
 AssetFile; metadata and signed arguments are preserved without interpreting
-unknown fields. Three installed older ANI files remain explicitly unsupported.
+unknown fields. Older records expand to 44-byte records with zero-filled absent
+fields; the source version remains available. All installed ANI files are supported.
 The native service has no dependency on the recovered player or application
 widgets. See [layout, limits and installed byte evidence](../research/formats/ani-native-loading.md).
 
@@ -371,3 +372,12 @@ with all numeric DWORD bits preserved and bounded counts/storage.
 `mnm-dat-inspect brain|experience ROOT PATH.dat` emits complete JSON.
 Training, inference and live gameplay use remain separate.
 See [layout and validation](../research/formats/dat-native-loading.md).
+
+## Legacy ANI and SPR
+
+ANI loading accepts source versions 3/4/5 and normalizes 28-/36-byte old records
+into the existing 44-byte representation with zero-filled absent fields.
+SPR loading accepts v4 and single-palette v2, including the shorter file/frame
+headers and an owned optional `legacyPaletteWord`. All installed ANI/SPR files
+are supported; original runtime integration remains separate.
+See [legacy schemas and validation](../research/formats/legacy-ani-spr-loading.md).

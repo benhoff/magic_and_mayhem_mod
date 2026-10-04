@@ -135,6 +135,7 @@ int main(int argc, char** argv) try {
                 {"palette_index", frame.paletteIndex ? QJsonValue(qint64(*frame.paletteIndex)) : QJsonValue(QJsonValue::Null)},
                 {"pixels_sha256", hash(pixels)}, {"mask_sha256", hash(mask)},
                 {"pixels_hex", QString(pixels.toHex())}, {"mask_hex", QString(mask.toHex())}};
+            if(frame.legacyPaletteWord) item.insert("legacy_palette_word",qint64(*frame.legacyPaletteWord));
             frames.append(item);
         }
         rows.append(QJsonObject{{"path", path}, {"status", "decoded"}, {"version", qint64(sprite.version)},

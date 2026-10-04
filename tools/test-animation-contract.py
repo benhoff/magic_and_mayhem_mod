@@ -58,8 +58,13 @@ def main():
             b=path.read_bytes();version=struct.unpack_from('<I',b,12)[0]
             if decoded['path']!=request:raise ValueError('Inspection reordered requests')
             if version!=5:
-                if decoded['decoded'] or decoded['code']!=2:raise ValueError('Legacy ANI not rejected as unsupported')
-                inventory.append({'path':str(path.relative_to(root)),'sha256':sha(b),'version':version,'supported':False});continue
+                count,n=struct.unpack_from('<I',b,8)[0],struct.unpack_from('<I',b,20)[0]
+                stride={3:28,4:36}[version];base=44+n*4
+                normalized=b''.join(b[at:at+stride]+bytes(44-stride) for at in range(base,len(b),stride))
+                starts=list(struct.unpack_from('<'+str(n)+'I',b,44))
+                if not decoded['decoded'] or decoded['version']!=version or decoded['records']!=count or decoded['starts']!=starts or decoded['records_sha256']!=sha(normalized):
+                    raise ValueError('Legacy ANI native expansion differs')
+                inventory.append({'path':str(path.relative_to(root)),'sha256':sha(b),'version':version,'supported':True,'records':count,'sequences':n-1,'native_record_bytes_match':True,'loader_only':True});continue
             _,count,_,opaque,n=struct.unpack_from('<5I',b,4);base=44+4*n
             starts=list(struct.unpack_from('<'+str(n)+'I',b,44))
             if not decoded['decoded'] or decoded['records']!=count or decoded['starts']!=starts or decoded['opaque_header']!=opaque or decoded['sprite_name_hex']!=b[24:44].hex() or decoded['records_sha256']!=sha(b[base:]):
@@ -85,8 +90,8 @@ def main():
             raise ValueError('Experiment input/source changed')
         report={'executable_sha256':HASH,'inspector_sha256':inspector_hash,'harness_sha256':sha(helper.read_bytes()),
                 'source_sha256':hashes,'compile_command':command,'input_unchanged':True,'live_game_validated':False,
-                'scope':'Version-5 bytes and selected forward/no-reverse start/tick traces; bounded native safety differs for malformed inputs',
-                'summary':{'files':len(files),'decoded':sum(f['supported'] for f in inventory),'legacy_rejected':sum(not f['supported'] for f in inventory),
+                'scope':'Version-3/4 expansion, version-5 bytes and selected version-5 forward/no-reverse start/tick traces; bounded native safety differs for malformed inputs',
+                'summary':{'files':len(files),'decoded':sum(f['supported'] for f in inventory),'legacy_rejected':sum(not f['supported'] for f in inventory),'legacy_decoded':sum(f['version']!=5 and f['supported'] for f in inventory),
                            'records':sum(f.get('records',0) for f in inventory),'traces':len(cases),'states':sum(c['states'] for c in cases),
                            'all_traces_match':True},'files':inventory,'cases':cases}
         (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report['summary']),flush=True)

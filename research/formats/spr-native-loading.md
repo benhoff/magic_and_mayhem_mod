@@ -70,8 +70,10 @@ files align the last row before auxiliary data. Trailing planes remain opaque ow
 
 Both dimensions must be positive or both zero; mixed zero/nonzero dimensions
 are rejected as a native safety policy, whose original handling is unverified.
-Version 2 returns `unsupportedVersion`, matching the supported scope of the
-inspected original loaders; another legacy original path remains possible.
+The original milestone rejected version 2, matching the inspected original
+loader scope. [Legacy loading](legacy-ani-spr-loading.md) now implements its
+shorter headers and single embedded palette independently. An original older
+loader path remains unidentified.
 SFT/ANI and other signatures return `invalidFormat`.
 
 Default limits:
@@ -184,3 +186,6 @@ every frame/effect. Rendering integration, original palette/shading construction
 SFT and ANI remain separate milestones. The next chunk should display one
 verified indexed and/or direct-colour frame through the native renderer while
 preserving mask and origin semantics.
+
+The newer legacy milestone adds all seven version-2 inputs. Version-4 counts
+and original draw evidence above retain their historical scope.

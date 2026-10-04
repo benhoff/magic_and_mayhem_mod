@@ -124,6 +124,10 @@ target_link_libraries(mnm-dat-inspect PRIVATE mnm-dat-loader Qt6::Core)
 target_compile_options(mnm-dat-inspect PRIVATE -Wall -Wextra -Werror -pedantic)
 include(CTest)
 if(BUILD_TESTING)
+    add_executable(legacy-asset-loader-test ../tests/legacy-asset-loader-test.cpp)
+    target_link_libraries(legacy-asset-loader-test PRIVATE mnm-animation-loader mnm-sprite-loader)
+    target_compile_options(legacy-asset-loader-test PRIVATE -Wall -Wextra -Werror -pedantic)
+    add_test(NAME legacy-asset-loader COMMAND legacy-asset-loader-test)
     add_executable(dat-loader-test ../tests/dat-loader-test.cpp)
     target_link_libraries(dat-loader-test PRIVATE mnm-dat-loader)
     target_compile_options(dat-loader-test PRIVATE -Wall -Wextra -Werror -pedantic)
@@ -208,6 +212,9 @@ if(BUILD_TESTING)
     if(NOT MNM_PILLOW_IMPORT_RESULT EQUAL 0)
         message(FATAL_ERROR "Asset JPEG comparison tests require Python Pillow (PIL)")
     endif()
+    add_test(NAME legacy-asset-comparison COMMAND "${Python3_EXECUTABLE}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../tests/test-legacy-asset-loaders.py"
+        $<TARGET_FILE:mnm-animation-inspect> $<TARGET_FILE:mnm-sprite-inspect>)
     add_test(NAME dat-comparison COMMAND "${Python3_EXECUTABLE}"
         "${CMAKE_CURRENT_SOURCE_DIR}/../tests/test-dat-loader.py" $<TARGET_FILE:mnm-dat-inspect>)
     add_test(NAME text-wbt-comparison COMMAND "${Python3_EXECUTABLE}"

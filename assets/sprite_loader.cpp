@@ -45,6 +45,7 @@ Sprite parseFrames(Reader& r,const SpriteLimits& limits,const detail::SpriteFram
     const auto& bytes=r.bytes();
     if(bytes.size()>limits.inputBytes) r.fail(SpriteErrorCode::limitExceeded,0,"Sprite input byte limit exceeded");
     const auto count=layout.count,palettes=layout.palettes,version=layout.version;
+    const std::uint32_t frameHeader=version==2?32:40;
     if(count>limits.frames) r.fail(SpriteErrorCode::limitExceeded,12,"Sprite frame count exceeds limit");
     if(palettes>4) r.fail(SpriteErrorCode::malformedData,16,"Sprite exceeds four embedded palettes");
     r.extent(layout.paletteOffset,std::uint64_t(palettes)*768,bytes.size());
@@ -70,9 +71,9 @@ Sprite parseFrames(Reader& r,const SpriteLimits& limits,const detail::SpriteFram
     for (std::uint32_t i = 0; i < count; ++i) {
         r.frame = i;
         const auto at = base + r.u32(static_cast<std::size_t>(table + i * 4));
-        r.extent(at, 40, bytes.size());
+        r.extent(at, frameHeader, bytes.size());
         const auto size = r.u32(static_cast<std::size_t>(at));
-        if (size < 40) r.fail(SpriteErrorCode::malformedData, static_cast<std::size_t>(at), "Frame is shorter than its header");
+        if (size < frameHeader) r.fail(SpriteErrorCode::malformedData, static_cast<std::size_t>(at), "Frame is shorter than its header");
         r.extent(at, size, bytes.size());
         spans.emplace_back(static_cast<std::size_t>(at), static_cast<std::size_t>(at + size));
     }
@@ -97,20 +98,22 @@ Sprite parseFrames(Reader& r,const SpriteLimits& limits,const detail::SpriteFram
         f.originX = r.i32(start + 12); f.originY = r.i32(start + 16);
         std::copy_n(bytes.begin() + static_cast<std::ptrdiff_t>(start + 20), 8, f.name.begin());
         const auto rawPalette = r.u32(start + 28);
-        if (palettes) {
+        if (version==2) {
+            f.legacyPaletteWord=rawPalette; f.paletteIndex=0;
+        } else if (palettes) {
             if (rawPalette >= palettes) r.fail(SpriteErrorCode::malformedData, start + 28, "Palette index outside embedded palettes");
             f.paletteIndex = rawPalette;
         } else {
             if (rawPalette != 0xffffffffU) r.fail(SpriteErrorCode::malformedData, start + 28, "Direct-colour frame must have -1 palette member");
             f.pixels = std::vector<std::uint16_t>{};
         }
-        f.auxiliaryOffsets = {r.u32(start + 32), r.u32(start + 36)};
+        if(version!=2) f.auxiliaryOffsets = {r.u32(start + 32), r.u32(start + 36)};
         if (f.width > limits.width || f.height > limits.height)
             r.fail(SpriteErrorCode::limitExceeded, start + 4, "Frame dimensions exceed limits");
         if ((f.width == 0) != (f.height == 0))
             r.fail(SpriteErrorCode::malformedData, start + 4, "Mixed zero/nonzero dimensions are unsupported");
-        const auto rowTableEnd = 40 + std::uint64_t(f.height) * 8;
-        r.extent(start + 40, rowTableEnd - 40, end);
+        const auto rowTableEnd = frameHeader + std::uint64_t(f.height) * 8;
+        r.extent(start + frameHeader, rowTableEnd - frameHeader, end);
         for (const auto offset : f.auxiliaryOffsets) {
             if (offset && (offset < rowTableEnd || offset > f.encodedSize))
                 r.fail(SpriteErrorCode::malformedData, start + 32, "Auxiliary offset outside trailing frame data");
@@ -130,16 +133,16 @@ Sprite parseFrames(Reader& r,const SpriteLimits& limits,const detail::SpriteFram
             r.fail(SpriteErrorCode::limitExceeded, start + 4, "Decoded extent exceeds host allocation range");
         budget(r, pixelBudget, total, limits.pixels, start + 4);
         budget(r, byteBudget, total * (bytesPerPixel + 1), limits.decodedBytes, start + 4);
-        const auto firstPixel = r.u32(start + 44);
+        const auto firstPixel = r.u32(start + frameHeader + 4);
         const auto pixelEnd = f.auxiliaryOffsets[0] ? f.auxiliaryOffsets[0] :
             f.auxiliaryOffsets[1] ? f.auxiliaryOffsets[1] : f.encodedSize;
         if (firstPixel < rowTableEnd || firstPixel > pixelEnd)
-            r.fail(SpriteErrorCode::malformedData, start + 44, "Pixel plane overlaps headers or trailing data");
+            r.fail(SpriteErrorCode::malformedData, start + frameHeader + 4, "Pixel plane overlaps headers or trailing data");
         f.opaqueMask.resize(static_cast<std::size_t>(total), 0);
         if (palettes) std::get<std::vector<std::uint8_t>>(f.pixels).resize(static_cast<std::size_t>(total), 0);
         else std::get<std::vector<std::uint16_t>>(f.pixels).resize(static_cast<std::size_t>(total), 0);
         for (std::uint32_t y = 0; y < f.height; ++y) {
-            const auto row = start + 40 + std::size_t(y) * 8;
+            const auto row = start + frameHeader + std::size_t(y) * 8;
             const auto delta = r.u32(row), pixel = r.u32(row + 4);
             const auto deltaEnd = y + 1 < f.height ? r.u32(row + 8) : firstPixel;
             const auto rowPixelEnd = y + 1 < f.height ? r.u32(row + 12) : pixelEnd;
@@ -179,18 +182,21 @@ Sprite parseFrames(Reader& r,const SpriteLimits& limits,const detail::SpriteFram
 Sprite parse(Reader& r, const SpriteLimits& limits) {
     const auto& bytes = r.bytes();
     if (bytes.size() > limits.inputBytes) r.fail(SpriteErrorCode::limitExceeded, 0, "SPR exceeds input byte limit");
-    r.extent(0, 24, bytes.size());
+    r.extent(0, 20, bytes.size());
     if (r.u32(0) != 0x00525053) r.fail(SpriteErrorCode::invalidFormat, 0, "Expected SPR signature");
     if (r.u32(4) != bytes.size()) r.fail(SpriteErrorCode::malformedData, 4, "Declared SPR size differs from input");
     const auto version = r.u32(8);
-    if (version != 4) r.fail(SpriteErrorCode::unsupportedVersion, 8, "Only SPR version 4 is supported");
+    if (version != 4 && version != 2) r.fail(SpriteErrorCode::unsupportedVersion, 8, "Only SPR versions 2 and 4 are supported");
+    const std::uint32_t header=version==2?20:24;
+    r.extent(0,header,bytes.size());
     const auto count = r.u32(12), palettes = r.u32(16);
     if (count > limits.frames) r.fail(SpriteErrorCode::limitExceeded, 12, "SPR frame count exceeds limit");
     if (palettes > 4) r.fail(SpriteErrorCode::malformedData, 16, "SPR exceeds four embedded palettes");
-    const std::uint64_t table = 24 + std::uint64_t(palettes) * 768;
+    if(version==2 && palettes!=1) r.fail(SpriteErrorCode::malformedData,16,"Legacy SPR requires exactly one embedded palette");
+    const std::uint64_t table = header + std::uint64_t(palettes) * 768;
     const auto base = table + std::uint64_t(count) * 4;
-    r.extent(24, base - 24, bytes.size());
-    return parseFrames(r,limits,{version,count,palettes,r.u32(20),24,table,base});
+    r.extent(header, base - header, bytes.size());
+    return parseFrames(r,limits,{version,count,palettes,version==2?0:r.u32(20),header,table,base});
 }
 
 }
