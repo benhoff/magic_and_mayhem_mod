@@ -27,13 +27,26 @@ and [widget container](https://doc.qt.io/qt-6/qwidget.html#createWindowContainer
 The game remains a separate Wine process using its original rendering path.
 Native Wayland hosting and capture/display of pixel frames are not implemented.
 
-The game was not launched during these tests. Pending manual checks:
+The game was not launched during these synthetic tests. Manual checklist:
 
 1. Open the shell in a graphical X11/XWayland session and click Launch game.
 2. Confirm the Wine desktop embeds and a map renders normally.
 3. Confirm mouse coordinates, keyboard focus, edge scrolling and game dialogs.
 4. Resize the shell, detach and reattach, and check presentation/input again.
 5. Exit the game, verify the launcher finishes, then close the shell.
+
+Hands-on evidence, 2026-10-04: after being asked to test the native embedding
+backend, the user reports that everything seems to be working fine. Retained
+launcher log: `working/logs/run-20261004T160537Z.8Kl2VI/`. Its environment records
+the pinned No-CD executable SHA-256
+`40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`,
+`/usr/bin/wine`, display `:1`, an 800x600 Wine desktop, gamescope disabled and
+`working/wineprefix-x86_64`. Confidence: live user observation supports successful
+operation in this run. Individual checklist actions, map, duration and audible
+movie behavior were not enumerated, so complete hosting/lifecycle equivalence
+remains unverified. The recurring Mesa/pixel-format/Quartz diagnostics coexist
+with the reported success. This evidence concerns native foreign-window hosting;
+it does not validate OpenGL frame streaming or replace original engine drawing.
 
 The first version blocks shell closure while its launcher is running. It does
 not terminate Wine or use broad process-kill commands. Application instructions

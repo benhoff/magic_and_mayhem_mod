@@ -18,6 +18,28 @@ original menu transitions have live observation evidence with original work reta
 No complete gameplay subsystem is established as replaced by the reviewed
 evidence. Whole-game functional and performance coverage are **unknown**.
 
+2026-10-04 hands-on RE02 failure: default-readback experiment `run-gpaw8536`
+returned application BltFast `DDERR_SURFACEBUSY`, matching the user's locked
+surface dialog. Cause and live presentation equivalence remain unresolved;
+The user reports successful operation in follow-up `run-88j862gr` with observer
+readback disabled and no Qt frames, implicating readback as a contributor.
+Game-owned capture/presentation remains to be checked separately. See
+[run evidence](render-startup-black-screen.md#2026-10-04-hands-on-default-readback-failure).
+
+Follow-up `run-wuk2aaev` confirms real game-owned RGB565 offscreen snapshots and
+selected blit propagation while the user reports successful gameplay. Qt still
+has no primary frame; the 16-snapshot diagnostic limit stops further copying.
+This advances live capture observation only, not continuous Qt presentation or
+render replacement. Primary admission and separation of recording budgets from
+checkpoint maintenance remain unresolved (same linked run evidence).
+
+IN01 hands-on follow-up: the user reports everything working in the native
+Wine-window hosting run logged at `working/logs/run-20261004T160537Z.8Kl2VI/`.
+This is live user observation of the optional embedding backend, separately
+from the failing OpenGL frame-stream path. Individual focus/resize/detach
+actions, map and duration were not enumerated; no whole-session equivalence
+claim follows. See [hosting evidence](qt-shell-hosting.md).
+
 ## Scope and evidence rules
 
 Primary runtime reference: No-CD PE32 executable SHA-256
