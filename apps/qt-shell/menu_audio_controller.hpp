@@ -4,12 +4,13 @@
 #include <QSet>
 class MenuPreview;
 class QWidget;
+class QSettings;
 
 // Native preview policy, not recovered original menu-to-sound mappings.
 struct MenuAudioCues {std::int32_t activate=822,pageTurn=830;};
 class MenuAudioController final:public QObject {
 public:
-    explicit MenuAudioController(std::unique_ptr<AudioSessionOutput>,MenuAudioCues cues={},QObject* parent=nullptr);
+    explicit MenuAudioController(std::unique_ptr<AudioSessionOutput>,MenuAudioCues cues={},QObject* parent=nullptr,QSettings* settings=nullptr);
     ~MenuAudioController() override;
     void attach(MenuPreview&);
     bool start(const QString& soundsRoot,mnm::reconstruction::audio::NativeSourcePathPolicy);
@@ -28,6 +29,8 @@ private:
     void clear();
     void applySoundLevel(int);
     AudioSession session_;MenuAudioCues cues_;
+    // Optional application-owned store; fixtures can inject a temporary INI.
+    QPointer<QSettings> settings_;
     int soundLevel_=-1000;
     QString error_;QPointer<MenuPreview> preview_;QSet<QWidget*> bound_;
 };

@@ -1,5 +1,6 @@
 #include "menu_audio_controller.hpp"
 #include <QMediaDevices>
+#include <QSettings>
 #include "audio_cli.hpp"
 #include "voice_bridge.hpp"
 #include "window_host.hpp"
@@ -313,6 +314,7 @@ int main(int argc,char** argv){
         if(!preview.loadAssets(root,parser.isSet("quick-battle-menu"),&error)){
             std::fprintf(stderr,"Menu assets failed: %s\n",qPrintable(error));return 9;
         }
+        std::unique_ptr<QSettings> audioSettings;
         std::unique_ptr<MenuAudioController> menuAudio;
         if(parser.isSet("menu-audio")){
             const auto policy=parser.value("menu-audio-policy");
@@ -320,7 +322,8 @@ int main(int argc,char** argv){
             bool clickOk=false,pageOk=false;
             const int click=parser.value("menu-click-sound").toInt(&clickOk),page=parser.value("menu-page-sound").toInt(&pageOk);
             if(!clickOk || !pageOk || click<=0 || page<=0)parser.showHelp(2);
-            menuAudio=std::make_unique<MenuAudioController>(makeQtSessionOutput(),MenuAudioCues{click,page});
+            audioSettings=std::make_unique<QSettings>(QSettings::IniFormat,QSettings::UserScope,"MagicAndMayhemMod","QtShell");
+            menuAudio=std::make_unique<MenuAudioController>(makeQtSessionOutput(),MenuAudioCues{click,page},nullptr,audioSettings.get());
             menuAudio->attach(preview);
             menuAudio->failed=[](const QString& message){std::fprintf(stderr,"Menu audio: %s\n",qPrintable(message));};
             if(!menuAudio->start(QDir(root).filePath("Sounds"),policy=="literal"?mnm::reconstruction::audio::NativeSourcePathPolicy::literal:mnm::reconstruction::audio::NativeSourcePathPolicy::dequoteMissingLeaf)){

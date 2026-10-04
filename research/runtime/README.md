@@ -140,3 +140,5 @@ confidence, and whether it remains stable across launches.
 - [NOD node reader and lookup](nod-node-loading.md): hash-pinned record copies, selected section transforms/rebasing and connection lookup; static/offline evidence.
 
 - [Native audio output recovery](audio-output-recovery.md): Qt device-change/failure notifications, persistent retry status, gain-preserving silent reopen and cancellation; synthetic validation.
+
+- [Native menu effects preferences](menu-audio-preferences.md): user-scoped Qt settings, acceptance/cancellation and synthetic fresh-process restart validation.
