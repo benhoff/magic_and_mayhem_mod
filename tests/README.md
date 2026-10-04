@@ -328,3 +328,11 @@ for the ABI fixture; no game is launched. `python3 tools/test-audio-staging.py`
 checks the optional DLL import in a disposable installation, with original
 manifest verification before/after. These are separate from audible/live checks.
 See [contracts and evidence](../research/runtime/native-audio-voice-bridge.md).
+
+## Persistence input readers
+
+Build `assets/` and run its CTests for `persistence-loaders` and
+`persistence-codec-comparison`. The optional installed runner is
+`python3 tests/test-persistence-loaders.py working/build/persistence/mnm-persistence-inspect --installation working/game-clean`.
+It brackets installed artifact reads with immutable-manifest verification.
+See [validation scope](../research/formats/persistence-native-loading.md).

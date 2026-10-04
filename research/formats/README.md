@@ -13,6 +13,7 @@ Current findings:
 
 - [Installed game file inventory](game-file-inventory.md)
 - [Encrypted CFG container](encrypted-cfg.md)
+- [Save game envelope and block inventory](save-game.md)
 - [CFG plaintext/encrypted precedence](cfg-precedence.md)
 - [Mode-0 CFG writer](cfg-writer.md)
 - [Shared RGBA frame stream](render-frame-stream.md)
@@ -25,3 +26,5 @@ Current findings:
 - [Pinned MMSprite rendering-asset evaluation](mmsprite-evaluation.md)
 - [Native indexed/direct-colour SPR loading](spr-native-loading.md)
 - [Native version-5 ANI tables](ani-native-loading.md)
+
+- [Native persistence/progression readers](persistence-native-loading.md): owned CFG, realm, names and save readers; offline evidence and strict parsing policies.

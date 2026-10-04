@@ -6,6 +6,9 @@ confidence, and whether it remains stable across launches.
 
 - [Windows file API audit](windows-file-api-audit.md): pinned clean/No-CD/JPEG
   imports and references, save temporary-file evidence, and native asset gaps.
+- [Save/load and campaign progression](persistence-progression.md): named save
+  dispatch, packed envelope and serializer owners, realm initialization,
+  battle-return ownership changes and next-realm flow; static research only.
 - [MMSprite versus original sprite routines](sprite-binary-comparison.md):
   indexed and direct 16-bit colour, empty frames, version/palette contracts,
   and isolated original drawing/conversion comparisons.
