@@ -1,0 +1,239 @@
+{
+  "normal": {
+    "reference": "working/tests/sprite-queue/run-vp9wxxa2/report.json",
+    "reference_sha256": "ef4eb866c9e23746f478284866c67fdb79b63453c572f2befe1032471ef9fe9d",
+    "sources_and_inputs": {
+      "working/tests/sprite-queue/run-vp9wxxa2/report.json": "ef4eb866c9e23746f478284866c67fdb79b63453c572f2befe1032471ef9fe9d",
+      "working/build/sprite-scene/sprite-scene-queue-test": "924e7000788502662d27a44f3d3e62d5f5440a89ce47d158a42082753c5553df",
+      "working/build/sprite-scene/mnm-sprite-scene-preview": "bc59388b5b18283973ef36d6a6d2914157b2fd62e4a1ee505066376a5fe29900",
+      "apps/sprite-scene/scene.cpp": "c993844ec36c6b16a988418247aa638f6cf5a346f8c7a10b590c20f82f4e9bfb",
+      "apps/sprite-scene/scene.hpp": "7768397aa9b1a15c107befb9a4a1679c88d22e35289c0c68d7f984b7892bc68c",
+      "apps/sprite-scene/main.cpp": "58020b5e209e8af94264db48d568cff3fa1b538df949bb43766655bd3d3beaa6",
+      "apps/sprite-scene/CMakeLists.txt": "fb3e9c5bd95a1f5f202e8ed2336166db00e217830a9493104f484b55dd79c355",
+      "tests/sprite-scene-queue-test.cpp": "b26d94be02397ee7315ae9aa234338c5d3ffd0faa31a42d8679cf56ca467e382",
+      "tools/test-sprite-queue-scene.py": "9155d26c2f526ce7b30d82716ad5d1583b9215fb5f1de8f9c425b17efa3332ed",
+      "reconstruction/rendering/sprite_queue.cpp": "be185bea5f6af36487ef379b90cd31878d864e01d663bf7e72830bd11dd08b28",
+      "reconstruction/rendering/sprite_queue.hpp": "0bdd6d6006d527b7f3f57c8b5c5035aa82f11cbf89145698e12b26b8e769d5ef",
+      "renderer/sprites/sprite.cpp": "61f7d4aa52c9cec5aa054fbf26a102324273217ace6a74c022d4df428f52ef62",
+      "renderer/blit.cpp": "4c89caa93a5298fcb4417e5bfb3e116176f1969783f2be6191ddad63eb9d0cac",
+      "assets/sprite_loader.cpp": "1ca63db0424d66dd2ce7f6fdbe6e74b6a8b7102c8a4fd7d4be28cc494bf19c0f",
+      "assets/animation.cpp": "a915d98aa30a3fca6d654a862037e4119ad4b0aa4f21ddbefedc27635e9494aa",
+      "working/game-clean/Creatures/redcap.ani": "6af0d77f2a8a95f44ccc6d09f4330191757a584e4deb8b9417a98f8cd402902e",
+      "working/game-clean/Creatures/RedCap.spr": "9e62b75682a41d15c1419010e580f3ca4e8087673f7650bfd0b0f64dec97d1e1",
+      "working/game-clean/Creatures/bat.ani": "f4b3b645d0fb559e7585f85aa789a8aec63b830e5876f7f69c779b2546985425",
+      "working/game-clean/Creatures/Bat.spr": "cb422fafddd0fc18f413d0cfea2ef0a2e97ae575aceca0603ae97925e9c27e3f",
+      "working/game-clean/Creatures/eye.ani": "309efc3a20ff66ab0800edc5500ef11ddd59ec53e3bf1f544d5def7911c39a33",
+      "working/game-clean/Creatures/eye.spr": "665aadbda360f03bce0e5f944130c6718ba3e0276b1e8ff6d49b7e6f3843b8bc"
+    },
+    "synthetic": {
+      "frames": 72,
+      "cases": 24,
+      "all_match": true
+    },
+    "installed_frames": 24,
+    "installed": [
+      {
+        "view": 0,
+        "kind": 0,
+        "native_sha256": "a4cfaf7e4c7d8c2e38f25c3cb791e1d2a641d9016b2f3e3b47e4c9b147b55e1a",
+        "all_match": true
+      },
+      {
+        "view": 0,
+        "kind": 1,
+        "native_sha256": "b1273f0c904e775dea11d9a89ef0fa8c7eb7958c25070090ca11bbced747a4fd",
+        "all_match": true
+      },
+      {
+        "view": 0,
+        "kind": 2,
+        "native_sha256": "333e232b509ee59192351b8c38d4568f8fedaa8a9b7f26040fc5f2d648be4d70",
+        "all_match": true
+      },
+      {
+        "view": 0,
+        "kind": 3,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 0,
+        "kind": 4,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 0,
+        "kind": 5,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 1,
+        "kind": 0,
+        "native_sha256": "b1273f0c904e775dea11d9a89ef0fa8c7eb7958c25070090ca11bbced747a4fd",
+        "all_match": true
+      },
+      {
+        "view": 1,
+        "kind": 1,
+        "native_sha256": "a4cfaf7e4c7d8c2e38f25c3cb791e1d2a641d9016b2f3e3b47e4c9b147b55e1a",
+        "all_match": true
+      },
+      {
+        "view": 1,
+        "kind": 2,
+        "native_sha256": "333e232b509ee59192351b8c38d4568f8fedaa8a9b7f26040fc5f2d648be4d70",
+        "all_match": true
+      },
+      {
+        "view": 1,
+        "kind": 3,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 1,
+        "kind": 4,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 1,
+        "kind": 5,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 2,
+        "kind": 0,
+        "native_sha256": "b1273f0c904e775dea11d9a89ef0fa8c7eb7958c25070090ca11bbced747a4fd",
+        "all_match": true
+      },
+      {
+        "view": 2,
+        "kind": 1,
+        "native_sha256": "a4cfaf7e4c7d8c2e38f25c3cb791e1d2a641d9016b2f3e3b47e4c9b147b55e1a",
+        "all_match": true
+      },
+      {
+        "view": 2,
+        "kind": 2,
+        "native_sha256": "333e232b509ee59192351b8c38d4568f8fedaa8a9b7f26040fc5f2d648be4d70",
+        "all_match": true
+      },
+      {
+        "view": 2,
+        "kind": 3,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 2,
+        "kind": 4,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 2,
+        "kind": 5,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 3,
+        "kind": 0,
+        "native_sha256": "a4cfaf7e4c7d8c2e38f25c3cb791e1d2a641d9016b2f3e3b47e4c9b147b55e1a",
+        "all_match": true
+      },
+      {
+        "view": 3,
+        "kind": 1,
+        "native_sha256": "b1273f0c904e775dea11d9a89ef0fa8c7eb7958c25070090ca11bbced747a4fd",
+        "all_match": true
+      },
+      {
+        "view": 3,
+        "kind": 2,
+        "native_sha256": "333e232b509ee59192351b8c38d4568f8fedaa8a9b7f26040fc5f2d648be4d70",
+        "all_match": true
+      },
+      {
+        "view": 3,
+        "kind": 3,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 3,
+        "kind": 4,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      },
+      {
+        "view": 3,
+        "kind": 5,
+        "native_sha256": "cf864de85da044fc658bc9f6ec14a0f89549755016455b8b7d910696c72210d5",
+        "all_match": true
+      }
+    ],
+    "all_match": true,
+    "live_validated": false,
+    "scope": "Original builder/sort orders, independent CPU frame composition; no original world occlusion/whole-scene renderer"
+  },
+  "sanitized": {
+    "reference": "working/tests/sprite-queue/run-vp9wxxa2/report.json",
+    "reference_sha256": "ef4eb866c9e23746f478284866c67fdb79b63453c572f2befe1032471ef9fe9d",
+    "sources_and_inputs": {
+      "working/tests/sprite-queue/run-vp9wxxa2/report.json": "ef4eb866c9e23746f478284866c67fdb79b63453c572f2befe1032471ef9fe9d",
+      "working/build/sprite-scene-sanitized/sprite-scene-queue-test": "07308415591d06ba98c32f73da4f788ebd19deefe4bbe2798be03c9e38ecdd8d",
+      "working/build/sprite-scene-sanitized/mnm-sprite-scene-preview": "5fdcaad44a612bd22fd130b59f0f1bbf6f0b8952140bfd77438eec36c978b15e",
+      "apps/sprite-scene/scene.cpp": "c993844ec36c6b16a988418247aa638f6cf5a346f8c7a10b590c20f82f4e9bfb",
+      "apps/sprite-scene/scene.hpp": "7768397aa9b1a15c107befb9a4a1679c88d22e35289c0c68d7f984b7892bc68c",
+      "apps/sprite-scene/main.cpp": "58020b5e209e8af94264db48d568cff3fa1b538df949bb43766655bd3d3beaa6",
+      "apps/sprite-scene/CMakeLists.txt": "fb3e9c5bd95a1f5f202e8ed2336166db00e217830a9493104f484b55dd79c355",
+      "tests/sprite-scene-queue-test.cpp": "b26d94be02397ee7315ae9aa234338c5d3ffd0faa31a42d8679cf56ca467e382",
+      "tools/test-sprite-queue-scene.py": "9155d26c2f526ce7b30d82716ad5d1583b9215fb5f1de8f9c425b17efa3332ed",
+      "reconstruction/rendering/sprite_queue.cpp": "be185bea5f6af36487ef379b90cd31878d864e01d663bf7e72830bd11dd08b28",
+      "reconstruction/rendering/sprite_queue.hpp": "0bdd6d6006d527b7f3f57c8b5c5035aa82f11cbf89145698e12b26b8e769d5ef",
+      "renderer/sprites/sprite.cpp": "61f7d4aa52c9cec5aa054fbf26a102324273217ace6a74c022d4df428f52ef62",
+      "renderer/blit.cpp": "4c89caa93a5298fcb4417e5bfb3e116176f1969783f2be6191ddad63eb9d0cac",
+      "assets/sprite_loader.cpp": "1ca63db0424d66dd2ce7f6fdbe6e74b6a8b7102c8a4fd7d4be28cc494bf19c0f",
+      "assets/animation.cpp": "a915d98aa30a3fca6d654a862037e4119ad4b0aa4f21ddbefedc27635e9494aa"
+    },
+    "synthetic": {
+      "frames": 72,
+      "cases": 24,
+      "all_match": true
+    },
+    "installed_frames": 0,
+    "installed": [],
+    "all_match": true,
+    "live_validated": false,
+    "scope": "Original builder/sort orders, independent CPU frame composition; no original world occlusion/whole-scene renderer"
+  },
+  "artifact_directories": [
+    "working/tests/sprite-queue-scene/run-rjqdyhzu",
+    "working/tests/sprite-queue-scene/run-dkxi4uuw",
+    "working/tests/animation-layers/run-3mp_rboc"
+  ],
+  "regression": {
+    "frames": 198,
+    "actor_states": 396,
+    "layer_states": 792,
+    "distinct_sprite_frames": 40,
+    "all_match": true
+  },
+  "targeted_ctest": {
+    "normal": {
+      "passed": 7,
+      "failed": 0
+    },
+    "asan_ubsan": {
+      "passed": 7,
+      "failed": 0,
+      "asan_options": "detect_leaks=0"
+    }
+  },
+  "live_validated": false
+}

@@ -148,3 +148,13 @@ One configured mode-one attachment now resolves its installed effect ANI and
 sequence, applies recovered health/mode gates and supports explicit removal/
 reentry fixtures. See [native recipe evidence](native-attachment-recipe.md).
 Complete gameplay admission and original world composition remain separate.
+
+
+## Subsequent depth queue milestone
+
+Visible bodies and children now use the selected original depth-key and exact
+unstable sort permutation. Pixel anchors remain independent of explicit/synthetic
+queue coordinates. See [queue contract](sprite-queue-order.md) and
+[overlapping native frame evidence](native-sprite-queue-scene.md). Earlier
+explicit insertion-order evidence remains historical; original world submission,
+visibility/occlusion and full-scene equivalence remain separate milestones.
