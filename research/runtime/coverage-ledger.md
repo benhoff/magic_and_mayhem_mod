@@ -1,16 +1,20 @@
 # Engine modernization coverage ledger
 
-Baseline reviewed: 2026-10-03. This ledger tracks reconstructed functionality,
+Ledger reviewed: 2026-10-04 (initial baseline: 2026-10-03).
+This ledger tracks reconstructed functionality,
 modern implementations, and replacement of original work during live execution.
 Those are separate milestones: offline tests and capture hooks do not establish
 completed engine replacements.
 
-Audio voice contracts, native voice state, offline mixing, Qt output and optional
-voice routing reviewed: 2026-10-04. Reconstruction remains offline; Qt output has separate native
-host-backend smoke evidence. Default game launches retain Wine DirectSound.
+This review reconciles recorded audio, SPR/ANI scene, native menu and shared
+protocol milestones with the current source tree. Audio reconstruction remains
+offline; Qt output has separate native host-backend smoke evidence. Default
+game launches retain Wine DirectSound.
 
 Current assessment: substantial pathfinding reconstruction and native rendering
 infrastructure exist. Selected input and media paths have optional adapters.
+Native menus and a bounded ANI/SPR scene run independently as previews; selected
+original menu transitions have live observation evidence with original work retained.
 No complete gameplay subsystem is established as replaced by the reviewed
 evidence. Whole-game functional and performance coverage are **unknown**.
 
@@ -44,6 +48,12 @@ updated after the six-chunk native asset workflow: installed raw-byte/PCM
 checks and the pinned Windows file API audit were rerun with original-manifest
 verification before/after. This does not promote those paths to live replacement.
 
+The 2026-10-04 ledger refresh reviews source, linked research and the retained
+scene report; it does not rerun game experiments or subsystem test suites.
+Validation counts below are recorded results from those milestones, not new
+results from this documentation update. Incomplete declarations and inspection
+tools without a documented validated contract do not advance coverage.
+
 ## Subsystem coverage
 
 | ID and behavior | Implementation and integration | Evidence and confidence | Remaining boundary and next validation |
@@ -58,7 +68,7 @@ verification before/after. This does not promote those paths to live replacement
 | IN02 Input forwarding and selected polling APIs | Scoped event forwarding and three USER32 hooks; optional adapter | Synthetic Qt/X11 and Qt-to-x86 checks; high within scope. [Input](qt-input-forwarding.md) | Live menus, movement, scrolling and focus; original window/message handling retained |
 | ME01 Movies and supported WinMM file sounds | Scoped Qt playback/hooks; optional adapter with fallback | Synthetic ABI/lifecycle/decode and installed Intro0 decode probe; high within scope. [Media](qt-native-media.md) | Full live playback, audible output, skip/return and call frequency; unsupported calls remain legacy |
 | AU01 DirectSound setup, static PCM upload and duplicate storage | Scoped reconstructed setup/native storage; offline | Static/synthetic and 356 installed WAV comparisons; high for bytes/ownership. [Evidence](directsound-buffer-setup.md), [storage](../../audio/README.md) | Live adapter remains; voice/mixer/output evidence is separate in AU02–AU05; game effects/voices remain Wine DirectSound |
-| AU02 Recovered voice controls and retirement contracts | Scoped selected engine blocks and fake backend; offline | Static/synthetic: play/stop, looping, volume/pan, status/zero reset, deadlines and bounded frequency/cursor audit; high within selected contracts. [Evidence](directsound-voice-controls.md) | Complete positional computation, selection/eviction lists, whole-program call coverage and live timing remain unverified |
+| AU02 Recovered voice controls and retirement contracts | Scoped selected engine blocks and fake backend; offline | Static/synthetic: play/stop, looping, volume/pan, status/zero reset, deadlines and bounded frequency/cursor audit; high within selected contracts. [Evidence](directsound-voice-controls.md) | Selected retirement, scheduling, positional and camera contracts have separate AU08–AU11 evidence; whole-program call coverage and live timing remain unverified |
 | AU03 Native secondary voice state | Scoped native implementation; offline only | Synthetic source-frame advancement, independent duplicates/controls, completion/loops and ownership; high within tested native policies. [Evidence and repeatable check](native-audio-voice-state.md) | Qt output/routing are separate in AU05/AU06; no validated live replacement; completion/cursor policies are not demonstrated Wine equivalence; fractional output-frame timing is covered separately in AU04 |
 | AU04 Native stereo PCM mixing and resampling | Scoped native implementation; offline only | Synthetic PCM fixtures and 120 independent format/rate/loop scenarios, exact split-block continuity, gain/clipping and lifecycle checks; high within tested native policies. [Evidence and repeatable check](native-audio-mixer.md) | Qt output/routing are separate in AU05/AU06; no validated live replacement; linear interpolation is not band-limited downsampling or bit-exact DirectSound; real-time allocation/latency remain unverified |
 | AU05 Native Qt PCM output | Scoped native device adapter; fixture and host-backend smoke validated | Synthetic format negotiation/partial-write/backpressure/lifecycle tests; default host stereo Int16 48 kHz tone delivered before and after restart. [Evidence](native-audio-output.md) | Optional voice routing has separate AU06 evidence; speaker audibility, live x86 replacement, long sessions, latency and device-change recovery remain unverified |
@@ -66,14 +76,25 @@ verification before/after. This does not promote those paths to live replacement
 | AU07 Primary audio and selected manager lifecycle | Static reconstruction and native/x86 fixtures; offline only | Startup volume capture, control gates, selected disable/shutdown ordering, native master attenuation and protocol-v2 COM controls; matrices, exact PCM, sanitizers and staging. [Evidence](primary-audio-manager.md) | Full wrapper/list/COM destruction, hardware format negotiation, primary pan and live/aural/timing equivalence remain unverified; manager model is not injected |
 | AU08 Voice retirement and wrapper ownership | Static reconstruction and synthetic native fixtures; offline only | Stop/reset/notification failure ordering, duplicate traversal, postorder Release/free, reset fields and circular reusable-ring transforms; 432 retirement and 204 ring cases plus exact native PCM/ownership and sanitizers. [Evidence](audio-voice-lifetimes.md) | Full source-list/allocator ownership, initialization unwind, manager integration and live timing/thread behavior remain unverified; no runtime replacement |
 | AU09 Voice scheduler selection and ordering | Static reconstruction and synthetic native fixtures; offline only | Free/expired selection, strict-volume admission, former-tail eviction, assignment, old-volume reordering and whole-ring clearing; 5184 selection/972 ordering/64 failure cases, exact native PCM and sanitizers. [Evidence](audio-voice-scheduler.md) | Full manager start/duplicate admission, source-list ownership and live thread/cadence compatibility remain unverified; no injected scheduler |
-| AU10 Positional audio arithmetic and existing voice updates | Static reconstruction and synthetic native fixtures; offline only | Wrapped deltas, approximate distance, range attenuation, signed map-byte branch, four-orientation pan and update failure ordering; 2312 geometry/432 update cases, exact stereo PCM and sanitizers. [Evidence](positional-audio.md) | Full camera projection/map lookup ownership, floating edge equivalence and live audible/timing behavior remain unverified; no injected geometry |
+| AU10 Positional audio arithmetic and existing voice updates | Static reconstruction and synthetic native fixtures; offline only | Wrapped deltas, approximate distance, range attenuation, signed map-byte branch, four-orientation pan and update failure ordering; 2312 geometry/432 update cases, exact stereo PCM and sanitizers. [Evidence](positional-audio.md) | Selected camera projection has AU11 evidence; map-byte lookup ownership, floating edge equivalence and live audible/timing behavior remain unverified; no injected geometry |
 | AU11 Audio listener camera projection | Static reconstruction and synthetic fixtures; offline only | Complete selected origin/projection, both audio screen centers, four orientations and map normalization; 1152 screen/map and 68644 division-boundary cases, positional integration and sanitizers. [Evidence](audio-camera-projection.md) | Live field capture, camera/viewport lifecycle and listener agreement remain unverified; map-byte lookup separate; no runtime injection |
-| AS01 Loose asset resolution, read-only handles and WAV input | Scoped native backend and one offline loader; six-chunk milestone complete within scope | Synthetic path/file/lifetime/error tests, 4,834 installed raw files and 356 decoded WAVs; high for bytes/native policies. [Assets](../../assets/README.md), [raw evidence](../formats/asset-file-comparison.md), [WAV evidence](../formats/pcm-wav-loading.md) | Original wrapper compatibility, other native loaders, writable state and live integration remain unverified |
+| AS01 Loose asset resolution, read-only handles and WAV input | Scoped native backend and WAV loader; six-chunk milestone complete within scope; SPR/ANI consumers recorded separately | Synthetic path/file/lifetime/error tests, 4,834 installed raw files and 356 decoded WAVs; high for bytes/native policies. [Assets](../../assets/README.md), [raw evidence](../formats/asset-file-comparison.md), [WAV evidence](../formats/pcm-wav-loading.md) | Original wrapper compatibility, remaining asset formats, writable state and live integration remain unverified; SPR/ANI have AS03/AS04 evidence |
 | AS02 Windows file actions and delegated file access | Static audit only; no new runtime replacement | Pinned clean/No-CD/JPEG imports, IAT references and save temp-path evidence; high within static scope. [Audit](windows-file-api-audit.md) | Recover save/config/profile/listing/metadata/path contracts and DLL/COM loaders; imports are not live call coverage |
 | AS03 SPR loading and rendering asset formats | Native version-4 indexed/RGB565 loader and owned mask/origin-aware OpenGL upload; offline only | Reviewed 2026-10-04: 174 installed SPRs decoded (59,407 frames), 91 native OpenGL/original draw and presentation matches; fixture ownership/bounds/limits and ASan/UBSan checks. [Loading](../formats/spr-native-loading.md), [rendering](native-sprite-rendering.md) | Original palette construction, lighting/effects, SFT, legacy ANI and live loader integration remain separate; seven legacy SPRs explicitly unsupported; forward ANI and bounded scene work are tracked in AS04 |
-| AS04 ANI tables, forward playback and bounded scene | Native version-5 ANI loader, selected No-CD forward model and Qt scene preview; offline only | 133 files/121,476 record byte matches; 347 traces/22,555 original controller states; 130 scene pixel/presentation and 260 original selection/event matches, fixtures and ASan/UBSan. [ANI](../formats/ani-native-loading.md), [controller](animation-forward-contract.md), [scene](native-animation-scene.md) | Older ANI conversion, reverse/phase-preserving direction changes, action mapping, gameplay events, metadata semantics and live clock/integration remain unverified; layout/pacing/restart are explicit preview policies |
+| AS04 ANI tables, forward playback and bounded scene | Native version-5 ANI loader, selected No-CD forward model and Qt scene preview; offline only | Reviewed 2026-10-04: 133 files/121,476 record byte matches; 347 traces/22,555 original controller states; 130 scene pixel/presentation and 260 original selection/event matches, fixtures and ASan/UBSan; high within selected contracts and preview policies. [ANI](../formats/ani-native-loading.md), [controller](animation-forward-contract.md), [scene](native-animation-scene.md) | Older ANI conversion, reverse/phase-preserving direction changes, action mapping, gameplay events, metadata semantics and live clock/integration remain unverified; layout/pacing/restart are explicit preview policies; scene pixels use an independent CPU oracle, not original whole-scene rendering |
 | CF01 Encrypted configuration and lifecycle | Scoped decode/encode and experiment tools; preparation/inspection | Static and documented live precedence; high within findings. [Container](../formats/encrypted-cfg.md), [precedence](../formats/cfg-precedence.md), [writer](../formats/cfg-writer.md) | Config-driven mods are separate from engine replacement; native config manager not recorded |
 | TH01 Threading and modern scheduling | Static No-CD message-loop/world-update/pacing recovery; worker architecture proposed only | Reviewed 2026-10-04: high for static dispatch, creature passes and timer separation; live thread ownership unknown. [Threading](threading.md), [world loop](world-tick-loop.md) | Observe thread IDs, cadence, pause/alternate-screen behavior and scheduler budget before changing concurrency or result timing |
+
+## Native menus and original menu observation
+
+Reviewed 2026-10-04. Native preview behavior and recovered engine transitions
+have separate evidence. Original in-game menus and actions remain active.
+
+| ID and behavior | Implementation and integration | Evidence and confidence | Remaining boundary and next validation |
+| --- | --- | --- | --- |
+| UI01 Native navigation and result menus | Scoped Main, Quick Battle, campaign/battle Mini Menu, Victory/Defeat and Quick Battle result widgets; standalone previews with semantic actions | Synthetic asset/layout/input/model/navigation checks and installed-asset smoke/visual inspection; high within native preview policies. [Main](main-menu-qt-migration.md), [Quick](quick-battle-qt-menu.md), [Mini](mini-menu-qt.md), [Battle results](battle-results-qt.md), [Quick results](quick-battle-results-qt.md) | Engine data/actions, pause/resume, live screen ownership and transition integration remain unverified; fonts/colors and portrait placeholders lack original visual equivalence |
+| UI02 Native Map Selection | Scoped caller-supplied stable-ID list, guarded confirmation and preview return navigation; offline only | Eight targeted Qt checks and installed-asset smoke recorded; selection/refresh/keyboard/transactional rejection fixtures; high within native policies. [Evidence](map-selection-qt.md) | Installed map enumeration, map loading, original selection/return semantics and live battle setup remain unconnected |
+| UI03 Main / Quick Battle engine dispatch | Hash-pinned callback/controller recovery and bounded forwarding hook; live observation only | Fourteen original-bytecode PE32 fixture cases and live Main → Quick → Cancel → Main trace (13 records, one observed thread ID); high within selected ABI/transition scope. [Evidence](menu-engine-observation.md) | Other actions, keyboard/focus and longer sessions remain unverified; no semantic action channel, menu action adapter or suppression of original logic/drawing |
 
 ## Shared frame, input and media protocol ownership
 
@@ -108,7 +129,7 @@ movement predicates do not cover the whole creature update or AI system.
 | GP06 | Campaign, scenario scripting and triggers | No native replacement recorded |
 | GP07 | Saves and persistent state | No native replacement recorded |
 | GP08 | Terrain/sprite loading, animation and scene composition | Native SPR/ANI loading, selected forward controller and bounded explicit scene preview validated offline; complete terrain, action/direction/placement and live pipeline remain unimplemented. [Evidence](native-animation-scene.md) |
-| GP09 | In-game menus and interface logic | Native main, Quick Battle and campaign/battle Mini Menu and Victory/Defeat and Quick Battle result previews plus Map Selection with synthetic asset/layout/input and navigation checks; original in-game logic retained; hash-pinned callback/controller export and bounded forwarding observer, original-bytecode PE32 fixture and live Main → Quick → Cancel → Main trace; no menu action adapter or live replacement. [Map Selection](map-selection-qt.md), [Quick Battle results](quick-battle-results-qt.md), [Results and visual fidelity](battle-results-qt.md), [Engine observation](menu-engine-observation.md), [Main menu](main-menu-qt-migration.md), [Quick Battle](quick-battle-qt-menu.md), [Mini Menu](mini-menu-qt.md) |
+| GP09 | In-game menus and interface logic | Native menu/result and Map Selection previews have UI01/UI02 evidence; selected original callbacks and transitions have UI03 observation evidence. Original in-game logic retained; no menu action adapter or live replacement. [Layout inventory](../formats/menu-migration-inventory.md), [Engine observation](menu-engine-observation.md) |
 | GP10 | Entity lifetimes and ownership | Static No-CD creature allocation/reset/activation, cleanup versus release, slot reuse, selected reference repair and expiry recovered; secondary missile/effect admission/removal, third map-linked pool and teardown order mapped. Hash-checked exporter; no live observation or native replacement. Complete death states, backing-array ownership, save/load and reference audit remain open. [Evidence](entity-lifetimes.md) |
 
 ## Coverage measurements
@@ -136,10 +157,11 @@ separate low-overhead runs for performance. Do not sum overlapping thread times
 into frame wall time or equate call coverage with time coverage. CPU/GPU
 optimization benefits remain hypotheses until matched measurements show them.
 
-Suggested scenarios: startup/movie/menu; idle map; individual movement;
+Suggested broader scenarios: startup/movie/menu; idle map; individual movement;
 simultaneous orders; blocked destination; combat/spells; palette/effect updates;
-overlapping sounds; map transition; save/load; clean exit. These are proposed,
-not completed checks. Record actual maps, creatures and settings exercised.
+overlapping sounds; map transition; save/load; clean exit. This broader matrix remains proposed; the bounded live Main → Quick → Cancel →
+Main observation in UI03 covers only that menu path. Record actual maps,
+creatures and settings exercised.
 
 ## Maintaining the ledger
 
@@ -155,6 +177,8 @@ Keep fallback as a separate outcome. Passing synthetic tests or staging alone
 does not justify promotion. No live replacement percentage is available yet.
 
 Smallest useful next evidence: live search sequence agreement, real-game draw
-operation inventory, media playback/return validation, and native config/save
-file caller contracts. Installed raw asset and offline WAV input comparisons
+operation inventory, media playback/return validation, live audio field/routing
+checks, semantic menu-action integration, and native config/save file caller
+contracts. Native animation next needs action/direction and placement contracts
+before live scene integration. Installed raw asset and offline WAV input comparisons
 now pass. Add timing percentages after counters and boundaries exist.
