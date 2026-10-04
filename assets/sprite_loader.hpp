@@ -22,6 +22,8 @@ struct SpriteFrame {
     std::uint32_t sourceOffset = 0, encodedSize = 0;
     // Original trailing-plane offsets: preserved, not interpreted as effects.
     std::array<std::uint32_t, 2> auxiliaryOffsets{};
+    // Owned opaque trailing planes; interpretation belongs to consumers.
+    std::array<std::vector<std::uint8_t>,2> auxiliaryData;
     SpritePixels pixels;
     // Top-down, width*height entries, 0 transparent / 1 opaque. Transparent
     // pixel slots contain zero; opaque index/word zero remains distinguishable.
