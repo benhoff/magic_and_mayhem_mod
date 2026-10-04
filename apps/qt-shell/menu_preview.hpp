@@ -14,6 +14,7 @@
 #include "region_entry_widget.hpp"
 #include "character_screen_widget.hpp"
 #include "grimoire_widget.hpp"
+#include "spellbox_widget.hpp"
 class MainMenuWidget;
 class QuickBattleMenuWidget;
 class QStackedWidget;
@@ -36,10 +37,12 @@ public:
     bool openMultiplayerLobby(const QString& root, MultiplayerLobbyWidget::Mode mode, QString* error = nullptr);
     bool openRegionEntry(const QString& root, QString* error = nullptr);
     bool openCharacterScreen(const QString& root, QString* error = nullptr);
+    bool openSpellbox(const QString& root, QString* error = nullptr);
     bool openGrimoire(const QString& root, QString* error = nullptr);
 private:
     void returnFromCharacterScreen();
     void returnFromGrimoire();
+    void returnFromSpellbox();
     void returnFromMapSelection();
     void returnFromPreferences();
     void returnFromSaveGame();
@@ -73,5 +76,7 @@ private:
     bool characterReturnsToRegion_ = false;
     GrimoireWidget* grimoire_ = nullptr;
     bool grimoireReturnsToRegion_ = false;
+    SpellboxWidget* spellbox_ = nullptr;
+    bool spellboxReturnsToRegion_ = false;
     QString assetRoot_;
 };

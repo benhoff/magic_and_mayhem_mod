@@ -30,7 +30,7 @@ asset appearance; bar clipping, JPEG blue-key threshold and portrait placement
 are native presentation choices. Original transparency, placement and live
 callback equivalence have not been validated. SPR-backed Character/Region controls and setup/lobby portraits/colours now have
 [separate integration evidence](menu-sprite-integration.md). SFT typography and
-other sprite controls remain pending. BMP/JPEG loaders alone do not decode sprite controls. Grimoire page images now have [reader evidence](grimoire-qt.md). Spellbox/Realm
+other sprite controls remain pending. BMP/JPEG loaders alone do not decode sprite controls. Grimoire page images now have [reader evidence](grimoire-qt.md). Realm
 Viewer image assets belong to screens not yet implemented in the menu preview.
 
 ## Validation
@@ -51,3 +51,6 @@ geometry. All 2,927 original files verified unchanged before and after inspectio
 The independent loader corpus evidence remains in
 [BMP loading](../formats/bmp-native-loading.md) and
 [JPEG loading](../formats/jpeg-native-loading.md).
+
+Spellbox now renders the original Portmanteau BMP and item/talisman SPR sheets;
+see [its preview scope and fidelity boundaries](spellbox-qt.md).

@@ -142,3 +142,9 @@ Grimoire now has an [installed-book preview](../runtime/grimoire-qt.md) with eig
 chapter contents, bounded text parsing, entry/page browsing and original JPEG/SPR
 art. Region Entry's Grimoire icon opens it; campaign knowledge/research and dynamic
 stat bindings remain unconnected. Its [text format](grimoire-text.md) is documented.
+
+Spellbox / Portmanteau now has a [native inventory/loadout preview](../runtime/spellbox-qt.md)
+with supplied item/talisman/spell IDs, original BMP/SPR art, local drag assignment,
+keyboard alternatives and OK/Cancel. Region Entry's Spellbox icon opens it.
+Original recipes, campaign inventory and engine commands remain unconnected;
+[asset evidence and interpretations](spellbox-assets.md) are recorded separately.
