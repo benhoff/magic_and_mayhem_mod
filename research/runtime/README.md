@@ -96,3 +96,5 @@ confidence, and whether it remains stable across launches.
   origin placement, offline previews and selected original draw comparisons.
 
 - [Audio voice lifetimes](audio-voice-lifetimes.md): retirement versus destruction, duplicate cleanup and circular reusable scheduler records; offline contracts and fixtures.
+
+- [Audio voice scheduler](audio-voice-scheduler.md): free/expired selection, tail eviction, old-volume ordering and assignment; offline clock/ring/PCM fixtures.
