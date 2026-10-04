@@ -85,7 +85,7 @@ movement predicates do not cover the whole creature update or AI system.
 | GP06 | Campaign, scenario scripting and triggers | No native replacement recorded |
 | GP07 | Saves and persistent state | No native replacement recorded |
 | GP08 | Terrain/sprite loading, animation and scene composition | Surface operations partly reconstructed; complete pipeline not replaced |
-| GP09 | In-game menus and interface logic | Native main, Quick Battle and campaign/battle Mini Menu previews with synthetic asset/layout/input and navigation checks; original in-game logic retained; no menu action adapter or live replacement. [Main menu](main-menu-qt-migration.md), [Quick Battle](quick-battle-qt-menu.md), [Mini Menu](mini-menu-qt.md) |
+| GP09 | In-game menus and interface logic | Native main, Quick Battle and campaign/battle Mini Menu previews with synthetic asset/layout/input and navigation checks; original in-game logic retained; hash-pinned callback/controller export and bounded forwarding observer, original-bytecode PE32 fixture and live Main → Quick → Cancel → Main trace; no menu action adapter or live replacement. [Engine observation](menu-engine-observation.md), [Main menu](main-menu-qt-migration.md), [Quick Battle](quick-battle-qt-menu.md), [Mini Menu](mini-menu-qt.md) |
 
 ## Coverage measurements
 
