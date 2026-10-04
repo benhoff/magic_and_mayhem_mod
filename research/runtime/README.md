@@ -84,3 +84,5 @@ confidence, and whether it remains stable across launches.
 
 - [Native SPR rendering](native-sprite-rendering.md): owned mask/RGB565 uploads,
   origin placement, offline previews and selected original draw comparisons.
+
+- [Audio voice lifetimes](audio-voice-lifetimes.md): retirement versus destruction, duplicate cleanup and circular reusable scheduler records; offline contracts and fixtures.
