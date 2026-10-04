@@ -308,3 +308,12 @@ The original reader confirms 40-byte records; the header size word is metadata.
 `mnm-mps-inspect ROOT PATH.mps` reports every field as JSON.
 See [layout, original evidence and validation](../research/formats/mps-native-loading.md).
 Kind 6 and complete per-kind meanings remain unrecovered; no world application.
+
+## EVT event areas
+
+`mnm-evt-loader` provides `decodeEvt`/`loadEvt` in `evt.hpp`: owned version-1
+event areas with two signed coordinate triples and all 48 raw name bytes.
+The original reader/writer confirms 72-byte records and the separate size word.
+`mnm-evt-inspect ROOT PATH.evt` reports every field as JSON; name display uses
+Latin-1 while raw hex preserves all bytes. No trigger execution or transforms.
+See [layout, original evidence and validation](../research/formats/evt-native-loading.md).

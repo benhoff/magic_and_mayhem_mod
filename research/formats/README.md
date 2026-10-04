@@ -43,3 +43,5 @@ Current findings:
 - [Native JPEG loading](jpeg-native-loading.md): Qt JPEG backend with owned RGB output, explicit limits and installed corpus comparison.
 
 - [Native MPS map placement loading](mps-native-loading.md): original-reader-confirmed 40-byte records, opaque size metadata and owned offline input.
+
+- [Native EVT event-area loading](evt-native-loading.md): confirmed 72-byte records, writer size metadata, raw names and offline validation.

@@ -16,7 +16,7 @@ The executable identifying this installation has SHA-256
 | Extension | Count | Bytes | Current classification |
 |---|---:|---:|---|
 | JPG | 752 | 56,398,896 | Standard JPEG |
-| EVT | 685 | 156,400 | Proprietary `EVT\0` container |
+| EVT | 685 | 156,400 | Version-1 event areas; [confirmed 72-byte records/native loading](evt-native-loading.md) |
 | MAP | 683 | 12,060,759 | Proprietary; no stable leading magic observed |
 | MPS | 683 | 389,488 | Version-1 map placements; [confirmed 40-byte records/native loading](mps-native-loading.md) |
 | NOD | 683 | 12,746,278 | Proprietary `NOD\0` container |
