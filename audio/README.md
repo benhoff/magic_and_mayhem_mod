@@ -2,8 +2,9 @@
 
 Native audio implementation belongs here, separate from the pinned engine
 models in `reconstruction/audio/`. It owns PCM buffers, sample uploads and
-independent voice state and offline stereo PCM mixing. It does not implement
-an audible device or a live DirectSound replacement. The game still uses Wine DirectSound.
+independent voice state and offline stereo PCM mixing. Qt device output is
+available through a separate adapter; it does not implement a live DirectSound
+replacement. The game still uses Wine DirectSound.
 
 ```bash
 cmake -S audio -B working/build/audio
@@ -19,9 +20,9 @@ releases its source, and compares the survivor's sample dump byte for byte.
 It verifies the immutable original manifest before/after and does not launch
 the game. Evidence is under `working/tests/audio-buffers/`.
 
-The build requires Qt 6.8+ Core for asset input and the CLI, plus Python 3 for
-the fixture tests. `mnm-audio` and the reconstruction retain standard C++ APIs;
-no Qt types enter those algorithms. The combined audio build runs eight CTests,
+The build requires Qt 6.8+ Core and Multimedia for asset input and device
+output, plus Python 3 for the fixture tests. `mnm-audio` and the reconstruction retain standard C++ APIs;
+no Qt types enter those algorithms. The combined audio build runs nine CTests,
 including the three asset tests and an input-adapter fixture check. No Wine,
 display server, or audio output device is needed for native builds/tests.
 
@@ -98,4 +99,18 @@ resamples with linear interpolation, applies volume/pan and clips the final sum.
 Use `python3 tools/test-audio-mixer.py` for fixture-only validation. See
 [mixer policies and evidence](../research/runtime/native-audio-mixer.md).
 
-Next: Qt audio output, then a live game adapter. See [reconstruction boundaries](../research/runtime/directsound-buffer-setup.md).
+The `mnm-audio-output` library connects the mixer to QAudioSink;
+`mnm-audio-output` is also the standalone probe/tone executable.
+
+```bash
+python3 tools/test-audio-output.py                 # fixtures only
+working/build/audio-output/mnm-audio-output --probe
+working/build/audio-output/mnm-audio-output --tone # quiet two-second tone with restart
+python3 tools/test-audio-output.py --device-test  # also record backend delivery
+```
+
+These executable commands assume the runner built `working/build/audio-output`.
+Select a supported format before constructing Device at that rate; keep Device,
+voice controls and QtOutput on one Qt event-loop thread. See
+[output lifecycle and evidence](../research/runtime/native-audio-output.md).
+Next: native application/game voice integration and a separately validated live adapter. See [reconstruction boundaries](../research/runtime/directsound-buffer-setup.md).

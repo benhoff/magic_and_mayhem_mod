@@ -64,6 +64,7 @@ Linear downsampling has no anti-alias filter. Numerical fixture agreement does
 not establish perceptual quality. The mixer allocates per call; real-time
 threading, latency and allocation guarantees remain untested. Frequency changes,
 arbitrary byte seeks and original scheduler selection remain outside scope.
-Next is QAudioSink output with format negotiation and lifecycle tests, followed
-by a separately observed and validated x86 adapter. Audible playback and live
-replacement have not been validated by this chunk.
+QAudioSink output now has separate [adapter/backend evidence](native-audio-output.md).
+Speaker audibility and a separately observed and validated x86 adapter remain
+unverified. This mixer chunk itself validates neither audible playback nor live
+replacement.

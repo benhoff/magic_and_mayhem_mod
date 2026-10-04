@@ -69,3 +69,6 @@ confidence, and whether it remains stable across launches.
 
 - [Native stereo PCM mixer](native-audio-mixer.md): fixed output clock, interpolation,
   volume/pan and clipping, tested offline without an audio device.
+
+- [Native Qt audio output](native-audio-output.md): QAudioSink format negotiation,
+  bounded push writes, lifecycle fixtures and host-backend tone/restart evidence.
