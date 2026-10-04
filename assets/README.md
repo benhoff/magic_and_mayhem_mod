@@ -261,3 +261,15 @@ prints all decoded values and the source hash as JSON.
 See [WZD schema, policies and validation](../research/formats/wzd-native-loading.md).
 All 101 installed files have offline reference comparisons. Original defaults,
 resource binding and live gameplay application remain separate milestones.
+
+## CUR cursor assets
+
+`mnm-cursor-loader` exposes `decodeCursor`/`loadCursor` in `cursor.hpp` for
+owned indexed 1/8-bpp cursor images, palettes, AND/XOR planes and per-image
+hotspots. It retains every directory variant and does not flatten XOR operations
+into alpha transparency. `mnm-cursor-inspect ROOT PATH.cur` prints image metadata
+and palette/plane hashes as JSON.
+
+See [CUR format, policies and validation](../research/formats/cur-native-loading.md).
+All 20 installed files/22 images match the independent offline decoder.
+Presentation, game-driven selection and live cursor integration remain separate.
