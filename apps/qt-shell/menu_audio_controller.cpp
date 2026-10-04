@@ -114,6 +114,7 @@ void MenuAudioController::bind(QWidget* screen){
         connect(w,&MultiplayerLobbyWidget::playerChangeRequested,this,cue);connect(w,&MultiplayerLobbyWidget::colourChangeRequested,this,cue);
         connect(w,&MultiplayerLobbyWidget::playerRemovalRequested,this,cue);connect(w,&MultiplayerLobbyWidget::cancelled,this,cue);
     }
+    else if(auto* w=qobject_cast<RealmViewerWidget*>(screen)){connect(w,&RealmViewerWidget::regionRequested,this,cue);connect(w,&RealmViewerWidget::auxiliaryRequested,this,cue);connect(w,&RealmViewerWidget::cancelled,this,cue);}
     else if(auto* w=qobject_cast<RegionEntryWidget*>(screen)){connect(w,&RegionEntryWidget::enterRequested,this,cue);connect(w,&RegionEntryWidget::auxiliaryRequested,this,cue);connect(w,&RegionEntryWidget::cancelled,this,cue);}
     else if(auto* w=qobject_cast<CharacterScreenWidget*>(screen)){connect(w,&CharacterScreenWidget::characterAccepted,this,cue);connect(w,&CharacterScreenWidget::cancelled,this,cue);}
     else if(auto* w=qobject_cast<SpellboxWidget*>(screen)){connect(w,&SpellboxWidget::loadoutAccepted,this,cue);connect(w,&SpellboxWidget::spellPreviewRequested,this,cue);connect(w,&SpellboxWidget::cancelled,this,cue);}

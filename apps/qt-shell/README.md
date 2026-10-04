@@ -405,3 +405,16 @@ when Preferences is accepted. Cancel leaves the saved value unchanged. The
 user-scoped QSettings INI uses `MagicAndMayhemMod/QtShell` and the versioned key
 `audio/v1/effectsLevel`; other preferences remain local. See
 [implementation and offline restart evidence](../../research/runtime/menu-audio-preferences.md).
+
+Preview the campaign maps with installed region names and supplied availability:
+
+```bash
+./tools/run-qt-shell.sh --realm-viewer
+```
+
+Main Menu's New Game opens this preview too. Select a flag and OK, double-click,
+or press Enter to open Region Entry; Cancel returns to the selected map flag.
+Difficulty is remembered per region. Direct Portmanteau/Grimoire/Character and
+Options previews return to the map. All sample regions are available; campaign
+progression and engine commands remain pending. See
+[scope and validation](../../research/runtime/realm-viewer-qt.md).

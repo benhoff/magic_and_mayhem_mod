@@ -15,6 +15,8 @@
 #include "character_screen_widget.hpp"
 #include "grimoire_widget.hpp"
 #include "spellbox_widget.hpp"
+#include "realm_viewer_widget.hpp"
+#include <QMap>
 class MainMenuWidget;
 class QuickBattleMenuWidget;
 class QStackedWidget;
@@ -40,6 +42,7 @@ public:
     bool openMultiplayerGameSelection(const QString& root, QString* error = nullptr);
     bool openSinglePlayerBattle(const QString& root, QString* error = nullptr);
     bool openMultiplayerLobby(const QString& root, MultiplayerLobbyWidget::Mode mode, QString* error = nullptr);
+    bool openRealmViewer(const QString& root, QString* error = nullptr);
     bool openRegionEntry(const QString& root, QString* error = nullptr);
     bool openCharacterScreen(const QString& root, QString* error = nullptr);
     bool openSpellbox(const QString& root, QString* error = nullptr);
@@ -53,6 +56,9 @@ protected:
     void closeEvent(QCloseEvent*) override;
 private:
     void activateScreen(QWidget*);
+    bool showRegionEntry(const QString& root,const RegionEntryWidget::Region* region,QString* error);
+    void openRealmRegion(const RealmViewerWidget::Request& request);
+    void returnToRealmViewer(int auxiliary=-1);
     void returnFromCharacterScreen();
     void returnFromGrimoire();
     void returnFromSpellbox();
@@ -80,6 +86,7 @@ private:
     int effectsVolume_=-1000;
     bool effectsVolumeSet_=false;
     bool preferencesReturnToMini_ = false;
+    bool preferencesReturnToRealm_ = false;
     MultiplayerSetupWidget* joinMultiplayer_ = nullptr;
     MultiplayerSetupWidget* createMultiplayer_ = nullptr;
     MultiplayerGameSelectionWidget* multiplayerSelection_ = nullptr;
@@ -95,5 +102,10 @@ private:
     bool grimoireReturnsToRegion_ = false;
     SpellboxWidget* spellbox_ = nullptr;
     bool spellboxReturnsToRegion_ = false;
+    RealmViewerWidget* realmViewer_ = nullptr;
+    bool regionReturnsToRealm_ = false;
+    bool characterReturnsToRealm_ = false, grimoireReturnsToRealm_ = false, spellboxReturnsToRealm_ = false;
+    QMap<QString,QMap<QString,RegionEntryWidget::Difficulty>> regionDifficulties_;
+    QString entryCampaignId_;
     QString assetRoot_;
 };
