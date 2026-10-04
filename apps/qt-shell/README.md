@@ -310,3 +310,13 @@ Preview the multiplayer host or guest lobby:
 Create OK opens the host lobby; Join → session selection opens the guest lobby.
 Chat echoes locally. Host settings/Map and guest Ready use local sample state;
 networking and battle launch remain pending. See [scope and validation](../../research/runtime/multiplayer-lobby-qt.md).
+
+Preview Region Entry with a sample Celtic region and installed illustration:
+
+```bash
+./tools/run-qt-shell.sh --region-entry
+```
+
+Four difficulty choices emit typed entry intent; G/S/C stand for Grimoire,
+Spellbox and Character. Cancel returns to Main Menu. Campaign flow and those
+engine screens remain pending. See [scope and validation](../../research/runtime/region-entry-qt.md).
