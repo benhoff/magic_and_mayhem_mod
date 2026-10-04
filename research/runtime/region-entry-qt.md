@@ -50,6 +50,12 @@ Names are plain text, single-line and bounded to 256 characters. Invalid enums,
 artwork numbers or half-specified IDs/names are rejected before mutation. A
 region with both ID and name empty may be displayed, with Enter/icons disabled.
 
+Hands-on usability correction, 2026-10-04: each difficulty's entire configured
+rectangle accepts clicks, including space beyond the label. Hover, checked and
+keyboard-focus feedback distinguish selection, and indicator/spacing scale with
+the canvas to fit half-size rows. This is native presentation policy; it does
+not change engine difficulty mapping or campaign defaults.
+
 The four radios are exclusive. The native default is Initiate; it is not a
 recovered original campaign default. Enter emits `Request { regionId,
 difficulty }` only for a nonempty ID with Enter enabled. Availability flags
