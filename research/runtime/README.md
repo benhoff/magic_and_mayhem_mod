@@ -119,3 +119,5 @@ confidence, and whether it remains stable across launches.
   playback, owned upload cache, Qt preview and offline composition evidence.
 
 - [MPS placement reader and callers](mps-placement-loading.md): hash-pinned version-1 reader, 40-byte records, named kinds and selected section-coordinate consumers; static/offline evidence.
+
+- [Installed native audio manager](installed-native-audio-manager.md): catalog/upload/admission, independent PCM previews, completion and cleanup; quoted-path/missing-file gaps remain explicit.

@@ -93,10 +93,12 @@ The end-to-end fixture verifies:
 - Profile syntax/capacity/integer/snapshot/file-size boundaries described in the
   separate input document.
 
-Confidence is high for these synthetic native outcomes. Profile API equivalence
-needs a PE32 comparison fixture and installed input checks. Actual caller order
+Confidence is high for these synthetic native outcomes. Selected profile API and installed catalog agreement now have
+[comparison evidence](../formats/installed-audio-profile-comparison.md).
+[Installed manager/PCM integration](installed-native-audio-manager.md) extends
+the synthetic tests and records four quoted-path gaps plus a missing Stream WAV. Actual caller order
 for map transition while voices are active remains separate; this fixture changes
 maps after full shutdown/startup. Live thread/cadence, original engine field
 coherence, audible transitions, external COM ownership, full profile encodings
-and adapter injection remain unverified. Next offline work is profile-call
-comparison before widening accepted inputs or wiring a live manager replacement.
+and adapter injection remain unverified. Next offline work is resolving the measured profile-comment/filename boundary
+before widening accepted inputs or wiring a live manager replacement.
