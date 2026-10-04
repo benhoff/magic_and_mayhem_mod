@@ -1,9 +1,10 @@
 #pragma once
+#include "../../protocols/include/mnm/frame_v1.h"
 #include <QFile>
 #include <QImage>
 class FrameStream {
 public:
-    static constexpr qint64 Size=64+2048*2048*4;
+    static constexpr qint64 Size=MNM_FRAME_V1_SIZE;
     ~FrameStream();
     bool create(const QString& path);
     bool open(const QString& path);

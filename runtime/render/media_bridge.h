@@ -1,3 +1,4 @@
+#include "../../protocols/include/mnm/media_v1.h"
 /* Opt-in Qt media broker. No DirectSound buffer interception in this chunk. */
 API void WIN Sleep(u32);
 typedef i32 (__fastcall *MediaMovie)(const char*,void*,void*,i32,i32,i32);
@@ -11,10 +12,10 @@ static void media_init(void){
     char path[512];u32 length=GetEnvironmentVariableA("MNM_RENDER_MEDIA",path,sizeof(path));
     if(!length || length>=sizeof(path))return;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return;
-    if(GetFileSize(file,0)!=2048){CloseHandle(file);return;}
-    HANDLE mapping=CreateFileMappingA(file,0,4,0,2048,0);CloseHandle(file);if(!mapping)return;
-    u32* words=MapViewOfFile(mapping,2,0,0,2048);CloseHandle(mapping);
-    if(!words || !same(words,"MNMMED01",8) || words[2]!=1 || words[3]!=2048)return;
+    if(GetFileSize(file,0)!=MNM_MEDIA_V1_SIZE){CloseHandle(file);return;}
+    HANDLE mapping=CreateFileMappingA(file,0,4,0,MNM_MEDIA_V1_SIZE,0);CloseHandle(file);if(!mapping)return;
+    u32* words=MapViewOfFile(mapping,2,0,0,MNM_MEDIA_V1_SIZE);CloseHandle(mapping);
+    if(!words || !same(words,MNM_MEDIA_V1_MAGIC,MNM_MEDIA_V1_MAGIC_SIZE) || words[MNM_MEDIA_V1_VERSION_OFFSET/4]!=MNM_MEDIA_V1_VERSION || words[MNM_MEDIA_V1_DECLARED_SIZE_OFFSET/4]!=MNM_MEDIA_V1_SIZE)return;
     media_words=words;
 }
 /* -1 means safe legacy fallback; -2 means accepted playback then failed. */
@@ -22,67 +23,67 @@ static i32 media_request(u32 operation,const char* path,u32 flags){
     if(!media_words || __atomic_exchange_n(&media_busy,1,__ATOMIC_ACQUIRE))return -1;
     u32 length=0;
     if(path){
-        while(length<260){if(!readable(path+length,1))goto fallback;
+        while(length<MNM_MEDIA_V1_PATH_SIZE){if(!readable(path+length,1))goto fallback;
             u8 c=(u8)path[length];if(!c)break;if(c<32 || c>126)goto fallback;++length;}
-        if(!length || length==260)goto fallback;
+        if(!length || length==MNM_MEDIA_V1_PATH_SIZE)goto fallback;
     }
-    if(operation!=3 && !path)goto fallback;
+    if(operation!=MNM_MEDIA_V1_OPERATION_STOP_FILE_SOUND && !path)goto fallback;
     u32 id=++media_next;if(!id)id=++media_next;
-    u32 seq=__atomic_load_n(media_words+4,__ATOMIC_RELAXED);
-    __atomic_store_n(media_words+4,seq+1,__ATOMIC_SEQ_CST);
-    media_words[5]=id;media_words[6]=operation;media_words[7]=flags;media_words[8]=length;
-    if(length)copy((u8*)media_words+64,path,length);
-    __atomic_store_n(media_words+4,seq+2,__ATOMIC_RELEASE);
-    u32 start=GetTickCount(),seen=start,heartbeat=__atomic_load_n(media_words+130,__ATOMIC_ACQUIRE),accepted=0;
+    u32 seq=__atomic_load_n(media_words+MNM_MEDIA_V1_REQUEST_SEQUENCE_OFFSET/4,__ATOMIC_RELAXED);
+    __atomic_store_n(media_words+MNM_MEDIA_V1_REQUEST_SEQUENCE_OFFSET/4,seq+1,__ATOMIC_SEQ_CST);
+    media_words[MNM_MEDIA_V1_REQUEST_ID_OFFSET/4]=id;media_words[MNM_MEDIA_V1_OPERATION_OFFSET/4]=operation;media_words[MNM_MEDIA_V1_FLAGS_OFFSET/4]=flags;media_words[MNM_MEDIA_V1_PATH_LENGTH_OFFSET/4]=length;
+    if(length)copy((u8*)media_words+MNM_MEDIA_V1_PATH_OFFSET,path,length);
+    __atomic_store_n(media_words+MNM_MEDIA_V1_REQUEST_SEQUENCE_OFFSET/4,seq+2,__ATOMIC_RELEASE);
+    u32 start=GetTickCount(),seen=start,heartbeat=__atomic_load_n(media_words+MNM_MEDIA_V1_HEARTBEAT_OFFSET/4,__ATOMIC_ACQUIRE),accepted=0;
     for(;;){
-        u32 now=GetTickCount(),beat=__atomic_load_n(media_words+130,__ATOMIC_ACQUIRE);
+        u32 now=GetTickCount(),beat=__atomic_load_n(media_words+MNM_MEDIA_V1_HEARTBEAT_OFFSET/4,__ATOMIC_ACQUIRE);
         if(beat!=heartbeat){heartbeat=beat;seen=now;}
-        u32 response=__atomic_load_n(media_words+132,__ATOMIC_ACQUIRE);
+        u32 response=__atomic_load_n(media_words+MNM_MEDIA_V1_RESPONSE_SEQUENCE_OFFSET/4,__ATOMIC_ACQUIRE);
         if(!(response&1)){
-            u32 response_id=__atomic_load_n(media_words+128,__ATOMIC_RELAXED),status=__atomic_load_n(media_words+129,__ATOMIC_RELAXED),accepted_id=__atomic_load_n(media_words+131,__ATOMIC_RELAXED);
+            u32 response_id=__atomic_load_n(media_words+MNM_MEDIA_V1_RESPONSE_ID_OFFSET/4,__ATOMIC_RELAXED),status=__atomic_load_n(media_words+MNM_MEDIA_V1_RESPONSE_STATUS_OFFSET/4,__ATOMIC_RELAXED),accepted_id=__atomic_load_n(media_words+MNM_MEDIA_V1_ACCEPTED_ID_OFFSET/4,__ATOMIC_RELAXED);
             __atomic_thread_fence(__ATOMIC_ACQUIRE);
-            if(response==__atomic_load_n(media_words+132,__ATOMIC_ACQUIRE) && response_id==id){
+            if(response==__atomic_load_n(media_words+MNM_MEDIA_V1_RESPONSE_SEQUENCE_OFFSET/4,__ATOMIC_ACQUIRE) && response_id==id){
                 if(accepted_id==id)accepted=1;
-                if(status==2){accepted=1;if(operation==2 && (flags&1)){__atomic_store_n(&media_busy,0,__ATOMIC_RELEASE);return 1;}}
-                if(status==3 || status==4 || status==7){__atomic_store_n(&media_busy,0,__ATOMIC_RELEASE);return status==3?1:0;}
-                if(status==5 || status==6){__atomic_store_n(&media_busy,0,__ATOMIC_RELEASE);return accepted?-2:-1;}
+                if(status==MNM_MEDIA_V1_STATUS_ACCEPTED){accepted=1;if(operation==MNM_MEDIA_V1_OPERATION_FILE_SOUND && (flags&MNM_MEDIA_V1_SOUND_FLAG_ASYNC)){__atomic_store_n(&media_busy,0,__ATOMIC_RELEASE);return 1;}}
+                if(status==MNM_MEDIA_V1_STATUS_COMPLETE || status==MNM_MEDIA_V1_STATUS_CANCELLED || status==MNM_MEDIA_V1_STATUS_SOUND_BUSY){__atomic_store_n(&media_busy,0,__ATOMIC_RELEASE);return status==MNM_MEDIA_V1_STATUS_COMPLETE?1:0;}
+                if(status==MNM_MEDIA_V1_STATUS_DECODER_ERROR || status==MNM_MEDIA_V1_STATUS_UNSUPPORTED){__atomic_store_n(&media_busy,0,__ATOMIC_RELEASE);return accepted?-2:-1;}
             }
         }
-        if(now-seen>5000 || (!accepted && now-start>10000) || now-start>600000){
-            __atomic_store_n(media_words+12,id,__ATOMIC_RELEASE);
+        if(now-seen>MNM_MEDIA_V1_STALE_HOST_MS || (!accepted && now-start>MNM_MEDIA_V1_ACCEPTANCE_TIMEOUT_MS) || now-start>MNM_MEDIA_V1_PLAYBACK_TIMEOUT_MS){
+            __atomic_store_n(media_words+MNM_MEDIA_V1_CANCELLED_REQUEST_ID_OFFSET/4,id,__ATOMIC_RELEASE);
             __atomic_store_n(&media_busy,0,__ATOMIC_RELEASE);return accepted?-2:-1;
         }
-        Sleep(5);
+        Sleep(MNM_MEDIA_V1_POLL_MS);
     }
 fallback:
     __atomic_store_n(&media_busy,0,__ATOMIC_RELEASE);return -1;
 }
 static i32 __fastcall media_movie(const char* path,void* surface,void* window,i32 x,i32 y,i32 control){
     u32 error=GetLastError();
-    i32 result=(u8)control==0?media_request(1,path,0):-1;
+    i32 result=(u8)control==0?media_request(MNM_MEDIA_V1_OPERATION_MOVIE,path,0):-1;
     SetLastError(error);
     if(result==-1)return media_original_movie(path,surface,window,x,y,control);
     return result>0;
 }
 static i32 WIN media_sound(const char* path,void* module,u32 flags){
     u32 error=GetLastError();i32 result=-1;
-    if(!path && !flags)result=media_request(3,0,0);
-    else if(!module && (flags&0x20000) && !(flags&~0x2001b) && (!(flags&8) || (flags&1)) &&
-            !((flags&16) && __atomic_load_n(&media_legacy_sound,__ATOMIC_RELAXED))){
+    if(!path && !flags)result=media_request(MNM_MEDIA_V1_OPERATION_STOP_FILE_SOUND,0,0);
+    else if(!module && (flags&MNM_MEDIA_V1_SOUND_FLAG_FILENAME) && !(flags&~MNM_MEDIA_V1_SOUND_ALLOWED_FLAGS) && (!(flags&MNM_MEDIA_V1_SOUND_FLAG_LOOP) || (flags&MNM_MEDIA_V1_SOUND_FLAG_ASYNC)) &&
+            !((flags&MNM_MEDIA_V1_SOUND_FLAG_NO_STOP) && __atomic_load_n(&media_legacy_sound,__ATOMIC_RELAXED))){
         if(__atomic_exchange_n(&media_legacy_sound,0,__ATOMIC_RELAXED)){SetLastError(error);media_original_sound(0,0,0);}
-        result=media_request(2,path,flags);
+        result=media_request(MNM_MEDIA_V1_OPERATION_FILE_SOUND,path,flags);
     }
     if(result==-1){
         // Unsupported WinMM calls must replace the Qt file-sound channel too.
-        if(media_words && __atomic_exchange_n(&media_native_sound,0,__ATOMIC_RELAXED))__atomic_add_fetch(media_words+11,1,__ATOMIC_RELEASE);
+        if(media_words && __atomic_exchange_n(&media_native_sound,0,__ATOMIC_RELAXED))__atomic_add_fetch(media_words+MNM_MEDIA_V1_SOUND_CANCEL_GENERATION_OFFSET/4,1,__ATOMIC_RELEASE);
         SetLastError(error);i32 legacy=media_original_sound(path,module,flags);
-        if(legacy)__atomic_store_n(&media_legacy_sound,path && (flags&1),__ATOMIC_RELAXED);
+        if(legacy)__atomic_store_n(&media_legacy_sound,path && (flags&MNM_MEDIA_V1_SOUND_FLAG_ASYNC),__ATOMIC_RELAXED);
         return legacy;
     }
     if(result>0){
         SetLastError(error);media_original_sound(0,0,0); // Retire any legacy async file sound.
         __atomic_store_n(&media_legacy_sound,0,__ATOMIC_RELAXED);
-        __atomic_store_n(&media_native_sound,path && (flags&1),__ATOMIC_RELAXED);
+        __atomic_store_n(&media_native_sound,path && (flags&MNM_MEDIA_V1_SOUND_FLAG_ASYNC),__ATOMIC_RELAXED);
     }
     SetLastError(error);return result>0;
 }
@@ -127,6 +128,6 @@ __declspec(dllexport) i32 WIN RenderMediaForTest(u32 operation,const char* path,
         if(!media_patch_movie(code))return 0;
         return ((MediaMovie)code)(0,0,0,0,0,0)==23;
     }
-    return operation==1?media_movie(path,(void*)0x1234,(void*)0x5678,11,22,0):media_sound(path,0,flags);
+    return operation==MNM_MEDIA_V1_OPERATION_MOVIE?media_movie(path,(void*)0x1234,(void*)0x5678,11,22,0):media_sound(path,0,flags);
 }
 #endif

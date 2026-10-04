@@ -24,7 +24,7 @@ protected:
     bool eventFilter(QObject*,QEvent* event) override{
         if(event->type()!=QEvent::KeyPress)return false;
         const auto key=static_cast<QKeyEvent*>(event)->key();
-        if(key==Qt::Key_Escape)playback_.stop(4);
+        if(key==Qt::Key_Escape)playback_.stop(MNM_MEDIA_V1_STATUS_CANCELLED);
         else if(key==Qt::Key_Space){paused_=!paused_;playback_.pause(paused_);}
         else if(key==Qt::Key_Plus || key==Qt::Key_Equal){volume_=qMin(1.0f,volume_+0.1f);playback_.setVolume(volume_);}
         else if(key==Qt::Key_Minus){volume_=qMax(0.0f,volume_-0.1f);playback_.setVolume(volume_);}
@@ -61,15 +61,15 @@ int runMedia(QApplication& app,const QCommandLineParser& p){
     QTimer probe;probe.setInterval(25);
     QObject::connect(&probe,&QTimer::timeout,&app,[&]{
         const auto evidence=playback.report();
-        if(evidence.value("video_frames").toInt()>0 && evidence.value("audio_frames").toInteger()>0)playback.stop(4);
+        if(evidence.value("video_frames").toInt()>0 && evidence.value("audio_frames").toInteger()>0)playback.stop(MNM_MEDIA_V1_STATUS_CANCELLED);
     });
     playback.frame=[&](QImage image){viewport.setFrame(std::move(image));};
     playback.finished=[&](unsigned result){
         const bool written=save(report,QJsonDocument(playback.report()));
-        if(p.isSet("media-test"))app.exit(written && (result==3 || (p.isSet("media-probe") && result==4))?0:8);
+        if(p.isSet("media-test"))app.exit(written && (result==MNM_MEDIA_V1_STATUS_COMPLETE || (p.isSet("media-probe") && result==MNM_MEDIA_V1_STATUS_CANCELLED))?0:8);
     };
     if(p.isSet("media-probe"))probe.start();
     QTimer::singleShot(0,&app,[&]{playback.start(QFileInfo(p.value("media")).absoluteFilePath());});
-    if(p.isSet("media-test"))QTimer::singleShot(15000,&app,[&]{playback.stop(5);app.exit(9);});
+    if(p.isSet("media-test"))QTimer::singleShot(15000,&app,[&]{playback.stop(MNM_MEDIA_V1_STATUS_DECODER_ERROR);app.exit(9);});
     return app.exec();
 }

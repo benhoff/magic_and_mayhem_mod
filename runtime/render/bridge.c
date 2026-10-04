@@ -1,3 +1,4 @@
+#include "../../protocols/include/mnm/frame_v1.h"
 #include "../shadow/win32_min.h"
 #include "frame_pixels.h"
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
@@ -5,7 +6,7 @@ API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 API u32 WIN GetFileSize(HANDLE,u32*);
 API u32 WIN GetTickCount(void);
 API u32 WIN GetCurrentThreadId(void);
-#define STREAM_SIZE (64+2048*2048*4)
+#define STREAM_SIZE (MNM_FRAME_V1_SIZE)
 typedef i32 (WIN *Query)(void*,const u8*,void**);
 typedef i32 (WIN *CreateSurface)(void*,void*,void**,void*);
 typedef i32 (WIN *Blt)(void*,void*,void*,void*,u32,void*);
@@ -146,11 +147,11 @@ static void capture(void* object){
 #endif
     zero(desc,sizeof(desc));desc[0]=t->kind>=14?124:108;
     i32 lock_result=((Lock)t->original[25])(object,0,desc,0x4810,0);
-    if(lock_result<0){render_failure("primary_lock",lock_result,object,t->kind,0x4810);__atomic_store_n(stream+9,2,__ATOMIC_RELEASE);goto done;}
+    if(lock_result<0){render_failure("primary_lock",lock_result,object,t->kind,0x4810);__atomic_store_n(stream+MNM_FRAME_V1_STATUS_OFFSET/4,MNM_FRAME_V1_STATUS_LOCK_FAILED,__ATOMIC_RELEASE);goto done;}
     u32 width=desc[3],height=desc[2],bits=desc[21],bytes=bits/8;
     i32 pitch=(i32)desc[4];u8* pixels=(u8*)desc[9];u8 palette[1024];const u8* colors=0;
     int ok=0;
-    if(width && height && width<=2048 && height<=2048 && (bits==8||bits==16||bits==24||bits==32) &&
+    if(width && height && width<=MNM_FRAME_V1_MAX_WIDTH && height<=MNM_FRAME_V1_MAX_HEIGHT && (bits==8||bits==16||bits==24||bits==32) &&
        pitch!=(-2147483647-1) && (u32)(pitch<0?-pitch:pitch)<=32768 && (u32)(pitch<0?-pitch:pitch)>=width*bytes){
         const u8* start=pitch<0?pixels+(i32)(height-1)*pitch:pixels;
         if(readable(start,(height-1)*(u32)(pitch<0?-pitch:pitch)+width*bytes)){
@@ -163,17 +164,17 @@ static void capture(void* object){
                     observer_release(pal);
                 }
             }
-            u32 sequence=__atomic_load_n(stream+4,__ATOMIC_RELAXED);
-            __atomic_store_n(stream+4,sequence+1,__ATOMIC_SEQ_CST);
-            ok=render_pixels((u8*)stream+64,width,height,pixels,pitch,bits,desc[22],desc[23],desc[24],colors);
-            if(ok){stream[5]=width;stream[6]=height;stream[7]=width*4;stream[8]=1;++stream[10];stream[9]=1;}
-            else stream[9]=3;
-            __atomic_store_n(stream+4,sequence+2,__ATOMIC_RELEASE);
+            u32 sequence=__atomic_load_n(stream+MNM_FRAME_V1_SEQUENCE_OFFSET/4,__ATOMIC_RELAXED);
+            __atomic_store_n(stream+MNM_FRAME_V1_SEQUENCE_OFFSET/4,sequence+1,__ATOMIC_SEQ_CST);
+            ok=render_pixels((u8*)stream+MNM_FRAME_V1_PIXELS_OFFSET,width,height,pixels,pitch,bits,desc[22],desc[23],desc[24],colors);
+            if(ok){stream[MNM_FRAME_V1_WIDTH_OFFSET/4]=width;stream[MNM_FRAME_V1_HEIGHT_OFFSET/4]=height;stream[MNM_FRAME_V1_STRIDE_OFFSET/4]=width*MNM_FRAME_V1_BYTES_PER_PIXEL;stream[MNM_FRAME_V1_PIXEL_FORMAT_OFFSET/4]=MNM_FRAME_V1_PIXEL_FORMAT_RGBA8888;++stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4];stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_FRAME_PUBLISHED;}
+            else stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_SURFACE_REJECTED;
+            __atomic_store_n(stream+MNM_FRAME_V1_SEQUENCE_OFFSET/4,sequence+2,__ATOMIC_RELEASE);
         }
     }
     i32 unlock_result=((Unlock)t->original[32])(object,t->kind>=14?0:pixels);
     render_failure("primary_unlock",unlock_result,object,t->kind,0);
-    if(!ok)__atomic_store_n(stream+9,3,__ATOMIC_RELEASE);
+    if(!ok)__atomic_store_n(stream+MNM_FRAME_V1_STATUS_OFFSET/4,MNM_FRAME_V1_STATUS_SURFACE_REJECTED,__ATOMIC_RELEASE);
 done:
     SetLastError(saved_error);__sync_lock_release(&capture_busy);
 }
@@ -348,13 +349,13 @@ static void install_table(void* object,u32 kind){
 done:__sync_lock_release(&table_busy);
 }
 static i32 WIN create_draw(void* guid,void** result,void* outer){
-    __atomic_store_n(stream+9,6,__ATOMIC_RELEASE); /* Entered DirectDrawCreate. */
-    __atomic_add_fetch(stream+12,1,__ATOMIC_RELAXED);
+    __atomic_store_n(stream+MNM_FRAME_V1_STATUS_OFFSET/4,MNM_FRAME_V1_STATUS_INSIDE_CREATE,__ATOMIC_RELEASE); /* Entered DirectDrawCreate. */
+    __atomic_add_fetch(stream+MNM_FRAME_V1_CREATE_COUNT_OFFSET/4,1,__ATOMIC_RELAXED);
     i32 status=original_create(guid,result,outer);u32 error=GetLastError();
-    __atomic_store_n(stream+11,(u32)status,__ATOMIC_RELAXED);
+    __atomic_store_n(stream+MNM_FRAME_V1_CREATE_HRESULT_OFFSET/4,(u32)status,__ATOMIC_RELAXED);
     if(status>=0 && result && *result)install_table(*result,1);
-    u32 state=status<0?8:result && *result && lookup(*result)?7:10;
-    __atomic_store_n(stream+9,state,__ATOMIC_RELEASE);
+    u32 state=status<0?MNM_FRAME_V1_STATUS_CREATE_FAILED:result && *result && lookup(*result)?MNM_FRAME_V1_STATUS_INTERFACE_INTERCEPTED:MNM_FRAME_V1_STATUS_INTERCEPTION_FAILED;
+    __atomic_store_n(stream+MNM_FRAME_V1_STATUS_OFFSET/4,state,__ATOMIC_RELEASE);
     SetLastError(error);return status;
 }
 #include "adapter_startup.h"
@@ -377,21 +378,21 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     HANDLE mapping=CreateFileMappingA(file,0,4,0,STREAM_SIZE,0);CloseHandle(file);
     if(!mapping)return 1;
     stream=MapViewOfFile(mapping,2,0,0,STREAM_SIZE);CloseHandle(mapping);
-    if(!stream || !same(stream,"MNMGL001",8) || stream[2]!=1 || stream[3]!=64){stream=0;return 1;}
+    if(!stream || !same(stream,MNM_FRAME_V1_MAGIC,MNM_FRAME_V1_MAGIC_SIZE) || stream[MNM_FRAME_V1_VERSION_OFFSET/4]!=MNM_FRAME_V1_VERSION || stream[MNM_FRAME_V1_DECLARED_SIZE_OFFSET/4]!=MNM_FRAME_V1_DECLARED_SIZE){stream=0;return 1;}
     input_init();media_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();
     if(lock_capture_path_length)readback_disabled=1;
     init_failure_diagnostics();init_draw_capture();
-    stream[9]=4; /* loaded, waiting for presentation */
+    stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_DLL_LOADED; /* loaded, waiting for presentation */
     u32 base=(u32)GetModuleHandleA(0),protection;
     /* Staging verifies full image SHA-256. Runtime also guards its import thunk. */
     static const u8 thunk[6]={0xff,0x25,0x14,0x50,0x5c,0};
-    if(base!=0x400000 || !readable((void*)(base+0x19755a),6) || !same((void*)(base+0x19755a),thunk,6)){stream[9]=9;return 1;}
+    if(base!=0x400000 || !readable((void*)(base+0x19755a),6) || !same((void*)(base+0x19755a),thunk,6)){stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_HOOK_FAILED;return 1;}
     static const u8 enum_thunk[6]={0xff,0x25,0x10,0x50,0x5c,0};
-    if(!readable((void*)(base+0x197560),6) || !same((void*)(base+0x197560),enum_thunk,6)){stream[9]=9;return 1;}
+    if(!readable((void*)(base+0x197560),6) || !same((void*)(base+0x197560),enum_thunk,6)){stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_HOOK_FAILED;return 1;}
     void** iat=(void**)(base+0x1c5010);
-    if(!readable(iat,0xc8) || !VirtualProtect(iat,0xc8,4,&protection)){stream[9]=9;return 1;}
+    if(!readable(iat,0xc8) || !VirtualProtect(iat,0xc8,4,&protection)){stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_HOOK_FAILED;return 1;}
     original_enumerate=(EnumerateDraw)iat[0];original_create=(CreateDraw)iat[1];
     original_proc_address=(ProcAddress)iat[0x31];
     iat[0]=(void*)&enumerate_draw;iat[1]=(void*)&create_draw;iat[0x31]=(void*)&proc_address;
@@ -399,5 +400,5 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
 #ifndef MNM_RENDER_SELFTEST
     input_install(base);media_install(base);
 #endif
-    __atomic_store_n(stream+9,5,__ATOMIC_RELEASE);return 1;
+    __atomic_store_n(stream+MNM_FRAME_V1_STATUS_OFFSET/4,MNM_FRAME_V1_STATUS_HOOK_ARMED,__ATOMIC_RELEASE);return 1;
 }

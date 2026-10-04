@@ -1,4 +1,5 @@
 #pragma once
+#include "../../protocols/include/mnm/media_v1.h"
 #include "native_playback.hpp"
 #include "gl_viewport.hpp"
 #include <QFile>
@@ -8,7 +9,7 @@
 
 class MediaBroker final:public QObject {
 public:
-    static constexpr int Size=2048;
+    static constexpr int Size=MNM_MEDIA_V1_SIZE;
     MediaBroker(GlViewport& viewport,QString assetRoot,bool audible=true);
     ~MediaBroker() override;
     bool create(const QString& path);

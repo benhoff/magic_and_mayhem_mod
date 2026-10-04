@@ -1,0 +1,98 @@
+{
+  "name": "input",
+  "version": 1,
+  "magic": "MNMINK01",
+  "size": 1088,
+  "header_size": 64,
+  "byte_order": "little",
+  "fields": [
+    {
+      "name": "magic",
+      "offset": 0,
+      "size": 8,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "version",
+      "offset": 8,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "declared_size",
+      "offset": 12,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "sequence",
+      "offset": 16,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "active",
+      "offset": 20,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "cursor_x",
+      "offset": 24,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "cursor_y",
+      "offset": 28,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "width",
+      "offset": 32,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "height",
+      "offset": 36,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "reserved",
+      "offset": 40,
+      "size": 24,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "keys",
+      "offset": 64,
+      "size": 1024,
+      "owner": "producer",
+      "type": "u32le_array"
+    }
+  ],
+  "constants": {
+    "key_count": 256,
+    "key_down_mask": 2147483648,
+    "key_generation_mask": 2147483647,
+    "max_width": 2048,
+    "max_height": 2048,
+    "heartbeat_ms": 50,
+    "lease_ms": 500
+  },
+  "enums": {},
+  "declared_size_kind": "size"
+}

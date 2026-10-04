@@ -11,6 +11,12 @@ import struct
 import subprocess
 import tempfile
 REPO=Path(__file__).resolve().parents[1]
+
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol
+
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path)
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
@@ -58,7 +64,7 @@ def main():
     shutil.copy2(dll,root/dll.name)
     for dependency in source.parent.glob('*.dll'):shutil.copy2(dependency,root/dependency.name)
     frame=root/'frame.bin'
-    with frame.open('wb') as f:f.write(b'MNMGL001'+struct.pack('<II',1,64)+bytes(48));f.truncate(64+2048*2048*4)
+    with frame.open('wb') as f:f.write(frame_protocol.initial_header());f.truncate(frame_protocol.SIZE)
     capture=root/'capture';capture.mkdir()
     env=os.environ.copy();env.update(WINEPREFIX=str(REPO/'working/tests/render-wine'),WINEDEBUG='-all',
         LIBGL_ALWAYS_SOFTWARE='1',__GLX_VENDOR_LIBRARY_NAME='mesa',MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'),

@@ -12,6 +12,12 @@ import tempfile
 
 REPO = Path(__file__).resolve().parents[1]
 
+# Shared wire definitions are repository-local; no package installation required.
+import sys
+sys.path.insert(0, str(REPO / "protocols/python"))
+from mnm_protocols import frame_v1 as frame_protocol
+
+
 
 def load(name, path):
     spec = importlib.util.spec_from_file_location(name, REPO / path)
@@ -42,8 +48,8 @@ def main():
     (root / 'selftest.exe').write_bytes(stage.add_import((dll.parent / 'selftest.exe').read_bytes(), dll='MnmRender.dll', symbol_name='RenderAnchor', section_name=b'.mnmgl'))
     stream = root / 'frame.bin'
     with stream.open('wb') as file:
-        file.write(b'MNMGL001' + struct.pack('<II', 1, 64) + bytes(48))
-        file.truncate(64+2048*2048*4)
+        file.write(frame_protocol.initial_header())
+        file.truncate(frame_protocol.SIZE)
     env.update(WINEPREFIX=str(REPO / 'working/tests/render-wine'), WINEDEBUG='-all', MNM_INPUT_SELFTEST='1',
                MNM_RENDER_INPUT='Z:'+str(state).replace('/', '\\'), MNM_RENDER_STREAM='Z:'+str(stream).replace('/', '\\'))
     with (root / 'wine.log').open('w') as log:

@@ -48,14 +48,14 @@ NativePlayback::NativePlayback(bool movie,bool audible):movie_(movie),audible_(a
     connect(&player_,&QMediaPlayer::mediaStatusChanged,this,[this](QMediaPlayer::MediaStatus status){
         if(finished_)return;
         if(status==QMediaPlayer::LoadedMedia || status==QMediaPlayer::BufferedMedia){
-            if((movie_ && !player_.hasVideo()) || (!movie_ && !player_.hasAudio())){error_="Required media track is missing.";finish(5);return;}
+            if((movie_ && !player_.hasVideo()) || (!movie_ && !player_.hasAudio())){error_="Required media track is missing.";finish(MNM_MEDIA_V1_STATUS_DECODER_ERROR);return;}
             if(!accepted_){accepted_=true;if(accepted)accepted();}
         }
-        if(status==QMediaPlayer::EndOfMedia)finish(3);
+        if(status==QMediaPlayer::EndOfMedia)finish(MNM_MEDIA_V1_STATUS_COMPLETE);
     });
     connect(&player_,&QMediaPlayer::errorOccurred,this,[this](QMediaPlayer::Error,const QString& error){
         if(finished_)return;
-        error_=error;finish(5);
+        error_=error;finish(MNM_MEDIA_V1_STATUS_DECODER_ERROR);
     });
 }
 NativePlayback::~NativePlayback(){finished_=true;player_.stop();player_.setVideoSink(nullptr);player_.setAudioBufferOutput(nullptr);player_.setAudioOutput(nullptr);}

@@ -1,3 +1,4 @@
+#include "../../protocols/include/mnm/frame_v1.h"
 /* Independent fake engine: padded lock storage is poisoned at Unlock; original
  * blits read separate native backing storage and dump their own expected output. */
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
@@ -24,8 +25,8 @@ static void lb_frame_record(const char* prefix,u32 id,const u8* native,u32 lengt
     static const char hex[]="0123456789abcdef";
     for(u32 i=0;i<8;++i)path[at+i]=hex[(id>>(28-4*i))&15];
     path[at+8]='.';path[at+9]='b';path[at+10]='i';path[at+11]='n';path[at+12]=0;
-    u32 size=lb_frame[10]?64+lb_frame[5]*lb_frame[6]*4:64,written=0;
-    if(lb_frame[4]&1)ExitProcess(134);
+    u32 size=lb_frame[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4]?64+lb_frame[MNM_FRAME_V1_WIDTH_OFFSET/4]*lb_frame[MNM_FRAME_V1_HEIGHT_OFFSET/4]*4:64,written=0;
+    if(lb_frame[MNM_FRAME_V1_SEQUENCE_OFFSET/4]&1)ExitProcess(134);
     HANDLE file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
     if(file==(HANDLE)-1 || !WriteFile(file,lb_frame,size,&written,0) || written!=size)ExitProcess(135);CloseHandle(file);
     if(native){path[at+9]='r';path[at+10]='a';path[at+11]='w';file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
@@ -120,8 +121,8 @@ static void test_lock_blits(void){
         lb_primary_surface=(lb_mode("chain")||lb_mode("update")||lb_mode("rgb24")||lb_mode("rgb32")||lb_mode("budget"))?&c:&b;
         char path[512];if(!GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path)))ExitProcess(137);
         HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)ExitProcess(138);
-        HANDLE mapping=CreateFileMappingA(file,0,4,0,64+2048*2048*4,0);CloseHandle(file);if(!mapping)ExitProcess(139);
-        lb_frame=MapViewOfFile(mapping,2,0,0,64+2048*2048*4);CloseHandle(mapping);if(!lb_frame)ExitProcess(140);
+        HANDLE mapping=CreateFileMappingA(file,0,4,0,MNM_FRAME_V1_SIZE,0);CloseHandle(file);if(!mapping)ExitProcess(139);
+        lb_frame=MapViewOfFile(mapping,2,0,0,MNM_FRAME_V1_SIZE);CloseHandle(mapping);if(!lb_frame)ExitProcess(140);
     }
     RenderInstallForTest(&a,14);RenderInstallForTest(&alias,11);
     if(lb_mode("created")){

@@ -73,6 +73,24 @@ verification before/after. This does not promote those paths to live replacement
 | CF01 Encrypted configuration and lifecycle | Scoped decode/encode and experiment tools; preparation/inspection | Static and documented live precedence; high within findings. [Container](../formats/encrypted-cfg.md), [precedence](../formats/cfg-precedence.md), [writer](../formats/cfg-writer.md) | Config-driven mods are separate from engine replacement; native config manager not recorded |
 | TH01 Threading and modern scheduling | Static No-CD message-loop/world-update/pacing recovery; worker architecture proposed only | Reviewed 2026-10-04: high for static dispatch, creature passes and timer separation; live thread ownership unknown. [Threading](threading.md), [world loop](world-tick-loop.md) | Observe thread IDs, cadence, pause/alternate-screen behavior and scheduler budget before changing concurrency or result timing |
 
+## Shared frame, input and media protocol ownership
+
+Reviewed 2026-10-04. `protocols/` owns the v1 wire schemas, generated C/C++ and
+Python definitions, publication semantics and compatibility rules. Injected
+render/input/media adapters, Qt clients and Python fixture/launcher tooling now
+consume those definitions. Wire bytes and existing publication/fallback behavior
+are preserved; this extraction does not advance live replacement coverage.
+
+Validation: four independent protocol checks, four focused Qt tests, three
+launcher preference tests and the existing synthetic frame, input and media
+integration workflows pass. PE32 `.text` sections match the pre-migration build
+for live and self-test bridge code. Original-manifest verification passes before
+and after validation. Confidence is high within synthetic v1 scope; no new live
+game validation. The input timer's literal 50 ms in actively edited `main.cpp`
+remains a deferred one-line adoption. Audio v2 and capture/menu formats are
+outside this change. See [migration evidence](../../protocols/VALIDATION.md) for
+commands, report paths, build provenance and limitations.
+
 ## Gameplay areas without recorded replacements
 
 These entries are baseline gaps, not proof that no research exists. Recovered

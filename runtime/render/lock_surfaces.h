@@ -1,3 +1,4 @@
+#include "../../protocols/include/mnm/frame_v1.h"
 /* Owned native checkpoints; only application calls establish pixels and properties.
  * All access is under game_locks_busy. No observer COM calls or references. */
 struct GameSurface {void* object;u32 epoch,generation,clip_known,clip,key_known,key,primary,layout_known,caps,back_count,back_count_known;void *back,*palette;struct Snapshot pixels;};
@@ -10,11 +11,11 @@ static int game_surface_publish(struct GameSurface*);
 static int game_surface_colors(struct GameSurface*,u8*);
 static int game_publish_pixels(const struct Snapshot* s){
     if(!stream || !s->data || !__sync_bool_compare_and_swap(&capture_busy,0,1))return 0;
-    u32 sequence=__atomic_load_n(stream+4,__ATOMIC_RELAXED);
-    __atomic_store_n(stream+4,sequence+1,__ATOMIC_SEQ_CST);
-    int ok=render_pixels((u8*)stream+64,s->width,s->height,s->data,(i32)(s->width*(s->bits/8)),s->bits,s->r,s->g,s->b,s->bits==8?s->palette:0);
-    if(ok){stream[5]=s->width;stream[6]=s->height;stream[7]=s->width*4;stream[8]=1;++stream[10];stream[9]=1;}
-    __atomic_store_n(stream+4,sequence+2,__ATOMIC_RELEASE);__sync_lock_release(&capture_busy);return ok;
+    u32 sequence=__atomic_load_n(stream+MNM_FRAME_V1_SEQUENCE_OFFSET/4,__ATOMIC_RELAXED);
+    __atomic_store_n(stream+MNM_FRAME_V1_SEQUENCE_OFFSET/4,sequence+1,__ATOMIC_SEQ_CST);
+    int ok=render_pixels((u8*)stream+MNM_FRAME_V1_PIXELS_OFFSET,s->width,s->height,s->data,(i32)(s->width*(s->bits/8)),s->bits,s->r,s->g,s->b,s->bits==8?s->palette:0);
+    if(ok){stream[MNM_FRAME_V1_WIDTH_OFFSET/4]=s->width;stream[MNM_FRAME_V1_HEIGHT_OFFSET/4]=s->height;stream[MNM_FRAME_V1_STRIDE_OFFSET/4]=s->width*MNM_FRAME_V1_BYTES_PER_PIXEL;stream[MNM_FRAME_V1_PIXEL_FORMAT_OFFSET/4]=MNM_FRAME_V1_PIXEL_FORMAT_RGBA8888;++stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4];stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_FRAME_PUBLISHED;}
+    __atomic_store_n(stream+MNM_FRAME_V1_SEQUENCE_OFFSET/4,sequence+2,__ATOMIC_RELEASE);__sync_lock_release(&capture_busy);return ok;
 }
 static void game_surface_drop(struct GameSurface* s){
     if(s->pixels.data){game_surface_bytes-=s->pixels.length;free_snapshot(&s->pixels);}

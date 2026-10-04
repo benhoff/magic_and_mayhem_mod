@@ -1,0 +1,183 @@
+{
+  "name": "media",
+  "version": 1,
+  "magic": "MNMMED01",
+  "size": 2048,
+  "header_size": 64,
+  "byte_order": "little",
+  "fields": [
+    {
+      "name": "magic",
+      "offset": 0,
+      "size": 8,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "version",
+      "offset": 8,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "declared_size",
+      "offset": 12,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "request_sequence",
+      "offset": 16,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "request_id",
+      "offset": 20,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "operation",
+      "offset": 24,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "flags",
+      "offset": 28,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "path_length",
+      "offset": 32,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "reserved_request_0",
+      "offset": 36,
+      "size": 8,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "sound_cancel_generation",
+      "offset": 44,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "cancelled_request_id",
+      "offset": 48,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "reserved_request_1",
+      "offset": 52,
+      "size": 12,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "path",
+      "offset": 64,
+      "size": 260,
+      "owner": "producer",
+      "type": "bytes"
+    },
+    {
+      "name": "reserved_request_2",
+      "offset": 324,
+      "size": 188,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "response_id",
+      "offset": 512,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "response_status",
+      "offset": 516,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "heartbeat",
+      "offset": 520,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "accepted_id",
+      "offset": 524,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "response_sequence",
+      "offset": 528,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "reserved_response",
+      "offset": 532,
+      "size": 1516,
+      "owner": "creator",
+      "type": "bytes"
+    }
+  ],
+  "constants": {
+    "max_path_length": 259,
+    "heartbeat_ms": 25,
+    "poll_ms": 5,
+    "stale_host_ms": 5000,
+    "acceptance_timeout_ms": 10000,
+    "playback_timeout_ms": 600000,
+    "sound_allowed_flags": 131099
+  },
+  "enums": {
+    "operation": {
+      "movie": 1,
+      "file_sound": 2,
+      "stop_file_sound": 3
+    },
+    "status": {
+      "loading": 1,
+      "accepted": 2,
+      "complete": 3,
+      "cancelled": 4,
+      "decoder_error": 5,
+      "unsupported": 6,
+      "sound_busy": 7
+    },
+    "sound_flag": {
+      "async": 1,
+      "no_default": 2,
+      "loop": 8,
+      "no_stop": 16,
+      "filename": 131072
+    }
+  },
+  "declared_size_kind": "size"
+}

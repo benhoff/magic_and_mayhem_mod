@@ -1,3 +1,4 @@
+#include "../../protocols/include/mnm/frame_v1.h"
 /* Independent native storage; Unlock poisons every exposed byte. */
 static char partial_mode[32];
 struct PlSurface {void** table;u32 bits,kind,held; i32 pitch;u8 native[64],exposed[128];void* pointer;};
@@ -68,7 +69,7 @@ static void pl_record(void){
     for(u32 i=0;i<8;++i)path[9+i]=hex[(pl_step>>(28-i*4))&15];pl_file(path,pl_surface.native,16*(pl_surface.bits/8));
     if(pl_has_palette()){char colors_path[]="colors-00000000.bin";
         for(u32 i=0;i<8;++i)colors_path[7+i]=hex[(pl_step>>(28-i*4))&15];pl_file(colors_path,pl_colors,1024);}
-    char frame_path[]="frame-00000000.bin";for(u32 i=0;i<8;++i)frame_path[6+i]=hex[(pl_step>>(28-i*4))&15];pl_file(frame_path,bs_stream,bs_stream[10]?128:64);if(pl_record_hook)pl_record_hook();++pl_step;
+    char frame_path[]="frame-00000000.bin";for(u32 i=0;i<8;++i)frame_path[6+i]=hex[(pl_step>>(28-i*4))&15];pl_file(frame_path,bs_stream,bs_stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4]?128:64);if(pl_record_hook)pl_record_hook();++pl_step;
 }
 static void pl_cycle(i32* rect,u32 flags,u32 value){
     u32 d[31]={0};d[0]=pl_surface.kind>=14?124:108;u32 failed=pl_fail_lock;
@@ -78,7 +79,7 @@ static void pl_cycle(i32* rect,u32 flags,u32 value){
     pl_record();u32 bytes=pl_surface.bits/8;
     if(rect && pl_mode("indexed-palette-change")){u8 colors[1024];for(u32 i=0;i<1024;++i)colors[i]=(u8)(255-pl_colors[i]);
         SetLastError(0x77);if(((i32 (WIN *)(void*,u32,u32,u32,void*))pl_palette[6])(&pl_palette,0,0,256,colors)!=23 || GetLastError()!=0x88)ExitProcess(243);
-        if(bs_stream[10]!=1)ExitProcess(244); /* No old base publication while locked. */
+        if(bs_stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4]!=1)ExitProcess(244); /* No old base publication while locked. */
     }
     u32 width=rect?(u32)(rect[2]-rect[0]):4,height=rect?(u32)(rect[3]-rect[1]):4;
     for(u32 y=0;y<height;++y)for(u32 x=0;x<width;++x)for(u32 b=0;b<bytes;++b)
@@ -119,13 +120,13 @@ static void pl_big_test(void){
             for(u32 j=0;j<8;++j)path[9+j]=hex[(i>>(28-j*4))&15];pl_file(path,pl_big_pixels,8*1024*1024);}
         pl_expected_unlock=rect;SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[32])(&object,rect)!=19 || GetLastError()!=0x88)ExitProcess(234);
     }
-    if(pl_big_locks!=count || pl_big_unlocks!=count || bs_stream[10])ExitProcess(235);ExitProcess(0);
+    if(pl_big_locks!=count || pl_big_unlocks!=count || bs_stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4])ExitProcess(235);ExitProcess(0);
 }
 static void test_partial_lock(void){
     char path[512];if(!GetEnvironmentVariableA("MNM_RENDER_STREAM",path,512))ExitProcess(220);
     HANDLE f=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(f==(HANDLE)-1)ExitProcess(221);
-    HANDLE mapping=CreateFileMappingA(f,0,4,0,64+2048*2048*4,0);CloseHandle(f);if(!mapping)ExitProcess(222);
-    bs_stream=MapViewOfFile(mapping,2,0,0,64+2048*2048*4);CloseHandle(mapping);if(!bs_stream)ExitProcess(223);
+    HANDLE mapping=CreateFileMappingA(f,0,4,0,MNM_FRAME_V1_SIZE,0);CloseHandle(f);if(!mapping)ExitProcess(222);
+    bs_stream=MapViewOfFile(mapping,2,0,0,MNM_FRAME_V1_SIZE);CloseHandle(mapping);if(!bs_stream)ExitProcess(223);
     if(pl_mode("memory-budget") || pl_mode("replay-budget") || pl_mode("session-bytes"))pl_big_test();
     static void* table[33];table[25]=(void*)&pl_lock;table[32]=(void*)&pl_unlock;table[27]=(void*)&pl_restore;table[22]=(void*)&pl_description;table[28]=(void*)&pl_clipper;table[5]=(void*)&pl_blt;table[31]=(void*)&pl_palette_assign;
     pl_surface.table=table;pl_surface.kind=pl_mode("legacy")?11:pl_mode("surface2")?12:pl_mode("surface7")?17:14;
