@@ -1,6 +1,7 @@
 #include "scene.hpp"
 #include "terrain_camera.hpp"
 #include "terrain_map.hpp"
+#include "terrain_sections.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QLabel>
@@ -20,6 +21,8 @@ int main(int argc,char** argv)try{
  p.addOption({"root","Installed asset root","directory"});p.addOption({"realm","Realm directory","path","Realms/Celtic/Forest"});
  p.addOption({"definitions","1..9 comma-separated TTD IDs","ids","5,9,13,17,21,25,29,33,37"});
  p.addOption({"map","Installed MAP request; replaces explicit definitions","path"});
+ p.addOption({"grid","Explicit complete section grid columns,rows,side","dimensions"});
+ p.addOption({"section","MAP path,sourceX,sourceY,column,row,rotation; repeat for every grid slot","selection"});
  p.addOption({"region","MAP slice x,y,layer,width,height (width/height 1..3)","coordinates","0,0,0,3,3"});
  p.addOption({"world","Produce a four-orientation terrain scene from MAP"});
  p.addOption({"camera","World column,row,span,cut-level","fields"});p.addOption({"pan","World base screen origin x,y","pixels","256,64"});
@@ -38,15 +41,36 @@ int main(int argc,char** argv)try{
  std::vector<mnm::preview::TerrainPreviewTile> tiles;
  QJsonObject mapInfo;mnm::reconstruction::TerrainCamera camera;
  const bool world=p.isSet("world");
+ if((p.isSet("grid") && (!world || !p.isSet("initialize-terrain") || p.isSet("map"))) || (p.isSet("section") && !p.isSet("grid")))throw std::runtime_error("Grid requires world, initialize-terrain and sections; excludes map");
  if(p.isSet("initialize-terrain") && !world)throw std::runtime_error("Terrain initialization requires world mode");
  if((p.isSet("recovered-camera") && (!world || p.isSet("camera") || p.isSet("pan"))) || (p.isSet("scroll") && !p.isSet("recovered-camera")))throw std::runtime_error("Recovered camera requires world and excludes camera/pan; scroll requires recovered camera");
- if((world && (!p.isSet("map") || p.isSet("region") || p.isSet("overlap"))) || (!world && (p.isSet("camera") || p.isSet("pan"))))throw std::runtime_error("--world requires --map; camera/pan require world; region/overlap require slice mode");
- if(p.isSet("map")){
+ if((world && ((!p.isSet("map") && !p.isSet("grid")) || p.isSet("region") || p.isSet("overlap"))) || (!world && (p.isSet("camera") || p.isSet("pan"))))throw std::runtime_error("--world requires --map; camera/pan require world; region/overlap require slice mode");
+ if(p.isSet("map") || p.isSet("grid")){
   if(p.isSet("definitions"))throw std::runtime_error("Choose --map or --definitions");
   const auto values=p.value("region").split(',');if(values.size()!=5)throw std::runtime_error("Region requires x,y,layer,width,height");
   std::array<std::uint32_t,5> fields{};for(unsigned i=0;i<5;++i){fields[i]=values[i].toUInt(&ok);if(!ok)throw std::runtime_error("Region coordinates must be unsigned integers");}
-  auto opened=store.open(p.value("map").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&opened))throw std::runtime_error(e->detail);auto file=std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(opened));auto loaded=mnm::assets::loadMap(*file);if(auto* e=std::get_if<mnm::assets::PersistenceError>(&loaded))throw std::runtime_error(e->detail);
-  auto map=std::get<mnm::assets::MapAsset>(std::move(loaded));
+  const auto load=[&](const QString& path){auto opened=store.open(path.toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&opened))throw std::runtime_error(e->detail);auto file=std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(opened));auto loaded=mnm::assets::loadMap(*file);if(auto* e=std::get_if<mnm::assets::PersistenceError>(&loaded))throw std::runtime_error(e->detail);return std::get<mnm::assets::MapAsset>(std::move(loaded));};
+  mnm::assets::MapAsset map;QJsonObject assemblyInfo;
+  if(p.isSet("grid")){
+   const auto dimensions=p.value("grid").split(',');if(dimensions.size()!=3)throw std::runtime_error("Grid requires columns,rows,side");
+   std::array<unsigned,3> grid{};for(unsigned i=0;i<3;++i){grid[i]=dimensions[i].toUInt(&ok);if(!ok || !grid[i] || grid[i]>128)throw std::runtime_error("Invalid grid field");}
+   const auto selections=p.values("section");if(selections.size()>16384)throw std::runtime_error("Too many sections");
+   std::vector<mnm::assets::MapAsset> sources;sources.reserve(selections.size());std::vector<mnm::reconstruction::TerrainSection> sections;
+   qint64 projectedObjects=0,projectedReferences=0;std::size_t sourceCells=0;
+   for(const auto& selection:selections){
+    const auto parts=selection.split(',');if(parts.size()!=6)throw std::runtime_error("Section requires path,sourceX,sourceY,column,row,rotation");
+    std::array<unsigned,5> f{};for(unsigned i=0;i<5;++i){f[i]=parts[i+1].toUInt(&ok);if(!ok || f[i]>128)throw std::runtime_error("Invalid section field");}
+    sources.push_back(load(parts[0]));auto& source=sources.back();
+    sourceCells+=source.cells.size();if(sourceCells>4u*128*128*32)throw std::runtime_error("Section source storage limit exceeded");
+    // Explicit ordinary-terrain projection before rotation; derive geometry only
+    // after assembling neighbors across section boundaries.
+    for(auto& c:source.cells){projectedObjects+=bool(c.flags10&8);c.flags10&=0xfff7;for(auto& ref:c.references){projectedReferences+=ref!=0xffff;ref=0xffff;}}
+    sections.push_back({&source,f[0],f[1],f[2],f[3],f[4]});
+   }
+   if(sources.empty())throw std::runtime_error("Grid requires sections");
+   map=mnm::reconstruction::assembleTerrainRegion(grid[0],grid[1],grid[2],sources.front().layers,sections,std::get<mnm::assets::TerrainCatalog>(catalog));
+   assemblyInfo={{"grid",p.value("grid")},{"sections",QJsonArray::fromStringList(selections)},{"projected_source_objects",projectedObjects},{"projected_source_references",projectedReferences}};
+  }else map=load(p.value("map"));
   QJsonObject geometryInfo;
   if(p.isSet("initialize-terrain")){
    auto geometry=mnm::reconstruction::prepareTerrainGeometry(map,std::get<mnm::assets::TerrainCatalog>(catalog));
@@ -73,6 +97,7 @@ int main(int argc,char** argv)try{
    }
    tiles=mnm::preview::worldTerrainTiles(map,camera);
    mapInfo={{"path",p.value("map")},{"width",qint64(map.width)},{"height",qint64(map.height)},{"layers",qint64(map.layers)},{"camera",QJsonArray{camera.column,camera.row,int(camera.span),int(camera.cutLevel)}},{"pan",QJsonArray{camera.f11,camera.f15}}};
+   if(p.isSet("grid"))mapInfo.insert("assembly",assemblyInfo);
    if(p.isSet("initialize-terrain"))mapInfo.insert("terrain_geometry",geometryInfo);
    mapInfo.insert("recovered_camera",p.isSet("recovered-camera"));
    mapInfo.insert("scroll",QJsonArray::fromStringList(p.values("scroll")));

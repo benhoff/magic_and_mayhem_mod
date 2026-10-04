@@ -27,3 +27,10 @@ connection predicates used by geometry admission). The catalog still owns and
 preserves these bytes without applying engine policy. See
 [map initialization and geometry evidence](../runtime/terrain-map-initialization.md)
 for field conditions, original execution and remaining boundaries.
+
+Selected section-copy routine `004ef6b0` also reads **WORD** +90/+8c/+88 as
+rotation-1/2/3 ordinary terrain definition replacements. These overlap the
+body-frame DWORD array, but this caller consumes only the low WORD. It performs
+one lookup from the source definition, then rotates direction flags separately.
+Object-linked cells use another branch. See
+[section rotation evidence](../runtime/terrain-section-assembly.md).

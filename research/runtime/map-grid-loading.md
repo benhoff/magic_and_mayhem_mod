@@ -58,3 +58,10 @@ now have a separate [native initialization milestone](terrain-map-initialization
 It prepares an owned ordinary-terrain projection for scene rendering, with
 explicit reference/object exclusions; the raw MAP reader remains unchanged.
 Full original map lifecycle and entity creation remain unverified.
+
+Explicit multi-section terrain assembly is now available after native MAP
+loading. The recovered ordinary section-copy branch selects rotated definition
+WORDs and direction flags; the owned native API preserves input assets and
+initializes geometry after assembly. Selection policy, object projection and
+full region/entity lifecycle remain separate. See
+[section assembly](terrain-section-assembly.md).
