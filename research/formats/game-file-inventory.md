@@ -19,7 +19,7 @@ The executable identifying this installation has SHA-256
 | EVT | 685 | 156,400 | Version-1 event areas; [confirmed 72-byte records/native loading](evt-native-loading.md) |
 | MAP | 683 | 12,060,759 | Proprietary; no stable leading magic observed |
 | MPS | 683 | 389,488 | Version-1 map placements; [confirmed 40-byte records/native loading](mps-native-loading.md) |
-| NOD | 683 | 12,746,278 | Proprietary `NOD\0` container |
+| NOD | 683 | 12,746,278 | [Native version-1 node reader](nod-native-loading.md); packed connections and trailer, offline only |
 | WAV | 356 | 11,925,486 | Standard RIFF/WAVE |
 | SPR | 181 | 108,134,899 | Proprietary `SPR\0` container |
 | CFG | 175 | 1,599,518 | 163 plaintext; 11 encrypted containers; one other |
@@ -28,14 +28,14 @@ The executable identifying this installation has SHA-256
 | WZD | 101 | 159,665 | Plaintext wizard data |
 | TAG | 85 | 1,570,692 | Headerless sprite-name/occurrence tables; [confirmed 12-byte records/native loading](tag-native-loading.md) |
 | BMP | 48 | 13,814,536 | Standard Windows bitmap |
-| TXT | 43 | 141,904 | Plaintext data |
+| TXT | 43 | 141,904 | [Native byte-text/scroll loading](txt-wbt-native-loading.md); Grimoire has a separate application parser |
 | FP | 41 | 132,356 | Version-2 Realm Viewer flag paths; [confirmed header/points/native loading](fp-native-loading.md) |
 | CUR | 20 | 10,984 | Standard Windows cursor |
 | TTD | 17 | 11,154,108 | Proprietary `TTD\0` container |
 | SFT | 6 | 624,508 | [Native version-3 font reader](sft-native-loading.md); glyphs and contour profiles, offline only |
 | AVI | 5 | 83,940,352 | Standard RIFF/AVI |
 | DAT | 2 | 1,269,444 | Proprietary AI data |
-| WBT | 2 | 346 | Plaintext AI data |
+| WBT | 2 | 346 | [Read-only automation statement loader](txt-wbt-native-loading.md); development scripts, not AI parameter definitions |
 | Other | 6 | 176,563 | BAK, DLL, DOC, EXE, INI, and WRI |
 
 Counts and byte totals are confirmed with high confidence. Classifications
@@ -67,8 +67,9 @@ access routines are analyzed.
 
 1. Decoded CFG files are the best first target: they contain creature, spell,
    item, effect, and global tuning data and now have a verified decoder.
-2. AI `.wbt` text and `Brain.dat` may affect commander behavior; determine
-   whether `Brain.dat` is generated from the text before editing either.
+2. `Brain.dat` and `Experien.dat` remain candidates for AI research. The WBT
+   files automate debug training/bug-search runs; their relationship to either
+   DAT file is unverified.
 3. EVT/MAP/MPS/NOD appear to be tightly grouped per map section and are more
    likely world geometry, event, or navigation data than global mechanics.
 4. ANI/SPR/SFT and standard image/audio/video formats are asset-oriented and

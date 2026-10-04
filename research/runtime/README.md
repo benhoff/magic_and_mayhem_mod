@@ -137,4 +137,6 @@ confidence, and whether it remains stable across launches.
 
 - [Native menu audio integration](menu-audio-integration.md): semantic cue routing, accepted effects gain and shared-session/queue transitions; offline widget/PCM tests.
 
+- [NOD node reader and lookup](nod-node-loading.md): hash-pinned record copies, selected section transforms/rebasing and connection lookup; static/offline evidence.
+
 - [Native audio output recovery](audio-output-recovery.md): Qt device-change/failure notifications, persistent retry status, gain-preserving silent reopen and cancellation; synthetic validation.

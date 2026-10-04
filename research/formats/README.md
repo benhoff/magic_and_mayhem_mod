@@ -51,3 +51,7 @@ Current findings:
 - [Native FP flag-path loading](fp-native-loading.md): version-2 Realm Viewer paths, bounded eight-slot ranges, flag positions and complete installed comparisons.
 
 - [Native SFT font loading](sft-native-loading.md): version-3 glyphs, contour profiles, shared SPR frame decoding and complete installed comparisons.
+
+- [Native NOD node loading](nod-native-loading.md): version-1 packed positions/connections, preserved metadata/trailer and complete installed byte roundtrips.
+
+- [Native TXT/WBT loading](txt-wbt-native-loading.md): exact text lines, typed scroll entries, read-only automation statements and complete installed comparisons.
