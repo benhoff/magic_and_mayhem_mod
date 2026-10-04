@@ -19,9 +19,9 @@ def main():
                'map-selection', 'load-game', 'save-game', 'preferences', 'multiplayer-setup',
                'multiplayer-game-selection', 'single-player-battle', 'multiplayer-lobby',
                'region-entry', 'character-screen', 'grimoire', 'spellbox']
-    targets = ['mnm-qt-shell', 'menu-audio-test', 'audio-recovery-test', 'audio-session-test', 'audio-output-test',
+    targets = ['mnm-qt-shell', 'menu-audio-test', 'menu-music-test', 'audio-recovery-test', 'audio-session-test', 'audio-output-test',
                'audio-native-manager-test', *[w + '-test' for w in widgets]]
-    pattern = '^(qt-menu-audio|qt-audio-output-recovery|qt-audio-manager-session|audio-qt-output|audio-native-manager|qt-shell-help|qt-shell-startup|' + \
+    pattern = '^(qt-menu-audio|qt-menu-music|qt-audio-output-recovery|qt-audio-manager-session|audio-qt-output|audio-native-manager|qt-shell-help|qt-shell-startup|' + \
               '|'.join('qt-' + w for w in widgets if w not in ['battle-result', 'quick-battle-result']) + \
               '|qt-battle-results|qt-quick-battle-results)$'
     commands = [('configure', ['cmake', '-S', str(REPO / 'apps/qt-shell'), '-B', str(BUILD)]),
@@ -36,7 +36,7 @@ def main():
     # headless invocation. Invalid options must never reach device/game startup.
     import os
     environment = dict(os.environ, QT_QPA_PLATFORM='offscreen')
-    for number, args in enumerate([['--menu-audio'], ['--menu-audio-policy', 'literal'], ['--menu-click-sound', '822']]):
+    for number, args in enumerate([['--menu-audio'], ['--menu-audio-policy', 'literal'], ['--menu-click-sound', '822'], ['--menu-music', 'missing.wav']]):
         result = subprocess.run([str(BUILD / 'mnm-qt-shell'), *args], cwd=REPO, env=environment,
                                 capture_output=True, text=True, timeout=10)
         (evidence / f'arguments-{number}.log').write_text(result.stdout + result.stderr)
@@ -44,14 +44,16 @@ def main():
     sources = ['apps/qt-shell/menu_audio_controller.hpp', 'apps/qt-shell/menu_audio_controller.cpp',
                'apps/qt-shell/audio_session.hpp', 'apps/qt-shell/audio_session.cpp', 'apps/qt-shell/main.cpp',
                'apps/qt-shell/menu_preview.hpp', 'apps/qt-shell/menu_preview.cpp', 'apps/qt-shell/CMakeLists.txt',
-               'tests/menu-audio-test.cpp', 'tests/audio-recovery-test.cpp', 'tests/audio-catalog-fixture.hpp', 'tests/grimoire-fixtures.hpp',
+               'apps/qt-shell/menu_audio_preferences.hpp', 'apps/qt-shell/menu_music_controller.hpp',
+               'apps/qt-shell/menu_music_controller.cpp', 'apps/qt-shell/menu_music_output.cpp', 'apps/qt-shell/native_playback.hpp', 'apps/qt-shell/native_playback.cpp',
+               'tests/menu-audio-fixture.hpp', 'tests/menu-music-test.cpp', 'tests/menu-audio-test.cpp', 'tests/audio-recovery-test.cpp', 'tests/audio-catalog-fixture.hpp', 'tests/grimoire-fixtures.hpp',
                'tools/test-menu-audio.py', 'audio/qt_output.cpp']
     sources += [str(p.relative_to(REPO)) for p in sorted((REPO / 'apps/qt-shell').glob('*widget.*pp'))]
     digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
-    report = {'scope': 'native menu semantic cues, persisted accepted effects gain, shared manager and queue transitions',
+    report = {'scope': 'native menu semantic cues, independent persisted music/effects gains, explicit looping track lifecycle, shared manager and queue transitions',
               'gameLaunched': False, 'installedAssetsRead': False, 'physicalAudioDeviceOpened': False,
               'testsPassed': True, 'sourceSha256': {p: digest(REPO / p) for p in sources},
-              'binarySha256': {p: digest(BUILD / p) for p in ['menu-audio-test', 'audio-recovery-test', 'mnm-qt-shell', 'audio-session-test']}}
+              'binarySha256': {p: digest(BUILD / p) for p in ['menu-audio-test', 'menu-music-test', 'audio-recovery-test', 'mnm-qt-shell', 'audio-session-test']}}
     (evidence / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
     print(f'Offline menu audio checks passed: {evidence / "report.json"}', flush=True)
 

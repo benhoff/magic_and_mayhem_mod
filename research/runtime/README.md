@@ -144,3 +144,5 @@ confidence, and whether it remains stable across launches.
 - [Native menu effects preferences](menu-audio-preferences.md): user-scoped Qt settings, acceptance/cancellation and synthetic fresh-process restart validation.
 
 - [DAT AI loading](dat-ai-loading.md): hash-pinned reader contracts, packed runtime/file separation and offline validation boundaries.
+
+- [Native menu music](native-menu-music.md): explicit looping track, independent saved volume, Qt playback adapter and synthetic lifecycle validation.

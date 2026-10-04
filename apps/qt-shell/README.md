@@ -418,3 +418,11 @@ Difficulty is remembered per region. Direct Portmanteau/Grimoire/Character and
 Options previews return to the map. All sample regions are available; campaign
 progression and engine commands remain pending. See
 [scope and validation](../../research/runtime/realm-viewer-qt.md).
+
+## Native menu music
+
+`--menu-music /absolute/path/to/track.wav` opts into a looping local track in any
+native menu preview, with or without `--menu-audio`. Music continues across menu
+navigation, stops on closure, and has its own status and saved accepted volume.
+Cancel keeps the accepted value. No default track is selected. See
+[controller, policy and offline evidence](../../research/runtime/native-menu-music.md).
