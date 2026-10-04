@@ -56,6 +56,7 @@ def main():
             'tests_passed':True,'game_launched':False,'game_assets_read':False,'audible_output':False,
             'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
             'fixture_sha256':hashlib.sha256((root/'selftest.exe').read_bytes()).hexdigest(),
+            'primary_fixture_sha256':hashlib.sha256((build/'audio-primary-test').read_bytes()).hexdigest(),
             'native_fixture_sha256':hashlib.sha256((build/'audio-voice-bridge-test').read_bytes()).hexdigest(),
             'source_sha256':{str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest()
                              for p in [*sorted((REPO/'runtime/audio').glob('*')),REPO/'audio/voice_bridge.cpp',REPO/'audio/voice_bridge.hpp',REPO/'tests/audio-voice-bridge-test.cpp']},
@@ -63,7 +64,8 @@ def main():
             'last_ack':int.from_bytes(header[64:68],'little'),
             'native_devices_selected':int.from_bytes(header[84:88],'little'),
             'fallback_attempts':int.from_bytes(header[88:92],'little'),
-            'checks':['native_pcm_and_controls','COM_method_slots_stdcall','primary_metadata',
+            'checks':['native_pcm_and_controls','COM_method_slots_stdcall','primary_metadata','primary_volume_roundtrip','primary_format_validation',
+                      'primary_stop_preserves_secondary_playback','manager_gate_failure_order_matrices',
                       'secondary_lock_unlock','duplicate_source_retirement','independent_status',
                       'invalid_unlock_and_flags','unsupported_pitch_and_seek','reference_lifetime',
                       'stale_host_timeout_and_permanent_retirement']}

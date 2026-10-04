@@ -20,6 +20,18 @@ BridgeReply VoiceCommands::execute(const std::uint32_t* w,const QByteArray& payl
         PcmFormat f{std::uint16_t(w[14]),std::uint16_t(w[10]),w[9],w[13],std::uint16_t(w[12]),std::uint16_t(w[11]),0};
         error=device_.createStatic(w[15],f,w[8],created);break;
     }
+    case MNM_AUDIO_PRIMARY_GET_VOLUME:return {0,std::uint32_t(device_.primaryState().volume)};
+    case MNM_AUDIO_PRIMARY_VOLUME:{
+        const auto signedValue=std::int64_t(w[7])-(w[7]>0x7fffffff?4294967296ll:0);
+        error=device_.setPrimaryVolume(std::int32_t(signedValue));break;
+    }
+    case MNM_AUDIO_PRIMARY_PLAY:error=device_.playPrimary(w[7]);break;
+    case MNM_AUDIO_PRIMARY_STOP:device_.stopPrimary();return {};
+    case MNM_AUDIO_PRIMARY_STATUS:return {0,device_.primaryState().status()};
+    case MNM_AUDIO_PRIMARY_FORMAT:{
+        if(w[10]>2 || w[11]>16 || w[12]>4 || w[14]>65535)return {0x80070057,0};
+        error=device_.setPrimaryOutputFormat({std::uint16_t(w[14]),std::uint16_t(w[10]),w[9],w[13],std::uint16_t(w[12]),std::uint16_t(w[11]),0});break;
+    }
     case MNM_AUDIO_DUPLICATE:error=device_.duplicate(id,created);break;
     case MNM_AUDIO_RELEASE:error=device_.release(id);break;
     case MNM_AUDIO_PLAY:error=device_.play(id,w[7]);break;

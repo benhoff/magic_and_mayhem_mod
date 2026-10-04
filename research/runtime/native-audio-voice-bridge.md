@@ -35,15 +35,16 @@ seamless mid-playback fallback or recovery.
 | --- | --- |
 | COM identity/lifetime | IUnknown and selected IDirectSound/IDirectSoundBuffer IID, atomic local references, final release retires the native voice |
 | Setup | Old 20-byte descriptor, primary flags `0x81`, secondary flags `0xea`; device caps report PCM mono/stereo and 8/16-bit capability bits |
-| Primary | Metadata format, caps/status and Play/Stop locally; zero byte length, no sample output; nonzero primary attenuation rejected |
+| Primary | Validated format metadata; host volume, Play/Stop/status; device-wide master attenuation; zero caps byte length |
 | Static samples | Secondary PCM mono/stereo 8/16-bit; offset-zero Lock with flags zero and at most the buffer length; private zeroed staging memory; checked Unlock copies only reported first-region bytes |
 | Duplication | Shared native committed samples, stopped independent cursor, copied volume/pan; original release leaves duplicate alive |
 | Controls | Play flags 0/1 and zero reserved arguments, Stop, zero reset, volume/pan, GetStatus; cached getters for volume/pan/format/source rate |
 | Other methods | Frequency changes, nonzero seeks, cursor queries, secondary SetFormat/Initialize and additional interfaces unsupported; Restore is a no-op for owned memory |
 
 Caps and primary metadata are explicit scaffolding, not measured Wine primary
-buffer size, device capability or hardware behavior. Primary volume/pan/master
-mixing, geometry, scheduler selection and full engine calls remain unvalidated.
+buffer size, device capability or hardware behavior. Primary master volume is fixture-tested separately in
+[primary controls and manager ordering](primary-audio-manager.md). Primary pan,
+geometry and full live engine calls remain unvalidated.
 GetStatus reflects generated native PCM, ahead of device consumption by queued
 output. A game relying on unsupported methods may reject the adapter. A pointer
 returned by Lock is valid until Unlock/release; no post-Unlock pointer lifetime
@@ -56,7 +57,7 @@ bytes; process pointers never cross the channel. A voice ID is a session-local
 
 ## Channel lifecycle
 
-`runtime/audio/protocol.h` defines `MNMAUD01`, version 1, a 128-byte header and
+`runtime/audio/protocol.h` defines `MNMAUD01`, version 2, a 128-byte header and
 16 MiB upload region. All wire words are little-endian aligned DWORDs.
 Commands are serialized with one outstanding request; payload/arguments are
 written before release publication of the request ID. The host acquires it,
@@ -126,3 +127,7 @@ Confidence is high for exercised native/ABI contracts, conditional for complete
 engine compatibility. Next live evidence must cover menu/map startup, overlapping
 sounds, loop retirement, transitions/exit, unsupported calls, actual selection
 versus fallback and audible/temporal comparison against Wine.
+
+The evidence above describes the initial adapter milestone. Current primary
+controls, protocol version 2 and refreshed fixture/staging evidence are recorded
+in [primary audio manager](primary-audio-manager.md).

@@ -34,7 +34,7 @@ mixing, COM emulation, hooks or output. The Qt asset/WAV pipeline is unchanged.
 Manager +0x1c and +0x18 gate operations; `enabled` means both are nonzero.
 Precise semantic names remain unspecified. Primary looping Play at
 `0x0056fd73` sets +0x18 after success; global stop clears it before stopping
-the primary at `0x0056fe62`. Primary GetVolume at `0x0056fd27` uses +0x18;
+the primary at `0x0056fe62`. Primary GetVolume at `0x0056fd27` uses +0x1c only;
 it must not be mistaken for a frequency query.
 
 ### Busy, stop and reset
@@ -129,3 +129,6 @@ game process or audio device. LeakSanitizer was run outside sandbox tracing.
 [Independent native voice state](native-audio-voice-state.md) now has separate
 fixture evidence. Next: stereo mixing/sample-rate conversion and QAudioSink
 output. Recovered-contract tests alone do not establish those native milestones.
+
+Primary controls and selected manager startup/disable/shutdown ordering are now
+modeled separately. See [primary audio manager](primary-audio-manager.md).

@@ -88,7 +88,7 @@ def main():
     if voice_path:
         if not voice_path.is_relative_to(REPO/'working'):raise ValueError('Voice channel must be under working/')
         with voice_path.open('rb') as file:
-            if voice_path.stat().st_size!=128+16*1024*1024 or file.read(16)!=b'MNMAUD01'+(1).to_bytes(4,'little')+(128+16*1024*1024).to_bytes(4,'little'):raise ValueError('Invalid voice channel')
+            if voice_path.stat().st_size!=128+16*1024*1024 or file.read(16)!=b'MNMAUD01'+(2).to_bytes(4,'little')+(128+16*1024*1024).to_bytes(4,'little'):raise ValueError('Invalid voice channel')
     stage=load('shadow_stage','tools/prepare-shadow-experiment.py');source=REPO/'working/game-nocd';data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=stage.HASH:raise ValueError('Unsupported game hash')
     dll=load('render_build','tools/build-render-bridge.py').build()

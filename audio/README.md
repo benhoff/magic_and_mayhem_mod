@@ -118,3 +118,7 @@ An optional x86 voice adapter now connects selected COM calls to the native
 mixer/output via a separate Qt broker. See
 [bridge contracts, tests and launch option](../research/runtime/native-audio-voice-bridge.md).
 Next: live voice coverage, unsupported-call inventory and audible/timing comparison. See [reconstruction boundaries](../research/runtime/directsound-buffer-setup.md).
+
+Device-wide primary controls now provide master attenuation, explicit looping
+play intent and validated requested-format metadata. Primary Stop leaves
+secondary mixing active. See [manager reconstruction and offline evidence](../research/runtime/primary-audio-manager.md).

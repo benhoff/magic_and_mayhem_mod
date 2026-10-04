@@ -2,6 +2,19 @@
 #include <algorithm>
 
 namespace mnm::audio {
+Error Device::setPrimaryVolume(std::int32_t value){
+    if(value < -10000 || value > 0)return Error::invalid;
+    primary_.volume=value;return Error::ok;
+}
+Error Device::playPrimary(std::uint32_t flags){
+    if(flags!=1)return Error::unsupported;
+    primary_.explicitlyPlaying=true;return Error::ok;
+}
+Error Device::setPrimaryOutputFormat(const PcmFormat& format){
+    if(!validPcm(format))return Error::badFormat;
+    primary_.format=format;return Error::ok;
+}
+
 Error Device::play(BufferId id,std::uint32_t flags){
     const auto it=buffers_.find(id);
     if(it==buffers_.end())return Error::invalid;
