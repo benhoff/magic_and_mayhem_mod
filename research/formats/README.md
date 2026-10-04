@@ -39,3 +39,5 @@ Current findings:
 - [Native PCX loading](pcx-native-loading.md): version 5 indexed RLE images, palette preservation and offline validation.
 
 - [Native BMP loading](bmp-native-loading.md): bounded 24-bit BI_RGB decoding, orientation/padding conversion and offline validation.
+
+- [Native JPEG loading](jpeg-native-loading.md): Qt JPEG backend with owned RGB output, explicit limits and installed corpus comparison.

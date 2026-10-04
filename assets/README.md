@@ -289,3 +289,13 @@ RGB pixels from 24-bit BI_RGB files with a 40-byte BITMAPINFOHEADER.
 Both source orientations and padded rows are handled with bounded decoding.
 `mnm-bmp-inspect ROOT PATH.bmp` reports metadata and a complete RGB hash.
 See [format, validation and remaining integration](../research/formats/bmp-native-loading.md).
+
+## JPEG RGB images
+
+`mnm-jpeg-loader` provides `decodeJpeg`/`loadJpeg` in `jpeg.hpp`: owned,
+tightly packed RGB pixels using Qt's JPEG codec behind standard-library types.
+Input, dimensions, exported RGB and codec images have explicit limits.
+EXIF orientation and ICC color transforms are not applied.
+`mnm-jpeg-inspect ROOT PATH.jpg` reports dimensions and a complete RGB hash.
+Qt Gui/JPEG support is required; comparison tests also require Python Pillow.
+See [policies, validation and remaining integration](../research/formats/jpeg-native-loading.md).
