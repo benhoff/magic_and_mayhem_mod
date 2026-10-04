@@ -289,3 +289,13 @@ Preview Multiplayer Game Selection with supplied sample sessions:
 Join OK also opens this screen; Cancel returns to Join with its draft retained.
 Session OK emits intent only. Discovery and joining remain pending. See
 [scope and validation](../../research/runtime/multiplayer-game-selection-qt.md).
+
+Preview Single Player Battle Setup with sample players and configured sliders:
+
+```bash
+./tools/run-qt-shell.sh --single-player-battle
+```
+
+It also opens from Quick Battle. Map Selection returns to this setup with edits
+retained; portrait/colour controls cycle local samples. Start emits a setup
+request without launching a game. See [scope and validation](../../research/runtime/single-player-battle-qt.md).

@@ -203,6 +203,7 @@ int main(int argc,char** argv){
                     "  --save-game           Preview Save Game with sample saves\n"
                     "  --load-game           Preview Load Game with sample saves\n"
                     "  --multiplayer-game-selection  Preview sample multiplayer sessions\n"
+                    "  --single-player-battle Preview battle setup with sample players\n"
                     "  --map-selection       Preview map selection with sample entries\n"
                     "  --battle-results MODE Preview victory or defeat with sample results\n"
                     "  --menu-assets DIR     Installed assets for the main menu preview\n"
@@ -244,6 +245,7 @@ int main(int argc,char** argv){
     parser.addOption({"save-game","Preview Save Game with sample saves."});
     parser.addOption({"load-game","Preview Load Game with sample saves."});
     parser.addOption({"multiplayer-game-selection","Preview multiplayer session selection without discovery."});
+    parser.addOption({"single-player-battle","Preview Single Player Battle setup without launching a game."});
     parser.addOption({"map-selection","Preview Map Selection with sample entries."});
     parser.addOption({"battle-results","Preview battle results: victory or defeat.","mode"});
     parser.addOption({"menu-assets","Installation root for main-menu assets.","directory"});
@@ -266,9 +268,9 @@ int main(int argc,char** argv){
     parser.addOption({"fixture-window","Internal external-window fixture."});parser.process(app);
     if(parser.isSet("media") || parser.isSet("media-server-test"))return runMedia(app,parser);
     if(parser.isSet("media-test") || parser.isSet("media-probe"))parser.showHelp(2);
-    const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu") || parser.isSet("battle-results") || parser.isSet("quick-battle-results") || parser.isSet("map-selection") || parser.isSet("load-game") || parser.isSet("save-game") || parser.isSet("preferences") || parser.isSet("join-multiplayer") || parser.isSet("create-multiplayer") || parser.isSet("multiplayer-game-selection");
+    const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu") || parser.isSet("battle-results") || parser.isSet("quick-battle-results") || parser.isSet("map-selection") || parser.isSet("load-game") || parser.isSet("save-game") || parser.isSet("preferences") || parser.isSet("join-multiplayer") || parser.isSet("create-multiplayer") || parser.isSet("multiplayer-game-selection") || parser.isSet("single-player-battle");
     if((parser.isSet("menu-assets") || parser.isSet("menu-command-line")) && !menuPreview)parser.showHelp(2);
-    if(int(parser.isSet("main-menu"))+int(parser.isSet("quick-battle-menu"))+int(parser.isSet("mini-menu"))+int(parser.isSet("battle-results"))+int(parser.isSet("quick-battle-results"))+int(parser.isSet("map-selection"))+int(parser.isSet("load-game"))+int(parser.isSet("save-game"))+int(parser.isSet("preferences"))+int(parser.isSet("join-multiplayer"))+int(parser.isSet("create-multiplayer"))+int(parser.isSet("multiplayer-game-selection"))>1)parser.showHelp(2);
+    if(int(parser.isSet("main-menu"))+int(parser.isSet("quick-battle-menu"))+int(parser.isSet("mini-menu"))+int(parser.isSet("battle-results"))+int(parser.isSet("quick-battle-results"))+int(parser.isSet("map-selection"))+int(parser.isSet("load-game"))+int(parser.isSet("save-game"))+int(parser.isSet("preferences"))+int(parser.isSet("join-multiplayer"))+int(parser.isSet("create-multiplayer"))+int(parser.isSet("multiplayer-game-selection"))+int(parser.isSet("single-player-battle"))>1)parser.showHelp(2);
     if(parser.isSet("mini-menu") && parser.value("mini-menu")!="campaign" && parser.value("mini-menu")!="battle")parser.showHelp(2);
     if(parser.isSet("battle-results") && parser.value("battle-results")!="victory" && parser.value("battle-results")!="defeat")parser.showHelp(2);
     if(parser.isSet("quick-battle-results") && parser.value("quick-battle-results")!="continue" && parser.value("quick-battle-results")!="spectate")parser.showHelp(2);
@@ -305,6 +307,9 @@ int main(int argc,char** argv){
         }
         if(parser.isSet("multiplayer-game-selection") && !preview.openMultiplayerGameSelection(root,&error)){
             std::fprintf(stderr,"Session selection assets failed: %s\n",qPrintable(error));return 9;
+        }
+        if(parser.isSet("single-player-battle") && !preview.openSinglePlayerBattle(root,&error)){
+            std::fprintf(stderr,"Single Player assets failed: %s\n",qPrintable(error));return 9;
         }
         preview.findChild<MainMenuWidget*>()->setCommandLineBattleVisible(parser.isSet("menu-command-line"));
         preview.show();

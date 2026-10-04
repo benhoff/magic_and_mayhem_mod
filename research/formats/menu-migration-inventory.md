@@ -109,3 +109,8 @@ intent. Join has a username field; session enumeration and networking remain ope
 Multiplayer Game Selection now has a [native session-list preview](../runtime/multiplayer-game-selection-qt.md)
 with stable caller-supplied IDs, guarded OK/Cancel and Join navigation.
 Live session discovery and joining remain unconnected.
+
+Single Player Battle now has a [native setup preview](../runtime/single-player-battle-qt.md)
+with configured sliders, supplied player/map data, text sprite placeholders and
+caller-aware Map Selection navigation. Original wizard catalogs, setup field
+mapping and battle launch remain unconnected.
