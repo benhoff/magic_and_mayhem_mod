@@ -102,3 +102,7 @@ ID and difficulty mapping, character/spell screens and the engine command
 adapter remain outstanding.
 
 Grimoire also opens its [native installed-book reader](grimoire-qt.md); Close/Escape restores the Region caller and Grimoire icon focus.
+
+Spellbox navigation now opens the [native Portmanteau preview](spellbox-qt.md).
+Accept/Cancel returns with the current region/difficulty and Spellbox icon focus.
+Its accepted inventory draft is local; campaign loadout commands remain pending.

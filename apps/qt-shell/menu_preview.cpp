@@ -438,6 +438,11 @@ bool MenuPreview::openRegionEntry(const QString& root,QString* error) {
                 if (!openGrimoire(assetRoot_,&error)) statusBar()->showMessage(QString("Grimoire preview failed: %1").arg(error));
                 return;
             }
+            if (action==RegionEntryWidget::AuxiliaryAction::Spellbox) {
+                QString error;
+                if (!openSpellbox(assetRoot_,&error)) statusBar()->showMessage(QString("Spellbox preview failed: %1").arg(error));
+                return;
+            }
             if (action==RegionEntryWidget::AuxiliaryAction::Character) {
                 QString error;
                 if (!openCharacterScreen(assetRoot_,&error)) statusBar()->showMessage(QString("Character preview failed: %1").arg(error));
@@ -494,5 +499,31 @@ bool MenuPreview::openGrimoire(const QString& root,QString* error) {
 void MenuPreview::returnFromGrimoire() {
     if (!grimoireReturnsToRegion_) {showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);return;}
     screens_->setCurrentWidget(regionEntry_);setWindowTitle(regionEntry_->windowTitle());regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary0")->setFocus(Qt::OtherFocusReason);
+    statusBar()->showMessage("Region Entry preview. Campaign engine adapter pending.");
+}
+
+
+bool MenuPreview::openSpellbox(const QString& root,QString* error) {
+    if (!spellbox_) {
+        spellbox_=new SpellboxWidget(screens_);screens_->addWidget(spellbox_);
+        SpellboxWidget::Inventory sample;sample.ownerId="sample-character";
+        for(int i=0;i<6;++i){SpellboxWidget::Item item;item.id=QString("sample-item-%1").arg(i);item.name=QString("Sample item %1").arg(i+1);item.artworkIndex=i;item.quantity=2;
+            for(int a=0;a<3;++a)item.spells[a]={QString("sample-spell-%1-%2").arg(i).arg(a),QString("Sample %1 spell %2").arg(a==0?"law":a==1?"neutral":"chaos").arg(i+1),a==0?3+i:a==1?std::array<int,6>{17,18,19,20,21,23}[i]:10+i};
+            sample.items.push_back(item);
+        }
+        for(int a=0;a<3;++a)for(int t=0;t<3;++t)sample.talismans.push_back({QString("sample-talisman-%1-%2").arg(a).arg(t),SpellboxWidget::Alignment(a),{}});
+        spellbox_->setInventory(sample);
+        connect(spellbox_,&SpellboxWidget::cancelled,this,&MenuPreview::returnFromSpellbox);
+        connect(spellbox_,&SpellboxWidget::loadoutAccepted,this,[this](const auto& request){returnFromSpellbox();statusBar()->showMessage(QString("Spellbox loadout for %1 accepted locally — campaign adapter pending.").arg(request.ownerId));});
+        connect(spellbox_,&SpellboxWidget::spellPreviewRequested,this,[this](const auto& request){statusBar()->showMessage(QString("Preview %1 using %2 — supplied sample spell; engine adapter pending.").arg(request.spellId,request.itemId));});
+    }
+    if(!spellbox_->loadAssets(root,error))return false;
+    spellboxReturnsToRegion_=regionEntry_ && screens_->currentWidget()==regionEntry_;
+    screens_->setCurrentWidget(spellbox_);setWindowTitle(spellbox_->windowTitle());spellbox_->focusFirstControl();
+    statusBar()->showMessage("Sample inventory/spells. Drag or select and Assign; Remove restores a copy. OK accepts locally; Cancel restores.");return true;
+}
+void MenuPreview::returnFromSpellbox() {
+    if(!spellboxReturnsToRegion_){showMainMenu();main_->findChild<QPushButton*>("mainMenuAction0")->setFocus(Qt::OtherFocusReason);return;}
+    screens_->setCurrentWidget(regionEntry_);setWindowTitle(regionEntry_->windowTitle());regionEntry_->findChild<QPushButton*>("regionEntryAuxiliary1")->setFocus(Qt::OtherFocusReason);
     statusBar()->showMessage("Region Entry preview. Campaign engine adapter pending.");
 }

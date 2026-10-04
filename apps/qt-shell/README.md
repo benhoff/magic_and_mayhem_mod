@@ -366,3 +366,15 @@ catalog check without an audio device; exit 3 means a valid catalog with missing
 or unsupported entries. `--audio-map ID` selects classifications/permanent
 preload. [Session scope and offline checks](../../research/runtime/qt-audio-manager-session.md)
 keep this separate from live DirectSound replacement.
+
+Preview Portmanteau with sample inventory and supplied spell mappings:
+
+```bash
+./tools/run-qt-shell.sh --spellbox
+```
+
+Region Entry's Spellbox icon opens it too. Drag an item onto a talisman, or select
+both and Assign. Remove returns a copy; Preview emits local spell intent. OK
+accepts locally and Cancel restores the accepted loadout. Original BMP/SPR art
+is used; sample recipes and native controls remain approximations. See
+[scope and validation](../../research/runtime/spellbox-qt.md).
