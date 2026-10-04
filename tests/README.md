@@ -435,3 +435,13 @@ rehashes installed inputs. Original manifests verify before/after.
 `python3 tools/export-tag-support.py` records reproducible structural evidence
 and the limited executable literal search; no original TAG reader is claimed.
 See [TAG validation scope](../research/formats/tag-native-loading.md).
+
+## FP Realm Viewer flag paths
+
+Asset CTests include `fp-loader` and `fp-point-comparison`.
+`python3 tests/test-fp-loader.py working/build/fp/mnm-fp-inspect --installation working/game-clean --report working/tests/fp-loader/installed-comparison.json`
+compares every header field and point, rehashing installed inputs and verifying
+original manifests before/after.
+`python3 tools/export-fp-support.py --decompile` exports hash-pinned static
+reader/constructor/point/flag-slot/caller evidence with read-only Ghidra processing.
+See [FP validation scope](../research/formats/fp-native-loading.md).

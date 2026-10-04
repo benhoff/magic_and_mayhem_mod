@@ -47,3 +47,5 @@ Current findings:
 - [Native EVT event-area loading](evt-native-loading.md): confirmed 72-byte records, writer size metadata, raw names and offline validation.
 
 - [Native TAG sprite-name tables](tag-native-loading.md): headerless 12-byte records, complete companion SPR correlation and bounded native input.
+
+- [Native FP flag-path loading](fp-native-loading.md): version-2 Realm Viewer paths, bounded eight-slot ranges, flag positions and complete installed comparisons.
