@@ -28,7 +28,7 @@ def main():
         if sha(exe.read_bytes())!=HASH:raise ValueError('Executable hash differs')
         preview=REPO/'working/build/sprite-scene/mnm-sprite-scene-preview';preview_hash=sha(preview.read_bytes())
         sources=['apps/sprite-scene/scene.cpp','apps/sprite-scene/scene.hpp','apps/sprite-scene/main.cpp',
-                 'reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp','reconstruction/animation/placement.cpp','reconstruction/animation/placement.hpp',
+                 'reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp','reconstruction/animation/placement.cpp','reconstruction/animation/placement.hpp','reconstruction/animation/attachment.cpp','reconstruction/animation/attachment.hpp',
                  'assets/animation.cpp','assets/animation.hpp','renderer/sprites/sprite.cpp','renderer/blit.cpp',
                  'tools/test-sprite-scene.py','tests/animation-binary-reference.cpp']
         hashes={path:sha((REPO/path).read_bytes()) for path in sources}

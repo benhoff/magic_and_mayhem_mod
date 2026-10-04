@@ -25,7 +25,7 @@ def main():
         if sha(exe)!=HASH:raise ValueError('Unsupported executable')
         preview=REPO/'working/build/sprite-scene/mnm-sprite-scene-preview'
         sources=['apps/sprite-scene/main.cpp','apps/sprite-scene/scene.cpp','apps/sprite-scene/scene.hpp',
-                 'reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp','reconstruction/animation/placement.cpp','reconstruction/animation/placement.hpp',
+                 'reconstruction/animation/no_cd.cpp','reconstruction/animation/no_cd.hpp','reconstruction/animation/placement.cpp','reconstruction/animation/placement.hpp','reconstruction/animation/attachment.cpp','reconstruction/animation/attachment.hpp',
                  'tests/animation-binary-reference.cpp','tools/test-animation-layers.py']
         inputs={p:sha(p) for p in [exe,preview]+[REPO/p for p in sources]};helper=out/'reference'
         subprocess.run(['g++','-m32','-std=c++17','-Wall','-Wextra','-Werror','-I'+str(REPO/'assets'),'-I'+str(REPO/'reconstruction/animation'),

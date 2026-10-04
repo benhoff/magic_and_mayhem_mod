@@ -73,6 +73,21 @@ int main(int argc,char** argv){
             }
         }
         require(renderer.stats().surfaces==0,"Layered scenes leaked surfaces");
+        {
+            std::vector<mnm::preview::SpriteLayer> layers;
+            layers.push_back({makeSprite(202,0,0),first,0,mnm::reconstruction::AttachmentPoint::first,true});
+            mnm::preview::SpriteScene scene(renderer,makeSprite(11,0,0),parent,{0},true,{},std::move(layers));
+            require(scene.layers()[0].sprite==0,"Recipe was not admitted");
+            scene.advance();scene.setModeOneAttachment(0,true);scene.advance();
+            require(scene.layers()[0].sprite==1,"Same-mode admission reset child phase");
+            scene.setCreatureHealth(0,0);require(!scene.layers()[0].sprite,"Zero-health attachment visible");
+            scene.setCreatureHealth(0,-1);require(scene.layers()[0].sprite==1,"Original nonzero health gate changed");
+            scene.advance();scene.advance();require(!scene.layers()[0].sprite,"Preview loop restarted recovered recipe");
+            scene.setModeOneAttachment(0,false);scene.advance();scene.setModeOneAttachment(0,true);
+            require(scene.layers()[0].sprite==0,"Reentry did not restart attachment");
+            scene.setModeOneAttachment(0,false);scene.present();require(!scene.layers()[0].sprite,"Removed recipe remained visible");
+        }
+        require(renderer.stats().surfaces==0,"Recipe scene leaked surfaces");
         std::cout<<"80 four-actor scenes match; 128 distinct uploads, cache eviction, restart and cleanup pass\n";return 0;
     }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
 }
