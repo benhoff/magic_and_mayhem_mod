@@ -1,0 +1,4376 @@
+{
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "source_and_input_sha256": {
+    "reconstruction/rendering/terrain_submission.cpp": "b04bca853f9585e7dd58fcd35ebe0cacac1997bac262be07b39f6d6ca7944b2c",
+    "reconstruction/rendering/terrain_submission.hpp": "4f01f35b35d9adc0d0a3985a5616fc0207af8a43932bb48d64736d382d209a11",
+    "tests/terrain-submission-reference.cpp": "ee427accda5e706d27555db9f993ce5ab60c644322e55a1d06f5c2a07c10d395",
+    "tools/test-terrain-submission.py": "951fb66dde7d67248319b37f1fc9dc5a33e89f5e43490a86b6a3a8df70ba93d1",
+    "working/game-nocd/Chaos.exe": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "working/game-clean/Realms/Celtic/Forest/Terrain.ttd": "f644af06f634264786443b3fb30016d5cb4af0757aba760dde16ff2992463c85",
+    "working/game-clean/Realms/Celtic/Forest/Terrain.spr": "bbff01037b19eaf97c067dc742c2b93bb29f69d4862f0c811a9e2a33fff7b65b",
+    "reconstruction/rendering/sprite_queue.cpp": "be185bea5f6af36487ef379b90cd31878d864e01d663bf7e72830bd11dd08b28",
+    "reconstruction/rendering/sprite_queue.hpp": "0bdd6d6006d527b7f3f57c8b5c5035aa82f11cbf89145698e12b26b8e769d5ef"
+  },
+  "helper_sha256": "f7ea12c5644382bc3ac2006edb497c243c5a86a5140b774e65bfeff273d68c5a",
+  "all_match": true,
+  "live_validated": false,
+  "summary": {
+    "cases": 15204,
+    "records": 15317
+  },
+  "previews": [
+    {
+      "view": 0,
+      "overlap": 0,
+      "visibility": 0,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 0,
+          "frame": 5,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 9,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 17,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 13,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 21,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 29,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 33,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 25,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 37,
+          "role": 0,
+          "key": 160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 0,
+      "overlap": 0,
+      "visibility": 0,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 0,
+      "overlap": 0,
+      "visibility": 1,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 0,
+          "frame": 5,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 9,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 17,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 13,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 21,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 29,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 33,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 25,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 37,
+          "role": 0,
+          "key": 160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 0,
+      "overlap": 0,
+      "visibility": 1,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 0,
+      "overlap": 1,
+      "visibility": 0,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 0,
+          "frame": 5,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 9,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 17,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 13,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 21,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 29,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 33,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 25,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 37,
+          "role": 0,
+          "key": 160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 0,
+      "overlap": 1,
+      "visibility": 0,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 0,
+      "overlap": 1,
+      "visibility": 1,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 0,
+          "frame": 5,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 9,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 17,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 13,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 21,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 29,
+          "role": 0,
+          "key": 96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 33,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 25,
+          "role": 0,
+          "key": 128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 37,
+          "role": 0,
+          "key": 160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 0,
+      "overlap": 1,
+      "visibility": 1,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": 96,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": 128,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": 128,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 1,
+      "overlap": 0,
+      "visibility": 0,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 2,
+          "frame": 14,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 26,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 10,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 22,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 6,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 38,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 18,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 34,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 30,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 1,
+      "overlap": 0,
+      "visibility": 0,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 1,
+      "overlap": 0,
+      "visibility": 1,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 2,
+          "frame": 14,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 26,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 10,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 22,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 6,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 38,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 18,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 34,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 30,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 1,
+      "overlap": 0,
+      "visibility": 1,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 1,
+      "overlap": 1,
+      "visibility": 0,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 2,
+          "frame": 14,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 26,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 10,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 22,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 6,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 38,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 18,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 34,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 30,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 1,
+      "overlap": 1,
+      "visibility": 0,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 1,
+      "overlap": 1,
+      "visibility": 1,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 2,
+          "frame": 14,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 26,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 10,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 22,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 6,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 38,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 18,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 34,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 30,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 1,
+      "overlap": 1,
+      "visibility": 1,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ]
+      ]
+    },
+    {
+      "view": 2,
+      "overlap": 0,
+      "visibility": 0,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 8,
+          "frame": 39,
+          "role": 0,
+          "key": -160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 35,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 27,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 15,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 23,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 31,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 19,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 11,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 7,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 2,
+      "overlap": 0,
+      "visibility": 0,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": -160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 2,
+      "overlap": 0,
+      "visibility": 1,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 8,
+          "frame": 39,
+          "role": 0,
+          "key": -160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 35,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 27,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 15,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 23,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 31,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 19,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 11,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 7,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 2,
+      "overlap": 0,
+      "visibility": 1,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": -160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 2,
+      "overlap": 1,
+      "visibility": 0,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 8,
+          "frame": 39,
+          "role": 0,
+          "key": -160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 35,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 27,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 15,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 23,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 31,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 19,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 11,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 7,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 2,
+      "overlap": 1,
+      "visibility": 0,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": -160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 2,
+      "overlap": 1,
+      "visibility": 1,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 8,
+          "frame": 39,
+          "role": 0,
+          "key": -160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 35,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 27,
+          "role": 0,
+          "key": -128,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 15,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 23,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 31,
+          "role": 0,
+          "key": -96,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 19,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 11,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 7,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 2,
+      "overlap": 1,
+      "visibility": 1,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": -160,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": -128,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": -128,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": -96,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 3,
+      "overlap": 0,
+      "visibility": 0,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 6,
+          "frame": 32,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 20,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 36,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 24,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 8,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 40,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 28,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 12,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 16,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 3,
+      "overlap": 0,
+      "visibility": 0,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 3,
+      "overlap": 0,
+      "visibility": 1,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 6,
+          "frame": 32,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 20,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 36,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 24,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 8,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 40,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 28,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 12,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 16,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 3,
+      "overlap": 0,
+      "visibility": 1,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 192,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 224,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 224,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 128,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 96,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 288,
+          "y": 144,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 288,
+          "y": 112,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 320,
+          "y": 128,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 3,
+      "overlap": 1,
+      "visibility": 0,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 6,
+          "frame": 32,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 20,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 36,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 24,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 8,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 40,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 28,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 12,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 16,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 3,
+      "overlap": 1,
+      "visibility": 0,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 3,
+      "overlap": 1,
+      "visibility": 1,
+      "repeated": 0,
+      "queue": [
+        {
+          "tile": 6,
+          "frame": 32,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 20,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 36,
+          "role": 0,
+          "key": -32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 24,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 8,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 40,
+          "role": 0,
+          "key": 0,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 28,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 12,
+          "role": 0,
+          "key": 32,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 16,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          0
+        ]
+      ]
+    },
+    {
+      "view": 3,
+      "overlap": 1,
+      "visibility": 1,
+      "repeated": 1,
+      "queue": [
+        {
+          "tile": 6,
+          "frame": 1745,
+          "role": 0,
+          "key": -64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 3,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 7,
+          "frame": 1745,
+          "role": 0,
+          "key": -32,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 4,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 0,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 8,
+          "frame": 1745,
+          "role": 0,
+          "key": 0,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 5,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 1,
+          "frame": 1745,
+          "role": 0,
+          "key": 32,
+          "kind": -2,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        },
+        {
+          "tile": 2,
+          "frame": 1745,
+          "role": 0,
+          "key": 64,
+          "kind": 33,
+          "x": 256,
+          "y": 160,
+          "shade": 0
+        }
+      ],
+      "owners": [
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          0
+        ],
+        [
+          32772,
+          64
+        ],
+        [
+          32772,
+          64
+        ]
+      ]
+    }
+  ],
+  "scope": "Selected ordinary terrain producer with synthetic definitions and tile state; inactive objects/overlays, pointer outside frames, no Win32 calls"
+}
