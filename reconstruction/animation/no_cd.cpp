@@ -52,4 +52,8 @@ std::optional<std::uint32_t> NoCdAnimationPlayer::sprite() const{
     if(arg<0)throw std::runtime_error("Negative sprite index in animation");
     return static_cast<std::uint32_t>(arg);
 }
+std::optional<assets::AnimationRecord> NoCdAnimationPlayer::displayedRecord() const{
+    if(!state_.displayedRecord)return {};
+    return records_[*state_.displayedRecord];
+}
 }

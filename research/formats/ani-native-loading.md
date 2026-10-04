@@ -22,9 +22,12 @@ controller execution are separate evidence. No live loader is replaced.
 Offset entries increase from zero to the record count. A sequence is the range
 between adjacent entries; the final offset is an extent, not another sequence.
 Every supported installed sequence ends in opcode 6. An empty sequence is a
-single stop record, rather than a zero-length range. Other fields include
-coordinate-like values; their full placement/attachment semantics are not
-interpreted by this parser or the bounded scene.
+single stop record, rather than a zero-length range. For opcode-0 records, +8/+12 are signed sprite displacement, +28/+32 the
+first attachment point and +36/+40 the second. Selected original helpers and
+footprint/view adjustments are recovered separately in the
+[placement contract](../runtime/animation-placement-attachments.md). The parser
+still preserves these as raw owned words; +24 and complete attachment roles
+remain unresolved. The bounded scene applies the recovered placement fields.
 
 Evidence: original loader `0x004644d0..0x00464ab4` reads a 44-byte header and a
 four-byte offset table. Version 5 reads remaining records directly; sequence

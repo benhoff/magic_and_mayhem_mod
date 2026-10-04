@@ -21,6 +21,8 @@ public:
     void requestBreak(){state_.breakFlag=1;}
     const AnimationState& state() const{return state_;}
     std::optional<std::uint32_t> sprite() const;
+    // Owned snapshot, valid after switching/restarting or destroying the player.
+    std::optional<assets::AnimationRecord> displayedRecord() const;
 private:
     std::int32_t dispatch(bool initial);
     std::vector<assets::AnimationRecord> records_;
