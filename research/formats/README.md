@@ -36,3 +36,5 @@ Current findings:
 - [Native CUR cursor loading](cur-native-loading.md): owned indexed images, AND/XOR planes and hotspots; offline comparison of all 20 installed files/22 images.
 
 - [Native PCX loading](pcx-native-loading.md): version 5 indexed RLE images, palette preservation and offline validation.
+
+- [Native BMP loading](bmp-native-loading.md): bounded 24-bit BI_RGB decoding, orientation/padding conversion and offline validation.

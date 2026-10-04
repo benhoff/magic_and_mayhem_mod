@@ -367,3 +367,11 @@ Compare installed files with
 `python3 tests/test-pcx-loader.py working/build/pcx/mnm-pcx-inspect --installation working/game-clean --report working/tests/pcx-loader/installed-comparison.json`.
 The installed run verifies originals before/after and records source hashes.
 See [PCX validation scope](../research/formats/pcx-native-loading.md).
+
+## BMP RGB images
+
+The asset CTests include `bmp-loader` and `bmp-byte-comparison`.
+Compare installed files with
+`python3 tests/test-bmp-loader.py working/build/bmp/mnm-bmp-inspect --installation working/game-clean --report working/tests/bmp-loader/installed-comparison.json`.
+The installed run verifies originals before/after and records source hashes.
+See [BMP validation scope](../research/formats/bmp-native-loading.md).
