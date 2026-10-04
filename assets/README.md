@@ -281,3 +281,11 @@ Presentation, game-driven selection and live cursor integration remain separate.
 Version 5 RLE single-plane files are supported with bounded decoding.
 `mnm-pcx-inspect ROOT PATH.pcx` reports metadata and pixel/palette hashes.
 See [format, validation and remaining integration](../research/formats/pcx-native-loading.md).
+
+## BMP RGB images
+
+`mnm-bmp-loader` provides `decodeBmp`/`loadBmp` in `bmp.hpp`: owned top-down
+RGB pixels from 24-bit BI_RGB files with a 40-byte BITMAPINFOHEADER.
+Both source orientations and padded rows are handled with bounded decoding.
+`mnm-bmp-inspect ROOT PATH.bmp` reports metadata and a complete RGB hash.
+See [format, validation and remaining integration](../research/formats/bmp-native-loading.md).
