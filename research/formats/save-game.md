@@ -91,8 +91,8 @@ contract, not a native C++ layout to share over channels or persist with `memcpy
 
 Wizard records have the physical sequence below; field semantics remain mostly
 unnamed. World records mix primitive fields, arrays, nested state and reference
-conversion. Their complete schema, enum values, ownership and resource
-recreation are unresolved. Script records are a fixed-size byte block here;
+conversion. Their physical byte grammar is now available in [world structural loading](save-world-native-loading.md); enum values, ownership and resource
+recreation remain unresolved. Script records are a fixed-size byte block here;
 individual record/variable/trigger semantics are not yet recovered.
 
 ## Variable wizard records
@@ -138,4 +138,6 @@ prove original save compatibility.
 
 No live save/load was performed and no actual original-generated `.sav` was
 decoded. Collect campaign-only and active-battle saves, compare original/native
-decoding and recover world subblocks before attempting a compatible writer.
+decoding before attempting a compatible writer. Explicit world structural readers now
+cover the recovered block grammar with selected original-writer capture evidence;
+see [world validation](save-world-native-loading.md).

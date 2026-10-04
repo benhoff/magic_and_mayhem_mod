@@ -487,3 +487,12 @@ ownership, empty/aliased frames, numeric metadata, masks and malformed extents.
 synthetic layouts; `--installation working/game-clean` compares every record
 in 136 ANI files and every pixel/field in all seven v2 SPRs, with immutable
 manifest guards. See [legacy evidence](../research/formats/legacy-ani-spr-loading.md).
+
+Asset CTest includes `save-world-loader` and `save-world-comparison`: owned
+world ranges, empty/populated optional branches, truncation/budgets and both
+save envelopes. `tools/test-save-world-writers.py INSPECTOR` captures ten
+selected original creature/missile/effect writer cases in an isolated 32-bit
+host and feeds them into synthetic worlds. It hash-checks input, script-patches
+only a disposable PE copy's fwrite entry and verifies the original manifest
+before/after. No full original save or live restoration is validated.
+See [world loading](../research/formats/save-world-native-loading.md).
