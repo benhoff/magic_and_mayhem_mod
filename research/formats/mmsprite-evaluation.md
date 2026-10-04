@@ -4,6 +4,12 @@ Reviewed 2026-10-04. This is rendering-asset chunk 1: evaluate an external
 reader against installed assets. No native SPR decoder, renderer connection,
 original pixel comparison, or live loader replacement is established here.
 
+Follow-up: [binary comparison](../runtime/sprite-binary-comparison.md) confirms
+that the installed palette-free version-4 SPRs store direct 16-bit colour,
+and records isolated original drawing/conversion evidence. It supersedes the
+external-palette hypothesis below; this document retains the original reader
+evaluation as a distinct milestone.
+
 ## Source and reproducer
 
 Upstream: <https://github.com/sapphire-bt/MMSprite>, revision
@@ -105,10 +111,10 @@ selection, and displacement behavior remain separate reverse-engineering work.
 
 ## Gaps relevant to a native loader
 
-1. Missing palettes become synthetic grayscale. That is useful for inspection,
-   but the game's palette source has not been identified. A native result must
-   retain indices and signal an unresolved external palette instead of treating
-   this fallback as faithful colour.
+1. Missing palettes become synthetic grayscale in MMSprite. The subsequent
+   binary comparison establishes a direct RGB565 word path for the installed
+   version-4 palette-free files. A native result must represent those words
+   explicitly; grayscale is a diagnostic policy, not faithful colour.
 2. Preserve a transparency mask separately from palette indices. Transparent
    runs and opaque index-zero pixels must remain distinguishable; the C exporter
    chooses an unused index for transparency whereas Python exports RGBA.
@@ -139,13 +145,14 @@ selection, and displacement behavior remain separate reverse-engineering work.
 ## Next bounded chunk
 
 Define and implement an owned SPR result through `AssetFile`: indexed pixels,
-transparent-run mask, embedded palettes, frame metadata, and explicit empty
-frames/unresolved palettes. Start with version-4 RedCap and its embedded palette,
+transparent-run mask, embedded palettes, frame metadata, explicit empty
+frames and a direct-RGB565 variant identified by the follow-up. Start with
+version-4 RedCap and its embedded palette,
 then check its decoded indices/mask/metadata against the pinned reference.
 Keep reference agreement separate from original-game equivalence. Add an
 original decoder or draw observation before claiming game fidelity, and connect
 one verified frame to native OpenGL only in the subsequent integration chunk.
 
-Version-2 UI, external palettes, fonts, terrain, and ANI can then extend the
+Direct-colour UI, version-2 compatibility, fonts, terrain, and ANI can then extend the
 verified scope. The current Qt path/file interface already supplies the input
 boundary; this research does not require a Wine dependency in the native decoder.
