@@ -113,7 +113,7 @@ python3 tools/test-asset-files.py
 ```
 
 The runner verifies the original manifest before/after (also on failures),
-builds the assets targets, runs the four CTests, inventories all regular loose
+builds the assets targets, runs the five CTests, inventories all regular loose
 files in `working/game-nocd`, and compares them against independent binary
 reads of the same files. Alternating requests use mixed-case relative Windows
 paths or mixed-case `C:\\MagicMayhem` paths through an explicit alias. It hashes
@@ -223,3 +223,16 @@ The following chunk now supplies a separate [native sprite renderer adapter
 and preview](../research/runtime/native-sprite-rendering.md). It owns RGB565/mask
 uploads and applies signed origins; the assets library remains independent of
 the renderer and application widgets.
+
+
+## Native ANI tables
+
+`mnm-animation-loader` reads owned version-5 ANI header/offset/record data through
+AssetFile; metadata and signed arguments are preserved without interpreting
+unknown fields. Three installed older ANI files remain explicitly unsupported.
+The native service has no dependency on the recovered player or application
+widgets. See [layout, limits and installed byte evidence](../research/formats/ani-native-loading.md).
+
+The separate [No-CD forward player](../research/runtime/animation-forward-contract.md)
+recovers selected sprite/delay/repeat/jump/event/stop behavior through bounded
+original-code comparisons. It has no asserted wall-clock rate or live replacement.

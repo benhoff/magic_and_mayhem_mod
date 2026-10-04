@@ -100,3 +100,6 @@ confidence, and whether it remains stable across launches.
 - [Audio voice scheduler](audio-voice-scheduler.md): free/expired selection, tail eviction, old-volume ordering and assignment; offline clock/ring/PCM fixtures.
 
 - [Positional audio](positional-audio.md): wrapped coordinates, approximate distance, signed map-byte attenuation, orientation pan and existing voice updates; offline fixtures.
+
+- [Selected ANI forward controller](animation-forward-contract.md): bounded native
+  selection/timing model and isolated original start/tick comparisons.
