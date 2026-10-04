@@ -231,9 +231,14 @@ bool MenuPreview::setMusicVolume(int level,QString* error) {
     musicVolume_=level;musicVolumeSet_=true;return true;
 }
 
-void MenuPreview::setMusicStatus(const QString& text) {
-    if(!musicStatus_){musicStatus_=new QLabel(this);musicStatus_->setObjectName("menuMusicStatus");statusBar()->addPermanentWidget(musicStatus_);}
+void MenuPreview::setMusicStatus(const QString& text,bool canRetry) {
+    if(!musicStatus_){
+        musicStatus_=new QLabel(this);musicStatus_->setObjectName("menuMusicStatus");statusBar()->addPermanentWidget(musicStatus_);
+        musicRetry_=new QPushButton("Retry music",this);musicRetry_->setObjectName("menuMusicRetry");statusBar()->addPermanentWidget(musicRetry_);
+        connect(musicRetry_,&QPushButton::clicked,this,&MenuPreview::musicRetryRequested);
+    }
     musicStatus_->setText(text);musicStatus_->setVisible(!text.isEmpty());
+    musicRetry_->setVisible(canRetry);musicRetry_->setEnabled(canRetry);
 }
 
 bool MenuPreview::setEffectsVolume(int level,QString* error) {

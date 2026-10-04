@@ -148,3 +148,5 @@ confidence, and whether it remains stable across launches.
 - [Legacy asset readers](legacy-asset-loading.md): static old ANI conversion, SPR v2 storage and remaining original/live boundaries.
 
 - [Native menu music](native-menu-music.md): explicit looping track, independent saved volume, Qt playback adapter and synthetic lifecycle validation.
+
+- [Native menu music output recovery](menu-music-recovery.md): device ID monitoring, separate retry, retained track/gain and bounded synthetic recovery validation.
