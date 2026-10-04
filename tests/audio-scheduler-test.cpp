@@ -116,7 +116,7 @@ void nativeEviction(){
     d.play(first,1);d.play(last,1);Pool p(2);p.nodes[0].record.voiceAddress=unsigned(first);p.nodes[1].record.voiceAddress=unsigned(last);
     p.nodes[0].record.volume=-100;p.nodes[1].record.volume=-200;Native b(d);
     auto* selected=r::selectSchedule(b,p.head,0,true);
-    check(selected==&p.nodes[1] && d.voice(first)->status()==3 && !d.voice(last)->status() && d.voice(last)->frame==0,"tail reuse stops tail voice rather than candidate voice");
+    check(selected==&p.nodes[1] && d.voice(first)->status()==5 && !d.voice(last)->status() && d.voice(last)->frame==0,"tail reuse stops tail voice rather than candidate voice");
     std::vector<std::int16_t> pcm;d.mixStereo(1,pcm);check(pcm==std::vector<std::int16_t>({10000,10000}) && d.count()==2,"eviction removes tail from mix without releasing samples");
     r::clearSchedules(b,p.head,true);d.mixStereo(1,pcm);check(pcm[0]==0 && d.count()==2,"whole-ring clear retains ownership and produces silence");
 }

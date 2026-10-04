@@ -27,7 +27,7 @@ void start(void){
     u32 primaryDesc[5]={20,0x81,0,0,0};void* primary=0;
     CHECK(METHOD(device,3,CreateBuffer)(device,primaryDesc,&primary,0)==0);
     CHECK(METHOD(primary,12,Play)(primary,0,0,1)==0);u32 value=0;
-    CHECK(METHOD(primary,9,Read)(primary,&value)==0 && value==3);
+    CHECK(METHOD(primary,9,Read)(primary,&value)==0 && value==5);
     CHECK(METHOD(primary,15,Value)(primary,(u32)-2000)==0);
     CHECK(METHOD(primary,6,Read)(primary,&value)==0 && value==(u32)-2000);
     CHECK(METHOD(primary,15,Value)(primary,1)<0);
@@ -51,9 +51,9 @@ void start(void){
     CHECK(METHOD(buffer,15,Value)(buffer,(u32)-2000)==0);
     CHECK(METHOD(buffer,16,Value)(buffer,1000)==0);
     CHECK(METHOD(buffer,12,Play)(buffer,0,0,1)==0);
-    CHECK(METHOD(buffer,9,Read)(buffer,&value)==0 && value==3);
+    CHECK(METHOD(buffer,9,Read)(buffer,&value)==0 && value==5);
     CHECK(METHOD(primary,18,Stop)(primary)==0);
-    CHECK(METHOD(buffer,9,Read)(buffer,&value)==0 && value==3);
+    CHECK(METHOD(buffer,9,Read)(buffer,&value)==0 && value==5);
     void* child=0;CHECK(METHOD(device,5,Duplicate)(device,buffer,&child)==0 && child);
     CHECK(METHOD(child,9,Read)(child,&value)==0 && value==0);
     CHECK(METHOD(buffer,2,Ref)(buffer)==0);

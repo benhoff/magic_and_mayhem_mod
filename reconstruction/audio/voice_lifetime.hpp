@@ -8,7 +8,8 @@ struct VoiceWrapper {
     std::uint32_t field08=0,field0c=2;
     std::int32_t requestedVolume=99,cachedVolume=99;
     VoiceWrapper* duplicate=nullptr;
-    std::uint32_t duration=0; // +0x24; +0x18/+0x1c links excluded from this model.
+    std::uint32_t duration=0; // +0x24
+    VoiceWrapper* previous=nullptr;VoiceWrapper* next=nullptr; // +0x18/+0x1c host source-ring view
 };
 struct LifetimeBackend:VoiceBackend {
     virtual void clearVoiceSchedule(std::uint32_t identity)=0;
