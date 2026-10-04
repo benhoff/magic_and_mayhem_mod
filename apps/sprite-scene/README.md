@@ -52,3 +52,23 @@ lifecycle and original depth sorting remain outside this preview.
 
 Reproduce layered validation with `python3 tools/test-animation-layers.py`.
 See [placement, limitations and evidence](../../research/runtime/animation-placement-attachments.md).
+
+One recovered attachment recipe can replace the explicit example layers:
+
+```bash
+working/build/sprite-scene/mnm-sprite-scene-preview \
+  --root working/game-clean --ani 'Creatures\redcap.ani' --sequences 0 \
+  --attachment-mode-one --attachment-facing 0 --ticks 32 --loop
+```
+
+This reads installed effect entry 36 (effects2.ani, sequence 40 + admission
+facing) and uses the first attachment point. Admission facing is independent
+of the body controls. `--attachment-health` defaults to 1; zero hides the child.
+`--attachment-remove-at 8 --attachment-reenter-at 16` exercises explicit
+removal/reentry before those ticks. These are lifecycle fixtures, not recovered
+gameplay triggers. The recipe child is not restarted by `--loop`; explicit
+layers and the parent retain their prior preview restart policy. Select the
+recipe or explicit layers, and use a NORMAL-printer recipe configuration.
+
+Run `python3 tools/test-attachment-recipe-scene.py`; see
+[contract, evidence and limitations](../../research/runtime/native-attachment-recipe.md).

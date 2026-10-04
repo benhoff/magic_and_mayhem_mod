@@ -143,3 +143,8 @@ records recovered attachment fields, footprint adjustments, independent pixel
 comparisons and the remaining original sorting/lifecycle boundaries. Earlier
 evidence in this document describes the preceding preview milestone; its
 original selection/control findings remain separate from placement recovery.
+
+One configured mode-one attachment now resolves its installed effect ANI and
+sequence, applies recovered health/mode gates and supports explicit removal/
+reentry fixtures. See [native recipe evidence](native-attachment-recipe.md).
+Complete gameplay admission and original world composition remain separate.

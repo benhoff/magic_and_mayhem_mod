@@ -2,12 +2,13 @@
 #include "sprite.hpp"
 #include "no_cd.hpp"
 #include "placement.hpp"
+#include "attachment.hpp"
 #include <map>
 
 namespace mnm::preview {
 struct ActorState {std::uint32_t sequence=0;int anchorX=0,anchorY=0;std::optional<std::uint32_t> sprite;std::int32_t event=0;std::optional<reconstruction::AnimationOffset> drawAnchor;};
 struct ScenePlacement {std::uint32_t tileSizeXY=1,view=0;};
-struct SpriteLayer {assets::Sprite sprite;assets::Animation animation;std::uint32_t sequence=0;reconstruction::AttachmentPoint attachment=reconstruction::AttachmentPoint::first;};
+struct SpriteLayer {assets::Sprite sprite;assets::Animation animation;std::uint32_t sequence=0;reconstruction::AttachmentPoint attachment=reconstruction::AttachmentPoint::first;bool modeOne=false;};
 struct LayerState {std::size_t actor=0,layer=0;std::uint32_t sequence=0;std::optional<std::uint32_t> sprite;std::optional<reconstruction::AnimationOffset> drawAnchor;std::int32_t event=0;};
 // Application orchestration only. Renderer and native asset services do not
 // depend on this build-specific player, preview policies or application widgets.
@@ -28,6 +29,8 @@ public:
     render::Image read();
     std::vector<ActorState> actors() const;
     std::vector<LayerState> layers() const;
+    void setCreatureHealth(std::size_t actor,std::int32_t health);
+    void setModeOneAttachment(std::size_t actor,bool enabled);
     static render::Image background();
     const assets::Sprite& sprite() const{return sprite_;}
 private:
@@ -42,6 +45,8 @@ private:
     std::vector<SpriteLayer> layerAssets_;
     std::vector<std::vector<reconstruction::NoCdAnimationPlayer>> layerPlayers_;
     std::vector<std::vector<std::int32_t>> layerEvents_;
+    std::vector<std::int32_t> health_;
+    std::vector<std::uint32_t> attachmentModes_;
     using UploadKey=std::pair<std::uint32_t,std::uint32_t>;
     std::map<UploadKey,std::unique_ptr<render::UploadedSpriteFrame>> cache_;
     std::vector<UploadKey> lru_;

@@ -29,12 +29,14 @@ SpriteScene::SpriteScene(render::GlBlitter& renderer,assets::Sprite sprite,const
         players_.emplace_back(std::move(records));players_.back().start();
         actors_.push_back({sequence,int((actors_.size()+1)*512/(sequences.size()+1)),190,{},0,{}});
         layerPlayers_.emplace_back();layerEvents_.emplace_back();
+        health_.push_back(1);attachmentModes_.push_back(1);
         for(const auto& layer:layerAssets_){
             const auto& a=layer.animation;const auto s=layer.sequence;
             if(a.starts.size()<2 || s>=a.starts.size()-1 || a.starts[s]>=a.starts[s+1] || a.starts[s+1]>a.records.size())throw std::runtime_error("Layer sequence extent invalid");
             std::vector<assets::AnimationRecord> selected(a.records.begin()+a.starts[s],a.records.begin()+a.starts[s+1]);
             for(const auto& r:selected)if(r.opcode==0 && (r.argument<0 || std::uint32_t(r.argument)>=layer.sprite.frames.size()))throw std::runtime_error("Layer sprite index outside paired SPR");
             if(layer.attachment!=reconstruction::AttachmentPoint::first && layer.attachment!=reconstruction::AttachmentPoint::second)throw std::runtime_error("Unknown layer attachment");
+            if(layer.modeOne && layer.attachment!=reconstruction::AttachmentPoint::first)throw std::runtime_error("Mode-one attachment uses the first point");
             layerPlayers_.back().emplace_back(std::move(selected));layerPlayers_.back().back().start();layerEvents_.back().push_back(0);
         }
     }
@@ -98,7 +100,8 @@ void SpriteScene::advance(){
         if(loop_ && !players_[i].state().active){players_[i].start();actors_[i].event=0;}
         else actors_[i].event=players_[i].tick();
         for(std::size_t l=0;l<layerPlayers_[i].size();++l){auto& player=layerPlayers_[i][l];
-            if(loop_ && !player.state().active){player.start();layerEvents_[i][l]=0;}else layerEvents_[i][l]=player.tick();}
+            if(layerAssets_[l].modeOne && !reconstruction::modeOneTicks(attachmentModes_[i]))layerEvents_[i][l]=0;
+            else if(loop_ && !layerAssets_[l].modeOne && !player.state().active){player.start();layerEvents_[i][l]=0;}else layerEvents_[i][l]=player.tick();}
     }
 }
 QImage SpriteScene::present(){
@@ -124,11 +127,18 @@ std::vector<LayerState> SpriteScene::layers() const{
     for(std::size_t i=0;i<players_.size();++i)for(std::size_t l=0;l<layerAssets_.size();++l){
         LayerState state{i,l,layerAssets_[l].sequence,{},{},layerEvents_[i][l]};
         const auto parent=players_[i].displayedRecord(),child=layerPlayers_[i][l].displayedRecord();
-        if(parent && child){const auto point=reconstruction::attachmentOffset(*parent,layerAssets_[l].attachment,placement_.tileSizeXY,placement_.view);
+        if(parent && child && (!layerAssets_[l].modeOne || reconstruction::modeOneVisible(health_[i],attachmentModes_[i]))){const auto point=reconstruction::attachmentOffset(*parent,layerAssets_[l].attachment,placement_.tileSizeXY,placement_.view);
             const auto local=reconstruction::spriteOffset(*child);state.sprite=layerPlayers_[i][l].sprite();
             state.drawAnchor=anchor(std::int64_t(actors_[i].anchorX)+point.x+local.x,std::int64_t(actors_[i].anchorY)+point.y+local.y);}
         result.push_back(state);
     }
     return result;
+}
+void SpriteScene::setCreatureHealth(std::size_t actor,std::int32_t health){health_.at(actor)=health;}
+void SpriteScene::setModeOneAttachment(std::size_t actor,bool enabled){
+    auto& mode=attachmentModes_.at(actor);const unsigned next=enabled?1:0;if(mode==next)return;
+    for(std::size_t l=0;l<layerAssets_.size();++l)if(layerAssets_[l].modeOne){
+        if(enabled)layerPlayers_[actor][l].start();else layerPlayers_[actor][l].stop();layerEvents_[actor][l]=0;}
+    mode=next;
 }
 }

@@ -1,4 +1,5 @@
 #include "scene.hpp"
+#include "attachment_recipe.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QComboBox>
@@ -33,6 +34,11 @@ int main(int argc,char** argv)try{
     parser.addOption({"loop","Preview policy: restart stopped sequences on the next step"});
     parser.addOption({"facing-change","Apply one phase-preserving change at tick,actor,facing (numeric facing 0..7)","selection"});
     parser.addOption({"layer","Attach ANI,sequence,slot (slot 1 or 2); repeat at most twice","selection"});
+    parser.addOption({"attachment-mode-one","Use recovered mode-one recipe from installed effect configuration"});
+    parser.addOption({"attachment-facing","ANI facing at attachment admission, independent of body controls","facing","0"});
+    parser.addOption({"attachment-health","Creature health fixture for recovered attachment visibility","health","1"});
+    parser.addOption({"attachment-remove-at","Remove mode-one attachment before this preview tick","tick"});
+    parser.addOption({"attachment-reenter-at","Reenter mode one before this preview tick","tick"});
     parser.addOption({"tile-size","Creature footprint in tiles (1 or 2)","tiles","1"});
     parser.addOption({"placement-view","Recovered offset adjustment value, independent of world projection","view","0"});
     parser.addOption({"smoke-test","Close the window after the bounded preview completes"});
@@ -53,7 +59,20 @@ int main(int argc,char** argv)try{
         changeTick=number(0);changeActor=number(1);changeFacing=number(2);
         if(!changeTick || changeTick>ticks || changeActor>=sequences.size() || changeFacing>=8)throw std::runtime_error("Facing change outside run limits");
     }
-    auto change=[&](mnm::preview::SpriteScene& scene,unsigned tick){if(changeTick && tick==changeTick)scene.selectFacing(changeActor,changeFacing);};
+    const bool modeOne=parser.isSet("attachment-mode-one");
+    const auto attachmentFacing=parser.value("attachment-facing").toUInt(&ok);if(!ok || attachmentFacing>7)throw std::runtime_error("Attachment facing must be 0..7");
+    const auto attachmentHealth=parser.value("attachment-health").toInt(&ok);if(!ok)throw std::runtime_error("Invalid attachment health");
+    auto scheduled=[&](const char* option){if(!parser.isSet(option))return 0u;const auto t=parser.value(option).toUInt(&ok);
+        if(!modeOne || !ok || !t || t>ticks)throw std::runtime_error("Attachment transition outside preview limits");
+        return t;};
+    const auto removeAt=scheduled("attachment-remove-at"),reenterAt=scheduled("attachment-reenter-at");
+    if(!modeOne && (parser.isSet("attachment-facing") || parser.isSet("attachment-health")))throw std::runtime_error("Attachment fixture options require mode one");
+    if(modeOne && parser.isSet("layer"))throw std::runtime_error("Select the mode-one recipe or explicit layers");
+    auto initialize=[&](mnm::preview::SpriteScene& scene){for(std::size_t i=0;i<sequences.size();++i)scene.setCreatureHealth(i,attachmentHealth);};
+    auto change=[&](mnm::preview::SpriteScene& scene,unsigned tick){
+        if(changeTick && tick==changeTick)scene.selectFacing(changeActor,changeFacing);
+        for(std::size_t i=0;i<sequences.size();++i){if(removeAt && tick==removeAt)scene.setModeOneAttachment(i,false);if(reenterAt && tick==reenterAt)scene.setModeOneAttachment(i,true);}
+    };
     auto configured=mnm::assets::AssetStore::create(parser.value("root").toStdString(),{"C:/MagicMayhem"});
     if(const auto* e=std::get_if<mnm::assets::Error>(&configured))throw std::runtime_error(e->detail);
     auto store=std::get<mnm::assets::AssetStore>(std::move(configured));
@@ -82,6 +101,13 @@ int main(int argc,char** argv)try{
     if(!ok || placement.tileSizeXY<1 || placement.tileSizeXY>2)throw std::runtime_error("Tile size must be 1 or 2");
     placement.view=parser.value("placement-view").toUInt(&ok);if(!ok || placement.view>3)throw std::runtime_error("Placement view must be 0..3");
     std::vector<mnm::preview::SpriteLayer> layers;QJsonArray layerInputs;
+    if(modeOne){
+        const auto recipe=mnm::preview::loadModeOneRecipe(store,attachmentFacing);
+        auto loaded=load(QString::fromStdString(recipe.ani),{});loaded.first.sequence=recipe.selection.sequence;loaded.first.modeOne=true;
+        layerInputs.append(QJsonObject{{"ani",QString::fromStdString(recipe.ani)},{"sprite",loaded.second},{"sequence",qint64(recipe.selection.sequence)},
+            {"slot",1},{"recipe","mode-one"},{"config_entry",36},{"asset_index",qint64(recipe.selection.assetIndex)},{"admission_facing",qint64(attachmentFacing)}});
+        layers.push_back(std::move(loaded.first));
+    }
     if(parser.values("layer").size()>2)throw std::runtime_error("Select at most two layers");
     for(const auto& selection:parser.values("layer")){
         const auto fields=selection.split(',');if(fields.size()!=3)throw std::runtime_error("Layer needs ANI,sequence,slot");
@@ -98,6 +124,7 @@ int main(int argc,char** argv)try{
         QJsonArray frames;
         {
             mnm::preview::SpriteScene scene(renderer,std::move(sprite),animation,sequences,parser.isSet("loop"),placement,std::move(layers));
+            initialize(scene);
             for(unsigned tick=0;tick<=ticks;++tick){
                 if(tick){change(scene,tick);scene.advance();}
                 const auto image=scene.present();const auto native=packed(scene.read());
@@ -119,12 +146,14 @@ int main(int argc,char** argv)try{
         const auto driver=renderer.driver();
         const auto bytes=QJsonDocument(QJsonObject{{"ani",parser.value("ani")},{"sprite",spritePath},{"loop_policy",parser.isSet("loop")},
             {"layer_inputs",layerInputs},{"tile_size_xy",qint64(placement.tileSizeXY)},{"placement_view",qint64(placement.view)},
+            {"attachment_health",attachmentHealth},{"attachment_remove_at",qint64(removeAt)},{"attachment_reenter_at",qint64(reenterAt)},
             {"clock","one controller call per explicit preview tick; wall-clock interval is not recovered"},
             {"frames",frames},{"uploads",qint64(stats.uploads)},{"copies",qint64(stats.copies)},
             {"remaining_surfaces",int(stats.surfaces)},{"renderer",QString::fromStdString(driver.renderer)}}).toJson();
         writeNew(QDir(directory).filePath("report.json"),bytes);std::cout<<bytes.constData();return 0;
     }
     mnm::preview::SpriteScene scene(renderer,std::move(sprite),animation,sequences,parser.isSet("loop"),placement,std::move(layers));
+    initialize(scene);
     QWidget window;window.setWindowTitle("Native ANI/SPR scene preview");auto* layout=new QVBoxLayout(&window);
     auto* caption=new QLabel("Sequences "+parser.value("sequences")+" — presentation clock; "+QString::number(ticks)+" steps per run");layout->addWidget(caption);
     auto* image=new QLabel;layout->addWidget(image);auto* controls=new QHBoxLayout;layout->addLayout(controls);
