@@ -35,7 +35,7 @@ bool RealmViewerWidget::valid(const Campaign& c) {
 }
 bool RealmViewerWidget::setCampaign(const Campaign& campaign,QString* error) {
     if(!valid(campaign))return failure(error,"Invalid supplied Realm Viewer campaign");
-    hoveredRegion_.clear();setToolTip({});unsetCursor();pathTick_=0;
+    hoveredRegion_.clear();setToolTip({});unsetCursor();
     campaign_=campaign;for(int r=0;r<3;++r)if(campaign_.selectedRegionIds[r].isEmpty()&&!campaign_.regions[r].isEmpty())campaign_.selectedRegionIds[r]=campaign_.regions[r].first().id;
     populate();if(error)error->clear();return true;
 }
@@ -53,19 +53,19 @@ bool RealmViewerWidget::loadAssets(const QString& root,QString* error) {
         const auto tips=mnm::ui::loadMenuLayout(root,"Interface/RealmViewer","realmviewtooltip.cfg");if(tips.value("HEADER").value("ValidConfig")!="TRUE")throw std::runtime_error("Invalid Realm Viewer tooltip configuration");
         std::array<QString,4> labels;for(int i=0;i<4;++i)labels[i]=mnm::ui::textLabel(tips,QString::number(i));
         mnm::ui::installMenuFonts(this,fonts);
-        maps_=std::move(maps);flags_=std::move(flags);visuals_=std::move(visuals);animationTick_=0;pathTick_=0;hoveredRegion_.clear();setToolTip({});unsetCursor();cancel_->setSprites(close,{94,39});enter_->setSprites(open,{94,39});enter_->setAccessibleName("Open selected region");
+        maps_=std::move(maps);flags_=std::move(flags);visuals_=std::move(visuals);animationTick_=0;hoveredRegion_.clear();setToolTip({});unsetCursor();cancel_->setSprites(close,{94,39});enter_->setSprites(open,{94,39});enter_->setAccessibleName("Open selected region");
         static_cast<mnm::ui::SpriteButton*>(auxiliary_[0])->setSprites(spellbox,{94,39});static_cast<mnm::ui::SpriteButton*>(auxiliary_[1])->setSprites(grimoire,{94,39});static_cast<mnm::ui::SpriteButton*>(auxiliary_[2])->setSprites(character,{60,60});
         for(int i=0;i<4;++i){auxiliary_[i]->setToolTip(labels[i]);auxiliary_[i]->setAccessibleName(labels[i]);}populate();if(error)error->clear();return true;
     }catch(const std::exception& e){return failure(error,QString::fromUtf8(e.what()));}
 }
 const RealmViewerWidget::Region* RealmViewerWidget::selected() const {const int r=int(campaign_.realm);for(const auto& region:campaign_.regions[r])if(region.id==campaign_.selectedRegionIds[r])return &region;return nullptr;}
 bool RealmViewerWidget::selectRegion(const QString& id,QString* error) {
-    for(const auto& region:campaign_.regions[int(campaign_.realm)])if(region.id==id){const bool changed=campaign_.selectedRegionIds[int(campaign_.realm)]!=id;campaign_.selectedRegionIds[int(campaign_.realm)]=id;if(changed)pathTick_=0;populate();if(error)error->clear();if(changed)emit selectionChanged(id);return true;}
+    for(const auto& region:campaign_.regions[int(campaign_.realm)])if(region.id==id){const bool changed=campaign_.selectedRegionIds[int(campaign_.realm)]!=id;campaign_.selectedRegionIds[int(campaign_.realm)]=id;populate();if(error)error->clear();if(changed)emit selectionChanged(id);return true;}
     return failure(error,"Unknown region in selected realm");
 }
 bool RealmViewerWidget::selectRealm(Realm realm,QString* error) {
     const int r=int(realm);if(r<0||r>2||!campaign_.realmAvailable[r])return failure(error,"Unavailable supplied realm");
-    const bool changed=realm!=campaign_.realm;campaign_.realm=realm;hoveredRegion_.clear();setToolTip({});unsetCursor();pathTick_=0;populate();if(error)error->clear();if(changed)emit realmChanged(realm);return true;
+    const bool changed=realm!=campaign_.realm;campaign_.realm=realm;hoveredRegion_.clear();setToolTip({});unsetCursor();populate();if(error)error->clear();if(changed)emit realmChanged(realm);return true;
 }
 void RealmViewerWidget::enter(){const auto* region=selected();if(region&&region->available)emit regionRequested(Request{campaign_.id,region->id,campaign_.realm,region->artworkNumber});}
 void RealmViewerWidget::populate() {
@@ -115,13 +115,7 @@ void RealmViewerWidget::refreshFlags(){
         regions_[i]->setSprites({f,f,f},{48,52});
     }else regions_[i]->clearSprites();}
 }
-std::optional<QPoint> RealmViewerWidget::pathPreviewPosition() const {
-    const auto* region=selected();const auto& shapes=visuals_.regions[int(campaign_.realm)];
-    if(!region||!region->available||region->artworkNumber>shapes.size()||visuals_.animations.size()<=50)return {};
-    const auto& paths=shapes[region->artworkNumber-1].paths;if(paths.isEmpty()||paths[0].size()<2)return {};
-    return paths[0][int((pathTick_/2)%quint64(paths[0].size()))];
-}
-void RealmViewerWidget::advanceAnimation(){++animationTick_;++pathTick_;refreshFlags();update();}
+void RealmViewerWidget::advanceAnimation(){++animationTick_;refreshFlags();update();}
 void RealmViewerWidget::mouseMoveEvent(QMouseEvent* e){
     const auto id=regionAt(e->position().toPoint());if(id!=hoveredRegion_){hoveredRegion_=id;QString tip;for(const auto& region:campaign_.regions[int(campaign_.realm)])if(region.id==id)tip=region.name+(region.available?"":" — unavailable");setToolTip(tip);setCursor(id.isEmpty()?Qt::ArrowCursor:Qt::PointingHandCursor);update();}QWidget::mouseMoveEvent(e);
 }
@@ -135,9 +129,8 @@ void RealmViewerWidget::paintEvent(QPaintEvent*) {
     p.save();p.setClipRect(canvas);p.translate(canvas.topLeft());p.scale(canvas.width()/800.0,canvas.height()/600.0);
     const auto& model=campaign_.regions[realm];const auto& shapes=visuals_.regions[realm];
     for(const auto& region:model)if(region.artworkNumber<=shapes.size()&&(region.id==campaign_.selectedRegionIds[realm]||region.id==hoveredRegion_)){const auto& shape=shapes[region.artworkNumber-1];p.drawImage(shape.borderRect.topLeft(),shape.border);}
-    // A selected available region previews its first stored FP route with the
-    // walking figure from ANI sequence 50. This is display policy, not travel.
-    if(const auto point=pathPreviewPosition()){const auto& frame=mnm::ui::realmFlagFrame(visuals_.animations[50],animationTick_);p.drawImage(*point-frame.origin,frame.image);}
+    // Campaign travel/character position is not supplied by the preview model.
+    // Selecting a region must not invent an endlessly walking character.
     p.restore();
     for(int i=0;i<model.size();++i){if(shapes.isEmpty()&&model[i].id==campaign_.selectedRegionIds[realm]){p.setPen(QPen(QColor("#ffdd88"),2));p.drawRect(regions_[i]->geometry().adjusted(-2,-2,2,2));}if(!model[i].available){p.setPen(Qt::white);p.drawLine(regions_[i]->geometry().topLeft(),regions_[i]->geometry().bottomRight());}}
 }

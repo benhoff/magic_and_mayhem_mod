@@ -30,8 +30,9 @@ int main(int argc,char** argv){QApplication app(argc,argv);try{
     click(widget,{150,300});require(widget.campaign().selectedRegionIds[0]=="0-2"&&changed==1&&requests==0,"map click selects without opening");
     click(widget,{124,300});require(changed==1,"background click selected a rectangle");
     click(widget,{150,300},true);require(requests==1,"map double click opens selected region");
-    model.regions[0][1].available=false;require(widget.setCampaign(model,&error),qPrintable(error));click(widget,{150,300},true);require(requests==1&&!widget.pathPreviewPosition(),"unavailable map activation/path guard");
-    require(widget.setCampaign(campaign(fixture.path()),&error),qPrintable(error));require(widget.pathPreviewPosition()==QPoint(125,200),"FP path starts at stored point");widget.advanceAnimation();widget.advanceAnimation();require(widget.pathPreviewPosition()==QPoint(135,210),"FP path advances without mutating campaign");widget.advanceAnimation();widget.advanceAnimation();require(widget.pathPreviewPosition()==QPoint(125,200),"bounded path loop");
+    model.regions[0][1].available=false;require(widget.setCampaign(model,&error),qPrintable(error));click(widget,{150,300},true);require(requests==1,"unavailable map activation guard");
+    require(widget.setCampaign(campaign(fixture.path()),&error),qPrintable(error));
+    for(int t=0;t<8;++t){const auto image=widget.grab().toImage();require(image.pixelColor(125,200)==QColor(80,100,120)&&image.pixelColor(135,210)==QColor(80,100,120),"idle selection invented a moving character on the FP route");widget.advanceAnimation();}
     widget.show();app.processEvents();auto* timer=widget.findChild<QTimer*>("realmViewerAnimationTimer");require(timer&&timer->isActive(),"visible animation timer");widget.hide();require(!timer->isActive(),"hidden menu animation timer stopped");
     widget.resize(1200,600);widget.show();app.processEvents();require(widget.regionAt({325,300})=="0-1"&&widget.regionAt({125,300}).isEmpty(),"letterbox mapping");widget.resize(400,300);app.processEvents();require(widget.regionAt({63,150})=="0-1"&&widget.regionAt({62,150}).isEmpty(),"scaled shape mapping");widget.hide();
     // Bad visual reloads preserve the complete existing screen and model.
@@ -50,10 +51,10 @@ int main(int argc,char** argv){QApplication app(argc,argv);try{
                     bool found=false;for(int y=bounds.top();y<=bounds.bottom()&&!found;++y)for(int x=bounds.left();x<=bounds.right();++x)if(viewer.regionAt({x,y})==region.id){found=true;break;}require(found,"scaled installed shape became unselectable");}
                 viewer.resize(800,600);app.processEvents();++count;
             }
-            require(viewer.selectRegion(viewer.campaign().regions[r][0].id,&error),qPrintable(error));for(int t=0;t<30;++t)viewer.advanceAnimation();require(viewer.pathPreviewPosition().has_value(),"installed FP path preview missing");
+            require(viewer.selectRegion(viewer.campaign().regions[r][0].id,&error),qPrintable(error));for(int t=0;t<30;++t)viewer.advanceAnimation();
             require(QDir().mkpath("working/tests/realm-visuals"),"capture dir");require(viewer.grab().save(QString("working/tests/realm-visuals/realm-%1.png").arg(r)),"installed visual capture");
         }
-        require(count==36,"installed region count");std::puts("All 36 installed silhouettes selectable at native, half and letterboxed sizes; flag/FP animation captured");
+        require(count==36,"installed region count");std::puts("All 36 installed silhouettes selectable at native, half and letterboxed sizes; flag animation captured");
     }
-    std::puts("Realm shape holes/keying, ANI timing/loops, FP motion, availability, timer lifetime and reload rollback passed");return 0;
+    std::puts("Realm shape holes/keying, ANI timing/loops, idle route stability, availability, timer lifetime and reload rollback passed");return 0;
 }catch(const std::exception& e){std::fprintf(stderr,"Realm visual test: %s\n",e.what());return 1;}}

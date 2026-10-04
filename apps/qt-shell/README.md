@@ -460,11 +460,11 @@ beginning with its latest accepted volume; closure cancels recovery. See
 ## Realm Viewer region shapes and animation
 
 The Realm Viewer now highlights regions with their original PCX border art,
-selects map regions through their silhouette pixels, animates the green flags,
-and previews the selected available region's first stored path with a walking
-marker. Keyboard-accessible flag shortcuts and availability guards remain active;
-hidden screens stop animation. Playback timing and route previews are native
-presentation policies, separate from campaign travel or engine commands.
+selects map regions through their silhouette pixels and animates the green flags.
+Selecting a region does not display an automatically walking character; campaign
+position/travel needs a caller-supplied contract. Keyboard-accessible flag
+shortcuts and availability guards remain active; hidden screens stop animation.
+Flag playback timing is a native presentation policy.
 
 ```bash
 QT_QPA_PLATFORM=offscreen working/build/qt-shell/realm-viewer-visuals-test working/game-nocd
