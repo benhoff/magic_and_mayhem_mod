@@ -105,3 +105,6 @@ confidence, and whether it remains stable across launches.
   selection/timing model and isolated original start/tick comparisons.
 
 - [Audio camera projection](audio-camera-projection.md): camera origin, four-orientation screen-to-map projection, wrapping and listener integration; offline fixtures.
+
+- [Bounded native ANI/SPR scene](native-animation-scene.md): explicit sequence
+  playback, owned upload cache, Qt preview and offline composition evidence.
