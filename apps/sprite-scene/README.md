@@ -31,3 +31,24 @@ for a repeatable window/export run. See
 
 Installed validation: `python3 tools/test-sprite-scene.py`.
 See [contract, export usage and evidence](../../research/runtime/native-animation-scene.md).
+
+Visible bodies now include their ANI sprite displacement before SPR origins
+are subtracted. Up to two explicit child ANI/SPR pairs can be composed through
+the parent's attachment points:
+
+```bash
+working/build/sprite-scene/mnm-sprite-scene-preview \
+  --root working/game-clean --ani 'Creatures\redcap.ani' --sequences 0,4 \
+  --layer 'Creatures\bat.ani,0,1' --layer 'Creatures\eye.ani,0,2' \
+  --tile-size 2 --placement-view 1 --ticks 32 --loop
+```
+
+These example assets demonstrate placement; they are not a recovered RedCap
+attachment recipe. `--layer ANI,sequence,slot` accepts slots 1/2 and cannot
+contain commas in the path. Default `--tile-size 1` and `--placement-view 0`
+can be changed to footprint 2 and raw view 0..3. Children use independent
+players, explicit layer order and the shared 24-upload cache; child actions,
+lifecycle and original depth sorting remain outside this preview.
+
+Reproduce layered validation with `python3 tools/test-animation-layers.py`.
+See [placement, limitations and evidence](../../research/runtime/animation-placement-attachments.md).
