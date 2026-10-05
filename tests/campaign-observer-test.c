@@ -1,6 +1,7 @@
 #include "../runtime/shadow/win32_min.h"
 API int WIN MenuCampaignInstallForTest(void);
 API int WIN MenuCampaignNavigationForTest(void);
+API int WIN MenuCampaignWorldForTest(void);
 #define THIS __attribute__((thiscall))
 #pragma section(".fixture", read, write, execute)
 __declspec(allocate(".fixture")) volatile u8 fixture_space[0x300000];
@@ -10,6 +11,7 @@ static void require(int ok,u32 code){if(!ok)ExitProcess(code);}
 void start(void){
     fixture_space[0]=1;u32 old;
     require(VirtualProtect((void*)0x470000,0x290000,0x40,&old),1);
+    require(VirtualProtect((void*)0x46a000,0x1000,0x40,&old),21);
     u8* p=(u8*)0x659408;for(u32 i=0;i<0x1e25;++i)p[i]=0;
     put(p,0x5c6a60);put(p+4,4);put(p+0xb4d,9);
     put((void*)0x6f34e0,(u32)p);put((void*)0x6f349c,1);put((void*)0x6f34a0,0x6ddd58);put((void*)0x6f34a4,(u32)p);put((void*)0x689920,5);
@@ -42,5 +44,13 @@ void start(void){
     put(p+0xa37,1);((void (THIS *)(void*))get((void*)0x5c6a60))(p);
     require(!get(p+0xa37)&&GetLastError()==0xabc123,14);
     require(!MenuCampaignNavigationForTest()&&GetLastError()==0xabc123,15);
+    const u8 world[]={0x83,0xec,0x74,0x53,0x55,0x56,0x8b,0xf1,0x5e,0x5d,0x5b,0x83,0xc4,0x74,0xb8,0x12,0x34,0,0,0xc3};
+    for(u32 i=0;i<sizeof(world);++i)((u8*)0x46afc0)[i]=world[i];
+    put((void*)0x5c5de8,0x46afc1);require(!MenuCampaignWorldForTest()&&GetLastError()==0xabc123,16);
+    put((void*)0x5c5de8,0x46afc0);*(u8*)0x46afc0=0x90;require(!MenuCampaignWorldForTest()&&get((void*)0x5c5de8)==0x46afc0,17);
+    *(u8*)0x46afc0=world[0];require(MenuCampaignWorldForTest()&&GetLastError()==0xabc123,18);
+    u8* gameplay=(u8*)0x6cbb78;put(gameplay,0x5c5dd8);put(gameplay+4,2);put((void*)0x6f34e0,(u32)gameplay);
+    forward=(void*)get((void*)0x5c5de8);for(u32 i=0;i<5;++i)require(forward(gameplay)==0x3412&&GetLastError()==0xabc123,19);
+    require(!MenuCampaignWorldForTest()&&GetLastError()==0xabc123,20);
     ExitProcess(0);
 }

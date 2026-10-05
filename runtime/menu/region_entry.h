@@ -1,6 +1,6 @@
-#include "../../protocols/include/mnm/menu_v7.h"
+#include "../../protocols/include/mnm/menu_v8.h"
 static u8 region_payload[MNM_MENU_V7_REGION_SIZE];
-static int region_snapshot(void* object,u8* out){
+static int region_snapshot(void* object,u8* out,int enter){
     u8* p=object;
     if(p!=(u8*)0x6578c0||!readable(p,0x81)||get(p)!=0x5c667c||get(p+4)!=18||get(p+8)!=1||
        get(p+0x7c)!=4||p[0x77]||get(p+0x6f)!=1||p[0x80])return 0;
@@ -26,12 +26,16 @@ static int region_snapshot(void* object,u8* out){
     for(u32 i=0;i<MNM_MENU_V7_REGION_SIZE;++i)out[i]=0;
     put(out,4);put(out+4,4);put(out+12,selected);put(out+16,available);
     put(out+20,get(buttons+0x59+8)==1&&get(buttons+0x59+0x3d)!=2);put(out+24,1);
+    if(enter&&get(buttons+8)==1&&get(buttons+0x3d)!=2&&readable((void*)0x659f51,8)&&readable((void*)0x65b1dd,4)&&readable((void*)0x65ae1d,36)&&get((void*)0x659f55)==9){
+        u32 player=get((void*)0x659f51),owner=get((void*)0x65b1dd);
+        if(player<9&&owner<9&&owner!=player&&get((u8*)0x65ae1d+4*player)==1&&get((u8*)0x65ae1d+4*owner)==1)put(out+20,get(out+20)|2);
+    }
     if(!battle_string(out+32,128,(void*)get(p+0x73),128)||!equal(out+32,"Celtic",7)||
        !battle_string(out+160,128,(void*)get(p+0x78),128)||!out[160])return 0;
     return 1;
 }
-static u32 region_dispatch(void* object,u32 action,u32 argument){
-    u8 current[MNM_MENU_V7_REGION_SIZE];if(!region_snapshot(object,current))return MNM_MENU_UNAVAILABLE;
+static u32 region_dispatch(void* object,u32 action,u32 argument,int enter){
+    u8 current[MNM_MENU_V7_REGION_SIZE];if(!region_snapshot(object,current,enter))return MNM_MENU_UNAVAILABLE;
     if(action==MNM_MENU_REGION_DIFFICULTY){
         if(argument>3)return MNM_MENU_INVALID;
         if(!(get(current+16)&(1u<<argument)))return MNM_MENU_UNAVAILABLE;
@@ -39,8 +43,11 @@ static u32 region_dispatch(void* object,u32 action,u32 argument){
         record(2,object,65536+argument,0);
         ((SelectFn)0x4ce730)((u8*)object+0x5f,(u8*)get((u8*)object+0x53)+argument*0x7e,0);
         record(3,object,65536+argument,0);
+    }else if(action==MNM_MENU_REGION_ENTER&&enter){
+        if(!(get(current+20)&2))return MNM_MENU_UNAVAILABLE;
+        record(2,object,0,0);u32 result=((ActionFn)0x4b3420)(object,0);record(3,object,0,result);
     }else if(action==MNM_MENU_REGION_CANCEL){
-        if(!get(current+20))return MNM_MENU_UNAVAILABLE;
+        if(!(get(current+20)&1))return MNM_MENU_UNAVAILABLE;
         record(2,object,1,0);u32 result=((ActionFn)0x4b3420)(object,1);record(3,object,1,result);
     }else return MNM_MENU_UNSUPPORTED;
     return MNM_MENU_OK;

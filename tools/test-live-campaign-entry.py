@@ -25,12 +25,15 @@ def decode(data):
     return rows
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--region-return',action='store_true',help='Observe four original difficulty choices and fresh campaign Cancel through Realm resume to Main')
+    choice=parser.add_mutually_exclusive_group()
+    choice.add_argument('--region-enter',action='store_true',help='Observe original Enter through the first three original gameplay ticks')
+    choice.add_argument('--region-return',action='store_true',help='Observe four original difficulty choices and fresh campaign Cancel through Realm resume to Main')
     args=parser.parse_args()
     parent=ROOT/'working/tests/live-campaign-entry';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(root,flush=True)
     scope = ('Original fresh New Game ingress, four Region Entry difficulty choices and Cancel/Realm resume to Main; no live Enter, loaded Realm, Qt campaign integration or replacement'
              if args.region_return else 'Original Main New Game ingress and forwarded Realm tick only; no Qt campaign integration, region interaction, campaign Mini confirmation or native replacement')
+    if args.region_enter:scope='Original New Game, difficulty choices and Enter through three original gameplay ticks; no Qt Enter integration, loaded Realm or native replacement'
     server=launcher=display=None;prefix=root/'wineprefix';report={'success':False,'scope':scope}
     env=dict(os.environ)
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
@@ -78,7 +81,7 @@ def main():
         if any(r['receiver']!=0x659408 or r['vtable']!=0x5c6a60 or r['screen']!=4 or r['context']!=5 or r['wizard_count']!=9 for r in rows):raise RuntimeError('Campaign build/state mismatch')
         if len({r['thread'] for r in rows}|{new_game[0]['thread']})!=1:raise RuntimeError('Campaign observation changed thread')
         entry_trace=[]
-        if args.region_return:
+        if args.region_return or args.region_enter:
             cfg_entry=configparser.ConfigParser(inline_comment_prefixes=(';',),interpolation=None);cfg_entry.read(experiment/'game/Interface/RegionEntry/screen (Region Entry).cfg')
             def click_control(section):
                 r=list(map(int,cfg_entry[section]['Rect2'].split(',')));px=(r[0]+r[2])//2;py=(r[1]+r[3])//2
@@ -99,15 +102,28 @@ def main():
                     time.sleep(.05)
                 else:raise RuntimeError('Original difficulty choice not observed: '+str(choice))
                 choices.append(choice)
-            click_control('TEXTBUTTON_2');deadline=time.monotonic()+10
-            while time.monotonic()<deadline:
-                rows=decode(campaign.read_bytes())
-                if any(r['phase']==4 and r['owner_screen']==3 and not r['returning'] for r in rows):break
-                time.sleep(.05)
-            else:raise RuntimeError('Fresh campaign Cancel did not return to Main')
-            entry_trace=entry_rows()
-            if not any(r['phase']==3 and r['returning']==1 for r in rows):raise RuntimeError('Pending Realm exit was not observed before resume')
-            report.update(region_return=True,difficulty_choices=choices,entry_records=entry_trace,loaded_realm_return=False)
+            if args.region_enter:
+                click_control('TEXTBUTTON_1');deadline=time.monotonic()+40
+                while time.monotonic()<deadline:
+                    trace=observer.decode(events.read_bytes())
+                    world=[r for r in trace if r['event']==12 and r['menu_id']==2 and r['initialized']==1 and r['active_screen']==0x6cbb78]
+                    if len(world)==3:break
+                    if launcher.poll() is not None:raise RuntimeError('Launcher exited during campaign battle loading')
+                    time.sleep(.05)
+                else:raise RuntimeError('Original Enter did not reach three gameplay ticks')
+                rows=decode(campaign.read_bytes());entry_trace=entry_rows()
+                if len({r['thread'] for r in world}|{new_game[0]['thread']})!=1:raise RuntimeError('Campaign world tick changed thread')
+                report.update(region_enter=True,difficulty_choices=choices,entry_records=entry_trace,world_ticks=world,world_owner_screen=2)
+            else:
+                click_control('TEXTBUTTON_2');deadline=time.monotonic()+10
+                while time.monotonic()<deadline:
+                    rows=decode(campaign.read_bytes())
+                    if any(r['phase']==4 and r['owner_screen']==3 and not r['returning'] for r in rows):break
+                    time.sleep(.05)
+                else:raise RuntimeError('Fresh campaign Cancel did not return to Main')
+                entry_trace=entry_rows()
+                if not any(r['phase']==3 and r['returning']==1 for r in rows):raise RuntimeError('Pending Realm exit was not observed before resume')
+                report.update(region_return=True,difficulty_choices=choices,entry_records=entry_trace,loaded_realm_return=False)
         from PIL import ImageGrab
         ImageGrab.grab(xdisplay=env['DISPLAY']).save(root/'campaign.png')
         for name,key in [('Chaos.exe','staged_sha256'),('MnmMenu.dll','dll_sha256')]:
@@ -126,7 +142,7 @@ def main():
             server.terminate()
             try:server.wait(timeout=5)
             except subprocess.TimeoutExpired:server.kill();server.wait()
-        report['sources']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'runtime/menu/observer.c',ROOT/'runtime/menu/campaign_observe.h',ROOT/'runtime/menu/region_entry_observe.h',ROOT/'tools/build-menu-observer.py',ROOT/'tools/prepare-menu-observer.py',ROOT/'tools/menu-game-runner.py',ROOT/'tools/run-menu-observer.py']}
+        report['sources']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'runtime/menu/observer.c',ROOT/'runtime/menu/campaign_observe.h',ROOT/'runtime/menu/region_entry_observe.h',ROOT/'runtime/menu/campaign_world_observe.h',ROOT/'tools/build-menu-observer.py',ROOT/'tools/prepare-menu-observer.py',ROOT/'tools/menu-game-runner.py',ROOT/'tools/run-menu-observer.py']}
         (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')
         subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
 if __name__=='__main__':main()

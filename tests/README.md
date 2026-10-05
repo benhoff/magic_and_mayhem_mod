@@ -839,3 +839,7 @@ actor identity at equal depth, with no GPU surface leaks.
 
 [Evidence boundaries](../research/runtime/native-multi-world-scene.md) distinguish
 owned diagnostic presentation from original/live multi-creature equivalence.
+
+### Fresh campaign Enter
+
+Run `python3 tools/test-region-entry-bridge.py --enter` for original callback/admission guards, `python3 tools/test-campaign-observer.py` for World forwarding guards, and focused Qt Region Entry/V1/V6 CTests. `python3 tools/test-live-region-enter.py --shell <built-shell> --source-root <compiled-source-tree>` automatically exercises New Game, Adept and Enter through three original gameplay ticks in isolated Xvfb/Wine, ending at a bounded deadline. No manual testing required; campaign return remains pending. See [UI30 evidence](../research/runtime/region-entry-enter-engine-bridge.md).

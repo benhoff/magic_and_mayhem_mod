@@ -89,6 +89,7 @@ static u32 THIS result_tick(void* object){
 }
 #include "preferences_display.h"
 #include "campaign_observe.h"
+#include "campaign_world_observe.h"
 #include "region_entry_observe.h"
 static int install(void){
     const u8 main_bytes[7]={0x51,0x53,0x55,0x56,0x57,0x8b,0xf9};
@@ -122,6 +123,7 @@ static int install(void){
         original_tick=(TickFn)0x5595d0;
         menu_init();
         if(!install_campaign_observe())menu_retired=1;
+        if((campaign_log||menu_version>=8)&&!install_campaign_world_observe())menu_retired=1;
         if(campaign_log&&menu_version<7&&!install_campaign_navigation())menu_retired=1;
         if(menu_version>=7){
             u32 old,restore;
@@ -174,6 +176,7 @@ static int install(void){
 }
 __declspec(dllexport) void MenuAnchor(void){}
 #ifdef MNM_MENU_SELFTEST
+__declspec(dllexport) int WIN MenuCampaignWorldForTest(void){u32 error=GetLastError();int ok=install_campaign_world_observe();SetLastError(error);return ok;}
 __declspec(dllexport) int WIN MenuCampaignNavigationForTest(void){u32 error=GetLastError();int ok=install_campaign_navigation();SetLastError(error);return ok;}
 __declspec(dllexport) int WIN MenuCampaignInstallForTest(void){u32 error=GetLastError();int ok=install_campaign_observe();SetLastError(error);return ok;}
 __declspec(dllexport) int WIN MenuInstallForTest(void){u32 error=GetLastError();int ok=install();SetLastError(error);return ok;}
