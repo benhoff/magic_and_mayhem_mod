@@ -6,6 +6,10 @@ struct PaletteLightingFields {
  std::optional<int> lightCurve,colourFactor;
  std::optional<double> lightPower,colourPower;
 };
+// Selected VIDEO preference; parsing does not clamp or choose rendering policy.
+struct TerrainPalettePreference { std::optional<int> lightLevels; };
+PersistenceResult<TerrainPalettePreference> decodeTerrainPalettePreference(const Config&);
+PersistenceResult<TerrainPalettePreference> loadTerrainPalettePreference(AssetFile&,const PersistenceLimits& = {});
 PersistenceResult<PaletteLightingFields> decodePaletteLightingFields(const Config&);
 PersistenceResult<PaletteLightingFields> loadPaletteLightingFields(AssetFile&,bool packed=true,const PersistenceLimits& = {});
 }

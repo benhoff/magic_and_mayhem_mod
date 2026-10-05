@@ -242,8 +242,7 @@ mnm-terrain-preview --root working/game-clean --palette-shading --light -17 \
 This uses the recovered mode-0 palette builder with count 16, intensity and
 saturation levels 1, and powers 2. `--light` accepts -127..127 and supplies a
 controlled uniform fixture light to every submitted tile, including world and
-generated scenes. Spatial light generation, realm lighting configuration, and
-effect-chain selection remain outstanding. The upload cache distinguishes
+generated scenes. Spatial light generation and effect-chain selection remain outstanding. The upload cache distinguishes
 frames at different selected tables and retains owned textures. See
 [palette shading evidence](../../research/runtime/terrain-palette-shading.md)
 for original-binary comparisons and reproduction.
@@ -254,6 +253,13 @@ The native packed CFG loader reads `LightCurve`, `ColourFactor`, `LightPower`
 and `ColourPower` from `GLOBAL_OPTIONS`, then applies the original bounds.
 Output JSON records the effective controls. Missing fields preserve image
 settings; malformed numeric fields or unavailable files are refused. This
-still uses explicit count 16 and controlled uniform `--light`; spatial light
-production and the separate terrain-count preference remain outstanding.
+uses count 16 unless `--preferences` is supplied, and controlled uniform
+`--light`; spatial light production remains outstanding.
 See [configured lighting evidence](../../research/runtime/terrain-lighting-config.md).
+
+To use the installed terrain palette count, also add `--preferences 'CFG\prefs.cfg'`.
+This plain CFG supplies `[VIDEO] TerrainLightLevels` (installed value 256).
+Missing keys retain the fixture count; present values receive the original
+2..256 clamp. The preview supports powers of two after admission and refuses
+other counts. JSON records both the effective count and preference path.
+See [terrain preference evidence](../../research/runtime/terrain-palette-preferences.md).

@@ -20,6 +20,9 @@ struct PaletteLightingOverrides {
 // Selected GLOBAL_OPTIONS admission: levels 1..1000, powers 0..1000.
 // Missing keys preserve supplied state. Nonfinite inputs are refused.
 PaletteShadingConfig applyPaletteLighting(PaletteShadingConfig,const PaletteLightingOverrides&);
+// Original VIDEO admission clamps to 2..256 and preserves a missing value.
+// Non-power-of-two admissions remain unsupported by buildShadedPalette.
+PaletteShadingConfig applyTerrainPalettePreference(PaletteShadingConfig,std::optional<int>);
 struct ShadedPalette {
  unsigned shift=0,neutral=0;
  std::vector<PaletteWords> tables;

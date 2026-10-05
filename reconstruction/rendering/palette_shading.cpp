@@ -11,6 +11,10 @@ PaletteShadingConfig applyPaletteLighting(PaletteShadingConfig config,const Pale
  if(fields.colourPower)config.saturationPower=power(*fields.colourPower);
  return config;
 }
+PaletteShadingConfig applyTerrainPalettePreference(PaletteShadingConfig config,std::optional<int> count){
+ if(count)config.count=unsigned(std::clamp(*count,2,256));
+ return config;
+}
 std::size_t ShadedPalette::tableIndex(std::int32_t shade) const {
  if(shift>7 || tables.empty() || neutral>=tables.size())throw std::invalid_argument("Invalid shading tables");
  const auto divisor=std::int64_t(1)<<shift;
