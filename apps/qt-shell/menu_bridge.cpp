@@ -1,5 +1,5 @@
 #include "menu_bridge.hpp"
-#include "../../protocols/include/mnm/menu_v8.h"
+#include "../../protocols/include/mnm/menu_v9.h"
 #include <QtEndian>
 #include <cstring>
 #include <algorithm>
@@ -8,21 +8,21 @@ quint32 load(const quint32* p){return qFromLittleEndian(__atomic_load_n(p,__ATOM
 void store(quint32* p,quint32 v){__atomic_store_n(p,qToLittleEndian(v),__ATOMIC_RELEASE);}
 }
 MenuBridge::~MenuBridge(){retire();if(mapping_)file_.unmap(mapping_);}
-bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini,bool results,bool preferences,bool region,bool enter){
-    enter_=enter;region_=region||enter;region=region_;preferences_=preferences||region;preferences=preferences_;results_=results||preferences;mini_=mini;spells_=spells||mini||results_;battle_=battle||spells_;const int size=enter?MNM_MENU_V8_SIZE:region?MNM_MENU_V7_SIZE:preferences?MNM_MENU_V6_SIZE:results?MNM_MENU_V5_SIZE:mini?MNM_MENU_V4_SIZE:spells?MNM_MENU_V3_SIZE:battle?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE;
+bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini,bool results,bool preferences,bool region,bool enter,bool campaignMini){
+    campaignMini_=campaignMini;enter_=enter||campaignMini;enter=enter_;mini=mini||campaignMini;region_=region||enter;region=region_;preferences_=preferences||region;preferences=preferences_;results_=results||preferences;mini_=mini;spells_=spells||mini||results_;battle_=battle||spells_;const int size=campaignMini?MNM_MENU_V9_SIZE:enter?MNM_MENU_V8_SIZE:region?MNM_MENU_V7_SIZE:preferences?MNM_MENU_V6_SIZE:results?MNM_MENU_V5_SIZE:mini?MNM_MENU_V4_SIZE:spells?MNM_MENU_V3_SIZE:battle?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE;
     if(file_.isOpen())return false;
     file_.setFileName(path);
     if(!file_.open(QIODevice::ReadWrite|QIODevice::NewOnly)||!file_.resize(size))return false;
-    QByteArray data(size,0);std::memcpy(data.data(),enter?MNM_MENU_V8_MAGIC:region?MNM_MENU_V7_MAGIC:preferences?MNM_MENU_V6_MAGIC:results?MNM_MENU_V5_MAGIC:mini?MNM_MENU_V4_MAGIC:spells?MNM_MENU_V3_MAGIC:battle?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8);
-    qToLittleEndian<quint32>(enter?8:region?7:preferences?6:results?5:mini?4:spells?3:battle?2:1,data.data()+8);qToLittleEndian<quint32>(size,data.data()+12);
+    QByteArray data(size,0);std::memcpy(data.data(),campaignMini?MNM_MENU_V9_MAGIC:enter?MNM_MENU_V8_MAGIC:region?MNM_MENU_V7_MAGIC:preferences?MNM_MENU_V6_MAGIC:results?MNM_MENU_V5_MAGIC:mini?MNM_MENU_V4_MAGIC:spells?MNM_MENU_V3_MAGIC:battle?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8);
+    qToLittleEndian<quint32>(campaignMini?9:enter?8:region?7:preferences?6:results?5:mini?4:spells?3:battle?2:1,data.data()+8);qToLittleEndian<quint32>(size,data.data()+12);
     if(file_.write(data)!=data.size()||!file_.flush())return false;
     mapping_=file_.map(0,data.size());if(!mapping_)return false;
     heartbeat();return true;
 }
 bool MenuBridge::read(State& state) const {
-    if(!mapping_||std::memcmp(mapping_,enter_?MNM_MENU_V8_MAGIC:region_?MNM_MENU_V7_MAGIC:preferences_?MNM_MENU_V6_MAGIC:results_?MNM_MENU_V5_MAGIC:mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
+    if(!mapping_||std::memcmp(mapping_,campaignMini_?MNM_MENU_V9_MAGIC:enter_?MNM_MENU_V8_MAGIC:region_?MNM_MENU_V7_MAGIC:preferences_?MNM_MENU_V6_MAGIC:results_?MNM_MENU_V5_MAGIC:mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
     auto* words=reinterpret_cast<quint32*>(mapping_);
-    if(load(words+2)!=(enter_?8u:region_?7u:preferences_?6u:results_?5u:mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(enter_?MNM_MENU_V8_SIZE:region_?MNM_MENU_V7_SIZE:preferences_?MNM_MENU_V6_SIZE:results_?MNM_MENU_V5_SIZE:mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
+    if(load(words+2)!=(campaignMini_?9u:enter_?8u:region_?7u:preferences_?6u:results_?5u:mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(campaignMini_?MNM_MENU_V9_SIZE:enter_?MNM_MENU_V8_SIZE:region_?MNM_MENU_V7_SIZE:preferences_?MNM_MENU_V6_SIZE:results_?MNM_MENU_V5_SIZE:mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
     auto* p=words+(battle_?MNM_MENU_V2_ENGINE_WORD:MNM_MENU_V1_ENGINE_WORD);const auto seq=load(p);if(!seq||(seq&1))return false;
     State next;next.generation=load(p+1);next.screen=load(p+2);next.ready=load(p+3);next.ack=load(p+4);next.status=load(p+5);next.thread=load(p+6);next.sequence=seq;
     auto name=[&](int offset,int length,QString& text){
@@ -63,7 +63,10 @@ bool MenuBridge::read(State& state) const {
     if(mini_&&next.screen==MNM_MENU_MINI_SCREEN){
         auto* m=words+MNM_MENU_V4_MINI/4;auto& b=next.mini;
         b.battle=load(m);b.confirmation=load(m+1);b.depth=load(m+2);b.parentScreen=load(m+3);b.actions=load(m+4);b.context=load(m+5);
-        if(load(m+6)||load(m+7)||b.battle!=1||b.confirmation>1||b.depth<1||b.depth>15||b.parentScreen!=MNM_MENU_MINI_PARENT_SCREEN||b.context==5||(b.actions&~7u)||(b.confirmation&&b.actions)||(next.ready&&(b.confirmation||b.actions!=7)))return false;
+        b.mode=load(m+6);
+        if(campaignMini_){
+            if(load(m+7)||b.battle||b.confirmation>1||b.depth!=5||b.parentScreen!=2||b.context!=5||b.mode!=2||(b.actions&~1u)||(b.confirmation&&b.actions)||(next.ready&&(b.confirmation||b.actions!=1)))return false;
+        }else if(load(m+6)||load(m+7)||b.battle!=1||b.confirmation>1||b.depth<1||b.depth>15||b.parentScreen!=MNM_MENU_MINI_PARENT_SCREEN||b.context==5||(b.actions&~7u)||(b.confirmation&&b.actions)||(next.ready&&(b.confirmation||b.actions!=7)))return false;
     }
     if(results_&&next.screen==MNM_MENU_RESULT_SCREEN){
         const int at=MNM_MENU_V5_RESULTS;auto* r=words+at/4;auto& b=next.results;
@@ -112,7 +115,7 @@ bool MenuBridge::request(quint32 action,const State& state,quint32 argument,cons
     State current;
     if(!read(current))return false;
     const bool setupAction=action==MNM_MENU_SETUP_MAP||action==MNM_MENU_SETUP_START||action==MNM_MENU_SETUP_PLAYER||action==MNM_MENU_SETUP_APPLY;
-    const bool miniAction=mini_&&current.screen==MNM_MENU_MINI_SCREEN&&current.mini.battle&&!current.mini.confirmation&&((action==MNM_MENU_MINI_CANCEL&&(current.mini.actions&MNM_MENU_MINI_CAN_CANCEL))||(action==MNM_MENU_MINI_PREFERENCES&&(current.mini.actions&MNM_MENU_MINI_CAN_PREFERENCES))||(action==MNM_MENU_MINI_QUIT&&(current.mini.actions&MNM_MENU_MINI_CAN_QUIT)));
+    const bool miniAction=mini_&&current.screen==MNM_MENU_MINI_SCREEN&&(current.mini.battle||campaignMini_)&&!current.mini.confirmation&&((action==MNM_MENU_MINI_CANCEL&&(current.mini.actions&MNM_MENU_MINI_CAN_CANCEL))||(action==MNM_MENU_MINI_PREFERENCES&&(current.mini.actions&MNM_MENU_MINI_CAN_PREFERENCES))||(action==MNM_MENU_MINI_QUIT&&(current.mini.actions&MNM_MENU_MINI_CAN_QUIT)));
     const bool resultAction=results_&&current.screen==MNM_MENU_RESULT_SCREEN&&((action==MNM_MENU_RESULT_CONTINUE&&(current.results.actions&1))||(action==MNM_MENU_RESULT_QUIT&&(current.results.actions&2)));
     const bool regionAction=region_&&((action==MNM_MENU_NEW_GAME&&current.screen==3)||(current.screen==18&&
         ((enter_&&action==MNM_MENU_REGION_ENTER&&(current.region.actions&2))||(action==MNM_MENU_REGION_CANCEL&&(current.region.actions&1))||(action==MNM_MENU_REGION_DIFFICULTY&&argument<4&&(current.region.available&(1u<<argument))))));

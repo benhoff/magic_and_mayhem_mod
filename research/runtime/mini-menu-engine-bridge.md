@@ -238,3 +238,7 @@ unvalidated. Keep Mini activation OFF. The next supported live flow is now
 Mini still independently disabled. Normal live sessions therefore use V5;
 V3 compatibility harnesses remain available. Earlier default-V3 statements in
 this document describe the initial preparation milestone.
+
+## Campaign gameplay activation (UI31)
+
+[Separate V9 Cancel integration](campaign-mini-cancel-engine-bridge.md) now admits the observed campaign gameplay Mini (mode 2, layout 0, context 5, World parent). Context 5 is confirmed for campaign and cannot be labeled network-only. Original Escape ingress and native Cancel/Escape World returns are tested automatically. V4 remains experimental; Realm mode 4, other actions, confirmation/quit and timer pause remain pending. Earlier evidence and failed Quick Battle ingress attempts are retained.

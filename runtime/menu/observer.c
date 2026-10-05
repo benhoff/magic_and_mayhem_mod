@@ -90,6 +90,7 @@ static u32 THIS result_tick(void* object){
 #include "preferences_display.h"
 #include "campaign_observe.h"
 #include "campaign_world_observe.h"
+#include "campaign_mini_observe.h"
 #include "region_entry_observe.h"
 static int install(void){
     const u8 main_bytes[7]={0x51,0x53,0x55,0x56,0x57,0x8b,0xf9};
@@ -124,6 +125,7 @@ static int install(void){
         menu_init();
         if(!install_campaign_observe())menu_retired=1;
         if((campaign_log||menu_version>=8)&&!install_campaign_world_observe())menu_retired=1;
+        if((campaign_log||menu_version>=9)&&!install_campaign_mini_observe())menu_retired=1;
         if(campaign_log&&menu_version<7&&!install_campaign_navigation())menu_retired=1;
         if(menu_version>=7){
             u32 old,restore;
@@ -157,7 +159,7 @@ static int install(void){
                !VirtualProtect((void*)0x5c649c,4,0x40,&old))menu_retired=1;
             else {put((void*)0x5c649c,(u32)&result_tick);VirtualProtect((void*)0x5c649c,4,old,&restore);}
         }
-        if(menu_version>=4&&MNM_MENU_MINI_EXPERIMENTAL){
+        if(menu_version>=4&&menu_version<9&&MNM_MENU_MINI_EXPERIMENTAL){
             u32 old,restore;
             const u8 callback_bytes[]={0x64,0xa1,0,0,0,0};
             if(!readable((void*)0x5c6654,4)||get((void*)0x5c6654)!=0x5595d0||
@@ -176,6 +178,7 @@ static int install(void){
 }
 __declspec(dllexport) void MenuAnchor(void){}
 #ifdef MNM_MENU_SELFTEST
+__declspec(dllexport) int WIN MenuCampaignMiniForTest(void){u32 error=GetLastError();int ok=install_campaign_mini_observe();SetLastError(error);return ok;}
 __declspec(dllexport) int WIN MenuCampaignWorldForTest(void){u32 error=GetLastError();int ok=install_campaign_world_observe();SetLastError(error);return ok;}
 __declspec(dllexport) int WIN MenuCampaignNavigationForTest(void){u32 error=GetLastError();int ok=install_campaign_navigation();SetLastError(error);return ok;}
 __declspec(dllexport) int WIN MenuCampaignInstallForTest(void){u32 error=GetLastError();int ok=install_campaign_observe();SetLastError(error);return ok;}

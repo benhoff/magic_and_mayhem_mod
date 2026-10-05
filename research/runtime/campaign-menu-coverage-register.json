@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Scoped fresh campaign menus: Qt Region Entry original difficulty, Cancel and Enter to gameplay; loaded Realm and campaign return remain pending.",
+  "scope": "Scoped fresh campaign entry and gameplay Mini Cancel/Escape return; Realm mode 4, auxiliary actions and campaign exit remain pending.",
   "builds": [
     {
       "id": "nocd-40209ca7",
@@ -615,6 +615,187 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CP.campaign-mini-cancel",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Campaign gameplay Mini original Cancel dispatch",
+      "scope": "Original mode 2/layout 0/context 5, exact Mini/World/Realm hierarchy and original local-4 Cancel; no other Mini actions",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4924400,
+          "scope": "Campaign Cancel index 4 only",
+          "recovered_range": "campaign-mini-entry-4b23f0"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-mini-cancel-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v9.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/observer.c",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/mini_menu_widget.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tools/test-campaign-mini-bridge.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-live-campaign-mini.py",
+        "tests/campaign-mini-bridge-reference.c",
+        "tests/menu-campaign-mini-bridge-test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_mini_test.cpp",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "UI31.fixture",
+        "UI31.qt",
+        "UI31.original-live",
+        "UI31.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.campaign-mini-lifecycle",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original campaign Mini ingress and World resume observation",
+      "scope": "Selected original Escape ingress and common tick/World resume forwarding; two observed return paths, not a timer/mana pause contract",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5608912,
+          "scope": "Mini shared tick forwarding and observed return lifecycle only",
+          "recovered_range": "campaign-mini-entry-5595d0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632304,
+          "scope": "Original World resume forwarding only"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-mini-cancel-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v9.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/observer.c",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/mini_menu_widget.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tools/test-campaign-mini-bridge.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-live-campaign-mini.py",
+        "tests/campaign-mini-bridge-reference.c",
+        "tests/menu-campaign-mini-bridge-test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_mini_test.cpp",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "UI31.fixture",
+        "UI31.qt",
+        "UI31.original-live",
+        "UI31.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "original_candidates": [
+        "0x46c070"
+      ]
+    },
+    {
+      "id": "NP.campaign-mini-cancel-policy",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Guarded native campaign Mini projection and ownership",
+      "scope": "V9 specific campaign gameplay hierarchy; Cancel-only mask, semantic Escape, original viewport return; other actions and Realm mode 4 refused",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-mini-cancel-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v9.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/observer.c",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/mini_menu_widget.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tools/test-campaign-mini-bridge.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-live-campaign-mini.py",
+        "tests/campaign-mini-bridge-reference.c",
+        "tests/menu-campaign-mini-bridge-test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_mini_test.cpp",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "UI31.fixture",
+        "UI31.qt",
+        "UI31.original-live",
+        "UI31.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -996,6 +1177,104 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI31.fixture",
+      "kind": "isolated_original",
+      "scope": "Original campaign Mini Cancel callback behind V9 mode/caller/stack/callback guards, stale/modal/retired/one-shot rejection, unsupported Preferences/Quit; synthetic guarded Mini tick/World resume forwards return and LastError; no full pause or original parent execution",
+      "record": "research/runtime/campaign-mini-cancel-engine-bridge.json",
+      "sha256": "01ac66747960c0720f535d75e641c7ccc820dffbc87d83103769a93d44aeca9a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/campaign_mini_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI31.qt",
+      "kind": "native_integration",
+      "scope": "Seven focused Qt V9 campaign Mini wire/controller guards, V4 compatibility, Mini widget, Region Entry and V1/V6 checks; no engine equivalence",
+      "record": "research/runtime/campaign-mini-cancel-engine-bridge.json",
+      "sha256": "01ac66747960c0720f535d75e641c7ccc820dffbc87d83103769a93d44aeca9a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/qt/success",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_enabled/success",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_disabled/success",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_disabled/mini_disabled_gate",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI31.original-live",
+      "kind": "live_observation",
+      "scope": "Original fresh campaign Escape -> mode 2 five-button Mini -> Cancel and Escape -> original World resume twice; no native Mini dispatch, quit/save/load or timer/mana pause equivalence",
+      "record": "research/runtime/campaign-mini-cancel-engine-bridge.json",
+      "sha256": "01ac66747960c0720f535d75e641c7ccc820dffbc87d83103769a93d44aeca9a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/original_live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_live/campaign_mini",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI31.live",
+      "kind": "live_observation",
+      "scope": "Qt New Game/Adept/Enter, original gameplay Escape to campaign Mini, native Cancel button and Escape to original World resume twice; bounded termination; save/load/preferences/quit and timer pause equivalence pending",
+      "record": "research/runtime/campaign-mini-cancel-engine-bridge.json",
+      "sha256": "01ac66747960c0720f535d75e641c7ccc820dffbc87d83103769a93d44aeca9a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/viewport_returns",
+          "equals": 2
+        },
+        {
+          "pointer": "/live/bounded_termination",
+          "equals": true
+        },
+        {
+          "pointer": "/live/live_validated",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "scenarios": [
@@ -1094,6 +1373,33 @@
         "tools/test-live-region-enter.py",
         "tools/test-campaign-observer.py",
         "tools/test-live-region-entry.py"
+      ]
+    },
+    {
+      "id": "campaign.qt-mini-cancel-return",
+      "level": "live_observation",
+      "scope": "Fresh campaign gameplay, original Escape opens Mini; native Cancel and Escape resume original World twice; deadline termination, no timer pause/quit claim",
+      "behaviors": [
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "NP.campaign-mini-cancel-policy"
+      ],
+      "evidence": [
+        "UI31.fixture",
+        "UI31.qt",
+        "UI31.original-live",
+        "UI31.live"
+      ],
+      "tests": [
+        "tools/test-campaign-mini-bridge.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-live-campaign-mini.py",
+        "tests/campaign-mini-bridge-reference.c",
+        "tests/menu-campaign-mini-bridge-test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_mini_test.cpp",
+        "tools/test-menu-observer.py"
       ]
     }
   ],
@@ -1221,6 +1527,42 @@
           ]
         }
       ]
+    },
+    {
+      "id": "campaign.gameplay-mini-callback",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4924400,
+        "scope": "Callback entry only; only local action 4 admitted",
+        "recovered_range": "campaign-mini-entry-4b23f0"
+      },
+      "document": "research/runtime/campaign-mini-cancel-engine-bridge.md",
+      "complete": false,
+      "scope": "Five original campaign cases; Cancel index 4 linked, Load/Save/Preferences/Quit indexes 0..3 retained as pending",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": []
+        },
+        {
+          "value": 1,
+          "behaviors": []
+        },
+        {
+          "value": 2,
+          "behaviors": []
+        },
+        {
+          "value": 3,
+          "behaviors": []
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "CP.campaign-mini-cancel"
+          ]
+        }
+      ]
     }
   ],
   "recovered_ranges": [
@@ -1267,6 +1609,24 @@
       "end": 5569832,
       "document": "research/runtime/campaign-menu-engine-contract.md",
       "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-mini-entry-4b23f0",
+      "build": "nocd-40209ca7",
+      "start": 4924400,
+      "end": 4924408,
+      "document": "research/runtime/campaign-mini-cancel-engine-bridge.md",
+      "evidence": "UI31.fixture",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-mini-entry-5595d0",
+      "build": "nocd-40209ca7",
+      "start": 5608912,
+      "end": 5608920,
+      "document": "research/runtime/campaign-mini-cancel-engine-bridge.md",
+      "evidence": "UI31.fixture",
       "anchors_pointer": "/anchors"
     }
   ],

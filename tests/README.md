@@ -856,3 +856,7 @@ retains a screenshot and exact fresh-process pending-order continuation. Normal
 and ASan/UBSan runs require a local Xvfb display, without original artifacts.
 [Evidence boundaries](../research/runtime/native-scene-orders.md) distinguish
 component/widget execution from original input or full-window picking equivalence.
+
+### Campaign gameplay Mini Cancel
+
+Run `python3 tools/test-campaign-mini-bridge.py`, targeted Qt campaign Mini/V4/widget/Region Entry/V1/V6 CTests, and both `tools/test-menu-observer.py --mini` / `--mini-disabled` fixtures. `python3 tools/test-live-campaign-entry.py --mini-cancel` observes original ingress/return; `python3 tools/test-live-campaign-mini.py --shell <built-shell> --source-root <compiled-tree>` validates native Cancel and Escape with original World resume twice, without manual input. Runs are bounded; timer pause and quit remain pending. See [UI31 evidence](../research/runtime/campaign-mini-cancel-engine-bridge.md).

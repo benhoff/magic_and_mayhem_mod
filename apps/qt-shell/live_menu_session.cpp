@@ -1,5 +1,5 @@
 #include "live_menu_session.hpp"
-#include "../../protocols/include/mnm/menu_v8.h"
+#include "../../protocols/include/mnm/menu_v9.h"
 #include <QDir>
 #include <QProcessEnvironment>
 #include <QStandardPaths>
@@ -31,7 +31,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
                 }
             }
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
-            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
+            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             if(active_)timer_.start();else bridge_->retire();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath("working/tests/menu-live-wine"):winePrefix};
@@ -52,7 +52,7 @@ bool LiveMenuSession::start(){
     preferencesToSave_=false;preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=inBattle_=false;
     auto env=QProcessEnvironment::systemEnvironment();env.remove("MNM_MENU_CHANNEL");env.remove("MNM_RUNNER");env.remove("MNM_MENU_OBSERVE");
     process_.setProcessEnvironment(env);process_.setWorkingDirectory(repo_);preparing_=true;
-    QStringList arguments{"--actions"};if(preferencesMenusEnabled)arguments.append({"--preferences-store",preferencesStorePath});if(miniMenusEnabled())arguments.append("--experimental-mini");
+    QStringList arguments{"--actions"};if(preferencesMenusEnabled)arguments.append({"--preferences-store",preferencesStorePath});if(MNM_MENU_MINI_EXPERIMENTAL)arguments.append("--experimental-mini");
     process_.start(QDir(repo_).filePath("tools/prepare-menu-observer.py"),arguments);return true;
 }
 bool LiveMenuSession::running() const{return preparing_||process_.state()!=QProcess::NotRunning;}
@@ -147,7 +147,7 @@ void LiveMenuSession::poll(){
             if(next.ready&&next.screen==MNM_MENU_RESULT_SCREEN&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
-            if(miniMenusEnabled()&&next.ready&&next.screen==MNM_MENU_MINI_SCREEN&&next.mini.battle&&!next.mini.confirmation&&
+            if(miniMenusEnabled()&&next.ready&&next.screen==MNM_MENU_MINI_SCREEN&&(next.mini.battle||(campaignMiniEnabled&&next.mini.context==5&&next.mini.mode==2))&&!next.mini.confirmation&&
                next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }

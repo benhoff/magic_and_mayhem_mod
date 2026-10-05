@@ -14,6 +14,8 @@
 #include <memory>
 #include <cstdio>
 void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path){
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_CAMPAIGN_MINI")){installLiveCampaignMiniTest(app,window,session,path);return;}
+    session.campaignMiniEnabled=false;
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_REGION_ENTER")){installLiveRegionEnterTest(app,window,session,path);return;}
     session.regionEnterEnabled=false; // Existing V7 round-trip harness retains its protocol.
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_REGION")){installLiveRegionEntryTest(app,window,session,path);return;}

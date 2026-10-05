@@ -15,6 +15,7 @@ public:
     bool preferencesMenusEnabled=true;
     bool regionMenusEnabled=true;
     bool regionEnterEnabled=true;
+    bool campaignMiniEnabled=true;
     QString preferencesStorePath; // User-scoped by default; tests isolate it.
     QString winePrefix; // Empty selects the normal menu prefix; tests isolate each run.
     int smokeSeconds=0; // Bounded live validation only; normal sessions have no limit.
@@ -23,7 +24,7 @@ public:
     QString evidenceDirectory() const {return root_;}
     bool request(quint32 action,quint32 argument=0,const std::array<int,17>* rules=nullptr);
     bool finishSpells(const std::array<int,63>& assignments);
-    bool miniMenusEnabled() const {return MNM_MENU_MINI_EXPERIMENTAL!=0;}
+    bool miniMenusEnabled() const {return campaignMiniEnabled||MNM_MENU_MINI_EXPERIMENTAL!=0;}
     bool requestPreferences(quint32 action,const std::array<int,7>& values,quint32 slider=0);
     bool requestResults(quint32 action);
     bool requestMini(quint32 action);
