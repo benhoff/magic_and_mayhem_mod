@@ -11783,7 +11783,8 @@
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-real-game-shadow.md"
+        "research/runtime/opengl-real-game-shadow.md",
+        "research/runtime/opengl-owned-session-fills.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py"
@@ -11793,7 +11794,8 @@
         "tests/live-render-channel-test.cpp"
       ],
       "evidence": [
-        "NR.real-game-command-shadow.startup"
+        "NR.real-game-command-shadow.startup",
+        "NR.owned-session-fill.startup"
       ],
       "status": {
         "understanding": "scoped",
@@ -11950,6 +11952,37 @@
       ],
       "evidence": [
         "NS16.scene-playback"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.owned-session-fill",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned constant fills routed as native UPDATE commands",
+      "scope": "Successful admitted initial full-surface and subsequent rectangular constant fills use one existing UPDATE with packed native pixels derived from dwFillColor; no fake source identity or CHECK-input rendering. Indexed8 and RGB16/24/32 synthetic complete sessions validated; original startup publishes fills then fails on tracked-surface DC invalidation before PRESENT. No equivalence/replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-owned-session-fills.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h"
+      ],
+      "tests": [
+        "runtime/render/bootstrap_selftest.h",
+        "tools/test-render-bootstrap.py",
+        "tools/test-render-session-fills.py"
+      ],
+      "evidence": [
+        "NR.owned-session-fill.native",
+        "NR.owned-session-fill.startup"
       ],
       "status": {
         "understanding": "scoped",
@@ -19744,6 +19777,84 @@
           "equals": 1
         }
       ]
+    },
+    {
+      "id": "NR.owned-session-fill.native",
+      "kind": "native_integration",
+      "scope": "Bounded fill UPDATE routing only; original drawing retained. Startup still refuses tracked-surface DC invalidation; no original pixel equivalence or replacement.",
+      "record": "research/runtime/opengl-owned-session-fills.json",
+      "sha256": "4d42a725131839ac7678d08300282c856dba9f3ff568cbc3a330678ecb376e7f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 17
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/viewport_uploads",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-fill.startup",
+      "kind": "live_observation",
+      "scope": "Bounded fill UPDATE routing only; original drawing retained. Startup still refuses tracked-surface DC invalidation; no original pixel equivalence or replacement.",
+      "record": "research/runtime/opengl-real-game-shadow-fills.json",
+      "sha256": "33a2f1ac8941cb0d3fad0a15a0b2ef995b5102f6f09ef1de088c1b75c2ae66ab",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/startup_fill_gap",
+          "equals": false
+        },
+        {
+          "pointer": "/published_bytes",
+          "equals": 3986376
+        },
+        {
+          "pointer": "/producer_state",
+          "equals": 3
+        },
+        {
+          "pointer": "/producer_reason",
+          "equals": 2
+        },
+        {
+          "pointer": "/native_consumer/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_consumer/presentations",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_drawing_retained",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "classifications": [],
@@ -21983,6 +22094,36 @@
         "tests/world-playback-test.cpp",
         "tools/test-scene-playback.py"
       ]
+    },
+    {
+      "id": "NR.owned-session-fill.preview",
+      "scope": "Eight synthetic PE32 owned full/rectangular/failure/initial-partial sessions in indexed8 and RGB16/24/32; independent complete native GPU pixels; ordinary reads/uploads zero.",
+      "level": "preview",
+      "behaviors": [
+        "NR.owned-session-fill"
+      ],
+      "evidence": [
+        "NR.owned-session-fill.native"
+      ],
+      "tests": [
+        "tools/test-render-session-fills.py",
+        "runtime/render/bootstrap_selftest.h"
+      ]
+    },
+    {
+      "id": "NR.owned-session-fill.startup",
+      "scope": "Original startup fills now publish commands; terminal tracked-surface invalidation immediately before application DC acquisition still prevents PRESENT. Original Main and owned frames retained.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.owned-session-fill",
+        "NR.real-game-command-shadow"
+      ],
+      "evidence": [
+        "NR.owned-session-fill.startup"
+      ],
+      "tests": [
+        "tools/test-live-render-game.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -22173,7 +22314,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-playback.json",
-    "sha256": "8e8d66df335552f332657ecabe5060d788f9c55f296aba97d3ee27e83ac7af33"
+    "path": "research/runtime/coverage/source-index-owned-session-fills-isolated-v3.json",
+    "sha256": "303c2a84cfcc14f98b964ff65ec0c0719c13854b03b9b068bcc18302b5039ceb"
   }
 }

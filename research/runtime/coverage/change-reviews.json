@@ -9175,6 +9175,137 @@
           "NS16.scene-playback"
         ]
       }
+    },
+    {
+      "id": "NR.owned-session-fill.exact-isolated-v3",
+      "reason": "Review destination-only owned fill identity and one existing v1 UPDATE with constant input pixels derived before the original call from dwFillColor; synthetic bootstrap zeros have no before-CHECK. Preserve original HRESULT/LastError, geometry/clipper/palette/epoch/resource admission and failure behavior. Review indexed/RGB fixture setup and independent native/frame assertions, optional isolated bootstrap build directory, original startup publication and subsequent DC invalidation. Review committed de0a942..06463cc exact history: all file/behavior transitions match receipts. Census snapshots are indexing review only; this HEAD overlay excludes concurrent campaign/coverage UI and native gameplay changes.",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "be8bda11938204c4083ee0d84f565c76a8def985202b9364d510d2f1b8a97c46",
+          "after_sha256": "05fa18d17089045c606dec087d1021a02479677f7516a53602b8e268b15bf78b"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "9c7266bd2d807222ef233c03cecc67d4c419a4fa2be1f0af77aa3e7bc3ece95f",
+          "after_sha256": "dab6643ded29e105249deb35f925b9d4b1455f4aed88b1caa2c2c9947020ed9e"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-owned-session-fills-isolated-v3.json",
+          "before_sha256": null,
+          "after_sha256": "303c2a84cfcc14f98b964ff65ec0c0719c13854b03b9b068bcc18302b5039ceb"
+        },
+        {
+          "path": "research/runtime/coverage/summary-owned-session-fills-isolated-v3.md",
+          "before_sha256": null,
+          "after_sha256": "ec29e17986dce8e4fd516214a9113fa12ce5c7605882c3ab2894172fba10dad2"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-fills-history-review-v2.json",
+          "before_sha256": null,
+          "after_sha256": "98c0a920114037755c091187ad36e6267b838aa75dc1301aa9b44fa7e0581f2f"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-fills-history-review-v3.json",
+          "before_sha256": null,
+          "after_sha256": "98c0a920114037755c091187ad36e6267b838aa75dc1301aa9b44fa7e0581f2f"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-fills-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "c03f7ee76ba811b3e34f2017b9977a52b2364cee28887c233624817f4341a842"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-fills.json",
+          "before_sha256": null,
+          "after_sha256": "4d42a725131839ac7678d08300282c856dba9f3ff568cbc3a330678ecb376e7f"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-fills.md",
+          "before_sha256": null,
+          "after_sha256": "4d50a87e9c2a5c157228cd3383270ac745eb67b985d85feea0ea2a44334bf2b8"
+        },
+        {
+          "path": "research/runtime/opengl-real-game-shadow-fills.json",
+          "before_sha256": null,
+          "after_sha256": "33a2f1ac8941cb0d3fad0a15a0b2ef995b5102f6f09ef1de088c1b75c2ae66ab"
+        },
+        {
+          "path": "runtime/render/bootstrap_selftest.h",
+          "before_sha256": "9ef98a518f0229272fd96e7a02b6dde259dee001870617b07d695607c857aad3",
+          "after_sha256": "dcd7e92c8af2fb1b4868db11aa6edaed1a71561f617d5aaa7fd4ab6134bd250e"
+        },
+        {
+          "path": "runtime/render/owned_session.h",
+          "before_sha256": "3fcced2b0f2006ad0ef0954823f369d80485f6e5c31db9c68546a2e171da708f",
+          "after_sha256": "09560df9079a32c2894a91a6793db3bb07228bc9803db9415ed38448a0ea3afe"
+        },
+        {
+          "path": "tools/test-render-bootstrap.py",
+          "before_sha256": "bac2146e3723c6b094b68d9f4076ed15c593b97be95a5fa3932d37d746b6ac44",
+          "after_sha256": "e0f582675deac11cc8f6326eaf81ec61e03b57eafb3da6477f0693d299479a90"
+        },
+        {
+          "path": "tools/test-render-session-fills.py",
+          "before_sha256": null,
+          "after_sha256": "62ba69ec24b967fa80a71534c232bf3b1fe20f33e196d8a4869f8cf881951a50"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "c9884f72add4694523c79aa5973340be217b50712a06151fd37e9a252f163ca9",
+          "after_sha256": "cf6595c2e2390ee45ff804db2b3f72457f76bb0efe0628a3c8d323eea9c385dd"
+        },
+        {
+          "id": "NR.owned-session-fill",
+          "before_sha256": null,
+          "after_sha256": "71b132b32464bfc5f84c4a7271822c32a6c7e754263b8491c09860dfd14b94a1"
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "c8a453ca7fb8f985fe14e4cb55b07823333ceab0a9e46e9d40eb8db73d1bb3e4",
+          "after_sha256": "c987aee06ac972009f27bc3108a091fc0944a60e632e0ffbfdb07c932bcc74c6"
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "137877ed32feda51d2579c15ba61cdeb55b29338932e323fd85766010e9316bd",
+          "after_sha256": "75dac20d4630e8ac8b8962d0c8f1040d17f46b09cf5ddbbb6e87223b124e08c1"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:d9af52fffbfdba7e55c588f994d15ec416704763a3c173ce547268dd6921bba9",
+        "stale_evidence:2e27da913a2eb1263cb0abbe3ceb00c9c74eb48916d71654dd59e6ad836a0afe",
+        "stale_evidence:409fb0ca59dd5f998d400688477745802ec9a7eab3e134f3153e0e23899889a8",
+        "stale_evidence:57b2874900ce45182864a0e291a02dba47d3339e0d62b904fa34223943b96c02",
+        "stale_evidence:b29bf67053a0e6cad6fe718c05fb256b008ba3ac50f5a08cd95f480536068f61"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "New fill scope has fresh independent native execution and original publication evidence. Changes to shared owned-session/fixture sources leave historical linked evidence stale; retain prior statuses without claiming current whole-contract equivalence. Actual original startup still GAPs at GetDC-owned surface invalidation before PRESENT; full native frame, independent driver pixel comparison, gameplay, continuous ownership and replacement remain pending.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NR.owned-session-fill.recorded-v3",
+      "reason": "Promote only scoped fill implementation and preview based on fresh native execution; retain original startup observation separately.",
+      "files": [],
+      "behaviors": [
+        {
+          "id": "NR.owned-session-fill",
+          "before_sha256": null,
+          "after_sha256": "71b132b32464bfc5f84c4a7271822c32a6c7e754263b8491c09860dfd14b94a1"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Eight current-source PE32/Wine fill sessions pass 17 independent full GPU frame comparisons, explicit native-byte CHECK replay/final comparison, indexed8 and RGB16/24/32 (including high unused RGB32 bits), failed-call retry, rejected initial partial and later rectangle fill. Default reads/viewport uploads/live surfaces zero. Six legacy bootstrap cases, dedicated production Qt/renderer build and two incremental/live-channel CTests pass. Original pinned startup emits five CREATE/UPDATE/CHECK groups then explicit tracked-surface GAP3 before GetDC; original Main and 2927-artifact verification retained. No real-game pixel equivalence or replacement.",
+        "evidence": [
+          "NR.owned-session-fill.native",
+          "NR.owned-session-fill.startup"
+        ]
+      }
     }
   ]
 }

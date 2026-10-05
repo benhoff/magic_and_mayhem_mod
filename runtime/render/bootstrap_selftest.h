@@ -120,7 +120,8 @@ static void bs_draw(struct BsSurface* target,struct BsSurface* source,u32 fast,u
     if(result!=(failed?-1:17) || GetLastError()!=0x88)ExitProcess(164);bs_record(bs_state(target));
 }
 static void bs_fill(struct BsSurface* target,u32 partial){
-    u32 effects[25]={100};effects[20]=target->bits==16?0x1234:0x123456;
+    u32 effects[25]={100};effects[20]=target->bits==8?(partial?0x67:0x34):target->bits==16?(partial?0x4567:0x1234):
+        (partial?0x654321:0x123456)|(target->bits==32?0x80000000u:0);
     struct BsRect r={1,2,20,30};u32 failed=bs_fail;SetLastError(0x77);
     if(((i32 (WIN *)(void*,void*,void*,void*,u32,void*))target->table[5])(target,partial?&r:0,0,0,0x01000400,effects)!=(failed?-1:17) || GetLastError()!=0x88)ExitProcess(198);
     bs_record(target);
@@ -216,12 +217,13 @@ static void test_bootstrap(void){
     table[3]=(void*)&bs_add_attachment;table[8]=(void*)&bs_delete_attachment;table[11]=(void*)&bs_flip;table[12]=(void*)&bs_attached;table[22]=(void*)&bs_description;table[25]=(void*)&bs_lock;table[32]=(void*)&bs_unlock;table[28]=(void*)&bs_clipper;table[29]=(void*)&bs_key;
     table[27]=(void*)&bs_restore;
     table[17]=(void*)&bs_get_dc;table[26]=(void*)&bs_release_dc;
+    table[31]=(void*)&ip_assign;
     for(u32 i=0;i<33;++i)alias_table[i]=table[i];
     static struct BsSurface source,target,sprite,alias;
     source.table=target.table=sprite.table=table;source.kind=target.kind=sprite.kind=(bs_mode("legacy") || bs_mode("idx-legacy") || bs_mode("idxcopy-legacy") || bs_mode("idxflip-legacy"))?12:14;
     source.width=target.width=800;source.height=target.height=600;sprite.width=sprite.height=2;
-    source.bits=target.bits=sprite.bits=bs_is_indexed()?8:(bs_mode("rgb24")||bs_mode("fill24")||bs_mode("dc-rgb24"))?24:(bs_mode("rgb32")||bs_mode("fill32")||bs_mode("dc-rgb32"))?32:16;target.primary=!bs_mode("offscreen");
-    if(bs_mode("descriptor-key") || bs_mode("descriptor-key-range") || bs_is_fill() || bs_mode("continuous-live"))sprite.key=sprite.bits==16?0x7ff:0xff00;
+    source.bits=target.bits=sprite.bits=(bs_is_indexed()||bs_mode("fill8"))?8:(bs_mode("rgb24")||bs_mode("fill24")||bs_mode("dc-rgb24"))?24:(bs_mode("rgb32")||bs_mode("fill32")||bs_mode("dc-rgb32"))?32:16;target.primary=!bs_mode("offscreen");
+    if(bs_mode("descriptor-key") || bs_mode("descriptor-key-range") || bs_is_fill() || bs_mode("continuous-live"))sprite.key=sprite.bits==8?0x7f:sprite.bits==16?0x7ff:0xff00;
     alias.table=alias_table;alias.state=(bs_mode("flip-alias") || bs_mode("idxflip-alias"))?&source:&target;alias.kind=11;bs_alias=&alias;
     struct BsSurface* surfaces[3]={&source,&target,&sprite};u32 bytes=source.bits/8;
     for(u32 i=0;i<3;++i){struct BsSurface* s=surfaces[i];u32 length=s->width*s->height*bytes;
@@ -253,6 +255,17 @@ static void test_bootstrap(void){
         SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[28])(&target,0)!=23 || GetLastError()!=0x88)ExitProcess(175);
     }
     if(bs_is_flip())bs_test_flips(&target,&source,&sprite);
+    if(bs_mode("fill8")){
+        static void* palette_table[7];palette_table[0]=(void*)&ip_query;palette_table[2]=(void*)&ip_release;
+        palette_table[3]=(void*)&ip_caps;palette_table[4]=(void*)&ip_read;palette_table[5]=(void*)&ip_initialize;palette_table[6]=(void*)&ip_write;
+        ip_a.base.table=palette_table;ip_a.base.state=&ip_a;ip_a.refs=1;ip_front=&target;
+        for(u32 i=0;i<256;++i)for(u32 j=0;j<4;++j)ip_a.colors[i*4+j]=(u8)(i*(j*6+1)+j*13);
+        RenderInstallForTest(&ip_a.base,20);ip_observe_caps(&ip_a.base);
+        u8 colors[1024];SetLastError(0x77);
+        if(((i32 (WIN *)(void*,u32,u32,u32,void*))palette_table[4])(&ip_a.base,0,0,256,colors)!=23 || GetLastError()!=0x88)ExitProcess(218);
+        /* Observe the actual assignment without adding a synthetic draw event. */
+        SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[31])(&target,&ip_a.base)!=23 || GetLastError()!=0x88)ExitProcess(216);
+    }
     struct BsSurface* destination=&target;
     if(bs_mode("alias")){
         static const u8 iid[16]={0x81,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};void* output=0;SetLastError(0x77);
@@ -331,6 +344,11 @@ static void test_bootstrap(void){
             if(bs_mode("continuous-live")){bs_draw(destination,&sprite,1,1,0);bs_fill(destination,1);}}
         if(bs_thread_case()){CloseHandle(timing);bs_draw(destination,&source,0,0,0);}
         if(bs_mode("continuous-live")){bs_fail=1;bs_fill(destination,0);}
+    }
+    if(bs_mode("fill8")){
+        u32 counters[7]={bs_locks,bs_unlocks,bs_descriptions,bs_queries,bs_draws,bs_creates,bs_restores},written;
+        HANDLE file=CreateFileA("fill-counters.bin",0x40000000,1,0,1,0x80,0);
+        if(file==(HANDLE)-1 || !WriteFile(file,counters,sizeof(counters),&written,0) || written!=sizeof(counters))ExitProcess(217);CloseHandle(file);
     }
     if(bs_locks!=1u-bs_dc_case()+!rejection+20u*(bs_continuous()&&!bs_scoped_partial())+bs_mode("partial-lock-contention")+bs_mode("nested-lock-contention")+2u*bs_mode("nested-source-contention")+44u*bs_mode("pixel-miss-overflow")+bs_mode("continuous-unmatched")+bs_mode("lock-contention")+bs_mode("unknown-unlock")+bs_mode("many-surfaces") || bs_unlocks!=bs_locks || bs_restores!=(u32)bs_mode("continuous-unmatched") || bs_queries!=(u32)bs_mode("alias")+65u*bs_mode("many-surfaces") || bs_creates!=(u32)bs_mode("created") ||
        bs_descriptions!=(bs_mode("created")?0u:1u)+bs_dc_case()+(u32)bs_mode("nested-description")+(u32)bs_mode("lock-description-change")+65u*bs_mode("many-surfaces") || bs_draws!=1u+!rejection+bs_mode("retry")+bs_mode("nested-description")+20u*bs_continuous()+41u*bs_mode("continuous-live")+bs_mode("continuous-contention")+bs_mode("partial-blit-contention")+bs_thread_case()+3u*(bs_mode("nested-source-contention")||bs_mode("pixel-miss-overflow"))+bs_mode("fill-failed")+bs_mode("fill-partial")+bs_mode("fill-update")+bs_mode("many-surfaces"))ExitProcess(178);
