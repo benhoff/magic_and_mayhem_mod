@@ -14,35 +14,35 @@
   "api_bindings": [],
   "behaviors": [
     {
-      "id": "TL.creature-footprint-initializer",
+      "id": "TL.effect-creature-collision",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
-      "title": "Creature footprint initialization templates",
-      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
+      "title": "Effect creature candidate snapshot and collision scanning",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
-          "address": 5116512,
-          "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement"
+          "address": 4752368,
+          "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement"
         }
       ],
       "documents": [
-        "research/runtime/creature-footprint-initializer.md"
+        "research/runtime/effect-creature-collision.md"
       ],
       "implementation": [
-        "reconstruction/rendering/creature_footprint.cpp",
-        "reconstruction/rendering/creature_footprint.hpp",
-        "reconstruction/rendering/creature-footprint/CMakeLists.txt"
+        "reconstruction/rendering/effect_creature_collision.cpp",
+        "reconstruction/rendering/effect_creature_collision.hpp",
+        "reconstruction/rendering/effect-creature/CMakeLists.txt"
       ],
       "tests": [
-        "tests/creature-footprint-reference.cpp",
-        "tests/creature-footprint-test.cpp",
-        "tools/test-creature-footprint.py"
+        "tests/effect-creature-reference.cpp",
+        "tests/effect-creature-test.cpp",
+        "tools/test-effect-creature.py"
       ],
       "evidence": [
-        "TL15.footprint-original",
-        "TL15.footprint-native"
+        "TL16.collision-original",
+        "TL16.collision-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -93,12 +93,12 @@
   ],
   "evidence": [
     {
-      "id": "TL15.footprint-original",
+      "id": "TL16.collision-original",
       "kind": "isolated_original",
       "build": "nocd-40209ca7",
-      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
-      "record": "research/runtime/creature-footprint-initializer.json",
-      "sha256": "d10957a28327b5e8c960bed5db49f2cad33e01adccf5ea7cacc643a4f9ca42b9",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "record": "research/runtime/effect-creature-collision.json",
+      "sha256": "6b7f9438c157a386f0612f4442fd56e3a65f7882eb9ab68d56efe432edbd1337",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -108,19 +108,19 @@
         },
         {
           "pointer": "/fixtures",
-          "equals": 273
+          "equals": 560
         },
         {
           "pointer": "/calls",
-          "equals": 7135128
+          "equals": 1120
         },
         {
-          "pointer": "/hits",
-          "equals": 1475328
+          "pointer": "/creature_hits",
+          "equals": 48
         },
         {
-          "pointer": "/guard_bytes",
-          "equals": 18564
+          "pointer": "/cell_bytes",
+          "equals": 27008000
         },
         {
           "pointer": "/unit_passed",
@@ -137,12 +137,12 @@
       ]
     },
     {
-      "id": "TL15.footprint-native",
+      "id": "TL16.collision-native",
       "kind": "native_integration",
       "build": "nocd-40209ca7",
-      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
-      "record": "research/runtime/creature-footprint-initializer.json",
-      "sha256": "d10957a28327b5e8c960bed5db49f2cad33e01adccf5ea7cacc643a4f9ca42b9",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "record": "research/runtime/effect-creature-collision.json",
+      "sha256": "6b7f9438c157a386f0612f4442fd56e3a65f7882eb9ab68d56efe432edbd1337",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -152,19 +152,19 @@
         },
         {
           "pointer": "/fixtures",
-          "equals": 273
+          "equals": 560
         },
         {
           "pointer": "/calls",
-          "equals": 7135128
+          "equals": 1120
         },
         {
-          "pointer": "/hits",
-          "equals": 1475328
+          "pointer": "/creature_hits",
+          "equals": 48
         },
         {
-          "pointer": "/guard_bytes",
-          "equals": 18564
+          "pointer": "/cell_bytes",
+          "equals": 27008000
         },
         {
           "pointer": "/unit_passed",
@@ -183,20 +183,20 @@
   ],
   "scenarios": [
     {
-      "id": "terrain-lighting.creature-footprint-initializer",
+      "id": "terrain-lighting.effect-creature-collision",
       "level": "headless",
-      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
       "behaviors": [
-        "TL.creature-footprint-initializer"
+        "TL.effect-creature-collision"
       ],
       "evidence": [
-        "TL15.footprint-original",
-        "TL15.footprint-native"
+        "TL16.collision-original",
+        "TL16.collision-native"
       ],
       "tests": [
-        "tests/creature-footprint-reference.cpp",
-        "tests/creature-footprint-test.cpp",
-        "tools/test-creature-footprint.py"
+        "tests/effect-creature-reference.cpp",
+        "tests/effect-creature-test.cpp",
+        "tools/test-effect-creature.py"
       ]
     }
   ]

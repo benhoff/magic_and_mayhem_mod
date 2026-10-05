@@ -6,13 +6,13 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | Accounting boundary | Count |
 | --- | ---: |
 | builds | 1 |
-| behaviors | 337 |
-| evidence | 228 |
-| scenarios | 40 |
+| behaviors | 338 |
+| evidence | 230 |
+| scenarios | 41 |
 | functions | 6675 |
 | registered recovered ranges | 12 |
 | incomplete dispatch tables | 7 |
-| indexed sources | 983 |
+| indexed sources | 989 |
 | unclassified functions | 6491 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
@@ -36,11 +36,11 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Independent status | Counts |
 | --- | --- |
-| understanding | partial: 229; scoped: 75; unknown: 33 |
-| implementation | none: 142; partial: 125; scoped: 70 |
-| comparison | none: 279; recorded: 58 |
-| integration | headless: 40; live_equivalence: 0; live_observation: 17; none: 265; preview: 15 |
-| replacement | none: 337; scoped_live: 0 |
+| understanding | partial: 229; scoped: 76; unknown: 33 |
+| implementation | none: 142; partial: 125; scoped: 71 |
+| comparison | none: 279; recorded: 59 |
+| integration | headless: 41; live_equivalence: 0; live_observation: 17; none: 265; preview: 15 |
+| replacement | none: 338; scoped_live: 0 |
 
 ## Animation checklist
 
@@ -480,6 +480,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | TL.effect-occupancy-policy | Owned terrain bitmap input and supported hit publication | native policy | scoped | scoped | none | headless | none | current_fingerprints |
 | TL.creature-occupancy-lookup | Creature footprint occupancy and raw height gating | `0x4e1200` | scoped | scoped | recorded | headless | none | current_fingerprints |
 | TL.creature-footprint-initializer | Creature footprint initialization templates | `0x4e1260` | scoped | scoped | recorded | headless | none | current_fingerprints |
+| TL.effect-creature-collision | Effect creature candidate snapshot and collision scanning | `0x4883f0` | scoped | scoped | recorded | headless | none | current_fingerprints |
 
 ## Tooling checklist
 
