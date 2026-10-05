@@ -88,6 +88,7 @@ static u32 THIS result_tick(void* object){
     u32 result=((TickFn)0x5595d0)(object);error=GetLastError();menu_poll(object,0);SetLastError(error);return result;
 }
 #include "preferences_display.h"
+#include "campaign_observe.h"
 static int install(void){
     const u8 main_bytes[7]={0x51,0x53,0x55,0x56,0x57,0x8b,0xf9};
     const u8 quick_bytes[8]={0x56,0x8b,0xf1,0xe8,0x68,0xf1,0x0a,0x00};
@@ -119,6 +120,7 @@ static int install(void){
     if(log_file){
         original_tick=(TickFn)0x5595d0;
         menu_init();
+        if(!install_campaign_observe())menu_retired=1;
         if(menu_version>=2&&!install_battle())menu_retired=1;
         if(menu_version>=3){
             u32 old,unused;
@@ -160,6 +162,7 @@ static int install(void){
 }
 __declspec(dllexport) void MenuAnchor(void){}
 #ifdef MNM_MENU_SELFTEST
+__declspec(dllexport) int WIN MenuCampaignInstallForTest(void){u32 error=GetLastError();int ok=install_campaign_observe();SetLastError(error);return ok;}
 __declspec(dllexport) int WIN MenuInstallForTest(void){u32 error=GetLastError();int ok=install();SetLastError(error);return ok;}
 #endif
 int WIN DllMain(void* dll,u32 reason,void* reserved){
@@ -167,5 +170,5 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
 #ifndef MNM_MENU_SELFTEST
     if(reason==1){u32 error=GetLastError();install();SetLastError(error);}
 #endif
-    if(reason==0){if(log_file)CloseHandle(log_file);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
+    if(reason==0){if(campaign_log)CloseHandle(campaign_log);if(log_file)CloseHandle(log_file);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
 }

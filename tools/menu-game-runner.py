@@ -15,6 +15,11 @@ if events!=root/'events.bin' or events.exists():raise ValueError('Refusing stale
 if os.environ.get('MNM_MENU_CHANNEL'):
     expected='Z:'+str(root/'channel.bin').replace('/','\\')
     if metadata['origin']!='menu_action_bridge' or os.environ['MNM_MENU_CHANNEL']!=expected:raise ValueError('Refusing unapproved command channel')
+if os.environ.get('MNM_MENU_CAMPAIGN_OBSERVE'):
+    campaign=root/'campaign.bin'
+    expected='Z:'+str(campaign).replace('/','\\')
+    if not metadata.get('campaign_observe') or os.environ['MNM_MENU_CAMPAIGN_OBSERVE']!=expected or campaign.exists():
+        raise ValueError('Refusing unapproved or stale campaign observation output')
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(events).replace('/','\\')
 os.chdir(game)
 os.execvp('wine',['wine','explorer','/desktop=MagicMayhem,800x600',str(game/'Chaos.exe'),*sys.argv[2:]])

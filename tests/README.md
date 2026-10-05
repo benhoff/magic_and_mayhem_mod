@@ -745,3 +745,21 @@ verify immutable originals before and after; the oracle uses warnings as errors
 and a 20-second execution bound. No manual test or game launch is needed.
 This does not test full Realm initialization, live navigation, campaign Mini
 confirmation, Region Entry or a Qt bridge. See [UI26 contract and evidence](../research/runtime/campaign-menu-engine-contract.md).
+
+### Original campaign ingress observation
+
+```sh
+python3 tools/test-campaign-observer.py
+python3 tools/test-menu-observer.py --preferences
+python3 tools/test-live-campaign-entry.py
+```
+
+The synthetic PE32 fixture checks opt-in forwarding guards, thread/error/return
+preservation and bounded two-phase state logging. The live test stages a new
+installation and private Xvfb/Wine session, clicks the original Main New Game
+button from its CFG rectangle, and captures the original Realm-to-Region Entry
+flow. It has bounded readiness/observation/game deadlines and cleans up only
+its own prefix/process group. No manual interaction is needed. It verifies
+original inputs before/after; it does not enter a region, alter campaign state
+through a native dispatcher or validate campaign Mini mode 4. See
+[UI27 evidence](../research/runtime/campaign-menu-entry-observation.md).

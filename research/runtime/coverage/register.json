@@ -10043,6 +10043,77 @@
       }
     },
     {
+      "id": "TL.effect-same-cell-projection",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Same-cell effect motion and recount coordinate production",
+      "scope": "Complete 004883f0 same-cell path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, unchanged cells/chains and return 3; authored setup, no crossings, occupied collisions, special termination or live scheduling",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Complete 004883f0 same-cell path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, unchanged cells/chains and return 3; authored setup, no crossings, occupied collisions, special termination or live scheduling"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-same-cell-projection.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_projection.cpp",
+        "reconstruction/rendering/effect_projection.hpp",
+        "reconstruction/rendering/effect-projection/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-projection-reference.cpp",
+        "tests/effect-projection-test.cpp",
+        "tools/test-effect-projection.py"
+      ],
+      "evidence": [
+        "TL07.projection-original",
+        "TL07.projection-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-projection-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Atomic bounded effect projection and lighting composition",
+      "scope": "Owned candidate-copy atomic refusals for unsupported type/creator/kind/count/counter/dimensions, inconsistent positions, height exits, horizontal excursions and later cell crossings; creation-pending source becomes admissible after projection and composes with the existing headless lighting cycle; empty collision context is a caller precondition, not live world certification",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-same-cell-projection.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_projection.cpp",
+        "reconstruction/rendering/effect_projection.hpp",
+        "reconstruction/rendering/effect-projection/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-projection-reference.cpp",
+        "tests/effect-projection-test.cpp",
+        "tools/test-effect-projection.py"
+      ],
+      "evidence": [
+        "TL07.projection-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "CP.main-new-game",
       "subsystem": "campaign",
       "kind": "recovered",
@@ -10058,7 +10129,8 @@
         }
       ],
       "documents": [
-        "research/runtime/campaign-menu-engine-contract.md"
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/campaign-menu-entry-observation.md"
       ],
       "implementation": [
         "tools/export-campaign-menu-support.py"
@@ -10068,7 +10140,8 @@
         "tools/test-campaign-menu-contract.py"
       ],
       "evidence": [
-        "UI26.original"
+        "UI26.original",
+        "UI27.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -10212,11 +10285,14 @@
         }
       ],
       "documents": [
-        "research/runtime/campaign-menu-engine-contract.md"
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/campaign-menu-entry-observation.md"
       ],
       "implementation": [],
       "tests": [],
-      "evidence": [],
+      "evidence": [
+        "UI27.live"
+      ],
       "status": {
         "understanding": "partial",
         "implementation": "none",
@@ -10226,73 +10302,46 @@
       }
     },
     {
-      "id": "TL.effect-same-cell-projection",
-      "subsystem": "terrain_lighting",
+      "id": "CP.realm-observation",
+      "subsystem": "campaign",
       "kind": "recovered",
-      "title": "Same-cell effect motion and recount coordinate production",
-      "scope": "Complete 004883f0 same-cell path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, unchanged cells/chains and return 3; authored setup, no crossings, occupied collisions, special termination or live scheduling",
+      "title": "Fresh campaign ingress observation and guarded tick forwarding",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
-          "address": 4752368,
-          "scope": "Complete 004883f0 same-cell path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, unchanged cells/chains and return 3; authored setup, no crossings, occupied collisions, special termination or live scheduling"
+          "address": 5576608,
+          "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+          "recovered_range": "campaign-entry-5517a0"
         }
       ],
       "documents": [
-        "research/runtime/effect-same-cell-projection.md"
+        "research/runtime/campaign-menu-entry-observation.md",
+        "research/runtime/campaign-menu-engine-contract.md"
       ],
       "implementation": [
-        "reconstruction/rendering/effect_projection.cpp",
-        "reconstruction/rendering/effect_projection.hpp",
-        "reconstruction/rendering/effect-projection/CMakeLists.txt"
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/observer.c",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/build-menu-observer.py"
       ],
       "tests": [
-        "tests/effect-projection-reference.cpp",
-        "tests/effect-projection-test.cpp",
-        "tools/test-effect-projection.py"
+        "tests/campaign-observer-test.c",
+        "tools/test-campaign-observer.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-menu-observer.py"
       ],
       "evidence": [
-        "TL07.projection-original",
-        "TL07.projection-native"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "recorded",
-        "integration": "headless",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "TL.effect-projection-policy",
-      "subsystem": "terrain_lighting",
-      "kind": "native_policy",
-      "title": "Atomic bounded effect projection and lighting composition",
-      "scope": "Owned candidate-copy atomic refusals for unsupported type/creator/kind/count/counter/dimensions, inconsistent positions, height exits, horizontal excursions and later cell crossings; creation-pending source becomes admissible after projection and composes with the existing headless lighting cycle; empty collision context is a caller precondition, not live world certification",
-      "confidence": "high_within_scope",
-      "original": [],
-      "documents": [
-        "research/runtime/effect-same-cell-projection.md"
-      ],
-      "implementation": [
-        "reconstruction/rendering/effect_projection.cpp",
-        "reconstruction/rendering/effect_projection.hpp",
-        "reconstruction/rendering/effect-projection/CMakeLists.txt"
-      ],
-      "tests": [
-        "tests/effect-projection-reference.cpp",
-        "tests/effect-projection-test.cpp",
-        "tools/test-effect-projection.py"
-      ],
-      "evidence": [
-        "TL07.projection-native"
+        "UI27.live",
+        "UI27.fixture"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -15068,42 +15117,6 @@
       ]
     },
     {
-      "id": "UI26.original",
-      "kind": "isolated_original",
-      "build": "nocd-40209ca7",
-      "scope": "269 original-bytecode fixtures with privately stubbed dependencies; contract observations only, no native equivalence or live integration",
-      "record": "research/runtime/campaign-menu-engine-contract.json",
-      "sha256": "2a0ee2743e0254c52dcd8f55d72f0245c917de018b2d64810e78883f66cf9836",
-      "sources_pointer": "/sources",
-      "original_hash_pointer": "/source_sha256",
-      "assertions": [
-        {
-          "pointer": "/success",
-          "equals": true
-        },
-        {
-          "pointer": "/main_cases",
-          "equals": 7
-        },
-        {
-          "pointer": "/occupancy_cases",
-          "equals": 25
-        },
-        {
-          "pointer": "/admission_cases",
-          "equals": 216
-        },
-        {
-          "pointer": "/auxiliary_cases",
-          "equals": 7
-        },
-        {
-          "pointer": "/navigation_cases",
-          "equals": 14
-        }
-      ]
-    },
-    {
       "id": "TL07.projection-original",
       "kind": "isolated_original",
       "build": "nocd-40209ca7",
@@ -15196,6 +15209,88 @@
         {
           "pointer": "/cmake_tests_passed",
           "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "UI26.original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "269 original-bytecode fixtures with privately stubbed dependencies; contract observations only, no native equivalence or live integration",
+      "record": "research/runtime/campaign-menu-engine-contract.json",
+      "sha256": "2a0ee2743e0254c52dcd8f55d72f0245c917de018b2d64810e78883f66cf9836",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/main_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/occupancy_cases",
+          "equals": 25
+        },
+        {
+          "pointer": "/admission_cases",
+          "equals": 216
+        },
+        {
+          "pointer": "/auxiliary_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/navigation_cases",
+          "equals": 14
+        }
+      ]
+    },
+    {
+      "id": "UI27.live",
+      "kind": "live_observation",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+      "record": "research/runtime/campaign-menu-entry-observation.json",
+      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/original_tick_forwarded",
+          "equals": true
+        },
+        {
+          "pointer": "/live/realm_resources_observed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI27.fixture",
+      "kind": "native_integration",
+      "scope": "Synthetic opt-in forwarding guards/deduplication and disabled-probe Preferences regression; no original/native engine equivalence",
+      "record": "research/runtime/campaign-menu-entry-observation.json",
+      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        },
+        {
+          "pointer": "/preferences_regression/success",
+          "equals": true
         }
       ]
     }
@@ -16784,6 +16879,24 @@
         "tests/effect-projection-test.cpp",
         "tools/test-effect-projection.py"
       ]
+    },
+    {
+      "id": "campaign.fresh-ingress",
+      "level": "live_observation",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+      "behaviors": [
+        "CP.realm-observation",
+        "CP.main-new-game",
+        "CP.realm-initialization-gap"
+      ],
+      "evidence": [
+        "UI27.live",
+        "UI27.fixture"
+      ],
+      "tests": [
+        "tools/test-live-campaign-entry.py",
+        "tools/test-campaign-observer.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -16901,7 +17014,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "db0ef0194f43fe18e7e8801e0b7f3f7d1ddef871867f5253ba5ab8885866d4e4",
+      "sha256": "f64c45d4d99092dcf6c56dd1a7160cc4f2932c780979e909fd2ba6049107467e",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
     },
     {
@@ -16911,7 +17024,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-same-cell-projection-source-index.json",
-    "sha256": "b243a72f47ddec4253c0fbc399e06c3ff0e85cfa342b2999278fadc7c13fb876"
+    "path": "research/runtime/coverage/source-index-campaign-observation.json",
+    "sha256": "4792986eb7cd0170e6c89d22f13c1a84ef019bdef5cb28119014d9b0695538ad"
   }
 }

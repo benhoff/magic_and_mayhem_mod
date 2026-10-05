@@ -1246,6 +1246,256 @@
         "evidence": [],
         "reason": "Generated audit metadata only; no implementation or status promotion."
       }
+    },
+    {
+      "id": "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d",
+      "reason": "Review opt-in guarded forwarding instrumentation, isolated PE32 fixture and bounded original New Game observation. Fresh campaign reaches Region Entry before Realm resources are initialized, so native Realm dispatch stays pending. Reconcile focused/central campaign links, committed-source census and evidence without broadening original/native equivalence or replacing original work. Historical shared observer evidence stays historical; new source staleness and pending paths are retained.",
+      "files": [
+        {
+          "path": "research/runtime/README.md",
+          "before_sha256": "d9b7c45ce8dab09bf5da9ae1a1c58c99c8de1e9fe84156cdb859e5e433bb22a8",
+          "after_sha256": "73b33849d7b427ad6c4da355ec4e6f529425ceddbdaa625d2bf1acb60be2595b"
+        },
+        {
+          "path": "research/runtime/campaign-menu-coverage-register.json",
+          "before_sha256": "db0ef0194f43fe18e7e8801e0b7f3f7d1ddef871867f5253ba5ab8885866d4e4",
+          "after_sha256": "f64c45d4d99092dcf6c56dd1a7160cc4f2932c780979e909fd2ba6049107467e"
+        },
+        {
+          "path": "research/runtime/campaign-menu-engine-contract.md",
+          "before_sha256": "dc24faeac2d6e7c704122a57211c30fb67df4f3089ec182ff3c51869edb602eb",
+          "after_sha256": "dc24faeac2d6e7c704122a57211c30fb67df4f3089ec182ff3c51869edb602eb"
+        },
+        {
+          "path": "research/runtime/campaign-menu-entry-observation.json",
+          "before_sha256": null,
+          "after_sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088"
+        },
+        {
+          "path": "research/runtime/campaign-menu-entry-observation.md",
+          "before_sha256": null,
+          "after_sha256": "4f65ffc3c1c10a557a15c59ebbbc373bb9cf464dee581ae254e36bfc63f30cde"
+        },
+        {
+          "path": "research/runtime/campaign-menu-observation-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "f90756b363c250a45f92a2c71bb8c83808aab5907462a47ccbe634747bbcb4af"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "19bf5a815ac7ea6f1cd5875c7993ec56e0fa9f2b3885f1798051ec1572e9877b",
+          "after_sha256": "0f7ad72e8290a9ec055f7ceea6f640b7bd88f4021827962a7adeb4b9f44feef5"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "1896f1de9dcd0b6f79e7b0dbf8c3027f772a03706cda691f09b272c410d36a0f",
+          "after_sha256": "0cbcf781f0e068a2435918c10f8dc20b74dbfd3e8f8646059b4feb505008ecf9"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-campaign-observation.json",
+          "before_sha256": null,
+          "after_sha256": "4792986eb7cd0170e6c89d22f13c1a84ef019bdef5cb28119014d9b0695538ad"
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "20bf66debe7c3d77f1fab06abe56cea2829c294c6d30c3f228dd7fdca5ddf0b8",
+          "after_sha256": "aa4aaf8529dbc1d7c2246d7aba54d9501f009597467f79cec734b3e95bddc1eb"
+        },
+        {
+          "path": "runtime/menu/campaign_observe.h",
+          "before_sha256": null,
+          "after_sha256": "046adaf780652b3996047a496c53b3ff52c4970c2fe75d32b299cc6c5e02b4db"
+        },
+        {
+          "path": "runtime/menu/observer.c",
+          "before_sha256": "e8cc4f5cd669ddc6cb836b9622383b58a08dfdaf5ce11494a3452cd42ce603f5",
+          "after_sha256": "57ab38db3227166fcd5656b537f46ec6773203d9055b10ff3a9e770c645cb406"
+        },
+        {
+          "path": "tests/README.md",
+          "before_sha256": "05359e8206231e17f82eda1f588f416443810b61c2a14de8da4e8b61beedf428",
+          "after_sha256": "0bb42b49c80be1ef555bf5654483320ad1ddf9139c0356a9302208ca0ca538c2"
+        },
+        {
+          "path": "tests/campaign-observer-test.c",
+          "before_sha256": null,
+          "after_sha256": "27c879ec46802e2f52d04d9c83108c1e6560c938b9dc768fe4ad87dbc0459adb"
+        },
+        {
+          "path": "tools/build-menu-observer.py",
+          "before_sha256": "4985cb07d670aca84ecbdf15453ec38a9e5fed942c516f005efbaecb30afd6d1",
+          "after_sha256": "4a7f897ee654116f5905b408ebe0e415d25733f5c44d74d578338cfeaf283c27"
+        },
+        {
+          "path": "tools/menu-game-runner.py",
+          "before_sha256": "bff6c0eb7d73a5f1408dcdb3000556029cd414fc4877c5c969aa9f7c4a5fb2c9",
+          "after_sha256": "8b8057d0302256548e1c6ba598ccc00d4612ba539bc83021a04912e66acfa855"
+        },
+        {
+          "path": "tools/prepare-menu-observer.py",
+          "before_sha256": "444d3b276ae9f55486c2bc4f8ba8d8051ae3bee306a41ceae5f9a415e8f736a4",
+          "after_sha256": "9169e05631dc96bc9bf9e087c7e678fc42fe96b29ae1ebd74a4d945318fb153c"
+        },
+        {
+          "path": "tools/test-campaign-observer.py",
+          "before_sha256": null,
+          "after_sha256": "a763309a677c211764bb445bfc72c151a5f82a842198ac55e52d01936015b9f7"
+        },
+        {
+          "path": "tools/test-live-campaign-entry.py",
+          "before_sha256": null,
+          "after_sha256": "58259387aea19736009b1797ce9350e9ce2abaa01bdbe446bdf9343a86fe915b"
+        },
+        {
+          "path": "tools/test-menu-observer.py",
+          "before_sha256": "8750c1b36e25895fe58e426d8542326adc61548863e132769b56ee88a3408460",
+          "after_sha256": "8750c1b36e25895fe58e426d8542326adc61548863e132769b56ee88a3408460"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "BR.battle",
+          "before_sha256": "93464b9fe6c59141c28b6f87f3c65723305468520ff7710c55c338c404102b96",
+          "after_sha256": "82904722242e283ab7c085078c1905da2399cf8c8773a3d7a2aea6a84a9d49ae"
+        },
+        {
+          "id": "BR.main",
+          "before_sha256": "eb29a8129acf22d9e5e1f305f5081a8e593d9b5511f6a9e140a1d3dbd4ac8857",
+          "after_sha256": "93085cec9dcf279a3e8aa40fa5394a13a95157db6c5496f1854b25c4da7b8852"
+        },
+        {
+          "id": "BR.mini",
+          "before_sha256": "f269c885a6f4da830af4af3292cb9519a5ac7cc0e9d77b03146cca43ad694f12",
+          "after_sha256": "564b9f18c74eec84a928d3f0d2ad39d08c62ecfc726480ba045db2c753ee4ed0"
+        },
+        {
+          "id": "BR.result",
+          "before_sha256": "17ae2045af6c55aa24d72c57b30bcb97c050573b6a536fd61a092ceb6b5f8816",
+          "after_sha256": "cc586ff95645a662ca4be1f61e5edd8d7f7bb9181ed512ca887550cd68b84a76"
+        },
+        {
+          "id": "BR.spell",
+          "before_sha256": "fbeea40a73e9e32ed749c68150b4569a74756832d341bb192f575154766d640a",
+          "after_sha256": "a69e8602d8ded4acdb9b1d9ffb74543e635ca3062a63f4ae39bc9295724769e3"
+        },
+        {
+          "id": "CP.main-new-game",
+          "before_sha256": "a25e18d191f2a33cdb8aa8ccac00cc64107f968b1c347871b3a653c30f414e45",
+          "after_sha256": "bbf325b220eb8a19ef75045e418b31ea4e3bdd9ae857a8160dafc6c2fb03080e"
+        },
+        {
+          "id": "CP.realm-auxiliary",
+          "before_sha256": "3f56790928f067622315399046be55ab277f818cfae5871fe92395ff6bcbd98c",
+          "after_sha256": "3f56790928f067622315399046be55ab277f818cfae5871fe92395ff6bcbd98c"
+        },
+        {
+          "id": "CP.realm-initialization-gap",
+          "before_sha256": "0b8e420e34bcc161fd3c54e1fee2a0a954895c1e708ea7b3b623f4c4149b6757",
+          "after_sha256": "f11707f5750c0a45fc6af6ff78a970e9a22c6c30475b9d712375d376535a58f0"
+        },
+        {
+          "id": "CP.realm-navigation",
+          "before_sha256": "f353b0d73ee176d0563d8ccc4848d2335dd240cda3a641f20b86f7ab29b8897a",
+          "after_sha256": "f353b0d73ee176d0563d8ccc4848d2335dd240cda3a641f20b86f7ab29b8897a"
+        },
+        {
+          "id": "CP.realm-observation",
+          "before_sha256": null,
+          "after_sha256": "bc0f9f99b2d91aff392024aeebc60d6d47aa048a56cb25f0b6ba3b5ab77866c4"
+        },
+        {
+          "id": "CP.region-admission",
+          "before_sha256": "e4bb8c2039bbdb9fd25b916401d2ec684d5056e6c7ae0bfea35a22b7ebd3b14e",
+          "after_sha256": "e4bb8c2039bbdb9fd25b916401d2ec684d5056e6c7ae0bfea35a22b7ebd3b14e"
+        },
+        {
+          "id": "NP.preferences-draft",
+          "before_sha256": "56bbeaf2f45a4db898f94d758c0e6fcf4c10d3aee7b1c54c8a9e1fb65fcd0412",
+          "after_sha256": "56bbeaf2f45a4db898f94d758c0e6fcf4c10d3aee7b1c54c8a9e1fb65fcd0412"
+        },
+        {
+          "id": "NP.preferences-persistence",
+          "before_sha256": "ee496b828e05ffa4cd5a3479c0e6d5560430feb2f44d92f2aa730fae824403f3",
+          "after_sha256": "2242fe024d1e91f2a60a51d2abe5c9c35dade133c5576589d89a1f1d79d58904"
+        },
+        {
+          "id": "PR.apply",
+          "before_sha256": "d4118f9c00c420c0c2ad23167fc8d8cb3f822720aefbc126313770af4c1eb50b",
+          "after_sha256": "0bbe45e7b72fffd5fcbd77e782fc4223f1a2e33c16fcb7250c0a1a99f67af66a"
+        },
+        {
+          "id": "PR.audio-preview-cancel",
+          "before_sha256": "431e71a71cafe0f30995bbf79f5af1d9dd27ca950b07d5884b6d384e05dddd13",
+          "after_sha256": "3b8215c7b5bd7500238622da52a4582fab42e5ad734efbf5e07e06a145d401af"
+        },
+        {
+          "id": "PR.control-admission",
+          "before_sha256": "1ab8ba9de7afd9770495b617499e8157c060d28c311d8c35c7a0034a4891052e",
+          "after_sha256": "3225853b0ce84396ca232c7929ee3f361534cf2685ecaf4b36d0d49bb54955de"
+        },
+        {
+          "id": "PR.display-rebuild",
+          "before_sha256": "6f3d84423a059dacdaa75bf53c992c72c5e321acf0b4eedbd224bd29772f38ea",
+          "after_sha256": "8b76f4e82d4d96ac34e4beaedc370fc772ab0d4ad95ee2b2a94afe34b5cc91b2"
+        },
+        {
+          "id": "PR.main-entry",
+          "before_sha256": "78a9c26e1e08a2c7c9de8ff639a149aa37dec1e67d8024b082774e65edaab755",
+          "after_sha256": "18e2a4ae4747e131a95bfb8cd86b235aa9af2ecdd0ead4171cfd3543220637fa"
+        },
+        {
+          "id": "TOOL.coverage-gate",
+          "before_sha256": "c78df6a6f04a75951c52180c3ce2885865c7862f47a099c51467a5704fe6bb9b",
+          "after_sha256": "07fa0c393cb5596040254c50ad68a8729c83c36c44728c59ea26a83265036ce0"
+        },
+        {
+          "id": "WIRE.menu_fixtures",
+          "before_sha256": "668de02663ab7a27458691dbc683fe84ea29fc59ca8c6c233bf26e98534fc4c7",
+          "after_sha256": "668de02663ab7a27458691dbc683fe84ea29fc59ca8c6c233bf26e98534fc4c7"
+        }
+      ],
+      "pending_gaps": [
+        "behavior_anchors_outside_discovered_functions:c36ed2931e1e208d6b041102806446a0043004701df112f8d73acb4872d1eff4",
+        "behaviors_without_comparison:ecd93f0ce3e847e52ec927b87bb72ebe5907132266b34424a173f5a9712fd89f",
+        "stale_evidence:00e9ba84f31f028407daff609e205281eea8b5c6d88f72cb8417939048dade77",
+        "stale_evidence:0add288f57c2236fa194015b58c0e183fe72b5a2872d0d15bb1dc8c4ce73115a",
+        "stale_evidence:89f65850b8c55bd54d8dc6101a13748c801f73eec5eb3589c77e03539dc4b8a5",
+        "stale_evidence:8aeca031a24ba7a489113b76c6085eb7fe49638b3eed9056775b589f43c29ff8",
+        "stale_evidence:9c81d376f6944eff143ce687d77c446cd06cb625cfb4ad35085b00b950427941",
+        "stale_evidence:9e988d29eddf19aa4ced22ed6bf9da861ab74c27e4bc36268ce939441d72a592",
+        "stale_evidence:c0d6b637ef9abf2cb185dd40fb8c12df25138b47459ea23877af2e14f630278d",
+        "stale_evidence:cba840585da7c222d46d354feae08f15a954d4319d523ea3eda839130f594e43",
+        "stale_evidence:f4134266b7d62d58785ce9bf0a22946c1bfba4ab4b2bf0a0c44ddf9df566e640"
+      ],
+      "validation": {
+        "status": "pending",
+        "evidence": [
+          "UI27.fixture",
+          "UI27.live"
+        ],
+        "reason": "Synthetic forwarding guard and V6 Preferences regressions passed; bounded live ingress verified immutable originals and staged hashes. Existing shared observer contract claims are not revalidated wholesale: leave their original fingerprints untouched. Loaded Realm ownership, Region Entry actions, campaign Mini mode 4 and Qt campaign projection/dispatch remain pending."
+      }
+    },
+    {
+      "id": "campaign-observation-ui27-execution-campaign-observation-commit-qtp7ug3d",
+      "reason": "New observation-only behavior validated by the synthetic PE32 forwarding fixture and bounded Xvfb/Wine original campaign ingress; no native engine equivalence or replacement.",
+      "files": [],
+      "behaviors": [
+        {
+          "id": "CP.realm-observation",
+          "before_sha256": null,
+          "after_sha256": "bc0f9f99b2d91aff392024aeebc60d6d47aa048a56cb25f0b6ba3b5ab77866c4"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "UI27.fixture",
+          "UI27.live"
+        ],
+        "reason": "UI27 fresh fingerprints cover guarded probe, 300-call deduplication, disabled-probe Preferences regression and actual original New Game/Realm-to-Region Entry ownership on one thread. Scope ends before loaded Realm or native actions."
+      }
     }
   ]
 }
