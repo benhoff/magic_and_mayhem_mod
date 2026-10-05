@@ -3,6 +3,14 @@
 #include <cmath>
 #include <stdexcept>
 namespace mnm::reconstruction {
+PaletteShadingConfig applyPaletteLighting(PaletteShadingConfig config,const PaletteLightingOverrides& fields){
+ if(fields.lightCurve)config.intensityLevel=std::clamp(*fields.lightCurve,1,1000);
+ if(fields.colourFactor)config.saturationLevel=std::clamp(*fields.colourFactor,1,1000);
+ const auto power=[](double value){if(!std::isfinite(value))throw std::invalid_argument("Nonfinite palette lighting power");return value<=0?0.:std::min(value,1000.);};
+ if(fields.lightPower)config.intensityPower=power(*fields.lightPower);
+ if(fields.colourPower)config.saturationPower=power(*fields.colourPower);
+ return config;
+}
 std::size_t ShadedPalette::tableIndex(std::int32_t shade) const {
  if(shift>7 || tables.empty() || neutral>=tables.size())throw std::invalid_argument("Invalid shading tables");
  const auto divisor=std::int64_t(1)<<shift;
@@ -18,8 +26,8 @@ std::size_t ShadedPalette::tableIndex(std::int32_t shade) const {
 ShadedPalette buildShadedPalette(const PaletteRgb& rgb,PaletteShadingConfig c,bool rgb555){
  if(c.count<2 || c.count>256 || (c.count&(c.count-1)) ||
     !std::isfinite(c.intensityPower) || !std::isfinite(c.saturationPower) ||
-    c.intensityPower<=0 || c.saturationPower<=0 ||
-    c.intensityLevel<0 || c.intensityLevel>127 || c.saturationLevel<0 || c.saturationLevel>127)
+    c.intensityPower<0 || c.saturationPower<0 || c.intensityPower>1000 || c.saturationPower>1000 ||
+    c.intensityLevel<1 || c.intensityLevel>1000 || c.saturationLevel<1 || c.saturationLevel>1000)
   throw std::invalid_argument("Unsupported palette shading configuration");
  const double intensity=std::pow(c.intensityLevel,c.intensityPower),saturation=std::pow(c.saturationLevel,c.saturationPower);
  if(!std::isfinite(intensity) || !std::isfinite(saturation) || intensity==0 || saturation==0)

@@ -3,6 +3,7 @@
 #include "terrain_map.hpp"
 #include "terrain_sections.hpp"
 #include "region_loader.hpp"
+#include "palette_lighting.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QLabel>
@@ -36,6 +37,7 @@ int main(int argc,char** argv)try{
  p.addOption({"scroll","Recovered screen-direction scroll x,y; repeat in order","pixels"});
  p.addOption({"view","Raw view 0..3","index","0"});p.addOption({"visibility","Apply recovered visibility pass"});
  p.addOption({"palette-shading","Apply recovered mode 0 palettes with explicit count 16 and levels 1 and powers 2"});
+ p.addOption({"lighting-config","Read global palette lighting from a packed installed CFG; requires palette-shading","path"});
  p.addOption({"light","Controlled uniform terrain light (-127..127); requires palette-shading","value","0"});
  p.addOption({"overlap","Use one anchor for every tile"});p.addOption({"output","New output prefix; writes .565, .png and .json, then exits","prefix"});p.process(app);
  bool ok=false;const auto view=p.value("view").toUInt(&ok);if(!ok || view>3 || !p.isSet("root"))throw std::runtime_error("Specify --root and view 0..3");
@@ -144,12 +146,18 @@ int main(int argc,char** argv)try{
  }
  std::optional<mnm::reconstruction::PaletteShadingConfig> shading;
  if(p.isSet("palette-shading")){shading.emplace();const auto light=p.value("light").toInt(&ok);if(!ok || light< -127 || light>127)throw std::runtime_error("Light must lie in -127..127");for(auto& tile:tiles)tile.state.light=std::int8_t(light);}
- else if(p.isSet("light"))throw std::runtime_error("Light requires palette-shading");
+ if(p.isSet("lighting-config")){
+  if(!shading)throw std::runtime_error("Lighting config requires palette-shading");
+  auto opened=store.open(p.value("lighting-config").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&opened))throw std::runtime_error(e->detail);
+  auto file=std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(opened));auto loaded=mnm::assets::loadPaletteLightingFields(*file);if(auto* e=std::get_if<mnm::assets::PersistenceError>(&loaded))throw std::runtime_error(e->detail);
+  const auto& fields=std::get<mnm::assets::PaletteLightingFields>(loaded);*shading=mnm::reconstruction::applyPaletteLighting(*shading,{fields.lightCurve,fields.colourFactor,fields.lightPower,fields.colourPower});
+ }
+ if(!shading && p.isSet("light"))throw std::runtime_error("Light requires palette-shading");
  mnm::render::GlBlitter renderer;const auto result=mnm::preview::renderTerrain(renderer,std::get<mnm::assets::TerrainCatalog>(catalog),std::get<mnm::assets::Sprite>(sprite),tiles,{view,world?camera.cutLevel:1},p.isSet("visibility"),world,shading);
  if(p.isSet("output")){
   QByteArray raw;for(auto word:result.pixels.pixels){raw.append(char(word&255));raw.append(char((word>>8)&255));}
   const auto prefix=p.value("output");writeNew(prefix+".565",raw);QFile png(prefix+".png");if(!png.open(QIODevice::WriteOnly|QIODevice::NewOnly) || !result.image.save(&png,"PNG"))throw std::runtime_error("Cannot save new PNG");
-  mapInfo.insert("palette_shading",bool(shading));if(shading){mapInfo.insert("palette_count",16);mapInfo.insert("controlled_light",p.value("light").toInt());}
+  mapInfo.insert("palette_shading",bool(shading));if(shading){mapInfo.insert("palette_count",16);mapInfo.insert("controlled_light",p.value("light").toInt());mapInfo.insert("palette_lighting",QJsonObject{{"light_curve",shading->intensityLevel},{"colour_factor",shading->saturationLevel},{"light_power",shading->intensityPower},{"colour_power",shading->saturationPower},{"config",p.value("lighting-config")}});}
   QJsonArray queue;for(const auto& item:result.queue){const auto& d=item.draw;queue.append(QJsonObject{{"tile",qint64(item.tile)},{"frame",qint64(d.frame)},{"role",qint64(d.role)},{"key",d.key},{"kind",d.kind},{"x",d.anchorX},{"y",d.anchorY},{"shade",d.shade}});}
   const auto rgba=result.image.convertToFormat(QImage::Format_RGBA8888);const auto rgbaHash=QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(rgba.constBits()),rgba.sizeInBytes()),QCryptographicHash::Sha256).toHex();
   QJsonArray owners;for(const auto& owner:result.owners)owners.append(QJsonArray{owner.flags8,owner.flags10});

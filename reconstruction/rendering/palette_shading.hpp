@@ -2,6 +2,7 @@
 #include <array>
 #include <cstdint>
 #include <vector>
+#include <optional>
 namespace mnm::reconstruction {
 using PaletteRgb = std::array<std::array<std::uint8_t,3>,256>;
 using PaletteWords = std::array<std::uint16_t,256>;
@@ -12,6 +13,13 @@ struct PaletteShadingConfig {
  int intensityLevel=1,saturationLevel=1;
  double intensityPower=2,saturationPower=2;
 };
+struct PaletteLightingOverrides {
+ std::optional<int> lightCurve,colourFactor;
+ std::optional<double> lightPower,colourPower;
+};
+// Selected GLOBAL_OPTIONS admission: levels 1..1000, powers 0..1000.
+// Missing keys preserve supplied state. Nonfinite inputs are refused.
+PaletteShadingConfig applyPaletteLighting(PaletteShadingConfig,const PaletteLightingOverrides&);
 struct ShadedPalette {
  unsigned shift=0,neutral=0;
  std::vector<PaletteWords> tables;
