@@ -125,3 +125,8 @@ and continuation policies remain separate from native strict refusal. Next work
 is generation from complete available recipe catalogs, successful-assignment
 conversion to owned assembly plans, and generated terrain scene comparisons.
 Entities, water, lighting and live integration remain separate.
+
+The next milestone now connects complete available catalogs to the generation
+loop and converts successful assignments into owned concrete section-copy plans;
+see [generated terrain plans](terrain-generated-plans.md). Installed generated
+scene production and frame comparisons remain subsequent work.
