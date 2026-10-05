@@ -171,3 +171,7 @@ Remaining work is Specific placement/fallback and count mutation, solver
 backtracking, retries/RNG attempt progression and error handling, conversion of
 generated assignments to the owned assembly plan and scene comparisons. Live
 integration, entities, lighting and water remain separate.
+
+The subsequent [placement/solver milestone](terrain-region-solver.md) adds
+count mutation and backtracking, and separately validates the detailed pruning
+carry needed by that driver. The basic pruning API retains its table-only result.

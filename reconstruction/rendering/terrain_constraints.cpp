@@ -123,10 +123,11 @@ std::vector<RegionLocation> regionLocations(const RegionSelectionGrid& grid,
     }
     return result;
 }
-std::vector<RegionCandidate> pruneRegionCandidates(const RegionDescriptorBank& bank,
+RegionPruningResult pruneRegionCandidateDetails(const RegionDescriptorBank& bank,
     const std::vector<RegionCandidate>& input,unsigned tried,int rotation) {
     validate(bank);(void)bank.blocks.at(tried);
     if (input.size()>49 || rotation< -1 || rotation>3) throw std::invalid_argument("Region pruning extent/rotation");
+    RegionPruningResult result;
     struct Slot {bool active=false;int descriptor=-1;std::uint8_t mask=0;};
     std::array<Slot,50> slots{};
     for (unsigned i=0;i<input.size();++i) {
@@ -140,6 +141,7 @@ std::vector<RegionCandidate> pruneRegionCandidates(const RegionDescriptorBank& b
     }
     for (unsigned i=0;i<50;) {
         auto& slot=slots[i];
+        if (slot.descriptor>=0) result.carry=carry(bank,unsigned(slot.descriptor),0);
         if (slot.descriptor>=0) for (unsigned r=0;r<4;++r)
             if (rotateRegionEdges(bank.blocks[slot.descriptor].selection.edges,r)==bank.blocks[tried].selection.edges) {
                 const int removed=int(r)+rotation;
@@ -156,8 +158,11 @@ std::vector<RegionCandidate> pruneRegionCandidates(const RegionDescriptorBank& b
         ++i;
     }
     slots.back()={}; // The original always clears its fiftieth entry.
-    std::vector<RegionCandidate> result;
-    for (const auto& slot:slots) if (slot.active) result.push_back({unsigned(slot.descriptor),slot.mask});
+    for (const auto& slot:slots) if (slot.active) result.candidates.push_back({unsigned(slot.descriptor),slot.mask});
     return result;
+}
+std::vector<RegionCandidate> pruneRegionCandidates(const RegionDescriptorBank& bank,
+    const std::vector<RegionCandidate>& input,unsigned tried,int rotation) {
+    return pruneRegionCandidateDetails(bank,input,tried,rotation).candidates;
 }
 }
