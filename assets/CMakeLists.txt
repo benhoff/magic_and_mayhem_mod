@@ -32,7 +32,7 @@ target_compile_options(mnm-sprite-inspect PRIVATE -Wall -Wextra -Werror -pedanti
 add_executable(mnm-asset-compare compare_main.cpp)
 target_link_libraries(mnm-asset-compare PRIVATE mnm-assets Qt6::Core)
 target_compile_options(mnm-asset-compare PRIVATE -Wall -Wextra -Werror -pedantic)
-add_library(mnm-persistence-loader STATIC packed_container.cpp config_loader.cpp save_loader.cpp save_world.cpp)
+add_library(mnm-persistence-loader STATIC palette_lighting.cpp packed_container.cpp config_loader.cpp save_loader.cpp save_world.cpp)
 target_link_libraries(mnm-persistence-loader PUBLIC mnm-assets)
 target_compile_options(mnm-persistence-loader PRIVATE -Wall -Wextra -Werror -pedantic)
 add_library(mnm-region-recipe-loader STATIC region_recipe.cpp)

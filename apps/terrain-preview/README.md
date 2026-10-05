@@ -247,3 +247,13 @@ effect-chain selection remain outstanding. The upload cache distinguishes
 frames at different selected tables and retains owned textures. See
 [palette shading evidence](../../research/runtime/terrain-palette-shading.md)
 for original-binary comparisons and reproduction.
+
+To use the installed global palette controls, add
+`--lighting-config 'CFG\Encrypted\chaos.cfg'` to a `--palette-shading` request.
+The native packed CFG loader reads `LightCurve`, `ColourFactor`, `LightPower`
+and `ColourPower` from `GLOBAL_OPTIONS`, then applies the original bounds.
+Output JSON records the effective controls. Missing fields preserve image
+settings; malformed numeric fields or unavailable files are refused. This
+still uses explicit count 16 and controlled uniform `--light`; spatial light
+production and the separate terrain-count preference remain outstanding.
+See [configured lighting evidence](../../research/runtime/terrain-lighting-config.md).

@@ -8,7 +8,7 @@
 static void* allocation=nullptr;
 static void* allocate(unsigned size){if(allocation)throw std::runtime_error("Unexpected nested allocation");return allocation=std::calloc(1,size);}
 int main(int argc,char** argv)try{
- if(argc!=6)throw std::runtime_error("PE SPR count queue output expected");
+ if(argc!=6 && argc!=10)throw std::runtime_error("PE SPR count queue output expected");
  map_image(read(argv[1]));
  const unsigned char expected[]={0x53,0x8b,0x0d,0x94,0x20,0x5f,0x00};
  auto* allocator=reinterpret_cast<unsigned char*>(0x597880);
@@ -16,6 +16,10 @@ int main(int argc,char** argv)try{
  allocator[0]=0xe9;const auto relative=std::uint32_t(reinterpret_cast<std::uintptr_t>(&allocate)-0x597885);std::memcpy(allocator+1,&relative,4);
  auto sprite=read(argv[2]);const unsigned count=std::stoul(argv[3]);
  if(u32(sprite,8)!=4 || count<2 || count>256 || (count&(count-1)))throw std::runtime_error("SPR/count bounds");
+ mnm::reconstruction::PaletteShadingConfig config{count,1,1,2,2};
+ if(argc==10){config.intensityLevel=std::stoi(argv[6]);config.saturationLevel=std::stoi(argv[7]);config.intensityPower=std::stod(argv[8]);config.saturationPower=std::stod(argv[9]);}
+ using SetLevel=void (__attribute__((fastcall)) *)(int);using SetPower=void (__attribute__((stdcall)) *)(double);
+ reinterpret_cast<SetLevel>(0x582210)(config.intensityLevel);reinterpret_cast<SetLevel>(0x582220)(config.saturationLevel);reinterpret_cast<SetPower>(0x582230)(config.intensityPower);reinterpret_cast<SetPower>(0x582250)(config.saturationPower);
  const auto pals=u32(sprite,16),frames=u32(sprite,12),table=24+pals*768,base=table+frames*4;
  if(!pals || pals>4)throw std::runtime_error("Indexed palettes required");
  std::vector<void*> nodes;std::ofstream colours(std::string(argv[5])+".palettes",std::ios::binary);
@@ -24,7 +28,7 @@ int main(int argc,char** argv)try{
   mnm::reconstruction::PaletteRgb rgb{};std::memcpy(rgb.data(),sprite.data()+24+pi*768,768);
   for(unsigned format=0;format<2;++format){global(0x6e1f88,format);allocation=nullptr;void* node=nullptr;
    if(!reinterpret_cast<Build>(0x582440)(count,&node,rgb.data()) || !node)throw std::runtime_error("Original palette construction failed");
-   const auto native=mnm::reconstruction::buildShadedPalette(rgb,{count,1,1,2,2},format);
+   const auto native=mnm::reconstruction::buildShadedPalette(rgb,config,format);
    auto* header=static_cast<std::uint32_t*>(node);
    if(header[0] || header[1]!=native.shift || header[2]!=native.neutral)throw std::runtime_error("Palette header differs");
    for(unsigned t=0;t<native.tables.size();++t)for(unsigned i=0;i<256;++i)

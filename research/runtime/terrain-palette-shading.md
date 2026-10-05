@@ -62,7 +62,7 @@ lighting settings.
 
 `reconstruction/rendering/palette_shading.*` owns tables without PE pointers,
 Qt widgets, or renderer state. Its configuration accepts only supported counts,
-finite positive powers, levels 0..127 with nonzero finite results, and finite
+finite powers in 0..1000, levels 1..1000 with nonzero finite results, and finite
 dark-table powers. Other original counts and floating point exceptional paths
 are unsupported.
 
@@ -129,3 +129,7 @@ rendering, and live comparison/replacement remain separate work. General
 nondefault intensity/saturation settings are configurable in the recovered
 model but are not covered by this binary differential matrix. No original files
 or installed binaries are patched; no gameplay balance changes are included.
+
+The subsequent [global lighting configuration milestone](terrain-lighting-config.md)
+adds installed controls, recovered admission and nondefault palette validation.
+The original baseline evidence above remains the explicit image-default fixture.
