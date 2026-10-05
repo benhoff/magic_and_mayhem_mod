@@ -69,6 +69,11 @@ void World::validate(const State& s,const Limits& l) {
         if(s.map.empty() || d.x<1 || d.y<1 || d.z<1 || d.x>1024 || d.y>1024 || d.z>32)
             throw std::invalid_argument("invalid navigation binding");
     }
+    if(s.animation) {
+        if(!s.navigation || s.animation->data.empty() || s.animation->data.size()>8*1024*1024 || s.animation->sequenceBase>4088)
+            throw std::invalid_argument("invalid owned animation binding");
+        charge(s.animation->data.size());
+    }
     for(const auto& slot:s.slots) if(slot.entity) {
         if(!slot.generation || !known(slot.entity->family)) throw std::invalid_argument("invalid entity identity/family");
         charge(slot.entity->state.size());
@@ -76,8 +81,12 @@ void World::validate(const State& s,const Limits& l) {
         if(slot.entity->motion) {
             if(!s.navigation) throw std::invalid_argument("movement state requires bound map");
             validateMotion(*slot.entity,*s.navigation);charge(slot.entity->motion->route.size()*28);
-            if(slot.entity->motion->fine) charge(72);
-            if(slot.entity->motion->previous) charge(84);
+            const auto& m=*slot.entity->motion;
+            if(s.animation && !m.continuousMotion) throw std::invalid_argument("ANI binding requires continuous motion");
+            if((m.fine && bool(m.fine->animation)!=bool(s.animation)) || (m.previous && bool(m.previous->motion.animation)!=bool(s.animation)))
+                throw std::invalid_argument("animation cursor/binding disagreement");
+            if(m.fine) charge(112);
+            if(slot.entity->motion->previous) charge(124);
             if(slot.entity->motion->goal && !resolve(s,*slot.entity->motion->goal)) throw std::invalid_argument("dangling movement goal");
         }
     }

@@ -1,4 +1,4 @@
-# Native world snapshots v1, v2, v3 and v4
+# Native world snapshots v1, v2, v3, v4 and v5
 
 This is an owned native checkpoint format, independent of original Magic &
 Mayhem saves. Extension `.mnw` is a sandbox convention. No original save
@@ -8,7 +8,7 @@ encoding; signed coordinates use 32-bit two's-complement bit patterns.
 | Header offset | Size | Meaning |
 | --- | --- | --- |
 | 0 | 8 | `MNMNWLD` followed by NUL |
-| 8 | 4 | Version: 1 lifecycle, 2 waypoint movement, 3 sample motion, 4 segment continuity |
+| 8 | 4 | Version: 1 lifecycle, 2 waypoint movement, 3 sample motion, 4 segment continuity, 5 ANI-driven continuity |
 | 12 | 4 | Payload byte count, exactly file length minus 24 |
 | 16 | 8 | FNV-1a-64 of the payload |
 
@@ -42,9 +42,9 @@ accepted in the queue and later rejected by tick admission; active entity target
 references must resolve immediately against the complete restored slot table.
 
 Limits default to 65,536 slots, 65,536 commands and 64 MiB of encoded payload
-and conservative decoded-storage accounting. Current storage accounting charges 384 bytes
+and conservative decoded-storage accounting. Current storage accounting charges 512 bytes
 per slot and per pending command, exact blob lengths, and 28 bytes per route
-point, plus 72 bytes for present fine-motion continuation and 84 for completed-segment history. The initial v1 implementation charged 128/32 for slot/command storage;
+point, plus 112 bytes for present fine-motion continuation and 124 for completed-segment history. The initial v1 implementation charged 128/32 for slot/command storage;
 the larger typed motion records required a stricter resource policy without
 changing v1 wire bytes. It is an explicit
 budget policy, not a host `sizeof` ABI. Construction and decoding check bounds
@@ -63,7 +63,7 @@ invalid states, and split-process continuation. See
 
 The header/checksum and existing fields retain their meaning. Encoders select
 v2 when a navigation binding is present and otherwise retain exact v1 encoding.
-All four versions decode; no original game save is converted by this codec.
+All five versions decode; no original game save is converted by this codec.
 
 After the three blobs, v2 adds a binding-presence byte (must be 1), signed XYZ
 dimension DWORDs and a 64-bit FNV-1a fingerprint of the entire external frozen
@@ -187,3 +187,52 @@ current-segment replay or exact map binding.
 Independent Python v4 encoding tests boundary and intra-cell bytes, a
 Python-authored checkpoint, fractional speed, turns, prefix replanning and
 fresh-process continuation. See [NS04 evidence](../runtime/native-creature-segment-continuity.md).
+
+## V5 owned ANI and controller continuation
+
+V5 retains the v4 layout except for two explicit extensions. After the navigation
+binding and before the slot count it adds a required animation-presence byte
+(must be 1), a blob of original ANI bytes, then an unsigned directional sequence
+base DWORD. The blob is nonempty and at most 8 MiB; the decoder checks that cap
+before allocating. The base is 0..4088. The app adapter decodes the owned blob,
+requires ANI file version 5 and eight sequences at the selected base, and rejects
+unsupported movement event/sprite profiles. Native simulation does not interpret
+ANI opcodes or file offsets. The encoder selects native v5 whenever this binding
+is present, even without a current moving creature.
+
+Each v5 fine record (both current and completed history) appends an
+animation-cursor presence byte to its 72-byte v4 fields. When present it stores:
+
+1. Unsigned numeric sequence and next-record index DWORDs.
+2. Displayed-record presence byte, then unsigned record index DWORD if present.
+3. Active byte.
+4. Unsigned delay, elapsed, repeats and break-flag DWORDs.
+
+This adds 27 bytes without a displayed record or 31 bytes with one, including
+the animation-presence byte. All present motion records in an ANI-bound world
+must select continuous/sample motion, and each current/history fine record must
+own its controller cursor. A controller cursor without the owned ANI binding is
+invalid. Raw indices replace every original pointer.
+
+Structural bounds are sequence below 4096, PC at most 65536, displayed index
+below 65536, elapsed at most delay and break flag zero/one. Inactive state cannot
+have a displayed record. The app further requires an active compatible selected
+sequence, valid next/display extents and a sprite record at the display index.
+ANI-driven fine substep counters are bounded to 0..49 rather than the supplied
+clock's 0..11; they reset on actual event 2, independently of sample and PC indices.
+
+For an ongoing segment, restore reconstructs setup from completed history and
+replays each admitted movement invocation and its controller substeps, comparing
+all motion and controller fields. Completed history receives profile/extent
+checks, not full replay of all past segments. Unsupported raw events (including
+stop result 1), escape/budget failures or sample reads beyond 48 abort the tick.
+The selected sequence base is explicit native caller policy, not recovered
+original configuration. ANI bytes are owned continuation resources, so source
+file edits/deletion do not affect resumption. The map remains an external exact
+binding. SPR bytes/render state are outside this checkpoint.
+
+Current conservative storage charges are 512 per slot/command, 112 per present
+fine record and 124 per history, plus exact blobs and 28 per route point. This
+applies to older versions too without changing their wire bytes or pacing.
+See [NS05 evidence](../runtime/native-ani-motion.md) for independent wire oracles,
+fresh-process restoration and original composed-controller comparisons.

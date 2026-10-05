@@ -30,6 +30,17 @@ struct RoutePoint {
 };
 // Continuation state for the bounded animation-sample driver. Coordinates are
 // 32 fine units per XY cell and 16 per Z layer; no legacy object layout.
+struct AnimationCursor {
+    std::uint32_t sequence=0,pc=0;
+    std::optional<std::uint32_t> displayed;
+    bool active=false;
+    std::uint32_t delay=0,elapsed=0,repeats=0,breakFlag=0;
+};
+struct AnimationBinding {
+    Bytes data; // Owned ANI bytes, decoded only by the app navigation adapter.
+    std::uint32_t sequenceBase=0; // Explicit caller-selected directional base.
+    bool operator==(const AnimationBinding& other) const {return sequenceBase==other.sequenceBase && data==other.data;}
+};
 struct FineMotion {
     std::int32_t rate=0,duration=0,heightOrigin=0,heightDelta=0;
     std::int32_t accumulator=0,progress=0,travelX=0,travelY=0;
@@ -37,11 +48,13 @@ struct FineMotion {
     std::int32_t residualX=0,residualY=0;
     std::uint32_t frame=0,animationFrame=0,initialFrame=0;
     std::int32_t initialResidualX=0,initialResidualY=0;
+    std::optional<AnimationCursor> animation={};
 };
 struct SegmentHistory {
     FineMotion motion;
     std::int32_t direction=0,vertical=0,category=0;
 };
+static_assert(sizeof(FineMotion)<=112 && sizeof(SegmentHistory)<=124,"motion storage charges must cover owned records");
 struct CreatureMotion {
     Action action=Action::idle;
     Point origin,destination;
@@ -80,9 +93,10 @@ struct State {
     std::vector<Slot> slots;
     std::vector<Command> pending;
     std::optional<NavigationBinding> navigation={};
+    std::optional<AnimationBinding> animation={};
 };
 struct Limits {
-    static constexpr std::uint64_t slotCharge=384,commandCharge=384;
+    static constexpr std::uint64_t slotCharge=512,commandCharge=512;
     std::uint32_t slots=65536, commands=65536;
     std::uint64_t bytes=64*1024*1024;
 };

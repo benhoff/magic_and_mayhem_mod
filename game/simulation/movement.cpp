@@ -33,13 +33,21 @@ void validateMotion(const Entity& e,const NavigationBinding& binding) {
     if((m.continuousMotion && !m.sampleMotion) || (!m.continuousMotion && (m.previous || m.segmentTicks)) ||
        m.segmentTicks>100000 || (!m.fine && m.segmentTicks) ||
        (m.continuousMotion && ((m.fine && !m.segmentTicks) || (m.next && !m.previous)))) throw std::invalid_argument("invalid segment continuation policy");
+    auto cursor=[&](const FineMotion& f) {
+        if(f.animation && (!m.continuousMotion || f.animation->sequence>=4096 || f.animation->pc>65536 ||
+           (f.animation->displayed && *f.animation->displayed>=65536) ||
+           f.animation->elapsed>f.animation->delay || f.animation->breakFlag>1 ||
+           (!f.animation->active && f.animation->displayed))) throw std::invalid_argument("invalid animation cursor");
+    };
+    if(m.fine) cursor(*m.fine);
+    if(m.previous) cursor(m.previous->motion);
     if(m.previous) {
         const auto& h=*m.previous;const auto& f=h.motion;
         if(m.next && (h.direction!=m.route.at(m.next-1).direction || h.vertical!=m.route.at(m.next-1).verticalDelta || h.category!=m.route.at(m.next-1).category))
             throw std::invalid_argument("previous segment disagrees with consumed route point");
         if(h.direction<0 || h.direction>7 || h.vertical || h.category || f.progress<192 || f.progress>=384 ||
            f.rate<0 || f.rate>1000000 || f.duration<1 || f.duration>1000000 || f.accumulator<0 || f.accumulator>2000000 ||
-           f.frame>48 || f.animationFrame>=12 || f.initialFrame>=48 || std::llabs(std::int64_t(f.initialResidualX))>1000000 || std::llabs(std::int64_t(f.initialResidualY))>1000000 || std::llabs(std::int64_t(f.travelX))>f.progress || std::llabs(std::int64_t(f.travelY))>f.progress ||
+           f.frame>48 || f.animationFrame>=(f.animation?50U:12U) || f.initialFrame>=48 || std::llabs(std::int64_t(f.initialResidualX))>1000000 || std::llabs(std::int64_t(f.initialResidualY))>1000000 || std::llabs(std::int64_t(f.travelX))>f.progress || std::llabs(std::int64_t(f.travelY))>f.progress ||
            f.heightDelta || f.heightOrigin!=position.z*16 || f.fine.z!=position.z*16 ||
            std::llabs(std::int64_t(f.fine.x))>binding.dimensions.x*32+64 ||
            std::llabs(std::int64_t(f.fine.y))>binding.dimensions.y*32+64 ||
@@ -52,7 +60,7 @@ void validateMotion(const Entity& e,const NavigationBinding& binding) {
         if(!m.sampleMotion || m.action!=Action::moving || f.rate<(m.continuousMotion?0:1) || f.rate>1000000 ||
            f.duration<1 || f.duration>1000000 || f.accumulator<0 || f.accumulator>2000000 ||
            f.progress<0 || f.progress>=192 || f.frame>=(m.continuousMotion?48U:12U) ||
-           (m.continuousMotion && (f.animationFrame>=12 || f.initialFrame>=48 || std::llabs(std::int64_t(f.initialResidualX))>1000000 || std::llabs(std::int64_t(f.initialResidualY))>1000000)) ||
+           (m.continuousMotion && (f.animationFrame>=(f.animation?50U:12U) || f.initialFrame>=48 || std::llabs(std::int64_t(f.initialResidualX))>1000000 || std::llabs(std::int64_t(f.initialResidualY))>1000000)) ||
            std::llabs(std::int64_t(f.travelX))>f.progress || std::llabs(std::int64_t(f.travelY))>f.progress ||
            std::llabs(std::int64_t(f.heightDelta))>16 || f.heightOrigin!=position.z*16 ||
            (!m.continuousMotion && (f.fine.x!=position.x*32+f.travelX/6 || f.fine.y!=position.y*32+f.travelY/6)) ||
@@ -78,6 +86,7 @@ void validateMotion(const Entity& e,const NavigationBinding& binding) {
 void MovementSession::validateBinding(const State& state,const Navigation& navigation) {
     if(!state.navigation || !(*state.navigation==navigation.binding()) || state.map.empty())
         throw std::invalid_argument("movement map identity mismatch");
+    if(!(state.animation==navigation.animationBinding())) throw std::invalid_argument("movement animation resource mismatch");
     unsigned creatures=0;
     for(const auto& slot:state.slots) if(slot.entity && slot.entity->motion) {
         const auto& e=*slot.entity;
@@ -173,9 +182,13 @@ TickReport MovementSession::step(TickInput input) {
     });
 }
 void MovementSession::restore(const std::filesystem::path& path,const MapResolver& resolver) {
-    auto state=readSnapshot(path,world_.limits());
     if(!resolver) throw std::invalid_argument("map resolver required");
-    auto candidate=resolver(state.map);if(!candidate) throw std::invalid_argument("missing saved map");
+    restoreResources(path,[&](const State& state){return resolver(state.map);});
+}
+void MovementSession::restoreResources(const std::filesystem::path& path,const NavigationResolver& resolver) {
+    auto state=readSnapshot(path,world_.limits());
+    if(!resolver) throw std::invalid_argument("navigation resolver required");
+    auto candidate=resolver(state);if(!candidate) throw std::invalid_argument("missing saved resources");
     validateBinding(state,*candidate);
     world_.restore(std::move(state));navigation_=std::move(candidate);
 }

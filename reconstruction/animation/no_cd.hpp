@@ -14,6 +14,8 @@ class NoCdAnimationPlayer final {
 public:
     explicit NoCdAnimationPlayer(std::vector<assets::AnimationRecord> sequence);
     void start();
+    // Validate an owned continuation against this exact sequence before commit.
+    void restore(AnimationState);
     // Selected 464c80 reset: clear display/timing, retaining owned sequence.
     void stop(){state_={};}
     // Original 464e20: retain relative record positions and timing. Native

@@ -44,6 +44,9 @@ static void json(const State& state) {
                     if(m.previous) {const auto& h=*m.previous;std::cout<<",\"previous\":["<<h.direction<<','<<h.motion.rate<<','<<h.motion.accumulator<<','<<h.motion.progress<<','<<h.motion.frame<<']';}
                     if(m.fine) std::cout<<",\"rate\":"<<m.fine->rate<<",\"duration\":"<<m.fine->duration;
                 }
+                if(m.fine && m.fine->animation) {
+                    const auto& a=*m.fine->animation;std::cout<<",\"animation\":["<<a.sequence<<','<<a.pc<<','<<(a.displayed?static_cast<int>(*a.displayed):-1)<<','<<a.active<<','<<a.delay<<','<<a.elapsed<<','<<a.repeats<<','<<a.breakFlag<<']';
+                }
                 if(m.fine) {const auto& f=*m.fine;std::cout<<",\"fine\":["<<f.fine.x<<','<<f.fine.y<<','<<f.fine.z<<"],\"progress\":"<<f.progress<<",\"accumulator\":"<<f.accumulator<<",\"frame\":"<<f.frame;}
                 else std::cout<<",\"fine\":["<<e.x*32<<','<<e.y*32<<','<<e.z*16<<']';
             }
@@ -53,10 +56,22 @@ static void json(const State& state) {
     std::cout<<"]}\n";
 }
 static MovementSession session(State state) {
-    auto navigation=mnm::sandbox::loadFrozenNavigation(state.map);
+    auto navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation);
     World world(0);world.restore(std::move(state));return MovementSession(std::move(world),std::move(navigation));
 }
 int main(int argc,char** argv) try {
+    if(argc==13 && std::string_view(argv[1])=="move-ani") {
+        auto base=integer(argv[4]);if(base<0 || base>4088) throw std::invalid_argument("ANI sequence base outside 0..4088");
+        auto animation=mnm::sandbox::loadMovementAnimation(argv[3],base);
+        auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2],animation);World world(8);
+        auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();state.animation=std::move(animation);world.restore(std::move(state));
+        MovementSession movement(std::move(world),navigation);
+        Entity e;e.type=navigation->creatureType();e.x=integer(argv[6]);e.y=integer(argv[7]);e.z=integer(argv[8]);
+        auto creature=movement.spawn(e,true,true);movement.move(creature,{integer(argv[9]),integer(argv[10]),integer(argv[11])});
+        for(std::uint32_t i=0,count=ticks(argv[12]);i<count;++i) movement.step();
+        auto commit=writeSnapshot(argv[5],movement.world().state());if(!commit.durable) throw std::runtime_error(commit.detail);
+        json(movement.world().state());return 0;
+    }
     if(argc==11 && (std::string_view(argv[1])=="move" || std::string_view(argv[1])=="move-fine" || std::string_view(argv[1])=="move-continuous")) {
         auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2]);World world(8);
         auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();world.restore(std::move(state));
@@ -93,5 +108,5 @@ int main(int argc,char** argv) try {
         auto commit=writeSnapshot(argv[3],world.state());if(!commit.durable) throw std::runtime_error(commit.detail);
         std::cout<<"resumed "<<count<<" admitted idle ticks\n";return 0;
     }
-    std::cerr<<"usage: mnm-world-sandbox create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous MAP OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
+    std::cerr<<"usage: mnm-world-sandbox create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous MAP OUTPUT SX SY SZ TX TY TZ TICKS | move-ani MAP ANI BASE OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}

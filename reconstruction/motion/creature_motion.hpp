@@ -1,10 +1,12 @@
 #pragma once
 #include <array>
 #include <cstdint>
+#include <functional>
 
 namespace mnm::reconstruction {
 // Bounded forward-animation slice of No-CD 5104b0. External animation events
-// are supplied as a 12-sample cycle (event 2 at its end); completion is returned
+// default to a supplied 12-sample cycle, or use caller-staged ANI callbacks.
+// Completion is returned
 // before behavior/combat/environment callbacks. No original host pointers.
 struct MotionState {
     std::int32_t accumulator=0,progress=0,travelX=0,travelY=0;
@@ -18,7 +20,12 @@ struct MotionInputs {
     bool vertical=false,force32=false,separateCursor=false;
     std::array<std::int32_t,48> samples{};
 };
-// Positive bounded arithmetic only; excludes reverse-animation/type-specific
+// Nonnegative bounded rates only; excludes reverse-animation/type-specific
 // callback chains. Completion discards unused iterations of this invocation.
-bool advance_creature_motion(MotionState&,const MotionInputs&);
+struct MotionAnimation {
+    std::function<std::int32_t()> tick;
+    std::function<void()> restart;
+};
+// Callbacks must mutate only caller-staged owned state; unsupported events throw.
+bool advance_creature_motion(MotionState&,const MotionInputs&,const MotionAnimation* = nullptr);
 }

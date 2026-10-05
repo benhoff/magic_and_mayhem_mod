@@ -4,18 +4,19 @@
 #include <stdexcept>
 
 namespace mnm::reconstruction {
-bool advance_creature_motion(MotionState& committed,const MotionInputs& p) {
+bool advance_creature_motion(MotionState& committed,const MotionInputs& p,const MotionAnimation* animation) {
     auto s=committed;
     if(p.rate<0 || p.rate>1000000 || p.duration<1 || p.duration>1000000 ||
        p.direction<0 || p.direction>7 || std::abs(std::int64_t(p.gridX))>1000000 ||
        std::abs(std::int64_t(p.gridY))>1000000 || std::abs(std::int64_t(p.heightOrigin))>1000000 ||
        std::abs(std::int64_t(p.heightDelta))>32 || s.accumulator<0 || s.accumulator>2000000 ||
        s.progress<0 || s.progress>=192 || s.frame>=(p.separateCursor?48U:12U) ||
-       (p.separateCursor && (s.animationFrame>=12 || s.initialFrame>=48 || std::abs(std::int64_t(s.initialResidualX))>1000000 || std::abs(std::int64_t(s.initialResidualY))>1000000)) ||
+       (p.separateCursor && (s.animationFrame>=(animation?50U:12U) || s.initialFrame>=48 || std::abs(std::int64_t(s.initialResidualX))>1000000 || std::abs(std::int64_t(s.initialResidualY))>1000000)) ||
        std::abs(std::int64_t(s.travelX))>384 || std::abs(std::int64_t(s.travelY))>384 ||
        std::abs(std::int64_t(s.fineX))>32000400 || std::abs(std::int64_t(s.fineY))>32000400 ||
        std::abs(std::int64_t(s.fineZ))>1000032 || std::abs(std::int64_t(s.residualX))>1000000 || std::abs(std::int64_t(s.residualY))>1000000)
         throw std::invalid_argument("unsupported bounded motion input");
+    if(animation && (!p.separateCursor || !animation->tick || !animation->restart)) throw std::invalid_argument("incomplete motion animation driver");
     for(unsigned n=0;n<(p.separateCursor?48U:12U);++n) if(p.samples[n]<1 || p.samples[n]>192) throw std::invalid_argument("unsupported motion sample");
     s.accumulator+=p.rate;
     auto count=s.accumulator/p.duration;
@@ -37,7 +38,12 @@ bool advance_creature_motion(MotionState& committed,const MotionInputs& p) {
         s.fineZ=p.heightOrigin+std::clamp(p.heightDelta*s.progress/192,-16,16);
         s.residualX+=oldX-s.fineX;s.residualY+=oldY-s.fineY;
         ++s.frame;
-        if(p.separateCursor) {
+        if(animation) {
+            ++s.animationFrame;
+            const auto event=animation->tick();
+            if(event==2) {animation->restart();s.animationFrame=0;s.frame=s.initialFrame;s.residualX=s.initialResidualX;s.residualY=s.initialResidualY;}
+            else if(event!=0) throw std::invalid_argument("unsupported movement animation event");
+        } else if(p.separateCursor) {
             if(++s.animationFrame==12) {s.animationFrame=0;s.frame=s.initialFrame;s.residualX=s.initialResidualX;s.residualY=s.initialResidualY;}
         } else if(s.frame==12) {s.frame=0;s.residualX=0;s.residualY=0;}
         s.accumulator-=p.duration;

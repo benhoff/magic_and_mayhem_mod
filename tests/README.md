@@ -621,3 +621,19 @@ with controlled eligibility/environment/animation dependencies;
 sample/animation cursors and zero-rate transitions. Both verify immutable input
 before and after. These isolated checks do not establish live behavior or ANI
 event production. See [NS04 evidence](../research/runtime/native-creature-segment-continuity.md).
+
+### Native ANI-driven motion and checkpoints
+
+Build `game/` and run its CTests. `ani-motion-composition` advances the recovered
+ANI player with movement arithmetic; `native-ani-motion-process` checks independent
+v5 bytes, event/reset/speed/turn/prefix continuation, owned ANI source deletion and
+malformed/resource refusal. Its C++ companion validates failed in-place restoration
+preserves both resources/state and subsequent tick behavior. `animation-forward-model`
+checks owned controller restore and rejection before state mutation.
+
+`python3 tests/test-original-ani-motion.py` compares unmodified original ANI
+start/tick/restart together with the motion action, with only completion redirected.
+`python3 tools/test-animation-contract.py` separately compares installed bytes and
+selected controller traces. Both verify immutable input before/after. Profile
+selection remains explicit numeric input; unsupported gameplay events are refused.
+See [NS05 evidence](../research/runtime/native-ani-motion.md).
