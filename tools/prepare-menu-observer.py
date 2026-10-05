@@ -12,10 +12,11 @@ REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
-def prepare(actions=False):
+def prepare(actions=False,experimental_mini=False):
+    if experimental_mini and not actions:raise ValueError("Experimental Mini Menu requires action staging")
     source=REPO/'working/game-nocd';data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:raise ValueError('Unsupported executable; refusing staging')
-    dll=module('menu_build','tools/build-menu-observer.py').build()
+    dll=module('menu_build','tools/build-menu-observer.py').build(experimental_mini=experimental_mini)
     parent=REPO/'working/experiments/menu-observer';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));game=root/'game'
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
@@ -31,7 +32,7 @@ def prepare(actions=False):
         if patched[at:at+end-start]!=data[at:at+end-start]:raise ValueError('Callback code changed during staging')
     metadata={'origin':'menu_action_bridge' if actions else 'menu_observation_only','source_sha256':HASH,'staged_sha256':hashlib.sha256(patched).hexdigest(),
               'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'game_copy':str(game),'events':str(root/'events.bin'),
-              'preferences':edits,'scope':'Bounded Main/Quick/Single Player/Map engine-thread action bridge; original menu logic/drawing retained' if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
+              'experimental_mini':experimental_mini,'preferences':edits,'scope':('UNVALIDATED Mini Menu bridge; dedicated validation staging; original confirmation/drawing retained' if experimental_mini else 'Bounded Main/Quick/Single Player/Map/Spell engine-thread action bridge; original menu logic/drawing retained') if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
@@ -40,7 +41,9 @@ def prepare(actions=False):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--actions',action='store_true',help='Stage the opt-in bounded menu action bridge')
+    parser.add_argument("--experimental-mini",action="store_true",help="UNVALIDATED: build Mini Menu hooks for a dedicated future validation run")
     args=parser.parse_args()
+    if args.experimental_mini and not args.actions:parser.error("--experimental-mini requires --actions")
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    try:print(f'Evidence directory: {prepare(args.actions)}',flush=True)
+    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini)}',flush=True)
     finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

@@ -2,7 +2,9 @@
 #include "menu_v1.h"
 /* V2 is a separate, bounded LE wire contract. IDs 1..3 retain V1 semantics.
  * Host lane: seq/alive/heartbeat/id/action/generation/argument/17 rule values.
- * Engine lane: seq/generation/screen/ready/ack/status/thread. Payload uses
+ * Engine lane: seq/generation/screen/ready/ack/status/thread/handoff.
+ * Handoff 1=spells, 2=loading; cleared on ready Main/Quick return. Host
+ * keeps heartbeats but suspends commands until fresh root-menu readiness. Payload uses
  * byte offsets below; names are NUL-terminated Windows-1252, never pointers.
  */
 #define MNM_MENU_V2_MAGIC "MNMMCMD2"

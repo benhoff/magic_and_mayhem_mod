@@ -13,10 +13,11 @@ No default rule values or balance policies are introduced by the adapter.
 
 Start hands presentation and input back to the original Wine viewport. The
 original engine decides between spell selection and loading; Qt neither skips
-spell selection nor creates a game itself. The command channel retires at this
-handoff, so subsequent battle and menu interaction uses the original game for
-that session. Native spell selection, in-battle menus, and automatic restoration
-of native menus after a battle remain separate milestones.
+spell selection nor creates a game itself. Commands suspend during this handoff
+while host heartbeats continue. A fresh, ready Main/Quick Battle tick on the same
+engine thread, with unchanged acknowledgement and cleared handoff, restores the
+native root menu. Explicit fallback and lease retirement remain permanent.
+Native spell selection and in-battle menus remain separate milestones.
 
 Contracts below apply only to No-CD Chaos.exe SHA-256
 `40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`.
@@ -184,3 +185,66 @@ without reactivating native commands. The process remained alive for the bounded
 90-second run. The 10-second capture shows the actual battlefield inside the
 fixed-size viewport. This establishes the selected original return path, not
 native result/menu replacement or longer gameplay equivalence.
+
+## Automatic native menu restoration after battle
+
+The V2 channel stays alive after acknowledged Start. The application suspends
+all semantic requests and continues host heartbeats; it leaves spell selection,
+battle and result controls in the original viewport. No battle tick hooks are
+added. The absence of supported menu publications during play does not trigger
+the application's menu-state timeout. The launch process still controls session
+completion, and explicit fallback/engine retirement remain permanent.
+
+On a ready original Main/Quick tick, the adapter clears the handoff marker.
+The application requires a new publication and generation, the same engine
+thread, the unchanged Start acknowledgement, successful status, and a ready
+supported root menu before restoring native presentation. Reopening setup then
+refreshes actual rules, map and newly generated players through the existing
+snapshot/generation checks. Request IDs remain monotonic across both battles.
+No pointers, gameplay policies, or original menu drawing are replaced.
+
+Pinned original-bytecode fixture `working/tests/menu-observer/run-ny02fmyj/`
+passes the new return-marker and subsequent Create Single Player checks;
+eight targeted Qt checks pass. Before/after manifest verification reports all
+2927 original files intact.
+
+First live repeat attempt `working/tests/live-menus/run-5mlmtljq/`, experiment
+`working/experiments/menu-observer/run-xatxcfdi/`, restored Qt after the first
+battle and loaded the second battle with fresh generated players. Inspected
+captures confirm both battlefields and first Qt Quick return. Its 120-second
+launcher bound expired before the second return: the report correctly fails.
+The repeat protocol now allows 180 seconds and rejects a timeout-driven exit;
+passing requires two native returns and original Back/Quit with launcher status 0.
+
+Second repeat attempt `working/tests/live-menus/run-krsebyaq/`, experiment
+`working/experiments/menu-observer/run-ecmy3az_/`, reached both native returns
+and original Quit (acknowledgement 16). Inspected second-battle capture shows
+actual gameplay. The launcher classified successful early game exit as a smoke
+failure and returned status 1. The repeat harness now uses normal launch with an
+independent 180-second deadline; smoke mode retains its existing survival policy.
+
+
+Completed repeat evidence: `working/tests/live-menus/run-6xzs_hiy/`, experiment
+`working/experiments/menu-observer/run-tmjlduru/`. The corrected validator passes
+on the recorded live evidence: native stages through acknowledgements 0–14,
+two Start handoffs, two ready Qt Quick returns, regenerated second-setup players,
+original Back/Quit callbacks, final acknowledgement 16, retired channel and normal
+launcher status 0. Both battlefields and the second restored Qt Quick screenshot
+were inspected. Original manifest checks before and after the run preserve all
+2927 files. The final channel screen is 0 after shutdown; return proof comes from
+the ready stage-12/stage-14 snapshots and captures, not the post-Quit screen.
+The original post-run assertion incorrectly required a menu after shutdown and
+was corrected; raw live evidence was retained and rechecked with:
+
+```bash
+./tools/test-live-menus.py --battle direct --battle-repeat --validate-run working/tests/live-menus/run-6xzs_hiy
+```
+
+Confidence is high for this bounded repeated direct-loading path. Longer play,
+physical desktop input/focus, spell-selection return paths and native in-battle
+menus remain unvalidated. Explicit fallback remains permanently original for
+that session; original logic/drawing and balance remain unchanged.
+
+## Follow-on spell selector
+
+The shell now uses the separate [V3 pre-battle spell bridge](spell-selection-menu-bridge.md) for Quick Battle Single Player selection. The V2 contract above remains supported. UI19 records the recovered inventory/recipe bindings, original selection callbacks, bounded live Start/return/Quit validation and remaining timer/campaign boundaries.

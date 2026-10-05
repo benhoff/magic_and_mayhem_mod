@@ -1,6 +1,7 @@
 #include "live_menu_test.hpp"
 #include "live_menu_session.hpp"
 #include "window_host.hpp"
+#include "spellbox_widget.hpp"
 #include <QApplication>
 #include <QMainWindow>
 #include <QPushButton>
@@ -18,16 +19,18 @@
 #include <memory>
 #include <cstdio>
 void installLiveBattleMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path){
-    struct Evidence {int stage=0;bool valid=true,started=false,presented=false;quint32 thread=0;MenuBridge::Battle initial;QJsonArray states;};
+    struct Evidence {int stage=0;bool valid=true,started=false,presented=false;int battles=0,returns=0;quint32 thread=0;MenuBridge::Battle initial;QJsonArray states;QJsonArray assignments,spellInitial,spellShelves;};
     auto e=std::make_shared<Evidence>();const bool spells=qEnvironmentVariable("MNM_LIVE_MENU_TEST_BATTLE")=="spells";
+    const bool repeat=qEnvironmentVariableIsSet("MNM_LIVE_MENU_TEST_REPEAT");
     auto output=session.output;session.output=[output](const QString& text){if(output)output(text);std::fprintf(stderr,"%s",qPrintable(text));};
     auto failure=session.failed;session.failed=[failure,e](const QString& text){e->valid=false;if(failure)failure(text);std::fprintf(stderr,"Battle fallback: %s\n",qPrintable(text));};
     auto presentation=session.stateChanged;
-    session.stateChanged=[presentation,e,&window,path,spells](const MenuBridge::State& s){
+    session.stateChanged=[presentation,e,&window,&session,path,spells,repeat](const MenuBridge::State& s){
         if(presentation){presentation(s);}
         if(!s.ready)return;
-        static const quint32 screens[]={3,22,14,22,14,25,14,25,14,14,14,14};
-        if(e->stage>=12||s.screen!=screens[e->stage]||s.ack!=quint32(e->stage))return;
+        const quint32 screens[]={3,22,14,22,14,25,14,25,14,14,14,14,spells?7u:22u,spells?22u:14u,22};
+        if(e->stage>=(spells?14:repeat?15:12)||s.screen!=screens[e->stage]||s.ack!=quint32(e->stage))return;
+        if((!spells&&(e->stage==12||e->stage==14))||(spells&&e->stage==13))++e->returns;
         if(e->thread&&e->thread!=s.thread){e->valid=false;}
         e->thread=s.thread;
         e->states.append(QJsonObject{{"screen",int(s.screen)},{"ack",int(s.ack)},{"generation",int(s.generation)},
@@ -35,6 +38,7 @@ void installLiveBattleMenuTest(QApplication& app,QMainWindow& window,LiveMenuSes
             {"magic_items",s.battle.rules[2]},{"human_handicap",s.battle.players[0].handicap},{"human_name",s.battle.players[0].name},
             {"human_portrait",s.battle.players[0].portrait},{"human_colour",s.battle.players[0].colour},{"fourth_active",s.battle.players[3].active}});
         const int stage=e->stage++;
+        if(spells&&stage==12){for(int item:s.spells.assignments)e->spellInitial.append(item);for(int item:s.spells.shelves)e->spellShelves.append(item);}
         if(stage==4)e->initial=s.battle;
         if(stage==5||stage==6||stage==7||stage==8){
             e->valid&=s.battle.rules[0]==150&&s.battle.rules[8]==3&&s.battle.players[0].handicap==10;
@@ -44,7 +48,7 @@ void installLiveBattleMenuTest(QApplication& app,QMainWindow& window,LiveMenuSes
         if(stage==9)e->valid&=s.battle.players[0].portrait!=e->initial.players[0].portrait;
         if(stage==10)e->valid&=s.battle.players[0].colour!=e->initial.players[0].colour;
         if(stage==11)e->valid&=!s.battle.players[3].active;
-        QTimer::singleShot(0,&window,[&window,path,stage,e,spells]{
+        QTimer::singleShot(0,&window,[&window,&session,path,stage,e,spells]{
             window.grab().save(QFileInfo(path).dir().filePath(QString("qt-battle-stage-%1.png").arg(stage)));
             auto click=[&](const char* name){auto* b=window.findChild<QPushButton*>(name);if(!b||!b->isEnabled()){e->valid=false;return;}b->click();};
             switch(stage){
@@ -64,18 +68,34 @@ void installLiveBattleMenuTest(QApplication& app,QMainWindow& window,LiveMenuSes
             case 9:click("singlePlayerColour0");break;
             case 10:click("singlePlayerRemove3");break;
             case 11:click("singlePlayerStart");break;
+            case 13:if(spells)e->valid&=session.requestExit();else click("singlePlayerStart");break;
+            case 12:
+                if(spells){
+                    auto* w=window.findChild<SpellboxWidget*>("liveSpellSelection");
+                    if(!w||w->inventory().items.isEmpty()||w->inventory().talismans.isEmpty()){e->valid=false;return;}
+                    auto model=w->inventory();
+                    e->valid&=w->assignItem(model.items[0].id,model.talismans[0].id);
+                    click("spellboxCancel");
+                    e->valid&=w->draftRequest().assignments[0].itemId==model.talismans[0].itemId;
+                    for(const auto& t:model.talismans)e->valid&=w->removeItem(t.id);
+                    for(int i=0;i<qMin(2,qMin(model.items.size(),model.talismans.size()));++i)
+                        e->valid&=w->assignItem(model.items[i].id,model.talismans[i].id);
+                    for(const auto& a:w->draftRequest().assignments)e->assignments.append(QJsonObject{{"slot",a.talismanId.toInt()},{"item",a.itemId.isEmpty()?-1:a.itemId.toInt()}});
+                    click("spellboxOK");
+                }else click("quickBattleAction2");break;
+            case 14:e->valid&=session.requestExit();break;
             }
         });
     };
     auto handoff=session.battleStarted;
     session.battleStarted=[e,handoff,&window,path,spells](quint32 destination){
         if(handoff){handoff(destination);}
-        e->started=true;e->valid&=destination==(spells?1u:2u);
-        for(int delay:{10000,25000,34000,45000})QTimer::singleShot(delay,&window,[e,&window,path,delay]{
+        e->started=true;++e->battles;e->valid&=destination==2u;
+        for(int delay:{10000,25000,34000,45000})QTimer::singleShot(delay,&window,[e,&window,path,delay,cycle=e->battles]{
             auto* container=window.findChild<QWidget*>("legacyGameContainer");e->presented|=container&&container->isVisible();
-            if(auto* screen=QGuiApplication::primaryScreen())screen->grabWindow(window.winId()).save(QFileInfo(path).dir().filePath(QString("original-battle-%1.png").arg(delay)));
+            if(auto* screen=QGuiApplication::primaryScreen())screen->grabWindow(window.winId()).save(QFileInfo(path).dir().filePath(QString("original-battle-%1-%2.png").arg(cycle).arg(delay)));
         });
-        if(!spells){
+        {
             auto input=[&window](uint8_t type,uint8_t detail,uint16_t state,QPoint point){
                 WindowHost host;const auto desktops=host.desktops({});
                 if(desktops.size()!=1)return false;
@@ -111,14 +131,21 @@ void installLiveBattleMenuTest(QApplication& app,QMainWindow& window,LiveMenuSes
         }
     };
     auto finished=session.finished;
-    session.finished=[e,finished,&app,path,spells]{
+    session.finished=[e,finished,&app,path,spells,repeat]{
         if(finished){finished();}
-        const bool success=e->valid&&e->stage==12&&e->started&&e->presented;
+        const bool success=e->valid&&e->stage==(spells?14:repeat?15:12)&&e->started&&e->presented&&(!spells||(e->battles==1&&e->returns==1))&&(!repeat||(e->battles==2&&e->returns==2));
         QFile file(path);bool saved=file.open(QIODevice::WriteOnly|QIODevice::NewOnly);
         if(saved)saved=file.write(QJsonDocument(QJsonObject{{"success",success},{"states",e->states},{"start_accepted",e->started},
-            {"original_viewport_presented",e->presented},{"spell_selection",spells},{"scope","Engine setup/map/control callbacks, snapshot agreement, Start handoff; original viewport screenshots require inspection"}}).toJson())>0&&file.flush();
+            {"original_viewport_presented",e->presented},{"spell_selection",spells},{"spell_assignments",e->assignments},{"spell_initial_assignments",e->spellInitial},{"spell_initial_shelves",e->spellShelves},{"battles",e->battles},{"native_returns",e->returns},{"scope","Engine setup/map/control callbacks, snapshot agreement, Start handoff; original viewport screenshots require inspection"}}).toJson())>0&&file.flush();
         app.exit(success&&saved?0:1);
     };
-    session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");session.smokeSeconds=90;
+    session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");session.smokeSeconds=(repeat||spells)?0:90;
+    if(repeat||spells){
+        auto launched=session.launched;
+        session.launched=[launched,e,&app,&window]{
+            if(launched)launched();
+            QTimer::singleShot(180000,&window,[e,&app]{e->valid=false;std::fprintf(stderr,"Repeated battle deadline exceeded.\n");app.exit(1);});
+        };
+    }
     QTimer::singleShot(0,&window,[&window]{window.findChild<QPushButton*>("launchGame")->click();});
 }

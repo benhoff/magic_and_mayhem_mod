@@ -59,3 +59,7 @@ behavior is separate from engine equivalence. Live state availability, pause
 ownership, context-sensitive actions and return transitions remain pending in
 [the coverage ledger](coverage-ledger.md). See also
 [the layout inventory](../formats/menu-migration-inventory.md).
+
+## Offline engine bridge preparation
+
+The [separate Mini Menu engine contract](mini-menu-engine-bridge.md) now records static screen, callback and confirmation recovery plus dormant V4 wiring. Activation is OFF by default; no tests or game sessions were run for that milestone. The earlier preview checks above do not validate the new bridge or original pause/resume.

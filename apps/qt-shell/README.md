@@ -24,12 +24,19 @@ exit through the game before closing the shell. Relaunch stages a new copy/chann
 it is separate from OpenGL capture and the standalone preview options.
 Original menu logic, fades and drawing remain active.
 
-**Start** returns to the original viewport for spell selection (when required)
-and battle loading/play. Complete spell selection using the original controls.
-After this handoff, the session keeps using original menus, including battle
-exit; relaunch restores native menu integration. The viewport stays at 800x600
+**Start** opens the native pre-battle spell selector when required. It reads
+the engine inventory, recipes and talismans. **Reset edits** restores the local
+draft; **Start battle** commits it through original callbacks and exposes the
+original loading/play viewport. The original selector has no cancel-to-setup
+action. Commit before the original timer expires; unsubmitted drafts stay
+local. Closing from selection exposes the original controls. Campaign/multiplayer
+selection remains outside this bridge.
+Battle and result controls use the original viewport. When the engine returns
+to Main or Quick Battle, Qt automatically restores that menu with fresh state.
+Choose **Use original menus** to disable restoration for the session. The viewport stays at 800x600
 inside the shell to avoid stale pixels from enlarging the Wine desktop.
 See [Single Player bridge](../../research/runtime/single-player-menu-bridge.md)
+and [spell-selection bridge](../../research/runtime/spell-selection-menu-bridge.md)
 for the validated scope and remaining boundaries.
 
 Run `./tools/test-live-menus.py` for the bounded isolated Xvfb/Wine round trip
@@ -529,3 +536,7 @@ shared SFT fonts, filtering and caller-supplied availability/learned states.
 Research emits an owner/spell request; campaign costs and progression are pending.
 Close returns to the map with focus restored. No separate original research
 layout was found; see [scope and evidence](../../research/runtime/spell-research-qt.md).
+
+## Dormant Mini Menu bridge
+
+An offline V4 Mini Menu bridge is prepared behind `MNM_EXPERIMENTAL_MINI_MENUS`, which defaults to **OFF**. Normal live-menu sessions retain V3 and original in-battle menus. The new bridge has compilation and static evidence only; no tests or game sessions were run for it. See the [contract and future validation procedure](../../research/runtime/mini-menu-engine-bridge.md) before enabling a dedicated validation build.

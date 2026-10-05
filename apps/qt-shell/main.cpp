@@ -10,6 +10,8 @@
 #include "quick_battle_menu_widget.hpp"
 #include "live_menu_session.hpp"
 #include "live_battle_menu_controller.hpp"
+#include "live_spell_menu_controller.hpp"
+#include "live_mini_menu_controller.hpp"
 #include "live_menu_test.hpp"
 #include "../../protocols/include/mnm/menu_v2.h"
 #include <QStackedWidget>
@@ -60,8 +62,14 @@ public:
             menuStack_->addWidget(liveMain_);menuStack_->addWidget(liveQuick_);
             liveSetup_=new SinglePlayerBattleWidget(menuStack_);liveMap_=new MapSelectionWidget(menuStack_);
             menuStack_->addWidget(liveSetup_);menuStack_->addWidget(liveMap_);
+            liveSpells_=new SpellboxWidget(menuStack_);liveSpells_->setObjectName("liveSpellSelection");menuStack_->addWidget(liveSpells_);
             liveMenus_=std::make_unique<LiveMenuSession>(repo_,this);
             battleMenus_=std::make_unique<LiveBattleMenuController>(*liveMenus_,*liveSetup_,*liveMap_);
+            spellMenus_=std::make_unique<LiveSpellMenuController>(*liveMenus_,*liveSpells_);
+            if(liveMenus_->miniMenusEnabled()){
+                liveMini_=new MiniMenuWidget(menuStack_);menuStack_->addWidget(liveMini_);
+                miniMenus_=std::make_unique<LiveMiniMenuController>(*liveMenus_,*liveMini_);
+            }
             connect(liveMain_,&MainMenuWidget::actionRequested,this,[this](MainMenuWidget::Action action){
                 if(action==MainMenuWidget::Action::QuickBattle)liveMenus_->request(MNM_MENU_OPEN_QUICK);
                 else if(action==MainMenuWidget::Action::Quit)close();
@@ -73,21 +81,24 @@ public:
             liveMenus_->launched=[this]{elapsed_.restart();poll_.start();placeholder_->setText("Checking launch files and starting Wine…\nStartup may take a few minutes. See the launch log below.");statusBar()->showMessage("Checking launch files and starting Wine…");};
             liveMenus_->output=[this](const QString& text){log_->appendPlainText(text.trimmed());};
             liveMenus_->failed=[this](const QString& error){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);if(!foreign_)placeholder_->setText(error+"\nSee the launch log below.");statusBar()->showMessage(error);};
-            liveMenus_->battleStarted=[this](quint32 destination){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();statusBar()->showMessage(destination==1?"Original game active. Complete spell selection, then use its battle and menu controls.":"Original game active. Battles and subsequent menus use this viewport.");};
+            liveMenus_->battleStarted=[this](quint32 destination){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();statusBar()->showMessage(destination==1?"Original game active. Complete spell selection; Qt menus return after battle.":"Original game active. Qt menus return when the engine reaches Main or Quick Battle.");};
+            liveMenus_->originalViewportRequested=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();statusBar()->showMessage("Original game controls active. Confirmations and Preferences use this viewport.");};
             liveMenus_->finished=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);finished();if(closeAfterGame_)close();};
             liveMenus_->stateChanged=[this](const MenuBridge::State& state){
                 if(!menuAssetsLoaded_){QString error;const auto root=QDir(repo_).filePath("working/game-nocd");
-                    if(!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
+                    if(!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)||!liveSpells_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
+                    if(liveMini_&&!liveMini_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
                     for(int i=0;i<6;++i)if(i!=2&&i!=4)liveMain_->findChild<QPushButton*>(QString("mainMenuAction%1").arg(i))->setEnabled(false);
                     for(int i=0;i<2;++i)liveQuick_->findChild<QPushButton*>(QString("quickBattleAction%1").arg(i))->setEnabled(false);
                     menuAssetsLoaded_=true;
                 }
-                QString error;if(!battleMenus_->present(state,&error)){liveMenus_->fallback(error);return;}
-                QWidget* screen=state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
-                const bool changed=menuStack_->currentWidget()!=screen;const bool gainedReady=state.ready&&(changed||!screen->isEnabled());menuStack_->setCurrentWidget(screen);
-                liveMain_->setEnabled(state.ready&&state.screen==3);liveQuick_->setEnabled(state.ready&&state.screen==22);liveSetup_->setEnabled(state.ready&&state.screen==14);liveMap_->setEnabled(state.ready&&state.screen==25);
-                if(gainedReady){if(state.screen==14)liveSetup_->focusFirstControl();else if(state.screen==25)liveMap_->focusSelection();else if(state.screen==22)liveQuick_->focusFirstAction();else if(state.screen==3)liveMain_->findChild<QPushButton*>("mainMenuAction2")->setFocus();}
-                statusBar()->showMessage(state.ready?(state.screen==14?"Battle setup connected. Edits apply when opening Map, changing a player or starting.":"Native menu connected to the engine. Other actions are available through Use original menus."):"Waiting for the engine menu transition…");
+                QString error;if(!battleMenus_->present(state,&error)||!spellMenus_->present(state,&error)||(miniMenus_&&!miniMenus_->present(state,&error))){liveMenus_->fallback(error);return;}
+                QWidget* screen=liveMini_&&state.screen==MNM_MENU_MINI_SCREEN?static_cast<QWidget*>(liveMini_):state.screen==7?static_cast<QWidget*>(liveSpells_):state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
+                fallback_->setEnabled(true);const bool changed=menuStack_->currentWidget()!=screen;const bool gainedReady=state.ready&&(changed||!screen->isEnabled());menuStack_->setCurrentWidget(screen);
+                liveSpells_->setEnabled(state.ready&&state.screen==7);liveMain_->setEnabled(state.ready&&state.screen==3);liveQuick_->setEnabled(state.ready&&state.screen==22);liveSetup_->setEnabled(state.ready&&state.screen==14);liveMap_->setEnabled(state.ready&&state.screen==25);
+                if(liveMini_)liveMini_->setEnabled(state.ready&&state.screen==MNM_MENU_MINI_SCREEN);
+                if(gainedReady){if(liveMini_&&state.screen==MNM_MENU_MINI_SCREEN)liveMini_->focusFirstAction();else if(state.screen==7)liveSpells_->focusFirstControl();else if(state.screen==14)liveSetup_->focusFirstControl();else if(state.screen==25)liveMap_->focusSelection();else if(state.screen==22)liveQuick_->focusFirstAction();else if(state.screen==3)liveMain_->findChild<QPushButton*>("mainMenuAction2")->setFocus();}
+                statusBar()->showMessage(state.ready?(state.screen==7?QString("Spell selection connected. Edits apply on Start battle. Time remaining: %1").arg(state.spells.seconds<0?QString("expired"):QString::number(state.spells.seconds)):state.screen==14?"Battle setup connected. Edits apply when opening Map, changing a player or starting.":"Native menu connected to the engine. Other actions are available through Use original menus."):"Waiting for the engine menu transition…");
             };
         }
         if(opengl_){gl_=new GlViewport(viewport_);layout_->addWidget(gl_);gl_->hide();input_=std::make_unique<InputForwarder>(*gl_,host_);}
@@ -244,6 +255,8 @@ private:
         launch_->setEnabled(opengl_ || host_.available());check_->setEnabled(true);
     }
     SinglePlayerBattleWidget* liveSetup_=nullptr;MapSelectionWidget* liveMap_=nullptr;
+    MiniMenuWidget* liveMini_=nullptr;std::unique_ptr<LiveMiniMenuController> miniMenus_;
+    SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;
     std::unique_ptr<LiveBattleMenuController> battleMenus_;
     std::unique_ptr<LiveMenuSession> liveMenus_;QStackedWidget* menuStack_=nullptr;MainMenuWidget* liveMain_=nullptr;QuickBattleMenuWidget* liveQuick_=nullptr;QPushButton* fallback_=nullptr;bool menuAssetsLoaded_=false,closeAfterGame_=false;
     QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
