@@ -188,6 +188,26 @@ descriptor provenance, full opaque initialization, incremental updates and
 rejection of incomplete or contradictory metadata. No game launch is needed.
 See [bootstrap evidence](../research/runtime/opengl-primary-bootstrap.md).
 
+Application-owned GDI bitmap recovery uses actual Wine DIBSECTIONs, independent
+engine copies, native command replay and Qt readback. It checks orientation,
+failed-release retry, mismatched masks, unmatched DC ownership and a swapped
+selected bitmap:
+
+```bash
+python3 tools/test-render-bootstrap.py --case dc --case dc-bottom-up --case dc-retry --case dc-format --case dc-unmatched --case dc-swapped --case dc-rgb24 --case dc-rgb32
+```
+
+The bounded live Forest of Pain check requires Pillow, Xvfb, Wine, X11/XTest and
+a built Qt shell. It stages disposable game preferences and an isolated prefix,
+compares title/difficulty pixels with Wine, observes idle publication and checks
+Qt readback. It does not measure NVIDIA paint latency:
+
+```bash
+python3 tools/test-render-menu-delay.py
+```
+
+See [GDI context evidence](../research/runtime/opengl-game-owned-dc.md).
+
 `./tools/test-render-owned-flips.py` checks application-observed two-buffer chains,
 failed Flips, explicit/aliased targets, unknown back pixels, incremental updates,
 chain mutation, operation limits and conservative rejection. Independent native
@@ -517,6 +537,27 @@ traces. It also checks changed/missing maps, seam directions, zero-distance,
 prefix replanning, corrupted route metadata and guarded file publication.
 See [movement evidence](../research/runtime/native-creature-movement.md).
 
+The `qt-texture-upload` CTest target in the Qt shell build verifies repeated
+same-size frame uploads and dimension changes using framebuffer readback under
+Xvfb/software OpenGL. Run it alongside `render-pixels` (including exhaustive
+RGB565 conversion) and `frame-stream` with:
+
+```bash
+cmake --build working/build/qt-shell --target gl-viewport-upload-test render-pixels-test frame-stream-test
+ctest --test-dir working/build/qt-shell -R '^(qt-texture-upload|render-pixels|frame-stream)$' --output-on-failure
+```
+
+Capture contention regressions can be run without Chaos:
+
+```bash
+python3 tools/test-render-bootstrap.py --case partial-lock-contention --case partial-blit-contention --case nested-lock-contention --case nested-source-contention --case pixel-miss-overflow
+```
+
+These exercise actual PE32 hook forwarding, continued partial screen publication
+without source reseeding after unrelated misses, rejection of an uncertain
+in-flight source, and conservative overflow recovery. Full frame comparisons
+also verify that rectangle conversion preserves pixels outside the updated area.
+
 ## Native fine motion
 
 `creature-motion-arithmetic` and `native-fine-motion-process` are registered by
@@ -528,6 +569,24 @@ in-place restoration and cancellation. Optional
 motion action/consumption in an isolated i386 process with controlled callbacks
 and verifies the immutable manifest before/after. See
 [fine-motion evidence](../research/runtime/native-creature-fine-motion.md).
+
+To compare immediate skipping with bounded cross-thread capture, run:
+
+```bash
+python3 tools/test-render-bootstrap.py --case thread-contention --tracker-wait-ms 0
+python3 tools/test-render-bootstrap.py --case thread-contention --case thread-timeout
+python3 tests/test-render-stream-rate.py
+```
+
+The thread fixtures use real Wine threads and QueryPerformanceCounter timing.
+Report latency includes original synthetic drawing and capture/recording work;
+it is not live Qt/game FPS. The rate sampler runs automatically for lock-capture
+launches, or can inspect a running stream independently:
+
+```bash
+python3 tools/profile-render-stream.py PATH_TO_FRAME.bin --seconds 10 --output working/presentation-rate.jsonl
+```
+
 
 ### Live Single Player setup
 

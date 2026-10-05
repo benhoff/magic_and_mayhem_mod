@@ -28,8 +28,10 @@ Supported copies are in-bounds, unscaled, distinct tracked RGB identities with
 identical bits and masks. Source and destination dimensions are at most 2048x2048 after the
 [primary bootstrap extension](opengl-primary-bootstrap.md). Blt accepts WAIT (`0x01000000`) and KEYSRC (`0x00008000`);
 BltFast accepts WAIT (`0x10`) and SRCCOLORKEY (`1`), with optional exact source keys.
-Source keys must come from a successful observed SetColorKey(SRCBLT) call with
-matching low/high native values. Failed property changes preserve old values;
+Source keys must come from a successful observed SetColorKey(SRCBLT) call or a
+successful application Lock/GetSurfaceDesc descriptor with DDSD_CKSRCBLT,
+with matching low/high native values. Descriptor fields without that flag are
+ignored; descriptor key ranges remove exact-key provenance. Failed property changes preserve old values;
 key removal or unsupported ranges remove key provenance.
 
 Blt requires observed knowledge that the destination has no clipper: successful
@@ -41,30 +43,81 @@ supported BltFast is sufficient for this boundary. API references:
 
 ## Conservative invalidation and bounds
 
+### Colour fills and recovery (2026-10-04)
+
+Application Blt with a NULL source and only COLORFILL (`0x400`)/WAIT flags
+can fill an in-bounds destination rectangle. The destination must have validated
+layout and known absence of a clipper. A readable PE32 100-byte DDBLTFX supplies
+the native colour at byte `0x50`; colours beyond the native bit width are rejected.
+A full fill establishes a complete checkpoint; a partial fill requires one.
+Arguments are captured before the original call, and only success with unchanged
+epoch/generation commits. Per-operation replay uses an explicitly derived
+constant native source and the existing opaque-copy operation. Ordered sessions
+emit a GAP for a fill while recording, rather than inventing a source identity.
+
+Pixel and metadata invalidation are separate: missed Lock/Unlock/Blt tracking
+discards uncertain pixels and pending work while retaining validated shape,
+primary identity and properties. Unknown successful Unlocks likewise discard
+pixels. Missed property/identity tracking and uncertain retirement still discard
+metadata. Subsequent full overwrites can recover only when metadata remains valid.
+
 A successful unsupported or untracked draw invalidates the destination. Later
 copies cannot inherit stale pixels; a new complete Lock/Unlock checkpoint can
-reseed it. Self-copy, effects, stretching, conversion, destination keys, unknown
+reseed it. Self-copy, effects other than the colour-fill case above, stretching,
+conversion, destination keys, unknown
 source keys and clipping are rejected. An unavailable complete destination can
 now be initialized only by the full opaque overwrite described in the
 [bootstrap contract](opengl-primary-bootstrap.md).
 Successful BltBatch, GetDC and Restore also invalidate affected pixels and
-in-flight Lock checkpoints. A mutation nested inside original Unlock cannot
+in-flight Lock checkpoints. Accepted application-owned GDI contexts now recover
+a complete checkpoint after successful ReleaseDC; see the
+[GDI context boundary](opengl-game-owned-dc.md). A mutation nested inside original Unlock cannot
 commit its earlier copy. Restore
 removes source-key provenance. The subsequent [owned Flip chunk](opengl-owned-flips.md)
 rotates pixels for observed two-buffer RGB chains and invalidates the capture
 epoch for unsupported successful Flips;
-[primary blit presentation](opengl-game-owned-primary.md) is implemented. Final Release, contention and unknown successful Unlocks preserve the
-existing conservative epoch invalidation. CreateSurface clears old identity and
+[primary blit presentation](opengl-game-owned-primary.md) is implemented.
+An unmatched successful Unlock on a known component invalidates its pixels and
+pending locks while preserving unrelated primary metadata. Unknown pixel identities
+invalidate the pixel epoch. Pixel contention instead queues only the affected
+target for checkpoint and pending-Lock invalidation; a 128-entry queue overflow
+retains the pixel-epoch fallback. Metadata uncertainty also invalidates the
+metadata epoch. Uncontended final Release
+retires only its observed component. CreateSurface clears old identity and
 property records before accepting a reused address. Joining two independently
 tracked aliases discards conflicting checkpoints and properties.
 
-The cache has 32 surface records and at most 64 MiB of retained plus pending
+The cache has 128 surface records and at most 64 MiB of retained plus pending
 native pixels. Full Lock snapshots retain their existing 16-file/64-MiB bound.
 There are at most 16 propagated blit command files and a separate 64-MiB cumulative
 command-payload budget. Exhausted limits stop capture, never the original draw.
 The post-call generation/epoch/budget check also covers nested application calls;
-no tracker guard spans an original API call. This is bounded evidence capture,
+no tracker guard spans an original API call. Cross-thread guard acquisition
+now permits a bounded yield/retry (8-ms GetTickCount budget, subject to clock
+resolution); same-thread entry fails immediately. Timeout retains the conservative
+invalidation policy. `MNM_RENDER_TRACKER_WAIT_MS=0` restores immediate skipping;
+accepted debug values are 0–50 ms. See the
+[contention comparison](render-startup-black-screen.md#2026-10-04-low-qt-update-cadence-bounded-tracker-waiting).
+ This is bounded evidence capture,
 not a game-speed render replacement or a benchmark.
+
+After the per-operation recording limit is reached, with ordered session recording
+disabled, admitted copies and fills update owned destination storage in place.
+Epoch and both surface generations are rechecked after the original call; failed
+or reentrant operations cannot mutate the checkpoint. This avoids cloning entire
+source and destination surfaces for small sprite operations. Recording and ordered
+sessions retain before/after snapshots. The 64-MiB storage bound is unchanged.
+Observed alias relationships now have a derived hash/union cache, invalidated on
+all graph changes, and a 256-edge bound. No additional COM queries are issued.
+
+Primary Blt/fill publication converts only the changed rectangle when the stream
+contains the exact preceding complete checkpoint (same surface token, generation
+and frame count). Publication retains the complete RGBA image and the existing
+version-one sequence protocol; no partial image or new wire layout is exposed.
+A bootstrap, full overwrite, changed identity/generation, or intervening producer
+requires full conversion. Palette publication remains full-frame. This reduces
+the capture guard's work for small sprites without dropping final updates.
+
 
 ## Output and evidence limits
 

@@ -63,7 +63,7 @@ def main():
         with (case / 'wine.log').open('w') as log:
             subprocess.run(['wine', str(case / 'selftest.exe')], cwd=case, env=env,
                            stdout=log, stderr=log, check=True, timeout=30)
-        counts = ([1, 2, 2, 3] + list(range(4, 17)) + [16, 16]) if mode == 'flip-budget' else [1, 2, 2, 3] if mode in ('flip-rotate', 'flip-target', 'flip-alias') else (
+        counts = ([1, 2, 2, 3] + list(range(4, 19))) if mode == 'flip-budget' else [1, 2, 2, 3] if mode in ('flip-rotate', 'flip-target', 'flip-alias') else (
             [0, 1, 2, 2, 3] if mode == 'flip-retry' else [1, 1] if mode == 'flip-no-reseed' else [0])
         events = list(struct.iter_unpack('<II', (case / 'events.bin').read_bytes()))
         assert [count for draw, count in events] == counts, (mode, events)

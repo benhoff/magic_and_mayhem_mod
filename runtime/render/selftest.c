@@ -1,5 +1,12 @@
 #include "../shadow/win32_min.h"
 API void WIN RenderInstallForTest(void*,u32);
+API void WIN RenderCaptureGuardForTest(u32);
+API u32 WIN RenderCaptureWaitsForTest(void);
+API void WIN Sleep(u32);
+API HANDLE WIN CreateThread(void*,u32,u32 (WIN *)(void*),void*,u32,u32*);
+API u32 WIN WaitForSingleObject(HANDLE,u32);
+API int WIN QueryPerformanceCounter(unsigned long long*);
+API int WIN QueryPerformanceFrequency(unsigned long long*);
 API i32 WIN RenderCreateForTest(void*,void*,void**,void*);
 static char startup_mode[16];
 static i32 WIN startup_create(void* guid,void** result,void* outer){

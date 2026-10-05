@@ -20,6 +20,18 @@ static int render_pixels(u8* rgba,u32 width,u32 height,const u8* pixels,i32 pitc
     if(bits==8){if(!palette)return 0;}
     else if(!render_mask(red,bits)||!render_mask(green,bits)||!render_mask(blue,bits)||
             (red&green)||(red&blue)||(green&blue))return 0;
+    /* Exact floor scaling, as in render_channel. The real game uses RGB565;
+     * avoid repeating mask scans and integer division for every pixel. */
+    if(bits==16 && red==0xf800 && green==0x7e0 && blue==0x1f){
+        u8 five[32],six[64];
+        for(u32 i=0;i<32;++i)five[i]=(u8)(i*255/31);
+        for(u32 i=0;i<64;++i)six[i]=(u8)(i*255/63);
+        for(u32 y=0;y<height;++y){const u8* row=pixels+(i32)y*pitch;u8* out=rgba+y*width*4;
+            for(u32 x=0;x<width;++x){u32 value=(u32)row[x*2]|((u32)row[x*2+1]<<8);
+                out[x*4]=five[value>>11];out[x*4+1]=six[(value>>5)&63];out[x*4+2]=five[value&31];out[x*4+3]=255;}
+        }
+        return 1;
+    }
     for(u32 y=0;y<height;++y){
         const u8* row=pixels+(i32)y*pitch;
         for(u32 x=0;x<width;++x){

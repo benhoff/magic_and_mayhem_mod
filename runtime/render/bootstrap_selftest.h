@@ -3,11 +3,16 @@
  * poisoned; only full opaque draws can establish a complete captured image. */
 static char bootstrap_mode[32];
 static int bs_mode(const char* text){u32 i=0;while(text[i] && text[i]==bootstrap_mode[i])++i;return !text[i] && !bootstrap_mode[i];}
+static int bs_thread_case(void){return bs_mode("thread-contention") || bs_mode("thread-timeout");}
+static int bs_scoped_partial(void){return bs_thread_case() || bs_mode("partial-lock-contention") || bs_mode("partial-blit-contention") || bs_mode("nested-lock-contention");}
+static int bs_continuous(void){return bs_scoped_partial() || bs_mode("continuous") || bs_mode("continuous-live") || bs_mode("continuous-release") || bs_mode("continuous-unmatched") || bs_mode("continuous-contention") || bs_mode("lock-contention") || bs_mode("unknown-unlock") || bs_mode("property-contention") || bs_mode("release-contention");}
 static int bs_is_indexed(void){return bootstrap_mode[0]=='i' && bootstrap_mode[1]=='d';}
+static int bs_is_fill(void){return bootstrap_mode[0]=='f' && bootstrap_mode[1]=='i' && bootstrap_mode[2]=='l' && bootstrap_mode[3]=='l';}
 struct BsSurface {void** table;struct BsSurface* state;u32 width,height,bits,primary,kind,held,key;u8 *pixels,*locked;void* palette;};
 struct BsRect {i32 left,top,right,bottom;};
 static struct BsSurface *bs_alias,*bs_created;
 static u32 bs_locks,bs_unlocks,bs_descriptions,bs_queries,bs_draws,bs_creates,bs_fail,bs_nested;
+static u32 bs_discard_lock,bs_restores;
 static int bs_is_flip(void){return (bootstrap_mode[0]=='f' && bootstrap_mode[1]=='l') || (bs_is_indexed() && bootstrap_mode[3]=='f');}
 static struct BsSurface* bs_back;static u32 bs_attachments,bs_flips,bs_attachment_mutations;
 static u32* bs_stream;static HANDLE bs_events;
@@ -19,6 +24,9 @@ static void bs_desc(struct BsSurface* s,u32* d){
     d[1]=0x1007;d[2]=s->height;d[3]=s->width;d[18]=32;d[19]=0x40;d[21]=s->bits;
     d[22]=s->bits==16?0xf800:0xff0000;d[23]=s->bits==16?0x7e0:0xff00;d[24]=s->bits==16?0x1f:0xff;d[26]=s->primary?0x200:0x840;
     if(s->bits==8){d[19]=0x60;d[22]=d[23]=d[24]=0;}
+    if(bs_mode("descriptor-key") || bs_mode("descriptor-key-range") || bs_is_fill() || bs_mode("continuous-live")){
+        d[1]|=0x10000;d[16]=s->key;d[17]=s->key+bs_mode("descriptor-key-range");
+    }
     if(bs_is_flip()){d[26]=s->primary?0x238:0x1c;if(s->primary){d[1]|=0x20;d[5]=bs_mode("flip-chain")?2:1;if(bs_mode("flip-count-missing"))d[1]&=~0x20u;}}
 }
 static i32 WIN bs_description(void* object,u32* d){
@@ -52,6 +60,8 @@ static i32 WIN bs_unlock(void* object,void* argument){
     for(u32 y=0;y<s->height;++y)for(u32 x=0;x<row;++x)s->pixels[y*row+x]=s->locked[((bs_mode("negative") || bs_mode("idx-negative") || bs_mode("idxcopy-negative") || bs_mode("idxflip-negative"))?s->height-1-y:y)*pitch+x];
     for(u32 i=0;i<pitch*s->height;++i)s->locked[i]=0xcc;return 19;
 }
+static u32 WIN bs_release(void* object){(void)object;bs_entry();return 0;}
+static i32 WIN bs_restore(void* object){(void)object;bs_entry();++bs_restores;return 23;}
 static i32 WIN bs_clipper(void* object,void* clipper){(void)object;bs_entry();if(clipper)ExitProcess(156);return 23;}
 static i32 WIN bs_key(void* object,u32 flags,u32* key){bs_entry();
     u32 expected=bs_mode("idxcopy-key-range")?256:0;if(flags!=8 || !key || key[0]!=expected || key[1]!=expected)ExitProcess(157);
@@ -77,7 +87,17 @@ static i32 bs_copy(void* target,void* dest,void* source,void* rect,u32 flags,u32
     }
     SetLastError(0x88);return 17;
 }
-static i32 WIN bs_blt(void* target,void* dest,void* source,void* rect,u32 flags,void* effects){if(effects)ExitProcess(160);return bs_copy(target,dest,source,rect,flags,0,0,0);}
+static i32 WIN bs_blt(void* target,void* dest,void* source,void* rect,u32 flags,void* effects){
+    if(!source && flags==0x01000400){
+        bs_entry();++bs_draws;if(bs_fail){bs_fail=0;return -1;}
+        struct BsSurface* s=bs_state(target);if(rect || !effects || ((u32*)effects)[0]!=100 || s->held)ExitProcess(197);
+        struct BsRect r={0,0,(i32)s->width,(i32)s->height};if(dest)r=*(struct BsRect*)dest;
+        u32 bytes=s->bits/8,value=((u32*)effects)[20];
+        for(i32 y=r.top;y<r.bottom;++y)for(i32 x=r.left;x<r.right;++x)bs_put(s->pixels+((u32)y*s->width+(u32)x)*bytes,bytes,value);
+        ((u32*)effects)[20]=0xdead;return 17;
+    }
+    if(effects)ExitProcess(160);return bs_copy(target,dest,source,rect,flags,0,0,0);
+}
 static i32 WIN bs_fast(void* target,u32 x,u32 y,void* source,void* rect,u32 flags){return bs_copy(target,0,source,rect,flags,1,x,y);}
 static void bs_record(struct BsSurface* target){
     char native[]="original-00000000.bin",frame[]="frame-00000000.bin";static const char hex[]="0123456789abcdef";
@@ -98,13 +118,42 @@ static void bs_draw(struct BsSurface* target,struct BsSurface* source,u32 fast,u
         ((i32 (WIN *)(void*,void*,void*,void*,u32,void*))target->table[5])(target,partial?&dr:0,source,partial?&sr:0,keyed?0x1008000:0x1000000,0);
     if(result!=(failed?-1:17) || GetLastError()!=0x88)ExitProcess(164);bs_record(bs_state(target));
 }
+static void bs_fill(struct BsSurface* target,u32 partial){
+    u32 effects[25]={100};effects[20]=target->bits==16?0x1234:0x123456;
+    struct BsRect r={1,2,20,30};u32 failed=bs_fail;SetLastError(0x77);
+    if(((i32 (WIN *)(void*,void*,void*,void*,u32,void*))target->table[5])(target,partial?&r:0,0,0,0x01000400,effects)!=(failed?-1:17) || GetLastError()!=0x88)ExitProcess(198);
+    bs_record(target);
+}
 static void bs_seed(struct BsSurface* s){
     u32 d[31]={0};d[0]=s->kind>=14?124:108;SetLastError(0x77);
     if(((i32 (WIN *)(void*,void*,void*,u32,HANDLE))s->table[25])(s,0,d,1,0)!=13 || GetLastError()!=0x88)ExitProcess(165);
     if(bs_mode("lock-description-change")){u32 changed[31]={0};changed[0]=s->kind>=14?124:108;SetLastError(0x77);
         if(((i32 (WIN *)(void*,void*))s->table[22])(s,changed)!=23 || GetLastError()!=0x88)ExitProcess(179);}
+    if(bs_discard_lock){SetLastError(0x77);
+        if(((i32 (WIN *)(void*))s->table[27])(s)!=23 || GetLastError()!=0x88)ExitProcess(194);}
     SetLastError(0x77);if(((i32 (WIN *)(void*,void*))s->table[32])(s,s->kind>=14?0:(void*)d[9])!=19 || GetLastError()!=0x88)ExitProcess(166);
 }
+static u32 bs_thread_ready,bs_thread_waits;
+static u32 WIN bs_thread_overlap(void* unused){
+    (void)unused;RenderCaptureGuardForTest(1);__atomic_store_n(&bs_thread_ready,1,__ATOMIC_RELEASE);
+    while(RenderCaptureWaitsForTest()==bs_thread_waits)Sleep(0);
+    if(bs_mode("thread-timeout"))Sleep(50);
+    RenderCaptureGuardForTest(0);return 0;
+}
+static void bs_thread_draw(struct BsSurface* target,struct BsSurface* source,HANDLE timing){
+    __atomic_store_n(&bs_thread_ready,0,__ATOMIC_RELEASE);bs_thread_waits=RenderCaptureWaitsForTest();
+    HANDLE thread=CreateThread(0,0,&bs_thread_overlap,0,0,0);if(!thread)ExitProcess(203);
+    while(!__atomic_load_n(&bs_thread_ready,__ATOMIC_ACQUIRE))Sleep(0);
+    unsigned long long begin,end;u32 written;
+    if(!QueryPerformanceCounter(&begin))ExitProcess(204);
+    bs_draw(target,source,0,0,1);
+    if(!QueryPerformanceCounter(&end))ExitProcess(205);
+    unsigned long long elapsed=end-begin;
+    if(!WriteFile(timing,&elapsed,8,&written,0) || written!=8)ExitProcess(206);
+    if(WaitForSingleObject(thread,5000)!=0)ExitProcess(207);CloseHandle(thread);
+}
+static struct BsSurface* bs_missed_sprite;
+static void bs_miss_sprite(void){RenderCaptureGuardForTest(1);bs_seed(bs_missed_sprite);RenderCaptureGuardForTest(0);}
 static i32 WIN bs_attached(void* object,u32* caps,void** out){
     bs_entry();++bs_attachments;if(!bs_state(object)->primary || caps[0]!=4)ExitProcess(180);
     *out=bs_back;return bs_mode("flip-attachment-failed")?-1:23;
@@ -160,14 +209,18 @@ static void bs_test_flips(struct BsSurface* front,struct BsSurface* back,struct 
 }
 #include "indexed_owned_selftest.h"
 #include "indexed_copy_selftest.h"
+#include "dc_selftest.h"
 static void test_bootstrap(void){
-    static void* table[33],*alias_table[33];table[0]=(void*)&bs_query;table[5]=(void*)&bs_blt;table[7]=(void*)&bs_fast;
+    static void* table[33],*alias_table[33];table[0]=(void*)&bs_query;table[2]=(void*)&bs_release;table[5]=(void*)&bs_blt;table[7]=(void*)&bs_fast;
     table[3]=(void*)&bs_add_attachment;table[8]=(void*)&bs_delete_attachment;table[11]=(void*)&bs_flip;table[12]=(void*)&bs_attached;table[22]=(void*)&bs_description;table[25]=(void*)&bs_lock;table[32]=(void*)&bs_unlock;table[28]=(void*)&bs_clipper;table[29]=(void*)&bs_key;
+    table[27]=(void*)&bs_restore;
+    table[17]=(void*)&bs_get_dc;table[26]=(void*)&bs_release_dc;
     for(u32 i=0;i<33;++i)alias_table[i]=table[i];
     static struct BsSurface source,target,sprite,alias;
     source.table=target.table=sprite.table=table;source.kind=target.kind=sprite.kind=(bs_mode("legacy") || bs_mode("idx-legacy") || bs_mode("idxcopy-legacy") || bs_mode("idxflip-legacy"))?12:14;
     source.width=target.width=800;source.height=target.height=600;sprite.width=sprite.height=2;
-    source.bits=target.bits=sprite.bits=bs_is_indexed()?8:bs_mode("rgb24")?24:bs_mode("rgb32")?32:16;target.primary=!bs_mode("offscreen");
+    source.bits=target.bits=sprite.bits=bs_is_indexed()?8:(bs_mode("rgb24")||bs_mode("fill24")||bs_mode("dc-rgb24"))?24:(bs_mode("rgb32")||bs_mode("fill32")||bs_mode("dc-rgb32"))?32:16;target.primary=!bs_mode("offscreen");
+    if(bs_mode("descriptor-key") || bs_mode("descriptor-key-range") || bs_is_fill() || bs_mode("continuous-live"))sprite.key=sprite.bits==16?0x7ff:0xff00;
     alias.table=alias_table;alias.state=(bs_mode("flip-alias") || bs_mode("idxflip-alias"))?&source:&target;alias.kind=11;bs_alias=&alias;
     struct BsSurface* surfaces[3]={&source,&target,&sprite};u32 bytes=source.bits/8;
     for(u32 i=0;i<3;++i){struct BsSurface* s=surfaces[i];u32 length=s->width*s->height*bytes;
@@ -187,7 +240,7 @@ static void test_bootstrap(void){
     RenderInstallForTest(&source,source.kind);RenderInstallForTest(&alias,11);
     if(bs_is_indexed() && (bootstrap_mode[3]=='c' || bootstrap_mode[3]=='f'))ic_test(&target,&source,&sprite,&alias);
     if(bs_is_indexed())ip_test(&target);
-    bs_seed(&source);
+    if(bs_dc_case())bs_dc_seed(&source);else bs_seed(&source);
     if(bs_mode("created")){
         static void* draw_table[7];draw_table[6]=(void*)&bs_create;void** draw=draw_table;bs_created=&target;RenderInstallForTest(&draw,4);
         u32 d[31]={124};bs_desc(&target,d);void* output=0;SetLastError(0x77);
@@ -205,12 +258,80 @@ static void test_bootstrap(void){
         if(((i32 (WIN *)(void*,const void*,void**))table[0])(&target,iid,&output)!=23 || GetLastError()!=0x88 || output!=&alias)ExitProcess(176);destination=&alias;
     }
     if(bs_mode("keyed")){u32 key[2]={0,0};SetLastError(0x77);if(((i32 (WIN *)(void*,u32,void*))table[29])(&source,8,key)!=23 || GetLastError()!=0x88)ExitProcess(177);}
-    u32 rejection=bs_mode("partial")||bs_mode("keyed")||bs_mode("caps-missing")||bs_mode("dimensions-missing")||bs_mode("format-missing")||bs_mode("bad-mask")||bs_mode("failed-description")||bs_mode("lock-description-change");
+    u32 rejection=bs_mode("partial")||bs_mode("keyed")||bs_mode("caps-missing")||bs_mode("dimensions-missing")||bs_mode("format-missing")||bs_mode("bad-mask")||bs_mode("failed-description")||bs_mode("lock-description-change")||bs_mode("dc-format")||bs_mode("dc-unmatched")||bs_mode("dc-swapped");
     if(bs_mode("retry")){bs_fail=1;bs_draw(destination,&source,0,0,0);}
-    bs_draw(destination,&source,bs_mode("fast")||bs_mode("alias"),bs_mode("keyed"),bs_mode("partial"));
+    if(bs_is_fill()){
+        if(bs_mode("fill-failed")){bs_fail=1;bs_fill(destination,0);}
+        if(bs_mode("fill-partial"))bs_fill(destination,1);
+        bs_fill(destination,0);
+        if(bs_mode("fill-update"))bs_fill(destination,1);
+    }else bs_draw(destination,&source,bs_mode("fast")||bs_mode("alias"),bs_mode("keyed"),bs_mode("partial"));
     if(bs_mode("nested-description"))bs_draw(destination,&source,0,0,0);
-    if(!rejection){bs_seed(&sprite);bs_draw(destination,&sprite,1,0,0);}
-    if(bs_locks!=1u+!rejection || bs_unlocks!=bs_locks || bs_queries!=(u32)bs_mode("alias") || bs_creates!=(u32)bs_mode("created") ||
-       bs_descriptions!=(bs_mode("created")?0u:1u)+(u32)bs_mode("nested-description")+(u32)bs_mode("lock-description-change") || bs_draws!=1u+!rejection+bs_mode("retry")+bs_mode("nested-description"))ExitProcess(178);
+    if(!rejection){bs_seed(&sprite);bs_draw(destination,&sprite,1,bs_mode("descriptor-key")||bs_mode("descriptor-key-range")||bs_is_fill(),0);}
+    if(bs_mode("nested-source-contention") || bs_mode("pixel-miss-overflow")){
+        if(bs_mode("nested-source-contention")){bs_missed_sprite=&source;bs_copy_hook=&bs_miss_sprite;}
+        else{
+            RenderCaptureGuardForTest(1);for(u32 i=0;i<43;++i)bs_seed(&sprite);RenderCaptureGuardForTest(0);
+        }
+        /* Uncertain source/checkpoint rejects partial updates until reseeded. */
+        bs_draw(destination,&source,0,0,1);bs_draw(destination,&sprite,1,0,0);
+        bs_seed(&source);bs_draw(destination,&source,0,0,0);
+    }
+    if(bs_mode("many-surfaces")){
+        static struct BsSurface assets[65],aliases[65];static u8 native[65][8],locked[65][24];
+        static const u8 iid[16]={0x81,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
+        for(u32 i=0;i<65;++i){struct BsSurface* s=assets+i;s->table=table;s->kind=14;s->bits=16;s->width=s->height=2;s->pixels=native[i];s->locked=locked[i];
+            for(u32 j=0;j<8;++j)native[i][j]=(u8)(i+j*17);
+            aliases[i].table=alias_table;aliases[i].state=s;aliases[i].kind=11;bs_alias=aliases+i;
+            u32 d[31]={124};void* output=0;SetLastError(0x77);
+            if(((i32 (WIN *)(void*,void*))table[22])(s,d)!=23 || GetLastError()!=0x88)ExitProcess(201);
+            SetLastError(0x77);if(((i32 (WIN *)(void*,const void*,void**))table[0])(s,iid,&output)!=23 || output!=aliases+i || GetLastError()!=0x88)ExitProcess(202);
+        }
+        bs_seed(assets+64);bs_draw(destination,aliases+64,1,0,0);
+    }
+    if(bs_continuous()){
+        if(bs_mode("partial-lock-contention")){bs_missed_sprite=&sprite;bs_miss_sprite();}
+        if(bs_mode("partial-blit-contention")){
+            RenderCaptureGuardForTest(1);bs_draw(&source,&sprite,1,0,0);RenderCaptureGuardForTest(0);
+        }
+        if(bs_mode("nested-lock-contention")){bs_missed_sprite=&sprite;bs_copy_hook=&bs_miss_sprite;}
+        if(bs_mode("continuous-release")){SetLastError(0x77);if(((u32 (WIN *)(void*))sprite.table[2])(&sprite)!=0 || GetLastError()!=0x88)ExitProcess(193);}
+        if(bs_mode("continuous-unmatched")){bs_discard_lock=1;bs_seed(&sprite);bs_discard_lock=0;}
+        if(bs_mode("continuous-contention")){
+            RenderCaptureGuardForTest(1);bs_draw(destination,&source,0,0,0);RenderCaptureGuardForTest(0);
+        }
+        if(bs_mode("lock-contention")){RenderCaptureGuardForTest(1);bs_seed(&sprite);RenderCaptureGuardForTest(0);}
+        if(bs_mode("unknown-unlock")){
+            /* Emulate a Lock performed before interception: the actual Unlock
+             * is forwarded on a surface with no captured identity. */
+            static struct BsSurface unknown;static u8 native[8],locked[24];u32 d[31]={124};
+            unknown.table=table;unknown.width=unknown.height=2;unknown.bits=16;unknown.kind=14;unknown.pixels=native;unknown.locked=locked;
+            SetLastError(0x77);if(bs_lock(&unknown,0,d,1,0)!=13 || GetLastError()!=0x88)ExitProcess(199);
+            SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[32])(&unknown,0)!=19 || GetLastError()!=0x88)ExitProcess(200);
+        }
+        if(bs_mode("property-contention") || bs_mode("release-contention")){
+            RenderCaptureGuardForTest(1);SetLastError(0x77);
+            if(bs_mode("property-contention")){
+                if(((i32 (WIN *)(void*,void*))target.table[28])(&target,0)!=23 || GetLastError()!=0x88)ExitProcess(195);
+            }else if(((u32 (WIN *)(void*))sprite.table[2])(&sprite)!=0 || GetLastError()!=0x88)ExitProcess(196);
+            RenderCaptureGuardForTest(0);
+        }
+        HANDLE timing=0;
+        if(bs_thread_case()){
+            timing=CreateFileA("timing.bin",0x40000000,1,0,1,0x80,0);unsigned long long frequency;u32 written;
+            if(timing==(HANDLE)-1 || !QueryPerformanceFrequency(&frequency) || !WriteFile(timing,&frequency,8,&written,0) || written!=8)ExitProcess(208);
+        }
+        for(u32 i=0;i<20;++i){
+            if(bs_scoped_partial()){
+                if(bs_thread_case())bs_thread_draw(destination,&source,timing);
+                else if(bs_mode("partial-blit-contention"))bs_draw(destination,&sprite,1,0,0);
+                else bs_draw(destination,&source,0,0,1);
+            }else{source.pixels[0]=(u8)i;bs_seed(&source);bs_draw(destination,&source,0,0,0);}
+            if(bs_mode("continuous-live")){bs_draw(destination,&sprite,1,1,0);bs_fill(destination,1);}}
+        if(bs_thread_case()){CloseHandle(timing);bs_draw(destination,&source,0,0,0);}
+        if(bs_mode("continuous-live")){bs_fail=1;bs_fill(destination,0);}
+    }
+    if(bs_locks!=1u-bs_dc_case()+!rejection+20u*(bs_continuous()&&!bs_scoped_partial())+bs_mode("partial-lock-contention")+bs_mode("nested-lock-contention")+2u*bs_mode("nested-source-contention")+44u*bs_mode("pixel-miss-overflow")+bs_mode("continuous-unmatched")+bs_mode("lock-contention")+bs_mode("unknown-unlock")+bs_mode("many-surfaces") || bs_unlocks!=bs_locks || bs_restores!=(u32)bs_mode("continuous-unmatched") || bs_queries!=(u32)bs_mode("alias")+65u*bs_mode("many-surfaces") || bs_creates!=(u32)bs_mode("created") ||
+       bs_descriptions!=(bs_mode("created")?0u:1u)+bs_dc_case()+(u32)bs_mode("nested-description")+(u32)bs_mode("lock-description-change")+65u*bs_mode("many-surfaces") || bs_draws!=1u+!rejection+bs_mode("retry")+bs_mode("nested-description")+20u*bs_continuous()+41u*bs_mode("continuous-live")+bs_mode("continuous-contention")+bs_mode("partial-blit-contention")+bs_thread_case()+3u*(bs_mode("nested-source-contention")||bs_mode("pixel-miss-overflow"))+bs_mode("fill-failed")+bs_mode("fill-partial")+bs_mode("fill-update")+bs_mode("many-surfaces"))ExitProcess(178);
     ExitProcess(0);
 }

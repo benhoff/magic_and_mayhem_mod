@@ -6,6 +6,11 @@ API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 API u32 WIN GetFileSize(HANDLE,u32*);
 API u32 WIN GetTickCount(void);
 API u32 WIN GetCurrentThreadId(void);
+API void WIN Sleep(u32);
+API HANDLE WIN GetCurrentObject(HANDLE,u32);
+API i32 WIN GetObjectA(HANDLE,i32,void*);
+API i32 WIN GetBitmapBits(HANDLE,i32,void*);
+API i32 WIN GdiFlush(void);
 #define STREAM_SIZE (MNM_FRAME_V1_SIZE)
 typedef i32 (WIN *Query)(void*,const u8*,void**);
 typedef i32 (WIN *CreateSurface)(void*,void*,void**,void*);
@@ -25,7 +30,11 @@ static u32 last_capture;
 /* Shared vtables, not object addresses: records survive object Release/reuse. */
 struct Table {void** vtable;void* original[33];u32 kind;};
 static struct Table tables[32];static u32 table_count;
-static void copy(void* to,const void* from,u32 length){u8* d=to;const u8* s=from;while(length--)*d++=*s++;}
+static void copy(void* to,const void* from,u32 length){
+    /* PE32, no CRT and no SIMD state changes. Inputs are non-overlapping,
+     * as in the previous forward byte loop. REP handles unaligned rows. */
+    __asm__ volatile("cld; rep movsb" : "+D"(to), "+S"(from), "+c"(length) : : "memory", "cc");
+}
 static void zero(void* to,u32 length){u8* p=to;while(length--)*p++=0;}
 static int same(const void* a,const void* b,u32 size){const u8* x=a;const u8* y=b;while(size--)if(*x++!=*y++)return 0;return 1;}
 static int readable(const void* pointer,u32 size){
@@ -48,6 +57,7 @@ static i32 WIN input_cooperative(void* object,void* window,u32 flags){
 #include "draw_capture.h"
 #include "lock_lifecycle.h"
 #include "lock_flip.h"
+#include "lock_dc.h"
 static u32 guid_kind(const u8* guid){
     static const u8 ids[8][16]={
       {0x80,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},
@@ -121,12 +131,12 @@ static i32 WIN surface_attached(void* object,u32* caps,void** result){
 static i32 WIN surface_add_attached(void* object,void* other){
     u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,void*))t->original[3])(object,other);u32 error=GetLastError();
-    if(status>=0)__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);SetLastError(error);return status;
+    if(status>=0)game_metadata_invalidate();SetLastError(error);return status;
 }
 static i32 WIN surface_delete_attached(void* object,u32 flags,void* other){
     u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,u32,void*))t->original[8])(object,flags,other);u32 error=GetLastError();
-    if(status>=0)__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);SetLastError(error);return status;
+    if(status>=0)game_metadata_invalidate();SetLastError(error);return status;
 }
 static i32 WIN surface_desc(void* object,u32* desc){
     u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
@@ -243,8 +253,14 @@ static i32 WIN surface_restore(void* object){
 static i32 WIN surface_dc(void* object,void** output){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((GetObject)t->original[17])(object,output);u32 error=GetLastError();
-    if(status>=0)game_surface_invalidate(object);
+    if(status>=0)game_dc_acquired(object,readable(output,4)?*output:0);
     if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
+}
+static i32 WIN surface_release_dc(void* object,void* dc){
+    u32 entry=GetLastError();struct Table* t=lookup(object);
+    struct GameDC pending;game_dc_before(object,dc,&pending);
+    SetLastError(entry);i32 status=((i32 (WIN *)(void*,void*))t->original[26])(object,dc);u32 error=GetLastError();
+    game_dc_after(&pending,dc,status);SetLastError(error);return status;
 }
 static i32 surface_property(void* object,void* value,u32 slot){
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
@@ -263,7 +279,7 @@ static u32 WIN palette_release(void* object){
     u32 entry=GetLastError();int token=history_enter();struct HistoryPalette* p=token?history_palette_resolve(object):0;
     struct Table* t=lookup(object);SetLastError(entry);
     u32 remaining=((ReleaseObject)t->original[2])(object),error=GetLastError();
-    if(!remaining && lock_capture_path_length)__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);
+    if(!remaining && lock_capture_path_length)game_metadata_invalidate();
     if(token)history_palette_release(p,remaining);history_leave(token);SetLastError(error);return remaining;
 }
 static i32 WIN palette_entries(void* object,u32 flags,u32 first,u32 count,void* entries){
@@ -327,6 +343,7 @@ static void install_table(void* object,u32 kind){
             __atomic_store_n(vt+22,(void*)&surface_desc,__ATOMIC_RELEASE);
             __atomic_store_n(vt+6,(void*)&surface_batch,__ATOMIC_RELEASE);
             __atomic_store_n(vt+17,(void*)&surface_dc,__ATOMIC_RELEASE);
+            __atomic_store_n(vt+26,(void*)&surface_release_dc,__ATOMIC_RELEASE);
             __atomic_store_n(vt+27,(void*)&surface_restore,__ATOMIC_RELEASE);
             __atomic_store_n(vt+28,(void*)&surface_clipper,__ATOMIC_RELEASE);
             __atomic_store_n(vt+29,(void*)&surface_color_key,__ATOMIC_RELEASE);
@@ -362,6 +379,12 @@ static i32 WIN create_draw(void* guid,void** result,void* outer){
 __declspec(dllexport) void RenderAnchor(void){}
 #ifdef MNM_RENDER_SELFTEST
 __declspec(dllexport) void WIN RenderInstallForTest(void* surface,u32 kind){install_table(surface,kind);}
+/* Deterministically exercise contention without timing-dependent scheduling. */
+__declspec(dllexport) void WIN RenderCaptureGuardForTest(u32 held){
+    __atomic_store_n(&game_locks_owner,held?GetCurrentThreadId():0,__ATOMIC_RELEASE);
+    __atomic_store_n(&game_locks_busy,held!=0,__ATOMIC_RELEASE);
+}
+__declspec(dllexport) u32 WIN RenderCaptureWaitsForTest(void){return __atomic_load_n(&game_tracker_wait_count,__ATOMIC_RELAXED);}
 __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid,void** result,void* outer){
     original_create=original;return create_draw(guid,result,outer);
 }

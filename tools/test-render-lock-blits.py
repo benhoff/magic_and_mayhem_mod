@@ -103,9 +103,9 @@ def check_primary_frames(case, mode, count, unknown):
     seed_ids = {3 if primary_c else 1 if mode == 'untracked' else 2}
     if mode == 'reseed':
         seed_ids.add(4)
-    draw_ids = {index + (mode in ('failed', 'reseed')) for index in range(1, count + 1)}
+    draw_ids = {index + (mode in ('failed', 'reseed')) for index in range(1, (18 if mode == 'budget' else count) + 1)}
     if primary_c:
-        draw_ids &= set(range(2, 17)) if mode == 'budget' else {3 if mode == 'update' else 2}
+        draw_ids &= set(range(2, 19)) if mode == 'budget' else {3 if mode == 'update' else 2}
     last_counter, last_pixels = 0, b''
     events = (case / 'frame-events.bin').read_bytes()
     for seed, index in struct.iter_unpack('<II', events):

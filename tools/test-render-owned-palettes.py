@@ -42,7 +42,7 @@ def main():
         'idx-negative': [0, 0, 1, 2], 'idx-legacy': [0, 0, 1, 2],
         'idx-before-lock': [0, 0, 0, 1, 2],
         'idx-release': [0, 0, 1, 2, 2, 2, 2, 2, 3],
-        'idx-budget': [0, 0, 1, 2] + list(range(3, 17)) + [16, 16],
+        'idx-budget': [0, 0, 1, 2] + list(range(3, 19)),
     }
     cases = tuple(expected)
     parser = argparse.ArgumentParser(description=__doc__)

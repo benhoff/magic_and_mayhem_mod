@@ -170,7 +170,7 @@ def main():
                 assert raw[:8] == b'MNMLOCK1' and h[9:12] == (1024, 2048, 32)
                 assert h[15] == 8 * 1024 * 1024 and raw[64:] == b'\x55' * h[15]
             reasons = {line.split()[0] for line in (capture / 'lifecycle.log').read_text().splitlines()}
-            assert {'lock_partial_accepted', 'unlock_limit'} <= reasons
+            assert 'lock_partial_accepted' in reasons and 'unlock_limit' not in reasons
             reports.append({'mode': mode, 'snapshots': 8, 'native_bytes': 64 * 1024 * 1024,
                             'primary_frames': 0, 'reasons': sorted(reasons), 'qt_readback': False})
             print(f'Partial Lock fixture {mode}: passed', flush=True)
@@ -224,7 +224,7 @@ def main():
             step = int(frame.stem[6:], 16)
             raw = frame.read_bytes()
             h = struct.unpack('<16I', raw[:64])
-            count = int(step == 5) if mode == 'blit' else 0 if mode == 'indexed' else sum(commit <= step for commit in commits)
+            count = int(step == 5) if mode == 'blit' else 0 if mode == 'indexed' else sum(commit <= step for commit in (list(range(2, 41, 2)) if mode == 'budget' else commits))
             assert h[10] == count and h[4] == count * 2, (mode, step, h, commits)
             if count and count > (counts[-1] if counts else 0):
                 colors = (case / f'colors-{step:08x}.bin').read_bytes() if bits == 8 else None
@@ -246,7 +246,7 @@ def main():
         if mode == 'retry':
             assert 'unlock_failed' in reasons
         if mode == 'budget':
-            assert 'unlock_limit' in reasons
+            assert 'unlock_limit' not in reasons and counts[-1] == 20
         if counts[-1]:
             result = subprocess.run(['xvfb-run', '-a', str(build / 'mnm-qt-shell'), '--stream-test', str(stream)],
                                     env=env, capture_output=True, text=True, timeout=20)

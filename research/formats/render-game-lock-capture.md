@@ -15,12 +15,16 @@ offline replay files. Reconstructed destinations with observed primary identity
 can also publish live frames. Observed two-buffer RGB Flips are supported, and
 complete indexed primary checkpoints can publish with observed palette state.
 See [game-owned blits](../runtime/opengl-game-owned-blits.md).
+Supported native colour fills can establish a complete destination before
+transparent copies; partial fills require an existing complete checkpoint.
 
 ## Lifecycle and acceptance
 
 The actual application Lock is forwarded once with its original arguments.
 After success the bridge remembers a full-surface writable descriptor, interface,
 object and owning thread. Accepted flags are within `0x4831`, excluding READONLY.
+Flagged DDSD_CKSRCBLT descriptor values also establish exact source-key
+provenance for owned blits; unflagged values are ignored and ranges are rejected.
 Rectangular updates require a matching complete owned checkpoint; unsupported
 flags/descriptors and unsafe layouts are skipped. See [partial Lock ownership](../runtime/opengl-partial-locks.md).
 The descriptor must have the correct size (108 for Surface1/2, 124 for Surface4/7).
@@ -34,14 +38,20 @@ retains the original lock metadata for the application's retry. No pointer is
 read after the original Unlock. API arguments, HRESULT and LastError are preserved.
 
 No extra COM Lock, Unlock, Query or retained reference is required by this
-lifecycle. At most 32 descriptors are tracked. Unknown successful Unlocks,
-final releases and tracker contention conservatively invalidate the capture
-epoch. Cross-interface Unlock matching uses only relationships observed in
+lifecycle. At most 32 descriptors are tracked. Unmatched successful Unlocks on
+known components invalidate only that component's pixels and pending locks.
+Missed pixel tracking queues the affected object token for component-scoped
+checkpoint and pending-Lock invalidation at the next guarded entry. The queue
+has 128 entries; overflow and unknown successful Unlock identities retain the
+whole-pixel-epoch fallback. Validated surface metadata is preserved for later
+complete checkpoint recovery. No queued token is dereferenced.
+Missed identity/property tracking additionally invalidates the metadata epoch;
+uncontended final Release retires its component. Cross-interface Unlock matching uses only relationships observed in
 successful application QueryInterface calls for supported surface interfaces.
 Transitive aliases are supported; no fixed pointer offset or extra query is used.
 Unlock argument validation follows the unlocking interface's ABI. Final Release
 retires the entire observed component; a contended final Release requests a full
-alias reset before the next lookup. The graph has at most 64 relationships;
+alias reset before the next lookup. The graph has at most 256 relationships;
 saturation clears provenance. New successful Locks replace earlier metadata,
 preventing reuse of an older pointer at the same object address.
 
@@ -53,8 +63,9 @@ uses application palette calls to associate colors and publish complete primarie
 Read-only capture remains deferred. Rectangular writes now merge into a complete
 owned checkpoint; the live pointer is already relative to the locked rectangle.
 
-At most 16 committed snapshots and 64 MiB of committed plus pending pixel storage
-are allowed per process. Transient copies are freed after every Unlock attempt.
+At most 16 snapshot files are recorded. Live checkpoints continue after that
+disk budget, with 64 MiB of retained plus pending native pixel storage allowed
+per process. Transient copies are freed after every Unlock attempt.
 Limits and contention drop capture work, never the application's call.
 A primary RGB surface with explicitly returned DDSD_CAPS /
 DDSCAPS_PRIMARYSURFACE can publish a frame after successful Unlock or supported
@@ -149,6 +160,40 @@ interface on which the successful application QueryInterface was called.
 Descriptor fields are zero when unavailable. Pitch is the raw signed 32-bit
 value represented in hex. Thread/pointer values are launch-specific.
 
+Application-held GDI contexts can now seed owned RGB checkpoints after successful
+ReleaseDC; see [the capture boundary and evidence](../runtime/opengl-game-owned-dc.md).
+These are not `lock-*.bin` records. `dc_acquired`, `dc_ready`, `dc_copied`,
+`dc_checkpoint`, `dc_released`, `dc_release_failed`, `dc_unmatched`,
+`dc_bitmap_rejected`, `dc_memory` and `dc_read_failed` use the ordinary fields,
+with the HDC in `argument`. `dc_bitmap` uses a separate 19-field schema:
+
+```text
+dc_bitmap object current_thread HDC HBITMAP GetObject_size
+          bitmap_width bitmap_height bitmap_pitch bitmap_planes_bits bitmap_pointer
+          info_size info_width info_height info_planes_bits compression
+          red_mask green_mask blue_mask GdiFlush_result
+```
+
+The packed planes/bits fields contain 16-bit planes in the low half and bit width
+in the high half. The bitmap pointer is diagnostic only; capture uses
+GetBitmapBits to normalize rows because GetObject can normalize the height sign.
+
+Specific `blit_reject_*` reasons distinguish `source_rect`, `target_rect`, `self`,
+`effects`, `flags`, `clipper`, `format` and `stretch`. Their fields are:
+
+```text
+reason target current_thread flags effects_pointer
+       source_left source_top source_right source_bottom
+       target_left target_top target_right target_bottom
+       source_width source_height target_width target_height
+       clip_known clip_present source
+```
+
+Rectangles are copied arguments or full-surface defaults, with right/bottom
+exclusive. Invalid/unreadable rectangles retain defaults where unavailable.
+These records share the bounded log and preserve LastError; no extra surface
+readback or COM query is performed to diagnose a rejected blit.
+
 Lock reasons: `lock_accepted`, `lock_failed`, `lock_partial`, `lock_readonly`,
 `lock_flags`, `lock_descriptor`, `lock_capacity`, `lock_partial_accepted`.
 `lock_partial` now means a rectangular Lock was rejected, for example because
@@ -204,3 +249,16 @@ session. Replay limits and file failures leave native commits/publication active
 See [ownership, limits and replay tests](../runtime/opengl-partial-locks.md).
 Diagnostics add `update_recorded`, `update_palette_unobserved`, `update_limit`
 and `update_file_failed`.
+
+## Publication-rate journal
+
+Capture launches also write `presentation-rate.jsonl` beside `lock-capture/`.
+Each version-1 JSON line identifies `origin=frame_v1_header_sampling`, window and
+elapsed seconds, `published_updates`, `published_updates_per_second`, sample
+counts (total, busy, invalid), last stable frame count and bridge status. Header
+sampling uses the existing sequence contract at approximately 60 Hz; counter
+deltas include publications between samples. It reads no pixel payload. This is
+producer-publication cadence, not Qt paint rate or game FPS. A final short window
+is emitted at runner exit. Samples crossing a busy sequence are counted as busy
+and excluded from stable header observation. The sampler stops on runner exit or
+PID reuse; it cannot reconstruct timing from an already completed run.
