@@ -1,0 +1,635 @@
+{
+  "range": "1d1ca72..ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+  "scope": "Read-only parent/current committed file and behavior fingerprints against append-only exact receipts. No retrospective gate pass or new execution/equivalence claim.",
+  "files": [
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "reconstruction/rendering/creature-occupancy/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "786b4059d77281d4b7aafce99b1922a08548865717dd3e424147dafd2eb58276",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "build",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "reconstruction/rendering/creature_occupancy.cpp",
+      "before_sha256": null,
+      "after_sha256": "e6de5c98e7b5fd1a819e4170a8cb79ef3f31e371864a9b86028e56f1afddc1d6",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "reconstruction/rendering/creature_occupancy.hpp",
+      "before_sha256": null,
+      "after_sha256": "638e64697c82a9a44001de2845b4100937cea34dabd7045414a20785f90c9720",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "b27aabd95b69cab2871c6bd3fa146e8b1380f9ac3efa6673b0574083d6607082",
+      "after_sha256": "d8f07bff8fbefa0e8ccb73eca097577f92fb199d1f9512e25434076b6a851724",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "6440c93891bae008e98a30c8f1290aab2608e212d5a93725951399ea82f30081",
+      "after_sha256": "bde8d40548f6f4bec645bd50f932d547ea48b7312f42194be01efcf6e3aa1b25",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "0ec6059e07816890b2d6df5ba6ed2d7b89903ae7da62578acd4164c6696de383",
+      "after_sha256": "b20aca5d7b335e89e69219d3e218eb63bbead7ff1044c75f1d576ccf2eb46fd4",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-summary-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "a58f6cb785cb7ca9ee612300af791f685405429a7b2ce39f081d407f1e7fe124",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/creature-occupancy-lookup-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "0b85341b048cb7e3ad8ba653541bc8270e180e8aa20b4d47b02676300226d042",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/creature-occupancy-lookup.json",
+      "before_sha256": null,
+      "after_sha256": "8e27ceaddb0b9729e191aec7f9f8aaca74cc6dbea73a2e65e9caf44108b6be49",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/creature-occupancy-lookup.md",
+      "before_sha256": null,
+      "after_sha256": "1c5718268b5090de3f1a0116abbdd5b485084535131389b9bf03888c6a59be7a",
+      "behaviors": [
+        "TL.creature-occupancy-lookup",
+        "TL.effect-movement-recount"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "870be44d6e400c5d2a174d60990c0b8f123859a5dd2659fd51aa0b87d6f574dd",
+      "after_sha256": "9c1f74f7b9ec52ed33a65a22bdf44faecf49e6477cf894ed0b4e931f36f9eb72",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "e1dc2f2176ee23d68db657f16fcfd7a3f7531a2d92fddddebc85d54d86e99344",
+      "after_sha256": "c8b0b211511fd39b214ae5276721f06bd5b97cbeef3343713db89e9275746bcb",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "a96b0eba3adb463f5a4e4e89464d125a6eb6db83856d087e3fcab4eab709b6cc",
+      "after_sha256": "b8c6fa982fb942a53d7ed340a4ff503d7a341e060db53c886e31c49a0bbdd335",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "bbdc6c90fe2d8dbdd4e4c8e82383a8089484d621410c3a17f06ab51f601ad62b",
+      "after_sha256": "1ff1daab68aad8f14292bc907f0d4121a8df6f008c125f5f1e1d77271c0cefbf",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "51db32e20198d9c7207980386b38ae186ec643a25c7fcb395e6ee91f86eebdcd",
+      "after_sha256": "e0ffbe6565f4e5d98814a60c679d5276773f718c0f09f0e149419e4106320607",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "892ca3d8e55c827f439705658b18a08c85c99cdea301cd7a0bfe574bf58655e5",
+      "after_sha256": "c7a85593e2d880e3ad8202ac279fd7d9a132b9c38a24d954e29da385403642cd",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "bb632fb424dd8b1b9cf7cc3feda43983ed46f6d2e23893535a41bc57b2a7b43f",
+      "after_sha256": "b152dc32d6bb81c53704bf6a5010fc7675b5a431519fdb4ca03f957edab80e18",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "691e18085d2a1a3be849fc9f314966cc545bb31ba21bdb1ffd3569dbb2110369",
+      "after_sha256": "e3dbc72febc632144c7d28774f4e595abe51ede09b30b890e706a1c2c2ab5c3c",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "tests/creature-occupancy-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "3caf551916667f5f1c947b715d7d70f25ba241d969741dbf961d0c81a66a58d8",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "tests/creature-occupancy-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "39b48e5887c2794f8b8d5d54f4782358f9b18aa5591f7928507491bf2570c492",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "tools/test-creature-occupancy.py",
+      "before_sha256": null,
+      "after_sha256": "6e470c43e1571c5e09a5de7954301f762e72435a8c05633704fc31531549b769",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "apps/world-scene/CMakeLists.txt",
+      "before_sha256": "f1b884efb1b071a00dd4c946a05c36add42ee2adb6b6534e860ed7f56f9e267d",
+      "after_sha256": "c1cfd46b1049368fc72438fb9a7ac636d8db60ce497b5edf346f58e8f761970c",
+      "behaviors": [],
+      "role": "build",
+      "change": "modified",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "apps/world-scene/README.md",
+      "before_sha256": "454b300288f669b07dce94c95364237009a2be7ca3381e64438b4786f535d62a",
+      "after_sha256": "a4cff0b167a9805533758df215b70493264365afc4799ced9c97b75368b0e074",
+      "behaviors": [
+        "NP.map-navigation",
+        "NP.presentation",
+        "NR.world_scene"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "apps/world-scene/main.cpp",
+      "before_sha256": "67c0270359768ac915a19302becb89df2a6bae5b008c880d1e6c178db564a0a0",
+      "after_sha256": "0f9f4911ea1debd5b4885055307763c9171fff41cea019db69b8271224706d1f",
+      "behaviors": [
+        "NP.presentation",
+        "NP.scene-orders",
+        "NR.world_scene"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "apps/world-scene/movement_controls.cpp",
+      "before_sha256": null,
+      "after_sha256": "9ca35468f85a28de58c6b68297fd29c9f1a85f34d0d724cf9fe1fa7a9ce3977f",
+      "behaviors": [
+        "NP.scene-orders"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "apps/world-scene/movement_controls.hpp",
+      "before_sha256": null,
+      "after_sha256": "b94189185f75da0f34101ac4daa4bb8db8691e5e35e66caeee4b573a9734c185",
+      "behaviors": [
+        "NP.scene-orders"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "apps/world-scene/orders.cpp",
+      "before_sha256": null,
+      "after_sha256": "a4c5601ef6e3b6764d2789b662ff394f9ad60f6756ece4044f9089b4dfd52c27",
+      "behaviors": [
+        "NP.scene-orders"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "apps/world-scene/orders.hpp",
+      "before_sha256": null,
+      "after_sha256": "85f2cbb55848b6c0c5931af65e963c014a3cf2bcb7e3673ca304a4c4774e4401",
+      "behaviors": [
+        "NP.scene-orders"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "game/README.md",
+      "before_sha256": "a641c4202b7481884e5e09022b014ed94177a2e84e8de60b170ea04076a3a5ec",
+      "after_sha256": "a32c6a5c8dc10fe1e966b149a7ba720fa7a75ee8ba45cfd7d64aa0038b837d25",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.move-orders",
+        "WORLD.owned"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d8f07bff8fbefa0e8ccb73eca097577f92fb199d1f9512e25434076b6a851724",
+      "after_sha256": "033d925e6f5b36f1c772da1d523ec03e777d68a505b4c16ded496d70fb0a8b16",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "bde8d40548f6f4bec645bd50f932d547ea48b7312f42194be01efcf6e3aa1b25",
+      "after_sha256": "0b7c3216527bcfb1c8c2d0900db2608cb735c364cec7ceb69bfebfa172013d89",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "research/runtime/coverage/source-index-scene-orders.json",
+      "before_sha256": null,
+      "after_sha256": "f721c90ef6d54776922f7e8a565be0f83364aa516c14a0725c48f75abb1e6a81",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "b20aca5d7b335e89e69219d3e218eb63bbead7ff1044c75f1d576ccf2eb46fd4",
+      "after_sha256": "5de8aa8dbb0e8f0c7db20c98ee71165ef01a9fdc33fb2a46572ca18194f0150b",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "research/runtime/native-scene-orders-history-extension.json",
+      "before_sha256": null,
+      "after_sha256": "1837492ff2ff82e405483a57282fe803edac9ee3dca5ab7b38f48ae3dfe44fb5",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "research/runtime/native-scene-orders-history-resolution.json",
+      "before_sha256": null,
+      "after_sha256": "e2b71f932431c13fa03d4024c11884f373303d540ff23b2cb874dc76591dba01",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "research/runtime/native-scene-orders-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "398bb8f1c0ff211da02c00d2e3c6c2f766498176b678411bc0ecba42da4f8553",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "research/runtime/native-scene-orders.json",
+      "before_sha256": null,
+      "after_sha256": "887c6a9b41b5f0e97c496fe0b27951eadcb3d54c8a86ad96c88de41b56b95459",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "research/runtime/native-scene-orders.md",
+      "before_sha256": null,
+      "after_sha256": "69ab88d4b9d3e7af9de335ea946cf9ea248a9b689343108f780dffd724b447dd",
+      "behaviors": [
+        "NP.scene-orders"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "tests/README.md",
+      "before_sha256": "95187885f21a9fe78d8e2078a3e6b0069f5a0a0b07839bf48c571734fd126dfc",
+      "after_sha256": "a9c6930e1be8408ca64e9bf6abe718e3327f3dc635a6ab68faa330d18a044691",
+      "behaviors": [
+        "TOOL.coverage-gate"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "tests/world-controls-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "71798ed68a6e17b99cb4b36dd45b2f24db5f442991288509c763642978316faf",
+      "behaviors": [
+        "NP.scene-orders"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "path": "tools/test-scene-orders.py",
+      "before_sha256": null,
+      "after_sha256": "4c73ddd0df80d183050ea8d79a9cbc64a0e61abb1658a434dbc4f1204fc30376",
+      "behaviors": [
+        "NP.scene-orders"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "id": "TL.creature-occupancy-lookup",
+      "before_sha256": null,
+      "after_sha256": "15ef8cd1f9141dc4535c384dce1c1a96ef4fd9efde52bd1e840bc7e3939b8ba2",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "a9c3f26f4b434765b7cf19fcde28fea6e0680e21cde24dc078ef71d0ba311462",
+      "after_sha256": "7151f06651a5fb637c35d8fa7d0c52111775e80c4db446aeac52ee2b493c7f51",
+      "reviews": [
+        "creature-occupancy-remaining-1d1ca72"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "id": "NP.checkpoints",
+      "before_sha256": "8fe3fc4527b0f807ab266092e626ab6bf909120ea8bf5b3d92133ec7463896eb",
+      "after_sha256": "2044c961e9d57a23402314c42d2c1f0e79901628a1d2b0c8b5ba916506a63c4e",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "id": "NP.map-navigation",
+      "before_sha256": "64db420c59827b3589892460f16653fb3132cba72116683fa6f17b1fa34f4ad5",
+      "after_sha256": "5b97693647b630be01d3b8b26c953dd08641a7f812d53a016c7dbf85406b518b",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "id": "NP.move-orders",
+      "before_sha256": "3f866206d87824abce7f67732f32467f6804bdcaa03ce10c8429b87bf0766ced",
+      "after_sha256": "11a30726d8761c11e5cc88c7c7aab320a7e264f3e68bc10d8b5294e2b43acf1a",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "id": "NP.presentation",
+      "before_sha256": "43a94a4b8857d49b37f66432a9d4f24a687e58d9b3b6147c8f0971372211db1a",
+      "after_sha256": "0836f4fa854616ea8b81adabf1c08156cbb1cdc8dd8d35e15b2a7dcaa7e74eff",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "id": "NP.scene-orders",
+      "before_sha256": null,
+      "after_sha256": "2a97b60877cc45e0fa74ce2119c00bf9b3aa9dc79a9880f6680a6748f11857a5",
+      "reviews": [
+        "NS13.scene-orders-exact-staged",
+        "NS13.scene-orders-recorded"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "id": "NR.world_scene",
+      "before_sha256": "2dbfc30b4f384deb50f07c36956b93d3d775f60f19770020775b8b62612f4348",
+      "after_sha256": "ef6edbb6f9d4b648a23c87c6f2b3b1cc10dd786433c1b4a853e35611dad253fc",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "cf31d9fa2708f4e800e305bc5e802e4505c75578189f2115c8cd31d9e03b0a9b",
+      "after_sha256": "ee960fb97c479036ed1875458c2194c3f89126b9e2b115280ce592a8dd2ea046",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    },
+    {
+      "commit": "ad460a0298e8015fdeeb69019a5f8bcaf8672dfb",
+      "id": "WORLD.owned",
+      "before_sha256": "d547728c2835fd36999b180bc40a193b7b54a72dff35ff8dce6991da2a5881a4",
+      "after_sha256": "97f84fc9035be436bbdde6081086e59b7b32c39e920627333d96d79bf7b54aa0",
+      "reviews": [
+        "NS13.scene-orders-exact-staged"
+      ]
+    }
+  ],
+  "unmatched": []
+}

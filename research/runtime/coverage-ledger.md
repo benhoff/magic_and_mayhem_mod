@@ -653,3 +653,18 @@ permissions, commander/summoned gameplay and live replacement. Older shared-sour
 scene evidence retains its hashes and may be stale. Committed-history receipts are
 reviewed separately, with pending retrospective documentation accounting for two
 render-transport prose versions; no past gate or new transport validation is claimed.
+
+## Original-game native command shadow (2026-10-05)
+
+`NR.real-game-command-shadow` adds an isolated, reproducible startup observation
+with original drawing retained. The [evidence and procedure](opengl-real-game-shadow.md)
+confirm that startup color fills reach the owned tracker but fail the ordered
+command channel before any records or native PRESENT. The missing fill route in
+`game_session_blit_begin` is the first demonstrated code blocker. Native refusal
+cleans resources; subsequent original Locks/blits and owned primary frames continue.
+
+This milestone establishes a real-game integration gap, not pixel equivalence or
+a working native game viewport. Implement and independently validate the fill
+route next, then repeat the shadow run. Independent driver output comparison,
+full sessions, gameplay coverage, continuous ownership and replacement remain
+pending. Historical synthetic transport evidence remains unchanged.

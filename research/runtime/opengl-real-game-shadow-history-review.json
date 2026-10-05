@@ -1,0 +1,294 @@
+{
+  "range": "1d1ca72..fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+  "scope": "Read-only parent/current committed file and behavior fingerprints against append-only exact receipts. No retrospective gate pass or new execution/equivalence claim.",
+  "files": [
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "reconstruction/rendering/creature-occupancy/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "786b4059d77281d4b7aafce99b1922a08548865717dd3e424147dafd2eb58276",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "build",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "reconstruction/rendering/creature_occupancy.cpp",
+      "before_sha256": null,
+      "after_sha256": "e6de5c98e7b5fd1a819e4170a8cb79ef3f31e371864a9b86028e56f1afddc1d6",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "reconstruction/rendering/creature_occupancy.hpp",
+      "before_sha256": null,
+      "after_sha256": "638e64697c82a9a44001de2845b4100937cea34dabd7045414a20785f90c9720",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "b27aabd95b69cab2871c6bd3fa146e8b1380f9ac3efa6673b0574083d6607082",
+      "after_sha256": "d8f07bff8fbefa0e8ccb73eca097577f92fb199d1f9512e25434076b6a851724",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "6440c93891bae008e98a30c8f1290aab2608e212d5a93725951399ea82f30081",
+      "after_sha256": "bde8d40548f6f4bec645bd50f932d547ea48b7312f42194be01efcf6e3aa1b25",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "0ec6059e07816890b2d6df5ba6ed2d7b89903ae7da62578acd4164c6696de383",
+      "after_sha256": "b20aca5d7b335e89e69219d3e218eb63bbead7ff1044c75f1d576ccf2eb46fd4",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-summary-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "a58f6cb785cb7ca9ee612300af791f685405429a7b2ce39f081d407f1e7fe124",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/creature-occupancy-lookup-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "0b85341b048cb7e3ad8ba653541bc8270e180e8aa20b4d47b02676300226d042",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/creature-occupancy-lookup.json",
+      "before_sha256": null,
+      "after_sha256": "8e27ceaddb0b9729e191aec7f9f8aaca74cc6dbea73a2e65e9caf44108b6be49",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/creature-occupancy-lookup.md",
+      "before_sha256": null,
+      "after_sha256": "1c5718268b5090de3f1a0116abbdd5b485084535131389b9bf03888c6a59be7a",
+      "behaviors": [
+        "TL.creature-occupancy-lookup",
+        "TL.effect-movement-recount"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "870be44d6e400c5d2a174d60990c0b8f123859a5dd2659fd51aa0b87d6f574dd",
+      "after_sha256": "9c1f74f7b9ec52ed33a65a22bdf44faecf49e6477cf894ed0b4e931f36f9eb72",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "e1dc2f2176ee23d68db657f16fcfd7a3f7531a2d92fddddebc85d54d86e99344",
+      "after_sha256": "c8b0b211511fd39b214ae5276721f06bd5b97cbeef3343713db89e9275746bcb",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "a96b0eba3adb463f5a4e4e89464d125a6eb6db83856d087e3fcab4eab709b6cc",
+      "after_sha256": "b8c6fa982fb942a53d7ed340a4ff503d7a341e060db53c886e31c49a0bbdd335",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "bbdc6c90fe2d8dbdd4e4c8e82383a8089484d621410c3a17f06ab51f601ad62b",
+      "after_sha256": "1ff1daab68aad8f14292bc907f0d4121a8df6f008c125f5f1e1d77271c0cefbf",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "51db32e20198d9c7207980386b38ae186ec643a25c7fcb395e6ee91f86eebdcd",
+      "after_sha256": "e0ffbe6565f4e5d98814a60c679d5276773f718c0f09f0e149419e4106320607",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "892ca3d8e55c827f439705658b18a08c85c99cdea301cd7a0bfe574bf58655e5",
+      "after_sha256": "c7a85593e2d880e3ad8202ac279fd7d9a132b9c38a24d954e29da385403642cd",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "bb632fb424dd8b1b9cf7cc3feda43983ed46f6d2e23893535a41bc57b2a7b43f",
+      "after_sha256": "b152dc32d6bb81c53704bf6a5010fc7675b5a431519fdb4ca03f957edab80e18",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "691e18085d2a1a3be849fc9f314966cc545bb31ba21bdb1ffd3569dbb2110369",
+      "after_sha256": "e3dbc72febc632144c7d28774f4e595abe51ede09b30b890e706a1c2c2ab5c3c",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "tests/creature-occupancy-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "3caf551916667f5f1c947b715d7d70f25ba241d969741dbf961d0c81a66a58d8",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "tests/creature-occupancy-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "39b48e5887c2794f8b8d5d54f4782358f9b18aa5591f7928507491bf2570c492",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "path": "tools/test-creature-occupancy.py",
+      "before_sha256": null,
+      "after_sha256": "6e470c43e1571c5e09a5de7954301f762e72435a8c05633704fc31531549b769",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "id": "TL.creature-occupancy-lookup",
+      "before_sha256": null,
+      "after_sha256": "15ef8cd1f9141dc4535c384dce1c1a96ef4fd9efde52bd1e840bc7e3939b8ba2",
+      "reviews": [
+        "creature-occupancy-recorded-1d1ca72"
+      ]
+    },
+    {
+      "commit": "fca9a1b67a42d6d801cda971a9ccae3249fab77b",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "a9c3f26f4b434765b7cf19fcde28fea6e0680e21cde24dc078ef71d0ba311462",
+      "after_sha256": "7151f06651a5fb637c35d8fa7d0c52111775e80c4db446aeac52ee2b493c7f51",
+      "reviews": [
+        "creature-occupancy-remaining-1d1ca72"
+      ]
+    }
+  ],
+  "unmatched": []
+}
