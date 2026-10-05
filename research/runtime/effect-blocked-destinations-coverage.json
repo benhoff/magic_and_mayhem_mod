@@ -93,13 +93,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked destination and height exit partial state recovered separately. Membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified",
+      "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked/height partial state and bounded membership-disabled motion recovered separately. Occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified; disabled-height combinations are not compared in the new disabled fixtures",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked destination and height exit partial state recovered separately. Membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified"
+          "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked/height partial state and bounded membership-disabled motion recovered separately. Occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified; disabled-height combinations are not compared in the new disabled fixtures"
         }
       ],
       "documents": [
@@ -108,7 +108,8 @@
         "research/runtime/effect-cell-transitions.md",
         "research/runtime/effect-cell-cleanup.md",
         "research/runtime/effect-blocked-destinations.md",
-        "research/runtime/effect-height-exits.md"
+        "research/runtime/effect-height-exits.md",
+        "research/runtime/effect-membership-disabled.md"
       ],
       "implementation": [],
       "tests": [],

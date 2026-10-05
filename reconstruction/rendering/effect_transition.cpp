@@ -24,11 +24,11 @@ void validateCell(const EffectCell& cell){
 }
 unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,EffectTransitionState& state,
                                     unsigned width,unsigned height,unsigned layers,
-                                    const std::vector<EffectCleanupColumn>& columns){
+                                    const std::vector<EffectCleanupColumn>& columns,bool updateMembership){
     if(!width || !height || !layers || width>128 || height>128 || layers>32 ||
        pool.cells().size()!=std::size_t(width)*height*layers || slot>=pool.records().size())
         throw std::invalid_argument("Effect transition pool dimensions/slot outside owned bounds");
-    effectCleanupEligible(0,width,height,layers,columns); // Validate owned table before mutation.
+    if(updateMembership)effectCleanupEligible(0,width,height,layers,columns); // Validate owned table before mutation.
     // Reuse the existing initial-record/projection admission without moving it.
     auto check=pool.records()[slot];const auto iterations=check.parameters[9];
     if(iterations>8)throw std::invalid_argument("Effect transition iteration bound exceeded");
@@ -43,7 +43,7 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
     std::vector<bool> seen(pool.records().size(),false);
     for(unsigned cell=0;cell<pool.cells().size();++cell){
         for(unsigned at=pool.cells()[cell].head;at!=NoEffect;at=pool.records()[at].next){
-            if(at>=seen.size() || seen[at] || !pool.records()[at].active || pool.records()[at].cell!=cell)
+            if(at>=seen.size() || seen[at] || !pool.records()[at].active || (pool.records()[at].cell!=cell && (updateMembership || at!=slot)))
                 throw std::invalid_argument("Invalid or duplicate effect membership chain");
             seen[at]=true;
         }
@@ -67,6 +67,7 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
         if(position!=r.position){
             const auto destination=(position[2]*height+position[1])*width+position[0];
             validateCell(candidate.cells()[destination]);
+            if(updateMembership){
             auto& oldCell=candidate.cells()[r.cell];
             if(oldCell.head==slot)oldCell.head=r.next;
             else{
@@ -76,9 +77,10 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
             }
             r.next=NoEffect;
             cleanupEmptyEffectCell(oldCell,r.cell,width,height,layers,columns);
+            }
             movement.previousPosition=r.position;r.position=position;r.cell=destination;
             auto& newCell=candidate.cells()[destination];
-            if(!(newCell.flags&0x40000000u)){
+            if(updateMembership && !(newCell.flags&0x40000000u)){
             if(newCell.head==NoEffect)newCell.head=std::uint16_t(slot);
             else{
                 unsigned tail=newCell.head;

@@ -4456,6 +4456,204 @@
           "NS11.multi-native"
         ]
       }
+    },
+    {
+      "id": "effect-membership-recorded-8d2f8b5",
+      "reason": "Recover complete-parent arg=0 movement preserving heads/links/flags and skipping cleanup while updating current fine/cell/terrain/cache/recount; validate ordinary and blocked repeated disabled calls, inaccessible unused cleanup receiver and native reconciliation admission. Review committed range 90a35fd..8d2f8b5d873322c4571a999d3ad07994c2f41661 with exact-hash/evidence report working/tests/effect-membership-history-review.json; reconcile focused imports/census/ledger and preserve historical proof.",
+      "files": [
+        {
+          "after_sha256": "2907d8a1ed6f691d94c0b1b8911c180022ad2a7481dd73ef5137592bc21d1117",
+          "before_sha256": "9aab83bdaafd76e203431a73ee4a7fa546fb556f7f7675186512d859b45607ae",
+          "path": "reconstruction/rendering/effect_transition.cpp"
+        },
+        {
+          "after_sha256": "92945eb0c66a5c86277ddb02a3273f8044c4567baf09c0955f1ddd1d44c3122f",
+          "before_sha256": "292938bdc5c16e762716279a3f22d87c1a1635facd2fb26afebecdf08024ad8e",
+          "path": "reconstruction/rendering/effect_transition.hpp"
+        },
+        {
+          "after_sha256": "aa71cce1dcd657121e15a6d5b43d4338d2ba823b46e409627f2cf0b0b446bfef",
+          "before_sha256": "b507a58db57bc101bcdab1171e286441133d387c85dca212f06ea968c653e3ec",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "abd5b5d90fbc0473060e1102509be059acb1fd2704fd95750b219955dd1f1fd4",
+          "before_sha256": "e944b9b2faaada3cf53b6330b296d67ce2522eb0dcd1358cd4a2d17292fb8ba0",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "3f7cb05ccb725e8d0b89f1f92bf42a20acd3c64cad9a64591580170b06c3df92",
+          "before_sha256": "ed39f90639c48708e235d02cce8bae8c64de4b65d25b8ab1a41730f00e6ff06c",
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "a54f1637a8747a5771bebf6268c260a6408cd605d4165ab1e7716ee267173892",
+          "before_sha256": "201a2639db6f9a68354056ea245af6529653bfb153402877c73e59b2309addd7",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "403071e05c7be62352029b2b2873f6c206eeb126f7ec6ae0a308590a06a0251c",
+          "before_sha256": "a3b6b873966591a545bcd1f2439a229d077d5c50ccefd86de90a81c70fb6b998",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "f18cb15fe35b8cca5411dc2f29b8a57bfaafc6001464fcfda58a65032b3ea841",
+          "before_sha256": "d7fcb09331a783033ec346217610dbcdf40f68f1ec0a6dcb6de2148bf42a4326",
+          "path": "research/runtime/effect-height-exits-coverage.json"
+        },
+        {
+          "after_sha256": "7c4e0565007c4ba6ee3604cb8616c300756ce91e87a7c349acb51dbcb2001f4c",
+          "before_sha256": null,
+          "path": "research/runtime/effect-membership-disabled-coverage.json"
+        },
+        {
+          "after_sha256": "fe5962ef3e2641e269e494af5bf8980ac9c612d0216b6082b0dde6640d3f63a6",
+          "before_sha256": null,
+          "path": "research/runtime/effect-membership-disabled-source-index.json"
+        },
+        {
+          "after_sha256": "26f7fbc29e01c936d123ed56de33374c333a8ec397ded59a357836a088fa1832",
+          "before_sha256": null,
+          "path": "research/runtime/effect-membership-disabled.json"
+        },
+        {
+          "after_sha256": "3bcd6ff0f21de0eb49321c971f3c464656fcafe24c4dac8ece9e197792c074c5",
+          "before_sha256": null,
+          "path": "research/runtime/effect-membership-disabled.md"
+        },
+        {
+          "after_sha256": "d11e402e9713451be795c31e0996c898dd82939776b0c6dc1a387dc34f0487a6",
+          "before_sha256": "b189df2872513eab56bbf0075336d6e82b104d5b177b3c4ff5d029a6f6338638",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "9235ff21766cfe88b811b299f80b77233c8c7caeaf0ed0236ac362be016b2cb3",
+          "before_sha256": "9f8ff4155c60381dbf1b09e147f04ccb2dc8f70ffb135d22e3edbc89eacc8203",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "39270864aa875ce07d2ce32e083f1c0cc100941fafc537fc93b1df81b2575bc6",
+          "before_sha256": null,
+          "path": "tests/effect-membership-reference.cpp"
+        },
+        {
+          "after_sha256": "a8f5ad6ebb462d1dd6c6a67d52d0c17c3e96418eef2cbd322e533972834f56a0",
+          "before_sha256": "967401af9c85d39bb4b304bad5c837b84436e6ffd5836f2bf0cd93be2d90a527",
+          "path": "tests/effect-transition-test.cpp"
+        },
+        {
+          "after_sha256": "b25d071a8f695d99fcd42f30f68b45627c38475fc29905ad0d470f5754f142da",
+          "before_sha256": "0f59356ec4e313ffca96d68ff630847f0de4461d365551477000a10779b145a4",
+          "path": "tools/test-effect-transition.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "c2d6427855fea4782bce7cc84ede4dff11f0b11a168c5e169a27dcc87d7d39a8",
+          "before_sha256": null,
+          "id": "TL.effect-membership-disabled"
+        },
+        {
+          "after_sha256": "699161c7404968e8091d27807fecd1f7a7fe63fc9a906c19b57a384cc44b1f8d",
+          "before_sha256": null,
+          "id": "TL.effect-membership-policy"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:addb2c69da4f3edfc2dca15ebec6672b818951c87f4b39b47f8d8eefcb272f9b",
+        "stale_evidence:04daaf5e875e3a232c7312953b32183151f7c7a4cd60207d80c518a8bd90752d",
+        "stale_evidence:369f9131c8a504ad936d705afe4c14ae647cee31ab1c877b86d6c56d8d776778",
+        "stale_evidence:588644f83e3fe7c079bdbabcbecc69c4536dd575be085392d2b398b92bb504f6",
+        "stale_evidence:59dfb8be987dc82ba048af2814f260742436b77eb7aecc84a81233d7db00ce43",
+        "stale_evidence:72722a9cfd35a047a570b0e7b134106ff79d7085ff24f94da12e95fdce5f0400",
+        "stale_evidence:8478671e0fcd44b010b60a0d86fb481d74b99b74b7243ff3c86f676627f19028",
+        "stale_evidence:85b66b0caf215a07e015fe1a7c746e164d1d0b7eaa8badcdeaaf6e8914fd93cd",
+        "stale_evidence:92d09fbedb0fc41e0e3b23e5e0e187b229bfac09c44e92d0cb1117cc4c1ceed7"
+      ],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL12.membership-original",
+          "TL12.membership-native"
+        ],
+        "reason": "{'fixtures': 2048, 'calls': 3232, 'steps': 6733, 'transitions': 5356, 'cache_updates': 2802, 'blocked': 1439, 'cell_bytes': 86639360} disabled comparison: matching original32/native64/ASan-UBSan guarded record/cell/column/catalog buffers, unchanged complete cell allocations, ordinary/blocked continuations, preserved next links and ignored inaccessible callback receiver. Fresh enabled ordinary/blocked/height/cleanup reruns plus strict normal/sanitized and CMake/CTest verify native current-cell/chain divergence, ignored unused table, enabled reconciliation refusal, lighting, height and atomic exceptions. Originals verify before/after. Native admission is intentional policy, not malformed original graph equivalence."
+      }
+    },
+    {
+      "id": "effect-membership-history-limitations-8d2f8b5",
+      "reason": "Keep TL08..TL11 historical sources immutable when extending shared transition/runner/tests. Narrow the remaining gap using separate TL12 proof without promoting historical results.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "9c44cd7f1d426eaf60fcee8d7c11c71c1091cd820a8108c2d36b90ea85b8c51e",
+          "before_sha256": "759d3d5ffe48cd6e97a79d3ebec8fb1a246b0f5fa278ffac85f0104bca1d43ed",
+          "id": "TL.effect-blocked-destinations"
+        },
+        {
+          "after_sha256": "c41874c14c2368cd36a29d9604a829891e030a1a0174afa638b7276ff0401802",
+          "before_sha256": "3b64de6be6447c5121a16e909c732d0483bdfeee12522a0c7121a87420acfdc9",
+          "id": "TL.effect-blocked-policy"
+        },
+        {
+          "after_sha256": "90796c1bf41d86530534f1e01d2f8742fe0bf577a6189a4c5716cd24d673d27f",
+          "before_sha256": "2aeaf9dfeef536605339a4fbc3e1780e611f25b9ef0a84ef5cc2998776ecb4df",
+          "id": "TL.effect-cell-cleanup"
+        },
+        {
+          "after_sha256": "ff2faae10a33299db2d60f1877d86f7dbfc67f5e805c4a0d374e4a4f73ca583d",
+          "before_sha256": "5ce246132d083503b4880fd2e699d98ea9aae1b60ce431b6e0f75a03e9708cd8",
+          "id": "TL.effect-cell-transitions"
+        },
+        {
+          "after_sha256": "b19c132c321e2a9791043e6f08dbb3adad8ece41ee1a2bcaec7c0b9b92cb02a4",
+          "before_sha256": "acacbc822d96b434a099c489e080dd4329a579b97d9e0a23ceb0981f77f6b15e",
+          "id": "TL.effect-cleanup-policy"
+        },
+        {
+          "after_sha256": "8f4e147ae62990b46950e0703d55c6043a969d04345bbd81dd6a54524e7adda6",
+          "before_sha256": "8a734d16b5bbf69e86efc288a43d4e306018e1216733558b583863726e6f34dc",
+          "id": "TL.effect-height-exits"
+        },
+        {
+          "after_sha256": "1c475e013eef2f7b7c997a191a78bae6ae548ffc254de37b5034fb85007f5dc2",
+          "before_sha256": "5b613bb3bed522cb4df564bd24cadc1994a3876e7a4ccd653745a38308e9a398",
+          "id": "TL.effect-height-policy"
+        },
+        {
+          "after_sha256": "bdd25829e9cc63fd527024b4927fa3aea1d7a8cc1583d4df3b4470033ec861bf",
+          "before_sha256": "1531a6d83c4a25032e875dcc96d94304662703f6364181941586169b010f137c",
+          "id": "TL.effect-movement-recount"
+        },
+        {
+          "after_sha256": "81edf6d29f4969b837942bb5b8be2a6a808b37aa5395078890325a1e1f3db923",
+          "before_sha256": "aa05d6ab01f6b71875de947893ec804eea5ba78b40bac82f9c3ca29e630110c3",
+          "id": "TL.effect-transition-policy"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Historical TL08..TL11 affected fingerprints remain stale and retained. Fresh expanded and ordinary/cleanup reruns are registered separately in TL12. Disabled-height combinations, occupied collisions, special types/metadata, setup, column construction, caller removal/recycling and live scheduling remain outside current validation."
+      }
+    },
+    {
+      "id": "effect-membership-summary-8d2f8b5",
+      "reason": "Refresh generated summary for the isolated reviewed register, retaining discovery gaps and historical staleness.",
+      "files": [
+        {
+          "after_sha256": "392a094e7cdae292840923c7753bfa55ae071566b26dcc4da835a5a9b8703e27",
+          "before_sha256": "2e0336c896f7746da587c90e0f45976d504b94038637bf4d883c3a3b1309a167",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated metadata only; no implementation or status promotion."
+      }
     }
   ]
 }
