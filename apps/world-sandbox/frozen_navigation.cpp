@@ -77,6 +77,21 @@ public:
         (void)r::snapshot_neighbors(frozen_); // Validate full row/layer ownership at resource admission.
     }
     g::NavigationBinding binding() const override {return binding_;}
+    int terrainOffset(g::Point at) const {
+        if(!g::contains(at,binding_)) throw std::invalid_argument("terrain height coordinate outside map");
+        // Generator type +8 selects the special 004f3260 snap branch, not modeled here.
+        if(read<int>(frozen_->generator_type.data(),8)==2) throw std::invalid_argument("special creature terrain height profile unavailable");
+        const auto index=std::int64_t(frozen_->layers.at(at.z))+frozen_->rows.at(at.y)+at.x;
+        if(index<0 || std::uint64_t(index)>=frozen_->cells.size()) throw std::invalid_argument("terrain height cell outside owned storage");
+        const auto id=read<std::uint16_t>(&frozen_->cells.at(index),0);
+        if(id>=frozen_->terrain.size()) throw std::invalid_argument("terrain height definition unavailable");
+        const auto height=id?frozen_->terrain.at(id).classification_94:0;
+        if(height<-16 || height>16) throw std::invalid_argument("terrain height outside bounded ordinary profile");
+        return height;
+    }
+    g::Point finePosition(const g::Entity& e) const override {
+        return {e.x*32,e.y*32,e.motion && e.motion->terrainMotion?r::ordinary_creature_height(e.z,terrainOffset({e.x,e.y,e.z})):e.z*16};
+    }
     std::uint32_t creatureType() const override {return read<std::uint32_t>(&frozen_->object,0xa8);}
     g::RoutePlan plan(const g::Entity& e,g::Point destination,std::uint32_t budget) const override {
         auto snapshot=inputs(e,destination);r::RouteContextPrefix context{};context.unknown_route_flag=1;r::SearchState state;
@@ -113,27 +128,37 @@ public:
             if(!f.animation || f.animation->sequence!=animation_->sequenceBase+static_cast<unsigned>(h.direction)) throw std::invalid_argument("history animation/direction mismatch");
             (void)player(*f.animation);
         }
-        if(h.direction<0 || h.direction>7 || h.vertical || h.category) throw std::invalid_argument("unsupported segment history");
-        const auto x=dx[h.direction],y=dy[h.direction];
-        const auto px=(e.x-x+binding_.dimensions.x)%binding_.dimensions.x,py=(e.y-y+binding_.dimensions.y)%binding_.dimensions.y;
-        if(f.duration!=static_cast<int>(r::base_movement_scalar(0,{x,y,0},scalarState())) ||
+        const bool terrain=e.motion && e.motion->terrainMotion;
+        if(h.direction<0 || h.direction>7 || (terrain?(h.vertical<-1 || h.vertical>1 || (h.category!=0 && h.category!=4)):(h.vertical!=0 || h.category!=0))) throw std::invalid_argument("unsupported segment history");
+        const auto x=h.vertical?0:dx[h.direction],y=h.vertical?0:dy[h.direction];
+        const auto px=terrain?h.origin.x:(e.x-x+binding_.dimensions.x)%binding_.dimensions.x,py=terrain?h.origin.y:(e.y-y+binding_.dimensions.y)%binding_.dimensions.y;
+        const auto pz=terrain?h.origin.z:e.z;
+        const r::Coordinates delta{r::wrapped_difference(e.x,px,binding_.dimensions.x),r::wrapped_difference(e.y,py,binding_.dimensions.y),e.z-pz};
+        if(delta.x!=x || delta.y!=y || delta.z<-1 || delta.z>1 || (h.vertical && delta.z!=h.vertical) ||
+           f.duration!=static_cast<int>(r::base_movement_scalar(h.category,delta,scalarState())) ||
            f.travelX!=x*f.progress || f.travelY!=y*f.progress || f.fine.x!=px*32+f.travelX/6 || f.fine.y!=py*32+f.travelY/6)
             throw std::invalid_argument("segment history disagrees with bound profile/position");
+        if(terrain && (f.heightOrigin!=pz*16+terrainOffset({px,py,pz}) || f.heightDelta!=e.z*16+terrainOffset({e.x,e.y,e.z})-f.heightOrigin))
+            throw std::invalid_argument("segment history terrain height disagreement");
     }
     g::FineMotion prepareContinuous(const g::Entity& e,const g::RoutePoint& point) const {
-        if(point.category || point.verticalDelta || point.position.z!=e.z) throw std::invalid_argument("continuous driver requires planar category zero");
+        const bool terrain=e.motion->terrainMotion;
+        if(!terrain && (point.category || point.verticalDelta || point.position.z!=e.z)) throw std::invalid_argument("continuous driver requires planar category zero");
         r::SegmentPrevious previous;
         if(e.motion->previous) {
             const auto& h=*e.motion->previous;validateSegmentHistory(e,h);
             previous.state=motionState(h.motion);previous.rate=h.motion.rate;
             previous.action=2;previous.direction=h.direction;previous.vertical=h.vertical;previous.category=h.category;
         }
-        previous.state.fineX=e.x*32;previous.state.fineY=e.y*32;previous.state.fineZ=e.z*16;
-        r::SegmentRequest request;request.gridX=e.x;request.gridY=e.y;request.heightOrigin=e.z*16;request.direction=point.direction;
-        request.delta={r::wrapped_difference(point.position.x,e.x,binding_.dimensions.x),r::wrapped_difference(point.position.y,e.y,binding_.dimensions.y),0};
+        const auto origin=finePosition(e);
+        previous.state.fineX=origin.x;previous.state.fineY=origin.y;previous.state.fineZ=origin.z;
+        r::SegmentRequest request;request.gridX=e.x;request.gridY=e.y;request.gridZ=e.z;request.heightOrigin=origin.z;request.direction=point.direction;
+        request.category=point.category;request.vertical=point.verticalDelta;
+        request.destinationTerrainHeight=terrain?terrainOffset(point.position):0;
+        request.delta={r::wrapped_difference(point.position.x,e.x,binding_.dimensions.x),r::wrapped_difference(point.position.y,e.y,binding_.dimensions.y),point.position.z-e.z};
         const auto result=r::initialize_creature_segment(previous,request,scalarState());
         if(result.rate>1000000 || !result.duration || result.duration>1000000) throw std::invalid_argument("segment scalar outside bounded profile");
-        g::FineMotion out;out.rate=result.rate;out.duration=result.duration;out.heightOrigin=e.z*16;store(out,result.state);
+        g::FineMotion out;out.rate=result.rate;out.duration=result.duration;out.heightOrigin=result.heightOrigin;out.heightDelta=result.heightDelta;store(out,result.state);
         if(animation_) {
             if(result.carried) out.animation=e.motion->previous->motion.animation;
             else {r::NoCdAnimationPlayer fresh(sequences_.at(point.direction));fresh.start();if(!fresh.state().active) throw std::invalid_argument("movement ANI starts inactive");out.animation=cursor(animation_->sequenceBase+point.direction,fresh.state());}
@@ -156,7 +181,7 @@ public:
         if(!waypoint.scalar || waypoint.scalar>1000000 || !duration || duration>1000000)
             throw std::invalid_argument("unsupported sample motion rate/duration");
         r::MotionInputs p;p.rate=waypoint.scalar;p.duration=duration;p.gridX=e.x;p.gridY=e.y;
-        p.heightOrigin=e.z*16;p.heightDelta=delta.z*16;p.direction=waypoint.direction;p.vertical=waypoint.verticalDelta!=0;
+        p.heightOrigin=finePosition(e).z;p.heightDelta=waypoint.position.z*16+(e.motion && e.motion->terrainMotion?terrainOffset(waypoint.position):0)-p.heightOrigin;p.direction=waypoint.direction;p.vertical=waypoint.verticalDelta!=0;
         if(e.motion && e.motion->continuousMotion) {
             p.separateCursor=true;
             for(unsigned i=0;i<48;++i) p.samples[i]=read<std::int32_t>(frozen_->scalar_type.data(),0xd8+i*4);

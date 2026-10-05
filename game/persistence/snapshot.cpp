@@ -42,8 +42,9 @@ void motion(Bytes& b,const CreatureMotion& m,unsigned version) {
     }
     if(version>=4) {
         b.push_back(m.continuousMotion?1:0);word(b,m.segmentTicks);b.push_back(m.previous?1:0);
-        if(m.previous) {word(b,static_cast<std::uint32_t>(m.previous->direction));word(b,static_cast<std::uint32_t>(m.previous->vertical));word(b,static_cast<std::uint32_t>(m.previous->category));fine(b,m.previous->motion,version);}
+        if(m.previous) {word(b,static_cast<std::uint32_t>(m.previous->direction));word(b,static_cast<std::uint32_t>(m.previous->vertical));word(b,static_cast<std::uint32_t>(m.previous->category));fine(b,m.previous->motion,version);if(version>=6) point(b,m.previous->origin);}
     }
+    if(version>=6) b.push_back(m.terrainMotion?1:0);
 }
 struct Reader {
     const Bytes& b;std::size_t p=0;std::uint64_t budget=0,charged=0;
@@ -73,9 +74,10 @@ struct Reader {
         if(version>=3) {m.sampleMotion=flag();if(flag()) m.fine=fine(version);}
         if(version>=4) {
             m.continuousMotion=flag();m.segmentTicks=word();if(flag()) {
-                charge(12);require(12);SegmentHistory h;h.direction=signedWord();h.vertical=signedWord();h.category=signedWord();h.motion=fine(version);m.previous=h;
+                charge(version>=6?24:12);require(12);SegmentHistory h;h.direction=signedWord();h.vertical=signedWord();h.category=signedWord();h.motion=fine(version);if(version>=6) h.origin=point();m.previous=h;
             }
         }
+        if(version>=6) m.terrainMotion=flag();
         return m;
     }
 };
@@ -86,14 +88,15 @@ Bytes encodeSnapshot(const State& s,const Limits& limits) {
     unsigned version=movement?2:1;
     for(const auto& slot:s.slots) if(slot.entity && slot.entity->motion) {
         if(slot.entity->motion->sampleMotion) version=std::max(version,3U);
-        if(slot.entity->motion->continuousMotion) version=4;
+        if(slot.entity->motion->continuousMotion) version=std::max(version,4U);
+        if(slot.entity->motion->terrainMotion) version=6;
     }
-    if(s.animation) version=5;
+    if(s.animation) version=std::max(version,5U);
     Bytes payload;
     word(payload,s.sequence);word(payload,s.tick);word(payload,s.phase20);word(payload,s.phase90);word(payload,s.expansionBudget);
     blob(payload,Bytes(s.map.begin(),s.map.end()));blob(payload,s.campaign);blob(payload,s.systems);
     if(movement) {payload.push_back(1);point(payload,s.navigation->dimensions);word(payload,s.navigation->fingerprint,8);}
-    if(version>=5) {payload.push_back(1);blob(payload,s.animation->data);word(payload,s.animation->sequenceBase);}
+    if(version>=5) {payload.push_back(s.animation?1:0);if(s.animation) {blob(payload,s.animation->data);word(payload,s.animation->sequenceBase);}}
     word(payload,s.slots.size());
     for(const auto& slot:s.slots) {
         word(payload,slot.generation);payload.push_back(slot.entity?1:0);
@@ -116,7 +119,7 @@ Bytes encodeSnapshot(const State& s,const Limits& limits) {
 State decodeSnapshot(const Bytes& b,const Limits& limits) {
     if(b.size()<24 || b.size()-24>limits.bytes) throw std::invalid_argument("snapshot size outside limits");
     if(!std::equal(magic.begin(),magic.end(),b.begin())) throw std::invalid_argument("invalid snapshot magic");
-    Reader r{b,8,limits.bytes,0};const auto version=r.word();if(version<1 || version>5) throw std::invalid_argument("unsupported snapshot version");
+    Reader r{b,8,limits.bytes,0};const auto version=r.word();if(version<1 || version>6) throw std::invalid_argument("unsupported snapshot version");
     if(r.word()!=b.size()-24) throw std::invalid_argument("snapshot size mismatch");
     if(r.word(8)!=hash(b,24)) throw std::invalid_argument("snapshot checksum mismatch");
     State s;s.sequence=r.word();s.tick=r.word();s.phase20=r.word();s.phase90=r.word();s.expansionBudget=r.word();
@@ -126,8 +129,8 @@ State decodeSnapshot(const Bytes& b,const Limits& limits) {
         NavigationBinding binding;binding.dimensions=r.point();binding.fingerprint=r.word(8);s.navigation=binding;
     }
     if(version>=5) {
-        if(!r.flag()) throw std::invalid_argument("v5 requires animation binding");
-        AnimationBinding a;a.data=r.blob(8*1024*1024);a.sequenceBase=r.word();s.animation=std::move(a);
+        const bool animation=r.flag();if(!animation && version==5) throw std::invalid_argument("v5 requires animation binding");
+        if(animation) {AnimationBinding a;a.data=r.blob(8*1024*1024);a.sequenceBase=r.word();s.animation=std::move(a);}
     }
     auto count=r.word();if(count>limits.slots || count>(b.size()-r.p)/5) throw std::invalid_argument("snapshot slot limit exceeded");
     r.charge(count*Limits::slotCharge);

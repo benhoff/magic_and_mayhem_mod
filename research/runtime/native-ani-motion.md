@@ -94,8 +94,9 @@ Final source/artifact hashes, accepted original reports and commands are retaine
 in [native-ani-motion.json](native-ani-motion.json). The wire contract is documented
 in [native-world-snapshot.md](../formats/native-world-snapshot.md).
 
-Next widen segment initialization to vertical/category-four motion with terrain
-height evidence. Full action/config sequence selection, reverse/special profiles,
+The next bounded setup/terrain-height milestone now has separate
+[NS06 evidence](native-terrain-motion.md), including opt-in vertical/category-four
+motion and native v6. Full action/config sequence selection, reverse/special profiles,
 event-1/3/4/5/6 consumers, dynamic occupancy/scheduling and live agreement remain
 open. AI, combat/spells, campaign behavior and compatible original save writing
 remain larger separate simulation milestones.

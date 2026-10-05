@@ -23,6 +23,7 @@ public:
     virtual std::uint32_t creatureType() const=0;
     virtual RoutePlan plan(const Entity&,Point,std::uint32_t budget) const=0;
     virtual bool accepts(const Entity&,const RoutePoint&) const=0;
+    virtual Point finePosition(const Entity&) const;
     // Optional driver; services without recovered sample evidence refuse it.
     virtual void validateSegmentHistory(const Entity&,const SegmentHistory&) const;
     virtual FineMotion prepareFineMotion(const Entity&,const RoutePoint&) const;
@@ -38,10 +39,11 @@ class MovementSession {
 public:
     MovementSession(World,std::shared_ptr<const Navigation>);
     const World& world() const {return world_;}
-    Handle spawn(Entity,bool sampleMotion=false,bool continuousMotion=false);
+    Handle spawn(Entity,bool sampleMotion=false,bool continuousMotion=false,bool terrainMotion=false);
     void enqueue(Command);
     void move(Handle,Point,std::optional<Handle> goal={});
     TickReport step(TickInput={});
+    Point finePosition(const Entity& e) const {return e.motion && e.motion->fine?e.motion->fine->fine:navigation_->finePosition(e);}
     // Load map + validate routes before committing either resource or world.
     void restore(const std::filesystem::path&,const MapResolver&);
     void restoreResources(const std::filesystem::path&,const NavigationResolver&);

@@ -25,15 +25,17 @@ int main(int argc,char** argv) try {
 #endif
     unsigned transitions=0;
     for(int direction=0;direction<8;++direction) for(int delay:{0,1,2}) for(int rate:{0,60,720})
-    for(int duration:{120,720}) for(bool repeat:{false,true}) {
+    for(int duration:{120,720}) for(bool repeat:{false,true}) for(bool vertical:{false,true})
+    for(int category:{0,4}) for(int height:{-32,-16,0,16,32}) {
+        (void)category;
         ++currentCase;
         std::vector<mnm::assets::AnimationRecord> records{{1,delay,{}},{0,7,{}},{0,8,{}}};
         if(repeat){records.push_back({2,2,{}});records.push_back({0,9,{}});records.push_back({3,-1,{}});}
         records.push_back({5,2,{}});records.push_back({6,-1,{}});
         NoCdAnimationPlayer player(records);player.start();
         MotionInputs p;p.separateCursor=true;p.rate=rate;p.duration=duration;p.gridX=3;p.gridY=2;
-        p.heightOrigin=16;p.direction=direction;p.samples.fill(12);
-        MotionState state;state.fineX=96;state.fineY=64;state.fineZ=16;
+        p.heightOrigin=24;p.heightDelta=height;p.vertical=vertical;p.direction=direction;p.samples.fill(12);
+        MotionState state;state.fineX=96;state.fineY=64;state.fineZ=p.heightOrigin;
 #ifdef MNM_ANI_MOTION_REFERENCE
         std::array<std::uint32_t,11> header{};header[5]=9;
         std::array<std::uint32_t,9> offsets{};offsets[8]=records.size();
@@ -50,10 +52,11 @@ int main(int argc,char** argv) try {
 #ifdef MNM_ANI_MOTION_REFERENCE
             // Motion is seeded from the previous native state only at invocation zero;
             // subsequent original states remain independent across calls/segments.
-            if(!tick){put(object,0x14,96);put(object,0x18,64);put(object,0x1c,16);
+            if(!tick){put(object,0x14,96);put(object,0x18,64);put(object,0x1c,p.heightOrigin);
                 put(object,0xb8f,reinterpret_cast<std::uintptr_t>(p.samples.data()));put(object,0xb93,reinterpret_cast<std::uintptr_t>(p.samples.data()));}
             put(object,4,1);put(object,8,p.gridX);put(object,12,p.gridY);put(object,0x608,direction);
-            put(object,0xb5f,16);put(object,0xb63,rate);put(object,0xb67,duration);
+            put(object,0x98f,vertical?1:0);put(object,0x10c,category);
+            put(object,0xb5f,p.heightOrigin);put(object,0xb57,height);put(object,0xb63,rate);put(object,0xb67,duration);
             using Tick=void(__attribute__((thiscall)) *)(void*);reinterpret_cast<Tick>(0x5104b0)(object.data());
             check((get(object,4)==0)==done);
             check(state.accumulator==get(object,0xb6b) && state.progress==get(object,0xb3f) && state.travelX==get(object,0xb47) && state.travelY==get(object,0xb4b));
@@ -68,10 +71,10 @@ int main(int argc,char** argv) try {
             ++transitions;
             if(done){
                 constexpr int dx[8]={0,1,1,1,0,-1,-1,-1},dy[8]={-1,-1,0,1,1,1,0,-1};
-                state.progress-=192;state.travelX-=dx[direction]*192;state.travelY-=dy[direction]*192;
-                p.gridX+=dx[direction];p.gridY+=dy[direction];state.fineX=p.gridX*32;state.fineY=p.gridY*32;
+                state.progress-=192;state.travelX-=vertical?0:dx[direction]*192;state.travelY-=vertical?0:dy[direction]*192;
+                p.gridX+=vertical?0:dx[direction];p.gridY+=vertical?0:dy[direction];state.fineX=p.gridX*32;state.fineY=p.gridY*32;state.fineZ=p.heightOrigin;
 #ifdef MNM_ANI_MOTION_REFERENCE
-                put(object,0xb3f,state.progress);put(object,0xb47,state.travelX);put(object,0xb4b,state.travelY);put(object,0x14,state.fineX);put(object,0x18,state.fineY);
+                put(object,0xb3f,state.progress);put(object,0xb47,state.travelX);put(object,0xb4b,state.travelY);put(object,0x14,state.fineX);put(object,0x18,state.fineY);put(object,0x1c,state.fineZ);
 #endif
             }
         }

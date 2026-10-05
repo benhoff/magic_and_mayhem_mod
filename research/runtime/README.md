@@ -151,3 +151,5 @@ confidence, and whether it remains stable across launches.
 - [Native menu music output recovery](menu-music-recovery.md): device ID monitoring, separate retry, retained track/gain and bounded synthetic recovery validation.
 
 - [Save-world serializers](save-world-serialization.md): paired world/nested record grammar and selected isolated original writer captures; structural native loading remains separate from restoration.
+
+- [Native terrain and creature scene](native-world-scene.md): bounded NS06 checkpoint presentation with owned ANI display, explicit diagnostic terrain, mixed depth queue and reproducible frame continuation.
