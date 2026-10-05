@@ -51,12 +51,32 @@ int main(){
     require(pool.records()[1].sentinels[6]==16 && state.motion.previousUnits[0]==8*32+1);
     // A second call is intentionally refused until the caller resolves the detached lifecycle.
     bool refusedDetached=false;try{transitionEffectEmptyWorld(pool,1,state,32,32,3);}catch(const std::invalid_argument&){refusedDetached=true;}require(refusedDetached);
+    // Height is checked before horizontal wrapping or fine/cell publication.
+    for(unsigned mode=0;mode<2;++mode){
+        pool=created();state={};state.previousPosition=pool.records()[1].position;
+        pool.records()[1].parameters[9]=8;
+        state.motion.trajectory.words[0]=state.motion.trajectory.words[1]=mode?16:0xfffffffeu;
+        state.motion.trajectory.words[2]=1;
+        state.motion.trajectory.words[4]=mode?32:0x7fffffffu;
+        state.motion.trajectory.words[6]=state.motion.trajectory.words[4];
+        const auto before=pool;
+        require(transitionEffectEmptyWorld(pool,1,state,32,32,3)==2);
+        const auto& r=pool.records()[1];require(r.active && r.parameters[7]==0);
+        require(r.parameters[2]==(mode?49u:0xffffffffu) && state.motion.previousUnits==r.units);
+        if(!mode){
+            require(r.units==before.records()[1].units && r.position==before.records()[1].position);
+            require(r.parameters[0]==before.records()[1].parameters[0]+0x7fffffffu);
+            require(r.sentinels==before.records()[1].sentinels && r.next==before.records()[1].next);
+            for(unsigned i=0;i<pool.cells().size();++i)require(pool.cells()[i].head==before.cells()[i].head && pool.cells()[i].flags==before.cells()[i].flags);
+        }else require(r.units[2]==33 && r.position[2]==2 && r.sentinels[8]==2 && pool.cells()[r.cell].head==1);
+        bool refusedHeight=false;try{transitionEffectEmptyWorld(pool,1,state,32,32,3);}catch(const std::invalid_argument&){refusedHeight=true;}require(refusedHeight);
+    }
     for(unsigned mode=0;mode<7;++mode){
         pool=created();state={};state.previousPosition=pool.records()[1].position;state.motion.trajectory.words[4]=8*32;
         if(mode==0)pool.records()[0].next=0;
         if(mode==1)pool.cells()[newCell].terrain=4;
         if(mode==2)state.terrain=2;
-        if(mode==3)state.motion.trajectory.words[1]=0xfffffffeu;
+        if(mode==3)state.motion.trajectory.words[4]=0x7fffffffu;
         if(mode==4){pool.records()[1].parameters[9]=8;state.motion.trajectory.words[4]=32;pool.cells()[oldCell+4].terrain=4;}
         if(mode==5)pool.cells()[oldCell].head=0xffff;
         std::vector<EffectCleanupColumn> columns;

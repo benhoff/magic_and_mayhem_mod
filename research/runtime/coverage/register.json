@@ -10066,13 +10066,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup and blocked destination partial state recovered separately. Height exits, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified",
+      "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked destination and height exit partial state recovered separately. Membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup and blocked destination partial state recovered separately. Height exits, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified"
+          "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked destination and height exit partial state recovered separately. Membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified"
         }
       ],
       "documents": [
@@ -10080,7 +10080,8 @@
         "research/runtime/effect-same-cell-projection.md",
         "research/runtime/effect-cell-transitions.md",
         "research/runtime/effect-cell-cleanup.md",
-        "research/runtime/effect-blocked-destinations.md"
+        "research/runtime/effect-blocked-destinations.md",
+        "research/runtime/effect-height-exits.md"
       ],
       "implementation": [],
       "tests": [],
@@ -10844,6 +10845,75 @@
       ],
       "evidence": [
         "TL10.blocked-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-height-exits",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect height exit partial state and return 2",
+      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-height-exits.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp"
+      ],
+      "tests": [
+        "tests/effect-height-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL11.height-original",
+        "TL11.height-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-height-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned height exit publication and resumption admission",
+      "scope": "Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-height-exits.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp"
+      ],
+      "tests": [
+        "tests/effect-height-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL11.height-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -16480,6 +16550,262 @@
           "equals": 53393920
         }
       ]
+    },
+    {
+      "id": "TL11.height-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle",
+      "record": "research/runtime/effect-height-exits.json",
+      "sha256": "349dc5bbbf2749780cf14a83dd8e239d827178fa7d9d3c04d768aafd42fb45cb",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/steps",
+          "equals": 10288
+        },
+        {
+          "pointer": "/transitions",
+          "equals": 8911
+        },
+        {
+          "pointer": "/cache_updates",
+          "equals": 5784
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/cleanup_fixtures",
+          "equals": 3072
+        },
+        {
+          "pointer": "/cleanup_calls",
+          "equals": 6144
+        },
+        {
+          "pointer": "/marked",
+          "equals": 922
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        },
+        {
+          "pointer": "/blocked_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/steps",
+          "equals": 4715
+        },
+        {
+          "pointer": "/blocked_comparison/transitions",
+          "equals": 3338
+        },
+        {
+          "pointer": "/blocked_comparison/cache_updates",
+          "equals": 1466
+        },
+        {
+          "pointer": "/blocked_comparison/blocked",
+          "equals": 1102
+        },
+        {
+          "pointer": "/blocked_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/height_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/steps",
+          "equals": 3447
+        },
+        {
+          "pointer": "/height_comparison/transitions",
+          "equals": 1911
+        },
+        {
+          "pointer": "/height_comparison/cache_updates",
+          "equals": 746
+        },
+        {
+          "pointer": "/height_comparison/height_exits",
+          "equals": 1536
+        },
+        {
+          "pointer": "/height_comparison/lower_exits",
+          "equals": 878
+        },
+        {
+          "pointer": "/height_comparison/upper_exits",
+          "equals": 658
+        },
+        {
+          "pointer": "/height_comparison/cell_bytes",
+          "equals": 53393920
+        }
+      ]
+    },
+    {
+      "id": "TL11.height-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
+      "record": "research/runtime/effect-height-exits.json",
+      "sha256": "349dc5bbbf2749780cf14a83dd8e239d827178fa7d9d3c04d768aafd42fb45cb",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/steps",
+          "equals": 10288
+        },
+        {
+          "pointer": "/transitions",
+          "equals": 8911
+        },
+        {
+          "pointer": "/cache_updates",
+          "equals": 5784
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/cleanup_fixtures",
+          "equals": 3072
+        },
+        {
+          "pointer": "/cleanup_calls",
+          "equals": 6144
+        },
+        {
+          "pointer": "/marked",
+          "equals": 922
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        },
+        {
+          "pointer": "/blocked_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/steps",
+          "equals": 4715
+        },
+        {
+          "pointer": "/blocked_comparison/transitions",
+          "equals": 3338
+        },
+        {
+          "pointer": "/blocked_comparison/cache_updates",
+          "equals": 1466
+        },
+        {
+          "pointer": "/blocked_comparison/blocked",
+          "equals": 1102
+        },
+        {
+          "pointer": "/blocked_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/height_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/steps",
+          "equals": 3447
+        },
+        {
+          "pointer": "/height_comparison/transitions",
+          "equals": 1911
+        },
+        {
+          "pointer": "/height_comparison/cache_updates",
+          "equals": 746
+        },
+        {
+          "pointer": "/height_comparison/height_exits",
+          "equals": 1536
+        },
+        {
+          "pointer": "/height_comparison/lower_exits",
+          "equals": 878
+        },
+        {
+          "pointer": "/height_comparison/upper_exits",
+          "equals": 658
+        },
+        {
+          "pointer": "/height_comparison/cell_bytes",
+          "equals": 53393920
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -18305,6 +18631,24 @@
         "tests/effect-cleanup-reference.cpp",
         "tools/test-effect-transition.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-height-exits",
+      "level": "headless",
+      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle; Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
+      "behaviors": [
+        "TL.effect-height-exits",
+        "TL.effect-height-policy"
+      ],
+      "evidence": [
+        "TL11.height-original",
+        "TL11.height-native"
+      ],
+      "tests": [
+        "tests/effect-height-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -18417,7 +18761,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "da3898c948efe07636481f1909d549846634f2736e4dd4dee5a1bb585636f75f",
+      "sha256": "9f8ff4155c60381dbf1b09e147f04ccb2dc8f70ffb135d22e3edbc89eacc8203",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -18427,27 +18771,32 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "7abf243baa0901c48ee23c0a09aee3e884878925de50797c3ead9b128ffeb5b2",
+      "sha256": "b189df2872513eab56bbf0075336d6e82b104d5b177b3c4ff5d029a6f6338638",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "0672801ef36e7412ece419a1e28e12b8df57c983106e2bf3d50f176df0bc0096",
+      "sha256": "a3b6b873966591a545bcd1f2439a229d077d5c50ccefd86de90a81c70fb6b998",
       "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-cleanup-coverage.json",
-      "sha256": "dd4e34fc463438667dcb2639ac2e589f29c8308c340fa0d5b0d06b7d2fcad2ac",
+      "sha256": "201a2639db6f9a68354056ea245af6529653bfb153402877c73e59b2309addd7",
       "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-blocked-destinations-coverage.json",
-      "sha256": "519728bf99b5ab5e60327c0aeff50c3cf06e82e1497f4174d7ce4ce8493efc45",
+      "sha256": "ed39f90639c48708e235d02cce8bae8c64de4b65d25b8ab1a41730f00e6ff06c",
       "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
+    },
+    {
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "sha256": "d7fcb09331a783033ec346217610dbcdf40f68f1ec0a6dcb6de2148bf42a4326",
+      "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-blocked-destinations-source-index.json",
-    "sha256": "63bf0fd90e33684467606cff31146e65c46f8d059856939a33cde67b6fac098f"
+    "path": "research/runtime/effect-height-exits-source-index.json",
+    "sha256": "d000ad46a7a8cd1cffd73e55e6ef74f5051daba3525383ac7642e5a45f6eab5d"
   }
 }
