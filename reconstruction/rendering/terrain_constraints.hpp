@@ -31,6 +31,12 @@ std::vector<RegionLocation> regionLocations(const RegionSelectionGrid&,
     const RegionDescriptorBank&, unsigned descriptor, int rotation);
 // Owned result; -1 removes the tried descriptor regardless of rotation.
 // At most 49 compact entries: reserve the original fiftieth termination slot.
+struct RegionPruningResult {
+    std::vector<RegionCandidate> candidates;
+    std::optional<RegionAdmissionCarry> carry; // No processed descriptor leaves scratch unchanged.
+};
+RegionPruningResult pruneRegionCandidateDetails(const RegionDescriptorBank&,
+    const std::vector<RegionCandidate>&, unsigned triedDescriptor, int rotation);
 std::vector<RegionCandidate> pruneRegionCandidates(const RegionDescriptorBank&,
     const std::vector<RegionCandidate>&, unsigned triedDescriptor, int rotation);
 }
