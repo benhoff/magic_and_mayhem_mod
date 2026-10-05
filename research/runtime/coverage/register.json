@@ -10066,19 +10066,20 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected same-cell and membership-on nonzero-empty-terrain parent transitions recovered separately; ordinal-zero cleanup, blocked cells, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified",
+      "scope": "Selected same-cell, nonzero-empty-terrain transitions and ordinal-zero cleanup recovered separately; whole-parent ordinal-zero transitions limited to empty movement context. Blocked cells, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected same-cell and membership-on nonzero-empty-terrain parent transitions recovered separately; ordinal-zero cleanup, blocked cells, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified"
+          "scope": "Selected same-cell, nonzero-empty-terrain transitions and ordinal-zero cleanup recovered separately; whole-parent ordinal-zero transitions limited to empty movement context. Blocked cells, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified"
         }
       ],
       "documents": [
         "research/runtime/effect-trajectory.md",
         "research/runtime/effect-same-cell-projection.md",
-        "research/runtime/effect-cell-transitions.md"
+        "research/runtime/effect-cell-transitions.md",
+        "research/runtime/effect-cell-cleanup.md"
       ],
       "implementation": [],
       "tests": [],
@@ -10648,6 +10649,93 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-cell-cleanup",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect ordinal-zero column eligibility and unlink cleanup",
+      "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5457184,
+          "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752176,
+          "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-cell-cleanup.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_cleanup.cpp",
+        "reconstruction/rendering/effect_cleanup.hpp",
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-cleanup-reference.cpp",
+        "tests/effect-transition-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL09.cleanup-original",
+        "TL09.cleanup-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-cleanup-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned cleanup columns and atomic zero-terrain movement",
+      "scope": "Owned bounds/table validation, optional creature/other heads for cleanup and candidate-copy atomic movement rollback; zero-terrain cleanup composition and existing moving-light headless cycle; caller certifies empty movement context, not live world state",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-cell-cleanup.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_cleanup.cpp",
+        "reconstruction/rendering/effect_cleanup.hpp",
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-cleanup-reference.cpp",
+        "tests/effect-transition-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL09.cleanup-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -15906,6 +15994,134 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "TL09.cleanup-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement",
+      "record": "research/runtime/effect-cell-cleanup.json",
+      "sha256": "94bb3cd7d7d26cd92c056415b6f720ff682c88ecf48f0ef4dffa6c9ad6d15733",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/steps",
+          "equals": 10288
+        },
+        {
+          "pointer": "/transitions",
+          "equals": 8911
+        },
+        {
+          "pointer": "/cache_updates",
+          "equals": 5784
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/cleanup_fixtures",
+          "equals": 3072
+        },
+        {
+          "pointer": "/cleanup_calls",
+          "equals": 6144
+        },
+        {
+          "pointer": "/marked",
+          "equals": 922
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL09.cleanup-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Owned bounds/table validation, optional creature/other heads for cleanup and candidate-copy atomic movement rollback; zero-terrain cleanup composition and existing moving-light headless cycle; caller certifies empty movement context, not live world state",
+      "record": "research/runtime/effect-cell-cleanup.json",
+      "sha256": "94bb3cd7d7d26cd92c056415b6f720ff682c88ecf48f0ef4dffa6c9ad6d15733",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/steps",
+          "equals": 10288
+        },
+        {
+          "pointer": "/transitions",
+          "equals": 8911
+        },
+        {
+          "pointer": "/cache_updates",
+          "equals": 5784
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/cleanup_fixtures",
+          "equals": 3072
+        },
+        {
+          "pointer": "/cleanup_calls",
+          "equals": 6144
+        },
+        {
+          "pointer": "/marked",
+          "equals": 922
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -17676,6 +17892,25 @@
         "tests/native-occupancy-test.cpp",
         "tests/test-native-occupancy.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-cell-cleanup",
+      "level": "headless",
+      "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement; Owned bounds/table validation, optional creature/other heads for cleanup and candidate-copy atomic movement rollback; zero-terrain cleanup composition and existing moving-light headless cycle; caller certifies empty movement context, not live world state",
+      "behaviors": [
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ],
+      "evidence": [
+        "TL09.cleanup-original",
+        "TL09.cleanup-native"
+      ],
+      "tests": [
+        "tests/effect-cleanup-reference.cpp",
+        "tests/effect-transition-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -17788,7 +18023,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "5a88dd909cf561f960c322ae80a38a7d700a3034ad51e861fab3d8fa600e7fcd",
+      "sha256": "02f9a4bdc47d849ebb0bee83e530430083d8776efb1ea191274ccf5408c10c65",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -17798,17 +18033,22 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "97c464891b54f4511626326521766e8764e7e7d721687a42dd44dba6c21bddc6",
+      "sha256": "ed2a2171edb28bacc495bb7be969fd2a9c8a49db08819706489f3782a106e3ff",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "a23b1e62b54ade406087dec7ab557a8eef27bbb24c3e215814417d537b82c6f8",
+      "sha256": "4be3f118912f6cf3380da76b694e5ce594e0cdd399f83b5724e8c15111074ff9",
       "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
+    },
+    {
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "sha256": "779e4c7fb3c1d5e484ed7eff54e91beae49b21c15a259e9431b2eeb503156e4f",
+      "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-stationary-native-commit.json",
-    "sha256": "7571b1c4556434d66cf1d7a4464c373dc3575e23c9bf68173d09b12ed51157f6"
+    "path": "research/runtime/effect-cell-cleanup-source-index.json",
+    "sha256": "83ae6c361ff22385bf0f6f1892be123daf197f04fc62a0931945d406b5a72c91"
   }
 }

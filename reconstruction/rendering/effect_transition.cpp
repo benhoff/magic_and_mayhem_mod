@@ -18,15 +18,17 @@ bool near(std::array<unsigned,3> a,std::array<unsigned,3> b,unsigned w,unsigned 
     return std::min(dx,w-dx)<=1 && std::min(dy,h-dy)<=1 && delta(a[2],b[2])<=1;
 }
 void validateCell(const EffectCell& cell){
-    if(cell.terrain<1 || cell.terrain>3 || (cell.flags&0x40000000u))
-        throw std::invalid_argument("Effect transition requires unblocked nonzero empty terrain entries");
+    if(cell.terrain>3 || (cell.flags&0x40000000u))
+        throw std::invalid_argument("Effect transition requires unblocked empty terrain entries");
 }
 }
 unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,EffectTransitionState& state,
-                                    unsigned width,unsigned height,unsigned layers){
+                                    unsigned width,unsigned height,unsigned layers,
+                                    const std::vector<EffectCleanupColumn>& columns){
     if(!width || !height || !layers || width>128 || height>128 || layers>32 ||
        pool.cells().size()!=std::size_t(width)*height*layers || slot>=pool.records().size())
         throw std::invalid_argument("Effect transition pool dimensions/slot outside owned bounds");
+    effectCleanupEligible(0,width,height,layers,columns); // Validate owned table before mutation.
     // Reuse the existing initial-record/projection admission without moving it.
     auto check=pool.records()[slot];const auto iterations=check.parameters[9];
     if(iterations>8)throw std::invalid_argument("Effect transition iteration bound exceeded");
@@ -67,7 +69,9 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
                 while(candidate.records()[before].next!=slot)before=candidate.records()[before].next;
                 candidate.records()[before].next=r.next;
             }
-            r.next=NoEffect;movement.previousPosition=r.position;r.position=position;r.cell=destination;
+            r.next=NoEffect;
+            cleanupEmptyEffectCell(oldCell,r.cell,width,height,layers,columns);
+            movement.previousPosition=r.position;r.position=position;r.cell=destination;
             auto& newCell=candidate.cells()[destination];
             if(newCell.head==NoEffect)newCell.head=std::uint16_t(slot);
             else{

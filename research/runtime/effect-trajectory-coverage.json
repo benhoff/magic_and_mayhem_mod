@@ -53,19 +53,20 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected same-cell and membership-on nonzero-empty-terrain parent transitions recovered separately; ordinal-zero cleanup, blocked cells, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified",
+      "scope": "Selected same-cell, nonzero-empty-terrain transitions and ordinal-zero cleanup recovered separately; whole-parent ordinal-zero transitions limited to empty movement context. Blocked cells, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected same-cell and membership-on nonzero-empty-terrain parent transitions recovered separately; ordinal-zero cleanup, blocked cells, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified"
+          "scope": "Selected same-cell, nonzero-empty-terrain transitions and ordinal-zero cleanup recovered separately; whole-parent ordinal-zero transitions limited to empty movement context. Blocked cells, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified"
         }
       ],
       "documents": [
         "research/runtime/effect-trajectory.md",
         "research/runtime/effect-same-cell-projection.md",
-        "research/runtime/effect-cell-transitions.md"
+        "research/runtime/effect-cell-transitions.md",
+        "research/runtime/effect-cell-cleanup.md"
       ],
       "implementation": [],
       "tests": [],

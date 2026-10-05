@@ -35,7 +35,7 @@ int main(int argc,char** argv)try{
         const unsigned h=fixture==2047?128:std::array<unsigned,3>{8,16,32}[(fixture/3)%3];
         const unsigned layers=fixture==2047?32:fixture%2?3:8;
         const unsigned slot=(fixture/9)%3,mode=(fixture/27)%8;
-        EffectPlacementPool pool(w,h,layers,4);for(unsigned i=0;i<pool.cells().size();++i){pool.cells()[i].terrain=std::uint16_t(1+i%3);pool.cells()[i].flags=0x1280;}
+        EffectPlacementPool pool(w,h,layers,4);for(unsigned i=0;i<pool.cells().size();++i){pool.cells()[i].terrain=std::uint16_t(i%4);pool.cells()[i].flags=0x1280;}
         std::array<std::uint32_t,63> p{};p[0]=(w/2)*32+1;p[1]=(h/2)*32+1;p[2]=(layers/2)*16+1;
         p[3]=p[0];p[4]=p[1];p[5]=p[2];p[6]=0xffffffffu;p[8]=fixture%2?68:0;p[9]=(fixture/24)%9;
         for(unsigned n=0;n<3;++n)pool.place(n,std::array<unsigned,5>{3,13,22,24,36}[(fixture+n)%5],p);
@@ -48,6 +48,11 @@ int main(int argc,char** argv)try{
         if(mode==5)s.motion.trajectory.words[4]=s.motion.trajectory.words[6]=0;
         if(mode==6){s.motion.trajectory.words[4]=s.motion.trajectory.words[6]=w*32;s.motion.trajectory.words[5]=s.motion.trajectory.words[7]=0xffffffe0u;}
         if(mode==7){s.motion.trajectory.words[4]=s.motion.trajectory.words[6]=0;s.motion.trajectory.words[5]=s.motion.trajectory.words[7]=64;}
+        std::vector<EffectCleanupColumn> columns;
+        if(fixture%3){
+            columns.resize(w*h);
+            for(unsigned i=0;i<columns.size();++i)columns[i]={std::uint16_t((i+fixture)%3),std::int8_t((i+fixture)%layers),std::int8_t(fixture%2?-1:(i+fixture+1)%layers)};
+        }
         auto firstUnits=pool.records()[slot].units;auto firstTrajectory=s.motion.trajectory;unsigned count=0;firstTrajectory.step(firstUnits,count);
         auto normalize=[](std::uint32_t v,unsigned period){auto n=v<0x80000000u?std::int64_t(v):std::int64_t(v)-0x100000000ll;if(n<0)n+=period;if(n>=period)n-=period;return unsigned(n);};
         auto destination=p;destination[0]=normalize(firstUnits[0],w*32);destination[1]=normalize(firstUnits[1],h*32);destination[2]=firstUnits[2];pool.place(3,24,destination);
@@ -64,6 +69,10 @@ int main(int argc,char** argv)try{
         }
         auto* moving=original+slot*0x22e;std::memcpy(moving+0x128,s.motion.trajectory.words.data(),56);std::memcpy(moving+0x1ea,s.motion.previousUnits.data(),12);put(moving,0x1ce,s.motion.changes);
         for(unsigned i=0;i<pool.cells().size();++i){const auto& c=pool.cells()[i];word(cellBase+i*12,0,c.terrain);word(cellBase+i*12,2,c.head);word(cellBase+i*12,4,0xffff);word(cellBase+i*12,6,0xffff);put(cellBase+i*12,8,c.flags);}
+        Bytes columnBytes(16+w*h*6+16,0xa5);auto* columnBase=columnBytes.data()+16;
+        for(unsigned i=0;i<columns.size();++i){word(columnBase+i*6,0,columns[i].marker);columnBase[i*6+2]=std::uint8_t(columns[i].lower);columnBase[i*6+3]=std::uint8_t(columns[i].upper);}
+        const auto initialColumns=columnBytes;
+        global(0x6a49c0,columns.empty()?0:reinterpret_cast<std::uintptr_t>(columnBase));global(0x6c54a0,w*h);
         const auto initialRecords=records,initialCells=cells;
         global(0x6c5494,w);global(0x6c5498,h);global(0x6c549c,layers);global(0x6c54dc,reinterpret_cast<std::uintptr_t>(cellBase));global(0x65660c,reinterpret_cast<std::uintptr_t>(catalog));
         global(0x6def5c,0);global(0x6b126c+p[8]*721,0);
@@ -74,8 +83,8 @@ int main(int argc,char** argv)try{
         for(unsigned repeat=0;repeat<repeats;++repeat){
             // Count actual intermediate transitions/cache updates with one-step owned continuations.
             auto trace=pool;auto traceState=s;trace.records()[slot].parameters[9]=1;
-            for(unsigned tick=0;tick<p[9];++tick){const auto before=trace.records()[slot];transitionEffectEmptyWorld(trace,slot,traceState,w,h,layers);transitions+=before.cell!=trace.records()[slot].cell;cacheChanges+=before.initialPosition!=trace.records()[slot].initialPosition;}
-            require(transitionEffectEmptyWorld(pool,slot,s,w,h,layers)==3);
+            for(unsigned tick=0;tick<p[9];++tick){const auto before=trace.records()[slot];transitionEffectEmptyWorld(trace,slot,traceState,w,h,layers,columns);transitions+=before.cell!=trace.records()[slot].cell;cacheChanges+=before.initialPosition!=trace.records()[slot].initialPosition;}
+            require(transitionEffectEmptyWorld(pool,slot,s,w,h,layers,columns)==3);
 #ifdef ORIGINAL_REFERENCE
             require(reinterpret_cast<Move>(0x4883f0)(moving,1)==3);
             auto expected=initialRecords;auto* expectedBase=expected.data()+16;
@@ -87,7 +96,7 @@ int main(int argc,char** argv)try{
             auto* q=expectedBase+slot*0x22e;std::memcpy(q+0x128,s.motion.trajectory.words.data(),56);std::memcpy(q+0x1ea,s.motion.previousUnits.data(),12);put(q,0x1ce,s.motion.changes);std::memcpy(q+0x202,s.previousPosition.data(),12);
             require(records==expected);
             auto expectedCells=initialCells;for(unsigned i=0;i<pool.cells().size();++i){word(expectedCells.data()+16+i*12,2,pool.cells()[i].head);put(expectedCells.data()+16+i*12,8,pool.cells()[i].flags);}
-            require(cells==expectedCells);for(auto n:terrain)require(n==0);
+            require(cells==expectedCells);require(columnBytes==initialColumns);for(auto n:terrain)require(n==0);
 #endif
             for(const auto& r:pool.records()){
                 output.write(reinterpret_cast<const char*>(r.parameters.data()),252);

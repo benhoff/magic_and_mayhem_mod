@@ -9,7 +9,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 HASH = '40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
-PATHS = ['reconstruction/rendering/effect_transition.cpp', 'reconstruction/rendering/effect_transition.hpp',
+PATHS = ['reconstruction/rendering/effect_transition.cpp', 'reconstruction/rendering/effect_transition.hpp', 'reconstruction/rendering/effect_cleanup.cpp', 'reconstruction/rendering/effect_cleanup.hpp',
          'reconstruction/rendering/effect-transition/CMakeLists.txt','reconstruction/rendering/effect_projection.cpp', 'reconstruction/rendering/effect_projection.hpp',
          'reconstruction/rendering/effect-projection/CMakeLists.txt',
          'reconstruction/rendering/effect_placement.cpp', 'reconstruction/rendering/effect_placement.hpp',
@@ -20,7 +20,7 @@ PATHS = ['reconstruction/rendering/effect_transition.cpp', 'reconstruction/rende
          'reconstruction/rendering/terrain_lighting.cpp', 'reconstruction/rendering/terrain_lighting.hpp',
          'reconstruction/rendering/effect_trajectory.cpp',
          'reconstruction/rendering/effect_trajectory.hpp',
-         'tests/effect-transition-test.cpp', 'tests/effect-transition-reference.cpp',
+         'tests/effect-cleanup-reference.cpp', 'tests/effect-transition-test.cpp', 'tests/effect-transition-reference.cpp',
          'tests/sprite-binary-reference.cpp', 'tools/test-effect-transition.py']
 
 def sha(path):
@@ -45,7 +45,7 @@ def main():
         sources = {p: sha(ROOT / p) for p in PATHS}
         code = [ROOT / 'tests/effect-transition-reference.cpp',
                 *[ROOT / ('reconstruction/rendering/' + n + '.cpp') for n in
-                  ['effect_transition', 'effect_projection', 'effect_trajectory', 'effect_placement', 'effect_lighting']]]
+                  ['effect_cleanup', 'effect_transition', 'effect_projection', 'effect_trajectory', 'effect_placement', 'effect_lighting']]]
         common = ['g++', '-std=c++17', '-I' + str(ROOT / 'reconstruction/rendering')]
         sanitize = ['-fsanitize=address,undefined', '-fno-omit-frame-pointer', '-fno-pie', '-no-pie']
         env = dict(os.environ, ASAN_OPTIONS='detect_leaks=0', UBSAN_OPTIONS='halt_on_error=1')
@@ -61,6 +61,16 @@ def main():
             helpers[name] = sha(binary)
         if not results[0] == results[1] == results[2]:
             raise ValueError('Original/native/sanitized states differ')
+        cleanup_results=[]
+        for name, flags in [('original', ['-O2', '-m32', '-fno-pie', '-no-pie', '-DORIGINAL_REFERENCE']), ('native', ['-O2']), ('sanitized', ['-O1', '-g', *sanitize])]:
+            binary=out / ('cleanup-'+name)
+            run([*common,*flags,ROOT/'tests/effect-cleanup-reference.cpp',ROOT/'reconstruction/rendering/effect_cleanup.cpp','-o',binary], 'compile-cleanup-'+name)
+            output=out / ('cleanup-'+name+'.bin')
+            stats=json.loads(run([binary,*([pe] if name=='original' else []),output],'cleanup-'+name,env))
+            cleanup_results.append((stats,sha(output)))
+            helpers['cleanup-'+name]=sha(binary)
+        if not cleanup_results[0]==cleanup_results[1]==cleanup_results[2]:
+            raise ValueError('Cleanup original/native/sanitized streams differ')
         for name, flags in [('unit', ['-O0', '-g']), ('unit-sanitized', ['-O1', '-g', *sanitize])]:
             binary = out / name
             run([*common, *flags, '-Wall', '-Wextra', '-Werror', '-pedantic',
@@ -76,10 +86,10 @@ def main():
         if any(sha(ROOT / p) != h for p, h in sources.items()) or sha(pe) != HASH:
             raise ValueError('Inputs changed during comparison')
         report = dict(all_match=True, live_validated=False, executable_sha256=HASH,
-                      **results[0][0], output_sha256=results[0][1], helper_sha256=helpers,
+                      **results[0][0], **cleanup_results[0][0], cleanup_output_sha256=cleanup_results[0][1], output_sha256=results[0][1], helper_sha256=helpers,
                       registered_source_sha256=sources, unit_passed=True, sanitized_unit_passed=True,
                       cmake_tests_passed=1,
-                      boundary='Whole unmodified 004883f0 with real 004df500/004e10e0, five emitting types, empty terrain occupancy/no creatures, metadata kind 0/68 with zero distance allowance, 0..8 iterations, membership-on old/new chains, fine/cell/previous/cache/subcell/recount updates, nonzero terrain catalog references and return 3; no patches or stubs; authored trajectory, no setup, zero-terrain cleanup callback, blocked destinations, occupied collisions, special termination or live replacement')
+                      boundary='Whole unmodified 004883f0 with real 004df500/004e10e0, five emitting types, empty terrain occupancy/no creatures, metadata kind 0/68 with zero distance allowance, 0..8 iterations, membership-on old/new chains, fine/cell/previous/cache/subcell/recount updates, zero/nonzero terrain catalog references and real 00534520 column cleanup and return 3; no patches or stubs; authored trajectory, no setup, blocked destinations, occupied collisions, special termination or live replacement')
         (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
         print(json.dumps(report, indent=2), flush=True)
     finally:
