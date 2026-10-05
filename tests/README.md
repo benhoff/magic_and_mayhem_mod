@@ -516,3 +516,15 @@ adapter, independent complete v2 wire expectations and fresh-process position
 traces. It also checks changed/missing maps, seam directions, zero-distance,
 prefix replanning, corrupted route metadata and guarded file publication.
 See [movement evidence](../research/runtime/native-creature-movement.md).
+
+## Native fine motion
+
+`creature-motion-arithmetic` and `native-fine-motion-process` are registered by
+`game/`. They cover bounded sample transitions, independent complete v3 bytes,
+fresh-process intra-cell/fractional/cycle/prefix continuation and profile/map
+refusal. The native movement unit test also covers fine-state rollback, failed
+in-place restoration and cancellation. Optional
+`python3 tests/test-original-creature-motion.py` compares the pinned original
+motion action/consumption in an isolated i386 process with controlled callbacks
+and verifies the immutable manifest before/after. See
+[fine-motion evidence](../research/runtime/native-creature-fine-motion.md).

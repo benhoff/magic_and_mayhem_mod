@@ -41,6 +41,10 @@ RANGES = {
     "ready_action": (0x50f7c0, 0x50f84f),
     "move_order": (0x50fae0, 0x50fd4c),
     "movement_behavior": (0x510010, 0x510480),
+    "motion_action": (0x5104b0, 0x510e3a),
+    "motion_segment_setup": (0x510e80, 0x511c0c),
+    "motion_route_consumption": (0x512460, 0x5127f9),
+    "motion_coordinate_snap": (0x5070e0, 0x507189),
     "defended_damage_entry": (0x514860, 0x514982),
     "health_damage_and_lethal_transition": (0x514990, 0x514c56),
     "immediate_interaction_gate": (0x516220, 0x5164e5),
@@ -76,6 +80,9 @@ RANGES = {
     "cast_admission": (0x57b710, 0x57c631),
 }
 ANCHORS = {
+    0x5104b0: "83ec3853558be9", # Motion action entry.
+    0x512460: "83ec4053558be9", # Route consumption entry.
+    0x5070e0: "8b5424048b442408", # Discrete/fine coordinate snap.
     0x50e6a6: "8d8e1c060000",  # Cast receiver is embedded creature +0x61c.
     0x50e6ae: "e95dd00600",    # Ranged animation event enters cast admission.
     0x48b5d3: "e818c10700",    # Cure uses signed health change.

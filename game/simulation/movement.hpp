@@ -22,6 +22,10 @@ public:
     virtual std::uint32_t creatureType() const=0;
     virtual RoutePlan plan(const Entity&,Point,std::uint32_t budget) const=0;
     virtual bool accepts(const Entity&,const RoutePoint&) const=0;
+    // Optional driver; services without recovered sample evidence refuse it.
+    virtual FineMotion prepareFineMotion(const Entity&,const RoutePoint&) const;
+    virtual bool advanceFineMotion(const Entity&,const RoutePoint&,FineMotion&) const;
+    virtual void validateFineMotion(const Entity&,const RoutePoint&,const FineMotion&) const;
 };
 using MapResolver=std::function<std::shared_ptr<const Navigation>(const std::string&)>;
 class MovementSession {
@@ -31,7 +35,7 @@ class MovementSession {
 public:
     MovementSession(World,std::shared_ptr<const Navigation>);
     const World& world() const {return world_;}
-    Handle spawn(Entity);
+    Handle spawn(Entity,bool sampleMotion=false);
     void enqueue(Command);
     void move(Handle,Point,std::optional<Handle> goal={});
     TickReport step(TickInput={});

@@ -221,6 +221,17 @@ boundaries. Native checks consume only synthetic data; NS02's separate original
 helper comparisons have explicit hash/manifest evidence. Existing live gameplay
 and balance remain unchanged.
 
+### Native fine motion (NS03)
+
+| ID and behavior | Implementation and integration | Evidence and confidence | Remaining boundary and next validation |
+| --- | --- | --- | --- |
+| NS03 Bounded forward sample motion and intra-cell checkpoint continuation | Independent recovered arithmetic model, opt-in native driver, fine XYZ/progress/rate accumulator/sample cursor, route consumption and native-v3 persistence; headless frozen one-creature slice | 455,640 isolated original action transitions and 136 route-consumption/coordinate-snap cases match; 24 normal and 24 ASan/UBSan CTests pass, including independent v3 bytes and fresh-process intra-cell/fractional/cycle/prefix traces, rollback and map refusal. Original manifest preserved (2,927 files). High for the tested arithmetic/consumption contracts; controlled animation/event/environment inputs. [Evidence](native-creature-fine-motion.md) | Full segment setup/speed continuity, original animation event production, terrain height, reverse/special profiles, environment/combat callbacks, dynamic occupancy and live agreement remain open. Next: independently compare initialization and successive route-point speed/animation transitions |
+
+The sample-cycle event stream, route-provided speed and reset at segment/order
+boundaries are explicit bounded native policies. NS03 does not complete original
+motion or replace live gameplay. V1/v2 checkpoint bytes and their policies remain
+compatible; v3 retains only the new owned intra-cell continuation.
+
 ## Gameplay areas without recorded replacements
 
 These entries are baseline gaps, not proof that no research exists. Recovered

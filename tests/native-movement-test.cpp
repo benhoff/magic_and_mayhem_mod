@@ -10,7 +10,7 @@ static void check(bool value) {if(!value) throw std::runtime_error("native movem
 template<class F> static void rejected(F f) {bool caught=false;try {f();} catch(const std::exception&) {caught=true;}check(caught);}
 struct FixtureNavigation:Navigation {
     std::uint64_t fingerprint=1;
-    bool blocked=false,fail=false;
+    bool blocked=false,fail=false,failAdvance=false;
     NavigationBinding binding() const override {return {{64,8,3},fingerprint};}
     std::uint32_t creatureType() const override {return 7;}
     RoutePlan plan(const Entity& e,Point target,std::uint32_t budget) const override {
@@ -21,6 +21,18 @@ struct FixtureNavigation:Navigation {
         auto x=e.x;
         while(x!=target.x && result.route.size()<16) {x+=x<target.x?1:-1;result.route.push_back({{x,target.y,target.z},x>e.x?2:6,0,0,720});}
         return result;
+    }
+    FineMotion prepareFineMotion(const Entity& e,const RoutePoint&) const override {
+        FineMotion f;f.rate=50;f.duration=100;f.heightOrigin=e.z*16;f.fine={e.x*32,e.y*32,e.z*16};return f;
+    }
+    void validateFineMotion(const Entity&,const RoutePoint&,const FineMotion& f) const override {if(f.rate!=50 || f.duration!=100) throw std::invalid_argument("fixture fine profile mismatch");}
+    bool advanceFineMotion(const Entity& e,const RoutePoint& p,FineMotion& f) const override {
+        if(failAdvance) throw std::runtime_error("fixture advance failure");
+        f.accumulator+=f.rate;if(f.accumulator>=f.duration) {
+            f.accumulator-=f.duration;f.progress+=30;f.travelX=(p.position.x>e.x?1:-1)*f.progress;
+            f.fine.x=e.x*32+f.travelX/6;f.frame=(f.frame+1)%12;
+        }
+        return f.progress>=192;
     }
     bool accepts(const Entity& e,const RoutePoint& point) const override {return !blocked && std::abs(point.position.x-e.x)==1 && point.position.y==e.y && point.position.z==e.z;}
 };
@@ -87,5 +99,25 @@ int main() try {
     auto limited=session(navigation);auto limitedActor=creature(limited);auto state=limited.world().state();state.slots[limitedActor.slot].entity->motion->budget=2;
     World w(0);w.restore(state);MovementSession low(std::move(w),navigation);low.move(limitedActor,{5,1,1});low.step();
     check(low.world().find(limitedActor)->motion->action==Action::searchLimited && low.world().find(limitedActor)->x==1);
+    // Intra-cell state must participate in the same transaction/lifetime rules.
+    auto fineNavigation=std::make_shared<FixtureNavigation>();auto fine=session(fineNavigation);
+    Entity fineEntity;fineEntity.type=7;fineEntity.x=1;fineEntity.y=1;fineEntity.z=1;
+    auto fineActor=fine.spawn(fineEntity,true);fine.move(fineActor,{5,1,1});fine.step();fine.step();fine.step();
+    check(fine.world().find(fineActor)->x==1 && fine.world().find(fineActor)->motion->fine->fine.x==37);
+    const auto fineBytes=bytes(fine);check(fineBytes[8]==3);
+    auto fineState=decodeSnapshot(fineBytes);World restoredFine(0);restoredFine.restore(fineState);
+    MovementSession fineContinued(std::move(restoredFine),fineNavigation);
+    for(int i=0;i<4;++i) {fine.step();fineContinued.step();check(bytes(fine)==bytes(fineContinued));}
+    const auto beforeFineFailure=bytes(fine);fineNavigation->failAdvance=true;
+    rejected([&]{fine.step();});check(bytes(fine)==beforeFineFailure);fineNavigation->failAdvance=false;
+    auto badFine=fine.world().state();badFine.slots[fineActor.slot].entity->motion->fine->rate=51;
+    const auto badCheckpoint=cleanup.path/"bad-fine.mnw";writeSnapshot(badCheckpoint,badFine);
+    rejected([&]{fine.restore(badCheckpoint,[&](const std::string&){return fineNavigation;});});check(bytes(fine)==beforeFineFailure);
+    fine.move(fineActor,{2,1,1});fine.step();
+    check(fine.world().find(fineActor)->motion->sampleMotion && !fine.world().find(fineActor)->motion->fine);
+    fine.step();check(fine.world().find(fineActor)->motion->fine.has_value());
+    fine.enqueue({Operation::cleanup,fineActor,{}});fine.step();
+    check(fine.world().find(fineActor)->motion->sampleMotion && !fine.world().find(fineActor)->motion->fine);
+    check(fine.world().find(fineActor)->motion->action==Action::cancelled);
     std::cout<<"typed motion, staged orders, target/release, bounded routes and atomic map restoration passed\n";return 0;
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}

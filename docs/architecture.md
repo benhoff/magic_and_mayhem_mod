@@ -30,8 +30,8 @@ integration, validation, confidence, and remaining boundaries.
 | `audio/` | Native PCM storage and playback foundations |
 | `renderer/` | Native OpenGL surface operations and capture replay |
 | `game/simulation/` | Native bounded entity ownership, transactional tick phases and single-creature movement through a native navigation interface |
-| `game/persistence/` | Native-v1/v2 checkpoints, staged restoration and POSIX publication; separate from original save decoding |
-| `apps/world-sandbox/` | Headless lifecycle/movement/checkpoint harness and frozen reconstructed navigation adapter |
+| `game/persistence/` | Native-v1/v2/v3 checkpoints, staged restoration and POSIX publication; separate from original save decoding |
+| `apps/world-sandbox/` | Headless lifecycle/movement/checkpoint harness and frozen reconstructed navigation/sample-motion adapters |
 | `tools/` | Preparation, inspection, staging, launch, patch, and validation workflows |
 | `tests/` | Automated checks, independent references, fixtures, and manual protocols |
 | `research/` | Reverse-engineering evidence, formats, runtime findings, and coverage |

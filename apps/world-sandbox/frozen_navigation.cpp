@@ -1,5 +1,6 @@
 #include "frozen_navigation.hpp"
 #include "route_world.hpp"
+#include "creature_motion.hpp"
 #include <array>
 #include <cmath>
 #include <cstring>
@@ -52,6 +53,57 @@ public:
             out.route.push_back({{waypoint.x,waypoint.y,waypoint.z},waypoint.direction,waypoint.vertical_delta,waypoint.category,metadata.scalar});
         }
         return out;
+    }
+    r::MotionInputs motionInputs(const g::Entity& e,const g::RoutePoint& waypoint) const {
+        if((waypoint.category!=0 && waypoint.category!=4) || e.type==12 ||
+           read<std::uint8_t>(&frozen_->object,0x722)!=0 ||
+           read<std::int32_t>(&frozen_->object,0x108)!=0)
+            throw std::invalid_argument("sample driver requires ordinary forward movement profile");
+        r::CreatureScalarState scalar;
+        scalar.type_3c=read<std::int32_t>(frozen_->scalar_type.data(),0x3c);
+        scalar.type_10=read<std::int32_t>(frozen_->scalar_type.data(),0x10);
+        std::memcpy(scalar.type_d8.data(),frozen_->scalar_type.data()+0xd8,sizeof(scalar.type_d8));
+        scalar.default_scalar=frozen_->default_scalar;scalar.slope_global=frozen_->slope_global;
+        const auto delta=r::Coordinates{r::wrapped_difference(waypoint.position.x,e.x,binding_.dimensions.x),
+            r::wrapped_difference(waypoint.position.y,e.y,binding_.dimensions.y),waypoint.position.z-e.z};
+        const auto duration=r::base_movement_scalar(waypoint.category,delta,scalar);
+        if(!waypoint.scalar || waypoint.scalar>1000000 || !duration || duration>1000000)
+            throw std::invalid_argument("unsupported sample motion rate/duration");
+        r::MotionInputs p;p.rate=waypoint.scalar;p.duration=duration;p.gridX=e.x;p.gridY=e.y;
+        p.heightOrigin=e.z*16;p.heightDelta=delta.z*16;p.direction=waypoint.direction;p.vertical=waypoint.verticalDelta!=0;
+        const auto bank=p.vertical?0:(waypoint.direction&1);
+        for(unsigned i=0;i<12;++i) p.samples[i]=read<std::int32_t>(frozen_->scalar_type.data(),0xd8+(bank*12+i)*4);
+        return p;
+    }
+    g::FineMotion prepareFineMotion(const g::Entity& e,const g::RoutePoint& waypoint) const override {
+        const auto p=motionInputs(e,waypoint);g::FineMotion f;
+        f.rate=p.rate;f.duration=p.duration;f.heightOrigin=p.heightOrigin;f.heightDelta=p.heightDelta;
+        f.fine={e.x*32,e.y*32,e.z*16};
+        // Check sample/config admission even if no iteration is admitted yet.
+        r::MotionState probe;probe.fineX=f.fine.x;probe.fineY=f.fine.y;probe.fineZ=f.fine.z;
+        (void)r::advance_creature_motion(probe,p);return f;
+    }
+    void validateFineMotion(const g::Entity& e,const g::RoutePoint& waypoint,const g::FineMotion& f) const override {
+        const auto expected=prepareFineMotion(e,waypoint);const auto p=motionInputs(e,waypoint);
+        int cycle=0,prefix=0;
+        for(unsigned i=0;i<12;++i) {const auto step=p.samples[i]*(p.vertical?2:1);cycle+=step;if(i<f.frame) prefix+=step;}
+        constexpr int dx[8]={0,1,1,1,0,-1,-1,-1},dy[8]={-1,-1,0,1,1,1,0,-1};
+        const auto x=p.vertical?0:dx[p.direction],y=p.vertical?0:dy[p.direction];
+        if(f.accumulator<0 || f.accumulator>=p.duration || f.progress<prefix || (f.progress-prefix)%cycle ||
+           f.travelX!=x*f.progress || f.travelY!=y*f.progress ||
+           f.residualX!=x*((f.progress-prefix)/6-f.progress/6) ||
+           f.residualY!=y*((f.progress-prefix)/6-f.progress/6))
+            throw std::invalid_argument("saved sample cursor/displacement disagrees with profile");
+        if(f.rate!=expected.rate || f.duration!=expected.duration || f.heightOrigin!=expected.heightOrigin || f.heightDelta!=expected.heightDelta)
+            throw std::invalid_argument("saved sample motion profile disagrees with map");
+    }
+    bool advanceFineMotion(const g::Entity& e,const g::RoutePoint& waypoint,g::FineMotion& f) const override {
+        validateFineMotion(e,waypoint,f);const auto inputs=motionInputs(e,waypoint);
+        r::MotionState s{f.accumulator,f.progress,f.travelX,f.travelY,f.fine.x,f.fine.y,f.fine.z,f.residualX,f.residualY,f.frame};
+        const auto complete=r::advance_creature_motion(s,inputs);
+        f.accumulator=s.accumulator;f.progress=s.progress;f.travelX=s.travelX;f.travelY=s.travelY;
+        f.fine={s.fineX,s.fineY,s.fineZ};f.residualX=s.residualX;f.residualY=s.residualY;f.frame=s.frame;
+        return complete;
     }
     bool accepts(const g::Entity& e,const g::RoutePoint& waypoint) const override {
         if(!e.motion) return false;

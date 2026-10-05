@@ -1,4 +1,4 @@
-# Native world snapshots v1 and v2
+# Native world snapshots v1, v2 and v3
 
 This is an owned native checkpoint format, independent of original Magic &
 Mayhem saves. Extension `.mnw` is a sandbox convention. No original save
@@ -8,7 +8,7 @@ encoding; signed coordinates use 32-bit two's-complement bit patterns.
 | Header offset | Size | Meaning |
 | --- | --- | --- |
 | 0 | 8 | `MNMNWLD` followed by NUL |
-| 8 | 4 | Version: 1 lifecycle, 2 movement |
+| 8 | 4 | Version: 1 lifecycle, 2 waypoint movement, 3 sample motion |
 | 12 | 4 | Payload byte count, exactly file length minus 24 |
 | 16 | 8 | FNV-1a-64 of the payload |
 
@@ -44,7 +44,7 @@ references must resolve immediately against the complete restored slot table.
 Limits default to 65,536 slots, 65,536 commands and 64 MiB of encoded payload
 and conservative decoded-storage accounting. Current storage accounting charges 256 bytes
 per slot and per pending command, exact blob lengths, and 28 bytes per route
-point. The initial v1 implementation charged 128/32 for slot/command storage;
+point, plus 56 bytes for present fine-motion continuation. The initial v1 implementation charged 128/32 for slot/command storage;
 the larger typed motion records required a stricter resource policy without
 changing v1 wire bytes. It is an explicit
 budget policy, not a host `sizeof` ABI. Construction and decoding check bounds
@@ -63,7 +63,7 @@ invalid states, and split-process continuation. See
 
 The header/checksum and existing fields retain their meaning. Encoders select
 v2 when a navigation binding is present and otherwise retain exact v1 encoding.
-Both versions decode; no original game save is converted by this codec.
+All three versions decode; no original game save is converted by this codec.
 
 After the three blobs, v2 adds a binding-presence byte (must be 1), signed XYZ
 dimension DWORDs and a 64-bit FNV-1a fingerprint of the entire external frozen
@@ -104,3 +104,39 @@ The independent Python movement oracle writes complete expected v2 checkpoints
 and checks pending orders, route metadata/cursor, restart traces, map refusal,
 all incomplete prefixes/byte mutations and malformed states with recomputed
 checksums. See [movement evidence](../runtime/native-creature-movement.md).
+
+## V3 animation-sample continuation
+
+V3 retains the v2 layout and adds two booleans after each present motion record's
+route array: sample-driver selection, then fine-continuation presence. When the
+latter is true, fourteen DWORDs follow (56 bytes):
+
+1. Signed rate, duration, height origin, height delta.
+2. Signed accumulator, progress, cumulative X displacement, cumulative Y displacement.
+3. Signed fine XYZ.
+4. Signed presentation residual X/Y, then unsigned sample index.
+
+The encoder selects v3 when any owned creature selects the sample driver,
+including idle/pending/cancelled states without an active continuation. V1/v2
+records decode with sample selection false and no continuation. Encoding those
+states retains their old bytes. There is no implicit upgrade of old motion saves.
+
+Fine continuation requires a moving creature with sample selection true. Rate
+and duration are 1..1,000,000; accumulator is 0..2,000,000; progress is 0..191;
+sample index is 0..11. Cumulative XY magnitudes cannot exceed progress. Height
+delta is -16..16, and height origin equals current grid Z times 16. Fine XY must
+equal grid XY times 32 plus signed cumulative displacement divided by six;
+fine Z must equal origin plus height delta times progress divided by 192.
+Residual magnitudes are at most 64. Decoding validates these numeric/spatial
+relationships before committing state.
+
+The bound navigation driver additionally checks the saved rate/duration against
+the route/map profile, directional displacement, progress versus the sample
+cursor, cycle residuals and accumulator below duration. Every saved/planned edge
+must admit a supported profile. Binding remains the exact external resource
+fingerprint; samples need not be duplicated inside the checkpoint.
+
+The independent Python v3 oracle checks complete initial, intra-cell and arrived
+bytes, restores a Python-authored checkpoint, and compares every fresh-process
+continuation trace. See [fine-motion evidence](../runtime/native-creature-fine-motion.md)
+for the tested contracts and the unimplemented original-motion boundaries.
