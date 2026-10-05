@@ -59,9 +59,23 @@ static void json(const State& state,const MovementSession* session=nullptr) {
 }
 static MovementSession session(State state) {
     auto navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation);
+    if(state.navigation && !(navigation->binding()==*state.navigation))
+        navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation,true);
     World world(0);world.restore(std::move(state));return MovementSession(std::move(world),std::move(navigation));
 }
 int main(int argc,char** argv) try {
+    if(argc==14 && std::string_view(argv[1])=="move-occupied") {
+        auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2],{},true);World world(8);
+        auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();world.restore(std::move(state));
+        MovementSession movement(std::move(world),navigation);
+        Entity e;e.type=navigation->creatureType();e.x=integer(argv[4]);e.y=integer(argv[5]);e.z=integer(argv[6]);
+        auto creature=movement.spawn(e);
+        e.x=integer(argv[10]);e.y=integer(argv[11]);e.z=integer(argv[12]);movement.spawnBlocker(e);
+        movement.move(creature,{integer(argv[7]),integer(argv[8]),integer(argv[9])});
+        for(std::uint32_t i=0,count=ticks(argv[13]);i<count;++i) movement.step();
+        auto commit=writeSnapshot(argv[3],movement.world().state());if(!commit.durable) throw std::runtime_error(commit.detail);
+        json(movement.world().state(),&movement);return 0;
+    }
     if(argc==13 && (std::string_view(argv[1])=="move-ani" || std::string_view(argv[1])=="move-terrain-ani")) {
         auto base=integer(argv[4]);if(base<0 || base>4088) throw std::invalid_argument("ANI sequence base outside 0..4088");
         auto animation=mnm::sandbox::loadMovementAnimation(argv[3],base);
@@ -111,5 +125,5 @@ int main(int argc,char** argv) try {
         auto commit=writeSnapshot(argv[3],world.state());if(!commit.durable) throw std::runtime_error(commit.detail);
         std::cout<<"resumed "<<count<<" admitted idle ticks\n";return 0;
     }
-    std::cerr<<"usage: mnm-world-sandbox create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous|move-terrain MAP OUTPUT SX SY SZ TX TY TZ TICKS | move-ani|move-terrain-ani MAP ANI BASE OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
+    std::cerr<<"usage: mnm-world-sandbox move-occupied MAP OUTPUT SX SY SZ TX TY TZ BX BY BZ TICKS | create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous|move-terrain MAP OUTPUT SX SY SZ TX TY TZ TICKS | move-ani|move-terrain-ani MAP ANI BASE OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}

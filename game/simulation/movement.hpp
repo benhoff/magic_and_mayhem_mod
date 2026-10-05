@@ -23,6 +23,10 @@ public:
     virtual std::uint32_t creatureType() const=0;
     virtual RoutePlan plan(const Entity&,Point,std::uint32_t budget) const=0;
     virtual bool accepts(const Entity&,const RoutePoint&) const=0;
+    virtual bool supportsStationaryOccupants() const {return false;}
+    virtual void validateOccupants(const State&) const {}
+    virtual RoutePlan planInWorld(const State&,Handle,Point,std::uint32_t budget) const;
+    virtual bool acceptsInWorld(const State&,Handle,const RoutePoint&) const;
     virtual Point finePosition(const Entity&) const;
     // Optional driver; services without recovered sample evidence refuse it.
     virtual void validateSegmentHistory(const Entity&,const SegmentHistory&) const;
@@ -40,6 +44,7 @@ public:
     MovementSession(World,std::shared_ptr<const Navigation>);
     const World& world() const {return world_;}
     Handle spawn(Entity,bool sampleMotion=false,bool continuousMotion=false,bool terrainMotion=false);
+    Handle spawnBlocker(Entity); // Stationary same-profile creature; owns no motion driver.
     void enqueue(Command);
     void move(Handle,Point,std::optional<Handle> goal={});
     TickReport step(TickInput={});

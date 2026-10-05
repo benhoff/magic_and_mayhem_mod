@@ -1,0 +1,638 @@
+{
+  "range": "2522edf..d9e1fa783eecd751497120e09e85e5c91977b656",
+  "scope": "Exact committed parent/current file and behavior fingerprints checked against existing receipts. Journal is append-only and not self-receipted. No past gate-pass or new runtime validation assertion.",
+  "files": [
+    {
+      "commit": "5e24b3b",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "22566932d964e49c3f6748937c579fd796233d02e2f6317e2518859a807a6a04",
+      "after_sha256": "0d3b13b7bfbe2523191d9b64a836381e565fb8e6952c56236220c97ea96c78b5",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting"
+      ]
+    },
+    {
+      "commit": "5e24b3b",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "042ab2fc1d3c54befd5fae41f37fe2dfa44b3be839e4e488b7c3aac2fb4b6a51",
+      "after_sha256": "f7bac0d54a18bd86c4257975d58fbd01b78a589f7dc249a388d80dbcd293a401",
+      "reviews": []
+    },
+    {
+      "commit": "5e24b3b",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "954d0425e25457853532c6f53081c1adf51e77fdfac0dd52b9d5fe61dc8f70b1",
+      "after_sha256": "0663f7245be0abc0b01e3ef0714041ebb9f215a84abf8c51f38b65ca06549bc4",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting"
+      ]
+    },
+    {
+      "commit": "5e24b3b",
+      "path": "research/runtime/coverage/source-index-stationary-original.json",
+      "before_sha256": null,
+      "after_sha256": "014fd0989533372ea5821f60684e5e052f33e74796de10449eaf6402853ee321",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting"
+      ]
+    },
+    {
+      "commit": "5e24b3b",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "bf019d8ab5266d4dc48d1874ad959cadce42940b930b6e7d352165c35b1b9c6d",
+      "after_sha256": "49fc3e69565fac30eb361cf48f5e7d13b3e4248f1662cb50f92cf01b9a773b9a",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting"
+      ]
+    },
+    {
+      "commit": "5e24b3b",
+      "path": "research/runtime/native-stationary-occupancy-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "4280f65ff966eebfb1b5d9bbc9971e121302f7fbae34ee705c3e81a3c0e964d3",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting"
+      ]
+    },
+    {
+      "commit": "5e24b3b",
+      "path": "research/runtime/native-stationary-occupancy-original.json",
+      "before_sha256": null,
+      "after_sha256": "60da671c8594623bec8fd7eb80fae1c1fa93d5c3efea156b669b87dd868c126d",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting"
+      ]
+    },
+    {
+      "commit": "5e24b3b",
+      "path": "research/runtime/native-stationary-occupancy.md",
+      "before_sha256": null,
+      "after_sha256": "339e606b7e60393c653dc2ce24c89b110b248f1d0980e0216a203dd46928227f",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting"
+      ]
+    },
+    {
+      "commit": "5e24b3b",
+      "path": "research/runtime/pathfinding-occupancy-test.md",
+      "before_sha256": "3f6786644ad87268d3f3fddb524f14c68ad15547790805f4cf0505bbc5175068",
+      "after_sha256": "64e6a35cc9ff2b6a1546a0d05e70742d3bb5525aac241e726d15a96f9c31d083",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting"
+      ]
+    },
+    {
+      "commit": "5e24b3b",
+      "path": "tools/test-dynamic-occupancy.py",
+      "before_sha256": null,
+      "after_sha256": "6bb6b5fee2c070582aebdce07d8da29390455c1068a22273104ca354ab47a720",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "reconstruction/rendering/effect-transition/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "a51779dc93e047ecd4e2ac7ac0464c2539ca4d7cfe4ab97afedf7e809d50047e",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "reconstruction/rendering/effect_transition.cpp",
+      "before_sha256": null,
+      "after_sha256": "371f2b9be01dc8377e51683431a1ac5494df67ffa8ce79238308e4fc0f6400ea",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "reconstruction/rendering/effect_transition.hpp",
+      "before_sha256": null,
+      "after_sha256": "fb76fa22117311628a2410af1493cc2bb3205ad580e10ae02cfd552e6fbbc6fe",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "0d3b13b7bfbe2523191d9b64a836381e565fb8e6952c56236220c97ea96c78b5",
+      "after_sha256": "6bad944adebf1446cc4cc60c973a94a597314962594ad0e06c83986ac51a5cc2",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "f7bac0d54a18bd86c4257975d58fbd01b78a589f7dc249a388d80dbcd293a401",
+      "after_sha256": "3f35e4bbca87fe6a521ee018eba8c41bb95a8781fe968b204009d9131b7fb3fd",
+      "reviews": []
+    },
+    {
+      "commit": "f355e10",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "0663f7245be0abc0b01e3ef0714041ebb9f215a84abf8c51f38b65ca06549bc4",
+      "after_sha256": "3c5caced8771ddf0ca14be84895712d097595af181c05cb3c8e9ffc2ef266ac5",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "49fc3e69565fac30eb361cf48f5e7d13b3e4248f1662cb50f92cf01b9a773b9a",
+      "after_sha256": "0024bc61f0d841ad82b66106b8d9f8e35c0d5193069cae6f8a1491cd0b8c0a2c",
+      "reviews": [
+        "effect-transition-summary-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "a23b1e62b54ade406087dec7ab557a8eef27bbb24c3e215814417d537b82c6f8",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "research/runtime/effect-cell-transitions-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "9f9357b46da74848f4f4d020b18bc8a39b800a6ca095aa3d0f52a11f74a5f3fb",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "research/runtime/effect-cell-transitions.json",
+      "before_sha256": null,
+      "after_sha256": "a30a2f5d0b3b0080611ebb8d0164e1e0ef8313fa46e35f0bfcca78bdf825b4c6",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "research/runtime/effect-cell-transitions.md",
+      "before_sha256": null,
+      "after_sha256": "4ca6a72adc921be585b807e6b37ac43567adc55c8785fdec93b92f7c3520b256",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "263d4b3bf3ef94f0c5bf9abeb7b1801284927c44562f0a2687e7cc5402009a55",
+      "after_sha256": "97c464891b54f4511626326521766e8764e7e7d721687a42dd44dba6c21bddc6",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "cd847193f22e932f2e9fe44b255af7fa865d9f2423c859201cd125f43d48d39d",
+      "after_sha256": "5a88dd909cf561f960c322ae80a38a7d700a3034ad51e861fab3d8fa600e7fcd",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "tests/effect-transition-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "6e63316fbe6d7758ff355f8ca052054e07d0cdc05f842f0d806fa73a64fc81cd",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "tests/effect-transition-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "3aceeca4061c79b63b02fc1c925046f3c120451adff1d91fe972179f99ba4998",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "path": "tools/test-effect-transition.py",
+      "before_sha256": null,
+      "after_sha256": "0939e47cb57eef61ea25c73b6235cf1d3e4e823e817fa0f82975fc6945f24a1d",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "research/runtime/README.md",
+      "before_sha256": "7eab8ecc65f2347e884ea3945c1d2f421b183081dccdae3abab47d0a0328ae31",
+      "after_sha256": "96390f6e3099a90f6a39f1f7df28cda05ce70ddd688107be3b1e7e0751d45d37",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": "f64c45d4d99092dcf6c56dd1a7160cc4f2932c780979e909fd2ba6049107467e",
+      "after_sha256": "a3aa0f026cc139f88a9e133f3581cc07d92a153e6cc6b96234be40b833634107",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "6bad944adebf1446cc4cc60c973a94a597314962594ad0e06c83986ac51a5cc2",
+      "after_sha256": "e2ace766fa0687cc096333d41566fcdbdfab8ff3194ba62e86913ab5f75cd4f2",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "3f35e4bbca87fe6a521ee018eba8c41bb95a8781fe968b204009d9131b7fb3fd",
+      "after_sha256": "b993316dea68ee53eddfc65e7aa3587d517af92aee35bbd561acb9561df458f8",
+      "reviews": []
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "3c5caced8771ddf0ca14be84895712d097595af181c05cb3c8e9ffc2ef266ac5",
+      "after_sha256": "a0965a86a158806ab5bd19b2a9f053e82534b3fc2bdea495d44a5ac88227e4b7",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "research/runtime/coverage/source-index-region-entry.json",
+      "before_sha256": null,
+      "after_sha256": "a5247baf4e0ad0e53791e0d3705256bd92cfa64dcef69672c62645d916c83299",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "0024bc61f0d841ad82b66106b8d9f8e35c0d5193069cae6f8a1491cd0b8c0a2c",
+      "after_sha256": "c685332f7919e5361b8ed6ab73b718752a87e980e0d985dacf3e829e093dc0ee",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "research/runtime/region-entry-engine-contract.json",
+      "before_sha256": null,
+      "after_sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "research/runtime/region-entry-engine-contract.md",
+      "before_sha256": null,
+      "after_sha256": "3cdd52acf45f5766078c675299dfb3e0b8f9563b8d98d490f75056b9efd68050",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "research/runtime/region-entry-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "df568313841d38d3733daf713edc8f20f1e399f93ad5407a9810b1b935a29425",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "runtime/menu/campaign_observe.h",
+      "before_sha256": "046adaf780652b3996047a496c53b3ff52c4970c2fe75d32b299cc6c5e02b4db",
+      "after_sha256": "a220db2c27e263f7fc29fc41fd98876051de0f02839b2bde48fddb04d55950b4",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "runtime/menu/observer.c",
+      "before_sha256": "57ab38db3227166fcd5656b537f46ec6773203d9055b10ff3a9e770c645cb406",
+      "after_sha256": "f7a83db08a1be4c22a95edfd222e7791c8afa3a944b436fcd5ca7614bd89ef6e",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "runtime/menu/region_entry_observe.h",
+      "before_sha256": null,
+      "after_sha256": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "tests/README.md",
+      "before_sha256": "8f413d5cb4ac0509e147ac0941b261594392162eea02e0204e4ef308baa625f4",
+      "after_sha256": "21dad0951e7a981a25a9dcdb9c873259cbbb9683bdaeca214690d721dfcebc6e",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "tests/campaign-observer-test.c",
+      "before_sha256": "27c879ec46802e2f52d04d9c83108c1e6560c938b9dc768fe4ad87dbc0459adb",
+      "after_sha256": "ee6f010291c8763ea4c46dd5985b5c70c0ac805d3b8c5529b91e44ae7ac6ff7e",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "tests/region-entry-contract-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "f1dbae810db54a2076952499efc800180a6d22a204da5f9b7994343d5ed5163d",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "tools/build-menu-observer.py",
+      "before_sha256": "4a7f897ee654116f5905b408ebe0e415d25733f5c44d74d578338cfeaf283c27",
+      "after_sha256": "c7aab9176bbe9cdda8e42ffb0de871bf9d48ff9145e7ab4fc6b6a8b6aa2ec57f",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "tools/export-region-entry-support.py",
+      "before_sha256": null,
+      "after_sha256": "f5a344c8e9be051c226ad0c2e785713a30916528409048497a64c7760379ce24",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "tools/test-campaign-observer.py",
+      "before_sha256": "a763309a677c211764bb445bfc72c151a5f82a842198ac55e52d01936015b9f7",
+      "after_sha256": "3ddc59452657c05eee973d6c7c77f844194b6e78cfba59567a9d160281ee2a58",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "tools/test-live-campaign-entry.py",
+      "before_sha256": "58259387aea19736009b1797ce9350e9ce2abaa01bdbe446bdf9343a86fe915b",
+      "after_sha256": "7345ee4fc6b70b7fbabcadda4643effb4c7cd1b5f49204695af796c4c4a18737",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "path": "tools/test-region-entry-contract.py",
+      "before_sha256": null,
+      "after_sha256": "626ffafbf612f85293c313ef07de2f6fce5ac4858d8d3f56c1023e9a8b882824",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    }
+  ],
+  "behavior_contracts": [
+    {
+      "commit": "5e24b3b",
+      "id": "NP.stationary-occupancy",
+      "before_sha256": null,
+      "after_sha256": "5769201730604a4fd0624fd9f433e15cb3449366f9d68ced9e603dcbff7549b7",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting"
+      ]
+    },
+    {
+      "commit": "5e24b3b",
+      "id": "PF.cell",
+      "before_sha256": "e028fe8c04de6fb9f285eeb122bdc92079b60552c80095727ef59fefa8bcaf27",
+      "after_sha256": "21854a4887d29190b0666f3432db836240e2708542b4a8b832e14ea95d132e6e",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting",
+        "NS10.occupancy-predicate-recorded"
+      ]
+    },
+    {
+      "commit": "5e24b3b",
+      "id": "PF.occupancy",
+      "before_sha256": "79b8e04ce8d9034acbaea983824cf30b6dfff4f2d24c59cc3c12e99267eae9b9",
+      "after_sha256": "0dac6025787e9eed19e6cadf639340a0659f178727ca14cf33f8fd5af9e671c4",
+      "reviews": [
+        "NS10.occupancy-predicate-accounting",
+        "NS10.occupancy-predicate-recorded"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "id": "TL.effect-cell-transitions",
+      "before_sha256": null,
+      "after_sha256": "b1ac00d4a5b3352a9049b3e34c6265759f9a272ccf2a026886acdd035c3d1bd5",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "099d3f5296d5253719d97b43f73fa9e12c15635baed93106478b8eef7b664e29",
+      "after_sha256": "46971a7f27bb9df66bab29b5565695306d36788bdb74a4b510607b98f6cf07ec",
+      "reviews": [
+        "effect-transition-remaining-5e24b3b"
+      ]
+    },
+    {
+      "commit": "f355e10",
+      "id": "TL.effect-transition-policy",
+      "before_sha256": null,
+      "after_sha256": "308574c76b7945a1b619ea2964292dbc66c7eb0b02880eeeb4f8e95cfaa56ace",
+      "reviews": [
+        "effect-transition-recorded-5e24b3b"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "BR.battle",
+      "before_sha256": "82904722242e283ab7c085078c1905da2399cf8c8773a3d7a2aea6a84a9d49ae",
+      "after_sha256": "50cef67f836f57bdbdc359461ee77870e8e76a4b3531538cd5bd4a7b9b2ac267",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "BR.main",
+      "before_sha256": "93085cec9dcf279a3e8aa40fa5394a13a95157db6c5496f1854b25c4da7b8852",
+      "after_sha256": "c1bd1e50f970fc5f54726e53f57825c81764825c30025e829a736cc255d1b5f9",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "BR.mini",
+      "before_sha256": "564b9f18c74eec84a928d3f0d2ad39d08c62ecfc726480ba045db2c753ee4ed0",
+      "after_sha256": "0cbff23b76dfe0d00d2154b84f407330b376a729bff0f4542f8c1fb10f80d400",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "BR.result",
+      "before_sha256": "cc586ff95645a662ca4be1f61e5edd8d7f7bb9181ed512ca887550cd68b84a76",
+      "after_sha256": "9275d8bc5de995b051b45934a607c8ee5415c1045e63838e15ec0bb975fca14d",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "BR.spell",
+      "before_sha256": "a69e8602d8ded4acdb9b1d9ffb74543e635ca3062a63f4ae39bc9295724769e3",
+      "after_sha256": "2511347e4c5cf5bbf1ad31f3f3f78effdbef0055bad508f8d31bcb7df1367fd1",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "CP.realm-navigation",
+      "before_sha256": "f353b0d73ee176d0563d8ccc4848d2335dd240cda3a641f20b86f7ab29b8897a",
+      "after_sha256": "d064de0d2bf194b435c1a07b19c6c84a24efb9691a6ba4c3cff695827a2d4958",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "CP.realm-observation",
+      "before_sha256": "bc0f9f99b2d91aff392024aeebc60d6d47aa048a56cb25f0b6ba3b5ab77866c4",
+      "after_sha256": "5da21c6bb9cc9c0a36c77da647514bb50dfe77d6f7975c544cbabbaf05fa6f8a",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "CP.region-entry-actions",
+      "before_sha256": null,
+      "after_sha256": "ea1049dd16ef5e2d22426a13bb7277cf50cb846d74411f8f4d5b8782ad27e923",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "CP.region-entry-observation",
+      "before_sha256": null,
+      "after_sha256": "82c0c3401c5f58eb5773e4a39492e5c3a655440a69f9683f4182c8bad58440d1",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy",
+        "region-entry-ui28-execution-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "NP.preferences-draft",
+      "before_sha256": "56bbeaf2f45a4db898f94d758c0e6fcf4c10d3aee7b1c54c8a9e1fb65fcd0412",
+      "after_sha256": "56bbeaf2f45a4db898f94d758c0e6fcf4c10d3aee7b1c54c8a9e1fb65fcd0412",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d",
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "PR.apply",
+      "before_sha256": "0bbe45e7b72fffd5fcbd77e782fc4223f1a2e33c16fcb7250c0a1a99f67af66a",
+      "after_sha256": "d910d7bd2bf5370e74be9ac59f54561037d82d7e63c2df35004d6de80ef7b5d7",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "PR.audio-preview-cancel",
+      "before_sha256": "3b8215c7b5bd7500238622da52a4582fab42e5ad734efbf5e07e06a145d401af",
+      "after_sha256": "0f96b61166f282f0adab23d0b548ee65f089a49a46bfbccbef144983d91666ef",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "PR.control-admission",
+      "before_sha256": "3225853b0ce84396ca232c7929ee3f361534cf2685ecaf4b36d0d49bb54955de",
+      "after_sha256": "7838a5ae15098c13d3570b4cb0f13a54342e2aa89408082034bfc3ddcd0f4d78",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "PR.display-rebuild",
+      "before_sha256": "8b76f4e82d4d96ac34e4beaedc370fc772ab0d4ad95ee2b2a94afe34b5cc91b2",
+      "after_sha256": "2f505eda1e33aff75fe4393bd259fdbb5e0d60bdd9d6ab487ca03294934665f9",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "PR.main-entry",
+      "before_sha256": "18e2a4ae4747e131a95bfb8cd86b235aa9af2ecdd0ead4171cfd3543220637fa",
+      "after_sha256": "74c5ffbe0c17ce31f4c0908b50c26cf07041c641043de9cb4448598bd933b4c3",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "920092c801a6f6c6f37fbb4b44f1eb5335cc881fb1c74d326c60311107ecc43a",
+      "after_sha256": "996829279473f823c344d698f357c92d85aa8bdf1855e182a779fa97e0f44240",
+      "reviews": [
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    },
+    {
+      "commit": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "id": "WIRE.menu_fixtures",
+      "before_sha256": "668de02663ab7a27458691dbc683fe84ea29fc59ca8c6c233bf26e98534fc4c7",
+      "after_sha256": "668de02663ab7a27458691dbc683fe84ea29fc59ca8c6c233bf26e98534fc4c7",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d",
+        "region-entry-ui28-region-entry-commit-lbkbixhy"
+      ]
+    }
+  ],
+  "unmatched": []
+}

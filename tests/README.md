@@ -787,3 +787,14 @@ fresh New Game back to Main. It verifies immutable originals before/after and
 staged hashes, and terminates its disposable session within bounded time.
 No manual interaction is required. Loaded-Realm return, live Enter and Qt campaign
 dispatch remain pending. See [UI28 evidence](../research/runtime/region-entry-engine-contract.md).
+
+## Stationary creature occupancy (NS10)
+
+`native-stationary-occupancy-process` runs the owned occupancy/model-adapter cases
+and three fresh-process checkpoint continuations. It covers occupied goals,
+detour arrival, self exclusion, width/height boxes, generation reuse, cleanup and
+release, next-edge and intra-cell obstruction, and transactional refusal. Use
+`python3 tests/test-native-occupancy.py SANDBOX NATIVE_OCCUPANCY_TEST NEW_OUTPUT_DIR`
+to preserve a report. `python3 tools/test-dynamic-occupancy.py` separately compares
+the recovered cell and footprint predicates to the pinned original PE32.
+See [NS10 scope](../research/runtime/native-stationary-occupancy.md).

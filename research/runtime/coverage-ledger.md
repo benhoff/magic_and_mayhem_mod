@@ -542,5 +542,9 @@ after counters and measurement boundaries exist.
 
 Fresh isolated original comparison: 9,509 direct occupancy and 576 integrated
 footprint cases pass with immutable-input preservation. [Scope and evidence](native-stationary-occupancy.md).
-Native blocker integration is the next bounded step; original occupancy
-production and multiple moving creature scheduling remain open.
+Opt-in native blocker integration now plans around stationary same-profile
+creatures, refuses occupied goals, rechecks edges each tick, and rebuilds owned
+occupancy after checkpoint restore. Normal/sanitizer model and process checks
+include detour arrival, cleanup/release, stale generations and late/intra-cell
+obstructions. Original occupancy production, moving reservations, multiple
+moving creature scheduling/presentation and live replacement remain open.

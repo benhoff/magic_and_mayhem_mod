@@ -272,3 +272,17 @@ and the [coverage ledger](../research/runtime/coverage-ledger.md).
 The [native movement scene](../apps/world-scene/README.md) presents this owned
 terrain/ANI continuation with explicit diagnostic terrain assets and a shared
 depth queue. Rendering reads simulation state without advancing an ANI clock.
+
+## Stationary blockers (NS10)
+
+The opt-in frozen adapter can combine one motion driver with stationary
+same-profile creatures. `MovementSession::spawnBlocker` stores an ordinary native
+entity without a motion driver; owned generational occupancy is rebuilt from
+world slots. Planning and each next-edge check consume the current world view.
+Cleanup/release removes blocking and a late obstruction stops/reset movement.
+
+Use `mnm-world-sandbox move-occupied MAP OUTPUT SX SY SZ TX TY TZ BX BY BZ TICKS`,
+then the existing `resume` or `trace` commands. The checkpoint resource identity
+includes the occupancy policy; existing wire versions and default-mode behavior
+remain supported. [Contract and evidence](../research/runtime/native-stationary-occupancy.md)
+separate this native policy from recovered original occupancy predicates.
