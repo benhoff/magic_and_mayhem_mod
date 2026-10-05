@@ -11772,6 +11772,35 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.real-game-command-shadow",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded original-game command shadow observation",
+      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-real-game-shadow.md"
+      ],
+      "implementation": [
+        "tools/test-live-render-game.py"
+      ],
+      "tests": [
+        "tools/test-live-render-game.py",
+        "tests/live-render-channel-test.cpp"
+      ],
+      "evidence": [
+        "NR.real-game-command-shadow.startup"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -19140,6 +19169,62 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NR.real-game-command-shadow.startup",
+      "kind": "live_observation",
+      "scope": "Original no-CD startup fill GAP before any commands; original main menu drawing continues; native refusal and resource cleanup. No pixel equivalence or live replacement.",
+      "record": "research/runtime/opengl-real-game-shadow.json",
+      "sha256": "9521b780c335df786a82bda17067647d5f36f49b4f19039b641c400d8264fe80",
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/startup_fill_gap",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_state",
+          "equals": 3
+        },
+        {
+          "pointer": "/producer_reason",
+          "equals": 2
+        },
+        {
+          "pointer": "/published_bytes",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_consumer/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_consumer/presentations",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_consumer/live_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_drawing_retained",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -21253,6 +21338,21 @@
         "apps/qt-shell/live_campaign_mini_test.cpp",
         "tools/test-menu-observer.py"
       ]
+    },
+    {
+      "id": "NR.real-game-command-shadow.startup",
+      "scope": "Isolated Wine/Xvfb startup to original main menu; fill route refusal before command stream, continued original owned-frame publication; no gameplay/pixel comparison/replacement.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.real-game-command-shadow"
+      ],
+      "evidence": [
+        "NR.real-game-command-shadow.startup"
+      ],
+      "tests": [
+        "tools/test-live-render-game.py",
+        "tests/live-render-channel-test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -21438,7 +21538,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-mini-cancel.json",
-    "sha256": "e7724b23773765e2f9906187fe60c1f6b91580cdcf3f2ad80ced8cb7141a7830"
+    "path": "research/runtime/coverage/source-index-real-game-shadow-commit.json",
+    "sha256": "6f14fcf4ed5866c087a478fe7efe447088c9f56a32bcbb2633a938f435760f22"
   }
 }
