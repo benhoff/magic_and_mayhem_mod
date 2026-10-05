@@ -35,3 +35,10 @@ Evidence and confidence: confirmed installed CFG contents, hash-pinned binary
 string references and configuration instruction windows, executed admission
 comparisons, and original palette/scene comparisons are documented in
 [terrain lighting configuration](../runtime/terrain-lighting-config.md).
+
+The separate native terrain-field reader now selects `AmbientLight` and
+`LightRamp` from the same packed `GLOBAL_OPTIONS` section. These are owned
+optional signed integers with the same strict parsing/comment handling. Recovered
+admission clamps both to -127..127 and negates ambient. They configure spatial
+kernel/base-field behavior rather than the mode-0 palette builder. See
+[terrain light-field evidence](../runtime/terrain-light-fields.md).

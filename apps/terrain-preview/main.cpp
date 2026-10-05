@@ -4,6 +4,7 @@
 #include "terrain_sections.hpp"
 #include "region_loader.hpp"
 #include "palette_lighting.hpp"
+#include "terrain_lighting.hpp"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QLabel>
@@ -39,6 +40,8 @@ int main(int argc,char** argv)try{
  p.addOption({"palette-shading","Apply recovered mode 0 palettes with explicit count 16 and levels 1 and powers 2"});
  p.addOption({"preferences","Read terrain palette count from plain installed prefs CFG; requires palette-shading","path"});
  p.addOption({"lighting-config","Read global palette lighting from a packed installed CFG; requires palette-shading","path"});
+ p.addOption({"terrain-lighting","Initialize an owned light field from global CFG and publish controlled source stamps; requires world/shading/lighting-config"});
+ p.addOption({"light-source","Controlled column,row,layer,size (2..17); repeat in order; requires terrain-lighting","source"});
  p.addOption({"light","Controlled uniform terrain light (-127..127); requires palette-shading","value","0"});
  p.addOption({"overlap","Use one anchor for every tile"});p.addOption({"output","New output prefix; writes .565, .png and .json, then exits","prefix"});p.process(app);
  bool ok=false;const auto view=p.value("view").toUInt(&ok);if(!ok || view>3 || !p.isSet("root"))throw std::runtime_error("Specify --root and view 0..3");
@@ -57,6 +60,7 @@ int main(int argc,char** argv)try{
  if(auto* e=std::get_if<mnm::assets::TerrainCatalogError>(&catalog))throw std::runtime_error(e->detail);
  if(auto* e=std::get_if<mnm::assets::SpriteError>(&sprite))throw std::runtime_error(e->detail);
  std::vector<mnm::preview::TerrainPreviewTile> tiles;
+ std::array<unsigned,3> lightShape{};
  QJsonObject mapInfo;mnm::reconstruction::TerrainCamera camera;
  const bool world=p.isSet("world");
  if((p.isSet("grid") && (!world || !p.isSet("initialize-terrain") || p.isSet("map"))) || (p.isSet("section") && !p.isSet("grid")))throw std::runtime_error("Grid requires world, initialize-terrain and sections; excludes map");
@@ -109,6 +113,7 @@ int main(int argc,char** argv)try{
    geometryInfo={{"projected_objects",qint64(geometry.projectedObjects)},{"projected_references",qint64(geometry.projectedReferences)},{"changed_cells",qint64(geometry.changedCells)},{"removed_definitions",qint64(geometry.removedDefinitions)}};
    map=std::move(geometry.map);
   }
+  lightShape={map.width,map.height,map.layers};
   if(world){
    camera.view=view;camera.column=map.width/2;camera.row=map.height/2;camera.span=std::min<std::uint32_t>(20,std::min(map.width,map.height));camera.cutLevel=map.layers;
    if(p.isSet("camera")){const auto values=p.value("camera").split(',');if(values.size()!=4)throw std::runtime_error("Camera requires column,row,span,cut-level");std::array<std::uint32_t,4> f{};for(unsigned i=0;i<4;++i){f[i]=values[i].toUInt(&ok);if(!ok || f[i]>128)throw std::runtime_error("Invalid camera field");}camera.column=f[0];camera.row=f[1];camera.span=f[2];camera.cutLevel=f[3];}
@@ -161,15 +166,26 @@ int main(int argc,char** argv)try{
   if(shading->count&(shading->count-1))throw std::runtime_error("TerrainLightLevels requires a supported power of two after original admission (2..256)");
  }
  if(!shading && p.isSet("light"))throw std::runtime_error("Light requires palette-shading");
+ if(p.isSet("light-source") && !p.isSet("terrain-lighting"))throw std::runtime_error("Light source requires terrain-lighting");
+ if(p.isSet("terrain-lighting")){
+  if(!world || !shading || !p.isSet("lighting-config") || p.isSet("light"))throw std::runtime_error("Terrain lighting requires world, palette-shading and lighting-config; excludes uniform light");
+  auto opened=store.open(p.value("lighting-config").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&opened))throw std::runtime_error(e->detail);
+  auto file=std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(opened));auto loaded=mnm::assets::loadTerrainLightingFields(*file);if(auto* e=std::get_if<mnm::assets::PersistenceError>(&loaded))throw std::runtime_error(e->detail);
+  const auto& fields=std::get<mnm::assets::TerrainLightingFields>(loaded);const auto config=mnm::reconstruction::applyTerrainLighting({},fields.ambientLight,fields.lightRamp);
+  mnm::reconstruction::TerrainLightField field(lightShape[0],lightShape[1],lightShape[2],config);
+  for(const auto& request:p.values("light-source")){const auto values=request.split(',');if(values.size()!=4)throw std::runtime_error("Light source requires column,row,layer,size");std::array<unsigned,4> source{};for(unsigned i=0;i<4;++i){source[i]=values[int(i)].toUInt(&ok);if(!ok)throw std::runtime_error("Invalid light source integer");}field.stamp({source[0],source[1],source[2],source[3]});}
+  field.publish();for(auto& tile:tiles)tile.state.light=field.at(unsigned(tile.state.column),unsigned(tile.state.row),unsigned(tile.state.level));
+  const auto& bytes=field.buffers()[0];mapInfo.insert("terrain_light_field",QJsonObject{{"ambient",config.ambient},{"ramp",config.ramp},{"bytes",qint64(bytes.size())},{"sha256",QString::fromLatin1(QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(bytes.data()),bytes.size()),QCryptographicHash::Sha256).toHex())},{"sources",QJsonArray::fromStringList(p.values("light-source"))},{"publication","immediate controlled fixture"}});
+ }
  mnm::render::GlBlitter renderer;const auto result=mnm::preview::renderTerrain(renderer,std::get<mnm::assets::TerrainCatalog>(catalog),std::get<mnm::assets::Sprite>(sprite),tiles,{view,world?camera.cutLevel:1},p.isSet("visibility"),world,shading);
  if(p.isSet("output")){
   QByteArray raw;for(auto word:result.pixels.pixels){raw.append(char(word&255));raw.append(char((word>>8)&255));}
   const auto prefix=p.value("output");writeNew(prefix+".565",raw);QFile png(prefix+".png");if(!png.open(QIODevice::WriteOnly|QIODevice::NewOnly) || !result.image.save(&png,"PNG"))throw std::runtime_error("Cannot save new PNG");
-  mapInfo.insert("palette_shading",bool(shading));if(shading){mapInfo.insert("palette_count",int(shading->count));mapInfo.insert("preferences",p.value("preferences"));mapInfo.insert("controlled_light",p.value("light").toInt());mapInfo.insert("palette_lighting",QJsonObject{{"light_curve",shading->intensityLevel},{"colour_factor",shading->saturationLevel},{"light_power",shading->intensityPower},{"colour_power",shading->saturationPower},{"config",p.value("lighting-config")}});}
+  mapInfo.insert("palette_shading",bool(shading));if(shading){mapInfo.insert("palette_count",int(shading->count));mapInfo.insert("preferences",p.value("preferences"));if(!p.isSet("terrain-lighting"))mapInfo.insert("controlled_light",p.value("light").toInt());mapInfo.insert("palette_lighting",QJsonObject{{"light_curve",shading->intensityLevel},{"colour_factor",shading->saturationLevel},{"light_power",shading->intensityPower},{"colour_power",shading->saturationPower},{"config",p.value("lighting-config")}});}
   QJsonArray queue;for(const auto& item:result.queue){const auto& d=item.draw;queue.append(QJsonObject{{"tile",qint64(item.tile)},{"frame",qint64(d.frame)},{"role",qint64(d.role)},{"key",d.key},{"kind",d.kind},{"x",d.anchorX},{"y",d.anchorY},{"shade",d.shade}});}
   const auto rgba=result.image.convertToFormat(QImage::Format_RGBA8888);const auto rgbaHash=QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(rgba.constBits()),rgba.sizeInBytes()),QCryptographicHash::Sha256).toHex();
   QJsonArray owners;for(const auto& owner:result.owners)owners.append(QJsonArray{owner.flags8,owner.flags10});
-  QJsonArray tileInfo;for(const auto& tile:tiles){const auto& state=tile.state;QJsonObject input{{"definition",qint64(tile.definition)},{"column",state.column},{"row",state.row},{"level",state.level},{"flags8",state.flags8},{"flags10",state.flags10}};if(world){input.insert("cell",qint64(tile.cell));input.insert("priority",state.priority);input.insert("x",state.anchorX);input.insert("y",state.anchorY);}tileInfo.append(input);}
+  QJsonArray tileInfo;for(const auto& tile:tiles){const auto& state=tile.state;QJsonObject input{{"definition",qint64(tile.definition)},{"column",state.column},{"row",state.row},{"level",state.level},{"flags8",state.flags8},{"flags10",state.flags10}};if(p.isSet("terrain-lighting"))input.insert("light",state.light);if(world){input.insert("cell",qint64(tile.cell));input.insert("priority",state.priority);input.insert("x",state.anchorX);input.insert("y",state.anchorY);}tileInfo.append(input);}
   writeNew(prefix+".json",QJsonDocument(QJsonObject{{"view",qint64(view)},{"visibility",p.isSet("visibility")},{"map",mapInfo},{"tiles",tileInfo},{"queue",queue},{"owners",owners},{"rgba_sha256",QString::fromLatin1(rgbaHash)},{"live_validated",false},{"world",world},{"remaining_surfaces",qint64(renderer.stats().surfaces)}}).toJson());return 0;
  }
  QLabel widget;widget.setWindowTitle("Native terrain preview");widget.setPixmap(QPixmap::fromImage(result.image));widget.resize(512,256);widget.show();return app.exec();
