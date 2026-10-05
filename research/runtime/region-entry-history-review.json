@@ -1,0 +1,477 @@
+{
+  "schema": 1,
+  "range": "d97986e..f355e1044eff860e33ec3c9f678e8d57b946480c",
+  "scope": "Exact committed parent/current file receipts only; no retrospective gate pass or new execution validation",
+  "commits": [
+    {
+      "commit": "2522edf9b7c918ae6aff475197f49b6841b42d4a",
+      "parent": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "files": [
+        {
+          "path": "apps/world-sandbox/frozen_navigation.cpp",
+          "before_sha256": "a1590eee8cf92ef13628d9656c772f694607e2d7b2832b4f7e1d646dd4395c3e",
+          "after_sha256": "abbe9255e5b658981540828f909e94b0f58d8f758385cc629c35a2b700f37898",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "apps/world-sandbox/frozen_navigation.hpp",
+          "before_sha256": "ce4773406cead7eeb98ed49fd8da297c2bc0be23b46d005c9668495a9c2a11f6",
+          "after_sha256": "0b49b9e848631dc2b4306c3148441a81d174e5d9423360504f35d88005d12b74",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "apps/world-scene/CMakeLists.txt",
+          "before_sha256": "e542c934281da849f002b56da6b03b209724bf616c414b708ee476ead5ee5097",
+          "after_sha256": "f1b884efb1b071a00dd4c946a05c36add42ee2adb6b6534e860ed7f56f9e267d",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "apps/world-scene/README.md",
+          "before_sha256": "91101a8c835a180cd1fe45b44af55e7ef839154128f5ab5b6e2b3030e2e709f5",
+          "after_sha256": "c6f15d869363241fa5bcca3f277e7e3d13cae57745d97aa731933ad510df2c3b",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "apps/world-scene/map_navigation.cpp",
+          "before_sha256": "8e8bcacbffc224609908069eae72437d2525443fba852c154743856d98e24a1b",
+          "after_sha256": "20eecea7aca4ad16b08093f6dd1cb2f206d14acc929ddad76064cb5910613de5",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "apps/world-scene/map_navigation.hpp",
+          "before_sha256": "2d042c32ce037a54fd22f9fde966bdfa37660f9401c43f333fe0602b2462d01f",
+          "after_sha256": "e40b2a8021a7841c03abe2240b12e19c58525faaec776e4f76fa3112c939a4eb",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "apps/world-scene/map_navigation_main.cpp",
+          "before_sha256": "cff69bce4a75aa0ef7c098333be6acdb47836aecb3e8ec6ee513c72ec927c0bc",
+          "after_sha256": "4b0cf8ded5f10483e677f91e2951e52a09380bc1b818ab3765f05d765e1f32b3",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "assets/CMakeLists.txt",
+          "before_sha256": "4a00cbede6f2ba313b036fb61bbe00633d0ac5bf231596a881d320716dcbe4c2",
+          "after_sha256": "919f6b4c789b36256d9573dd3c388d8cb03e7c9b4f6bb99577a5c99f8596fb9c",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "assets/creature_movement.cpp",
+          "before_sha256": null,
+          "after_sha256": "0ceaa3cdc3e9a5f45a695ac2f8f0f5f122288e296af04c586185524582d337c6",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "assets/creature_movement.hpp",
+          "before_sha256": null,
+          "after_sha256": "5f2ac13f91904f8af7a9737fc357b1751745217d73de9f4103ef0ca8f6996953",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "reconstruction/motion/creature_motion.cpp",
+          "before_sha256": "d04e0e5435eb7c15256b9dc171e3383d7fc14ff1bea50f77ee455a471838873b",
+          "after_sha256": "7b223a9d55f7ccbb5f2902ac143610b6953b6e147dc630d36e2759f573e23e04",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "reconstruction/motion/creature_profile.cpp",
+          "before_sha256": null,
+          "after_sha256": "03117cc42f206e91de098c7957e451247a333c49a94af363367e3e7602ffdadb",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "reconstruction/motion/creature_profile.hpp",
+          "before_sha256": null,
+          "after_sha256": "c6820cc3fc930914e671a236fe6de64c279d5cefc6d81eee0200d530fdd5b9c5",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "research/formats/creature-movement-config.md",
+          "before_sha256": null,
+          "after_sha256": "13895358625004097ea0a90e91b8fe22c565afd38aab49f55f4bdbfb3a115a2c",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/README.md",
+          "before_sha256": "73b33849d7b427ad6c4da355ec4e6f529425ceddbdaa625d2bf1acb60be2595b",
+          "after_sha256": "7eab8ecc65f2347e884ea3945c1d2f421b183081dccdae3abab47d0a0328ae31",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "0f7ad72e8290a9ec055f7ceea6f640b7bd88f4021827962a7adeb4b9f44feef5",
+          "after_sha256": "22566932d964e49c3f6748937c579fd796233d02e2f6317e2518859a807a6a04",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "0cbcf781f0e068a2435918c10f8dc20b74dbfd3e8f8646059b4feb505008ecf9",
+          "after_sha256": "954d0425e25457853532c6f53081c1adf51e77fdfac0dd52b9d5fe61dc8f70b1",
+          "receipts": [
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-creature-navigation-commit.json",
+          "before_sha256": null,
+          "after_sha256": "b1148ac20e32556a7822f6936890847aaf26f643226867f013d14ccdc3db4a88",
+          "receipts": [
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-creature-navigation.json",
+          "before_sha256": null,
+          "after_sha256": "94eff0b523542b39a7ef96f3a8a79fbe9112341c4245ea890e729eebc2f33b45",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "aa4aaf8529dbc1d7c2246d7aba54d9501f009597467f79cec734b3e95bddc1eb",
+          "after_sha256": "bf019d8ab5266d4dc48d1874ad959cadce42940b930b6e7d352165c35b1b9c6d",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/native-creature-profile-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "21136f322459d2f84915bdb52ccf536fcbd608b3139fd831b3083be81067c5ba",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/native-creature-profile.json",
+          "before_sha256": null,
+          "after_sha256": "f2fd90a823c05372b50971e315a1790ac881b5c2630d5cf97af735b91b1cdfdc",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/native-creature-profile.md",
+          "before_sha256": null,
+          "after_sha256": "1735ab1f3872597ad60b02e25f2d3e6ede28b163dd6db2da9f1da37ed01902ef",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "tests/README.md",
+          "before_sha256": "0bb42b49c80be1ef555bf5654483320ad1ddf9139c0356a9302208ca0ca538c2",
+          "after_sha256": "8f413d5cb4ac0509e147ac0941b261594392162eea02e0204e4ef308baa625f4",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "tests/creature-motion-test.cpp",
+          "before_sha256": "754ffe255372b708602b83068ebd992c8165a4fb2e0b8670220dad6cd40bb2b1",
+          "after_sha256": "e6e5d3ce2a543757561be5fdb5e15b8496fa7fdd9e1c9d3cb7f0f2c892d37ac6",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "tests/creature-profile-reference.cpp",
+          "before_sha256": null,
+          "after_sha256": "f74ad72f640eeda9ef407110dbd92d75466416b22b571ab3f6adc40d3eb55068",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "tests/creature-profile-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "1a31497d0b73d3ab97b0673591ef2d43085ad44422507d0d0f18c0bea567ad24",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "tests/map-navigation-reference.cpp",
+          "before_sha256": "293db4cf7f7cf5549eeade42514f5d9bb8841cf3527b2af7409887cdf3817572",
+          "after_sha256": "ee3566c6ca04414abdfb24eaae78f14601fab9acf18ae8de2b9f90e4f7858b7c",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        },
+        {
+          "path": "tools/test-creature-navigation.py",
+          "before_sha256": null,
+          "after_sha256": "be345e23307d7dc7d178e8685d0cc090326bd980d00ef48ad85ba0b86fa79cff",
+          "receipts": [
+            "NS09.configured-ground-source-review-20261005",
+            "NS09.exact-staged-milestone-20261005"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "5e24b3bfd26ac46d24df8d06f19ec0c2d5a24938",
+      "parent": "2522edf9b7c918ae6aff475197f49b6841b42d4a",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "22566932d964e49c3f6748937c579fd796233d02e2f6317e2518859a807a6a04",
+          "after_sha256": "0d3b13b7bfbe2523191d9b64a836381e565fb8e6952c56236220c97ea96c78b5",
+          "receipts": [
+            "NS10.occupancy-predicate-accounting"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "954d0425e25457853532c6f53081c1adf51e77fdfac0dd52b9d5fe61dc8f70b1",
+          "after_sha256": "0663f7245be0abc0b01e3ef0714041ebb9f215a84abf8c51f38b65ca06549bc4",
+          "receipts": [
+            "NS10.occupancy-predicate-accounting"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-stationary-original.json",
+          "before_sha256": null,
+          "after_sha256": "014fd0989533372ea5821f60684e5e052f33e74796de10449eaf6402853ee321",
+          "receipts": [
+            "NS10.occupancy-predicate-accounting"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "bf019d8ab5266d4dc48d1874ad959cadce42940b930b6e7d352165c35b1b9c6d",
+          "after_sha256": "49fc3e69565fac30eb361cf48f5e7d13b3e4248f1662cb50f92cf01b9a773b9a",
+          "receipts": [
+            "NS10.occupancy-predicate-accounting"
+          ]
+        },
+        {
+          "path": "research/runtime/native-stationary-occupancy-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "4280f65ff966eebfb1b5d9bbc9971e121302f7fbae34ee705c3e81a3c0e964d3",
+          "receipts": [
+            "NS10.occupancy-predicate-accounting"
+          ]
+        },
+        {
+          "path": "research/runtime/native-stationary-occupancy-original.json",
+          "before_sha256": null,
+          "after_sha256": "60da671c8594623bec8fd7eb80fae1c1fa93d5c3efea156b669b87dd868c126d",
+          "receipts": [
+            "NS10.occupancy-predicate-accounting"
+          ]
+        },
+        {
+          "path": "research/runtime/native-stationary-occupancy.md",
+          "before_sha256": null,
+          "after_sha256": "339e606b7e60393c653dc2ce24c89b110b248f1d0980e0216a203dd46928227f",
+          "receipts": [
+            "NS10.occupancy-predicate-accounting"
+          ]
+        },
+        {
+          "path": "research/runtime/pathfinding-occupancy-test.md",
+          "before_sha256": "3f6786644ad87268d3f3fddb524f14c68ad15547790805f4cf0505bbc5175068",
+          "after_sha256": "64e6a35cc9ff2b6a1546a0d05e70742d3bb5525aac241e726d15a96f9c31d083",
+          "receipts": [
+            "NS10.occupancy-predicate-accounting"
+          ]
+        },
+        {
+          "path": "tools/test-dynamic-occupancy.py",
+          "before_sha256": null,
+          "after_sha256": "6bb6b5fee2c070582aebdce07d8da29390455c1068a22273104ca354ab47a720",
+          "receipts": [
+            "NS10.occupancy-predicate-accounting"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "f355e1044eff860e33ec3c9f678e8d57b946480c",
+      "parent": "5e24b3bfd26ac46d24df8d06f19ec0c2d5a24938",
+      "files": [
+        {
+          "path": "reconstruction/rendering/effect-transition/CMakeLists.txt",
+          "before_sha256": null,
+          "after_sha256": "a51779dc93e047ecd4e2ac7ac0464c2539ca4d7cfe4ab97afedf7e809d50047e",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_transition.cpp",
+          "before_sha256": null,
+          "after_sha256": "371f2b9be01dc8377e51683431a1ac5494df67ffa8ce79238308e4fc0f6400ea",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_transition.hpp",
+          "before_sha256": null,
+          "after_sha256": "fb76fa22117311628a2410af1493cc2bb3205ad580e10ae02cfd552e6fbbc6fe",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "0d3b13b7bfbe2523191d9b64a836381e565fb8e6952c56236220c97ea96c78b5",
+          "after_sha256": "6bad944adebf1446cc4cc60c973a94a597314962594ad0e06c83986ac51a5cc2",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "0663f7245be0abc0b01e3ef0714041ebb9f215a84abf8c51f38b65ca06549bc4",
+          "after_sha256": "3c5caced8771ddf0ca14be84895712d097595af181c05cb3c8e9ffc2ef266ac5",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "49fc3e69565fac30eb361cf48f5e7d13b3e4248f1662cb50f92cf01b9a773b9a",
+          "after_sha256": "0024bc61f0d841ad82b66106b8d9f8e35c0d5193069cae6f8a1491cd0b8c0a2c",
+          "receipts": [
+            "effect-transition-summary-5e24b3b"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-transitions-coverage.json",
+          "before_sha256": null,
+          "after_sha256": "a23b1e62b54ade406087dec7ab557a8eef27bbb24c3e215814417d537b82c6f8",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-transitions-source-index.json",
+          "before_sha256": null,
+          "after_sha256": "9f9357b46da74848f4f4d020b18bc8a39b800a6ca095aa3d0f52a11f74a5f3fb",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-transitions.json",
+          "before_sha256": null,
+          "after_sha256": "a30a2f5d0b3b0080611ebb8d0164e1e0ef8313fa46e35f0bfcca78bdf825b4c6",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-transitions.md",
+          "before_sha256": null,
+          "after_sha256": "4ca6a72adc921be585b807e6b37ac43567adc55c8785fdec93b92f7c3520b256",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-same-cell-projection-coverage.json",
+          "before_sha256": "263d4b3bf3ef94f0c5bf9abeb7b1801284927c44562f0a2687e7cc5402009a55",
+          "after_sha256": "97c464891b54f4511626326521766e8764e7e7d721687a42dd44dba6c21bddc6",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-trajectory-coverage.json",
+          "before_sha256": "cd847193f22e932f2e9fe44b255af7fa865d9f2423c859201cd125f43d48d39d",
+          "after_sha256": "5a88dd909cf561f960c322ae80a38a7d700a3034ad51e861fab3d8fa600e7fcd",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "tests/effect-transition-reference.cpp",
+          "before_sha256": null,
+          "after_sha256": "6e63316fbe6d7758ff355f8ca052054e07d0cdc05f842f0d806fa73a64fc81cd",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "tests/effect-transition-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "3aceeca4061c79b63b02fc1c925046f3c120451adff1d91fe972179f99ba4998",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        },
+        {
+          "path": "tools/test-effect-transition.py",
+          "before_sha256": null,
+          "after_sha256": "0939e47cb57eef61ea25c73b6235cf1d3e4e823e817fa0f82975fc6945f24a1d",
+          "receipts": [
+            "effect-transition-recorded-5e24b3b"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved": []
+}

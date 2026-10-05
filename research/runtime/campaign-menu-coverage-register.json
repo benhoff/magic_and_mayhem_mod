@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement.",
+  "scope": "Campaign and Region Entry scoped original contracts and opt-in observation; no Qt campaign dispatch or native engine equivalence/replacement.",
   "builds": [
     {
       "id": "nocd-40209ca7",
@@ -76,15 +76,19 @@
         }
       ],
       "documents": [
-        "research/runtime/campaign-menu-engine-contract.md"
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/region-entry-engine-contract.md"
       ],
       "implementation": [],
       "tests": [
         "tests/campaign-menu-contract-reference.cpp",
-        "tools/test-campaign-menu-contract.py"
+        "tools/test-campaign-menu-contract.py",
+        "tests/region-entry-contract-reference.cpp",
+        "tools/test-region-entry-contract.py"
       ],
       "evidence": [
-        "UI26.original"
+        "UI26.original",
+        "UI28.original"
       ],
       "status": {
         "understanding": "scoped",
@@ -215,7 +219,8 @@
       ],
       "documents": [
         "research/runtime/campaign-menu-entry-observation.md",
-        "research/runtime/campaign-menu-engine-contract.md"
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/region-entry-engine-contract.md"
       ],
       "implementation": [
         "runtime/menu/campaign_observe.h",
@@ -232,7 +237,97 @@
       ],
       "evidence": [
         "UI27.live",
-        "UI27.fixture"
+        "UI27.fixture",
+        "UI28.fixture",
+        "UI28.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.region-entry-actions",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Region Entry caller-dependent actions and deferred world request",
+      "scope": "168 original callback, four deferred-start and three Realm-return cases; private dependencies; no live Enter/world initialization",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4928544,
+          "scope": "Selected action and deferred branches with private dependencies"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4929664,
+          "scope": "Selected action and deferred branches with private dependencies"
+        }
+      ],
+      "documents": [
+        "research/runtime/region-entry-engine-contract.md"
+      ],
+      "implementation": [
+        "tools/export-region-entry-support.py"
+      ],
+      "tests": [
+        "tests/region-entry-contract-reference.cpp",
+        "tools/test-region-entry-contract.py"
+      ],
+      "evidence": [
+        "UI28.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.region-entry-observation",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original difficulty selection and fresh campaign Cancel ownership",
+      "scope": "Opt-in tick/resume forwarding; four original difficulty choices and Cancel through Realm resume to Main; no loaded Realm or Qt dispatch",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055548,
+          "relation": "data",
+          "scope": "Final Region Entry vtable, common tick +16"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5579280,
+          "recovered_range": "campaign-entry-552210",
+          "scope": "Pending return consumed before pop to Main"
+        }
+      ],
+      "documents": [
+        "research/runtime/region-entry-engine-contract.md"
+      ],
+      "implementation": [
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/observer.c",
+        "tools/build-menu-observer.py"
+      ],
+      "tests": [
+        "tests/campaign-observer-test.c",
+        "tools/test-campaign-observer.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "UI28.fixture",
+        "UI28.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -325,6 +420,93 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "UI28.original",
+      "kind": "isolated_original",
+      "scope": "Original action/caller/difficulty/Cancel/auxiliary mapping, deferred world request and pending Realm exit only; privately stubbed dependencies, no resource creation, campaign simulation or native/live equivalence",
+      "record": "research/runtime/region-entry-engine-contract.json",
+      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/callback_cases",
+          "equals": 168
+        },
+        {
+          "pointer": "/original/deferred_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/original/return_cases",
+          "equals": 3
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI28.fixture",
+      "kind": "native_integration",
+      "scope": "Synthetic forwarding tick, original-slot/byte guards, repeat rejection, receiver guard, LastError/return preservation, 300 idle ticks deduplicated, two-phase state changes and navigation/resume guards; not original-bytecode or live equivalence",
+      "record": "research/runtime/region-entry-engine-contract.json",
+      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        },
+        {
+          "pointer": "/preferences_regression/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI28.live",
+      "kind": "live_observation",
+      "scope": "Original fresh New Game ingress, four Region Entry difficulty choices and Cancel/Realm resume to Main; no live Enter, loaded Realm, Qt campaign integration or replacement",
+      "record": "research/runtime/region-entry-engine-contract.json",
+      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/region_return",
+          "equals": true
+        },
+        {
+          "pointer": "/live/difficulty_choices",
+          "equals": [
+            1,
+            2,
+            3,
+            0
+          ]
+        },
+        {
+          "pointer": "/live/loaded_realm_return",
+          "equals": false
+        },
+        {
+          "pointer": "/live/original_work_bypassed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "scenarios": [
@@ -342,6 +524,27 @@
         "UI27.fixture"
       ],
       "tests": [
+        "tools/test-live-campaign-entry.py",
+        "tools/test-campaign-observer.py"
+      ]
+    },
+    {
+      "id": "campaign.region-entry-fresh-cancel",
+      "level": "live_observation",
+      "scope": "Fresh New Game difficulty controls and Cancel to Main; no loaded Realm",
+      "behaviors": [
+        "CP.region-entry-observation",
+        "CP.realm-observation",
+        "CP.region-entry-actions"
+      ],
+      "evidence": [
+        "UI28.original",
+        "UI28.fixture",
+        "UI28.live"
+      ],
+      "tests": [
+        "tests/region-entry-contract-reference.cpp",
+        "tools/test-region-entry-contract.py",
         "tools/test-live-campaign-entry.py",
         "tools/test-campaign-observer.py"
       ]
@@ -394,6 +597,80 @@
           "value": 20,
           "behaviors": [
             "CP.realm-navigation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campaign.region-entry-prefix",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6055548,
+        "relation": "data",
+        "scope": "Ten static targets; selected branches only"
+      },
+      "document": "research/runtime/region-entry-engine-contract.md",
+      "complete": false,
+      "scope": "Common tick observed; enter/leave/input/build static; callbacks and deferred request isolated; full availability/destination dispatch pending",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "CP.region-entry-observation"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": [
+            "CP.region-entry-actions"
           ]
         }
       ]

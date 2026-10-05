@@ -166,3 +166,5 @@ confidence, and whether it remains stable across launches.
 - [Original campaign entry observation](campaign-menu-entry-observation.md): automated fresh New Game reaches Forest of Pain Region Entry before Realm map initialization; forwarding probe and live evidence, no native campaign dispatch.
 
 - [Configured ground creature movement](native-creature-profile.md): selected Redcap CFG normalization, original ANI-derived banks and maximum, normal asset binding, owned checkpoint creation and installed-map continuation.
+
+- [Region Entry engine contract and return observation](region-entry-engine-contract.md): caller-dependent actions, difficulty controls and fresh Cancel to Main; Qt bridge and battle start pending.

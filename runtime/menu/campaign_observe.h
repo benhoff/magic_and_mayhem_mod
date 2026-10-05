@@ -1,7 +1,7 @@
 /* Opt-in diagnostic only. Forward the original custom tick without dispatch. */
 static HANDLE campaign_log;
-static u32 campaign_sequence,campaign_last[2][31];
-static int campaign_have_state[2];
+static u32 campaign_sequence,campaign_last[4][31];
+static int campaign_have_state[4];
 static void campaign_record(void* object,u32 phase,u32 result){
     u32 error=GetLastError();u8* p=object;
     if(!campaign_log||campaign_sequence>=256||p!=(u8*)0x659408||
@@ -44,7 +44,7 @@ static int install_campaign_observe(void){
     if(campaign_log==(HANDLE)-1)campaign_log=0;
     int ok=0;
     if(campaign_log){
-        const u8 header[16]={'M','N','M','C','A','M','P','1',1,0,0,0,128,0,0,0};u32 wrote=0;
+        const u8 header[16]={'M','N','M','C','A','M','P','2',2,0,0,0,128,0,0,0};u32 wrote=0;
         if(WriteFile(campaign_log,header,16,&wrote,0)&&wrote==16){put((void*)0x5c6a70,(u32)&campaign_tick);ok=1;}
         else {CloseHandle(campaign_log);campaign_log=0;}
     }
