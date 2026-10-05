@@ -1,8 +1,8 @@
-# Mini Menu engine bridge: offline preparation
+# Mini Menu engine bridge: activation deferred
 
-Prepared 2026-10-05 at the user's request to work offline without tests.
+Initial milestone prepared 2026-10-05 at the user's request to work offline without tests.
 **Activation is disabled by default. No fixtures, CTests or game sessions were
-run for this milestone.** Compilation is recorded separately below and does not
+run for the initial milestone.** Compilation is recorded separately below and does not
 validate pause, resume, confirmation, input or live replacement.
 
 ## Static recovery
@@ -68,8 +68,7 @@ menu work. Return exits the current screen, decrements stack depth, restores
 the parent, and calls its resume slot. This is strong static evidence for
 screen lifecycle. **It does not establish that simulation, mana, timers or
 audio are paused.** No synthetic paused bit or native timer freeze is added.
-Battle Escape ingress and the parent's suspend/resume side effects remain
-unvalidated; opening stays with original engine input.
+Opening stays with original engine input; see the follow-up recovery below.
 
 ## Prepared implementation and gate
 
@@ -157,3 +156,85 @@ native Preferences/confirmation/result UI and longer play remain separate.
 7. Kill/retire the host channel with Mini/confirmation open; prove original
    controls remain available and native ownership never reacquires that session.
    Inspect captures and verify immutable originals before/after each experiment.
+
+## Battle parent recovery and validation follow-up
+
+Reviewed 2026-10-05 after the user authorized isolated checks and a bounded game
+run. The extended read-only export is
+`working/decompiled/mini-menu-support-u32g7omf/`, with immutable checks before
+and after (2927 files). It adds the gameplay vtable, lifecycle, input, wrapper
+and one-second callback evidence. Earlier compilation-only evidence above
+remains a distinct milestone.
+
+The gameplay singleton is `0x006cbb78`, vtable `0x005c5dd8`, screen ID 2.
+Screen push (`0x00557040`) calls the previous owner's suspend slot +8 before
+changing ownership and entering the pushed screen. Pop (`0x00557130`) exits
+the child and tail-dispatches the restored parent's resume slot +0xc.
+The Mini adapter now requires this exact parent object/table/ID. The host wire
+still carries only ID 2, and rejects other parent IDs and network context 5.
+
+Gameplay suspend (`0x0046ae90`) clears input/control services through
+`0x004a5000`, `0x004d7410(-1)`, `0x004d3c60`, and `0x004d9d60`; it forwards
+slot +0x18 to a non-null object at gameplay +0x100b3, uses
+`0x00463cb0(1)`/`0x00464080`, and tail-jumps to `0x0056fae0` on `0x006b0198`.
+Resume (`0x0046aef0`) clears byte +0x100b2, sets `0x00689938=1`, calls the
+paired `0x004d7690`, `0x004d3c70`, `0x004d9da0` services and child slot +0x1c,
+uses `0x00463cb0(0)`/`0x00464080`, reloads battle tooltip CFG, and conditionally
+restores additional state when byte +0xfdee is nonzero. Service names and
+complete timer/audio effects remain unresolved; this is not a native pause bit.
+
+Gameplay input has a branch at `0x0046c1af` that, outside contexts 1/2 and
+with byte `0x006c4859` clear, sets Mini object `0x006a5088 +0x53` to 2 and
+pushes that object. The decompiler's input values are translated codes, not
+necessarily Windows virtual-key codes; live original Escape ingress must be
+checked rather than inferred from that switch alone.
+
+Shared Mini tick uses `0x004a5070` as an input/control service (its inspected
+body walks controls and mouse state), not evidence of a frozen timer. The
+one-second callback `0x00469a60` checks `0x006db8d2`, updates the counter at
+`0x005fc868` and notification flags. The alternate world-update wrapper
+`0x004757c0` can call gameplay independently of the top screen. Consequently
+full simulation/mana/timer pause remains a separate observation milestone.
+
+Reproducible checks added:
+
+- `python3 tools/test-menu-observer.py --mini`: original callback bytes at
+  their pinned addresses, unhooked/bridged Cancel, Preferences and Quit;
+  ABI/nonvolatile registers on direct calls, adjacent fields, LastError,
+  once-only/stale requests, modal/parent/network/special-exit/owner refusal,
+  and permanent retirement. Audio/allocation/dialog and common tick services
+  are stubbed; this does not validate confirmation UI or parent resume.
+- `python3 tools/test-menu-observer.py --mini-disabled`: same V4 installation
+  with the compile gate off; require unchanged Mini tick slot and retirement.
+- `qt-menu-mini-bridge`: V4 commands, outstanding/stale requests, modal state,
+  malformed/unsupported payloads, seqlock and retirement. Existing focused
+  V1/V2/V3 bridge, Spellbox and Mini widget checks remain separate regressions.
+- An initial Quick Battle Mini harness was attempted, then removed after the
+  original Escape path disproved its premise. Campaign Mini live validation
+  needs a separate recovered campaign ingress harness; do not reuse Quick
+  Battle as a substitute.
+
+Initial fixture `run-bp_sfkon` failed because the new V4 fixture had not staged
+its inherited V3 spell-hook bytes; the runtime correctly retired the channel.
+The fixture now initializes both inherited hooks before installation. Corrected
+Mini evidence is `working/tests/menu-observer/run-i2w0bcmf`; disabled-gate
+checks are `run-c4tad_bw`. Six focused Qt checks passed in
+`working/build/qt-shell-mini`. Live results are recorded below when complete.
+
+The attempted live Mini run `working/tests/live-menus/run-o8kl528p` (experiment
+`run-kyb6a173`) never acquired a native Mini screen and hit its bounded deadline.
+Its 34-second capture shows original Game Over. Full instruction-reference
+recovery in `mini-menu-support-swnxspvl` found only one normal gameplay ingress,
+which excludes contexts 1/2. The input function translates Escape to scan code 1
+via MapVirtualKeyA; in those contexts it sets gameplay +0x100b2/+0x10326 and
+requests the original Quick Battle results flow instead. Other Mini object
+references use special mode +0x53=4 or construction/destruction. No context
+flags were changed to force Mini eligibility.
+
+This is evidence against the proposed Quick Battle Escape → Mini validation
+path. Campaign Mini ingress/parent behavior, live confirmation and pause remain
+unvalidated. Keep Mini activation OFF. The next supported live flow is now
+[Quick Battle results](quick-battle-results-engine-bridge.md), using V5 with
+Mini still independently disabled. Normal live sessions therefore use V5;
+V3 compatibility harnesses remain available. Earlier default-V3 statements in
+this document describe the initial preparation milestone.

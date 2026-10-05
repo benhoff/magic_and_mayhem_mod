@@ -83,6 +83,10 @@ static int install_battle(void){
     put((void*)0x5c6544,(u32)&tick);put((void*)0x5c6950,(u32)&tick);
     VirtualProtect((void*)0x5c6950,4,b,&unused);VirtualProtect((void*)0x5c6544,4,a,&unused);return 1;
 }
+static u32 THIS result_tick(void* object){
+    u32 error=GetLastError();menu_poll(object,1);SetLastError(error);
+    u32 result=((TickFn)0x5595d0)(object);error=GetLastError();menu_poll(object,0);SetLastError(error);return result;
+}
 static int install(void){
     const u8 main_bytes[7]={0x51,0x53,0x55,0x56,0x57,0x8b,0xf9};
     const u8 quick_bytes[8]={0x56,0x8b,0xf1,0xe8,0x68,0xf1,0x0a,0x00};
@@ -121,7 +125,14 @@ static int install(void){
                !VirtualProtect((void*)0x5c776c,4,0x40,&old))menu_retired=1;
             else{put((void*)0x5c776c,(u32)&spell_tick);VirtualProtect((void*)0x5c776c,4,old,&unused);}
         }
-        if(menu_version==4&&MNM_MENU_MINI_EXPERIMENTAL){
+        if(menu_version==5){
+            u32 old,restore;
+            const u8 bytes[]={0x56,0x8b,0xf1,0xb9,0x16,0,0,0};
+            if(!readable((void*)0x5c5f04,4)||get((void*)0x5c5f04)!=0x5595d0||!equal((void*)0x475860,bytes,8)||
+               !VirtualProtect((void*)0x5c5f04,4,0x40,&old))menu_retired=1;
+            else {put((void*)0x5c5f04,(u32)&result_tick);VirtualProtect((void*)0x5c5f04,4,old,&restore);}
+        }
+        if(menu_version>=4&&MNM_MENU_MINI_EXPERIMENTAL){
             u32 old,restore;
             const u8 callback_bytes[]={0x64,0xa1,0,0,0,0};
             if(!readable((void*)0x5c6654,4)||get((void*)0x5c6654)!=0x5595d0||

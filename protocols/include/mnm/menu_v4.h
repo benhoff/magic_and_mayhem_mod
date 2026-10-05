@@ -15,6 +15,7 @@
  * These are observed state, not an assertion that simulation is paused.
  */
 #define MNM_MENU_MINI_SCREEN 17
+#define MNM_MENU_MINI_PARENT_SCREEN 2
 #define MNM_MENU_MINI_CANCEL 13
 #define MNM_MENU_MINI_PREFERENCES 14
 #define MNM_MENU_MINI_QUIT 15

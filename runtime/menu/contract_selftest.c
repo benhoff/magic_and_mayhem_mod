@@ -33,13 +33,19 @@ static void check(u32 site,u32 action,u32 next,u32 returning){
 #include "battle_selftest.h"
 #include "../../protocols/include/mnm/menu_v3.h"
 #include "spell_selftest.h"
+#include "../../protocols/include/mnm/menu_v4.h"
+#include "mini_selftest.h"
+#include "../../protocols/include/mnm/menu_v5.h"
+#include "result_selftest.h"
 void start(void){
     u32 old;
     fixture_space[0]=1;
-    require(VirtualProtect((void*)0x4a0000,0x260000,0x40,&old),1);
+    require(VirtualProtect((void*)0x470000,0x290000,0x40,&old),1);
     copy((void*)0x4a75c0,main_callback,sizeof(main_callback));copy((void*)0x4a83a0,quick_callback,sizeof(quick_callback));
     battle_fixture_init();
-    if(spell_fixture_enabled())spell_fixture_init();
+    if(result_fixture_enabled())result_fixture_init();
+    if(mini_fixture_enabled())mini_fixture_init();
+    if(spell_fixture_enabled()||mini_fixture_enabled()||result_fixture_enabled())spell_fixture_init();
     // The real common helper depends on engine services. Substitute only it.
     u8 helper[]={0xff,0x05,0,0,0,0,0x89,0x0d,0,0,0,0,0xc6,0x41,0x0c,1,0xc7,0x41,0x0d,0,0,0,0,0xc3};
     put(helper+2,(u32)&helper_count);put(helper+8,(u32)&helper_object);copy((void*)0x557510,helper,sizeof(helper));
@@ -65,6 +71,6 @@ void start(void){
     for(u32 i=0;i<300;++i)require(observed_tick(object)==0x13579bdf&&GetLastError()==0xabc123,31);
     // Original code/slot checks reject repeat installation with no new writes.
     require(!MenuInstallForTest(),32);
-    if(spell_fixture_enabled())spell_fixture_tests(observed_tick);else if(battle_fixture_enabled())battle_fixture_tests(observed_tick);else channel_tests(observed_tick);
+    if(result_fixture_enabled())result_fixture_tests();else if(mini_fixture_enabled())mini_fixture_tests(observed_tick);else if(spell_fixture_enabled())spell_fixture_tests(observed_tick);else if(battle_fixture_enabled())battle_fixture_tests(observed_tick);else channel_tests(observed_tick);
     ExitProcess(0);
 }
