@@ -811,3 +811,17 @@ in isolated Xvfb/Wine. Use `--shell` and `--source-root` for a dedicated validat
 build. Immutable-original checks run before/after; staged hashes are checked.
 No manual interaction is required. Fresh Celtic region 1 only; live Enter and
 loaded Realm remain pending. See [UI29 evidence](../research/runtime/region-entry-engine-bridge.md).
+
+## Multiple moving creatures (NS11)
+
+`native-multi-movement-process` runs owned synthetic MAP/ANI fixtures through
+`native-multi-movement-test` and six exact fresh-process checkpoint continuations.
+It checks shared planning debit/rotation, atomic conservative reservations,
+conflict waits, generation/cancellation/cleanup, overlapping-state restore refusal,
+32-driver capacity and tick rollback. Two staggered ANI actors match independent
+solo simulations for 1,000 per-actor checkpoint comparisons.
+
+Run `python3 tests/test-native-multi-movement.py BUILD/world/mnm-world-sandbox
+BUILD/world/native-multi-movement-test OUTPUT` to retain immutable reports and
+artifacts. [Scope](../research/runtime/native-multi-creature-movement.md) excludes
+original scheduler equivalence, fine collision, mixed profiles and presentation.

@@ -12,6 +12,7 @@ enum class PlanStatus {reachable, unreachable, budgetExhausted};
 struct RoutePlan {
     PlanStatus status=PlanStatus::unreachable;
     std::vector<RoutePoint> route;
+    std::uint32_t expansions=0; // Actual planner work, used by native shared-budget policy.
 };
 // Native simulation consumes owned coordinates/results, never reconstruction
 // objects, raw game pointers or build-specific addresses.
@@ -24,6 +25,8 @@ public:
     virtual RoutePlan plan(const Entity&,Point,std::uint32_t budget) const=0;
     virtual bool accepts(const Entity&,const RoutePoint&) const=0;
     virtual bool supportsStationaryOccupants() const {return false;}
+    virtual std::uint32_t maxMovingCreatures() const {return 1;}
+    virtual Point creatureFootprint() const {return {1,1,1};}
     virtual void validateOccupants(const State&) const {}
     virtual RoutePlan planInWorld(const State&,Handle,Point,std::uint32_t budget) const;
     virtual bool acceptsInWorld(const State&,Handle,const RoutePoint&) const;

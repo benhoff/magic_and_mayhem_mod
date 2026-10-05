@@ -1,3 +1,4 @@
+#include <array>
 #include "persistence/snapshot.hpp"
 #include "frozen_navigation.hpp"
 #include <charconv>
@@ -61,9 +62,24 @@ static MovementSession session(State state) {
     auto navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation);
     if(state.navigation && !(navigation->binding()==*state.navigation))
         navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation,true);
+    if(state.navigation && !(navigation->binding()==*state.navigation))
+        navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation,true,true);
     World world(0);world.restore(std::move(state));return MovementSession(std::move(world),std::move(navigation));
 }
 int main(int argc,char** argv) try {
+    if(argc==17 && (std::string_view(argv[1])=="move-pair" || std::string_view(argv[1])=="move-pair-fine")) {
+        auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2],{},true,true);World world(8);
+        auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();world.restore(std::move(state));
+        MovementSession movement(std::move(world),navigation);std::array<Handle,2> actors;
+        for(unsigned i=0;i<2;++i) {
+            Entity e;e.type=navigation->creatureType();e.x=integer(argv[4+i*6]);e.y=integer(argv[5+i*6]);e.z=integer(argv[6+i*6]);
+            const auto fine=std::string_view(argv[1])=="move-pair-fine";actors[i]=movement.spawn(e,fine,fine);
+        }
+        for(unsigned i=0;i<2;++i) movement.move(actors[i],{integer(argv[7+i*6]),integer(argv[8+i*6]),integer(argv[9+i*6])});
+        for(std::uint32_t i=0,count=ticks(argv[16]);i<count;++i) movement.step();
+        auto commit=writeSnapshot(argv[3],movement.world().state());if(!commit.durable) throw std::runtime_error(commit.detail);
+        json(movement.world().state(),&movement);return 0;
+    }
     if(argc==14 && std::string_view(argv[1])=="move-occupied") {
         auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2],{},true);World world(8);
         auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();world.restore(std::move(state));
@@ -125,5 +141,5 @@ int main(int argc,char** argv) try {
         auto commit=writeSnapshot(argv[3],world.state());if(!commit.durable) throw std::runtime_error(commit.detail);
         std::cout<<"resumed "<<count<<" admitted idle ticks\n";return 0;
     }
-    std::cerr<<"usage: mnm-world-sandbox move-occupied MAP OUTPUT SX SY SZ TX TY TZ BX BY BZ TICKS | create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous|move-terrain MAP OUTPUT SX SY SZ TX TY TZ TICKS | move-ani|move-terrain-ani MAP ANI BASE OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
+    std::cerr<<"usage: mnm-world-sandbox move-pair|move-pair-fine MAP OUTPUT SX1 SY1 SZ1 TX1 TY1 TZ1 SX2 SY2 SZ2 TX2 TY2 TZ2 TICKS | move-occupied MAP OUTPUT SX SY SZ TX TY TZ BX BY BZ TICKS | create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous|move-terrain MAP OUTPUT SX SY SZ TX TY TZ TICKS | move-ani|move-terrain-ani MAP ANI BASE OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}

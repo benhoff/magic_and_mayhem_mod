@@ -11042,6 +11042,42 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.multi-movement",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Deterministic native multi-mover scheduling and logical reservations",
+      "scope": "Native opt-in bounded same-profile multi-movers, conservative swept grid boxes, whole-phase holds, conflict waiting, rotating planner priority and actual shared expansion debit; derived fine-edge reservations and independent ANI/checkpoint continuation. No original scheduler/occupancy production, physical collision, mixed profiles, presentation or live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-multi-creature-movement.md"
+      ],
+      "implementation": [
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/simulation/world.hpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp"
+      ],
+      "tests": [
+        "tests/native-multi-movement-test.cpp",
+        "tests/test-native-multi-movement.py"
+      ],
+      "evidence": [
+        "NS11.multi-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -17000,6 +17036,64 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NS11.multi-native",
+      "kind": "native_integration",
+      "scope": "Native opt-in bounded same-profile multi-movers, conservative swept grid boxes, whole-phase holds, conflict waiting, rotating planner priority and actual shared expansion debit; derived fine-edge reservations and independent ANI/checkpoint continuation. No original scheduler/occupancy production, physical collision, mixed profiles, presentation or live equivalence.",
+      "record": "research/runtime/native-multi-creature-movement.json",
+      "sha256": "43b03ce2296a4272228e9383cfa040d81446a796cbc2d38e45bdb7647bfaff3b",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/fresh_process_continuations_per_build",
+          "equals": 6
+        },
+        {
+          "pointer": "/native_integration/independent_ani_solo_tick_comparisons",
+          "equals": 1000
+        },
+        {
+          "pointer": "/native_integration/shared_search_budget",
+          "equals": 53
+        },
+        {
+          "pointer": "/native_integration/moving_capacity",
+          "equals": 32
+        },
+        {
+          "pointer": "/native_integration/logical_reservations",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/conservative_swap_crossing_waits",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/generation_cleanup_rollback",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/saved_conflicting_claims_refused",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/normal_ctests",
+          "equals": 102
+        },
+        {
+          "pointer": "/native_integration/sanitized_selected_ctests",
+          "equals": 9
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -18869,6 +18963,21 @@
         "tools/test-menu-observer.py",
         "tools/test-campaign-observer.py"
       ]
+    },
+    {
+      "id": "world.multi-movement",
+      "level": "headless",
+      "scope": "Native opt-in bounded same-profile multi-movers, conservative swept grid boxes, whole-phase holds, conflict waiting, rotating planner priority and actual shared expansion debit; derived fine-edge reservations and independent ANI/checkpoint continuation. No original scheduler/occupancy production, physical collision, mixed profiles, presentation or live equivalence. Six fresh-process continuations per build and 1000 independent per-actor solo/checkpoint tick comparisons.",
+      "behaviors": [
+        "NP.multi-movement"
+      ],
+      "evidence": [
+        "NS11.multi-native"
+      ],
+      "tests": [
+        "tests/native-multi-movement-test.cpp",
+        "tests/test-native-multi-movement.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -19016,7 +19125,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-region-entry-bridge.json",
-    "sha256": "cc7b57af7c41c0ad3f3f7590838718e8c8cc3b25b5365c9e88c590a6e6b19f1b"
+    "path": "research/runtime/coverage/source-index-multi-movement.json",
+    "sha256": "5b1ed8ad7381a039a968867f04dc944dec9dff3e177eea24639ae2b01b88a426"
   }
 }
