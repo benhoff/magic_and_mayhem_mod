@@ -143,3 +143,8 @@ placement and rotation fallback, solver/backtracking, failure handling/retries,
 whole-recipe generation, conversion to the owned assembly plan, and generated
 scene comparisons. General generation, live integration, entities, lighting
 and water remain unverified.
+
+The subsequent [multi-block constraints milestone](terrain-region-constraints.md)
+adds descriptor expansion, connector walking and bounded candidate pruning.
+The remaining-work list above records the boundary at this selection milestone;
+it does not supersede that newer evidence.
