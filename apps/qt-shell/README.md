@@ -185,6 +185,13 @@ small opaque/source-keyed copy for offline pixel comparison. The launch log
 prints its capture directory. This is a drawing reconstruction aid; see
 [capture and replay procedure](../../research/runtime/render-drawing-inventory.md).
 
+For game-owned pixel capture without extra observer surface locks, use
+`./tools/run-qt-shell.sh --capture-locks`. Diagnostic files stop at their count
+and byte budgets; supported owned checkpoint updates and primary publication
+continue within bounded memory. Restart the game to load bridge changes.
+Continuous live presentation remains to be validated; see the
+[continuity fixes and live protocol](../../research/runtime/render-startup-black-screen.md#2026-10-04-continuous-owned-checkpoint-fixes).
+
 CLI: `--repo DIRECTORY`, `--renderer opengl|native`, `--capture-draws`, `--smoke-test` (no game),
 `--opengl-test` (known pixels) and `--stream-test FILE` (synthetic readback).
 Use `--renderer native --smoke-test` with the offscreen Qt backend.

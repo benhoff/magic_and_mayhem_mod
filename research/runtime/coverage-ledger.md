@@ -18,6 +18,42 @@ original menu transitions have live observation evidence with original work reta
 No complete gameplay subsystem is established as replaced by the reviewed
 evidence. Whole-game functional and performance coverage are **unknown**.
 
+Latest menu follow-up `run-qyfqz9tj`: the user identifies a 20+ second stale
+Forest of Pain difficulty picture while Wine remains smooth. The publication
+journal records long early gaps. An isolated live reproduction confirms menu
+contexts written through GDI were invalidated without a new checkpoint.
+Application-held GetDC/ReleaseDC bitmap capture now restores those pixels;
+the automated software-X11 check observes Forest of Pain within 2.449 seconds
+and difficulty selection within 0.785 seconds, continues publishing during ten
+idle seconds, and passes Qt readback (`run-reir4438/report.json`). Eight real-DIB fixtures
+pass independent pixel/replay/Qt checks. This is bounded menu evidence with
+original drawing retained; NVIDIA Qt latency and long battle sessions remain
+unverified. See [GDI checkpoint evidence](opengl-game-owned-dc.md).
+
+Latest performance follow-up `run-8s6ddeg4`: the user still reports slow Qt
+presentation. Retained state has 165 updates, but post-exit inspection provides
+no live rate. Primary-scoped contention remains in the bounded log. Bounded
+cross-thread guard waiting now delivers 20/20 synthetic overlap updates versus
+0/20 with immediate skipping; this is continuity evidence, not a live FPS gain.
+A read-only per-run publication-rate log now supplies the missing timing boundary.
+Live presentation performance remains unverified. See
+[bounded-wait evidence](render-startup-black-screen.md#2026-10-04-low-qt-update-cadence-bounded-tracker-waiting).
+
+Latest follow-up `run-wf_pb32k`: the user reports intermittent menu and battle
+freezes in Qt while Wine continues animating and responding. The retained frame
+stream contains 61 frames; bounded lifecycle evidence records pixel contention,
+whole-pixel resets and rejected incomplete bootstrap operations. Continuous live
+presentation remains unreliable. Component-scoped pixel invalidation and guarded
+rectangle conversion now have synthetic checks; their live effect is unverified.
+See [latest freeze investigation](render-startup-black-screen.md#2026-10-04-intermittent-qt-freezes-after-performance-changes).
+
+2026-10-04 live follow-up `run-yfi5mzh2`: the user confirms battle is now
+visible in Qt, but Qt is very slow while Wine stays smooth. This establishes
+live menu-to-battle presentation for the reported run, not scene equivalence or
+acceptable performance. Capture optimizations have synthetic follow-up evidence;
+live speed after those changes remains unmeasured. See
+[performance follow-up](render-startup-black-screen.md#2026-10-04-battle-visible-qt-performance-follow-up).
+
 2026-10-04 hands-on RE02 failure: default-readback experiment `run-gpaw8536`
 returned application BltFast `DDERR_SURFACEBUSY`, matching the user's locked
 surface dialog. Cause and live presentation equivalence remain unresolved;
@@ -30,8 +66,42 @@ Follow-up `run-wuk2aaev` confirms real game-owned RGB565 offscreen snapshots and
 selected blit propagation while the user reports successful gameplay. Qt still
 has no primary frame; the 16-snapshot diagnostic limit stops further copying.
 This advances live capture observation only, not continuous Qt presentation or
-render replacement. Primary admission and separation of recording budgets from
-checkpoint maintenance remain unresolved (same linked run evidence).
+render replacement. Primary admission remains unresolved live. Recording/checkpoint separation
+now has a code fix and synthetic follow-up below (same linked run evidence).
+
+RE02 continuity follow-up: `run-823dsolm` reproduces the sixteen-snapshot
+capture limit and no recorded primary presentation. Lock/blit/flip checkpoint
+maintenance and indexed publication now continue independently of bounded disk
+recording; uncontended final surface Release preserves unrelated primary
+metadata. Synthetic CPU/PE32/OpenGL/Qt checks pass for continued publication,
+release ownership, failed calls and bounded session recording. Evidence and the
+fresh live validation protocol are recorded
+in [continuity fixes](render-startup-black-screen.md#2026-10-04-continuous-owned-checkpoint-fixes).
+No successful continuous live Qt run or rendering replacement is claimed.
+
+RE02 live follow-up `run-o70h037m`: eight menu frames were published, while the
+user confirms Wine reaches battle and Qt retains the menu. Known-component
+unmatched Unlock now invalidates only that component; flagged exact source keys
+from application Lock/GetSurfaceDesc are admitted alongside SetColorKey evidence.
+Ranges and unknown identities retain conservative rejection/invalidation.
+Five bootstrap, fourteen lifetime and five primary blit fixtures pass, including
+22-frame continuity after a known-component unmatched Unlock and independent
+pixel checks for descriptor-derived transparency.
+See [menu-to-battle evidence](render-startup-black-screen.md#2026-10-04-menu-captured-battle-presentation-stalls).
+Continuous live battle presentation remains unvalidated.
+
+RE02 follow-up `run-2i2a39c4` still publishes only five menu frames while Wine
+reaches battle. Exact source keys are captured, but the log contains global
+epoch invalidation and rejected source-NULL colour fills. Pixel uncertainty now
+preserves validated screen metadata; uncertain identity/property changes retain
+full invalidation. Supported native colour fills can initialize destinations
+before transparent composition. Ordered owned sessions retain a fill GAP boundary.
+Thirty-six synthetic checks pass: twelve bootstrap/fill/recovery cases, fourteen
+Lock/Unlock lifetime cases, four partial-lock cases, three Flip cases and three
+ordered-session cases. Pixel contention/unknown Unlock recovery publishes 22
+exact frames; missed property or retirement tracking still discards metadata.
+See [continued freeze evidence](render-startup-black-screen.md#2026-10-04-continued-menu-freeze-epoch-reset-and-colour-fills).
+Live battle presentation and complete scene equivalence remain unvalidated.
 
 IN01 hands-on follow-up: the user reports everything working in the native
 Wine-window hosting run logged at `working/logs/run-20261004T160537Z.8Kl2VI/`.

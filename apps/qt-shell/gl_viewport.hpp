@@ -20,7 +20,7 @@ protected:
     void paintGL() override;
 private:
     void release();
-    QImage frame_;bool dirty_=false,ready_=false;QString error_;
+    QImage frame_;QSize textureSize_;bool dirty_=false,ready_=false;QString error_;
     QOpenGLShaderProgram shader_;QOpenGLBuffer vertices_{QOpenGLBuffer::VertexBuffer};
     QOpenGLVertexArrayObject vao_;GLuint texture_=0;
 };

@@ -86,8 +86,8 @@ static void session_finish_owned(void){
     lock_diagnostic(ok?"session_finished":"session_file_failed",0,0,session_operations,0,0,0,0);
 }
 static void game_session_finish(void){
-    if(!__sync_bool_compare_and_swap(&game_locks_busy,0,1))return;
-    session_finish_owned();__sync_lock_release(&game_locks_busy);
+    if(!game_tracker_acquire())return;
+    session_finish_owned();game_tracker_release();
 }
 static void session_done(void){if(session_file && ++session_operations>=16)session_finish_owned();}
 static void game_session_unlock(struct GameLock* lock,const struct Snapshot* after,u32 primary){
@@ -105,6 +105,9 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
 }
 static void game_session_blit_begin(struct GameBlit* p){
     if(!game_session_enabled)return;
+    /* Per-operation replay supports constant fills; ordered session identity
+     * recording has no fill operation yet. Never invent a NULL surface ID. */
+    if(p->fill){game_session_gap(6);return;}
     struct SessionSurface* a=session_surface(p->source,&p->src),*b=session_surface(p->target,&p->dst);
     if(!session_check(a,&p->src) || !session_check(b,&p->dst))return;
 }
@@ -133,7 +136,7 @@ static void game_session_palette(struct GameSurface* surface){
 
 static void game_session_palette_changed(void* object){
     if(!session_file)return;struct GamePalette* palette=game_palette_find(object,0);if(!palette)return;
-    for(u32 i=0;i<32 && session_file;++i){struct GameSurface* s=game_surfaces+i;
+    for(u32 i=0;i<GAME_SURFACE_COUNT && session_file;++i){struct GameSurface* s=game_surfaces+i;
         if(s->object && s->palette && game_palette_find(s->palette,0)==palette && session_find(s->object)){
             if(!game_palette_complete(palette)){game_session_gap(5);return;}game_session_palette(s);
         }

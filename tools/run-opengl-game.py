@@ -121,6 +121,8 @@ def main():
     metadata['input_channel']=str(input_path) if input_path else None
     if args.capture_locks:
         lock_capture=root/'lock-capture';lock_capture.mkdir();metadata['lock_capture_directory']=str(lock_capture);metadata['lock_lifecycle_log']=str(lock_capture/'lifecycle.log')
+        metadata['presentation_rate_log']=str(root/'presentation-rate.jsonl')
+        metadata['tracker_wait_ms_environment']=os.environ.get('MNM_RENDER_TRACKER_WAIT_MS','8')
         print(f'Game lock capture: {lock_capture}',flush=True)
     if args.capture_draws:
         capture=root/'draw-capture';capture.mkdir();metadata['draw_capture_directory']=str(capture)

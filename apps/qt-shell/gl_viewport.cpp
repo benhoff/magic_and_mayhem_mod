@@ -3,7 +3,7 @@
 #include <cmath>
 GlViewport::GlViewport(QWidget* parent):QOpenGLWidget(parent){setMinimumSize(320,240);setFocusPolicy(Qt::StrongFocus);setMouseTracking(true);}
 GlViewport::~GlViewport(){if(context()){disconnect(context(),nullptr,this,nullptr);makeCurrent();release();doneCurrent();}}
-void GlViewport::release(){if(texture_)glDeleteTextures(1,&texture_);texture_=0;vertices_.destroy();vao_.destroy();shader_.removeAllShaders();ready_=false;}
+void GlViewport::release(){if(texture_)glDeleteTextures(1,&texture_);texture_=0;textureSize_={};vertices_.destroy();vao_.destroy();shader_.removeAllShaders();ready_=false;}
 void GlViewport::setFrame(QImage image){frame_=image.convertToFormat(QImage::Format_RGBA8888);dirty_=true;update();}
 QRectF GlViewport::imageRect() const{
     if(frame_.isNull())return {};
@@ -45,7 +45,11 @@ void GlViewport::paintGL(){
     glViewport(0,0,width,height);glClearColor(0,0,0,1);glClear(GL_COLOR_BUFFER_BIT);
     if(!ready_ || frame_.isNull())return;
     glActiveTexture(GL_TEXTURE0);glBindTexture(GL_TEXTURE_2D,texture_);
-    if(dirty_){glPixelStorei(GL_UNPACK_ALIGNMENT,1);glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,frame_.width(),frame_.height(),0,GL_RGBA,GL_UNSIGNED_BYTE,frame_.constBits());dirty_=false;}
+    if(dirty_){glPixelStorei(GL_UNPACK_ALIGNMENT,1);
+        if(textureSize_!=frame_.size()){
+            glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,frame_.width(),frame_.height(),0,GL_RGBA,GL_UNSIGNED_BYTE,frame_.constBits());textureSize_=frame_.size();
+        }else glTexSubImage2D(GL_TEXTURE_2D,0,0,0,frame_.width(),frame_.height(),GL_RGBA,GL_UNSIGNED_BYTE,frame_.constBits());
+        dirty_=false;}
     const auto scale=qMin(double(width)/frame_.width(),double(height)/frame_.height());
     const int w=qRound(frame_.width()*scale),h=qRound(frame_.height()*scale);
     glViewport((width-w)/2,(height-h)/2,w,h);
