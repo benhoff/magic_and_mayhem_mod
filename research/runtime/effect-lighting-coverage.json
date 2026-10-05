@@ -1,0 +1,258 @@
+{
+  "schema": 1,
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "scope": "Incremental installed effect lighting table recovery, reconciled into central register",
+  "recovered_ranges": [],
+  "classifications": [],
+  "api_bindings": [],
+  "dispatch_tables": [],
+  "behaviors": [
+    {
+      "id": "TL.effect-table-loader",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Installed effect lighting table loader and type selection",
+      "scope": "Whole 0049c2e0 89-entry table loader and bounded 0049cf60 selection, profile-output boundary, ASCII/C-locale atoi modulo-32 decimal-prefix conversion, signed clamp 0..33, sticky flags and reload preservation; source lifecycle, OS profile calls and other locale branches excluded",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4834016,
+          "scope": "Whole 0049c2e0 89-entry table loader and bounded 0049cf60 selection, profile-output boundary, ASCII/C-locale atoi modulo-32 decimal-prefix conversion, signed clamp 0..33, sticky flags and reload preservation; source lifecycle, OS profile calls and other locale branches excluded"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4837216,
+          "scope": "Diameter DWORD selection at receiver+12+type*12; owned bounds 0..88"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5883161,
+          "scope": "Default C-locale decimal prefix, optional sign and wrapping 32-bit accumulation"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5888832,
+          "scope": "Default C-locale ASCII case-insensitive comparison against TRUE"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-lighting.md",
+        "research/formats/effect-lighting.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_lighting.cpp",
+        "reconstruction/rendering/effect_lighting.hpp"
+      ],
+      "tests": [
+        "tests/effect-lighting-reference.cpp",
+        "tools/test-effect-lighting.py"
+      ],
+      "evidence": [
+        "TL04.effects-original",
+        "TL04.effects-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-table-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned installed effect fields and authored source adapter",
+      "scope": "Bounded ASCII ProfileSnapshot reads of selected packed effects fields, explicit zero-default owned table, guarded type lookup/atomic reload refusal, authored-position adapter into existing combined cycle; no source record production, metadata-flag behavior or special-size-one stamping",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-lighting.md",
+        "research/formats/effect-lighting.md"
+      ],
+      "implementation": [
+        "assets/effect_lighting.cpp",
+        "assets/effect_lighting.hpp",
+        "assets/CMakeLists.txt",
+        "reconstruction/rendering/effect_lighting.cpp",
+        "reconstruction/rendering/effect_lighting.hpp",
+        "reconstruction/rendering/CMakeLists.txt",
+        "apps/terrain-preview/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-lighting-test.cpp",
+        "tests/effect-lighting-installed.cpp",
+        "tools/test-effect-lighting.py"
+      ],
+      "evidence": [
+        "TL04.effects-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.static-input-production",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Installed effect-record and view input production remains open",
+      "scope": "Effect light-table loader recovered separately as TL.effect-table-loader; effect record activation/type/visit and recount coordinate production, region center/extent ownership, broader collection initialization and allocation remain unimplemented",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4837216,
+          "scope": "Effect light-table loader recovered separately as TL.effect-table-loader; effect record activation/type/visit and recount coordinate production, region center/extent ownership, broader collection initialization and allocation remain unimplemented"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5164496,
+          "scope": "Effect light-table loader recovered separately as TL.effect-table-loader; effect record activation/type/visit and recount coordinate production, region center/extent ownership, broader collection initialization and allocation remain unimplemented"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5240576,
+          "scope": "Effect light-table loader recovered separately as TL.effect-table-loader; effect record activation/type/visit and recount coordinate production, region center/extent ownership, broader collection initialization and allocation remain unimplemented"
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-static-lighting.md",
+        "research/runtime/effect-lighting.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "TL04.effects-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 0049c2e0 89-entry table loader and bounded 0049cf60 selection, profile-output boundary, ASCII/C-locale atoi modulo-32 decimal-prefix conversion, signed clamp 0..33, sticky flags and reload preservation; source lifecycle, OS profile calls and other locale branches excluded",
+      "record": "research/runtime/effect-lighting.json",
+      "sha256": "723bb375e3ebc171023a2427ed5b7458db0545da36b99902b75f20dbf07b048a",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/table_loads",
+          "equals": 132
+        },
+        {
+          "pointer": "/compared_dwords",
+          "equals": 35244
+        },
+        {
+          "pointer": "/profile_reads",
+          "equals": 35244
+        },
+        {
+          "pointer": "/selectors",
+          "equals": 11748
+        },
+        {
+          "pointer": "/installed_entries",
+          "equals": 89
+        },
+        {
+          "pointer": "/full_suites/normal/tests_passed",
+          "equals": 69
+        },
+        {
+          "pointer": "/full_suites/ASan~1UBSan/tests_passed",
+          "equals": 69
+        }
+      ]
+    },
+    {
+      "id": "TL04.effects-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Bounded ASCII ProfileSnapshot reads of selected packed effects fields, explicit zero-default owned table, guarded type lookup/atomic reload refusal, authored-position adapter into existing combined cycle; no source record production, metadata-flag behavior or special-size-one stamping",
+      "record": "research/runtime/effect-lighting.json",
+      "sha256": "723bb375e3ebc171023a2427ed5b7458db0545da36b99902b75f20dbf07b048a",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/table_loads",
+          "equals": 132
+        },
+        {
+          "pointer": "/compared_dwords",
+          "equals": 35244
+        },
+        {
+          "pointer": "/profile_reads",
+          "equals": 35244
+        },
+        {
+          "pointer": "/selectors",
+          "equals": 11748
+        },
+        {
+          "pointer": "/installed_entries",
+          "equals": 89
+        },
+        {
+          "pointer": "/full_suites/normal/tests_passed",
+          "equals": 69
+        },
+        {
+          "pointer": "/full_suites/ASan~1UBSan/tests_passed",
+          "equals": 69
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "terrain-lighting.installed-effect-table",
+      "level": "headless",
+      "scope": "Whole-loader comparison at controlled profile outputs; native installed packed file/case-insensitive path reads and authored-position cycle composition; no effect lifecycle or live replacement",
+      "behaviors": [
+        "TL.effect-table-loader",
+        "TL.effect-table-policy"
+      ],
+      "evidence": [
+        "TL04.effects-original",
+        "TL04.effects-native"
+      ],
+      "tests": [
+        "tests/effect-lighting-reference.cpp",
+        "tests/effect-lighting-test.cpp",
+        "tests/effect-lighting-installed.cpp",
+        "tools/test-effect-lighting.py"
+      ]
+    }
+  ]
+}
