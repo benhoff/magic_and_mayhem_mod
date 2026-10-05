@@ -7063,6 +7063,215 @@
         "evidence": [],
         "reason": "Documentation review only; retains the existing transport evidence and live limitations. No behavior status promotion or fresh execution claim."
       }
+    },
+    {
+      "id": "NS13.retrospective-render-transport-docs-1d1ca72",
+      "reason": "Retrospectively review 1d1ca72 protocol CONTRACTS render-command paragraph and runtime/render README native-commands adapter instructions: independent append-only mapped channel, fresh-session writer claim/token/monotonic prefix, bounded capacity/gap failure, consumer cancellation and opt-in mirroring while original calls remain active. These two prose paths lacked exact parent/current receipts; other source and behavior receipts are preserved. This does not assert a prior gate pass, new runtime validation or original replacement. Affects NR.live-command-transport.",
+      "files": [
+        {
+          "path": "protocols/CONTRACTS.md",
+          "before_sha256": "9d0b92f69e4c81fd2f8d4a030001693bd5d020b17a98bb48ab0069fcf833372f",
+          "after_sha256": "ecbbabbbef906dd5366e26cb177f9dbf4550c65801b3d6e35268c0c6cb094697"
+        },
+        {
+          "path": "runtime/render/README.md",
+          "before_sha256": "097e7c4a834eec8297c33b75a8476e16788c1404eeac6445c2091098a372f3ef",
+          "after_sha256": "474bdd66295b45e8ea5ea1c0773552b47ca8a73cc1a8495de3a723631103bdf5"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": null,
+          "after_sha256": "c9884f72add4694523c79aa5973340be217b50712a06151fd37e9a252f163ca9"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "reason": "Documentation/history accounting only; retain existing source hashes and scoped historical transport evidence. Broader original drawing coverage, shadow equivalence, live replacement and failure recovery remain pending.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "2044c961e9d57a23402314c42d2c1f0e79901628a1d2b0c8b5ba916506a63c4e",
+          "before_sha256": "8fe3fc4527b0f807ab266092e626ab6bf909120ea8bf5b3d92133ec7463896eb",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "5b97693647b630be01d3b8b26c953dd08641a7f812d53a016c7dbf85406b518b",
+          "before_sha256": "64db420c59827b3589892460f16653fb3132cba72116683fa6f17b1fa34f4ad5",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "11a30726d8761c11e5cc88c7c7aab320a7e264f3e68bc10d8b5294e2b43acf1a",
+          "before_sha256": "3f866206d87824abce7f67732f32467f6804bdcaa03ce10c8429b87bf0766ced",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "0836f4fa854616ea8b81adabf1c08156cbb1cdc8dd8d35e15b2a7dcaa7e74eff",
+          "before_sha256": "43a94a4b8857d49b37f66432a9d4f24a687e58d9b3b6147c8f0971372211db1a",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "2a97b60877cc45e0fa74ce2119c00bf9b3aa9dc79a9880f6680a6748f11857a5",
+          "before_sha256": null,
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "ef6edbb6f9d4b648a23c87c6f2b3b1cc10dd786433c1b4a853e35611dad253fc",
+          "before_sha256": "2dbfc30b4f384deb50f07c36956b93d3d775f60f19770020775b8b62612f4348",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "ee960fb97c479036ed1875458c2194c3f89126b9e2b115280ce592a8dd2ea046",
+          "before_sha256": "cf31d9fa2708f4e800e305bc5e802e4505c75578189f2115c8cd31d9e03b0a9b",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "97f84fc9035be436bbdde6081086e59b7b32c39e920627333d96d79bf7b54aa0",
+          "before_sha256": "d547728c2835fd36999b180bc40a193b7b54a72dff35ff8dce6991da2a5881a4",
+          "id": "WORLD.owned"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "c1cfd46b1049368fc72438fb9a7ac636d8db60ce497b5edf346f58e8f761970c",
+          "before_sha256": "f1b884efb1b071a00dd4c946a05c36add42ee2adb6b6534e860ed7f56f9e267d",
+          "path": "apps/world-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "a4cff0b167a9805533758df215b70493264365afc4799ced9c97b75368b0e074",
+          "before_sha256": "454b300288f669b07dce94c95364237009a2be7ca3381e64438b4786f535d62a",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "0f9f4911ea1debd5b4885055307763c9171fff41cea019db69b8271224706d1f",
+          "before_sha256": "67c0270359768ac915a19302becb89df2a6bae5b008c880d1e6c178db564a0a0",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "9ca35468f85a28de58c6b68297fd29c9f1a85f34d0d724cf9fe1fa7a9ce3977f",
+          "before_sha256": null,
+          "path": "apps/world-scene/movement_controls.cpp"
+        },
+        {
+          "after_sha256": "b94189185f75da0f34101ac4daa4bb8db8691e5e35e66caeee4b573a9734c185",
+          "before_sha256": null,
+          "path": "apps/world-scene/movement_controls.hpp"
+        },
+        {
+          "after_sha256": "a4c5601ef6e3b6764d2789b662ff394f9ad60f6756ece4044f9089b4dfd52c27",
+          "before_sha256": null,
+          "path": "apps/world-scene/orders.cpp"
+        },
+        {
+          "after_sha256": "85f2cbb55848b6c0c5931af65e963c014a3cf2bcb7e3673ca304a4c4774e4401",
+          "before_sha256": null,
+          "path": "apps/world-scene/orders.hpp"
+        },
+        {
+          "after_sha256": "a32c6a5c8dc10fe1e966b149a7ba720fa7a75ee8ba45cfd7d64aa0038b837d25",
+          "before_sha256": "a641c4202b7481884e5e09022b014ed94177a2e84e8de60b170ea04076a3a5ec",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "033d925e6f5b36f1c772da1d523ec03e777d68a505b4c16ded496d70fb0a8b16",
+          "before_sha256": "d8f07bff8fbefa0e8ccb73eca097577f92fb199d1f9512e25434076b6a851724",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "0b7c3216527bcfb1c8c2d0900db2608cb735c364cec7ceb69bfebfa172013d89",
+          "before_sha256": "bde8d40548f6f4bec645bd50f932d547ea48b7312f42194be01efcf6e3aa1b25",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f721c90ef6d54776922f7e8a565be0f83364aa516c14a0725c48f75abb1e6a81",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-orders.json"
+        },
+        {
+          "after_sha256": "5de8aa8dbb0e8f0c7db20c98ee71165ef01a9fdc33fb2a46572ca18194f0150b",
+          "before_sha256": "b20aca5d7b335e89e69219d3e218eb63bbead7ff1044c75f1d576ccf2eb46fd4",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "1837492ff2ff82e405483a57282fe803edac9ee3dca5ab7b38f48ae3dfe44fb5",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-orders-history-extension.json"
+        },
+        {
+          "after_sha256": "e2b71f932431c13fa03d4024c11884f373303d540ff23b2cb874dc76591dba01",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-orders-history-resolution.json"
+        },
+        {
+          "after_sha256": "398bb8f1c0ff211da02c00d2e3c6c2f766498176b678411bc0ecba42da4f8553",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-orders-history-review.json"
+        },
+        {
+          "after_sha256": "887c6a9b41b5f0e97c496fe0b27951eadcb3d54c8a86ad96c88de41b56b95459",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-orders.json"
+        },
+        {
+          "after_sha256": "69ab88d4b9d3e7af9de335ea946cf9ea248a9b689343108f780dffd724b447dd",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-orders.md"
+        },
+        {
+          "after_sha256": "a9c6930e1be8408ca64e9bf6abe718e3327f3dc635a6ab68faa330d18a044691",
+          "before_sha256": "95187885f21a9fe78d8e2078a3e6b0069f5a0a0b07839bf48c571734fd126dfc",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "71798ed68a6e17b99cb4b36dd45b2f24db5f442991288509c763642978316faf",
+          "before_sha256": null,
+          "path": "tests/world-controls-test.cpp"
+        },
+        {
+          "after_sha256": "4c73ddd0df80d183050ea8d79a9cbc64a0e61abb1658a434dbc4f1204fc30376",
+          "before_sha256": null,
+          "path": "tools/test-scene-orders.py"
+        }
+      ],
+      "id": "NS13.scene-orders-exact-staged",
+      "pending_gaps": [
+        "behaviors_without_comparison:c68ff357fb36272d3bd2de347fdea2ce5375bf6d6c9507e34748ba9f4711df2f",
+        "stale_evidence:3fc86bcc6a797ab6f2835b102b97f195278cb67355d4a81d759fec6ba2157d3e",
+        "stale_evidence:b08610e3a481442656d13fbe08e26a9b21e2e2e823e408428694119fbf7dab9e",
+        "stale_evidence:d2b73b245de321e21eba238ec825a6456b33a6b843480c6775689db036c44b2b",
+        "stale_evidence:f4bf7b294f29612ea6f8e92a265f18f891144427df8c2aa2bfda0c17daa17d4f"
+      ],
+      "reason": "Review explicit full-generation creature selection, eligible/noncleaned driver filtering, no implicit replacement selection, controller synchronization before moves, existing native queued command admission and atomic invalid-order refusal. Review QWidget semantic callbacks without session/legacy ownership, bounded XYZ fields and 32 choices, signal-blocked refresh preserving targets, selected-body transient outline, Step-only application and Save retaining pending orders. Inspect production main-window integration and compile it; widget/controller execution uses owned synthetic navigation. Exact committed file and canonical behavior contracts 41380db..fca9a1b are separately reviewed, including pending retrospective receipts for two transport prose versions. Staged census and clean checkout retain committed peer work while excluding pending UI/tool changes.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh NS13 evidence validates the native controls/controller synthetic slice only. Older shared-source scene/checkpoint/presentation evidence retains its original fingerprints and status; five new gap identities explicitly retain absent original comparison and historical staleness. Full installed main-window/picking interaction, original command/input mapping, group/stop controls, faction permissions, automatic playback, commander/summoned gameplay and live replacement remain pending. No recovered behavior status is promoted.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS13.scene-orders-recorded",
+      "reason": "Promote only native diagnostic scene controls after production QWidget/controller semantic actions, selected-only queued movement, invalid/stale/cleanup/reuse and disabled-control checks, target preservation and exact pending-order restart. Keep source-reviewed main-window outline integration separate from whole-window/original-input execution equivalence.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "2a97b60877cc45e0fa74ce2119c00bf9b3aa9dc79a9880f6680a6748f11857a5",
+          "before_sha256": null,
+          "id": "NP.scene-orders"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh normal and ASan/UBSan reports pass production-widget/native-controller cases and one exact fresh-process pending-order checkpoint continuation per build, including unsigned generation 0xfedcba98 and 32-choice refresh. 105 normal and five focused sanitizer CTests pass. NS13 source fingerprints match staged native controls, application and test code. Owned synthetic inputs consume no original artifacts; no original/live equivalence is asserted.",
+        "evidence": [
+          "NS13.scene-orders"
+        ]
+      }
     }
   ]
 }

@@ -162,3 +162,16 @@ owned multi-creature session.
 actors across four views, CPU/OpenGL pixels, per-actor positions/identity and
 exact split/fresh-process presentation/checkpoints. Installed sprite reads are
 bracketed by original-manifest verification. [Scope and accepted evidence](../../research/runtime/native-multi-world-scene.md).
+
+## Select and order creatures (NS13)
+
+Choose a creature, enter a target X/Y/Z cell, then Queue move. The order applies
+when Step runs. The selector shows each creature's logical cell and movement
+action; the view outlines its displayed body. Save checkpoint preserves pending
+orders even before Step. Selection is transient and starts empty when reopening
+a checkpoint. Cleanup or slot reuse clears selection.
+
+Target fields survive ordinary refreshes and reset to the new creature's cell when
+selection changes. Navigation still decides reachability and occupancy outcomes.
+These are explicit diagnostic controls; mouse picking and automatic playback remain
+open. [Contract and evidence](../../research/runtime/native-scene-orders.md).

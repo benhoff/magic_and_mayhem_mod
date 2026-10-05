@@ -635,3 +635,20 @@ shadow comparison, unsupported drawing/initialization branches, indefinite-sessi
 checkpoint/resynchronization policy, physical GPU performance and replacement
 remain pending. Shared decoder/hook edits leave affected historical evidence
 stale; old records and hashes are preserved.
+
+### Native scene move controls (NS13; reviewed 2026-10-05)
+
+The diagnostic scene now selects individual available creature drivers and queues
+XYZ-cell moves until Step. Full-generation identity is checked before queuing;
+cleanup/release/reuse clears stale selection. The widget remains separate from
+session orchestration. Save preserves pending orders; application selection and
+the interactive body outline are transient.
+
+Normal and ASan/UBSan production-widget/controller checks and exact fresh-process
+pending-order continuations pass, plus 105 normal CTests and five focused sanitizer
+suites. Inputs are synthetic; [scope and accepted evidence](native-scene-orders.md)
+exclude original mappings, full-window mouse picking, automatic playback, faction
+permissions, commander/summoned gameplay and live replacement. Older shared-source
+scene evidence retains its hashes and may be stale. Committed-history receipts are
+reviewed separately, with pending retrospective documentation accounting for two
+render-transport prose versions; no past gate or new transport validation is claimed.

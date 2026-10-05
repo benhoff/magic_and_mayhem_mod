@@ -1,0 +1,62 @@
+{
+  "milestone": "NS13",
+  "all_match": true,
+  "live_validated": false,
+  "normal_report": "working/tests/scene-orders/normal-accepted/report.json",
+  "sanitized_report": "working/tests/scene-orders/sanitized-accepted/report.json",
+  "report_sha256": {
+    "working/tests/scene-orders/normal-accepted/report.json": "6e32ae2974cc9b7d6721c538ac8642a09e4bd78d2a2ccec760f0b4d712613aa7",
+    "working/tests/scene-orders/sanitized-accepted/report.json": "c21c4f6b15634c2f77b87542576b12bffbd4cc7c294f91e8de017663091ffaf8"
+  },
+  "scope": "Synthetic production Qt movement controls connected to native Orders and owned multi-creature session: full-generation selection, queued per-actor commands, Step-only application, invalid/stale/cleanup refusal and pending-order exact restart. No original input mappings, installed scene-picking/lighting or live equivalence.",
+  "source_sha256": {
+    "apps/world-scene/CMakeLists.txt": "c1cfd46b1049368fc72438fb9a7ac636d8db60ce497b5edf346f58e8f761970c",
+    "apps/world-scene/main.cpp": "0f9f4911ea1debd5b4885055307763c9171fff41cea019db69b8271224706d1f",
+    "apps/world-scene/map_navigation.cpp": "20eecea7aca4ad16b08093f6dd1cb2f206d14acc929ddad76064cb5910613de5",
+    "apps/world-scene/map_navigation.hpp": "e40b2a8021a7841c03abe2240b12e19c58525faaec776e4f76fa3112c939a4eb",
+    "apps/world-scene/map_navigation_main.cpp": "4b0cf8ded5f10483e677f91e2951e52a09380bc1b818ab3765f05d765e1f32b3",
+    "apps/world-scene/movement_controls.cpp": "9ca35468f85a28de58c6b68297fd29c9f1a85f34d0d724cf9fe1fa7a9ce3977f",
+    "apps/world-scene/movement_controls.hpp": "b94189185f75da0f34101ac4daa4bb8db8691e5e35e66caeee4b573a9734c185",
+    "apps/world-scene/orders.cpp": "a4c5601ef6e3b6764d2789b662ff394f9ad60f6756ece4044f9089b4dfd52c27",
+    "apps/world-scene/orders.hpp": "85f2cbb55848b6c0c5931af65e963c014a3cf2bcb7e3673ca304a4c4774e4401",
+    "apps/world-scene/scene.cpp": "af1a60229a4d459f81d4f42f31db833b58819f835bfdb01ff8b59a5d467baa28",
+    "apps/world-scene/scene.hpp": "e4b485295070758f8acdbaf7911c9db4b5f5557c75c16d5440388f5963865ccf",
+    "game/persistence/snapshot.cpp": "6f1751e921ca150b6b38b4cbfbc3c655ec0626a163e6b076e193df8211e22bd9",
+    "game/persistence/snapshot.hpp": "900563f38519697e2541ef0bc8d1b797ea8464c8d18a6e6571f25505ea6857e5",
+    "game/persistence/store_posix.cpp": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df",
+    "game/simulation/movement.cpp": "56e051eef1017b39f768b0ef238238753f129cbe52c2adb89c93fbd01398caa9",
+    "game/simulation/movement.hpp": "47f40135b8126bc2d855a7d5b1e8681599f1e2e33274833825b355fc48b220cf",
+    "game/simulation/occupancy.cpp": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+    "game/simulation/occupancy.hpp": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+    "game/simulation/world.cpp": "5e75ebddd738ac141f27875a48d11f5c3e2b35e4af8c30417823c1a147f61135",
+    "game/simulation/world.hpp": "cc2804653b232dbd1e029e10929cf2c683a36fff7c695f68c00571051342669e",
+    "tests/world-controls-test.cpp": "71798ed68a6e17b99cb4b36dd45b2f24db5f442991288509c763642978316faf",
+    "tools/test-scene-orders.py": "4c73ddd0df80d183050ea8d79a9cbc64a0e61abb1658a434dbc4f1204fc30376"
+  },
+  "native_controls": {
+    "widget_selection": true,
+    "queued_until_step": true,
+    "selected_actor_only": true,
+    "unsigned_identity": true,
+    "checkpoint_pending_order": true,
+    "cleanup_reuse_refusal": true,
+    "blocked_result": true,
+    "capacity_choices": 32,
+    "fresh_process_continuations": 1
+  },
+  "test_counts": {
+    "normal": 105,
+    "sanitized_selected": 5
+  },
+  "test_log_sha256": {
+    "working/tests/scene-orders/ns13-normal-accepted-tests.log": "853499925974185afe4e4384dd513ae3f50aeed878494b8ee56ada43c5b0f540",
+    "working/tests/scene-orders/ns13-sanitized-accepted-tests.log": "e9e6ca83dbfef5d3fb3d640662ac272e1c0fd1ede8d15935726f4c866ae19e02"
+  },
+  "remaining": [
+    "Full installed main-window/picking interaction comparison",
+    "Original input/command/hotkey equivalence",
+    "Group selection, stop/cancel and automatic playback",
+    "Faction/player permissions and commander/summoned gameplay",
+    "Live integration/replacement"
+  ]
+}

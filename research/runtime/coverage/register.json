@@ -11518,6 +11518,39 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.scene-orders",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Native scene creature selection and queued move controls",
+      "scope": "Synthetic production Qt movement controls connected to native Orders and owned multi-creature session: full-generation selection, queued per-actor commands, Step-only application, invalid/stale/cleanup refusal and pending-order exact restart. No original input mappings, installed scene-picking/lighting or live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-scene-orders.md"
+      ],
+      "implementation": [
+        "apps/world-scene/orders.cpp",
+        "apps/world-scene/orders.hpp",
+        "apps/world-scene/movement_controls.cpp",
+        "apps/world-scene/movement_controls.hpp",
+        "apps/world-scene/main.cpp"
+      ],
+      "tests": [
+        "tests/world-controls-test.cpp",
+        "tools/test-scene-orders.py"
+      ],
+      "evidence": [
+        "NS13.scene-orders"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -18650,6 +18683,56 @@
           "equals": 1
         }
       ]
+    },
+    {
+      "id": "NS13.scene-orders",
+      "kind": "native_integration",
+      "scope": "Synthetic production Qt movement controls connected to native Orders and owned multi-creature session: full-generation selection, queued per-actor commands, Step-only application, invalid/stale/cleanup refusal and pending-order exact restart. No original input mappings, installed scene-picking/lighting or live equivalence.",
+      "record": "research/runtime/native-scene-orders.json",
+      "sha256": "887c6a9b41b5f0e97c496fe0b27951eadcb3d54c8a86ad96c88de41b56b95459",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/widget_selection",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/queued_until_step",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/selected_actor_only",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/unsigned_identity",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/checkpoint_pending_order",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/cleanup_reuse_refusal",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/blocked_result",
+          "equals": true
+        },
+        {
+          "pointer": "/native_controls/capacity_choices",
+          "equals": 32
+        },
+        {
+          "pointer": "/native_controls/fresh_process_continuations",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -20668,6 +20751,21 @@
         "tests/creature-occupancy-test.cpp",
         "tools/test-creature-occupancy.py"
       ]
+    },
+    {
+      "id": "world.scene-orders",
+      "level": "preview",
+      "scope": "Synthetic production Qt movement controls connected to native Orders and owned multi-creature session: full-generation selection, queued per-actor commands, Step-only application, invalid/stale/cleanup refusal and pending-order exact restart. No original input mappings, installed scene-picking/lighting or live equivalence.",
+      "behaviors": [
+        "NP.scene-orders"
+      ],
+      "evidence": [
+        "NS13.scene-orders"
+      ],
+      "tests": [
+        "tests/world-controls-test.cpp",
+        "tools/test-scene-orders.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -20830,7 +20928,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/creature-occupancy-lookup-source-index.json",
-    "sha256": "0b85341b048cb7e3ad8ba653541bc8270e180e8aa20b4d47b02676300226d042"
+    "path": "research/runtime/coverage/source-index-scene-orders.json",
+    "sha256": "f721c90ef6d54776922f7e8a565be0f83364aa516c14a0725c48f75abb1e6a81"
   }
 }
