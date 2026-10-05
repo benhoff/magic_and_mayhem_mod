@@ -1,4 +1,5 @@
 #include "movement.hpp"
+#include "occupancy.hpp"
 #include "persistence/snapshot.hpp"
 #include <algorithm>
 #include <cstdlib>
@@ -122,7 +123,7 @@ void MovementSession::validateBinding(const State& state,const Navigation& navig
     unsigned creatures=0;
     for(const auto& slot:state.slots) if(slot.entity && slot.entity->motion) {
         const auto& e=*slot.entity;
-        if(++creatures>1 || e.type!=navigation.creatureType()) throw std::invalid_argument("movement slice supports one captured creature profile");
+        if(++creatures>navigation.maxMovingCreatures() || e.type!=navigation.creatureType()) throw std::invalid_argument("movement slice exceeds the bound captured profile/count");
         validateMotion(e,*state.navigation);
         if(e.motion->terrainMotion) (void)navigation.finePosition(e);
         if(e.motion->previous) navigation.validateSegmentHistory(e,*e.motion->previous);
@@ -150,7 +151,8 @@ Handle MovementSession::spawn(Entity entity,bool sampleMotion,bool continuousMot
     if(entity.family==Family::creature) {
         entity.motion=CreatureMotion{};entity.motion->sampleMotion=sampleMotion;entity.motion->continuousMotion=continuousMotion;entity.motion->terrainMotion=terrainMotion;entity.motion->origin=entity.motion->destination={entity.x,entity.y,entity.z};
         if(entity.type!=navigation_->creatureType()) throw std::invalid_argument("creature profile mismatch");
-        for(const auto& slot:world_.state().slots) if(slot.entity && slot.entity->motion) throw std::invalid_argument("only one moving creature supported");
+        unsigned creatures=0;for(const auto& slot:world_.state().slots) if(slot.entity && slot.entity->motion) ++creatures;
+        if(creatures>=navigation_->maxMovingCreatures()) throw std::invalid_argument("moving creature limit reached");
     } else if(entity.motion) throw std::invalid_argument("motion requires creature family");
     validateMotion(entity,navigation_->binding());if(terrainMotion) (void)navigation_->finePosition(entity);
     auto candidate=world_;auto h=candidate.spawn(std::move(entity));navigation_->validateOccupants(candidate.state());world_=std::move(candidate);return h;
@@ -169,15 +171,29 @@ void MovementSession::move(Handle subject,Point destination,std::optional<Handle
     Command c{Operation::move,subject,goal};c.destination=destination;enqueue(std::move(c));
 }
 TickReport MovementSession::step(TickInput input) {
-    return world_.step(input,[this,input](Phase phase,const State& state,std::vector<Command>& commands) {
+    std::uint32_t searchExpansions=0,movementWaits=0;
+    auto report=world_.step(input,[this,input,&searchExpansions,&movementWaits](Phase phase,const State& state,std::vector<Command>& commands) {
         if(phase!=Phase::maintenance && phase!=Phase::decisions) return;
         if(!state.navigation || !(*state.navigation==navigation_->binding())) throw std::invalid_argument("movement resource changed");
         navigation_->validateOccupants(state);
-        for(std::uint32_t i=0;i<state.slots.size();++i) if(state.slots[i].entity && state.slots[i].entity->motion) {
-            const auto& e=*state.slots[i].entity;auto motion=*e.motion;Point position{e.x,e.y,e.z};bool changed=false;
+        const bool multi=navigation_->maxMovingCreatures()>1;
+        std::optional<MovementReservations> reservations;
+        if(multi && phase==Phase::maintenance) reservations.emplace(state,navigation_->binding().dimensions,navigation_->creatureType(),navigation_->creatureFootprint());
+        auto scheduled=state;std::vector<std::uint32_t> actors;
+        for(std::uint32_t i=0;i<state.slots.size();++i) if(state.slots[i].entity && state.slots[i].entity->motion && !state.slots[i].entity->cleaned) actors.push_back(i);
+        if(multi && phase==Phase::decisions && !actors.empty())
+            std::rotate(actors.begin(),actors.begin()+(std::uint32_t(state.tick-1)%actors.size()),actors.end());
+        auto available=state.expansionBudget;
+        for(const auto i:actors) {
+            const auto& e=*scheduled.slots[i].entity;auto motion=*e.motion;Point position{e.x,e.y,e.z};bool changed=false;
             if(phase==Phase::maintenance && motion.action==Action::moving) {
                 const auto waypoint=motion.route.at(motion.next);
-                if(!navigation_->acceptsInWorld(state,{i,state.slots[i].generation},waypoint)) {
+                if(multi && navigation_->accepts(e,waypoint) &&
+                   (!navigation_->acceptsInWorld(scheduled,{i,state.slots[i].generation},waypoint) ||
+                    !reservations->tryReserve({i,state.slots[i].generation},position,waypoint.position))) {
+                    ++movementWaits;continue; // Keep route/fine state; retry at the next maintenance tick.
+                }
+                if(!navigation_->acceptsInWorld(scheduled,{i,state.slots[i].generation},waypoint)) {
                     motion.action=Action::blocked;motion.route.clear();motion.next=0;motion.origin=position;motion.fine.reset();motion.previous.reset();motion.segmentTicks=0;
                 } else {
                     bool completed=true;
@@ -198,12 +214,18 @@ TickReport MovementSession::step(TickInput input) {
                 changed=true;
             }
             if(phase==Phase::decisions && motion.action==Action::planning && !input.suppressSearch) {
-                auto plan=navigation_->planInWorld(state,{i,state.slots[i].generation},motion.destination,motion.budget);
+                if(multi && available<2) continue;
+                const auto budget=multi?std::min(motion.budget,available):motion.budget;
+                auto plan=navigation_->planInWorld(scheduled,{i,state.slots[i].generation},motion.destination,budget);
+                if(multi) {
+                    if(plan.expansions>budget) throw std::invalid_argument("planner exceeded shared expansion allowance");
+                    available-=plan.expansions;searchExpansions+=plan.expansions;
+                }
                 motion.origin=position;motion.next=0;motion.route=std::move(plan.route);
-                if(plan.status==PlanStatus::budgetExhausted) motion.action=Action::searchLimited;
+                if(plan.status==PlanStatus::budgetExhausted) motion.action=multi?Action::planning:Action::searchLimited;
                 else if(plan.status==PlanStatus::unreachable) motion.action=Action::blocked;
                 else motion.action=position==motion.destination?Action::arrived:Action::moving;
-                if(motion.action==Action::searchLimited || motion.action==Action::blocked) motion.route.clear();
+                if(motion.action==Action::searchLimited || motion.action==Action::blocked || motion.action==Action::planning) motion.route.clear();
                 if(motion.sampleMotion && motion.action==Action::moving) {
                     auto probe=e;
                     if(probe.motion->continuousMotion) {probe.motion->previous.reset();probe.motion->fine.reset();probe.motion->segmentTicks=0;}
@@ -216,10 +238,13 @@ TickReport MovementSession::step(TickInput input) {
             }
             if(changed) {
                 Command c{Operation::motion,{i,state.slots[i].generation},{}};
-                c.update=MotionUpdate{position,std::move(motion)};commands.push_back(std::move(c));
+                c.update=MotionUpdate{position,std::move(motion)};
+                auto& staged=*scheduled.slots[i].entity;staged.x=position.x;staged.y=position.y;staged.z=position.z;staged.motion=c.update->motion;
+                commands.push_back(std::move(c));
             }
         }
     });
+    report.searchExpansions=searchExpansions;report.movementWaits=movementWaits;return report;
 }
 void MovementSession::restore(const std::filesystem::path& path,const MapResolver& resolver) {
     if(!resolver) throw std::invalid_argument("map resolver required");

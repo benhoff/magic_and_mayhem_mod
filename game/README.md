@@ -3,7 +3,8 @@
 `mnm-world` is the first native simulation ownership/checkpoint milestone. It
 runs without Qt, Wine, original assets or injected adapters. It implements
 bounded entity storage, lifetime handles, transactional tick phases, a bounded
-single-creature movement session and native v1/v2/v3/v4/v5/v6 snapshots. It does not yet implement AI, combat/spells, campaign
+movement session with opt-in multiple same-profile creatures and native
+v1/v2/v3/v4/v5/v6 snapshots. It does not yet implement AI, combat/spells, campaign
 triggers or a playable world. The original engine remains responsible for live
 gameplay. Native checkpoints are distinct from original version-20 saves.
 
@@ -286,3 +287,17 @@ then the existing `resume` or `trace` commands. The checkpoint resource identity
 includes the occupancy policy; existing wire versions and default-mode behavior
 remain supported. [Contract and evidence](../research/runtime/native-stationary-occupancy.md)
 separate this native policy from recovered original occupancy predicates.
+
+## Multiple moving creatures (NS11)
+
+The opt-in multi-movement frozen adapter admits up to 32 same-profile motion
+drivers. Conservative logical swept boxes preserve waiting routes and controllers;
+ongoing fine edges retain their reservations across ticks and checkpoint restore.
+Maintenance uses slot order and planners rotate priority while sharing 53 actual
+search expansions per tick. Persistent conflicts have no deadlock resolution.
+
+`mnm-world-sandbox move-pair` and `move-pair-fine` take a frozen MAP, output
+checkpoint, two XYZ starts and targets, then ticks; `resume` recognizes the saved
+policy fingerprint. This is a native policy with synthetic headless evidence;
+original scheduler/occupancy, physical collision and multi-creature Qt presentation
+remain separate. [Contract and evidence](../research/runtime/native-multi-creature-movement.md).

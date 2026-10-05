@@ -564,3 +564,18 @@ This is synthetic native preview integration on Mesa/Xvfb. It does not advance
 RE02 continuous game capture, live command transport, original rendering
 replacement or hardware performance. Historical reports keep their recorded
 hashes; edits to shared renderer/host files leave older evidence stale.
+
+### Multiple native movers (NS11; reviewed 2026-10-05)
+
+Opt-in headless native movement now supports up to 32 same-profile drivers with
+conservative logical swept reservations, conflict waiting, independent ANI state,
+rotating planning priority and a shared 53-expansion allowance. Saved fine edges
+rebuild reservations without a wire-format change. Atomic spawn/restore and tick
+rollback, six fresh-process continuations per build and 1,000 staggered ANI
+per-actor checkpoint comparisons pass. Normal 102-test and focused nine-suite
+sanitizer runs pass. [Scope and evidence](native-multi-creature-movement.md).
+
+This advances `NP.multi-movement` only. Original scheduler/occupancy production,
+fine-space collision, deadlock resolution, mixed profiles, multiple-creature Qt
+presentation and live replacement remain open. Prior NS10 original comparisons
+retain their hashes and scope; older shared-source native evidence may be stale.

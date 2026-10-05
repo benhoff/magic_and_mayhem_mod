@@ -107,7 +107,7 @@ enum class Phase {maintenance, decisions, secondaryCreatures, effects, map, queu
 struct TickInput {
     bool admitted=true, alternateMode=false, suppressSearch=false;
 };
-struct TickReport {bool advanced=false; std::uint32_t applied=0,rejected=0; std::vector<Phase> phases;};
+struct TickReport {bool advanced=false; std::uint32_t applied=0,rejected=0; std::vector<Phase> phases; std::uint32_t searchExpansions=0,movementWaits=0;};
 // A system reads staged state and emits explicit operations. External side effects
 // cannot be rolled back; keep this callback deterministic and state in State.
 using System = std::function<void(Phase,const State&,std::vector<Command>&)>;
