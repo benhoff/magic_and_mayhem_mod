@@ -1026,6 +1026,57 @@
         "evidence": [],
         "reason": "Metadata reconciliation and test-documentation updates only; no engine, protocol or gate algorithm edits and no coverage status promotions. Audit and gate guard suites each pass 43 tests. Original/native trajectory execution and bounded original campaign observations retain their separately registered evidence and limitations."
       }
+    },
+    {
+      "id": "campaign-contract-scoped-commit-campaign-commit-zwqmzzn7",
+      "reason": "Commit only UI26 campaign recovery: original New Game reset, selected Realm lifecycle/navigation/admission/auxiliary branches, source-pinned oracle and read-only export. Shared documentation adds UI26 only. Reconcile campaign focused register and current committed-source census; retain historical evidence and all pending discovery/native/live gaps. Uncommitted trajectory and other work are excluded.",
+      "files": [
+        {
+          "path": "research/runtime/README.md",
+          "before_sha256": "d9b7c45ce8dab09bf5da9ae1a1c58c99c8de1e9fe84156cdb859e5e433bb22a8",
+          "after_sha256": "b4355918970cf501a83a308aa2592f71775df1d24e05a169347cd83920162eb3"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "adff9d759d6ef4ccad9ec8e8da845de6f959746567698d9675f137cb3d501aeb",
+          "after_sha256": "7ae97dd7ea98ea256471ed3657daf8b268d17e6c00f2cf0d63e5814d7f90b367"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "7f2024ca73b32025520071b37b10cbfce9cf0cb16e28fa329411c000f431875f",
+          "after_sha256": "c72460dd5e5c1556f4862d88e2ca6ce5ee9af6a26c6ad104964501229a857976"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-campaign-commit.json",
+          "before_sha256": null,
+          "after_sha256": "6acb1aff25af0b9d8126405fc990107724bfa7c3b4e2a295486d831bcbd245d0"
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "6d844a17a46efc6dd870851ab0611cb48109cf8e66471f15c6872084ae255b83",
+          "after_sha256": "2323a1d52fee72a8d93e98235b5398f59c1249c9d4d0afee8d0e4b707c05a9a5"
+        },
+        {
+          "path": "tests/README.md",
+          "before_sha256": "05359e8206231e17f82eda1f588f416443810b61c2a14de8da4e8b61beedf428",
+          "after_sha256": "db1a7fae16f2f526152e94914b7b05213403614e5cfb2bd6367bed9341f7e3d9"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "TOOL.coverage-gate",
+          "before_sha256": "c78df6a6f04a75951c52180c3ce2885865c7862f47a099c51467a5704fe6bb9b",
+          "after_sha256": "b14cb1b0eea725e3ce31902aab7fe200367937354173d165cfb1bf31833e4d00"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [
+          "UI26.original"
+        ],
+        "reason": "269 original-bytecode fixtures passed with private dependency stubs and 2,927 immutable originals preserved. Coverage guard suites each passed 43 tests. No native equivalence, live integration or replacement is claimed; full Realm initialization, campaign Mini mode-4 confirmation and Region Entry remain pending."
+      }
     }
   ]
 }
