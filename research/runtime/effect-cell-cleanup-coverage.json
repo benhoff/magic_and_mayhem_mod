@@ -105,13 +105,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected same-cell, zero/nonzero terrain transitions, column cleanup, blocked/height partial state, bounded disabled membership and no-creature terrain occupancy recovered separately. Creature occupancy/collisions, type-35 terrain mutation, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, installed terrain catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions are not newly compared by dedicated fixtures",
+      "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory/footprint setup, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected same-cell, zero/nonzero terrain transitions, column cleanup, blocked/height partial state, bounded disabled membership and no-creature terrain occupancy recovered separately. Creature occupancy/collisions, type-35 terrain mutation, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, installed terrain catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions are not newly compared by dedicated fixtures"
+          "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory/footprint setup, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures"
         }
       ],
       "documents": [
@@ -122,7 +122,8 @@
         "research/runtime/effect-blocked-destinations.md",
         "research/runtime/effect-height-exits.md",
         "research/runtime/effect-membership-disabled.md",
-        "research/runtime/effect-terrain-occupancy.md"
+        "research/runtime/effect-terrain-occupancy.md",
+        "research/runtime/creature-occupancy-lookup.md"
       ],
       "implementation": [],
       "tests": [],

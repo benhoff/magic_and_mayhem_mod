@@ -1,0 +1,28 @@
+{
+  "all_match": true,
+  "live_validated": false,
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "fixtures": 52,
+  "calls": 1984320,
+  "hits": 340684,
+  "guard_bytes": 134933760,
+  "output_sha256": "6de1c21b01602d993e39bde4159551dfd55bb90857ba66e7bf7ba0d110075d43",
+  "helper_sha256": {
+    "original": "ae74f95f48495516e4db360ab058107c27f614c79f527546ca5758c05ec1e7d7",
+    "native": "d0a6030de38f0548584f46d1312810e75f581470e628ef5e279bbb2a4f74971a",
+    "sanitized": "f219673faa2966add3546635efe1e0307cbcacb7e6a0281d54229584db3880db"
+  },
+  "registered_source_sha256": {
+    "reconstruction/rendering/creature_occupancy.cpp": "e6de5c98e7b5fd1a819e4170a8cb79ef3f31e371864a9b86028e56f1afddc1d6",
+    "reconstruction/rendering/creature_occupancy.hpp": "638e64697c82a9a44001de2845b4100937cea34dabd7045414a20785f90c9720",
+    "reconstruction/rendering/creature-occupancy/CMakeLists.txt": "786b4059d77281d4b7aafce99b1922a08548865717dd3e424147dafd2eb58276",
+    "tests/creature-occupancy-test.cpp": "39b48e5887c2794f8b8d5d54f4782358f9b18aa5591f7928507491bf2570c492",
+    "tests/creature-occupancy-reference.cpp": "3caf551916667f5f1c947b715d7d70f25ba241d969741dbf961d0c81a66a58d8",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-creature-occupancy.py": "6e470c43e1571c5e09a5de7954301f762e72435a8c05633704fc31531549b769"
+  },
+  "unit_passed": true,
+  "sanitized_unit_passed": true,
+  "cmake_tests_passed": 1,
+  "boundary": "Whole unmodified 004e1200 read-only lookup with owned 16-row WORD footprint and raw DWORD height, signed XYZ inputs, X/Y below 64, Z below wrapped height<<4, MSB-first four-fine-unit XY blocks; no patches, callbacks or stubs; no footprint initializer, effect neighbour/collision parent, creature transforms/wrapping, live replacement or installed footprint production"
+}
