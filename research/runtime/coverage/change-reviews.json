@@ -8958,6 +8958,223 @@
         "evidence": [],
         "reason": "Generated metadata only; no implementation or status promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a1fe22a9f944ad9aff20f4902996ba59ea1dd32fde3b5b547c1d2c82c7380abf",
+          "before_sha256": "d8d2f3365f19bff64d2880e1f2c7fd98d3736de1263982de61b2c988d637bc6f",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "66bdede2611ab46a499c0c99377cecab63d6465ebae43c278495be330b656d30",
+          "before_sha256": "03919c8ddb791e178a6be9e982ce31430de2193447ecbdf57c02b23ef001a440",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "8aeace91c33421af4660d44af9b8d6694bbfd9b319a6308fcadeba69b05e31da",
+          "before_sha256": "d3b9d14c572d87ffcd4562c3f073b94b795ea3a73a7a33adad43ab6914d9cd64",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "a9080a01432079b9e81ff53056da7c262089e35bd2c1b4a62a7f357f1fd4d629",
+          "before_sha256": "cd9e5650a8be3604b4cb00b8a407f93ac78c0810ea9f522bce6b8b15a14c6195",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "41be700d175a7a41c0c5c73d0506ba1a35c75f6f73c531f08d2f6e888f81a646",
+          "before_sha256": "9b28e51c7b287e68c320ec37ac343ba08b83b13287e08bfe575ab1bf56332615",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "a1f444b88a862361d35a4391c6f740d3275b5a4e50e5308d64db86e308881037",
+          "before_sha256": "a65d5c68db89b11356dad40f3342c3bef88c1f0caa65c40fc13505f2bc75669b",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "ec176e9b562e5d22d3f315a211f760b70fa0712f45e3733766e04fc3c071a80d",
+          "before_sha256": null,
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "51e835661cb6b997f1f506da43186c0eb8f123e32ca35bb3d2138319e3507b70",
+          "before_sha256": "471517ae54169b99c407f7409cc05bf6ae9a945f871043ef9d0657403f1a9879",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "82dc4b6a2c33f432b99c96e9d16b4f4b4cc333b497017360995c17e23a3f926e",
+          "before_sha256": "aa19e1b058bcd992d6e97f3c68288f31705c63ea49adc304ccc3cf76db229ff9",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "5f22b6a17111e9a1dfc51f3151c849b694523626c023061b1a31de47e8563e68",
+          "before_sha256": "7d9cc25c4dd1e17db919d21c5a583494a90345091c76e0388f2bc47f6a41fd90",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "41844f4be6283f6a78248657327724eec7b52cad0cba93b6dcae87fcd44d3c36",
+          "before_sha256": "1b0998728513b111291a0bc4d96b1ed9f1b010b0e69386b33a7999d2382a8237",
+          "id": "WORLD.owned"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "e1ebff4123f4253fe4ad0be7ee6e04905a69d67d9ecc01596b8219e8c16cec87",
+          "before_sha256": "49a35666946c95c7d1aa4375055738a3c532fbd06a5d5206bb3d77edbf184e78",
+          "path": "apps/world-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "199cdec7ee7490823ba29a2936bdc581f90f3d3188fa90e745069483f4d0cbb4",
+          "before_sha256": "2f6bed3c7cf8b52d3e2badd607208be47fd6f300efe9c8bcaf70a3f86c368282",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "6ca537fa39a92f738e7da29704dc2176de855a7f556eb916776156293d2f09b2",
+          "before_sha256": "8f7b0c6cbb06b22a173970a4204eba860b9de0d9e35f874a6a04d3a71f5dd355",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "79e50c5326fcd9175a5f2187ea4e2bd3f994dc4dfeb45dfe179ac104524349c8",
+          "before_sha256": "fd36bf86195f89f7bf53f7d76b1b8d36b02767c3fa044370bcbe76ea65507402",
+          "path": "apps/world-scene/movement_controls.cpp"
+        },
+        {
+          "after_sha256": "a8bf3565f9250b618ae6044ddb9d0d6828d69ca048d07c9f833cb6bd6f40b7e5",
+          "before_sha256": null,
+          "path": "apps/world-scene/playback.cpp"
+        },
+        {
+          "after_sha256": "4c7d9b85fdddbe2c95178056cb779084b88759ca6e226741616f15033c4efdd3",
+          "before_sha256": null,
+          "path": "apps/world-scene/playback.hpp"
+        },
+        {
+          "after_sha256": "554b9f6442b50174480239daf76909a6400a797d183d0acfdf0bc4b06ed5ec63",
+          "before_sha256": null,
+          "path": "apps/world-scene/playback_controls.cpp"
+        },
+        {
+          "after_sha256": "596ae4fb58ba5e1c6b0c78490fa26d65694317f94a10517ef67ed7944f7bc85d",
+          "before_sha256": null,
+          "path": "apps/world-scene/playback_controls.hpp"
+        },
+        {
+          "after_sha256": "3fb4faaa5f5c749b08d58c80f0d33fcb039c2f27a53cb8684e0bdd6b8e986e4f",
+          "before_sha256": "03746de8ebd157bcf5f3c9fa9ad91d8c16232a11f35d94e7fb3898e90d8fd756",
+          "path": "apps/world-scene/scene_canvas.cpp"
+        },
+        {
+          "after_sha256": "44b579b593efc98663eb3c1ca4fe169af88ddb2ef4eb6248dea29cd1b8fee326",
+          "before_sha256": "f435b02dba909970d6b94571393437eba838feadaddfa9cf51a35c02989c9fa4",
+          "path": "game/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "9a4bad770c216f4b1c1500bb499cca0cc10aa0ee9e2efbc1be871a9be6da5c84",
+          "before_sha256": "e571201da002cbeaa5190ba690afb9b111aef871dc657218da15022300e6d927",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "9f7374fffc7a479ee16d43e43edb8f2a9b5837bc4c57912096f7885a1245cbb8",
+          "before_sha256": null,
+          "path": "game/simulation/tick_clock.cpp"
+        },
+        {
+          "after_sha256": "74fb27cea09d92bb99b981bbdf279b3a8a48aa565a1d5ce8a40ad96d2a0fac42",
+          "before_sha256": null,
+          "path": "game/simulation/tick_clock.hpp"
+        },
+        {
+          "after_sha256": "be8bda11938204c4083ee0d84f565c76a8def985202b9364d510d2f1b8a97c46",
+          "before_sha256": "341e3034c9abd6d46aafbca8e7bc0fa09c0b4911c1175ba3b5df39a1399e87f6",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9c7266bd2d807222ef233c03cecc67d4c419a4fa2be1f0af77aa3e7bc3ece95f",
+          "before_sha256": "1574896a30ed2637e656bf0f7521233a1700f4690f6f543ce668d5e1b8f48f9e",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "8e8d66df335552f332657ecabe5060d788f9c55f296aba97d3ee27e83ac7af33",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-playback.json"
+        },
+        {
+          "after_sha256": "605837f449df07777e1ad2f71124243db20b9c81c5acbd6f86de2ab911d22217",
+          "before_sha256": "ddf313aa32a6a41af2a88e289e4c09b6a5023fc286c9ad6c77da100643c91e7a",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "aa6d00ab76f86f90466c528fe4892f0b9a4063cfae9e67ecb148262de711ed3e",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-playback-history-extension.json"
+        },
+        {
+          "after_sha256": "e520c8d5d88ac76bd6c79478e67e65312ea5d8d7d1cde252ce5d87839d2eb9a0",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-playback-history-review.json"
+        },
+        {
+          "after_sha256": "c1a4a388bfd5eb77626160dea7ef6a8e049ff274814950fa922c3f694f99a46f",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-playback.json"
+        },
+        {
+          "after_sha256": "529aa15e9f15bdb906160afa45841b0f101c40c42935f57a9c32f906373db3ea",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-playback.md"
+        },
+        {
+          "after_sha256": "fdfe843ed63fd9b1a298b89c5f7a4da9f17813535f5c2f86f5d967e817c59958",
+          "before_sha256": "a3ea343da41c76a144c987da0b1a965ac2b27875094148fc24591ee37d8b46bc",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "5144e12ad1873801b4b073306608905fe43096b87cb1a987fb4693c969b9e973",
+          "before_sha256": null,
+          "path": "tests/world-playback-test.cpp"
+        },
+        {
+          "after_sha256": "e4f1290d67afc27f2d258497d5bfc614f463175b66ffcfb2b3d3fd01dce627b6",
+          "before_sha256": null,
+          "path": "tools/test-scene-playback.py"
+        }
+      ],
+      "id": "NS16.scene-playback-exact-staged",
+      "pending_gaps": [
+        "behaviors_without_comparison:d3c205ddcd822674de263b5757cf127bc753c2ddc99028d5543e440fa1749366",
+        "stale_evidence:2652627a3e2356fd5465d2b3d19580009636d7cc6482ee0170d5b1dd1554253e",
+        "stale_evidence:76a5d7ff34b36d25629b0fba51672601594ed0a43d505e6c236a0d3b50a57810",
+        "stale_evidence:7df299e3332407efaa83f2973963c36ea057969fc5897cd023ce67f06c2d2508",
+        "stale_evidence:b6afcfecf7390fbcf269a6d5b42a81f10be3158c6b9b347828647fd18e64b1b6",
+        "stale_evidence:d86ca172f3b3667eca4cb9b3dab3916944656aa84e9a4424a66fba68577db469",
+        "stale_evidence:f4978e4ab7e6376e4a872e03969263abf04fc50298d9f6b062783908357e5c78"
+      ],
+      "reason": "Review Qt-free 100 ms admission, four-tick cap, quotient/remainder overflow safety, dropped excess whole intervals, paused no-op, fresh resume anchor, idempotent Play and backwards-time refusal before mutation. Review Qt timer/elapsed orchestration without widget/world ownership, sequential host tick callbacks, single refresh per batch, paused Step, fault pause with per-tick transaction boundaries and no automatic retry, guarded reentrancy and bounded callback notification errors. Review semantic Play/Pause/Step buttons and enabled states, host status/render integration, playback-aware movement tooltips, and Save pause before modal file picker with no implicit resume. Simulation clock/selection remain outside checkpoints; ordered admitted ticks retain deterministic state. Review new virtual-time oracle, production timer/button tests, exact continuation, evidence/docs/census and independent original pause limitations. Exact committed history 3c43d10..bfe8b38 has matching file/behavior contract receipts; committed peer effects work is retained while pending other workstreams are excluded.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh NS16 evidence validates only native playback admission/controls/orchestration with synthetic navigation. Six changed/new historical stale-evidence identities and the absent original comparison gap are explicitly retained with historical hashes/statuses. Broad regression success does not refresh old recovered equivalence records or promote any existing contract. Installed whole-window interaction/modal-save execution, original pause/cadence/live scheduling, continuous original-scene comparison, group/faction/commander gameplay and live replacement remain pending. MV.pause-clock remains independently partial without implementation or comparison.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS16.scene-playback-recorded",
+      "reason": "Promote only native preview playback after independent time admission, production semantic buttons and actual timer dispatch, pause-preserved pending stop, paused Step, same-admitted-tick determinism and exact restart. Main-window wiring/modal Save pause are source-reviewed and compiled, separately from installed whole-window/original timing equivalence.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "ec176e9b562e5d22d3f315a211f760b70fa0712f45e3733766e04fc3c071a80d",
+          "before_sha256": null,
+          "id": "NP.scene-playback"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh normal and ASan/UBSan reports each pass 10000 per-millisecond-reference virtual-time comparisons, cap/drop/remainder/monotonic/max-width checks, production Qt button dispatch and timer callbacks with fake and real elapsed sources, pause-preserved pending orders/selection, disabled running Step, fresh resume intervals, bounded catch-up, partial-success fault pause, reentrancy and notification refusal. Each passes one byte-exact fresh-process pending-stop checkpoint continuation, matching explicit admitted steps. Full normal suite passes 108 CTests; final frontend sources additionally pass eight focused suites per normal/sanitizer build. Original manifest checks before/after verify all 2927 inputs. Report source fingerprints match staged code and tests. Original pause/cadence, whole installed-window and live equivalence are not asserted.",
+        "evidence": [
+          "NS16.scene-playback"
+        ]
+      }
     }
   ]
 }

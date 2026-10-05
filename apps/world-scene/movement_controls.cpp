@@ -28,7 +28,7 @@ MovementControls::MovementControls(QWidget* parent):QWidget(parent) {
     layout->addRow("Target cell",coordinates);move_=new QPushButton("Queue move",this);move_->setObjectName("queueMove");layout->addRow(move_);
     stop_=new QPushButton("Queue stop",this);stop_->setObjectName("queueStop");layout->addRow(stop_);
     cancel_=new QPushButton("Cancel queued moves",this);cancel_->setObjectName("cancelQueuedMoves");layout->addRow(cancel_);
-    stop_->setToolTip("Cancel the selected creature route on the next Step. Later queued moves can restart it.");
+    stop_->setToolTip("Cancel the selected creature route on the next simulation tick. Later queued moves can restart it.");
     cancel_->setToolTip("Remove selected pending moves now; active movement and queued stops remain.");
     connect(stop_,&QPushButton::clicked,this,[this] {if(onStop) onStop();});
     connect(cancel_,&QPushButton::clicked,this,[this] {if(onCancelQueuedMoves) onCancelQueuedMoves();});

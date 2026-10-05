@@ -197,3 +197,12 @@ remain. Commands apply in order, so a later move can restart after a stop.
 Stopping fine motion resets to the last committed logical cell. Save preserves
 pending stops using native checkpoint v7. These are native diagnostic policies;
 see [contract](../../research/runtime/native-stop-orders.md).
+
+## Play/Pause (NS16)
+
+Play runs the native preview at 10 ticks/second. Pause preserves world state and
+pending orders; Step advances once while paused. Resume starts a fresh interval.
+Catch-up is limited to four ticks per wake, discarding excess elapsed intervals.
+Save pauses before opening the file picker and leaves playback paused. This is
+native diagnostic cadence; original pause/timing equivalence is outstanding.
+See [contract](../../research/runtime/native-scene-playback.md).

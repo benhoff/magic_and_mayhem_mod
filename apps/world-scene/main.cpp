@@ -1,4 +1,6 @@
 #include "scene.hpp"
+#include "playback.hpp"
+#include "playback_controls.hpp"
 #include "picking.hpp"
 #include "scene_canvas.hpp"
 #include "movement_controls.hpp"
@@ -149,9 +151,10 @@ int main(int argc,char** argv) try {
     QWidget window;window.setWindowTitle("Native movement scene");auto* layout=new QVBoxLayout(&window);
     auto* image=new mnm::scene::SceneCanvas;std::vector<mnm::scene::Draw> displayedQueue;auto* status=new QLabel;layout->addWidget(image);layout->addWidget(status);
     mnm::scene::Orders orders;auto* controls=new mnm::scene::MovementControls;layout->addWidget(controls);
-    layout->addWidget(new QLabel("Left-click a creature, then right-click terrain to queue a move. Step applies it. Target-cell fields also work."));
+    layout->addWidget(new QLabel("Left-click a creature, then right-click terrain to queue a move. Play runs at 10 ticks/second; Step works while paused. Target-cell fields also work."));
     auto* actions=new QHBoxLayout;layout->addLayout(actions);
-    auto* step=new QPushButton("Step");auto* save=new QPushButton("Save checkpoint");actions->addWidget(step);actions->addWidget(save);
+    auto* playbackControls=new mnm::scene::PlaybackControls;auto* save=new QPushButton("Save checkpoint");actions->addWidget(playbackControls);actions->addWidget(save);
+    mnm::scene::Playback playback([&] {session.step();});
     const auto refresh=[&] {
         orders.synchronize(session.world().state());const auto frame=draw();auto pixels=QPixmap::fromImage(frame.image);
         if(orders.selected()) {
@@ -162,18 +165,18 @@ int main(int argc,char** argv) try {
             }
         }
         displayedQueue=frame.queue;image->present(pixels);controls->updateChoices(mnm::scene::creatureChoices(session.world().state()),orders.selected(),navigation->binding().dimensions);
-        status->setText(QString("Tick %1 · terrain scene · view %2").arg(session.world().state().tick).arg(camera.view));
+        status->setText(QString("Tick %1 · terrain scene · view %2 · %3").arg(session.world().state().tick).arg(camera.view).arg(playback.playing()?"Playing":"Paused"));
     };
     controls->onSelect=[&](std::optional<mnm::game::Handle> actor) {
         try {orders.select(session.world().state(),actor);refresh();}
         catch(const std::exception& e) {refresh();status->setText(e.what());}
     };
     controls->onMove=[&](mnm::game::Point target) {
-        try {orders.move(session,target);refresh();status->setText("Move order queued. Step to apply it.");}
+        try {orders.move(session,target);refresh();status->setText("Move order queued. Play or Step to apply it.");}
         catch(const std::exception& e) {refresh();status->setText(e.what());}
     };
     controls->onStop=[&] {
-        try {orders.stop(session);refresh();status->setText("Stop queued. Step to apply it.");}
+        try {orders.stop(session);refresh();status->setText("Stop queued. Play or Step to apply it.");}
         catch(const std::exception& e) {refresh();status->setText(e.what());}
     };
     controls->onCancelQueuedMoves=[&] {
@@ -193,8 +196,14 @@ int main(int argc,char** argv) try {
             controls->setTarget(*cell);controls->onMove(*cell);
         } catch(const std::exception& e) {refresh();status->setText(e.what());}
     };
-    QObject::connect(step,&QPushButton::clicked,[&] {try {session.step();refresh();} catch(const std::exception& e) {QMessageBox::critical(&window,"Cannot step",e.what());}});
+    playback.onRefresh=refresh;
+    playback.onPlaying=[&](bool playing) {playbackControls->updatePlaying(playing);refresh();};
+    playback.onError=[&](const std::string& message) {status->setText(QString("Paused: %1").arg(QString::fromStdString(message)));};
+    playbackControls->onPlay=[&] {playback.play();};
+    playbackControls->onPause=[&] {playback.pause();};
+    playbackControls->onStep=[&] {playback.step();};
     QObject::connect(save,&QPushButton::clicked,[&] {
+        playback.pause();
         const auto path=QFileDialog::getSaveFileName(&window,"New checkpoint",{},"Native checkpoint (*.mnms)");if(path.isEmpty()) return;
         try {const auto result=mnm::game::writeSnapshot(path.toStdString(),session.world().state());if(!result.durable) throw std::runtime_error(result.detail);}
         catch(const std::exception& e) {QMessageBox::critical(&window,"Cannot save",e.what());}

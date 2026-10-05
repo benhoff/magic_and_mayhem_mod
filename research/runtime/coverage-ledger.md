@@ -703,3 +703,18 @@ Evidence: `NS15.stop-orders`, [contract](native-stop-orders.md). Historical sour
 fingerprints are preserved; older shared-source claims may remain stale. Original
 stop/input mapping, installed whole-window interaction, group/faction/playback
 policies, commander/summoned gameplay and live replacement remain outstanding.
+
+## NS16 — native fixed-rate Play/Pause
+
+`NP.scene-playback` adds Qt-free 10 Hz tick admission, four-tick bounded catch-up
+with discarded excess elapsed intervals, fresh resume intervals, paused Step and
+semantic Qt scene controls/orchestration. World/pending orders and transient
+selection survive pause; Save pauses before modal interaction. Playback timing
+is not a checkpoint field and loaded application sessions start paused. Evidence
+`NS16.scene-playback` validates owned synthetic virtual-time admission, production
+buttons and timer dispatch, deterministic admitted-tick/checkpoint continuation,
+error pause and reentrancy; native regressions are separate from original comparison.
+[Contract](native-scene-playback.md) retains original pause/cadence, whole installed
+window interaction, group/faction/commander gameplay and live replacement gaps.
+`MV.pause-clock` stays independently partial without implementation/comparison.
+Historical shared-source evidence keeps its fingerprints and can remain stale.

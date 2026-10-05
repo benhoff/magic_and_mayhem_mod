@@ -1,0 +1,82 @@
+{
+  "milestone": "NS16",
+  "all_match": true,
+  "live_validated": false,
+  "reports": [
+    "working/tests/scene-playback/normal-accepted/report.json",
+    "working/tests/scene-playback/sanitized-accepted/report.json"
+  ],
+  "report_sha256": {
+    "working/tests/scene-playback/normal-accepted/report.json": "c809c56d045402ad5e9453d3462729ba059f5a6c86726adad0c5d9e58b408728",
+    "working/tests/scene-playback/sanitized-accepted/report.json": "eaf17b3961f2937d386656d9acdb3bf6b3826baf1ffdcdd5d48846294080a222"
+  },
+  "scope": "Native 10 Hz bounded clock admission, production Qt playback controls/orchestration, pause-preserved orders, paused Step, fresh resume interval, fault pause and deterministic same-tick checkpoint continuation. Original pause/cadence, installed whole-window and live equivalence excluded.",
+  "source_sha256": {
+    "apps/world-scene/CMakeLists.txt": "e1ebff4123f4253fe4ad0be7ee6e04905a69d67d9ecc01596b8219e8c16cec87",
+    "apps/world-scene/main.cpp": "6ca537fa39a92f738e7da29704dc2176de855a7f556eb916776156293d2f09b2",
+    "apps/world-scene/map_navigation.cpp": "20eecea7aca4ad16b08093f6dd1cb2f206d14acc929ddad76064cb5910613de5",
+    "apps/world-scene/map_navigation.hpp": "e40b2a8021a7841c03abe2240b12e19c58525faaec776e4f76fa3112c939a4eb",
+    "apps/world-scene/map_navigation_main.cpp": "4b0cf8ded5f10483e677f91e2951e52a09380bc1b818ab3765f05d765e1f32b3",
+    "apps/world-scene/movement_controls.cpp": "79e50c5326fcd9175a5f2187ea4e2bd3f994dc4dfeb45dfe179ac104524349c8",
+    "apps/world-scene/movement_controls.hpp": "a401433ecc002623afeb1a46f16781b86b6c2615f1849f55ba39a763493500e7",
+    "apps/world-scene/orders.cpp": "46f64e2af5f7defc2cc93852738fcb04e48720d72187c448f74ad1b134805817",
+    "apps/world-scene/orders.hpp": "845ac3543b04b196801d44d89322b1359ab66b38c55fd421f7c89f70957c4690",
+    "apps/world-scene/picking.cpp": "6196b219439d8fbff7d64c0cece22a06d4b1da663d0d2abbcafa48ffc9af7068",
+    "apps/world-scene/picking.hpp": "485535566e1a7537d55be3724f7d0b73e7743b3a75323506f1394f3711100175",
+    "apps/world-scene/playback.cpp": "a8bf3565f9250b618ae6044ddb9d0d6828d69ca048d07c9f833cb6bd6f40b7e5",
+    "apps/world-scene/playback.hpp": "4c7d9b85fdddbe2c95178056cb779084b88759ca6e226741616f15033c4efdd3",
+    "apps/world-scene/playback_controls.cpp": "554b9f6442b50174480239daf76909a6400a797d183d0acfdf0bc4b06ed5ec63",
+    "apps/world-scene/playback_controls.hpp": "596ae4fb58ba5e1c6b0c78490fa26d65694317f94a10517ef67ed7944f7bc85d",
+    "apps/world-scene/scene.cpp": "7f5591f3b135d005c480e867e7872e9610c7354052f0126ba8b84f15e38f7c3f",
+    "apps/world-scene/scene.hpp": "601736b6fffc82e4bdecbeaed0f80d3f361ce5df65869abd0b32a36184a15ddd",
+    "apps/world-scene/scene_canvas.cpp": "3fb4faaa5f5c749b08d58c80f0d33fcb039c2f27a53cb8684e0bdd6b8e986e4f",
+    "apps/world-scene/scene_canvas.hpp": "bb404f87b7bbcfd67561aa33fd20ac1ceccaf5b3b6487468a9980ca939b6477e",
+    "game/CMakeLists.txt": "44b579b593efc98663eb3c1ca4fe169af88ddb2ef4eb6248dea29cd1b8fee326",
+    "game/persistence/snapshot.cpp": "63a5da14c55d1255fe53ad35d04999e9ca68dda2d597bd559f4415212594f9cb",
+    "game/persistence/snapshot.hpp": "900563f38519697e2541ef0bc8d1b797ea8464c8d18a6e6571f25505ea6857e5",
+    "game/persistence/store_posix.cpp": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df",
+    "game/simulation/movement.cpp": "e85f5c509b4b132eb4019188b73a0d11301957731c981dcd9b035e13b6dcfd78",
+    "game/simulation/movement.hpp": "d99af9c7f7acfdf52f6b09ee10a717479475af962768ec4a7d8458bf1fe82cc4",
+    "game/simulation/occupancy.cpp": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+    "game/simulation/occupancy.hpp": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+    "game/simulation/tick_clock.cpp": "9f7374fffc7a479ee16d43e43edb8f2a9b5837bc4c57912096f7885a1245cbb8",
+    "game/simulation/tick_clock.hpp": "74fb27cea09d92bb99b981bbdf279b3a8a48aa565a1d5ce8a40ad96d2a0fac42",
+    "game/simulation/world.cpp": "019458d31ce835a1ef7b17d2bd0b6431f95beb7cbbeff16b9d7f0e1f35037251",
+    "game/simulation/world.hpp": "51564429ada9da7aca99076e58bf4cd41c5ab300ff202e3e6a8f5f31c62c77f3",
+    "tests/world-playback-test.cpp": "5144e12ad1873801b4b073306608905fe43096b87cb1a987fb4693c969b9e973",
+    "tools/test-scene-playback.py": "e4f1290d67afc27f2d258497d5bfc614f463175b66ffcfb2b3d3fd01dce627b6"
+  },
+  "native_playback": {
+    "clock_oracle_comparisons": 10000,
+    "pause_preserves_pending": true,
+    "paused_step_only": true,
+    "bounded_catch_up": true,
+    "fresh_resume_interval": true,
+    "same_tick_checkpoint_bytes": true,
+    "failure_pauses": true,
+    "reentrancy_guard": true,
+    "qt_timer_dispatch": true,
+    "real_elapsed_source": true,
+    "fresh_process_continuations": 1
+  },
+  "test_counts": {
+    "normal": 108,
+    "normal_final_selected": 8,
+    "sanitized_selected": 8
+  },
+  "test_log_sha256": {
+    "working/tests/scene-playback/ns16-normal-accepted-tests.log": "9e6843a68776ff6d141d34c62210013801785a039284ad71d8e8341e7d1a1fe4",
+    "working/tests/scene-playback/ns16-sanitized-accepted-tests.log": "3bc8c115bf8ae7d458ed1c5388905dc7df31612d32e187961de126a7d5f8e69d",
+    "working/tests/scene-playback/ns16-normal-final-tests.log": "f23cad362145abf3348ecadb3342094ef25188d9dc8f46de1d9a4138dbec3ff2",
+    "working/tests/scene-playback/ns16-sanitized-final-tests.log": "063acb073d3c5ccfa95afb751c0167925844dbf492168cf11e9616426c232b8b",
+    "working/tests/scene-playback/ns16-manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/scene-playback/ns16-manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+  },
+  "remaining": [
+    "Whole installed main-window playback interaction",
+    "Original pause/cadence equivalence",
+    "Group/faction policies",
+    "Commander/summoned creature gameplay",
+    "Live integration/replacement"
+  ]
+}
