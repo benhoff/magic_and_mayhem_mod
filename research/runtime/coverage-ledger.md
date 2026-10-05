@@ -579,3 +579,20 @@ This advances `NP.multi-movement` only. Original scheduler/occupancy production,
 fine-space collision, deadlock resolution, mixed profiles, multiple-creature Qt
 presentation and live replacement remain open. Prior NS10 original comparisons
 retain their hashes and scope; older shared-source native evidence may be stale.
+
+### Multiple native creature presentation (NS12; reviewed 2026-10-05)
+
+The native diagnostic scene now presents up to 32 same-profile terrain-motion
+creatures from NS11 checkpoints, reading each actor's own saved ANI display and
+fine position. Draws retain slot/generation identity through mixed terrain depth
+sorting and export. Single/stationary/multi policy fingerprints are resolved at
+admission; ordinary-map immutable geometry uses its separate raw byte identity.
+
+Normal and ASan/UBSan runs each pass 144 full CPU/OpenGL pixel comparisons and
+twelve exact fresh-process JSON/RGB565/PNG/checkpoint continuations, covering two
+actors in four views over terrace, slope and vertical fixtures. Installed sprite
+reads pass original-manifest verification before and after. [Scope and accepted
+evidence](native-multi-world-scene.md). Original multi-entity admission/rendering
+equivalence, mixed asset profiles, attachments, shaded/light/visibility integration,
+automatic play and live replacement remain open. Historical shared-source evidence
+keeps its hashes and may be stale; no recovered original status is promoted.

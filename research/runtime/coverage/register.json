@@ -974,13 +974,14 @@
       "subsystem": "movement",
       "kind": "native_policy",
       "title": "World movement connected to terrain/sprite presentation",
-      "scope": "One ordinary terrain-motion creature with owned checkpoint/ANI display, diagnostic cell-centred projection, matched ordinary installed-map geometry/navigation and recovered mixed depth queue. Camera/action mapping, full map/entity admission, shaded/visibility/attachment integration and live replacement excluded.",
+      "scope": "One ordinary terrain-motion creature with owned checkpoint/ANI display, diagnostic cell-centred projection, matched ordinary installed-map geometry/navigation and recovered mixed depth queue. Camera/action mapping, full map/entity admission, shaded/visibility/attachment integration and live replacement excluded. NS12 extends this to bounded same-profile native multi-mover presentation, independent owned displays, identity-bearing mixed depth queues and policy-aware checkpoint admission; original multi-actor scene/live equivalence remains excluded.",
       "original": [],
       "documents": [
         "research/runtime/native-world-scene.md",
         "research/runtime/native-map-navigation.md",
         "apps/world-scene/README.md",
-        "research/runtime/native-creature-profile.md"
+        "research/runtime/native-creature-profile.md",
+        "research/runtime/native-multi-world-scene.md"
       ],
       "implementation": [
         "apps/world-scene/scene.cpp",
@@ -990,12 +991,14 @@
       "tests": [
         "tests/world-scene-test.cpp",
         "tools/test-map-navigation.py",
-        "tools/test-creature-navigation.py"
+        "tools/test-creature-navigation.py",
+        "tools/test-multi-world-scene.py"
       ],
       "evidence": [
         "NS08.native",
         "NS08.installed-ani",
-        "NS09.native"
+        "NS09.native",
+        "NS12.multi-scene"
       ],
       "status": {
         "understanding": "scoped",
@@ -4506,12 +4509,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native world movement presentation",
-      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. NS12 extends this to bounded same-profile native multi-mover presentation, independent owned displays, identity-bearing mixed depth queues and policy-aware checkpoint admission; original multi-actor scene/live equivalence remains excluded.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "apps/world-scene/README.md",
-        "research/runtime/native-world-scene.md"
+        "research/runtime/native-world-scene.md",
+        "research/runtime/native-multi-world-scene.md"
       ],
       "implementation": [
         "apps/world-scene/main.cpp",
@@ -4520,11 +4524,13 @@
       ],
       "tests": [
         "tests/world-scene-test.cpp",
-        "tools/test-world-scene.py"
+        "tools/test-world-scene.py",
+        "tools/test-multi-world-scene.py"
       ],
       "evidence": [
         "REVIEW.NR.world_scene",
-        "NATIVE.native-world-scene"
+        "NATIVE.native-world-scene",
+        "NS12.multi-scene"
       ],
       "status": {
         "understanding": "partial",
@@ -17476,6 +17482,48 @@
           "equals": 86639360
         }
       ]
+    },
+    {
+      "id": "NS12.multi-scene",
+      "kind": "native_integration",
+      "scope": "Two same-profile native terrain-motion actors; four diagnostic views, synthetic owned ANI and terrain fixtures with installed SPR pixels; actor identity/independent display and exact split/whole presentation/checkpoints. No captured original multi-actor scene, installed multi-map world or live equivalence.",
+      "record": "research/runtime/native-multi-world-scene.json",
+      "sha256": "008c229c9ad74d3a9fc2d0dee5b4e94112e1be01c5f9fe5c74ded4541b620052",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_presentation/pixel_comparisons_per_build",
+          "equals": 144
+        },
+        {
+          "pointer": "/native_presentation/fresh_process_continuations_per_build",
+          "equals": 12
+        },
+        {
+          "pointer": "/native_presentation/two_visible_frames_per_build",
+          "equals": 132
+        },
+        {
+          "pointer": "/native_presentation/distinct_actor_display_frames_per_build",
+          "equals": 44
+        },
+        {
+          "pointer": "/native_presentation/unsigned_generation_export",
+          "equals": true
+        },
+        {
+          "pointer": "/native_presentation/normal_ctests",
+          "equals": 103
+        },
+        {
+          "pointer": "/native_presentation/sanitized_selected_ctests",
+          "equals": 6
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -19378,6 +19426,22 @@
         "tests/effect-transition-test.cpp",
         "tools/test-effect-transition.py"
       ]
+    },
+    {
+      "id": "world.multi-scene",
+      "level": "preview",
+      "scope": "Two same-profile native terrain-motion actors; four diagnostic views, synthetic owned ANI and terrain fixtures with installed SPR pixels; actor identity/independent display and exact split/whole presentation/checkpoints. No captured original multi-actor scene, installed multi-map world or live equivalence.",
+      "behaviors": [
+        "NP.presentation",
+        "NR.world_scene"
+      ],
+      "evidence": [
+        "NS12.multi-scene"
+      ],
+      "tests": [
+        "tests/world-scene-test.cpp",
+        "tools/test-multi-world-scene.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -19530,7 +19594,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-membership-disabled-source-index.json",
-    "sha256": "fe5962ef3e2641e269e494af5bf8980ac9c612d0216b6082b0dde6640d3f63a6"
+    "path": "research/runtime/coverage/source-index-multi-world-scene.json",
+    "sha256": "27d37eb5be44f97131eaf34c22a8bf30feadf2d6df5ccac0acef267cad421526"
   }
 }

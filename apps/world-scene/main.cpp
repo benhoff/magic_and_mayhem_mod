@@ -49,6 +49,9 @@ int main(int argc,char** argv) try {
     if(auto* error=std::get_if<mnm::assets::AnimationError>(&decoded)) throw std::runtime_error(error->detail);
     auto animation=std::get<mnm::assets::Animation>(std::move(decoded));
     auto navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation);
+    const auto geometryFingerprint=navigation->binding().fingerprint;
+    if(!(navigation->binding()==*state.navigation)) navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation,true);
+    if(!(navigation->binding()==*state.navigation)) navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation,true,true);
     mnm::game::World world(0);world.restore(std::move(state));
     mnm::game::MovementSession session(std::move(world),navigation);
     auto configured=mnm::assets::AssetStore::create(p.value("root").toStdString());
@@ -81,7 +84,7 @@ int main(int argc,char** argv) try {
         if(auto* error=std::get_if<mnm::assets::PersistenceError>(&loaded))throw std::runtime_error(error->detail);
         const auto map=std::get<mnm::assets::MapAsset>(std::move(loaded));
         const auto frozen=readLocal(QString::fromStdString(session.world().state().map),64*1024*1024);
-        mnm::scene::validateMapGeometry(map,catalog,frozen,navigation->binding().fingerprint);
+        mnm::scene::validateMapGeometry(map,catalog,frozen,geometryFingerprint);
         camera.origin={int(map.width*16),int(map.height*16),0};
         for(unsigned z=0;z<map.layers;++z)for(unsigned y=0;y<map.height;++y)for(unsigned x=0;x<map.width;++x) {
             const auto& c=map.cell(x,y,z);
@@ -116,8 +119,16 @@ int main(int argc,char** argv) try {
             QByteArray png;QBuffer buffer(&png);buffer.open(QIODevice::WriteOnly);
             if(!frame.image.save(&buffer,"PNG")) throw std::runtime_error("Cannot encode PNG");
             writeNew(prefix+".png",png);
-            QJsonArray queue;for(const auto& d:frame.queue) queue.append(QJsonObject{{"creature",d.creature},{"frame",qint64(d.frame)},{"x",d.x},{"y",d.y},{"key",d.key}});
-            QJsonArray actors;for(const auto& slot:session.world().state().slots) if(slot.entity) {const auto fine=session.finePosition(*slot.entity);actors.append(QJsonObject{{"fine",QJsonArray{fine.x,fine.y,fine.z}}});}
+            QJsonArray queue;for(const auto& d:frame.queue) {
+                QJsonObject item{{"creature",d.creature},{"frame",qint64(d.frame)},{"x",d.x},{"y",d.y},{"key",d.key}};
+                if(d.actor) {item.insert("slot",int(d.actor->slot));item.insert("generation",qint64(d.actor->generation));}
+                queue.append(item);
+            }
+            QJsonArray actors;for(unsigned slotId=0;slotId<session.world().state().slots.size();++slotId) {
+                const auto& slot=session.world().state().slots[slotId];
+                if(!slot.entity || slot.entity->cleaned || slot.entity->family!=mnm::game::Family::creature || !slot.entity->motion) continue;
+                const auto fine=session.finePosition(*slot.entity);actors.append(QJsonObject{{"slot",int(slotId)},{"generation",qint64(slot.generation)},{"fine",QJsonArray{fine.x,fine.y,fine.z}}});
+            }
             report.append(QJsonObject{{"tick",qint64(session.world().state().tick)},{"queue",queue},{"actors",actors}});
             if(i+1<frames) session.step();
         }

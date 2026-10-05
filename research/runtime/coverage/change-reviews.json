@@ -4654,6 +4654,382 @@
         "evidence": [],
         "reason": "Generated metadata only; no implementation or status promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "8fe3fc4527b0f807ab266092e626ab6bf909120ea8bf5b3d92133ec7463896eb",
+          "before_sha256": "2eebb8cb00236ccad7f530f144b679f87fda529e1ee3c518202e0d05bbfa3f41",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "64db420c59827b3589892460f16653fb3132cba72116683fa6f17b1fa34f4ad5",
+          "before_sha256": "1fdd3ef6b44e8b0051eb84c49799759e96a0f78fc5b189c2e058a24e6ec677e7",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "3f866206d87824abce7f67732f32467f6804bdcaa03ce10c8429b87bf0766ced",
+          "before_sha256": "8699fe7bb27ed95706cf9a861455cde217cadbd77ff9e2f0645bbf2675eb0eee",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "5c3f974266a4e5abc9dbaa91e35de346352cbcf672ec965f06d3c649c2ec4194",
+          "before_sha256": "e677f9c4500cf2c60c157d6ec0f5b820388962d6b88bd7ad1b037e0d26a6c9f1",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "43a94a4b8857d49b37f66432a9d4f24a687e58d9b3b6147c8f0971372211db1a",
+          "before_sha256": "1cb5d672a30945b4fa5530b0912e2d2616da9636388d9c4808c59a585fd9050a",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "7bec22825773ccd69a49f496930e89ef3f51c25add59978f42147100758ab9a4",
+          "before_sha256": "1d5817f1c3652d04ce1a2db26398ae71fb5bc92010747b850b53e6aa004f20a8",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "2dbfc30b4f384deb50f07c36956b93d3d775f60f19770020775b8b62612f4348",
+          "before_sha256": "20e2a664bb851ae2fe8d23875536a04d5f4fb663a1799ad5cb9275888667cfb4",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "e5dc26b775d36a039cfbb3b63206ccfc5e91a82f12962804944440990d6d5e05",
+          "before_sha256": "81112d35275b8395d09c1a928f3e7ab3ea4ea7b095ee3cbda32ad5056b6c6e8d",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "d547728c2835fd36999b180bc40a193b7b54a72dff35ff8dce6991da2a5881a4",
+          "before_sha256": "74f60ceced3ff6d10af9a1d6b5234eee31634e235000cea2a8b7edac0c5b9483",
+          "id": "WORLD.owned"
+        },
+        {
+          "after_sha256": "3a0d4c7856a5cb1ff32ffb5762826b6381338a7271910ef0bb84e21a3bfcdb06",
+          "before_sha256": "3170db2ee05d6b98f06fe53bf8f73f18dbec9d865de6dfcf7a2c54edcb337bbc",
+          "id": "WORLD.sandbox"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d1e3b0fc4841f0c13b1281dfdc5fcda0d97f1e0f45aca1bb5c040346ed600e43",
+          "before_sha256": "5af74c9ef3293a3f2f877317b90af3f0e39cbafc2916c62526c045c894326030",
+          "path": "apps/world-sandbox/main.cpp"
+        },
+        {
+          "after_sha256": "454b300288f669b07dce94c95364237009a2be7ca3381e64438b4786f535d62a",
+          "before_sha256": "c6f15d869363241fa5bcca3f277e7e3d13cae57745d97aa731933ad510df2c3b",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "67c0270359768ac915a19302becb89df2a6bae5b008c880d1e6c178db564a0a0",
+          "before_sha256": "1cf1829df5542482b72ab5e969f8619c8f957274c2ec972db6b009ae60bb4544",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "af1a60229a4d459f81d4f42f31db833b58819f835bfdb01ff8b59a5d467baa28",
+          "before_sha256": "2f794d060f6a10959cb667cbe8913935e0d7894863dc2e96fbd049ebf6ffa8e9",
+          "path": "apps/world-scene/scene.cpp"
+        },
+        {
+          "after_sha256": "e4b485295070758f8acdbaf7911c9db4b5f5557c75c16d5440388f5963865ccf",
+          "before_sha256": "bc158f1d5570dbb944773b1cbfba3327c15387c2243e700aa0b4d68f096ceada",
+          "path": "apps/world-scene/scene.hpp"
+        },
+        {
+          "after_sha256": "a641c4202b7481884e5e09022b014ed94177a2e84e8de60b170ea04076a3a5ec",
+          "before_sha256": "6001417e565170fcf346df423e018a48562c070c43df93f129b62e53622ceefb",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "f0d4c914e6cfb67f5a9cff59f8d62fe8a02cbfaae38192461784c871beb921f4",
+          "before_sha256": "aa71cce1dcd657121e15a6d5b43d4338d2ba823b46e409627f2cf0b0b446bfef",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "fcf27460581e74418b4ce3267da1e93be4fafdb39726a644490d12809f8d85a7",
+          "before_sha256": "abd5b5d90fbc0473060e1102509be059acb1fd2704fd95750b219955dd1f1fd4",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "27d37eb5be44f97131eaf34c22a8bf30feadf2d6df5ccac0acef267cad421526",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-multi-world-scene.json"
+        },
+        {
+          "after_sha256": "5695608bc87cd805aec387798a522a84147eee861ebc4389d9a5aaf1116af652",
+          "before_sha256": "392a094e7cdae292840923c7753bfa55ae071566b26dcc4da835a5a9b8703e27",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "2b17cdd7b583195b21ecbbe4d8dfd8167c1286846d9ff4716112ee3968a7afab",
+          "before_sha256": null,
+          "path": "research/runtime/native-multi-world-scene-history-review.json"
+        },
+        {
+          "after_sha256": "008c229c9ad74d3a9fc2d0dee5b4e94112e1be01c5f9fe5c74ded4541b620052",
+          "before_sha256": null,
+          "path": "research/runtime/native-multi-world-scene.json"
+        },
+        {
+          "after_sha256": "5911bd8845adbc5c5df4ca1123046a510aa92d4499592d1e08c947fcc8f9ef12",
+          "before_sha256": null,
+          "path": "research/runtime/native-multi-world-scene.md"
+        },
+        {
+          "after_sha256": "0364a3e254dfe42452286d73d1b1587108536072bd2fc83ad031aa206db38b18",
+          "before_sha256": "c2cdbcaf11170753824ed17a232d1ede7381bf85b25b5383f807440a648694cd",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "0ca92707df72ca8029d8a201220901630011f2f6589fbf474d2fc81e58abdd44",
+          "before_sha256": "aa7d3fb18048f80c3af6d8b110cc801a308f48effdf1af02d8bed13f7885913c",
+          "path": "tests/world-scene-test.cpp"
+        },
+        {
+          "after_sha256": "e8ef1ff58984f1a07499119f763b3ade5bb3e6db11fa9654228dcb88a3067c43",
+          "before_sha256": null,
+          "path": "tools/test-multi-world-scene.py"
+        }
+      ],
+      "id": "NS12.multi-scene-exact-staged",
+      "pending_gaps": [
+        "stale_evidence:06d0d2d73a176afa2c859efb6f848797043373c5fae70d0273a7f287e34db096",
+        "stale_evidence:19339e6631b6db1cf3bb6fc3c5a3b23945ae2a09caf887718c014ae5a116ce5d",
+        "stale_evidence:523248db62c49370ff886a16fa40a4510be12e6c3a9d8bd181b6283f6021206c",
+        "stale_evidence:54fc5e110ce5a7501db0d4ee244a94a11acf9b3e093d8281c7a6d8539980c132",
+        "stale_evidence:821ac9e793c8ad359f0abcb07010174baa19f84799d5447f824153fd627a8917",
+        "stale_evidence:91b4576adec6ddfd90dab16da9afd284681c5ed4c3144a60908663630fc8d3a1",
+        "stale_evidence:9488b89bbacfd2ec90b760ef0ce0161574213edaf916db8a7c51acb6bd16b623",
+        "stale_evidence:951c91a6f6f7626a96b6d68b3ec27fe2d72586334cc9b60a210dfb1c8b0ee60e",
+        "stale_evidence:999845524c02f52ca75237897d50465cf87206e9f6e666b562ba062fae3a1104",
+        "stale_evidence:99f227ec1e57adf83f48d33459892afac4251cc4b70b32a0510983c2b08a4bed",
+        "stale_evidence:9c207a1ad9177213db76f7cbae7d4970f7267ddab32ccd4011e9394d4e8d9638",
+        "stale_evidence:b6297e81b6e5014566b3a4040e2df7f08160dd48dd31896efa7ec40ab0045e93",
+        "stale_evidence:ca35766e588fda626c5fc8e6cba5db02320ccea879094992dbe2ac9a7338ce8e",
+        "stale_evidence:d306f3eb1517c2bcb2662f3bc1e18977a63611fff9200b0641ad47feb61b4edf",
+        "stale_evidence:e317931dc00dc693e32f271123f8ee45114689564a3d9080f5f197ffa58b0f82",
+        "stale_evidence:ecf01b68b4385dc8fe11d6541416fcaba74b436766ed321d9d123d166688800f",
+        "stale_evidence:f9ccdf22c801e017ac32347b36a57c29849dd6c6de582a1791cf39a8b5f1acbc",
+        "stale_evidence:fba7a6bb960a1289bf2c3a89ef49577111dfb7c37882e7dfa6c7bd9e18697b47"
+      ],
+      "reason": "Review bounded same-profile terrain-motion actor composition, independent owned current/completed ANI displays and fine positions, cleaned/stationary exclusion, slot/generation identity retained through mixed depth sorting and exports, unsigned JSON generation, increased bounded draw admission, and single/stationary/multi checkpoint fingerprint resolution. Ordinary-map geometry retains the separate raw immutable byte fingerprint. Review two-actor terrain/ANI fixture creation and new four-view CPU/OpenGL/identity/display/continuation runner. The isolated staged census excludes other workstreams pending code and preserves their committed changes. Exact committed-history parent/current file and contract receipts are accounted separately; no retrospective gate or validation claim.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh NS12 diagnostic presentation execution validates the supplied two same-profile actors and inputs only. Older source-linked scene, sandbox and multi-movement evidence retains its historical hashes and status with explicitly reviewed staleness gaps. Original multi-entity admission/frame equivalence, mixed asset profiles, attachments, lighting/visibility integration, camera/action mapping, AI/combat, automatic play and live replacement remain pending. No recovered original behavior status is promoted.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS12.multi-scene-recorded",
+      "reason": "Record bounded native multi-creature diagnostic presentation after per-actor trace/ANI display/identity checks, independent projection/depth arithmetic, complete CPU/OpenGL masked/clipped composition and exact split/fresh-process frame/checkpoint continuation. Keep installed original multi-world and live equivalence outside the claim.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "43a94a4b8857d49b37f66432a9d4f24a687e58d9b3b6147c8f0971372211db1a",
+          "before_sha256": "1cb5d672a30945b4fa5530b0912e2d2616da9636388d9c4808c59a585fd9050a",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "2dbfc30b4f384deb50f07c36956b93d3d775f60f19770020775b8b62612f4348",
+          "before_sha256": "20e2a664bb851ae2fe8d23875536a04d5f4fb663a1799ad5cb9275888667cfb4",
+          "id": "NR.world_scene"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh normal and ASan/UBSan runs each pass 144 complete pixel comparisons and twelve JSON/RGB565/PNG/full-checkpoint continuations over three synthetic terrain profiles and four views. Both retain generation 0xfedcba98 exactly and verify each active actor ANI display against its trace. Original manifests verify before/after installed SPR/TTD reads. 103 normal CTests and six focused sanitizer suites pass; fresh report source fingerprints match staged code.",
+        "evidence": [
+          "NS12.multi-scene"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "8fe3fc4527b0f807ab266092e626ab6bf909120ea8bf5b3d92133ec7463896eb",
+          "before_sha256": "2eebb8cb00236ccad7f530f144b679f87fda529e1ee3c518202e0d05bbfa3f41",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "64db420c59827b3589892460f16653fb3132cba72116683fa6f17b1fa34f4ad5",
+          "before_sha256": "1fdd3ef6b44e8b0051eb84c49799759e96a0f78fc5b189c2e058a24e6ec677e7",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "3f866206d87824abce7f67732f32467f6804bdcaa03ce10c8429b87bf0766ced",
+          "before_sha256": "8699fe7bb27ed95706cf9a861455cde217cadbd77ff9e2f0645bbf2675eb0eee",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "5c3f974266a4e5abc9dbaa91e35de346352cbcf672ec965f06d3c649c2ec4194",
+          "before_sha256": "e677f9c4500cf2c60c157d6ec0f5b820388962d6b88bd7ad1b037e0d26a6c9f1",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "43a94a4b8857d49b37f66432a9d4f24a687e58d9b3b6147c8f0971372211db1a",
+          "before_sha256": "1cb5d672a30945b4fa5530b0912e2d2616da9636388d9c4808c59a585fd9050a",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "7bec22825773ccd69a49f496930e89ef3f51c25add59978f42147100758ab9a4",
+          "before_sha256": "1d5817f1c3652d04ce1a2db26398ae71fb5bc92010747b850b53e6aa004f20a8",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "2dbfc30b4f384deb50f07c36956b93d3d775f60f19770020775b8b62612f4348",
+          "before_sha256": "20e2a664bb851ae2fe8d23875536a04d5f4fb663a1799ad5cb9275888667cfb4",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "e5dc26b775d36a039cfbb3b63206ccfc5e91a82f12962804944440990d6d5e05",
+          "before_sha256": "81112d35275b8395d09c1a928f3e7ab3ea4ea7b095ee3cbda32ad5056b6c6e8d",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "d547728c2835fd36999b180bc40a193b7b54a72dff35ff8dce6991da2a5881a4",
+          "before_sha256": "74f60ceced3ff6d10af9a1d6b5234eee31634e235000cea2a8b7edac0c5b9483",
+          "id": "WORLD.owned"
+        },
+        {
+          "after_sha256": "3a0d4c7856a5cb1ff32ffb5762826b6381338a7271910ef0bb84e21a3bfcdb06",
+          "before_sha256": "3170db2ee05d6b98f06fe53bf8f73f18dbec9d865de6dfcf7a2c54edcb337bbc",
+          "id": "WORLD.sandbox"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d1e3b0fc4841f0c13b1281dfdc5fcda0d97f1e0f45aca1bb5c040346ed600e43",
+          "before_sha256": "5af74c9ef3293a3f2f877317b90af3f0e39cbafc2916c62526c045c894326030",
+          "path": "apps/world-sandbox/main.cpp"
+        },
+        {
+          "after_sha256": "454b300288f669b07dce94c95364237009a2be7ca3381e64438b4786f535d62a",
+          "before_sha256": "c6f15d869363241fa5bcca3f277e7e3d13cae57745d97aa731933ad510df2c3b",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "67c0270359768ac915a19302becb89df2a6bae5b008c880d1e6c178db564a0a0",
+          "before_sha256": "1cf1829df5542482b72ab5e969f8619c8f957274c2ec972db6b009ae60bb4544",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "af1a60229a4d459f81d4f42f31db833b58819f835bfdb01ff8b59a5d467baa28",
+          "before_sha256": "2f794d060f6a10959cb667cbe8913935e0d7894863dc2e96fbd049ebf6ffa8e9",
+          "path": "apps/world-scene/scene.cpp"
+        },
+        {
+          "after_sha256": "e4b485295070758f8acdbaf7911c9db4b5f5557c75c16d5440388f5963865ccf",
+          "before_sha256": "bc158f1d5570dbb944773b1cbfba3327c15387c2243e700aa0b4d68f096ceada",
+          "path": "apps/world-scene/scene.hpp"
+        },
+        {
+          "after_sha256": "a641c4202b7481884e5e09022b014ed94177a2e84e8de60b170ea04076a3a5ec",
+          "before_sha256": "6001417e565170fcf346df423e018a48562c070c43df93f129b62e53622ceefb",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "f0d4c914e6cfb67f5a9cff59f8d62fe8a02cbfaae38192461784c871beb921f4",
+          "before_sha256": "aa71cce1dcd657121e15a6d5b43d4338d2ba823b46e409627f2cf0b0b446bfef",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "fcf27460581e74418b4ce3267da1e93be4fafdb39726a644490d12809f8d85a7",
+          "before_sha256": "abd5b5d90fbc0473060e1102509be059acb1fd2704fd95750b219955dd1f1fd4",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "27d37eb5be44f97131eaf34c22a8bf30feadf2d6df5ccac0acef267cad421526",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-multi-world-scene.json"
+        },
+        {
+          "after_sha256": "b344a014433c7539006220e81d52cb6e216b4c10999e0294c827d2b74cb04493",
+          "before_sha256": "392a094e7cdae292840923c7753bfa55ae071566b26dcc4da835a5a9b8703e27",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "2b17cdd7b583195b21ecbbe4d8dfd8167c1286846d9ff4716112ee3968a7afab",
+          "before_sha256": null,
+          "path": "research/runtime/native-multi-world-scene-history-review.json"
+        },
+        {
+          "after_sha256": "008c229c9ad74d3a9fc2d0dee5b4e94112e1be01c5f9fe5c74ded4541b620052",
+          "before_sha256": null,
+          "path": "research/runtime/native-multi-world-scene.json"
+        },
+        {
+          "after_sha256": "5911bd8845adbc5c5df4ca1123046a510aa92d4499592d1e08c947fcc8f9ef12",
+          "before_sha256": null,
+          "path": "research/runtime/native-multi-world-scene.md"
+        },
+        {
+          "after_sha256": "0364a3e254dfe42452286d73d1b1587108536072bd2fc83ad031aa206db38b18",
+          "before_sha256": "c2cdbcaf11170753824ed17a232d1ede7381bf85b25b5383f807440a648694cd",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "0ca92707df72ca8029d8a201220901630011f2f6589fbf474d2fc81e58abdd44",
+          "before_sha256": "aa7d3fb18048f80c3af6d8b110cc801a308f48effdf1af02d8bed13f7885913c",
+          "path": "tests/world-scene-test.cpp"
+        },
+        {
+          "after_sha256": "e8ef1ff58984f1a07499119f763b3ade5bb3e6db11fa9654228dcb88a3067c43",
+          "before_sha256": null,
+          "path": "tools/test-multi-world-scene.py"
+        }
+      ],
+      "id": "NS12.multi-scene-exact-isolated-checkout",
+      "pending_gaps": [
+        "stale_evidence:06d0d2d73a176afa2c859efb6f848797043373c5fae70d0273a7f287e34db096",
+        "stale_evidence:19339e6631b6db1cf3bb6fc3c5a3b23945ae2a09caf887718c014ae5a116ce5d",
+        "stale_evidence:523248db62c49370ff886a16fa40a4510be12e6c3a9d8bd181b6283f6021206c",
+        "stale_evidence:54fc5e110ce5a7501db0d4ee244a94a11acf9b3e093d8281c7a6d8539980c132",
+        "stale_evidence:821ac9e793c8ad359f0abcb07010174baa19f84799d5447f824153fd627a8917",
+        "stale_evidence:91b4576adec6ddfd90dab16da9afd284681c5ed4c3144a60908663630fc8d3a1",
+        "stale_evidence:9488b89bbacfd2ec90b760ef0ce0161574213edaf916db8a7c51acb6bd16b623",
+        "stale_evidence:951c91a6f6f7626a96b6d68b3ec27fe2d72586334cc9b60a210dfb1c8b0ee60e",
+        "stale_evidence:999845524c02f52ca75237897d50465cf87206e9f6e666b562ba062fae3a1104",
+        "stale_evidence:99f227ec1e57adf83f48d33459892afac4251cc4b70b32a0510983c2b08a4bed",
+        "stale_evidence:9c207a1ad9177213db76f7cbae7d4970f7267ddab32ccd4011e9394d4e8d9638",
+        "stale_evidence:b6297e81b6e5014566b3a4040e2df7f08160dd48dd31896efa7ec40ab0045e93",
+        "stale_evidence:ca35766e588fda626c5fc8e6cba5db02320ccea879094992dbe2ac9a7338ce8e",
+        "stale_evidence:d306f3eb1517c2bcb2662f3bc1e18977a63611fff9200b0641ad47feb61b4edf",
+        "stale_evidence:e317931dc00dc693e32f271123f8ee45114689564a3d9080f5f197ffa58b0f82",
+        "stale_evidence:ecf01b68b4385dc8fe11d6541416fcaba74b436766ed321d9d123d166688800f",
+        "stale_evidence:f9ccdf22c801e017ac32347b36a57c29849dd6c6de582a1791cf39a8b5f1acbc",
+        "stale_evidence:fba7a6bb960a1289bf2c3a89ef49577111dfb7c37882e7dfa6c7bd9e18697b47"
+      ],
+      "reason": "Review bounded same-profile terrain-motion actor composition, independent owned current/completed ANI displays and fine positions, cleaned/stationary exclusion, slot/generation identity retained through mixed depth sorting and exports, unsigned JSON generation, increased bounded draw admission, and single/stationary/multi checkpoint fingerprint resolution. Ordinary-map geometry retains the separate raw immutable byte fingerprint. Review two-actor terrain/ANI fixture creation and new four-view CPU/OpenGL/identity/display/continuation runner. The isolated staged census excludes other workstreams pending code and preserves their committed changes. Correct the census suffix scope using only staged committed tooling; retain initial preparatory receipts separately. The gate and commit execute in an isolated checkout because other workstreams are modifying the main checkout indexer. Exact committed-history parent/current file and contract receipts are accounted separately; no retrospective gate or validation claim.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh NS12 diagnostic presentation execution validates the supplied two same-profile actors and inputs only. Older source-linked scene, sandbox and multi-movement evidence retains its historical hashes and status with explicitly reviewed staleness gaps. Original multi-entity admission/frame equivalence, mixed asset profiles, attachments, lighting/visibility integration, camera/action mapping, AI/combat, automatic play and live replacement remain pending. No recovered original behavior status is promoted.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS12.multi-scene-recorded-isolated-checkout",
+      "reason": "Record bounded native multi-creature diagnostic presentation after per-actor trace/ANI display/identity checks, independent projection/depth arithmetic, complete CPU/OpenGL masked/clipped composition and exact split/fresh-process frame/checkpoint continuation. Keep installed original multi-world and live equivalence outside the claim.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "43a94a4b8857d49b37f66432a9d4f24a687e58d9b3b6147c8f0971372211db1a",
+          "before_sha256": "1cb5d672a30945b4fa5530b0912e2d2616da9636388d9c4808c59a585fd9050a",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "2dbfc30b4f384deb50f07c36956b93d3d775f60f19770020775b8b62612f4348",
+          "before_sha256": "20e2a664bb851ae2fe8d23875536a04d5f4fb663a1799ad5cb9275888667cfb4",
+          "id": "NR.world_scene"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh normal and ASan/UBSan runs each pass 144 complete pixel comparisons and twelve JSON/RGB565/PNG/full-checkpoint continuations over three synthetic terrain profiles and four views. Both retain generation 0xfedcba98 exactly and verify each active actor ANI display against its trace. Original manifests verify before/after installed SPR/TTD reads. 103 normal CTests and six focused sanitizer suites pass; fresh report source fingerprints match staged code.",
+        "evidence": [
+          "NS12.multi-scene"
+        ]
+      }
     }
   ]
 }

@@ -67,6 +67,21 @@ static MovementSession session(State state) {
     World world(0);world.restore(std::move(state));return MovementSession(std::move(world),std::move(navigation));
 }
 int main(int argc,char** argv) try {
+    if(argc==19 && std::string_view(argv[1])=="move-pair-terrain-ani") {
+        auto base=integer(argv[4]);if(base<0 || base>4088) throw std::invalid_argument("ANI sequence base outside 0..4088");
+        auto animation=mnm::sandbox::loadMovementAnimation(argv[3],base);
+        auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2],animation,true,true);World world(8);
+        auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();state.animation=std::move(animation);world.restore(std::move(state));
+        MovementSession movement(std::move(world),navigation);std::array<Handle,2> actors;
+        for(unsigned i=0;i<2;++i) {
+            Entity e;e.type=navigation->creatureType();e.x=integer(argv[6+i*6]);e.y=integer(argv[7+i*6]);e.z=integer(argv[8+i*6]);
+            actors[i]=movement.spawn(e,true,true,true);
+        }
+        for(unsigned i=0;i<2;++i) movement.move(actors[i],{integer(argv[9+i*6]),integer(argv[10+i*6]),integer(argv[11+i*6])});
+        for(std::uint32_t i=0,count=ticks(argv[18]);i<count;++i) movement.step();
+        auto commit=writeSnapshot(argv[5],movement.world().state());if(!commit.durable) throw std::runtime_error(commit.detail);
+        json(movement.world().state(),&movement);return 0;
+    }
     if(argc==17 && (std::string_view(argv[1])=="move-pair" || std::string_view(argv[1])=="move-pair-fine")) {
         auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2],{},true,true);World world(8);
         auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();world.restore(std::move(state));
