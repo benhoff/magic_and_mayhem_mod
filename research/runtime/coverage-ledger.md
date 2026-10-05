@@ -255,11 +255,20 @@ or live replacement is claimed. Spell recipes, mana rings and campaign travel
 remain unresolved; see [Portmanteau evidence](spellbox-qt.md),
 [difficulty policy](region-entry-qt.md) and [map visuals](realm-viewer-visuals.md).
 
-UI12 held-drag follow-up: ingredient shelf artwork now disappears during a held
-left-button pickup and restores on release/cancel according to available copies.
+UI12 held-drag follow-up: pickup subtracts one displayed shelf copy; ingredient
+artwork disappears only when no unassigned copy remains. Release/cancel restores
+the displayed copy count according to current assignments.
 The shell builds and `qt-spellbox` passes with synthetic held/released shelf-pixel
-and unchanged quantity/assignment checks. This is native presentation validation;
+and unchanged quantity/assignment checks, including stacked copies and a
+partially assigned stack. This is native presentation validation;
 original input equivalence remains unverified (same Portmanteau evidence).
+
+UI12 talisman pickup follow-up: pressing a filled talisman clears its draft
+assignment immediately and carries ingredient artwork. Releasing to the
+right-hand panel returns its copy to the shelf; supported talisman drops assign
+it there instead. Cancelled dragging returns the removed copy to the shelf.
+The shell builds and `qt-spellbox` passes with immediate-clear and physical
+press/release shelf-pixel/quantity checks. This remains native policy validation.
 
 ## Shared frame, input and media protocol ownership
 

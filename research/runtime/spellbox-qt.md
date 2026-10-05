@@ -34,21 +34,33 @@ spell artworks/tooltips in a header. Clicking an available ingredient picks up
 artwork that follows the pointer until placed or deselected; ordinary held-button
 dragging remains supported with ingredient drag artwork. Hovering a talisman
 temporarily shows the resulting supplied spell without assigning it. Dropping
-commits that spell artwork. Picking up a filled talisman permits moving its
-existing copy to another alignment or returning it to a shelf, including empty
-shelf background. Shelf quantity is conserved; exhausted shelf artwork is hidden.
-Right-click or the first Escape puts down a carried ingredient without mutating
-the draft; Escape otherwise restores the accepted draft and cancels the screen.
+commits that spell artwork. Picking up a filled talisman immediately clears its
+draft assignment and carries the ingredient artwork instead of the spell.
+The carried copy stays visually off its shelf until released; release over the
+right-hand panel returns it, and a supported drop onto another talisman assigns
+it there. Rejected/cancelled dragging leaves the removed copy on its shelf rather
+than restoring the previous talisman. Shelf quantity is conserved; exhausted
+shelf artwork is hidden. Right-click or the first Escape puts down the carried
+ingredient; Escape otherwise restores the accepted draft and cancels the screen.
 Hidden screens clear pointer overlays. Click-to-carry and its cancellation are
 user-requested native behavior; the manual only confirms held-button dragging.
 
-An available ingredient's shelf artwork is hidden immediately on left-button
-press and remains hidden during held dragging. Release or completion/cancellation
+Picking up an ingredient removes one copy from the displayed shelf count.
+Its artwork stays visible if another unassigned copy remains; only picking up
+the last available copy hides it. Copies already assigned to talismans do not
+count as shelf copies. Release or completion/cancellation
 of the native drag restores shelf presentation using the resulting inventory;
 a committed last-copy assignment still leaves the shelf empty. This temporary
 visual state does not reserve or consume inventory, and hiding the cell clears
 it. The synthetic Spellbox check compares shelf pixels while held and after an
 outside release, and verifies that the quantity and assignments are unchanged.
+Stacked-copy checks also cover retaining artwork with two available copies and
+hiding it when one of those copies is already assigned and the last is held.
+Additional synthetic checks verify immediate talisman clearing on both click
+pickup and physical left-button press, ingredient pointer artwork, a temporarily
+empty shelf spot, and release from the talisman into the right-hand panel without
+a second click. These establish native interaction policy, not original input
+equivalence.
 
 Assign/Remove remain keyboard-accessible alternatives. Missing supplied spells
 or exhausted copies prevent assignment. Drag ownership and model revision tokens
