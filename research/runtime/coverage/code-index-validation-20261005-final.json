@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "review_date": "2026-10-05",
+  "scope": "Code/index reconciliation and bookkeeping checks only; original artifacts were not consumed, and original engine comparisons or live sessions were not rerun.",
+  "checks": [
+    {
+      "command": "python3 -B tests/test-re-coverage.py",
+      "tests_passed": 39
+    },
+    {
+      "command": "python3 tools/audit-re-coverage.py --json working/tests/re-coverage-code-index-20261005-final.json --markdown working/tests/re-coverage-code-index-20261005-final.md",
+      "errors": [],
+      "warnings": [
+        "Recorded evidence fingerprints older source; historical claims are retained, current validation is not implied.",
+        "Pinned recovered code exists outside Ghidra function bodies; explicit range links preserve this discovery gap."
+      ]
+    }
+  ],
+  "counts": {
+    "builds": 1,
+    "behaviors": 285,
+    "evidence": 159,
+    "scenarios": 6,
+    "functions": 6675,
+    "registered_recovered_ranges": 5,
+    "incomplete_dispatch_tables": 3,
+    "indexed_sources": 844,
+    "unclassified_functions": 6512,
+    "unassigned_executable_ranges": 4248,
+    "unresolved_indirect_flows": 1543,
+    "unmapped_imports": 190,
+    "computed_flows_with_inferred_targets": 2174,
+    "unmapped_callback_candidates": 3008,
+    "unmapped_dispatch_candidates": 336,
+    "calls_to_uninventoried_targets": 0,
+    "unmapped_dispatch_entries": 31,
+    "behaviors_without_scenarios": 261,
+    "behaviors_without_implementation": 135,
+    "behaviors_without_comparison": 247,
+    "behaviors_without_tests": 1,
+    "stale_evidence": 28,
+    "behavior_anchors_outside_discovered_functions": 15,
+    "changed_focused_registers": 0,
+    "new_sources_without_index": 0,
+    "removed_indexed_sources": 0,
+    "changed_indexed_sources": 0,
+    "sources_without_behavior_links": 244
+  },
+  "artifacts": {
+    "working/tests/re-coverage-code-index-20261005-final.json": "7331128749ece54e7033a1c81a1b21fb5493df1728034872f78bb24035db1094",
+    "research/runtime/coverage/register.json": "eede27c214af9a7b4b612d49a525bb3eb72768e08aba8ff112e7fc1bb1958021",
+    "research/runtime/coverage/source-index-20261005-final.json": "92afd86b8fa33a60af2d603271407170e51feed88811f6851cfd004c4de22fdf",
+    "research/runtime/coverage/code-review-20261005.json": "e03af4c0a8386eaa13042365b74740c9f4c553270574b5fc924313b4d61c29ec"
+  },
+  "limitations": [
+    "Census includes support tools/builds/tests; explicit file links do not establish semantic completeness.",
+    "104 spell IDs remain individually registered as static or unmapped pending contracts.",
+    "Historical source staleness is preserved; static review evidence cannot promote original comparison or integration.",
+    "Concurrent implementation work can add files or change fingerprints after this snapshot; the next audit reports drift."
+  ]
+}

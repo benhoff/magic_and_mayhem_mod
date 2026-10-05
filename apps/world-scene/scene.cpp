@@ -34,15 +34,15 @@ std::optional<assets::AnimationRecord> displayed(const assets::Animation& a,cons
 std::vector<Draw> compose(const game::MovementSession& session,const assets::Animation& animation,
                          const assets::TerrainCatalog& catalog,const std::vector<Tile>& tiles,const Camera& camera,
                          std::size_t terrainFrames,std::size_t creatureFrames) {
-    if(tiles.empty() || tiles.size()>64 || !terrainFrames || !creatureFrames)
-        throw std::invalid_argument("Scene requires 1..64 terrain tiles and nonempty sprites");
+    if(tiles.empty() || tiles.size()>4096 || !terrainFrames || !creatureFrames)
+        throw std::invalid_argument("Scene requires 1..4096 terrain tiles and nonempty sprites");
     std::vector<Draw> draws;std::vector<reconstruction::SpriteQueueEntry> queue;
     const auto add=[&](Draw d){queue.push_back({d.key,std::uint32_t(draws.size())});draws.push_back(d);};
     for(const auto& tile:tiles) {
         if(tile.definition>=catalog.records.size() || tile.surface.z<16 || tile.surface.x<0 || tile.surface.y<0 ||
            tile.surface.x%32 || tile.surface.y%32) throw std::invalid_argument("Invalid diagnostic terrain tile");
         auto anchor=project({tile.surface.x,tile.surface.y,tile.surface.z-16},camera);
-        reconstruction::TerrainTile state{tile.surface.y/32,tile.surface.x/32,(tile.surface.z-16)/16,anchor.x,anchor.y,0,4,0,0};
+        reconstruction::TerrainTile state{tile.surface.y/32,tile.surface.x/32,(tile.surface.z-16)/16,anchor.x,anchor.y,0,tile.flags8,tile.flags10,0};
         reconstruction::TerrainAdmission admission{camera.view,32,1,0,0,true};
         for(auto d:reconstruction::submitTerrain(reconstruction::decodeTerrainDefinition(catalog.records[tile.definition]),state,admission,std::uint32_t(terrainFrames-1))) {
             // The visual fixture's exact fine height can differ from whole layers.
@@ -70,7 +70,7 @@ std::vector<Draw> compose(const game::MovementSession& session,const assets::Ani
 }
 Frame render(render::GlBlitter& renderer,const assets::Sprite& terrain,const assets::Sprite& creature,
              const std::vector<Draw>& draws) {
-    if(draws.size()>193) throw std::invalid_argument("Scene draw budget exceeded");
+    if(draws.size()>12289) throw std::invalid_argument("Scene draw budget exceeded");
     const auto canvas=renderer.create({512,256,std::vector<std::uint32_t>(512*256,0x2124)},render::spriteFormat);
     try {
         // Bounded sequential uploads keep the surface budget independent of ANI length.

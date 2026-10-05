@@ -48,6 +48,84 @@ changes.
 - Avoid introducing gameplay balance changes while still validating engine
   behavior.
 
+## Reverse-engineering coverage upkeep
+
+Use [binary-to-behavior accounting](research/runtime/coverage/README.md) alongside
+the coverage ledger. Each contributor owns incremental updates for the behavior
+they investigate or change; the audit checks those links and claims but does not
+infer semantic mappings or update the register automatically.
+
+- Before work on an engine contract, inspect its entries in
+  `research/runtime/coverage/register.json` and the relevant research. When a
+  subsystem is not registered yet, seed the behaviors touched by the work;
+  do not defer all mapping until the subsystem is complete.
+- In the same change as new findings, implementations or validation, add/update
+  stable behavior IDs and original build/address links, scope/confidence,
+  implementation/test paths, evidence IDs, dispatch entries and scenario links
+  as applicable. Include newly discovered branches, failures and remaining gaps.
+- Keep understanding, implementation, original comparison, integration and live
+  replacement statuses independent. Record intentional native policies separately
+  from recovered baseline behavior. A function link covers only its stated scope.
+- Preserve historical evidence and its recorded source hashes. Register a new
+  result under a new evidence ID; never refresh old hashes just to clear staleness.
+  Source-only changes may leave evidence stale: report the affected limitation,
+  and rerun the relevant comparison before claiming current-code validation.
+- Run `python3 tools/audit-re-coverage.py` after affected changes and inspect
+  warnings for the touched behavior/evidence IDs. Run checks appropriate to the
+  change; use `--require-fresh` when requiring all registered evidence to match
+  current source. Existing unrelated historical staleness is not a reason to
+  rerun every subsystem or stop authorized work.
+- Run `python3 tools/check-re-coverage.py` for the reviewed local baseline, or
+  pass `--base <reviewed-commit>` for a Git comparison. CI compares the actual
+  PR/push/merge-group base; changing a census/baseline in the same change cannot
+  reset that comparison. Initial adoption retains the existing backlog;
+  `--bootstrap` is rejected once the base contains the gate baseline.
+- Install the repository-local pre-commit gate with
+  `python3 tools/install-coverage-hook.py`. It checks the staged tree against
+  `HEAD`, using initial-adoption bootstrap only when needed. Stage the matching
+  census, register and exact reviews alongside changes; unstaged fixes do not
+  satisfy the hook. Local hooks supplement the required CI check.
+- Before committing affected work, include the source changes, updated census,
+  central/focused registers, evidence or explicit pending limitations, ledger
+  updates and exact review receipts in the same commit. Coverage tooling,
+  `.githooks/` and `.github/workflows/re-coverage.yml` must also be committed
+  when introduced or changed; a local installation alone is not reproducible.
+  Check the actual staged tree with `python3 tools/check-re-coverage.py --staged
+  --base HEAD` (add `--bootstrap` only when HEAD predates initial adoption).
+  Resolve failures and restage before retrying; do not bypass accounting with
+  `--no-verify`. Preserve unrelated work already staged by other contributors.
+- If commits landed since the last accounting review, inspect that Git range
+  before completing the next coverage update. Compare each committed file's
+  parent/current SHA-256 with its exact receipt, check affected behavior and
+  evidence links, and append retrospective receipts for missing intermediate
+  versions. Retain a report naming the reviewed commit range and unresolved
+  gaps. Keep committed-history findings separate from uncommitted changes;
+  retrospective accounting does not assert a past gate pass or new validation.
+- For affected code, tests, research or coverage metadata, append an exact
+  hash-bound review to `research/runtime/coverage/change-reviews.json`, naming
+  all affected behaviors and new pending gaps. Use `--draft-review` to prepare
+  the hashes, then supply concrete review and validation reasons. Drafts with
+  empty reasons do not pass. Preserve prior receipts.
+  Validation is `pending`, `recorded` or `not_required`; engine/protocol changes
+  cannot use `not_required`, and status promotions require fresh execution
+  evidence of the appropriate kind. Pending validation retains historical
+  status/freshness without asserting current equivalence.
+- Review source-census findings for new, changed, removed or unlinked files.
+  After reviewing affected code and updating explicit implementation/test links,
+  generate a new snapshot with `tools/index-coverage-sources.py` and update the
+  register's `code_index` path/hash. This records an indexing review, not a new
+  behavior validation result; preserve existing evidence fingerprints.
+  Reconcile focused subsystem registers into the central register when changed;
+  update their `register_imports` hashes only after reviewing their entries.
+- Update `research/runtime/coverage-ledger.md` when scope or milestones change.
+  Refresh the generated coverage summary when register/status changes warrant
+  it, retaining new machine-readable reports under `working/`. Follow the
+  coverage README's report and evidence preservation workflow.
+- Retain unknown functions, unassigned ranges, unresolved indirect flows and
+  incomplete dispatch tables. Add documented classifications or recovered-range
+  exceptions where justified. Re-export/review the binary inventory when new
+  discovery changes its boundaries; ordinary native edits need only the audit.
+
 ## Repository layout
 
 See [project architecture](docs/architecture.md) for current boundaries,

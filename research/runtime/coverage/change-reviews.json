@@ -1,0 +1,725 @@
+{
+  "schema": 1,
+  "reviews": [
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a6f9a822f3d7b4d3834c9b47bff2a3e4068076f8de62cb2398a8fda84d39d52b",
+          "before_sha256": "4a7c32f41483d9a97afb4076cf4d6610ae1e6f4f232605e7ab3e39e44b211b57",
+          "id": "TL.combined-refresh"
+        },
+        {
+          "after_sha256": "1a09d900754221217be3e22314cc5d9d5af29b424e8dd36536d1a5734b153922",
+          "before_sha256": "996cd117ead03d2c091278f42e14ae8732973e0c16ba8ac66d6dc333d16c70ee",
+          "id": "TL.static-addition"
+        },
+        {
+          "after_sha256": "e5750c5de753075c15102d6c267c34a5cadee3ef30d5baa732b65e906c8ae97a",
+          "before_sha256": "b88279b5e216fc96a12a98bc4fbbf6b162cc6eab76c2da03f160c5f4d76c9424",
+          "id": "TL.static-admission"
+        },
+        {
+          "after_sha256": "b8ba238491a836d2d8f9d8c045e0ed6f5669a3cd81cde9e9817abd5bd310877a",
+          "before_sha256": "287558f6cd64f2971df5122dbab3c3e89d7cdd1b25800786eecea74393711469",
+          "id": "TL.static-refresh"
+        },
+        {
+          "after_sha256": "3d1129be74139751f47e60f259742c0462f06c9c0516ce16f1ddf29a6a3729b5",
+          "before_sha256": "0c1874406780eb3b25950c50efcca0b08f3e36d71bc08c459544ed25d375305c",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "c279bf5f64c72b1ec3476f74ea715b7be7a1ef4c98402b552acbf7516ba97b4e",
+          "before_sha256": "840b2f847f74b57841089cef5dded08a6d30640ce93ebc39f7a9a39197833e32",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "c18cafeaa540a7dfdd99ce1e25b64cc5a8b8de81ac7cfdc5b6d782d7eaa4994f",
+          "before_sha256": "ceeadc49b7868597ed171fe254cdbf759083aef619fdc9faf02244eea025cf3e",
+          "path": "research/runtime/coverage/README.md"
+        },
+        {
+          "after_sha256": "1b6a749d5c037a0ee2e85d53b3d79d7b602576fcc02ff5d42a246fa9736e59f6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/gate-source-index-20261005-portable.json"
+        },
+        {
+          "after_sha256": "4888f36a31b6ddf7ba2020d970dfa63d00e3282968e58b5ab4be502b8465e78b",
+          "before_sha256": "9beae2683ccc8aa1ce351c3b28027690f2b780be38cc9ee99eb78d023b2e65aa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "e9f62372b4bbd6911c9016f60d18afa697858323e47df57e4e5b4e2b86811765",
+          "before_sha256": "36604bd00ba97f9d647281a1cb8b40cb5b38934b9b2c1f87e303d08329398844",
+          "path": "tests/test-coverage-gate.py"
+        },
+        {
+          "after_sha256": "1f86cf86bdfef6c22315a229b5b22c752a3b3f68fd765d48e3fc72309140267d",
+          "before_sha256": "a0ad8462ad3e17d98a41262a31c66b94ae1efc4486e6c6f536686f51fb23546d",
+          "path": "tests/test-re-coverage.py"
+        },
+        {
+          "after_sha256": "1668a715bd021c891401e4690b9902ea0cba1766a264574a046b81a3caa27f7a",
+          "before_sha256": "8ac337e13c825f72a1202f5c5bd64892c16d3b007d62b659b83495967a55a28d",
+          "path": "tools/coverage_audit.py"
+        },
+        {
+          "after_sha256": "e65f8618a1c5ebb40d49bc1afa921212ef1f395e620887482235961af21c27be",
+          "before_sha256": "b6f597f9ed9854e3cad2cbaad5f0191545acf5af189fcf059ed7e386d6857e00",
+          "path": "tools/coverage_gate.py"
+        }
+      ],
+      "id": "change-0b75dcfb4d579d47",
+      "pending_gaps": [
+        "stale_evidence:406591710c61d34485a40f48a92d109a776002ec4913eaa42461f9ba4acc277a",
+        "stale_evidence:9ec92e830af1d173431030cf80fdf78bcb0cd9473c457c1801456f30b36097e6"
+      ],
+      "reason": "Reviewed portable input/source separation and its guards: the two TL02 records retain their original EXE fingerprint as a recorded input and keep the immutable report/build assertions. Current source hashes, behavior links and original scientific records are preserved. The census update accounts for the gate/audit and regression-test edits.",
+      "validation": {
+        "evidence": [],
+        "reason": "43 audit guards and 36 change-gate guards pass. Original static-lighting execution/native scene comparisons were not rerun; the two new source-provenance staleness findings stay explicitly pending. This receipt advances no engine validation or replacement status.",
+        "status": "pending"
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "8f8ac859abd88f87eb9d135c090f4dd6afdce98f410f0bb27df562908cbb4bbd",
+          "before_sha256": null,
+          "id": "TL.effect-common-placement"
+        },
+        {
+          "after_sha256": "d765bd6f5d90ceb998ec2f456e0bea7921efc44e1411fd49170f79f1f8a96eea",
+          "before_sha256": null,
+          "id": "TL.effect-placement-policy"
+        },
+        {
+          "after_sha256": "8c6b459e31b3a2b0421572cf3774780a38d725ebe503e2d84314727e180a672f",
+          "before_sha256": "2dd79682926e39de6faae2cb8b4f1fc1a227bf3d26809a00ed9c0a34308a6b2b",
+          "id": "TL.effect-table-loader"
+        },
+        {
+          "after_sha256": "482be64855aeee0e96c9fb1b40c1a4a5272aa0d746cfa405450ef7d7bf948b96",
+          "before_sha256": "9504198dce1b57feb79946e087d381fa1952c22c8f06b75e1069530e5c4c4020",
+          "id": "TL.effect-table-policy"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "be73837ce4a707cad67abbeaa3877cd8e312b81a6b53e00e719100986a0a7697",
+          "before_sha256": "9a1f3d25bb04cdcb8da24db8b6a00682fb6adad9308376b798db736b317c912b",
+          "path": "reconstruction/rendering/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "4452c640fe6d3712c30e400d5e6c629b0d72b822f56b342bd7721aae3f746634",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_placement.cpp"
+        },
+        {
+          "after_sha256": "60de7c29e51aa4e66144946522f88c3a6613a293e8221fefa4d224f77ae03681",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_placement.hpp"
+        },
+        {
+          "after_sha256": "09311bddd04994cdd27da0d0985aa2516c7e398163e1fb20f9e28e6d89fe83f8",
+          "before_sha256": "ab621d47b6fb5e317b9ccda9d512845083dc345728c2cc06e6eff913cb8f7837",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "032d6af83d02bfe8c80b94e544ee4e9fe641a5469143addedac6a43f6b9a95e5",
+          "before_sha256": "9beae2683ccc8aa1ce351c3b28027690f2b780be38cc9ee99eb78d023b2e65aa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "66ded8aa966c891d8ce0dbfd5429c160cee7ef9d5af36645526d2384c5ef476f",
+          "before_sha256": null,
+          "path": "research/runtime/effect-lighting-placement-build.json"
+        },
+        {
+          "after_sha256": "cdc1f8c941a99530c19449b78d0cf030017d8d85f202f9d28aed64bee117ac05",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement-coverage.json"
+        },
+        {
+          "after_sha256": "61e9bef9d2fe60bd86a8c729bc60f0419e10ccc844aac7ed1dcd549c7b437d32",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement-source-index.json"
+        },
+        {
+          "after_sha256": "d65f82faed813e0f0ba0072f5a7b8be3a42291f264405630aa590bcdb858ea91",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement.json"
+        },
+        {
+          "after_sha256": "57c63a8d2dbedf89dbcf496bc3a4b97ac66b8329cd2a2f6bf64eab99005997d6",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement.md"
+        },
+        {
+          "after_sha256": "22c720546538faa05da4619fe16e536b51383691770eb444c41e83c44695d425",
+          "before_sha256": null,
+          "path": "tests/effect-placement-reference.cpp"
+        },
+        {
+          "after_sha256": "2c9eb5a0328fd59c0c400d093bed37103c8a82b57ace6a8ba93692a8333b7214",
+          "before_sha256": null,
+          "path": "tests/effect-placement-test.cpp"
+        },
+        {
+          "after_sha256": "31ae23481fd210b4d13d7a7cdf8a485b1e6fdfd7da17ec12cce5fd0d27db9d95",
+          "before_sha256": null,
+          "path": "tools/test-effect-placement.py"
+        }
+      ],
+      "id": "effect-placement-20261005-recorded",
+      "pending_gaps": [
+        "behaviors_without_comparison:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_comparison:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "behaviors_without_comparison:8fa43a7142ff9a88cb4629ebd1e1840900e74c94ecd0e8f028187b4f83d47086",
+        "behaviors_without_implementation:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_implementation:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "behaviors_without_scenarios:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_scenarios:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "stale_evidence:3a5b19eabd54076720fa6a4b67819d84d6dde66f98f1f4045d9e729ff6023e56",
+        "stale_evidence:87788e29cee6df5327cf036b8a57fbd4f45aa6c6dee913cdda1967ee97665ec1"
+      ],
+      "reason": "Reviewed the five-type common creation branch, one-period units and height clamps, metadata reset, owned cell-chain insertion/skip, activation and high-water bound. Explicitly defer the original type dispatcher and reject pending recount input. Preserve historical TL04 fingerprints; fresh TL05 results validate the expanded build and installed table again.",
+      "validation": {
+        "status": "recorded",
+        "reason": "128 original common-creation fixtures/2048 placements and 15,220,736 cell checks matched 32-bit original/native, 64-bit native and ASan/UBSan outputs; renewed 132 table loads and all installed selected fields; 70 full tests passed in both builds; focused current-source audit passed. Child setup is redirected only within the private test mapping and is not claimed equivalent.",
+        "evidence": [
+          "TL05.placement-original",
+          "TL05.placement-native",
+          "TL05.tables-original",
+          "TL05.tables-native"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "fe5a745776b3f0ae3ba716068e428eca489edbd32a6686bd931ff02e23a965c6",
+          "before_sha256": null,
+          "id": "TL.effect-creation-variants"
+        },
+        {
+          "after_sha256": "72e14819776449849577bc93e02d44c2dcf4412fad3e0724f6ab49f970a59563",
+          "before_sha256": null,
+          "id": "TL.effect-type-setup"
+        },
+        {
+          "after_sha256": "3ee8092fe2eecf0376b5a037f150d39cbd0a1f8f6500f5808267c41ad3965894",
+          "before_sha256": "c8dc4c31f4e42847013ba28cd069be307042aa2e6bd3ee9831d1da2d0830dba0",
+          "id": "TL.static-input-production"
+        }
+      ],
+      "files": [],
+      "id": "effect-placement-20261005-pending",
+      "pending_gaps": [
+        "behaviors_without_comparison:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_comparison:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "behaviors_without_comparison:8fa43a7142ff9a88cb4629ebd1e1840900e74c94ecd0e8f028187b4f83d47086",
+        "behaviors_without_implementation:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_implementation:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "behaviors_without_scenarios:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_scenarios:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "stale_evidence:3a5b19eabd54076720fa6a4b67819d84d6dde66f98f1f4045d9e729ff6023e56",
+        "stale_evidence:87788e29cee6df5327cf036b8a57fbd4f45aa6c6dee913cdda1967ee97665ec1"
+      ],
+      "reason": "Narrow the former source-production gap to movement/recount, view production and collection lifecycle. Record creator/alternate position paths and all 89 deferred effect type setups as explicit gaps. Native pending-position refusal is not a recovery of the original scheduling or moving-source lifecycle.",
+      "validation": {
+        "status": "pending",
+        "reason": "Type-specific animation and trajectories, type-21 height search, creator ownership, removal/recycling and live effect lifecycle have no current native equivalence proof. Common-parent fixture comparison deliberately excludes those child behaviors.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "effect-placement-20261005-receipt-artifact",
+      "reason": "Preserve the selected effect placement and pending-gap review receipts as a durable focused artifact while the shared accounting package is being consolidated. This file records review hashes and boundaries, with no new engine behavior claim.",
+      "files": [
+        {
+          "path": "research/runtime/effect-record-placement-change-review.json",
+          "before_sha256": null,
+          "after_sha256": "a97e95eb31a7583855ba56912f6d6a992f0fb4ccbbec796af2f3a0ee0f6eee05"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Metadata-only preservation of the reviewed execution evidence and explicit pending recovery boundaries; hashes are checked by the coverage gate.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "effect-placement-20261005-generated-summary",
+      "reason": "Refresh the generated central coverage summary after the selected placement/type-dispatch accounting and renewed table evidence; retain the previous summary and machine-readable audit outputs as history.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "65b72958555da1dbd24af29a03c3ad627e32a5a5be84f96bbb377d41c7a700ec",
+          "after_sha256": "525ea355b4863b88b3ace5d052427561d1b768a8c13e8ed3f101d07a81e980ea"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Generated coverage metadata snapshot; the audit passed with no structural errors and the focused placement/table package passed require-fresh. It does not add engine equivalence or live status.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "48e50429da7a86508b7eebef214ceab4d6f7fb73965566985aefc0fbc02f46f3",
+          "before_sha256": "88eb18aecd22f0c0979d9194765fc321fdda6bef2b47deb11b9be759e0782477",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "1fec0b4f850cb1918e3b4a556ff2ff0c0297a0bfde2114d2901253efed3f7c96",
+          "before_sha256": "2e13923e7baf9d06d9d1ebebde6530a8418fd38443c34de8ce06d566a0737a9e",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "5bf20328f839e3048bc241e3f3b71f35726076a81bfe0fbeeff02619476f44e2",
+          "before_sha256": "18084b107a332a7b8cd2eb133b6522f528f5c96283435d83d05c30b1193eae9a",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "5426a394050eb0d03cc09efa3ea3b5eb1cb8e98ea50b7ddca76624235b5b3906",
+          "before_sha256": "0c1874406780eb3b25950c50efcca0b08f3e36d71bc08c459544ed25d375305c",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "632aca1e2d0308cbeec3a27a625c0006610219010e2aff9a9e5ca3aa4920186b",
+          "before_sha256": "840b2f847f74b57841089cef5dded08a6d30640ce93ebc39f7a9a39197833e32",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9a7f7ba435c1129855066a3e5cc6b423a270b16fbb887bf8a0366cc7eb2e8c60",
+          "before_sha256": null,
+          "path": ".githooks/pre-commit"
+        },
+        {
+          "after_sha256": "8ba8006c3399c1d4c2cd2a089107a3ab6ecdd92f2244708780dd355181805974",
+          "before_sha256": "104f49c2dc37e07f5850b4490aa60414e822609b77501469f899d13919bdda7b",
+          "path": "AGENTS.md"
+        },
+        {
+          "after_sha256": "c1efa87244c4438825089416464313013c18931b4c66fa85b1d26c16d0460bdb",
+          "before_sha256": "5f12ac326b29b74a5378fffd89559aa643f0d5257d318c55a09e4879c5355a25",
+          "path": "docs/architecture.md"
+        },
+        {
+          "after_sha256": "e4c2af60fc7f536624eeb3579a71125f1c85a6249159df82666f73bb300604e6",
+          "before_sha256": "ceeadc49b7868597ed171fe254cdbf759083aef619fdc9faf02244eea025cf3e",
+          "path": "research/runtime/coverage/README.md"
+        },
+        {
+          "after_sha256": "966516f9e92928cd75994560183e1cae4c76933fd71acccfd33e0cd741cf1c76",
+          "before_sha256": "9beae2683ccc8aa1ce351c3b28027690f2b780be38cc9ee99eb78d023b2e65aa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b8a694e08de5e338fd0f0f2c547e8f71dff4a16bdb3bc555e11dc97bf18ce4ed",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-20261005-local-hook-reviewed.json"
+        },
+        {
+          "after_sha256": "42da0f9e8ef639d2ab92d8764dfee711267bd6b07a537f8a504f0f0f94c7b4f6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-20261005-local-hook.json"
+        },
+        {
+          "after_sha256": "3a420d94a768347b4312d2778599e0e430e11bca2b82a37552621f29cf1067b7",
+          "before_sha256": "90f0968f664bd01ea748ee4cd4618e60b18ec583ebf3616930c077ea20cf2047",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "9f1345538bbd0506b608c00c2acf5b08e6f0ff6a6dadf2eb5a423fdf7cd43597",
+          "before_sha256": "36604bd00ba97f9d647281a1cb8b40cb5b38934b9b2c1f87e303d08329398844",
+          "path": "tests/test-coverage-gate.py"
+        },
+        {
+          "after_sha256": "ae205fc6464dff496aab51bbdeca6d37a11e0bc196014892e86957afb684a118",
+          "before_sha256": "5e0904ad6f6b96b86484e16eef23568ed62ea758da1ad2f87e599b317dbf1171",
+          "path": "tools/check-re-coverage.py"
+        },
+        {
+          "after_sha256": "41b96a6fc308bcd58ba13f2f3cf9ebbaf549109f2d90f98c29f9899f7720f909",
+          "before_sha256": "b6f597f9ed9854e3cad2cbaad5f0191545acf5af189fcf059ed7e386d6857e00",
+          "path": "tools/coverage_gate.py"
+        },
+        {
+          "after_sha256": "7fe740a6157ba8f7c8d104ff795b7e657248f9fb120d67ec60a2075316516eaf",
+          "before_sha256": null,
+          "path": "tools/install-coverage-hook.py"
+        }
+      ],
+      "id": "coverage-local-precommit-20261005",
+      "pending_gaps": [],
+      "reason": "Reviewed repository-local pre-commit installation, staged index isolation against HEAD, bootstrap selection, existing hook preservation, uninstall, explicit tool links, refreshed source census and contributor documentation. Existing effect-placement receipts and immutable baseline/evidence remain preserved.",
+      "validation": {
+        "status": "pending",
+        "reason": "43 audit guards and 43 change-gate guards pass, including actual temporary Git commit rejection and acceptance with exact staged reviews, staged isolation and reversible hook installation. These are tooling checks; linked historical engine evidence and gameplay objectives gain no original comparison or integration claim.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "retrospective-359cb95e78eb-ledger",
+      "reason": "Retrospective review of the exact committed ledger in 359cb95e78eb72cbef79965425f1777b74ebf8a2. AS04/GP08 add the selected common effect creation evidence and explicitly retain type-21, child type setup, movement/recount and live lifecycle boundaries. The existing focused receipt binds a later working-tree ledger hash; this receipt preserves the committed intermediate version without rewriting that receipt or evidence.",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "77e8a9a6cdde65f2d56d4bb9aaa3fa4a89f0024bda5afd2cd300f024520e8968",
+          "after_sha256": "7a0007cd5bd496d18c44714b4633a146cb9f7962b167f3d77f7465cf03c8c32f"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Historical documentation accounting only. Inspected the parent-to-commit ledger diff and focused contracts/results; no engine experiment was rerun and no validation status is promoted.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "retrospective-history-artifacts-20261005",
+      "reason": "Retain the per-commit backfill review for the frozen-baseline range through 359cb95, including exact historical blobs, existing receipts, the intermediate-ledger receipt and explicit historical/working-tree and validation boundaries.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/committed-history-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "7966604d0bf6c7de1f0cbbc8e731a36379d7db414b3681e28f64ef613030bcfe"
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-20261005.md",
+          "before_sha256": null,
+          "after_sha256": "0661def9fa974ce9ad9b282da6b4615760ce3fda59370c6d00c64c21e7c32411"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Research accounting artifacts only. The selected commit file delta and exact fingerprints were read from Git, all 13 files accounted for, and existing evidence/mappings inspected without changing engine code or rerunning original experiments.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "e64035336f31cc6d607bfdf8b5649261b1cc1e3b5a803577b477fe32ac24efb9",
+          "before_sha256": "88eb18aecd22f0c0979d9194765fc321fdda6bef2b47deb11b9be759e0782477",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "ff452c25eb41dc425ef153701bdd1d806d458fe55f9d07817b66c3a635b744f9",
+          "before_sha256": "2e13923e7baf9d06d9d1ebebde6530a8418fd38443c34de8ce06d566a0737a9e",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "b027f62fbb6663c228250f90d3f4ca7ee7f12d15bb83998184a57a6d161a3e74",
+          "before_sha256": "18084b107a332a7b8cd2eb133b6522f528f5c96283435d83d05c30b1193eae9a",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "c78df6a6f04a75951c52180c3ce2885865c7862f47a099c51467a5704fe6bb9b",
+          "before_sha256": "0c1874406780eb3b25950c50efcca0b08f3e36d71bc08c459544ed25d375305c",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "3cc02ac7b86829dff6082648e17b38056837ae267eb8f24df6d604349e19250a",
+          "before_sha256": "104f49c2dc37e07f5850b4490aa60414e822609b77501469f899d13919bdda7b",
+          "path": "AGENTS.md"
+        }
+      ],
+      "id": "coverage-commit-and-retrospective-requirement-20261005",
+      "pending_gaps": [],
+      "reason": "Require same-commit coverage tooling, matching source/census/register/evidence or pending limitations/ledger/receipts, actual staged gate validation, preservation of unrelated staging, and exact retrospective accounting for commits since the last review. No gameplay implementation or status is changed.",
+      "validation": {
+        "status": "pending",
+        "reason": "Contributor documentation and accounting requirement reviewed. Linked gameplay objectives retain outstanding status and no new original comparison, integration or replacement result is claimed. Current gate is checked after adding this exact receipt.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "e64035336f31cc6d607bfdf8b5649261b1cc1e3b5a803577b477fe32ac24efb9",
+          "before_sha256": "88eb18aecd22f0c0979d9194765fc321fdda6bef2b47deb11b9be759e0782477",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "ff452c25eb41dc425ef153701bdd1d806d458fe55f9d07817b66c3a635b744f9",
+          "before_sha256": "2e13923e7baf9d06d9d1ebebde6530a8418fd38443c34de8ce06d566a0737a9e",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "b027f62fbb6663c228250f90d3f4ca7ee7f12d15bb83998184a57a6d161a3e74",
+          "before_sha256": "18084b107a332a7b8cd2eb133b6522f528f5c96283435d83d05c30b1193eae9a",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "a6f9a822f3d7b4d3834c9b47bff2a3e4068076f8de62cb2398a8fda84d39d52b",
+          "before_sha256": "4a7c32f41483d9a97afb4076cf4d6610ae1e6f4f232605e7ab3e39e44b211b57",
+          "id": "TL.combined-refresh"
+        },
+        {
+          "after_sha256": "8f8ac859abd88f87eb9d135c090f4dd6afdce98f410f0bb27df562908cbb4bbd",
+          "before_sha256": null,
+          "id": "TL.effect-common-placement"
+        },
+        {
+          "after_sha256": "fe5a745776b3f0ae3ba716068e428eca489edbd32a6686bd931ff02e23a965c6",
+          "before_sha256": null,
+          "id": "TL.effect-creation-variants"
+        },
+        {
+          "after_sha256": "d765bd6f5d90ceb998ec2f456e0bea7921efc44e1411fd49170f79f1f8a96eea",
+          "before_sha256": null,
+          "id": "TL.effect-placement-policy"
+        },
+        {
+          "after_sha256": "8c6b459e31b3a2b0421572cf3774780a38d725ebe503e2d84314727e180a672f",
+          "before_sha256": "2dd79682926e39de6faae2cb8b4f1fc1a227bf3d26809a00ed9c0a34308a6b2b",
+          "id": "TL.effect-table-loader"
+        },
+        {
+          "after_sha256": "482be64855aeee0e96c9fb1b40c1a4a5272aa0d746cfa405450ef7d7bf948b96",
+          "before_sha256": "9504198dce1b57feb79946e087d381fa1952c22c8f06b75e1069530e5c4c4020",
+          "id": "TL.effect-table-policy"
+        },
+        {
+          "after_sha256": "72e14819776449849577bc93e02d44c2dcf4412fad3e0724f6ab49f970a59563",
+          "before_sha256": null,
+          "id": "TL.effect-type-setup"
+        },
+        {
+          "after_sha256": "1a09d900754221217be3e22314cc5d9d5af29b424e8dd36536d1a5734b153922",
+          "before_sha256": "996cd117ead03d2c091278f42e14ae8732973e0c16ba8ac66d6dc333d16c70ee",
+          "id": "TL.static-addition"
+        },
+        {
+          "after_sha256": "e5750c5de753075c15102d6c267c34a5cadee3ef30d5baa732b65e906c8ae97a",
+          "before_sha256": "b88279b5e216fc96a12a98bc4fbbf6b162cc6eab76c2da03f160c5f4d76c9424",
+          "id": "TL.static-admission"
+        },
+        {
+          "after_sha256": "3ee8092fe2eecf0376b5a037f150d39cbd0a1f8f6500f5808267c41ad3965894",
+          "before_sha256": "c8dc4c31f4e42847013ba28cd069be307042aa2e6bd3ee9831d1da2d0830dba0",
+          "id": "TL.static-input-production"
+        },
+        {
+          "after_sha256": "b8ba238491a836d2d8f9d8c045e0ed6f5669a3cd81cde9e9817abd5bd310877a",
+          "before_sha256": "287558f6cd64f2971df5122dbab3c3e89d7cdd1b25800786eecea74393711469",
+          "id": "TL.static-refresh"
+        },
+        {
+          "after_sha256": "b713312ef00e878317ef259663548f358ffe92a9c53f60425bbe3aeee3d3819f",
+          "before_sha256": "0c1874406780eb3b25950c50efcca0b08f3e36d71bc08c459544ed25d375305c",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "632aca1e2d0308cbeec3a27a625c0006610219010e2aff9a9e5ca3aa4920186b",
+          "before_sha256": "840b2f847f74b57841089cef5dded08a6d30640ce93ebc39f7a9a39197833e32",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9a7f7ba435c1129855066a3e5cc6b423a270b16fbb887bf8a0366cc7eb2e8c60",
+          "before_sha256": null,
+          "path": ".githooks/pre-commit"
+        },
+        {
+          "after_sha256": "3cc02ac7b86829dff6082648e17b38056837ae267eb8f24df6d604349e19250a",
+          "before_sha256": "104f49c2dc37e07f5850b4490aa60414e822609b77501469f899d13919bdda7b",
+          "path": "AGENTS.md"
+        },
+        {
+          "after_sha256": "c1efa87244c4438825089416464313013c18931b4c66fa85b1d26c16d0460bdb",
+          "before_sha256": "5f12ac326b29b74a5378fffd89559aa643f0d5257d318c55a09e4879c5355a25",
+          "path": "docs/architecture.md"
+        },
+        {
+          "after_sha256": "be73837ce4a707cad67abbeaa3877cd8e312b81a6b53e00e719100986a0a7697",
+          "before_sha256": "9a1f3d25bb04cdcb8da24db8b6a00682fb6adad9308376b798db736b317c912b",
+          "path": "reconstruction/rendering/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "4452c640fe6d3712c30e400d5e6c629b0d72b822f56b342bd7721aae3f746634",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_placement.cpp"
+        },
+        {
+          "after_sha256": "60de7c29e51aa4e66144946522f88c3a6613a293e8221fefa4d224f77ae03681",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_placement.hpp"
+        },
+        {
+          "after_sha256": "9aad11760b293ac69a0fe71590022703d4cb651bfbf96d96c1bef49b9bc086b5",
+          "before_sha256": "2c5929343766160c2091ddda8bb4311142d39d18badff148b20b048c9f5ea630",
+          "path": "research/runtime/README.md"
+        },
+        {
+          "after_sha256": "98dad6588b676bd2dc7595f759e069afd407dccbe4a7706d2758127507311146",
+          "before_sha256": "ab621d47b6fb5e317b9ccda9d512845083dc345728c2cc06e6eff913cb8f7837",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e4c2af60fc7f536624eeb3579a71125f1c85a6249159df82666f73bb300604e6",
+          "before_sha256": "ceeadc49b7868597ed171fe254cdbf759083aef619fdc9faf02244eea025cf3e",
+          "path": "research/runtime/coverage/README.md"
+        },
+        {
+          "after_sha256": "7966604d0bf6c7de1f0cbbc8e731a36379d7db414b3681e28f64ef613030bcfe",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-20261005.json"
+        },
+        {
+          "after_sha256": "0661def9fa974ce9ad9b282da6b4615760ce3fda59370c6d00c64c21e7c32411",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-20261005.md"
+        },
+        {
+          "after_sha256": "1b6a749d5c037a0ee2e85d53b3d79d7b602576fcc02ff5d42a246fa9736e59f6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/gate-source-index-20261005-portable.json"
+        },
+        {
+          "after_sha256": "c3c7732290c94712244d2e74358487ab77c253f16ce3196a23a0d98635904ff9",
+          "before_sha256": "9beae2683ccc8aa1ce351c3b28027690f2b780be38cc9ee99eb78d023b2e65aa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b8a694e08de5e338fd0f0f2c547e8f71dff4a16bdb3bc555e11dc97bf18ce4ed",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-20261005-local-hook-reviewed.json"
+        },
+        {
+          "after_sha256": "42da0f9e8ef639d2ab92d8764dfee711267bd6b07a537f8a504f0f0f94c7b4f6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-20261005-local-hook.json"
+        },
+        {
+          "after_sha256": "b8a694e08de5e338fd0f0f2c547e8f71dff4a16bdb3bc555e11dc97bf18ce4ed",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-navigation-commit.json"
+        },
+        {
+          "after_sha256": "ee3cab39f50b28b860a1514e03386b4829fa18c059576b88cd9d5e370a414a15",
+          "before_sha256": "65b72958555da1dbd24af29a03c3ad627e32a5a5be84f96bbb377d41c7a700ec",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "66ded8aa966c891d8ce0dbfd5429c160cee7ef9d5af36645526d2384c5ef476f",
+          "before_sha256": null,
+          "path": "research/runtime/effect-lighting-placement-build.json"
+        },
+        {
+          "after_sha256": "a97e95eb31a7583855ba56912f6d6a992f0fb4ccbbec796af2f3a0ee0f6eee05",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement-change-review.json"
+        },
+        {
+          "after_sha256": "cdc1f8c941a99530c19449b78d0cf030017d8d85f202f9d28aed64bee117ac05",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement-coverage.json"
+        },
+        {
+          "after_sha256": "61e9bef9d2fe60bd86a8c729bc60f0419e10ccc844aac7ed1dcd549c7b437d32",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement-source-index.json"
+        },
+        {
+          "after_sha256": "d65f82faed813e0f0ba0072f5a7b8be3a42291f264405630aa590bcdb858ea91",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement.json"
+        },
+        {
+          "after_sha256": "57c63a8d2dbedf89dbcf496bc3a4b97ac66b8329cd2a2f6bf64eab99005997d6",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement.md"
+        },
+        {
+          "after_sha256": "3a420d94a768347b4312d2778599e0e430e11bca2b82a37552621f29cf1067b7",
+          "before_sha256": "90f0968f664bd01ea748ee4cd4618e60b18ec583ebf3616930c077ea20cf2047",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "22c720546538faa05da4619fe16e536b51383691770eb444c41e83c44695d425",
+          "before_sha256": null,
+          "path": "tests/effect-placement-reference.cpp"
+        },
+        {
+          "after_sha256": "2c9eb5a0328fd59c0c400d093bed37103c8a82b57ace6a8ba93692a8333b7214",
+          "before_sha256": null,
+          "path": "tests/effect-placement-test.cpp"
+        },
+        {
+          "after_sha256": "9f1345538bbd0506b608c00c2acf5b08e6f0ff6a6dadf2eb5a423fdf7cd43597",
+          "before_sha256": "36604bd00ba97f9d647281a1cb8b40cb5b38934b9b2c1f87e303d08329398844",
+          "path": "tests/test-coverage-gate.py"
+        },
+        {
+          "after_sha256": "1f86cf86bdfef6c22315a229b5b22c752a3b3f68fd765d48e3fc72309140267d",
+          "before_sha256": "a0ad8462ad3e17d98a41262a31c66b94ae1efc4486e6c6f536686f51fb23546d",
+          "path": "tests/test-re-coverage.py"
+        },
+        {
+          "after_sha256": "ae205fc6464dff496aab51bbdeca6d37a11e0bc196014892e86957afb684a118",
+          "before_sha256": "5e0904ad6f6b96b86484e16eef23568ed62ea758da1ad2f87e599b317dbf1171",
+          "path": "tools/check-re-coverage.py"
+        },
+        {
+          "after_sha256": "1668a715bd021c891401e4690b9902ea0cba1766a264574a046b81a3caa27f7a",
+          "before_sha256": "8ac337e13c825f72a1202f5c5bd64892c16d3b007d62b659b83495967a55a28d",
+          "path": "tools/coverage_audit.py"
+        },
+        {
+          "after_sha256": "41b96a6fc308bcd58ba13f2f3cf9ebbaf549109f2d90f98c29f9899f7720f909",
+          "before_sha256": "b6f597f9ed9854e3cad2cbaad5f0191545acf5af189fcf059ed7e386d6857e00",
+          "path": "tools/coverage_gate.py"
+        },
+        {
+          "after_sha256": "7fe740a6157ba8f7c8d104ff795b7e657248f9fb120d67ec60a2075316516eaf",
+          "before_sha256": null,
+          "path": "tools/install-coverage-hook.py"
+        },
+        {
+          "after_sha256": "31ae23481fd210b4d13d7a7cdf8a485b1e6fdfd7da17ec12cce5fd0d27db9d95",
+          "before_sha256": null,
+          "path": "tools/test-effect-placement.py"
+        }
+      ],
+      "id": "navigation-and-coverage-adoption-20261005",
+      "pending_gaps": [
+        "behaviors_without_comparison:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_comparison:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "behaviors_without_comparison:8fa43a7142ff9a88cb4629ebd1e1840900e74c94ecd0e8f028187b4f83d47086",
+        "behaviors_without_implementation:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_implementation:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "behaviors_without_scenarios:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_scenarios:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "stale_evidence:3a5b19eabd54076720fa6a4b67819d84d6dde66f98f1f4045d9e729ff6023e56",
+        "stale_evidence:406591710c61d34485a40f48a92d109a776002ec4913eaa42461f9ba4acc277a",
+        "stale_evidence:87788e29cee6df5327cf036b8a57fbd4f45aa6c6dee913cdda1967ee97665ec1",
+        "stale_evidence:9ec92e830af1d173431030cf80fdf78bcb0cd9473c457c1801456f30b36097e6"
+      ],
+      "reason": "Review the isolated navigation commit and required coverage adoption: preserve the NS08 native-policy, original-predicate and installed-ANI evidence; match the census to this staged tree; retain HEAD effect-placement accounting; exclude uncommitted trajectory/campaign implementations and records. Shared documentation hashes and tooling links are accounted explicitly; unknown engine functions, unresolved dispatch and historical evidence remain intact.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "NS08 navigation was already independently validated by 98 regression tests, normal/sanitized installed-map predicate/pixel/restart checks and installed base-0 ANI arrival/continuation. Its immutable evidence is retained without source refresh. Both coverage guard suites passed 43 checks each on this isolated tree, and the audit has no errors or census drift. Adoption and shared documentation changes do not rerun unrelated engine comparisons or promote runtime statuses; historical stale fingerprints remain pending."
+      }
+    }
+  ]
+}

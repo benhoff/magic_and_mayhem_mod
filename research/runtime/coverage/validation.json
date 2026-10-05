@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-10-05T15:45:38.590772+00:00",
+  "scope": "Binary discovery and movement traceability accounting only; no new original behavior equivalence or live replacement",
+  "sources": {
+    "tools/inventory-binary.py": "627f1f3f6298b77a49ce55761dad63ed543a99f55d94eb03090f3a2f014839ff",
+    "tools/ghidra/ExportBinaryInventory.java": "e2e5fa1d458691a91eb5b2be5b8e9c0fffa92185bdc98464fa9a5dad1fc42c98",
+    "tools/coverage_audit.py": "10def225413709ad9d16cf42a8177ebb354ea38a33b7e0e60b7874af41f4008d",
+    "tools/audit-re-coverage.py": "1789cf8d11a39b7cb5fc4023b2f69a3d36240359059df9629492fcdffcaada19",
+    "tests/test-re-coverage.py": "ed0b5a80a44501538f47ae52683375ca42ac9456b0428f750ac12249da3abbc2",
+    "tests/test-tooling.sh": "349eeabbe7e807850bd740a52a79a522c1f02c31abd91a2d931d51f41eef27d7",
+    "research/runtime/coverage/register.json": "0d7edbf2bdf277416c0a018062eb5580b0de040d2729f2cbb4c3edbe2eb3505e",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/coverage/README.md": "45890ef4cad0977fc5fdf30a86bc556d1317b72508bd3764308f1d58555cd59b",
+    "research/runtime/coverage/summary.md": "d53cd2c733ed66ce490af4adafc47f857e3d25439c8c5d19d52f6d294d6c84ca"
+  },
+  "inventory_provenance": {
+    "run": "working/tests/binary-inventory/run-jv605nr3",
+    "command": [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/toolchain/ghidra_12.1.4_PUBLIC-arm64-uzxqvk1_/support/analyzeHeadless",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/binary-inventory/run-jv605nr3/project",
+      "BinaryInventory",
+      "-import",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+      "-scriptPath",
+      "/home/hoff/swdev/magic_and_mayhem_mod/tools/ghidra",
+      "-postScript",
+      "ExportBinaryInventory.java",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/binary-inventory/run-jv605nr3/discovery.json",
+      "-max-cpu",
+      "2",
+      "-analysisTimeoutPerFile",
+      "600"
+    ],
+    "ghidra_version": "ghidra_12.1.4_PUBLIC-arm64-uzxqvk1_",
+    "discovery_sha256": "4f4551d7820d7f99c212bdb5ee5955851dc15beb4d5b54c9ac913ecb88b33b64",
+    "sources": {
+      "tools/inventory-binary.py": "627f1f3f6298b77a49ce55761dad63ed543a99f55d94eb03090f3a2f014839ff",
+      "tools/ghidra/ExportBinaryInventory.java": "e2e5fa1d458691a91eb5b2be5b8e9c0fffa92185bdc98464fa9a5dad1fc42c98",
+      "tools/audit-file-apis.py": "c516ca9e40c3f68685501fb20d3348808d813a78e87207a9ea95fc18b6b8aa8e"
+    },
+    "original_manifest_verified_before_after": true
+  },
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "checks": {
+    "synthetic_regressions_passed": 31,
+    "normal_audit_exit": 0,
+    "normal_audit_errors": [],
+    "strict_freshness_exit": 1,
+    "existing_report_refusal_exit": 2,
+    "python_compile": true,
+    "tooling_shell_syntax": true,
+    "git_diff_whitespace": true
+  },
+  "initial_counts": {
+    "builds": 1,
+    "behaviors": 28,
+    "evidence": 6,
+    "scenarios": 2,
+    "functions": 6675,
+    "registered_recovered_ranges": 1,
+    "incomplete_dispatch_tables": 1,
+    "unclassified_functions": 6658,
+    "unassigned_executable_ranges": 4248,
+    "unresolved_indirect_flows": 1543,
+    "unmapped_imports": 190,
+    "computed_flows_with_inferred_targets": 2174,
+    "unmapped_callback_candidates": 3014,
+    "unmapped_dispatch_candidates": 336,
+    "calls_to_uninventoried_targets": 0,
+    "unmapped_dispatch_entries": 1,
+    "behaviors_without_scenarios": 15,
+    "behaviors_without_implementation": 14,
+    "behaviors_without_comparison": 19,
+    "stale_evidence": 4,
+    "behavior_anchors_outside_discovered_functions": 10
+  },
+  "warnings": [
+    "Recorded evidence fingerprints older source; historical claims are retained, current validation is not implied.",
+    "Pinned recovered code exists outside Ghidra function bodies; explicit range links preserve this discovery gap."
+  ],
+  "artifacts": {
+    "working/tests/re-coverage-validated.json": "fee1025f6f0a863db459b58f36d1d3bccbc167589b20f75d81270d7c8dd6ea88",
+    "working/tests/re-coverage-strict.log": "35de0f7859839b2d42864f5e8a40d5b429672109e5a28a7c6d5e55f83185fdff",
+    "working/tests/re-coverage-reconciled.json": "5e32edd5a41b8cf24d8055cb481b339c0ad47cf8e76f6508a6b8bf7664dd3fa0",
+    "working/tests/re-coverage-reconciled-strict.log": "d142c290e65ab8a0607d8527f418c9e4db463b713ccc44316ee8edcf1f71776b"
+  },
+  "remaining": [
+    "Map other subsystems and imported API/DLL boundaries into the register",
+    "Review unresolved computed flows, candidate callbacks and unassigned executable ranges",
+    "Extend movement checklist for further discovered branches and failures",
+    "Rerun or supersede historical evidence for current source; no source fingerprints silently refreshed",
+    "Add integrated native visible movement and real-game scenarios separately"
+  ],
+  "reconciliation": "Registered existing NS06 ordinary-terrain/category-four/vertical setup and native v6 headless evidence as immutable report links; no comparison rerun or replacement claim."
+}

@@ -1,0 +1,2557 @@
+{
+  "schema": 1,
+  "review_only": true,
+  "scope": "Repository source/contract indexing; no engine test execution, original execution or new integration claim.",
+  "behaviors": [
+    {
+      "id": "PF.creature_acceptance",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_creature_acceptance.cpp",
+        "reconstruction/pathfinding/route_creature_acceptance.hpp"
+      ],
+      "tests": [
+        "tests/route-creature-acceptance-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-creature-acceptance.md"
+      ]
+    },
+    {
+      "id": "PF.movement",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_movement.cpp",
+        "reconstruction/pathfinding/route_movement.hpp"
+      ],
+      "tests": [
+        "tests/route-movement-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-movement-test.md"
+      ]
+    },
+    {
+      "id": "PF.cell",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_cell.cpp",
+        "reconstruction/pathfinding/route_cell.hpp"
+      ],
+      "tests": [
+        "tests/route-cell-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-cell-test.md"
+      ]
+    },
+    {
+      "id": "PF.occupancy",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_occupancy.cpp",
+        "reconstruction/pathfinding/route_occupancy.hpp"
+      ],
+      "tests": [
+        "tests/route-occupancy-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-occupancy-test.md"
+      ]
+    },
+    {
+      "id": "PF.validity",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_validity.cpp",
+        "reconstruction/pathfinding/route_validity.hpp"
+      ],
+      "tests": [
+        "tests/route-validity-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-validity-test.md"
+      ]
+    },
+    {
+      "id": "PF.cell_validity",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_cell_validity.cpp",
+        "reconstruction/pathfinding/route_cell_validity.hpp"
+      ],
+      "tests": [
+        "tests/route-cell-validity-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-cell-validity.md"
+      ]
+    },
+    {
+      "id": "PF.record_query",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_record_query.cpp",
+        "reconstruction/pathfinding/route_record_query.hpp"
+      ],
+      "tests": [
+        "tests/route-record-query-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-record-query.md"
+      ]
+    },
+    {
+      "id": "PF.cell_support",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_cell_support.cpp",
+        "reconstruction/pathfinding/route_cell_support.hpp"
+      ],
+      "tests": [
+        "tests/route-cell-support-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-cell-support.md"
+      ]
+    },
+    {
+      "id": "PF.boundary",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_boundary.cpp",
+        "reconstruction/pathfinding/route_boundary.hpp"
+      ],
+      "tests": [
+        "tests/route-boundary-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-boundary-test.md"
+      ]
+    },
+    {
+      "id": "PF.clearance",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_clearance.cpp",
+        "reconstruction/pathfinding/route_clearance.hpp"
+      ],
+      "tests": [
+        "tests/route-clearance-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-clearance-tests.md"
+      ]
+    },
+    {
+      "id": "PF.scalar",
+      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_scalar.cpp",
+        "reconstruction/pathfinding/route_scalar.hpp"
+      ],
+      "tests": [
+        "tests/route-scalar-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-creature-scalar.md"
+      ]
+    },
+    {
+      "id": "AU.dsound_setup",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/dsound_setup.cpp",
+        "reconstruction/audio/dsound_setup.hpp"
+      ],
+      "tests": [
+        "tests/audio-buffers-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/directsound-buffer-setup.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.voice_contract",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Candidate addresses absent from discovered functions remain mapping debt: 0x56f870.",
+      "implementation": [
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp"
+      ],
+      "tests": [
+        "tests/audio-voices-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/directsound-voice-controls.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.voice_lifetime",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp"
+      ],
+      "tests": [
+        "tests/audio-lifetime-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/audio-voice-lifetimes.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.voice_scheduler",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Candidate addresses absent from discovered functions remain mapping debt: 0x571be0, 0x571ec0.",
+      "implementation": [
+        "reconstruction/audio/voice_scheduler.cpp",
+        "reconstruction/audio/voice_scheduler.hpp"
+      ],
+      "tests": [
+        "tests/audio-scheduler-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/audio-voice-scheduler.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.positional_audio",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/positional_audio.cpp",
+        "reconstruction/audio/positional_audio.hpp"
+      ],
+      "tests": [
+        "tests/audio-positional-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/positional-audio.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.camera_projection",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/camera_projection.cpp",
+        "reconstruction/audio/camera_projection.hpp"
+      ],
+      "tests": [
+        "tests/audio-camera-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/audio-camera-projection.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.attenuation_map",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/attenuation_map.cpp",
+        "reconstruction/audio/attenuation_map.hpp"
+      ],
+      "tests": [
+        "tests/audio-map-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/audio-attenuation-map.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.voice_admission",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/voice_admission.cpp",
+        "reconstruction/audio/voice_admission.hpp"
+      ],
+      "tests": [
+        "tests/audio-admission-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/audio-voice-admission.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.source_cache",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/source_cache.cpp",
+        "reconstruction/audio/source_cache.hpp"
+      ],
+      "tests": [
+        "tests/audio-source-cache-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/audio-source-cache.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.manager_configuration",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/manager_configuration.cpp",
+        "reconstruction/audio/manager_configuration.hpp"
+      ],
+      "tests": [
+        "tests/audio-manager-configuration-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/audio-manager-configuration.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.manager_lifecycle",
+      "scope": "Selected bounded contract and fakeable backend/failure cases; original unchecked I/O and full live manager state are outside scope. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/manager_lifecycle.cpp",
+        "reconstruction/audio/manager_lifecycle.hpp"
+      ],
+      "tests": [
+        "tests/audio-manager-lifecycle-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/audio-manager-lifecycle.md",
+        "reconstruction/audio/README.md"
+      ]
+    },
+    {
+      "id": "AU.primary",
+      "scope": "Selected volume/start/disable operations. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Candidate addresses absent from discovered functions remain mapping debt: 0x56fd90.",
+      "implementation": [
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/manager_contract.cpp",
+        "reconstruction/audio/manager_contract.hpp"
+      ],
+      "tests": [
+        "tests/audio-primary-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/primary-audio-manager.md"
+      ]
+    },
+    {
+      "id": "NA.buffers",
+      "scope": "Native ownership, validation and output policies; these do not establish original manager equivalence. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "audio/buffers.cpp",
+        "audio/buffers.hpp"
+      ],
+      "tests": [
+        "tests/audio-buffers-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/directsound-buffer-setup.md",
+        "audio/README.md"
+      ]
+    },
+    {
+      "id": "NA.voices",
+      "scope": "Native ownership, validation and output policies; these do not establish original manager equivalence. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "audio/voices.cpp"
+      ],
+      "tests": [
+        "tests/audio-voice-state-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/native-audio-voice-state.md",
+        "audio/README.md"
+      ]
+    },
+    {
+      "id": "NA.mixer",
+      "scope": "Native ownership, validation and output policies; these do not establish original manager equivalence. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "audio/mixer.cpp"
+      ],
+      "tests": [
+        "tests/audio-mixer-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/native-audio-mixer.md",
+        "audio/README.md"
+      ]
+    },
+    {
+      "id": "NA.output",
+      "scope": "Native ownership, validation and output policies; these do not establish original manager equivalence. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp"
+      ],
+      "tests": [
+        "tests/audio-output-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/native-audio-output.md",
+        "audio/README.md"
+      ]
+    },
+    {
+      "id": "NA.voice_bridge",
+      "scope": "Native ownership, validation and output policies; these do not establish original manager equivalence. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp"
+      ],
+      "tests": [
+        "tests/audio-voice-bridge-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/native-audio-voice-bridge.md",
+        "audio/README.md"
+      ]
+    },
+    {
+      "id": "NA.wave",
+      "scope": "Native ownership, validation and output policies; these do not establish original manager equivalence. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp"
+      ],
+      "tests": [
+        "tests/test-audio-asset-input.py"
+      ],
+      "documents": [
+        "research/formats/pcm-wav-loading.md",
+        "audio/README.md"
+      ]
+    },
+    {
+      "id": "NA.native_manager_backend",
+      "scope": "Native backend/catalog adapter around selected recovered contracts. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/native_manager_backend.cpp",
+        "reconstruction/audio/native_manager_backend.hpp",
+        "reconstruction/audio/manager_contract.hpp",
+        "reconstruction/audio/manager_contract.cpp"
+      ],
+      "tests": [
+        "tests/audio-native-manager-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/native-audio-manager-backend.md"
+      ]
+    },
+    {
+      "id": "NA.catalog_preflight",
+      "scope": "Native backend/catalog adapter around selected recovered contracts. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/audio/catalog_preflight.cpp",
+        "reconstruction/audio/catalog_preflight.hpp",
+        "reconstruction/audio/manager_contract.hpp"
+      ],
+      "tests": [
+        "tests/audio-catalog-preflight-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/audio-catalog-preflight.md"
+      ]
+    },
+    {
+      "id": "AS.animation",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp"
+      ],
+      "tests": [
+        "tests/animation-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/ani-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.sprite",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/sprite_frame_decoder.hpp"
+      ],
+      "tests": [
+        "tests/sprite-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/spr-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.persistence",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/packed_container.cpp",
+        "assets/config_loader.cpp",
+        "assets/save_loader.cpp",
+        "assets/persistence.hpp",
+        "assets/persistence_internal.hpp"
+      ],
+      "tests": [
+        "tests/persistence-loaders-test.cpp"
+      ],
+      "documents": [
+        "research/formats/persistence-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.save_world",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/save_world.cpp",
+        "assets/save_world.hpp"
+      ],
+      "tests": [
+        "tests/save-world-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/save-world-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.profile",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/profile.cpp",
+        "assets/profile.hpp"
+      ],
+      "tests": [
+        "tests/profile-api/native.cpp"
+      ],
+      "documents": [
+        "research/formats/profile-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.map",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/map.cpp",
+        "assets/map.hpp"
+      ],
+      "tests": [
+        "tests/map-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/map-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.terrain_catalog",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp"
+      ],
+      "tests": [
+        "tests/terrain-catalog-test.cpp"
+      ],
+      "documents": [
+        "research/formats/ttd-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.region_recipe",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/region_recipe.cpp",
+        "assets/region_recipe.hpp"
+      ],
+      "tests": [
+        "tests/region-recipe-test.cpp"
+      ],
+      "documents": [
+        "research/formats/region-terrain-recipes.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.wizard",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/wizard.cpp",
+        "assets/wizard.hpp"
+      ],
+      "tests": [
+        "tests/wizard-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/wzd-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.cursor",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/cursor.cpp",
+        "assets/cursor.hpp"
+      ],
+      "tests": [
+        "tests/cursor-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/cur-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.pcx",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/pcx.cpp",
+        "assets/pcx.hpp"
+      ],
+      "tests": [
+        "tests/pcx-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/pcx-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.bmp",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/bmp.cpp",
+        "assets/bmp.hpp"
+      ],
+      "tests": [
+        "tests/bmp-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/bmp-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.jpeg",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp"
+      ],
+      "tests": [
+        "tests/jpeg-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/jpeg-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.mps",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/mps.cpp",
+        "assets/mps.hpp"
+      ],
+      "tests": [
+        "tests/mps-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/mps-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.evt",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/evt.cpp",
+        "assets/evt.hpp"
+      ],
+      "tests": [
+        "tests/evt-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/evt-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.tag",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/tag.cpp",
+        "assets/tag.hpp"
+      ],
+      "tests": [
+        "tests/tag-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/tag-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.fp",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/fp.cpp",
+        "assets/fp.hpp"
+      ],
+      "tests": [
+        "tests/fp-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/fp-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.sft",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/sft.cpp",
+        "assets/sft.hpp"
+      ],
+      "tests": [
+        "tests/sft-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/sft-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.nod",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/nod.cpp",
+        "assets/nod.hpp"
+      ],
+      "tests": [
+        "tests/nod-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/nod-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.text",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/text.cpp",
+        "assets/text.hpp",
+        "assets/wbt.cpp",
+        "assets/wbt.hpp"
+      ],
+      "tests": [
+        "tests/text-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/txt-wbt-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.dat",
+      "scope": "Read-only owned data and strict malformed-input handling; original allocation, file API failures and runtime entity creation remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/dat.cpp",
+        "assets/dat.hpp"
+      ],
+      "tests": [
+        "tests/dat-loader-test.cpp"
+      ],
+      "documents": [
+        "research/formats/dat-native-loading.md",
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "AS.access",
+      "scope": "Native normalization, containment and byte-preserving file access. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/compare_main.cpp"
+      ],
+      "tests": [
+        "tests/asset-path-test.cpp",
+        "tests/asset-file-test.cpp",
+        "tests/test-asset-compare.py"
+      ],
+      "documents": [
+        "research/formats/asset-file-interface.md",
+        "research/formats/asset-file-comparison.md"
+      ]
+    },
+    {
+      "id": "RE.sprite_queue",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/sprite_queue.cpp",
+        "reconstruction/rendering/sprite_queue.hpp"
+      ],
+      "tests": [
+        "tests/sprite-queue-test.cpp",
+        "tests/sprite-queue-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/sprite-queue-order.md"
+      ]
+    },
+    {
+      "id": "RE.sprite_visibility",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/sprite_visibility.cpp",
+        "reconstruction/rendering/sprite_visibility.hpp"
+      ],
+      "tests": [
+        "tests/sprite-visibility-test.cpp",
+        "tests/sprite-visibility-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/sprite-visibility.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_submission",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_submission.cpp",
+        "reconstruction/rendering/terrain_submission.hpp"
+      ],
+      "tests": [
+        "tests/terrain-submission-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-submission.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_camera",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_camera.cpp",
+        "reconstruction/rendering/terrain_camera.hpp"
+      ],
+      "tests": [
+        "tests/terrain-camera-test.cpp",
+        "tests/terrain-camera-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-camera-setters.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_traversal",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_traversal.cpp",
+        "reconstruction/rendering/terrain_traversal.hpp"
+      ],
+      "tests": [
+        "tests/terrain-traversal-test.cpp",
+        "tests/terrain-traversal-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-traversal-rotations.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_map",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_map.cpp",
+        "reconstruction/rendering/terrain_map.hpp"
+      ],
+      "tests": [
+        "tests/terrain-map-test.cpp",
+        "tests/terrain-map-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-map-initialization.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_sections",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_sections.cpp",
+        "reconstruction/rendering/terrain_sections.hpp"
+      ],
+      "tests": [
+        "tests/terrain-sections-test.cpp",
+        "tests/terrain-sections-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-section-assembly.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_region",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_region.cpp",
+        "reconstruction/rendering/terrain_region.hpp"
+      ],
+      "tests": [
+        "tests/terrain-region-test.cpp",
+        "tests/terrain-region-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-authored-regions.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_selection",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_selection.cpp",
+        "reconstruction/rendering/terrain_selection.hpp"
+      ],
+      "tests": [
+        "tests/terrain-selection-test.cpp",
+        "tests/terrain-selection-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-region-selection.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_constraints",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_constraints.cpp",
+        "reconstruction/rendering/terrain_constraints.hpp"
+      ],
+      "tests": [
+        "tests/terrain-constraints-test.cpp",
+        "tests/terrain-constraints-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-region-constraints.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_solver",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_solver.cpp",
+        "reconstruction/rendering/terrain_solver.hpp"
+      ],
+      "tests": [
+        "tests/terrain-solver-test.cpp",
+        "tests/terrain-solver-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-region-solver.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_specific",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_specific.cpp",
+        "reconstruction/rendering/terrain_specific.hpp"
+      ],
+      "tests": [
+        "tests/terrain-specific-test.cpp",
+        "tests/terrain-specific-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-region-specific.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_generation",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_generation.cpp",
+        "reconstruction/rendering/terrain_generation.hpp"
+      ],
+      "tests": [
+        "tests/terrain-generation-test.cpp",
+        "tests/terrain-generation-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-region-generation.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_catalog",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_catalog.cpp",
+        "reconstruction/rendering/terrain_catalog.hpp"
+      ],
+      "tests": [
+        "tests/terrain-catalog-build-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-region-catalog.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_generated",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_generated.cpp",
+        "reconstruction/rendering/terrain_generated.hpp"
+      ],
+      "tests": [
+        "tests/terrain-generated-test.cpp",
+        "tests/terrain-generated-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-generated-plans.md"
+      ]
+    },
+    {
+      "id": "RE.palette_shading",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Candidate addresses absent from discovered functions remain mapping debt: 0x57e1b0.",
+      "implementation": [
+        "reconstruction/rendering/palette_shading.cpp",
+        "reconstruction/rendering/palette_shading.hpp"
+      ],
+      "tests": [
+        "tests/palette-shading-test.cpp",
+        "tests/palette-shading-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-palette-shading.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_lighting",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp"
+      ],
+      "tests": [
+        "tests/terrain-lighting-test.cpp",
+        "tests/terrain-lighting-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-light-fields.md"
+      ]
+    },
+    {
+      "id": "RE.terrain_creature_lighting",
+      "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp"
+      ],
+      "tests": [
+        "tests/terrain-creature-lighting-test.cpp",
+        "tests/terrain-creature-lighting-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-creature-lighting.md"
+      ]
+    },
+    {
+      "id": "RE.palette_preferences",
+      "scope": "Selected option fields and strict native parsing; special appended palette effects remain open. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp"
+      ],
+      "tests": [
+        "tests/terrain-palette-preference-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/terrain-palette-preferences.md",
+        "research/formats/terrain-palette-preferences.md"
+      ]
+    },
+    {
+      "id": "AN.forward",
+      "scope": "Selected controller/placement modes; reverse modes, all runtime effects and entity lifetime remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/animation/no_cd.cpp",
+        "reconstruction/animation/no_cd.hpp"
+      ],
+      "tests": [
+        "tests/animation-model-test.cpp",
+        "tests/animation-binary-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/animation-forward-contract.md"
+      ]
+    },
+    {
+      "id": "AN.placement",
+      "scope": "Selected controller/placement modes; reverse modes, all runtime effects and entity lifetime remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/animation/placement.cpp",
+        "reconstruction/animation/placement.hpp"
+      ],
+      "tests": [
+        "tests/animation-placement-test.cpp",
+        "tests/animation-placement-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/animation-placement-attachments.md"
+      ]
+    },
+    {
+      "id": "AN.attachment",
+      "scope": "Selected controller/placement modes; reverse modes, all runtime effects and entity lifetime remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "reconstruction/animation/attachment.cpp",
+        "reconstruction/animation/attachment.hpp"
+      ],
+      "tests": [
+        "tests/animation-attachment-test.cpp",
+        "tests/animation-attachment-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/animation-mode-one-attachment.md"
+      ]
+    },
+    {
+      "id": "NR.surfaces",
+      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/replay_main.cpp"
+      ],
+      "tests": [
+        "tests/render-blit-test.cpp",
+        "tests/render-surfaces-test.cpp",
+        "tests/test-render-commands.py"
+      ],
+      "documents": [
+        "renderer/README.md",
+        "research/runtime/opengl-surface-command-replay.md"
+      ]
+    },
+    {
+      "id": "NR.sprites",
+      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "renderer/sprites/preview_main.cpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp"
+      ],
+      "tests": [
+        "tests/sprite-render-test.cpp",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "documents": [
+        "research/runtime/native-sprite-rendering.md"
+      ]
+    },
+    {
+      "id": "NR.sprite_scene",
+      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/sprite-scene/attachment_recipe.cpp",
+        "apps/sprite-scene/main.cpp",
+        "apps/sprite-scene/scene.cpp",
+        "apps/sprite-scene/attachment_recipe.hpp",
+        "apps/sprite-scene/scene.hpp"
+      ],
+      "tests": [
+        "tests/sprite-scene-queue-test.cpp",
+        "tests/sprite-scene-test.cpp"
+      ],
+      "documents": [
+        "apps/sprite-scene/README.md"
+      ]
+    },
+    {
+      "id": "NR.terrain_scene",
+      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/terrain-preview/main.cpp",
+        "apps/terrain-preview/map_region.cpp",
+        "apps/terrain-preview/region_loader.cpp",
+        "apps/terrain-preview/scene.cpp",
+        "apps/terrain-preview/region_loader.hpp",
+        "apps/terrain-preview/scene.hpp",
+        "apps/terrain-preview/light_fixture.cpp",
+        "apps/terrain-preview/light_fixture.hpp"
+      ],
+      "tests": [
+        "tests/terrain-shaded-cache-test.cpp",
+        "tests/terrain-lighting-cycle-test.cpp",
+        "tests/terrain-lighting-scene-reference.cpp"
+      ],
+      "documents": [
+        "apps/terrain-preview/README.md"
+      ]
+    },
+    {
+      "id": "NR.world_scene",
+      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/world-scene/main.cpp",
+        "apps/world-scene/scene.cpp",
+        "apps/world-scene/scene.hpp"
+      ],
+      "tests": [
+        "tests/world-scene-test.cpp",
+        "tools/test-world-scene.py"
+      ],
+      "documents": [
+        "apps/world-scene/README.md",
+        "research/runtime/native-world-scene.md"
+      ]
+    },
+    {
+      "id": "UI.main_menu",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/main_menu_widget.cpp",
+        "apps/qt-shell/main_menu_widget.hpp"
+      ],
+      "tests": [
+        "tests/main-menu-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/main-menu-qt-migration.md"
+      ]
+    },
+    {
+      "id": "UI.quick_battle_menu",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/quick_battle_menu_widget.cpp",
+        "apps/qt-shell/quick_battle_menu_widget.hpp"
+      ],
+      "tests": [
+        "tests/quick-battle-menu-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/quick-battle-qt-menu.md"
+      ]
+    },
+    {
+      "id": "UI.mini_menu",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/mini_menu_widget.cpp",
+        "apps/qt-shell/mini_menu_widget.hpp"
+      ],
+      "tests": [
+        "tests/mini-menu-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/mini-menu-qt.md"
+      ]
+    },
+    {
+      "id": "UI.preferences",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/preferences_widget.cpp",
+        "apps/qt-shell/preferences_widget.hpp"
+      ],
+      "tests": [
+        "tests/preferences-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/preferences-qt.md"
+      ]
+    },
+    {
+      "id": "UI.load_game",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/load_game_widget.cpp",
+        "apps/qt-shell/load_game_widget.hpp"
+      ],
+      "tests": [
+        "tests/load-game-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/load-game-qt.md"
+      ]
+    },
+    {
+      "id": "UI.save_game",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/save_game_widget.cpp",
+        "apps/qt-shell/save_game_widget.hpp"
+      ],
+      "tests": [
+        "tests/save-game-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/save-game-qt.md"
+      ]
+    },
+    {
+      "id": "UI.battle_result",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/battle_result_widget.cpp",
+        "apps/qt-shell/battle_result_widget.hpp"
+      ],
+      "tests": [
+        "tests/battle-result-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/battle-results-qt.md"
+      ]
+    },
+    {
+      "id": "UI.quick_battle_result",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/quick_battle_result_widget.cpp",
+        "apps/qt-shell/quick_battle_result_widget.hpp"
+      ],
+      "tests": [
+        "tests/quick-battle-result-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/quick-battle-results-qt.md"
+      ]
+    },
+    {
+      "id": "UI.map_selection",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/map_selection_widget.cpp",
+        "apps/qt-shell/map_selection_widget.hpp"
+      ],
+      "tests": [
+        "tests/map-selection-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/map-selection-qt.md"
+      ]
+    },
+    {
+      "id": "UI.multiplayer_setup",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/multiplayer_setup_widget.cpp",
+        "apps/qt-shell/multiplayer_setup_widget.hpp"
+      ],
+      "tests": [
+        "tests/multiplayer-setup-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/multiplayer-setup-qt.md"
+      ]
+    },
+    {
+      "id": "UI.multiplayer_game_selection",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/multiplayer_game_selection_widget.cpp",
+        "apps/qt-shell/multiplayer_game_selection_widget.hpp"
+      ],
+      "tests": [
+        "tests/multiplayer-game-selection-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/multiplayer-game-selection-qt.md"
+      ]
+    },
+    {
+      "id": "UI.multiplayer_lobby",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/multiplayer_lobby_widget.cpp",
+        "apps/qt-shell/multiplayer_lobby_widget.hpp"
+      ],
+      "tests": [
+        "tests/multiplayer-lobby-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/multiplayer-lobby-qt.md"
+      ]
+    },
+    {
+      "id": "UI.single_player_battle",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/single_player_battle_widget.cpp",
+        "apps/qt-shell/single_player_battle_widget.hpp"
+      ],
+      "tests": [
+        "tests/single-player-battle-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/single-player-battle-qt.md"
+      ]
+    },
+    {
+      "id": "UI.region_entry",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/region_entry_widget.hpp"
+      ],
+      "tests": [
+        "tests/region-entry-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/region-entry-qt.md"
+      ]
+    },
+    {
+      "id": "UI.character_screen",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/character_screen_widget.cpp",
+        "apps/qt-shell/character_screen_widget.hpp"
+      ],
+      "tests": [
+        "tests/character-screen-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/character-screen-qt.md"
+      ]
+    },
+    {
+      "id": "UI.grimoire",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/grimoire_widget.cpp",
+        "apps/qt-shell/grimoire_widget.hpp"
+      ],
+      "tests": [
+        "tests/grimoire-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/grimoire-qt.md"
+      ]
+    },
+    {
+      "id": "UI.spellbox",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/spellbox_widget.cpp",
+        "apps/qt-shell/spellbox_widget.hpp"
+      ],
+      "tests": [
+        "tests/spellbox-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/spellbox-qt.md"
+      ]
+    },
+    {
+      "id": "UI.realm_viewer",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/realm_viewer_widget.cpp",
+        "apps/qt-shell/realm_viewer_widget.hpp"
+      ],
+      "tests": [
+        "tests/realm-viewer-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/realm-viewer-qt.md"
+      ]
+    },
+    {
+      "id": "UI.spell_research",
+      "scope": "Native widget and semantic actions; preview support does not imply engine lifecycle or gameplay completion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/spell_research_widget.cpp",
+        "apps/qt-shell/spell_research_widget.hpp"
+      ],
+      "tests": [
+        "tests/spell-research-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/spell-research-qt.md"
+      ]
+    },
+    {
+      "id": "UI.assets",
+      "scope": "Native service policy and bounded recovery; code links do not prove current live execution. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/menu_assets.cpp",
+        "apps/qt-shell/menu_assets.hpp",
+        "apps/qt-shell/menu_fonts.cpp",
+        "apps/qt-shell/menu_fonts.hpp",
+        "apps/qt-shell/menu_sprites.cpp",
+        "apps/qt-shell/menu_sprites.hpp",
+        "apps/qt-shell/grimoire_assets.cpp",
+        "apps/qt-shell/grimoire_assets.hpp",
+        "apps/qt-shell/realm_viewer_assets.cpp",
+        "apps/qt-shell/realm_viewer_assets.hpp",
+        "apps/qt-shell/realm_viewer_visuals.cpp",
+        "apps/qt-shell/realm_viewer_visuals.hpp"
+      ],
+      "tests": [
+        "tests/menu-image-test.cpp",
+        "tests/menu-font-test.cpp",
+        "tests/menu-sprite-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/menu-image-integration.md"
+      ]
+    },
+    {
+      "id": "UI.audio",
+      "scope": "Native service policy and bounded recovery; code links do not prove current live execution. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/audio_session.cpp",
+        "apps/qt-shell/audio_session.hpp",
+        "apps/qt-shell/audio_cli.cpp",
+        "apps/qt-shell/audio_cli.hpp",
+        "apps/qt-shell/menu_audio_controller.cpp",
+        "apps/qt-shell/menu_audio_controller.hpp",
+        "apps/qt-shell/menu_audio_preferences.hpp"
+      ],
+      "tests": [
+        "tests/audio-session-test.cpp",
+        "tests/audio-recovery-test.cpp",
+        "tests/menu-audio-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/menu-audio-integration.md"
+      ]
+    },
+    {
+      "id": "UI.music",
+      "scope": "Native service policy and bounded recovery; code links do not prove current live execution. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/menu_music_controller.cpp",
+        "apps/qt-shell/menu_music_controller.hpp",
+        "apps/qt-shell/menu_music_devices.hpp",
+        "apps/qt-shell/menu_music_output.cpp"
+      ],
+      "tests": [
+        "tests/menu-music-test.cpp",
+        "tests/menu-music-recovery-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/native-menu-music.md"
+      ]
+    },
+    {
+      "id": "BR.main",
+      "scope": "Engine requests, shared channel guards and Qt lifecycle; historical live prose is documented but needs a pinned scenario before promotion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Candidate addresses absent from discovered functions remain mapping debt: 0x4a75c0.",
+      "implementation": [
+        "runtime/menu/observer.c",
+        "runtime/menu/channel.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp"
+      ],
+      "tests": [
+        "tests/menu-bridge-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/menu-action-bridge.md"
+      ]
+    },
+    {
+      "id": "BR.battle",
+      "scope": "Engine requests, shared channel guards and Qt lifecycle; historical live prose is documented but needs a pinned scenario before promotion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Candidate addresses absent from discovered functions remain mapping debt: 0x4ad6f0.",
+      "implementation": [
+        "runtime/menu/observer.c",
+        "runtime/menu/channel.h",
+        "apps/qt-shell/live_battle_menu_controller.cpp",
+        "apps/qt-shell/live_battle_menu_controller.hpp",
+        "apps/qt-shell/live_battle_menu_test.cpp",
+        "runtime/menu/battle.h"
+      ],
+      "tests": [
+        "tests/menu-battle-bridge-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/single-player-menu-bridge.md"
+      ]
+    },
+    {
+      "id": "BR.spell",
+      "scope": "Engine requests, shared channel guards and Qt lifecycle; historical live prose is documented but needs a pinned scenario before promotion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Candidate addresses absent from discovered functions remain mapping debt: 0x576830.",
+      "implementation": [
+        "runtime/menu/observer.c",
+        "runtime/menu/channel.h",
+        "apps/qt-shell/live_spell_menu_controller.cpp",
+        "apps/qt-shell/live_spell_menu_controller.hpp",
+        "runtime/menu/spells.h"
+      ],
+      "tests": [
+        "tests/menu-spell-bridge-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/spell-selection-menu-bridge.md"
+      ]
+    },
+    {
+      "id": "BR.result",
+      "scope": "Engine requests, shared channel guards and Qt lifecycle; historical live prose is documented but needs a pinned scenario before promotion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "runtime/menu/observer.c",
+        "runtime/menu/channel.h",
+        "apps/qt-shell/live_result_menu_controller.cpp",
+        "apps/qt-shell/live_result_menu_controller.hpp",
+        "runtime/menu/results.h"
+      ],
+      "tests": [
+        "tests/menu-result-bridge-test.cpp",
+        "tests/menu-result-controller-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/quick-battle-results-engine-bridge.md"
+      ]
+    },
+    {
+      "id": "BR.mini",
+      "scope": "Engine requests, shared channel guards and Qt lifecycle; historical live prose is documented but needs a pinned scenario before promotion. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Candidate addresses absent from discovered functions remain mapping debt: 0x4b2100.",
+      "implementation": [
+        "runtime/menu/observer.c",
+        "runtime/menu/channel.h",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/live_mini_menu_controller.hpp",
+        "runtime/menu/mini.h"
+      ],
+      "tests": [
+        "tests/menu-mini-bridge-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/mini-menu-engine-bridge.md"
+      ]
+    },
+    {
+      "id": "RT.render",
+      "scope": "Selected channels/adapters and ownership; full subsystem replacement and current live equivalence remain unclaimed. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "runtime/render/bridge.c",
+        "runtime/render/selftest.c",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h"
+      ],
+      "tests": [
+        "runtime/render/selftest.c",
+        "tests/test-render-capture.py",
+        "tests/test-render-commands.py",
+        "tests/test-render-stream-rate.py"
+      ],
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ]
+    },
+    {
+      "id": "RT.audio",
+      "scope": "Selected channels/adapters and ownership; full subsystem replacement and current live equivalence remain unclaimed. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "runtime/audio/bridge.c",
+        "runtime/audio/selftest.c",
+        "runtime/audio/protocol.h"
+      ],
+      "tests": [
+        "runtime/audio/selftest.c",
+        "tests/test-audio-asset-input.py"
+      ],
+      "documents": [
+        "research/runtime/native-audio-voice-bridge.md"
+      ]
+    },
+    {
+      "id": "RT.shadow",
+      "scope": "Selected channels/adapters and ownership; full subsystem replacement and current live equivalence remain unclaimed. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "runtime/shadow/bridge.c",
+        "runtime/shadow/selftest.c",
+        "runtime/shadow/win32_min.h",
+        "runtime/shadow/bridge.S"
+      ],
+      "tests": [
+        "runtime/shadow/selftest.c",
+        "tests/test-neighbor-shadow.py",
+        "runtime/shadow/selftest.S"
+      ],
+      "documents": [
+        "research/runtime/pathfinding-neighbor-shadow.md"
+      ]
+    },
+    {
+      "id": "HOST.session",
+      "scope": "Selected channels/adapters and ownership; full subsystem replacement and current live equivalence remain unclaimed. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "apps/qt-shell/frame_stream.cpp",
+        "apps/qt-shell/frame_stream.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp"
+      ],
+      "tests": [
+        "tests/frame-stream-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/qt-shell-hosting.md"
+      ]
+    },
+    {
+      "id": "HOST.input",
+      "scope": "Selected channels/adapters and ownership; full subsystem replacement and current live equivalence remain unclaimed. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/input_forwarder.hpp",
+        "apps/qt-shell/input_state.cpp",
+        "apps/qt-shell/input_state.hpp"
+      ],
+      "tests": [
+        "tests/qt-input-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/qt-input-forwarding.md"
+      ]
+    },
+    {
+      "id": "HOST.media",
+      "scope": "Selected channels/adapters and ownership; full subsystem replacement and current live equivalence remain unclaimed. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp",
+        "apps/qt-shell/media_broker.cpp",
+        "apps/qt-shell/media_broker.hpp",
+        "apps/qt-shell/media_cli.cpp",
+        "apps/qt-shell/media_cli.hpp"
+      ],
+      "tests": [],
+      "documents": [
+        "research/runtime/qt-native-media.md"
+      ]
+    },
+    {
+      "id": "WIRE.contracts",
+      "scope": "Fixed-size/version contracts and generated C/Python bindings; no host-pointer layout sharing. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/generate.py",
+        "protocols/python/mnm_protocols/__init__.py",
+        "protocols/python/mnm_protocols/frame_v1.py",
+        "protocols/python/mnm_protocols/input_v1.py",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "protocols/schemas/frame-v1.json",
+        "protocols/schemas/input-v1.json",
+        "protocols/schemas/media-v1.json"
+      ],
+      "tests": [
+        "protocols/tests/test_contracts.py"
+      ],
+      "documents": [
+        "protocols/README.md"
+      ]
+    },
+    {
+      "id": "WORLD.owned",
+      "scope": "Native identity/generation and checkpoint policy; original world creation and scheduler semantics remain separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "game/persistence/snapshot.cpp",
+        "game/persistence/snapshot.hpp",
+        "game/persistence/store_posix.cpp"
+      ],
+      "tests": [
+        "tests/native-world-test.cpp"
+      ],
+      "documents": [
+        "game/README.md",
+        "research/runtime/native-world-foundation.md",
+        "research/formats/native-world-snapshot.md"
+      ]
+    },
+    {
+      "id": "WORLD.sandbox",
+      "scope": "Native executable fixture/session orchestration on frozen snapshots. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "implementation": [
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/main.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp"
+      ],
+      "tests": [
+        "tests/test-native-world.py"
+      ],
+      "documents": [
+        "research/runtime/native-world-foundation.md"
+      ]
+    },
+    {
+      "id": "TOOL.traceability",
+      "scope": "Reproducible discovery and accounting tools; semantic mappings require contributor review. Synthetic guard tests do not establish original engine behavior.",
+      "implementation": [
+        "tools/inventory-binary.py",
+        "tools/ghidra/ExportBinaryInventory.java",
+        "tools/coverage_audit.py",
+        "tools/audit-re-coverage.py",
+        "tools/index-coverage-sources.py"
+      ],
+      "tests": [
+        "tests/test-re-coverage.py",
+        "tests/test-tooling.sh"
+      ],
+      "documents": [
+        "research/runtime/coverage/README.md"
+      ]
+    },
+    {
+      "id": "UI.preview",
+      "scope": "Native preview selection, widgets and supplied assets. Source/contract review only; no new test or integration result.",
+      "implementation": [
+        "apps/qt-shell/menu_preview.cpp",
+        "apps/qt-shell/menu_preview.hpp"
+      ],
+      "tests": [
+        "tests/main-menu-test.cpp",
+        "tests/quick-battle-menu-test.cpp"
+      ],
+      "documents": [
+        "apps/qt-shell/README.md"
+      ]
+    },
+    {
+      "id": "UI.preferences_store",
+      "scope": "Native bounded profile readback, original-write verification, locked revision check and atomic store; cross-launch validation is pending. Source/contract review only; no new test or integration result.",
+      "implementation": [
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp",
+        "tools/menu_preferences_store.py"
+      ],
+      "tests": [
+        "tests/engine-preferences-store-test.cpp",
+        "tests/test-menu-preferences-store.py"
+      ],
+      "documents": [
+        "research/runtime/preferences-engine-bridge.md",
+        "research/formats/preferences-config.md"
+      ]
+    },
+    {
+      "id": "PF.frozen_world",
+      "scope": "Owned route snapshots, controlled context continuation and replay utilities; live world production remains separate. Source/contract review only; no new test or integration result.",
+      "implementation": [
+        "reconstruction/pathfinding/route_world.cpp",
+        "reconstruction/pathfinding/route_world.hpp",
+        "reconstruction/pathfinding/replay_trace.cpp",
+        "reconstruction/pathfinding/route_neighbor_replay.cpp",
+        "reconstruction/pathfinding/route_replay.cpp"
+      ],
+      "tests": [
+        "tests/route-world-test.cpp",
+        "tests/test-route-world.py",
+        "tests/test-search-sequence.py"
+      ],
+      "documents": [
+        "research/formats/route-world-snapshot.md",
+        "research/runtime/pathfinding-search-sequence.md"
+      ]
+    },
+    {
+      "id": "WIRE.menu_fixtures",
+      "scope": "Version guards, isolated callback harnesses and disabled-context rejection; fixture code is not full original menu equivalence. Source/contract review only; no new test or integration result.",
+      "implementation": [
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/spell_selftest.h"
+      ],
+      "tests": [
+        "tools/test-menu-observer.py"
+      ],
+      "documents": [
+        "research/runtime/menu-engine-observation.md",
+        "research/formats/menu-migration-inventory.md"
+      ]
+    },
+    {
+      "id": "TOOL.asset_inspection",
+      "scope": "Bounded read-only asset inspection/decoded output CLIs. Source/contract review only; no new test or integration result.",
+      "implementation": [
+        "assets/animation_inspect_main.cpp",
+        "assets/bmp_inspect_main.cpp",
+        "assets/cursor_inspect_main.cpp",
+        "assets/dat_inspect_main.cpp",
+        "assets/evt_inspect_main.cpp",
+        "assets/fp_inspect_main.cpp",
+        "assets/jpeg_inspect_main.cpp",
+        "assets/map_inspect_main.cpp",
+        "assets/mps_inspect_main.cpp",
+        "assets/nod_inspect_main.cpp",
+        "assets/pcx_inspect_main.cpp",
+        "assets/persistence_inspect_main.cpp",
+        "assets/region_recipe_inspect_main.cpp",
+        "assets/sft_inspect_main.cpp",
+        "assets/sprite_inspect_main.cpp",
+        "assets/tag_inspect_main.cpp",
+        "assets/text_inspect_main.cpp",
+        "assets/wizard_inspect_main.cpp"
+      ],
+      "tests": [
+        "tests/test-legacy-asset-loaders.py",
+        "tests/test-persistence-loaders.py",
+        "tests/map-loader-test.cpp"
+      ],
+      "documents": [
+        "assets/README.md"
+      ]
+    },
+    {
+      "id": "NA.cli",
+      "scope": "Offline acquisition and native server/output orchestration. Source/contract review only; no new test or integration result.",
+      "implementation": [
+        "audio/upload_main.cpp",
+        "audio/output_main.cpp",
+        "audio/voice_server_main.cpp"
+      ],
+      "tests": [
+        "tests/test-audio-asset-input.py"
+      ],
+      "documents": [
+        "audio/README.md"
+      ]
+    },
+    {
+      "id": "AS.legacy",
+      "scope": "Independent legacy record normalization and byte/pixel checks; original legacy reader equivalence remains unverified. Source/contract review only; no new test or integration result.",
+      "implementation": [
+        "assets/animation_decode.cpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_frame_decoder.hpp"
+      ],
+      "tests": [
+        "tests/legacy-asset-loader-test.cpp",
+        "tests/test-legacy-asset-loaders.py"
+      ],
+      "documents": [
+        "research/formats/legacy-ani-spr-loading.md"
+      ]
+    }
+  ],
+  "sources": {
+    "reconstruction/pathfinding/route_creature_acceptance.cpp": "1c7b8b2ba2cf7aa79deafc7d22c42eaf4fbe9ac76b847d32baf612705b1834ae",
+    "reconstruction/pathfinding/route_creature_acceptance.hpp": "783fcfa1cdbeeb066a509ac38eab48c2223cbce45a2705098b460c3977e64ee9",
+    "tests/route-creature-acceptance-test.cpp": "9677e3a50ac363833bbef320db98c7f4e84d615f5d0ccf8b0d9a898bcbcd8156",
+    "reconstruction/pathfinding/route_movement.cpp": "e14f9b265268e90d473744fed5032ab0d4fbf6d6a6cc329aa5ebdf73ae7552ed",
+    "reconstruction/pathfinding/route_movement.hpp": "a629be54a1ecab52e5b258cb4f56191c397ba555afaa3c739c6da18d285ffe36",
+    "tests/route-movement-test.cpp": "b097544a78414e4b335a0edd9946f475876bc36b67a6161a36bebeb54ec2eff8",
+    "reconstruction/pathfinding/route_cell.cpp": "0fb12859ed1204b5c0ec7fa255b992220011b7ccb29b5093b6978477b522abe5",
+    "reconstruction/pathfinding/route_cell.hpp": "034d2dc93f7c090501c51379b87e1f1f4a06abf1ab90c1daf102603805ee0a87",
+    "tests/route-cell-test.cpp": "87a8b72ad9883076a5b64ce517be91d1316e73a5fd3c2db34d893b1866894cd6",
+    "reconstruction/pathfinding/route_occupancy.cpp": "3f6e0c16cd5788a04ee3494ee12ce9fb5b7962c03dd9d1c3dad10b7d12803c62",
+    "reconstruction/pathfinding/route_occupancy.hpp": "ab87e5e0b98d6c9a5b9d5534acea60e339292685cddc15a5ec2e9905135cdde4",
+    "tests/route-occupancy-test.cpp": "664a30b44132689858cb21561a67437d09d9c840d5d01bcbcdf455019f6d70ad",
+    "reconstruction/pathfinding/route_validity.cpp": "13d661b3b70e3012fe1e5bf270d18aa1b2a219534b59e43648bf5c5519d0e9ad",
+    "reconstruction/pathfinding/route_validity.hpp": "410c18dc108e470e1afcc5378d0b7fb50cd3ffec5af2535a0bdc75db2849721c",
+    "tests/route-validity-test.cpp": "70fa41e457755954bf9455fa3eaf65b827612448b8ce132367deb7d651278095",
+    "reconstruction/pathfinding/route_cell_validity.cpp": "faeb6d51fa25ad597baf3ac6175ddca6587619800ad8533c076b925f61487b00",
+    "reconstruction/pathfinding/route_cell_validity.hpp": "340aeb52780c25728f2d0325037aa463909dcc0af79d1c6a975bc9eec8063baf",
+    "tests/route-cell-validity-test.cpp": "67cba9dc0ed348d725017ea4de3b84e7424f593ee2cb2ec718bd5a3877ab5079",
+    "reconstruction/pathfinding/route_record_query.cpp": "999a0db16cf6c587721d5c9b4e8f2a5e48e570f99810876d0ef0c26b2b80e3af",
+    "reconstruction/pathfinding/route_record_query.hpp": "c20019a3e560cb1efaa9282a8ddf0e0e25a274dfde7655f2c9f8d77930e8d707",
+    "tests/route-record-query-test.cpp": "d90c6d7b195724865197293cb3721fce853142059243368a59fdd1ac5a534784",
+    "reconstruction/pathfinding/route_cell_support.cpp": "e5a15b3c7b4958a93111b5a8290366f156c159bc19bc2b4345502fafd2b890a5",
+    "reconstruction/pathfinding/route_cell_support.hpp": "7f6f1b5fad5e22a7557c266cb12afb86d72fcfdcf84383cfa11df8e447f4f2d6",
+    "tests/route-cell-support-test.cpp": "82a9373cc3075a8b6d4116c563e3159d35acc2493aad54d7f08080bb373d6b22",
+    "reconstruction/pathfinding/route_boundary.cpp": "2f63d294b8ab6cf34b80671c89235f4d65db6ab5fd3ff950bd1eec7b4918b2ad",
+    "reconstruction/pathfinding/route_boundary.hpp": "8ead91b70e1e8cb2e443f2e3c246332e5997dd123841af996a6a084e88db25fc",
+    "tests/route-boundary-test.cpp": "f03c6129fd67120ce9fc5d7b431ce6615deb8cc528a1db97fed43b5974b5979e",
+    "reconstruction/pathfinding/route_clearance.cpp": "dc45c48278b78d26b485ee48b6ed60a1710c2a0cc170c0526f626b1ba024a396",
+    "reconstruction/pathfinding/route_clearance.hpp": "0d78cead2ad3390f330c34ce0666deb30e47a20c6151277913ea23a46edf4142",
+    "tests/route-clearance-test.cpp": "2fafc3e8eb255ff046a41de3aa4b58e7302966925101ddedce15d08a70355c08",
+    "reconstruction/pathfinding/route_scalar.cpp": "61dacc1b374de6916a0f7067ace6b90bdb6696979f9f3fc6e0e77df406b2d4c4",
+    "reconstruction/pathfinding/route_scalar.hpp": "a41298ff3b9d369af5fa3d847489f0f498a8b76893d80f1731ddde5c14317164",
+    "tests/route-scalar-test.cpp": "4e924046b37714a7616688a0ab004b570e6bac64563c05aded69a9f277c5bfc4",
+    "reconstruction/audio/dsound_setup.cpp": "919eef74e5a844d5cb31069544161d5da516bbe3aff0ced6d500f119a167458f",
+    "reconstruction/audio/dsound_setup.hpp": "be04e2a4d3f28380b4b00d8aed2d74b0ac6c8e3712575d766eacacb9f85c436e",
+    "tests/audio-buffers-test.cpp": "9fae3eb15f9a89e33b9f06b774cd8d5a6b5eda7cc10010f4ba3ce06cefb831ef",
+    "reconstruction/audio/voice_contract.cpp": "0c15733aa36aa4e52cf6afb40efb2157072d998cef6aea898c9ad12ba690d7f7",
+    "reconstruction/audio/voice_contract.hpp": "6131dbd0d37ca01067871535005b711c7a799f9a1d76d426062f9380ec712972",
+    "tests/audio-voices-test.cpp": "1fb0f2f2dfe990ccff95cd3b6d6e61960c406c193d60be799fc5bb936e1465a5",
+    "reconstruction/audio/voice_lifetime.cpp": "734eae681516248ad8d0e86de2ec02c73fe064f2f89f6a67798b3f67eab5ae00",
+    "reconstruction/audio/voice_lifetime.hpp": "7d7f45e6a46da1a53aa2e484b925bc76fba7c9ab22adfe4233121313532b5cf0",
+    "tests/audio-lifetime-test.cpp": "bba33a5feb263ca9abd827fc59c1492be62608587be984ed9207e4bdcd847258",
+    "reconstruction/audio/voice_scheduler.cpp": "8731f183ef6d2a0d00b035c08e0d7d81b33463f864d7b8dcb3ec87b2b78b58ab",
+    "reconstruction/audio/voice_scheduler.hpp": "65d564eada76461db115054f7efa6b2d7c57d3ca0d84d56a358a00cebdd89e88",
+    "tests/audio-scheduler-test.cpp": "edc3d805acc1d0b2920063aebecd3a7c690c5b3c8970c955fbea3503064ce6b1",
+    "reconstruction/audio/positional_audio.cpp": "cb0fc90067994d3941d5c9f66a587fa9dec607341e2d3c1133c036b0918021ae",
+    "reconstruction/audio/positional_audio.hpp": "b7fbeba66cd46d2af323ae5e0ed9b750bbca311797f3ca59294db4172ed7796f",
+    "tests/audio-positional-test.cpp": "dcd3fbfe6cdbbdc54a4b99cd4b53ddf3c534bcfd862971a844ee2745f20bb897",
+    "reconstruction/audio/camera_projection.cpp": "8a164b1dc372c7d3e7eddcd2aa3c076117ad5e713be3a103808dc28d11696bcf",
+    "reconstruction/audio/camera_projection.hpp": "b4ed726054461ab9d351a5af573489f0326e069f6f10b434ab72ad3fb2d353ed",
+    "tests/audio-camera-test.cpp": "26f46c2144debaa499437e04ca432429a919e76f4a798e680b512c2cd841ea9a",
+    "reconstruction/audio/attenuation_map.cpp": "e4a78640341e50b26333eec98e1ba774a30965830337e9b32d4be6621ff35cdd",
+    "reconstruction/audio/attenuation_map.hpp": "7866a4c4db7fb5be40315848bbd44f4a8eb1b1fa3694db1d3e7edee099f743bd",
+    "tests/audio-map-test.cpp": "8e7b4f9a9a49a72ebc16b9feb8e177d128570982cb9570112230da99729dc8a3",
+    "reconstruction/audio/voice_admission.cpp": "94a537dfaa5acba6deb88761a7cab9a32b1fcc4f65befb81ad61106be5f66346",
+    "reconstruction/audio/voice_admission.hpp": "fd2cbbf1f52a926c490e11f3401af00229d78d3da9cac3cd2404499810a9c8de",
+    "tests/audio-admission-test.cpp": "f5c11f2025c63cd5ba57fa5ed17ba69492c0c4bc8dbc9e8dd5651dc7c1999747",
+    "reconstruction/audio/source_cache.cpp": "801da31fa08d649056ff7c44c2b3a1f1cce00a4a3f8177675ca841eddca826b8",
+    "reconstruction/audio/source_cache.hpp": "6dec50c494b0a80a7962ee5dfc62a8f6ae3b734e46bd3b081acf26345a0e2734",
+    "tests/audio-source-cache-test.cpp": "925dd11f62d43f62a20e4d4ce19da17b09b7f008eb14aaa7b939c71285e6c038",
+    "reconstruction/audio/manager_configuration.cpp": "562516f6fce42004587484dc5cc216ddf9a922d0c65e73d110c6206a8b9f0ede",
+    "reconstruction/audio/manager_configuration.hpp": "4e1b91f36efb656d3eecb309d852112fc19c132962cf997b910a15c0a18ebbe0",
+    "tests/audio-manager-configuration-test.cpp": "b36d0ae83e0c2d865a49f42e26026d7cb81f1c5ad448b1590f57936cdc755a77",
+    "reconstruction/audio/manager_lifecycle.cpp": "8ad56c30c2b32f0864613dfb95ffbe36f7cefd5a7af1b10256f354e490052f0e",
+    "reconstruction/audio/manager_lifecycle.hpp": "e72efbdd7935cd6801be0cbbc84345d680d88748d2790b3b606aba7b8ab8ad10",
+    "tests/audio-manager-lifecycle-test.cpp": "c5a663c1737000e92d18f5030d4147ebba4d7630918332f7ff7ac36e9f35c4b6",
+    "reconstruction/audio/manager_contract.cpp": "22b0928c6aa06b3e5687f6820120cc3574328b20cf81a67d2bbfe1fb90a28b17",
+    "reconstruction/audio/manager_contract.hpp": "fcfcce01640485c999ea523cf3789f0f1772cdec7c5efd329fa4f9451afe9dab",
+    "tests/audio-primary-test.cpp": "39da1ac2ff0f7958247cd3678c74ee896f142a2f26a17223d9e9474da5df85aa",
+    "audio/buffers.cpp": "815cb9dace6fb29afd8fd5e5cc671a752cf4ef7bcbe52c7dd93e2d1bf9638e17",
+    "audio/buffers.hpp": "bf688fa6ba89c2830e41b3726114ee545053a20e32bd41b8ac61364479a2701d",
+    "audio/voices.cpp": "2a07e4d9207ca03fa6c5bfa0e5dd94675c8ab07664c851ee28586bb6a67861e5",
+    "tests/audio-voice-state-test.cpp": "d023ac80671fc043399074e41701fd8b859dbe1af6ff83759fe66f7249ea6950",
+    "audio/mixer.cpp": "e4a64ed128a59260c4d6d902efa2b46add535c06e986ebfe884aa1473c079a4c",
+    "tests/audio-mixer-test.cpp": "6288e1b41765f018b70432db997ecc116b220be674f2cf0e42b2b19e6cf60972",
+    "audio/qt_output.cpp": "35fe202d45203cff8d989172910493b3768076af143a44defff634847060cfe0",
+    "audio/qt_output.hpp": "2e2bcba64fec7da74c93f3406a1276e11e901783f2e6a563ceb94659b4d95809",
+    "tests/audio-output-test.cpp": "50ceb6704fd5bf1e5b754372c3be5ac0f46bb3a0298d9af88697258c79ba368a",
+    "audio/voice_bridge.cpp": "78ef0997ed557eff18a93c5c43dacfd2ea48d1f056ec318b53dc6a01ce1bfc8f",
+    "audio/voice_bridge.hpp": "025b50e8a003de2806dc1c68aeff71ff3f473465d08475eddb33edac12bb39aa",
+    "tests/audio-voice-bridge-test.cpp": "fec43c097960561847f7a1aa57a3d5e87f3ee5762a8f4ca0a62a951394d96e28",
+    "audio/wave_loader.cpp": "354d29bb4fa60bcff1d21f496b1c26284dd18689aec236e6278c445f89be16dc",
+    "audio/wave_loader.hpp": "3b69d3ea67fb0f35cd131ec1c81ff68ceb1d7fefcf1243c9703ada205672b172",
+    "tests/test-audio-asset-input.py": "8442e0b6ebeb6285cf2500dbcf36a3cca14253690f26050637345d8a5142e7f3",
+    "reconstruction/audio/native_manager_backend.cpp": "38e5359f4ec1e7e62556d3d4005f7cf68bb3549f8bfa8857202f2e33bcdfda2d",
+    "reconstruction/audio/native_manager_backend.hpp": "d26ede36ef3825dc1a7c2cde440585bac531805d23038153c318e4a740e94119",
+    "tests/audio-native-manager-test.cpp": "72d0e1b6477758a64e5010c028c52aee1b166965011962581f99f49ea2f90119",
+    "reconstruction/audio/catalog_preflight.cpp": "b814a1e514745c5ac303279bce489729eb69d9f32cb0a1646d04ecaf25836336",
+    "reconstruction/audio/catalog_preflight.hpp": "7874203c3453d964948f6a9d890ffbf310c21011cc4f43cf21ea0c23cb5125e5",
+    "tests/audio-catalog-preflight-test.cpp": "9f929db1b46390058beb595e43f8a784c12a98821345c14e57035090821abe69",
+    "assets/animation.cpp": "0cdd420e8bbd08751f652696a4eadf9fb0eada1b96ec04c83402feee1acf0bda",
+    "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+    "assets/animation_decode.cpp": "76523a27832349dda6daf9988bc42b348611b657af710a2f3e65b7a2912e947d",
+    "tests/animation-loader-test.cpp": "ca3feeae46391a13cfcda18aa79402452a7209ac3f0cce50e3268633556697f8",
+    "assets/sprite_loader.cpp": "00abda9b22c1f85be51e2f00028bcd448a044efbacc0fff1a24fec676df68e67",
+    "assets/sprite_loader.hpp": "0ab5f80fe75601ad3010afd048c87176bd1b3d37d371525a5c4ea6e3991d263e",
+    "assets/sprite_frame_decoder.hpp": "55ff6be0e30d13672c8fc2fab5c2328582fc3eb0ffdf4456d3b2c6ab1a0ec6ab",
+    "tests/sprite-loader-test.cpp": "8fdec1816791b58dbc453009902fdb19f5282a39ea6766ef95dbe5a6af54f30d",
+    "assets/packed_container.cpp": "1a69d4236536be0ae9f9944b00ea816b33a4a249010bc4e011e4a43cb2e17e0d",
+    "assets/config_loader.cpp": "706851875120533c7a49492eb34ff158314b4d17c8328749766d1a7ea9c1bb6a",
+    "assets/save_loader.cpp": "8f0d9f2c5314a168e9aba80a52772b8a8cda8c9c32ea4dfcb3a16d57a2046895",
+    "assets/persistence.hpp": "3013cefe3f0cfe931b8f7c3961c66765233f2826fc417d2f48da3574501249b1",
+    "assets/persistence_internal.hpp": "f704e35fdd852b18f370d71a62a9881dc6f41d2e99b8f0cf9aa4c1bc46d76c0f",
+    "tests/persistence-loaders-test.cpp": "339ff7f85ea0bf50ded02b2ecafdaa53a053b1e8f1a415747c5270fbb24f5ffa",
+    "assets/save_world.cpp": "fc792c919a6bbb3b9af6535da4b976880e4ec13dfe7a15e4be41195f5f6db31c",
+    "assets/save_world.hpp": "fca5bec61c6ae42971d713f2ea188ea59ff6ec261404a9105dc44761f05b7995",
+    "tests/save-world-loader-test.cpp": "225abf364ae87fb14f2b66ad6112aef22cc34346fa04202be0610538a1241396",
+    "assets/profile.cpp": "a6e917c7e14b5599c97aaca99c6b39dfd7222b22d5be2744c8dc42c9acd0420f",
+    "assets/profile.hpp": "f1fe154be5c9b06d23d7b847c3e3488de89e2d54669586e3a3f9705bbfaa7279",
+    "tests/profile-api/native.cpp": "cfd5db8d3175f5cee9900a73fe82c77a2cfb9a6e26620a23bfd66a78631cb821",
+    "assets/map.cpp": "28d65fe5cb71efc4a3d0a30cba131118588d516f7c5693a85950a580f1234789",
+    "assets/map.hpp": "f08dd9f7092da782b7a3ae9c9e5cc40c32ed8de791aaf568d81403ec893d4e0a",
+    "tests/map-loader-test.cpp": "b9d844c3ddad33df0e85ac3a6e2cf4ad2c474c1d853e0c9494282898b8d770b7",
+    "assets/terrain_catalog.cpp": "46f520fbada169bc3044b121e0a8838825214cff91730fa0046e5231d53f3b26",
+    "assets/terrain_catalog.hpp": "a1b91474346fd9a780fe34282684e63f826707147e628099ae4bb24b6ff50478",
+    "tests/terrain-catalog-test.cpp": "4d705364a723385f94833d7d54ecc18ebeb7ce3e64f4f4c5e8887b178de42a47",
+    "assets/region_recipe.cpp": "97fbc0f22f1fe59f8ade1d3c9d6f5f233061eb7120662d89b34aa9845798692e",
+    "assets/region_recipe.hpp": "bceb3d7345bee18ef9c353a284b89cd8e91864fb4001d02c04635a9c3fb2037b",
+    "tests/region-recipe-test.cpp": "107c0507fa33d87ff009372fd4edbbca5e806c783218abd18944138962fb46fc",
+    "assets/wizard.cpp": "0049845c510f89fd2ef51d5b8f476fd83f1dca5454bab6c40414117c5b596a35",
+    "assets/wizard.hpp": "6e4ea8e6bbe57bb87a61d14e481b9baa7edda58e79dd41ee56cdaefc071231ab",
+    "tests/wizard-loader-test.cpp": "95555436c5c8893a01a4959290b337ffeb9c7b0d85765ab0e643c734d0167bbf",
+    "assets/cursor.cpp": "72b0754f61658e7e3577be77e8474866f84ec422b7e7a5ae250ea1a8fa9ce440",
+    "assets/cursor.hpp": "625e5decc1a0f7f9c31660e1cf291dc59783fbbb45549095b5d610b6dfb401f8",
+    "tests/cursor-loader-test.cpp": "fc2565b272d85fcdeb94082a3ce2a1c157c3496a72f7916bb0241b6484af00fb",
+    "assets/pcx.cpp": "776eac976327478959336bc1fa20fdfd1ac04c35a431f0e1fb949ef411defa8b",
+    "assets/pcx.hpp": "f823529c1bfd7f3b4359289f8cd6880e485c318acf711d5371cb84d8392348c2",
+    "tests/pcx-loader-test.cpp": "e0fccfb6ca9c6e1dee7478d41057d5c55dfcb9f956f195f629f763adc6423659",
+    "assets/bmp.cpp": "2905db6469699156e4113816a9563a02f2f6071ecf3ce428bd19a535daf21151",
+    "assets/bmp.hpp": "a109cb3177826c54deba46b5952581ebbe9936a5feab49e0e958bee9f2fbc0d5",
+    "tests/bmp-loader-test.cpp": "df645d5b69dbc614644df2bdb1d1d7807f712d707c33419b0f178a34429418d2",
+    "assets/jpeg.cpp": "0a3772e79bcace89a84aa060b3f95637f05171e7bd8c85ed77efcc0c9955d28e",
+    "assets/jpeg.hpp": "e2a16ca4030480c7832c0f1b80be5d9d48134d49d65871c37ab03e79f23fda9a",
+    "tests/jpeg-loader-test.cpp": "15df3a72fb360a0ddd220541863e5d55ede745e7f5679dcd4ff6237da022dfe2",
+    "assets/mps.cpp": "02664575ae1377059faa3f76d1beb395ae48c798932357d00cf111d61a6bd1f1",
+    "assets/mps.hpp": "75e4faf786a5b2ec3166b70ea671e5e707a0e09f14054aa9dabb516bb3e81e81",
+    "tests/mps-loader-test.cpp": "4da8d31681819d7e4489e5dc15d0cdd86d6931386cf5e7457890bb72e35ea96d",
+    "assets/evt.cpp": "a17f3492108373be55559adf2dc922d81704ccc9b0d8cf006cd41a2097db47c2",
+    "assets/evt.hpp": "3ce9ca0cd44d84eba406602a4268ad75691568484a4f62a8006ae1117b2702d5",
+    "tests/evt-loader-test.cpp": "ef03c704320003774ddddef0a0bc729ff586d8c4ab4168307d1853beae4ed2f1",
+    "assets/tag.cpp": "c8ecf2f5b36167d83a98ae022bf37f39473060033df56ce58bce4294ce7a5126",
+    "assets/tag.hpp": "21f7602afa005b16877d9716b9eeb71967e04112b25104c5a241331fc924d967",
+    "tests/tag-loader-test.cpp": "aa7f0f1794476da9211a72096548cd086fc7a7ad88752cadd64f406166101936",
+    "assets/fp.cpp": "f096e28026badfa5759db40e7df0996c5de6d44c92c931574c86f3ca0e40a1d6",
+    "assets/fp.hpp": "3802e59c4dcfcd26df9bc8aa2d62c2f93024e5c5e3bc230714b4d43ea0370eb6",
+    "tests/fp-loader-test.cpp": "bb3e95463eb3e495b374bd8914d6109dc095d781460591f97fdc267c82c07e47",
+    "assets/sft.cpp": "e317648525c1bd53d0a25a84db2ff943041b392c39ba34afc8781ac7fee8e985",
+    "assets/sft.hpp": "91a41125164f294985873e4812728886a10c763f7082275e04b99f1bd0483c3b",
+    "tests/sft-loader-test.cpp": "683abfed7943de55eb0a0029e70edba6e51fc4ed9d12d16255891b0833f76650",
+    "assets/nod.cpp": "0ae47f764bae42793587a31a4ebd9751e3629c7d68ad2689b7d3c88292aec371",
+    "assets/nod.hpp": "99002bd4bace7dbde011f91d1e921734134ec00cb2b7cca2747236b9a6e4e95d",
+    "tests/nod-loader-test.cpp": "db964f6c03bc04a5b643d4f114dc3e45f39c2b3759fcb9d3980c35b535f0f0aa",
+    "assets/text.cpp": "d0ea03cab975714d466682bfc00628dc9c856c96b14c8ba5996dc6b17081670f",
+    "assets/text.hpp": "46e5665f828cdf0eff7a8a6f6f2222c143a2f855705122384cea4108a07adbc2",
+    "assets/wbt.cpp": "15691fbee7dcc7ea4d1209b3a3962f4b2a0df4b857d853ebfb7fea4ba67cd5a8",
+    "assets/wbt.hpp": "a182d07bcddd3338157bc73d2bc935d72049bd45cb5fa6d81ceca136659d55e3",
+    "tests/text-loader-test.cpp": "ef9ce0135621c317f79146d5abdb7dd2aa8b10ef8aa9375d283a1f761de75b3b",
+    "assets/dat.cpp": "32527f25ba533121a909a1eb5a6e1b5cdbf1a1ddbec2ef89ba30cfb784723fa8",
+    "assets/dat.hpp": "7fa2f8cb8df157119a474b0fcb48ba8bfdde3f2c1b45bea1bc610fea685de532",
+    "tests/dat-loader-test.cpp": "c9e56c087964f6ea9af1d2ffb1b92a8e6d1771b8fa1ae8ee1d03d4feb46faa5c",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/compare_main.cpp": "be67af31dc0440838c5323a4f8a5513c56c3128a4522f1974371bc6e47bc5706",
+    "tests/asset-path-test.cpp": "a2a0a8df261cbec8bb6115237b0f5f320272a564e65f1c2c68bfee1b88bb6d62",
+    "tests/asset-file-test.cpp": "ff30872ab48f18a8780064462ee50c5fd186470608781a794f4efa2164908a3e",
+    "tests/test-asset-compare.py": "d373ceb115a368ee82af3dda22bf660dc5ef1121dea8f5f0b9c42fc6b0a0bcf5",
+    "reconstruction/rendering/sprite_queue.cpp": "be185bea5f6af36487ef379b90cd31878d864e01d663bf7e72830bd11dd08b28",
+    "reconstruction/rendering/sprite_queue.hpp": "0bdd6d6006d527b7f3f57c8b5c5035aa82f11cbf89145698e12b26b8e769d5ef",
+    "tests/sprite-queue-test.cpp": "243bfae170a6490d65d453325cbb0d1f3cea32e88e83e80625dda50c22a0a47f",
+    "tests/sprite-queue-reference.cpp": "31eaa06debae995380ea1381829e5b45adc4ea4f1bfb8ea3ebd892d59c5ebae4",
+    "reconstruction/rendering/sprite_visibility.cpp": "08912357166dc8ab9a9858da6b9481dbf087d1748bbf3b492b18cf3d46d559eb",
+    "reconstruction/rendering/sprite_visibility.hpp": "ec3f1db9eefe5d565c2af8a144850c359573ed35de2232998469d08f08e659d7",
+    "tests/sprite-visibility-test.cpp": "ab856fd4b4621056b7c582d069cb3a3e146e7583b0edbf1ec77d6364069a88e3",
+    "tests/sprite-visibility-reference.cpp": "82a0bb3957fb0ddf141a9991ae6bc020bc6fac13738643727149b56e16e5a5a0",
+    "reconstruction/rendering/terrain_submission.cpp": "b04bca853f9585e7dd58fcd35ebe0cacac1997bac262be07b39f6d6ca7944b2c",
+    "reconstruction/rendering/terrain_submission.hpp": "4f01f35b35d9adc0d0a3985a5616fc0207af8a43932bb48d64736d382d209a11",
+    "tests/terrain-submission-reference.cpp": "ee427accda5e706d27555db9f993ce5ab60c644322e55a1d06f5c2a07c10d395",
+    "reconstruction/rendering/terrain_camera.cpp": "42f9a9c59d4c1e574fc4e0ed21f615d9b522242e39b52325643e99c7bc37f817",
+    "reconstruction/rendering/terrain_camera.hpp": "f6bacef97809b3d25c66f2e5f6990ba194970f10aa4fd569804a740629b56730",
+    "tests/terrain-camera-test.cpp": "a30f6b40c95e77a9912c7213616727513d1619dd26044009a39edf955587e2ce",
+    "tests/terrain-camera-reference.cpp": "18d48767623529e7bb55a2943bb14f3162fc190c4d562b07c130e86728626987",
+    "reconstruction/rendering/terrain_traversal.cpp": "d9b2e5f5ff1d9bcfe2ababa0900007f3596cac87c74504a8dbe3d71de1f03c78",
+    "reconstruction/rendering/terrain_traversal.hpp": "dc49e73cb705b5d205d2d109bdf629f4891595e901139a2e416e50647feca9c9",
+    "tests/terrain-traversal-test.cpp": "005863cc757885bcdc1061495312a2def8bae90f8f13952551c1e16efb3a6bb4",
+    "tests/terrain-traversal-reference.cpp": "bfc8c86fe7e5750383c2bc1a9cdb32c5cd05300c002382d3a269c76de782d08b",
+    "reconstruction/rendering/terrain_map.cpp": "78c846e620a35aac4be2cc5661a1a1894f81c0b6fc086316ab46fb0f5cdf0a1b",
+    "reconstruction/rendering/terrain_map.hpp": "7ef79e510113b029da17eeb1eac60bcdbf5473550a8d23ae850972f67a479d6c",
+    "tests/terrain-map-test.cpp": "4487e6be1f539735e134e1cd62e7801b40a65c96327fa6bf6e98840bd582717c",
+    "tests/terrain-map-reference.cpp": "601b05500f744d35196efc2359537bf1af1b20d2989b563285700bbcce9c39af",
+    "reconstruction/rendering/terrain_sections.cpp": "b11b46b249314b8b02d731f7eb7947b8587f12117504db383ba83f7df60e0f6b",
+    "reconstruction/rendering/terrain_sections.hpp": "233d047f4fcb1e61af7b6994a07fc8aba8e1d9d5643a6845e1cab8620bcabbf6",
+    "tests/terrain-sections-test.cpp": "71db6d683b4b672f41f86723c6267b6eea5c12455a37cc0be409f4edc03337a6",
+    "tests/terrain-sections-reference.cpp": "51a7be16278df34d39af25a14790323a596f4cf98fffb83d75d28d314a122831",
+    "reconstruction/rendering/terrain_region.cpp": "852c656687d4ea3e4f647f52226ae2a54f6b3c956901f773c69089689fa33737",
+    "reconstruction/rendering/terrain_region.hpp": "709fc933c0d4757173c511b68953d5568bf876a8b7bebf23652a4d206a42ce00",
+    "tests/terrain-region-test.cpp": "2c1938c45d7261258bf32b1e69b9f2a243add6a40e8128ddad7d91055ac3c057",
+    "tests/terrain-region-reference.cpp": "7be4d190c32546be6205baf0078070317f581c15ac34d9cc956043fc7b897bec",
+    "reconstruction/rendering/terrain_selection.cpp": "8d88d6f096a746856b5139b62325908247486c2d230b5967c93219f625e25446",
+    "reconstruction/rendering/terrain_selection.hpp": "3c95e1cd02f1f098efabaf9ee23c9d16f0eb123bb43c2ce7ba0a75595b02bf80",
+    "tests/terrain-selection-test.cpp": "1ba8bb548916e6d809753af5654cbe7f0dc55f5abb135243c15e51a596b176c8",
+    "tests/terrain-selection-reference.cpp": "b5ef106cd26b04c7c97ce49f719a6bd68c305703a98dde7d5286582e0e86ab7e",
+    "reconstruction/rendering/terrain_constraints.cpp": "7473519b34bf90b9238270ade4726218a89baba74df7268ac0c0c7b962176ff1",
+    "reconstruction/rendering/terrain_constraints.hpp": "41b656d9a0a060edb2417e501d2b334658dddd80432799b625be8969af68a636",
+    "tests/terrain-constraints-test.cpp": "09d11139d8775173970964c454fb12319ff1d2134548acb28242ef7e5f16654d",
+    "tests/terrain-constraints-reference.cpp": "c59e914663b48abe6f2bcaed5e420bf578741b3faf213d526c60cf2c4d3ea0a2",
+    "reconstruction/rendering/terrain_solver.cpp": "635b8131aa6fb263fbd7933c4752a66604fe483c0bec69f38fb9cb0eb8ff2683",
+    "reconstruction/rendering/terrain_solver.hpp": "eb8e1e6ab22581e93d06d9c3f259e163b2ea9566058363adc44de5ec779a7b05",
+    "tests/terrain-solver-test.cpp": "aa729dffd94deed2a1718bfef5a129334909432585adf47c6e9b7fa613e710e3",
+    "tests/terrain-solver-reference.cpp": "3b06a88dff0b454372a1d1356f8edd9b1a9b02106da3a160f09a8f24fc96133a",
+    "reconstruction/rendering/terrain_specific.cpp": "c3c841f388f469efc9dabffbb9eb85a2468480c8548d7e091efa37ed600bec63",
+    "reconstruction/rendering/terrain_specific.hpp": "8f97ca16d0a6ce18bd031ca3a83e7fe0dd2716982e54ae848570702fe9c0f445",
+    "tests/terrain-specific-test.cpp": "47ca3f6adaa1a533fe7fc9221c7e94451c3c4719986bde0e0fcdd70f70eb2a82",
+    "tests/terrain-specific-reference.cpp": "dd4830041305b5e1ded5bea2316696104083cf787255a0788a58f52a7dfa4700",
+    "reconstruction/rendering/terrain_generation.cpp": "d8b69472523d31e58bff7313a7cd70b56b77f789b3481fc06d9221d6d4d5fbd9",
+    "reconstruction/rendering/terrain_generation.hpp": "a7efef8bbbce9c078ab748f4b4d4dc3c624b9b3148c6fbcb5ed6fc41da6013c4",
+    "tests/terrain-generation-test.cpp": "11fff6d6a3a2c5575457ae6e1f7e9ce737792b492202a79304ad0391b7c70cd4",
+    "tests/terrain-generation-reference.cpp": "f855de590c7b61037ebf45a5a3bbb4fa4afe721f0a77042c158ac6c7e08ec1f8",
+    "reconstruction/rendering/terrain_catalog.cpp": "c0c0d9dfdeaca1558af0126dc31789c645d2f6f829b6522647e459bca9bebea6",
+    "reconstruction/rendering/terrain_catalog.hpp": "670c9bfed61ffa477ee1435ed4e3a8b4b6e1f05551b3f17e5a03353e11bf1eda",
+    "tests/terrain-catalog-build-test.cpp": "8d6e8e8cbc35b1cfa898f552e294536eb6c3de2f20e4ae9d86687c3d4ffa7d84",
+    "reconstruction/rendering/terrain_generated.cpp": "7b4ccd594ab7da6bb244d16b561c597adb6d1fe4afb8e85af058178176d73761",
+    "reconstruction/rendering/terrain_generated.hpp": "a98b98fb54b55eea84f560f7979d4f642a7667f937b85019e3a6531b53af922a",
+    "tests/terrain-generated-test.cpp": "8814ad12f6112dcb7fa7385c882d8968b4c1c69b9303ed41c1083a459151be51",
+    "tests/terrain-generated-reference.cpp": "cbe47b220f9cfe98a1ee95dd349796780ed0282846a32bfae7b7e9bc30b120f5",
+    "reconstruction/rendering/palette_shading.cpp": "080dd815379d60096694f0e5d90379244a5b98dbfe292712627ff9562da378ad",
+    "reconstruction/rendering/palette_shading.hpp": "bc7e54a5bf7881feb73d6dcfe5364cde7eb31fe5bf4d197b60c98dffde258866",
+    "tests/palette-shading-test.cpp": "5e1a43154d1714973adb84da54873b40430e757285ade24706d33fdf9c8a7ce8",
+    "tests/palette-shading-reference.cpp": "640d6510b537114bf3bd3d1125e4b28304a03a10d4f8b0d9fba10f14d36e4286",
+    "reconstruction/rendering/terrain_lighting.cpp": "71362a12b9c39430f935172eee6b86bdd69e569baeb802f2b5bcef86941128d6",
+    "reconstruction/rendering/terrain_lighting.hpp": "0d6dbe9a670c7c9fe9d21c5daa23cdb704db9a75ebb2f1f7112c9727c2e88762",
+    "tests/terrain-lighting-test.cpp": "dd9b1a5cba756c7afba29810e87c239e3e7c88e391c11808de688aebb1a8f62b",
+    "tests/terrain-lighting-reference.cpp": "1cf9b482973fcf72137fda5a64e82f2d5c5a68c2b841f933a93dab4ab9815e43",
+    "reconstruction/rendering/terrain_creature_lighting.cpp": "230416703569b15643bf13481af726beaf3c3db0308a694fe6ba268b9a09e354",
+    "reconstruction/rendering/terrain_creature_lighting.hpp": "d7202a69c681ab0a8f2b161b746542e08c75f48e03f5c3e5877e2651817b1d75",
+    "tests/terrain-creature-lighting-test.cpp": "e42455818ade2b38b1358498bfe58b7acd0d643c5624454d9de31620df72a893",
+    "tests/terrain-creature-lighting-reference.cpp": "52bf95a609c2c55073a58126aef7298e36ac2446cfa05e2c23e11add2a1a3e1e",
+    "assets/palette_lighting.cpp": "de05923d86bd5d76fbca30942d2d5ac9dffa3cc943e27ce0cef22637d9c0b769",
+    "assets/palette_lighting.hpp": "75bf4bf2fb0a9bcce1995572acf0a67a8033e985f345a605a33aad5ee0890b75",
+    "tests/terrain-palette-preference-reference.cpp": "b799c0dd2918fd5ddb6948fd94ebb12c81d40349227a65d714ad6086de5e54d7",
+    "reconstruction/animation/no_cd.cpp": "be3dd04d713192baf728f437ebb507c0dba17797a35bb0de643d8e838d1d8d4e",
+    "reconstruction/animation/no_cd.hpp": "312a0e1ea2dfd4fb1de57ba7e57aa27122aeaccf7ce35311d58ae3682a9edb12",
+    "tests/animation-model-test.cpp": "95d4bb743930589493b7395f5b8fbd0ab5374709701e1bf686e7eb56ffe5244c",
+    "tests/animation-binary-reference.cpp": "6c8fc0ff4f13d3caeeafa1183788740864f04b57682680fcda3f562b801705ae",
+    "reconstruction/animation/placement.cpp": "1726861a7123aa6c593b05a4a47a59f5b61ebae086ea3a53be287a97f7f14ea7",
+    "reconstruction/animation/placement.hpp": "f0c92b58017bb6b33aefacaa2b77f99e222f24fe662bf410fac46b1728f5bb6c",
+    "tests/animation-placement-test.cpp": "69f4159982a048cd0a558793261caa2488287aea5c4cbad134fe2a8e91b4b721",
+    "tests/animation-placement-reference.cpp": "f572c326c1817ec66b0ebfa380b764c87423a4e8670986abe3d9fd276c0ff33d",
+    "reconstruction/animation/attachment.cpp": "ba7553a6fb17554a2a93bab299eb60a65098f96df9b6a4db303e48e443c36ed7",
+    "reconstruction/animation/attachment.hpp": "c731bc66c9f1192fd105749251554fdf105d36321d9bf205e5645256f858aac8",
+    "tests/animation-attachment-test.cpp": "78e8dc7d81bd954ac9f997810bae6eaa25901019236c0fa006e571814e8b0314",
+    "tests/animation-attachment-reference.cpp": "6bada35b8ad7f1a95497d3323c8cc6be43ca1684c687e4c04a92b7aa7b71d68e",
+    "renderer/blit.cpp": "4c89caa93a5298fcb4417e5bfb3e116176f1969783f2be6191ddad63eb9d0cac",
+    "renderer/blit.hpp": "2ad6881a73fb236530a0a0fc3fe318442b7eee26403842a34ef93dc269c9dd06",
+    "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+    "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+    "renderer/commands.cpp": "c726c463ac0558ad6784171ee2752aa931b10ffa24ce77b55847c9807947bbb1",
+    "renderer/commands.hpp": "624f5d1c82c8d6d5fdf567591f72a1bc748b7d60efe50948222ba3ec4240e2ad",
+    "renderer/commands_main.cpp": "8fe8fe048edccf170ce088f1cc6a8f94ebfa7113932e74ce1531fe5fd63c0143",
+    "renderer/replay_main.cpp": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+    "tests/render-blit-test.cpp": "1cbd3b85a3270f8ef52d8a5cb086d53531a8973853d8ca931ebb0bfdcc887f35",
+    "tests/render-surfaces-test.cpp": "b3c253fbad4c3703dff87fa44ac501e2ab8c27cd7cda00b3da4218f6f55adbd8",
+    "tests/test-render-commands.py": "16538af75ff9890afe5dad6591275516c4acbdc35878ca7de37160605e189c65",
+    "renderer/sprites/preview_main.cpp": "e4948d5e8e997c16fe9a08f04dbad086648b376a96b3302a066aff64228e4a23",
+    "renderer/sprites/sprite.cpp": "15c9c4b2ced791fba045795ff02525d76b4c6a1ee12caab7a11655b4de0b66bf",
+    "renderer/sprites/sprite.hpp": "8026c4bff5313c1adbf870f5ae53ca0525c1cfe6eab7d511b8d52078b5f660a0",
+    "tests/sprite-render-test.cpp": "58e01b10844d43be87b817d8b7e654a5fbf3d67a644d44ff5270548b55e0e073",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "apps/sprite-scene/attachment_recipe.cpp": "434bd4d96864b9c417e5c41d1ff70a9ff748e560f97e6ea74de2eeaa7665b327",
+    "apps/sprite-scene/main.cpp": "eaa9bc36347d2057ca94d2b22c121cd156164effb683b3ecf4b629581a2d5f19",
+    "apps/sprite-scene/scene.cpp": "2d4747e4e976774dc2ed2c534c0a23c5b4d2d87599c0d6c7489f8c45cdb20a98",
+    "apps/sprite-scene/attachment_recipe.hpp": "ee73b656def1f6d667690ecd2397d03a1c1e46fd046d33bfa8392e3f240e892a",
+    "apps/sprite-scene/scene.hpp": "85defac68b301a9f2b21cc5041b93363757d8f7629293aa63deeebc3f0b7e0c3",
+    "tests/sprite-scene-queue-test.cpp": "d5f540cdaac44eb44a7aec93f91a548c07a3858240fa456bdd1a1d3308d57e79",
+    "tests/sprite-scene-test.cpp": "3b257d7d9784321fe1a7ccaa8f7da83dd715ac82427d9b9569664e366eb86639",
+    "apps/terrain-preview/main.cpp": "52c00cd5752e736c1bbf713c0ae7524099360e425a9eac388293742b63dea8c9",
+    "apps/terrain-preview/map_region.cpp": "33bf4e53cf0c5725d92cacdfd6f0a358f393827c40b74ee92c1e45c27081c767",
+    "apps/terrain-preview/region_loader.cpp": "fc2937d702592c413b8f650523e98926773a2ab46e13c11e2e172e12f65edf35",
+    "apps/terrain-preview/scene.cpp": "6ef6f266e456a6a7c3e79cbe71eaf414b1322b8c69bc3243889dcd2f2365919b",
+    "apps/terrain-preview/region_loader.hpp": "334c90d5c0e92893d045f0b89f150672504da8a521c7b31f74a8450cbec23755",
+    "apps/terrain-preview/scene.hpp": "175d0b8450640e98223e10a40549e3846e39b3037377472f1f5591af3449b170",
+    "apps/terrain-preview/light_fixture.cpp": "b5fe5c88c498c3d001c816094671444f97e1eaf360c0e1267827300cddf0d064",
+    "apps/terrain-preview/light_fixture.hpp": "28ef95ca4796216d0a2c4b9f854385a65aa4cfdd62ac5d2ecabf5e2d37d16475",
+    "tests/terrain-shaded-cache-test.cpp": "7c3053b51cbc71a4264a018f344857b198501c8b1df136b9c38a4e2e4a2cc077",
+    "tests/terrain-lighting-cycle-test.cpp": "11d9373076159497c646255708bff59d9ca0209050ed253929471b947a2e87db",
+    "tests/terrain-lighting-scene-reference.cpp": "71b6a118ba12009dc341c92f14c563923685d1ae79e9b9d368af2f3a2c1f23fe",
+    "apps/world-scene/main.cpp": "c379736b9781b7e8db9e505b80f806191791982b6f82c1c41bfbf1b629016116",
+    "apps/world-scene/scene.cpp": "34a99037603e7dbdaa0b723fdd09d3d57ac8eabe619d969330c19324827eab5e",
+    "apps/world-scene/scene.hpp": "52a0da1c552a754138d90385207e4850476ea2db2f9ac2eae2c0d3541f36e631",
+    "tests/world-scene-test.cpp": "aa7d3fb18048f80c3af6d8b110cc801a308f48effdf1af02d8bed13f7885913c",
+    "tools/test-world-scene.py": "d3230950e5d8d254a0b3c1875819b02eb094d2b44a11c753d3ee62750bd236df",
+    "apps/qt-shell/main_menu_widget.cpp": "141ea3b6b4100ccb4308e27f041a01e3e6c43baf614f6a42bd9c6f7cf7c2ac01",
+    "apps/qt-shell/main_menu_widget.hpp": "2e2c9ab8ec1636e2b6204aa97ce578a09e5e21206a0b47d04bcc6ac4a91b1948",
+    "tests/main-menu-test.cpp": "4dc4e6adafaffe4ca66b41dcb6e4af7192ac164b1a58fda89908b13f115f53df",
+    "apps/qt-shell/quick_battle_menu_widget.cpp": "be0d0b5d23e7aa7a0aa9694a0099cabd3717f982c37dba0940f03c75c8a59e5c",
+    "apps/qt-shell/quick_battle_menu_widget.hpp": "07568aa36fd3b965762c2d4407afd8ccaf5f836f5fd2422e48290cb809c86a6b",
+    "tests/quick-battle-menu-test.cpp": "6be0651441f8a7686d46decb0d2b433c853fe99e64eb12aa1737fa377e6228fb",
+    "apps/qt-shell/mini_menu_widget.cpp": "db66ad083eb2c073db7034f75ed3975937ca4d41a7e6cad05bdb4b0ba19afbc7",
+    "apps/qt-shell/mini_menu_widget.hpp": "d1223883c75db061a2f1089c560592e2897420f29811a4e3962978b756a9507f",
+    "tests/mini-menu-test.cpp": "9420f87bd308c8f02e8e40e2b656d37fea9ca9c08fec7ca5f4861dc2fb9a239e",
+    "apps/qt-shell/preferences_widget.cpp": "ea13de1de4aae5d68c7110205980e5d2a05f83424a171316487691c02a4e2c8e",
+    "apps/qt-shell/preferences_widget.hpp": "38319bc416bb66c18087647787df1039714d7c85f05b4cae37d7948649751726",
+    "tests/preferences-test.cpp": "5ce011cfd7e9a646d7e73966c1cb1080215766750bcda44c08f128b8c83050b4",
+    "apps/qt-shell/load_game_widget.cpp": "9bbb942125a4e08929f3fe4532944d2cdebb1dfd3aec2e4c2b343f6d4dfc8c1a",
+    "apps/qt-shell/load_game_widget.hpp": "5e4b54648cd1046fd29737c8d41f6b3213b27cd1bb1c64eabc85a3e897ad076a",
+    "tests/load-game-test.cpp": "63c4e936056f111d17866448e812d2b4d5e1d75553439bdcf437d8d529c2e7a4",
+    "apps/qt-shell/save_game_widget.cpp": "0c3c2542acf087772756ad165b27fa56f5439400a2277e371ba5bcf2db3c0fa6",
+    "apps/qt-shell/save_game_widget.hpp": "68b49add42d02bca26c55d7081d264e2dcd03a04e41cdf299eae4be8019ca4a0",
+    "tests/save-game-test.cpp": "5c8058bd14b8644f462c4ffdd4c04049223abca08bf3ee1b9a440886ffc927f3",
+    "apps/qt-shell/battle_result_widget.cpp": "cccfdad4a1c94498955676ea116ab8eea34605cc35c466957c87156330c8f894",
+    "apps/qt-shell/battle_result_widget.hpp": "149e118aa1368c4f15500e949c1b8b94337a75ea4499bae86cb38f371ff61ec2",
+    "tests/battle-result-test.cpp": "1b3321ab905780baa7dea728b6e104834a802b5a0f111c2f089b15d9b4a911fd",
+    "apps/qt-shell/quick_battle_result_widget.cpp": "69297e2400eec85974ffcdb3370dbc4dff30df2004d723dbe8abfc26863c13a1",
+    "apps/qt-shell/quick_battle_result_widget.hpp": "272f7f93b6773605d3cc78d54698de77f703ccbf6166fad408326984ec310cd9",
+    "tests/quick-battle-result-test.cpp": "c56b7918732694c7099bb2d8c147c15e57396f95abe4700499344e084ecd0f32",
+    "apps/qt-shell/map_selection_widget.cpp": "5f95100d038a0683e7c5f3c4e4bc3dca91b0c8074293e51bace5f1804972e54b",
+    "apps/qt-shell/map_selection_widget.hpp": "849663d97f89288326e75e72a64c215e9bb31643af8e6f371c68fb184c6e09c0",
+    "tests/map-selection-test.cpp": "07ad012e98d282ce93a71fca94ea5e5f353b634caa4770d8e5ea2716c20ea028",
+    "apps/qt-shell/multiplayer_setup_widget.cpp": "9c4416bdb53e667556bc5736a62aed5cc9b23f9fadb5caaf21125e0393cd135a",
+    "apps/qt-shell/multiplayer_setup_widget.hpp": "62ea4aa46399c95f2badd0f0c58260caf57f028dc6fdcc4ab288703532223460",
+    "tests/multiplayer-setup-test.cpp": "f286f901d5f773cbb588e8cb953ded646087e6ad258d511a19446952fbbc9710",
+    "apps/qt-shell/multiplayer_game_selection_widget.cpp": "984ff2e4f48a7df15adecb327f1671de2e1592b7faa032187a101952522d2766",
+    "apps/qt-shell/multiplayer_game_selection_widget.hpp": "5646c379928c8071ac8782daeeda2fe6e870cef8922266c61d731c7857be0b54",
+    "tests/multiplayer-game-selection-test.cpp": "826c7c098b864b113b8bd98d26a58af3db51645b17cf7eec956c7a8c6ce02795",
+    "apps/qt-shell/multiplayer_lobby_widget.cpp": "efaada4ae23c562968c9f05dad318017d29db5aee37ef265d94f5c823499d436",
+    "apps/qt-shell/multiplayer_lobby_widget.hpp": "999696c7f49d3d0b3c378868736f8d062aaef00cd12903de213b14576c4cbf87",
+    "tests/multiplayer-lobby-test.cpp": "fa2100639292502f4a44061695268a0017057c005ecc2f94934245e4705c1a9f",
+    "apps/qt-shell/single_player_battle_widget.cpp": "cd21cda159718c280870c9b544fc4d9ca52c6ce2a788a02185733209706def49",
+    "apps/qt-shell/single_player_battle_widget.hpp": "5e7153f169f6dc963216ddc4ed853d1cbcacf487da96c2817c60eb0b077393f3",
+    "tests/single-player-battle-test.cpp": "902db11c337cf569ecb4316e60d681fef1eb367d71709e396aeeb3d6bc8ec268",
+    "apps/qt-shell/region_entry_widget.cpp": "4e29f4ad8f09837d5d34abaeb1790c6b1278f91500ba52ebe6c3d873e66e315d",
+    "apps/qt-shell/region_entry_widget.hpp": "d1206eeece310187ca024698fab9d11437bb30d2b6032ba8e4ac759bdcf3a163",
+    "tests/region-entry-test.cpp": "454bcd3fecadeded6badc39f347d3938f3583373cfe71608c223f8dcb3ece2a9",
+    "apps/qt-shell/character_screen_widget.cpp": "25e0df2dbee263e6fb5eb0e6e36fb2cee65d70daae43776d0dbde71cc816ec5b",
+    "apps/qt-shell/character_screen_widget.hpp": "ffd20a9fe15c7d2413c9e3bc69ad264af421cd51d676a933a567c54834d66063",
+    "tests/character-screen-test.cpp": "c4ddfc556b49b8d5f67a5412ce073d41d90f08ef6f569243fb3ccbe9efa2ed1b",
+    "apps/qt-shell/grimoire_widget.cpp": "a30cf42799ad7ac7757080ca037f135c3d0cd0c4cffbcc3a182cb966e27993be",
+    "apps/qt-shell/grimoire_widget.hpp": "5e12fc632c1ad69b17271cf366096c07a61b38e475953c34c2ceedf87740e919",
+    "tests/grimoire-test.cpp": "820e9a7b9a70f92b0ff3c05f7adf8211e04199dfad85ef8751f50d4d57e078f1",
+    "apps/qt-shell/spellbox_widget.cpp": "fb824f9dd30d825c6b4d3e1c7b8efd020cb97218ddcbbc89eed57d12c0afe974",
+    "apps/qt-shell/spellbox_widget.hpp": "b1fe4c175994850537da4c0383759c247a2e57b19e8d0fbf27b5badb6355ccfc",
+    "tests/spellbox-test.cpp": "7b7058ec72d1c63473ec1bed31ca28349fc306daebae8ff26b11eba056fd01f4",
+    "apps/qt-shell/realm_viewer_widget.cpp": "22dc3678e0dce77cb0e3ac6ae8c8aefbe5bfd1f20f7b058d2a5a712597a82c2b",
+    "apps/qt-shell/realm_viewer_widget.hpp": "296dad9b319161587e31835830fdf0658c0291edd0699ab3b072375a58d3b2b1",
+    "tests/realm-viewer-test.cpp": "09b913dda50c53d92d0d4f5f975343dda8035ac8e9698cae060f9ec7121daf8a",
+    "apps/qt-shell/spell_research_widget.cpp": "a7b1f19ceb336701dd21f6401ccbe07020a05b6469ffaf22649c55d6a5c93707",
+    "apps/qt-shell/spell_research_widget.hpp": "25aab3d412224cbfcaf9f5cb9f9b3f4c0b6ed2e146a781cc8815750aea63f81e",
+    "tests/spell-research-test.cpp": "7b6bdd21ff7c6270a220de13bc411edc71ab03a22282351ede62d91986fc9ff4",
+    "apps/qt-shell/menu_assets.cpp": "dc44b99b606326d6e7c4cd3c30185373a2e98a48bbb7fec0373d2737cf4f92ac",
+    "apps/qt-shell/menu_assets.hpp": "c3df0ae5f6e17dd65fb3bec287cd87606f46ac1fa87da1b6311e7251dea7de1e",
+    "apps/qt-shell/menu_fonts.cpp": "0d64ddee2429c6c24bbcf98379684181b94e96cf293cc0cd7667dd385877a4fa",
+    "apps/qt-shell/menu_fonts.hpp": "409bc039b486ae3eaff8f80229cdaa3c91f23e7f73cd26b02e4df49999e8442a",
+    "apps/qt-shell/menu_sprites.cpp": "2fe0d31b637a52575478df1713f81577ae650ac261577a9809a8dfa7a539ca32",
+    "apps/qt-shell/menu_sprites.hpp": "5c9a8933122437d5ba886c03750107cfd50096e01139722af83b33c9aa8e558a",
+    "apps/qt-shell/grimoire_assets.cpp": "68b86afe1f29195bcbf5a4bfce241b4d2fe389ed55d02414af836cfe10f8ef58",
+    "apps/qt-shell/grimoire_assets.hpp": "d0477d53ae30bc68ca71aae41add29d76b3413aeac4b11efb1ba786a067ae623",
+    "apps/qt-shell/realm_viewer_assets.cpp": "eea2f13588de43d766e389ad2be745dc7bd953765ff0fe6781c3246f54127c3f",
+    "apps/qt-shell/realm_viewer_assets.hpp": "b01388cc782ce59d957739958d20acc4206301c495dd6232c6dac00ed61ce1dc",
+    "apps/qt-shell/realm_viewer_visuals.cpp": "485e35829f0df0bd8d5b30686b2fe13718dbc88b535b90d4cb8699cf2335305a",
+    "apps/qt-shell/realm_viewer_visuals.hpp": "196317577ad82d745f3049dadd402027864e96005cc07579745681957aafa260",
+    "tests/menu-image-test.cpp": "972e203c2b826fec77bd97ee743cb6df013491049b1db42a5bb6c384a48dec78",
+    "tests/menu-font-test.cpp": "9bcae565554bf9372cdd4a1cbdffeb53fc3ec0ad6ceabf3267ec88ded59566b9",
+    "tests/menu-sprite-test.cpp": "1e5eb013d7c8d78e2874ad1a7798e5374174819a4be41f2206d19da7d900423c",
+    "apps/qt-shell/audio_session.cpp": "9ff2c39edbaa62649535ec611607232577777e82b06949c8319e2d32b86d1ebb",
+    "apps/qt-shell/audio_session.hpp": "226d83f4f28c9c82c9a44f038cc10a065d0b0845d07166c2af62bb404f2abb00",
+    "apps/qt-shell/audio_cli.cpp": "06a2587ccaac942452f387d097b42d296445a9b2332b38ef4c8cb14c1dc8c3d0",
+    "apps/qt-shell/audio_cli.hpp": "1bf2a602723e898b7bfb90f0a2c33a91746c18fa26600d99b99d1b0ea7910edb",
+    "apps/qt-shell/menu_audio_controller.cpp": "0f83d0fbe5198399c497cdc62fe889acca0114b3f7fda82b210cb3ab4ca351d7",
+    "apps/qt-shell/menu_audio_controller.hpp": "c078651bf1de1e9fed33df759404eea2abccdcde9ef79253cd29c33f76becc8c",
+    "apps/qt-shell/menu_audio_preferences.hpp": "90ee400307574e1213e03760faff0de3364f19b589d6e72ca09ae2ef859fd01e",
+    "tests/audio-session-test.cpp": "cb69a8799d53a2d770a992f338fd181d3f605f35828dbeda065196494a4f1379",
+    "tests/audio-recovery-test.cpp": "b6513ba199ced875383ab43b6773fcddc09a129a7f19fc39852a7231fd21269c",
+    "tests/menu-audio-test.cpp": "b91bce6d8226252702ac1e8c22ea698f7c39a87c06d394c6c21393b9af2eaf36",
+    "apps/qt-shell/menu_music_controller.cpp": "137a86062db384ba479686ebe403ee001c9581d300dd614df2b8137118bc70f0",
+    "apps/qt-shell/menu_music_controller.hpp": "c6911ba66370c8de5ffd1b80336752e4609c9f8e58c9d6c599aabfa15ebc829d",
+    "apps/qt-shell/menu_music_devices.hpp": "9124e30942da0a13037d49dac349ab3bf72537d48d6690ad2a691cdc16b14352",
+    "apps/qt-shell/menu_music_output.cpp": "179fe225f5993cf4cf1f739d1a14d6efdf0756611058407ea138ec8a7448bf42",
+    "tests/menu-music-test.cpp": "7cf14a6bd79a4d9ba8a2ec07c6d303b6d706c4bee857a33e0fa167df6f94e1f4",
+    "tests/menu-music-recovery-test.cpp": "08fb03220e3a85609b2acf4071046d6f787021bfbaa2fbb04195200db8104ff1",
+    "runtime/menu/observer.c": "cfd5e43620e91d7b2f4d410ee7066cf03d2d330cf160cf06fbabb41a95c3e7c6",
+    "runtime/menu/channel.h": "ef80c4227e7563d86186ca5ad5e2c835604aa2b6d5a0a7df4fc0c495ab7d51ca",
+    "apps/qt-shell/menu_bridge.cpp": "201abc6e3c51fb58b014f7132d66350f165f2dd13cf2eb589f1dfba74a6f92be",
+    "apps/qt-shell/menu_bridge.hpp": "9106094cfada4dbbc7c136f42e908f26b87906750acbe45079c6a325de0f4ea0",
+    "apps/qt-shell/live_menu_session.cpp": "c1383f33fdc760343c6ecc2bcb06ef1bc2442f985e0a93dee5f941f65ea7c3ac",
+    "apps/qt-shell/live_menu_session.hpp": "cd5f303d7cb355f4fa71750e4bbf570727265c5b68c82ce277e6c903f47dc326",
+    "apps/qt-shell/live_menu_test.cpp": "ed6c9f02944d4f8a9f2558cac92eeadd44ef6a45e04a52956fca5d27689b77aa",
+    "apps/qt-shell/live_menu_test.hpp": "2b7915dda065efbecc94d7e935866b59fbb000a74eaf95896d0280a2a0fcd01f",
+    "tests/menu-bridge-test.cpp": "c2196cf46467c511e40384438375b849884510134fb77d4d43baf86a2c2d73a9",
+    "apps/qt-shell/live_battle_menu_controller.cpp": "a9e05fc6bc60d8ba03072c304073fd35047bc12dcde7a7081bfd2f70a42616df",
+    "apps/qt-shell/live_battle_menu_controller.hpp": "8dbd16f33076b41ea92b3a03a5b97640e3482aa9371a0040a9989400203daf49",
+    "apps/qt-shell/live_battle_menu_test.cpp": "5067238df441aed5765b806c1d677da44e9487ea8a7aebdcf3a7df9baa84dfde",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "tests/menu-battle-bridge-test.cpp": "d58606383f222128687bba1481d37fdd4ba6fe10556df5ccc4a19277a508328e",
+    "apps/qt-shell/live_spell_menu_controller.cpp": "85bd993a2e53b6e4791acabca02276b23ede8cdf167e363a259bad918788986e",
+    "apps/qt-shell/live_spell_menu_controller.hpp": "6182cfe4b8a36caa777ec3a0fed06e9dff491f0d9702ca23f99fe6714f895f3c",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "tests/menu-spell-bridge-test.cpp": "a23aa815e33ee064616dc7d31c93b38c7333e4f1bedb8c34f88f510693c3fd1a",
+    "apps/qt-shell/live_result_menu_controller.cpp": "79888c3f1f634325ec88e0118f99322434bfe5fc7e28fa73616abefec7022e2f",
+    "apps/qt-shell/live_result_menu_controller.hpp": "3a75185326ad371d03f275857a151c4efd5d0ce472bd3f6d529e6e8d1c990a11",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "tests/menu-result-bridge-test.cpp": "6446d01269f1b6accd21625931f955d9b4cf374de6eb74c54296579de53e7611",
+    "tests/menu-result-controller-test.cpp": "1cceabb070421baf05a6abaa03e9d8d6f9753333cc5b2b362f091d155b0a71c0",
+    "apps/qt-shell/live_mini_menu_controller.cpp": "a0658939236be4282e2e9018d0b21dcd0791ef30dcf9b335e311478c268c59aa",
+    "apps/qt-shell/live_mini_menu_controller.hpp": "04d38bbb0f35ce1d46a71c28b6ebbe2a1a73f58388c883f6bdc11cb2963cd975",
+    "runtime/menu/mini.h": "06302678ec8455bcedcf1e7486627ed1ae5b9d6da153bd0d12fc14972954757e",
+    "tests/menu-mini-bridge-test.cpp": "3cf5adfeea56f2fbdcc9d693bf2285f5c8066a1ef719e603717c450acb96f81a",
+    "runtime/render/bridge.c": "fe2c38cc80f295f5a431c14642163bf211db04618c9ac28696c26a3c7c9b7a72",
+    "runtime/render/selftest.c": "b784dd59ed996fe488ae195b92a50bff7620bf2dd10a64b710ed520d4def34a1",
+    "runtime/render/adapter_startup.h": "52457ffc947fbbf242a6949d4a871779a171aaafc8e0ae741868f33a20374192",
+    "runtime/render/bootstrap_selftest.h": "e820efe408e8f174e5d52d05a06a6ee695e0aec17ff8f27bade04d5e44a36fe9",
+    "runtime/render/dc_selftest.h": "07af25dc8f599c624318a6af9bcdd01e79d65bd6c81e23ee07081b71d3a5e3b2",
+    "runtime/render/draw_capture.h": "7b6e113cc86c0015f855711fdd893fc6efc83d0fa4287f91d829847b9612b868",
+    "runtime/render/draw_selftest.h": "03799a2bd9c3df1ac3b426c85b34b7f1d25b36791947ca95ac2af687d177d24f",
+    "runtime/render/failure_diagnostics.h": "97d72ef8174e01c80c4b3eb57f4fa80cedfd8f56f25f7b77904121d0996baf11",
+    "runtime/render/flip_history.h": "4c1910ed299700ba95e9b49923710b54817ab8dd2d2cba823b40ccf4dbc388d8",
+    "runtime/render/flip_selftest.h": "f46d45004a39a82283021903e468730b365825c6efec1cbebe61d2fd875eb03b",
+    "runtime/render/frame_pixels.h": "671110ec34e214010c51d2a13838cd56e08869ecebdf7d38c8aaaae9156109be",
+    "runtime/render/history_selftest.h": "077d923f30ff81d927fa770f6b841e0461a345e4fc4310ab3048fa284ec3bdb5",
+    "runtime/render/indexed_copy_selftest.h": "9d3fc4c7a0d8f66a7ba765172c920cb4889301b63dea02556c7eeb3ef5e45fb6",
+    "runtime/render/indexed_owned_selftest.h": "7ab70e041a806281903ec11a5708fa9b3e69fe2e5bd6a54baa131793b19ba723",
+    "runtime/render/input_polling.h": "95d53d43f99b3de9390b07a150db112ae7d280e7bb112ba5957e3ce62dca736c",
+    "runtime/render/input_selftest.h": "78d5c31ec213d5bd06daa667e38320671807a5700903a392fbb78f8cfeb9abab",
+    "runtime/render/lock_aliases.h": "df4a344c6f010b8f8022c99ec1a1ce04cd708564248d18a3362d2ad165745a95",
+    "runtime/render/lock_blit_selftest.h": "e0083a9c20400e058e0a914f80b9bcda79d13f81c070e39aa34f36bec59b64fa",
+    "runtime/render/lock_dc.h": "5717970196c172b56e0165aa77b33bda3b84a81d4c7630db7068bda0fb7cc39e",
+    "runtime/render/lock_diagnostics.h": "e21d9134b6f2d0a9d7624a017a2ea0b52ee05aae6a249a1c84ccf8740959b5a0",
+    "runtime/render/lock_flip.h": "a423a22742ca55c968ef6487088a8b587decc5def07c7ef7bf701ad9b909fd2e",
+    "runtime/render/lock_lifecycle.h": "0f4e6f311630c14e76998bf542a5822f4d74293af905c4db3777669c451376ce",
+    "runtime/render/lock_lifecycle_selftest.h": "ebdfe7dd2773746496a1b138e6309b0250e2207b67d4e2ba6f05f24843bcb406",
+    "runtime/render/lock_palette.h": "ad65d84a74aacd2d08c5ce92c948ce0cfb413b0d26dee9e965f0d5b7f5b09452",
+    "runtime/render/lock_surfaces.h": "868f26cd0a736f1d5c70d0e13a14167347563ec3a3f6cde58861d3bd35982342",
+    "runtime/render/lock_updates.h": "4fd32d69ac6b2a8f6557e9bb3cc5ddd5540e4f6ea942fbebaf9b43f9725c78a3",
+    "runtime/render/media_bridge.h": "dc7e64883ef491ac42f42a2f10c36dda1ca5a04eda993cdab04e9645df572e6f",
+    "runtime/render/media_selftest.h": "9f9592dc30aeed9b8d0f7fa622c4335fd9fc6357b84d67eb5077ff795143e4b0",
+    "runtime/render/owned_session.h": "470bcb644e3a2d8a01d80f044c86daeb5e5f75f1ffd326a935ab0f2bc2b6877f",
+    "runtime/render/owned_session_selftest.h": "9b358c98d11c3e9fd05831e92c15f062c2480d91e86f2cda1e43806a377c4b0c",
+    "runtime/render/palette_history.h": "d298ee386d6a70c406dd3ec248eb071e79a0688daf5c7da8f91a43bc4a2cad72",
+    "runtime/render/palette_selftest.h": "5d7e6f9c254d9ed634f4656b0256dda811adbc6cfe1f0c768abc8242aa43b73d",
+    "runtime/render/partial_lock_selftest.h": "ddb5c59ec8065d326171a3be974917ff1e1f8414f3c6302aeb3ad165179d9356",
+    "runtime/render/surface_commands.h": "2353c4a1d704bef43594c0042c97d3f0c65927fb8d14abb60a10ec0b4c4bb8cf",
+    "runtime/render/surface_history.h": "63976b18f13b5db96ca4385c30d6783769a7f25f32656888023171ce111ffa7d",
+    "tests/test-render-capture.py": "135aa5d0f3fc9f6e79b495f5052c872fd35aa4868d64670d462c2b047b52ea31",
+    "tests/test-render-stream-rate.py": "75951c94e2a478aa72afbdb6536d5506ade338b282cacc54ad9839ffe4412974",
+    "runtime/audio/bridge.c": "0118494facab5dd6c83ae1fc99bc58066ba1578627dd1d0fd08325dc3a634f0c",
+    "runtime/audio/selftest.c": "f1a37c27e182a076c564fe3790a7c8eb3463ee49b5c465d8a72eacaefd56657a",
+    "runtime/audio/protocol.h": "e06f899aec6d9abe0e411d1c2bf4a78784869fdf6114ea5a09627e75ec2bb78c",
+    "runtime/shadow/bridge.c": "f41de9883a2123cea2efa8852d95862b5210c8750eafb60f6804257ac0c75751",
+    "runtime/shadow/selftest.c": "866fcc970858542cacbdd8d45062a220f98c5fea6f4800a090f43092ec5bf8a8",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "runtime/shadow/bridge.S": "9d1a4478986d5e02a2a2c6c0c22a10ac59789d299f64ac738f96306130dfabca",
+    "tests/test-neighbor-shadow.py": "98545a78946c055c64b7429867d0423f1acc644b3b43bb3d1a4d472d49a6c78c",
+    "runtime/shadow/selftest.S": "08e5d89684436760a09095743fc7e8370e9b235aea9b10d5e2ac0f3d4d2db185",
+    "apps/qt-shell/main.cpp": "6bcc58837c1a12406696767a15958fc4d99cfbd6e27440fe5cdd252734c440c3",
+    "apps/qt-shell/window_host.cpp": "d1726a7802a05d56f9364ae2e1bd5053ddb8dd4f784836ff675246538725ffeb",
+    "apps/qt-shell/window_host.hpp": "457bcd0312af429b28ebbc7c95d71bff8fb0c21b61007be38edabab8f2727bd3",
+    "apps/qt-shell/frame_stream.cpp": "23dd193c456f19e1afb5a24461141fbabf50d57866884fd1e17f907c7b190633",
+    "apps/qt-shell/frame_stream.hpp": "eb00867b0721e1406c65bbc0294a29e28624a89a56561ded5d7241916ca1345c",
+    "apps/qt-shell/gl_viewport.cpp": "2342536dc514f2247bc94f9c088365f2c9bc244777695e3342b7187f252acc59",
+    "apps/qt-shell/gl_viewport.hpp": "bb27b4bd5153248f33c9514601e024010c6addaf2d218355355999e3bd467824",
+    "tests/frame-stream-test.cpp": "06e248298b1224ab6deb1e39763ec54d22e3b6b9dcbe5bd5e36943a3739094b0",
+    "apps/qt-shell/input_forwarder.cpp": "2c33f04aef535ee0a97f0178c30ceb771e0535f15cda6c081a521cd170473c1b",
+    "apps/qt-shell/input_forwarder.hpp": "828b7bdbb8a31d324f553718e807b8508ce22fc81671b124da2bc993613897c6",
+    "apps/qt-shell/input_state.cpp": "392bb6f5538ecc4939746ade333325df7f41ed63c0c796f412c3d90a9d3c0ea0",
+    "apps/qt-shell/input_state.hpp": "b5be92a8dbaf64fcafc2c6e903602c5c2ffd1176493ce5bf75cf627533e80646",
+    "tests/qt-input-test.cpp": "78819b26fde7837597ea1360b063dcc4b3882421b34111b520555d342d1c080c",
+    "apps/qt-shell/native_playback.cpp": "ba5080904fa174371fdff245f2ef491863ce59d51be464c7850f8d5b99fe677a",
+    "apps/qt-shell/native_playback.hpp": "42753b3baddf9456d41ca4d7a58440a831b2aac152bbd20efb7354b977c99cb8",
+    "apps/qt-shell/media_broker.cpp": "e09603c761d7ea3cb3dc4c9fb5c568c6031b257e8c82d6bac79608a27d4874f7",
+    "apps/qt-shell/media_broker.hpp": "4439a835bb327ac3536761d723afdc7a09cf8ceb64b04eb05c9681499fbbd367",
+    "apps/qt-shell/media_cli.cpp": "f533762ad595145d7c4bf5bc41c4c27de1ef8d92a176d8c4a3b63b9fbccd7410",
+    "apps/qt-shell/media_cli.hpp": "74dee678693f256a06c538824abfce1c60e443a4c55aad6c6b01ad8f106a2e01",
+    "protocols/include/mnm/frame_v1.h": "2cd3f2f5f43e47d009059015107e875e3fd7b8cc119dbcbf6d344d2a42e0ad75",
+    "protocols/include/mnm/input_v1.h": "76aaea5f82da53059e94100d3870184313f8cd5f3554878c83a08991529e89d5",
+    "protocols/include/mnm/media_v1.h": "4cfd4858739f7b1ba41ec5f26b7e15ac5a44be4fae4288e692c8c5802da53a23",
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+    "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+    "protocols/include/mnm/menu_v4.h": "d42e6c6af61928cd1a47efe92aca0f52b31b3ae56a2f844bbbef382354d8fa34",
+    "protocols/include/mnm/menu_v5.h": "2ed7fd0a7b6774b3f2e5158966ebb438ccad15f806c22ca1c2ab75328ece87b3",
+    "protocols/include/mnm/menu_v6.h": "4fb73cf5f6aa4890bce6b7e1e45c5b4ebeee8822241a5745cf563c43cfcd255d",
+    "protocols/generate.py": "f8b49cea292748d0b7d1a49b3e8512ac4d01878e0b267da26aa3e99ed9705bb0",
+    "protocols/python/mnm_protocols/__init__.py": "01e58b281dad111b375ae7baebfe62c936bff96318872bc2f947bccba47f9a6e",
+    "protocols/python/mnm_protocols/frame_v1.py": "056632cb57c0f2f5fd64edd76c25aa3a63276811b863060f60e5e38a2404c8d3",
+    "protocols/python/mnm_protocols/input_v1.py": "8ca75b7dfc142083ed015abe558034a8eeeb4113ff5db5aa5698ade300f2e7bb",
+    "protocols/python/mnm_protocols/media_v1.py": "37d123d240c3a7975a30cb5a024d0a97914a44adbedc30f6e76980d6cea26f9e",
+    "protocols/schemas/frame-v1.json": "ce450958fba095161fa5b446a2c1ea97ade972e85483578049a8f22d23af9f12",
+    "protocols/schemas/input-v1.json": "cb9432a2596ea1369d13b784ab1d1ca57c058bd057a931b552476b7fbc37cd15",
+    "protocols/schemas/media-v1.json": "3ac31dd038037bf71ab3a5b0a4093a8242ce6e17eff8235a1608c2912f4eb319",
+    "protocols/tests/test_contracts.py": "281211b86ad010aa747095aa8b1da785f31078bf2d04d60312b7b465f340216b",
+    "game/simulation/world.cpp": "5e75ebddd738ac141f27875a48d11f5c3e2b35e4af8c30417823c1a147f61135",
+    "game/simulation/world.hpp": "1b228d4967876541f0d762679d37bb1a3ee2021410a3942d3ae732b62ced6864",
+    "game/persistence/snapshot.cpp": "6f1751e921ca150b6b38b4cbfbc3c655ec0626a163e6b076e193df8211e22bd9",
+    "game/persistence/snapshot.hpp": "900563f38519697e2541ef0bc8d1b797ea8464c8d18a6e6571f25505ea6857e5",
+    "game/persistence/store_posix.cpp": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df",
+    "tests/native-world-test.cpp": "25efc3d620003930d5bdee528dcd76ad5b2423f6989aa7155aea5f55f3970e7e",
+    "apps/world-sandbox/frozen_navigation.cpp": "a1590eee8cf92ef13628d9656c772f694607e2d7b2832b4f7e1d646dd4395c3e",
+    "apps/world-sandbox/main.cpp": "9b76475c41198423c51278b1ad0db141f6d9cb31ddf8b56d54652322f086121f",
+    "apps/world-sandbox/frozen_navigation.hpp": "ce4773406cead7eeb98ed49fd8da297c2bc0be23b46d005c9668495a9c2a11f6",
+    "tests/test-native-world.py": "4c9540aa7be504ff4679c2267d7202d89be5877f42ab359aaf35499ede04d147",
+    "tools/inventory-binary.py": "627f1f3f6298b77a49ce55761dad63ed543a99f55d94eb03090f3a2f014839ff",
+    "tools/ghidra/ExportBinaryInventory.java": "e2e5fa1d458691a91eb5b2be5b8e9c0fffa92185bdc98464fa9a5dad1fc42c98",
+    "tools/coverage_audit.py": "8ac337e13c825f72a1202f5c5bd64892c16d3b007d62b659b83495967a55a28d",
+    "tools/audit-re-coverage.py": "1789cf8d11a39b7cb5fc4023b2f69a3d36240359059df9629492fcdffcaada19",
+    "tools/index-coverage-sources.py": "6b783efda805feb49d9f959d9ce531895a96014607c257602ad77fc26c07ffca",
+    "tests/test-re-coverage.py": "a0ad8462ad3e17d98a41262a31c66b94ae1efc4486e6c6f536686f51fb23546d",
+    "tests/test-tooling.sh": "349eeabbe7e807850bd740a52a79a522c1f02c31abd91a2d931d51f41eef27d7",
+    "apps/qt-shell/menu_preview.cpp": "39245d8391537645351bcebaf195c11157a7b7de4149cf764746642894f004b8",
+    "apps/qt-shell/menu_preview.hpp": "d7373106c1d309c6b74ab5cb2f9fb4d3614a5e0b6eb0f735a65aad66b439de38",
+    "apps/qt-shell/engine_preferences_store.cpp": "6d5b716d2cf9096dad24639d2bf264bf61df5c3e7509a34114f3b02a77d5f83d",
+    "apps/qt-shell/engine_preferences_store.hpp": "2a02030b0354124e449ba6415e5f576fb6a1d631cd7285d528dca9b256369275",
+    "tools/menu_preferences_store.py": "d59426b1079bd7bc8a8f5b975ccc493051dd08f6b10f452fb5f06842d9e09fb7",
+    "tests/engine-preferences-store-test.cpp": "56f8503739029f2848cd22152a2a702af1af824fe28c77592c1d8cc54537c74a",
+    "tests/test-menu-preferences-store.py": "a97a24312839371d855dabb3a1f1c6199ac85352460bd916bef80747d2723466",
+    "reconstruction/pathfinding/route_world.cpp": "80486842416870d4be983f888817ebfca64f6cfbe60eae87e3b79ba1cf1f889e",
+    "reconstruction/pathfinding/route_world.hpp": "30d23a105e7d91f4acee2a7b40780ec542ae2316a50ace7fed272e547a13176b",
+    "reconstruction/pathfinding/replay_trace.cpp": "ad9bd3534e0d1293e6da15e2cf028c52aee3d1a8b84865f6af50c879a64328e6",
+    "reconstruction/pathfinding/route_neighbor_replay.cpp": "69c0788a33dac2382ee969b097b725cbfef61c8ab303a9e7e9df5362a4156eab",
+    "reconstruction/pathfinding/route_replay.cpp": "f8d1b392a9a81c0c60d00ac03ec3b60f7504bc6130f359be3f29510a60eb57dc",
+    "tests/route-world-test.cpp": "dc7e3c6ed1aefa7c72bfee2415d44a350ea0ead7cc1f59a1a11bf56758aae580",
+    "tests/test-route-world.py": "a5194ad9ba88f4c3646dc0b25671df5dc553c1a7563ca5c3a01c2b4bf96a6e30",
+    "tests/test-search-sequence.py": "a9f8c2428dfee1f8f82bddb56e85b9fb2dac73ca496fcc0c8ad3604bf1df8953",
+    "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+    "runtime/menu/channel_selftest.h": "1104046daa23c138c71ce2acc6367546e27e8bcadf17981660b7ae250890ef3e",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+    "runtime/menu/contract_selftest.c": "a41c0188b16e4275333e4f5c7e963614ad0c43d3759150fd297410a649b273e7",
+    "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+    "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+    "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+    "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+    "tools/test-menu-observer.py": "8750c1b36e25895fe58e426d8542326adc61548863e132769b56ee88a3408460",
+    "assets/animation_inspect_main.cpp": "4d73a87295c7144abfb6d7894d4d8e6f5d104af0567a888ace22268e6c893f2e",
+    "assets/bmp_inspect_main.cpp": "4746b8ed657cd7fac31a5a7a62aa60b5db6ac89904a93449c73ebd0bfa93118e",
+    "assets/cursor_inspect_main.cpp": "b8f11cda4d1f089fe730df6cc1dc070c37fac8ba7fc08cd1839f24b42cc49562",
+    "assets/dat_inspect_main.cpp": "b40a5042575c0a5d5a276a734f67d0943552b50a9053833638d12a66af2b1411",
+    "assets/evt_inspect_main.cpp": "a9719e3001ae1edbf3e6000dbb9894a8065949b00dad9bcd300fde6af75f9293",
+    "assets/fp_inspect_main.cpp": "66f40d2825a8ffedf7d5bc3fbe9c2ee16a10660512e4c8d2e73b9323152923e5",
+    "assets/jpeg_inspect_main.cpp": "cc8cc173bec58e35b4588cc52cfb01e899681bffda9b7c8aeea0ad83e9649c18",
+    "assets/map_inspect_main.cpp": "8ed9e4f2e181b3b82a77fd24f0766e7c217719df3035d37946fe732b8fa46b6f",
+    "assets/mps_inspect_main.cpp": "6f2766bf07cf7fda417eb3ab32103a40e6d0eb4045496686ad13ebb4d97b348e",
+    "assets/nod_inspect_main.cpp": "1b8b03cc701bf265155594237dab592165daacfea9e0dafe7b582e336cd7daed",
+    "assets/pcx_inspect_main.cpp": "512a6a962845a5c0f66857c902a3b4e21136b4bc6ea22354f9046786ea4ac018",
+    "assets/persistence_inspect_main.cpp": "e9099f19131f8d472af848c9796b35bae6cb27e09c0bacc1499f288b8bbc58f2",
+    "assets/region_recipe_inspect_main.cpp": "d72e36d3b30816bbe13fcd163db03f4afffbc5da852bb738d2e1938960bb1c54",
+    "assets/sft_inspect_main.cpp": "381ba95e1a00624a17e944a0df11f6dcd6b3b1f79b383da170bf4e3764c3b535",
+    "assets/sprite_inspect_main.cpp": "c44155bf38d8c292f708acce7aea1b30ac43450011bc96c8a6d5774e61c40069",
+    "assets/tag_inspect_main.cpp": "7fb763a8f10bb8988912e21f61bcc8bed2b7e0c6745b6746af6577d2bc70d8a6",
+    "assets/text_inspect_main.cpp": "0ec9c3220e2ac1f388dc091c23e2f81f17f234f7c36c2a13b7f68fa384784e69",
+    "assets/wizard_inspect_main.cpp": "2a1061567cc3b57cba8760b4284611113a8c5413d5bb01195312f57fef30c94d",
+    "tests/test-legacy-asset-loaders.py": "5ad13bd0ac2ce20421be0114ac832a8ca663e30459bb5f701af130365c989928",
+    "tests/test-persistence-loaders.py": "d0f7c8bc140e01b5f4527ec3d3821ac4e3e0f87d09d504a2165f1ce044a6d2ed",
+    "audio/upload_main.cpp": "539ca3dffd79898574635a63bdeb5381e28cb2c628f2e86964d8f4cae10460d3",
+    "audio/output_main.cpp": "c16a8efccdfe77544a40b3e1ff7360378f148a75367b0804a0011f06bec5f171",
+    "audio/voice_server_main.cpp": "a4bec4c668ff74ca636b61f4f1bd810d7838130da8c20cb3f2b2e6811f08e883",
+    "tests/legacy-asset-loader-test.cpp": "ea526c244256b957f7fc15337e9a03c67288cc41067f9a811c110cce679f52e1"
+  }
+}
