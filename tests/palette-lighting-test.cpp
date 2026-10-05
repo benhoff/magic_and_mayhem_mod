@@ -14,6 +14,14 @@ int main(){using namespace mnm;
  for(const auto& value:{"nan","inf","2.2trailing","","1e9999"})require(std::holds_alternative<assets::PersistenceError>(read(std::string("[GLOBAL_OPTIONS]\nLightPower=")+value+"\n")));
  for(const auto& value:{"1.5","2147483648","bad",""})require(std::holds_alternative<assets::PersistenceError>(read(std::string("[GLOBAL_OPTIONS]\nLightCurve=")+value+"\n")));
  bool refused=false;try{reconstruction::applyPaletteLighting({},{{},{},std::numeric_limits<double>::quiet_NaN(),{}});}catch(const std::invalid_argument&){refused=true;}require(refused);
+ const auto preference=[](const std::string& text){auto c=assets::decodeConfig(assets::Bytes(text.begin(),text.end()));return assets::decodeTerrainPalettePreference(std::get<assets::Config>(c));};
+ require(std::get<assets::TerrainPalettePreference>(preference("[video]\nterrainlightlevels=+256 ; installed\n")).lightLevels==256);
+ require(!std::get<assets::TerrainPalettePreference>(preference("[OTHER]\nTerrainLightLevels=32\n")).lightLevels);
+ for(const auto& v:{"", "1.5", "bad", "2147483648", "32junk"})require(std::holds_alternative<assets::PersistenceError>(preference(std::string("[VIDEO]\nTerrainLightLevels=")+v+"\n")));
+ require(reconstruction::applyTerrainPalettePreference({},{}).count==16);
+ require(reconstruction::applyTerrainPalettePreference({},-999).count==2);
+ require(reconstruction::applyTerrainPalettePreference({},999).count==256);
+ require(reconstruction::applyTerrainPalettePreference({},17).count==17);
  reconstruction::PaletteRgb rgb{};rgb[0]={255,255,255};const auto zero=reconstruction::buildShadedPalette(rgb,{16,1000,1,0,0});require(zero.tables.size()==15);
  refused=false;try{reconstruction::buildShadedPalette(rgb,{16,1000,1000,1000,1000});}catch(const std::invalid_argument&){refused=true;}require(refused);
 }
