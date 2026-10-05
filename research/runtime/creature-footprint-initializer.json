@@ -1,0 +1,30 @@
+{
+  "all_match": true,
+  "live_validated": false,
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "fixtures": 273,
+  "calls": 7135128,
+  "hits": 1475328,
+  "guard_bytes": 18564,
+  "output_sha256": "112d8d2410e63f7fb5c444522214093ca8be7e70de8a777ee563deb5b2fac68a",
+  "helper_sha256": {
+    "original": "6e0ac015fa44e4756b4d1bc0c2e5847f95d4b5a0d9b445b2c48e64faa96dd141",
+    "native": "afe6da62644d63eabe35fbbaa6f80ea12b80d3681e914501c75507ab6aa049ef",
+    "sanitized": "909deb1d7beee258bc57402375d307e4866e3406682bcfe656e037633bea5c41"
+  },
+  "registered_source_sha256": {
+    "reconstruction/rendering/creature_occupancy.cpp": "e6de5c98e7b5fd1a819e4170a8cb79ef3f31e371864a9b86028e56f1afddc1d6",
+    "reconstruction/rendering/creature_occupancy.hpp": "638e64697c82a9a44001de2845b4100937cea34dabd7045414a20785f90c9720",
+    "reconstruction/rendering/creature_footprint.cpp": "3dfe400d16ad4b8a405b252d2a513cc21a2eedc96b65ee126cb2da4b7cf5c057",
+    "reconstruction/rendering/creature_footprint.hpp": "602b5580abda0922559aa06f2c7de8d38cd93e0af24b490aad4d5566554cca11",
+    "reconstruction/rendering/creature-footprint/CMakeLists.txt": "0b17621d6c0ff7d81c0652e3804ac05ec99ac491e95ba9788a95e6253511763f",
+    "tests/creature-footprint-test.cpp": "0b02cdbf60721aeeda7e60a2b7c6ad11e7621d34e8e00c6aa805146cd46ccba4",
+    "tests/creature-footprint-reference.cpp": "5da43e35993e86b43ba8c6839c525bdf300324deb7100fa4e3f60c87c3b8dda2",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-creature-footprint.py": "f12f3559157c8159be740f5e45effafa97e49f9f6ca1584e824850bff588733f"
+  },
+  "unit_passed": true,
+  "sanitized_unit_passed": true,
+  "cmake_tests_passed": 1,
+  "boundary": "Whole unmodified 004e1260 initializer: raw height and zero/nonzero selector, complete 36-byte output plus guards, chained original/native query; no creature construction parent, installed inputs or live replacement"
+}

@@ -7272,6 +7272,169 @@
           "NS13.scene-orders"
         ]
       }
+    },
+    {
+      "id": "creature-footprint-recorded-ad460a0",
+      "reason": "Recover complete 004e1260 initializer with owned footprint output, unchanged raw height, zero tapered template and every-nonzero rectangular template. Preserve TL14 query sources and original evidence. Review committed fca9a1b..ad460a0298e8015fdeeb69019a5f8bcaf8672dfb using exact receipts and evidence bindings in working/tests/creature-footprint-history-review.json; reconcile focused imports/census and ledger. Creature construction parent remains separate.",
+      "files": [
+        {
+          "after_sha256": "0b17621d6c0ff7d81c0652e3804ac05ec99ac491e95ba9788a95e6253511763f",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/creature-footprint/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "3dfe400d16ad4b8a405b252d2a513cc21a2eedc96b65ee126cb2da4b7cf5c057",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/creature_footprint.cpp"
+        },
+        {
+          "after_sha256": "602b5580abda0922559aa06f2c7de8d38cd93e0af24b490aad4d5566554cca11",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/creature_footprint.hpp"
+        },
+        {
+          "after_sha256": "51b6a0cb3d3caf4d97ac7d968372683a90acfa77ed6aa7d1d1fea35d5678d2ed",
+          "before_sha256": "033d925e6f5b36f1c772da1d523ec03e777d68a505b4c16ded496d70fb0a8b16",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "5521d9dd2576749cd9cda5d040ef8257f8b0e5f2aa9d9891d558aa013116c14b",
+          "before_sha256": "0b7c3216527bcfb1c8c2d0900db2608cb735c364cec7ceb69bfebfa172013d89",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f0caab0788dd413f202df8540c519513508e6466dd19be9faba82c24437e9b7e",
+          "before_sha256": null,
+          "path": "research/runtime/creature-footprint-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "daf1f0bc4fbc3a9fd9870bf405a3d1e8ee380c150de3e9cd9cd23adcc442f6d0",
+          "before_sha256": null,
+          "path": "research/runtime/creature-footprint-initializer-source-index.json"
+        },
+        {
+          "after_sha256": "d10957a28327b5e8c960bed5db49f2cad33e01adccf5ea7cacc643a4f9ca42b9",
+          "before_sha256": null,
+          "path": "research/runtime/creature-footprint-initializer.json"
+        },
+        {
+          "after_sha256": "80b2c176227186bc87702b488d0fa6d8acd5bc10c133cd13fb358e4c586b4a24",
+          "before_sha256": null,
+          "path": "research/runtime/creature-footprint-initializer.md"
+        },
+        {
+          "after_sha256": "407b498d6bc0c9d4b3f62f77d3d22ac86d0f064fda4aa72b214e804f28171513",
+          "before_sha256": "a58f6cb785cb7ca9ee612300af791f685405429a7b2ce39f081d407f1e7fe124",
+          "path": "research/runtime/creature-occupancy-lookup-coverage.json"
+        },
+        {
+          "after_sha256": "d6405e942ffb73d30e19b460ba10e689c048be1a88d580e77556dc58ad3c6f43",
+          "before_sha256": "9c1f74f7b9ec52ed33a65a22bdf44faecf49e6477cf894ed0b4e931f36f9eb72",
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "348ac9d7241944c8b01221736ba1114cb5beb3274367a1f866a4a54d18cf6a2d",
+          "before_sha256": "c8b0b211511fd39b214ae5276721f06bd5b97cbeef3343713db89e9275746bcb",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "82e04c6cfc3f68d6d39df61737e3ca3feb73e263e87d150e11dba02b37a6240c",
+          "before_sha256": "b8c6fa982fb942a53d7ed340a4ff503d7a341e060db53c886e31c49a0bbdd335",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "e0a92e3cff0f7483bcf3cd0a20b52e4e4da238640884c04ce882cc48c93c5f1f",
+          "before_sha256": "1ff1daab68aad8f14292bc907f0d4121a8df6f008c125f5f1e1d77271c0cefbf",
+          "path": "research/runtime/effect-height-exits-coverage.json"
+        },
+        {
+          "after_sha256": "dc494ee62d89757fd38819d2723adc39f6e706649e8da1247380fdd45ad446a5",
+          "before_sha256": "e0ffbe6565f4e5d98814a60c679d5276773f718c0f09f0e149419e4106320607",
+          "path": "research/runtime/effect-membership-disabled-coverage.json"
+        },
+        {
+          "after_sha256": "8128223b84bde471b6de69ea86f6308be5ac8d55c986983ca45c7f056ad87aab",
+          "before_sha256": "c7a85593e2d880e3ad8202ac279fd7d9a132b9c38a24d954e29da385403642cd",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "977aa3b133f6c9305e5dc16cc223f681c55bedd21d915283b43005c0ab424735",
+          "before_sha256": "b152dc32d6bb81c53704bf6a5010fc7675b5a431519fdb4ca03f957edab80e18",
+          "path": "research/runtime/effect-terrain-occupancy-coverage.json"
+        },
+        {
+          "after_sha256": "fc8f01dd711d9866e4ee689ea2432eaae7c1b32a293701940ac473b9dd632a1c",
+          "before_sha256": "e3dbc72febc632144c7d28774f4e595abe51ede09b30b890e706a1c2c2ab5c3c",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "5da43e35993e86b43ba8c6839c525bdf300324deb7100fa4e3f60c87c3b8dda2",
+          "before_sha256": null,
+          "path": "tests/creature-footprint-reference.cpp"
+        },
+        {
+          "after_sha256": "0b02cdbf60721aeeda7e60a2b7c6ad11e7621d34e8e00c6aa805146cd46ccba4",
+          "before_sha256": null,
+          "path": "tests/creature-footprint-test.cpp"
+        },
+        {
+          "after_sha256": "f12f3559157c8159be740f5e45effafa97e49f9f6ca1584e824850bff588733f",
+          "before_sha256": null,
+          "path": "tools/test-creature-footprint.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "36b5fae510defbbc6e42b77c8b8b025c30fb0795874fe9d694bdeb4029343960",
+          "before_sha256": null,
+          "id": "TL.creature-footprint-initializer"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL15.footprint-original",
+          "TL15.footprint-native"
+        ],
+        "reason": "273 original initializer executions over thirteen raw heights, seven selectors and three previous-buffer fills match complete guarded output. 7,135,128 original/native chained queries match native64 and ASan/UBSan streams. Independent geometric oracle units, strict normal/sanitized tests and CMake/CTest pass; original manifests verify before/after. Complete initializer and bounded query composition only; no construction parent, installed descriptor or live collision claim."
+      }
+    },
+    {
+      "id": "creature-footprint-remaining-ad460a0",
+      "reason": "Narrow existing movement/collision gap with separate recovered leaf proof; no original parent integration or source capture is inferred.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "4d1061ab92314e8a106ae96aaa3f73467513fcc7e9d5ec030409a7e21f7cb233",
+          "before_sha256": "7151f06651a5fb637c35d8fa7d0c52111775e80c4db446aeac52ee2b493c7f51",
+          "id": "TL.effect-movement-recount"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Original candidate gathering/status filtering/local coordinate production, collision hit ordering/type behavior, installed descriptor production, creature construction parent, installed inputs, caller lifecycle and live replacement remain unimplemented/unverified. Prior motion/terrain evidence hashes and shared source files are preserved."
+      }
+    },
+    {
+      "id": "creature-footprint-summary-ad460a0",
+      "reason": "Refresh generated summary for the isolated reviewed register, retaining discovery gaps and historical staleness.",
+      "files": [
+        {
+          "after_sha256": "863d22b4c2de42706638fa3a65a6a226eadd46f03c8f1de40463f08b2f1d191f",
+          "before_sha256": "5de8aa8dbb0e8f0c7db20c98ee71165ef01a9fdc33fb2a46572ca18194f0150b",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated metadata only; no implementation or status promotion."
+      }
     }
   ]
 }

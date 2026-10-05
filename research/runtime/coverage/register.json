@@ -10075,13 +10075,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory/footprint setup, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures",
+      "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 and footprint initializer 004e1260 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory setup and creature descriptor/footprint production, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory/footprint setup, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures"
+          "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 and footprint initializer 004e1260 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory setup and creature descriptor/footprint production, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures"
         }
       ],
       "documents": [
@@ -10093,7 +10093,8 @@
         "research/runtime/effect-height-exits.md",
         "research/runtime/effect-membership-disabled.md",
         "research/runtime/effect-terrain-occupancy.md",
-        "research/runtime/creature-occupancy-lookup.md"
+        "research/runtime/creature-occupancy-lookup.md",
+        "research/runtime/creature-footprint-initializer.md"
       ],
       "implementation": [],
       "tests": [],
@@ -11549,6 +11550,45 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.creature-footprint-initializer",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Creature footprint initialization templates",
+      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5116512,
+          "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-footprint-initializer.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/creature_footprint.cpp",
+        "reconstruction/rendering/creature_footprint.hpp",
+        "reconstruction/rendering/creature-footprint/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/creature-footprint-reference.cpp",
+        "tests/creature-footprint-test.cpp",
+        "tools/test-creature-footprint.py"
+      ],
+      "evidence": [
+        "TL15.footprint-original",
+        "TL15.footprint-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -18733,6 +18773,94 @@
           "equals": 1
         }
       ]
+    },
+    {
+      "id": "TL15.footprint-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
+      "record": "research/runtime/creature-footprint-initializer.json",
+      "sha256": "d10957a28327b5e8c960bed5db49f2cad33e01adccf5ea7cacc643a4f9ca42b9",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 273
+        },
+        {
+          "pointer": "/calls",
+          "equals": 7135128
+        },
+        {
+          "pointer": "/hits",
+          "equals": 1475328
+        },
+        {
+          "pointer": "/guard_bytes",
+          "equals": 18564
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL15.footprint-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
+      "record": "research/runtime/creature-footprint-initializer.json",
+      "sha256": "d10957a28327b5e8c960bed5db49f2cad33e01adccf5ea7cacc643a4f9ca42b9",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 273
+        },
+        {
+          "pointer": "/calls",
+          "equals": 7135128
+        },
+        {
+          "pointer": "/hits",
+          "equals": 1475328
+        },
+        {
+          "pointer": "/guard_bytes",
+          "equals": 18564
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -20766,6 +20894,23 @@
         "tests/world-controls-test.cpp",
         "tools/test-scene-orders.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.creature-footprint-initializer",
+      "level": "headless",
+      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
+      "behaviors": [
+        "TL.creature-footprint-initializer"
+      ],
+      "evidence": [
+        "TL15.footprint-original",
+        "TL15.footprint-native"
+      ],
+      "tests": [
+        "tests/creature-footprint-reference.cpp",
+        "tests/creature-footprint-test.cpp",
+        "tools/test-creature-footprint.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -20878,7 +21023,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "e3dbc72febc632144c7d28774f4e595abe51ede09b30b890e706a1c2c2ab5c3c",
+      "sha256": "fc8f01dd711d9866e4ee689ea2432eaae7c1b32a293701940ac473b9dd632a1c",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -20888,47 +21033,52 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "c7a85593e2d880e3ad8202ac279fd7d9a132b9c38a24d954e29da385403642cd",
+      "sha256": "8128223b84bde471b6de69ea86f6308be5ac8d55c986983ca45c7f056ad87aab",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "b8c6fa982fb942a53d7ed340a4ff503d7a341e060db53c886e31c49a0bbdd335",
+      "sha256": "82e04c6cfc3f68d6d39df61737e3ca3feb73e263e87d150e11dba02b37a6240c",
       "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-cleanup-coverage.json",
-      "sha256": "c8b0b211511fd39b214ae5276721f06bd5b97cbeef3343713db89e9275746bcb",
+      "sha256": "348ac9d7241944c8b01221736ba1114cb5beb3274367a1f866a4a54d18cf6a2d",
       "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-blocked-destinations-coverage.json",
-      "sha256": "9c1f74f7b9ec52ed33a65a22bdf44faecf49e6477cf894ed0b4e931f36f9eb72",
+      "sha256": "d6405e942ffb73d30e19b460ba10e689c048be1a88d580e77556dc58ad3c6f43",
       "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-height-exits-coverage.json",
-      "sha256": "1ff1daab68aad8f14292bc907f0d4121a8df6f008c125f5f1e1d77271c0cefbf",
+      "sha256": "e0a92e3cff0f7483bcf3cd0a20b52e4e4da238640884c04ce882cc48c93c5f1f",
       "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-membership-disabled-coverage.json",
-      "sha256": "e0ffbe6565f4e5d98814a60c679d5276773f718c0f09f0e149419e4106320607",
+      "sha256": "dc494ee62d89757fd38819d2723adc39f6e706649e8da1247380fdd45ad446a5",
       "scope": "Reviewed complete-parent disabled-membership movement and preserved graph/flags, ordinary/blocked/height/cleanup reruns and native reconciliation admission; remaining occupied collision/setup/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-terrain-occupancy-coverage.json",
-      "sha256": "b152dc32d6bb81c53704bf6a5010fc7675b5a431519fdb4ca03f957edab80e18",
+      "sha256": "977aa3b133f6c9305e5dc16cc223f681c55bedd21d915283b43005c0ab424735",
       "scope": "Reviewed complete-parent terrain occupancy bitmap/cache-gated sampling, hit ordering and both membership modes with fresh prior-contract reruns; remaining creature/special-type/catalog/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/creature-occupancy-lookup-coverage.json",
-      "sha256": "a58f6cb785cb7ca9ee612300af791f685405429a7b2ce39f081d407f1e7fe124",
+      "sha256": "407b498d6bc0c9d4b3f62f77d3d22ac86d0f064fda4aa72b214e804f28171513",
       "scope": "Reviewed complete 004e1200 creature footprint lookup and owned read-only storage, independent rectangle tests and raw-height wrapping; original candidate/parent/initializer/capture/live work remains separate and historical effect proofs are preserved"
+    },
+    {
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "sha256": "f0caab0788dd413f202df8540c519513508e6466dd19be9faba82c24437e9b7e",
+      "scope": "Reviewed complete 004e1260 footprint initializer, original/native guarded overwrite and query composition; creature construction parent/capture/live remain separate"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-orders.json",
-    "sha256": "f721c90ef6d54776922f7e8a565be0f83364aa516c14a0725c48f75abb1e6a81"
+    "path": "research/runtime/creature-footprint-initializer-source-index.json",
+    "sha256": "daf1f0bc4fbc3a9fd9870bf405a3d1e8ee380c150de3e9cd9cd23adcc442f6d0"
   }
 }
