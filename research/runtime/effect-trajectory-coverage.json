@@ -52,18 +52,19 @@
       "id": "TL.effect-movement-recount",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
-      "title": "Effect movement parent and recount production remain open",
-      "scope": "Parent 004883f0 projection/recount production, cell membership changes, collision and type-dependent termination remain unimplemented and untested; trajectory initialization and XY-only 004df5d0 are separate gaps; leaf comparison does not admit installed moving effects to lighting",
+      "title": "Remaining effect movement and lifecycle contracts",
+      "scope": "Selected empty-world same-cell parent projection/recount recovered separately; cell membership changes, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Parent 004883f0 projection/recount production, cell membership changes, collision and type-dependent termination remain unimplemented and untested; trajectory initialization and XY-only 004df5d0 are separate gaps; leaf comparison does not admit installed moving effects to lighting"
+          "scope": "Selected empty-world same-cell parent projection/recount recovered separately; cell membership changes, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified"
         }
       ],
       "documents": [
-        "research/runtime/effect-trajectory.md"
+        "research/runtime/effect-trajectory.md",
+        "research/runtime/effect-same-cell-projection.md"
       ],
       "implementation": [],
       "tests": [],

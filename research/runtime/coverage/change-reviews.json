@@ -1116,6 +1116,136 @@
         "evidence": [],
         "reason": "Documentation and coverage bookkeeping reconciliation only; normal audit and exact staged gate checked. Preserve prior UI26 original-only observations and pending live/native boundaries; no status promotion or new engine equivalence claim."
       }
+    },
+    {
+      "id": "effect-projection-recorded-2afab5e",
+      "reason": "Recover the complete 004883f0 empty-world same-cell parent path without stubs or patches: owned previous/fine/subcell/recount fields and real trajectory/terrain helpers, unchanged cells/chains and return 3. Compose created records through the pending-source guard into the headless lighting cycle. Reconcile focused imports/census/ledger; preserve historical source hashes. Reviewed committed range 706b2f5..2afab5ec1308dd66830ad33d441e0d907ade41ca in working/tests/effect-projection-history-review.json; all non-journal intermediate file versions have exact receipts.",
+      "files": [
+        {
+          "after_sha256": "7a07031ab4cf554a5fe521404c61f8f3708ce23596399b8aad6dab45b959c2cb",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect-projection/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "622f6961285657c71bd1467a8a7221e1b3417fcf030c0cf824e519e4a6931046",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_projection.cpp"
+        },
+        {
+          "after_sha256": "50bfaa5daedfaf33a61731ac8c3dfd27f8e6236fe9ec5cb6b533d058f29671e8",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_projection.hpp"
+        },
+        {
+          "after_sha256": "19bf5a815ac7ea6f1cd5875c7993ec56e0fa9f2b3885f1798051ec1572e9877b",
+          "before_sha256": "adff9d759d6ef4ccad9ec8e8da845de6f959746567698d9675f137cb3d501aeb",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "1896f1de9dcd0b6f79e7b0dbf8c3027f772a03706cda691f09b272c410d36a0f",
+          "before_sha256": "bc08d278fe71b958c15503ce57d2db0ff03231ea354b9161d4b9752eea359f07",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "263d4b3bf3ef94f0c5bf9abeb7b1801284927c44562f0a2687e7cc5402009a55",
+          "before_sha256": null,
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "b243a72f47ddec4253c0fbc399e06c3ff0e85cfa342b2999278fadc7c13fb876",
+          "before_sha256": null,
+          "path": "research/runtime/effect-same-cell-projection-source-index.json"
+        },
+        {
+          "after_sha256": "5516fbc39648cd21d33c92347ae34029d24b10712b81710887c9fc843076ca7a",
+          "before_sha256": null,
+          "path": "research/runtime/effect-same-cell-projection.json"
+        },
+        {
+          "after_sha256": "52c7d0a24445a9198996e5c08705953f4367777cd871ab9b0d3f77273a4df7f9",
+          "before_sha256": null,
+          "path": "research/runtime/effect-same-cell-projection.md"
+        },
+        {
+          "after_sha256": "cd847193f22e932f2e9fe44b255af7fa865d9f2423c859201cd125f43d48d39d",
+          "before_sha256": "616799ab7070e53153b79371e8eb7245b527b314602d13605222e9c7543ede2e",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "b6409354bed62c8c11ea5ce824cd2ea82e7609f09f5bc658ccf1105d85e1e991",
+          "before_sha256": null,
+          "path": "tests/effect-projection-reference.cpp"
+        },
+        {
+          "after_sha256": "7e6671393ca75ae66f6cabd0c2c654339dfff6b3f44fd7a25b58224079fa6b3e",
+          "before_sha256": null,
+          "path": "tests/effect-projection-test.cpp"
+        },
+        {
+          "after_sha256": "d8f41e93ea1552109fa16bfb0ef904766995805f83446367617ec572c7cbc558",
+          "before_sha256": null,
+          "path": "tools/test-effect-projection.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "e79168c5e7e033f6c15a98665c85dcec12642232aced0decdafe27cf25aa07ff",
+          "before_sha256": null,
+          "id": "TL.effect-projection-policy"
+        },
+        {
+          "after_sha256": "fe3f01c76af2506d605f41d0e05668d77a842a190a93a304610b3f986aa6fced",
+          "before_sha256": null,
+          "id": "TL.effect-same-cell-projection"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:2170ca0a0adbbe40876b10dd9a65326ad4c72df3b4a5325342263934aa0939b4"
+      ],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL07.projection-original",
+          "TL07.projection-native"
+        ],
+        "reason": "4096 fixtures, 6391 whole-parent calls and 20842 trajectory steps including 5221 wrapped steps and 63703760 unchanged cell-allocation bytes match 32-bit native/original, 64-bit native and ASan/UBSan streams. Strict CMake/CTest and normal/sanitized lighting-composition/atomic-refusal tests pass; immutable originals verify before/after. Native-policy comparison absence is intentional; empty collision context and authored setup remain explicit preconditions."
+      }
+    },
+    {
+      "id": "effect-projection-remaining-2afab5e",
+      "reason": "Narrow the existing movement/recount gap to the remaining branches after separately validating the selected same-cell path. Retain parent crossings, occupied collisions, other metadata/termination, setup and live lifecycle as unimplemented/unverified.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "099d3f5296d5253719d97b43f73fa9e12c15635baed93106478b8eef7b664e29",
+          "before_sha256": "7cdc64129c891a0f29759760dbdf584ccdacb88e32bd36ea1bc0574480b15bee",
+          "id": "TL.effect-movement-recount"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "No comparison or implementation of cell transitions, occupied collision behavior, special types/termination, trajectory setup, removal/recycling or live scheduling. Current scoped evidence applies only to the separate same-cell behavior."
+      }
+    },
+    {
+      "id": "effect-projection-summary-2afab5e",
+      "reason": "Refresh generated summary for the isolated reviewed register containing this chunk. Unknown functions, incomplete tables and historical staleness remain.",
+      "files": [
+        {
+          "after_sha256": "20bf66debe7c3d77f1fab06abe56cea2829c294c6d30c3f228dd7fdca5ddf0b8",
+          "before_sha256": "2323a1d52fee72a8d93e98235b5398f59c1249c9d4d0afee8d0e4b707c05a9a5",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated audit metadata only; no implementation or status promotion."
+      }
     }
   ]
 }
