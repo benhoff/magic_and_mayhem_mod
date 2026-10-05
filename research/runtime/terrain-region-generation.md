@@ -131,3 +131,8 @@ work is complete CFG/catalog construction and connector threshold policy,
 conversion of successful assignments to owned terrain assembly plans, and
 generated terrain scene comparisons. Entities, water, lighting and live
 integration remain separate.
+
+The subsequent [catalog milestone](terrain-region-catalog.md) now reconstructs
+selected recipe/header catalog construction and the original connector-threshold
+scan. Original CFG/file-error recovery and generated scene production remain
+separate.
