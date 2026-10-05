@@ -10017,18 +10017,19 @@
       "id": "TL.effect-movement-recount",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
-      "title": "Effect movement parent and recount production remain open",
-      "scope": "Parent 004883f0 projection/recount production, cell membership changes, collision and type-dependent termination remain unimplemented and untested; trajectory initialization and XY-only 004df5d0 are separate gaps; leaf comparison does not admit installed moving effects to lighting",
+      "title": "Remaining effect movement and lifecycle contracts",
+      "scope": "Selected empty-world same-cell parent projection/recount recovered separately; cell membership changes, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Parent 004883f0 projection/recount production, cell membership changes, collision and type-dependent termination remain unimplemented and untested; trajectory initialization and XY-only 004df5d0 are separate gaps; leaf comparison does not admit installed moving effects to lighting"
+          "scope": "Selected empty-world same-cell parent projection/recount recovered separately; cell membership changes, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified"
         }
       ],
       "documents": [
-        "research/runtime/effect-trajectory.md"
+        "research/runtime/effect-trajectory.md",
+        "research/runtime/effect-same-cell-projection.md"
       ],
       "implementation": [],
       "tests": [],
@@ -10221,6 +10222,77 @@
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-same-cell-projection",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Same-cell effect motion and recount coordinate production",
+      "scope": "Complete 004883f0 same-cell path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, unchanged cells/chains and return 3; authored setup, no crossings, occupied collisions, special termination or live scheduling",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Complete 004883f0 same-cell path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, unchanged cells/chains and return 3; authored setup, no crossings, occupied collisions, special termination or live scheduling"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-same-cell-projection.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_projection.cpp",
+        "reconstruction/rendering/effect_projection.hpp",
+        "reconstruction/rendering/effect-projection/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-projection-reference.cpp",
+        "tests/effect-projection-test.cpp",
+        "tools/test-effect-projection.py"
+      ],
+      "evidence": [
+        "TL07.projection-original",
+        "TL07.projection-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-projection-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Atomic bounded effect projection and lighting composition",
+      "scope": "Owned candidate-copy atomic refusals for unsupported type/creator/kind/count/counter/dimensions, inconsistent positions, height exits, horizontal excursions and later cell crossings; creation-pending source becomes admissible after projection and composes with the existing headless lighting cycle; empty collision context is a caller precondition, not live world certification",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-same-cell-projection.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_projection.cpp",
+        "reconstruction/rendering/effect_projection.hpp",
+        "reconstruction/rendering/effect-projection/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-projection-reference.cpp",
+        "tests/effect-projection-test.cpp",
+        "tools/test-effect-projection.py"
+      ],
+      "evidence": [
+        "TL07.projection-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -15030,6 +15102,102 @@
           "equals": 14
         }
       ]
+    },
+    {
+      "id": "TL07.projection-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Complete 004883f0 same-cell path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, unchanged cells/chains and return 3; authored setup, no crossings, occupied collisions, special termination or live scheduling",
+      "record": "research/runtime/effect-same-cell-projection.json",
+      "sha256": "5516fbc39648cd21d33c92347ae34029d24b10712b81710887c9fc843076ca7a",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 4096
+        },
+        {
+          "pointer": "/calls",
+          "equals": 6391
+        },
+        {
+          "pointer": "/steps",
+          "equals": 20842
+        },
+        {
+          "pointer": "/wrapped_steps",
+          "equals": 5221
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 63703760
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL07.projection-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Owned candidate-copy atomic refusals for unsupported type/creator/kind/count/counter/dimensions, inconsistent positions, height exits, horizontal excursions and later cell crossings; creation-pending source becomes admissible after projection and composes with the existing headless lighting cycle; empty collision context is a caller precondition, not live world certification",
+      "record": "research/runtime/effect-same-cell-projection.json",
+      "sha256": "5516fbc39648cd21d33c92347ae34029d24b10712b81710887c9fc843076ca7a",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 4096
+        },
+        {
+          "pointer": "/calls",
+          "equals": 6391
+        },
+        {
+          "pointer": "/steps",
+          "equals": 20842
+        },
+        {
+          "pointer": "/wrapped_steps",
+          "equals": 5221
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 63703760
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -16598,6 +16766,24 @@
         "tests/effect-trajectory-test.cpp",
         "tools/test-effect-trajectory.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-same-cell-projection",
+      "level": "headless",
+      "scope": "Complete 004883f0 same-cell path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, unchanged cells/chains and return 3; authored setup, no crossings, occupied collisions, special termination or live scheduling; Owned candidate-copy atomic refusals for unsupported type/creator/kind/count/counter/dimensions, inconsistent positions, height exits, horizontal excursions and later cell crossings; creation-pending source becomes admissible after projection and composes with the existing headless lighting cycle; empty collision context is a caller precondition, not live world certification",
+      "behaviors": [
+        "TL.effect-same-cell-projection",
+        "TL.effect-projection-policy"
+      ],
+      "evidence": [
+        "TL07.projection-original",
+        "TL07.projection-native"
+      ],
+      "tests": [
+        "tests/effect-projection-reference.cpp",
+        "tests/effect-projection-test.cpp",
+        "tools/test-effect-projection.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -16710,17 +16896,22 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "616799ab7070e53153b79371e8eb7245b527b314602d13605222e9c7543ede2e",
+      "sha256": "cd847193f22e932f2e9fe44b255af7fa865d9f2423c859201cd125f43d48d39d",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
       "sha256": "db0ef0194f43fe18e7e8801e0b7f3f7d1ddef871867f5253ba5ab8885866d4e4",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
+    },
+    {
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "sha256": "263d4b3bf3ef94f0c5bf9abeb7b1801284927c44562f0a2687e7cc5402009a55",
+      "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-commit.json",
-    "sha256": "6acb1aff25af0b9d8126405fc990107724bfa7c3b4e2a295486d831bcbd245d0"
+    "path": "research/runtime/effect-same-cell-projection-source-index.json",
+    "sha256": "b243a72f47ddec4253c0fbc399e06c3ff0e85cfa342b2999278fadc7c13fb876"
   }
 }
