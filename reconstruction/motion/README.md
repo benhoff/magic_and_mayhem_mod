@@ -31,3 +31,10 @@ reset the sample bank and residual snapshot. Native `move-continuous` composes
 this through the same app adapter and uses native v4 continuation. This does not
 recover the ANI event generator or the original order/occupancy lifecycle.
 See [NS04 evidence](../../research/runtime/native-creature-segment-continuity.md).
+
+An optional `MotionAnimation` supplies actual forward controller ticks/restarts.
+Event 2 resets sample/residual state and substep count; unsupported events throw.
+Callbacks must mutate only caller-staged state, since the arithmetic transaction
+cannot undo external callback effects. `move-ani` stages an owned recovered player
+and saves it with ANI bytes in native v5. The default supplied-clock contract
+remains unchanged. See [NS05](../../research/runtime/native-ani-motion.md).

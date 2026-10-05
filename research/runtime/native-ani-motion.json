@@ -1,0 +1,163 @@
+{
+  "schema": 1,
+  "milestone": "NS05",
+  "scope": "Owned native v5 ANI continuation and selected forward event-0/event-2 movement composition; explicit numeric profile selection; no live replacement, arbitrary event consumers or original save writing",
+  "sources": {
+    "apps/world-sandbox/frozen_navigation.cpp": "6a2a6d4cc93d0894b6f5b5e298453c2308bd930c349385ccf5d269932659f8fb",
+    "apps/world-sandbox/frozen_navigation.hpp": "ce4773406cead7eeb98ed49fd8da297c2bc0be23b46d005c9668495a9c2a11f6",
+    "apps/world-sandbox/main.cpp": "23e337b7df17e3f37ff5e953a91c7a5eaa2ca3b33a0e9ef337ab255e898cba31",
+    "assets/CMakeLists.txt": "f816877eb8ee738a9144bea48108be8be328757dda030053d8a42c2befb2781d",
+    "assets/animation.cpp": "0cdd420e8bbd08751f652696a4eadf9fb0eada1b96ec04c83402feee1acf0bda",
+    "assets/animation_decode.cpp": "76523a27832349dda6daf9988bc42b348611b657af710a2f3e65b7a2912e947d",
+    "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+    "game/CMakeLists.txt": "b4c45ec34c0de61d42fa036bbb043a86a2f3706834ba72683ae0d3475093e311",
+    "game/README.md": "d3d933954c2765bcc03f33c1e72bfbb0b973658496d40c03103162cf539c27cd",
+    "game/simulation/world.hpp": "0a8d9d1a78d3183832af60df81fce2551fbb9cc53ba334bc8d3b308abd91038c",
+    "game/simulation/world.cpp": "6f0f99bf408e8341754c0df4065e16c51009b13e0bd24a75d70d356c087fc138",
+    "game/simulation/movement.hpp": "beb0851c80dd59e2e59739e9e0b5a37af08bd1413e259c4c1ff1c866c4d091b0",
+    "game/simulation/movement.cpp": "3b845ec509a3ffa2a570c21131b1471de33dd1ab6a325a9174dd41564e813d98",
+    "game/persistence/snapshot.cpp": "e7d2055faae3056d9359d6f5b3f65dfd23eb40ca2ea200d5078b69a799b21a30",
+    "reconstruction/animation/no_cd.hpp": "312a0e1ea2dfd4fb1de57ba7e57aa27122aeaccf7ce35311d58ae3682a9edb12",
+    "reconstruction/animation/no_cd.cpp": "be3dd04d713192baf728f437ebb507c0dba17797a35bb0de643d8e838d1d8d4e",
+    "reconstruction/animation/README.md": "5d56879c844d3036741c42289499bfe8b3e3675188aae06cfe852a0442771301",
+    "reconstruction/motion/creature_motion.hpp": "defad568395f820d13b8f949949b14c69155386d0c2fbe7ea9b7fba3195d73e4",
+    "reconstruction/motion/creature_motion.cpp": "d04e0e5435eb7c15256b9dc171e3383d7fc14ff1bea50f77ee455a471838873b",
+    "reconstruction/motion/README.md": "74fecc055ae2feec372b2e07d28fe06b14c3e1182222f67c261cdba0a8df342f",
+    "tests/animation-model-test.cpp": "95d4bb743930589493b7395f5b8fbd0ab5374709701e1bf686e7eb56ffe5244c",
+    "tests/ani-motion-test.cpp": "5ef66e85287489656615b418e7faf8b3f1b55adc453bcdddde40d6b1f0059777",
+    "tests/native-ani-restore-test.cpp": "9e733ca387c60344c13649ef9650bfaac0486e89480b8636b188e88ce6ae0c84",
+    "tests/test-native-ani-motion.py": "0b611c861ee49d406332fd4db67c0e2d17c2fdb24ef5f68183ea3f0b1ac7e090",
+    "tests/test-original-ani-motion.py": "dde6a57d6903f8f279ce20c42fd526c7a91053ccc31693399513542bd5dec0f4",
+    "tests/movement-native-reference.hpp": "3224b3d298ed3e3590f9fe34960abadf0f4a3e68fb93de7e8ee80e4e29e96f8a"
+  },
+  "original_composition": {
+    "report": "working/tests/original-ani-motion-4df_vg80/report.json",
+    "record": {
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "anchors": {
+        "0x464cb0": "8b44240453568bf1",
+        "0x5104b0": "83ec38",
+        "0x512460": "83ec40",
+        "0x5070e0": "8b542404",
+        "0x464ec0": "515355568b",
+        "0x464d70": "53568bf133",
+        "0x51a8f0": "568bf1578b",
+        "0x50f850": "83",
+        "0x51aa30": "83"
+      },
+      "sources": {
+        "reconstruction/motion/creature_motion.cpp": "d04e0e5435eb7c15256b9dc171e3383d7fc14ff1bea50f77ee455a471838873b",
+        "reconstruction/animation/no_cd.cpp": "be3dd04d713192baf728f437ebb507c0dba17797a35bb0de643d8e838d1d8d4e",
+        "tests/ani-motion-test.cpp": "5ef66e85287489656615b418e7faf8b3f1b55adc453bcdddde40d6b1f0059777"
+      },
+      "compile": [
+        "g++",
+        "-m32",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-DMNM_ANI_MOTION_REFERENCE",
+        "-I/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/motion",
+        "-I/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/pathfinding",
+        "-I/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/animation",
+        "-I/home/hoff/swdev/magic_and_mayhem_mod/assets",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/motion/creature_motion.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/animation/no_cd.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/ani-motion-test.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/original-ani-motion-4df_vg80/compare"
+      ],
+      "returncode": 0,
+      "output": "28800 ANI-driven motion/controller transitions passed\n",
+      "scope": "Synthetic forward category-zero object; original motion action and ANI start/tick/restart execute together unchanged; only completion redirected",
+      "original_manifest_verified_before_after": true,
+      "input_unchanged": true,
+      "comparison_sha256": "e9870e641946403d4cb83055a76830604a2c8931e81d7ff3b585d6857fb6775e",
+      "comparison_log_sha256": "7c33e41856f0bc7e5b264ca107e0a6e0c1f4d00331062b1b56a181b431c16217"
+    },
+    "transitions": 28800
+  },
+  "installed_controller_regression": {
+    "report": "working/tests/animation/run-qi89ps9k/report.json",
+    "summary": {
+      "files": 136,
+      "decoded": 136,
+      "legacy_rejected": 0,
+      "legacy_decoded": 3,
+      "records": 121941,
+      "traces": 347,
+      "states": 22555,
+      "all_traces_match": true
+    },
+    "scope": "Version-3/4 expansion, version-5 bytes and selected version-5 forward/no-reverse start/tick traces; bounded native safety differs for malformed inputs",
+    "sources": {
+      "assets/animation.cpp": "0cdd420e8bbd08751f652696a4eadf9fb0eada1b96ec04c83402feee1acf0bda",
+      "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+      "assets/animation_inspect_main.cpp": "4d73a87295c7144abfb6d7894d4d8e6f5d104af0567a888ace22268e6c893f2e",
+      "reconstruction/animation/no_cd.cpp": "be3dd04d713192baf728f437ebb507c0dba17797a35bb0de643d8e838d1d8d4e",
+      "reconstruction/animation/no_cd.hpp": "312a0e1ea2dfd4fb1de57ba7e57aa27122aeaccf7ce35311d58ae3682a9edb12",
+      "tests/animation-binary-reference.cpp": "6c8fc0ff4f13d3caeeafa1183788740864f04b57682680fcda3f562b801705ae",
+      "tools/test-animation-contract.py": "48b07ca92243a23d64d63c2d04cce7b2cbda2dbf7e015c85a74766125c794756"
+    },
+    "input_unchanged": true,
+    "harness_sha256": "92f03b5779394948784d0f9ccfd70d2fb28bf9ac352c63c01bb26fb8ce375d39",
+    "inspector_sha256": "049b05fa85ad675897fe568d45523c43ecb79e9c7bacce5501f6a5b3a37d2366",
+    "original_manifest_verified_before_after": true
+  },
+  "immutable_files_verified": 2927,
+  "native_checks": {
+    "normal_ctests": 31,
+    "asan_ubsan_ctests": 31,
+    "asset_loader_fixtures": 2,
+    "leak_detection": false,
+    "independent_v5_wire_oracle": true,
+    "legacy_v1_v2_v3_v4_regressions": true,
+    "owned_ani_source_deletion": true,
+    "fresh_process_event_boundary_repeat_fractional_turn_prefix_continuation": true,
+    "failed_in_place_resource_replay_restoration_preserves_subsequent_behavior": true
+  },
+  "artifacts": {
+    "working/tests/original-ani-motion-4df_vg80/report.json": "2cea22f82e2739cda3ed50ecefdcca2beb1d39e50c2622e31262bda7821a21db",
+    "working/tests/animation/run-qi89ps9k/report.json": "067037292a3f803e7c01fd5b61655a3f7de0a460e334beac920ae58b83168fe8",
+    "working/tests/native-ani-motion-validation/normal-build.log": "0552c5b05e79be1b42eedbef4209bb1811aa41fab8b740b887243f09424290ef",
+    "working/tests/native-ani-motion-validation/normal-tests.log": "d25e98b8eb43d967edba9589ce52d2394b536e8560a24f734c0d8dca5a4bbd8e",
+    "working/tests/native-ani-motion-validation/sanitized-build.log": "eff9b661947437c494a15ce0b828260207999390c02b6f780a4c51b6aadddd91",
+    "working/tests/native-ani-motion-validation/sanitized-tests.log": "4b34218d9606773079319796889ad6a5d3f315dfb1a841feb5c1d5c1811abf0c",
+    "working/tests/native-ani-motion-validation/asset-build.log": "c68ffa30cb71711f2486c5be373c7528ff9ec3e814fee868f9bb3f689c7e3c23",
+    "working/tests/native-ani-motion-validation/asset-tests.log": "e8be4bb705bf36e081de6df59881768f35950394aa81fab1ae7044bd430836d8",
+    "working/tests/animation/run-qi89ps9k/original-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/animation/run-qi89ps9k/original-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/build/native-world/mnm-world-sandbox": "ef2885667a261bcb557e6602e5e9f00d65383b9a4a4898db8756c0079429455c",
+    "working/build/native-world-sanitized/mnm-world-sandbox": "a46fb15a4fb2b2f7cc9e28b55032211a60c5b861153af47790f9552fccee6d4e",
+    "working/build/assets/mnm-animation-inspect": "049b05fa85ad675897fe568d45523c43ecb79e9c7bacce5501f6a5b3a37d2366"
+  },
+  "commands": [
+    "cmake -S game -B working/build/native-world -DCMAKE_BUILD_TYPE=Debug",
+    "cmake --build working/build/native-world -j4",
+    "ctest --test-dir working/build/native-world --output-on-failure",
+    "cmake -S game -B working/build/native-world-sanitized -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS='-fsanitize=address,undefined -fno-omit-frame-pointer' -DCMAKE_EXE_LINKER_FLAGS='-fsanitize=address,undefined'",
+    "cmake --build working/build/native-world-sanitized -j4",
+    "ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 ctest --test-dir working/build/native-world-sanitized --output-on-failure",
+    "cmake --build working/build/assets --target mnm-animation-inspect animation-loader-test legacy-asset-loader-test -j4",
+    "ctest --test-dir working/build/assets -R '^(animation-loader|legacy-asset-loader)$' --output-on-failure",
+    "python3 tests/test-original-ani-motion.py",
+    "python3 tools/test-animation-contract.py"
+  ],
+  "native_policies": [
+    "explicit eight-sequence directional base",
+    "embed exact ANI bytes for continuation",
+    "reject unsupported movement events/inactive profiles",
+    "bounded player reconstruction/copying and replay",
+    "new order reset and independent native admission scheduling"
+  ],
+  "remaining": [
+    "vertical/category-four motion setup and terrain heights",
+    "complete original action/config sequence selection",
+    "event-1/3/4/5/6 consumers",
+    "reverse/special profiles and dynamic occupancy/scheduling",
+    "live behavior and presentation",
+    "AI/combat/spells/campaign behavior",
+    "original save compatibility"
+  ]
+}

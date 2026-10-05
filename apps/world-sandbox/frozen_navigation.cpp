@@ -2,6 +2,7 @@
 #include "route_world.hpp"
 #include "creature_motion.hpp"
 #include "segment_setup.hpp"
+#include "no_cd.hpp"
 #include <array>
 #include <cmath>
 #include <cstring>
@@ -19,6 +20,30 @@ g::Point point(r::Coordinates p) {return {p.x,p.y,p.z};}
 class FrozenNavigation final:public g::Navigation {
     std::shared_ptr<const r::RouteWorldSnapshot> frozen_;
     g::NavigationBinding binding_;
+    std::optional<g::AnimationBinding> animation_;
+    std::array<std::vector<assets::AnimationRecord>,8> sequences_;
+    static r::AnimationState controllerState(const g::AnimationCursor& c) {
+        r::AnimationState s;s.pc=c.pc;if(c.displayed) s.displayedRecord=*c.displayed;
+        s.active=c.active;s.delay=c.delay;s.elapsed=c.elapsed;s.repeats=c.repeats;s.breakFlag=c.breakFlag;return s;
+    }
+    static g::AnimationCursor cursor(std::uint32_t sequence,const r::AnimationState& s) {
+        g::AnimationCursor c;c.sequence=sequence;c.pc=s.pc;if(s.displayedRecord) c.displayed=*s.displayedRecord;
+        c.active=s.active;c.delay=s.delay;c.elapsed=s.elapsed;c.repeats=s.repeats;c.breakFlag=s.breakFlag;return c;
+    }
+    r::NoCdAnimationPlayer player(const g::AnimationCursor& c) const {
+        if(!animation_ || !c.active || c.sequence<animation_->sequenceBase || c.sequence>=animation_->sequenceBase+8)
+            throw std::invalid_argument("saved animation sequence outside movement profile");
+        r::NoCdAnimationPlayer result(sequences_.at(c.sequence-animation_->sequenceBase));result.restore(controllerState(c));return result;
+    }
+    bool advance(g::FineMotion& f,r::MotionInputs p) const {
+        auto state=motionState(f);
+        if(!animation_) {auto complete=r::advance_creature_motion(state,p);store(f,state);return complete;}
+        if(!f.animation) throw std::invalid_argument("missing animation continuation");
+        auto staged=player(*f.animation);
+        r::MotionAnimation events{[&]{return staged.tick();},[&]{staged.start();}};
+        const auto complete=r::advance_creature_motion(state,p,&events);
+        store(f,state);f.animation=cursor(f.animation->sequence,staged.state());return complete;
+    }
     std::shared_ptr<r::RouteWorldSnapshot> inputs(const g::Entity& e,g::Point target) const {
         if(e.type!=creatureType() || !g::contains({e.x,e.y,e.z},binding_) || !g::contains(target,binding_))
             throw std::invalid_argument("frozen navigation profile/coordinates mismatch");
@@ -27,7 +52,20 @@ class FrozenNavigation final:public g::Navigation {
         copy->target=coordinate(target);return copy;
     }
 public:
-    FrozenNavigation(std::shared_ptr<const r::RouteWorldSnapshot> snapshot,std::uint64_t hash):frozen_(std::move(snapshot)) {
+    FrozenNavigation(std::shared_ptr<const r::RouteWorldSnapshot> snapshot,std::uint64_t hash,const std::optional<g::AnimationBinding>& animation):frozen_(std::move(snapshot)),animation_(animation) {
+        if(animation_) {
+            auto decoded=assets::decodeAnimation(animation_->data);
+            if(auto* error=std::get_if<assets::AnimationError>(&decoded)) throw std::invalid_argument(error->detail);
+            auto data=std::get<assets::Animation>(std::move(decoded));
+            if(data.version!=5 || animation_->sequenceBase>4088 || animation_->sequenceBase+8>=data.starts.size())
+                throw std::invalid_argument("ANI movement needs eight version-5 sequences at the selected base");
+            for(unsigned direction=0;direction<8;++direction) {
+                const auto index=animation_->sequenceBase+direction;
+                sequences_[direction]={data.records.begin()+data.starts[index],data.records.begin()+data.starts[index+1]};
+                for(const auto& record:sequences_[direction]) if((record.opcode==5 && record.argument!=0 && record.argument!=2) || (record.opcode==0 && record.argument<0))
+                    throw std::invalid_argument("unsupported movement ANI event/sprite profile");
+            }
+        }
         const auto d=frozen_->dimensions;
         if(std::uint64_t(d.x)*d.y*d.z>4096 || frozen_->cells.size()>4096 || !std::isfinite(frozen_->slope_global))
             throw std::invalid_argument("movement sandbox frozen map exceeds bounded slice");
@@ -55,6 +93,7 @@ public:
         }
         return out;
     }
+    std::optional<g::AnimationBinding> animationBinding() const override {return animation_;}
     r::CreatureScalarState scalarState() const {
         r::CreatureScalarState s;s.type_3c=read<std::int32_t>(frozen_->scalar_type.data(),0x3c);
         s.type_10=read<std::int32_t>(frozen_->scalar_type.data(),0x10);
@@ -70,6 +109,10 @@ public:
     void validateSegmentHistory(const g::Entity& e,const g::SegmentHistory& h) const override {
         constexpr int dx[8]={0,1,1,1,0,-1,-1,-1},dy[8]={-1,-1,0,1,1,1,0,-1};
         const auto& f=h.motion;
+        if(animation_) {
+            if(!f.animation || f.animation->sequence!=animation_->sequenceBase+static_cast<unsigned>(h.direction)) throw std::invalid_argument("history animation/direction mismatch");
+            (void)player(*f.animation);
+        }
         if(h.direction<0 || h.direction>7 || h.vertical || h.category) throw std::invalid_argument("unsupported segment history");
         const auto x=dx[h.direction],y=dy[h.direction];
         const auto px=(e.x-x+binding_.dimensions.x)%binding_.dimensions.x,py=(e.y-y+binding_.dimensions.y)%binding_.dimensions.y;
@@ -90,7 +133,12 @@ public:
         request.delta={r::wrapped_difference(point.position.x,e.x,binding_.dimensions.x),r::wrapped_difference(point.position.y,e.y,binding_.dimensions.y),0};
         const auto result=r::initialize_creature_segment(previous,request,scalarState());
         if(result.rate>1000000 || !result.duration || result.duration>1000000) throw std::invalid_argument("segment scalar outside bounded profile");
-        g::FineMotion out;out.rate=result.rate;out.duration=result.duration;out.heightOrigin=e.z*16;store(out,result.state);return out;
+        g::FineMotion out;out.rate=result.rate;out.duration=result.duration;out.heightOrigin=e.z*16;store(out,result.state);
+        if(animation_) {
+            if(result.carried) out.animation=e.motion->previous->motion.animation;
+            else {r::NoCdAnimationPlayer fresh(sequences_.at(point.direction));fresh.start();if(!fresh.state().active) throw std::invalid_argument("movement ANI starts inactive");out.animation=cursor(animation_->sequenceBase+point.direction,fresh.state());}
+        }
+        return out;
     }
     r::MotionInputs motionInputs(const g::Entity& e,const g::RoutePoint& waypoint) const {
         if((waypoint.category!=0 && waypoint.category!=4) || e.type==12 ||
@@ -122,7 +170,7 @@ public:
         auto p=motionInputs(e,waypoint);
         if(e.motion && e.motion->continuousMotion) {
             auto f=prepareContinuous(e,waypoint);p.rate=f.rate;p.duration=f.duration;
-            auto probe=motionState(f);(void)r::advance_creature_motion(probe,p);return f;
+            auto probe=f;(void)advance(probe,p);return f;
         }
         g::FineMotion f;
         f.rate=p.rate;f.duration=p.duration;f.heightOrigin=p.heightOrigin;f.heightDelta=p.heightDelta;
@@ -134,9 +182,14 @@ public:
     void validateFineMotion(const g::Entity& e,const g::RoutePoint& waypoint,const g::FineMotion& f) const override {
         const auto expected=prepareFineMotion(e,waypoint);auto p=motionInputs(e,waypoint);
         if(e.motion->continuousMotion) {
-            auto replay=expected;p.rate=replay.rate;p.duration=replay.duration;auto s=motionState(replay);
-            for(unsigned i=0;i<e.motion->segmentTicks;++i) if(r::advance_creature_motion(s,p)) throw std::invalid_argument("saved ongoing segment already completed");
-            store(replay,s);
+            auto replay=expected;p.rate=replay.rate;p.duration=replay.duration;
+            for(unsigned i=0;i<e.motion->segmentTicks;++i) if(advance(replay,p)) throw std::invalid_argument("saved ongoing segment already completed");
+            if(bool(replay.animation)!=bool(f.animation)) throw std::invalid_argument("saved animation driver mismatch");
+            if(replay.animation) {
+                const auto& a=*replay.animation;const auto& b=*f.animation;
+                if(a.sequence!=b.sequence || a.pc!=b.pc || a.displayed!=b.displayed || a.active!=b.active || a.delay!=b.delay ||
+                   a.elapsed!=b.elapsed || a.repeats!=b.repeats || a.breakFlag!=b.breakFlag) throw std::invalid_argument("saved animation replay mismatch");
+            }
             if(replay.rate!=f.rate || replay.duration!=f.duration || replay.heightOrigin!=f.heightOrigin || replay.heightDelta!=f.heightDelta ||
                replay.accumulator!=f.accumulator || replay.progress!=f.progress || replay.travelX!=f.travelX || replay.travelY!=f.travelY ||
                replay.fine!=f.fine || replay.residualX!=f.residualX || replay.residualY!=f.residualY || replay.frame!=f.frame || replay.animationFrame!=f.animationFrame || replay.initialFrame!=f.initialFrame || replay.initialResidualX!=f.initialResidualX || replay.initialResidualY!=f.initialResidualY)
@@ -162,8 +215,7 @@ public:
             if(f.rate!=expected.rate || f.duration!=expected.duration) throw std::invalid_argument("segment scalar disagreement");
             inputs.rate=f.rate;inputs.duration=f.duration;
         } else validateFineMotion(e,waypoint,f);
-        auto s=motionState(f);const auto complete=r::advance_creature_motion(s,inputs);store(f,s);
-        return complete;
+        return advance(f,inputs);
     }
     bool accepts(const g::Entity& e,const g::RoutePoint& waypoint) const override {
         if(!e.motion) return false;
@@ -184,7 +236,14 @@ public:
     }
 };
 }
-std::shared_ptr<const game::Navigation> loadFrozenNavigation(const std::string& path) {
+game::AnimationBinding loadMovementAnimation(const std::string& path,std::uint32_t sequenceBase) {
+    if(path.find('\0')!=std::string::npos) throw std::invalid_argument("ANI path contains NUL");
+    std::ifstream f(path,std::ios::binary|std::ios::ate);if(!f) throw std::runtime_error("cannot open movement ANI");
+    const auto size=f.tellg();if(size<44 || size>8*1024*1024) throw std::invalid_argument("invalid movement ANI size");
+    f.seekg(0);game::AnimationBinding binding;binding.data.resize(static_cast<std::size_t>(size));binding.sequenceBase=sequenceBase;
+    f.read(reinterpret_cast<char*>(binding.data.data()),size);if(!f) throw std::runtime_error("cannot read movement ANI");return binding;
+}
+std::shared_ptr<const game::Navigation> loadFrozenNavigation(const std::string& path,const std::optional<game::AnimationBinding>& animation) {
     if(path.find('\0')!=std::string::npos) throw std::invalid_argument("map path contains NUL");
     std::ifstream f(path,std::ios::binary|std::ios::ate);if(!f) throw std::runtime_error("cannot open frozen movement map");
     const auto size=f.tellg();if(size<92 || size>64*1024*1024) throw std::invalid_argument("invalid frozen map size");
@@ -192,6 +251,6 @@ std::shared_ptr<const game::Navigation> loadFrozenNavigation(const std::string& 
     f.read(reinterpret_cast<char*>(bytes.data()),size);if(!f) throw std::runtime_error("cannot read frozen movement map");
     std::uint64_t hash=14695981039346656037ULL;
     for(auto byte:bytes) {hash^=std::to_integer<std::uint8_t>(byte);hash*=1099511628211ULL;}
-    return std::make_shared<FrozenNavigation>(reconstruction::decode_route_world(bytes),hash);
+    return std::make_shared<FrozenNavigation>(reconstruction::decode_route_world(bytes),hash,animation);
 }
 }

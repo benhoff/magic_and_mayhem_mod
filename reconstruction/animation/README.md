@@ -29,3 +29,10 @@ effect entry 36, admission base-plus-facing selection, nonzero-health visibility
 mode-gated ticks and stop/reset. Reproduce with
 `python3 tools/test-animation-attachment.py`; see
 [the contract and boundaries](../../research/runtime/animation-mode-one-attachment.md).
+
+`restore(AnimationState)` validates owned PC/display indices and timer fields
+against the selected sequence before committing; it does not authenticate prior
+control-flow reachability. The native movement adapter stages a local player,
+advances it per recovered motion substep, and preserves its continuation in native
+v5. Selected forward restart at `0x464d70` is composed with the original action in
+`python3 tests/test-original-ani-motion.py`; see [NS05](../../research/runtime/native-ani-motion.md).

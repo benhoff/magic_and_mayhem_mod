@@ -314,6 +314,16 @@ Native v1/v2/v3 layouts and policies remain compatible. V4 owns the continuation
 needed for the bounded profile; it is not an original save writer or restored
 playable world. New-order resets and supplied event timing remain native policies.
 
+### Native ANI-driven motion (NS05)
+
+| ID and behavior | Implementation and integration | Evidence and confidence | Remaining boundary and next validation |
+| --- | --- | --- | --- |
+| NS05 Forward ANI event production and owned native continuation | Existing recovered controller composed per movement substep; opt-in `move-ani`, owned ANI bytes/base/controller cursors, replay-validated native v5 and staged resource restoration | 28,800 composed original action/start/tick/restart transitions match; repeated installed ANI comparison matches 347 traces/22,555 states and all 136 owned decodes. 31 normal and 31 ASan/UBSan CTests plus loader fixtures pass, including independent v5 bytes, event/boundary/turn/prefix continuation, source deletion and failed in-place restoration. Original manifest preserved (2,927 files). High for selected forward event-0/event-2 composition. [Evidence](native-ani-motion.md) | Explicit directional base remains caller policy; other gameplay events, original action/config mapping, reverse/special/vertical setup, terrain and live agreement remain open. Next: compare vertical/category-four segment setup and terrain height inputs |
+
+V5 embeds ANI bytes and controller state; prior native checkpoint layouts/pacing
+remain compatible. This remains a frozen one-creature headless slice, not a
+playable restored world or original-save writer.
+
 ## Gameplay areas without recorded replacements
 
 These entries are baseline gaps, not proof that no research exists. Recovered

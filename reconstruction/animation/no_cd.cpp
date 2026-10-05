@@ -10,6 +10,15 @@ void NoCdAnimationPlayer::start(){
     if(records_[0].opcode==0)state_.displayedRecord=0;
     else dispatch(true);
 }
+void NoCdAnimationPlayer::restore(AnimationState state){
+    if(state.pc>records_.size() || (state.active && state.pc==records_.size()) ||
+       state.elapsed>state.delay || state.breakFlag>1 ||
+       (!state.active && state.displayedRecord) ||
+       (state.displayedRecord && (*state.displayedRecord>=records_.size() ||
+        records_[*state.displayedRecord].opcode!=0 || records_[*state.displayedRecord].argument<0)))
+        throw std::runtime_error("Invalid animation continuation");
+    state_=state;
+}
 void NoCdAnimationPlayer::switchSequence(std::vector<assets::AnimationRecord> sequence){
     if(!state_.active || !state_.displayedRecord || sequence.empty() || sequence.size()>65536 ||
        sequence.back().opcode!=6 || state_.pc>=sequence.size() || *state_.displayedRecord>=sequence.size() ||

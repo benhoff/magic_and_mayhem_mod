@@ -19,6 +19,7 @@ class Navigation {
 public:
     virtual ~Navigation()=default;
     virtual NavigationBinding binding() const=0;
+    virtual std::optional<AnimationBinding> animationBinding() const {return {}; }
     virtual std::uint32_t creatureType() const=0;
     virtual RoutePlan plan(const Entity&,Point,std::uint32_t budget) const=0;
     virtual bool accepts(const Entity&,const RoutePoint&) const=0;
@@ -28,6 +29,7 @@ public:
     virtual bool advanceFineMotion(const Entity&,const RoutePoint&,FineMotion&) const;
     virtual void validateFineMotion(const Entity&,const RoutePoint&,const FineMotion&) const;
 };
+using NavigationResolver=std::function<std::shared_ptr<const Navigation>(const State&)>;
 using MapResolver=std::function<std::shared_ptr<const Navigation>(const std::string&)>;
 class MovementSession {
     World world_;
@@ -42,5 +44,6 @@ public:
     TickReport step(TickInput={});
     // Load map + validate routes before committing either resource or world.
     void restore(const std::filesystem::path&,const MapResolver&);
+    void restoreResources(const std::filesystem::path&,const NavigationResolver&);
 };
 }

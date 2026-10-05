@@ -10,6 +10,14 @@ int main()try{
     require(player.tick()==0 && player.sprite()==18 && player.state().delay==2,"Delay dispatch changed");
     require(player.tick()==0 && player.tick()==0 && player.sprite()==18,"Delay did not retain current sprite");
     require(player.tick()==-7 && player.sprite()==18,"Event did not retain sprite");
+    NoCdAnimationPlayer restored({{0,17,{}},{1,2,{}},{0,18,{}},{5,-7,{}},{6,-1,{}}});
+    restored.restore(player.state());require(restored.sprite()==player.sprite(),"Restore lost displayed sprite");
+    auto invalid=player.state();invalid.pc=999;
+    rejected([&]{restored.restore(invalid);});require(restored.state().pc==player.state().pc,"Rejected restore mutated cursor");
+    invalid=player.state();invalid.displayedRecord=1;
+    rejected([&]{restored.restore(invalid);});
+    auto a=player,b=restored;
+    for(unsigned i=0;i<8;++i) require(a.tick()==b.tick() && a.state().pc==b.state().pc && a.state().elapsed==b.state().elapsed,"Restored control flow diverged");
     const auto retained=player.state();
     const auto displayed=player.displayedRecord();
     auto target=std::vector<mnm::assets::AnimationRecord>{{0,27,{}},{1,8,{}},{0,28,{}},{5,9,{}},{6,-1,{}}};

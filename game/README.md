@@ -3,7 +3,7 @@
 `mnm-world` is the first native simulation ownership/checkpoint milestone. It
 runs without Qt, Wine, original assets or injected adapters. It implements
 bounded entity storage, lifetime handles, transactional tick phases, a bounded
-single-creature movement session and native v1/v2/v3/v4 snapshots. It does not yet implement AI, combat/spells, campaign
+single-creature movement session and native v1/v2/v3/v4/v5 snapshots. It does not yet implement AI, combat/spells, campaign
 triggers or a playable world. The original engine remains responsible for live
 gameplay. Native checkpoints are distinct from original version-20 saves.
 
@@ -65,8 +65,9 @@ executing after its admission.
 The route helpers follow the recovered contracts. One-waypoint-per-tick
 advancement, exact-target admission, goal guards and the native action enum are
 explicit native test policies. NS03 separately validates selected motion-action arithmetic and route consumption.
-NS04 validates bounded planar segment setup and speed continuation. Complete
-original animation event timing, complete original order eligibility and
+NS04 validates bounded planar segment setup and speed continuation. NS05
+integrates selected forward ANI event production. Complete
+original animation/profile coverage, complete original order eligibility and
 multi-creature occupancy/scheduling remain unvalidated. Stored scalar/direction
 metadata is not a replacement for original velocity or animation.
 
@@ -91,8 +92,8 @@ simulation sees only a navigation driver interface. Scalar rates come from the
 recovered route result, duration and twelve samples from the bound profile.
 The twelve-sample cycle event, zeroed segment/interruption state and grid-based
 Z origin are bounded native policies. `move-continuous` below adds recovered
-planar category-zero setup and speed continuity; complete original setup, ANI
-event production, terrain-height offsets and callbacks remain open. Unsupported profiles fail transactionally. See
+planar category-zero setup and speed continuity; complete original setup, terrain
+height offsets and callbacks remain open. `move-ani` adds selected ANI event production. Unsupported profiles fail transactionally. See
 [fine-motion evidence](../research/runtime/native-creature-fine-motion.md).
 
 ## Planar segment continuity
@@ -115,11 +116,47 @@ working/build/native-world/mnm-world-sandbox resume /tmp/continuous.mnw \
 The checkpoint owns completed-segment history and current-segment tick count.
 Restore checks the map/profile and replays the bounded current segment to verify
 all saved continuation fields before committing. The driver owns all 48 scalar
-samples and refuses a cursor outside that storage. Animation cycle events still
-come from a supplied twelve-frame clock; decoding ANI files does not provide
-original event production. Vertical/category-four setup, reverse and special
+samples and refuses a cursor outside that storage. This mode retains a supplied twelve-frame event clock. `move-ani` below instead
+uses the recovered ANI controller. Vertical/category-four setup, reverse and special
 profiles, terrain offsets and live behavior remain open. See
 [segment continuity evidence](../research/runtime/native-creature-segment-continuity.md).
+
+## ANI-driven planar movement
+
+`move-ani MAP ANI BASE OUTPUT SX SY SZ TX TY TZ TICKS` uses the existing recovered
+forward controller instead of the supplied twelve-frame clock. `BASE` explicitly
+selects eight contiguous directional sequences; it does not recover type/config
+selection or compass-to-resource mappings. Only version-5 ANI assets and planar
+category-zero movement are admitted in this mode.
+
+```sh
+working/build/native-world/mnm-world-sandbox move-ani /tmp/movement-map.bin \
+  /path/to/movement.ani 8 /tmp/ani-moving.mnw 1 1 1 5 1 1 6
+working/build/native-world/mnm-world-sandbox resume /tmp/ani-moving.mnw \
+  /tmp/ani-restored.mnw 14
+```
+
+Each admitted movement substep advances the recovered ANI controller, including
+record delays, repeat/jump controls and raw events. Event 2 restarts the selected
+sequence and resets the sample cursor/residual snapshot and substep counter.
+Matching segments retain controller phase; turns and new orders restart the
+selected sequence. Other gameplay events and sequence stops are refused before
+committing the tick. A cursor outside the 48 owned motion samples is also refused.
+ANI call timing follows movement substep admission, with no invented frame rate.
+
+Native v5 owns the complete ANI bytes, selected base and ongoing/completed
+controller state: next/display record indices, active, delay, elapsed, repeats
+and break flag. Resuming uses the saved ANI bytes even if the source ANI file is
+edited or deleted. The external map still requires exact rebinding. Restore
+replays both arithmetic and controller state before committing resources/world;
+`restoreResources` lets a resolver inspect these owned resource bindings.
+
+The decoder's pure byte implementation is separate from file loading, so the
+headless adapter and native world remain free of Qt. This prototype copies
+bounded state and reconstructs an owned player per tick; it does not establish
+real-time performance. Original action selection, other animation events,
+reverse/special/vertical motion, sprite presentation and live validation remain
+open. See [ANI motion evidence](../research/runtime/native-ani-motion.md).
 
 ## Ownership
 
@@ -186,7 +223,7 @@ edge, then commits both map and state. A missing/changed resource or invalid
 route retains the existing world and its map. The map fingerprint covers exactly
 the byte buffer decoded by the adapter, preventing a hash/parse reopen mismatch.
 V1 lifecycle and v2 waypoint checkpoints continue to encode identically;
-sample motion uses explicit v3; continuous segment motion uses v4.
+sample motion uses explicit v3; continuous segment motion uses v4; ANI-driven continuation uses v5.
 
 The file writer validates/encodes first, writes a private sibling temporary,
 syncs and closes it, atomically publishes with overwrite refusal by default,
