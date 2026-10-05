@@ -1,0 +1,571 @@
+{
+  "schema": 1,
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "recovered_ranges": [],
+  "classifications": [],
+  "api_bindings": [],
+  "dispatch_tables": [],
+  "scope": "Incremental object-driven terrain lighting preview accounting; merged into shared register",
+  "behaviors": [
+    {
+      "id": "TL.static-admission",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Selected static light index and wrapped region gate",
+      "scope": "Original type table selected light index; bounded centers/extents and indices 0..33, inclusive endpoint tests and exhausted fragment iterator; installed type-table construction excluded",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4837216,
+          "scope": "Original type table selected light index; bounded centers/extents and indices 0..33, inclusive endpoint tests and exhausted fragment iterator; installed type-table construction excluded"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5240576,
+          "scope": "Original type table selected light index; bounded centers/extents and indices 0..33, inclusive endpoint tests and exhausted fragment iterator; installed type-table construction excluded"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5240864,
+          "scope": "Original type table selected light index; bounded centers/extents and indices 0..33, inclusive endpoint tests and exhausted fragment iterator; installed type-table construction excluded"
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-static-lighting.md",
+        "research/runtime/terrain-object-lighting-scenes.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp"
+      ],
+      "tests": [
+        "tests/terrain-static-lighting-reference.cpp",
+        "tests/terrain-static-lighting-test.cpp",
+        "tools/test-terrain-static-lights.py",
+        "tests/terrain-lighting-scene-reference.cpp",
+        "tools/test-terrain-lighting-scenes.py"
+      ],
+      "evidence": [
+        "TL02.static-original",
+        "TL02.native",
+        "TL03.object-scenes-original",
+        "TL03.object-scenes-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.static-addition",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Saturated additive staging-field stamp",
+      "scope": "Indices 2..33, extents 2..17, bounded wrapped XY/clipped paired Z; signed saturation and central-axis alias additions to prior only",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5184608,
+          "scope": "Indices 2..33, extents 2..17, bounded wrapped XY/clipped paired Z; signed saturation and central-axis alias additions to prior only"
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-static-lighting.md",
+        "research/runtime/terrain-object-lighting-scenes.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp"
+      ],
+      "tests": [
+        "tests/terrain-static-lighting-reference.cpp",
+        "tests/terrain-static-lighting-test.cpp",
+        "tools/test-terrain-static-lights.py",
+        "tests/terrain-lighting-scene-reference.cpp",
+        "tools/test-terrain-lighting-scenes.py"
+      ],
+      "evidence": [
+        "TL02.static-original",
+        "TL02.native",
+        "TL03.object-scenes-original",
+        "TL03.object-scenes-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.static-refresh",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Two-phase static field publication",
+      "scope": "Owned bounded records and distinct recount/visit coordinates; guarded five-buffer state, stale counts, changed branches and phase/request/active lifecycle; count never exceeds capacity",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5188304,
+          "scope": "Owned bounded records and distinct recount/visit coordinates; guarded five-buffer state, stale counts, changed branches and phase/request/active lifecycle; count never exceeds capacity"
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-static-lighting.md",
+        "research/runtime/terrain-object-lighting-scenes.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp"
+      ],
+      "tests": [
+        "tests/terrain-static-lighting-reference.cpp",
+        "tests/terrain-static-lighting-test.cpp",
+        "tools/test-terrain-static-lights.py",
+        "tests/terrain-lighting-scene-reference.cpp",
+        "tools/test-terrain-lighting-scenes.py"
+      ],
+      "evidence": [
+        "TL02.static-original",
+        "TL02.native",
+        "TL03.object-scenes-original",
+        "TL03.object-scenes-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.combined-refresh",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Creature then static updater composition",
+      "scope": "Selected valid-player creature cycle followed by static cycle, shared publication flags and changed clear; constant owner-zero creature inputs in 64 original outer-updater fixtures; no captured entities or live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5187488,
+          "scope": "Selected valid-player creature cycle followed by static cycle, shared publication flags and changed clear; constant owner-zero creature inputs in 64 original outer-updater fixtures; no captured entities or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5187536,
+          "scope": "Selected valid-player creature cycle followed by static cycle, shared publication flags and changed clear; constant owner-zero creature inputs in 64 original outer-updater fixtures; no captured entities or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5188304,
+          "scope": "Selected valid-player creature cycle followed by static cycle, shared publication flags and changed clear; constant owner-zero creature inputs in 64 original outer-updater fixtures; no captured entities or live replacement"
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-static-lighting.md",
+        "research/runtime/terrain-object-lighting-scenes.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_creature_lighting.cpp",
+        "reconstruction/rendering/terrain_creature_lighting.hpp",
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting.cpp",
+        "reconstruction/rendering/terrain_lighting.hpp",
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp"
+      ],
+      "tests": [
+        "tests/terrain-static-lighting-reference.cpp",
+        "tests/terrain-static-lighting-test.cpp",
+        "tools/test-terrain-static-lights.py",
+        "tests/terrain-lighting-cycle-test.cpp",
+        "tests/terrain-lighting-scene-reference.cpp",
+        "tools/test-terrain-lighting-scenes.py"
+      ],
+      "evidence": [
+        "TL02.static-original",
+        "TL02.native",
+        "TL03.object-scenes-original",
+        "TL03.object-scenes-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.owned-composition",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Owned combined updater and published terrain presentation",
+      "scope": "Selected creature-then-static composition with shared flags/changed consumption; authored prefix replay into owned tile light samples, original scene queues and indexed pixels; excludes installed input production and live scheduling",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5187488,
+          "scope": "Creature then static calls with shared publication controls, final changed clear"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5187536,
+          "scope": "Scoped valid-player creature refresh"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5188304,
+          "scope": "Scoped static refresh and staging publication"
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-object-lighting-scenes.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "apps/terrain-preview/light_fixture.cpp",
+        "apps/terrain-preview/light_fixture.hpp",
+        "apps/terrain-preview/main.cpp"
+      ],
+      "tests": [
+        "tests/terrain-lighting-cycle-test.cpp",
+        "tests/terrain-lighting-scene-reference.cpp",
+        "tools/test-terrain-lighting-scenes.py"
+      ],
+      "evidence": [
+        "TL03.object-scenes-original",
+        "TL03.object-scenes-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "preview",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "TL.object-fixture-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Authored bounded lighting fixtures and atomic refusal",
+      "scope": "MNM_LIGHTING v1 snapshots, 1MiB/64ticks/256records limits, selected prefix and authored admission view; candidate-copy rollback before presentation; separate from original malformed-input recovery or entity production",
+      "original": [],
+      "documents": [
+        "research/runtime/terrain-object-lighting-scenes.md",
+        "research/formats/terrain-lighting-fixture.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_lighting_cycle.cpp",
+        "reconstruction/rendering/terrain_lighting_cycle.hpp",
+        "apps/terrain-preview/light_fixture.cpp",
+        "apps/terrain-preview/light_fixture.hpp",
+        "apps/terrain-preview/main.cpp"
+      ],
+      "tests": [
+        "tests/terrain-lighting-cycle-test.cpp",
+        "tests/terrain-lighting-scene-reference.cpp",
+        "tools/test-terrain-lighting-scenes.py"
+      ],
+      "evidence": [
+        "TL03.object-scenes-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "TL.static-input-production",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Installed static lighting input production remains open",
+      "scope": "Light-index lookup confirmed; installed type-table creation, object recount/visit coordinate production, region center/extent ownership, initialization/reload/allocator behavior remain unimplemented",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4837216,
+          "scope": "Light-index lookup confirmed; installed type-table creation, object recount/visit coordinate production, region center/extent ownership, initialization/reload/allocator behavior remain unimplemented"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5164496,
+          "scope": "Light-index lookup confirmed; installed type-table creation, object recount/visit coordinate production, region center/extent ownership, initialization/reload/allocator behavior remain unimplemented"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5240576,
+          "scope": "Light-index lookup confirmed; installed type-table creation, object recount/visit coordinate production, region center/extent ownership, initialization/reload/allocator behavior remain unimplemented"
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-static-lighting.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.special-size-one",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Special size-one light kernel remains open",
+      "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5183632,
+          "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5184608,
+          "scope": "Original index-one metadata points into kernel pointer storage; special construction/stamp behavior and live uses excluded from size-2..17 reconstruction"
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-static-lighting.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.static-owned-bounds",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned static-light bounds are native policy",
+      "scope": "Refuse unsupported indices/layers, out-of-bounds coordinates/extents, capacities over 65536 and count over capacity before mutation; no equivalence claim for malformed original inputs",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/terrain-static-lighting.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/terrain_static_lighting.cpp",
+        "reconstruction/rendering/terrain_static_lighting.hpp"
+      ],
+      "tests": [
+        "tests/terrain-static-lighting-reference.cpp",
+        "tests/terrain-static-lighting-test.cpp",
+        "tools/test-terrain-static-lights.py"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "TL02.static-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Bounded static gate, index selection, additive stamps, two-phase refresh and combined creature/static updater; original routines unmodified, owned fixture inputs; no live replacement",
+      "record": "research/runtime/terrain-static-lighting.json",
+      "sha256": "26e05f10d3a8619db6413056d4090627f4a28107db297b7591a5be0bd938f94f",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/ticks",
+          "equals": 3072
+        },
+        {
+          "pointer": "/combined_ticks",
+          "equals": 1536
+        },
+        {
+          "pointer": "/gates",
+          "equals": 32768
+        },
+        {
+          "pointer": "/stamps",
+          "equals": 4096
+        }
+      ]
+    },
+    {
+      "id": "TL02.native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Headless owned creature/static model composition and static admission/addition/publication fixtures in normal and sanitized native builds; no scene or live integration",
+      "record": "research/runtime/terrain-static-lighting.json",
+      "sha256": "26e05f10d3a8619db6413056d4090627f4a28107db297b7591a5be0bd938f94f",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/combined_ticks",
+          "equals": 1536
+        },
+        {
+          "pointer": "/full_suites/normal/tests_passed",
+          "equals": 67
+        },
+        {
+          "pointer": "/full_suites/ASan~1UBSan/tests_passed",
+          "equals": 67
+        }
+      ]
+    },
+    {
+      "id": "TL03.object-scenes-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole combined updater for 36 authored snapshots with five-buffer and eleven-state comparisons, original world queues/indexed draw pixels for controlled object-lit terrain frames; no original entity production or live replacement",
+      "record": "research/runtime/terrain-object-lighting-scenes.json",
+      "sha256": "fe21734b3b28102970303732275278bc3b84325e359e432ae7705a5d2e4f526d",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_ticks",
+          "equals": 36
+        },
+        {
+          "pointer": "/five_buffer_byte_comparisons",
+          "equals": 2976000
+        },
+        {
+          "pointer": "/native_frames",
+          "equals": 192
+        }
+      ]
+    },
+    {
+      "id": "TL03.object-scenes-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Owned creature/static composition through selected snapshot prefixes, Qt terrain preview queues/palettes and OpenGL scene frames; strict text parsing and rollback; no runtime entity lifecycle or live replacement",
+      "record": "research/runtime/terrain-object-lighting-scenes.json",
+      "sha256": "fe21734b3b28102970303732275278bc3b84325e359e432ae7705a5d2e4f526d",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_frames",
+          "equals": 192
+        },
+        {
+          "pointer": "/default_final_tick_frames",
+          "equals": 2
+        },
+        {
+          "pointer": "/full_suites/normal/tests_passed",
+          "equals": 68
+        },
+        {
+          "pointer": "/full_suites/ASan~1UBSan/tests_passed",
+          "equals": 68
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "terrain-lighting.static-controlled-original",
+      "level": "headless",
+      "scope": "Bounded static gate, index selection, additive stamps, two-phase refresh and combined creature/static updater; original routines unmodified, owned fixture inputs; no live replacement",
+      "behaviors": [
+        "TL.static-admission",
+        "TL.static-addition",
+        "TL.static-refresh",
+        "TL.combined-refresh"
+      ],
+      "evidence": [
+        "TL02.static-original",
+        "TL02.native"
+      ],
+      "tests": [
+        "tests/terrain-static-lighting-reference.cpp",
+        "tests/terrain-static-lighting-test.cpp",
+        "tools/test-terrain-static-lights.py"
+      ]
+    },
+    {
+      "id": "terrain-lighting.object-fixture-scenes",
+      "level": "preview",
+      "scope": "Three realms/eight selected ticks/four views/normal and ASan-UBSan object-driven terrain scenes; owned snapshots and original controlled queues/indexed drawing; no game screen or live integration",
+      "behaviors": [
+        "TL.static-admission",
+        "TL.static-addition",
+        "TL.static-refresh",
+        "TL.combined-refresh",
+        "TL.owned-composition",
+        "TL.object-fixture-policy"
+      ],
+      "evidence": [
+        "TL03.object-scenes-original",
+        "TL03.object-scenes-native"
+      ],
+      "tests": [
+        "tests/terrain-lighting-cycle-test.cpp",
+        "tests/terrain-lighting-scene-reference.cpp",
+        "tools/test-terrain-lighting-scenes.py"
+      ]
+    }
+  ]
+}
