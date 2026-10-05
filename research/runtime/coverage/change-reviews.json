@@ -8855,6 +8855,109 @@
           "NS15.stop-orders"
         ]
       }
+    },
+    {
+      "id": "effect-creature-boundaries-recorded-6d9c8e9",
+      "reason": "Extend existing TL.effect-creature-collision validation with separate authored all-position/boundary/alias/competing-hit matrix, type3 mixed exit/overwrite cases and caller-authored mutations between calls. Production and TL16 input files remain unchanged. Reconcile focused imports/census/ledger; review committed 3c43d10..6d9c8e94a94479e17be8160ea29f681e540451bd via exact receipts/evidence bindings in working/tests/effect-creature-boundaries-history-review.json. Preserve kind34/other types/input production/lifecycle/live boundaries.",
+      "files": [
+        {
+          "after_sha256": "341e3034c9abd6d46aafbca8e7bc0fa09c0b4911c1175ba3b5df39a1399e87f6",
+          "before_sha256": "ee3f5b9b834ca9de6a2e5931d869c28f4100e5f46457ad0d37a17fa5f0226ad0",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "1574896a30ed2637e656bf0f7521233a1700f4690f6f543ce668d5e1b8f48f9e",
+          "before_sha256": "7f8be5d6f1cb6d3c34476de34dcc8de06e18f16d89dd503b2800444c46181ffb",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "8a0740f3a2fdd09eb835cdaedcb013ba770cb0b6d4740d93a683c383cf872867",
+          "before_sha256": null,
+          "path": "research/runtime/effect-creature-boundaries-source-index.json"
+        },
+        {
+          "after_sha256": "5c1e697ad959379991816b90bb18e0996f68b4488686f6eb728fc4f3f7392aef",
+          "before_sha256": null,
+          "path": "research/runtime/effect-creature-boundaries.json"
+        },
+        {
+          "after_sha256": "7f3a011423133a1063837adbb981bc55859e6a3721c9a02e60ef508f70ae4dc6",
+          "before_sha256": null,
+          "path": "research/runtime/effect-creature-boundaries.md"
+        },
+        {
+          "after_sha256": "c3ca18abca2d97ad16cd121872ea52cd0985fac3a39b955c970162c42530a01d",
+          "before_sha256": "d543689f91052a740e81c488071da0abd95640f340870c858b372723e4c3d6be",
+          "path": "research/runtime/effect-creature-collision-coverage.json"
+        },
+        {
+          "after_sha256": "1644c453cf170a3ad5106f224ebfa028cb94d1c27dbdd67ef348e7a86fc17d15",
+          "before_sha256": "36b9200c9012bbcaf16cd502a5129c2da1ff26388e8ec25c45a4b281cce71162",
+          "path": "research/runtime/effect-creature-collision.md"
+        },
+        {
+          "after_sha256": "943c5407e0e7e83d380a1f98c94dd585de96d5546bfc0c106e991005df7dd85b",
+          "before_sha256": null,
+          "path": "tests/effect-creature-boundaries-reference.cpp"
+        },
+        {
+          "after_sha256": "aa2020aa66c7a7cd9bd23b8c2203f9e2b8edd62a64618ff7008f008ffc5ada0b",
+          "before_sha256": null,
+          "path": "tools/test-effect-creature-boundaries.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "df2f5564f35eec0378f652ec3fb60ce66537e0de48a7c21d4788bc63898f3a81",
+          "before_sha256": "8cb88c4cd16bf78f941cba959938a0d53d9374d8c4268a8d594a5d90f6609902",
+          "id": "TL.effect-creature-collision"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL17.boundaries-final-original",
+          "TL17.boundaries-final-native"
+        ],
+        "reason": "8,132 authored worlds and 8,144 complete original-parent calls: 8,100 ordered calls over 27 positions, six geometries, five filter/competition configurations, five selected types and both membership modes; 20 type3 first-hit then terrain/blocked/height/no-hit/different-hit cases; 24 calls in twelve caller-mutated worlds. Whole guarded record/cell state and current creature/terrain immutability match original32/native64/ASan-UBSan streams. Independent authored ordering and outcome assertions, strict normal/sanitized existing units, CMake/CTest and pre/post original manifests pass. No production fix or installed/live equivalence claim."
+      }
+    },
+    {
+      "id": "effect-creature-boundaries-remaining-6d9c8e9",
+      "reason": "Review the document-linked remaining movement contract; boundary matrix adds bounded evidence without claiming completion of input production or all combined branches.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "0c9c2318202b28624b87e9c5bd1e21ff6f844646a0c08410809eac0eb76f513f",
+          "before_sha256": "be15833451ac3b67aba3389ddc8f13c02eb39d5c4e80afc7e26e2d3471e6062f",
+          "id": "TL.effect-movement-recount"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Kind34 and other types/metadata/type35 mutation, original trajectory setup, installed descriptors/creature/cell/column production, lifecycle/removal/recycling, concurrent mutation and live scheduling/replacement remain unimplemented or unverified. Historical evidence hashes retained."
+      }
+    },
+    {
+      "id": "effect-creature-summary-6d9c8e9",
+      "reason": "Refresh generated summary for the isolated reviewed register, retaining discovery gaps and historical staleness.",
+      "files": [
+        {
+          "after_sha256": "ddf313aa32a6a41af2a88e289e4c09b6a5023fc286c9ad6c77da100643c91e7a",
+          "before_sha256": "4fb1bb753b3a5dd3883faff6c30f8c28c243eb43a67b41f5f86dc84011149231",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated metadata only; no implementation or status promotion."
+      }
     }
   ]
 }
