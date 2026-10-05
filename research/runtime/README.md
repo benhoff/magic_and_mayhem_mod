@@ -153,3 +153,5 @@ confidence, and whether it remains stable across launches.
 - [Save-world serializers](save-world-serialization.md): paired world/nested record grammar and selected isolated original writer captures; structural native loading remains separate from restoration.
 
 - [Native terrain and creature scene](native-world-scene.md): bounded NS06 checkpoint presentation with owned ANI display, explicit diagnostic terrain, mixed depth queue and reproducible frame continuation.
+
+- [Bounded installed MAP navigation and creature presentation](native-map-navigation.md): ordinary full-source geometry projected to a sealed crop, matched frozen navigation/visual bytes, original terrain predicate comparisons and owned frame continuation.

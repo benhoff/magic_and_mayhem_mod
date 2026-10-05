@@ -203,6 +203,71 @@ when warranted. Offline reconstruction, synthetic checks, live observation,
 and live replacement remain separate milestones. Directory moves alone do not
 advance coverage.
 
+## Coverage ownership and incremental work
+
+The [binary-to-behavior accounting package](../research/runtime/coverage/README.md)
+connects the pinned original binary to recovered contracts, native code,
+comparison evidence and bounded scenarios. It complements the coverage ledger:
+the register owns detailed machine-readable links and independent status
+dimensions; the ledger describes milestones and consequential boundaries.
+The generated summary is a dated snapshot, while the audit reports current
+link validity and source freshness.
+
+The source census covers implementations, headers, assembly, build files,
+protocol schemas, tools and tests across the current component roots. It links
+files only through explicit registered implementation/test paths. The audit
+reports additions, removals, source changes and unlinked files; it does not infer
+behavior from filenames. Refreshing this census acknowledges a code-indexing
+review and never refreshes original comparison evidence. Consolidated focused
+registers retain their reviewed hashes so later changes prompt reconciliation.
+
+Each change author maintains the affected behavior records in the same change
+as research, implementation or validation. Start an unregistered subsystem with
+the behaviors being investigated, and expand it as branches, dispatch entries,
+failure paths and lifecycle rules are recovered. Preserve build-specific address
+links, evidence/confidence and unknowns. Separate native policy from recovered
+behavior; connecting one branch does not establish complete function coverage.
+The contributor workflow and required audit are in
+[AGENTS.md](../AGENTS.md#reverse-engineering-coverage-upkeep).
+
+Automation has three responsibilities:
+
+- `tools/inventory-binary.py` exports discovered functions/ranges, imports,
+  call/dispatch metadata and discovery gaps. Regeneration is explicit and needs
+  review before changing the register's pinned inventory.
+- `tools/audit-re-coverage.py` checks registered build/address and file links,
+  evidence provenance, source freshness and status prerequisites, and reports
+  remaining accounting gaps. It runs when invoked and is included in
+  `tests/test-tooling.sh`; it is not a background service.
+- `tools/check-re-coverage.py` enforces change accounting against a reviewed
+  local baseline or the actual Git base tree. It compares content hashes,
+  source links, behavior contracts and new gaps; append-only receipts state
+  which exact edits were reviewed and whether validation is pending, recorded
+  or unnecessary for support work. Existing unrelated debt is retained.
+  Original inventory/evidence history cannot be overwritten to clear findings,
+  and status promotions require fresh execution evidence. The CI workflow uses
+  base trees, so same-change baseline refreshes cannot hide a regression.
+  The manually installed `.githooks/pre-commit` checks a temporary copy of the
+  staged tree against `HEAD`; unstaged metadata cannot approve staged changes.
+  `tools/install-coverage-hook.py` enables it through repository-local Git
+  configuration and preserves existing hook setups. Remote merge rules remain
+  a separate repository setting.
+
+The gate watches source-census files, research/design Markdown and JSON, and
+workflow controls. Behavior fingerprints include linked source/test/document
+contents, evidence definitions, scenarios and original build bindings. Shared
+files therefore affect every explicitly linked behavior. Semantic adequacy and
+indirect dependencies still need review; receipts are accounting decisions,
+not automatic proof of original engine equivalence.
+
+Semantic classification, behavior scope and scenario coverage remain reviewed
+research work. The automation supplies candidates and catches inconsistencies;
+it cannot infer all functionality, assign behavior meanings or promote coverage
+from discovery alone. Historical evidence remains immutable. A changed source
+fingerprint calls for a limitation or a new comparison, not an edited old result.
+Directory refactors should update affected file links without extending the
+validated behavioral scope.
+
 ## Documentation ownership
 
 - This document owns the overall architecture and migration direction.
@@ -212,6 +277,9 @@ advance coverage.
 - `research/formats/` and `research/runtime/` own recovered facts, hypotheses,
   build restrictions, addresses, and confidence.
 - The coverage ledger owns implementation and validation status.
+- `research/runtime/coverage/register.json` owns detailed behavior, original
+  address, implementation, evidence and scenario links; the coverage audit checks
+  their consistency. Its README owns the schema and maintenance workflow.
 - Add short records under `docs/decisions/` when consequential alternatives
   need a durable rationale. Record context, decision, and consequences; do not
   create records for every routine implementation choice.

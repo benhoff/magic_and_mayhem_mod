@@ -1,0 +1,50 @@
+name: Reverse-engineering coverage
+
+on:
+  pull_request:
+  push:
+  merge_group:
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    name: Coverage accounting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Test audit and gate guards
+        run: |
+          python3 -B tests/test-re-coverage.py
+          python3 -B tests/test-coverage-gate.py
+      - name: Check every change against its actual base
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          event = json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text())
+          if 'pull_request' in event:
+              base = event['pull_request']['base']['sha']
+          elif 'merge_group' in event:
+              base = event['merge_group']['base_sha']
+          else:
+              base = event.get('before', '')
+          if not base or set(base) == {'0'}:
+              parent = subprocess.run(['git', 'rev-parse', '--verify', 'HEAD^'], capture_output=True, text=True)
+              base = parent.stdout.strip() if parent.returncode == 0 else None
+          command = ['python3', 'tools/check-re-coverage.py']
+          if base:
+              command += ['--base', base]
+              exists = subprocess.run(['git', 'cat-file', '-e', base + ':research/runtime/coverage/gate-baseline.json'], capture_output=True)
+              if exists.returncode:
+                  command.append('--bootstrap')
+          subprocess.run(command, check=True)
+          PY

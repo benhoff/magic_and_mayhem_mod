@@ -11,6 +11,16 @@ models with address/undefined-behavior sanitizers, or
 `python3 tests/test-decompilation-baseline.py` for checksum/PE-byte verification
 and tamper rejection. These are host/static tests, not live-game equivalence.
 
+`python3 -B tests/test-re-coverage.py` checks discovery/evidence claim guards.
+`python3 -B tests/test-coverage-gate.py` checks hash-bound change receipts,
+shared-source impact, renames, pending validation, immutable original evidence,
+discovery preservation and comparisons against real temporary Git commits.
+It also exercises staged-tree isolation, real pre-commit rejection/acceptance,
+and local hook installation, removal and preservation of existing hooks.
+Both suites and `python3 tools/check-re-coverage.py` are included in tooling;
+the dedicated coverage CI workflow runs them without installed game artifacts.
+See [the change-accounting workflow](../research/runtime/coverage/README.md#required-change-accounting).
+
 `python3 tests/test-route-trace.py` builds the trace replay and checks synthetic
 zero/nonzero route counts, normalized arguments, full snapshot comparison,
 pointer/flag mismatch detection, malformed data and architecture fail-closed
@@ -699,6 +709,15 @@ for original readback validation, atomic saving, locks and session conflicts.
 Wine prefixes to validate accepted settings across two fresh shell/game runs,
 including byte-identical Cancel and normal original Quit. No manual interaction
 is required. See [UI24 evidence](../research/runtime/preferences-persistence.md).
+
+The world-scene build also adds `native-map-navigation`, covering ordinary MAP
+projection, sealed crops, supported-cell admission, source ownership, frozen
+layout and geometry/TTD/fingerprint mismatch refusal.
+`tools/test-map-navigation.py BUILD_DIRECTORY` separately validates six installed
+MAP crops against independent geometry bytes and original terrain predicates,
+then checks route arrival, frame pixels and fresh-process continuation in four
+views. It requires local Xvfb and verifies original manifests before/after.
+See [NS08 scope/evidence](../research/runtime/native-map-navigation.md).
 
 ### Main Preferences resolution rebuilding
 

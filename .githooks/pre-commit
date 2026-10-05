@@ -1,0 +1,18 @@
+#!/bin/sh
+set -eu
+repo=$(git rev-parse --show-toplevel)
+cd "$repo"
+if git rev-parse --verify HEAD >/dev/null 2>&1; then
+    if git cat-file -e HEAD:research/runtime/coverage/gate-baseline.json 2>/dev/null; then
+        set -- --base HEAD
+    else
+        set -- --base HEAD --bootstrap
+    fi
+else
+    set --
+fi
+if python3 -B "$repo/tools/check-re-coverage.py" --staged "$@"; then
+    exit 0
+fi
+echo 'Coverage accounting blocked this commit. Reconcile and stage the source index, register and exact change reviews; rerun the gate.' >&2
+exit 1
