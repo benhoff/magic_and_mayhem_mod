@@ -80,3 +80,8 @@ Confidence: high for documented recipe syntax, owned decoding of all 40
 installed entries and selected original descriptor operations; no original
 whole-CFG parser or random generator equivalence. See
 [authored-region integration](../runtime/terrain-authored-regions.md).
+
+Selected single-block edge classification and occurrence admission now have
+[offline native/original helper comparisons](../runtime/terrain-region-selection.md).
+Random counts are admission maxima rather than selection weights; this does not
+claim whole-generator or CFG-parser equivalence.
