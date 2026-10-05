@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "milestone": "NS04",
+  "scope": "Bounded planar category-zero setup and native v4 continuity; controlled twelve-frame animation event policy; no live replacement or original-save writing",
+  "sources": {
+    "game/CMakeLists.txt": "3e83631374db1990717b2cba963da3ef085d22f4c9188f96311c30f47c1a457c",
+    "game/README.md": "12d4a4922c73983a9d45a4caf9aaf8ef9cd8f2087ea463bfb76627c2c7d6ea56",
+    "game/persistence/snapshot.cpp": "0ceed6866aa3bdba8f8f81b470859b9eed95db2f639a4037dd613b3a6171f47f",
+    "game/simulation/world.hpp": "09656a38db9765ce1fc8214587c286cc0cbe60b081bdc0d783ed3b0500b853de",
+    "game/simulation/world.cpp": "0b5964ae4200953b318048d7aaebf07e7362c6c6e26d1d25690e38b9ad0a7875",
+    "game/simulation/movement.hpp": "ea4fce563d14f64e59b3829f3043bcd480591d104f0431f904e7b7e602f00ca8",
+    "game/simulation/movement.cpp": "046f6edd8a35f18bb7e272b1440c79696641f28d6b06c1cc4f2640ed211c09b7",
+    "apps/world-sandbox/frozen_navigation.cpp": "46f04781048ef0d4a5fd0c6f8f74d76e9a492b2964486b3ae0d1363275cf148f",
+    "apps/world-sandbox/main.cpp": "aad45d8f0120b540bebbe8fd88ab2464d692abf2db7333edf70d8fd20dbdd50c",
+    "reconstruction/motion/CMakeLists.txt": "e56bc1275b79782dc18ea7a429fd3e86b767ca109527e010b49baffcf9f71aef",
+    "reconstruction/motion/README.md": "b2bb599d2840eda77f5f8733de0ce10e3b0698d374dbe98b0dca74ec651fb2a4",
+    "reconstruction/motion/creature_motion.hpp": "af6c8e12eba0a76e0cfb47222043dcb6e8facd45136f4023ad83f886689e8666",
+    "reconstruction/motion/creature_motion.cpp": "dd71eeadfd89b496284618d617c091e1a42f14b429a7ae577f2527813f0ed9ea",
+    "reconstruction/motion/segment_setup.hpp": "eb8a0b5cdd850bb6ba0350c6bec71c232e18b0025d5dd0fb52246c206cdff38d",
+    "reconstruction/motion/segment_setup.cpp": "6206dcefccc0cc1577e98739c95014c0189d3f598805c40b00f798c3bf8ed020",
+    "tests/native-movement-test.cpp": "55eb143c0edfac10501994e2aea0f3e645b1e4caf85f699da45951f48da59ea2",
+    "tests/creature-motion-test.cpp": "754ffe255372b708602b83068ebd992c8165a4fb2e0b8670220dad6cd40bb2b1",
+    "tests/segment-setup-test.cpp": "b9e0254150b71755c704bbd8050eace9d4d4e9565f9a7c0d33bb28426b6a20bc",
+    "tests/test-native-segment-continuity.py": "c785af86e81eb12bd1c1d67b8f2d2d2d5e4b0de6ece9b8065cc8a580191ff703",
+    "tests/test-original-segment-setup.py": "a95ccd6d4bdd658adb444e6adb9e26ae46425e6d297f75d742b47e949d3caae5",
+    "tests/test-original-creature-motion.py": "22441c501cb9a9727f9bd72534d7f04c45f59d0f54012f09658c76c4a4f1975c",
+    "tests/movement-native-reference.hpp": "3224b3d298ed3e3590f9fe34960abadf0f4a3e68fb93de7e8ee80e4e29e96f8a"
+  },
+  "original_setup": {
+    "report": "working/tests/original-segment-setup-ppmla0zl/report.json",
+    "record": {
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "anchors": {
+        "0x510e80": "83ec305355568bf1",
+        "0x516ee0": "55568bf133ed8b86",
+        "0x514360": "83ec385355568bd9",
+        "0x5093e0": "8b4424088b54240c",
+        "0x509230": "8b4424088b54240c",
+        "0x464cb0": "8b44240453568bf1",
+        "0x50db60": "55568bf133ed39ae"
+      },
+      "sources": {
+        "reconstruction/motion/segment_setup.cpp": "6206dcefccc0cc1577e98739c95014c0189d3f598805c40b00f798c3bf8ed020",
+        "reconstruction/pathfinding/route_scalar.cpp": "61dacc1b374de6916a0f7067ace6b90bdb6696979f9f3fc6e0e77df406b2d4c4",
+        "reconstruction/pathfinding/route_request.cpp": "18f6d12d92ebd2aff0f72d985d783ee8fbb93da4b4f1f7026e8d38a0625f73ba",
+        "reconstruction/pathfinding/route_search.cpp": "8350e4f202428614303234139d450edf5b86c8154b05ce6ad6743c613fd2a917",
+        "tests/segment-setup-test.cpp": "b9e0254150b71755c704bbd8050eace9d4d4e9565f9a7c0d33bb28426b6a20bc"
+      },
+      "compile": [
+        "g++",
+        "-m32",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-DMNM_SEGMENT_REFERENCE",
+        "-ffunction-sections",
+        "-Wl,--gc-sections",
+        "-I/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/motion",
+        "-I/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/pathfinding",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/motion/segment_setup.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/pathfinding/route_scalar.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/pathfinding/route_request.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/pathfinding/route_search.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/segment-setup-test.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/original-segment-setup-ppmla0zl/compare"
+      ],
+      "returncode": 0,
+      "output": "55296 segment initialization/continuity cases passed\n",
+      "scope": "Synthetic admitted category-zero planar segment; original complete setup, scalar and direction/wrap helpers; hazard, acceptance, occupancy, animation selection and action transition controlled",
+      "original_manifest_verified_before_after": true,
+      "input_unchanged": true,
+      "comparison_sha256": "25897ffd432c9f3f5575560840deb30832dfb1d7544220991a18aac00134bd9f",
+      "comparison_log_sha256": "0213a78b82682f390b027483b7bc3a6634c489784a16c587a175048b6a880067"
+    },
+    "cases": 55296
+  },
+  "original_motion": {
+    "report": "working/tests/original-creature-motion-qftsx8bc/report.json",
+    "record": {
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "anchors": {
+        "0x5104b0": "83ec38",
+        "0x512460": "83ec40",
+        "0x5070e0": "8b542404",
+        "0x464ec0": "515355568b",
+        "0x464d70": "53568bf133",
+        "0x51a8f0": "568bf1578b",
+        "0x50f850": "83",
+        "0x51aa30": "83"
+      },
+      "sources": {
+        "reconstruction/motion/creature_motion.cpp": "dd71eeadfd89b496284618d617c091e1a42f14b429a7ae577f2527813f0ed9ea",
+        "tests/creature-motion-test.cpp": "754ffe255372b708602b83068ebd992c8165a4fb2e0b8670220dad6cd40bb2b1"
+      },
+      "compile": [
+        "g++",
+        "-m32",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-DMNM_MOTION_REFERENCE",
+        "-I/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/motion",
+        "-I/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/pathfinding",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/motion/creature_motion.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/creature-motion-test.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/original-creature-motion-qftsx8bc/compare"
+      ],
+      "returncode": 0,
+      "output": "136 original route-consumption and coordinate-snap cases passed\n960696 bounded motion transitions passed\n",
+      "scope": "Synthetic object; original action with animation event and completion stubs; original consumption with environment callbacks stubbed",
+      "original_manifest_verified_before_after": true,
+      "input_unchanged": true,
+      "comparison_sha256": "db1f9ee09ddca3ccedf404b54a3b18d0ecd50e7797fac89c9cd77c43da244684",
+      "comparison_log_sha256": "ea665da3ad00af9893545215e5a128169d0c48a0f87a0cfb633daa94324a0e88"
+    },
+    "transitions": 960696,
+    "consumption_cases": 136
+  },
+  "immutable_files_verified": 2927,
+  "native_checks": {
+    "normal_ctests": 26,
+    "asan_ubsan_ctests": 26,
+    "leak_detection": false,
+    "independent_v4_wire_oracle": true,
+    "legacy_wire_regressions": true,
+    "fresh_process_boundary_turn_speed_prefix_continuation": true,
+    "rollback_and_in_place_restore_refusal": true
+  },
+  "artifacts": {
+    "working/tests/original-segment-setup-ppmla0zl/report.json": "5c1e4cfe9c737636ac664688c56a2e09ee7bac6e63b40c61c7052480cb9c0de0",
+    "working/tests/original-creature-motion-qftsx8bc/report.json": "8058c3f71fffb9ff26d6b796a67e737fc3d04a478c88630855b69fd5c108dfc3",
+    "working/tests/native-segment-continuity-validation/normal-build.log": "99e8e3c545bf4273fd46f7151e562d6515dc3182ad3b59fdea8eaf10c9eebc28",
+    "working/tests/native-segment-continuity-validation/normal-tests.log": "2701deedd8e3b4721c3aa7399d14dc224c1d029dc0881ebfcedf108b8c320a51",
+    "working/tests/native-segment-continuity-validation/sanitized-build.log": "59c3278828b164754f8e486811dbf77acd2ffc5d6abf9b3482fc870a18e19095",
+    "working/tests/native-segment-continuity-validation/sanitized-tests.log": "b3c4673761b874cf094a58f45ecee4d90571ad7584d97a7d21a33fc24abd7469",
+    "working/decompiled/creature-behavior-lnbhltzt/motion_segment_setup.asm": "f2c197cee6275d4ec61d2926cee0c08ff194178bef270aa891dead39959f6f52",
+    "working/build/native-world/mnm-world-sandbox": "330cf67a435e4398dbd4a078fef255e5fa9c141198526c4c2f7dae8274781095",
+    "working/build/native-world-sanitized/mnm-world-sandbox": "079107efbb9cd53d3e9d0851aeb4882ad18c622f20fa4414750f0791cdb47bca"
+  },
+  "commands": [
+    "cmake -S game -B working/build/native-world -DCMAKE_BUILD_TYPE=Debug",
+    "cmake --build working/build/native-world -j4",
+    "ctest --test-dir working/build/native-world --output-on-failure",
+    "cmake --build working/build/native-world-sanitized -j4",
+    "ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 ctest --test-dir working/build/native-world-sanitized --output-on-failure",
+    "python3 tests/test-original-segment-setup.py",
+    "python3 tests/test-original-creature-motion.py"
+  ],
+  "remaining": [
+    "ANI frame/event production",
+    "vertical/category-four/reverse/special setup and terrain",
+    "original eligibility/environment callbacks",
+    "dynamic occupancy and scheduling",
+    "AI/combat/spells/campaign behavior",
+    "original save compatibility and live validation"
+  ]
+}

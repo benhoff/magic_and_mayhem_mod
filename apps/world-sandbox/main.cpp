@@ -39,6 +39,11 @@ static void json(const State& state) {
             std::cout<<']';
             if(m.sampleMotion) {
                 std::cout<<",\"sampleMotion\":true";
+                if(m.continuousMotion) {
+                    std::cout<<",\"continuousMotion\":true,\"segmentTicks\":"<<m.segmentTicks;
+                    if(m.previous) {const auto& h=*m.previous;std::cout<<",\"previous\":["<<h.direction<<','<<h.motion.rate<<','<<h.motion.accumulator<<','<<h.motion.progress<<','<<h.motion.frame<<']';}
+                    if(m.fine) std::cout<<",\"rate\":"<<m.fine->rate<<",\"duration\":"<<m.fine->duration;
+                }
                 if(m.fine) {const auto& f=*m.fine;std::cout<<",\"fine\":["<<f.fine.x<<','<<f.fine.y<<','<<f.fine.z<<"],\"progress\":"<<f.progress<<",\"accumulator\":"<<f.accumulator<<",\"frame\":"<<f.frame;}
                 else std::cout<<",\"fine\":["<<e.x*32<<','<<e.y*32<<','<<e.z*16<<']';
             }
@@ -52,12 +57,12 @@ static MovementSession session(State state) {
     World world(0);world.restore(std::move(state));return MovementSession(std::move(world),std::move(navigation));
 }
 int main(int argc,char** argv) try {
-    if(argc==11 && (std::string_view(argv[1])=="move" || std::string_view(argv[1])=="move-fine")) {
+    if(argc==11 && (std::string_view(argv[1])=="move" || std::string_view(argv[1])=="move-fine" || std::string_view(argv[1])=="move-continuous")) {
         auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2]);World world(8);
         auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();world.restore(std::move(state));
         MovementSession movement(std::move(world),navigation);
         Entity e;e.type=navigation->creatureType();e.x=integer(argv[4]);e.y=integer(argv[5]);e.z=integer(argv[6]);
-        auto creature=movement.spawn(e,std::string_view(argv[1])=="move-fine");movement.move(creature,{integer(argv[7]),integer(argv[8]),integer(argv[9])});
+        auto creature=movement.spawn(e,std::string_view(argv[1])!="move",std::string_view(argv[1])=="move-continuous");movement.move(creature,{integer(argv[7]),integer(argv[8]),integer(argv[9])});
         for(std::uint32_t i=0,count=ticks(argv[10]);i<count;++i) movement.step();
         auto commit=writeSnapshot(argv[3],movement.world().state());if(!commit.durable) throw std::runtime_error(commit.detail);
         json(movement.world().state());return 0;
@@ -88,5 +93,5 @@ int main(int argc,char** argv) try {
         auto commit=writeSnapshot(argv[3],world.state());if(!commit.durable) throw std::runtime_error(commit.detail);
         std::cout<<"resumed "<<count<<" admitted idle ticks\n";return 0;
     }
-    std::cerr<<"usage: mnm-world-sandbox create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move[-fine] MAP OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
+    std::cerr<<"usage: mnm-world-sandbox create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous MAP OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}

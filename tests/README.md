@@ -528,3 +528,16 @@ in-place restoration and cancellation. Optional
 motion action/consumption in an isolated i386 process with controlled callbacks
 and verifies the immutable manifest before/after. See
 [fine-motion evidence](../research/runtime/native-creature-fine-motion.md).
+
+### Native planar segment continuity
+
+Build and run `ctest` from `game/` as documented in [game/README.md](../game/README.md).
+`creature-segment-setup` checks bounded initialization; `native-segment-continuity-process`
+checks independent v4 bytes, current/boundary saves, speed/turn/prefix continuation
+in fresh processes, recomputed-checksum refusal and exact map rebinding.
+`python3 tests/test-original-segment-setup.py` executes complete hash-pinned setup
+with controlled eligibility/environment/animation dependencies;
+`python3 tests/test-original-creature-motion.py` additionally checks separate
+sample/animation cursors and zero-rate transitions. Both verify immutable input
+before and after. These isolated checks do not establish live behavior or ANI
+event production. See [NS04 evidence](../research/runtime/native-creature-segment-continuity.md).
