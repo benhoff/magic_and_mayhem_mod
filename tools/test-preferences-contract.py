@@ -12,7 +12,9 @@ STUBS = {'music_set':0x482190, 'sound_set':0x56fd30,
          'music_get':0x4818b0, 'sound_get':0x56fd10,
          'start_music':0x4819b0, 'sample':0x56f000,
          'frame_set':0x4f7970, 'close_screen':0x557510,
-         'formatting':0x59c1fd, 'decimal':0x59de2f}
+         'formatting':0x59c1fd, 'decimal':0x59de2f,
+         'display_rebuild':0x4a88f0, 'game_release':0x4711d0,
+         'game_restore':0x470ee0, 'context_reset':0x4d37c0, 'context_refresh':0x4d3b40}
 
 def main():
     parent=ROOT/'working/tests/preferences-contract';parent.mkdir(parents=True,exist_ok=True)
@@ -37,11 +39,11 @@ def main():
         helper=out/'reference'
         run(['g++','-m32','-fno-pie','-no-pie','-std=c++17','-O2','-Wall','-Wextra','-I'+str(out),ROOT/'tests/preferences-contract-reference.cpp','-o',helper],'compile')
         report=json.loads(run([helper,exe],'reference',20).stdout)
-        if not report.get('success') or report['ok_cases']!=216:raise ValueError('Incomplete callback matrix')
+        if not report.get('success') or (report['ok_cases']!=216 or report['leave_cases']!=6):raise ValueError('Incomplete callback matrix')
         if hashlib.sha256(exe.read_bytes()).hexdigest()!=export.HASH:raise ValueError('Input changed')
         report.update(source_sha256=export.HASH,real_game_launched=False,live_validated=False,
                       callback_bytecode_unchanged=True,persistence_api_stubbed=True,devices_stubbed=True,
-                      scope='Original Preferences enter, slider, OK/Cancel and writer with private dependency stubs; no real display/audio/filesystem or caller round trip')
+                      scope='Original Preferences enter, slider, OK/Cancel, writer and leave branch ordering with private dependency stubs; rebuild body/device/filesystem work stubbed; no real display/audio/filesystem or caller round trip')
         report['artifacts']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in out.iterdir() if p.is_file()}
         report['source_files']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'tests/preferences-contract-reference.cpp',ROOT/'tests/sprite-binary-reference.cpp']}
         (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print('Preferences contract oracle passed',flush=True)

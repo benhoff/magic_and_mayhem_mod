@@ -115,10 +115,11 @@ The observer keeps its existing 256-record bound.
 
 ## Remaining boundaries
 
-Physical sound and CD playback, real hardware input, resolution/resource rebuild,
+Physical sound and CD playback, real hardware input, gameplay resource rebuild,
 all remaining caller variants, gameplay pause/cadence, failure recovery for actual
 profile writes, power-loss durability and broad graphics-device combinations
-remain unvalidated. Selected-setting process restart is covered separately by UI24. The original writer ignores profile API failures and writes
+remain unvalidated. Selected-setting process restart is covered separately by UI24;
+Main resolution/client resize and resource continuation are covered by [UI25](preferences-display-rebuild.md). The original writer ignores profile API failures and writes
 more keys than this menu exposes; its original behavior is retained. Do not infer
 a full engine replacement from this bounded presentation/action integration.
 

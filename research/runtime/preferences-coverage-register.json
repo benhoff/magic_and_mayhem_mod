@@ -54,7 +54,8 @@
         "UI23.original",
         "UI23.live",
         "UI23.qt",
-        "UI24.live"
+        "UI24.live",
+        "UI25.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -173,7 +174,8 @@
         "UI23.original",
         "UI23.live",
         "UI23.qt",
-        "UI24.live"
+        "UI24.live",
+        "UI25.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -269,7 +271,7 @@
       "subsystem": "preferences",
       "kind": "recovered",
       "title": "Resolution change leave/display rebuild",
-      "scope": "Original leave retained; display resources and actual resolution change remain unvalidated.",
+      "scope": "Original leave branch ordering (game-initialized/unchanged/changed/repeated) isolated; four actual Main changes in Xvfb/Wine virtual desktop, client dimensions/font modes/control continuation observed. No gameplay resource, hardware or visual equivalence.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -284,18 +286,30 @@
       ],
       "documents": [
         "research/runtime/preferences-engine-contract.md",
-        "research/runtime/preferences-engine-bridge.md"
+        "research/runtime/preferences-engine-bridge.md",
+        "research/runtime/preferences-display-rebuild.md"
       ],
-      "implementation": [],
+      "implementation": [
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/observer.c"
+      ],
       "tests": [
-        "tools/export-preferences-support.py"
+        "tools/test-preferences-contract.py",
+        "tests/preferences-contract-reference.cpp",
+        "tools/test-menu-observer.py",
+        "tools/test-live-menus.py",
+        "apps/qt-shell/live_preferences_display_test.cpp"
       ],
-      "evidence": [],
+      "evidence": [
+        "UI25.original",
+        "UI25.live",
+        "UI25.qt"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
-        "integration": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "confidence": "high_within_scope"
@@ -364,7 +378,8 @@
       ],
       "evidence": [
         "UI24.live",
-        "UI24.native"
+        "UI24.native",
+        "UI25.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -464,6 +479,50 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "UI25.original",
+      "kind": "isolated_original",
+      "scope": "Original Preferences enter, slider, OK/Cancel, writer and leave branch ordering with private dependency stubs; rebuild body/device/filesystem work stubbed; no real display/audio/filesystem or caller round trip",
+      "record": "research/runtime/preferences-display-rebuild.json",
+      "sha256": "162cd22b4a398757ae39a46bbbe92d823040c3db7c87e1c47ef2b5a226501d60",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/isolated/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI25.live",
+      "kind": "live_observation",
+      "scope": "UI25 retained original Main leave/display rebuilding: four alternating changes and two Cancels under Xvfb/Wine virtual desktop; gameplay leave ordering isolated only; no engine replacement, physical monitor or pixel/font equivalence.",
+      "record": "research/runtime/preferences-display-rebuild.json",
+      "sha256": "162cd22b4a398757ae39a46bbbe92d823040c3db7c87e1c47ef2b5a226501d60",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/display_rebuild",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI25.qt",
+      "kind": "native_integration",
+      "scope": "UI25 retained original Main leave/display rebuilding: four alternating changes and two Cancels under Xvfb/Wine virtual desktop; gameplay leave ordering isolated only; no engine replacement, physical monitor or pixel/font equivalence.",
+      "record": "research/runtime/preferences-display-rebuild.json",
+      "sha256": "162cd22b4a398757ae39a46bbbe92d823040c3db7c87e1c47ef2b5a226501d60",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/qt/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -504,6 +563,27 @@
         "tools/test-live-menus.py",
         "tests/engine-preferences-store-test.cpp",
         "tests/test-menu-preferences-store.py"
+      ]
+    },
+    {
+      "id": "preferences.main-display-rebuild",
+      "level": "live_observation",
+      "scope": "UI25 retained original Main leave/display rebuilding: four alternating changes and two Cancels under Xvfb/Wine virtual desktop; gameplay leave ordering isolated only; no engine replacement, physical monitor or pixel/font equivalence.",
+      "behaviors": [
+        "PR.display-rebuild",
+        "PR.main-entry",
+        "PR.apply",
+        "NP.preferences-persistence"
+      ],
+      "evidence": [
+        "UI25.original",
+        "UI25.live",
+        "UI25.qt"
+      ],
+      "tests": [
+        "tools/test-live-menus.py",
+        "tools/test-preferences-contract.py",
+        "apps/qt-shell/live_preferences_display_test.cpp"
       ]
     }
   ],

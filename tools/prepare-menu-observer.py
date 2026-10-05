@@ -32,7 +32,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None):
     edits=preferences.disable_cd_music(game)+preferences.skip_movies(game)
     # Source engine code stays byte-identical; only the additional import is staged.
     exporter=module('menu_export','tools/export-menu-support.py')
-    for start,end in [*exporter.CALLBACKS.values(),(0x4a9700,0x4a97c7),(0x4a9840,0x4a9b00),(0x4ce730,0x4ce798),(0x4cdf40,0x4cdfe4)]:
+    for start,end in [*exporter.CALLBACKS.values(),(0x4a9700,0x4a97c7),(0x4a9840,0x4a9b00),(0x4ce730,0x4ce798),(0x4cdf40,0x4cdfe4),(0x4a88f0,0x4a8ae6),(0x4a8b60,0x4a8bcd)]:
         at=exporter.image_offset(data,start,end-start)
         if patched[at:at+end-start]!=data[at:at+end-start]:raise ValueError('Callback code changed during staging')
     metadata={'origin':'menu_action_bridge' if actions else 'menu_observation_only','source_sha256':HASH,'staged_sha256':hashlib.sha256(patched).hexdigest(),

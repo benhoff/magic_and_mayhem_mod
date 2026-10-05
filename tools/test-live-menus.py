@@ -13,6 +13,7 @@ import tempfile
 import time
 REPO=Path(__file__).resolve().parents[1]
 def validate(root,args):
+    if args.preferences_display:return validate_display(root)
     report=json.loads((root/'report.json').read_text())
     expected_screens=[3,22,14,22,14,25,14,25,14,14,14,14] if args.battle else [3,22,3]
     if args.preferences:expected_screens=[3,10,10,3,10,10,3,10]
@@ -83,6 +84,39 @@ def validate(root,args):
         for p in root.iterdir() if p.is_file() and p.name!='artifacts.json'},indent=2)+'\n')
     print('Live Qt menu round trip passed',flush=True)
 
+def validate_display(root):
+    report=json.loads((root/'report.json').read_text())
+    expected_states=[(3 if i%2==0 else 10,i) for i in range(12)]
+    if not report['success'] or not report['cancel_file_unchanged'] or [(s['screen'],s['ack']) for s in report['states']]!=expected_states:raise RuntimeError('Incomplete display round trip')
+    lines=(root/'shell.log').read_text().splitlines()
+    if not any(l.startswith('Menu launcher exited with status 0.') for l in lines):raise RuntimeError('Display run did not exit normally')
+    experiments=[l.removeprefix('Evidence directory: ') for l in lines if l.startswith('Evidence directory: ')]
+    if len(experiments)!=1:raise RuntimeError('Missing display experiment')
+    experiment=Path(experiments[0]);spec=importlib.util.spec_from_file_location('display_decode',REPO/'tools/test-menu-observer.py');decoder=importlib.util.module_from_spec(spec);spec.loader.exec_module(decoder)
+    rows=decoder.decode((experiment/'events.bin').read_bytes());actions=[(r['menu_id'],r['argument']) for r in rows if r['event']==3]
+    expected_actions=[(3,3),(10,1)]+[(3,3),(10,0)]*4+[(3,3),(10,1),(3,4)]
+    if actions!=expected_actions:raise RuntimeError('Unexpected display callback trace')
+    display=[r for r in rows if r['event'] in (6,7,8)]
+    if [r['event'] for r in display]!=[6,7,8]*6:raise RuntimeError('Missing forwarding leave observation')
+    initial=report['initial'];mode=initial[2];modes=[mode,1-mode,mode,1-mode,mode,mode]
+    for i,m in enumerate(modes):
+        before,size,after=display[i*3:i*3+3];changed=1 if 1<=i<=4 else 0
+        if before['menu_id']!=10 or before['argument']!=changed or before['result']!=1-m or after['argument']!=0:raise RuntimeError('Original leave/rebuild flag mismatch')
+        if (size['argument'],size['result'])!=((800,600) if m==0 else (640,480)):raise RuntimeError('Original game client dimensions disagree with applied resolution')
+        if changed and after['result']!=0x20002:raise RuntimeError('Original font load modes not restored')
+        if after['initialized']!=0 or after['next_screen']!=0:raise RuntimeError('Original Preferences teardown incomplete')
+    raw=(experiment/'channel.bin').read_bytes();words=struct.unpack_from('<48I',raw)
+    if words[5]!=0 or words[36]!=13 or list(struct.unpack_from('<7i',raw,44708+16))!=initial:raise RuntimeError('Display channel did not restore and retire')
+    store=root/'config/mnm-qt-shell/engine-preferences.json'
+    if json.loads(store.read_text())['values']!=initial:raise RuntimeError('Accepted resolution restoration not persisted')
+    import configparser
+    cfg=configparser.ConfigParser();cfg.read(experiment/'game/CFG/prefs.cfg')
+    if cfg.getboolean('VIDEO','IsHighRes')!=(mode==0):raise RuntimeError('Original resolution writer mismatch')
+    report.update(experiment=str(experiment),original_callback_trace=actions,display_observations=display,normal_exit=True,display_rebuild=True,scope='Main caller, Wine virtual desktop in Xvfb, four original resolution rebuilds, Cancel and reopened control snapshots; no gameplay caller, physical monitor or pixel/font equivalence')
+    (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+    (root/'artifacts.json').write_text(json.dumps({p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in root.iterdir() if p.is_file() and p.name!='artifacts.json'},indent=2)+'\n')
+    print('Preferences resolution/display rebuild passed',flush=True)
+
 def validate_restart(root,args):
     restart=root/'restart'
     restored=json.loads((restart/'report.json').read_text());lines=(restart/'shell.log').read_text().splitlines()
@@ -104,6 +138,7 @@ def validate_restart(root,args):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--exit-from',choices=['main','quick','results'],help='Validate native Quit or window close instead of original fallback')
+    parser.add_argument('--preferences-display',action='store_true',help='Validate Cancel and four original resolution rebuilds with forwarding leave observation')
     parser.add_argument('--preferences-restart',action='store_true',help='Validate Preferences store across two shell/game processes, including unchanged Cancel')
     parser.add_argument('--preferences',action='store_true',help='Validate Main Preferences preview, Cancel, OK, reopen and window close')
     parser.add_argument('--battle',choices=['direct','spells','results'],help='Validate Single Player setup and original Start handoff')
@@ -111,7 +146,8 @@ def main():
     parser.add_argument('--shell',type=Path,default=REPO/'working/build/qt-shell/mnm-qt-shell',help='Alternate shell binary for a dedicated validation build')
     parser.add_argument('--validate-run',type=Path,help='Recheck existing live evidence without launching another game')
     args=parser.parse_args()
-    if args.preferences_restart:args.preferences=True
+    if args.preferences_display and args.preferences_restart:parser.error("Choose display or restart validation")
+    if args.preferences_restart or args.preferences_display:args.preferences=True
     if args.preferences and (args.battle or args.exit_from or args.battle_repeat):parser.error("Choose Preferences or battle/exit validation")
     if args.battle_repeat and args.battle!='direct':parser.error('--battle-repeat requires --battle direct')
     if args.exit_from=='results' and args.battle!='results':parser.error('--exit-from results requires --battle results')
@@ -138,6 +174,9 @@ def main():
             else:raise RuntimeError('Xvfb did not become ready')
             env=dict(os.environ,DISPLAY=':'+number,QT_QPA_PLATFORM='xcb',WINEDEBUG='-all',XDG_CONFIG_HOME=str(root/'config'))
             env.pop('MNM_LIVE_MENU_TEST_PREFERENCES_RESTORE',None)
+            env.pop('MNM_MENU_DISPLAY_OBSERVE',None)
+            env.pop('MNM_LIVE_MENU_TEST_PREFERENCES_DISPLAY',None)
+            if args.preferences_display:env.update(MNM_MENU_DISPLAY_OBSERVE='1',MNM_LIVE_MENU_TEST_PREFERENCES_DISPLAY='1')
             env.pop('WAYLAND_DISPLAY',None)
             if args.preferences:env['MNM_LIVE_MENU_TEST_PREFERENCES']='1'
             else:env.pop('MNM_LIVE_MENU_TEST_PREFERENCES',None)

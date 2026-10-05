@@ -130,8 +130,10 @@ that helper starts the original transition, so completion is asynchronous.
 
 Resolution rebuilding occurs on leave through `0x004a88f0`, with gameplay
 resource work conditional on gameplay initialization at `0x006cbb80`.
-It recreates display resources, window dimensions and fonts; this has static
-evidence only and must remain original work during the next integration.
+It recreates display resources, window dimensions and fonts. Subsequent
+[UI25 validation](preferences-display-rebuild.md) exercises four Main resolution
+changes and observes the original client dimensions/font modes. Original display
+work remains retained; the gameplay branch has isolated ordering checks only.
 
 The writer sets normal file attributes, builds an absolute path from the current
 directory and receiver filename, and calls `WritePrivateProfileStringA` for
