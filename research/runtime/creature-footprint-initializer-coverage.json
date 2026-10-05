@@ -1,0 +1,202 @@
+{
+  "schema": 1,
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "dispatch_tables": [],
+  "recovered_ranges": [],
+  "classifications": [],
+  "api_bindings": [],
+  "behaviors": [
+    {
+      "id": "TL.creature-footprint-initializer",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Creature footprint initialization templates",
+      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5116512,
+          "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-footprint-initializer.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/creature_footprint.cpp",
+        "reconstruction/rendering/creature_footprint.hpp",
+        "reconstruction/rendering/creature-footprint/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/creature-footprint-reference.cpp",
+        "tests/creature-footprint-test.cpp",
+        "tools/test-creature-footprint.py"
+      ],
+      "evidence": [
+        "TL15.footprint-original",
+        "TL15.footprint-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-movement-recount",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Remaining effect movement and lifecycle contracts",
+      "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 and footprint initializer 004e1260 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory setup and creature descriptor/footprint production, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 and footprint initializer 004e1260 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory setup and creature descriptor/footprint production, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory.md",
+        "research/runtime/effect-same-cell-projection.md",
+        "research/runtime/effect-cell-transitions.md",
+        "research/runtime/effect-cell-cleanup.md",
+        "research/runtime/effect-blocked-destinations.md",
+        "research/runtime/effect-height-exits.md",
+        "research/runtime/effect-membership-disabled.md",
+        "research/runtime/effect-terrain-occupancy.md",
+        "research/runtime/creature-occupancy-lookup.md",
+        "research/runtime/creature-footprint-initializer.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "TL15.footprint-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
+      "record": "research/runtime/creature-footprint-initializer.json",
+      "sha256": "d10957a28327b5e8c960bed5db49f2cad33e01adccf5ea7cacc643a4f9ca42b9",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 273
+        },
+        {
+          "pointer": "/calls",
+          "equals": 7135128
+        },
+        {
+          "pointer": "/hits",
+          "equals": 1475328
+        },
+        {
+          "pointer": "/guard_bytes",
+          "equals": 18564
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL15.footprint-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
+      "record": "research/runtime/creature-footprint-initializer.json",
+      "sha256": "d10957a28327b5e8c960bed5db49f2cad33e01adccf5ea7cacc643a4f9ca42b9",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 273
+        },
+        {
+          "pointer": "/calls",
+          "equals": 7135128
+        },
+        {
+          "pointer": "/hits",
+          "equals": 1475328
+        },
+        {
+          "pointer": "/guard_bytes",
+          "equals": 18564
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "terrain-lighting.creature-footprint-initializer",
+      "level": "headless",
+      "scope": "Complete 004e1260 initializer on valid owned 36-byte receiver: all raw height values preserved, zero selector eight-row tapered footprint, every nonzero selector twelve-by-twelve rectangle, complete overwrite and unchanged external guards; original/native/sanitized output and chained query comparisons; no creature construction parent, installed descriptor capture or live replacement",
+      "behaviors": [
+        "TL.creature-footprint-initializer"
+      ],
+      "evidence": [
+        "TL15.footprint-original",
+        "TL15.footprint-native"
+      ],
+      "tests": [
+        "tests/creature-footprint-reference.cpp",
+        "tests/creature-footprint-test.cpp",
+        "tools/test-creature-footprint.py"
+      ]
+    }
+  ]
+}
