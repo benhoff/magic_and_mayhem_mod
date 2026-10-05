@@ -8,7 +8,9 @@
 #include <QPainter>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QSignalBlocker>
 #include <stdexcept>
+#include <memory>
 namespace {
 class DifficultyRadio final : public QRadioButton {
 public:
@@ -30,7 +32,7 @@ RegionEntryWidget::RegionEntryWidget(QWidget* parent):QWidget(parent) {
         radios_[i]=new DifficultyRadio(this);radios_[i]->setObjectName(QString("regionEntryDifficulty%1").arg(i));
         radios_[i]->setCursor(Qt::PointingHandCursor);
         difficulties_->addButton(radios_[i],i);radios_[i]->installEventFilter(this);
-        connect(radios_[i],&QRadioButton::toggled,this,[this,i](bool checked){if (checked) region_.difficulty=Difficulty(i);});
+        connect(radios_[i],&QRadioButton::toggled,this,[this,i](bool checked){if (checked) {region_.difficulty=Difficulty(i);emit difficultyChanged(region_.difficulty);}});
     }
     auto button=[this](const QString& name,const QString& text) {
         auto* result=new mnm::ui::SpriteButton(text,this);result->setObjectName(name);result->installEventFilter(this);
@@ -107,9 +109,19 @@ bool RegionEntryWidget::load(const QString& root,const Region& region,QString* e
 }
 void RegionEntryWidget::populate() {
     heading_->setText(region_.name.isEmpty()?defaultHeading_:region_.name);
-    radios_[int(region_.difficulty)]->setChecked(true);
+    setDifficulty(region_.difficulty);
     enter_->setEnabled(!region_.id.isEmpty() && region_.enterAvailable);
     for (int i=0;i<3;++i) auxiliary_[i]->setEnabled(!region_.id.isEmpty() && region_.auxiliaryAvailable[i]);
+}
+void RegionEntryWidget::setControlAvailability(quint32 difficulties,bool cancel){
+    for(int i=0;i<4;++i)radios_[i]->setEnabled(difficulties&(1u<<i));
+    cancel_->setEnabled(cancel);
+}
+bool RegionEntryWidget::setDifficulty(Difficulty difficulty){
+    const int value=int(difficulty);if(value<0||value>3)return false;
+    std::array<std::unique_ptr<QSignalBlocker>,4> blocks;
+    for(int i=0;i<4;++i)blocks[i]=std::make_unique<QSignalBlocker>(radios_[i]);
+    region_.difficulty=difficulty;radios_[value]->setChecked(true);return true;
 }
 void RegionEntryWidget::enter() {if (enter_->isEnabled()) emit enterRequested({region_.id,region_.difficulty});}
 void RegionEntryWidget::focusFirstControl() {radios_[int(region_.difficulty)]->setFocus(Qt::OtherFocusReason);}
@@ -142,7 +154,7 @@ bool RegionEntryWidget::eventFilter(QObject* watched,QEvent* event) {
         auto* key=static_cast<QKeyEvent*>(event);
         if (key->key()==Qt::Key_Escape || key->key()==Qt::Key_Return || key->key()==Qt::Key_Enter) {
             key->accept();if (!key->isAutoRepeat()) {
-                if (key->key()==Qt::Key_Escape) emit cancelled();
+                if (key->key()==Qt::Key_Escape) {if(cancel_->isEnabled())emit cancelled();}
                 else if (auto* button=qobject_cast<QPushButton*>(watched)) button->click();
                 else enter();
             }return true;
@@ -151,7 +163,7 @@ bool RegionEntryWidget::eventFilter(QObject* watched,QEvent* event) {
 }
 void RegionEntryWidget::keyPressEvent(QKeyEvent* event) {
     if (event->key()==Qt::Key_Escape || event->key()==Qt::Key_Return || event->key()==Qt::Key_Enter) {
-        event->accept();if (!event->isAutoRepeat()) {if (event->key()==Qt::Key_Escape) emit cancelled();else enter();}return;
+        event->accept();if (!event->isAutoRepeat()) {if (event->key()==Qt::Key_Escape) {if(cancel_->isEnabled())emit cancelled();}else enter();}return;
     }QWidget::keyPressEvent(event);
 }
 void RegionEntryWidget::paintEvent(QPaintEvent*) {

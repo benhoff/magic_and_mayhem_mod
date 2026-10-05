@@ -14,6 +14,8 @@
 #include <memory>
 #include <cstdio>
 void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path){
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_REGION")){installLiveRegionEntryTest(app,window,session,path);return;}
+    session.regionMenusEnabled=false; // Existing bounded V1-V6 harnesses retain their recorded protocols.
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_PREFERENCES_DISPLAY")){installLivePreferencesDisplayTest(app,window,session,path);return;}
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_PREFERENCES_RESTORE")){installLivePreferencesRestoreTest(app,window,session,path);return;}
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_PREFERENCES")){installLivePreferencesMenuTest(app,window,session,path);return;}

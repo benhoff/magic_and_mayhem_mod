@@ -122,7 +122,17 @@ static int install(void){
         original_tick=(TickFn)0x5595d0;
         menu_init();
         if(!install_campaign_observe())menu_retired=1;
-        if(campaign_log&&!install_campaign_navigation())menu_retired=1;
+        if(campaign_log&&menu_version<7&&!install_campaign_navigation())menu_retired=1;
+        if(menu_version>=7){
+            u32 old,restore;
+            const u8 action_bytes[]={0x56,0x8b,0xf1,0x57,0x33,0xff,0x83,0x7e};
+            const u8 select_bytes[]={0x55,0x57,0x8b,0xf9,0x33};
+            if(!readable((void*)0x5c668c,4)||get((void*)0x5c668c)!=0x5595d0||
+               !readable((void*)0x4b3420,8)||!equal((void*)0x4b3420,action_bytes,8)||
+               !readable((void*)0x4ce730,5)||!equal((void*)0x4ce730,select_bytes,5)||
+               !VirtualProtect((void*)0x5c668c,4,0x40,&old))menu_retired=1;
+            else {put((void*)0x5c668c,(u32)&result_tick);VirtualProtect((void*)0x5c668c,4,old,&restore);}
+        }
         if(menu_version>=2&&!install_battle())menu_retired=1;
         if(menu_version>=3){
             u32 old,unused;

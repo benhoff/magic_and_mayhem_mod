@@ -10328,6 +10328,275 @@
       }
     },
     {
+      "id": "NR.gpu-presentation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Direct shared-texture command replay presentation",
+      "scope": "GUI-thread, single-consumer latest-frame texture lease; explicit context sharing, bidirectional GPU fences, reuse, resize and source/renderer lifetime. Bounded decoded command replay PRESENT and Qt viewport; CHECK readbacks retained. Synthetic Mesa native integration only; live transport, original replacement and hardware performance remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-direct-presentation.md",
+        "renderer/README.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/gpu-presentation-test.cpp",
+        "tools/test-gpu-presentation.py"
+      ],
+      "evidence": [
+        "NR.gpu-presentation.native",
+        "NR.gpu-presentation.native-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-cell-cleanup",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect ordinal-zero column eligibility and unlink cleanup",
+      "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5457184,
+          "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752176,
+          "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-cell-cleanup.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_cleanup.cpp",
+        "reconstruction/rendering/effect_cleanup.hpp",
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-cleanup-reference.cpp",
+        "tests/effect-transition-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL09.cleanup-original",
+        "TL09.cleanup-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-cleanup-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned cleanup columns and atomic zero-terrain movement",
+      "scope": "Owned bounds/table validation, optional creature/other heads for cleanup and candidate-copy atomic movement rollback; zero-terrain cleanup composition and existing moving-light headless cycle; caller certifies empty movement context, not live world state",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-cell-cleanup.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_cleanup.cpp",
+        "reconstruction/rendering/effect_cleanup.hpp",
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-cleanup-reference.cpp",
+        "tests/effect-transition-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL09.cleanup-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-blocked-destinations",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Blocked effect destination partial state and return 1",
+      "scope": "Complete unmodified 004883f0 empty-world membership-on blocked-destination path: types 3/13/22/24/36, no creator, kind 0/68, terrain 0..3, authored 0..8 steps, first/later changed-cell flag 40000000 entry, skipped insertion/flag clearing/subcell refresh, old unlink/column cleanup, committed fine/current/previous/cache/recount/terrain state, parameter 7=-1 and return 1; initial blocked zero-iteration/same-cell paths and ordinary/cleanup reruns; no occupied collision context, special metadata/types, height exits, malformed original inputs or live lifecycle replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Complete unmodified 004883f0 empty-world membership-on blocked-destination path: types 3/13/22/24/36, no creator, kind 0/68, terrain 0..3, authored 0..8 steps, first/later changed-cell flag 40000000 entry, skipped insertion/flag clearing/subcell refresh, old unlink/column cleanup, committed fine/current/previous/cache/recount/terrain state, parameter 7=-1 and return 1; initial blocked zero-iteration/same-cell paths and ordinary/cleanup reruns; no occupied collision context, special metadata/types, height exits, malformed original inputs or live lifecycle replacement"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-blocked-destinations.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-blocked-reference.cpp",
+        "tests/effect-transition-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tests/effect-cleanup-reference.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL10.blocked-original",
+        "TL10.blocked-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-blocked-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned committed termination state and detached lifecycle refusal",
+      "scope": "Owned supported return-1 partial state commits atomically; active detached record requires caller lifecycle handling and is refused on resumption; unsupported input exceptions retain rollback, with strict headless moving-light/cleanup checks; original removal/recycling is not implied",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-blocked-destinations.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-blocked-reference.cpp",
+        "tests/effect-transition-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tests/effect-cleanup-reference.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL10.blocked-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-height-exits",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect height exit partial state and return 2",
+      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-height-exits.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp"
+      ],
+      "tests": [
+        "tests/effect-height-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL11.height-original",
+        "TL11.height-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-height-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned height exit publication and resumption admission",
+      "scope": "Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-height-exits.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp"
+      ],
+      "tests": [
+        "tests/effect-height-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL11.height-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "CP.main-new-game",
       "subsystem": "campaign",
       "kind": "recovered",
@@ -10655,271 +10924,122 @@
       }
     },
     {
-      "id": "NR.gpu-presentation",
-      "subsystem": "native_rendering",
-      "kind": "native_policy",
-      "title": "Direct shared-texture command replay presentation",
-      "scope": "GUI-thread, single-consumer latest-frame texture lease; explicit context sharing, bidirectional GPU fences, reuse, resize and source/renderer lifetime. Bounded decoded command replay PRESENT and Qt viewport; CHECK readbacks retained. Synthetic Mesa native integration only; live transport, original replacement and hardware performance remain pending.",
+      "id": "CP.region-entry-bridge",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Qt New Game and fresh Region Entry original difficulty/Cancel dispatch",
+      "scope": "V7 current engine owner/generation/readiness; four original radio selections and Cancel to Main; fresh Celtic region 1 only",
       "confidence": "high_within_scope",
-      "original": [],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4928544,
+          "scope": "Original radio selection or Cancel callback with guarded fresh caller"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5039920,
+          "scope": "Original radio selection or Cancel callback with guarded fresh caller"
+        }
+      ],
       "documents": [
-        "research/runtime/opengl-direct-presentation.md",
-        "renderer/README.md"
+        "research/runtime/region-entry-engine-bridge.md",
+        "research/runtime/region-entry-engine-contract.md"
       ],
       "implementation": [
-        "renderer/blit.cpp",
-        "renderer/blit.hpp",
-        "renderer/commands.cpp",
-        "renderer/commands.hpp",
-        "apps/qt-shell/gl_viewport.cpp",
-        "apps/qt-shell/gl_viewport.hpp",
+        "protocols/include/mnm/menu_v7.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
         "apps/qt-shell/main.cpp",
-        "apps/qt-shell/CMakeLists.txt"
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/live_region_entry_controller.cpp",
+        "apps/qt-shell/live_region_entry_controller.hpp",
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/region_entry_widget.hpp"
       ],
       "tests": [
-        "tests/gpu-presentation-test.cpp",
-        "tools/test-gpu-presentation.py"
+        "tests/region-entry-bridge-reference.c",
+        "tools/test-region-entry-bridge.py",
+        "tests/menu-region-bridge-test.cpp",
+        "tests/menu-region-controller-test.cpp",
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-region-entry.py",
+        "tools/test-menu-observer.py",
+        "tools/test-campaign-observer.py"
       ],
       "evidence": [
-        "NR.gpu-presentation.native",
-        "NR.gpu-presentation.native-v2"
+        "UI29.fixture",
+        "UI29.qt",
+        "UI29.live"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "preview",
+        "integration": "live_observation",
         "replacement": "none"
       }
     },
     {
-      "id": "TL.effect-cell-cleanup",
-      "subsystem": "terrain_lighting",
-      "kind": "recovered",
-      "title": "Effect ordinal-zero column eligibility and unlink cleanup",
-      "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement",
-      "confidence": "high_within_scope",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 5457184,
-          "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement"
-        },
-        {
-          "build": "nocd-40209ca7",
-          "address": 4752176,
-          "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement"
-        },
-        {
-          "build": "nocd-40209ca7",
-          "address": 4752368,
-          "scope": "Ordinal-zero cleanup query 00534520 with null or allocated six-byte XY column table, marker and signed layer equality; 00488330 last/remaining/absent effect-head, terrain, creature/other-head and 20000000 guards and flag 80 preservation/update; whole 004883f0 empty-world membership-on transitions over ordinals 0..3, five emitting types, no creator, kind 0/68, 0..8 iterations, authored trajectory, unblocked cells and existing cache/recount/lighting contract; no corrupt original pointers/chains, occupied movement collisions or live replacement"
-        }
-      ],
-      "documents": [
-        "research/runtime/effect-cell-cleanup.md"
-      ],
-      "implementation": [
-        "reconstruction/rendering/effect_cleanup.cpp",
-        "reconstruction/rendering/effect_cleanup.hpp",
-        "reconstruction/rendering/effect_transition.cpp",
-        "reconstruction/rendering/effect_transition.hpp",
-        "reconstruction/rendering/effect-transition/CMakeLists.txt"
-      ],
-      "tests": [
-        "tests/effect-cleanup-reference.cpp",
-        "tests/effect-transition-reference.cpp",
-        "tests/effect-transition-test.cpp",
-        "tools/test-effect-transition.py"
-      ],
-      "evidence": [
-        "TL09.cleanup-original",
-        "TL09.cleanup-native"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "recorded",
-        "integration": "headless",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "TL.effect-cleanup-policy",
-      "subsystem": "terrain_lighting",
+      "id": "NP.region-entry-fresh-policy",
+      "subsystem": "campaign",
       "kind": "native_policy",
-      "title": "Owned cleanup columns and atomic zero-terrain movement",
-      "scope": "Owned bounds/table validation, optional creature/other heads for cleanup and candidate-copy atomic movement rollback; zero-terrain cleanup composition and existing moving-light headless cycle; caller certifies empty movement context, not live world state",
+      "title": "Fresh Region Entry command restrictions and semantic Qt projection",
+      "scope": "Intentional current Celtic region 1/Realm caller restriction; no Enter/auxiliary commands; silent engine projection, queued draft/Cancel and window-close Cancel/Quit",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/effect-cell-cleanup.md"
+        "research/runtime/region-entry-engine-bridge.md"
       ],
       "implementation": [
-        "reconstruction/rendering/effect_cleanup.cpp",
-        "reconstruction/rendering/effect_cleanup.hpp",
-        "reconstruction/rendering/effect_transition.cpp",
-        "reconstruction/rendering/effect_transition.hpp",
-        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+        "protocols/include/mnm/menu_v7.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/live_region_entry_controller.cpp",
+        "apps/qt-shell/live_region_entry_controller.hpp",
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/region_entry_widget.hpp"
       ],
       "tests": [
-        "tests/effect-cleanup-reference.cpp",
-        "tests/effect-transition-reference.cpp",
-        "tests/effect-transition-test.cpp",
-        "tools/test-effect-transition.py"
+        "tests/region-entry-bridge-reference.c",
+        "tools/test-region-entry-bridge.py",
+        "tests/menu-region-bridge-test.cpp",
+        "tests/menu-region-controller-test.cpp",
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-region-entry.py",
+        "tools/test-menu-observer.py",
+        "tools/test-campaign-observer.py"
       ],
       "evidence": [
-        "TL09.cleanup-native"
+        "UI29.fixture",
+        "UI29.qt",
+        "UI29.live"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "headless",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "TL.effect-blocked-destinations",
-      "subsystem": "terrain_lighting",
-      "kind": "recovered",
-      "title": "Blocked effect destination partial state and return 1",
-      "scope": "Complete unmodified 004883f0 empty-world membership-on blocked-destination path: types 3/13/22/24/36, no creator, kind 0/68, terrain 0..3, authored 0..8 steps, first/later changed-cell flag 40000000 entry, skipped insertion/flag clearing/subcell refresh, old unlink/column cleanup, committed fine/current/previous/cache/recount/terrain state, parameter 7=-1 and return 1; initial blocked zero-iteration/same-cell paths and ordinary/cleanup reruns; no occupied collision context, special metadata/types, height exits, malformed original inputs or live lifecycle replacement",
-      "confidence": "high_within_scope",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 4752368,
-          "scope": "Complete unmodified 004883f0 empty-world membership-on blocked-destination path: types 3/13/22/24/36, no creator, kind 0/68, terrain 0..3, authored 0..8 steps, first/later changed-cell flag 40000000 entry, skipped insertion/flag clearing/subcell refresh, old unlink/column cleanup, committed fine/current/previous/cache/recount/terrain state, parameter 7=-1 and return 1; initial blocked zero-iteration/same-cell paths and ordinary/cleanup reruns; no occupied collision context, special metadata/types, height exits, malformed original inputs or live lifecycle replacement"
-        }
-      ],
-      "documents": [
-        "research/runtime/effect-blocked-destinations.md"
-      ],
-      "implementation": [
-        "reconstruction/rendering/effect_transition.cpp",
-        "reconstruction/rendering/effect_transition.hpp",
-        "reconstruction/rendering/effect-transition/CMakeLists.txt"
-      ],
-      "tests": [
-        "tests/effect-blocked-reference.cpp",
-        "tests/effect-transition-reference.cpp",
-        "tests/effect-transition-test.cpp",
-        "tests/effect-cleanup-reference.cpp",
-        "tools/test-effect-transition.py"
-      ],
-      "evidence": [
-        "TL10.blocked-original",
-        "TL10.blocked-native"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "recorded",
-        "integration": "headless",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "TL.effect-blocked-policy",
-      "subsystem": "terrain_lighting",
-      "kind": "native_policy",
-      "title": "Owned committed termination state and detached lifecycle refusal",
-      "scope": "Owned supported return-1 partial state commits atomically; active detached record requires caller lifecycle handling and is refused on resumption; unsupported input exceptions retain rollback, with strict headless moving-light/cleanup checks; original removal/recycling is not implied",
-      "confidence": "high_within_scope",
-      "original": [],
-      "documents": [
-        "research/runtime/effect-blocked-destinations.md"
-      ],
-      "implementation": [
-        "reconstruction/rendering/effect_transition.cpp",
-        "reconstruction/rendering/effect_transition.hpp",
-        "reconstruction/rendering/effect-transition/CMakeLists.txt"
-      ],
-      "tests": [
-        "tests/effect-blocked-reference.cpp",
-        "tests/effect-transition-reference.cpp",
-        "tests/effect-transition-test.cpp",
-        "tests/effect-cleanup-reference.cpp",
-        "tools/test-effect-transition.py"
-      ],
-      "evidence": [
-        "TL10.blocked-native"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "none",
-        "integration": "headless",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "TL.effect-height-exits",
-      "subsystem": "terrain_lighting",
-      "kind": "recovered",
-      "title": "Effect height exit partial state and return 2",
-      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle",
-      "confidence": "high_within_scope",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 4752368,
-          "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle"
-        }
-      ],
-      "documents": [
-        "research/runtime/effect-height-exits.md"
-      ],
-      "implementation": [
-        "reconstruction/rendering/effect_transition.cpp",
-        "reconstruction/rendering/effect_transition.hpp"
-      ],
-      "tests": [
-        "tests/effect-height-reference.cpp",
-        "tests/effect-transition-test.cpp",
-        "tools/test-effect-transition.py"
-      ],
-      "evidence": [
-        "TL11.height-original",
-        "TL11.height-native"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "recorded",
-        "integration": "headless",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "TL.effect-height-policy",
-      "subsystem": "terrain_lighting",
-      "kind": "native_policy",
-      "title": "Owned height exit publication and resumption admission",
-      "scope": "Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
-      "confidence": "high_within_scope",
-      "original": [],
-      "documents": [
-        "research/runtime/effect-height-exits.md"
-      ],
-      "implementation": [
-        "reconstruction/rendering/effect_transition.cpp",
-        "reconstruction/rendering/effect_transition.hpp"
-      ],
-      "tests": [
-        "tests/effect-height-reference.cpp",
-        "tests/effect-transition-test.cpp",
-        "tools/test-effect-transition.py"
-      ],
-      "evidence": [
-        "TL11.height-native"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -16011,175 +16131,6 @@
       ]
     },
     {
-      "id": "UI26.original",
-      "kind": "isolated_original",
-      "build": "nocd-40209ca7",
-      "scope": "269 original-bytecode fixtures with privately stubbed dependencies; contract observations only, no native equivalence or live integration",
-      "record": "research/runtime/campaign-menu-engine-contract.json",
-      "sha256": "2a0ee2743e0254c52dcd8f55d72f0245c917de018b2d64810e78883f66cf9836",
-      "sources_pointer": "/sources",
-      "original_hash_pointer": "/source_sha256",
-      "assertions": [
-        {
-          "pointer": "/success",
-          "equals": true
-        },
-        {
-          "pointer": "/main_cases",
-          "equals": 7
-        },
-        {
-          "pointer": "/occupancy_cases",
-          "equals": 25
-        },
-        {
-          "pointer": "/admission_cases",
-          "equals": 216
-        },
-        {
-          "pointer": "/auxiliary_cases",
-          "equals": 7
-        },
-        {
-          "pointer": "/navigation_cases",
-          "equals": 14
-        }
-      ]
-    },
-    {
-      "id": "UI27.live",
-      "kind": "live_observation",
-      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
-      "record": "research/runtime/campaign-menu-entry-observation.json",
-      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
-      "sources_pointer": "/sources",
-      "assertions": [
-        {
-          "pointer": "/live/success",
-          "equals": true
-        },
-        {
-          "pointer": "/live/original_tick_forwarded",
-          "equals": true
-        },
-        {
-          "pointer": "/live/realm_resources_observed",
-          "equals": false
-        }
-      ],
-      "build": "nocd-40209ca7",
-      "original_hash_pointer": "/source_sha256"
-    },
-    {
-      "id": "UI27.fixture",
-      "kind": "native_integration",
-      "scope": "Synthetic opt-in forwarding guards/deduplication and disabled-probe Preferences regression; no original/native engine equivalence",
-      "record": "research/runtime/campaign-menu-entry-observation.json",
-      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
-      "sources_pointer": "/sources",
-      "assertions": [
-        {
-          "pointer": "/fixture/success",
-          "equals": true
-        },
-        {
-          "pointer": "/fixture/real_game_launched",
-          "equals": false
-        },
-        {
-          "pointer": "/preferences_regression/success",
-          "equals": true
-        }
-      ]
-    },
-    {
-      "id": "UI28.original",
-      "kind": "isolated_original",
-      "scope": "Original action/caller/difficulty/Cancel/auxiliary mapping, deferred world request and pending Realm exit only; privately stubbed dependencies, no resource creation, campaign simulation or native/live equivalence",
-      "record": "research/runtime/region-entry-engine-contract.json",
-      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
-      "sources_pointer": "/sources",
-      "assertions": [
-        {
-          "pointer": "/original/success",
-          "equals": true
-        },
-        {
-          "pointer": "/original/callback_cases",
-          "equals": 168
-        },
-        {
-          "pointer": "/original/deferred_cases",
-          "equals": 4
-        },
-        {
-          "pointer": "/original/return_cases",
-          "equals": 3
-        }
-      ],
-      "build": "nocd-40209ca7",
-      "original_hash_pointer": "/source_sha256"
-    },
-    {
-      "id": "UI28.fixture",
-      "kind": "native_integration",
-      "scope": "Synthetic forwarding tick, original-slot/byte guards, repeat rejection, receiver guard, LastError/return preservation, 300 idle ticks deduplicated, two-phase state changes and navigation/resume guards; not original-bytecode or live equivalence",
-      "record": "research/runtime/region-entry-engine-contract.json",
-      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
-      "sources_pointer": "/sources",
-      "assertions": [
-        {
-          "pointer": "/fixture/success",
-          "equals": true
-        },
-        {
-          "pointer": "/fixture/real_game_launched",
-          "equals": false
-        },
-        {
-          "pointer": "/preferences_regression/success",
-          "equals": true
-        }
-      ]
-    },
-    {
-      "id": "UI28.live",
-      "kind": "live_observation",
-      "scope": "Original fresh New Game ingress, four Region Entry difficulty choices and Cancel/Realm resume to Main; no live Enter, loaded Realm, Qt campaign integration or replacement",
-      "record": "research/runtime/region-entry-engine-contract.json",
-      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
-      "sources_pointer": "/sources",
-      "assertions": [
-        {
-          "pointer": "/live/success",
-          "equals": true
-        },
-        {
-          "pointer": "/live/region_return",
-          "equals": true
-        },
-        {
-          "pointer": "/live/difficulty_choices",
-          "equals": [
-            1,
-            2,
-            3,
-            0
-          ]
-        },
-        {
-          "pointer": "/live/loaded_realm_return",
-          "equals": false
-        },
-        {
-          "pointer": "/live/original_work_bypassed",
-          "equals": false
-        }
-      ],
-      "build": "nocd-40209ca7",
-      "original_hash_pointer": "/source_sha256"
-    },
-    {
       "id": "NR.gpu-presentation.native",
       "kind": "native_integration",
       "scope": "416 independent complete framebuffer comparisons in normal/high-DPI ordinary and ASan/UBSan builds; zero PRESENT readbacks/uploads, retained texture reuse, source/renderer release, sharing refusal, bounded shell replay and GAP refusal. Synthetic fixtures only.",
@@ -16806,6 +16757,249 @@
           "equals": 53393920
         }
       ]
+    },
+    {
+      "id": "UI26.original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "269 original-bytecode fixtures with privately stubbed dependencies; contract observations only, no native equivalence or live integration",
+      "record": "research/runtime/campaign-menu-engine-contract.json",
+      "sha256": "2a0ee2743e0254c52dcd8f55d72f0245c917de018b2d64810e78883f66cf9836",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/main_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/occupancy_cases",
+          "equals": 25
+        },
+        {
+          "pointer": "/admission_cases",
+          "equals": 216
+        },
+        {
+          "pointer": "/auxiliary_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/navigation_cases",
+          "equals": 14
+        }
+      ]
+    },
+    {
+      "id": "UI27.live",
+      "kind": "live_observation",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+      "record": "research/runtime/campaign-menu-entry-observation.json",
+      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/original_tick_forwarded",
+          "equals": true
+        },
+        {
+          "pointer": "/live/realm_resources_observed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI27.fixture",
+      "kind": "native_integration",
+      "scope": "Synthetic opt-in forwarding guards/deduplication and disabled-probe Preferences regression; no original/native engine equivalence",
+      "record": "research/runtime/campaign-menu-entry-observation.json",
+      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        },
+        {
+          "pointer": "/preferences_regression/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI28.original",
+      "kind": "isolated_original",
+      "scope": "Original action/caller/difficulty/Cancel/auxiliary mapping, deferred world request and pending Realm exit only; privately stubbed dependencies, no resource creation, campaign simulation or native/live equivalence",
+      "record": "research/runtime/region-entry-engine-contract.json",
+      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/callback_cases",
+          "equals": 168
+        },
+        {
+          "pointer": "/original/deferred_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/original/return_cases",
+          "equals": 3
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI28.fixture",
+      "kind": "native_integration",
+      "scope": "Synthetic forwarding tick, original-slot/byte guards, repeat rejection, receiver guard, LastError/return preservation, 300 idle ticks deduplicated, two-phase state changes and navigation/resume guards; not original-bytecode or live equivalence",
+      "record": "research/runtime/region-entry-engine-contract.json",
+      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        },
+        {
+          "pointer": "/preferences_regression/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI28.live",
+      "kind": "live_observation",
+      "scope": "Original fresh New Game ingress, four Region Entry difficulty choices and Cancel/Realm resume to Main; no live Enter, loaded Realm, Qt campaign integration or replacement",
+      "record": "research/runtime/region-entry-engine-contract.json",
+      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/region_return",
+          "equals": true
+        },
+        {
+          "pointer": "/live/difficulty_choices",
+          "equals": [
+            1,
+            2,
+            3,
+            0
+          ]
+        },
+        {
+          "pointer": "/live/loaded_realm_return",
+          "equals": false
+        },
+        {
+          "pointer": "/live/original_work_bypassed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI29.fixture",
+      "kind": "isolated_original",
+      "scope": "Original four radio selections and Cancel callback in private PE32 fixture, engine-thread generation/readiness/one-shot guards and guarded fresh-caller snapshots; tick and transition dependencies synthetic; no native equivalence or live integration",
+      "record": "research/runtime/region-entry-engine-bridge.json",
+      "sha256": "33bdb3c7307b131c668383094e036f360fa8535d70b185852ddda399f8c410b1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI29.qt",
+      "kind": "native_integration",
+      "scope": "Six focused Qt V7 bridge/controller, Region Entry preview, V1 request and V6 Preferences bridge/controller regressions; no original engine equivalence",
+      "record": "research/runtime/region-entry-engine-bridge.json",
+      "sha256": "33bdb3c7307b131c668383094e036f360fa8535d70b185852ddda399f8c410b1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/qt/success",
+          "equals": true
+        },
+        {
+          "pointer": "/preferences_regression/success",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_regression/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI29.live",
+      "kind": "live_observation",
+      "scope": "Qt New Game, four original difficulty selections, Cancel to Main, reopen and window-close Cancel/Quit; fresh Celtic region 1 only",
+      "record": "research/runtime/region-entry-engine-bridge.json",
+      "sha256": "33bdb3c7307b131c668383094e036f360fa8535d70b185852ddda399f8c410b1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/live/channel_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/live/live_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/live/original_drawing_retained",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "classifications": [],
@@ -18539,45 +18733,6 @@
       ]
     },
     {
-      "id": "campaign.fresh-ingress",
-      "level": "live_observation",
-      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
-      "behaviors": [
-        "CP.realm-observation",
-        "CP.main-new-game",
-        "CP.realm-initialization-gap"
-      ],
-      "evidence": [
-        "UI27.live",
-        "UI27.fixture"
-      ],
-      "tests": [
-        "tools/test-live-campaign-entry.py",
-        "tools/test-campaign-observer.py"
-      ]
-    },
-    {
-      "id": "campaign.region-entry-fresh-cancel",
-      "level": "live_observation",
-      "scope": "Fresh New Game difficulty controls and Cancel to Main; no loaded Realm",
-      "behaviors": [
-        "CP.region-entry-observation",
-        "CP.realm-observation",
-        "CP.region-entry-actions"
-      ],
-      "evidence": [
-        "UI28.original",
-        "UI28.fixture",
-        "UI28.live"
-      ],
-      "tests": [
-        "tests/region-entry-contract-reference.cpp",
-        "tools/test-region-entry-contract.py",
-        "tools/test-live-campaign-entry.py",
-        "tools/test-campaign-observer.py"
-      ]
-    },
-    {
       "id": "native-rendering.direct-gpu-replay",
       "level": "preview",
       "scope": "Synthetic complete bounded commands to shared-texture Qt presentation, normal/high-DPI and sanitizer pixel/lifetime checks; no live game.",
@@ -18648,6 +18803,71 @@
         "tests/effect-height-reference.cpp",
         "tests/effect-transition-test.cpp",
         "tools/test-effect-transition.py"
+      ]
+    },
+    {
+      "id": "campaign.fresh-ingress",
+      "level": "live_observation",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+      "behaviors": [
+        "CP.realm-observation",
+        "CP.main-new-game",
+        "CP.realm-initialization-gap"
+      ],
+      "evidence": [
+        "UI27.live",
+        "UI27.fixture"
+      ],
+      "tests": [
+        "tools/test-live-campaign-entry.py",
+        "tools/test-campaign-observer.py"
+      ]
+    },
+    {
+      "id": "campaign.region-entry-fresh-cancel",
+      "level": "live_observation",
+      "scope": "Fresh New Game difficulty controls and Cancel to Main; no loaded Realm",
+      "behaviors": [
+        "CP.region-entry-observation",
+        "CP.realm-observation",
+        "CP.region-entry-actions"
+      ],
+      "evidence": [
+        "UI28.original",
+        "UI28.fixture",
+        "UI28.live"
+      ],
+      "tests": [
+        "tests/region-entry-contract-reference.cpp",
+        "tools/test-region-entry-contract.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-campaign-observer.py"
+      ]
+    },
+    {
+      "id": "campaign.qt-region-entry-fresh-cancel",
+      "level": "live_observation",
+      "scope": "Qt New Game, four original difficulty choices, Cancel, reopen and window-close Cancel/Quit; no live Enter",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "evidence": [
+        "UI29.fixture",
+        "UI29.qt",
+        "UI29.live"
+      ],
+      "tests": [
+        "tests/region-entry-bridge-reference.c",
+        "tools/test-region-entry-bridge.py",
+        "tests/menu-region-bridge-test.cpp",
+        "tests/menu-region-controller-test.cpp",
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-region-entry.py",
+        "tools/test-menu-observer.py",
+        "tools/test-campaign-observer.py"
       ]
     }
   ],
@@ -18766,7 +18986,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "a3aa0f026cc139f88a9e133f3581cc07d92a153e6cc6b96234be40b833634107",
+      "sha256": "7b2ed8e23157a6f2c1987b9946188a7a971ec775c19c723fffbc57b81eb185f4",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
     },
     {
@@ -18796,7 +19016,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-height-exits-source-index.json",
-    "sha256": "d000ad46a7a8cd1cffd73e55e6ef74f5051daba3525383ac7642e5a45f6eab5d"
+    "path": "research/runtime/coverage/source-index-region-entry-bridge.json",
+    "sha256": "cc7b57af7c41c0ad3f3f7590838718e8c8cc3b25b5365c9e88c590a6e6b19f1b"
   }
 }

@@ -168,3 +168,5 @@ confidence, and whether it remains stable across launches.
 - [Configured ground creature movement](native-creature-profile.md): selected Redcap CFG normalization, original ANI-derived banks and maximum, normal asset binding, owned checkpoint creation and installed-map continuation.
 
 - [Region Entry engine contract and return observation](region-entry-engine-contract.md): caller-dependent actions, difficulty controls and fresh Cancel to Main; Qt bridge and battle start pending.
+
+- [Region Entry engine bridge](region-entry-engine-bridge.md): Qt New Game, original difficulty selection and fresh Cancel to Main; battle launch pending.

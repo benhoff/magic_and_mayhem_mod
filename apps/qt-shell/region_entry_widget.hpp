@@ -34,10 +34,13 @@ public:
     Region region() const { return region_; }
     QRect contentRect() const;
     void focusFirstControl();
+    void setControlAvailability(quint32 difficulties,bool cancel);
+    bool setDifficulty(Difficulty difficulty);
 signals:
     void enterRequested(const RegionEntryWidget::Request& request);
     void auxiliaryRequested(RegionEntryWidget::AuxiliaryAction action);
     void cancelled();
+    void difficultyChanged(RegionEntryWidget::Difficulty difficulty);
 protected:
     bool eventFilter(QObject* watched, QEvent* event) override;
     void keyPressEvent(QKeyEvent*) override;
