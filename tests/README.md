@@ -860,3 +860,18 @@ component/widget execution from original input or full-window picking equivalenc
 ### Campaign gameplay Mini Cancel
 
 Run `python3 tools/test-campaign-mini-bridge.py`, targeted Qt campaign Mini/V4/widget/Region Entry/V1/V6 CTests, and both `tools/test-menu-observer.py --mini` / `--mini-disabled` fixtures. `python3 tools/test-live-campaign-entry.py --mini-cancel` observes original ingress/return; `python3 tools/test-live-campaign-mini.py --shell <built-shell> --source-root <compiled-tree>` validates native Cancel and Escape with original World resume twice, without manual input. Runs are bounded; timer pause and quit remain pending. See [UI31 evidence](../research/runtime/campaign-mini-cancel-engine-bridge.md).
+
+## Native scene mouse picking (NS14)
+
+`native-world-picking` checks 4,718,592 full-viewport masked picks against independent
+forward ownership, terrain occlusion, transparency, clipping and actual Qt mouse
+events over a synthetic CPU/OpenGL display. It checks declared layers in four
+views, invalid masks/metadata, bounds, generation reuse, misses and Step-only
+selected-actor orders. `python3 tools/test-scene-picking.py BUILD/world-picking-test
+NEW_OUTPUT` retains reports and an exact fresh-process pending-order continuation.
+
+The updated composition executables also run `tools/test-multi-world-scene.py`
+with original-manifest verification around installed SPR/TTD reads.
+[Evidence boundaries](../research/runtime/native-scene-picking.md) distinguish
+native masked diagnostic picking from original rays or installed whole-window
+interaction equivalence.

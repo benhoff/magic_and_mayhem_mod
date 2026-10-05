@@ -11801,6 +11801,44 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.scene-picking",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Native presented-pixel selection and terrain click-to-move",
+      "scope": "Native bounded presented-queue masked picking: full viewport forward-ownership oracle, transparency/terrain occlusion, explicit standing layers in four views, synthetic CPU/OpenGL display and actual Qt mouse events, full-generation selected-only queued movement and exact pending-order restart. Original mouse/ray mapping, whole installed-window interaction, group/faction/automatic-play policies and live equivalence excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-scene-picking.md"
+      ],
+      "implementation": [
+        "apps/world-scene/picking.cpp",
+        "apps/world-scene/picking.hpp",
+        "apps/world-scene/scene_canvas.cpp",
+        "apps/world-scene/scene_canvas.hpp",
+        "apps/world-scene/scene.cpp",
+        "apps/world-scene/scene.hpp",
+        "apps/world-scene/movement_controls.cpp",
+        "apps/world-scene/movement_controls.hpp",
+        "apps/world-scene/main.cpp"
+      ],
+      "tests": [
+        "tests/world-picking-test.cpp",
+        "tools/test-scene-picking.py",
+        "tools/test-multi-world-scene.py"
+      ],
+      "evidence": [
+        "NS14.scene-picking"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -19225,6 +19263,56 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NS14.scene-picking",
+      "kind": "native_integration",
+      "scope": "Native bounded presented-queue masked picking: full viewport forward-ownership oracle, transparency/terrain occlusion, explicit standing layers in four views, synthetic CPU/OpenGL display and actual Qt mouse events, full-generation selected-only queued movement and exact pending-order restart. Original mouse/ray mapping, whole installed-window interaction, group/faction/automatic-play policies and live equivalence excluded.",
+      "record": "research/runtime/native-scene-picking.json",
+      "sha256": "ab9ddd2cc9a82f616f64598f9cfe8954fe078dd32d9c85dba8894d1c131ea0b9",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_picking/pixel_pick_comparisons",
+          "equals": 4718592
+        },
+        {
+          "pointer": "/native_picking/masked_occlusion",
+          "equals": true
+        },
+        {
+          "pointer": "/native_picking/terrain_under_actor",
+          "equals": true
+        },
+        {
+          "pointer": "/native_picking/explicit_layers_four_views",
+          "equals": true
+        },
+        {
+          "pointer": "/native_picking/actual_mouse_events",
+          "equals": true
+        },
+        {
+          "pointer": "/native_picking/fractional_and_bounds",
+          "equals": true
+        },
+        {
+          "pointer": "/native_picking/queued_until_step",
+          "equals": true
+        },
+        {
+          "pointer": "/native_picking/stale_frame_refusal",
+          "equals": true
+        },
+        {
+          "pointer": "/native_picking/fresh_process_continuations",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -21353,6 +21441,22 @@
         "tools/test-live-render-game.py",
         "tests/live-render-channel-test.cpp"
       ]
+    },
+    {
+      "id": "world.scene-picking",
+      "level": "preview",
+      "scope": "Native bounded presented-queue masked picking: full viewport forward-ownership oracle, transparency/terrain occlusion, explicit standing layers in four views, synthetic CPU/OpenGL display and actual Qt mouse events, full-generation selected-only queued movement and exact pending-order restart. Original mouse/ray mapping, whole installed-window interaction, group/faction/automatic-play policies and live equivalence excluded.",
+      "behaviors": [
+        "NP.scene-picking"
+      ],
+      "evidence": [
+        "NS14.scene-picking"
+      ],
+      "tests": [
+        "tests/world-picking-test.cpp",
+        "tools/test-scene-picking.py",
+        "tools/test-multi-world-scene.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -21538,7 +21642,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-real-game-shadow-commit.json",
-    "sha256": "6f14fcf4ed5866c087a478fe7efe447088c9f56a32bcbb2633a938f435760f22"
+    "path": "research/runtime/coverage/source-index-scene-picking.json",
+    "sha256": "6107cb39e075a4b075cb10ee9ed8bc0b8c1f8ef473cd172c75d3c9dee1848a43"
   }
 }

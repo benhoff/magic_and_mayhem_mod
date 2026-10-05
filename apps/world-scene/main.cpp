@@ -1,4 +1,6 @@
 #include "scene.hpp"
+#include "picking.hpp"
+#include "scene_canvas.hpp"
 #include "movement_controls.hpp"
 #include "map_navigation.hpp"
 #include "frozen_navigation.hpp"
@@ -90,8 +92,11 @@ int main(int argc,char** argv) try {
         camera.origin={int(map.width*16),int(map.height*16),0};
         for(unsigned z=0;z<map.layers;++z)for(unsigned y=0;y<map.height;++y)for(unsigned x=0;x<map.width;++x) {
             const auto& c=map.cell(x,y,z);
-            if(c.definition && !(c.flags10&0x4000) && !(c.flags8&0x80))
-                tiles.push_back({c.definition,{int(x*32),int(y*32),int(z*16+16)},c.flags8,c.flags10});
+            if(c.definition && !(c.flags10&0x4000) && !(c.flags8&0x80)) {
+                std::optional<mnm::game::Point> standing;
+                if(z+1<map.layers) standing=mnm::game::Point{int(x),int(y),int(z+1)};
+                tiles.push_back({c.definition,{int(x*32),int(y*32),int(z*16+16)},c.flags8,c.flags10,standing});
+            }
         }
     } else {
         const auto values=p.value("region").split(',');
@@ -103,7 +108,7 @@ int main(int argc,char** argv) try {
         for(unsigned row=y;row<y+h;++row) for(unsigned col=x;col<x+w;++col) {
             mnm::game::Entity probe;probe.x=col;probe.y=row;probe.z=z;
             probe.motion=mnm::game::CreatureMotion{};probe.motion->terrainMotion=true;
-            tiles.push_back({number(p.value("definition"),65535),session.finePosition(probe)});
+            tiles.push_back({number(p.value("definition"),65535),session.finePosition(probe),4,0,mnm::game::Point{int(col),int(row),int(z)}});
         }
         camera.origin={int(x*32+w*16),int(y*32+h*16),0};
     }
@@ -124,6 +129,7 @@ int main(int argc,char** argv) try {
             QJsonArray queue;for(const auto& d:frame.queue) {
                 QJsonObject item{{"creature",d.creature},{"frame",qint64(d.frame)},{"x",d.x},{"y",d.y},{"key",d.key}};
                 if(d.actor) {item.insert("slot",int(d.actor->slot));item.insert("generation",qint64(d.actor->generation));}
+                if(d.standing) item.insert("cell",QJsonArray{d.standing->x,d.standing->y,d.standing->z});
                 queue.append(item);
             }
             QJsonArray actors;for(unsigned slotId=0;slotId<session.world().state().slots.size();++slotId) {
@@ -141,9 +147,9 @@ int main(int argc,char** argv) try {
     }
     if(p.isSet("frames")) throw std::invalid_argument("Frames requires output");
     QWidget window;window.setWindowTitle("Native movement scene");auto* layout=new QVBoxLayout(&window);
-    auto* image=new QLabel;image->setAlignment(Qt::AlignLeft|Qt::AlignTop);auto* status=new QLabel;layout->addWidget(image);layout->addWidget(status);
+    auto* image=new mnm::scene::SceneCanvas;std::vector<mnm::scene::Draw> displayedQueue;auto* status=new QLabel;layout->addWidget(image);layout->addWidget(status);
     mnm::scene::Orders orders;auto* controls=new mnm::scene::MovementControls;layout->addWidget(controls);
-    layout->addWidget(new QLabel("Choose a creature and target cell. Queue move, then Step to apply the order."));
+    layout->addWidget(new QLabel("Left-click a creature, then right-click terrain to queue a move. Step applies it. Target-cell fields also work."));
     auto* actions=new QHBoxLayout;layout->addLayout(actions);
     auto* step=new QPushButton("Step");auto* save=new QPushButton("Save checkpoint");actions->addWidget(step);actions->addWidget(save);
     const auto refresh=[&] {
@@ -155,16 +161,29 @@ int main(int argc,char** argv) try {
                 highlight.drawRect(d.x-body.originX,d.y-body.originY,int(body.width),int(body.height));
             }
         }
-        image->setPixmap(pixels);controls->updateChoices(mnm::scene::creatureChoices(session.world().state()),orders.selected(),navigation->binding().dimensions);
+        displayedQueue=frame.queue;image->present(pixels);controls->updateChoices(mnm::scene::creatureChoices(session.world().state()),orders.selected(),navigation->binding().dimensions);
         status->setText(QString("Tick %1 · terrain scene · view %2").arg(session.world().state().tick).arg(camera.view));
     };
     controls->onSelect=[&](std::optional<mnm::game::Handle> actor) {
         try {orders.select(session.world().state(),actor);refresh();}
-        catch(const std::exception& e) {status->setText(e.what());}
+        catch(const std::exception& e) {refresh();status->setText(e.what());}
     };
     controls->onMove=[&](mnm::game::Point target) {
         try {orders.move(session,target);refresh();status->setText("Move order queued. Step to apply it.");}
+        catch(const std::exception& e) {refresh();status->setText(e.what());}
+    };
+    image->onSelectAt=[&](int x,int y) {
+        try {controls->onSelect(mnm::scene::pickActor(displayedQueue,terrain,creature,x,y));}
         catch(const std::exception& e) {status->setText(e.what());}
+    };
+    image->onMoveAt=[&](int x,int y) {
+        try {
+            orders.synchronize(session.world().state());
+            if(!orders.selected()) {refresh();status->setText("Select a creature first.");return;}
+            const auto cell=mnm::scene::pickTerrain(displayedQueue,terrain,x,y);
+            if(!cell) {status->setText("No movement cell at this point.");return;}
+            controls->setTarget(*cell);controls->onMove(*cell);
+        } catch(const std::exception& e) {refresh();status->setText(e.what());}
     };
     QObject::connect(step,&QPushButton::clicked,[&] {try {session.step();refresh();} catch(const std::exception& e) {QMessageBox::critical(&window,"Cannot step",e.what());}});
     QObject::connect(save,&QPushButton::clicked,[&] {

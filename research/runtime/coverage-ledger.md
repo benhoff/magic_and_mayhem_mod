@@ -668,3 +668,23 @@ a working native game viewport. Implement and independently validate the fill
 route next, then repeat the shadow run. Independent driver output comparison,
 full sessions, gameplay coverage, continuous ownership and replacement remain
 pending. Historical synthetic transport evidence remains unchanged.
+
+### Native scene mouse picking (NS14; reviewed 2026-10-05)
+
+The diagnostic scene now selects foremost visible creature pixels and queues
+right-click terrain-parent-cell moves through the existing native Orders path.
+Picking uses the presented depth queue, exact decoded sprite coverage and explicit
+standing layers; foreground terrain occludes actors and opaque tiles without a
+cell block hidden terrain targets. Full-generation identity, bounded fractional
+mouse coordinates and Step/Save command semantics are retained.
+
+Normal and ASan/UBSan runs each pass 4,718,592 independent pixel-picking comparisons,
+actual Qt mouse events, four-view metadata and refusal cases and an exact fresh
+process pending-order continuation. Composition regression adds 144 CPU/OpenGL
+frames and twelve exact frame/checkpoint continuations per build, with original
+manifest verification around installed sprite reads. 106 normal CTests and six
+focused sanitizer suites pass. [Scope and accepted evidence](native-scene-picking.md).
+Original rays/input mappings, whole installed-window interaction, group/stop
+actions, faction rules, automatic playback, commander gameplay and live replacement
+remain open. Historical shared-source evidence retains its hashes and may be stale;
+committed intermediate receipts are reviewed separately.

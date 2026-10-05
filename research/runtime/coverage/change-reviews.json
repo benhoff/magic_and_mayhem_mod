@@ -8228,6 +8228,215 @@
           "NR.real-game-command-shadow.startup"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "dc30455537e508ea58cc08f772133145aa723cc3245f3fb06a0574594b0370f4",
+          "before_sha256": "2044c961e9d57a23402314c42d2c1f0e79901628a1d2b0c8b5ba916506a63c4e",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "5a473df71c1ef35608228a2cf3b73c241c66ce52ddd8907fd26309d0f1a555aa",
+          "before_sha256": "5b97693647b630be01d3b8b26c953dd08641a7f812d53a016c7dbf85406b518b",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "4980634a1301fa5ab66fa2f849e0df9c35e20d21615279c1d72c8f955bc0acdc",
+          "before_sha256": "11a30726d8761c11e5cc88c7c7aab320a7e264f3e68bc10d8b5294e2b43acf1a",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "f15d684fa587e50cd254446b0051ed64a24c0342fa3baf382ffcf6610162b5ac",
+          "before_sha256": "0836f4fa854616ea8b81adabf1c08156cbb1cdc8dd8d35e15b2a7dcaa7e74eff",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "066d1e026237b603de338883f142d8562762bc6ef719282c78beb3ae5aabb52f",
+          "before_sha256": "2a97b60877cc45e0fa74ce2119c00bf9b3aa9dc79a9880f6680a6748f11857a5",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "7da7875a2a619135c2b8c7c36df53b7e817d8842c0c21a0986bd7cc96f2d4f46",
+          "before_sha256": null,
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "678b980caa4fbfd6de3cf9ce353c64a5dfa1b13665c8acf9b9a521a565516c83",
+          "before_sha256": "ef6edbb6f9d4b648a23c87c6f2b3b1cc10dd786433c1b4a853e35611dad253fc",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "091a361c3fc2416c5cac45bf1d95a86d14832fe4c7ca56413f63deb35d922322",
+          "before_sha256": "7f7d1759e04a9830c98b6e3721962de07a1c98d96b8db4801e97157251a25155",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "d417d9ceb2707a65105831d147ae98a1742ab12f9e1d3c11e3fba77e8cdc97e0",
+          "before_sha256": "97f84fc9035be436bbdde6081086e59b7b32c39e920627333d96d79bf7b54aa0",
+          "id": "WORLD.owned"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "300b41669ff02ef07f4518c1926fbc8f0e2479ffe1f8f13924859c1661a8a9e3",
+          "before_sha256": "c1cfd46b1049368fc72438fb9a7ac636d8db60ce497b5edf346f58e8f761970c",
+          "path": "apps/world-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "06cbfa270f6d7b9b56d68ddc61d765ca88a0f3e451a6f7c9d071d10dbdbe0396",
+          "before_sha256": "a4cff0b167a9805533758df215b70493264365afc4799ced9c97b75368b0e074",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "1944c63325f0ffb3638292f3ddd4a193f588d4517a6deaf3d3746f1f949b22d3",
+          "before_sha256": "0f9f4911ea1debd5b4885055307763c9171fff41cea019db69b8271224706d1f",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "29eb7f0cb4689748a89ac524991c358f4a677fd20bc74bbb4f3f97cc4b654ebf",
+          "before_sha256": "9ca35468f85a28de58c6b68297fd29c9f1a85f34d0d724cf9fe1fa7a9ce3977f",
+          "path": "apps/world-scene/movement_controls.cpp"
+        },
+        {
+          "after_sha256": "2ae54907e80f8143e5f5e75544a73ff61c75d4fb9ea90abce0476a0461b2a7a6",
+          "before_sha256": "b94189185f75da0f34101ac4daa4bb8db8691e5e35e66caeee4b573a9734c185",
+          "path": "apps/world-scene/movement_controls.hpp"
+        },
+        {
+          "after_sha256": "6196b219439d8fbff7d64c0cece22a06d4b1da663d0d2abbcafa48ffc9af7068",
+          "before_sha256": null,
+          "path": "apps/world-scene/picking.cpp"
+        },
+        {
+          "after_sha256": "485535566e1a7537d55be3724f7d0b73e7743b3a75323506f1394f3711100175",
+          "before_sha256": null,
+          "path": "apps/world-scene/picking.hpp"
+        },
+        {
+          "after_sha256": "7f5591f3b135d005c480e867e7872e9610c7354052f0126ba8b84f15e38f7c3f",
+          "before_sha256": "af1a60229a4d459f81d4f42f31db833b58819f835bfdb01ff8b59a5d467baa28",
+          "path": "apps/world-scene/scene.cpp"
+        },
+        {
+          "after_sha256": "601736b6fffc82e4bdecbeaed0f80d3f361ce5df65869abd0b32a36184a15ddd",
+          "before_sha256": "e4b485295070758f8acdbaf7911c9db4b5f5557c75c16d5440388f5963865ccf",
+          "path": "apps/world-scene/scene.hpp"
+        },
+        {
+          "after_sha256": "03746de8ebd157bcf5f3c9fa9ad91d8c16232a11f35d94e7fb3898e90d8fd756",
+          "before_sha256": null,
+          "path": "apps/world-scene/scene_canvas.cpp"
+        },
+        {
+          "after_sha256": "bb404f87b7bbcfd67561aa33fd20ac1ceccaf5b3b6487468a9980ca939b6477e",
+          "before_sha256": null,
+          "path": "apps/world-scene/scene_canvas.hpp"
+        },
+        {
+          "after_sha256": "f57fccdeca9a521e496ede4bc444b1d6310b30cbdde91c76e7391d9fd7a060bc",
+          "before_sha256": "a32c6a5c8dc10fe1e966b149a7ba720fa7a75ee8ba45cfd7d64aa0038b837d25",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "c915d37ba7dd19d9ab925ec899d3d123423060696619c42e1deccd51ab1b99d1",
+          "before_sha256": "74f60f57b028596c2a51d253a591db71cffdaa210d5057f1c5c07c30ef6274c1",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e8982712d74d357faa49686d48c83e0d606c70e40cd60c576abe3f11ac483639",
+          "before_sha256": "3113002f9b4960b9f6a29e3b8af120523a5d9c42b58cce45be87cfa17b01f4de",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "6107cb39e075a4b075cb10ee9ed8bc0b8c1f8ef473cd172c75d3c9dee1848a43",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-picking.json"
+        },
+        {
+          "after_sha256": "6c2ea5995d2aa22450a87e45f86f793cbaa0cfd294373ddaca76d0b37235b96b",
+          "before_sha256": "70621aa44638c2bcfa96ba2749971b48a7735688c07a778588dcd7e608942bbf",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "34ebbcfb7c764a1dc3155850d4680c8e3c1bd4fa65ca58f38aa8b1ea6bc95325",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-picking-history-extension.json"
+        },
+        {
+          "after_sha256": "b614ba2edeecbda5ff6b08680e6487eeb2ef71316cd27bd13f63c7c143dda43e",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-picking-history-review.json"
+        },
+        {
+          "after_sha256": "ab9ddd2cc9a82f616f64598f9cfe8954fe078dd32d9c85dba8894d1c131ea0b9",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-picking.json"
+        },
+        {
+          "after_sha256": "0853143dec966566f3471dd04c428f2b61d99b2b3a2764301eb6d76c7b909f8f",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-picking.md"
+        },
+        {
+          "after_sha256": "2ad52c20ad1e665a7173b6ce85bcd8e4705bfb59cbe6cadbe124fb6f0322a362",
+          "before_sha256": "c3a7eee7e959654bd896851793919e57f95b666b70c8c402ce51a27ac3b2c22b",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "ad16cba35c06e9c089d8d6be751de2d282f5f332c1a930aa54295253a9b9c0ce",
+          "before_sha256": null,
+          "path": "tests/world-picking-test.cpp"
+        },
+        {
+          "after_sha256": "e8ef1ff58984f1a07499119f763b3ade5bb3e6db11fa9654228dcb88a3067c43",
+          "before_sha256": "e8ef1ff58984f1a07499119f763b3ade5bb3e6db11fa9654228dcb88a3067c43",
+          "path": "tools/test-multi-world-scene.py"
+        },
+        {
+          "after_sha256": "375aa5e68f3a933e58f3116e8548e82cdd123967c35a9317f09aa7a73e465762",
+          "before_sha256": null,
+          "path": "tools/test-scene-picking.py"
+        }
+      ],
+      "id": "NS14.scene-picking-exact-staged",
+      "pending_gaps": [
+        "behaviors_without_comparison:d3f0eed9b277293724e3afc2f1e48c5299e516b175aed5f1dbf7c6aaa08aaeb4",
+        "stale_evidence:4066b68e11774da5259ace1d816ab64443289342d6989387815d744444700be0",
+        "stale_evidence:6fc5bc4139cbe6ad67978e492ad937da7e8df77cf67516d2025464fd2814b0fc",
+        "stale_evidence:7b2cca5892ee4e1321d69b8a48734370c4b66fa22a8c835e693d8be5f09bad2b",
+        "stale_evidence:873c7c14490064c78308657175620d1e53306ca3b3835e95dfccc0249573a8af",
+        "stale_evidence:8a87dece8980f35358b4d229e8d931bf99dcd2374f8df09a8d35c47ef1e61628",
+        "stale_evidence:97beeef6067f7aafca323a998958f7f523dcdcda612309170085d432886e5308",
+        "stale_evidence:a14713962ec87f95d19014787e1cb439881c4d3c09e44278a3b3935840629ae8",
+        "stale_evidence:b5f53d4b55f32dd4298ae316e38254dfd60f7fa73bdb5caa078af1c936a2a74b"
+      ],
+      "reason": "Review bounded reverse presented-queue opaque-mask ownership, transparent holes, opaque zero colour, equal-depth presented order, signed origins, binary-mask/frame/budget checks, terrain occlusion and actor-independent target picking. Review explicit standing cell bounds/XY checks and retained body/overlay metadata, diagnostic caller Z versus ordinary MAP parent z+1 with unsupported top-cell blocking. Review fixed logical Qt canvas, fractional floor and viewport/button dispatch, semantic callbacks, full-generation Orders reuse refusal, target fields and Step-only queued commands. Inspect compiled main-window wiring and JSON metadata; selection outline remains decoration. Exact committed history fca9a1b..de0a942 has matching receipts for every intermediate file and affected canonical behavior contract. Review new tests, evidence, source census, ledger and shared register links while preserving other workstreams.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh NS14 execution validates the native diagnostic picking/canvas/controller slice and unchanged composition, not every affected recovered or native subsystem. Existing historical evidence fingerprints and statuses are preserved, with eight new stale-source gaps and absent original comparison explicitly retained. Whole installed-window mouse interaction, original ray/input equivalence, group/stop/faction/playback policies, commander/summoned gameplay and live replacement remain pending. No recovered status is promoted.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS14.scene-picking-recorded",
+      "reason": "Promote only native diagnostic picking after independent full-viewport pixel ownership, production Qt mouse events, selected-only pending movement and exact restart. Keep reviewed main-window/ordinary-map annotation separate from original input or installed whole-window equivalence.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "7da7875a2a619135c2b8c7c36df53b7e817d8842c0c21a0986bd7cc96f2d4f46",
+          "before_sha256": null,
+          "id": "NP.scene-picking"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh normal and ASan/UBSan builds each pass 4718592 pixel-pick oracle comparisons, masked terrain occlusion, explicit layers in four compositions, bounded/fractional production Qt mouse events, full-generation identity and stale-frame release/reuse refusal, queued-until-Step movement and one exact fresh-process pending-order continuation. Existing scene runner also passes 144 CPU/OpenGL frames and 12 exact scene/checkpoint continuations per build, with original manifest checks bracketing installed asset reads. 106 normal and six selected sanitizer CTests pass. All evidence source fingerprints match staged implementation/test code. No original mouse/ray or live equivalence asserted.",
+        "evidence": [
+          "NS14.scene-picking"
+        ]
+      }
     }
   ]
 }
