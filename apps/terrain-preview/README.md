@@ -216,3 +216,18 @@ This checks original selected assignments, independent whole-map copy/rotation,
 original geometry and queue/visibility calls, complete RGB565/RGBA scene frames
 and failure paths. Entities, lighting, water and live replacement remain separate.
 See [generated scene evidence](../../research/runtime/native-generated-terrain-scenes.md).
+
+For broader offline coverage across all shipped recipes at zero and wrapping
+seeds, with corner cameras and explicit refusal accounting, run:
+
+```sh
+xvfb-run -a python3 tools/test-terrain-generated-coverage.py \
+  --source-root SOURCE_SNAPSHOT --preview NORMAL --sanitized SANITIZED \
+  --preview-report research/runtime/native-generated-terrain-scenes.json
+```
+
+The previews must match the preceding report's binary and source hashes. The
+wrapper validates native cameras before invoking original traversal, records
+unavailable/refused/exhausted cases separately and compares full initialized
+maps and accepted scene frames. See
+[expanded coverage](../../research/runtime/terrain-generated-coverage.md).
