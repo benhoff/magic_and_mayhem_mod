@@ -16,3 +16,5 @@ void installLivePreferencesDisplayTest(QApplication&,QMainWindow&,LiveMenuSessio
 void installLiveRegionEntryTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLiveRegionEnterTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveCampaignMiniTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);

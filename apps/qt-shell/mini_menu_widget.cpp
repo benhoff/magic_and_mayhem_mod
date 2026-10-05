@@ -61,7 +61,7 @@ void MiniMenuWidget::setMode(Mode mode) {
     setWindowTitle(mode_ == Mode::Campaign ? "Magic & Mayhem — campaign Mini Menu preview" : "Magic & Mayhem — battle Mini Menu preview");
     focusFirstAction();
 }
-void MiniMenuWidget::focusFirstAction() { buttons_[mode_ == Mode::Campaign ? 0 : 5]->setFocus(Qt::OtherFocusReason); }
+void MiniMenuWidget::focusFirstAction() { const int first=mode_==Mode::Campaign?0:5,end=mode_==Mode::Campaign?5:8;for(int i=first;i<end;++i)if(buttons_[i]->isEnabled()){buttons_[i]->setFocus(Qt::OtherFocusReason);break;} }
 QRect MiniMenuWidget::contentRect() const { return mnm::ui::menuContentRect(size()); }
 void MiniMenuWidget::arrange() {
     const auto canvas = contentRect();

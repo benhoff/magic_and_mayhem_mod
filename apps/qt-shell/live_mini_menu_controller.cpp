@@ -11,7 +11,10 @@ LiveMiniMenuController::LiveMiniMenuController(LiveMenuSession& session,MiniMenu
 }
 bool LiveMiniMenuController::present(const MenuBridge::State& state,QString* error){
     if(state.screen!=MNM_MENU_MINI_SCREEN)return true;
-    if(!session_.miniMenusEnabled()||!state.mini.battle){if(error)*error="Unsupported Mini Menu context; use original controls.";return false;}
+    if(!session_.miniMenusEnabled()||(!state.mini.battle&&(!session_.campaignMiniEnabled||state.mini.context!=5||state.mini.mode!=2))){if(error)*error="Unsupported Mini Menu context; use original controls.";return false;}
+    const auto mode=state.mini.battle?MiniMenuWidget::Mode::Battle:MiniMenuWidget::Mode::Campaign;
+    if(widget_.mode()!=mode)widget_.setMode(mode);
+    if(!state.mini.battle){for(int i=1;i<=5;++i)widget_.findChild<QPushButton*>(QString("miniMenuButton%1").arg(i))->setEnabled(i==5&&state.ready&&(state.mini.actions&MNM_MENU_MINI_CAN_CANCEL));return true;}
     const quint32 bits[]={MNM_MENU_MINI_CAN_PREFERENCES,MNM_MENU_MINI_CAN_QUIT,MNM_MENU_MINI_CAN_CANCEL};
     for(int i=0;i<3;++i)widget_.findChild<QPushButton*>(QString("miniMenuButton%1").arg(i+6))->setEnabled(state.ready&&(state.mini.actions&bits[i]));
     return true;

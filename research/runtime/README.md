@@ -172,3 +172,5 @@ confidence, and whether it remains stable across launches.
 - [Region Entry engine bridge](region-entry-engine-bridge.md): Qt New Game, original difficulty selection and fresh Cancel to Main; battle launch pending.
 
 - [Fresh Region Entry Enter bridge](region-entry-enter-engine-bridge.md): Qt Enter to original gameplay, bounded automated evidence; campaign return pending.
+
+- [Campaign gameplay Mini Cancel bridge](campaign-mini-cancel-engine-bridge.md): original Escape opens native Mini; Cancel/Escape return to original gameplay.

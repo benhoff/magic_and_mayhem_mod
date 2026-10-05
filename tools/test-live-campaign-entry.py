@@ -26,9 +26,11 @@ def decode(data):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     choice=parser.add_mutually_exclusive_group()
+    choice.add_argument('--mini-cancel',action='store_true',help='Observe campaign gameplay Escape/Mini/Cancel and Escape return twice')
     choice.add_argument('--region-enter',action='store_true',help='Observe original Enter through the first three original gameplay ticks')
     choice.add_argument('--region-return',action='store_true',help='Observe four original difficulty choices and fresh campaign Cancel through Realm resume to Main')
     args=parser.parse_args()
+    if args.mini_cancel:args.region_enter=True
     parent=ROOT/'working/tests/live-campaign-entry';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(root,flush=True)
     scope = ('Original fresh New Game ingress, four Region Entry difficulty choices and Cancel/Realm resume to Main; no live Enter, loaded Realm, Qt campaign integration or replacement'
@@ -114,6 +116,39 @@ def main():
                 rows=decode(campaign.read_bytes());entry_trace=entry_rows()
                 if len({r['thread'] for r in world}|{new_game[0]['thread']})!=1:raise RuntimeError('Campaign world tick changed thread')
                 report.update(region_enter=True,difficulty_choices=choices,entry_records=entry_trace,world_ticks=world,world_owner_screen=2)
+                if args.mini_cancel:
+                    xt.XTestFakeKeyEvent.argtypes=[c.c_void_p,c.c_uint,c.c_int,c.c_ulong];x.XKeysymToKeycode.argtypes=[c.c_void_p,c.c_ulong];x.XKeysymToKeycode.restype=c.c_uint
+                    def key(sym):
+                        code=x.XKeysymToKeycode(display,sym);xt.XTestFakeKeyEvent(display,code,1,0);x.XFlush(display);time.sleep(.1);xt.XTestFakeKeyEvent(display,code,0,0);x.XFlush(display);time.sleep(.2)
+                    def trace():return observer.decode(events.read_bytes())
+                    def mini_ready(after):return [r for r in trace()[after:] if r['event']==16 and r['menu_id']==17 and r['initialized']==1 and not r['next_screen'] and not r['returning'] and not r['fade_active'] and r['active_screen']==0x6a5088]
+                    mini=[];resumes=[]
+                    for iteration in range(2):
+                        before=len(trace());resume_before=len([r for r in trace() if r['event']==20]);ready=[]
+                        for attempt in range(8):
+                            key(0xff1b);deadline=time.monotonic()+1
+                            while time.monotonic()<deadline:
+                                ready=mini_ready(before)
+                                if ready:break
+                                time.sleep(.05)
+                            if ready:break
+                        else:raise RuntimeError('Original campaign Escape did not open Mini')
+                        if ready[-1]['argument']!=2 or ready[-1]['result']!=5:raise RuntimeError('Unexpected campaign Mini mode/buttons')
+                        if not any(r['event']==17 and r['argument']==0 and r['result']==5 for r in trace()[before:]):raise RuntimeError('Not the campaign five-button context')
+                        from PIL import ImageGrab
+                        ImageGrab.grab(xdisplay=env['DISPLAY']).save(root/('mini-'+str(iteration)+'.png'));mini.append(ready[-1])
+                        if iteration==0:
+                            cfg_entry.read(experiment/'game/Interface/MiniMenu/screen (Mini Menu).cfg');click_control('TEXTBUTTON_5')
+                        else:key(0xff1b)
+                        deadline=time.monotonic()+5
+                        while time.monotonic()<deadline:
+                            returned=[r for r in trace() if r['event']==20]
+                            if len(returned)>resume_before and returned[-1]['active_screen']==0x6cbb78:break
+                            time.sleep(.05)
+                        else:raise RuntimeError('Original Mini did not resume World')
+                        resumes.append(returned[-1]);time.sleep(.2)
+                    report.update(campaign_mini=True,mini_entries=mini,world_resumes=resumes,scope='Original fresh campaign Escape -> mode 2 five-button Mini -> Cancel and Escape -> original World resume twice; no native Mini dispatch, quit/save/load or timer/mana pause equivalence')
+
             else:
                 click_control('TEXTBUTTON_2');deadline=time.monotonic()+10
                 while time.monotonic()<deadline:
@@ -142,7 +177,7 @@ def main():
             server.terminate()
             try:server.wait(timeout=5)
             except subprocess.TimeoutExpired:server.kill();server.wait()
-        report['sources']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'runtime/menu/observer.c',ROOT/'runtime/menu/campaign_observe.h',ROOT/'runtime/menu/region_entry_observe.h',ROOT/'runtime/menu/campaign_world_observe.h',ROOT/'tools/build-menu-observer.py',ROOT/'tools/prepare-menu-observer.py',ROOT/'tools/menu-game-runner.py',ROOT/'tools/run-menu-observer.py']}
+        report['sources']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'runtime/menu/observer.c',ROOT/'runtime/menu/campaign_observe.h',ROOT/'runtime/menu/region_entry_observe.h',ROOT/'runtime/menu/campaign_world_observe.h',ROOT/'runtime/menu/campaign_mini_observe.h',ROOT/'tools/build-menu-observer.py',ROOT/'tools/prepare-menu-observer.py',ROOT/'tools/menu-game-runner.py',ROOT/'tools/run-menu-observer.py']}
         (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')
         subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
 if __name__=='__main__':main()
