@@ -773,3 +773,17 @@ original profile conversion, installed ANI sample/maximum construction and motio
 states, then six configured installed-map crops, complete pixels in four views
 and fresh-process continuation. It requires isolated PE32 execution and Xvfb;
 immutable manifests are verified before/after. See [NS09](../research/runtime/native-creature-profile.md).
+
+### Original Region Entry contract and fresh Cancel
+
+Run `python3 tools/test-region-entry-contract.py` for 175 private original-code
+cases (168 callbacks, four deferred-start flags, three pending Realm returns).
+Dependencies are privately stubbed; no world is initialized.
+`python3 tools/test-campaign-observer.py` checks forwarding guards, deduplication,
+result/LastError preservation and Realm resume recording in a synthetic PE32 host.
+`python3 tools/test-live-campaign-entry.py --region-return` uses isolated Xvfb/Wine
+and automatic input to select all four original difficulty controls and Cancel a
+fresh New Game back to Main. It verifies immutable originals before/after and
+staged hashes, and terminates its disposable session within bounded time.
+No manual interaction is required. Loaded-Realm return, live Enter and Qt campaign
+dispatch remain pending. See [UI28 evidence](../research/runtime/region-entry-engine-contract.md).

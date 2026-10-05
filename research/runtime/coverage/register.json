@@ -10162,238 +10162,6 @@
       }
     },
     {
-      "id": "CP.main-new-game",
-      "subsystem": "campaign",
-      "kind": "recovered",
-      "title": "Main campaign reset and ingress",
-      "scope": "Original local-0 ordering and request, privately stubbed loading; no live ingress",
-      "confidence": "high_within_scope",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 4879808,
-          "scope": "Original local-0 ordering and request, privately stubbed loading; no live ingress",
-          "recovered_range": "campaign-entry-4a75c0"
-        }
-      ],
-      "documents": [
-        "research/runtime/campaign-menu-engine-contract.md",
-        "research/runtime/campaign-menu-entry-observation.md"
-      ],
-      "implementation": [
-        "tools/export-campaign-menu-support.py"
-      ],
-      "tests": [
-        "tests/campaign-menu-contract-reference.cpp",
-        "tools/test-campaign-menu-contract.py"
-      ],
-      "evidence": [
-        "UI26.original",
-        "UI27.live"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "none",
-        "comparison": "none",
-        "integration": "none",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "CP.realm-navigation",
-      "subsystem": "campaign",
-      "kind": "recovered",
-      "title": "Realm custom lifecycle and Mini ingress",
-      "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
-      "confidence": "high_within_scope",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 5579536,
-          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
-          "recovered_range": "campaign-entry-552310"
-        },
-        {
-          "build": "nocd-40209ca7",
-          "address": 5576608,
-          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
-          "recovered_range": "campaign-entry-5517a0"
-        },
-        {
-          "build": "nocd-40209ca7",
-          "address": 5579280,
-          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
-          "recovered_range": "campaign-entry-552210"
-        }
-      ],
-      "documents": [
-        "research/runtime/campaign-menu-engine-contract.md"
-      ],
-      "implementation": [],
-      "tests": [
-        "tests/campaign-menu-contract-reference.cpp",
-        "tools/test-campaign-menu-contract.py"
-      ],
-      "evidence": [
-        "UI26.original"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "none",
-        "comparison": "none",
-        "integration": "none",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "CP.region-admission",
-      "subsystem": "campaign",
-      "kind": "recovered",
-      "title": "Selected region admission and occupancy",
-      "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability",
-      "confidence": "high_within_scope",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 5564048,
-          "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability"
-        },
-        {
-          "build": "nocd-40209ca7",
-          "address": 5566144,
-          "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability"
-        }
-      ],
-      "documents": [
-        "research/runtime/campaign-menu-engine-contract.md"
-      ],
-      "implementation": [],
-      "tests": [
-        "tests/campaign-menu-contract-reference.cpp",
-        "tools/test-campaign-menu-contract.py"
-      ],
-      "evidence": [
-        "UI26.original"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "none",
-        "comparison": "none",
-        "integration": "none",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "CP.realm-auxiliary",
-      "subsystem": "campaign",
-      "kind": "recovered",
-      "title": "Realm auxiliary callback flags",
-      "scope": "Original stdcall index-to-flag and cue mapping; full destination pushes static only",
-      "confidence": "high_within_scope",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 5569824,
-          "scope": "Original stdcall index-to-flag and cue mapping; full destination pushes static only",
-          "recovered_range": "campaign-entry-54fd20"
-        }
-      ],
-      "documents": [
-        "research/runtime/campaign-menu-engine-contract.md"
-      ],
-      "implementation": [],
-      "tests": [
-        "tests/campaign-menu-contract-reference.cpp",
-        "tools/test-campaign-menu-contract.py"
-      ],
-      "evidence": [
-        "UI26.original"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "none",
-        "comparison": "none",
-        "integration": "none",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "CP.realm-initialization-gap",
-      "subsystem": "campaign",
-      "kind": "recovered",
-      "title": "Realm initialization and campaign bridge remain open",
-      "scope": "Resource probing, visibility, tutorial handling, campaign Mini mode-4 return and Qt projection remain unexecuted/unimplemented",
-      "confidence": "provisional",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 6056544,
-          "relation": "data",
-          "scope": "Resource probing, visibility, tutorial handling, campaign Mini mode-4 return and Qt projection remain unexecuted/unimplemented"
-        }
-      ],
-      "documents": [
-        "research/runtime/campaign-menu-engine-contract.md",
-        "research/runtime/campaign-menu-entry-observation.md"
-      ],
-      "implementation": [],
-      "tests": [],
-      "evidence": [
-        "UI27.live"
-      ],
-      "status": {
-        "understanding": "partial",
-        "implementation": "none",
-        "comparison": "none",
-        "integration": "none",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "CP.realm-observation",
-      "subsystem": "campaign",
-      "kind": "recovered",
-      "title": "Fresh campaign ingress observation and guarded tick forwarding",
-      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
-      "confidence": "high_within_scope",
-      "original": [
-        {
-          "build": "nocd-40209ca7",
-          "address": 5576608,
-          "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
-          "recovered_range": "campaign-entry-5517a0"
-        }
-      ],
-      "documents": [
-        "research/runtime/campaign-menu-entry-observation.md",
-        "research/runtime/campaign-menu-engine-contract.md"
-      ],
-      "implementation": [
-        "runtime/menu/campaign_observe.h",
-        "runtime/menu/observer.c",
-        "tools/prepare-menu-observer.py",
-        "tools/menu-game-runner.py",
-        "tools/build-menu-observer.py"
-      ],
-      "tests": [
-        "tests/campaign-observer-test.c",
-        "tools/test-campaign-observer.py",
-        "tools/test-live-campaign-entry.py",
-        "tools/test-menu-observer.py"
-      ],
-      "evidence": [
-        "UI27.live",
-        "UI27.fixture"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "none",
-        "integration": "live_observation",
-        "replacement": "none"
-      }
-    },
-    {
       "id": "MV.creature-profile",
       "subsystem": "movement",
       "kind": "recovered",
@@ -10539,6 +10307,333 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.main-new-game",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Main campaign reset and ingress",
+      "scope": "Original local-0 ordering and request, privately stubbed loading; no live ingress",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4879808,
+          "scope": "Original local-0 ordering and request, privately stubbed loading; no live ingress",
+          "recovered_range": "campaign-entry-4a75c0"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/campaign-menu-entry-observation.md"
+      ],
+      "implementation": [
+        "tools/export-campaign-menu-support.py"
+      ],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original",
+        "UI27.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-navigation",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Realm custom lifecycle and Mini ingress",
+      "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5579536,
+          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+          "recovered_range": "campaign-entry-552310"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5576608,
+          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+          "recovered_range": "campaign-entry-5517a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5579280,
+          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+          "recovered_range": "campaign-entry-552210"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/region-entry-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py",
+        "tests/region-entry-contract-reference.cpp",
+        "tools/test-region-entry-contract.py"
+      ],
+      "evidence": [
+        "UI26.original",
+        "UI28.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.region-admission",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Selected region admission and occupancy",
+      "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5564048,
+          "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5566144,
+          "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-auxiliary",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Realm auxiliary callback flags",
+      "scope": "Original stdcall index-to-flag and cue mapping; full destination pushes static only",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5569824,
+          "scope": "Original stdcall index-to-flag and cue mapping; full destination pushes static only",
+          "recovered_range": "campaign-entry-54fd20"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-initialization-gap",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Realm initialization and campaign bridge remain open",
+      "scope": "Resource probing, visibility, tutorial handling, campaign Mini mode-4 return and Qt projection remain unexecuted/unimplemented",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056544,
+          "relation": "data",
+          "scope": "Resource probing, visibility, tutorial handling, campaign Mini mode-4 return and Qt projection remain unexecuted/unimplemented"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/campaign-menu-entry-observation.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "UI27.live"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-observation",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Fresh campaign ingress observation and guarded tick forwarding",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5576608,
+          "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+          "recovered_range": "campaign-entry-5517a0"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-entry-observation.md",
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/region-entry-engine-contract.md"
+      ],
+      "implementation": [
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/observer.c",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/build-menu-observer.py"
+      ],
+      "tests": [
+        "tests/campaign-observer-test.c",
+        "tools/test-campaign-observer.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "UI27.live",
+        "UI27.fixture",
+        "UI28.fixture",
+        "UI28.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.region-entry-actions",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Region Entry caller-dependent actions and deferred world request",
+      "scope": "168 original callback, four deferred-start and three Realm-return cases; private dependencies; no live Enter/world initialization",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4928544,
+          "scope": "Selected action and deferred branches with private dependencies"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4929664,
+          "scope": "Selected action and deferred branches with private dependencies"
+        }
+      ],
+      "documents": [
+        "research/runtime/region-entry-engine-contract.md"
+      ],
+      "implementation": [
+        "tools/export-region-entry-support.py"
+      ],
+      "tests": [
+        "tests/region-entry-contract-reference.cpp",
+        "tools/test-region-entry-contract.py"
+      ],
+      "evidence": [
+        "UI28.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.region-entry-observation",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original difficulty selection and fresh campaign Cancel ownership",
+      "scope": "Opt-in tick/resume forwarding; four original difficulty choices and Cancel through Realm resume to Main; no loaded Realm or Qt dispatch",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055548,
+          "relation": "data",
+          "scope": "Final Region Entry vtable, common tick +16"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5579280,
+          "recovered_range": "campaign-entry-552210",
+          "scope": "Pending return consumed before pop to Main"
+        }
+      ],
+      "documents": [
+        "research/runtime/region-entry-engine-contract.md"
+      ],
+      "implementation": [
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/observer.c",
+        "tools/build-menu-observer.py"
+      ],
+      "tests": [
+        "tests/campaign-observer-test.c",
+        "tools/test-campaign-observer.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "UI28.fixture",
+        "UI28.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -15410,88 +15505,6 @@
       ]
     },
     {
-      "id": "UI26.original",
-      "kind": "isolated_original",
-      "build": "nocd-40209ca7",
-      "scope": "269 original-bytecode fixtures with privately stubbed dependencies; contract observations only, no native equivalence or live integration",
-      "record": "research/runtime/campaign-menu-engine-contract.json",
-      "sha256": "2a0ee2743e0254c52dcd8f55d72f0245c917de018b2d64810e78883f66cf9836",
-      "sources_pointer": "/sources",
-      "original_hash_pointer": "/source_sha256",
-      "assertions": [
-        {
-          "pointer": "/success",
-          "equals": true
-        },
-        {
-          "pointer": "/main_cases",
-          "equals": 7
-        },
-        {
-          "pointer": "/occupancy_cases",
-          "equals": 25
-        },
-        {
-          "pointer": "/admission_cases",
-          "equals": 216
-        },
-        {
-          "pointer": "/auxiliary_cases",
-          "equals": 7
-        },
-        {
-          "pointer": "/navigation_cases",
-          "equals": 14
-        }
-      ]
-    },
-    {
-      "id": "UI27.live",
-      "kind": "live_observation",
-      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
-      "record": "research/runtime/campaign-menu-entry-observation.json",
-      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
-      "sources_pointer": "/sources",
-      "assertions": [
-        {
-          "pointer": "/live/success",
-          "equals": true
-        },
-        {
-          "pointer": "/live/original_tick_forwarded",
-          "equals": true
-        },
-        {
-          "pointer": "/live/realm_resources_observed",
-          "equals": false
-        }
-      ],
-      "build": "nocd-40209ca7",
-      "original_hash_pointer": "/source_sha256"
-    },
-    {
-      "id": "UI27.fixture",
-      "kind": "native_integration",
-      "scope": "Synthetic opt-in forwarding guards/deduplication and disabled-probe Preferences regression; no original/native engine equivalence",
-      "record": "research/runtime/campaign-menu-entry-observation.json",
-      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
-      "sources_pointer": "/sources",
-      "assertions": [
-        {
-          "pointer": "/fixture/success",
-          "equals": true
-        },
-        {
-          "pointer": "/fixture/real_game_launched",
-          "equals": false
-        },
-        {
-          "pointer": "/preferences_regression/success",
-          "equals": true
-        }
-      ]
-    },
-    {
       "id": "NS09.original",
       "kind": "isolated_original",
       "scope": "Selected CFG fields via controlled profile callbacks; unmodified ANI sample builder; installed movement action with private completion adapter; unmodified support/validity and complete movement-helper predicates on projected installed terrain; no original whole-search or map/entity load equivalence",
@@ -15680,6 +15693,175 @@
           "equals": 1
         }
       ]
+    },
+    {
+      "id": "UI26.original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "269 original-bytecode fixtures with privately stubbed dependencies; contract observations only, no native equivalence or live integration",
+      "record": "research/runtime/campaign-menu-engine-contract.json",
+      "sha256": "2a0ee2743e0254c52dcd8f55d72f0245c917de018b2d64810e78883f66cf9836",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/main_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/occupancy_cases",
+          "equals": 25
+        },
+        {
+          "pointer": "/admission_cases",
+          "equals": 216
+        },
+        {
+          "pointer": "/auxiliary_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/navigation_cases",
+          "equals": 14
+        }
+      ]
+    },
+    {
+      "id": "UI27.live",
+      "kind": "live_observation",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+      "record": "research/runtime/campaign-menu-entry-observation.json",
+      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/original_tick_forwarded",
+          "equals": true
+        },
+        {
+          "pointer": "/live/realm_resources_observed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI27.fixture",
+      "kind": "native_integration",
+      "scope": "Synthetic opt-in forwarding guards/deduplication and disabled-probe Preferences regression; no original/native engine equivalence",
+      "record": "research/runtime/campaign-menu-entry-observation.json",
+      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        },
+        {
+          "pointer": "/preferences_regression/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI28.original",
+      "kind": "isolated_original",
+      "scope": "Original action/caller/difficulty/Cancel/auxiliary mapping, deferred world request and pending Realm exit only; privately stubbed dependencies, no resource creation, campaign simulation or native/live equivalence",
+      "record": "research/runtime/region-entry-engine-contract.json",
+      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/callback_cases",
+          "equals": 168
+        },
+        {
+          "pointer": "/original/deferred_cases",
+          "equals": 4
+        },
+        {
+          "pointer": "/original/return_cases",
+          "equals": 3
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI28.fixture",
+      "kind": "native_integration",
+      "scope": "Synthetic forwarding tick, original-slot/byte guards, repeat rejection, receiver guard, LastError/return preservation, 300 idle ticks deduplicated, two-phase state changes and navigation/resume guards; not original-bytecode or live equivalence",
+      "record": "research/runtime/region-entry-engine-contract.json",
+      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        },
+        {
+          "pointer": "/preferences_regression/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI28.live",
+      "kind": "live_observation",
+      "scope": "Original fresh New Game ingress, four Region Entry difficulty choices and Cancel/Realm resume to Main; no live Enter, loaded Realm, Qt campaign integration or replacement",
+      "record": "research/runtime/region-entry-engine-contract.json",
+      "sha256": "b6be61662328fb45fde79367892b1af13ea1b4c6087d1210672a9e6d5413fc6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/region_return",
+          "equals": true
+        },
+        {
+          "pointer": "/live/difficulty_choices",
+          "equals": [
+            1,
+            2,
+            3,
+            0
+          ]
+        },
+        {
+          "pointer": "/live/loaded_realm_return",
+          "equals": false
+        },
+        {
+          "pointer": "/live/original_work_bypassed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "classifications": [],
@@ -16963,6 +17145,80 @@
           ]
         }
       ]
+    },
+    {
+      "id": "campaign.region-entry-prefix",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6055548,
+        "relation": "data",
+        "scope": "Ten static targets; selected branches only"
+      },
+      "document": "research/runtime/region-entry-engine-contract.md",
+      "complete": false,
+      "scope": "Common tick observed; enter/leave/input/build static; callbacks and deferred request isolated; full availability/destination dispatch pending",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "CP.region-entry-observation"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -17268,24 +17524,6 @@
       ]
     },
     {
-      "id": "campaign.fresh-ingress",
-      "level": "live_observation",
-      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
-      "behaviors": [
-        "CP.realm-observation",
-        "CP.main-new-game",
-        "CP.realm-initialization-gap"
-      ],
-      "evidence": [
-        "UI27.live",
-        "UI27.fixture"
-      ],
-      "tests": [
-        "tools/test-live-campaign-entry.py",
-        "tools/test-campaign-observer.py"
-      ]
-    },
-    {
       "id": "world.configured-ground-creature",
       "level": "headless",
       "scope": "Selected installed Redcap configuration/ANI banks, zero-sample arithmetic/controller and original terrain predicate comparisons; one creature, ordinary categories 0/4, sealed crops, no occupancy/actions/live replacement",
@@ -17339,6 +17577,45 @@
         "tests/effect-transition-reference.cpp",
         "tests/effect-transition-test.cpp",
         "tools/test-effect-transition.py"
+      ]
+    },
+    {
+      "id": "campaign.fresh-ingress",
+      "level": "live_observation",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+      "behaviors": [
+        "CP.realm-observation",
+        "CP.main-new-game",
+        "CP.realm-initialization-gap"
+      ],
+      "evidence": [
+        "UI27.live",
+        "UI27.fixture"
+      ],
+      "tests": [
+        "tools/test-live-campaign-entry.py",
+        "tools/test-campaign-observer.py"
+      ]
+    },
+    {
+      "id": "campaign.region-entry-fresh-cancel",
+      "level": "live_observation",
+      "scope": "Fresh New Game difficulty controls and Cancel to Main; no loaded Realm",
+      "behaviors": [
+        "CP.region-entry-observation",
+        "CP.realm-observation",
+        "CP.region-entry-actions"
+      ],
+      "evidence": [
+        "UI28.original",
+        "UI28.fixture",
+        "UI28.live"
+      ],
+      "tests": [
+        "tests/region-entry-contract-reference.cpp",
+        "tools/test-region-entry-contract.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-campaign-observer.py"
       ]
     }
   ],
@@ -17457,7 +17734,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "f64c45d4d99092dcf6c56dd1a7160cc4f2932c780979e909fd2ba6049107467e",
+      "sha256": "a3aa0f026cc139f88a9e133f3581cc07d92a153e6cc6b96234be40b833634107",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
     },
     {
@@ -17472,7 +17749,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-cell-transitions-source-index.json",
-    "sha256": "9f9357b46da74848f4f4d020b18bc8a39b800a6ca095aa3d0f52a11f74a5f3fb"
+    "path": "research/runtime/coverage/source-index-region-entry.json",
+    "sha256": "a5247baf4e0ad0e53791e0d3705256bd92cfa64dcef69672c62645d916c83299"
   }
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bounded original New Game/Realm tick observation; no native campaign dispatch."""
+import argparse
 import configparser
 import ctypes as c
 import hashlib
@@ -18,14 +19,19 @@ def module(name,path):
     spec=importlib.util.spec_from_file_location(name,ROOT/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def decode(data):
     if len(data)<16:return []
-    if data[:16]!=b'MNMCAMP1'+struct.pack('<II',1,128):raise ValueError('Unsupported campaign log')
+    if data[:16] not in (b'MNMCAMP1'+struct.pack('<II',1,128),b'MNMCAMP2'+struct.pack('<II',2,128)):raise ValueError('Unsupported campaign log')
     rows=[dict(zip(FIELDS,struct.unpack_from('<32I',data,at))) for at in range(16,len(data)-127,128)]
     if len(rows)>256 or [r['sequence'] for r in rows]!=list(range(1,len(rows)+1)):raise ValueError('Invalid campaign log sequence')
     return rows
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--region-return',action='store_true',help='Observe four original difficulty choices and fresh campaign Cancel through Realm resume to Main')
+    args=parser.parse_args()
     parent=ROOT/'working/tests/live-campaign-entry';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(root,flush=True)
-    server=launcher=display=None;prefix=root/'wineprefix';report={'success':False,'scope':'Original Main New Game ingress and forwarded Realm tick only; no Qt campaign integration, region interaction, campaign Mini confirmation or native replacement'}
+    scope = ('Original fresh New Game ingress, four Region Entry difficulty choices and Cancel/Realm resume to Main; no live Enter, loaded Realm, Qt campaign integration or replacement'
+             if args.region_return else 'Original Main New Game ingress and forwarded Realm tick only; no Qt campaign integration, region interaction, campaign Mini confirmation or native replacement')
+    server=launcher=display=None;prefix=root/'wineprefix';report={'success':False,'scope':scope}
     env=dict(os.environ)
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
@@ -71,6 +77,37 @@ def main():
         if not rows or not any(r['phase']==2 for r in rows):raise RuntimeError('No forwarded Realm tick evidence')
         if any(r['receiver']!=0x659408 or r['vtable']!=0x5c6a60 or r['screen']!=4 or r['context']!=5 or r['wizard_count']!=9 for r in rows):raise RuntimeError('Campaign build/state mismatch')
         if len({r['thread'] for r in rows}|{new_game[0]['thread']})!=1:raise RuntimeError('Campaign observation changed thread')
+        entry_trace=[]
+        if args.region_return:
+            cfg_entry=configparser.ConfigParser(inline_comment_prefixes=(';',),interpolation=None);cfg_entry.read(experiment/'game/Interface/RegionEntry/screen (Region Entry).cfg')
+            def click_control(section):
+                r=list(map(int,cfg_entry[section]['Rect2'].split(',')));px=(r[0]+r[2])//2;py=(r[1]+r[3])//2
+                xt.XTestFakeMotionEvent(display,-1,px,py,0);x.XFlush(display);time.sleep(.25);xt.XTestFakeButtonEvent(display,1,1,0);x.XFlush(display);time.sleep(.15);xt.XTestFakeButtonEvent(display,1,0,0);x.XFlush(display);time.sleep(.15)
+            def entry_rows():return [r for r in observer.decode(events.read_bytes()) if r['event'] in (9,10) and r['menu_id']==18]
+            deadline=time.monotonic()+5
+            while time.monotonic()<deadline:
+                entry_trace=entry_rows()
+                if any(r['initialized']==1 and not r['fade_active'] and not r['next_screen'] and not r['returning'] and r['result']==4 for r in entry_trace):break
+                time.sleep(.05)
+            else:raise RuntimeError('Campaign Region Entry did not become ready')
+            choices=[]
+            for choice in [1,2,3,0]:
+                before=len(entry_rows());click_control('RADIOBUTTON_'+str(choice+1));deadline=time.monotonic()+3
+                while time.monotonic()<deadline:
+                    fresh=entry_rows()[before:]
+                    if any(r['argument']==choice for r in fresh):break
+                    time.sleep(.05)
+                else:raise RuntimeError('Original difficulty choice not observed: '+str(choice))
+                choices.append(choice)
+            click_control('TEXTBUTTON_2');deadline=time.monotonic()+10
+            while time.monotonic()<deadline:
+                rows=decode(campaign.read_bytes())
+                if any(r['phase']==4 and r['owner_screen']==3 and not r['returning'] for r in rows):break
+                time.sleep(.05)
+            else:raise RuntimeError('Fresh campaign Cancel did not return to Main')
+            entry_trace=entry_rows()
+            if not any(r['phase']==3 and r['returning']==1 for r in rows):raise RuntimeError('Pending Realm exit was not observed before resume')
+            report.update(region_return=True,difficulty_choices=choices,entry_records=entry_trace,loaded_realm_return=False)
         from PIL import ImageGrab
         ImageGrab.grab(xdisplay=env['DISPLAY']).save(root/'campaign.png')
         for name,key in [('Chaos.exe','staged_sha256'),('MnmMenu.dll','dll_sha256')]:
@@ -89,7 +126,7 @@ def main():
             server.terminate()
             try:server.wait(timeout=5)
             except subprocess.TimeoutExpired:server.kill();server.wait()
-        report['sources']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'runtime/menu/observer.c',ROOT/'runtime/menu/campaign_observe.h',ROOT/'tools/build-menu-observer.py',ROOT/'tools/prepare-menu-observer.py',ROOT/'tools/menu-game-runner.py',ROOT/'tools/run-menu-observer.py']}
+        report['sources']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'runtime/menu/observer.c',ROOT/'runtime/menu/campaign_observe.h',ROOT/'runtime/menu/region_entry_observe.h',ROOT/'tools/build-menu-observer.py',ROOT/'tools/prepare-menu-observer.py',ROOT/'tools/menu-game-runner.py',ROOT/'tools/run-menu-observer.py']}
         (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')
         subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
 if __name__=='__main__':main()
