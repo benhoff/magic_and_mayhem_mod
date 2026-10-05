@@ -36,11 +36,26 @@ int main(){
         transitionEffectEmptyWorld(pool,1,state,32,32,3,columns);
         require(pool.cells()[oldCell].flags==(mode==0?0x80u:0u));
     }
+    // A blocked destination commits entry coordinates but preserves destination
+    // membership/flags and old subcell caches; later authored steps do not run.
+    pool=created();state={};state.previousPosition=pool.records()[1].position;
+    pool.records()[1].parameters[9]=8;state.motion.trajectory.words[4]=8*32;
+    pool.cells()[newCell].flags=0x40001280u;
+    const auto subcell=pool.records()[1].sentinels;
+    require(transitionEffectEmptyWorld(pool,1,state,32,32,3)==1);
+    require(pool.records()[1].cell==newCell && pool.records()[1].parameters[7]==0xffffffffu);
+    require(pool.records()[1].active && pool.records()[1].next==NoEffect);
+    require(pool.cells()[newCell].head==2 && pool.records()[2].next==NoEffect && pool.cells()[newCell].flags==0x40001280u);
+    require(pool.cells()[oldCell].head==0 && pool.records()[0].next==NoEffect);
+    for(unsigned i=0;i<3;++i)require(pool.records()[1].sentinels[i]==subcell[i]);
+    require(pool.records()[1].sentinels[6]==16 && state.motion.previousUnits[0]==8*32+1);
+    // A second call is intentionally refused until the caller resolves the detached lifecycle.
+    bool refusedDetached=false;try{transitionEffectEmptyWorld(pool,1,state,32,32,3);}catch(const std::invalid_argument&){refusedDetached=true;}require(refusedDetached);
     for(unsigned mode=0;mode<7;++mode){
         pool=created();state={};state.previousPosition=pool.records()[1].position;state.motion.trajectory.words[4]=8*32;
         if(mode==0)pool.records()[0].next=0;
         if(mode==1)pool.cells()[newCell].terrain=4;
-        if(mode==2)pool.cells()[newCell].flags|=0x40000000u;
+        if(mode==2)state.terrain=2;
         if(mode==3)state.motion.trajectory.words[1]=0xfffffffeu;
         if(mode==4){pool.records()[1].parameters[9]=8;state.motion.trajectory.words[4]=32;pool.cells()[oldCell+4].terrain=4;}
         if(mode==5)pool.cells()[oldCell].head=0xffff;

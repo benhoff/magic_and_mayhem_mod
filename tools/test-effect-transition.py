@@ -20,7 +20,7 @@ PATHS = ['reconstruction/rendering/effect_transition.cpp', 'reconstruction/rende
          'reconstruction/rendering/terrain_lighting.cpp', 'reconstruction/rendering/terrain_lighting.hpp',
          'reconstruction/rendering/effect_trajectory.cpp',
          'reconstruction/rendering/effect_trajectory.hpp',
-         'tests/effect-cleanup-reference.cpp', 'tests/effect-transition-test.cpp', 'tests/effect-transition-reference.cpp',
+         'tests/effect-blocked-reference.cpp', 'tests/effect-cleanup-reference.cpp', 'tests/effect-transition-test.cpp', 'tests/effect-transition-reference.cpp',
          'tests/sprite-binary-reference.cpp', 'tools/test-effect-transition.py']
 
 def sha(path):
@@ -61,6 +61,16 @@ def main():
             helpers[name] = sha(binary)
         if not results[0] == results[1] == results[2]:
             raise ValueError('Original/native/sanitized states differ')
+        blocked_results=[]
+        for name, flags in [('original', ['-O2', '-m32', '-fno-pie', '-no-pie', '-DORIGINAL_REFERENCE']), ('native', ['-O2']), ('sanitized', ['-O1', '-g', *sanitize])]:
+            binary=out / ('blocked-'+name)
+            run([*common,*flags,ROOT/'tests/effect-blocked-reference.cpp',*code[1:],'-o',binary], 'compile-blocked-'+name)
+            output=out / ('blocked-'+name+'.bin')
+            stats=json.loads(run([binary,*([pe] if name=='original' else []),output],'blocked-'+name,env))
+            blocked_results.append((stats,sha(output)))
+            helpers['blocked-'+name]=sha(binary)
+        if not blocked_results[0]==blocked_results[1]==blocked_results[2]:
+            raise ValueError('Blocked original/native/sanitized streams differ')
         cleanup_results=[]
         for name, flags in [('original', ['-O2', '-m32', '-fno-pie', '-no-pie', '-DORIGINAL_REFERENCE']), ('native', ['-O2']), ('sanitized', ['-O1', '-g', *sanitize])]:
             binary=out / ('cleanup-'+name)
@@ -86,10 +96,10 @@ def main():
         if any(sha(ROOT / p) != h for p, h in sources.items()) or sha(pe) != HASH:
             raise ValueError('Inputs changed during comparison')
         report = dict(all_match=True, live_validated=False, executable_sha256=HASH,
-                      **results[0][0], **cleanup_results[0][0], cleanup_output_sha256=cleanup_results[0][1], output_sha256=results[0][1], helper_sha256=helpers,
+                      **results[0][0], blocked_comparison=blocked_results[0][0], blocked_output_sha256=blocked_results[0][1], **cleanup_results[0][0], cleanup_output_sha256=cleanup_results[0][1], output_sha256=results[0][1], helper_sha256=helpers,
                       registered_source_sha256=sources, unit_passed=True, sanitized_unit_passed=True,
                       cmake_tests_passed=1,
-                      boundary='Whole unmodified 004883f0 with real 004df500/004e10e0, five emitting types, empty terrain occupancy/no creatures, metadata kind 0/68 with zero distance allowance, 0..8 iterations, membership-on old/new chains, fine/cell/previous/cache/subcell/recount updates, zero/nonzero terrain catalog references and real 00534520 column cleanup and return 3; no patches or stubs; authored trajectory, no setup, blocked destinations, occupied collisions, special termination or live replacement')
+                      boundary='Whole unmodified 004883f0 with real 004df500/004e10e0, five emitting types, empty terrain occupancy/no creatures, metadata kind 0/68 with zero distance allowance, 0..8 iterations, membership-on old/new chains, fine/cell/previous/cache/subcell/recount updates, zero/nonzero terrain catalog references and real 00534520 column cleanup and return 3; additional whole-parent blocked comparison checks return 1, committed entry/terrain/cache/recount, skipped insertion/subcell refresh and parameter 7=-1; no patches or stubs; authored trajectory, no setup, occupied collisions, special termination or live replacement')
         (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
         print(json.dumps(report, indent=2), flush=True)
     finally:

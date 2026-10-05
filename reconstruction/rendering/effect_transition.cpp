@@ -18,8 +18,8 @@ bool near(std::array<unsigned,3> a,std::array<unsigned,3> b,unsigned w,unsigned 
     return std::min(dx,w-dx)<=1 && std::min(dy,h-dy)<=1 && delta(a[2],b[2])<=1;
 }
 void validateCell(const EffectCell& cell){
-    if(cell.terrain>3 || (cell.flags&0x40000000u))
-        throw std::invalid_argument("Effect transition requires unblocked empty terrain entries");
+    if(cell.terrain>3)
+        throw std::invalid_argument("Effect transition requires empty terrain entries in catalog 0..3");
 }
 }
 unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,EffectTransitionState& state,
@@ -73,14 +73,21 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
             cleanupEmptyEffectCell(oldCell,r.cell,width,height,layers,columns);
             movement.previousPosition=r.position;r.position=position;r.cell=destination;
             auto& newCell=candidate.cells()[destination];
+            if(!(newCell.flags&0x40000000u)){
             if(newCell.head==NoEffect)newCell.head=std::uint16_t(slot);
             else{
                 unsigned tail=newCell.head;
                 while(candidate.records()[tail].next!=NoEffect)tail=candidate.records()[tail].next;
                 candidate.records()[tail].next=std::uint16_t(slot);
             }
-            newCell.flags&=~0x80u;movement.terrain=newCell.terrain;
+            newCell.flags&=~0x80u;
+            }
+            movement.terrain=newCell.terrain;
             if(!near(r.position,r.initialPosition,width,height))r.initialPosition=movement.previousPosition;
+            if(newCell.flags&0x40000000u){
+                r.parameters[7]=0xffffffffu;
+                pool=std::move(candidate);state=std::move(movement);return 1;
+            }
         }
         r.sentinels[0]=(units[0]>>2)&7;r.sentinels[1]=(units[1]>>2)&7;r.sentinels[2]=(units[2]>>2)&3;
     }

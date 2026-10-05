@@ -6,13 +6,13 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | Accounting boundary | Count |
 | --- | ---: |
 | builds | 1 |
-| behaviors | 313 |
-| evidence | 193 |
-| scenarios | 23 |
+| behaviors | 316 |
+| evidence | 197 |
+| scenarios | 25 |
 | functions | 6675 |
 | registered recovered ranges | 10 |
 | incomplete dispatch tables | 6 |
-| indexed sources | 909 |
+| indexed sources | 912 |
 | unclassified functions | 6496 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
@@ -24,23 +24,23 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | unmapped dispatch entries | 31 |
 | behaviors without scenarios | 262 |
 | behaviors without implementation | 142 |
-| behaviors without comparison | 261 |
+| behaviors without comparison | 263 |
 | behaviors without tests | 1 |
-| stale evidence | 58 |
+| stale evidence | 63 |
 | behavior anchors outside discovered functions | 22 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
 | removed indexed sources | 0 |
 | changed indexed sources | 0 |
-| sources without behavior links | 237 |
+| sources without behavior links | 236 |
 
 | Independent status | Counts |
 | --- | --- |
-| understanding | partial: 229; scoped: 51; unknown: 33 |
-| implementation | none: 142; partial: 125; scoped: 46 |
-| comparison | none: 261; recorded: 52 |
-| integration | headless: 29; live_equivalence: 0; live_observation: 9; none: 265; preview: 10 |
-| replacement | none: 313; scoped_live: 0 |
+| understanding | partial: 229; scoped: 54; unknown: 33 |
+| implementation | none: 142; partial: 125; scoped: 49 |
+| comparison | none: 263; recorded: 53 |
+| integration | headless: 31; live_equivalence: 0; live_observation: 9; none: 265; preview: 11 |
+| replacement | none: 316; scoped_live: 0 |
 
 ## Animation checklist
 
@@ -191,11 +191,12 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | ID | Behavior | Original addresses | Understanding | Implementation | Comparison | Integration | Replacement | Evidence freshness |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| NR.surfaces | OpenGL surfaces, blits and command replay | native policy | partial | partial | none | none | none | current_fingerprints |
+| NR.surfaces | OpenGL surfaces, blits and command replay | native policy | partial | partial | none | none | none | stale |
 | NR.sprites | Native sprite decoding and drawing | native policy | partial | partial | none | none | none | current_fingerprints |
 | NR.sprite_scene | Native animated sprite scene | native policy | partial | partial | none | preview | none | stale |
 | NR.terrain_scene | Native authored and generated terrain scenes | native policy | partial | partial | none | none | none | current_fingerprints |
 | NR.world_scene | Native world movement presentation | native policy | partial | partial | none | preview | none | stale |
+| NR.gpu-presentation | Direct shared-texture command replay presentation | native policy | scoped | scoped | none | preview | none | stale |
 
 ## Native World checklist
 
@@ -316,7 +317,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | RT.render | DirectDraw observation and selected owned-surface adapters | native policy | partial | partial | none | none | none | current_fingerprints |
 | RT.audio | DirectSound runtime adapter | native policy | partial | partial | none | none | none | current_fingerprints |
 | RT.shadow | Pathfinding neighbor shadow capture | native policy | partial | partial | none | none | none | current_fingerprints |
-| HOST.session | Qt host and session orchestration | native policy | partial | partial | none | none | none | current_fingerprints |
+| HOST.session | Qt host and session orchestration | native policy | partial | partial | none | none | none | stale |
 | HOST.input | Qt input forwarding and wire state | native policy | partial | partial | none | none | none | current_fingerprints |
 | HOST.media | Native media playback and broker | native policy | partial | partial | none | none | none | current_fingerprints |
 
@@ -454,8 +455,10 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | TL.effect-projection-policy | Atomic bounded effect projection and lighting composition | native policy | scoped | scoped | none | headless | none | current_fingerprints |
 | TL.effect-cell-transitions | Empty-world effect transitions and cell membership | `0x4883f0` | scoped | scoped | recorded | headless | none | stale |
 | TL.effect-transition-policy | Atomic owned effect transitions and moving lighting composition | native policy | scoped | scoped | none | headless | none | stale |
-| TL.effect-cell-cleanup | Effect ordinal-zero column eligibility and unlink cleanup | `0x534520`, `0x488330`, `0x4883f0` | scoped | scoped | recorded | headless | none | current_fingerprints |
-| TL.effect-cleanup-policy | Owned cleanup columns and atomic zero-terrain movement | native policy | scoped | scoped | none | headless | none | current_fingerprints |
+| TL.effect-cell-cleanup | Effect ordinal-zero column eligibility and unlink cleanup | `0x534520`, `0x488330`, `0x4883f0` | scoped | scoped | recorded | headless | none | stale |
+| TL.effect-cleanup-policy | Owned cleanup columns and atomic zero-terrain movement | native policy | scoped | scoped | none | headless | none | stale |
+| TL.effect-blocked-destinations | Blocked effect destination partial state and return 1 | `0x4883f0` | scoped | scoped | recorded | headless | none | current_fingerprints |
+| TL.effect-blocked-policy | Owned committed termination state and detached lifecycle refusal | native policy | scoped | scoped | none | headless | none | current_fingerprints |
 
 ## Tooling checklist
 
@@ -472,12 +475,14 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **NS05.composition**: `reconstruction/motion/creature_motion.cpp`, `tests/ani-motion-test.cpp`
 - **NS05.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-sandbox/main.cpp`, `assets/CMakeLists.txt`, `game/CMakeLists.txt`, `game/README.md`, `game/persistence/snapshot.cpp`, `game/simulation/movement.cpp`, `game/simulation/movement.hpp`, `game/simulation/world.cpp`, `game/simulation/world.hpp`, `reconstruction/motion/README.md`, `reconstruction/motion/creature_motion.cpp`, `tests/ani-motion-test.cpp`, `tests/test-original-ani-motion.py`
 - **NS06.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-sandbox/main.cpp`, `game/CMakeLists.txt`, `game/simulation/movement.cpp`, `game/simulation/movement.hpp`, `reconstruction/motion/creature_motion.cpp`, `tests/creature-motion-test.cpp`
+- **REVIEW.NR.surfaces**: `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/commands.cpp`, `renderer/commands.hpp`
 - **REVIEW.NR.world_scene**: `apps/world-scene/main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`
 - **REVIEW.BR.main**: `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `runtime/menu/observer.c`
 - **REVIEW.BR.battle**: `runtime/menu/observer.c`
 - **REVIEW.BR.spell**: `runtime/menu/observer.c`
 - **REVIEW.BR.result**: `runtime/menu/observer.c`
 - **REVIEW.BR.mini**: `runtime/menu/observer.c`
+- **REVIEW.HOST.session**: `apps/qt-shell/gl_viewport.cpp`, `apps/qt-shell/gl_viewport.hpp`, `apps/qt-shell/main.cpp`
 - **REVIEW.WORLD.sandbox**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-sandbox/main.cpp`
 - **ORIGINAL.animation-forward-contract**: `assets/animation.cpp`, `assets/animation.hpp`, `reconstruction/animation/no_cd.cpp`, `reconstruction/animation/no_cd.hpp`, `tests/animation-binary-reference.cpp`, `tools/test-animation-contract.py`
 - **ORIGINAL.animation-direction-selection**: `reconstruction/animation/no_cd.cpp`, `reconstruction/animation/no_cd.hpp`
@@ -492,27 +497,27 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **ORIGINAL.terrain-region-specific**: `reconstruction/rendering/CMakeLists.txt`, `reconstruction/rendering/terrain_solver.cpp`, `reconstruction/rendering/terrain_solver.hpp`, `reconstruction/rendering/terrain_specific.cpp`
 - **ORIGINAL.terrain-region-generation**: `reconstruction/rendering/CMakeLists.txt`
 - **ORIGINAL.terrain-region-catalog**: `reconstruction/rendering/CMakeLists.txt`
-- **ORIGINAL.terrain-palette-shading**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `reconstruction/rendering/palette_shading.cpp`, `reconstruction/rendering/palette_shading.hpp`, `tests/palette-shading-native.cpp`, `tests/palette-shading-reference.cpp`
-- **ORIGINAL.terrain-light-fields**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `reconstruction/rendering/terrain_lighting.cpp`, `reconstruction/rendering/terrain_lighting.hpp`, `tests/ani-motion-test.cpp`, `tests/creature-motion-test.cpp`, `tests/native-movement-test.cpp`, `tests/segment-setup-test.cpp`, `tests/test-original-ani-motion.py`, `tests/test-original-segment-setup.py`, `tests/test-tooling.sh`
+- **ORIGINAL.terrain-palette-shading**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `reconstruction/rendering/palette_shading.cpp`, `reconstruction/rendering/palette_shading.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/commands.cpp`, `renderer/commands.hpp`, `tests/palette-shading-native.cpp`, `tests/palette-shading-reference.cpp`
+- **ORIGINAL.terrain-light-fields**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `reconstruction/rendering/terrain_lighting.cpp`, `reconstruction/rendering/terrain_lighting.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/commands.cpp`, `renderer/commands.hpp`, `tests/ani-motion-test.cpp`, `tests/creature-motion-test.cpp`, `tests/native-movement-test.cpp`, `tests/segment-setup-test.cpp`, `tests/test-original-ani-motion.py`, `tests/test-original-segment-setup.py`, `tests/test-tooling.sh`
 - **ORIGINAL.terrain-creature-lighting**: `reconstruction/rendering/terrain_lighting.cpp`, `reconstruction/rendering/terrain_lighting.hpp`
-- **ORIGINAL.terrain-palette-preferences**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `assets/palette_lighting.cpp`, `assets/palette_lighting.hpp`, `reconstruction/rendering/CMakeLists.txt`
+- **ORIGINAL.terrain-palette-preferences**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `assets/palette_lighting.cpp`, `assets/palette_lighting.hpp`, `reconstruction/rendering/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/commands.cpp`, `renderer/commands.hpp`
 - **NATIVE.native-world-scene**: `apps/world-scene/CMakeLists.txt`, `apps/world-scene/README.md`, `apps/world-scene/main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`
-- **NATIVE.native-animation-scene**: `apps/sprite-scene/main.cpp`, `apps/sprite-scene/scene.cpp`, `apps/sprite-scene/scene.hpp`, `assets/animation.cpp`, `assets/animation.hpp`, `reconstruction/animation/no_cd.cpp`, `reconstruction/animation/no_cd.hpp`, `renderer/sprites/sprite.cpp`, `tests/animation-binary-reference.cpp`, `tools/test-sprite-scene.py`
-- **UI23.original**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/test-live-menus.py`
-- **UI23.live**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/test-live-menus.py`
-- **UI23.qt**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/test-live-menus.py`
+- **NATIVE.native-animation-scene**: `apps/sprite-scene/main.cpp`, `apps/sprite-scene/scene.cpp`, `apps/sprite-scene/scene.hpp`, `assets/animation.cpp`, `assets/animation.hpp`, `reconstruction/animation/no_cd.cpp`, `reconstruction/animation/no_cd.hpp`, `renderer/blit.cpp`, `renderer/sprites/sprite.cpp`, `tests/animation-binary-reference.cpp`, `tools/test-sprite-scene.py`
+- **UI23.original**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/test-live-menus.py`
+- **UI23.live**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/test-live-menus.py`
+- **UI23.qt**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/test-live-menus.py`
 - **UI22.enter**: `tests/preferences-contract-reference.cpp`, `tools/test-preferences-contract.py`
 - **REVIEW.TOOL.traceability**: `tests/test-re-coverage.py`, `tests/test-tooling.sh`, `tools/coverage_audit.py`
-- **TL03.object-scenes-original**: `apps/terrain-preview/CMakeLists.txt`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`
-- **TL03.object-scenes-native**: `apps/terrain-preview/CMakeLists.txt`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`
-- **UI24.live**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/test-live-menus.py`
-- **UI24.native**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/test-live-menus.py`
-- **NS08.original**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `tests/map-navigation-reference.cpp`
-- **NS08.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `tests/map-navigation-reference.cpp`
-- **UI25.original**: `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`
-- **UI25.live**: `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`
-- **UI25.qt**: `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`
-- **NS08.installed-ani**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `tests/map-navigation-reference.cpp`
+- **TL03.object-scenes-original**: `apps/terrain-preview/CMakeLists.txt`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `renderer/README.md`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/commands.cpp`, `renderer/commands.hpp`
+- **TL03.object-scenes-native**: `apps/terrain-preview/CMakeLists.txt`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `renderer/README.md`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/commands.cpp`, `renderer/commands.hpp`
+- **UI24.live**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/test-live-menus.py`
+- **UI24.native**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/test-live-menus.py`
+- **NS08.original**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `renderer/blit.cpp`, `tests/map-navigation-reference.cpp`
+- **NS08.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `renderer/blit.cpp`, `tests/map-navigation-reference.cpp`
+- **UI25.original**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/main.cpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`
+- **UI25.live**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/main.cpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`
+- **UI25.qt**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/main.cpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`
+- **NS08.installed-ani**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `renderer/blit.cpp`, `tests/map-navigation-reference.cpp`
 - **TL04.effects-original**: `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`
 - **TL04.effects-native**: `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`
 - **TL05.placement-original**: `assets/CMakeLists.txt`
@@ -525,12 +530,15 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **TL08.transition-native**: `reconstruction/rendering/effect-transition/CMakeLists.txt`, `reconstruction/rendering/effect_transition.cpp`, `reconstruction/rendering/effect_transition.hpp`, `tests/effect-transition-reference.cpp`, `tests/effect-transition-test.cpp`, `tools/test-effect-transition.py`
 - **UI27.live**: `runtime/menu/campaign_observe.h`, `runtime/menu/observer.c`, `tests/campaign-observer-test.c`, `tools/build-menu-observer.py`, `tools/test-campaign-observer.py`, `tools/test-live-campaign-entry.py`
 - **UI27.fixture**: `runtime/menu/campaign_observe.h`, `runtime/menu/observer.c`, `tests/campaign-observer-test.c`, `tools/build-menu-observer.py`, `tools/test-campaign-observer.py`, `tools/test-live-campaign-entry.py`
+- **NR.gpu-presentation.native**: `renderer/blit.cpp`, `tests/gpu-presentation-test.cpp`
+- **TL09.cleanup-original**: `reconstruction/rendering/effect_transition.cpp`, `reconstruction/rendering/effect_transition.hpp`, `tests/effect-transition-test.cpp`, `tools/test-effect-transition.py`
+- **TL09.cleanup-native**: `reconstruction/rendering/effect_transition.cpp`, `reconstruction/rendering/effect_transition.hpp`, `tests/effect-transition-test.cpp`, `tools/test-effect-transition.py`
 
 ## Checklist gaps
 
 - behaviors without implementation: MV.event-1, MV.event-3, MV.event-4, MV.event-5, MV.event-6, MV.reverse, MV.profile-selection, MV.dynamic-occupancy, MV.scheduler, MV.original-orders, MV.follow-target, MV.environment, MV.pause-clock, TL.static-input-production, TL.special-size-one, GP.tick, GP.lifetime, GP.ai, GP.combat, GP.cast, GP.progression, GP.commander, GP.veterancy, GP.mana, SP.000, SP.001, SP.002, SP.003, SP.004, SP.005, SP.006, SP.007, SP.008, SP.009, SP.010, SP.011, SP.012, SP.013, SP.014, SP.015, SP.016, SP.017, SP.018, SP.019, SP.020, SP.021, SP.022, SP.023, SP.024, SP.025, SP.026, SP.027, SP.028, SP.029, SP.030, SP.031, SP.032, SP.033, SP.034, SP.035, SP.036, SP.037, SP.038, SP.039, SP.040, SP.041, SP.042, SP.043, SP.044, SP.045, SP.046, SP.047, SP.048, SP.049, SP.050, SP.051, SP.052, SP.053, SP.054, SP.055, SP.056, SP.057, SP.058, SP.059, SP.060, SP.061, SP.062, SP.063, SP.064, SP.065, SP.066, SP.067, SP.068, SP.069, SP.070, SP.071, SP.072, SP.073, SP.074, SP.075, SP.076, SP.077, SP.078, SP.079, SP.080, SP.081, SP.082, SP.083, SP.084, SP.085, SP.086, SP.087, SP.088, SP.089, SP.090, SP.091, SP.092, SP.093, SP.094, SP.095, SP.096, SP.097, SP.098, SP.099, SP.100, SP.101, SP.102, SP.103, AN.world-facing, PR.other-callers, RE.palette_effects, EXT.dependencies, GP.threading, TL.effect-type-setup, TL.effect-creation-variants, TL.effect-movement-recount, CP.main-new-game, CP.realm-navigation, CP.region-admission, CP.realm-auxiliary, CP.realm-initialization-gap, CP.region-entry-actions
 - behaviors without tests: HOST.media
-- behaviors without comparison: MV.request, MV.search, MV.legality, MV.event-1, MV.event-3, MV.event-4, MV.event-5, MV.event-6, MV.reverse, MV.profile-selection, MV.dynamic-occupancy, MV.scheduler, MV.original-orders, MV.follow-target, MV.environment, MV.pause-clock, NP.move-orders, NP.checkpoints, NP.presentation, TL.static-input-production, TL.special-size-one, TL.static-owned-bounds, PF.creature_acceptance, PF.validity, PF.record_query, PF.boundary, PF.clearance, PF.scalar, AU.dsound_setup, AU.voice_contract, AU.voice_lifetime, AU.voice_scheduler, AU.positional_audio, AU.camera_projection, AU.attenuation_map, AU.voice_admission, AU.source_cache, AU.manager_configuration, AU.manager_lifecycle, AU.primary, NA.buffers, NA.voices, NA.mixer, NA.output, NA.voice_bridge, NA.wave, NA.native_manager_backend, NA.catalog_preflight, AS.animation, AS.sprite, AS.persistence, AS.save_world, AS.profile, AS.map, AS.terrain_catalog, AS.region_recipe, AS.wizard, AS.cursor, AS.pcx, AS.bmp, AS.jpeg, AS.mps, AS.evt, AS.tag, AS.fp, AS.sft, AS.nod, AS.text, AS.dat, AS.access, RE.terrain_traversal, RE.terrain_generated, NR.surfaces, NR.sprites, NR.sprite_scene, NR.terrain_scene, NR.world_scene, UI.main_menu, UI.quick_battle_menu, UI.mini_menu, UI.preferences, UI.load_game, UI.save_game, UI.battle_result, UI.quick_battle_result, UI.map_selection, UI.multiplayer_setup, UI.multiplayer_game_selection, UI.multiplayer_lobby, UI.single_player_battle, UI.region_entry, UI.character_screen, UI.grimoire, UI.spellbox, UI.realm_viewer, UI.spell_research, UI.assets, UI.audio, UI.music, BR.main, BR.battle, BR.spell, BR.result, BR.mini, RT.render, RT.audio, RT.shadow, HOST.session, HOST.input, HOST.media, WIRE.contracts, WORLD.owned, WORLD.sandbox, GP.tick, GP.lifetime, GP.ai, GP.combat, GP.cast, GP.progression, GP.commander, GP.veterancy, GP.mana, SP.000, SP.001, SP.002, SP.003, SP.004, SP.005, SP.006, SP.007, SP.008, SP.009, SP.010, SP.011, SP.012, SP.013, SP.014, SP.015, SP.016, SP.017, SP.018, SP.019, SP.020, SP.021, SP.022, SP.023, SP.024, SP.025, SP.026, SP.027, SP.028, SP.029, SP.030, SP.031, SP.032, SP.033, SP.034, SP.035, SP.036, SP.037, SP.038, SP.039, SP.040, SP.041, SP.042, SP.043, SP.044, SP.045, SP.046, SP.047, SP.048, SP.049, SP.050, SP.051, SP.052, SP.053, SP.054, SP.055, SP.056, SP.057, SP.058, SP.059, SP.060, SP.061, SP.062, SP.063, SP.064, SP.065, SP.066, SP.067, SP.068, SP.069, SP.070, SP.071, SP.072, SP.073, SP.074, SP.075, SP.076, SP.077, SP.078, SP.079, SP.080, SP.081, SP.082, SP.083, SP.084, SP.085, SP.086, SP.087, SP.088, SP.089, SP.090, SP.091, SP.092, SP.093, SP.094, SP.095, SP.096, SP.097, SP.098, SP.099, SP.100, SP.101, SP.102, SP.103, AN.world-facing, PR.other-callers, NP.preferences-draft, TOOL.traceability, UI.preview, UI.preferences_store, PF.frozen_world, WIRE.menu_fixtures, TOOL.asset_inspection, NA.cli, AS.legacy, RE.palette_effects, EXT.dependencies, GP.threading, NP.map-navigation, TL.object-fixture-policy, NP.preferences-persistence, TL.effect-table-policy, TOOL.coverage-gate, TL.effect-placement-policy, TL.effect-type-setup, TL.effect-creation-variants, TL.effect-movement-recount, TL.effect-projection-policy, NP.stationary-occupancy, TL.effect-transition-policy, CP.main-new-game, CP.realm-navigation, CP.region-admission, CP.realm-auxiliary, CP.realm-initialization-gap, CP.realm-observation, CP.region-entry-actions, CP.region-entry-observation, TL.effect-cleanup-policy
+- behaviors without comparison: MV.request, MV.search, MV.legality, MV.event-1, MV.event-3, MV.event-4, MV.event-5, MV.event-6, MV.reverse, MV.profile-selection, MV.dynamic-occupancy, MV.scheduler, MV.original-orders, MV.follow-target, MV.environment, MV.pause-clock, NP.move-orders, NP.checkpoints, NP.presentation, TL.static-input-production, TL.special-size-one, TL.static-owned-bounds, PF.creature_acceptance, PF.validity, PF.record_query, PF.boundary, PF.clearance, PF.scalar, AU.dsound_setup, AU.voice_contract, AU.voice_lifetime, AU.voice_scheduler, AU.positional_audio, AU.camera_projection, AU.attenuation_map, AU.voice_admission, AU.source_cache, AU.manager_configuration, AU.manager_lifecycle, AU.primary, NA.buffers, NA.voices, NA.mixer, NA.output, NA.voice_bridge, NA.wave, NA.native_manager_backend, NA.catalog_preflight, AS.animation, AS.sprite, AS.persistence, AS.save_world, AS.profile, AS.map, AS.terrain_catalog, AS.region_recipe, AS.wizard, AS.cursor, AS.pcx, AS.bmp, AS.jpeg, AS.mps, AS.evt, AS.tag, AS.fp, AS.sft, AS.nod, AS.text, AS.dat, AS.access, RE.terrain_traversal, RE.terrain_generated, NR.surfaces, NR.sprites, NR.sprite_scene, NR.terrain_scene, NR.world_scene, UI.main_menu, UI.quick_battle_menu, UI.mini_menu, UI.preferences, UI.load_game, UI.save_game, UI.battle_result, UI.quick_battle_result, UI.map_selection, UI.multiplayer_setup, UI.multiplayer_game_selection, UI.multiplayer_lobby, UI.single_player_battle, UI.region_entry, UI.character_screen, UI.grimoire, UI.spellbox, UI.realm_viewer, UI.spell_research, UI.assets, UI.audio, UI.music, BR.main, BR.battle, BR.spell, BR.result, BR.mini, RT.render, RT.audio, RT.shadow, HOST.session, HOST.input, HOST.media, WIRE.contracts, WORLD.owned, WORLD.sandbox, GP.tick, GP.lifetime, GP.ai, GP.combat, GP.cast, GP.progression, GP.commander, GP.veterancy, GP.mana, SP.000, SP.001, SP.002, SP.003, SP.004, SP.005, SP.006, SP.007, SP.008, SP.009, SP.010, SP.011, SP.012, SP.013, SP.014, SP.015, SP.016, SP.017, SP.018, SP.019, SP.020, SP.021, SP.022, SP.023, SP.024, SP.025, SP.026, SP.027, SP.028, SP.029, SP.030, SP.031, SP.032, SP.033, SP.034, SP.035, SP.036, SP.037, SP.038, SP.039, SP.040, SP.041, SP.042, SP.043, SP.044, SP.045, SP.046, SP.047, SP.048, SP.049, SP.050, SP.051, SP.052, SP.053, SP.054, SP.055, SP.056, SP.057, SP.058, SP.059, SP.060, SP.061, SP.062, SP.063, SP.064, SP.065, SP.066, SP.067, SP.068, SP.069, SP.070, SP.071, SP.072, SP.073, SP.074, SP.075, SP.076, SP.077, SP.078, SP.079, SP.080, SP.081, SP.082, SP.083, SP.084, SP.085, SP.086, SP.087, SP.088, SP.089, SP.090, SP.091, SP.092, SP.093, SP.094, SP.095, SP.096, SP.097, SP.098, SP.099, SP.100, SP.101, SP.102, SP.103, AN.world-facing, PR.other-callers, NP.preferences-draft, TOOL.traceability, UI.preview, UI.preferences_store, PF.frozen_world, WIRE.menu_fixtures, TOOL.asset_inspection, NA.cli, AS.legacy, RE.palette_effects, EXT.dependencies, GP.threading, NP.map-navigation, TL.object-fixture-policy, NP.preferences-persistence, TL.effect-table-policy, TOOL.coverage-gate, TL.effect-placement-policy, TL.effect-type-setup, TL.effect-creation-variants, TL.effect-movement-recount, TL.effect-projection-policy, NP.stationary-occupancy, TL.effect-transition-policy, CP.main-new-game, CP.realm-navigation, CP.region-admission, CP.realm-auxiliary, CP.realm-initialization-gap, CP.realm-observation, CP.region-entry-actions, CP.region-entry-observation, NR.gpu-presentation, TL.effect-cleanup-policy, TL.effect-blocked-policy
 - behaviors without scenarios: MV.event-1, MV.event-3, MV.event-4, MV.event-5, MV.event-6, MV.reverse, MV.special-profile, MV.profile-selection, MV.dynamic-occupancy, MV.scheduler, MV.original-orders, MV.follow-target, MV.environment, MV.pause-clock, TL.static-input-production, TL.special-size-one, TL.static-owned-bounds, PF.creature_acceptance, PF.cell, PF.occupancy, PF.validity, PF.record_query, PF.boundary, PF.clearance, PF.scalar, AU.dsound_setup, AU.voice_contract, AU.voice_lifetime, AU.voice_scheduler, AU.positional_audio, AU.camera_projection, AU.attenuation_map, AU.voice_admission, AU.source_cache, AU.manager_configuration, AU.manager_lifecycle, AU.primary, NA.buffers, NA.voices, NA.mixer, NA.output, NA.voice_bridge, NA.wave, NA.native_manager_backend, NA.catalog_preflight, AS.animation, AS.sprite, AS.persistence, AS.save_world, AS.profile, AS.map, AS.terrain_catalog, AS.region_recipe, AS.wizard, AS.cursor, AS.pcx, AS.bmp, AS.jpeg, AS.mps, AS.evt, AS.tag, AS.fp, AS.sft, AS.nod, AS.text, AS.dat, AS.access, RE.sprite_queue, RE.sprite_visibility, RE.terrain_submission, RE.terrain_camera, RE.terrain_traversal, RE.terrain_map, RE.terrain_sections, RE.terrain_region, RE.terrain_selection, RE.terrain_constraints, RE.terrain_solver, RE.terrain_specific, RE.terrain_generation, RE.terrain_catalog, RE.terrain_generated, RE.palette_shading, RE.terrain_lighting, RE.terrain_creature_lighting, RE.palette_preferences, AN.forward, AN.direction, AN.placement, AN.attachment, NR.surfaces, NR.sprites, NR.terrain_scene, UI.main_menu, UI.quick_battle_menu, UI.mini_menu, UI.preferences, UI.load_game, UI.save_game, UI.battle_result, UI.quick_battle_result, UI.map_selection, UI.multiplayer_setup, UI.multiplayer_game_selection, UI.multiplayer_lobby, UI.single_player_battle, UI.region_entry, UI.character_screen, UI.grimoire, UI.spellbox, UI.realm_viewer, UI.spell_research, UI.assets, UI.audio, UI.music, BR.main, BR.battle, BR.spell, BR.result, BR.mini, RT.render, RT.audio, RT.shadow, HOST.session, HOST.input, HOST.media, WIRE.contracts, WORLD.owned, WORLD.sandbox, GP.tick, GP.lifetime, GP.ai, GP.combat, GP.cast, GP.progression, GP.commander, GP.veterancy, GP.mana, SP.000, SP.001, SP.002, SP.003, SP.004, SP.005, SP.006, SP.007, SP.008, SP.009, SP.010, SP.011, SP.012, SP.013, SP.014, SP.015, SP.016, SP.017, SP.018, SP.019, SP.020, SP.021, SP.022, SP.023, SP.024, SP.025, SP.026, SP.027, SP.028, SP.029, SP.030, SP.031, SP.032, SP.033, SP.034, SP.035, SP.036, SP.037, SP.038, SP.039, SP.040, SP.041, SP.042, SP.043, SP.044, SP.045, SP.046, SP.047, SP.048, SP.049, SP.050, SP.051, SP.052, SP.053, SP.054, SP.055, SP.056, SP.057, SP.058, SP.059, SP.060, SP.061, SP.062, SP.063, SP.064, SP.065, SP.066, SP.067, SP.068, SP.069, SP.070, SP.071, SP.072, SP.073, SP.074, SP.075, SP.076, SP.077, SP.078, SP.079, SP.080, SP.081, SP.082, SP.083, SP.084, SP.085, SP.086, SP.087, SP.088, SP.089, SP.090, SP.091, SP.092, SP.093, SP.094, SP.095, SP.096, SP.097, SP.098, SP.099, SP.100, SP.101, SP.102, SP.103, AN.world-facing, PR.other-callers, TOOL.traceability, UI.preview, UI.preferences_store, PF.frozen_world, WIRE.menu_fixtures, TOOL.asset_inspection, NA.cli, AS.legacy, RE.palette_effects, EXT.dependencies, GP.threading, TOOL.coverage-gate, TL.effect-type-setup, TL.effect-creation-variants, TL.effect-movement-recount, CP.realm-navigation, CP.region-admission, CP.realm-auxiliary
 
 Full addresses, indirect flows, imports and unassigned ranges are in the JSON report.
