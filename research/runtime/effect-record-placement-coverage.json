@@ -1,0 +1,1038 @@
+{
+  "schema": 1,
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "scope": "Selected common effect placement and renewed installed table accounting, reconciled into central register",
+  "recovered_ranges": [],
+  "classifications": [],
+  "api_bindings": [],
+  "dispatch_tables": [
+    {
+      "id": "effect-type-setup",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4812548,
+        "relation": "data",
+        "scope": "Type-setup dispatch table, 89 indices admitted by 00494ab0"
+      },
+      "document": "research/runtime/effect-record-placement.md",
+      "complete": false,
+      "scope": "Type writes observed; all child setup behaviors remain pending; fixture callback defers this dispatch",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 15,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 18,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 19,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 21,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 23,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 25,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 26,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 27,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 29,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 30,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 33,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 34,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 35,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 37,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 38,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 39,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 40,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 41,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 42,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 43,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 44,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 45,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 46,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 47,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 48,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 49,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 50,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 51,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 52,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 53,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 54,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 55,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 56,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 57,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 58,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 59,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 60,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 61,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 62,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 63,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 64,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 65,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 66,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 67,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 68,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 69,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 70,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 71,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 72,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 73,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 74,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 75,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 76,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 77,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 78,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 79,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 80,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 81,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 82,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 83,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 84,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 85,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 86,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 87,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 88,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        }
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "TL.effect-common-placement",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Common placement of five installed emitting effect types",
+      "scope": "Selected complete parent 00493f20 common placement for types 3/13/22/24/36, creator absent and type setup explicitly deferred; 63-word copy, bounded one-period endpoint wrapping, height clamps, start cells/fine units/cache/sentinels, cell-chain append or flag skip, active marker and high-water scan growth; no allocation, type-specific initialization or movement equivalence",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4800288,
+          "scope": "Selected complete parent 00493f20 common placement for types 3/13/22/24/36, creator absent and type setup explicitly deferred; 63-word copy, bounded one-period endpoint wrapping, height clamps, start cells/fine units/cache/sentinels, cell-chain append or flag skip, active marker and high-water scan growth; no allocation, type-specific initialization or movement equivalence"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-record-placement.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_placement.cpp",
+        "reconstruction/rendering/effect_placement.hpp"
+      ],
+      "tests": [
+        "tests/effect-placement-reference.cpp",
+        "tools/test-effect-placement.py"
+      ],
+      "evidence": [
+        "TL05.placement-original",
+        "TL05.placement-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-placement-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned effect placement bounds, rollback and pending recount guard",
+      "scope": "Owned cells and indices, selected five-type/no-creator admission, nonnegative heights and one-period coordinate bounds, safe chain/type/slot/capacity refusals with atomic rollback; active emitting source adapter refuses pending recount coordinates; no constructor/allocator or moving-source equivalence",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-record-placement.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_placement.cpp",
+        "reconstruction/rendering/effect_placement.hpp",
+        "reconstruction/rendering/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-placement-test.cpp",
+        "tools/test-effect-placement.py"
+      ],
+      "evidence": [
+        "TL05.placement-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-type-setup",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect type-specific animation and trajectory setup remains open",
+      "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment; no type-specific behavior implementation",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4803248,
+          "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment; no type-specific behavior implementation"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-record-placement.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-creation-variants",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Creator and alternate effect creation-position paths remain open",
+      "scope": "Creator ownership through 00522720, type 21 height search through 0048a270, destination-source types 9/11/31/32 and type 30 child allocation remain outside five-type ordinary placement",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4800288,
+          "scope": "Creator ownership through 00522720, type 21 height search through 0048a270, destination-source types 9/11/31/32 and type 30 child allocation remain outside five-type ordinary placement"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-record-placement.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.static-input-production",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Installed effect-record and view input production remains open",
+      "scope": "Installed light table and selected five-type common creation placement recovered separately; type-specific setup, movement/recount coordinate production, removal/recycling, region view ownership and broader collection allocation remain unimplemented",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4837216,
+          "scope": "Installed light table and selected five-type common creation placement recovered separately; type-specific setup, movement/recount coordinate production, removal/recycling, region view ownership and broader collection allocation remain unimplemented"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5164496,
+          "scope": "Installed light table and selected five-type common creation placement recovered separately; type-specific setup, movement/recount coordinate production, removal/recycling, region view ownership and broader collection allocation remain unimplemented"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5240576,
+          "scope": "Installed light table and selected five-type common creation placement recovered separately; type-specific setup, movement/recount coordinate production, removal/recycling, region view ownership and broader collection allocation remain unimplemented"
+        }
+      ],
+      "documents": [
+        "research/runtime/terrain-static-lighting.md",
+        "research/runtime/effect-lighting.md",
+        "research/runtime/effect-record-placement.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-table-loader",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Installed effect lighting table loader and type selection",
+      "scope": "Whole 0049c2e0 89-entry table loader and bounded 0049cf60 selection, profile-output boundary, ASCII/C-locale atoi modulo-32 decimal-prefix conversion, signed clamp 0..33, sticky flags and reload preservation; source lifecycle, OS profile calls and other locale branches excluded",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4834016,
+          "scope": "Whole 0049c2e0 89-entry table loader and bounded 0049cf60 selection, profile-output boundary, ASCII/C-locale atoi modulo-32 decimal-prefix conversion, signed clamp 0..33, sticky flags and reload preservation; source lifecycle, OS profile calls and other locale branches excluded"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4837216,
+          "scope": "Diameter DWORD selection at receiver+12+type*12; owned bounds 0..88"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5883161,
+          "scope": "Default C-locale decimal prefix, optional sign and wrapping 32-bit accumulation"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5888832,
+          "scope": "Default C-locale ASCII case-insensitive comparison against TRUE"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-lighting.md",
+        "research/formats/effect-lighting.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_lighting.cpp",
+        "reconstruction/rendering/effect_lighting.hpp"
+      ],
+      "tests": [
+        "tests/effect-lighting-reference.cpp",
+        "tools/test-effect-lighting.py"
+      ],
+      "evidence": [
+        "TL05.tables-original",
+        "TL05.tables-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-table-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned installed effect fields and authored source adapter",
+      "scope": "Bounded ASCII ProfileSnapshot reads of selected packed effects fields, explicit zero-default owned table, guarded type lookup/atomic reload refusal, authored-position adapter into existing combined cycle; no source record production, metadata-flag behavior or special-size-one stamping",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-lighting.md",
+        "research/formats/effect-lighting.md"
+      ],
+      "implementation": [
+        "assets/effect_lighting.cpp",
+        "assets/effect_lighting.hpp",
+        "assets/CMakeLists.txt",
+        "reconstruction/rendering/effect_lighting.cpp",
+        "reconstruction/rendering/effect_lighting.hpp",
+        "reconstruction/rendering/CMakeLists.txt",
+        "apps/terrain-preview/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-lighting-test.cpp",
+        "tests/effect-lighting-installed.cpp",
+        "tools/test-effect-lighting.py"
+      ],
+      "evidence": [
+        "TL05.tables-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "TL05.placement-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Selected complete parent 00493f20 common placement for types 3/13/22/24/36, creator absent and type setup explicitly deferred; 63-word copy, bounded one-period endpoint wrapping, height clamps, start cells/fine units/cache/sentinels, cell-chain append or flag skip, active marker and high-water scan growth; no allocation, type-specific initialization or movement equivalence",
+      "record": "research/runtime/effect-record-placement.json",
+      "sha256": "d65f82faed813e0f0ba0072f5a7b8be3a42291f264405630aa590bcdb858ea91",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 128
+        },
+        {
+          "pointer": "/placements",
+          "equals": 2048
+        },
+        {
+          "pointer": "/cell_checks",
+          "equals": 15220736
+        },
+        {
+          "pointer": "/linked",
+          "equals": 1712
+        },
+        {
+          "pointer": "/skipped",
+          "equals": 336
+        },
+        {
+          "pointer": "/full_suites/normal/tests_passed",
+          "equals": 70
+        },
+        {
+          "pointer": "/full_suites/ASan~1UBSan/tests_passed",
+          "equals": 70
+        }
+      ]
+    },
+    {
+      "id": "TL05.placement-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Owned cells and indices, selected five-type/no-creator admission, nonnegative heights and one-period coordinate bounds, safe chain/type/slot/capacity refusals with atomic rollback; active emitting source adapter refuses pending recount coordinates; no constructor/allocator or moving-source equivalence",
+      "record": "research/runtime/effect-record-placement.json",
+      "sha256": "d65f82faed813e0f0ba0072f5a7b8be3a42291f264405630aa590bcdb858ea91",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 128
+        },
+        {
+          "pointer": "/placements",
+          "equals": 2048
+        },
+        {
+          "pointer": "/cell_checks",
+          "equals": 15220736
+        },
+        {
+          "pointer": "/linked",
+          "equals": 1712
+        },
+        {
+          "pointer": "/skipped",
+          "equals": 336
+        },
+        {
+          "pointer": "/full_suites/normal/tests_passed",
+          "equals": 70
+        },
+        {
+          "pointer": "/full_suites/ASan~1UBSan/tests_passed",
+          "equals": 70
+        }
+      ]
+    },
+    {
+      "id": "TL05.tables-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 0049c2e0 89-entry table loader and bounded 0049cf60 selection, profile-output boundary, ASCII/C-locale atoi modulo-32 decimal-prefix conversion, signed clamp 0..33, sticky flags and reload preservation; source lifecycle, OS profile calls and other locale branches excluded",
+      "record": "research/runtime/effect-lighting-placement-build.json",
+      "sha256": "66ded8aa966c891d8ce0dbfd5429c160cee7ef9d5af36645526d2384c5ef476f",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/table_loads",
+          "equals": 132
+        },
+        {
+          "pointer": "/compared_dwords",
+          "equals": 35244
+        },
+        {
+          "pointer": "/profile_reads",
+          "equals": 35244
+        },
+        {
+          "pointer": "/selectors",
+          "equals": 11748
+        },
+        {
+          "pointer": "/installed_entries",
+          "equals": 89
+        },
+        {
+          "pointer": "/full_suites/normal/tests_passed",
+          "equals": 70
+        },
+        {
+          "pointer": "/full_suites/ASan~1UBSan/tests_passed",
+          "equals": 70
+        }
+      ]
+    },
+    {
+      "id": "TL05.tables-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Bounded ASCII ProfileSnapshot reads of selected packed effects fields, explicit zero-default owned table, guarded type lookup/atomic reload refusal, authored-position adapter into existing combined cycle; no source record production, metadata-flag behavior or special-size-one stamping",
+      "record": "research/runtime/effect-lighting-placement-build.json",
+      "sha256": "66ded8aa966c891d8ce0dbfd5429c160cee7ef9d5af36645526d2384c5ef476f",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/table_loads",
+          "equals": 132
+        },
+        {
+          "pointer": "/compared_dwords",
+          "equals": 35244
+        },
+        {
+          "pointer": "/profile_reads",
+          "equals": 35244
+        },
+        {
+          "pointer": "/selectors",
+          "equals": 11748
+        },
+        {
+          "pointer": "/installed_entries",
+          "equals": 89
+        },
+        {
+          "pointer": "/full_suites/normal/tests_passed",
+          "equals": 70
+        },
+        {
+          "pointer": "/full_suites/ASan~1UBSan/tests_passed",
+          "equals": 70
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "terrain-lighting.effect-common-placement",
+      "level": "headless",
+      "scope": "Selected complete parent 00493f20 common placement for types 3/13/22/24/36, creator absent and type setup explicitly deferred; 63-word copy, bounded one-period endpoint wrapping, height clamps, start cells/fine units/cache/sentinels, cell-chain append or flag skip, active marker and high-water scan growth; no allocation, type-specific initialization or movement equivalence",
+      "behaviors": [
+        "TL.effect-common-placement",
+        "TL.effect-placement-policy"
+      ],
+      "evidence": [
+        "TL05.placement-original",
+        "TL05.placement-native"
+      ],
+      "tests": [
+        "tests/effect-placement-reference.cpp",
+        "tests/effect-placement-test.cpp",
+        "tools/test-effect-placement.py"
+      ]
+    },
+    {
+      "id": "terrain-lighting.effect-table-placement-build",
+      "level": "headless",
+      "scope": "Renewed whole installed effect-table comparison and installed native reads in the 70-test placement build; historical fingerprints preserved",
+      "behaviors": [
+        "TL.effect-table-loader",
+        "TL.effect-table-policy"
+      ],
+      "evidence": [
+        "TL05.tables-original",
+        "TL05.tables-native"
+      ],
+      "tests": [
+        "tests/effect-lighting-reference.cpp",
+        "tests/effect-lighting-test.cpp",
+        "tests/effect-lighting-installed.cpp",
+        "tools/test-effect-lighting.py"
+      ]
+    }
+  ]
+}

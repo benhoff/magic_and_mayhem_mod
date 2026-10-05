@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "reviews": [
+    {
+      "behaviors": [
+        {
+          "after_sha256": "8f8ac859abd88f87eb9d135c090f4dd6afdce98f410f0bb27df562908cbb4bbd",
+          "before_sha256": null,
+          "id": "TL.effect-common-placement"
+        },
+        {
+          "after_sha256": "d765bd6f5d90ceb998ec2f456e0bea7921efc44e1411fd49170f79f1f8a96eea",
+          "before_sha256": null,
+          "id": "TL.effect-placement-policy"
+        },
+        {
+          "after_sha256": "8c6b459e31b3a2b0421572cf3774780a38d725ebe503e2d84314727e180a672f",
+          "before_sha256": "2dd79682926e39de6faae2cb8b4f1fc1a227bf3d26809a00ed9c0a34308a6b2b",
+          "id": "TL.effect-table-loader"
+        },
+        {
+          "after_sha256": "482be64855aeee0e96c9fb1b40c1a4a5272aa0d746cfa405450ef7d7bf948b96",
+          "before_sha256": "9504198dce1b57feb79946e087d381fa1952c22c8f06b75e1069530e5c4c4020",
+          "id": "TL.effect-table-policy"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "be73837ce4a707cad67abbeaa3877cd8e312b81a6b53e00e719100986a0a7697",
+          "before_sha256": "9a1f3d25bb04cdcb8da24db8b6a00682fb6adad9308376b798db736b317c912b",
+          "path": "reconstruction/rendering/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "4452c640fe6d3712c30e400d5e6c629b0d72b822f56b342bd7721aae3f746634",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_placement.cpp"
+        },
+        {
+          "after_sha256": "60de7c29e51aa4e66144946522f88c3a6613a293e8221fefa4d224f77ae03681",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_placement.hpp"
+        },
+        {
+          "after_sha256": "09311bddd04994cdd27da0d0985aa2516c7e398163e1fb20f9e28e6d89fe83f8",
+          "before_sha256": "ab621d47b6fb5e317b9ccda9d512845083dc345728c2cc06e6eff913cb8f7837",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "032d6af83d02bfe8c80b94e544ee4e9fe641a5469143addedac6a43f6b9a95e5",
+          "before_sha256": "9beae2683ccc8aa1ce351c3b28027690f2b780be38cc9ee99eb78d023b2e65aa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "66ded8aa966c891d8ce0dbfd5429c160cee7ef9d5af36645526d2384c5ef476f",
+          "before_sha256": null,
+          "path": "research/runtime/effect-lighting-placement-build.json"
+        },
+        {
+          "after_sha256": "cdc1f8c941a99530c19449b78d0cf030017d8d85f202f9d28aed64bee117ac05",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement-coverage.json"
+        },
+        {
+          "after_sha256": "61e9bef9d2fe60bd86a8c729bc60f0419e10ccc844aac7ed1dcd549c7b437d32",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement-source-index.json"
+        },
+        {
+          "after_sha256": "d65f82faed813e0f0ba0072f5a7b8be3a42291f264405630aa590bcdb858ea91",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement.json"
+        },
+        {
+          "after_sha256": "57c63a8d2dbedf89dbcf496bc3a4b97ac66b8329cd2a2f6bf64eab99005997d6",
+          "before_sha256": null,
+          "path": "research/runtime/effect-record-placement.md"
+        },
+        {
+          "after_sha256": "22c720546538faa05da4619fe16e536b51383691770eb444c41e83c44695d425",
+          "before_sha256": null,
+          "path": "tests/effect-placement-reference.cpp"
+        },
+        {
+          "after_sha256": "2c9eb5a0328fd59c0c400d093bed37103c8a82b57ace6a8ba93692a8333b7214",
+          "before_sha256": null,
+          "path": "tests/effect-placement-test.cpp"
+        },
+        {
+          "after_sha256": "31ae23481fd210b4d13d7a7cdf8a485b1e6fdfd7da17ec12cce5fd0d27db9d95",
+          "before_sha256": null,
+          "path": "tools/test-effect-placement.py"
+        }
+      ],
+      "id": "effect-placement-20261005-recorded",
+      "pending_gaps": [
+        "behaviors_without_comparison:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_comparison:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "behaviors_without_comparison:8fa43a7142ff9a88cb4629ebd1e1840900e74c94ecd0e8f028187b4f83d47086",
+        "behaviors_without_implementation:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_implementation:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "behaviors_without_scenarios:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_scenarios:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "stale_evidence:3a5b19eabd54076720fa6a4b67819d84d6dde66f98f1f4045d9e729ff6023e56",
+        "stale_evidence:87788e29cee6df5327cf036b8a57fbd4f45aa6c6dee913cdda1967ee97665ec1"
+      ],
+      "reason": "Reviewed the five-type common creation branch, one-period units and height clamps, metadata reset, owned cell-chain insertion/skip, activation and high-water bound. Explicitly defer the original type dispatcher and reject pending recount input. Preserve historical TL04 fingerprints; fresh TL05 results validate the expanded build and installed table again.",
+      "validation": {
+        "status": "recorded",
+        "reason": "128 original common-creation fixtures/2048 placements and 15,220,736 cell checks matched 32-bit original/native, 64-bit native and ASan/UBSan outputs; renewed 132 table loads and all installed selected fields; 70 full tests passed in both builds; focused current-source audit passed. Child setup is redirected only within the private test mapping and is not claimed equivalent.",
+        "evidence": [
+          "TL05.placement-original",
+          "TL05.placement-native",
+          "TL05.tables-original",
+          "TL05.tables-native"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "fe5a745776b3f0ae3ba716068e428eca489edbd32a6686bd931ff02e23a965c6",
+          "before_sha256": null,
+          "id": "TL.effect-creation-variants"
+        },
+        {
+          "after_sha256": "72e14819776449849577bc93e02d44c2dcf4412fad3e0724f6ab49f970a59563",
+          "before_sha256": null,
+          "id": "TL.effect-type-setup"
+        },
+        {
+          "after_sha256": "3ee8092fe2eecf0376b5a037f150d39cbd0a1f8f6500f5808267c41ad3965894",
+          "before_sha256": "c8dc4c31f4e42847013ba28cd069be307042aa2e6bd3ee9831d1da2d0830dba0",
+          "id": "TL.static-input-production"
+        }
+      ],
+      "files": [],
+      "id": "effect-placement-20261005-pending",
+      "pending_gaps": [
+        "behaviors_without_comparison:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_comparison:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "behaviors_without_comparison:8fa43a7142ff9a88cb4629ebd1e1840900e74c94ecd0e8f028187b4f83d47086",
+        "behaviors_without_implementation:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_implementation:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "behaviors_without_scenarios:10ab48a427c172e3fa65cf4fd68866da490eef23cf530adaf0d37d4059ab9dce",
+        "behaviors_without_scenarios:8d8aff18085c493f900a9b39fd0a09702c210d9f7c8457e9934c50d3aa54bb77",
+        "stale_evidence:3a5b19eabd54076720fa6a4b67819d84d6dde66f98f1f4045d9e729ff6023e56",
+        "stale_evidence:87788e29cee6df5327cf036b8a57fbd4f45aa6c6dee913cdda1967ee97665ec1"
+      ],
+      "reason": "Narrow the former source-production gap to movement/recount, view production and collection lifecycle. Record creator/alternate position paths and all 89 deferred effect type setups as explicit gaps. Native pending-position refusal is not a recovery of the original scheduling or moving-source lifecycle.",
+      "validation": {
+        "status": "pending",
+        "reason": "Type-specific animation and trajectories, type-21 height search, creator ownership, removal/recycling and live effect lifecycle have no current native equivalence proof. Common-parent fixture comparison deliberately excludes those child behaviors.",
+        "evidence": []
+      }
+    }
+  ]
+}

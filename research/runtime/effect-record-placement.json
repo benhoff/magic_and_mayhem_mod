@@ -1,0 +1,64 @@
+{
+  "all_match": true,
+  "live_validated": false,
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "fixtures": 128,
+  "placements": 2048,
+  "linked": 1712,
+  "skipped": 336,
+  "cell_checks": 15220736,
+  "output_sha256": "4c467d99cd0c4795f9c6a6adc28b31c6da0d655ab248ff98ac9374c31a44d25a",
+  "helper_sha256": {
+    "original": "90d73789475c62cbb4d64cf99d68f23b031daf8018b2878b95b7c395915a3183",
+    "native": "817badb79260d3916e81442f81e476c2b264179e72e1957d62662b68ad154a10",
+    "sanitized": "f5656ec76dbe67af31a1a0e3a943634a329339d74f60ff5c30f978528cb4ad9f"
+  },
+  "registered_source_sha256": {
+    "apps/terrain-preview/CMakeLists.txt": "2930c0d3969e5dabb6f3fd03d2972554fb393d0d276492bbd1c4cb13aeacd344",
+    "assets/CMakeLists.txt": "4a00cbede6f2ba313b036fb61bbe00633d0ac5bf231596a881d320716dcbe4c2",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/effect_lighting.cpp": "1d412b98700a0f07ab392e90258f881866c182ed491422f88b73c7958314f83d",
+    "assets/effect_lighting.hpp": "a5f5892c1aff7770ce1a85356e8c9f192cd816504f82d2f4df3e79fd9f62750a",
+    "assets/packed_container.cpp": "1a69d4236536be0ae9f9944b00ea816b33a4a249010bc4e011e4a43cb2e17e0d",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "assets/persistence.hpp": "3013cefe3f0cfe931b8f7c3961c66765233f2826fc417d2f48da3574501249b1",
+    "assets/persistence_internal.hpp": "f704e35fdd852b18f370d71a62a9881dc6f41d2e99b8f0cf9aa4c1bc46d76c0f",
+    "assets/profile.cpp": "a6e917c7e14b5599c97aaca99c6b39dfd7222b22d5be2744c8dc42c9acd0420f",
+    "assets/profile.hpp": "f1fe154be5c9b06d23d7b847c3e3488de89e2d54669586e3a3f9705bbfaa7279",
+    "reconstruction/rendering/CMakeLists.txt": "be73837ce4a707cad67abbeaa3877cd8e312b81a6b53e00e719100986a0a7697",
+    "reconstruction/rendering/effect_lighting.cpp": "74559ea77928379a8ea13b6a71d757828f4e3511b05ab87a23e543f53f72213f",
+    "reconstruction/rendering/effect_lighting.hpp": "428cd7d9804208747d9317fb6a9a5429e18e0d052778634fcd77e1fe4373e557",
+    "reconstruction/rendering/effect_placement.cpp": "4452c640fe6d3712c30e400d5e6c629b0d72b822f56b342bd7721aae3f746634",
+    "reconstruction/rendering/effect_placement.hpp": "60de7c29e51aa4e66144946522f88c3a6613a293e8221fefa4d224f77ae03681",
+    "reconstruction/rendering/terrain_creature_lighting.cpp": "230416703569b15643bf13481af726beaf3c3db0308a694fe6ba268b9a09e354",
+    "reconstruction/rendering/terrain_creature_lighting.hpp": "d7202a69c681ab0a8f2b161b746542e08c75f48e03f5c3e5877e2651817b1d75",
+    "reconstruction/rendering/terrain_lighting.cpp": "71362a12b9c39430f935172eee6b86bdd69e569baeb802f2b5bcef86941128d6",
+    "reconstruction/rendering/terrain_lighting.hpp": "0d6dbe9a670c7c9fe9d21c5daa23cdb704db9a75ebb2f1f7112c9727c2e88762",
+    "reconstruction/rendering/terrain_lighting_cycle.cpp": "6015389b06d64a4a98e0de84ee3f8d609da0141f1d2bae96b42e6fd1130c0c54",
+    "reconstruction/rendering/terrain_lighting_cycle.hpp": "839b8437d482d37c99cac196aff3e6da6fb3d669bda9d94c8163285f873e3ffb",
+    "reconstruction/rendering/terrain_static_lighting.cpp": "6f8b744d24544c844b92211896be4a2404beba3711761f9cdacc95ac7d1ac587",
+    "reconstruction/rendering/terrain_static_lighting.hpp": "f371003796bfe462159ef0ed49433cd2be51b2658b903aa9a211b20b75c7c589",
+    "tests/effect-lighting-installed.cpp": "c16c36b79dc6e895b6057d7ee4561e3a0a6aec0edf3938cdd371e7e3cf0167d9",
+    "tests/effect-lighting-reference.cpp": "e81725ede4988256cdaa2258ec1d7cc22cff510b8fe99e3a1b4ceb77976faa9e",
+    "tests/effect-lighting-test.cpp": "fc20ae7806b6f64edea0458c15b887ed96ae22d0cd53b454e28668f4f3f3b064",
+    "tests/effect-placement-reference.cpp": "22c720546538faa05da4619fe16e536b51383691770eb444c41e83c44695d425",
+    "tests/effect-placement-test.cpp": "2c9eb5a0328fd59c0c400d093bed37103c8a82b57ace6a8ba93692a8333b7214",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/decode-cfg.py": "acf3c809fa12e2227ab1b9aad20119491855b39f3becf558d90229861763e27e",
+    "tools/test-effect-lighting.py": "419a01e4a3ff21b0679bd9b121ca0e5337397aac4ef9ba6a3daafab95ef2093e",
+    "tools/test-effect-placement.py": "31ae23481fd210b4d13d7a7cdf8a485b1e6fdfd7da17ec12cce5fd0d27db9d95"
+  },
+  "full_suites": {
+    "normal": {
+      "tests_passed": 70
+    },
+    "ASan/UBSan": {
+      "tests_passed": 70
+    }
+  },
+  "effect_table_report": "working/tests/effect-lighting/run-yq1bwdf7/report.json",
+  "effect_table_report_sha256": "66ded8aa966c891d8ce0dbfd5429c160cee7ef9d5af36645526d2384c5ef476f",
+  "boundary": "Unmodified 00493f20 common creation path for types 3/13/22/24/36 with no creator, logging disabled and preallocated owned grid/records; only 00494ab0 type setup redirected to checked type assignment callback in private memory; no original type-specific animation, allocator, movement, height-search type 21 or live replacement"
+}
