@@ -180,3 +180,39 @@ placement/rotation are rejected. General edge correction, entity placement,
 lighting and water remain separate. See
 [authored-region evidence](../../research/runtime/terrain-authored-regions.md)
 and [recipe syntax](../../research/formats/region-terrain-recipes.md).
+
+## Generated recipe terrain
+
+```sh
+working/build/terrain-generated-scenes/mnm-terrain-preview \
+  --root working/game-clean --region-config 'Realms\Greek\Greek.cfg' \
+  --region-id 1 --generation-seed 123 --world --initialize-terrain \
+  --view 2 --visibility
+```
+
+`--generation-seed` selects the recovered generator with an explicit unsigned
+32-bit seed, including zero. It requires `--region-config`; omitting it preserves
+the authored-only path above. The loader reads complete Specific then Random MAP
+inputs, preserves repeated source-entry identities, performs up to ten recovered
+attempts and assembles successful assignments into an owned ordinary terrain MAP.
+Geometry runs after assembly. Source payloads are temporary and remain unchanged.
+Source storage is bounded to 2,097,152 cells; the existing catalog/placement bounds
+apply. Exhausted generation reports the attempt count and next seed and produces
+no frame. Missing inputs are refused, including Medieval REGION0's absent Test
+sections.
+
+Output provenance includes the concrete source blocks and generation seed,
+next seed, attempts, backtracks and typed warning notices under
+`map.recipe.generation`. World output also includes `map.cells_sha256`, the hash
+of all initialized 12-byte cell records, including cells outside the viewport.
+The service has no QWidget dependency; the preview widget presents its image.
+
+```sh
+xvfb-run -a python3 tools/test-terrain-generated-scenes.py \
+  --source-root SOURCE_SNAPSHOT --preview NORMAL --sanitized SANITIZED
+```
+
+This checks original selected assignments, independent whole-map copy/rotation,
+original geometry and queue/visibility calls, complete RGB565/RGBA scene frames
+and failure paths. Entities, lighting, water and live replacement remain separate.
+See [generated scene evidence](../../research/runtime/native-generated-terrain-scenes.md).

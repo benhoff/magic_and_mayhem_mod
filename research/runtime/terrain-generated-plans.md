@@ -91,3 +91,7 @@ generated scene frame comparisons, original CFG/file-error continuation,
 entities, water, lighting and live integration are separate. The next chunk is
 to connect available generated recipes to complete MAP loading, ordinary assembly,
 geometry initialization and bounded scene comparisons through the native preview.
+
+Complete installed MAP loading, owned ordinary assembly, post-assembly geometry
+and bounded generated scene comparisons are now connected in the subsequent
+[native generated scene milestone](native-generated-terrain-scenes.md).

@@ -16,14 +16,16 @@
 #include <algorithm>
 namespace {
 void writeNew(const QString& path,const QByteArray& bytes){QFile file(path);if(!file.open(QIODevice::WriteOnly|QIODevice::NewOnly) || file.write(bytes)!=bytes.size() || !file.flush())throw std::runtime_error("Cannot write new preview output");}
+QString mapCellHash(const mnm::assets::MapAsset& map){QByteArray bytes;for(const auto& c:map.cells)for(auto v:std::array<std::uint16_t,6>{c.definition,c.references[0],c.references[1],c.references[2],c.flags8,c.flags10}){bytes.append(char(v&255));bytes.append(char(v>>8));}return QString::fromLatin1(QCryptographicHash::hash(bytes,QCryptographicHash::Sha256).toHex());}
 }
 int main(int argc,char** argv)try{
  QApplication app(argc,argv);QCommandLineParser p;p.addHelpOption();
  p.addOption({"root","Installed asset root","directory"});p.addOption({"realm","Realm directory","path","Realms/Celtic/Forest"});
  p.addOption({"definitions","1..9 comma-separated TTD IDs","ids","5,9,13,17,21,25,29,33,37"});
  p.addOption({"map","Installed MAP request; replaces explicit definitions","path"});
- p.addOption({"region-config","Realm CFG containing an authored region recipe","path"});
+ p.addOption({"region-config","Realm CFG containing a region recipe","path"});
  p.addOption({"region-id","Region recipe numeric ID","id"});
+ p.addOption({"generation-seed","Generate a region with an explicit unsigned 32-bit seed","seed"});
  p.addOption({"grid","Explicit complete section grid columns,rows,side","dimensions"});
  p.addOption({"section","MAP path,sourceX,sourceY,column,row,rotation; repeat for every grid slot","selection"});
  p.addOption({"region","MAP slice x,y,layer,width,height (width/height 1..3)","coordinates","0,0,0,3,3"});
@@ -37,6 +39,8 @@ int main(int argc,char** argv)try{
  bool ok=false;const auto view=p.value("view").toUInt(&ok);if(!ok || view>3 || !p.isSet("root"))throw std::runtime_error("Specify --root and view 0..3");
  auto configured=mnm::assets::AssetStore::create(p.value("root").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&configured))throw std::runtime_error(e->detail);
  auto store=std::get<mnm::assets::AssetStore>(std::move(configured));
+ std::optional<std::uint32_t> generationSeed;
+ if(p.isSet("generation-seed")){const auto seed=p.value("generation-seed").toUInt(&ok);if(!ok || !p.isSet("region-config"))throw std::runtime_error("Generation seed requires region config and an unsigned 32-bit integer");generationSeed=seed;}
  std::optional<mnm::assets::RegionRecipe> recipe;QString realm=p.value("realm");
  if(p.isSet("region-config")){
   if(!p.isSet("region-id") || !p.isSet("world") || !p.isSet("initialize-terrain") || p.isSet("map") || p.isSet("grid") || p.isSet("section") || p.isSet("realm"))throw std::runtime_error("Region config requires region-id, world and initialize-terrain; excludes map/grid/section/realm");
@@ -61,9 +65,18 @@ int main(int argc,char** argv)try{
   const auto load=[&](const QString& path){auto opened=store.open(path.toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&opened))throw std::runtime_error(e->detail);auto file=std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(opened));auto loaded=mnm::assets::loadMap(*file);if(auto* e=std::get_if<mnm::assets::PersistenceError>(&loaded))throw std::runtime_error(e->detail);return std::get<mnm::assets::MapAsset>(std::move(loaded));};
   mnm::assets::MapAsset map;QJsonObject assemblyInfo,recipeInfo;
   if(recipe){
-   auto loaded=mnm::preview::loadFixedTerrainRegion(store,*recipe,std::get<mnm::assets::TerrainCatalog>(catalog));
+   mnm::preview::LoadedFixedRegion loaded;QJsonObject generationInfo;
+   if(generationSeed){
+    auto generated=mnm::preview::loadGeneratedTerrainRegion(store,*recipe,std::get<mnm::assets::TerrainCatalog>(catalog),*generationSeed);
+    const auto& state=generated.generated.generation;
+    if(!generated.assembly)throw std::runtime_error("Region generation exhausted "+std::to_string(state.attempts.size())+" attempts; next seed "+std::to_string(state.nextSeed));
+    QJsonArray attempts;for(const auto& attempt:state.attempts){QJsonArray notices;for(const auto& notice:attempt.diagnostics)notices.append(QJsonObject{{"descriptor",int(notice.descriptor)},{"notice",int(notice.notice)}});attempts.append(QJsonObject{{"seed",qint64(attempt.seed)},{"complete",attempt.complete},{"backtracks",int(attempt.backtracks)},{"multi_block_backtracks",int(attempt.multiBlockBacktracks)},{"notices",notices}});}
+    generationInfo={{"seed",qint64(*generationSeed)},{"next_seed",qint64(state.nextSeed)},{"complete",state.complete},{"attempts",attempts}};
+    loaded.assembly=std::move(*generated.assembly);loaded.plan=std::move(*generated.generated.plan);loaded.paths=std::move(generated.paths);
+   }else loaded=mnm::preview::loadFixedTerrainRegion(store,*recipe,std::get<mnm::assets::TerrainCatalog>(catalog));
    QJsonArray blocks;for(const auto& b:loaded.plan.blocks)blocks.append(QJsonObject{{"path",QString::fromStdString(loaded.paths[b.source])},{"source_x",int(b.sourceX)},{"source_y",int(b.sourceY)},{"column",int(b.column)},{"row",int(b.row)},{"rotation",int(b.rotation)}});
    recipeInfo={{"config",p.value("region-config")},{"id",int(recipe->id)},{"name",QString::fromStdString(recipe->name)},{"sprite_path",realm},{"side",int(loaded.plan.side)},{"blocks",blocks},{"projected_source_objects",int(loaded.assembly.projectedObjects)},{"projected_source_references",int(loaded.assembly.projectedReferences)}};
+   if(generationSeed)recipeInfo.insert("generation",generationInfo);
    map=std::move(loaded.assembly.map);
   }else if(p.isSet("grid")){
    const auto dimensions=p.value("grid").split(',');if(dimensions.size()!=3)throw std::runtime_error("Grid requires columns,rows,side");
@@ -111,6 +124,7 @@ int main(int argc,char** argv)try{
    }
    tiles=mnm::preview::worldTerrainTiles(map,camera);
    mapInfo={{"path",p.value("map")},{"width",qint64(map.width)},{"height",qint64(map.height)},{"layers",qint64(map.layers)},{"camera",QJsonArray{camera.column,camera.row,int(camera.span),int(camera.cutLevel)}},{"pan",QJsonArray{camera.f11,camera.f15}}};
+   if(p.isSet("output"))mapInfo.insert("cells_sha256",mapCellHash(map));
    if(recipe)mapInfo.insert("recipe",recipeInfo);
    if(p.isSet("grid"))mapInfo.insert("assembly",assemblyInfo);
    if(p.isSet("initialize-terrain"))mapInfo.insert("terrain_geometry",geometryInfo);

@@ -230,5 +230,5 @@ int main(int argc,char** argv)try{
     require(at==input.size() && plans>0 && failures>0 && installedPlans>0);
     std::cout<<"{\"cases\":"<<cases<<",\"plans\":"<<plans<<",\"plan_blocks\":"<<blocks<<",\"failed_generations\":"<<failures<<",\"installed_cases\":"<<installed<<",\"installed_plans\":"<<installedPlans<<",\"installed_recipes\":"<<count<<",\"native_refusals\":"<<refusals<<",\"refusal_reasons\":{";
     bool first=true;for(const auto& r:refusalReasons){if(!first)std::cout<<",";first=false;std::cout<<"\""<<r.first<<"\":"<<r.second;}
-    std::cout<<"},\"all_match\":true}\n";
+    std::cout<<"},\"all_match\":true}\n";return 0;
 }catch(const std::exception& e){std::cerr<<"Fixture "<<context<<": "<<e.what()<<'\n';return 1;}
