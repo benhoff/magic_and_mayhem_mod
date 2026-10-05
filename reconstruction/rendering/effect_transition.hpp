@@ -3,13 +3,15 @@
 #include "effect_cleanup.hpp"
 
 namespace mnm::reconstruction {
+// Four owned catalog entries, each an 8x8x4 MSB-first occupancy bitmap.
+using EffectTerrainOccupancy=std::array<std::array<std::uint8_t,32>,4>;
 struct EffectTransitionState {
     EffectProjectionState motion;
     std::array<unsigned,3> previousPosition{};
     unsigned terrain=1;
 };
-// Complete 004883f0 selected empty-world movement with optional membership updates.
-// Caller supplies empty terrain bits/no creatures, catalog ordinals 0..3,
+// Complete 004883f0 selected no-creature movement with optional membership updates.
+// Caller supplies no creatures, catalog ordinals 0..3 and owned terrain bits,
 // authored trajectory and the existing projection bounds. Changed blocked cells
 // commit the original partial updates and return 1. Height exits commit raw
 // trajectory parameters/counter while retaining the last valid fine/cell state,
@@ -20,5 +22,6 @@ struct EffectTransitionState {
 unsigned transitionEffectEmptyWorld(EffectPlacementPool&,unsigned slot,EffectTransitionState&,
                                     unsigned width,unsigned height,unsigned layers,
                                     const std::vector<EffectCleanupColumn>& columns={},
-                                    bool updateMembership=true);
+                                    bool updateMembership=true,
+                                    const EffectTerrainOccupancy& occupancy={});
 }

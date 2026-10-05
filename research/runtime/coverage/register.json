@@ -10072,13 +10072,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked/height partial state and bounded membership-disabled motion recovered separately. Occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified; disabled-height combinations are not compared in the new disabled fixtures",
+      "scope": "Selected same-cell, zero/nonzero terrain transitions, column cleanup, blocked/height partial state, bounded disabled membership and no-creature terrain occupancy recovered separately. Creature occupancy/collisions, type-35 terrain mutation, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, installed terrain catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions are not newly compared by dedicated fixtures",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked/height partial state and bounded membership-disabled motion recovered separately. Occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified; disabled-height combinations are not compared in the new disabled fixtures"
+          "scope": "Selected same-cell, zero/nonzero terrain transitions, column cleanup, blocked/height partial state, bounded disabled membership and no-creature terrain occupancy recovered separately. Creature occupancy/collisions, type-35 terrain mutation, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, installed terrain catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions are not newly compared by dedicated fixtures"
         }
       ],
       "documents": [
@@ -10088,7 +10088,8 @@
         "research/runtime/effect-cell-cleanup.md",
         "research/runtime/effect-blocked-destinations.md",
         "research/runtime/effect-height-exits.md",
-        "research/runtime/effect-membership-disabled.md"
+        "research/runtime/effect-membership-disabled.md",
+        "research/runtime/effect-terrain-occupancy.md"
       ],
       "implementation": [],
       "tests": [],
@@ -11146,6 +11147,80 @@
       ],
       "evidence": [
         "TL12.membership-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-terrain-occupancy",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect terrain occupancy and cache-gated hit state",
+      "scope": "Complete unmodified 004883f0 selected no-creature terrain occupancy path and real 004e10e0: five emitting types, creator=-1, kind 0/68, catalog ordinals 0..3, authored 0..8 steps and prior bounded counters/wrapping/dimensions; owned 8x8x4 MSB-first bitmaps, cache-gated sampling including changed-cell matching-cache bypass, clear-bit cache publication and hit parameter 7=-1/return 1 before subcell update, current fine/cell/reference/recount and enabled insertion or disabled unchanged graph, repeated calls and fresh prior-contract reruns; no creature collision, type-35 terrain mutation, bitmap/blocked/height combined fixtures or live caller/catalog production",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Complete unmodified 004883f0 selected no-creature terrain occupancy path and real 004e10e0: five emitting types, creator=-1, kind 0/68, catalog ordinals 0..3, authored 0..8 steps and prior bounded counters/wrapping/dimensions; owned 8x8x4 MSB-first bitmaps, cache-gated sampling including changed-cell matching-cache bypass, clear-bit cache publication and hit parameter 7=-1/return 1 before subcell update, current fine/cell/reference/recount and enabled insertion or disabled unchanged graph, repeated calls and fresh prior-contract reruns; no creature collision, type-35 terrain mutation, bitmap/blocked/height combined fixtures or live caller/catalog production"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5116128,
+          "scope": "Whole 004e10e0 MSB-first bitmap query at byte Y+8*Z for bounded local X/Y/Z; invoked by the selected original movement parent"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-terrain-occupancy.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp"
+      ],
+      "tests": [
+        "tests/effect-occupancy-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL13.occupancy-original",
+        "TL13.occupancy-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-occupancy-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned terrain bitmap input and supported hit publication",
+      "scope": "Owned fixed-size read-only occupancy catalogs with zero default preserve prior callers; supported terrain-hit partial state commits atomically with membership-specific graph behavior and existing bounds/cycle/current-cell admission, while unsupported inputs retain exception rollback; headless hit/bypass/lighting tests do not imply original malformed input or caller lifecycle equivalence",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-terrain-occupancy.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp"
+      ],
+      "tests": [
+        "tests/effect-occupancy-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL13.occupancy-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -17524,6 +17599,374 @@
           "equals": 6
         }
       ]
+    },
+    {
+      "id": "TL13.occupancy-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Complete unmodified 004883f0 selected no-creature terrain occupancy path and real 004e10e0: five emitting types, creator=-1, kind 0/68, catalog ordinals 0..3, authored 0..8 steps and prior bounded counters/wrapping/dimensions; owned 8x8x4 MSB-first bitmaps, cache-gated sampling including changed-cell matching-cache bypass, clear-bit cache publication and hit parameter 7=-1/return 1 before subcell update, current fine/cell/reference/recount and enabled insertion or disabled unchanged graph, repeated calls and fresh prior-contract reruns; no creature collision, type-35 terrain mutation, bitmap/blocked/height combined fixtures or live caller/catalog production",
+      "record": "research/runtime/effect-terrain-occupancy.json",
+      "sha256": "469f00f1d4c3e8b6d75fef571ee2904b73e808e455dc73f8b6bddab11813265d",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/steps",
+          "equals": 10288
+        },
+        {
+          "pointer": "/transitions",
+          "equals": 8911
+        },
+        {
+          "pointer": "/cache_updates",
+          "equals": 5784
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/cleanup_fixtures",
+          "equals": 3072
+        },
+        {
+          "pointer": "/cleanup_calls",
+          "equals": 6144
+        },
+        {
+          "pointer": "/marked",
+          "equals": 922
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        },
+        {
+          "pointer": "/blocked_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/steps",
+          "equals": 4715
+        },
+        {
+          "pointer": "/blocked_comparison/transitions",
+          "equals": 3338
+        },
+        {
+          "pointer": "/blocked_comparison/cache_updates",
+          "equals": 1466
+        },
+        {
+          "pointer": "/blocked_comparison/blocked",
+          "equals": 1102
+        },
+        {
+          "pointer": "/blocked_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/height_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/steps",
+          "equals": 3447
+        },
+        {
+          "pointer": "/height_comparison/transitions",
+          "equals": 1911
+        },
+        {
+          "pointer": "/height_comparison/cache_updates",
+          "equals": 746
+        },
+        {
+          "pointer": "/height_comparison/height_exits",
+          "equals": 1536
+        },
+        {
+          "pointer": "/height_comparison/lower_exits",
+          "equals": 878
+        },
+        {
+          "pointer": "/height_comparison/upper_exits",
+          "equals": 658
+        },
+        {
+          "pointer": "/height_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/membership_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/membership_comparison/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/membership_comparison/steps",
+          "equals": 6733
+        },
+        {
+          "pointer": "/membership_comparison/transitions",
+          "equals": 5356
+        },
+        {
+          "pointer": "/membership_comparison/cache_updates",
+          "equals": 2802
+        },
+        {
+          "pointer": "/membership_comparison/blocked",
+          "equals": 1439
+        },
+        {
+          "pointer": "/membership_comparison/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/occupancy_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/occupancy_comparison/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/occupancy_comparison/steps",
+          "equals": 6434
+        },
+        {
+          "pointer": "/occupancy_comparison/transitions",
+          "equals": 3294
+        },
+        {
+          "pointer": "/occupancy_comparison/cache_updates",
+          "equals": 1284
+        },
+        {
+          "pointer": "/occupancy_comparison/terrain_hits",
+          "equals": 1471
+        },
+        {
+          "pointer": "/occupancy_comparison/cell_bytes",
+          "equals": 86639360
+        }
+      ]
+    },
+    {
+      "id": "TL13.occupancy-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Owned fixed-size read-only occupancy catalogs with zero default preserve prior callers; supported terrain-hit partial state commits atomically with membership-specific graph behavior and existing bounds/cycle/current-cell admission, while unsupported inputs retain exception rollback; headless hit/bypass/lighting tests do not imply original malformed input or caller lifecycle equivalence",
+      "record": "research/runtime/effect-terrain-occupancy.json",
+      "sha256": "469f00f1d4c3e8b6d75fef571ee2904b73e808e455dc73f8b6bddab11813265d",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/steps",
+          "equals": 10288
+        },
+        {
+          "pointer": "/transitions",
+          "equals": 8911
+        },
+        {
+          "pointer": "/cache_updates",
+          "equals": 5784
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/cleanup_fixtures",
+          "equals": 3072
+        },
+        {
+          "pointer": "/cleanup_calls",
+          "equals": 6144
+        },
+        {
+          "pointer": "/marked",
+          "equals": 922
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        },
+        {
+          "pointer": "/blocked_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/steps",
+          "equals": 4715
+        },
+        {
+          "pointer": "/blocked_comparison/transitions",
+          "equals": 3338
+        },
+        {
+          "pointer": "/blocked_comparison/cache_updates",
+          "equals": 1466
+        },
+        {
+          "pointer": "/blocked_comparison/blocked",
+          "equals": 1102
+        },
+        {
+          "pointer": "/blocked_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/height_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/steps",
+          "equals": 3447
+        },
+        {
+          "pointer": "/height_comparison/transitions",
+          "equals": 1911
+        },
+        {
+          "pointer": "/height_comparison/cache_updates",
+          "equals": 746
+        },
+        {
+          "pointer": "/height_comparison/height_exits",
+          "equals": 1536
+        },
+        {
+          "pointer": "/height_comparison/lower_exits",
+          "equals": 878
+        },
+        {
+          "pointer": "/height_comparison/upper_exits",
+          "equals": 658
+        },
+        {
+          "pointer": "/height_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/membership_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/membership_comparison/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/membership_comparison/steps",
+          "equals": 6733
+        },
+        {
+          "pointer": "/membership_comparison/transitions",
+          "equals": 5356
+        },
+        {
+          "pointer": "/membership_comparison/cache_updates",
+          "equals": 2802
+        },
+        {
+          "pointer": "/membership_comparison/blocked",
+          "equals": 1439
+        },
+        {
+          "pointer": "/membership_comparison/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/occupancy_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/occupancy_comparison/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/occupancy_comparison/steps",
+          "equals": 6434
+        },
+        {
+          "pointer": "/occupancy_comparison/transitions",
+          "equals": 3294
+        },
+        {
+          "pointer": "/occupancy_comparison/cache_updates",
+          "equals": 1284
+        },
+        {
+          "pointer": "/occupancy_comparison/terrain_hits",
+          "equals": 1471
+        },
+        {
+          "pointer": "/occupancy_comparison/cell_bytes",
+          "equals": 86639360
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -19442,6 +19885,24 @@
         "tests/world-scene-test.cpp",
         "tools/test-multi-world-scene.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-terrain-occupancy",
+      "level": "headless",
+      "scope": "Complete unmodified 004883f0 selected no-creature terrain occupancy path and real 004e10e0: five emitting types, creator=-1, kind 0/68, catalog ordinals 0..3, authored 0..8 steps and prior bounded counters/wrapping/dimensions; owned 8x8x4 MSB-first bitmaps, cache-gated sampling including changed-cell matching-cache bypass, clear-bit cache publication and hit parameter 7=-1/return 1 before subcell update, current fine/cell/reference/recount and enabled insertion or disabled unchanged graph, repeated calls and fresh prior-contract reruns; no creature collision, type-35 terrain mutation, bitmap/blocked/height combined fixtures or live caller/catalog production; Owned fixed-size read-only occupancy catalogs with zero default preserve prior callers; supported terrain-hit partial state commits atomically with membership-specific graph behavior and existing bounds/cycle/current-cell admission, while unsupported inputs retain exception rollback; headless hit/bypass/lighting tests do not imply original malformed input or caller lifecycle equivalence",
+      "behaviors": [
+        "TL.effect-terrain-occupancy",
+        "TL.effect-occupancy-policy"
+      ],
+      "evidence": [
+        "TL13.occupancy-original",
+        "TL13.occupancy-native"
+      ],
+      "tests": [
+        "tests/effect-occupancy-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -19554,7 +20015,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "9235ff21766cfe88b811b299f80b77233c8c7caeaf0ed0236ac362be016b2cb3",
+      "sha256": "691e18085d2a1a3be849fc9f314966cc545bb31ba21bdb1ffd3569dbb2110369",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -19564,37 +20025,42 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "d11e402e9713451be795c31e0996c898dd82939776b0c6dc1a387dc34f0487a6",
+      "sha256": "892ca3d8e55c827f439705658b18a08c85c99cdea301cd7a0bfe574bf58655e5",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "403071e05c7be62352029b2b2873f6c206eeb126f7ec6ae0a308590a06a0251c",
+      "sha256": "a96b0eba3adb463f5a4e4e89464d125a6eb6db83856d087e3fcab4eab709b6cc",
       "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-cleanup-coverage.json",
-      "sha256": "a54f1637a8747a5771bebf6268c260a6408cd605d4165ab1e7716ee267173892",
+      "sha256": "e1dc2f2176ee23d68db657f16fcfd7a3f7531a2d92fddddebc85d54d86e99344",
       "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-blocked-destinations-coverage.json",
-      "sha256": "3f7cb05ccb725e8d0b89f1f92bf42a20acd3c64cad9a64591580170b06c3df92",
+      "sha256": "870be44d6e400c5d2a174d60990c0b8f123859a5dd2659fd51aa0b87d6f574dd",
       "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-height-exits-coverage.json",
-      "sha256": "f18cb15fe35b8cca5411dc2f29b8a57bfaafc6001464fcfda58a65032b3ea841",
+      "sha256": "bbdc6c90fe2d8dbdd4e4c8e82383a8089484d621410c3a17f06ab51f601ad62b",
       "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-membership-disabled-coverage.json",
-      "sha256": "7c4e0565007c4ba6ee3604cb8616c300756ce91e87a7c349acb51dbcb2001f4c",
+      "sha256": "51db32e20198d9c7207980386b38ae186ec643a25c7fcb395e6ee91f86eebdcd",
       "scope": "Reviewed complete-parent disabled-membership movement and preserved graph/flags, ordinary/blocked/height/cleanup reruns and native reconciliation admission; remaining occupied collision/setup/lifecycle gaps and historical fingerprints preserved"
+    },
+    {
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "sha256": "bb632fb424dd8b1b9cf7cc3feda43983ed46f6d2e23893535a41bc57b2a7b43f",
+      "scope": "Reviewed complete-parent terrain occupancy bitmap/cache-gated sampling, hit ordering and both membership modes with fresh prior-contract reruns; remaining creature/special-type/catalog/lifecycle gaps and historical fingerprints preserved"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-multi-world-scene.json",
-    "sha256": "27d37eb5be44f97131eaf34c22a8bf30feadf2d6df5ccac0acef267cad421526"
+    "path": "research/runtime/effect-terrain-occupancy-source-index.json",
+    "sha256": "4e2392268e2430aa1fff4c51c1c9a461213e510a8872a352128a94eadb04586d"
   }
 }

@@ -5030,6 +5030,219 @@
           "NS12.multi-scene"
         ]
       }
+    },
+    {
+      "id": "effect-occupancy-recorded-6683449",
+      "reason": "Recover complete-parent cache-gated terrain bitmap sampling and real 004e10e0 8x8x4 byte/mask lookup, hit return 1 before subcell publication, committed current/previous/cache/recount and enabled insertion or disabled preserved graph. Keep caller lifecycle and type-35 mutation separate. Review committed range 3b682f5..66834490516e026a31968fccdae7e21bfc26b213 with exact-hash/evidence report working/tests/effect-occupancy-history-review.json; reconcile focused imports/census/ledger and historical limitations.",
+      "files": [
+        {
+          "after_sha256": "86f2b270a29363f834c4405eb4db4dd5d3de06d00dae1c3ea27196b9ba77449f",
+          "before_sha256": "2907d8a1ed6f691d94c0b1b8911c180022ad2a7481dd73ef5137592bc21d1117",
+          "path": "reconstruction/rendering/effect_transition.cpp"
+        },
+        {
+          "after_sha256": "712a7d70c06c6f61cb55d76875518a0559b2e29d006f7458c5908c0afc083961",
+          "before_sha256": "92945eb0c66a5c86277ddb02a3273f8044c4567baf09c0955f1ddd1d44c3122f",
+          "path": "reconstruction/rendering/effect_transition.hpp"
+        },
+        {
+          "after_sha256": "4aa62fa214bc5c6690b36df2a540439e32cb09b98a0618d6d86cfb757b5e3ed2",
+          "before_sha256": "f0d4c914e6cfb67f5a9cff59f8d62fe8a02cbfaae38192461784c871beb921f4",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "09c546ec5fb99abf8cb4a6179fe57aff7b016dd65d5436cf63c0d8bcf98c7fad",
+          "before_sha256": "fcf27460581e74418b4ce3267da1e93be4fafdb39726a644490d12809f8d85a7",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "870be44d6e400c5d2a174d60990c0b8f123859a5dd2659fd51aa0b87d6f574dd",
+          "before_sha256": "3f7cb05ccb725e8d0b89f1f92bf42a20acd3c64cad9a64591580170b06c3df92",
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "e1dc2f2176ee23d68db657f16fcfd7a3f7531a2d92fddddebc85d54d86e99344",
+          "before_sha256": "a54f1637a8747a5771bebf6268c260a6408cd605d4165ab1e7716ee267173892",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "a96b0eba3adb463f5a4e4e89464d125a6eb6db83856d087e3fcab4eab709b6cc",
+          "before_sha256": "403071e05c7be62352029b2b2873f6c206eeb126f7ec6ae0a308590a06a0251c",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "bbdc6c90fe2d8dbdd4e4c8e82383a8089484d621410c3a17f06ab51f601ad62b",
+          "before_sha256": "f18cb15fe35b8cca5411dc2f29b8a57bfaafc6001464fcfda58a65032b3ea841",
+          "path": "research/runtime/effect-height-exits-coverage.json"
+        },
+        {
+          "after_sha256": "51db32e20198d9c7207980386b38ae186ec643a25c7fcb395e6ee91f86eebdcd",
+          "before_sha256": "7c4e0565007c4ba6ee3604cb8616c300756ce91e87a7c349acb51dbcb2001f4c",
+          "path": "research/runtime/effect-membership-disabled-coverage.json"
+        },
+        {
+          "after_sha256": "892ca3d8e55c827f439705658b18a08c85c99cdea301cd7a0bfe574bf58655e5",
+          "before_sha256": "d11e402e9713451be795c31e0996c898dd82939776b0c6dc1a387dc34f0487a6",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "bb632fb424dd8b1b9cf7cc3feda43983ed46f6d2e23893535a41bc57b2a7b43f",
+          "before_sha256": null,
+          "path": "research/runtime/effect-terrain-occupancy-coverage.json"
+        },
+        {
+          "after_sha256": "4e2392268e2430aa1fff4c51c1c9a461213e510a8872a352128a94eadb04586d",
+          "before_sha256": null,
+          "path": "research/runtime/effect-terrain-occupancy-source-index.json"
+        },
+        {
+          "after_sha256": "469f00f1d4c3e8b6d75fef571ee2904b73e808e455dc73f8b6bddab11813265d",
+          "before_sha256": null,
+          "path": "research/runtime/effect-terrain-occupancy.json"
+        },
+        {
+          "after_sha256": "79793ab69066b97c74e7e6414f4b35e66c68e64b89d6aad49228cc665f33728b",
+          "before_sha256": null,
+          "path": "research/runtime/effect-terrain-occupancy.md"
+        },
+        {
+          "after_sha256": "691e18085d2a1a3be849fc9f314966cc545bb31ba21bdb1ffd3569dbb2110369",
+          "before_sha256": "9235ff21766cfe88b811b299f80b77233c8c7caeaf0ed0236ac362be016b2cb3",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "d184dbcd55cbe5f51b40ab1666a7631870b23c884d5ba5303d12cca1e63202d2",
+          "before_sha256": null,
+          "path": "tests/effect-occupancy-reference.cpp"
+        },
+        {
+          "after_sha256": "edc4ba591d5c55c37dc849698be607ce4fac2887435f88b35a53bfd9e3a167c9",
+          "before_sha256": "a8f5ad6ebb462d1dd6c6a67d52d0c17c3e96418eef2cbd322e533972834f56a0",
+          "path": "tests/effect-transition-test.cpp"
+        },
+        {
+          "after_sha256": "714e7fb4e10b81de9607e5075ac432f0534863c92044777fbdee4173a3cb6e40",
+          "before_sha256": "b25d071a8f695d99fcd42f30f68b45627c38475fc29905ad0d470f5754f142da",
+          "path": "tools/test-effect-transition.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "ecced818350f3ec9e29e60630e44dafdfb2bebc9c752535b9f8531eacf85f986",
+          "before_sha256": null,
+          "id": "TL.effect-occupancy-policy"
+        },
+        {
+          "after_sha256": "186947d0a474b42bba7b5c2cb0f879fdebdde926d7f38a9a4077e4fe5c5fec88",
+          "before_sha256": null,
+          "id": "TL.effect-terrain-occupancy"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:5e066acff243244d0f8275a3ee195161bad86883d26acdd4f202ebe11e47bf64",
+        "stale_evidence:1fe7bf14265fb8e876aa1eaea0def75a604e740d1362d1f2bdf262046a9d6fae",
+        "stale_evidence:37c3246c5cfd75c95f2136f1f439fdc8d782e219b1237f865fb0e22703979015",
+        "stale_evidence:5de37e177e401fe517ea2f9a4b135c7da0608294ab2b27895d35be9c30820e28",
+        "stale_evidence:9da1e7bf4b399f6e8435290249debea84ba441611d92e57f464cd42976be5d33",
+        "stale_evidence:be9177634c4177603197bf3e8323a9af46f454ecfcada60b581d2b2438363514",
+        "stale_evidence:c2183004d166accdc83be441cf9bbc1d1cd32b4326cd5bbb4aa50736ac53e248",
+        "stale_evidence:f0b9019a59c54d8a2f1f62bb89a1e467a452ef57972595ab8a8526faf2e5241f",
+        "stale_evidence:f6b626616835af811a7d0d388acc1ca317f9aefa1509b20f1a6121e6467a7aca"
+      ],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL13.occupancy-original",
+          "TL13.occupancy-native"
+        ],
+        "reason": "{'fixtures': 2048, 'calls': 3232, 'steps': 6434, 'transitions': 3294, 'cache_updates': 1284, 'terrain_hits': 1471, 'cell_bytes': 86639360} occupancy comparison: matching original32/native64/ASan-UBSan complete guarded record/cell/column/catalog buffers across local X/Y/Z ranges, both membership modes, full/clear/mixed masks, matching-cache bypass on fine/cell motion and repeated calls. Fresh ordinary/disabled/blocked/height/cleanup reruns plus strict normal/sanitized units and CMake/CTest verify hit ordering, preserved subcell caches, membership-specific return-1 state, lighting and atomic exceptions. Originals verify before/after. Native bounds/atomicity are intentional policies without original malformed-input/caller lifecycle equivalence."
+      }
+    },
+    {
+      "id": "effect-occupancy-history-limitations-6683449",
+      "reason": "Keep TL08..TL12 historical sources immutable when extending shared transition/runner/tests. Narrow the remaining gap using separate TL13 proof without promoting historical results.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "e461414212e2caddf69ec3b4ca8ed068eb9f24c0eed8e329cf75af92abc6a6bc",
+          "before_sha256": "9c44cd7f1d426eaf60fcee8d7c11c71c1091cd820a8108c2d36b90ea85b8c51e",
+          "id": "TL.effect-blocked-destinations"
+        },
+        {
+          "after_sha256": "04d19bfa3bfdca908cc9071a64f0b952e4022de03604f5d6339071a0aeaaa30f",
+          "before_sha256": "c41874c14c2368cd36a29d9604a829891e030a1a0174afa638b7276ff0401802",
+          "id": "TL.effect-blocked-policy"
+        },
+        {
+          "after_sha256": "e4b2e28e4aac6d921e34d344f5e14d718e7244d851350ebdb6c01c9589e4bb25",
+          "before_sha256": "90796c1bf41d86530534f1e01d2f8742fe0bf577a6189a4c5716cd24d673d27f",
+          "id": "TL.effect-cell-cleanup"
+        },
+        {
+          "after_sha256": "273cac2fbcfc1ceb2eda2a13c5265d655c5feea40cd77871b31d92aa557b9199",
+          "before_sha256": "ff2faae10a33299db2d60f1877d86f7dbfc67f5e805c4a0d374e4a4f73ca583d",
+          "id": "TL.effect-cell-transitions"
+        },
+        {
+          "after_sha256": "ea7d0b96cf6cbb0c0f196805e86019dd1efaf6c7bd10f3e19d209755a0532541",
+          "before_sha256": "b19c132c321e2a9791043e6f08dbb3adad8ece41ee1a2bcaec7c0b9b92cb02a4",
+          "id": "TL.effect-cleanup-policy"
+        },
+        {
+          "after_sha256": "2182aad5b77e574fee73dca584bd628d8b0f9208c734748f547f4c61ef3eaae7",
+          "before_sha256": "8f4e147ae62990b46950e0703d55c6043a969d04345bbd81dd6a54524e7adda6",
+          "id": "TL.effect-height-exits"
+        },
+        {
+          "after_sha256": "5aa44d53b5317d0e8d28b208c85170edce7bd7c83015439921cf6c8419d52720",
+          "before_sha256": "1c475e013eef2f7b7c997a191a78bae6ae548ffc254de37b5034fb85007f5dc2",
+          "id": "TL.effect-height-policy"
+        },
+        {
+          "after_sha256": "bfcde3df6759d72cf63bee106685fc4851c95ffcae76cacdd0c10eba393e4733",
+          "before_sha256": "c2d6427855fea4782bce7cc84ede4dff11f0b11a168c5e169a27dcc87d7d39a8",
+          "id": "TL.effect-membership-disabled"
+        },
+        {
+          "after_sha256": "151352d201ad009fd1dcdbd57b829d4e28501b6e965efe7646ceca971574e84a",
+          "before_sha256": "699161c7404968e8091d27807fecd1f7a7fe63fc9a906c19b57a384cc44b1f8d",
+          "id": "TL.effect-membership-policy"
+        },
+        {
+          "after_sha256": "a9c3f26f4b434765b7cf19fcde28fea6e0680e21cde24dc078ef71d0ba311462",
+          "before_sha256": "bdd25829e9cc63fd527024b4927fa3aea1d7a8cc1583d4df3b4470033ec861bf",
+          "id": "TL.effect-movement-recount"
+        },
+        {
+          "after_sha256": "ad0be93f1ad67bb90a385fcacd4541998a4a8957ee79dd7eab9a5e6254dbe424",
+          "before_sha256": "81edf6d29f4969b837942bb5b8be2a6a808b37aa5395078890325a1e1f3db923",
+          "id": "TL.effect-transition-policy"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Historical TL08..TL12 affected fingerprints remain stale and retained. Fresh expanded and ordinary/cleanup reruns are registered separately in TL13. Disabled-height/bitmap-blocked-height combinations, creature collisions, type-35 mutation, special types/metadata, setup, column construction, caller removal/recycling and live scheduling remain outside current validation."
+      }
+    },
+    {
+      "id": "effect-occupancy-summary-6683449",
+      "reason": "Refresh generated summary for the isolated reviewed register, retaining discovery gaps and historical staleness.",
+      "files": [
+        {
+          "after_sha256": "c3f136ad77657afb150a272f56da5ec8bdb8405ab2e67e30a7db1f733c7d78cc",
+          "before_sha256": "b344a014433c7539006220e81d52cb6e216b4c10999e0294c827d2b74cb04493",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated metadata only; no implementation or status promotion."
+      }
     }
   ]
 }
