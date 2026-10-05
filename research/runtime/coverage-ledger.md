@@ -536,3 +536,10 @@ evidence; complete named actions, reverse mode, attachment lifecycle, entities
 and live scene integration remain open. Installed raw asset and offline WAV
 input comparisons pass within their recorded scope. Add timing percentages only
 after counters and measurement boundaries exist.
+
+### Stationary occupancy predicate (NS10; reviewed 2026-10-05)
+
+Fresh isolated original comparison: 9,509 direct occupancy and 576 integrated
+footprint cases pass with immutable-input preservation. [Scope and evidence](native-stationary-occupancy.md).
+Native blocker integration is the next bounded step; original occupancy
+production and multiple moving creature scheduling remain open.
