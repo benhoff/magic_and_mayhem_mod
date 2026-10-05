@@ -13,3 +13,11 @@ target_compile_options(mnm-terrain-scene PRIVATE -Wall -Wextra -Werror -pedantic
 add_executable(mnm-terrain-preview main.cpp)
 target_link_libraries(mnm-terrain-preview PRIVATE mnm-terrain-scene Qt6::Widgets)
 target_compile_options(mnm-terrain-preview PRIVATE -Wall -Wextra -Werror -pedantic)
+
+find_program(XVFB_RUN xvfb-run)
+if(BUILD_TESTING AND XVFB_RUN)
+    add_executable(terrain-shaded-cache-test ../../tests/terrain-shaded-cache-test.cpp)
+    target_link_libraries(terrain-shaded-cache-test PRIVATE mnm-terrain-scene Qt6::Widgets)
+    add_test(NAME terrain-shaded-cache COMMAND "${XVFB_RUN}" -a $<TARGET_FILE:terrain-shaded-cache-test>)
+    set_tests_properties(terrain-shaded-cache PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=xcb;LIBGL_ALWAYS_SOFTWARE=1;ASAN_OPTIONS=detect_leaks=0" TIMEOUT 60)
+endif()
