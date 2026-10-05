@@ -79,6 +79,7 @@ void selectedPlace(RegionPlacementState& s,unsigned x,unsigned y,std::uint32_t s
     place(s,table[choice->index].descriptor,choice->rotation,x,y);
 }
 }
+void validateRegionPlacementState(const RegionPlacementState& state) { validate(state); }
 RegionPlacementState makeRegionPlacementState(unsigned columns,unsigned rows,RegionDescriptorBank bank) {
     RegionPlacementState s;s.grid.columns=columns;s.grid.rows=rows;s.bank=std::move(bank);
     if (!columns || columns>5 || !rows || rows>5) throw std::invalid_argument("Region placement grid dimensions");
