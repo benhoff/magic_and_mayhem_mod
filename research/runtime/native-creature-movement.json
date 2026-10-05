@@ -1,0 +1,435 @@
+{
+  "milestone": "NS02 bounded native single-creature movement and deterministic continuation",
+  "recorded_at_utc": "2026-10-05T00:30:17.052740+00:00",
+  "git_head": "5565f2c70ed0a3ef6c7358a717aace7fc64899d9",
+  "working_tree_sources": true,
+  "sources": [
+    {
+      "path": "game/persistence/snapshot.cpp",
+      "bytes": 8211,
+      "sha256": "49545b30edc3bc8b57763422041a8f0775781e42e25002b6be7a23c24d98dece"
+    },
+    {
+      "path": "game/persistence/store_posix.cpp",
+      "bytes": 2339,
+      "sha256": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df"
+    },
+    {
+      "path": "game/simulation/movement.cpp",
+      "bytes": 7952,
+      "sha256": "99146b9f1dddcc8d0cfdfeb916f97c73e5629d688a05fc69ebdf6cb925c2645b"
+    },
+    {
+      "path": "game/simulation/world.cpp",
+      "bytes": 7113,
+      "sha256": "4687237c6dd51520b3c48dff4c2539d23aedf9fdfd3446ee72a9a8a860eaec0f"
+    },
+    {
+      "path": "game/persistence/snapshot.hpp",
+      "bytes": 814,
+      "sha256": "6fd749902ab2c56d8cf5e321e772db03e2aae10667f0400d1db0a4ccb73416e0"
+    },
+    {
+      "path": "game/simulation/movement.hpp",
+      "bytes": 1540,
+      "sha256": "9e845b5db3fe7243556ea61a58268dab2dc398f7784e1e15e4d5553e3ab1ed2a"
+    },
+    {
+      "path": "game/simulation/world.hpp",
+      "bytes": 3621,
+      "sha256": "2b99d32b65293fa646156364b31a51c45d61a02b7e0680186f9f113d469e83b6"
+    },
+    {
+      "path": "apps/world-sandbox/frozen_navigation.cpp",
+      "bytes": 5671,
+      "sha256": "a905885f01afe5c81ca4017f4ea0db06d40483eec1c419e51f62f4878f4664db"
+    },
+    {
+      "path": "apps/world-sandbox/main.cpp",
+      "bytes": 5623,
+      "sha256": "5db12192a88e848689aa615b6195450e9bab30ece5003f2780d216041686f8b3"
+    },
+    {
+      "path": "apps/world-sandbox/frozen_navigation.hpp",
+      "bytes": 245,
+      "sha256": "e30a2e1f8d4556dd2034fa7e534537795e0ce61dfa7acd0772e0988fe79c968c"
+    },
+    {
+      "path": "game/CMakeLists.txt",
+      "bytes": 2285,
+      "sha256": "01186dc4e8c91a2dd95e12dec4eb14f237af82723fdbecd0b5b5c2867f469ad8"
+    },
+    {
+      "path": "tests/native-world-test.cpp",
+      "bytes": 7869,
+      "sha256": "25efc3d620003930d5bdee528dcd76ad5b2423f6989aa7155aea5f55f3970e7e"
+    },
+    {
+      "path": "tests/test-native-world.py",
+      "bytes": 4722,
+      "sha256": "4c9540aa7be504ff4679c2267d7202d89be5877f42ab359aaf35499ede04d147"
+    },
+    {
+      "path": "tests/native-movement-test.cpp",
+      "bytes": 7967,
+      "sha256": "ef16165f620c3c43df64b70f4b264591265c80060e8cebfefbfd58e649c20a2b"
+    },
+    {
+      "path": "tests/test-native-movement-session.py",
+      "bytes": 7874,
+      "sha256": "9ed5950883901c6b2e0b4374deb4890836e572bd60b275595431eb719592ee86"
+    },
+    {
+      "path": "tools/create-movement-fixture.py",
+      "bytes": 2136,
+      "sha256": "ec8b1fb53e4db7d17c00cc8571ae27eafced366941b04b783c3e8907f6bb9613"
+    },
+    {
+      "path": "reconstruction/pathfinding/route_world.cpp",
+      "bytes": 10321,
+      "sha256": "80486842416870d4be983f888817ebfca64f6cfbe60eae87e3b79ba1cf1f889e"
+    },
+    {
+      "path": "reconstruction/pathfinding/route_world.hpp",
+      "bytes": 2140,
+      "sha256": "30d23a105e7d91f4acee2a7b40780ec542ae2316a50ace7fed272e547a13176b"
+    }
+  ],
+  "builds": [
+    {
+      "directory": "working/build/native-world",
+      "tests_passed": 22,
+      "sanitized": false,
+      "environment": {},
+      "log": {
+        "path": "working/build/native-world/Testing/Temporary/LastTest.log",
+        "bytes": 17170,
+        "sha256": "eab789da3208b8271cd07bec501c0c473dead5e55be8a3e3465a9e6b9c79bc7e"
+      },
+      "cache": {
+        "path": "working/build/native-world/CMakeCache.txt",
+        "bytes": 16380,
+        "sha256": "da15c4fa17887b72901e74b4711ca1ac57306ee5eb60986a0e53f06e2cfdd646"
+      },
+      "executables": [
+        {
+          "path": "working/build/native-world/mnm-world-sandbox",
+          "bytes": 3892208,
+          "sha256": "1add216865b239ebe1046d4c40da03f0d855f873aae12f34231849c9b8e8e140"
+        },
+        {
+          "path": "working/build/native-world/native-movement-test",
+          "bytes": 1681416,
+          "sha256": "d04b3277ffedf82676b1ab13bb52e7a9ab4ebd1fc43adbe8304fb22eee8aee99"
+        },
+        {
+          "path": "working/build/native-world/native-world-test",
+          "bytes": 1805848,
+          "sha256": "f55b5ac72cad4d9ac0b9cc211dec675d76db5c7c13a9abe9a5abc41ecc2a2664"
+        }
+      ]
+    },
+    {
+      "directory": "working/build/native-world-sanitized",
+      "tests_passed": 22,
+      "sanitized": true,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1"
+      },
+      "log": {
+        "path": "working/build/native-world-sanitized/Testing/Temporary/LastTest.log",
+        "bytes": 17590,
+        "sha256": "dca3e92c9c213a21291cdc3332ce565f0cf0b0bd7cfa39e94e4d43c8401526a4"
+      },
+      "cache": {
+        "path": "working/build/native-world-sanitized/CMakeCache.txt",
+        "bytes": 16510,
+        "sha256": "a8d936c745248463e691e91fd4a65b01c1ca0b116291e1837455d57bd1204a6b"
+      },
+      "executables": [
+        {
+          "path": "working/build/native-world-sanitized/mnm-world-sandbox",
+          "bytes": 13323888,
+          "sha256": "af09238fe5016cc1fa6aed9c5bc6f1bfb7e4e65fa438061464506422d4b5ab28"
+        },
+        {
+          "path": "working/build/native-world-sanitized/native-movement-test",
+          "bytes": 5928080,
+          "sha256": "1358546aa62a04967a63c3ea3b0ae4dd040bea50648d8371763d03918370c092"
+        },
+        {
+          "path": "working/build/native-world-sanitized/native-world-test",
+          "bytes": 6462464,
+          "sha256": "cace0b26bdf794cb9717110e1490c42e50a66bb4cb782bc9f20b01ff5e09f8f8"
+        }
+      ]
+    }
+  ],
+  "original_reference_attempts": [
+    {
+      "report": {
+        "path": "working/tests/native-motion-reference-xymohaw8/report.json",
+        "bytes": 691,
+        "sha256": "1c41e4870974a37ef19c94745fa0055f13841c5661df77dcd4a3e2c07e01c454"
+      },
+      "runs": [
+        {
+          "command": [
+            "./tools/original-manifest.sh",
+            "verify"
+          ],
+          "returncode": 0,
+          "log": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-motion-reference-xymohaw8/0.log"
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test-native-movement.py",
+            "--component",
+            "clearance"
+          ],
+          "returncode": 1,
+          "log": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-motion-reference-xymohaw8/1.log"
+        },
+        {
+          "command": [
+            "./tools/original-manifest.sh",
+            "verify"
+          ],
+          "returncode": 0,
+          "log": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-motion-reference-xymohaw8/after-manifest.log"
+        }
+      ],
+      "logs": [
+        {
+          "path": "working/tests/native-motion-reference-xymohaw8/0.log",
+          "bytes": 65,
+          "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+        },
+        {
+          "path": "working/tests/native-motion-reference-xymohaw8/1.log",
+          "bytes": 827,
+          "sha256": "ef1d50fe3592bd3a3fd82073ae7a57c693fc3917115838c3311de6a6b1a08229"
+        },
+        {
+          "path": "working/tests/native-motion-reference-xymohaw8/after-manifest.log",
+          "bytes": 65,
+          "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+        }
+      ]
+    },
+    {
+      "report": {
+        "path": "working/tests/native-motion-reference-dzf2mm5x/report.json",
+        "bytes": 941,
+        "sha256": "693fa9ac65abcf9a168d41b61772d73f6792730445c3ada10b042d98e0eed874"
+      },
+      "runs": [
+        {
+          "command": [
+            "./tools/original-manifest.sh",
+            "verify"
+          ],
+          "returncode": 0,
+          "log": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-motion-reference-dzf2mm5x/0.log"
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test-native-movement.py",
+            "--component",
+            "clearance"
+          ],
+          "returncode": 0,
+          "log": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-motion-reference-dzf2mm5x/1.log"
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test-native-movement.py",
+            "--component",
+            "scalar"
+          ],
+          "returncode": 0,
+          "log": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-motion-reference-dzf2mm5x/2.log"
+        },
+        {
+          "command": [
+            "./tools/original-manifest.sh",
+            "verify"
+          ],
+          "returncode": 0,
+          "log": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-motion-reference-dzf2mm5x/after-manifest.log"
+        }
+      ],
+      "logs": [
+        {
+          "path": "working/tests/native-motion-reference-dzf2mm5x/0.log",
+          "bytes": 65,
+          "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+        },
+        {
+          "path": "working/tests/native-motion-reference-dzf2mm5x/1.log",
+          "bytes": 345,
+          "sha256": "fe95eadaf932d2a9289c4b596c99fa8e0e35cdf69c9cadda82cba7495c4c2079"
+        },
+        {
+          "path": "working/tests/native-motion-reference-dzf2mm5x/2.log",
+          "bytes": 115,
+          "sha256": "4fd6c9dbfbbd29b691521f3031399f74411b4ea17dcc4cbc2a36a201f9c0d80f"
+        },
+        {
+          "path": "working/tests/native-motion-reference-dzf2mm5x/after-manifest.log",
+          "bytes": 65,
+          "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+        }
+      ]
+    }
+  ],
+  "original_build_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "original_comparison_counts": {
+    "movement_helpers": 120842,
+    "scalar_both_dwords": 149070,
+    "immutable_manifest_files": 2927
+  },
+  "demo": {
+    "directory": "working/tests/native-movement-demo-gawdatb6",
+    "commands": [
+      {
+        "arguments": [
+          "move",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movement-demo-gawdatb6/map.bin",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movement-demo-gawdatb6/pending.mnw",
+          "1",
+          "1",
+          "1",
+          "5",
+          "1",
+          "1",
+          "0"
+        ],
+        "returncode": 0,
+        "log": "working/tests/native-movement-demo-gawdatb6/command-0.log"
+      },
+      {
+        "arguments": [
+          "resume",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movement-demo-gawdatb6/pending.mnw",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movement-demo-gawdatb6/halfway.mnw",
+          "2"
+        ],
+        "returncode": 0,
+        "log": "working/tests/native-movement-demo-gawdatb6/command-1.log"
+      },
+      {
+        "arguments": [
+          "resume",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movement-demo-gawdatb6/pending.mnw",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movement-demo-gawdatb6/uninterrupted.mnw",
+          "8"
+        ],
+        "returncode": 0,
+        "log": "working/tests/native-movement-demo-gawdatb6/command-2.log"
+      },
+      {
+        "arguments": [
+          "resume",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movement-demo-gawdatb6/halfway.mnw",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movement-demo-gawdatb6/resumed.mnw",
+          "6"
+        ],
+        "returncode": 0,
+        "log": "working/tests/native-movement-demo-gawdatb6/command-3.log"
+      },
+      {
+        "arguments": [
+          "trace",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movement-demo-gawdatb6/pending.mnw",
+          "8"
+        ],
+        "returncode": 0,
+        "log": "working/tests/native-movement-demo-gawdatb6/command-4.log"
+      },
+      {
+        "arguments": [
+          "trace",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movement-demo-gawdatb6/halfway.mnw",
+          "6"
+        ],
+        "returncode": 0,
+        "log": "working/tests/native-movement-demo-gawdatb6/command-5.log"
+      }
+    ],
+    "files": [
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/command-0.log",
+        "bytes": 147,
+        "sha256": "999aa970a51994ed7c7a1e5d579e21759d4fa97aca7381e27a8e36157906424a"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/command-1.log",
+        "bytes": 218,
+        "sha256": "41e3c900bd2f58b06c91958e35e5a802b33e61eaa425da94d9935493938eb0e1"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/command-2.log",
+        "bytes": 218,
+        "sha256": "da0af00683f351cd7a3202ae5ecd688d89ab34cf403e2b006fd7025aa54deb92"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/command-3.log",
+        "bytes": 218,
+        "sha256": "da0af00683f351cd7a3202ae5ecd688d89ab34cf403e2b006fd7025aa54deb92"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/command-4.log",
+        "bytes": 1891,
+        "sha256": "7f8ec9e759651118b490f101bc31d9c9f9d2e1564aa619641c6527491abfb9ad"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/command-5.log",
+        "bytes": 1526,
+        "sha256": "cccbec9c11b61b581c659c4d944764cb2d421573f3fc16ec77231e746b48da03"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/halfway.mnw",
+        "bytes": 398,
+        "sha256": "e63d7ae483c38c03d89f42628439af68bff8f68f2719da3e4177321ba366cb01"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/map.bin",
+        "bytes": 11272,
+        "sha256": "1fcb8b5bdcba6565a75091f377dbaa255f7d45fcd8954251c8e7fc71d8a52e6f"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/pending.mnw",
+        "bytes": 312,
+        "sha256": "ec4ea22de4a1d95c0c467955ec9a877f71dc6d8779ce741892a0c933888ba970"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/resumed.mnw",
+        "bytes": 398,
+        "sha256": "46e9df5f141c0368f99ada6615d8887ef67483ae0b7faf51edb874e0a5f87490"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/trace.json",
+        "bytes": 15538,
+        "sha256": "bcc6909403f484a71b65bef765016314d1e425668910debcf68bc47ceabf293a"
+      },
+      {
+        "path": "working/tests/native-movement-demo-gawdatb6/uninterrupted.mnw",
+        "bytes": 398,
+        "sha256": "46e9df5f141c0368f99ada6615d8887ef67483ae0b7faf51edb874e0a5f87490"
+      }
+    ],
+    "final_checkpoint_bytes_equal": true,
+    "remaining_position_action_traces_equal": true
+  },
+  "limitations": [
+    "explicit native waypoint-per-tick pacing; no original motion/action or live equivalence",
+    "one captured profile/4096 frozen map cells; no dynamic multi-creature occupancy",
+    "per-request budget without original shared scheduler/search-heap continuation",
+    "LeakSanitizer disabled under tracing; ASan/UBSan passed"
+  ]
+}

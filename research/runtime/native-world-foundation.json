@@ -1,0 +1,163 @@
+{
+  "milestone": "NS01 native world ownership and deterministic checkpoints",
+  "recorded_at_utc": "2026-10-05T00:04:12.855092+00:00",
+  "validation": "synthetic native policy and integration; no original routines or live game",
+  "git_head": "a6da119fa7b1409f0c4ac722150f88aae312cd70",
+  "working_tree_sources": true,
+  "sources": [
+    {
+      "path": "game/persistence/snapshot.cpp",
+      "bytes": 6187,
+      "sha256": "080f69f634766fa7aad864aac6bcaba5c9282e8115330e931fc753e12c0e98ad"
+    },
+    {
+      "path": "game/persistence/store_posix.cpp",
+      "bytes": 2339,
+      "sha256": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df"
+    },
+    {
+      "path": "game/simulation/world.cpp",
+      "bytes": 5193,
+      "sha256": "4e71295d070a76a0565cd837519d2db656428495ccb2d783bffd5da833d0808f"
+    },
+    {
+      "path": "game/persistence/snapshot.hpp",
+      "bytes": 801,
+      "sha256": "4ed17b6da9ded141e2469dbd337a5d62b051bcd997b806fcbc834c6b6136632e"
+    },
+    {
+      "path": "game/simulation/world.hpp",
+      "bytes": 2521,
+      "sha256": "a3f329f7731e3c08e85eb66f725c649f1a600817ec0d7d5358672167623c75a3"
+    },
+    {
+      "path": "game/CMakeLists.txt",
+      "bytes": 1325,
+      "sha256": "27559310a091cf3c204ebe24f8473a74711fd53bd80fbe337bbf8b75c379321c"
+    },
+    {
+      "path": "apps/world-sandbox/main.cpp",
+      "bytes": 2303,
+      "sha256": "ea09a53ecc67efddbd524f332e97815379d0316d8f1ce058adb3aff9eabf1fc3"
+    },
+    {
+      "path": "tests/native-world-test.cpp",
+      "bytes": 7869,
+      "sha256": "25efc3d620003930d5bdee528dcd76ad5b2423f6989aa7155aea5f55f3970e7e"
+    },
+    {
+      "path": "tests/test-native-world.py",
+      "bytes": 4722,
+      "sha256": "4c9540aa7be504ff4679c2267d7202d89be5877f42ab359aaf35499ede04d147"
+    }
+  ],
+  "builds": [
+    {
+      "directory": "working/build/native-world",
+      "sanitized": false,
+      "command": [
+        "ctest",
+        "--test-dir",
+        "working/build/native-world",
+        "--output-on-failure"
+      ],
+      "environment": {},
+      "tests": [
+        {
+          "name": "native-world-lifecycle",
+          "passed": true
+        },
+        {
+          "name": "native-world-wire",
+          "passed": true
+        }
+      ],
+      "log": {
+        "path": "working/build/native-world/Testing/Temporary/LastTest.log",
+        "bytes": 1629,
+        "sha256": "ab167233f8859e1d016aae936b0198e6fbbedde7cd61670136d6edf979828ae9"
+      },
+      "executables": [
+        {
+          "path": "working/build/native-world/native-world-test",
+          "bytes": 1286032,
+          "sha256": "a5ab602bdf66fba2355c57f504c28faae939d1c6209cc8cde037094de3dd022b"
+        },
+        {
+          "path": "working/build/native-world/mnm-world-sandbox",
+          "bytes": 1071712,
+          "sha256": "40dc257093f8cf1324b86610e11e153bdf9cf5123cc85d17bdd273ff134a8b74"
+        }
+      ],
+      "cmake_cache": {
+        "path": "working/build/native-world/CMakeCache.txt",
+        "bytes": 16004,
+        "sha256": "df7631b2e25a25eceb71fdf27c6fb9b0d16b45e33c5176f7f3f83aa4c2546a8f"
+      }
+    },
+    {
+      "directory": "working/build/native-world-sanitized",
+      "sanitized": true,
+      "command": [
+        "ctest",
+        "--test-dir",
+        "working/build/native-world-sanitized",
+        "--output-on-failure"
+      ],
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1"
+      },
+      "tests": [
+        {
+          "name": "native-world-lifecycle",
+          "passed": true
+        },
+        {
+          "name": "native-world-wire",
+          "passed": true
+        }
+      ],
+      "log": {
+        "path": "working/build/native-world-sanitized/Testing/Temporary/LastTest.log",
+        "bytes": 1669,
+        "sha256": "f7cefd0136def8491135436eedbe3e94f27262d9b991b62e5a2eb512d4b80530"
+      },
+      "executables": [
+        {
+          "path": "working/build/native-world-sanitized/native-world-test",
+          "bytes": 4218632,
+          "sha256": "b3098211b35e8f69f58cb3233bd487e5cfb0d13e2dd313756a9821a449196e41"
+        },
+        {
+          "path": "working/build/native-world-sanitized/mnm-world-sandbox",
+          "bytes": 3354488,
+          "sha256": "398fb692f157b9de9964e74fedd9daca5d2bb5923574ad82a97c8cf4bf512331"
+        }
+      ],
+      "cmake_cache": {
+        "path": "working/build/native-world-sanitized/CMakeCache.txt",
+        "bytes": 16124,
+        "sha256": "effe93f001a36e605e0a73ebaf333e00ec0b4bff7e716646ca057c192c8e883e"
+      }
+    }
+  ],
+  "continuation": {
+    "ticks_uninterrupted": 200,
+    "ticks_split": [
+      73,
+      127
+    ],
+    "comparison": "exact checkpoint bytes across fresh processes",
+    "passed": true
+  },
+  "sanitizer_limitations": [
+    "LeakSanitizer fatal error under tracing; address/undefined checks passed with detect_leaks=0"
+  ],
+  "remaining": [
+    "AI, movement, combat/spells and campaign triggers",
+    "legacy save import/export and resources",
+    "complete original tick and lifecycle agreement",
+    "live integration, cadence and physical crash durability"
+  ]
+}

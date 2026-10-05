@@ -29,6 +29,9 @@ integration, validation, confidence, and remaining boundaries.
 | `assets/` | Native asset resolution, read-only access, and comparison |
 | `audio/` | Native PCM storage and playback foundations |
 | `renderer/` | Native OpenGL surface operations and capture replay |
+| `game/simulation/` | Native bounded entity ownership, transactional tick phases and single-creature movement through a native navigation interface |
+| `game/persistence/` | Native-v1/v2 checkpoints, staged restoration and POSIX publication; separate from original save decoding |
+| `apps/world-sandbox/` | Headless lifecycle/movement/checkpoint harness and frozen reconstructed navigation adapter |
 | `tools/` | Preparation, inspection, staging, launch, patch, and validation workflows |
 | `tests/` | Automated checks, independent references, fixtures, and manual protocols |
 | `research/` | Reverse-engineering evidence, formats, runtime findings, and coverage |
@@ -87,7 +90,9 @@ the legacy session implementation. `runtime/` remains the injected side of that
 connection. The two processes communicate through protocols, rather than sharing
 host pointers or C++ object layouts.
 
-`game/` becomes useful when native gameplay state and systems actually exist.
+`game/` now contains a bounded native ownership/tick/checkpoint foundation; see
+[its implemented scope](../game/README.md). AI, combat/spell and campaign systems
+remain pending, as does original-save resource rebinding.
 Classic and enhanced rules should share simulation machinery. Add policies or
 data where behavior differs; avoid duplicating the engine or distributing
 enhancement flags through unrelated services. A classic rules profile provides
