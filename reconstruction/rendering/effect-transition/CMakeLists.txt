@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(mnm_effect_transition LANGUAGES CXX)
-add_library(mnm-effect-transition STATIC ../effect_transition.cpp ../effect_projection.cpp
+add_library(mnm-effect-transition STATIC ../effect_transition.cpp ../effect_cleanup.cpp ../effect_projection.cpp
     ../effect_trajectory.cpp ../effect_placement.cpp ../effect_lighting.cpp)
 target_compile_features(mnm-effect-transition PUBLIC cxx_std_17)
 target_include_directories(mnm-effect-transition PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/..")

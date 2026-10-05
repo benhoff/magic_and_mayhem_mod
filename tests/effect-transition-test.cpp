@@ -25,16 +25,29 @@ int main(){
     require(pool.records()[0].next==NoEffect && pool.cells()[newCell].head==2 && pool.records()[2].next==1);
     input.objects={moved.lightingSource(table)};cycle.step(input);
     require(cycle.field().at(16,8,0)==-85 && cycle.field().at(8,8,0)==-127);
-    for(unsigned mode=0;mode<6;++mode){
+    // Zero-ordinal final departure: column veto preserves clear flag;
+    // absent table permits flag 80, while another effect still blocks cleanup.
+    for(unsigned mode=0;mode<3;++mode){
+        pool=created();pool.cells()[oldCell].terrain=0;pool.cells()[oldCell].flags=0;
+        state={};state.terrain=0;state.previousPosition=pool.records()[1].position;state.motion.trajectory.words[4]=8*32;
+        if(mode!=2){pool.cells()[oldCell].head=1;pool.records()[0].active=false;pool.records()[0].next=NoEffect;}
+        std::vector<EffectCleanupColumn> columns;
+        if(mode==1){columns.resize(32*32);columns[oldCell%(32*32)]={1,0,1};}
+        transitionEffectEmptyWorld(pool,1,state,32,32,3,columns);
+        require(pool.cells()[oldCell].flags==(mode==0?0x80u:0u));
+    }
+    for(unsigned mode=0;mode<7;++mode){
         pool=created();state={};state.previousPosition=pool.records()[1].position;state.motion.trajectory.words[4]=8*32;
         if(mode==0)pool.records()[0].next=0;
-        if(mode==1)pool.cells()[newCell].terrain=0;
+        if(mode==1)pool.cells()[newCell].terrain=4;
         if(mode==2)pool.cells()[newCell].flags|=0x40000000u;
         if(mode==3)state.motion.trajectory.words[1]=0xfffffffeu;
-        if(mode==4){pool.records()[1].parameters[9]=8;state.motion.trajectory.words[4]=32;pool.cells()[oldCell+4].terrain=0;}
+        if(mode==4){pool.records()[1].parameters[9]=8;state.motion.trajectory.words[4]=32;pool.cells()[oldCell+4].terrain=4;}
         if(mode==5)pool.cells()[oldCell].head=0xffff;
+        std::vector<EffectCleanupColumn> columns;
+        if(mode==6)columns.resize(1);
         auto before=pool;auto oldState=state;bool refused=false;
-        try{transitionEffectEmptyWorld(pool,1,state,32,32,3);}catch(const std::invalid_argument&){refused=true;}
+        try{transitionEffectEmptyWorld(pool,1,state,32,32,3,columns);}catch(const std::invalid_argument&){refused=true;}
         require(refused && pool.records()[1].parameters==before.records()[1].parameters && pool.records()[1].position==before.records()[1].position);
         require(pool.records()[0].next==before.records()[0].next && pool.records()[2].next==before.records()[2].next);
         for(unsigned i=0;i<pool.cells().size();++i)require(pool.cells()[i].head==before.cells()[i].head && pool.cells()[i].flags==before.cells()[i].flags);
