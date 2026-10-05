@@ -578,3 +578,17 @@ game capture or draw replacement.
 Run `python3 tools/test-gpu-presentation.py working/build/qt-shell` for independent
 complete-frame, lifetime, normal/high-DPI and shell-entry checks. See
 [ownership, synchronization and evidence](../../research/runtime/opengl-direct-presentation.md).
+
+## Incremental command replay
+
+`--commands FILE` retains one consumer across 32-command Qt timer batches.
+Ordinary replay counts CHECK/CHECK_RGBA as skipped and performs no diagnostic
+readbacks; add `--command-checks` for explicit comparison. The complete bounded
+file is still validated before playback. This is an offline service, separate
+from a live engine channel. [Lifecycle and validation](../../research/runtime/opengl-incremental-commands.md).
+
+`--native-commands` opts into bounded live command/GPU presentation from the
+owned PE32 hooks and implies `--capture-locks`. It uses a fresh mapped command
+channel per launch, processes at most 32 commands per poll and refuses incomplete
+sessions. The original Wine window remains available after native refusal.
+See [scope and validation](../../research/runtime/opengl-live-command-transport.md).

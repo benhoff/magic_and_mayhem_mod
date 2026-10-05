@@ -32,6 +32,7 @@ static i32 WIN os_query(void* object,const u8* guid,void** result){
 static void os_record(void){
     char front[]="front-00000000.bin",back[]="back-00000000.bin";static const char hex[]="0123456789abcdef";
     for(u32 i=0;i<8;++i){front[6+i]=hex[(pl_step>>(28-i*4))&15];back[5+i]=front[6+i];}
+    char delay[4];if(GetEnvironmentVariableA("MNM_COMMAND_TEST_DELAY",delay,sizeof(delay)))Sleep(30);
     pl_file(front,pl_target.native,32);pl_file(back,pl_surface.native,32);
     u32 event[6]={pl_step,os_event,os_subject,os_status,bs_stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4],os_partial},written;
     if(!WriteFile(os_events,event,24,&written,0) || written!=24)ExitProcess(254);

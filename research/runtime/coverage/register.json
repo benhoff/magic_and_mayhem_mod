@@ -4384,7 +4384,9 @@
         "renderer/commands.cpp",
         "renderer/commands.hpp",
         "renderer/commands_main.cpp",
-        "renderer/replay_main.cpp"
+        "renderer/replay_main.cpp",
+        "renderer/command_state.hpp",
+        "renderer/command_consumer.cpp"
       ],
       "tests": [
         "tests/render-blit-test.cpp",
@@ -5472,7 +5474,8 @@
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
         "runtime/render/surface_commands.h",
-        "runtime/render/surface_history.h"
+        "runtime/render/surface_history.h",
+        "runtime/render/command_channel.h"
       ],
       "tests": [
         "runtime/render/selftest.c",
@@ -10355,7 +10358,11 @@
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
         "apps/qt-shell/main.cpp",
-        "apps/qt-shell/CMakeLists.txt"
+        "apps/qt-shell/CMakeLists.txt",
+        "renderer/command_state.hpp",
+        "renderer/command_consumer.cpp",
+        "apps/qt-shell/command_replay.cpp",
+        "apps/qt-shell/command_replay.hpp"
       ],
       "tests": [
         "tests/gpu-presentation-test.cpp",
@@ -11386,6 +11393,89 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.incremental-command-consumer",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Persistent bounded surface command execution",
+      "scope": "Selected decoded commands retain surface/palette ownership across batches; independent sequence/geometry/resource admission, explicit comparison mode, completion/interruption/failure cleanup and GPU callback delivery. Native policy; no live transport or original replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-incremental-commands.md",
+        "renderer/README.md",
+        "apps/qt-shell/README.md"
+      ],
+      "implementation": [
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/command_state.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/CMakeLists.txt",
+        "apps/qt-shell/command_replay.cpp",
+        "apps/qt-shell/command_replay.hpp"
+      ],
+      "tests": [
+        "tests/render-command-consumer-test.cpp",
+        "tests/command-replay-shell.cpp",
+        "tools/test-incremental-render-commands.py",
+        "tests/live-render-channel-test.cpp"
+      ],
+      "evidence": [
+        "NR.incremental-command-consumer.native",
+        "NR.incremental-command-consumer.native-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.live-command-transport",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded mapped live native command transport",
+      "scope": "Single-session append-only x86 IPC from owned PE32 hook snapshots to incremental Qt GPU consumer; no renderer replacement or lost-command resynchronization.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-live-command-transport.md",
+        "research/formats/render-command-channel.md"
+      ],
+      "implementation": [
+        "runtime/render/command_channel.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/bridge.c",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/CMakeLists.txt",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "protocols/schemas/render_commands-v1.json",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/python/mnm_protocols/render_commands_v1.py"
+      ],
+      "tests": [
+        "tests/live-render-channel-test.cpp",
+        "tests/render-command-writer-test.c",
+        "tools/test-live-render-channel.py"
+      ],
+      "evidence": [
+        "NR.live-command-transport.native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -18262,6 +18352,176 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NR.incremental-command-consumer.native",
+      "kind": "native_integration",
+      "scope": "Synthetic normal and ASan/UBSan decoded-command partitions, full Qt framebuffer oracle, failure cleanup and timer replay; no original artifacts, live channel or performance equivalence.",
+      "record": "research/runtime/opengl-incremental-commands.json",
+      "sha256": "dfab0f3c9b9706de24684a01f547ae1a7ba0b21b503040246c746fdf519d4af0",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/full_frame_comparisons",
+          "equals": 708
+        },
+        {
+          "pointer": "/native_integration/partitioned_sessions",
+          "equals": 64
+        },
+        {
+          "pointer": "/native_integration/failure_cases",
+          "equals": 60
+        },
+        {
+          "pointer": "/native_integration/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/gpu_viewport_uploads",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/timer_batches",
+          "equals": 4
+        },
+        {
+          "pointer": "/native_integration/diagnostics_explicit",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/qt_service_replay",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/normal_and_sanitized",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/production_qt_shell_checked",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.live-command-transport.native",
+      "kind": "native_integration",
+      "scope": "Synthetic exact C publication/refusal and normal/ASan/UBSan fragments; seven PE32/Wine COM-hook sessions to live Qt GPU consumer, four valid every-frame independent native-pixel comparisons before producer exit. No original game/live equivalence.",
+      "record": "research/runtime/opengl-live-command-transport.json",
+      "sha256": "aaf3e55eab6481be7067e530b155a0f608f97134d97db82aebcd36787072c09d",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/writer/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/wine_sessions",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_integration/valid_wine_sessions",
+          "equals": 4
+        },
+        {
+          "pointer": "/native_integration/incomplete_sessions",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_integration/before_producer_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/viewport_uploads",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/fragmented_decode",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/normal_and_sanitized",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.incremental-command-consumer.native-v2",
+      "kind": "native_integration",
+      "scope": "Refresh synthetic normal/sanitizer partition/resource/frame and production replay CLI execution after incremental byte decoder extraction; no original/live equivalence.",
+      "record": "research/runtime/opengl-incremental-commands-v2.json",
+      "sha256": "861e6764ceeb047cf22c86cbff2414ac607815b676ecf879e421c12245f331c2",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/full_frame_comparisons",
+          "equals": 708
+        },
+        {
+          "pointer": "/native_integration/partitioned_sessions",
+          "equals": 64
+        },
+        {
+          "pointer": "/native_integration/failure_cases",
+          "equals": 60
+        },
+        {
+          "pointer": "/native_integration/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/gpu_viewport_uploads",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/timer_batches",
+          "equals": 4
+        },
+        {
+          "pointer": "/native_integration/diagnostics_explicit",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/qt_service_replay",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/normal_and_sanitized",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/production_qt_shell_checked",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -20230,6 +20490,39 @@
         "tools/test-campaign-observer.py",
         "tools/test-live-region-entry.py"
       ]
+    },
+    {
+      "id": "NR.incremental-command-consumer.preview",
+      "scope": "Four pixel formats with whole/single/fixed/varied batches, Verify/Skip diagnostics, owned resource prefixes, failure/abort/retained-frame lifetimes and four-event Qt file replay on synthetic Mesa/Xvfb.",
+      "level": "preview",
+      "behaviors": [
+        "NR.incremental-command-consumer"
+      ],
+      "evidence": [
+        "NR.incremental-command-consumer.native",
+        "NR.incremental-command-consumer.native-v2"
+      ],
+      "tests": [
+        "tests/render-command-consumer-test.cpp",
+        "tests/command-replay-shell.cpp",
+        "tools/test-incremental-render-commands.py"
+      ]
+    },
+    {
+      "id": "NR.live-command-transport.preview",
+      "scope": "Bounded RGB mixed/failed/alias and indexed palette/flip PE32 sessions, explicit restore/held/cancel refusal, native fragments and terminal/resource cleanup; original calls preserved in synthetic COM fixtures.",
+      "level": "preview",
+      "behaviors": [
+        "NR.live-command-transport"
+      ],
+      "evidence": [
+        "NR.live-command-transport.native"
+      ],
+      "tests": [
+        "tests/live-render-channel-test.cpp",
+        "tests/render-command-writer-test.c",
+        "tools/test-live-render-channel.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -20387,7 +20680,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-region-entry-enter.json",
-    "sha256": "327b8ffe0dff3bb55242a507b19f25b66b22bc77a77f01598ede2d67339a5e1e"
+    "path": "research/runtime/coverage/source-index-native-command-commit-v2.json",
+    "sha256": "e7839c9a6f8538bf89f1a3e631a18c4261908245c32daae683d783e09eca52ba"
   }
 }

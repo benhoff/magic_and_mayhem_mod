@@ -28,9 +28,12 @@
 #include "input_forwarder.hpp"
 #include "blit.hpp"
 #include "commands.hpp"
+#include "command_replay.hpp"
+#include "live_command_renderer.hpp"
 #include <QFile>
 #include <QSurfaceFormat>
 #include <QUuid>
+#include <QRandomGenerator>
 #include <memory>
 #include <QApplication>
 #include <QCloseEvent>
@@ -56,7 +59,7 @@
 
 class Shell final:public QMainWindow {
 public:
-    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices) {
+    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
         viewport_=new QWidget(this);layout_=new QVBoxLayout(viewport_);
         layout_->setContentsMargins(0,0,0,0);viewport_->setMinimumSize(800,600);
@@ -150,6 +153,19 @@ public:
         frames_.setInterval(16);connect(&frames_,&QTimer::timeout,this,[this]{
             if(!stream_ || (media_ && media_->movieActive()))return;
             if(!gl_->error().isEmpty()){frames_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
+            if(commands_){
+                if(!commands_->ended() && commands_->error().isEmpty()){
+                    if(!commands_->poll()){
+                        log_->appendPlainText("Native command session refused: "+commands_->error());
+                        statusBar()->showMessage("Native command session ended; use the original game window.");
+                        input_->suspend(true);gl_->setGpuFrame({});gl_->hide();placeholder_->show();
+                        placeholder_->setText("Native command session incomplete. Use the original game window.");
+                    }else if(commands_->ended()){
+                        input_->suspend(true);statusBar()->showMessage("Native preview finished. Continue in the original game window.");
+                    }
+                }
+                return;
+            }
             auto frame=stream_->nextFrame();
             if(!frame.isNull()){gl_->setFrame(std::move(frame));placeholder_->hide();gl_->show();
                 statusBar()->showMessage(input_->target()?"OpenGL presentation active. Click the viewport to control the game.":"OpenGL presentation active. Waiting for the game input window…");}
@@ -244,7 +260,13 @@ private:
             if(skipMovies_)arguments.append("--skip-movies");
             if(noReadback_)arguments.append("--no-readback");
             if(captureLocks_)arguments.append("--capture-locks");
-            gl_->hide();placeholder_->show();
+            if(nativeCommands_){
+                commands_=std::make_unique<LiveCommandRenderer>(*gl_);
+                commands_->framePresented=[this]{placeholder_->hide();gl_->show();statusBar()->showMessage("Bounded native command presentation active. Original rendering retained.");};
+                if(!commands_->create(path+".commands",QRandomGenerator::global()->generate()|1u)){const auto error=commands_->error();finished();statusBar()->showMessage(error);return;}
+                arguments.append({"--command-channel",path+".commands"});
+            }
+            if(nativeCommands_)gl_->show();else gl_->hide();placeholder_->show();
             placeholder_->setText((noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":"Waiting for the first DirectDraw frame…");
         }
         process_.start(launcher,arguments);
@@ -262,6 +284,7 @@ private:
         if(elapsed_.elapsed()>(liveMenus_?120000:30000)){poll_.stop();retry_->setEnabled(true);statusBar()->showMessage("Window not found yet. Check the launch log, then click Attach game.");}
     }
     void finished(){
+        if(commands_){if(!commands_->finishProducer())log_->appendPlainText("Native command producer stopped: "+commands_->error());commands_.reset();}
         voices_.reset();media_.reset();if(input_)input_->suspend(false);
         if(input_)input_->setTarget(0);
         if(input_)input_->setState(nullptr);
@@ -279,7 +302,7 @@ private:
     SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;
     std::unique_ptr<LiveBattleMenuController> battleMenus_;
     std::unique_ptr<LiveMenuSession> liveMenus_;QStackedWidget* menuStack_=nullptr;MainMenuWidget* liveMain_=nullptr;QuickBattleMenuWidget* liveQuick_=nullptr;QPushButton* fallback_=nullptr;bool menuAssetsLoaded_=false,closeAfterGame_=false;
-    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false;std::unique_ptr<LiveCommandRenderer> commands_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
@@ -328,6 +351,7 @@ int main(int argc,char** argv){
                     "  --media FILE          Preview AVI/WAV media without the game\n"
                     "  --media-test          Decode a preview silently and write --media-report FILE\n"
                     "  --software-rendering  Use Mesa software rendering for Qt and Wine\n"
+                    "  --native-commands     Bounded live native command/GPU presentation\n"
                     "  --capture-locks       Capture bounded game-owned Lock/Unlock buffers\n"
                     "  --no-readback         Diagnostic: disable extra surface locks; use the Wine window\n"
                     "  --skip-movies         Disable movies in the disposable OpenGL installation\n"
@@ -336,6 +360,7 @@ int main(int argc,char** argv){
                     "  --smoke-test          Open and close the shell without launching a game\n"
                     "  --opengl-test         Check texture presentation with known pixels\n"
                     "  --commands FILE       Replay captured surface commands in a standalone viewport\n"
+                    "  --command-checks      Compare CHECK records during replay (diagnostic readback)\n"
                     "  --surface-demo        Show persistent renderer surfaces and palette cycling\n"
                     "  --surface-test        Verify rendered surfaces through Qt framebuffer readback\n"
                     "  --stream-test FILE    Check a synthetic frame stream through OpenGL\n"
@@ -384,6 +409,7 @@ int main(int argc,char** argv){
     parser.addOption({"menu-command-line","Show CommandLine Battle in the menu preview."});
     parser.addOption({"software-rendering","Use Mesa software rendering for this shell and its Wine child."});
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
+    parser.addOption({"native-commands","Opt in to bounded live native command presentation; implies capture-locks."});
     parser.addOption({"capture-locks","Capture bounded game-owned locks; disables observer readback."});
     parser.addOption({"no-readback","Diagnostic: log game calls without extra surface locks or Qt frames."});
     parser.addOption({"skip-movies","Disable movies only in the disposable OpenGL installation."});
@@ -391,6 +417,7 @@ int main(int argc,char** argv){
     parser.addOption({"capture-draws","Record bounded drawing evidence when the game is launched."});
     parser.addOption({"opengl-test","Test OpenGL texture presentation with known pixels."});
     parser.addOption({"commands","Replay a bounded surface-command file without launching the game.","file"});
+    parser.addOption({"command-checks","Verify native/RGBA CHECK records during replay (diagnostic readback)."});
     parser.addOption({"surface-demo","Show native renderer surfaces and palette cycling without launching the game."});
     parser.addOption({"surface-test","Test persistent native surfaces through Qt presentation."});
     parser.addOption({"stream-test","Verify a bridge stream through the OpenGL viewport.","file"});
@@ -412,7 +439,7 @@ int main(int argc,char** argv){
     if(parser.isSet("mini-menu") && parser.value("mini-menu")!="campaign" && parser.value("mini-menu")!="battle")parser.showHelp(2);
     if(parser.isSet("battle-results") && parser.value("battle-results")!="victory" && parser.value("battle-results")!="defeat")parser.showHelp(2);
     if(parser.isSet("quick-battle-results") && parser.value("quick-battle-results")!="continue" && parser.value("quick-battle-results")!="spectate")parser.showHelp(2);
-    if(parser.isSet("live-menus")&&(menuPreview||parser.isSet("embedding-test")||parser.isSet("native-media")||parser.isSet("native-voices")||parser.isSet("capture-draws")||parser.isSet("capture-history")||parser.isSet("skip-movies")||parser.isSet("no-readback")||parser.isSet("capture-locks")))parser.showHelp(2);
+    if(parser.isSet("live-menus")&&(menuPreview||parser.isSet("embedding-test")||parser.isSet("native-media")||parser.isSet("native-voices")||parser.isSet("capture-draws")||parser.isSet("capture-history")||parser.isSet("skip-movies")||parser.isSet("no-readback")||parser.isSet("capture-locks")||parser.isSet("native-commands")))parser.showHelp(2);
     if(menuPreview){
         MenuPreview preview;
         const auto root=parser.isSet("menu-assets")?parser.value("menu-assets"):QDir(parser.value("repo")).filePath("working/game-nocd");
@@ -505,48 +532,7 @@ int main(int argc,char** argv){
         auto* layout=new QVBoxLayout(&fixture);layout->addWidget(new QLabel("External viewport fixture",&fixture));fixture.show();
         QTimer::singleShot(10000,&app,&QCoreApplication::quit);return app.exec();
     }
-    if(parser.isSet("commands")){
-        try {
-            QFile file(parser.value("commands"));
-            if(!file.open(QIODevice::ReadOnly) || file.size()>mnm::render::maxCommandBytes)
-                throw std::runtime_error("Cannot read bounded command stream");
-            const auto commands=mnm::render::decodeCommands(file.read(mnm::render::maxCommandBytes+1));
-            GlViewport viewport;viewport.setWindowTitle("Magic & Mayhem — GPU command replay");
-            viewport.resize(640,480);viewport.show();
-            QImage expected;
-            if(parser.isSet("smoke-test"))expected=mnm::render::replayCommands(commands).presentation;
-            QTimer::singleShot(0,&viewport,[&]{
-                try {
-                    if(!viewport.ready())throw std::runtime_error("Viewport OpenGL context is unavailable");
-                    mnm::render::GlBlitter renderer(viewport.context());
-                    const auto result=mnm::render::replayCommandsGpu(commands,renderer,[&](auto frame){
-                        viewport.setGpuFrame(std::move(frame));viewport.repaint();
-                        if(!viewport.error().isEmpty())throw std::runtime_error(viewport.error().toStdString());
-                    });
-                    std::fprintf(stderr,"GPU replay: %u presentations, %llu native CHECK readbacks, %llu RGBA CHECK readbacks, %llu viewport uploads\n",
-                        result.presents,static_cast<unsigned long long>(result.stats.nativeReadbacks),
-                        static_cast<unsigned long long>(result.stats.rgbaReadbacks),
-                        static_cast<unsigned long long>(viewport.imageUploads()));
-                }catch(const std::exception& error){std::fprintf(stderr,"GPU replay failed: %s\n",error.what());app.exit(8);}
-            });
-            if(parser.isSet("smoke-test"))QTimer::singleShot(500,&app,[&]{
-                if(!viewport.ready() || !viewport.error().isEmpty()){app.exit(6);return;}
-                const auto actual=viewport.grabFramebuffer();const auto& image=expected;
-                const auto scale=qMin(double(actual.width())/image.width(),double(actual.height())/image.height());
-                const int w=qRound(image.width()*scale),h=qRound(image.height()*scale);
-                const int left=(actual.width()-w)/2,top=actual.height()-h-(actual.height()-h)/2;
-                bool ok=viewport.imageUploads()==0;
-                for(int y=0;y<3;++y)for(int x=0;x<3;++x){
-                    const int px=(2*x+1)*w/6,py=(2*y+1)*h/6;
-                    const int ix=qMin(image.width()-1,int((px+0.5)*image.width()/w));
-                    const int iy=qMin(image.height()-1,int((py+0.5)*image.height()/h));
-                    if(actual.pixelColor(left+px,top+py)!=image.pixelColor(ix,iy))ok=false;
-                }
-                app.exit(ok?0:7);
-            });
-            return app.exec();
-        }catch(const std::exception& error){std::fprintf(stderr,"Command replay failed: %s\n",error.what());return 8;}
-    }
+    if(parser.isSet("commands"))return runCommandReplay(parser.value("commands"),parser.isSet("smoke-test"),parser.isSet("command-checks"));
     if(parser.isSet("opengl-test") || parser.isSet("stream-test") || parser.isSet("surface-test") || parser.isSet("surface-demo")){
         FrameStream stream;QImage image;
         std::unique_ptr<mnm::render::GlBlitter> renderer;mnm::render::SurfaceId surface=0;
@@ -602,8 +588,8 @@ int main(int argc,char** argv){
     }
     const auto renderer=parser.isSet("live-menus")?QString("native"):parser.value("renderer");
     if(renderer!="opengl" && renderer!="native")parser.showHelp(2);
-    if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback") || parser.isSet("capture-locks") || parser.isSet("native-media") || parser.isSet("native-voices")) && renderer!="opengl")parser.showHelp(2);
-    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),parser.isSet("capture-locks"),parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"));shell.show();
+    if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback") || parser.isSet("capture-locks") || parser.isSet("native-commands") || parser.isSet("native-media") || parser.isSet("native-voices")) && renderer!="opengl")parser.showHelp(2);
+    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),parser.isSet("capture-locks")||parser.isSet("native-commands"),parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"),parser.isSet("native-commands"));shell.show();
     if(parser.isSet("live-menu-test"))installLiveMenuTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"));
     if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);
     if(parser.isSet("embedding-test")){

@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "scope": "Synthetic decoded incremental native integration and Qt replay service; no live transport, original artifacts or performance equivalence.",
+  "source_sha256": {
+    "renderer/blit.cpp": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+    "renderer/blit.hpp": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+    "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+    "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+    "renderer/commands.cpp": "96029cdf2e773901c54c38913c589a12273b7d6179129a0ad77c919f27e6881c",
+    "renderer/commands.hpp": "cafda600a8f9c5573f8929932edfc02c9f29a34027a1e86fb741d03052f6813d",
+    "renderer/command_state.hpp": "a1b59d3255c81e932c10d20c48402987d8723710c22848f50bef3100a4a4617c",
+    "renderer/command_consumer.cpp": "94d7bb452124133054ee5d5c02a94554e2137bc7a255f4d68d587e23a3b17ee7",
+    "renderer/CMakeLists.txt": "168614fd8ad11d6455bb46d37b604ffdc3d70046b0439d0a4a08e37d4fb77162",
+    "apps/qt-shell/gl_viewport.cpp": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+    "apps/qt-shell/gl_viewport.hpp": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+    "apps/qt-shell/command_replay.cpp": "2684084ad35b562377f978e5d39f3aa3de11818219d7ec84f761bb826b6a4dae",
+    "apps/qt-shell/command_replay.hpp": "7a9527cf8e69b3831d5f182469645bff33ff2df8531ff85275f31cb82dcd2478",
+    "tests/render-command-consumer-test.cpp": "12ef9548df2a3299917f021292135bce60dfd7d5b72fffc6f6ea8b3422af4b19",
+    "tests/command-replay-shell.cpp": "48767065e745c32cc3578717312674dfc4f9e793231dc6286d29ed9bb149eae6",
+    "tools/test-incremental-render-commands.py": "7d6be3ce54fb12644b65eb1ef2a387b19a0115d249d8a63f33c1cdb6e9153ec5"
+  },
+  "run_directory": "working/tests/incremental-render-commands/run-_537jtsp",
+  "runs": [
+    {
+      "name": "normal-partitions",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel/render-command-consumer-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "b73a4f99769146ea3710ee1f1b31a69e2802b68a66cf3173c279b5a2e519691a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "sanitized-partitions",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel-sanitized/render-command-consumer-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "b73a4f99769146ea3710ee1f1b31a69e2802b68a66cf3173c279b5a2e519691a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "normal-qt-skipped",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel/command-replay-test-shell",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-_537jtsp/valid.bin"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5b4d66839664717940e4798493b1c2561722eaa14538b8518dcb996b2111b37f"
+    },
+    {
+      "name": "normal-qt-verified",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel/command-replay-test-shell",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-_537jtsp/valid.bin",
+        "--command-checks"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ecf86e9524d27765f25fc32813e43771b9e30c875a904335a0267d9f50a8deb1"
+    },
+    {
+      "name": "normal-qt-poison-refusal",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel/command-replay-test-shell",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-_537jtsp/poisoned.bin",
+        "--command-checks"
+      ],
+      "returncode": 8,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8d063a6ce9e9b1d784bda7c8d5add57ed376ea18b8d5372781aefb035604fcd0"
+    },
+    {
+      "name": "normal-qt-gap-refusal",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel/command-replay-test-shell",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-_537jtsp/gap.bin"
+      ],
+      "returncode": 8,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b5aaaf74e93c576ccd0582c9abf7cb7cd658e1963d0139dcf1af485cb454ad92"
+    },
+    {
+      "name": "sanitized-qt-skipped",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel-sanitized/command-replay-test-shell",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-_537jtsp/valid.bin"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5b4d66839664717940e4798493b1c2561722eaa14538b8518dcb996b2111b37f"
+    },
+    {
+      "name": "sanitized-qt-verified",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel-sanitized/command-replay-test-shell",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-_537jtsp/valid.bin",
+        "--command-checks"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ecf86e9524d27765f25fc32813e43771b9e30c875a904335a0267d9f50a8deb1"
+    },
+    {
+      "name": "sanitized-qt-poison-refusal",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel-sanitized/command-replay-test-shell",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-_537jtsp/poisoned.bin",
+        "--command-checks"
+      ],
+      "returncode": 8,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8d063a6ce9e9b1d784bda7c8d5add57ed376ea18b8d5372781aefb035604fcd0"
+    },
+    {
+      "name": "sanitized-qt-gap-refusal",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel-sanitized/command-replay-test-shell",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-_537jtsp/gap.bin"
+      ],
+      "returncode": 8,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b5aaaf74e93c576ccd0582c9abf7cb7cd658e1963d0139dcf1af485cb454ad92"
+    },
+    {
+      "name": "production-qt-shell",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel-qt/mnm-qt-shell",
+        "--commands",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-_537jtsp/valid.bin",
+        "--smoke-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5b4d66839664717940e4798493b1c2561722eaa14538b8518dcb996b2111b37f"
+    },
+    {
+      "name": "production-qt-shell-verified",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/live-render-channel-qt/mnm-qt-shell",
+        "--commands",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-_537jtsp/valid.bin",
+        "--command-checks",
+        "--smoke-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ecf86e9524d27765f25fc32813e43771b9e30c875a904335a0267d9f50a8deb1"
+    }
+  ],
+  "artifacts": {
+    "normal-consumer": "a1327cb07f5518d28c5fc2cdd291a14422f5eaaa9fa24f6e299d80115cd2d141",
+    "sanitized-consumer": "50e4e8d8e005fee5af451d3c1f1eb706e8a76ce26d5d82baab7ca223868ed163",
+    "normal-qt-service": "5d961e60ae3d634bfa1ff9153f0dadf70698c5a5e72354f61108bd325d82ebae",
+    "sanitized-qt-service": "4770f67745a546a9209e6d58797e57996df3ada95fc9cddde6ce64dbf107906d",
+    "production-qt-shell": "2526b2a8620a3c2c62c49085905337ceac078144f301575d719a5eaec0a16096"
+  },
+  "success": true,
+  "tests": [
+    {
+      "failure_cases": 30,
+      "full_frame_comparisons": 354,
+      "gpu_viewport_uploads": 0,
+      "ordinary_readbacks": 0,
+      "partitioned_sessions": 32,
+      "prefix_resources_checked": true,
+      "success": true
+    },
+    {
+      "failure_cases": 30,
+      "full_frame_comparisons": 354,
+      "gpu_viewport_uploads": 0,
+      "ordinary_readbacks": 0,
+      "partitioned_sessions": 32,
+      "prefix_resources_checked": true,
+      "success": true
+    }
+  ],
+  "native_integration": {
+    "all_match": true,
+    "full_frame_comparisons": 708,
+    "partitioned_sessions": 64,
+    "failure_cases": 60,
+    "ordinary_readbacks": 0,
+    "gpu_viewport_uploads": 0,
+    "timer_batches": 4,
+    "diagnostics_explicit": true,
+    "qt_service_replay": true,
+    "normal_and_sanitized": true,
+    "production_qt_shell_checked": true
+  }
+}

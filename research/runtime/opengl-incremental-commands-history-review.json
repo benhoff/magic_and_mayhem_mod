@@ -1,0 +1,1967 @@
+{
+  "range": "cf1dc7d..8d2f8b5d873322c4571a999d3ad07994c2f41661",
+  "scope": "Read-only parent/current committed file and behavior fingerprints against append-only exact receipts. No retrospective gate pass or new execution/equivalence claim.",
+  "files": [
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "reconstruction/rendering/effect-transition/CMakeLists.txt",
+      "before_sha256": "3de908cc5496ce83d539a6ff0795a2d7d469d2a47f7986a9bd4a112c21f58e06",
+      "after_sha256": "3de908cc5496ce83d539a6ff0795a2d7d469d2a47f7986a9bd4a112c21f58e06",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cell-transitions",
+        "TL.effect-cleanup-policy",
+        "TL.effect-transition-policy"
+      ],
+      "role": "build",
+      "change": "links_changed",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "reconstruction/rendering/effect_transition.cpp",
+      "before_sha256": "a4c14f19c0205b30c7e41bbc90ef60a1da2f423293649e2942075fcb93ea30db",
+      "after_sha256": "7884793bbfcca42e0f70d2bd4c3e3510b9b0a7ac12c4a8a2607201dff5d892fa",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cell-transitions",
+        "TL.effect-cleanup-policy",
+        "TL.effect-transition-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "reconstruction/rendering/effect_transition.hpp",
+      "before_sha256": "d83311ace9e291830d8854fec4443d17776ccf1cc5790f3299312111dce16c55",
+      "after_sha256": "26bc40700e5cef61c7bd1048371fc8012455e1011925161545c0265ce3e76f3e",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cell-transitions",
+        "TL.effect-cleanup-policy",
+        "TL.effect-transition-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "016a756b14e5fa54f12cce25f661696dc04f34449319c031839a07c848555212",
+      "after_sha256": "73f0a8897b67cbdef44d2271bfe9e06e2ac5e0b6c6aeb6308241a22953f345ba",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "c18a036bd36c4da750ce2e992fadc12bdfe6bf6f614d13ec2095a22892f17681",
+      "after_sha256": "b8f0c0fd423a8b2faa22c6406969e856e13dbad77c1136e1ad9015798f1c8574",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "f74ff693de0fc56bee3c64b9abbeb550eabe66948fb20921efeb57c6e8df9576",
+      "after_sha256": "6cc96d95356f5bd1bdc416f047fc2d0c7f00069611830bb0836b73bd8e1031f4",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-summary-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "519728bf99b5ab5e60327c0aeff50c3cf06e82e1497f4174d7ce4ce8493efc45",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/effect-blocked-destinations-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "63bf0fd90e33684467606cff31146e65c46f8d059856939a33cde67b6fac098f",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/effect-blocked-destinations.json",
+      "before_sha256": null,
+      "after_sha256": "b1e64f8fc6d88a07470b9d83b762ef66e0a3448f3a624903a1f0d3f0e832e12d",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/effect-blocked-destinations.md",
+      "before_sha256": null,
+      "after_sha256": "dd735d1bbc2a53c5c69402bd365fe9c34a5adddb75c19453cc8ef08e0cb731bc",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-movement-recount"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "779e4c7fb3c1d5e484ed7eff54e91beae49b21c15a259e9431b2eeb503156e4f",
+      "after_sha256": "dd4e34fc463438667dcb2639ac2e589f29c8308c340fa0d5b0d06b7d2fcad2ac",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "4be3f118912f6cf3380da76b694e5ce594e0cdd399f83b5724e8c15111074ff9",
+      "after_sha256": "0672801ef36e7412ece419a1e28e12b8df57c983106e2bf3d50f176df0bc0096",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "ed2a2171edb28bacc495bb7be969fd2a9c8a49db08819706489f3782a106e3ff",
+      "after_sha256": "7abf243baa0901c48ee23c0a09aee3e884878925de50797c3ead9b128ffeb5b2",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "02f9a4bdc47d849ebb0bee83e530430083d8776efb1ea191274ccf5408c10c65",
+      "after_sha256": "da3898c948efe07636481f1909d549846634f2736e4dd4dee5a1bb585636f75f",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "tests/effect-blocked-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "107ef6d69fce7239bba4aad6890e1adc6ac8e9439370292789a89b08d54e12ce",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "tests/effect-cleanup-reference.cpp",
+      "before_sha256": "1a592e43af9ade0e71f98383cd274f38cc9ada49ade1c13ed65c19b532313825",
+      "after_sha256": "1a592e43af9ade0e71f98383cd274f38cc9ada49ade1c13ed65c19b532313825",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ],
+      "role": "test",
+      "change": "links_changed",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "tests/effect-transition-reference.cpp",
+      "before_sha256": "ad9fb9c5c2075b8ea0c88e43a37c5c7131d5485c01c6d7d935a9092ce12c7213",
+      "after_sha256": "ad9fb9c5c2075b8ea0c88e43a37c5c7131d5485c01c6d7d935a9092ce12c7213",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cell-transitions",
+        "TL.effect-cleanup-policy",
+        "TL.effect-transition-policy"
+      ],
+      "role": "test",
+      "change": "links_changed",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "tests/effect-transition-test.cpp",
+      "before_sha256": "9ad99a7ac6974f1cf9f6e7fcab3a8ee2427ff91bdc5db623c1b14e91c9ba3846",
+      "after_sha256": "a11ef5194dba5cd63259135883560fa3813609efa37959bd5d9ffb87b273f92f",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cell-transitions",
+        "TL.effect-cleanup-policy",
+        "TL.effect-transition-policy"
+      ],
+      "role": "test",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "path": "tools/test-effect-transition.py",
+      "before_sha256": "4a03f2b9dc8daf266eb12a1cccb21145cc350acb4d67f938b83f4feb09fdda99",
+      "after_sha256": "32e1dfa244783d60d0ba356bea1ec4152b8af491463e53bf5da78b21a21001f8",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cell-transitions",
+        "TL.effect-cleanup-policy",
+        "TL.effect-transition-policy"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "reconstruction/rendering/effect_transition.cpp",
+      "before_sha256": "7884793bbfcca42e0f70d2bd4c3e3510b9b0a7ac12c4a8a2607201dff5d892fa",
+      "after_sha256": "9aab83bdaafd76e203431a73ee4a7fa546fb556f7f7675186512d859b45607ae",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cell-transitions",
+        "TL.effect-cleanup-policy",
+        "TL.effect-height-exits",
+        "TL.effect-height-policy",
+        "TL.effect-transition-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "reconstruction/rendering/effect_transition.hpp",
+      "before_sha256": "26bc40700e5cef61c7bd1048371fc8012455e1011925161545c0265ce3e76f3e",
+      "after_sha256": "292938bdc5c16e762716279a3f22d87c1a1635facd2fb26afebecdf08024ad8e",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cell-transitions",
+        "TL.effect-cleanup-policy",
+        "TL.effect-height-exits",
+        "TL.effect-height-policy",
+        "TL.effect-transition-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "73f0a8897b67cbdef44d2271bfe9e06e2ac5e0b6c6aeb6308241a22953f345ba",
+      "after_sha256": "5cbd0ad5a97f55d28d4baf7fe17260a61602a7b01f5b3d2ad015ef65fe20a8f1",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "b8f0c0fd423a8b2faa22c6406969e856e13dbad77c1136e1ad9015798f1c8574",
+      "after_sha256": "9724773992e406121e37098ff34667740a5c0339d05db071566493828ff1cb86",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "6cc96d95356f5bd1bdc416f047fc2d0c7f00069611830bb0836b73bd8e1031f4",
+      "after_sha256": "23db497617e6407205f1bf3935fe0be054b6eb9864a89c36c53670c839fd609f",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-height-summary-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "519728bf99b5ab5e60327c0aeff50c3cf06e82e1497f4174d7ce4ce8493efc45",
+      "after_sha256": "ed39f90639c48708e235d02cce8bae8c64de4b65d25b8ab1a41730f00e6ff06c",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "dd4e34fc463438667dcb2639ac2e589f29c8308c340fa0d5b0d06b7d2fcad2ac",
+      "after_sha256": "201a2639db6f9a68354056ea245af6529653bfb153402877c73e59b2309addd7",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "0672801ef36e7412ece419a1e28e12b8df57c983106e2bf3d50f176df0bc0096",
+      "after_sha256": "a3b6b873966591a545bcd1f2439a229d077d5c50ccefd86de90a81c70fb6b998",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "d7fcb09331a783033ec346217610dbcdf40f68f1ec0a6dcb6de2148bf42a4326",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/effect-height-exits-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "d000ad46a7a8cd1cffd73e55e6ef74f5051daba3525383ac7642e5a45f6eab5d",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/effect-height-exits.json",
+      "before_sha256": null,
+      "after_sha256": "349dc5bbbf2749780cf14a83dd8e239d827178fa7d9d3c04d768aafd42fb45cb",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/effect-height-exits.md",
+      "before_sha256": null,
+      "after_sha256": "a911e493882ed860ec54c1a2128f30175085d6ea548177fedc966abff183af7b",
+      "behaviors": [
+        "TL.effect-height-exits",
+        "TL.effect-height-policy",
+        "TL.effect-movement-recount"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "7abf243baa0901c48ee23c0a09aee3e884878925de50797c3ead9b128ffeb5b2",
+      "after_sha256": "b189df2872513eab56bbf0075336d6e82b104d5b177b3c4ff5d029a6f6338638",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "da3898c948efe07636481f1909d549846634f2736e4dd4dee5a1bb585636f75f",
+      "after_sha256": "9f8ff4155c60381dbf1b09e147f04ccb2dc8f70ffb135d22e3edbc89eacc8203",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "tests/effect-height-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "8edb8abedb6cc18bc1e992da1ead64e2553b08a7ac4f17665f13537208e7699e",
+      "behaviors": [
+        "TL.effect-height-exits",
+        "TL.effect-height-policy"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "tests/effect-transition-test.cpp",
+      "before_sha256": "a11ef5194dba5cd63259135883560fa3813609efa37959bd5d9ffb87b273f92f",
+      "after_sha256": "967401af9c85d39bb4b304bad5c837b84436e6ffd5836f2bf0cd93be2d90a527",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cell-transitions",
+        "TL.effect-cleanup-policy",
+        "TL.effect-height-exits",
+        "TL.effect-height-policy",
+        "TL.effect-transition-policy"
+      ],
+      "role": "test",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "path": "tools/test-effect-transition.py",
+      "before_sha256": "32e1dfa244783d60d0ba356bea1ec4152b8af491463e53bf5da78b21a21001f8",
+      "after_sha256": "0f59356ec4e313ffca96d68ff630847f0de4461d365551477000a10779b145a4",
+      "behaviors": [
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cell-transitions",
+        "TL.effect-cleanup-policy",
+        "TL.effect-height-exits",
+        "TL.effect-height-policy",
+        "TL.effect-transition-policy"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "a3c5de0ce53e62571358edcde13b2d1258a67df6462ab62f13c6750162e7a36b",
+      "after_sha256": "533352914e3843afbb6db4a9b5c2b54a576ba55b23b9e375cbdc1c854d2e48fb",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "NR.gpu-presentation"
+      ],
+      "role": "build",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "f7ec7b0dcd482d5441054a223dad472427cef524c905cc9b67fb7b7eae64c924",
+      "after_sha256": "05d63b139a1856cadee4173e88f17e40beeabf4c5f826d669eb145432aa55eac",
+      "behaviors": [
+        "BR.main",
+        "CP.region-entry-bridge",
+        "NP.preferences-draft",
+        "NP.preferences-persistence",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "cd5f303d7cb355f4fa71750e4bbf570727265c5b68c82ce277e6c903f47dc326",
+      "after_sha256": "6d3f5dcd2729233331a6f8e5837db0288ee14723b091f378d1a55a948ae84bda",
+      "behaviors": [
+        "BR.main",
+        "CP.region-entry-bridge",
+        "NP.preferences-persistence",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/live_menu_test.cpp",
+      "before_sha256": "18ce1d4843d8768dc5aa43d5898019132c9a5811f57856830653aa7bfd9a5fef",
+      "after_sha256": "0ab793769510c6b253bb77e8b8925766837165c18f47a83414a49782a5b0522f",
+      "behaviors": [
+        "BR.main",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/live_menu_test.hpp",
+      "before_sha256": "85273a502a6d2e72f49c91ceac21021a3f64b52d3317fe651999d89a434ea073",
+      "after_sha256": "2e55109f7857ef00ac7dfd3613a9be022683b4457624d0edf43c3cfcf4025f6b",
+      "behaviors": [
+        "BR.main",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/live_region_entry_controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "c8a96cb6a4c6f96483d449aa0b8b5dd69c1935e1801c6aedd1982bdb0a99a2e2",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/live_region_entry_controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "e82b973b92e523b3cdf76d226522ff54684609ea314c2331257cc93f827cc7d6",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/live_region_entry_test.cpp",
+      "before_sha256": null,
+      "after_sha256": "e6d010092fee5a5393c1b163c58970a54d4bac95d1d1c44d363d88efb6e41975",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "5e2bf7765c3b5592acbdfff2091aaa39dde7b0f5adcf80b2ceaf9e4c16518ad9",
+      "after_sha256": "268ecb3e383cfd2bc3eb5c5c51f9e297cf7cb2923053342b42549a40b27a9dd1",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "HOST.session",
+        "NP.region-entry-fresh-policy",
+        "NR.gpu-presentation"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "201abc6e3c51fb58b014f7132d66350f165f2dd13cf2eb589f1dfba74a6f92be",
+      "after_sha256": "4c7b65830ec1fc82b039f1242c474ec33c339387cef8e885f22c023ac9486214",
+      "behaviors": [
+        "BR.main",
+        "CP.region-entry-bridge",
+        "NP.preferences-draft",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "9106094cfada4dbbc7c136f42e908f26b87906750acbe45079c6a325de0f4ea0",
+      "after_sha256": "74b1608cb43df8d9f619e26c8b4cf0c7a2a821025e11db7bf894d0451241adda",
+      "behaviors": [
+        "BR.main",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/region_entry_widget.cpp",
+      "before_sha256": "4e29f4ad8f09837d5d34abaeb1790c6b1278f91500ba52ebe6c3d873e66e315d",
+      "after_sha256": "0c77c0a8ee10175b68cd947b82790179732200f57346fc34936b2b3f65507909",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "UI.region_entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "apps/qt-shell/region_entry_widget.hpp",
+      "before_sha256": "d1206eeece310187ca024698fab9d11437bb30d2b6032ba8e4ac759bdcf3a163",
+      "after_sha256": "a9a561f7ec47af1c8830d93e411e2e593c2fca9bc6fe61e3cb92418729cb89ad",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "UI.region_entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "protocols/include/mnm/menu_v7.h",
+      "before_sha256": null,
+      "after_sha256": "fc554cfcbc7fd50ebf4ad0b4046877787ccdb410eaa324b36573ed4694659c32",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "protocol",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "research/runtime/README.md",
+      "before_sha256": "96390f6e3099a90f6a39f1f7df28cda05ce70ddd688107be3b1e7e0751d45d37",
+      "after_sha256": "377707d8e53a36e13b425ae9d39c5455ba8669dece7415b95d7fae30941f7940",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": "a3aa0f026cc139f88a9e133f3581cc07d92a153e6cc6b96234be40b833634107",
+      "after_sha256": "7b2ed8e23157a6f2c1987b9946188a7a971ec775c19c723fffbc57b81eb185f4",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "5cbd0ad5a97f55d28d4baf7fe17260a61602a7b01f5b3d2ad015ef65fe20a8f1",
+      "after_sha256": "a0b088fb4c55f84b9d211af60c356f12d75953e554e81c6de4c334c795e38533",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "9724773992e406121e37098ff34667740a5c0339d05db071566493828ff1cb86",
+      "after_sha256": "40f7f784b2946a451ce12f0d1c6e3d6786980044fa28ae1f4bc6b8c464e7693a",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "research/runtime/coverage/source-index-region-entry-bridge.json",
+      "before_sha256": null,
+      "after_sha256": "cc7b57af7c41c0ad3f3f7590838718e8c8cc3b25b5365c9e88c590a6e6b19f1b",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "23db497617e6407205f1bf3935fe0be054b6eb9864a89c36c53670c839fd609f",
+      "after_sha256": "46212957992b0567c334d50de4bfdcf6b135d47396c77fdfd0b1969a38004bb1",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "research/runtime/region-entry-bridge-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "a357c0807a35d7d4c3496cbdb617e47b0633d673def7ebc4d3101f37a2b22fb0",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "research/runtime/region-entry-engine-bridge.json",
+      "before_sha256": null,
+      "after_sha256": "33bdb3c7307b131c668383094e036f360fa8535d70b185852ddda399f8c410b1",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "research/runtime/region-entry-engine-bridge.md",
+      "before_sha256": null,
+      "after_sha256": "e51bf26787fcce35ca24065666ec068dd44ecef57f58f963939ce8ae22d498f6",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "research/runtime/region-entry-engine-contract.md",
+      "before_sha256": "3cdd52acf45f5766078c675299dfb3e0b8f9563b8d98d490f75056b9efd68050",
+      "after_sha256": "3cdd52acf45f5766078c675299dfb3e0b8f9563b8d98d490f75056b9efd68050",
+      "behaviors": [
+        "CP.realm-navigation",
+        "CP.realm-observation",
+        "CP.region-entry-actions",
+        "CP.region-entry-bridge",
+        "CP.region-entry-observation"
+      ],
+      "role": "research",
+      "change": "links_changed",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "runtime/menu/channel.h",
+      "before_sha256": "ef80c4227e7563d86186ca5ad5e2c835604aa2b6d5a0a7df4fc0c495ab7d51ca",
+      "after_sha256": "514a224290f7a62a5b104fa95fc42b719f10d020b88e80af2a119ba6a3e16a5b",
+      "behaviors": [
+        "BR.battle",
+        "BR.main",
+        "BR.mini",
+        "BR.result",
+        "BR.spell",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "runtime/menu/observer.c",
+      "before_sha256": "f7a83db08a1be4c22a95edfd222e7791c8afa3a944b436fcd5ca7614bd89ef6e",
+      "after_sha256": "9596ab6c7ac39e00fafc345d599f6f8681095206fff31d9fda77b679ea7e59a3",
+      "behaviors": [
+        "BR.battle",
+        "BR.main",
+        "BR.mini",
+        "BR.result",
+        "BR.spell",
+        "CP.realm-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-observation",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.display-rebuild",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "runtime/menu/region_entry.h",
+      "before_sha256": null,
+      "after_sha256": "a6ab4a8e3fd3e3f35d070634a9800f13a111bee1b6810b89d77e2e648ea87e8b",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "tests/README.md",
+      "before_sha256": "e39d544aa43a27d79049b99b52bd55dd89d8e0a2f34a078b027847b55588a143",
+      "after_sha256": "68961b23425d8efba8bb4d5a5b0831b85d414a94a017feb21ef6dd7fb2c571d1",
+      "behaviors": [
+        "TOOL.coverage-gate"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "tests/menu-region-bridge-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "238b4b0830b61418f70770f9053ecbf14be7325495cb9214353b018c3322c34b",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "tests/menu-region-controller-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "0dc31faf66ae145258f0b3afe5ea80e129e3139f5e36b4548afdedda3781113a",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "tests/region-entry-bridge-reference.c",
+      "before_sha256": null,
+      "after_sha256": "b128e74d288be47405667f1943eac37dd4607b3b613e33e861676c92ab95d987",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "tools/build-menu-observer.py",
+      "before_sha256": "c7aab9176bbe9cdda8e42ffb0de871bf9d48ff9145e7ab4fc6b6a8b6aa2ec57f",
+      "after_sha256": "9545425bb1182e76d4970e4f38aa4f8f341f2e548fa9e33e084e2299ac41776d",
+      "behaviors": [
+        "CP.realm-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-observation",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "b42a2e45fa6e3dc3a87c94e909213008934b0229902f1a7ef4999a5c310a1d08",
+      "after_sha256": "0b3bbe8249d211c035bc7f1d33383d54d4907e7d83a7dbd0dd269a4e0c37fca1",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "tools/test-campaign-observer.py",
+      "before_sha256": "3ddc59452657c05eee973d6c7c77f844194b6e78cfba59567a9d160281ee2a58",
+      "after_sha256": "3ddc59452657c05eee973d6c7c77f844194b6e78cfba59567a9d160281ee2a58",
+      "behaviors": [
+        "CP.realm-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-observation",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "tools/test-live-region-entry.py",
+      "before_sha256": null,
+      "after_sha256": "7f121aecee12603068b05c773e17a888c6020ffe5d815658ac7522d2a600665e",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "tools/test-menu-observer.py",
+      "before_sha256": "8750c1b36e25895fe58e426d8542326adc61548863e132769b56ee88a3408460",
+      "after_sha256": "8750c1b36e25895fe58e426d8542326adc61548863e132769b56ee88a3408460",
+      "behaviors": [
+        "CP.realm-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-observation",
+        "NP.preferences-draft",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.display-rebuild",
+        "PR.main-entry",
+        "WIRE.menu_fixtures"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d",
+        "region-entry-ui28-region-entry-commit-lbkbixhy",
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "path": "tools/test-region-entry-bridge.py",
+      "before_sha256": null,
+      "after_sha256": "238e7d54d38f674dc70ec772af981e13dd6121344b938b379d145616c5260706",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "apps/world-sandbox/frozen_navigation.cpp",
+      "before_sha256": "a0f843077db161aca4b8e7b07e7187a93a1cc21744e16324271939f2933b26a9",
+      "after_sha256": "50d0e1c2b2d5fb9a6bbc54b429db4a575b9a18b7cd90875c7fd32c4329e180b2",
+      "behaviors": [
+        "MV.ani-forward",
+        "MV.event-0",
+        "MV.event-2",
+        "MV.fine-motion",
+        "MV.legality",
+        "MV.ordinary-terrain-height",
+        "MV.planar-setup",
+        "MV.request",
+        "MV.route-consumption",
+        "MV.search",
+        "MV.vertical-setup",
+        "NP.checkpoints",
+        "NP.map-navigation",
+        "NP.multi-movement",
+        "NP.stationary-occupancy",
+        "WORLD.sandbox"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "apps/world-sandbox/frozen_navigation.hpp",
+      "before_sha256": "02e88b5aae824a4ea0d9b6edc1ad9a47da791934c73a2a16ef26829a2cb464dd",
+      "after_sha256": "d2ee8416faf373418ad2455295fff82c793fd17718410bd634b3acf6ecdcaa59",
+      "behaviors": [
+        "MV.ani-forward",
+        "MV.event-0",
+        "MV.event-2",
+        "MV.fine-motion",
+        "MV.legality",
+        "MV.ordinary-terrain-height",
+        "MV.planar-setup",
+        "MV.request",
+        "MV.route-consumption",
+        "MV.search",
+        "MV.vertical-setup",
+        "NP.checkpoints",
+        "NP.map-navigation",
+        "NP.multi-movement",
+        "NP.stationary-occupancy",
+        "WORLD.sandbox"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "apps/world-sandbox/main.cpp",
+      "before_sha256": "1cbf7cbf14b2a2b9dfe3166fdb390466820e59f9acdf1c7e861037d262f381c1",
+      "after_sha256": "5af74c9ef3293a3f2f877317b90af3f0e39cbafc2916c62526c045c894326030",
+      "behaviors": [
+        "NP.multi-movement",
+        "NP.stationary-occupancy",
+        "WORLD.sandbox"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "game/CMakeLists.txt",
+      "before_sha256": "8364e2f0ac1a13abce82906609757d8f124969ffed812bea16b9f100a8448b65",
+      "after_sha256": "f435b02dba909970d6b94571393437eba838feadaddfa9cf51a35c02989c9fa4",
+      "behaviors": [],
+      "role": "build",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "game/README.md",
+      "before_sha256": "f609a641a34c3cf37944a7f43d19152c497df7a2ad64815ae946ebac2f77cc9b",
+      "after_sha256": "6001417e565170fcf346df423e018a48562c070c43df93f129b62e53622ceefb",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.move-orders",
+        "WORLD.owned"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "game/simulation/movement.cpp",
+      "before_sha256": "c88bf769710493fbf5d25d451e61f7a3a777b2d781f74d475b42005216802f8f",
+      "after_sha256": "56e051eef1017b39f768b0ef238238753f129cbe52c2adb89c93fbd01398caa9",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.move-orders",
+        "NP.multi-movement",
+        "NP.stationary-occupancy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "game/simulation/movement.hpp",
+      "before_sha256": "8f55899d5404586dc7d065133e151aa2af7dd6e5d3a46108b7e8116cf1bab7fc",
+      "after_sha256": "47f40135b8126bc2d855a7d5b1e8681599f1e2e33274833825b355fc48b220cf",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.move-orders",
+        "NP.multi-movement",
+        "NP.stationary-occupancy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "game/simulation/occupancy.cpp",
+      "before_sha256": "8b6a33e6a60e0d80e54d94cd206b59c36ce1d107c1def639a184ff381807e82f",
+      "after_sha256": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+      "behaviors": [
+        "NP.multi-movement",
+        "NP.stationary-occupancy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "game/simulation/occupancy.hpp",
+      "before_sha256": "4b94b25903e85b0955fb1522019ba48ba0768a4335a226ddc437b8996518b42c",
+      "after_sha256": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+      "behaviors": [
+        "NP.multi-movement",
+        "NP.stationary-occupancy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "game/simulation/world.hpp",
+      "before_sha256": "1b228d4967876541f0d762679d37bb1a3ee2021410a3942d3ae732b62ced6864",
+      "after_sha256": "cc2804653b232dbd1e029e10929cf2c683a36fff7c695f68c00571051342669e",
+      "behaviors": [
+        "NP.move-orders",
+        "NP.multi-movement",
+        "WORLD.owned"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "a0b088fb4c55f84b9d211af60c356f12d75953e554e81c6de4c334c795e38533",
+      "after_sha256": "b507a58db57bc101bcdab1171e286441133d387c85dca212f06ea968c653e3ec",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "40f7f784b2946a451ce12f0d1c6e3d6786980044fa28ae1f4bc6b8c464e7693a",
+      "after_sha256": "e944b9b2faaada3cf53b6330b296d67ce2522eb0dcd1358cd4a2d17292fb8ba0",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "research/runtime/coverage/source-index-multi-movement.json",
+      "before_sha256": null,
+      "after_sha256": "5b1ed8ad7381a039a968867f04dc944dec9dff3e177eea24639ae2b01b88a426",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "46212957992b0567c334d50de4bfdcf6b135d47396c77fdfd0b1969a38004bb1",
+      "after_sha256": "2e0336c896f7746da587c90e0f45976d504b94038637bf4d883c3a3b1309a167",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "research/runtime/native-multi-creature-movement-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "90d4df36fa6523db3b81d11c942b16a1171c0d968f46f4ab144d9836fee4ccfa",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "research/runtime/native-multi-creature-movement.json",
+      "before_sha256": null,
+      "after_sha256": "43b03ce2296a4272228e9383cfa040d81446a796cbc2d38e45bdb7647bfaff3b",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "research/runtime/native-multi-creature-movement.md",
+      "before_sha256": null,
+      "after_sha256": "c697b522211c73089e0c0220e1bf674a0b57bc1c2189a808c287d0c12e2ab6ee",
+      "behaviors": [
+        "NP.multi-movement"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "tests/README.md",
+      "before_sha256": "68961b23425d8efba8bb4d5a5b0831b85d414a94a017feb21ef6dd7fb2c571d1",
+      "after_sha256": "c2cdbcaf11170753824ed17a232d1ede7381bf85b25b5383f807440a648694cd",
+      "behaviors": [
+        "TOOL.coverage-gate"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "tests/native-multi-movement-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ced74a39cebd2a6f6b4370a515bbf55de1a6c6e4a4b1e02d1bce3a1bc67dc8d9",
+      "behaviors": [
+        "NP.multi-movement"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "path": "tests/test-native-multi-movement.py",
+      "before_sha256": null,
+      "after_sha256": "d822fdf8f62a9b7cdf713ba8992df47bdc93213f80cd2167d86a99d37c471bb1",
+      "behaviors": [
+        "NP.multi-movement"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "id": "TL.effect-blocked-destinations",
+      "before_sha256": null,
+      "after_sha256": "2e05971b49f7956cf7381da1bec3f50e25973d5ae88cd24bc579072a9085fb82",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "id": "TL.effect-blocked-policy",
+      "before_sha256": null,
+      "after_sha256": "94ea3396f77fc14dee2b2e429ffbe3a1d943a6a308770c3326f95ed7f6ba30d6",
+      "reviews": [
+        "effect-blocked-recorded-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "id": "TL.effect-cell-cleanup",
+      "before_sha256": "35daf969eb9a0eccd18086bd5f1fd565b9ee5680d91cdaec84ae0b9eebb07772",
+      "after_sha256": "ae940f8788eea414c59ab9c4fd0c47fec94095cff383d72d49a2da6b3aa78d2a",
+      "reviews": [
+        "effect-blocked-history-limitations-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "id": "TL.effect-cell-transitions",
+      "before_sha256": "1f3b78cd85ad0ef4c9128df51037ce30417b17648eb39995d4fe9e9e1ae0240b",
+      "after_sha256": "ce67b68a8c3f6c1ec1586f1985e8ee3e5fd3ef8c55f34b6efa863b4a1d11ac6c",
+      "reviews": [
+        "effect-blocked-history-limitations-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "id": "TL.effect-cleanup-policy",
+      "before_sha256": "d5d2f379b605f350078b162d5feb59df6bff13148ae1ef86633eb9abd4da6fec",
+      "after_sha256": "b8f4c2f493dae2bec454d33c28596b9c8814368bee051468ac70f3cc67d141ea",
+      "reviews": [
+        "effect-blocked-history-limitations-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "97fa8fe68b48a65ea809c5d6aa8dc90885ef91ba154026a47fa1651ade32f26d",
+      "after_sha256": "ef4b7c00af7207dbe91f28bfabbcda5e11e9a6415e62885122d1bb84f378335f",
+      "reviews": [
+        "effect-blocked-history-limitations-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "id": "TL.effect-transition-policy",
+      "before_sha256": "7ea00431422eb14056952177082cd64d187977e6d68a5c37d6e7c88a657c3a69",
+      "after_sha256": "6d21b6ed519c1ffc814038ca782dd40a7b7ec15d1c3c71ec05fc91403dd85871",
+      "reviews": [
+        "effect-blocked-history-limitations-cf1dc7d"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "id": "TL.effect-blocked-destinations",
+      "before_sha256": "2e05971b49f7956cf7381da1bec3f50e25973d5ae88cd24bc579072a9085fb82",
+      "after_sha256": "759d3d5ffe48cd6e97a79d3ebec8fb1a246b0f5fa278ffac85f0104bca1d43ed",
+      "reviews": [
+        "effect-height-history-limitations-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "id": "TL.effect-blocked-policy",
+      "before_sha256": "94ea3396f77fc14dee2b2e429ffbe3a1d943a6a308770c3326f95ed7f6ba30d6",
+      "after_sha256": "3b64de6be6447c5121a16e909c732d0483bdfeee12522a0c7121a87420acfdc9",
+      "reviews": [
+        "effect-height-history-limitations-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "id": "TL.effect-cell-cleanup",
+      "before_sha256": "ae940f8788eea414c59ab9c4fd0c47fec94095cff383d72d49a2da6b3aa78d2a",
+      "after_sha256": "2aeaf9dfeef536605339a4fbc3e1780e611f25b9ef0a84ef5cc2998776ecb4df",
+      "reviews": [
+        "effect-height-history-limitations-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "id": "TL.effect-cell-transitions",
+      "before_sha256": "ce67b68a8c3f6c1ec1586f1985e8ee3e5fd3ef8c55f34b6efa863b4a1d11ac6c",
+      "after_sha256": "5ce246132d083503b4880fd2e699d98ea9aae1b60ce431b6e0f75a03e9708cd8",
+      "reviews": [
+        "effect-height-history-limitations-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "id": "TL.effect-cleanup-policy",
+      "before_sha256": "b8f4c2f493dae2bec454d33c28596b9c8814368bee051468ac70f3cc67d141ea",
+      "after_sha256": "acacbc822d96b434a099c489e080dd4329a579b97d9e0a23ceb0981f77f6b15e",
+      "reviews": [
+        "effect-height-history-limitations-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "id": "TL.effect-height-exits",
+      "before_sha256": null,
+      "after_sha256": "8a734d16b5bbf69e86efc288a43d4e306018e1216733558b583863726e6f34dc",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "id": "TL.effect-height-policy",
+      "before_sha256": null,
+      "after_sha256": "5b613bb3bed522cb4df564bd24cadc1994a3876e7a4ccd653745a38308e9a398",
+      "reviews": [
+        "effect-height-recorded-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "ef4b7c00af7207dbe91f28bfabbcda5e11e9a6415e62885122d1bb84f378335f",
+      "after_sha256": "1531a6d83c4a25032e875dcc96d94304662703f6364181941586169b010f137c",
+      "reviews": [
+        "effect-height-history-limitations-90a35fd"
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "id": "TL.effect-transition-policy",
+      "before_sha256": "6d21b6ed519c1ffc814038ca782dd40a7b7ec15d1c3c71ec05fc91403dd85871",
+      "after_sha256": "aa05d6ab01f6b71875de947893ec804eea5ba78b40bac82f9c3ca29e630110c3",
+      "reviews": [
+        "effect-height-history-limitations-90a35fd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "BR.battle",
+      "before_sha256": "50cef67f836f57bdbdc359461ee77870e8e76a4b3531538cd5bd4a7b9b2ac267",
+      "after_sha256": "bcdf6a0f4dec1c63527cb75b225e352f9c1d3667d9a0a6ad7e9e96664cbfed1b",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "BR.main",
+      "before_sha256": "c1bd1e50f970fc5f54726e53f57825c81764825c30025e829a736cc255d1b5f9",
+      "after_sha256": "73b00bd9c7d17e2a75b778252d62c27d21bb1386ccb9e98684bd0dea2fdb6ac4",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "BR.mini",
+      "before_sha256": "0cbff23b76dfe0d00d2154b84f407330b376a729bff0f4542f8c1fb10f80d400",
+      "after_sha256": "13bd99ee80c551e1cf7587cdc555ea1431c60ccd2784c4c07bafbb436afd1a4e",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "BR.result",
+      "before_sha256": "9275d8bc5de995b051b45934a607c8ee5415c1045e63838e15ec0bb975fca14d",
+      "after_sha256": "6aad0380fbcf8521a41778598304e482b4d9b23151ac08194a46eeb777dab262",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "BR.spell",
+      "before_sha256": "2511347e4c5cf5bbf1ad31f3f3f78effdbef0055bad508f8d31bcb7df1367fd1",
+      "after_sha256": "8b9c74a4600dec48db07566797d3269793676f0df9b4a5d217a88e8504ca14d9",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "CP.realm-navigation",
+      "before_sha256": "d064de0d2bf194b435c1a07b19c6c84a24efb9691a6ba4c3cff695827a2d4958",
+      "after_sha256": "d064de0d2bf194b435c1a07b19c6c84a24efb9691a6ba4c3cff695827a2d4958",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "CP.realm-observation",
+      "before_sha256": "5da21c6bb9cc9c0a36c77da647514bb50dfe77d6f7975c544cbabbaf05fa6f8a",
+      "after_sha256": "61038302b1369a3f19fbedcbde0fc211264069a2a9dca0bb3acb9fab1296b58e",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "CP.region-entry-actions",
+      "before_sha256": "ea1049dd16ef5e2d22426a13bb7277cf50cb846d74411f8f4d5b8782ad27e923",
+      "after_sha256": "ea1049dd16ef5e2d22426a13bb7277cf50cb846d74411f8f4d5b8782ad27e923",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "CP.region-entry-bridge",
+      "before_sha256": null,
+      "after_sha256": "8cf9df0d046bb7fbd712e182f0fb9301a7ae5d2de7be76af1dfb21a334881690",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd",
+        "region-entry-bridge-ui29-execution-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "CP.region-entry-observation",
+      "before_sha256": "82c0c3401c5f58eb5773e4a39492e5c3a655440a69f9683f4182c8bad58440d1",
+      "after_sha256": "40e6e5f334ec92b8ceb65fd249546d9faa6fa74ec592f2d7ac175107a0ba5c55",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "HOST.session",
+      "before_sha256": "1b14b64d6b52ae6f3fde33a6a944de1f209449aac886741b5137b208462bd86b",
+      "after_sha256": "56e58667693c2b6676bf3679d0c892d1eade82c07ad001f81149f22f22a8169a",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "NP.preferences-draft",
+      "before_sha256": "56bbeaf2f45a4db898f94d758c0e6fcf4c10d3aee7b1c54c8a9e1fb65fcd0412",
+      "after_sha256": "34346504894cf7cc01c9640fd629e2128d3cf6557b06b8c080faf0194346a4ad",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "NP.preferences-persistence",
+      "before_sha256": "2242fe024d1e91f2a60a51d2abe5c9c35dade133c5576589d89a1f1d79d58904",
+      "after_sha256": "0693e5c7efa0b594beb81d0af55b922e5551699e2088ec2ffcc7ca631b7c22a7",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "NP.region-entry-fresh-policy",
+      "before_sha256": null,
+      "after_sha256": "cdc96e4694024e6e4a4461e262879a16a3c2f7abd233d8e2034ef80b6f4c677d",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd",
+        "region-entry-bridge-ui29-execution-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "NR.gpu-presentation",
+      "before_sha256": "7b222d7a22683ceefe85a17b3faff7ce621640fe559380b7cae3805b93ac4c31",
+      "after_sha256": "f9687b7701985b06ed086bea8b440102007dd01ad8180c2191771c492bb3afb3",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "PR.apply",
+      "before_sha256": "d910d7bd2bf5370e74be9ac59f54561037d82d7e63c2df35004d6de80ef7b5d7",
+      "after_sha256": "a5c4f87befb5cc38ccde7e262e7f82954af366404a2d0cd9b6fb1c2e53c01cb2",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "PR.audio-preview-cancel",
+      "before_sha256": "0f96b61166f282f0adab23d0b548ee65f089a49a46bfbccbef144983d91666ef",
+      "after_sha256": "e7894f9ce2a4181e383435036857404f2ed32e3bfe6814393b715bcc97fa8f43",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "PR.control-admission",
+      "before_sha256": "7838a5ae15098c13d3570b4cb0f13a54342e2aa89408082034bfc3ddcd0f4d78",
+      "after_sha256": "86f5abbe571393e68bac106bc2c4aeb2dbfdd1b73ad49e9cbcf2136e839ee518",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "PR.display-rebuild",
+      "before_sha256": "2f505eda1e33aff75fe4393bd259fdbb5e0d60bdd9d6ab487ca03294934665f9",
+      "after_sha256": "13fd1ce916f8b777e731dfb21277ce8a867c57e956efb65caf37cd0a217c62b8",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "PR.main-entry",
+      "before_sha256": "74c5ffbe0c17ce31f4c0908b50c26cf07041c641043de9cb4448598bd933b4c3",
+      "after_sha256": "ba6c9fffe0ccf611ba44d3689185210cc5064699b20c8de9104fbe0bf7965f46",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "516e384977631525c8c13b6c408743b03cb5de560fbda538275799dea7c636a5",
+      "after_sha256": "1d99a8dfc78a9cbc3cef77c32bd7f3a2ff018f1e7d5ba5509c9b3f363bebec64",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "UI.region_entry",
+      "before_sha256": "8629a31738b16d42b2059993b376b9a82ad5d17579a40cf4c5e94657435b9cfa",
+      "after_sha256": "ca8ed2fd4f7f079c2247a7f82965747259a99d848a985d79723f880bf1f001e1",
+      "reviews": [
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "id": "WIRE.menu_fixtures",
+      "before_sha256": "668de02663ab7a27458691dbc683fe84ea29fc59ca8c6c233bf26e98534fc4c7",
+      "after_sha256": "668de02663ab7a27458691dbc683fe84ea29fc59ca8c6c233bf26e98534fc4c7",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d",
+        "region-entry-ui28-region-entry-commit-lbkbixhy",
+        "region-entry-bridge-ui29-region-bridge-commit-1l73jjtd"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.ani-forward",
+      "before_sha256": "0fdae93cec728a861a06967c7efdc2c6c40ac39b4467141c213be1d1e80c344d",
+      "after_sha256": "705b9f4a8fd3d74f72bbf86bc08483fbde3154c71a46dc817ba34eb81d62d53d",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.event-0",
+      "before_sha256": "b7b6ada8c915658170f041ba8e154584bce76ef39fa50985853f961288843a12",
+      "after_sha256": "ad754f22e687c4bbbc20aaba916f5ac956eff811f902e80c900aeefa44603f53",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.event-2",
+      "before_sha256": "739026e02ce154e701a60b8b2a440472e1328ed212e0eb3b5bce54c64d24c22f",
+      "after_sha256": "e7bb85897655cda068269a49426f18f740a6b30dfd4f90f3174e01680ff00209",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.fine-motion",
+      "before_sha256": "6649f1d661374905fcd32cc1815693bb183e8b4e81bea9aedbce8d156a159ef4",
+      "after_sha256": "6526623c0fc4a7eaa2f119fd9d4101f14e6134e82cdb1255cd9b6b2dcebe9896",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.legality",
+      "before_sha256": "686764dd85802f6d0a2db97ee5bcbbf97528dfeed3da27e376a26ff51f6ca485",
+      "after_sha256": "24330123218444b254b3e56308b1633af93aaf28bb4adf76c6bcf5d8e3b32f91",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.ordinary-terrain-height",
+      "before_sha256": "6c6ba329b52fe4855e7c6c0f97acbab70fca57a3f1bb28f8f1baef26d08b5ec4",
+      "after_sha256": "53de3ef2eae1ebfa71f60d2d7ad09d7c935a7941e0601ac85b1d5c4116871771",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.planar-setup",
+      "before_sha256": "b3c7a2f08ee0a51efb3282c0a42a410c7c4bd836781d0dcb8555e7eb58eb6c29",
+      "after_sha256": "08cc39df6ce216c3575682d82338d29afa324897eba811a8b51c4e61511adefd",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.request",
+      "before_sha256": "9d4f3082d3c5af06764d21b862e3acc6f8a07fd9b759c2f74312adf7c4b540f7",
+      "after_sha256": "d68d20d3cedf5ce2567fb4b786d233d5da02b3152bb1ee7097ce884552a0edc7",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.route-consumption",
+      "before_sha256": "7529e6a2c89f31c469099df6e3f16d1fef4d1bd4662875cdc9983ce1ec6b66bc",
+      "after_sha256": "68fc1767d3a5ea0dd89536a88de1f7d48a19610b4be575aad3c935b1f39c5884",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.search",
+      "before_sha256": "1f248a40ba1706f44dea477240e8628301d01d4d6874bacf8c8af2d865cc1c85",
+      "after_sha256": "94d5aeac022dbe9078cf4616907b631b59e8c64e8d2d3928404d540e154adb1a",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "MV.vertical-setup",
+      "before_sha256": "58d0f8c612c7c7c940afd4462d9d1cd90ad988d871849c339ae64bdb7f16addd",
+      "after_sha256": "a1a3c135b93f004645f9fa1df1cce72c66152796c3043061b41a29d99d172982",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "NP.checkpoints",
+      "before_sha256": "deea147a64681fa36d6fe13e5857b8da30de8b9c602eb1b0d0ae03e150a1070e",
+      "after_sha256": "2eebb8cb00236ccad7f530f144b679f87fda529e1ee3c518202e0d05bbfa3f41",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "NP.map-navigation",
+      "before_sha256": "1558a2eb9647864706d9397ca0b9756b3fec84fa9ec65d9d485770c2a6c9008a",
+      "after_sha256": "1fdd3ef6b44e8b0051eb84c49799759e96a0f78fc5b189c2e058a24e6ec677e7",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "NP.move-orders",
+      "before_sha256": "15104793368fffeb1901c8ecc47558bba27807b43b2064def3b27f141ec8cc89",
+      "after_sha256": "8699fe7bb27ed95706cf9a861455cde217cadbd77ff9e2f0645bbf2675eb0eee",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "NP.multi-movement",
+      "before_sha256": null,
+      "after_sha256": "e677f9c4500cf2c60c157d6ec0f5b820388962d6b88bd7ad1b037e0d26a6c9f1",
+      "reviews": [
+        "NS11.multi-movement-exact-staged",
+        "NS11.multi-movement-recorded"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "NP.stationary-occupancy",
+      "before_sha256": "579493547b30e470279a853b15691d142a273566b9076037f67cf8113207559b",
+      "after_sha256": "1d5817f1c3652d04ce1a2db26398ae71fb5bc92010747b850b53e6aa004f20a8",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "1d99a8dfc78a9cbc3cef77c32bd7f3a2ff018f1e7d5ba5509c9b3f363bebec64",
+      "after_sha256": "81112d35275b8395d09c1a928f3e7ab3ea4ea7b095ee3cbda32ad5056b6c6e8d",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "WORLD.owned",
+      "before_sha256": "fc09b754c681629f7b5278957e608715a3fa1b6d1b99e9f1885d3906e6b3ce60",
+      "after_sha256": "74f60ceced3ff6d10af9a1d6b5234eee31634e235000cea2a8b7edac0c5b9483",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    },
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "id": "WORLD.sandbox",
+      "before_sha256": "ec25438908636c4ce1d796081e60687ad482e385e501a834fe971bb8304be66a",
+      "after_sha256": "3170db2ee05d6b98f06fe53bf8f73f18dbec9d865de6dfcf7a2c54edcb337bbc",
+      "reviews": [
+        "NS11.multi-movement-exact-staged"
+      ]
+    }
+  ],
+  "unmatched": []
+}
