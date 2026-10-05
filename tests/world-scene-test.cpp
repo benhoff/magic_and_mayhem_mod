@@ -12,7 +12,8 @@ int main(int argc,char** argv) try {
     terrain.frames={tile};tile.pixels=std::vector<std::uint16_t>(35,0xf800);tile.opaqueMask[17]=0;creature.frames={tile};
     unsigned cases=0;
     for(int x:{-3,0,3,255,510,515}) for(int y:{-2,0,2,128,255,258}) for(bool front:{false,true}) {
-        std::vector<scene::Draw> draws{{front,0,x,y,-1},{!front,0,x+2,y+1,1}};
+        std::vector<scene::Draw> draws{{front,0,x,y,-1},{!front,0,x+2,y+1,1},
+            {true,0,x+1,y+2,1,game::Handle{7,2}},{true,0,x-1,y,1,game::Handle{9,4}}};
         const auto result=scene::render(renderer,terrain,creature,draws);
         std::vector<std::uint32_t> expected(512*256,0x2124);
         for(const auto& draw:draws) {
@@ -23,6 +24,7 @@ int main(int argc,char** argv) try {
                     expected[dy*512+dx]=std::get<std::vector<std::uint16_t>>(source.pixels)[row*7+col];
             }
         }
+        check(result.queue.size()==4 && result.queue[2].actor==game::Handle{7,2} && result.queue[3].actor==game::Handle{9,4},"Scene lost actor identity at equal depth");
         check(result.pixels.pixels==expected,"Mixed sprite clipping/mask differs from CPU oracle");
         check(renderer.stats().surfaces==0,"Scene rendering leaked GPU surfaces");++cases;
     }

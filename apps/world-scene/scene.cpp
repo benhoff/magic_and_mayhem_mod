@@ -51,10 +51,13 @@ std::vector<Draw> compose(const game::MovementSession& session,const assets::Ani
         }
     }
     unsigned actors=0;
-    for(const auto& slot:session.world().state().slots) if(slot.entity && !slot.entity->cleaned) {
+    for(std::uint32_t i=0;i<session.world().state().slots.size();++i) {
+        const auto& slot=session.world().state().slots[i];
+        if(!slot.entity || slot.entity->cleaned) continue;
         const auto& e=*slot.entity;
-        if(e.family!=game::Family::creature || !e.motion || !e.motion->terrainMotion || ++actors>1)
-            throw std::invalid_argument("Scene supports one ordinary terrain-motion creature");
+        if(e.family!=game::Family::creature || !e.motion) continue;
+        if(!e.motion->terrainMotion || ++actors>32)
+            throw std::invalid_argument("Scene supports up to 32 ordinary terrain-motion creatures");
         const auto record=displayed(animation,e);if(!record) continue;
         if(record->argument<0 || std::uint32_t(record->argument)>=creatureFrames)
             throw std::invalid_argument("Scene ANI frame outside paired creature SPR");
@@ -62,7 +65,7 @@ std::vector<Draw> compose(const game::MovementSession& session,const assets::Ani
         const game::Point centre{narrow(std::int64_t(fine.x)+16),narrow(std::int64_t(fine.y)+16),fine.z};
         const auto anchor=project(centre,camera),offset=reconstruction::spriteOffset(*record,1,camera.view);
         const auto key=reconstruction::spriteDepthKey({centre.x,centre.y,centre.z,6},camera.view);
-        add({true,std::uint32_t(record->argument),narrow(std::int64_t(anchor.x)+offset.x),narrow(std::int64_t(anchor.y)+offset.y),key});
+        add({true,std::uint32_t(record->argument),narrow(std::int64_t(anchor.x)+offset.x),narrow(std::int64_t(anchor.y)+offset.y),key,game::Handle{i,slot.generation}});
     }
     reconstruction::sortSpriteQueue(queue);std::vector<Draw> ordered;
     for(const auto& item:queue) ordered.push_back(draws.at(item.payload));
@@ -70,7 +73,7 @@ std::vector<Draw> compose(const game::MovementSession& session,const assets::Ani
 }
 Frame render(render::GlBlitter& renderer,const assets::Sprite& terrain,const assets::Sprite& creature,
              const std::vector<Draw>& draws) {
-    if(draws.size()>12289) throw std::invalid_argument("Scene draw budget exceeded");
+    if(draws.size()>12288+32) throw std::invalid_argument("Scene draw budget exceeded");
     const auto canvas=renderer.create({512,256,std::vector<std::uint32_t>(512*256,0x2124)},render::spriteFormat);
     try {
         // Bounded sequential uploads keep the surface budget independent of ANI length.

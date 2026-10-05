@@ -7,12 +7,12 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 323 |
-| evidence | 205 |
-| scenarios | 29 |
+| evidence | 206 |
+| scenarios | 30 |
 | functions | 6675 |
 | registered recovered ranges | 10 |
 | incomplete dispatch tables | 6 |
-| indexed sources | 926 |
+| indexed sources | 927 |
 | unclassified functions | 6496 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
@@ -26,7 +26,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 142 |
 | behaviors without comparison | 268 |
 | behaviors without tests | 1 |
-| stale evidence | 74 |
+| stale evidence | 75 |
 | behavior anchors outside discovered functions | 22 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
@@ -208,7 +208,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | WORLD.sandbox | Headless world fixture and frozen navigation | native policy | partial | partial | none | none | none | stale |
 | NP.map-navigation | Ordinary installed MAP crop to frozen navigation and matched presentation | native policy | scoped | scoped | none | preview | none | stale |
 | NP.stationary-occupancy | Owned stationary creature occupancy over frozen navigation | native policy | scoped | scoped | none | headless | none | stale |
-| NP.multi-movement | Deterministic native multi-mover scheduling and logical reservations | native policy | scoped | scoped | none | headless | none | current_fingerprints |
+| NP.multi-movement | Deterministic native multi-mover scheduling and logical reservations | native policy | scoped | scoped | none | headless | none | stale |
 
 ## Pathfinding checklist
 
@@ -483,7 +483,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **NS05.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-sandbox/main.cpp`, `assets/CMakeLists.txt`, `game/CMakeLists.txt`, `game/README.md`, `game/persistence/snapshot.cpp`, `game/simulation/movement.cpp`, `game/simulation/movement.hpp`, `game/simulation/world.cpp`, `game/simulation/world.hpp`, `reconstruction/motion/README.md`, `reconstruction/motion/creature_motion.cpp`, `tests/ani-motion-test.cpp`, `tests/test-original-ani-motion.py`
 - **NS06.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-sandbox/main.cpp`, `game/CMakeLists.txt`, `game/simulation/movement.cpp`, `game/simulation/movement.hpp`, `game/simulation/world.hpp`, `reconstruction/motion/creature_motion.cpp`, `tests/creature-motion-test.cpp`
 - **REVIEW.NR.surfaces**: `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/commands.cpp`, `renderer/commands.hpp`
-- **REVIEW.NR.world_scene**: `apps/world-scene/main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`
+- **REVIEW.NR.world_scene**: `apps/world-scene/main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`, `tests/world-scene-test.cpp`
 - **REVIEW.UI.region_entry**: `apps/qt-shell/region_entry_widget.cpp`, `apps/qt-shell/region_entry_widget.hpp`
 - **REVIEW.BR.main**: `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/menu_bridge.cpp`, `apps/qt-shell/menu_bridge.hpp`, `runtime/menu/channel.h`, `runtime/menu/observer.c`
 - **REVIEW.BR.battle**: `runtime/menu/channel.h`, `runtime/menu/observer.c`
@@ -510,7 +510,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **ORIGINAL.terrain-light-fields**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `reconstruction/rendering/terrain_lighting.cpp`, `reconstruction/rendering/terrain_lighting.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/commands.cpp`, `renderer/commands.hpp`, `tests/ani-motion-test.cpp`, `tests/creature-motion-test.cpp`, `tests/native-movement-test.cpp`, `tests/segment-setup-test.cpp`, `tests/test-original-ani-motion.py`, `tests/test-original-segment-setup.py`, `tests/test-tooling.sh`
 - **ORIGINAL.terrain-creature-lighting**: `reconstruction/rendering/terrain_lighting.cpp`, `reconstruction/rendering/terrain_lighting.hpp`
 - **ORIGINAL.terrain-palette-preferences**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `assets/palette_lighting.cpp`, `assets/palette_lighting.hpp`, `reconstruction/rendering/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/commands.cpp`, `renderer/commands.hpp`
-- **NATIVE.native-world-scene**: `apps/world-scene/CMakeLists.txt`, `apps/world-scene/README.md`, `apps/world-scene/main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`
+- **NATIVE.native-world-scene**: `apps/world-scene/CMakeLists.txt`, `apps/world-scene/README.md`, `apps/world-scene/main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`, `tests/world-scene-test.cpp`
 - **NATIVE.native-animation-scene**: `apps/sprite-scene/main.cpp`, `apps/sprite-scene/scene.cpp`, `apps/sprite-scene/scene.hpp`, `assets/animation.cpp`, `assets/animation.hpp`, `reconstruction/animation/no_cd.cpp`, `reconstruction/animation/no_cd.hpp`, `renderer/blit.cpp`, `renderer/sprites/sprite.cpp`, `tests/animation-binary-reference.cpp`, `tools/test-sprite-scene.py`
 - **UI23.original**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.cpp`, `apps/qt-shell/menu_bridge.hpp`, `runtime/menu/channel.h`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/run-menu-observer.py`, `tools/test-live-menus.py`
 - **UI23.live**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.cpp`, `apps/qt-shell/menu_bridge.hpp`, `runtime/menu/channel.h`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/run-menu-observer.py`, `tools/test-live-menus.py`
@@ -521,20 +521,20 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **TL03.object-scenes-native**: `apps/terrain-preview/CMakeLists.txt`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `renderer/README.md`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/commands.cpp`, `renderer/commands.hpp`
 - **UI24.live**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.cpp`, `apps/qt-shell/menu_bridge.hpp`, `runtime/menu/channel.h`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/run-menu-observer.py`, `tools/test-live-menus.py`
 - **UI24.native**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.cpp`, `apps/qt-shell/menu_bridge.hpp`, `runtime/menu/channel.h`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/run-menu-observer.py`, `tools/test-live-menus.py`
-- **NS08.original**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `renderer/blit.cpp`, `tests/map-navigation-reference.cpp`
-- **NS08.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `renderer/blit.cpp`, `tests/map-navigation-reference.cpp`
+- **NS08.original**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/main.cpp`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`, `renderer/blit.cpp`, `tests/map-navigation-reference.cpp`
+- **NS08.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/main.cpp`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`, `renderer/blit.cpp`, `tests/map-navigation-reference.cpp`
 - **UI25.original**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.cpp`, `apps/qt-shell/menu_bridge.hpp`, `runtime/menu/channel.h`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/run-menu-observer.py`
 - **UI25.live**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.cpp`, `apps/qt-shell/menu_bridge.hpp`, `runtime/menu/channel.h`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/run-menu-observer.py`
 - **UI25.qt**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.cpp`, `apps/qt-shell/menu_bridge.hpp`, `runtime/menu/channel.h`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/run-menu-observer.py`
-- **NS08.installed-ani**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `renderer/blit.cpp`, `tests/map-navigation-reference.cpp`
+- **NS08.installed-ani**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/main.cpp`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`, `renderer/blit.cpp`, `tests/map-navigation-reference.cpp`
 - **TL04.effects-original**: `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`
 - **TL04.effects-native**: `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`
 - **TL05.placement-original**: `assets/CMakeLists.txt`
 - **TL05.placement-native**: `assets/CMakeLists.txt`
 - **TL05.tables-original**: `assets/CMakeLists.txt`
 - **TL05.tables-native**: `assets/CMakeLists.txt`
-- **NS09.original**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`
-- **NS09.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`
+- **NS09.original**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`
+- **NS09.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`
 - **TL08.transition-original**: `reconstruction/rendering/effect-transition/CMakeLists.txt`, `reconstruction/rendering/effect_transition.cpp`, `reconstruction/rendering/effect_transition.hpp`, `tests/effect-transition-reference.cpp`, `tests/effect-transition-test.cpp`, `tools/test-effect-transition.py`
 - **TL08.transition-native**: `reconstruction/rendering/effect-transition/CMakeLists.txt`, `reconstruction/rendering/effect_transition.cpp`, `reconstruction/rendering/effect_transition.hpp`, `tests/effect-transition-reference.cpp`, `tests/effect-transition-test.cpp`, `tools/test-effect-transition.py`
 - **NS10.stationary-native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-sandbox/main.cpp`, `game/CMakeLists.txt`, `game/simulation/movement.cpp`, `game/simulation/movement.hpp`, `game/simulation/occupancy.cpp`, `game/simulation/occupancy.hpp`, `game/simulation/world.hpp`
@@ -551,6 +551,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **UI28.original**: `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/run-menu-observer.py`
 - **UI28.fixture**: `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/run-menu-observer.py`
 - **UI28.live**: `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/run-menu-observer.py`
+- **NS11.multi-native**: `apps/world-sandbox/main.cpp`
 
 ## Checklist gaps
 
@@ -562,3 +563,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 Full addresses, indirect flows, imports and unassigned ranges are in the JSON report.
 Computed flows with inferred targets still need dispatch validation; unresolved is a narrower subset.
 Unassigned bytes may be padding/data. External DLL and dynamically resolved behavior remains separate.
+
+## Invalid claims
+
+- Source index suffixes differ from census scope

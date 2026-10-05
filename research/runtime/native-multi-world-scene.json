@@ -1,0 +1,61 @@
+{
+  "milestone": "NS12",
+  "all_match": true,
+  "live_validated": false,
+  "normal_report": "working/tests/multi-world-scene/normal-accepted/report.json",
+  "sanitized_report": "working/tests/multi-world-scene/sanitized-accepted/report.json",
+  "report_sha256": {
+    "working/tests/multi-world-scene/normal-accepted/report.json": "fbe1e459ba66def660e1f3342a3cec73e4b00db5efb9c08a043e92a85ebfa134",
+    "working/tests/multi-world-scene/sanitized-accepted/report.json": "6ec5ec1ec6d345b65e45b14e1719e82e7512467c55519c36d0b28eb57a0f84fb"
+  },
+  "scope": "Two same-profile native terrain-motion actors; four diagnostic views, synthetic owned ANI and terrain fixtures with installed SPR pixels; actor identity/independent display and exact split/whole presentation/checkpoints. No captured original multi-actor scene, installed multi-map world or live equivalence.",
+  "source_sha256": {
+    "apps/world-sandbox/frozen_navigation.cpp": "50d0e1c2b2d5fb9a6bbc54b429db4a575b9a18b7cd90875c7fd32c4329e180b2",
+    "apps/world-sandbox/frozen_navigation.hpp": "d2ee8416faf373418ad2455295fff82c793fd17718410bd634b3acf6ecdcaa59",
+    "apps/world-sandbox/main.cpp": "d1e3b0fc4841f0c13b1281dfdc5fcda0d97f1e0f45aca1bb5c040346ed600e43",
+    "apps/world-scene/CMakeLists.txt": "f1b884efb1b071a00dd4c946a05c36add42ee2adb6b6534e860ed7f56f9e267d",
+    "apps/world-scene/main.cpp": "67c0270359768ac915a19302becb89df2a6bae5b008c880d1e6c178db564a0a0",
+    "apps/world-scene/map_navigation.cpp": "20eecea7aca4ad16b08093f6dd1cb2f206d14acc929ddad76064cb5910613de5",
+    "apps/world-scene/map_navigation.hpp": "e40b2a8021a7841c03abe2240b12e19c58525faaec776e4f76fa3112c939a4eb",
+    "apps/world-scene/map_navigation_main.cpp": "4b0cf8ded5f10483e677f91e2951e52a09380bc1b818ab3765f05d765e1f32b3",
+    "apps/world-scene/scene.cpp": "af1a60229a4d459f81d4f42f31db833b58819f835bfdb01ff8b59a5d467baa28",
+    "apps/world-scene/scene.hpp": "e4b485295070758f8acdbaf7911c9db4b5f5557c75c16d5440388f5963865ccf",
+    "game/persistence/snapshot.cpp": "6f1751e921ca150b6b38b4cbfbc3c655ec0626a163e6b076e193df8211e22bd9",
+    "game/persistence/snapshot.hpp": "900563f38519697e2541ef0bc8d1b797ea8464c8d18a6e6571f25505ea6857e5",
+    "game/persistence/store_posix.cpp": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df",
+    "game/simulation/movement.cpp": "56e051eef1017b39f768b0ef238238753f129cbe52c2adb89c93fbd01398caa9",
+    "game/simulation/movement.hpp": "47f40135b8126bc2d855a7d5b1e8681599f1e2e33274833825b355fc48b220cf",
+    "game/simulation/occupancy.cpp": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+    "game/simulation/occupancy.hpp": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+    "game/simulation/world.cpp": "5e75ebddd738ac141f27875a48d11f5c3e2b35e4af8c30417823c1a147f61135",
+    "game/simulation/world.hpp": "cc2804653b232dbd1e029e10929cf2c683a36fff7c695f68c00571051342669e",
+    "tests/test-native-ani-motion.py": "0b611c861ee49d406332fd4db67c0e2d17c2fdb24ef5f68183ea3f0b1ac7e090",
+    "tests/world-scene-test.cpp": "0ca92707df72ca8029d8a201220901630011f2f6589fbf474d2fc81e58abdd44",
+    "tools/create-movement-fixture.py": "1622b0dd1ee807a6b5a41dafb70a33b7a6ecebdc351cf697e6a4110e72fa3fac",
+    "tools/test-multi-world-scene.py": "e8ef1ff58984f1a07499119f763b3ade5bb3e6db11fa9654228dcb88a3067c43"
+  },
+  "native_presentation": {
+    "pixel_comparisons_per_build": 144,
+    "fresh_process_continuations_per_build": 12,
+    "two_visible_frames_per_build": 132,
+    "distinct_actor_display_frames_per_build": 44,
+    "unsigned_generation_export": true,
+    "normal_ctests": 103,
+    "sanitized_selected_ctests": 6
+  },
+  "test_log_sha256": {
+    "working/tests/multi-world-scene/ns12-normal-accepted-tests.log": "792f8333bab029a8bb54d1b344aa8fb9b9024c074e6ed32285e683f03b25a6e4",
+    "working/tests/multi-world-scene/normal-accepted/manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/multi-world-scene/normal-accepted/manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/multi-world-scene/ns12-sanitized-accepted-tests.log": "1cda0dab09715210b2291bd63ba85c64a169c8470a6a0b1bf03dc16a41a007e9",
+    "working/tests/multi-world-scene/sanitized-accepted/manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/multi-world-scene/sanitized-accepted/manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+  },
+  "remaining": [
+    "Original multi-entity admission and captured multi-creature frame equivalence",
+    "Mixed SPR/ANI profiles and attachments",
+    "Shaded terrain/light/visibility integration",
+    "Camera/action mapping and automatic play",
+    "Live integration/replacement"
+  ]
+}

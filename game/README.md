@@ -301,3 +301,12 @@ checkpoint, two XYZ starts and targets, then ticks; `resume` recognizes the save
 policy fingerprint. This is a native policy with synthetic headless evidence;
 original scheduler/occupancy, physical collision and multi-creature Qt presentation
 remain separate. [Contract and evidence](../research/runtime/native-multi-creature-movement.md).
+
+## Multiple-creature presentation (NS12)
+
+The [native scene](../apps/world-scene/README.md) now presents multiple NS11
+terrain-motion creatures using independent saved ANI displays and fine positions.
+`move-pair-terrain-ani` creates two-actor checkpoints with an owned ANI binding.
+Rendering joins their bodies into the mixed terrain depth queue and exports native
+slot/generation identities. This remains diagnostic native presentation; original
+multi-creature scene equivalence and live integration remain open.

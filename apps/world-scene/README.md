@@ -145,3 +145,20 @@ sample, now compared against the original controller/action.
 Run `python3 tools/test-creature-navigation.py working/build/world-creature-navigation`
 for isolated-original profile/motion comparisons and configured installed-map
 pixels/continuation. [Scope and evidence](../../research/runtime/native-creature-profile.md).
+
+## Multiple moving creatures (NS12)
+
+The preview accepts NS11 multi-movement checkpoints and composes up to 32
+same-profile terrain-motion bodies into the shared terrain depth queue. Each body
+reads its own saved ANI display and fine position; exported draws and actor rows
+carry slot/generation identity. Stationary and cleaned entities are not presented.
+
+Create a two-actor checkpoint with `mnm-world-sandbox move-pair-terrain-ani MAP
+ANI BASE OUTPUT SX1 SY1 SZ1 TX1 TY1 TZ1 SX2 SY2 SZ2 TX2 TY2 TZ2 TICKS`, then
+use the existing preview options. The Step and Save controls continue from the
+owned multi-creature session.
+
+`python3 tools/test-multi-world-scene.py SCENE SANDBOX NEW_OUTPUT` checks two
+actors across four views, CPU/OpenGL pixels, per-actor positions/identity and
+exact split/fresh-process presentation/checkpoints. Installed sprite reads are
+bracketed by original-manifest verification. [Scope and accepted evidence](../../research/runtime/native-multi-world-scene.md).

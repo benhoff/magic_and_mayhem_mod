@@ -825,3 +825,17 @@ Run `python3 tests/test-native-multi-movement.py BUILD/world/mnm-world-sandbox
 BUILD/world/native-multi-movement-test OUTPUT` to retain immutable reports and
 artifacts. [Scope](../research/runtime/native-multi-creature-movement.md) excludes
 original scheduler equivalence, fine collision, mixed profiles and presentation.
+
+## Multiple-creature presentation (NS12)
+
+`python3 tools/test-multi-world-scene.py SCENE SANDBOX NEW_OUTPUT` compares
+144 complete CPU/OpenGL frames and twelve fresh-process continuations across
+terrace, slope and vertical fixtures in four views. It verifies each actor's fine
+position/generation against the simulation trace, projection/depth, simultaneous
+visibility and distinct opposite-facing displays, RGB565/PNG bytes and final
+checkpoints. Installed SPR/TTD reads require original-manifest verification
+before and after. `native-world-scene` additionally checks clipping/masks and
+actor identity at equal depth, with no GPU surface leaks.
+
+[Evidence boundaries](../research/runtime/native-multi-world-scene.md) distinguish
+owned diagnostic presentation from original/live multi-creature equivalence.
