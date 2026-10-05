@@ -142,3 +142,7 @@ original generation caller's attempt reset/seed progression, complete CFG
 catalog initialization and connector threshold, conversion of generated
 assignments to owned assembly plans, and generated scene comparisons. Entities,
 lighting, water and live integration remain separate.
+
+The subsequent [generation-attempt milestone](terrain-region-generation.md)
+now implements and compares the post-CFG caller loop, attempt resets and seed
+progression. Complete catalog construction and generated scenes remain separate.

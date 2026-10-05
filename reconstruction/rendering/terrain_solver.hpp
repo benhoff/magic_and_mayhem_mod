@@ -13,6 +13,8 @@ struct RegionPlacementState {
     std::vector<std::vector<RegionCandidate>> candidates;
     std::optional<RegionAdmissionCarry> carry;
 };
+// Shared validation for owned placement consumers; does not mutate state.
+void validateRegionPlacementState(const RegionPlacementState&);
 RegionPlacementState makeRegionPlacementState(unsigned columns,unsigned rows,RegionDescriptorBank);
 // Recovered unchecked placement walk, with native extent/occupied/connector
 // refusals. Caller performs admission first. Changes commit only on success.

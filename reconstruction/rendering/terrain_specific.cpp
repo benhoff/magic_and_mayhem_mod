@@ -41,22 +41,7 @@ void locations(RegionSpecificResult& result,unsigned index,int rotation) {
 }
 RegionSpecificResult placeRegionSpecifics(RegionPlacementState input,
     std::vector<RegionSpecificRequest> requests,std::uint32_t seed) {
-    // Reuse the public state's extent, count, ownership and assignment checks.
-    (void)makeRegionPlacementState(input.grid.columns,input.grid.rows,input.bank);
-    if(input.grid.cells.size()!=input.assignments.size() || input.grid.cells.size()!=input.storedSourceRows.size() ||
-       input.grid.cells.size()!=input.candidates.size() || input.grid.cells.size()!=input.grid.columns*input.grid.rows)
-        throw std::invalid_argument("Region Specific state extent");
-    for(unsigned i=0;i<input.assignments.size();++i) {
-        if(input.grid.cells[i].occupied!=bool(input.assignments[i])) throw std::invalid_argument("Region Specific occupancy");
-        if(input.assignments[i]) {
-            const auto a=*input.assignments[i];
-            if(a.descriptor>=input.bank.blocks.size() || a.rotation>3 || input.storedSourceRows[i]!=input.bank.blocks[a.descriptor].sourceY ||
-               input.grid.cells[i].edges!=rotateRegionEdges(input.bank.blocks[a.descriptor].selection.edges,a.rotation))
-                throw std::invalid_argument("Region Specific assignment");
-        }
-    }
-    if(input.carry && (input.carry->descriptor>=input.bank.blocks.size() || input.carry->rotation>3))
-        throw std::invalid_argument("Region Specific carry");
+    validateRegionPlacementState(input);
     if(requests.size()!=input.bank.blocks.size()) throw std::invalid_argument("Region Specific request extent");
     for(const auto& q:requests) if(q.rotation< -1 || q.rotation>3 || q.column< -1 || q.row< -1 ||
         q.column>=int(input.grid.columns) || q.row>=int(input.grid.rows)) throw std::invalid_argument("Region Specific request fields");
