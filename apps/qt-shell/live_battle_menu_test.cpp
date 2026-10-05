@@ -23,7 +23,7 @@ void installLiveBattleMenuTest(QApplication& app,QMainWindow& window,LiveMenuSes
     struct Evidence {int stage=0;bool valid=true,started=false,presented=false;int battles=0,returns=0;quint32 thread=0;MenuBridge::Battle initial;QJsonArray states;QJsonArray assignments,spellInitial,spellShelves;};
     auto e=std::make_shared<Evidence>();const bool spells=qEnvironmentVariable("MNM_LIVE_MENU_TEST_BATTLE")=="spells";
     const bool results=qEnvironmentVariable("MNM_LIVE_MENU_TEST_BATTLE")=="results";
-    session.resultMenusEnabled=results;
+    session.resultMenusEnabled=results;session.preferencesMenusEnabled=false;
     const bool repeat=qEnvironmentVariableIsSet("MNM_LIVE_MENU_TEST_REPEAT");
     auto input=[](uint8_t type,uint8_t detail,uint16_t state,QPoint point){
         WindowHost host;const auto desktops=host.desktops({});

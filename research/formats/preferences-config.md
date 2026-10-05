@@ -34,3 +34,7 @@ Evidence and validation boundaries are in the
 Original writer calls were executed against a private profile recorder, including
 an API-failure case. No original file-write/read-back or restart durability is
 claimed; profile API errors are ignored by the original writer.
+
+Subsequent [Main Preferences integration](../runtime/preferences-engine-bridge.md)
+validates original writes to a disposable session file and reopened engine values.
+This does not establish restart durability or persistence across launcher sessions.

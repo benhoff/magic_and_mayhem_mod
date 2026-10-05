@@ -1,5 +1,5 @@
 #include "live_menu_session.hpp"
-#include "../../protocols/include/mnm/menu_v5.h"
+#include "../../protocols/include/mnm/menu_v6.h"
 #include <QDir>
 #include <QProcessEnvironment>
 LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(parent),repo_(std::move(repository)){
@@ -19,7 +19,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
                 fallback("Menu staging failed; see the launch log.");if(finished)finished();return;
             }
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
-            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
+            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             if(active_)timer_.start();else bridge_->retire();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath("working/tests/menu-live-wine"):winePrefix};
@@ -49,10 +49,16 @@ bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<i
     switch(action){
     case MNM_MENU_OPEN_QUICK:case MNM_MENU_SETUP_CANCEL:target_=22;break;
     case MNM_MENU_OPEN_SINGLE:case MNM_MENU_MAP_OK:case MNM_MENU_MAP_CANCEL:case MNM_MENU_SETUP_PLAYER:case MNM_MENU_SETUP_APPLY:target_=14;break;
+    case MNM_MENU_OPEN_PREFERENCES:target_=10;break;
     case MNM_MENU_SETUP_MAP:target_=25;break;
     default:target_=3;break;
     }
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
+}
+bool LiveMenuSession::requestPreferences(quint32 action,const std::array<int,7>& values,quint32 slider){
+    if(!preferencesMenusEnabled||!active_||inBattle_||pending_||transition_||state_.screen!=10||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestPreferences(action,state_,values,slider))return false;
+    pending_=true;requestedAt_=clock_.elapsed();action_=action;target_=action==MNM_MENU_PREFERENCES_PREVIEW?10:3;
+    if(action!=MNM_MENU_PREFERENCES_PREVIEW&&stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestResults(quint32 action){
     if(!active_||inBattle_||pending_||transition_||state_.screen!=MNM_MENU_RESULT_SCREEN||
@@ -67,10 +73,10 @@ bool LiveMenuSession::requestMini(quint32 action){
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestExit(){
-    if(!active_||inBattle_||!sequence_||(!pending_&&!transition_&&state_.screen!=3&&state_.screen!=22&&state_.screen!=14&&state_.screen!=25&&state_.screen!=MNM_MENU_RESULT_SCREEN))return false;
+    if(!active_||inBattle_||!sequence_||(!pending_&&!transition_&&state_.screen!=3&&state_.screen!=22&&state_.screen!=14&&state_.screen!=25&&state_.screen!=MNM_MENU_RESULT_SCREEN&&state_.screen!=10))return false;
     exitRequested_=true;
     if(!pending_&&!transition_&&state_.ready){
-        const bool accepted=state_.screen==MNM_MENU_RESULT_SCREEN?requestResults(MNM_MENU_RESULT_QUIT):request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT);
+        const bool accepted=state_.screen==10?requestPreferences(MNM_MENU_PREFERENCES_CANCEL,state_.preferences.values):state_.screen==MNM_MENU_RESULT_SCREEN?requestResults(MNM_MENU_RESULT_QUIT):request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT);
         if(!accepted){exitRequested_=false;return false;}
     }
     return true;
@@ -113,7 +119,7 @@ void LiveMenuSession::poll(){
                 if(output)output("Original game Quit accepted; waiting for the launcher to finish.\n");
                 return;
             }
-            transition_=true;
+            transition_=action_!=MNM_MENU_PREFERENCES_PREVIEW;
         }
         if(!inBattle_&&!pending_&&state_.screen==7&&next.screen==0&&next.handoff==2){inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(2);return;}
         if(inBattle_){
@@ -132,9 +138,10 @@ void LiveMenuSession::poll(){
         }
         state_=next;
         if(transition_&&next.screen==target_&&next.ready)transition_=false;
-        if(stateChanged){if(pending_||transition_)next.ready=0;stateChanged(next);}
+        if(stateChanged){if((pending_&&action_!=MNM_MENU_PREFERENCES_PREVIEW)||transition_)next.ready=0;stateChanged(next);}
         if(exitRequested_&&!pending_&&!transition_&&state_.ready){
-            if(state_.screen==MNM_MENU_RESULT_SCREEN)requestResults(MNM_MENU_RESULT_QUIT);
+            if(state_.screen==10)requestPreferences(MNM_MENU_PREFERENCES_CANCEL,state_.preferences.values);
+            else if(state_.screen==MNM_MENU_RESULT_SCREEN)requestResults(MNM_MENU_RESULT_QUIT);
             else request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT);
         }
     }

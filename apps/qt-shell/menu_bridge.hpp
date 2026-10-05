@@ -12,18 +12,20 @@ public:
     struct Mini {quint32 battle=0,confirmation=0,depth=0,parentScreen=0,actions=0,context=0;};
     struct ResultPlayer {bool active=false;QString name,kills,deaths,handicap,score;};
     struct Results {quint32 actions=0,context=0,depth=0;std::array<ResultPlayer,4> players{};};
-    struct State { quint32 generation=0,screen=0,ready=0,ack=0,status=0,thread=0,sequence=0,handoff=0;Battle battle;Spells spells;Mini mini;Results results; };
+    struct Preferences {quint32 actions=0,available=0,parentScreen=0,depth=0;std::array<int,7> values{};};
+    struct State { quint32 generation=0,screen=0,ready=0,ack=0,status=0,thread=0,sequence=0,handoff=0;Battle battle;Spells spells;Mini mini;Results results;Preferences preferences; };
     ~MenuBridge();
-    bool create(const QString& path,bool battle=false,bool spells=false,bool mini=false,bool results=false);
+    bool create(const QString& path,bool battle=false,bool spells=false,bool mini=false,bool results=false,bool preferences=false);
     bool read(State& state) const;
     void heartbeat(bool alive=true);
     bool request(quint32 action,const State& state,quint32 argument=0,const std::array<int,17>* rules=nullptr);
     bool finishSpells(const State&,const std::array<int,63>& assignments);
+    bool requestPreferences(quint32 action,const State&,const std::array<int,7>& values,quint32 slider=0);
     void retire();
 private:
     QFile file_;
     uchar* mapping_=nullptr;
     quint32 heartbeat_=0,request_=0;
-    bool retired_=false,battle_=false,spells_=false,mini_=false,results_=false;
-    void publish(bool alive,quint32 action=0,quint32 generation=0,quint32 argument=0,const std::array<int,17>* rules=nullptr,const std::array<int,63>* assignments=nullptr);
+    bool retired_=false,battle_=false,spells_=false,mini_=false,results_=false,preferences_=false;
+    void publish(bool alive,quint32 action=0,quint32 generation=0,quint32 argument=0,const std::array<int,17>* rules=nullptr,const std::array<int,63>* assignments=nullptr,const std::array<int,7>* preferences=nullptr);
 };

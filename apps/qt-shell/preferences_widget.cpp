@@ -39,6 +39,7 @@ PreferencesWidget::PreferencesWidget(QWidget* parent) : QWidget(parent) {
     for (int i=0;i<2;++i) {
         sliders_[i]=new QSlider(Qt::Horizontal,this); sliders_[i]->setObjectName(QString("preferencesSlider%1").arg(i+1));
         sliders_[i]->setRange(minimum_[i],maximum_[i]); sliders_[i]->setSingleStep(100); sliders_[i]->setPageStep(500);
+        connect(sliders_[i],&QSlider::valueChanged,this,[this,i](int value){if(!populating_)emit audioLevelChanged(i,value);});
         sliders_[i]->setAccessibleName(i==0?"Music level":"Sound effects level"); sliders_[i]->installEventFilter(this);
         sliders_[i]->setStyleSheet("QSlider::groove:horizontal { height: 3px; background: #ac915a; }"
             "QSlider::handle:horizontal { width: 14px; margin: -6px 0; background: #3e2313; border: 1px solid #ac915a; }");
@@ -80,6 +81,7 @@ bool PreferencesWidget::loadAssets(const QString& root, QString* error) {
         const auto okRect=mnm::ui::rectangle(ok.value("Rect2")),cancelRect=mnm::ui::rectangle(cancel.value("Rect2"));
         const auto okText=mnm::ui::textLabel(assets.strings,ok.value("Text")),cancelText=mnm::ui::textLabel(assets.strings,cancel.value("Text"));
         if (ok.value("Font")!="LARGE" || cancel.value("Font")!="LARGE") throw std::runtime_error("Invalid Preferences button font");
+        if(engineMode_){minimum=minimum_;maximum=maximum_;}
         const auto draft=draftSettings();
         if (!validSettings(accepted_,minimum,maximum) || !validSettings(draft,minimum,maximum)) throw std::runtime_error("Preferences state outside configured slider range");
         mnm::ui::installMenuFonts(this,assets.fonts);
@@ -87,7 +89,7 @@ bool PreferencesWidget::loadAssets(const QString& root, QString* error) {
         okRectangle_=okRect; cancelRectangle_=cancelRect; ok_->setText(okText); cancel_->setText(cancelText);
         for (int i=0;i<11;++i) { labels_[i]->setText(texts[i]); labels_[i]->setAlignment(Qt::Alignment(alignments[i])); labels_[i]->setVisible(!texts[i].isEmpty()); }
         for (int i=0;i<12;++i) radios_[i]->setText(choices[i]);
-        for (int i=0;i<2;++i) sliders_[i]->setRange(minimum[i],maximum[i]);
+        populating_=true;for (int i=0;i<2;++i) sliders_[i]->setRange(minimum[i],maximum[i]);populating_=false;
         populate(draft); arrange(); update(); return true;
     } catch (const std::exception& failure) { if (error) *error=QString::fromUtf8(failure.what()); return false; }
 }
@@ -101,11 +103,25 @@ bool PreferencesWidget::setSettings(const Settings& settings, QString* error) {
     if (!validSettings(settings,minimum_,maximum_)) { if (error) *error="Invalid Preferences snapshot."; return false; }
     accepted_=settings; populate(settings); return true;
 }
+bool PreferencesWidget::setEngineSettings(const Settings& settings,const ControlPolicy& policy,QString* error){
+    if(error)error->clear();
+    if(!validSettings(settings,policy.minimum,policy.maximum)||policy.minimum[0]>=policy.maximum[0]||policy.minimum[1]>=policy.maximum[1]||policy.step[0]<=0||policy.step[1]<=0){if(error)*error="Invalid live Preferences settings.";return false;}
+    engineMode_=true;minimum_=policy.minimum;maximum_=policy.maximum;populating_=true;
+    for(int i=0;i<2;++i){sliders_[i]->setRange(minimum_[i],maximum_[i]);sliders_[i]->setSingleStep(policy.step[i]);sliders_[i]->setPageStep(policy.step[i]*5);}
+    populating_=false;accepted_=settings;populate(settings);setControlAvailability(policy);return true;
+}
+void PreferencesWidget::setControlAvailability(const ControlPolicy& policy){
+    for(int i=0;i<12;++i)radios_[i]->setEnabled(policy.radios[i]);
+    for(int i=0;i<2;++i)sliders_[i]->setEnabled(policy.sliders[i]);
+    ok_->setEnabled(policy.canApply);cancel_->setEnabled(policy.canCancel);
+}
 void PreferencesWidget::populate(const Settings& settings) {
+    populating_=true;
     sliders_[0]->setValue(settings.musicLevel); sliders_[1]->setValue(settings.soundLevel);
     groups_[0]->button(int(settings.resolution))->setChecked(true); groups_[1]->button(int(settings.animation))->setChecked(true);
     groups_[2]->button(int(settings.dialogueSpeed))->setChecked(true); groups_[3]->button(int(settings.gameSpeed))->setChecked(true);
     groups_[4]->button(settings.borderPicture?0:1)->setChecked(true);
+    populating_=false;
 }
 PreferencesWidget::Settings PreferencesWidget::draftSettings() const {
     Settings settings; settings.musicLevel=sliders_[0]->value(); settings.soundLevel=sliders_[1]->value();
@@ -113,9 +129,13 @@ PreferencesWidget::Settings PreferencesWidget::draftSettings() const {
     settings.dialogueSpeed=Speed(groups_[2]->checkedId()); settings.gameSpeed=Speed(groups_[3]->checkedId()); settings.borderPicture=groups_[4]->checkedId()==0;
     return settings;
 }
-void PreferencesWidget::apply() { accepted_=draftSettings(); emit settingsApplied(accepted_); }
-void PreferencesWidget::cancel() { populate(accepted_); emit cancelled(); }
-void PreferencesWidget::focusFirstControl() { sliders_[0]->setFocus(Qt::OtherFocusReason); }
+void PreferencesWidget::apply() { if(!ok_->isEnabled())return;accepted_=draftSettings(); emit settingsApplied(accepted_); }
+void PreferencesWidget::cancel() { if(!cancel_->isEnabled())return;populate(accepted_); emit cancelled(); }
+void PreferencesWidget::focusFirstControl() {
+    for(auto* slider:sliders_)if(slider->isEnabled()){slider->setFocus(Qt::OtherFocusReason);return;}
+    for(auto* radio:radios_)if(radio->isEnabled()){radio->setFocus(Qt::OtherFocusReason);return;}
+    (ok_->isEnabled()?ok_:cancel_)->setFocus(Qt::OtherFocusReason);
+}
 QRect PreferencesWidget::contentRect() const { return mnm::ui::menuContentRect(size()); }
 void PreferencesWidget::arrange() {
     const auto canvas=contentRect(); const double scale=canvas.width()/800.0;

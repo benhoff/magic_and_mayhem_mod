@@ -1,5 +1,5 @@
 #include "menu_bridge.hpp"
-#include "../../protocols/include/mnm/menu_v5.h"
+#include "../../protocols/include/mnm/menu_v6.h"
 #include <QtEndian>
 #include <cstring>
 #include <algorithm>
@@ -8,21 +8,21 @@ quint32 load(const quint32* p){return qFromLittleEndian(__atomic_load_n(p,__ATOM
 void store(quint32* p,quint32 v){__atomic_store_n(p,qToLittleEndian(v),__ATOMIC_RELEASE);}
 }
 MenuBridge::~MenuBridge(){retire();if(mapping_)file_.unmap(mapping_);}
-bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini,bool results){
-    results_=results;mini_=mini;spells_=spells||mini||results;battle_=battle||spells_;const int size=results?MNM_MENU_V5_SIZE:mini?MNM_MENU_V4_SIZE:spells?MNM_MENU_V3_SIZE:battle?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE;
+bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini,bool results,bool preferences){
+    preferences_=preferences;results_=results||preferences;mini_=mini;spells_=spells||mini||results_;battle_=battle||spells_;const int size=preferences?MNM_MENU_V6_SIZE:results?MNM_MENU_V5_SIZE:mini?MNM_MENU_V4_SIZE:spells?MNM_MENU_V3_SIZE:battle?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE;
     if(file_.isOpen())return false;
     file_.setFileName(path);
     if(!file_.open(QIODevice::ReadWrite|QIODevice::NewOnly)||!file_.resize(size))return false;
-    QByteArray data(size,0);std::memcpy(data.data(),results?MNM_MENU_V5_MAGIC:mini?MNM_MENU_V4_MAGIC:spells?MNM_MENU_V3_MAGIC:battle?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8);
-    qToLittleEndian<quint32>(results?5:mini?4:spells?3:battle?2:1,data.data()+8);qToLittleEndian<quint32>(size,data.data()+12);
+    QByteArray data(size,0);std::memcpy(data.data(),preferences?MNM_MENU_V6_MAGIC:results?MNM_MENU_V5_MAGIC:mini?MNM_MENU_V4_MAGIC:spells?MNM_MENU_V3_MAGIC:battle?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8);
+    qToLittleEndian<quint32>(preferences?6:results?5:mini?4:spells?3:battle?2:1,data.data()+8);qToLittleEndian<quint32>(size,data.data()+12);
     if(file_.write(data)!=data.size()||!file_.flush())return false;
     mapping_=file_.map(0,data.size());if(!mapping_)return false;
     heartbeat();return true;
 }
 bool MenuBridge::read(State& state) const {
-    if(!mapping_||std::memcmp(mapping_,results_?MNM_MENU_V5_MAGIC:mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
+    if(!mapping_||std::memcmp(mapping_,preferences_?MNM_MENU_V6_MAGIC:results_?MNM_MENU_V5_MAGIC:mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
     auto* words=reinterpret_cast<quint32*>(mapping_);
-    if(load(words+2)!=(results_?5u:mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(results_?MNM_MENU_V5_SIZE:mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
+    if(load(words+2)!=(preferences_?6u:results_?5u:mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(preferences_?MNM_MENU_V6_SIZE:results_?MNM_MENU_V5_SIZE:mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
     auto* p=words+(battle_?MNM_MENU_V2_ENGINE_WORD:MNM_MENU_V1_ENGINE_WORD);const auto seq=load(p);if(!seq||(seq&1))return false;
     State next;next.generation=load(p+1);next.screen=load(p+2);next.ready=load(p+3);next.ack=load(p+4);next.status=load(p+5);next.thread=load(p+6);next.sequence=seq;
     auto name=[&](int offset,int length,QString& text){
@@ -77,11 +77,19 @@ bool MenuBridge::read(State& state) const {
             if(row.active!=!row.name.isEmpty())return false;
         }
     }
+    if(preferences_&&next.screen==MNM_MENU_PREFERENCES_SCREEN){
+        auto* m=words+MNM_MENU_V6_PREFERENCES/4;auto& b=next.preferences;
+        b.actions=load(m);b.available=load(m+1);b.parentScreen=load(m+2);b.depth=load(m+3);
+        for(int i=0;i<7;++i)b.values[i]=int(load(m+4+i));
+        if((b.actions&~3u)||(b.available&~16383u)||b.parentScreen!=3||b.depth<1||b.depth>15||load(m+11)||
+           b.values[0]<0||b.values[0]>15||b.values[1]<-2500||b.values[1]>0||b.values[2]<0||b.values[2]>1||
+           b.values[3]<0||b.values[3]>1||b.values[4]<0||b.values[4]>2||b.values[5]<0||b.values[5]>2||b.values[6]<0||b.values[6]>1)return false;
+    }
     __atomic_thread_fence(__ATOMIC_ACQUIRE);if(seq!=load(p))return false;
-    if(next.ready>1||next.status>(battle_?MNM_MENU_INVALID:MNM_MENU_RETIRED)||next.handoff>2||(next.screen!=0&&next.screen!=3&&next.screen!=22&&!(battle_&&(next.screen==14||next.screen==25||(spells_&&next.screen==7)||(mini_&&next.screen==MNM_MENU_MINI_SCREEN)||(results_&&next.screen==MNM_MENU_RESULT_SCREEN)))))return false;
+    if(next.ready>1||next.status>(battle_?MNM_MENU_INVALID:MNM_MENU_RETIRED)||next.handoff>2||(next.screen!=0&&next.screen!=3&&next.screen!=22&&!(battle_&&(next.screen==14||next.screen==25||(spells_&&next.screen==7)||(mini_&&next.screen==MNM_MENU_MINI_SCREEN)||(results_&&next.screen==MNM_MENU_RESULT_SCREEN)||(preferences_&&next.screen==MNM_MENU_PREFERENCES_SCREEN)))))return false;
     state=next;return true;
 }
-void MenuBridge::publish(bool alive,quint32 action,quint32 generation,quint32 argument,const std::array<int,17>* rules,const std::array<int,63>* assignments){
+void MenuBridge::publish(bool alive,quint32 action,quint32 generation,quint32 argument,const std::array<int,17>* rules,const std::array<int,63>* assignments,const std::array<int,7>* preferences){
     if(!mapping_)return;
     auto* p=reinterpret_cast<quint32*>(mapping_)+MNM_MENU_V1_HOST_WORD;
     auto seq=load(p);store(p,seq+1);store(p+1,alive?1:0);store(p+2,++heartbeat_);
@@ -89,6 +97,7 @@ void MenuBridge::publish(bool alive,quint32 action,quint32 generation,quint32 ar
     // Heartbeats preserve the last request fields; they never resubmit it.
     if(action){store(p+4,action);store(p+5,generation);if(battle_){store(p+6,argument);for(int i=0;i<17;++i)store(p+7+i,rules?quint32((*rules)[i]):0);}}
     if(spells_&&assignments)for(int i=0;i<63;++i)store(reinterpret_cast<quint32*>(mapping_)+MNM_MENU_V3_HOST_SLOTS/4+i,quint32((*assignments)[i]));
+    if(preferences_&&preferences)for(int i=0;i<7;++i)store(reinterpret_cast<quint32*>(mapping_)+MNM_MENU_V6_HOST_PREFERENCES/4+i,quint32((*preferences)[i]));
     store(p,seq+2);
 }
 void MenuBridge::heartbeat(bool alive){if(!retired_)publish(alive);}
@@ -98,7 +107,7 @@ bool MenuBridge::request(quint32 action,const State& state,quint32 argument,cons
     const bool setupAction=action==MNM_MENU_SETUP_MAP||action==MNM_MENU_SETUP_START||action==MNM_MENU_SETUP_PLAYER||action==MNM_MENU_SETUP_APPLY;
     const bool miniAction=mini_&&current.screen==MNM_MENU_MINI_SCREEN&&current.mini.battle&&!current.mini.confirmation&&((action==MNM_MENU_MINI_CANCEL&&(current.mini.actions&MNM_MENU_MINI_CAN_CANCEL))||(action==MNM_MENU_MINI_PREFERENCES&&(current.mini.actions&MNM_MENU_MINI_CAN_PREFERENCES))||(action==MNM_MENU_MINI_QUIT&&(current.mini.actions&MNM_MENU_MINI_CAN_QUIT)));
     const bool resultAction=results_&&current.screen==MNM_MENU_RESULT_SCREEN&&((action==MNM_MENU_RESULT_CONTINUE&&(current.results.actions&1))||(action==MNM_MENU_RESULT_QUIT&&(current.results.actions&2)));
-    const bool allowed=resultAction||miniAction||(action==MNM_MENU_OPEN_QUICK&&current.screen==3)||(action==MNM_MENU_BACK&&current.screen==22)||(action==MNM_MENU_QUIT&&current.screen==3)||
+    const bool allowed=(preferences_&&action==MNM_MENU_OPEN_PREFERENCES&&current.screen==3)||resultAction||miniAction||(action==MNM_MENU_OPEN_QUICK&&current.screen==3)||(action==MNM_MENU_BACK&&current.screen==22)||(action==MNM_MENU_QUIT&&current.screen==3)||
         (battle_&&((action==MNM_MENU_OPEN_SINGLE&&current.screen==22)||((setupAction||action==MNM_MENU_SETUP_CANCEL)&&current.screen==14)||((action==MNM_MENU_MAP_OK||action==MNM_MENU_MAP_CANCEL)&&current.screen==25)));
     if(!allowed||(setupAction&&!rules)||(rules&&std::any_of(rules->begin(),rules->end(),[](int value){return value<0||value>10000;})))return false;
     if(retired_||!current.ready||current.status==MNM_MENU_RETIRED||current.ack!=request_||
@@ -112,5 +121,17 @@ bool MenuBridge::finishSpells(const State& state,const std::array<int,63>& assig
         if(i>=current.spells.counts[a]||v<0||v>=21||(seen&(1u<<v))||!(current.spells.offered&(1u<<v)))return false;
         seen|=1u<<v;}
     ++request_;publish(true,MNM_MENU_SPELL_FINISH,current.generation,0,nullptr,&assignments);return true;
+}
+bool MenuBridge::requestPreferences(quint32 action,const State& state,const std::array<int,7>& values,quint32 slider){
+    State current;if(!preferences_||retired_||!read(current)||current.screen!=10||!current.ready||current.status==MNM_MENU_RETIRED||current.generation!=state.generation||state.screen!=10||current.ack!=request_||request_==UINT32_MAX)return false;
+    const auto& b=current.preferences;
+    if(action==MNM_MENU_PREFERENCES_CANCEL){if(!(b.actions&2))return false;}
+    else if(action==MNM_MENU_PREFERENCES_OK||action==MNM_MENU_PREFERENCES_PREVIEW){
+        if(values[0]<0||values[0]>15||values[1]<-2500||values[1]>0||values[2]<0||values[2]>1||values[3]<0||values[3]>1||values[4]<0||values[4]>2||values[5]<0||values[5]>2||values[6]<0||values[6]>1)return false;
+        if(action==MNM_MENU_PREFERENCES_PREVIEW){if(slider>1||!(b.available&(1u<<(12+slider))))return false;}
+        else {if(!(b.actions&1))return false;const int first[5]={0,2,4,7,10};
+            for(int i=0;i<7;++i)if(values[i]!=b.values[i]){const int bit=i<2?12+i:first[i-2]+(i==6?!values[i]:values[i]);if(!(b.available&(1u<<bit)))return false;}}
+    }else return false;
+    ++request_;publish(true,action,current.generation,slider,nullptr,nullptr,&values);return true;
 }
 void MenuBridge::retire(){if(!retired_){publish(false);retired_=true;}}

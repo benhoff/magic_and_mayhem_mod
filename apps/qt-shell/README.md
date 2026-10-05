@@ -10,7 +10,7 @@ Click **Launch game**. Startup may take a few minutes while the launcher verifie
 the original files, stages a disposable installation and runs launch preflight.
 The viewport displays startup progress; the launch log shows completed checks.
 The shell stages a fresh hash-checked installation and
-connects native Main Quick Battle/Quit, Quick Battle Create Single Player/Cancel,
+connects native Main Quick Battle/Preferences/Quit, Quick Battle Create Single Player/Cancel,
 and Single Player Map/Cancel/Start to the original engine callbacks. Setup uses
 the actual map, players, rules and handicaps. Human portrait/colour cycling and
 opponent removal retain the original actions; opponent portraits/colours are
@@ -19,7 +19,7 @@ original menus. The shell waits for engine-confirmed readiness.
 
 **Use original menus** exposes the Wine viewport and permanently retires the
 command channel for that session. The native Main Quit button and window close use the original Quit callback;
-closing from Quick Battle returns to Main first. After choosing original menus,
+closing from Quick Battle returns to Main first. Closing from Preferences cancels its draft before returning to Main and quitting. After choosing original menus,
 exit through the game before closing the shell. Relaunch stages a new copy/channel. This mode uses the Wine viewport;
 it is separate from OpenGL capture and the standalone preview options.
 Original menu logic, fades and drawing remain active.
@@ -541,4 +541,15 @@ layout was found; see [scope and evidence](../../research/runtime/spell-research
 
 The V4 Mini Menu bridge remains behind `MNM_EXPERIMENTAL_MINI_MENUS`, which defaults to **OFF**. Isolated callback/wire checks passed, but live Quick Battle Escape reaches Game Over instead of Mini. Campaign ingress, confirmation and pause remain unvalidated. See the [recovery and boundaries](../../research/runtime/mini-menu-engine-bridge.md).
 
-Normal `--live-menus` sessions now use V5 Quick Battle results. The Qt Game Over screen reads the engine's displayed player/stat rows; Continue returns to original gameplay and Quit follows the engine back to Quick Battle. Window close on a ready results screen follows original Quit through Quick and Main to shutdown. Spectate/multiplayer and campaign results remain in the original viewport, and portrait sprites are still placeholders. See [results integration and evidence](../../research/runtime/quick-battle-results-engine-bridge.md).
+Normal `--live-menus` sessions use V6 Main Preferences alongside V5 Quick Battle results. The Qt Game Over screen reads the engine's displayed player/stat rows; Continue returns to original gameplay and Quit follows the engine back to Quick Battle. Window close on a ready results screen follows original Quit through Quick and Main to shutdown. Spectate/multiplayer and campaign results remain in the original viewport, and portrait sprites are still placeholders. See [results integration and evidence](../../research/runtime/quick-battle-results-engine-bridge.md).
+
+### Live Main Preferences
+
+Main **Preferences** reads the engine's current settings and available controls.
+Audio sliders preview through the original services; radio edits apply on OK.
+Cancel restores entry audio through the engine. The original engine handles the
+settings writer and display rebuilding. Changes are stored in the disposable
+session installation; persistence across launches is not implemented. Mini and
+campaign callers remain outside this adapter. Validate without manual interaction
+with `python3 tools/test-live-menus.py --preferences`; see the
+[Preferences bridge and evidence](../../research/runtime/preferences-engine-bridge.md).
