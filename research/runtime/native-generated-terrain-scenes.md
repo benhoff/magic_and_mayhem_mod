@@ -111,3 +111,8 @@ seed, complete scene producer or original file-error recovery path was exercised
 Full map lifecycle, entities, water, lighting, named animation producers and live
 integration remain separate. Further offline work can broaden available recipes,
 seeds and camera locations before selecting the next original scene producer.
+
+The subsequent [broader generated coverage](terrain-generated-coverage.md)
+checks all shipped recipes at zero and wrapping seeds with two corner cameras.
+Its accepted cases, unavailable inputs, exhausted generations and native boundary
+refusals are recorded separately; production behavior remains unchanged.
