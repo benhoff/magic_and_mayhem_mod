@@ -292,3 +292,23 @@ region admission, saturated additive stamps and two-phase publication, with the
 combined creature/static updater compared offline. Captured entity inputs,
 object-driven preview scenes and live lighting remain outstanding. See also
 [per-cell lighting evidence](../../research/runtime/terrain-light-fields.md).
+
+To advance both recovered source cycles, supply a local
+[MNM_LIGHTING v1 fixture](../../research/formats/terrain-lighting-fixture.md):
+
+```bash
+mnm-terrain-preview --root working/game-clean \
+  --realm Realms/Celtic/Forest --map Realms/Celtic/Forest/CFsec52.map \
+  --world --initialize-terrain --recovered-camera --palette-shading \
+  --preferences 'CFG\prefs.cfg' --lighting-config 'CFG\Encrypted\chaos.cfg' \
+  --terrain-lighting --light-fixture tests/fixtures/terrain-lighting.lighting \
+  --light-tick 0 --output working/object-lit-terrain
+```
+
+Choose an available installed MAP for your realm. Omit `--light-tick` to render
+the fixture's final snapshot. This excludes `--light-source` and uniform
+`--light`. The preview records every applied tick's states and five buffer
+hashes, and renders the final published field through the existing shaded terrain
+pipeline. Authored object snapshots and tick cadence remain controlled inputs;
+installed entity production and live integration remain outstanding. See
+[object-driven scene evidence](../../research/runtime/terrain-object-lighting-scenes.md).

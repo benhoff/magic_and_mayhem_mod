@@ -5,6 +5,8 @@
 #include "region_loader.hpp"
 #include "palette_lighting.hpp"
 #include "terrain_lighting.hpp"
+#include "light_fixture.hpp"
+#include <sstream>
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QLabel>
@@ -42,6 +44,8 @@ int main(int argc,char** argv)try{
  p.addOption({"lighting-config","Read global palette lighting from a packed installed CFG; requires palette-shading","path"});
  p.addOption({"terrain-lighting","Initialize an owned light field from global CFG and publish controlled source stamps; requires world/shading/lighting-config"});
  p.addOption({"light-source","Controlled column,row,layer,size (2..17); repeat in order; requires terrain-lighting","source"});
+ p.addOption({"light-fixture","Local MNM_LIGHTING v1 object snapshots; requires terrain-lighting; excludes light-source","path"});
+ p.addOption({"light-tick","Zero-based fixture tick to render (default last); requires light-fixture","index"});
  p.addOption({"light","Controlled uniform terrain light (-127..127); requires palette-shading","value","0"});
  p.addOption({"overlap","Use one anchor for every tile"});p.addOption({"output","New output prefix; writes .565, .png and .json, then exits","prefix"});p.process(app);
  bool ok=false;const auto view=p.value("view").toUInt(&ok);if(!ok || view>3 || !p.isSet("root"))throw std::runtime_error("Specify --root and view 0..3");
@@ -166,16 +170,31 @@ int main(int argc,char** argv)try{
   if(shading->count&(shading->count-1))throw std::runtime_error("TerrainLightLevels requires a supported power of two after original admission (2..256)");
  }
  if(!shading && p.isSet("light"))throw std::runtime_error("Light requires palette-shading");
+ if((p.isSet("light-fixture") && (!p.isSet("terrain-lighting") || p.isSet("light-source"))) || (p.isSet("light-tick") && !p.isSet("light-fixture")))throw std::runtime_error("Light fixture requires terrain-lighting and excludes light-source; light-tick requires fixture");
  if(p.isSet("light-source") && !p.isSet("terrain-lighting"))throw std::runtime_error("Light source requires terrain-lighting");
  if(p.isSet("terrain-lighting")){
   if(!world || !shading || !p.isSet("lighting-config") || p.isSet("light"))throw std::runtime_error("Terrain lighting requires world, palette-shading and lighting-config; excludes uniform light");
   auto opened=store.open(p.value("lighting-config").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&opened))throw std::runtime_error(e->detail);
   auto file=std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(opened));auto loaded=mnm::assets::loadTerrainLightingFields(*file);if(auto* e=std::get_if<mnm::assets::PersistenceError>(&loaded))throw std::runtime_error(e->detail);
   const auto& fields=std::get<mnm::assets::TerrainLightingFields>(loaded);const auto config=mnm::reconstruction::applyTerrainLighting({},fields.ambientLight,fields.lightRamp);
+  const auto hash=[](const auto& bytes){return QString::fromLatin1(QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(bytes.data()),bytes.size()),QCryptographicHash::Sha256).toHex());};
+  if(p.isSet("light-fixture")){
+   QFile file(p.value("light-fixture"));if(!file.open(QIODevice::ReadOnly) || file.size()>1024*1024)throw std::runtime_error("Cannot read bounded lighting fixture");
+   const auto data=file.readAll();if(file.error()!=QFileDevice::NoError)throw std::runtime_error("Lighting fixture read failed");
+   std::istringstream input(data.toStdString());const auto snapshots=mnm::preview::readLightingFixture(input);
+   unsigned selected=unsigned(snapshots.size()-1);if(p.isSet("light-tick")){selected=p.value("light-tick").toUInt(&ok);if(!ok || selected>=snapshots.size())throw std::runtime_error("Light tick outside fixture");}
+   mnm::reconstruction::TerrainLightingCycle cycle(lightShape[0],lightShape[1],lightShape[2],config);QJsonArray trace;
+   for(unsigned i=0;i<=selected;++i){cycle.step(snapshots[i]);const auto& c=cycle.creatures();const auto& o=cycle.objects();QJsonArray hashes;for(const auto& buffer:cycle.field().buffers())hashes.append(hash(buffer));
+    trace.append(QJsonObject{{"tick",qint64(i)},{"changed_input",snapshots[i].changed},{"changed_after",0},{"creature_phase",int(c.phase)},{"creature_remaining",qint64(c.remaining)},{"creature_quota",qint64(c.quota)},{"creature_cursor",int(c.cursor)},{"published_flag",c.published},{"object_phase",int(o.phase)},{"object_remaining",qint64(o.remaining)},{"object_quota",qint64(o.quota)},{"object_cursor",int(o.cursor)},{"object_active",o.active},{"object_requested",o.requested},{"buffer_sha256",hashes}});
+   }
+   const auto& field=cycle.field();for(auto& tile:tiles)tile.state.light=field.at(unsigned(tile.state.column),unsigned(tile.state.row),unsigned(tile.state.level));
+   const auto& bytes=field.buffers()[0];mapInfo.insert("terrain_light_field",QJsonObject{{"ambient",config.ambient},{"ramp",config.ramp},{"bytes",qint64(bytes.size())},{"sha256",hash(bytes)},{"publication","recovered creature then static cycle"},{"fixture",p.value("light-fixture")},{"fixture_sha256",QString::fromLatin1(QCryptographicHash::hash(data,QCryptographicHash::Sha256).toHex())},{"selected_tick",int(selected)},{"fixture_ticks",int(snapshots.size())},{"trace",trace}});
+  }else{
   mnm::reconstruction::TerrainLightField field(lightShape[0],lightShape[1],lightShape[2],config);
   for(const auto& request:p.values("light-source")){const auto values=request.split(',');if(values.size()!=4)throw std::runtime_error("Light source requires column,row,layer,size");std::array<unsigned,4> source{};for(unsigned i=0;i<4;++i){source[i]=values[int(i)].toUInt(&ok);if(!ok)throw std::runtime_error("Invalid light source integer");}field.stamp({source[0],source[1],source[2],source[3]});}
   field.publish();for(auto& tile:tiles)tile.state.light=field.at(unsigned(tile.state.column),unsigned(tile.state.row),unsigned(tile.state.level));
   const auto& bytes=field.buffers()[0];mapInfo.insert("terrain_light_field",QJsonObject{{"ambient",config.ambient},{"ramp",config.ramp},{"bytes",qint64(bytes.size())},{"sha256",QString::fromLatin1(QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(bytes.data()),bytes.size()),QCryptographicHash::Sha256).toHex())},{"sources",QJsonArray::fromStringList(p.values("light-source"))},{"publication","immediate controlled fixture"}});
+  }
  }
  mnm::render::GlBlitter renderer;const auto result=mnm::preview::renderTerrain(renderer,std::get<mnm::assets::TerrainCatalog>(catalog),std::get<mnm::assets::Sprite>(sprite),tiles,{view,world?camera.cutLevel:1},p.isSet("visibility"),world,shading);
  if(p.isSet("output")){
