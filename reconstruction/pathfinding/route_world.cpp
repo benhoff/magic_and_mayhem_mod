@@ -42,6 +42,10 @@ std::shared_ptr<RouteWorldSnapshot> read_route_world(const std::string& path) {
     std::vector<std::byte> bytes(static_cast<std::size_t>(size));
     input.read(reinterpret_cast<char*>(bytes.data()),size);
     require(bool(input),"snapshot read failed");
+    return decode_route_world(bytes);
+}
+std::shared_ptr<RouteWorldSnapshot> decode_route_world(const std::vector<std::byte>& bytes) {
+    require(bytes.size()>=92 && bytes.size()<=64*1024*1024,"snapshot file size invalid");
     require(std::memcmp(bytes.data(),"MNMWLD01",8)==0,"unsupported route snapshot format");
     const auto u=[&](unsigned i) { return load<std::uint32_t>(bytes.data(),8+i*4); };
     const auto i=[&](unsigned n) { return load<std::int32_t>(bytes.data(),8+n*4); };

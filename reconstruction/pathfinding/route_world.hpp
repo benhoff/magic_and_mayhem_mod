@@ -20,6 +20,9 @@ struct RouteWorldSnapshot {
     std::array<std::byte,0x5c9> generator_type{};
 };
 std::shared_ptr<RouteWorldSnapshot> read_route_world(const std::string& path);
+// Same bounded parser for owned bytes, allowing adapters to fingerprint exactly
+// the inputs they decode rather than reopening a file between hash and decode.
+std::shared_ptr<RouteWorldSnapshot> decode_route_world(const std::vector<std::byte>& bytes);
 NeighborHelpers snapshot_neighbors(std::shared_ptr<const RouteWorldSnapshot> snapshot);
 SearchResult replay_route_world(std::shared_ptr<const RouteWorldSnapshot> snapshot,
     RouteContextPrefix& context,SearchState& state,std::int32_t& remaining_budget);

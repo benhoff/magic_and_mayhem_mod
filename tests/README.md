@@ -496,3 +496,23 @@ host and feeds them into synthetic worlds. It hash-checks input, script-patches
 only a disposable PE copy's fwrite entry and verifies the original manifest
 before/after. No full original save or live restoration is validated.
 See [world loading](../research/formats/save-world-native-loading.md).
+
+## Native world and checkpoints
+
+The standalone `game/` CMake project registers `native-world-lifecycle` and
+`native-world-wire`. The former checks entity identities/reference repair,
+transactional tick phases, command/storage limits, rollback, checkpoint
+continuation and POSIX publication/refusal/errors. The independent Python
+oracle checks exact wire bytes, malformed/recomputed-checksum inputs and
+fresh-process split continuation. All fixtures are synthetic; no original
+artifact, Qt or Wine is needed. See [build and checks](../game/README.md) and
+[evidence/boundaries](../research/runtime/native-world-foundation.md).
+
+`native-creature-movement` checks typed actions, phase order, command replacement,
+target/entity release, blocked/limited routing, sixteen-point prefix replanning,
+transaction rollback and map restoration with a deterministic navigation fixture.
+`native-movement-process` runs the actual frozen reconstructed helper/search
+adapter, independent complete v2 wire expectations and fresh-process position
+traces. It also checks changed/missing maps, seam directions, zero-distance,
+prefix replanning, corrupted route metadata and guarded file publication.
+See [movement evidence](../research/runtime/native-creature-movement.md).

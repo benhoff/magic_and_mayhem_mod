@@ -1,0 +1,41 @@
+#pragma once
+#include "world.hpp"
+#include <filesystem>
+#include <memory>
+
+namespace mnm::game {
+bool contains(Point,const NavigationBinding&);
+bool active(Action);
+void validateMotion(const Entity&,const NavigationBinding&);
+void validateCommand(const Command&);
+enum class PlanStatus {reachable, unreachable, budgetExhausted};
+struct RoutePlan {
+    PlanStatus status=PlanStatus::unreachable;
+    std::vector<RoutePoint> route;
+};
+// Native simulation consumes owned coordinates/results, never reconstruction
+// objects, raw game pointers or build-specific addresses.
+class Navigation {
+public:
+    virtual ~Navigation()=default;
+    virtual NavigationBinding binding() const=0;
+    virtual std::uint32_t creatureType() const=0;
+    virtual RoutePlan plan(const Entity&,Point,std::uint32_t budget) const=0;
+    virtual bool accepts(const Entity&,const RoutePoint&) const=0;
+};
+using MapResolver=std::function<std::shared_ptr<const Navigation>(const std::string&)>;
+class MovementSession {
+    World world_;
+    std::shared_ptr<const Navigation> navigation_;
+    static void validateBinding(const State&,const Navigation&);
+public:
+    MovementSession(World,std::shared_ptr<const Navigation>);
+    const World& world() const {return world_;}
+    Handle spawn(Entity);
+    void enqueue(Command);
+    void move(Handle,Point,std::optional<Handle> goal={});
+    TickReport step(TickInput={});
+    // Load map + validate routes before committing either resource or world.
+    void restore(const std::filesystem::path&,const MapResolver&);
+};
+}
