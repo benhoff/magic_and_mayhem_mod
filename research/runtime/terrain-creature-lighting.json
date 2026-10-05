@@ -1,0 +1,59 @@
+{
+  "all_match": true,
+  "live_validated": false,
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "trials": 96,
+  "ticks": 2304,
+  "buffer_bytes": 18398280,
+  "state_values": 11520,
+  "compared_builds": [
+    "original and native 32-bit",
+    "native 64-bit",
+    "native 64-bit ASan/UBSan"
+  ],
+  "output_sha256": "deaa406cbc34e840c121af18072323829acba09a8145534b7ea43f2238bc47fe",
+  "helper_sha256": {
+    "original": "4840a62f43b85b031721024c710fc14191722c3f968b2eda492a84ee1e653615",
+    "native": "d39dfff84d26062e3b541982faf027217b5309feb37aa356b29886aa6efeab4a",
+    "sanitized": "e5953ebb93930fdc9fe461d204971d68ffeb3da6a5158667e13b8958ed3f814b",
+    "unit": "a8a21f4cb603a93b4ce3868979bf26401c126871af0471a55608cf50d4153945",
+    "unit-sanitized": "6e98f472312665535e1d19a7756ccb314f780ada66d7dc144e0909c645d77357"
+  },
+  "source_and_input_sha256": {
+    "working/game-nocd/Chaos.exe": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "tools/test-terrain-creature-lights.py": "19ba8a4dcfd3cf15862624e008c643a95a64c28c6b7fcd55bcf625e7d72bd35c",
+    "working/tests/terrain-creature-source/tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "working/tests/terrain-creature-source/tests/terrain-creature-lighting-reference.cpp": "52bf95a609c2c55073a58126aef7298e36ac2446cfa05e2c23e11add2a1a3e1e",
+    "working/tests/terrain-creature-source/tests/terrain-creature-lighting-test.cpp": "e42455818ade2b38b1358498bfe58b7acd0d643c5624454d9de31620df72a893",
+    "working/tests/terrain-creature-source/reconstruction/rendering/terrain_lighting.cpp": "7c079c5d7414160980597430f1ce08b23655abee387c52efcea02784b36bed0c",
+    "working/tests/terrain-creature-source/reconstruction/rendering/terrain_lighting.hpp": "1d345d8c0631f1650691ff037106e8399e06f6b4de0dfa4e981e7292fbf9a862",
+    "working/tests/terrain-creature-source/reconstruction/rendering/terrain_creature_lighting.cpp": "230416703569b15643bf13481af726beaf3c3db0308a694fe6ba268b9a09e354",
+    "working/tests/terrain-creature-source/reconstruction/rendering/terrain_creature_lighting.hpp": "d7202a69c681ab0a8f2b161b746542e08c75f48e03f5c3e5877e2651817b1d75"
+  },
+  "boundary": "Whole unmodified 004f27d0 creature updater, preallocated light buffers, owned valid players/owners 0..7; no static-object updater, interpolation, spectator/sentinel path, entity capture or live replacement",
+  "evidence_directory": "working/tests/terrain-creature-lights/run-tmnv4dio",
+  "full_suites": {
+    "normal": {
+      "tests_passed": 66,
+      "log": "working/tests/terrain-creature-lights/ctest-final.log",
+      "sha256": "bc0ffce4ed16677eb06e6d61a8d2e9fd0ca9a60f575ff6db354261501622beec"
+    },
+    "ASan/UBSan": {
+      "tests_passed": 66,
+      "log": "working/tests/terrain-creature-lights/ctest-san-final.log",
+      "sha256": "b642d5feb8ad62c2155e00ab0a78edda02ae9308c1449f43d0e027d5374b5dc2"
+    }
+  },
+  "manifest_checks": {
+    "original-before": {
+      "files": 2927,
+      "log": "working/tests/terrain-creature-lights/run-tmnv4dio/original-before.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    "original-after": {
+      "files": 2927,
+      "log": "working/tests/terrain-creature-lights/run-tmnv4dio/original-after.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  }
+}

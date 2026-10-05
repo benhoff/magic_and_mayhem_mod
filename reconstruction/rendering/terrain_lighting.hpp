@@ -20,6 +20,7 @@ public:
  const std::array<std::vector<std::int8_t>,5>& buffers() const{return buffers_;}
  const std::array<std::vector<std::int8_t>,18>& kernels() const{return kernels_;}
 private:
+ friend class TerrainCreatureLightCycle;
  unsigned width_,height_,mapLayers_;
  TerrainLightingConfig config_;
  // Original +7cc,+7d0,+7d4,+7d8,+7dc: published, prior, target, work, base.

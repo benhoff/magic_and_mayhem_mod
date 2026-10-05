@@ -283,5 +283,9 @@ mnm-terrain-preview --root working/game-clean \
 The preview applies recovered kernels, wrapped XY and clipped paired Z planes,
 then explicitly publishes the work field immediately. JSON records the field
 hash, admitted ambient/ramp, source requests and each tile's sampled light.
-Entity source discovery, player selection, smoothing/ticking and live lighting
-remain outstanding. See [per-cell lighting evidence](../../research/runtime/terrain-light-fields.md).
+The preview still uses explicit source requests and immediate publication.
+The separate recovered [creature light cycle](../../research/runtime/terrain-creature-lighting.md)
+now admits owned creature records by player relations and advances the eight-phase
+work/published/target cycle offline. Captured entity inputs, static-object lights,
+interpolation and live lighting remain outstanding. See also
+[per-cell lighting evidence](../../research/runtime/terrain-light-fields.md).
