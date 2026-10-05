@@ -16,6 +16,13 @@ template<class T> void parseField(const Config& config,const char* section,const
   }}
 
 }
+PersistenceResult<TerrainLightingFields> decodeTerrainLightingFields(const Config& config){
+ return persistence_detail::guarded<TerrainLightingFields>([&]{TerrainLightingFields result;parseField(config,"GLOBAL_OPTIONS","AmbientLight",result.ambientLight);parseField(config,"GLOBAL_OPTIONS","LightRamp",result.lightRamp);return result;});
+}
+PersistenceResult<TerrainLightingFields> loadTerrainLightingFields(AssetFile& file,const PersistenceLimits& limits){
+ auto config=loadConfig(file,true,limits);if(auto* error=std::get_if<PersistenceError>(&config))return *error;
+ return decodeTerrainLightingFields(std::get<Config>(config));
+}
 PersistenceResult<TerrainPalettePreference> decodeTerrainPalettePreference(const Config& config){
  return persistence_detail::guarded<TerrainPalettePreference>([&]{TerrainPalettePreference result;parseField(config,"VIDEO","TerrainLightLevels",result.lightLevels);return result;});
 }

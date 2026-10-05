@@ -242,7 +242,8 @@ mnm-terrain-preview --root working/game-clean --palette-shading --light -17 \
 This uses the recovered mode-0 palette builder with count 16, intensity and
 saturation levels 1, and powers 2. `--light` accepts -127..127 and supplies a
 controlled uniform fixture light to every submitted tile, including world and
-generated scenes. Spatial light generation and effect-chain selection remain outstanding. The upload cache distinguishes
+generated scenes. Entity light-source discovery, dynamic field updates and effect-chain selection
+remain outstanding. The upload cache distinguishes
 frames at different selected tables and retains owned textures. See
 [palette shading evidence](../../research/runtime/terrain-palette-shading.md)
 for original-binary comparisons and reproduction.
@@ -254,7 +255,7 @@ and `ColourPower` from `GLOBAL_OPTIONS`, then applies the original bounds.
 Output JSON records the effective controls. Missing fields preserve image
 settings; malformed numeric fields or unavailable files are refused. This
 uses count 16 unless `--preferences` is supplied, and controlled uniform
-`--light`; spatial light production remains outstanding.
+`--light`; entity light-source discovery and dynamic field updates remain outstanding.
 See [configured lighting evidence](../../research/runtime/terrain-lighting-config.md).
 
 To use the installed terrain palette count, also add `--preferences 'CFG\prefs.cfg'`.
@@ -263,3 +264,24 @@ Missing keys retain the fixture count; present values receive the original
 2..256 clamp. The preview supports powers of two after admission and refuses
 other counts. JSON records both the effective count and preference path.
 See [terrain preference evidence](../../research/runtime/terrain-palette-preferences.md).
+
+To exercise an owned per-cell light field, add `--terrain-lighting` to a world
+scene with `--palette-shading --lighting-config 'CFG\Encrypted\chaos.cfg'`.
+Repeated `--light-source column,row,layer,size` options stamp controlled sources;
+size is 2..17, coordinates must be in bounds, and both XY dimensions must cover
+that size. With no sources the field stays at -127. This excludes uniform
+`--light`. For example, on a suitably sized map:
+
+```bash
+mnm-terrain-preview --root working/game-clean \
+  --region-config Realms/Celtic/Celtic.cfg --region-id 0 --generation-seed 0 \
+  --world --initialize-terrain --recovered-camera --palette-shading \
+  --preferences 'CFG\prefs.cfg' --lighting-config 'CFG\Encrypted\chaos.cfg' \
+  --terrain-lighting --light-source 0,0,0,17 --output working/per-cell-lit
+```
+
+The preview applies recovered kernels, wrapped XY and clipped paired Z planes,
+then explicitly publishes the work field immediately. JSON records the field
+hash, admitted ambient/ramp, source requests and each tile's sampled light.
+Entity source discovery, player selection, smoothing/ticking and live lighting
+remain outstanding. See [per-cell lighting evidence](../../research/runtime/terrain-light-fields.md).
