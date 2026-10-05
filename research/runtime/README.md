@@ -4,6 +4,11 @@ Document runtime structures, functions, addresses, signatures, and hooks here.
 For each finding, record the executable hash, discovery method, evidence,
 confidence, and whether it remains stable across launches.
 
+- [Binary-to-behavior accounting](coverage/README.md): whole-image discovery
+  inventory, cross-subsystem code/behavior index, source-census changes,
+  independent validation dimensions, evidence freshness, bounded scenarios and
+  an automated audit that retains unknown functionality.
+
 - [Windows file API audit](windows-file-api-audit.md): pinned clean/No-CD/JPEG
   imports and references, save temporary-file evidence, and native asset gaps.
 - [Save/load and campaign progression](persistence-progression.md): named save
@@ -155,3 +160,5 @@ confidence, and whether it remains stable across launches.
 - [Native terrain and creature scene](native-world-scene.md): bounded NS06 checkpoint presentation with owned ANI display, explicit diagnostic terrain, mixed depth queue and reproducible frame continuation.
 
 - [Bounded installed MAP navigation and creature presentation](native-map-navigation.md): ordinary full-source geometry projected to a sealed crop, matched frozen navigation/visual bytes, original terrain predicate comparisons and owned frame continuation.
+
+- [Campaign menu entry contract](campaign-menu-engine-contract.md): original New Game reset, Realm custom lifecycle, region admission and auxiliary flags; UI26 isolated evidence, campaign bridge and mode-4 Mini return still pending.

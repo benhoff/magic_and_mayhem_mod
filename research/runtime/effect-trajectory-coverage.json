@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "TL.effect-trajectory-step",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Whole effect trajectory stepping from authored state",
+      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5108992,
+          "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/effect-trajectory/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-trajectory-reference.cpp",
+        "tests/effect-trajectory-test.cpp",
+        "tools/test-effect-trajectory.py"
+      ],
+      "evidence": [
+        "TL06.trajectory-original",
+        "TL06.trajectory-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-movement-recount",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect movement parent and recount production remain open",
+      "scope": "Parent 004883f0 projection/recount production, cell membership changes, collision and type-dependent termination remain unimplemented and untested; trajectory initialization and XY-only 004df5d0 are separate gaps; leaf comparison does not admit installed moving effects to lighting",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Parent 004883f0 projection/recount production, cell membership changes, collision and type-dependent termination remain unimplemented and untested; trajectory initialization and XY-only 004df5d0 are separate gaps; leaf comparison does not admit installed moving effects to lighting"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "TL06.trajectory-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
+      "record": "research/runtime/effect-trajectory.json",
+      "sha256": "7c86123009abb808c42eeed31e4cd1f69b9f68d7ce017528fd64af9124e42c22",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 8192
+        },
+        {
+          "pointer": "/steps",
+          "equals": 262144
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL06.trajectory-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
+      "record": "research/runtime/effect-trajectory.json",
+      "sha256": "7c86123009abb808c42eeed31e4cd1f69b9f68d7ce017528fd64af9124e42c22",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 8192
+        },
+        {
+          "pointer": "/steps",
+          "equals": 262144
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "terrain-lighting.effect-trajectory",
+      "level": "headless",
+      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
+      "behaviors": [
+        "TL.effect-trajectory-step"
+      ],
+      "evidence": [
+        "TL06.trajectory-original",
+        "TL06.trajectory-native"
+      ],
+      "tests": [
+        "tests/effect-trajectory-reference.cpp",
+        "tests/effect-trajectory-test.cpp",
+        "tools/test-effect-trajectory.py"
+      ]
+    }
+  ],
+  "recovered_ranges": [],
+  "dispatch_tables": [],
+  "classifications": [],
+  "api_bindings": []
+}

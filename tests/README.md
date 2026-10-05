@@ -728,3 +728,20 @@ resolution rebuilds, changed-draft Cancel and reopened controls in Xvfb/Wine.
 It checks original client dimensions and font modes with a test-only forwarding
 probe, then exits through original Quit. No manual interaction is required.
 See [UI25 evidence](../research/runtime/preferences-display-rebuild.md).
+
+### Campaign menu contract recovery
+
+```sh
+python3 tools/export-campaign-menu-support.py
+python3 tools/test-campaign-menu-contract.py
+```
+
+The read-only export pins the No-CD build and saves original disassembly,
+Ghidra functions, vtable prefix and realm configuration summaries. The targeted
+32-bit oracle runs 269 original-bytecode fixtures with privately stubbed
+loading/media dependencies: New Game reset order, region occupancy/admission,
+auxiliary flags, Escape-to-Mini mode 4 and pending-return branches. Both commands
+verify immutable originals before and after; the oracle uses warnings as errors
+and a 20-second execution bound. No manual test or game launch is needed.
+This does not test full Realm initialization, live navigation, campaign Mini
+confirmation, Region Entry or a Qt bridge. See [UI26 contract and evidence](../research/runtime/campaign-menu-engine-contract.md).
