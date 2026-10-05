@@ -14,37 +14,34 @@
   "api_bindings": [],
   "behaviors": [
     {
-      "id": "TL.effect-blocked-destinations",
+      "id": "TL.effect-height-exits",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
-      "title": "Blocked effect destination partial state and return 1",
-      "scope": "Complete unmodified 004883f0 empty-world membership-on blocked-destination path: types 3/13/22/24/36, no creator, kind 0/68, terrain 0..3, authored 0..8 steps, first/later changed-cell flag 40000000 entry, skipped insertion/flag clearing/subcell refresh, old unlink/column cleanup, committed fine/current/previous/cache/recount/terrain state, parameter 7=-1 and return 1; initial blocked zero-iteration/same-cell paths and ordinary/cleanup reruns; no occupied collision context, special metadata/types, height exits, malformed original inputs or live lifecycle replacement",
+      "title": "Effect height exit partial state and return 2",
+      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Complete unmodified 004883f0 empty-world membership-on blocked-destination path: types 3/13/22/24/36, no creator, kind 0/68, terrain 0..3, authored 0..8 steps, first/later changed-cell flag 40000000 entry, skipped insertion/flag clearing/subcell refresh, old unlink/column cleanup, committed fine/current/previous/cache/recount/terrain state, parameter 7=-1 and return 1; initial blocked zero-iteration/same-cell paths and ordinary/cleanup reruns; no occupied collision context, special metadata/types, height exits, malformed original inputs or live lifecycle replacement"
+          "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle"
         }
       ],
       "documents": [
-        "research/runtime/effect-blocked-destinations.md"
+        "research/runtime/effect-height-exits.md"
       ],
       "implementation": [
         "reconstruction/rendering/effect_transition.cpp",
-        "reconstruction/rendering/effect_transition.hpp",
-        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+        "reconstruction/rendering/effect_transition.hpp"
       ],
       "tests": [
-        "tests/effect-blocked-reference.cpp",
-        "tests/effect-transition-reference.cpp",
+        "tests/effect-height-reference.cpp",
         "tests/effect-transition-test.cpp",
-        "tests/effect-cleanup-reference.cpp",
         "tools/test-effect-transition.py"
       ],
       "evidence": [
-        "TL10.blocked-original",
-        "TL10.blocked-native"
+        "TL11.height-original",
+        "TL11.height-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -55,30 +52,27 @@
       }
     },
     {
-      "id": "TL.effect-blocked-policy",
+      "id": "TL.effect-height-policy",
       "subsystem": "terrain_lighting",
       "kind": "native_policy",
-      "title": "Owned committed termination state and detached lifecycle refusal",
-      "scope": "Owned supported return-1 partial state commits atomically; active detached record requires caller lifecycle handling and is refused on resumption; unsupported input exceptions retain rollback, with strict headless moving-light/cleanup checks; original removal/recycling is not implied",
+      "title": "Owned height exit publication and resumption admission",
+      "scope": "Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/effect-blocked-destinations.md"
+        "research/runtime/effect-height-exits.md"
       ],
       "implementation": [
         "reconstruction/rendering/effect_transition.cpp",
-        "reconstruction/rendering/effect_transition.hpp",
-        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+        "reconstruction/rendering/effect_transition.hpp"
       ],
       "tests": [
-        "tests/effect-blocked-reference.cpp",
-        "tests/effect-transition-reference.cpp",
+        "tests/effect-height-reference.cpp",
         "tests/effect-transition-test.cpp",
-        "tests/effect-cleanup-reference.cpp",
         "tools/test-effect-transition.py"
       ],
       "evidence": [
-        "TL10.blocked-native"
+        "TL11.height-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -124,12 +118,12 @@
   ],
   "evidence": [
     {
-      "id": "TL10.blocked-original",
+      "id": "TL11.height-original",
       "kind": "isolated_original",
       "build": "nocd-40209ca7",
-      "scope": "Complete unmodified 004883f0 empty-world membership-on blocked-destination path: types 3/13/22/24/36, no creator, kind 0/68, terrain 0..3, authored 0..8 steps, first/later changed-cell flag 40000000 entry, skipped insertion/flag clearing/subcell refresh, old unlink/column cleanup, committed fine/current/previous/cache/recount/terrain state, parameter 7=-1 and return 1; initial blocked zero-iteration/same-cell paths and ordinary/cleanup reruns; no occupied collision context, special metadata/types, height exits, malformed original inputs or live lifecycle replacement",
-      "record": "research/runtime/effect-blocked-destinations.json",
-      "sha256": "b1e64f8fc6d88a07470b9d83b762ef66e0a3448f3a624903a1f0d3f0e832e12d",
+      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle",
+      "record": "research/runtime/effect-height-exits.json",
+      "sha256": "349dc5bbbf2749780cf14a83dd8e239d827178fa7d9d3c04d768aafd42fb45cb",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -212,16 +206,52 @@
         {
           "pointer": "/blocked_comparison/cell_bytes",
           "equals": 53393920
+        },
+        {
+          "pointer": "/height_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/steps",
+          "equals": 3447
+        },
+        {
+          "pointer": "/height_comparison/transitions",
+          "equals": 1911
+        },
+        {
+          "pointer": "/height_comparison/cache_updates",
+          "equals": 746
+        },
+        {
+          "pointer": "/height_comparison/height_exits",
+          "equals": 1536
+        },
+        {
+          "pointer": "/height_comparison/lower_exits",
+          "equals": 878
+        },
+        {
+          "pointer": "/height_comparison/upper_exits",
+          "equals": 658
+        },
+        {
+          "pointer": "/height_comparison/cell_bytes",
+          "equals": 53393920
         }
       ]
     },
     {
-      "id": "TL10.blocked-native",
+      "id": "TL11.height-native",
       "kind": "native_integration",
       "build": "nocd-40209ca7",
-      "scope": "Owned supported return-1 partial state commits atomically; active detached record requires caller lifecycle handling and is refused on resumption; unsupported input exceptions retain rollback, with strict headless moving-light/cleanup checks; original removal/recycling is not implied",
-      "record": "research/runtime/effect-blocked-destinations.json",
-      "sha256": "b1e64f8fc6d88a07470b9d83b762ef66e0a3448f3a624903a1f0d3f0e832e12d",
+      "scope": "Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
+      "record": "research/runtime/effect-height-exits.json",
+      "sha256": "349dc5bbbf2749780cf14a83dd8e239d827178fa7d9d3c04d768aafd42fb45cb",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -303,6 +333,42 @@
         },
         {
           "pointer": "/blocked_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/height_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/steps",
+          "equals": 3447
+        },
+        {
+          "pointer": "/height_comparison/transitions",
+          "equals": 1911
+        },
+        {
+          "pointer": "/height_comparison/cache_updates",
+          "equals": 746
+        },
+        {
+          "pointer": "/height_comparison/height_exits",
+          "equals": 1536
+        },
+        {
+          "pointer": "/height_comparison/lower_exits",
+          "equals": 878
+        },
+        {
+          "pointer": "/height_comparison/upper_exits",
+          "equals": 658
+        },
+        {
+          "pointer": "/height_comparison/cell_bytes",
           "equals": 53393920
         }
       ]
@@ -310,22 +376,20 @@
   ],
   "scenarios": [
     {
-      "id": "terrain-lighting.effect-blocked-destinations",
+      "id": "terrain-lighting.effect-height-exits",
       "level": "headless",
-      "scope": "Complete unmodified 004883f0 empty-world membership-on blocked-destination path: types 3/13/22/24/36, no creator, kind 0/68, terrain 0..3, authored 0..8 steps, first/later changed-cell flag 40000000 entry, skipped insertion/flag clearing/subcell refresh, old unlink/column cleanup, committed fine/current/previous/cache/recount/terrain state, parameter 7=-1 and return 1; initial blocked zero-iteration/same-cell paths and ordinary/cleanup reruns; no occupied collision context, special metadata/types, height exits, malformed original inputs or live lifecycle replacement; Owned supported return-1 partial state commits atomically; active detached record requires caller lifecycle handling and is refused on resumption; unsupported input exceptions retain rollback, with strict headless moving-light/cleanup checks; original removal/recycling is not implied",
+      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle; Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
       "behaviors": [
-        "TL.effect-blocked-destinations",
-        "TL.effect-blocked-policy"
+        "TL.effect-height-exits",
+        "TL.effect-height-policy"
       ],
       "evidence": [
-        "TL10.blocked-original",
-        "TL10.blocked-native"
+        "TL11.height-original",
+        "TL11.height-native"
       ],
       "tests": [
-        "tests/effect-blocked-reference.cpp",
-        "tests/effect-transition-reference.cpp",
+        "tests/effect-height-reference.cpp",
         "tests/effect-transition-test.cpp",
-        "tests/effect-cleanup-reference.cpp",
         "tools/test-effect-transition.py"
       ]
     }

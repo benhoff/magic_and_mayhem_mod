@@ -54,7 +54,12 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
         movement.motion.previousUnits=r.units;
         std::array<std::uint32_t,3> units{r.parameters[0],r.parameters[1],r.parameters[2]};
         movement.motion.trajectory.step(units,movement.motion.changes);
-        if(units[2]>=layers*16)throw std::invalid_argument("Effect height exit is outside transition scope");
+        if(units[2]>=layers*16){
+            // Original trajectory writes parameters before checking height. Fine
+            // units, wrapping, recount and membership still describe the last valid step.
+            std::copy(units.begin(),units.end(),r.parameters.begin());
+            pool=std::move(candidate);state=std::move(movement);return 2;
+        }
         units[0]=wrap(units[0],width*32);units[1]=wrap(units[1],height*32);
         const std::array<unsigned,3> position{units[0]>>5,units[1]>>5,units[2]>>4};
         r.units=units;std::copy(units.begin(),units.end(),r.parameters.begin());

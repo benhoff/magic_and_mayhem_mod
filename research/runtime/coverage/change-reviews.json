@@ -3610,6 +3610,189 @@
         "evidence": [],
         "reason": "Generated metadata only; no implementation or status promotion."
       }
+    },
+    {
+      "id": "effect-height-recorded-90a35fd",
+      "reason": "Recover complete-parent height exit ordering: saved previous fine XYZ, raw trajectory parameter XYZ and counter commit before wrapping, retaining last-valid published fine/cell/reference/recount/membership and return 2. Preserve distinct caller/native resumption policy and historical fingerprints. Review committed range cf1dc7d..90a35fd87d20f59ca8f34a780e68836cb6199674 with exact-hash/evidence report working/tests/effect-height-history-review.json; reconcile focused imports/census/ledger.",
+      "files": [
+        {
+          "after_sha256": "9aab83bdaafd76e203431a73ee4a7fa546fb556f7f7675186512d859b45607ae",
+          "before_sha256": "7884793bbfcca42e0f70d2bd4c3e3510b9b0a7ac12c4a8a2607201dff5d892fa",
+          "path": "reconstruction/rendering/effect_transition.cpp"
+        },
+        {
+          "after_sha256": "292938bdc5c16e762716279a3f22d87c1a1635facd2fb26afebecdf08024ad8e",
+          "before_sha256": "26bc40700e5cef61c7bd1048371fc8012455e1011925161545c0265ce3e76f3e",
+          "path": "reconstruction/rendering/effect_transition.hpp"
+        },
+        {
+          "after_sha256": "5cbd0ad5a97f55d28d4baf7fe17260a61602a7b01f5b3d2ad015ef65fe20a8f1",
+          "before_sha256": "73f0a8897b67cbdef44d2271bfe9e06e2ac5e0b6c6aeb6308241a22953f345ba",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9724773992e406121e37098ff34667740a5c0339d05db071566493828ff1cb86",
+          "before_sha256": "b8f0c0fd423a8b2faa22c6406969e856e13dbad77c1136e1ad9015798f1c8574",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "ed39f90639c48708e235d02cce8bae8c64de4b65d25b8ab1a41730f00e6ff06c",
+          "before_sha256": "519728bf99b5ab5e60327c0aeff50c3cf06e82e1497f4174d7ce4ce8493efc45",
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "201a2639db6f9a68354056ea245af6529653bfb153402877c73e59b2309addd7",
+          "before_sha256": "dd4e34fc463438667dcb2639ac2e589f29c8308c340fa0d5b0d06b7d2fcad2ac",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "a3b6b873966591a545bcd1f2439a229d077d5c50ccefd86de90a81c70fb6b998",
+          "before_sha256": "0672801ef36e7412ece419a1e28e12b8df57c983106e2bf3d50f176df0bc0096",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "d7fcb09331a783033ec346217610dbcdf40f68f1ec0a6dcb6de2148bf42a4326",
+          "before_sha256": null,
+          "path": "research/runtime/effect-height-exits-coverage.json"
+        },
+        {
+          "after_sha256": "d000ad46a7a8cd1cffd73e55e6ef74f5051daba3525383ac7642e5a45f6eab5d",
+          "before_sha256": null,
+          "path": "research/runtime/effect-height-exits-source-index.json"
+        },
+        {
+          "after_sha256": "349dc5bbbf2749780cf14a83dd8e239d827178fa7d9d3c04d768aafd42fb45cb",
+          "before_sha256": null,
+          "path": "research/runtime/effect-height-exits.json"
+        },
+        {
+          "after_sha256": "a911e493882ed860ec54c1a2128f30175085d6ea548177fedc966abff183af7b",
+          "before_sha256": null,
+          "path": "research/runtime/effect-height-exits.md"
+        },
+        {
+          "after_sha256": "b189df2872513eab56bbf0075336d6e82b104d5b177b3c4ff5d029a6f6338638",
+          "before_sha256": "7abf243baa0901c48ee23c0a09aee3e884878925de50797c3ead9b128ffeb5b2",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "9f8ff4155c60381dbf1b09e147f04ccb2dc8f70ffb135d22e3edbc89eacc8203",
+          "before_sha256": "da3898c948efe07636481f1909d549846634f2736e4dd4dee5a1bb585636f75f",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "8edb8abedb6cc18bc1e992da1ead64e2553b08a7ac4f17665f13537208e7699e",
+          "before_sha256": null,
+          "path": "tests/effect-height-reference.cpp"
+        },
+        {
+          "after_sha256": "967401af9c85d39bb4b304bad5c837b84436e6ffd5836f2bf0cd93be2d90a527",
+          "before_sha256": "a11ef5194dba5cd63259135883560fa3813609efa37959bd5d9ffb87b273f92f",
+          "path": "tests/effect-transition-test.cpp"
+        },
+        {
+          "after_sha256": "0f59356ec4e313ffca96d68ff630847f0de4461d365551477000a10779b145a4",
+          "before_sha256": "32e1dfa244783d60d0ba356bea1ec4152b8af491463e53bf5da78b21a21001f8",
+          "path": "tools/test-effect-transition.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "8a734d16b5bbf69e86efc288a43d4e306018e1216733558b583863726e6f34dc",
+          "before_sha256": null,
+          "id": "TL.effect-height-exits"
+        },
+        {
+          "after_sha256": "5b613bb3bed522cb4df564bd24cadc1994a3876e7a4ccd653745a38308e9a398",
+          "before_sha256": null,
+          "id": "TL.effect-height-policy"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:78ebb1ebd6c527c93f84adb38c2748d43d8aba122fa40b56e1e0e787443acd64",
+        "stale_evidence:0c6ee7539ca48b1cf0d997b82494fa106292b490e3cf30177cff690e86de97d9",
+        "stale_evidence:3ada796489d91c6abf04b7592197d759e86387be227e52bde1b7fa87e13a9d92",
+        "stale_evidence:6dca6997ce1cefb21cb74aabd5524dc453f7b44671040be94596caf83bacbadd",
+        "stale_evidence:8c1cf01e3d32994b5836bfe60196d597bb6ad867a0a9068429e18e8910875324",
+        "stale_evidence:bebacb371507269db52c29ff1318467302f2669de81348eef04032bdcfc57f6a",
+        "stale_evidence:c31241722424f5b7998816eff202453933784808909b231cd7d1e79545f10a1c",
+        "stale_evidence:e25d6bd2ebd71374ee2f5f5a620d55fc1d9a62abafaf8e026e9dd01ebf8a1963",
+        "stale_evidence:f798fb30164b1cc79f901a701a72bfadba676bd92931b4ffc321ef72adb5f81d"
+      ],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL11.height-original",
+          "TL11.height-native"
+        ],
+        "reason": "{'fixtures': 2048, 'calls': 2048, 'steps': 3447, 'transitions': 1911, 'cache_updates': 746, 'height_exits': 1536, 'lower_exits': 878, 'upper_exits': 658, 'cell_bytes': 53393920} height comparison: matching original32/native64/ASan-UBSan complete guarded record/cell/column/catalog buffers, first/later lower/upper and zero-count controls, huge signed Z/raw unwrapped XY and actual initial counters 0..32. Ordinary movement (3232 calls), blocked movement (2048 calls) and cleanup/unlink (6144 calls) rerun fresh. Strict normal/sanitized units and CMake/CTest validate last-valid publication, retained active linked state, no parameter-7 marker, first/later exits, refusal on resumption, existing lighting and atomic exceptions. Originals verify before/after. Shadow step counts use zero initial counter within per-call admission; compared batch uses actual authored counter. Native refusal/atomicity is policy without original malformed-input equivalence."
+      }
+    },
+    {
+      "id": "effect-height-history-limitations-90a35fd",
+      "reason": "Keep TL08/TL09/TL10 historical sources immutable when extending shared transition/runner/tests. Narrow the remaining gap using separate TL11 proof without promoting historical results.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "759d3d5ffe48cd6e97a79d3ebec8fb1a246b0f5fa278ffac85f0104bca1d43ed",
+          "before_sha256": "2e05971b49f7956cf7381da1bec3f50e25973d5ae88cd24bc579072a9085fb82",
+          "id": "TL.effect-blocked-destinations"
+        },
+        {
+          "after_sha256": "3b64de6be6447c5121a16e909c732d0483bdfeee12522a0c7121a87420acfdc9",
+          "before_sha256": "94ea3396f77fc14dee2b2e429ffbe3a1d943a6a308770c3326f95ed7f6ba30d6",
+          "id": "TL.effect-blocked-policy"
+        },
+        {
+          "after_sha256": "2aeaf9dfeef536605339a4fbc3e1780e611f25b9ef0a84ef5cc2998776ecb4df",
+          "before_sha256": "ae940f8788eea414c59ab9c4fd0c47fec94095cff383d72d49a2da6b3aa78d2a",
+          "id": "TL.effect-cell-cleanup"
+        },
+        {
+          "after_sha256": "5ce246132d083503b4880fd2e699d98ea9aae1b60ce431b6e0f75a03e9708cd8",
+          "before_sha256": "ce67b68a8c3f6c1ec1586f1985e8ee3e5fd3ef8c55f34b6efa863b4a1d11ac6c",
+          "id": "TL.effect-cell-transitions"
+        },
+        {
+          "after_sha256": "acacbc822d96b434a099c489e080dd4329a579b97d9e0a23ceb0981f77f6b15e",
+          "before_sha256": "b8f4c2f493dae2bec454d33c28596b9c8814368bee051468ac70f3cc67d141ea",
+          "id": "TL.effect-cleanup-policy"
+        },
+        {
+          "after_sha256": "1531a6d83c4a25032e875dcc96d94304662703f6364181941586169b010f137c",
+          "before_sha256": "ef4b7c00af7207dbe91f28bfabbcda5e11e9a6415e62885122d1bb84f378335f",
+          "id": "TL.effect-movement-recount"
+        },
+        {
+          "after_sha256": "aa05d6ab01f6b71875de947893ec804eea5ba78b40bac82f9c3ca29e630110c3",
+          "before_sha256": "6d21b6ed519c1ffc814038ca782dd40a7b7ec15d1c3c71ec05fc91403dd85871",
+          "id": "TL.effect-transition-policy"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Historical TL08/TL09/TL10 affected fingerprints remain stale and retained. Fresh expanded and ordinary/cleanup reruns are registered separately in TL11. Disabled membership, occupied collisions, special types/metadata, setup, column construction, caller removal/recycling and live scheduling remain outside current validation."
+      }
+    },
+    {
+      "id": "effect-height-summary-90a35fd",
+      "reason": "Refresh generated summary for the isolated reviewed register, retaining discovery gaps and historical staleness.",
+      "files": [
+        {
+          "after_sha256": "23db497617e6407205f1bf3935fe0be054b6eb9864a89c36c53670c839fd609f",
+          "before_sha256": "6cc96d95356f5bd1bdc416f047fc2d0c7f00069611830bb0836b73bd8e1031f4",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated metadata only; no implementation or status promotion."
+      }
     }
   ]
 }
