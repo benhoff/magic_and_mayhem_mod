@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "scope": "Synthetic native integration on isolated Xvfb/Mesa; no original artifacts, live game or hardware performance claim.",
+  "source_sha256": {
+    "renderer/blit.cpp": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+    "renderer/blit.hpp": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+    "renderer/commands.cpp": "d7e227390cb64c331261e516e6c931a8ce8ef9b0ae7dcf2dfbfc10a6eef158f1",
+    "renderer/commands.hpp": "82578e381739eaf16b05c965f0d119c9c49e7ba486ec1e16b4bef88c7f37b689",
+    "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+    "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+    "renderer/CMakeLists.txt": "3f161bdb652f8d7c99edfcab8376cfeadec84f74adfa3daaa3bfdb3613b92acd",
+    "apps/qt-shell/gl_viewport.cpp": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+    "apps/qt-shell/gl_viewport.hpp": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+    "apps/qt-shell/main.cpp": "5e2bf7765c3b5592acbdfff2091aaa39dde7b0f5adcf80b2ceaf9e4c16518ad9",
+    "apps/qt-shell/CMakeLists.txt": "a3c5de0ce53e62571358edcde13b2d1258a67df6462ab62f13c6750162e7a36b",
+    "tests/gpu-presentation-test.cpp": "1984e740f6900d9e3a3fefa42fb57d7c85fb813299867c894a3babf8f6f1fa1a",
+    "tools/test-gpu-presentation.py": "af85e8b9ee3362e6556957010af363691fcd29afd560054a00cc52e1423a334c"
+  },
+  "run_directory": "working/tests/gpu-presentation/run-md9_orqb",
+  "runs": [
+    {
+      "name": "frames-1",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/qt-shell/gpu-presentation-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "0425200ef34a02e581f19b76a24170e1a48a7c6c7e347f5c60d614419ab292dd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "frames-1.5",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/qt-shell/gpu-presentation-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "0425200ef34a02e581f19b76a24170e1a48a7c6c7e347f5c60d614419ab292dd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "sanitized-frames-1",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/qt-shell-gpu-sanitized/gpu-presentation-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "0425200ef34a02e581f19b76a24170e1a48a7c6c7e347f5c60d614419ab292dd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "sanitized-frames-1.5",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/qt-shell-gpu-sanitized/gpu-presentation-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "0425200ef34a02e581f19b76a24170e1a48a7c6c7e347f5c60d614419ab292dd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "shell-replay",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/qt-shell/mnm-qt-shell",
+        "--commands",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/gpu-presentation/run-md9_orqb/commands.bin",
+        "--smoke-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8ea5f1051a3acce4c905111734a4fa04c033db9fec7034ad4904fb328a1bf81c"
+    },
+    {
+      "name": "shell-gap-refusal",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/qt-shell/mnm-qt-shell",
+        "--commands",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/gpu-presentation/run-md9_orqb/gap.bin",
+        "--smoke-test"
+      ],
+      "returncode": 8,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b5aaaf74e93c576ccd0582c9abf7cb7cd658e1963d0139dcf1af485cb454ad92"
+    }
+  ],
+  "sanitized_artifact_sha256": "7a85f50b849031a343d0a2b956096e5d8efe845ac1930eb9a5f9deb24691b345",
+  "success": true,
+  "frames": [
+    {
+      "success": true,
+      "full_frame_comparisons": 104,
+      "command_presentations": 2,
+      "gpu_presentations": 99,
+      "rgba_readbacks": 0,
+      "gpu_viewport_uploads": 0,
+      "unshared_context_refused": true,
+      "owner_release_survived": true,
+      "driver": "llvmpipe (LLVM 22.1.8, 256 bits)"
+    },
+    {
+      "success": true,
+      "full_frame_comparisons": 104,
+      "command_presentations": 2,
+      "gpu_presentations": 99,
+      "rgba_readbacks": 0,
+      "gpu_viewport_uploads": 0,
+      "unshared_context_refused": true,
+      "owner_release_survived": true,
+      "driver": "llvmpipe (LLVM 22.1.8, 256 bits)"
+    },
+    {
+      "success": true,
+      "full_frame_comparisons": 104,
+      "command_presentations": 2,
+      "gpu_presentations": 99,
+      "rgba_readbacks": 0,
+      "gpu_viewport_uploads": 0,
+      "unshared_context_refused": true,
+      "owner_release_survived": true,
+      "driver": "llvmpipe (LLVM 22.1.8, 256 bits)"
+    },
+    {
+      "success": true,
+      "full_frame_comparisons": 104,
+      "command_presentations": 2,
+      "gpu_presentations": 99,
+      "rgba_readbacks": 0,
+      "gpu_viewport_uploads": 0,
+      "unshared_context_refused": true,
+      "owner_release_survived": true,
+      "driver": "llvmpipe (LLVM 22.1.8, 256 bits)"
+    }
+  ],
+  "native_integration": {
+    "all_match": true,
+    "full_frame_comparisons": 416,
+    "normal_and_hidpi": true,
+    "presentation_readbacks": 0,
+    "gpu_viewport_uploads": 0,
+    "source_and_renderer_release": true,
+    "unshared_context_refused": true,
+    "shell_command_replay": true,
+    "gap_refused": true
+  },
+  "artifacts": {
+    "gpu-presentation-test": "2b654210b544a28128cb65993d713922db4f74336fd902842e400cb2a9a10b8f",
+    "mnm-qt-shell": "62100e7b5c3ba15cfa64692c3b20c7407f8d2697958052ec88d0fcc62ea606e9"
+  }
+}

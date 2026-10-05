@@ -1,0 +1,509 @@
+{
+  "schema": 1,
+  "range": "d9e1fa7..e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+  "scope": "Extension of the exact parent/commit receipt review after two concurrent commits landed. Committed accounting only; no past gate pass or new execution evidence asserted.",
+  "files": [
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "apps/world-sandbox/frozen_navigation.cpp",
+      "before_sha256": "abbe9255e5b658981540828f909e94b0f58d8f758385cc629c35a2b700f37898",
+      "after_sha256": "a0f843077db161aca4b8e7b07e7187a93a1cc21744e16324271939f2933b26a9",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "MV.request",
+        "MV.search",
+        "MV.legality",
+        "MV.planar-setup",
+        "MV.fine-motion",
+        "MV.route-consumption",
+        "MV.ani-forward",
+        "MV.event-0",
+        "MV.event-2",
+        "MV.vertical-setup",
+        "NP.checkpoints",
+        "MV.ordinary-terrain-height",
+        "WORLD.sandbox",
+        "NP.map-navigation",
+        "NP.stationary-occupancy"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "apps/world-sandbox/frozen_navigation.hpp",
+      "before_sha256": "0b49b9e848631dc2b4306c3148441a81d174e5d9423360504f35d88005d12b74",
+      "after_sha256": "02e88b5aae824a4ea0d9b6edc1ad9a47da791934c73a2a16ef26829a2cb464dd",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "MV.request",
+        "MV.search",
+        "MV.legality",
+        "MV.planar-setup",
+        "MV.fine-motion",
+        "MV.route-consumption",
+        "MV.ani-forward",
+        "MV.event-0",
+        "MV.event-2",
+        "MV.vertical-setup",
+        "NP.checkpoints",
+        "MV.ordinary-terrain-height",
+        "WORLD.sandbox",
+        "NP.map-navigation",
+        "NP.stationary-occupancy"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "apps/world-sandbox/main.cpp",
+      "before_sha256": "9b76475c41198423c51278b1ad0db141f6d9cb31ddf8b56d54652322f086121f",
+      "after_sha256": "1cbf7cbf14b2a2b9dfe3166fdb390466820e59f9acdf1c7e861037d262f381c1",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "WORLD.sandbox",
+        "NP.stationary-occupancy"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "game/CMakeLists.txt",
+      "before_sha256": "ae21391c5b3ec1698aad82adce4a36cfb97b218a5af12de7c92569e40f3e4535",
+      "after_sha256": "8364e2f0ac1a13abce82906609757d8f124969ffed812bea16b9f100a8448b65",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "game/README.md",
+      "before_sha256": "6740490c424df99abe561d4dd092c62c2d7b766273bc76fceac00b8b9fc47110",
+      "after_sha256": "f609a641a34c3cf37944a7f43d19152c497df7a2ad64815ae946ebac2f77cc9b",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "NP.move-orders",
+        "NP.checkpoints",
+        "WORLD.owned"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "game/simulation/movement.cpp",
+      "before_sha256": "7d40bf5b9e7faea8749c6a9cf2de0eab33cd33e2a63407aa26c5b16461f45eed",
+      "after_sha256": "c88bf769710493fbf5d25d451e61f7a3a777b2d781f74d475b42005216802f8f",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "NP.move-orders",
+        "NP.checkpoints",
+        "NP.stationary-occupancy"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "game/simulation/movement.hpp",
+      "before_sha256": "2ab15ce19404e6ae58df206a1ff6085e6384e5c5ca771db54d07537e9f53ceb5",
+      "after_sha256": "8f55899d5404586dc7d065133e151aa2af7dd6e5d3a46108b7e8116cf1bab7fc",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "NP.move-orders",
+        "NP.checkpoints",
+        "NP.stationary-occupancy"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "game/simulation/occupancy.cpp",
+      "before_sha256": null,
+      "after_sha256": "8b6a33e6a60e0d80e54d94cd206b59c36ce1d107c1def639a184ff381807e82f",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "NP.stationary-occupancy"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "game/simulation/occupancy.hpp",
+      "before_sha256": null,
+      "after_sha256": "4b94b25903e85b0955fb1522019ba48ba0768a4335a226ddc437b8996518b42c",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "NP.stationary-occupancy"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "e2ace766fa0687cc096333d41566fcdbdfab8ff3194ba62e86913ab5f75cd4f2",
+      "after_sha256": "d967e62659cdc2bc90cbccedfb60adce7181280da552fd76c74af7ccb8b1de93",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "b993316dea68ee53eddfc65e7aa3587d517af92aee35bbd561acb9561df458f8",
+      "after_sha256": "4ff3fa79e5e5aace96c475fcbbd1929cb40d9ea3a8ade69fda3ceebacc35acad",
+      "exact_receipts": [],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "a0965a86a158806ab5bd19b2a9f053e82534b3fc2bdea495d44a5ac88227e4b7",
+      "after_sha256": "69adb3258a65fca84edefbe299d881a61201b111e4ebbd92c11c75162d2feee4",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "research/runtime/coverage/source-index-stationary-native-commit.json",
+      "before_sha256": null,
+      "after_sha256": "7571b1c4556434d66cf1d7a4464c373dc3575e23c9bf68173d09b12ed51157f6",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "c685332f7919e5361b8ed6ab73b718752a87e980e0d985dacf3e829e093dc0ee",
+      "after_sha256": "68d59ca99473939dd77d47d680b8c8e0e6e8e5a1fe6949e9ce38efeadb1a65bc",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "research/runtime/native-stationary-occupancy-native-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "1f4e847200597e9eed160855f56fcb10d52675931ff07073aa8906f97360093f",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "research/runtime/native-stationary-occupancy-native.json",
+      "before_sha256": null,
+      "after_sha256": "4a7ba79feddd6d9543b0c67ce33caaaf39c163541f2ba5e448834e5cad2a8c4a",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "research/runtime/native-stationary-occupancy.md",
+      "before_sha256": "339e606b7e60393c653dc2ce24c89b110b248f1d0980e0216a203dd46928227f",
+      "after_sha256": "14ce6408c3409f08e087de60e8a99758c6638ce7b80570e3ee3f5c074083da45",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "MV.dynamic-occupancy",
+        "PF.cell",
+        "PF.occupancy",
+        "NP.stationary-occupancy"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "tests/README.md",
+      "before_sha256": "21dad0951e7a981a25a9dcdb9c873259cbbb9683bdaeca214690d721dfcebc6e",
+      "after_sha256": "e39d544aa43a27d79049b99b52bd55dd89d8e0a2f34a078b027847b55588a143",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "TOOL.coverage-gate"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "tests/native-occupancy-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "a2b7c89036e76a3f107f1f037a01b534ebaba08fbfaa4782ccf79c064ecaf052",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "NP.stationary-occupancy"
+      ]
+    },
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "path": "tests/test-native-occupancy.py",
+      "before_sha256": null,
+      "after_sha256": "a5e69a5bf91d8a6c59884fc0972196cb70bd5349b72b7ab54bc45e5d5a6055ad",
+      "exact_receipts": [
+        "NS10.stationary-native-exact-staged"
+      ],
+      "current_behavior_links": [
+        "NP.stationary-occupancy"
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "reconstruction/rendering/effect-transition/CMakeLists.txt",
+      "before_sha256": "a51779dc93e047ecd4e2ac7ac0464c2539ca4d7cfe4ab97afedf7e809d50047e",
+      "after_sha256": "3de908cc5496ce83d539a6ff0795a2d7d469d2a47f7986a9bd4a112c21f58e06",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "reconstruction/rendering/effect_cleanup.cpp",
+      "before_sha256": null,
+      "after_sha256": "c49f86fb1635b5013e02eafbb0bd9ee1bd441d2441b6f7fffbf53537728329b3",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "reconstruction/rendering/effect_cleanup.hpp",
+      "before_sha256": null,
+      "after_sha256": "a09d0ee210e839a3e2b986b781ea21e21327be6079788d5267683c557008c25a",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "reconstruction/rendering/effect_transition.cpp",
+      "before_sha256": "371f2b9be01dc8377e51683431a1ac5494df67ffa8ce79238308e4fc0f6400ea",
+      "after_sha256": "a4c14f19c0205b30c7e41bbc90ef60a1da2f423293649e2942075fcb93ea30db",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "reconstruction/rendering/effect_transition.hpp",
+      "before_sha256": "fb76fa22117311628a2410af1493cc2bb3205ad580e10ae02cfd552e6fbbc6fe",
+      "after_sha256": "d83311ace9e291830d8854fec4443d17776ccf1cc5790f3299312111dce16c55",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d967e62659cdc2bc90cbccedfb60adce7181280da552fd76c74af7ccb8b1de93",
+      "after_sha256": "80d633ba10a173945afa64a47ee142c4508573136d0bac9cf018c42758e95cfb",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "4ff3fa79e5e5aace96c475fcbbd1929cb40d9ea3a8ade69fda3ceebacc35acad",
+      "after_sha256": "48873a7aee1fbd6ecf44cf547e0574b604dbf56bac387a7c20c651b82a6a206e",
+      "exact_receipts": [],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "69adb3258a65fca84edefbe299d881a61201b111e4ebbd92c11c75162d2feee4",
+      "after_sha256": "1513c39ce346e6893aff7d8bf1719ca807fcca1b945e7d5ed86504d0d0f5c36c",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "68d59ca99473939dd77d47d680b8c8e0e6e8e5a1fe6949e9ce38efeadb1a65bc",
+      "after_sha256": "f74ff693de0fc56bee3c64b9abbeb550eabe66948fb20921efeb57c6e8df9576",
+      "exact_receipts": [
+        "effect-cleanup-summary-82fa8b4"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "779e4c7fb3c1d5e484ed7eff54e91beae49b21c15a259e9431b2eeb503156e4f",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/effect-cell-cleanup-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "83ae6c361ff22385bf0f6f1892be123daf197f04fc62a0931945d406b5a72c91",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/effect-cell-cleanup.json",
+      "before_sha256": null,
+      "after_sha256": "94bb3cd7d7d26cd92c056415b6f720ff682c88ecf48f0ef4dffa6c9ad6d15733",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/effect-cell-cleanup.md",
+      "before_sha256": null,
+      "after_sha256": "a9d291b4dfd65fba8c33c779b9b16c33ccf00771f6c55701b38bdd1915e8c407",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": [
+        "TL.effect-movement-recount",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "a23b1e62b54ade406087dec7ab557a8eef27bbb24c3e215814417d537b82c6f8",
+      "after_sha256": "4be3f118912f6cf3380da76b694e5ce594e0cdd399f83b5724e8c15111074ff9",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "97c464891b54f4511626326521766e8764e7e7d721687a42dd44dba6c21bddc6",
+      "after_sha256": "ed2a2171edb28bacc495bb7be969fd2a9c8a49db08819706489f3782a106e3ff",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "5a88dd909cf561f960c322ae80a38a7d700a3034ad51e861fab3d8fa600e7fcd",
+      "after_sha256": "02f9a4bdc47d849ebb0bee83e530430083d8776efb1ea191274ccf5408c10c65",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "tests/effect-cleanup-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "1a592e43af9ade0e71f98383cd274f38cc9ada49ade1c13ed65c19b532313825",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "tests/effect-transition-reference.cpp",
+      "before_sha256": "6e63316fbe6d7758ff355f8ca052054e07d0cdc05f842f0d806fa73a64fc81cd",
+      "after_sha256": "ad9fb9c5c2075b8ea0c88e43a37c5c7131d5485c01c6d7d935a9092ce12c7213",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "tests/effect-transition-test.cpp",
+      "before_sha256": "3aceeca4061c79b63b02fc1c925046f3c120451adff1d91fe972179f99ba4998",
+      "after_sha256": "9ad99a7ac6974f1cf9f6e7fcab3a8ee2427ff91bdc5db623c1b14e91c9ba3846",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "path": "tools/test-effect-transition.py",
+      "before_sha256": "0939e47cb57eef61ea25c73b6235cf1d3e4e823e817fa0f82975fc6945f24a1d",
+      "after_sha256": "4a03f2b9dc8daf266eb12a1cccb21145cc350acb4d67f938b83f4feb09fdda99",
+      "exact_receipts": [
+        "effect-cleanup-recorded-82fa8b4"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy"
+      ]
+    }
+  ],
+  "unresolved": []
+}

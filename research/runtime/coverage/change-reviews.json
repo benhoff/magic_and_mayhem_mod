@@ -3092,6 +3092,341 @@
         "evidence": [],
         "reason": "Generated audit metadata; no engine implementation or status promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1b14b64d6b52ae6f3fde33a6a944de1f209449aac886741b5137b208462bd86b",
+          "before_sha256": "ba749765cbe6364d4183068a0b20185c88e1a80f73a452863392d66f9b73b552",
+          "id": "HOST.session"
+        },
+        {
+          "after_sha256": "fc045112e11ccde3d621f7bee5c626266b8652db0574fc10723a921667cb875d",
+          "before_sha256": "b59d5582cc3223545e0f6325b9ea84b5682c845f23759c678bd519d2ce7a9918",
+          "id": "NR.surfaces"
+        },
+        {
+          "after_sha256": "61fb83bc4c655bb23b30634d199a8848e213493d88923b7914f0c365e39b8bc4",
+          "before_sha256": "9d8fb90f25f517386cd5bd4052e02ec3001ff1cc004bc9b6f76c270db6b50f5e",
+          "id": "UI.preview"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "a3c5de0ce53e62571358edcde13b2d1258a67df6462ab62f13c6750162e7a36b",
+          "before_sha256": "661e6b6a58ae75ef229f53a4f2511ba8c980eb2fd8c32ff125e5e7e851897ddf",
+          "path": "apps/qt-shell/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "34ecc0d04c384abebd0fca70809f25ea62ec34648a65aecbd0015cbb9c96c540",
+          "before_sha256": "f842deb02a32a7e68b62ead9487f53c9bd5d3815966aa10bd45577d9dbae4353",
+          "path": "apps/qt-shell/README.md"
+        },
+        {
+          "after_sha256": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+          "before_sha256": "2342536dc514f2247bc94f9c088365f2c9bc244777695e3342b7187f252acc59",
+          "path": "apps/qt-shell/gl_viewport.cpp"
+        },
+        {
+          "after_sha256": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+          "before_sha256": "bb27b4bd5153248f33c9514601e024010c6addaf2d218355355999e3bd467824",
+          "path": "apps/qt-shell/gl_viewport.hpp"
+        },
+        {
+          "after_sha256": "5e2bf7765c3b5592acbdfff2091aaa39dde7b0f5adcf80b2ceaf9e4c16518ad9",
+          "before_sha256": "6bcc58837c1a12406696767a15958fc4d99cfbd6e27440fe5cdd252734c440c3",
+          "path": "apps/qt-shell/main.cpp"
+        },
+        {
+          "after_sha256": "fa266cf8b6e0db8eeb67a8ce980ba1648001513733607a4d24ff3630eedf152c",
+          "before_sha256": "972db89b80036d943ab1c806fb096ebbf4f470f7cbedf3b18ed9d0a54b895ce6",
+          "path": "renderer/README.md"
+        },
+        {
+          "after_sha256": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+          "before_sha256": "4c89caa93a5298fcb4417e5bfb3e116176f1969783f2be6191ddad63eb9d0cac",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+          "before_sha256": "2ad6881a73fb236530a0a0fc3fe318442b7eee26403842a34ef93dc269c9dd06",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "d7e227390cb64c331261e516e6c931a8ce8ef9b0ae7dcf2dfbfc10a6eef158f1",
+          "before_sha256": "c726c463ac0558ad6784171ee2752aa931b10ffa24ce77b55847c9807947bbb1",
+          "path": "renderer/commands.cpp"
+        },
+        {
+          "after_sha256": "82578e381739eaf16b05c965f0d119c9c49e7ba486ec1e16b4bef88c7f37b689",
+          "before_sha256": "624f5d1c82c8d6d5fdf567591f72a1bc748b7d60efe50948222ba3ec4240e2ad",
+          "path": "renderer/commands.hpp"
+        },
+        {
+          "after_sha256": "016a756b14e5fa54f12cce25f661696dc04f34449319c031839a07c848555212",
+          "before_sha256": "80d633ba10a173945afa64a47ee142c4508573136d0bac9cf018c42758e95cfb",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9c7647bff0adaffe95826271db96401bf5a2d2e01ff8b9799882c36ce7ea3846",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/direct-gpu-history-extension-20261005.json"
+        },
+        {
+          "after_sha256": "f2fae24744e773ef163fece1ed278a9fa1600cae4c63957dcfedfa04ef06a69f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/direct-gpu-history-review-20261005.json"
+        },
+        {
+          "after_sha256": "4474e24f306d270a13a2350b7d4ba1b474ab81a87340e99820c0aeb6b5aa0755",
+          "before_sha256": "1513c39ce346e6893aff7d8bf1719ca807fcca1b945e7d5ed86504d0d0f5c36c",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "8c5c06eaf379f32134e3fb3151178770091d7bd800b846a76f33e0673176fb06",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-direct-gpu-20261005.json"
+        },
+        {
+          "after_sha256": "8c13eafd759e200f70923fc8deb02fa59c2865267717b63fd5ac20c09532a744",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-direct-gpu-final-20261005.json"
+        },
+        {
+          "after_sha256": "65c169f724c06cdedc89ea87acfb093ef921a43e2e15c2610dcf35e82a54d0b0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-direct-gpu-20261005.md"
+        },
+        {
+          "after_sha256": "bf62533faa29103e0eb63102a4347e3b756a22ba831502eba8d63f1b8212e53f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-direct-gpu-final-20261005.md"
+        },
+        {
+          "after_sha256": "c1c63cb0478d336971a7b78de30404b0f5681f773655d1283bcf6625482e3f2f",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-direct-presentation-v2.json"
+        },
+        {
+          "after_sha256": "b7169681d961872b89bc0436824fa2ff8ec63a669e6553f5a5f852e88c2afe43",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-direct-presentation.json"
+        },
+        {
+          "after_sha256": "f5816ad9d7c1034beebbc4a4fbc20077897408a004753e5bf2f2fb6aa1f917fa",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-direct-presentation.md"
+        },
+        {
+          "after_sha256": "1984e740f6900d9e3a3fefa42fb57d7c85fb813299867c894a3babf8f6f1fa1a",
+          "before_sha256": null,
+          "path": "tests/gpu-presentation-test.cpp"
+        },
+        {
+          "after_sha256": "af85e8b9ee3362e6556957010af363691fcd29afd560054a00cc52e1423a334c",
+          "before_sha256": null,
+          "path": "tools/test-gpu-presentation.py"
+        }
+      ],
+      "id": "NR.gpu-presentation-source-accounting-20261005",
+      "pending_gaps": [
+        "behaviors_without_comparison:7b3a800d5ac1768f0be2644d5f99c7c5e7356d59fd4e388d81667b813fe59fc1",
+        "stale_evidence:00c8b37b4104cd21e6f8c147bb54abf8c9d798f0fbe36dc410f763da75fe663a",
+        "stale_evidence:0223f33b67c5ac51ea645bdd3cfcc0c34368abc833c48cca64f4d9479aba85af",
+        "stale_evidence:037da1290aee9e6e4015fe2c4463a051539e1bf2363c09683e33489b23a7f179",
+        "stale_evidence:061ff086dd8e5da9d07565b267535bcd93cb88edd5eef070536b65fb5deda58b",
+        "stale_evidence:0f6bf182d96aef625b1f4691a447403b369509768f4bc00147935350eb3a34ed",
+        "stale_evidence:1d93f3d3dc735d32fb156e31c951b9588e7fb0a4630e168b7f1fa4e8970626c1",
+        "stale_evidence:1e05226e19f3f4f73077b848381c118130c388da005428f47d86f359586b90a4",
+        "stale_evidence:21b5d55e1b5937ca3b840251b4cf0dc8481ef9992c3f1647addf7cb037d7cd36",
+        "stale_evidence:234f57721d182af87fd289c51bd491c76fa33eba052ba4e46400e76de174f6c6",
+        "stale_evidence:2999857b80e3f9db321a98a1f9bf249cf7d73c93c6a8112a349454fae478f8f5",
+        "stale_evidence:372cab0187d88a42fe113e70457b35eea2fff5bca95c84606bf2b5cbd0dafa1a",
+        "stale_evidence:37bc6ba804a24474cd20cc2819c9850142217245e45ffc0f806e68cf6dc7ed9a",
+        "stale_evidence:3b4b16681c9d31fd66c11bc33eb610cd0aee74a33a7fd6f8016e90aa392502b1",
+        "stale_evidence:44664c43b3fdba604f22e6eea808bd5b9e0a72f8b10d138638ef8f0408a321f8",
+        "stale_evidence:448d5b3422f26610071e0a083c48862d56100299df7b3a0583ac7af0603146c2",
+        "stale_evidence:487828f7258a61a5564fa1ce14e02ce7614630edb23add26c2747c1cfd3b535f",
+        "stale_evidence:497bb491816d5aaa13786d7f3b8055e217fa1564f2f84e73c9aec5c1fabd883b",
+        "stale_evidence:4b9e0e3b1e630a051834aff5e39bb8a7c0d5c8cbb151b83787fac85e4a70f2a1",
+        "stale_evidence:4cc10ccff6ccdf988038364839392105ac905e9cc120b7997b2f47f6d5aafe74",
+        "stale_evidence:4cfea8fc1bb0a302b67528d242bf462accab210fa7a3bf96a5b7b1f0fe9a68db",
+        "stale_evidence:4f3f535dba05117f6ff632b4c0fb51fdb33e93ad64308d167fe93edf5db89284",
+        "stale_evidence:55e9192d237337ac3a5e5d151cc2488e80b16c1931db355b6b9c20b21793f02a",
+        "stale_evidence:632be4c9836dbb10eddf3db241b0ff5fe9716325ce5b95f24be6e8284d5de7c7",
+        "stale_evidence:676991034fb98948aeb69ccad1e3a8f88a2675df39ea8ecdcd18c4015c73b621",
+        "stale_evidence:689c21c48b1f4a59f5018da7bfc9b983535a73c56f26c70ded3ea0715d36bc89",
+        "stale_evidence:76acc8b09d687409e79f1800ad21902eb53ca5a9174340cb07f9bb56a5405578",
+        "stale_evidence:84848a1ba327b7c78731c5d6cb95c288ec9fc8d205c6deff58b65369d3778931",
+        "stale_evidence:8975363cbda92144f605131055fc6ea74b350ec6b52d6d213a2586046ec8ebe9",
+        "stale_evidence:8c41a9da1754f110528f78d1127386df20cc8160dd14654596237ac47ed77c2e",
+        "stale_evidence:8daab2b2390b9bc203346c7967f1dd09141618466abd792a2ac3d6553a04f340",
+        "stale_evidence:9492931374c47db7a406f90cd72a0a3b61acbd0633341ee4de891d000f84cf2e",
+        "stale_evidence:9ab75a2a58e18a062c318f5b2ebe44ce8e279cd91522d80caf4119137913e0c0",
+        "stale_evidence:9e3e1f29e80219dfeaffc53fe043de5f56b4a7b0bb1874bfc86db803923923da",
+        "stale_evidence:ac85c2df3bb53e03b7cbc4a9e4d7649ae70cdce4502265966e600437b37ee86a",
+        "stale_evidence:acca4682ffcbd57d772821f22250b68e680ceeb7563ea06cc7152c5ede68691e",
+        "stale_evidence:b4b2368f3c88177309de986ab13207cf18acdd2abcae9724e4c5d663a34b83c7",
+        "stale_evidence:bde08bf45119bb395a9d3c7941dc5a45ce6da6788c563de1de023a7057a8dcb9",
+        "stale_evidence:c71ef40ba841ca0dbcadd2ec5203492a8e3ed75898f0ef23781ccb5ca3fcdb91",
+        "stale_evidence:e17c9934f89d1ad1f150f3ba88e06d7bb390ae96c9e659d17dc5b222e3bef18c",
+        "stale_evidence:e1ed3ca035d2a45abc4463fe06a327b740584ae7a0fcf4679fc6587f98b51288",
+        "stale_evidence:eb1b109c355560f8fc6cf9e3ef27287e22d02fc5106f6a3b4c86803279fbe07b",
+        "stale_evidence:edb98eff4b63afb96dcaf40b345a4ca4cdb857fa510dd235961ca15862fe9dde",
+        "stale_evidence:ee611b3d3b6818d82e7ede36b9c09b9ba61830a4e553525d0e74aef8a6d4ca5d",
+        "stale_evidence:f572219badf2cc09a72e1892bb4a4bf36a8965cc77d7f9a429fa5230d2e9fecc",
+        "stale_evidence:f739d08b022f23032499aa79e2e84103c234f81ca17df0b272cbc4de2c732a47",
+        "stale_evidence:ffe86b68f825ecb987917d2dd2b0bd6181f6cad66dac3b76d256b844106237d4"
+      ],
+      "reason": "Review explicit context sharing, latest-frame texture leases with weak surface ownership, two-way fences, retained-frame teardown and single-consumer refusal; viewport integer sampling preserves aspect/orientation/input mapping; decoded bounded replay sends each PRESENT directly and retains explicit CHECK/export readbacks. Review source census additions/links and history receipts. UI.preview changes only because its shared CMake file gains renderer test/link dependencies; no new menu behavior is asserted. Shared register/census edits preserve other contributors and all original evidence.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "416 fresh GPU integration framebuffer checks and 10 existing renderer/input regressions cover this chunk, but do not refresh historical original terrain, animation or live menu/capture equivalence. Every listed stale evidence/source pair remains an explicit limitation. HOST.session, NR.surfaces and UI.preview retain their previous broader status. Physical-GPU performance, live transport/replacement and context-loss recovery remain pending."
+      },
+      "affected_historical_evidence": [
+        "NATIVE.native-animation-scene",
+        "NR.gpu-presentation.native",
+        "NS08.installed-ani",
+        "NS08.native",
+        "NS08.original",
+        "ORIGINAL.terrain-light-fields",
+        "ORIGINAL.terrain-palette-preferences",
+        "ORIGINAL.terrain-palette-shading",
+        "REVIEW.HOST.session",
+        "REVIEW.NR.surfaces",
+        "TL03.object-scenes-native",
+        "TL03.object-scenes-original",
+        "UI23.live",
+        "UI23.original",
+        "UI23.qt",
+        "UI24.live",
+        "UI24.native",
+        "UI25.live",
+        "UI25.original",
+        "UI25.qt"
+      ],
+      "historical_behavior_limitations": [
+        "HOST.session",
+        "NP.map-navigation",
+        "NP.preferences-draft",
+        "NP.preferences-persistence",
+        "NP.presentation",
+        "NR.gpu-presentation",
+        "NR.sprite_scene",
+        "NR.surfaces",
+        "PF.cell_support",
+        "PF.cell_validity",
+        "PF.movement",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.display-rebuild",
+        "PR.main-entry",
+        "RE.palette_preferences",
+        "RE.palette_shading",
+        "RE.terrain_lighting",
+        "TL.combined-refresh",
+        "TL.object-fixture-policy",
+        "TL.owned-composition",
+        "TL.static-addition",
+        "TL.static-admission",
+        "TL.static-refresh"
+      ]
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "7b222d7a22683ceefe85a17b3faff7ce621640fe559380b7cae3805b93ac4c31",
+          "before_sha256": null,
+          "id": "NR.gpu-presentation"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "a3c5de0ce53e62571358edcde13b2d1258a67df6462ab62f13c6750162e7a36b",
+          "before_sha256": "661e6b6a58ae75ef229f53a4f2511ba8c980eb2fd8c32ff125e5e7e851897ddf",
+          "path": "apps/qt-shell/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+          "before_sha256": "2342536dc514f2247bc94f9c088365f2c9bc244777695e3342b7187f252acc59",
+          "path": "apps/qt-shell/gl_viewport.cpp"
+        },
+        {
+          "after_sha256": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+          "before_sha256": "bb27b4bd5153248f33c9514601e024010c6addaf2d218355355999e3bd467824",
+          "path": "apps/qt-shell/gl_viewport.hpp"
+        },
+        {
+          "after_sha256": "5e2bf7765c3b5592acbdfff2091aaa39dde7b0f5adcf80b2ceaf9e4c16518ad9",
+          "before_sha256": "6bcc58837c1a12406696767a15958fc4d99cfbd6e27440fe5cdd252734c440c3",
+          "path": "apps/qt-shell/main.cpp"
+        },
+        {
+          "after_sha256": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+          "before_sha256": "4c89caa93a5298fcb4417e5bfb3e116176f1969783f2be6191ddad63eb9d0cac",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+          "before_sha256": "2ad6881a73fb236530a0a0fc3fe318442b7eee26403842a34ef93dc269c9dd06",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "d7e227390cb64c331261e516e6c931a8ce8ef9b0ae7dcf2dfbfc10a6eef158f1",
+          "before_sha256": "c726c463ac0558ad6784171ee2752aa931b10ffa24ce77b55847c9807947bbb1",
+          "path": "renderer/commands.cpp"
+        },
+        {
+          "after_sha256": "82578e381739eaf16b05c965f0d119c9c49e7ba486ec1e16b4bef88c7f37b689",
+          "before_sha256": "624f5d1c82c8d6d5fdf567591f72a1bc748b7d60efe50948222ba3ec4240e2ad",
+          "path": "renderer/commands.hpp"
+        },
+        {
+          "after_sha256": "1984e740f6900d9e3a3fefa42fb57d7c85fb813299867c894a3babf8f6f1fa1a",
+          "before_sha256": null,
+          "path": "tests/gpu-presentation-test.cpp"
+        },
+        {
+          "after_sha256": "af85e8b9ee3362e6556957010af363691fcd29afd560054a00cc52e1423a334c",
+          "before_sha256": null,
+          "path": "tools/test-gpu-presentation.py"
+        }
+      ],
+      "id": "NR.gpu-presentation-recorded-v2-20261005",
+      "pending_gaps": [],
+      "reason": "Promote only the scoped native shared-texture presentation behavior after independent full-frame, command-entry, lifetime/refusal and ASan/UBSan execution. No original engine behavior or live replacement promotion.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.gpu-presentation.native-v2"
+        ],
+        "reason": "Fresh final run-md9_orqb: 416 independent complete framebuffer comparisons across indexed8/masked16/24/32, palettes, keyed/opaque copies, swaps and resize; normal/high-DPI ordinary and ASan/UBSan runs. PRESENT readbacks and viewport uploads remain zero. Renderer/source/final-lease teardown, single-consumer/unshared/no-current refusal, replay callback failure, shell replay and GAP rejection pass. Historical first report remains unchanged."
+      }
+    },
+    {
+      "behaviors": [],
+      "files": [
+        {
+          "after_sha256": "c18a036bd36c4da750ce2e992fadc12bdfe6bf6f614d13ec2095a22892f17681",
+          "before_sha256": "1513c39ce346e6893aff7d8bf1719ca807fcca1b945e7d5ed86504d0d0f5c36c",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "444a372b5b849cd46c4112af25490b589cdec35a0fd53892d13e5953df42537c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-direct-gpu-commit-20261005.json"
+        }
+      ],
+      "id": "NR.gpu-presentation-staged-census-20261005",
+      "pending_gaps": [],
+      "reason": "Bind code_index to a census generated from the exact staged tree. The selected commit excludes unrelated pre-existing .githooks/pre-commit and tests/test-coverage-gate.py edits; their unstaged hashes must not be required by this commit. Explicit GPU implementation/test links are unchanged, other committed links remain intact, and prior census snapshots/evidence/receipts are preserved.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Index-only reconciliation for the selected staged tree; no new engine validation, evidence refresh or status promotion. Recorded final GPU execution remains NR.gpu-presentation.native-v2 and historical evidence staleness remains explicit."
+      }
     }
   ]
 }

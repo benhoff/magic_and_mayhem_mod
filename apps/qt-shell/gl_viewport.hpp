@@ -1,5 +1,6 @@
 #pragma once
 #include <QImage>
+#include "blit.hpp"
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLWidget>
@@ -10,7 +11,9 @@ public:
     explicit GlViewport(QWidget* parent=nullptr);
     ~GlViewport() override;
     void setFrame(QImage image);
-    QSize frameSize() const{return frame_.size();}
+    void setGpuFrame(mnm::render::GpuFrame frame);
+    std::uint64_t imageUploads() const{return imageUploads_;}
+    QSize frameSize() const{return gpuFrame_.valid()?gpuFrame_.size():frame_.size();}
     QRectF imageRect() const;
     bool imagePoint(QPointF position,QPoint& point,bool clamp=false) const;
     bool ready() const{return ready_;}
@@ -20,7 +23,8 @@ protected:
     void paintGL() override;
 private:
     void release();
+    mnm::render::GpuFrame gpuFrame_;std::uint64_t imageUploads_=0;
     QImage frame_;QSize textureSize_;bool dirty_=false,ready_=false;QString error_;
-    QOpenGLShaderProgram shader_;QOpenGLBuffer vertices_{QOpenGLBuffer::VertexBuffer};
+    QOpenGLShaderProgram shader_,gpuShader_;QOpenGLBuffer vertices_{QOpenGLBuffer::VertexBuffer};
     QOpenGLVertexArrayObject vao_;GLuint texture_=0;
 };
