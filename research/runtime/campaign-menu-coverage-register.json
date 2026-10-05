@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Campaign and Region Entry scoped original contracts and opt-in observation; no Qt campaign dispatch or native engine equivalence/replacement.",
+  "scope": "Scoped campaign/Region Entry recovery, original observation and fresh Region Entry Qt action bridge; loaded Realm and live Enter remain pending.",
   "builds": [
     {
       "id": "nocd-40209ca7",
@@ -336,6 +336,126 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CP.region-entry-bridge",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Qt New Game and fresh Region Entry original difficulty/Cancel dispatch",
+      "scope": "V7 current engine owner/generation/readiness; four original radio selections and Cancel to Main; fresh Celtic region 1 only",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4928544,
+          "scope": "Original radio selection or Cancel callback with guarded fresh caller"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5039920,
+          "scope": "Original radio selection or Cancel callback with guarded fresh caller"
+        }
+      ],
+      "documents": [
+        "research/runtime/region-entry-engine-bridge.md",
+        "research/runtime/region-entry-engine-contract.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v7.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/live_region_entry_controller.cpp",
+        "apps/qt-shell/live_region_entry_controller.hpp",
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/region_entry_widget.hpp"
+      ],
+      "tests": [
+        "tests/region-entry-bridge-reference.c",
+        "tools/test-region-entry-bridge.py",
+        "tests/menu-region-bridge-test.cpp",
+        "tests/menu-region-controller-test.cpp",
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-region-entry.py",
+        "tools/test-menu-observer.py",
+        "tools/test-campaign-observer.py"
+      ],
+      "evidence": [
+        "UI29.fixture",
+        "UI29.qt",
+        "UI29.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.region-entry-fresh-policy",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Fresh Region Entry command restrictions and semantic Qt projection",
+      "scope": "Intentional current Celtic region 1/Realm caller restriction; no Enter/auxiliary commands; silent engine projection, queued draft/Cancel and window-close Cancel/Quit",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/region-entry-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v7.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/live_region_entry_controller.cpp",
+        "apps/qt-shell/live_region_entry_controller.hpp",
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/region_entry_widget.hpp"
+      ],
+      "tests": [
+        "tests/region-entry-bridge-reference.c",
+        "tools/test-region-entry-bridge.py",
+        "tests/menu-region-bridge-test.cpp",
+        "tests/menu-region-controller-test.cpp",
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-region-entry.py",
+        "tools/test-menu-observer.py",
+        "tools/test-campaign-observer.py"
+      ],
+      "evidence": [
+        "UI29.fixture",
+        "UI29.qt",
+        "UI29.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -507,6 +627,80 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI29.fixture",
+      "kind": "isolated_original",
+      "scope": "Original four radio selections and Cancel callback in private PE32 fixture, engine-thread generation/readiness/one-shot guards and guarded fresh-caller snapshots; tick and transition dependencies synthetic; no native equivalence or live integration",
+      "record": "research/runtime/region-entry-engine-bridge.json",
+      "sha256": "33bdb3c7307b131c668383094e036f360fa8535d70b185852ddda399f8c410b1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI29.qt",
+      "kind": "native_integration",
+      "scope": "Six focused Qt V7 bridge/controller, Region Entry preview, V1 request and V6 Preferences bridge/controller regressions; no original engine equivalence",
+      "record": "research/runtime/region-entry-engine-bridge.json",
+      "sha256": "33bdb3c7307b131c668383094e036f360fa8535d70b185852ddda399f8c410b1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/qt/success",
+          "equals": true
+        },
+        {
+          "pointer": "/preferences_regression/success",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic_regression/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI29.live",
+      "kind": "live_observation",
+      "scope": "Qt New Game, four original difficulty selections, Cancel to Main, reopen and window-close Cancel/Quit; fresh Celtic region 1 only",
+      "record": "research/runtime/region-entry-engine-bridge.json",
+      "sha256": "33bdb3c7307b131c668383094e036f360fa8535d70b185852ddda399f8c410b1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/live/channel_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/live/live_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/live/original_drawing_retained",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "scenarios": [
@@ -546,6 +740,32 @@
         "tests/region-entry-contract-reference.cpp",
         "tools/test-region-entry-contract.py",
         "tools/test-live-campaign-entry.py",
+        "tools/test-campaign-observer.py"
+      ]
+    },
+    {
+      "id": "campaign.qt-region-entry-fresh-cancel",
+      "level": "live_observation",
+      "scope": "Qt New Game, four original difficulty choices, Cancel, reopen and window-close Cancel/Quit; no live Enter",
+      "behaviors": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy"
+      ],
+      "evidence": [
+        "UI29.fixture",
+        "UI29.qt",
+        "UI29.live"
+      ],
+      "tests": [
+        "tests/region-entry-bridge-reference.c",
+        "tools/test-region-entry-bridge.py",
+        "tests/menu-region-bridge-test.cpp",
+        "tests/menu-region-controller-test.cpp",
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-region-entry.py",
+        "tools/test-menu-observer.py",
         "tools/test-campaign-observer.py"
       ]
     }

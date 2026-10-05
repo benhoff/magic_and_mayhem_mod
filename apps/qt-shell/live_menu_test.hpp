@@ -12,3 +12,5 @@ void installLivePreferencesMenuTest(QApplication&,QMainWindow&,LiveMenuSession&,
 void installLivePreferencesRestoreTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLivePreferencesDisplayTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveRegionEntryTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);

@@ -3,6 +3,7 @@
 #include "mini.h"
 #include "results.h"
 #include "preferences.h"
+#include "region_entry.h"
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
 API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 API int WIN UnmapViewOfFile(const void*);
@@ -16,7 +17,7 @@ static int menu_retired;
 static u32 menu_handoff;
 static u32 menu_load(u32* p){return __atomic_load_n(p,__ATOMIC_ACQUIRE);}
 static void menu_store(u32* p,u32 v){__atomic_store_n(p,v,__ATOMIC_RELEASE);}
-static int menu_header(void){return equal(menu_words,menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
+static int menu_header(void){return equal(menu_words,menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
 static int menu_host(u32* out){
     u32* p=menu_words+MNM_MENU_V1_HOST_WORD;u32 seq=menu_load(p);if(seq&1)return 0;
     for(u32 i=0;i<(menu_version>=2?23u:5u);++i)out[i]=menu_load(p+1+i);
@@ -34,6 +35,7 @@ static void menu_publish(void){
     if(menu_version>=3)copy((u8*)menu_words+MNM_MENU_V3_SPELL,spell_payload,sizeof(spell_payload));
     if(menu_version>=5)copy((u8*)menu_words+MNM_MENU_V5_RESULTS,result_payload,sizeof(result_payload));
     if(menu_version>=4)copy((u8*)menu_words+MNM_MENU_V4_MINI,mini_payload,sizeof(mini_payload));
+    if(menu_version>=7)copy((u8*)menu_words+MNM_MENU_V7_REGION,region_payload,sizeof(region_payload));
     if(menu_version>=6)copy((u8*)menu_words+MNM_MENU_V6_PREFERENCES,preferences_payload,sizeof(preferences_payload));
     menu_store(p,seq+2);
 }
@@ -41,8 +43,8 @@ static void menu_init(void){
     char path[1024];u32 length=GetEnvironmentVariableA("MNM_MENU_CHANNEL",path,sizeof(path));if(!length||length>=sizeof(path))return;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return;
     menu_size=GetFileSize(file,0);
-    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE){CloseHandle(file);return;}
-    menu_version=menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
+    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE){CloseHandle(file);return;}
+    menu_version=menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
     HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);if(!mapping)return;
     menu_words=MapViewOfFile(mapping,2,0,0,menu_size);CloseHandle(mapping);if(!menu_words)return;
     u32 host[93];
@@ -89,6 +91,13 @@ static void menu_state(void* object){
             u8* p=object;ready=!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x3b)&&!get(p+0x43);
         }
     }
+    if(menu_version>=7&&owner==(u32)object){
+        u8 next[MNM_MENU_V7_REGION_SIZE];
+        if(region_snapshot(object,next)){
+            screen=18;if(!equal(next,region_payload,sizeof(next)))++menu_generation;copy(region_payload,next,sizeof(next));
+            u8* p=object;ready=!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x43);
+        }
+    }
     if(menu_version>=3&&menu_screen==7&&screen==0&&owner!=menu_owner)menu_handoff=2;
     if(menu_version>=2&&ready&&(screen==14||screen==25)){
         static u8 next[MNM_MENU_V2_PAYLOAD_SIZE];
@@ -118,6 +127,8 @@ static void menu_poll(void* object,int execute){
             else if(host[4]!=menu_generation)menu_status=MNM_MENU_STALE;
             else if(!menu_ready)menu_status=MNM_MENU_UNAVAILABLE;
             else if(host[3]==MNM_MENU_OPEN_QUICK&&menu_screen==3)main_action(object,2);
+            else if(menu_version>=7&&host[3]==MNM_MENU_NEW_GAME&&menu_screen==3)main_action(object,0);
+            else if(menu_version>=7&&menu_screen==18)menu_status=region_dispatch(object,host[3],host[5]);
             else if(menu_version>=6&&host[3]==MNM_MENU_OPEN_PREFERENCES&&menu_screen==3)main_action(object,3);
             else if(menu_version>=6&&menu_screen==10)menu_status=preferences_dispatch(object,host[3],host[5],host+86);
             else if(host[3]==MNM_MENU_BACK&&menu_screen==22)quick_action(object,3);

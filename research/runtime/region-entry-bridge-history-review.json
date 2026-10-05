@@ -1,0 +1,808 @@
+{
+  "schema": 1,
+  "range": "d9e1fa7..3b682f53031220b67596bf0d5aab911edb2d6e1e",
+  "scope": "Exact committed parent/current file receipts only; no retrospective gate pass or new execution validation",
+  "commits": [
+    {
+      "commit": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "parent": "d9e1fa783eecd751497120e09e85e5c91977b656",
+      "files": [
+        {
+          "path": "apps/world-sandbox/frozen_navigation.cpp",
+          "before_sha256": "abbe9255e5b658981540828f909e94b0f58d8f758385cc629c35a2b700f37898",
+          "after_sha256": "a0f843077db161aca4b8e7b07e7187a93a1cc21744e16324271939f2933b26a9",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "apps/world-sandbox/frozen_navigation.hpp",
+          "before_sha256": "0b49b9e848631dc2b4306c3148441a81d174e5d9423360504f35d88005d12b74",
+          "after_sha256": "02e88b5aae824a4ea0d9b6edc1ad9a47da791934c73a2a16ef26829a2cb464dd",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "apps/world-sandbox/main.cpp",
+          "before_sha256": "9b76475c41198423c51278b1ad0db141f6d9cb31ddf8b56d54652322f086121f",
+          "after_sha256": "1cbf7cbf14b2a2b9dfe3166fdb390466820e59f9acdf1c7e861037d262f381c1",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "game/CMakeLists.txt",
+          "before_sha256": "ae21391c5b3ec1698aad82adce4a36cfb97b218a5af12de7c92569e40f3e4535",
+          "after_sha256": "8364e2f0ac1a13abce82906609757d8f124969ffed812bea16b9f100a8448b65",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "game/README.md",
+          "before_sha256": "6740490c424df99abe561d4dd092c62c2d7b766273bc76fceac00b8b9fc47110",
+          "after_sha256": "f609a641a34c3cf37944a7f43d19152c497df7a2ad64815ae946ebac2f77cc9b",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "game/simulation/movement.cpp",
+          "before_sha256": "7d40bf5b9e7faea8749c6a9cf2de0eab33cd33e2a63407aa26c5b16461f45eed",
+          "after_sha256": "c88bf769710493fbf5d25d451e61f7a3a777b2d781f74d475b42005216802f8f",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "game/simulation/movement.hpp",
+          "before_sha256": "2ab15ce19404e6ae58df206a1ff6085e6384e5c5ca771db54d07537e9f53ceb5",
+          "after_sha256": "8f55899d5404586dc7d065133e151aa2af7dd6e5d3a46108b7e8116cf1bab7fc",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "game/simulation/occupancy.cpp",
+          "before_sha256": null,
+          "after_sha256": "8b6a33e6a60e0d80e54d94cd206b59c36ce1d107c1def639a184ff381807e82f",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "game/simulation/occupancy.hpp",
+          "before_sha256": null,
+          "after_sha256": "4b94b25903e85b0955fb1522019ba48ba0768a4335a226ddc437b8996518b42c",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "e2ace766fa0687cc096333d41566fcdbdfab8ff3194ba62e86913ab5f75cd4f2",
+          "after_sha256": "d967e62659cdc2bc90cbccedfb60adce7181280da552fd76c74af7ccb8b1de93",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "a0965a86a158806ab5bd19b2a9f053e82534b3fc2bdea495d44a5ac88227e4b7",
+          "after_sha256": "69adb3258a65fca84edefbe299d881a61201b111e4ebbd92c11c75162d2feee4",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-stationary-native-commit.json",
+          "before_sha256": null,
+          "after_sha256": "7571b1c4556434d66cf1d7a4464c373dc3575e23c9bf68173d09b12ed51157f6",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "c685332f7919e5361b8ed6ab73b718752a87e980e0d985dacf3e829e093dc0ee",
+          "after_sha256": "68d59ca99473939dd77d47d680b8c8e0e6e8e5a1fe6949e9ce38efeadb1a65bc",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/native-stationary-occupancy-native-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "1f4e847200597e9eed160855f56fcb10d52675931ff07073aa8906f97360093f",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/native-stationary-occupancy-native.json",
+          "before_sha256": null,
+          "after_sha256": "4a7ba79feddd6d9543b0c67ce33caaaf39c163541f2ba5e448834e5cad2a8c4a",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/native-stationary-occupancy.md",
+          "before_sha256": "339e606b7e60393c653dc2ce24c89b110b248f1d0980e0216a203dd46928227f",
+          "after_sha256": "14ce6408c3409f08e087de60e8a99758c6638ce7b80570e3ee3f5c074083da45",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "tests/README.md",
+          "before_sha256": "21dad0951e7a981a25a9dcdb9c873259cbbb9683bdaeca214690d721dfcebc6e",
+          "after_sha256": "e39d544aa43a27d79049b99b52bd55dd89d8e0a2f34a078b027847b55588a143",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "tests/native-occupancy-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "a2b7c89036e76a3f107f1f037a01b534ebaba08fbfaa4782ccf79c064ecaf052",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        },
+        {
+          "path": "tests/test-native-occupancy.py",
+          "before_sha256": null,
+          "after_sha256": "a5e69a5bf91d8a6c59884fc0972196cb70bd5349b72b7ab54bc45e5d5a6055ad",
+          "receipts": [
+            "NS10.stationary-native-exact-staged"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "parent": "82fa8b4bc0a95886dff0f5374dd9ef63e61117e8",
+      "files": [
+        {
+          "path": "reconstruction/rendering/effect-transition/CMakeLists.txt",
+          "before_sha256": "a51779dc93e047ecd4e2ac7ac0464c2539ca4d7cfe4ab97afedf7e809d50047e",
+          "after_sha256": "3de908cc5496ce83d539a6ff0795a2d7d469d2a47f7986a9bd4a112c21f58e06",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_cleanup.cpp",
+          "before_sha256": null,
+          "after_sha256": "c49f86fb1635b5013e02eafbb0bd9ee1bd441d2441b6f7fffbf53537728329b3",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_cleanup.hpp",
+          "before_sha256": null,
+          "after_sha256": "a09d0ee210e839a3e2b986b781ea21e21327be6079788d5267683c557008c25a",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_transition.cpp",
+          "before_sha256": "371f2b9be01dc8377e51683431a1ac5494df67ffa8ce79238308e4fc0f6400ea",
+          "after_sha256": "a4c14f19c0205b30c7e41bbc90ef60a1da2f423293649e2942075fcb93ea30db",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_transition.hpp",
+          "before_sha256": "fb76fa22117311628a2410af1493cc2bb3205ad580e10ae02cfd552e6fbbc6fe",
+          "after_sha256": "d83311ace9e291830d8854fec4443d17776ccf1cc5790f3299312111dce16c55",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "d967e62659cdc2bc90cbccedfb60adce7181280da552fd76c74af7ccb8b1de93",
+          "after_sha256": "80d633ba10a173945afa64a47ee142c4508573136d0bac9cf018c42758e95cfb",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "69adb3258a65fca84edefbe299d881a61201b111e4ebbd92c11c75162d2feee4",
+          "after_sha256": "1513c39ce346e6893aff7d8bf1719ca807fcca1b945e7d5ed86504d0d0f5c36c",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "68d59ca99473939dd77d47d680b8c8e0e6e8e5a1fe6949e9ce38efeadb1a65bc",
+          "after_sha256": "f74ff693de0fc56bee3c64b9abbeb550eabe66948fb20921efeb57c6e8df9576",
+          "receipts": [
+            "effect-cleanup-summary-82fa8b4"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-cleanup-coverage.json",
+          "before_sha256": null,
+          "after_sha256": "779e4c7fb3c1d5e484ed7eff54e91beae49b21c15a259e9431b2eeb503156e4f",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-cleanup-source-index.json",
+          "before_sha256": null,
+          "after_sha256": "83ae6c361ff22385bf0f6f1892be123daf197f04fc62a0931945d406b5a72c91",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-cleanup.json",
+          "before_sha256": null,
+          "after_sha256": "94bb3cd7d7d26cd92c056415b6f720ff682c88ecf48f0ef4dffa6c9ad6d15733",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-cleanup.md",
+          "before_sha256": null,
+          "after_sha256": "a9d291b4dfd65fba8c33c779b9b16c33ccf00771f6c55701b38bdd1915e8c407",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-transitions-coverage.json",
+          "before_sha256": "a23b1e62b54ade406087dec7ab557a8eef27bbb24c3e215814417d537b82c6f8",
+          "after_sha256": "4be3f118912f6cf3380da76b694e5ce594e0cdd399f83b5724e8c15111074ff9",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-same-cell-projection-coverage.json",
+          "before_sha256": "97c464891b54f4511626326521766e8764e7e7d721687a42dd44dba6c21bddc6",
+          "after_sha256": "ed2a2171edb28bacc495bb7be969fd2a9c8a49db08819706489f3782a106e3ff",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-trajectory-coverage.json",
+          "before_sha256": "5a88dd909cf561f960c322ae80a38a7d700a3034ad51e861fab3d8fa600e7fcd",
+          "after_sha256": "02f9a4bdc47d849ebb0bee83e530430083d8776efb1ea191274ccf5408c10c65",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "tests/effect-cleanup-reference.cpp",
+          "before_sha256": null,
+          "after_sha256": "1a592e43af9ade0e71f98383cd274f38cc9ada49ade1c13ed65c19b532313825",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "tests/effect-transition-reference.cpp",
+          "before_sha256": "6e63316fbe6d7758ff355f8ca052054e07d0cdc05f842f0d806fa73a64fc81cd",
+          "after_sha256": "ad9fb9c5c2075b8ea0c88e43a37c5c7131d5485c01c6d7d935a9092ce12c7213",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "tests/effect-transition-test.cpp",
+          "before_sha256": "3aceeca4061c79b63b02fc1c925046f3c120451adff1d91fe972179f99ba4998",
+          "after_sha256": "9ad99a7ac6974f1cf9f6e7fcab3a8ee2427ff91bdc5db623c1b14e91c9ba3846",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        },
+        {
+          "path": "tools/test-effect-transition.py",
+          "before_sha256": "0939e47cb57eef61ea25c73b6235cf1d3e4e823e817fa0f82975fc6945f24a1d",
+          "after_sha256": "4a03f2b9dc8daf266eb12a1cccb21145cc350acb4d67f938b83f4feb09fdda99",
+          "receipts": [
+            "effect-cleanup-recorded-82fa8b4"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "cf1dc7d87b44c900bdeca721f7c431ed9a34bc07",
+      "parent": "e5e581173f2b266c4c90cf0588eb2f059e39ecea",
+      "files": [
+        {
+          "path": "apps/qt-shell/CMakeLists.txt",
+          "before_sha256": "661e6b6a58ae75ef229f53a4f2511ba8c980eb2fd8c32ff125e5e7e851897ddf",
+          "after_sha256": "a3c5de0ce53e62571358edcde13b2d1258a67df6462ab62f13c6750162e7a36b",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005",
+            "NR.gpu-presentation-recorded-v2-20261005"
+          ]
+        },
+        {
+          "path": "apps/qt-shell/README.md",
+          "before_sha256": "f842deb02a32a7e68b62ead9487f53c9bd5d3815966aa10bd45577d9dbae4353",
+          "after_sha256": "34ecc0d04c384abebd0fca70809f25ea62ec34648a65aecbd0015cbb9c96c540",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "apps/qt-shell/gl_viewport.cpp",
+          "before_sha256": "2342536dc514f2247bc94f9c088365f2c9bc244777695e3342b7187f252acc59",
+          "after_sha256": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005",
+            "NR.gpu-presentation-recorded-v2-20261005"
+          ]
+        },
+        {
+          "path": "apps/qt-shell/gl_viewport.hpp",
+          "before_sha256": "bb27b4bd5153248f33c9514601e024010c6addaf2d218355355999e3bd467824",
+          "after_sha256": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005",
+            "NR.gpu-presentation-recorded-v2-20261005"
+          ]
+        },
+        {
+          "path": "apps/qt-shell/main.cpp",
+          "before_sha256": "6bcc58837c1a12406696767a15958fc4d99cfbd6e27440fe5cdd252734c440c3",
+          "after_sha256": "5e2bf7765c3b5592acbdfff2091aaa39dde7b0f5adcf80b2ceaf9e4c16518ad9",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005",
+            "NR.gpu-presentation-recorded-v2-20261005"
+          ]
+        },
+        {
+          "path": "renderer/README.md",
+          "before_sha256": "972db89b80036d943ab1c806fb096ebbf4f470f7cbedf3b18ed9d0a54b895ce6",
+          "after_sha256": "fa266cf8b6e0db8eeb67a8ce980ba1648001513733607a4d24ff3630eedf152c",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "renderer/blit.cpp",
+          "before_sha256": "4c89caa93a5298fcb4417e5bfb3e116176f1969783f2be6191ddad63eb9d0cac",
+          "after_sha256": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005",
+            "NR.gpu-presentation-recorded-v2-20261005"
+          ]
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "before_sha256": "2ad6881a73fb236530a0a0fc3fe318442b7eee26403842a34ef93dc269c9dd06",
+          "after_sha256": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005",
+            "NR.gpu-presentation-recorded-v2-20261005"
+          ]
+        },
+        {
+          "path": "renderer/commands.cpp",
+          "before_sha256": "c726c463ac0558ad6784171ee2752aa931b10ffa24ce77b55847c9807947bbb1",
+          "after_sha256": "d7e227390cb64c331261e516e6c931a8ce8ef9b0ae7dcf2dfbfc10a6eef158f1",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005",
+            "NR.gpu-presentation-recorded-v2-20261005"
+          ]
+        },
+        {
+          "path": "renderer/commands.hpp",
+          "before_sha256": "624f5d1c82c8d6d5fdf567591f72a1bc748b7d60efe50948222ba3ec4240e2ad",
+          "after_sha256": "82578e381739eaf16b05c965f0d119c9c49e7ba486ec1e16b4bef88c7f37b689",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005",
+            "NR.gpu-presentation-recorded-v2-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "80d633ba10a173945afa64a47ee142c4508573136d0bac9cf018c42758e95cfb",
+          "after_sha256": "016a756b14e5fa54f12cce25f661696dc04f34449319c031839a07c848555212",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/direct-gpu-history-extension-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "9c7647bff0adaffe95826271db96401bf5a2d2e01ff8b9799882c36ce7ea3846",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/direct-gpu-history-review-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "f2fae24744e773ef163fece1ed278a9fa1600cae4c63957dcfedfa04ef06a69f",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "1513c39ce346e6893aff7d8bf1719ca807fcca1b945e7d5ed86504d0d0f5c36c",
+          "after_sha256": "c18a036bd36c4da750ce2e992fadc12bdfe6bf6f614d13ec2095a22892f17681",
+          "receipts": [
+            "NR.gpu-presentation-staged-census-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-direct-gpu-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "8c5c06eaf379f32134e3fb3151178770091d7bd800b846a76f33e0673176fb06",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-direct-gpu-commit-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "444a372b5b849cd46c4112af25490b589cdec35a0fd53892d13e5953df42537c",
+          "receipts": [
+            "NR.gpu-presentation-staged-census-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-direct-gpu-final-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "8c13eafd759e200f70923fc8deb02fa59c2865267717b63fd5ac20c09532a744",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-direct-gpu-20261005.md",
+          "before_sha256": null,
+          "after_sha256": "65c169f724c06cdedc89ea87acfb093ef921a43e2e15c2610dcf35e82a54d0b0",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-direct-gpu-final-20261005.md",
+          "before_sha256": null,
+          "after_sha256": "bf62533faa29103e0eb63102a4347e3b756a22ba831502eba8d63f1b8212e53f",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-direct-presentation-v2.json",
+          "before_sha256": null,
+          "after_sha256": "c1c63cb0478d336971a7b78de30404b0f5681f773655d1283bcf6625482e3f2f",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-direct-presentation.json",
+          "before_sha256": null,
+          "after_sha256": "b7169681d961872b89bc0436824fa2ff8ec63a669e6553f5a5f852e88c2afe43",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-direct-presentation.md",
+          "before_sha256": null,
+          "after_sha256": "f5816ad9d7c1034beebbc4a4fbc20077897408a004753e5bf2f2fb6aa1f917fa",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005"
+          ]
+        },
+        {
+          "path": "tests/gpu-presentation-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "1984e740f6900d9e3a3fefa42fb57d7c85fb813299867c894a3babf8f6f1fa1a",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005",
+            "NR.gpu-presentation-recorded-v2-20261005"
+          ]
+        },
+        {
+          "path": "tools/test-gpu-presentation.py",
+          "before_sha256": null,
+          "after_sha256": "af85e8b9ee3362e6556957010af363691fcd29afd560054a00cc52e1423a334c",
+          "receipts": [
+            "NR.gpu-presentation-source-accounting-20261005",
+            "NR.gpu-presentation-recorded-v2-20261005"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "parent": "cf1dc7d87b44c900bdeca721f7c431ed9a34bc07",
+      "files": [
+        {
+          "path": "reconstruction/rendering/effect_transition.cpp",
+          "before_sha256": "a4c14f19c0205b30c7e41bbc90ef60a1da2f423293649e2942075fcb93ea30db",
+          "after_sha256": "7884793bbfcca42e0f70d2bd4c3e3510b9b0a7ac12c4a8a2607201dff5d892fa",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_transition.hpp",
+          "before_sha256": "d83311ace9e291830d8854fec4443d17776ccf1cc5790f3299312111dce16c55",
+          "after_sha256": "26bc40700e5cef61c7bd1048371fc8012455e1011925161545c0265ce3e76f3e",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "016a756b14e5fa54f12cce25f661696dc04f34449319c031839a07c848555212",
+          "after_sha256": "73f0a8897b67cbdef44d2271bfe9e06e2ac5e0b6c6aeb6308241a22953f345ba",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "c18a036bd36c4da750ce2e992fadc12bdfe6bf6f614d13ec2095a22892f17681",
+          "after_sha256": "b8f0c0fd423a8b2faa22c6406969e856e13dbad77c1136e1ad9015798f1c8574",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "f74ff693de0fc56bee3c64b9abbeb550eabe66948fb20921efeb57c6e8df9576",
+          "after_sha256": "6cc96d95356f5bd1bdc416f047fc2d0c7f00069611830bb0836b73bd8e1031f4",
+          "receipts": [
+            "effect-blocked-summary-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-blocked-destinations-coverage.json",
+          "before_sha256": null,
+          "after_sha256": "519728bf99b5ab5e60327c0aeff50c3cf06e82e1497f4174d7ce4ce8493efc45",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-blocked-destinations-source-index.json",
+          "before_sha256": null,
+          "after_sha256": "63bf0fd90e33684467606cff31146e65c46f8d059856939a33cde67b6fac098f",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-blocked-destinations.json",
+          "before_sha256": null,
+          "after_sha256": "b1e64f8fc6d88a07470b9d83b762ef66e0a3448f3a624903a1f0d3f0e832e12d",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-blocked-destinations.md",
+          "before_sha256": null,
+          "after_sha256": "dd735d1bbc2a53c5c69402bd365fe9c34a5adddb75c19453cc8ef08e0cb731bc",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-cleanup-coverage.json",
+          "before_sha256": "779e4c7fb3c1d5e484ed7eff54e91beae49b21c15a259e9431b2eeb503156e4f",
+          "after_sha256": "dd4e34fc463438667dcb2639ac2e589f29c8308c340fa0d5b0d06b7d2fcad2ac",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-transitions-coverage.json",
+          "before_sha256": "4be3f118912f6cf3380da76b694e5ce594e0cdd399f83b5724e8c15111074ff9",
+          "after_sha256": "0672801ef36e7412ece419a1e28e12b8df57c983106e2bf3d50f176df0bc0096",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-same-cell-projection-coverage.json",
+          "before_sha256": "ed2a2171edb28bacc495bb7be969fd2a9c8a49db08819706489f3782a106e3ff",
+          "after_sha256": "7abf243baa0901c48ee23c0a09aee3e884878925de50797c3ead9b128ffeb5b2",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-trajectory-coverage.json",
+          "before_sha256": "02f9a4bdc47d849ebb0bee83e530430083d8776efb1ea191274ccf5408c10c65",
+          "after_sha256": "da3898c948efe07636481f1909d549846634f2736e4dd4dee5a1bb585636f75f",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "tests/effect-blocked-reference.cpp",
+          "before_sha256": null,
+          "after_sha256": "107ef6d69fce7239bba4aad6890e1adc6ac8e9439370292789a89b08d54e12ce",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "tests/effect-transition-test.cpp",
+          "before_sha256": "9ad99a7ac6974f1cf9f6e7fcab3a8ee2427ff91bdc5db623c1b14e91c9ba3846",
+          "after_sha256": "a11ef5194dba5cd63259135883560fa3813609efa37959bd5d9ffb87b273f92f",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        },
+        {
+          "path": "tools/test-effect-transition.py",
+          "before_sha256": "4a03f2b9dc8daf266eb12a1cccb21145cc350acb4d67f938b83f4feb09fdda99",
+          "after_sha256": "32e1dfa244783d60d0ba356bea1ec4152b8af491463e53bf5da78b21a21001f8",
+          "receipts": [
+            "effect-blocked-recorded-cf1dc7d"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "3b682f53031220b67596bf0d5aab911edb2d6e1e",
+      "parent": "90a35fd87d20f59ca8f34a780e68836cb6199674",
+      "files": [
+        {
+          "path": "reconstruction/rendering/effect_transition.cpp",
+          "before_sha256": "7884793bbfcca42e0f70d2bd4c3e3510b9b0a7ac12c4a8a2607201dff5d892fa",
+          "after_sha256": "9aab83bdaafd76e203431a73ee4a7fa546fb556f7f7675186512d859b45607ae",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_transition.hpp",
+          "before_sha256": "26bc40700e5cef61c7bd1048371fc8012455e1011925161545c0265ce3e76f3e",
+          "after_sha256": "292938bdc5c16e762716279a3f22d87c1a1635facd2fb26afebecdf08024ad8e",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "73f0a8897b67cbdef44d2271bfe9e06e2ac5e0b6c6aeb6308241a22953f345ba",
+          "after_sha256": "5cbd0ad5a97f55d28d4baf7fe17260a61602a7b01f5b3d2ad015ef65fe20a8f1",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "b8f0c0fd423a8b2faa22c6406969e856e13dbad77c1136e1ad9015798f1c8574",
+          "after_sha256": "9724773992e406121e37098ff34667740a5c0339d05db071566493828ff1cb86",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "6cc96d95356f5bd1bdc416f047fc2d0c7f00069611830bb0836b73bd8e1031f4",
+          "after_sha256": "23db497617e6407205f1bf3935fe0be054b6eb9864a89c36c53670c839fd609f",
+          "receipts": [
+            "effect-height-summary-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-blocked-destinations-coverage.json",
+          "before_sha256": "519728bf99b5ab5e60327c0aeff50c3cf06e82e1497f4174d7ce4ce8493efc45",
+          "after_sha256": "ed39f90639c48708e235d02cce8bae8c64de4b65d25b8ab1a41730f00e6ff06c",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-cleanup-coverage.json",
+          "before_sha256": "dd4e34fc463438667dcb2639ac2e589f29c8308c340fa0d5b0d06b7d2fcad2ac",
+          "after_sha256": "201a2639db6f9a68354056ea245af6529653bfb153402877c73e59b2309addd7",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-transitions-coverage.json",
+          "before_sha256": "0672801ef36e7412ece419a1e28e12b8df57c983106e2bf3d50f176df0bc0096",
+          "after_sha256": "a3b6b873966591a545bcd1f2439a229d077d5c50ccefd86de90a81c70fb6b998",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-height-exits-coverage.json",
+          "before_sha256": null,
+          "after_sha256": "d7fcb09331a783033ec346217610dbcdf40f68f1ec0a6dcb6de2148bf42a4326",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-height-exits-source-index.json",
+          "before_sha256": null,
+          "after_sha256": "d000ad46a7a8cd1cffd73e55e6ef74f5051daba3525383ac7642e5a45f6eab5d",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-height-exits.json",
+          "before_sha256": null,
+          "after_sha256": "349dc5bbbf2749780cf14a83dd8e239d827178fa7d9d3c04d768aafd42fb45cb",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-height-exits.md",
+          "before_sha256": null,
+          "after_sha256": "a911e493882ed860ec54c1a2128f30175085d6ea548177fedc966abff183af7b",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-same-cell-projection-coverage.json",
+          "before_sha256": "7abf243baa0901c48ee23c0a09aee3e884878925de50797c3ead9b128ffeb5b2",
+          "after_sha256": "b189df2872513eab56bbf0075336d6e82b104d5b177b3c4ff5d029a6f6338638",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-trajectory-coverage.json",
+          "before_sha256": "da3898c948efe07636481f1909d549846634f2736e4dd4dee5a1bb585636f75f",
+          "after_sha256": "9f8ff4155c60381dbf1b09e147f04ccb2dc8f70ffb135d22e3edbc89eacc8203",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "tests/effect-height-reference.cpp",
+          "before_sha256": null,
+          "after_sha256": "8edb8abedb6cc18bc1e992da1ead64e2553b08a7ac4f17665f13537208e7699e",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "tests/effect-transition-test.cpp",
+          "before_sha256": "a11ef5194dba5cd63259135883560fa3813609efa37959bd5d9ffb87b273f92f",
+          "after_sha256": "967401af9c85d39bb4b304bad5c837b84436e6ffd5836f2bf0cd93be2d90a527",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        },
+        {
+          "path": "tools/test-effect-transition.py",
+          "before_sha256": "32e1dfa244783d60d0ba356bea1ec4152b8af491463e53bf5da78b21a21001f8",
+          "after_sha256": "0f59356ec4e313ffca96d68ff630847f0de4461d365551477000a10779b145a4",
+          "receipts": [
+            "effect-height-recorded-90a35fd"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved": []
+}

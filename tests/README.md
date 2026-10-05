@@ -798,3 +798,16 @@ release, next-edge and intra-cell obstruction, and transactional refusal. Use
 to preserve a report. `python3 tools/test-dynamic-occupancy.py` separately compares
 the recovered cell and footprint predicates to the pinned original PE32.
 See [NS10 scope](../research/runtime/native-stationary-occupancy.md).
+
+### Live Qt Region Entry bridge
+
+Run `python3 tools/test-region-entry-bridge.py` for original radio-selection/Cancel
+behind V7 receiver, caller, generation/readiness, availability and one-shot guards.
+Build the Qt shell and run targeted `qt-menu-region-bridge` and
+`qt-menu-region-controller` CTests plus the existing Region Entry/V1/V6 checks.
+`python3 tools/test-live-region-entry.py` automatically exercises Qt New Game,
+all four original difficulty choices, Cancel, reopen and window-close Cancel/Quit
+in isolated Xvfb/Wine. Use `--shell` and `--source-root` for a dedicated validation
+build. Immutable-original checks run before/after; staged hashes are checked.
+No manual interaction is required. Fresh Celtic region 1 only; live Enter and
+loaded Realm remain pending. See [UI29 evidence](../research/runtime/region-entry-engine-bridge.md).
