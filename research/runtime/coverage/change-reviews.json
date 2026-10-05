@@ -412,6 +412,268 @@
       }
     },
     {
+      "id": "effect-trajectory-20261005-recorded",
+      "reason": "Recover the entire call-free 004df500 trajectory leaf using owned disjoint state. Whole original comparison checks every word and guards over 262144 continuation steps; independent unit expectations cover signed wrap, XY suppression and unconditional counters. Add standalone CMake target, research, focused import, source census and scoped ledger milestone. Preserve all prior fingerprints and unrelated work.",
+      "files": [
+        {
+          "after_sha256": "d292bb922122dbcab01647fcb74e594f9b9d217e57434257f1598a0c598d581e",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect-trajectory/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "9a271f05ef153cf3032da71f8ada0e1c33562a92cf1c7804d050ccb884611024",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_trajectory.cpp"
+        },
+        {
+          "after_sha256": "1a668bd363315bda2f957ba8ce5c98c1aa9d75535d9b93005456aa5764a3b839",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_trajectory.hpp"
+        },
+        {
+          "after_sha256": "6bd78e36efac5c0046a67a073a9a01b2041bfba8dfd1082ef2d99d4c858c1b3e",
+          "before_sha256": "ab621d47b6fb5e317b9ccda9d512845083dc345728c2cc06e6eff913cb8f7837",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "5a44380f3df840a7f9df2630da04de746c18b4c72e97298508dc052231f581b4",
+          "before_sha256": "9beae2683ccc8aa1ce351c3b28027690f2b780be38cc9ee99eb78d023b2e65aa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "616799ab7070e53153b79371e8eb7245b527b314602d13605222e9c7543ede2e",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "09bb50ef8511b3d84047aaeceff22a6dbd5f0b29454a928b747b351f7bc4cdb1",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory-source-index-reviewed.json"
+        },
+        {
+          "after_sha256": "7c86123009abb808c42eeed31e4cd1f69b9f68d7ce017528fd64af9124e42c22",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory.json"
+        },
+        {
+          "after_sha256": "621482d995b9018d309073e1b9fd8b47c5376c26de31b738ac98aab57898cb9a",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory.md"
+        },
+        {
+          "after_sha256": "60bc49706f9a90de4aae22f87d375986762114d86ffb3c537666f4c7d9902a28",
+          "before_sha256": null,
+          "path": "tests/effect-trajectory-reference.cpp"
+        },
+        {
+          "after_sha256": "31c92f80f0f02708fc381d70f11d6a3ef50308ddadb91007fb0a02216c4f0293",
+          "before_sha256": null,
+          "path": "tests/effect-trajectory-test.cpp"
+        },
+        {
+          "after_sha256": "6ff4a08c796ac7bd35abd1b32ff350a635b1768d0693cf4525dc0b4a8a3fcd4a",
+          "before_sha256": null,
+          "path": "tools/test-effect-trajectory.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "ebc1656bad64ca7f86aeb4d827ff761d57fe2943a28500bbef9780e35cb210dc",
+          "before_sha256": null,
+          "id": "TL.effect-trajectory-step"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL06.trajectory-original",
+          "TL06.trajectory-native"
+        ],
+        "reason": "Hash-pinned unmodified original leaf, 64-bit native and ASan/UBSan streams match across 8192 fixtures and 262144 steps; strict CMake/CTest and normal/sanitized unit checks pass; 2927 immutable originals verified before and after. This records authored trajectory stepping only, not installed setup, parent movement or recount production."
+      }
+    },
+    {
+      "id": "effect-trajectory-20261005-parent-pending",
+      "reason": "Track the actual parent entry 004883f0 separately from internal iteration block 00488540; retain movement/recount, cell membership, collision/type termination, initialization and XY-only step as explicit unimplemented contracts.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "7cdc64129c891a0f29759760dbdf584ccdacb88e32bd36ea1bc0574480b15bee",
+          "before_sha256": null,
+          "id": "TL.effect-movement-recount"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:2c2ff257e3f10374d84cc4db264465b24b7a72f0e37376554524e9d323c9b5c3",
+        "behaviors_without_implementation:2c2ff257e3f10374d84cc4db264465b24b7a72f0e37376554524e9d323c9b5c3",
+        "behaviors_without_scenarios:2c2ff257e3f10374d84cc4db264465b24b7a72f0e37376554524e9d323c9b5c3"
+      ],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Only static call/offset tracing for the movement parent; no parent comparison, native recount update, installed initialization or moving-light integration yet. Historical effect placement/table comparisons remain unchanged."
+      }
+    },
+    {
+      "id": "effect-trajectory-20261005-receipt",
+      "reason": "Durable copy of exact leaf/parent review decisions; no engine change.",
+      "files": [
+        {
+          "path": "research/runtime/effect-trajectory-change-review.json",
+          "before_sha256": null,
+          "after_sha256": "1c2c54dd2963f6f392b06488ab8bba1f6f1f87d96bc55301bac68d7111a9034c"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Coverage metadata copy only; trajectory evidence is registered separately."
+      }
+    },
+    {
+      "id": "effect-trajectory-20261005-summary",
+      "reason": "Refresh generated coverage counts after adding tested leaf and unimplemented parent; retained historical gaps and staleness.",
+      "files": [
+        {
+          "after_sha256": "6d844a17a46efc6dd870851ab0611cb48109cf8e66471f15c6872084ae255b83",
+          "before_sha256": "65b72958555da1dbd24af29a03c3ad627e32a5a5be84f96bbb377d41c7a700ec",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated audit summary only; no semantic validation claim."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a25e18d191f2a33cdb8aa8ccac00cc64107f968b1c347871b3a653c30f414e45",
+          "before_sha256": null,
+          "id": "CP.main-new-game"
+        },
+        {
+          "after_sha256": "3f56790928f067622315399046be55ab277f818cfae5871fe92395ff6bcbd98c",
+          "before_sha256": null,
+          "id": "CP.realm-auxiliary"
+        },
+        {
+          "after_sha256": "0b8e420e34bcc161fd3c54e1fee2a0a954895c1e708ea7b3b623f4c4149b6757",
+          "before_sha256": null,
+          "id": "CP.realm-initialization-gap"
+        },
+        {
+          "after_sha256": "f353b0d73ee176d0563d8ccc4848d2335dd240cda3a641f20b86f7ab29b8897a",
+          "before_sha256": null,
+          "id": "CP.realm-navigation"
+        },
+        {
+          "after_sha256": "e4bb8c2039bbdb9fd25b916401d2ec684d5056e6c7ae0bfea35a22b7ebd3b14e",
+          "before_sha256": null,
+          "id": "CP.region-admission"
+        },
+        {
+          "after_sha256": "7eecdc34ec12008bb9fd2617c688372f26287667a6edb08246f7b0255e0179e2",
+          "before_sha256": "0c1874406780eb3b25950c50efcca0b08f3e36d71bc08c459544ed25d375305c",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d9b7c45ce8dab09bf5da9ae1a1c58c99c8de1e9fe84156cdb859e5e433bb22a8",
+          "before_sha256": "2c5929343766160c2091ddda8bb4311142d39d18badff148b20b048c9f5ea630",
+          "path": "research/runtime/README.md"
+        },
+        {
+          "after_sha256": "db0ef0194f43fe18e7e8801e0b7f3f7d1ddef871867f5253ba5ab8885866d4e4",
+          "before_sha256": null,
+          "path": "research/runtime/campaign-menu-coverage-register.json"
+        },
+        {
+          "after_sha256": "2a0ee2743e0254c52dcd8f55d72f0245c917de018b2d64810e78883f66cf9836",
+          "before_sha256": null,
+          "path": "research/runtime/campaign-menu-engine-contract.json"
+        },
+        {
+          "after_sha256": "dc24faeac2d6e7c704122a57211c30fb67df4f3089ec182ff3c51869edb602eb",
+          "before_sha256": null,
+          "path": "research/runtime/campaign-menu-engine-contract.md"
+        },
+        {
+          "after_sha256": "adff9d759d6ef4ccad9ec8e8da845de6f959746567698d9675f137cb3d501aeb",
+          "before_sha256": "ab621d47b6fb5e317b9ccda9d512845083dc345728c2cc06e6eff913cb8f7837",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "7f2024ca73b32025520071b37b10cbfce9cf0cb16e28fa329411c000f431875f",
+          "before_sha256": "9beae2683ccc8aa1ce351c3b28027690f2b780be38cc9ee99eb78d023b2e65aa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "6acb1aff25af0b9d8126405fc990107724bfa7c3b4e2a295486d831bcbd245d0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-campaign-contract.json"
+        },
+        {
+          "after_sha256": "05359e8206231e17f82eda1f588f416443810b61c2a14de8da4e8b61beedf428",
+          "before_sha256": "90f0968f664bd01ea748ee4cd4618e60b18ec583ebf3616930c077ea20cf2047",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "e46981256db1f1806f2e633e14f8a99287b7e39adf14bea57b9f8e6fb2e24317",
+          "before_sha256": null,
+          "path": "tests/campaign-menu-contract-reference.cpp"
+        },
+        {
+          "after_sha256": "8138c3fe703f2a39d27f92e4a484ffeed2b22df913913f0059b007479ed9b1c7",
+          "before_sha256": null,
+          "path": "tools/export-campaign-menu-support.py"
+        },
+        {
+          "after_sha256": "41628ba0ad43ed5e5a68b126c5d4754bb01d615b8efb4808c4b26a7db7fb022e",
+          "before_sha256": null,
+          "path": "tools/test-campaign-menu-contract.py"
+        }
+      ],
+      "id": "campaign-contract-ui26-20261005",
+      "pending_gaps": [
+        "behavior_anchors_outside_discovered_functions:19035df2ce76b25fd9f132fc0b7635df332a882d0b56df156ffa1c884c3c7fe5",
+        "behavior_anchors_outside_discovered_functions:709f07db28a4022666c5d91b069e693573ac85b585406e9e656e1afee5be141f",
+        "behavior_anchors_outside_discovered_functions:7ee8a45a09196039d91f64f568d55ca6c4abb36d09e5f57f7214ab227295642a",
+        "behavior_anchors_outside_discovered_functions:f580c56620b27073f1a819402afe9c3da8e9ebea6c4b47b363c407509f94ab15",
+        "behavior_anchors_outside_discovered_functions:fcdcfbda21b03c89d72ea6a26eddab9937ee427a681eeb7d36fcc054f66386c3",
+        "behaviors_without_comparison:22db526c02440dfeeb4795d2fe4d35b3f40c8a784ef9b0fb665d35bfb8d3bf5d",
+        "behaviors_without_comparison:4876531a9891c8836592b7a5755da300abc9f5471f294bcb41efa155c2d2fe32",
+        "behaviors_without_comparison:665038aa9e0636fc23cfd81a50afc1e16e65476550b2f5be65780224a40af67a",
+        "behaviors_without_comparison:f702d49e37df7403451cd99392ab3f77a3996ccff00095d1ceff1cb37e925626",
+        "behaviors_without_comparison:f8be3f49f610c3c20f0b06be7393313c7e077f472cd9d2306823a5f41cfd1f83",
+        "behaviors_without_implementation:22db526c02440dfeeb4795d2fe4d35b3f40c8a784ef9b0fb665d35bfb8d3bf5d",
+        "behaviors_without_implementation:4876531a9891c8836592b7a5755da300abc9f5471f294bcb41efa155c2d2fe32",
+        "behaviors_without_implementation:665038aa9e0636fc23cfd81a50afc1e16e65476550b2f5be65780224a40af67a",
+        "behaviors_without_implementation:f702d49e37df7403451cd99392ab3f77a3996ccff00095d1ceff1cb37e925626",
+        "behaviors_without_implementation:f8be3f49f610c3c20f0b06be7393313c7e077f472cd9d2306823a5f41cfd1f83",
+        "behaviors_without_scenarios:22db526c02440dfeeb4795d2fe4d35b3f40c8a784ef9b0fb665d35bfb8d3bf5d",
+        "behaviors_without_scenarios:4876531a9891c8836592b7a5755da300abc9f5471f294bcb41efa155c2d2fe32",
+        "behaviors_without_scenarios:665038aa9e0636fc23cfd81a50afc1e16e65476550b2f5be65780224a40af67a",
+        "behaviors_without_scenarios:f702d49e37df7403451cd99392ab3f77a3996ccff00095d1ceff1cb37e925626",
+        "behaviors_without_scenarios:f8be3f49f610c3c20f0b06be7393313c7e077f472cd9d2306823a5f41cfd1f83"
+      ],
+      "reason": "Recover only campaign Main entry, Realm lifecycle prefix, selected admission and auxiliary/navigation branches. Reviewed pinned export and 269 original-bytecode fixtures. New campaign IDs retain native implementation, comparison equivalence, integration and replacement as none. Explicit entry ranges retain Ghidra discovery gaps; full initialization, visibility/tutorial gates and campaign Mini mode-4 return remain pending. Shared documents add only UI26 scope; central accounting preserves other subsystem entries and prior evidence.",
+      "validation": {
+        "status": "pending",
+        "evidence": [
+          "UI26.original"
+        ],
+        "reason": "UI26 records 269 original-only observations with private dependency stubs and immutable-input verification. No native equivalence or live campaign bridge claim; full initialization, mode-4 confirmation/return, ownership and Region Entry require separate validation. Census/register metadata reviewed without rerunning unrelated historical contracts."
+      }
+    },
+    {
       "behaviors": [
         {
           "after_sha256": "e64035336f31cc6d607bfdf8b5649261b1cc1e3b5a803577b477fe32ac24efb9",
@@ -719,6 +981,50 @@
         "status": "pending",
         "evidence": [],
         "reason": "NS08 navigation was already independently validated by 98 regression tests, normal/sanitized installed-map predicate/pixel/restart checks and installed base-0 ANI arrival/continuation. Its immutable evidence is retained without source refresh. Both coverage guard suites passed 43 checks each on this isolated tree, and the audit has no errors or census drift. Adoption and shared documentation changes do not rerun unrelated engine comparisons or promote runtime statuses; historical stale fingerprints remain pending."
+      }
+    },
+    {
+      "id": "coverage-commit-hook-reconcile-84a42ef",
+      "reason": "Reconcile exact metadata hashes against the committed coverage adoption at 84a42ef. Reviewed the staged trajectory and campaign registers, evidence links and remaining gaps; preserve their existing scoped receipts and historical provenance. Shared research index, ledger, central register, generated summary and test instructions now include both prepared chunks. TOOL.coverage-gate changes only through linked test documentation; hook/checker implementation is unchanged.",
+      "files": [
+        {
+          "after_sha256": "d9b7c45ce8dab09bf5da9ae1a1c58c99c8de1e9fe84156cdb859e5e433bb22a8",
+          "before_sha256": "9aad11760b293ac69a0fe71590022703d4cb651bfbf96d96c1bef49b9bc086b5",
+          "path": "research/runtime/README.md"
+        },
+        {
+          "after_sha256": "adff9d759d6ef4ccad9ec8e8da845de6f959746567698d9675f137cb3d501aeb",
+          "before_sha256": "98dad6588b676bd2dc7595f759e069afd407dccbe4a7706d2758127507311146",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "7f2024ca73b32025520071b37b10cbfce9cf0cb16e28fa329411c000f431875f",
+          "before_sha256": "c3c7732290c94712244d2e74358487ab77c253f16ce3196a23a0d98635904ff9",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "6d844a17a46efc6dd870851ab0611cb48109cf8e66471f15c6872084ae255b83",
+          "before_sha256": "ee3cab39f50b28b860a1514e03386b4829fa18c059576b88cd9d5e370a414a15",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "05359e8206231e17f82eda1f588f416443810b61c2a14de8da4e8b61beedf428",
+          "before_sha256": "3a420d94a768347b4312d2778599e0e430e11bca2b82a37552621f29cf1067b7",
+          "path": "tests/README.md"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "c78df6a6f04a75951c52180c3ce2885865c7862f47a099c51467a5704fe6bb9b",
+          "before_sha256": "b713312ef00e878317ef259663548f358ffe92a9c53f60425bbe3aeee3d3819f",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Metadata reconciliation and test-documentation updates only; no engine, protocol or gate algorithm edits and no coverage status promotions. Audit and gate guard suites each pass 43 tests. Original/native trajectory execution and bounded original campaign observations retain their separately registered evidence and limitations."
       }
     }
   ]

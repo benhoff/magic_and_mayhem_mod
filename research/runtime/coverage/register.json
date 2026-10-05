@@ -9973,6 +9973,256 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TL.effect-trajectory-step",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Whole effect trajectory stepping from authored state",
+      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5108992,
+          "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_trajectory.cpp",
+        "reconstruction/rendering/effect_trajectory.hpp",
+        "reconstruction/rendering/effect-trajectory/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-trajectory-reference.cpp",
+        "tests/effect-trajectory-test.cpp",
+        "tools/test-effect-trajectory.py"
+      ],
+      "evidence": [
+        "TL06.trajectory-original",
+        "TL06.trajectory-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-movement-recount",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect movement parent and recount production remain open",
+      "scope": "Parent 004883f0 projection/recount production, cell membership changes, collision and type-dependent termination remain unimplemented and untested; trajectory initialization and XY-only 004df5d0 are separate gaps; leaf comparison does not admit installed moving effects to lighting",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Parent 004883f0 projection/recount production, cell membership changes, collision and type-dependent termination remain unimplemented and untested; trajectory initialization and XY-only 004df5d0 are separate gaps; leaf comparison does not admit installed moving effects to lighting"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.main-new-game",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Main campaign reset and ingress",
+      "scope": "Original local-0 ordering and request, privately stubbed loading; no live ingress",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4879808,
+          "scope": "Original local-0 ordering and request, privately stubbed loading; no live ingress",
+          "recovered_range": "campaign-entry-4a75c0"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [
+        "tools/export-campaign-menu-support.py"
+      ],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-navigation",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Realm custom lifecycle and Mini ingress",
+      "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5579536,
+          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+          "recovered_range": "campaign-entry-552310"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5576608,
+          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+          "recovered_range": "campaign-entry-5517a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5579280,
+          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+          "recovered_range": "campaign-entry-552210"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.region-admission",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Selected region admission and occupancy",
+      "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5564048,
+          "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5566144,
+          "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-auxiliary",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Realm auxiliary callback flags",
+      "scope": "Original stdcall index-to-flag and cue mapping; full destination pushes static only",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5569824,
+          "scope": "Original stdcall index-to-flag and cue mapping; full destination pushes static only",
+          "recovered_range": "campaign-entry-54fd20"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-initialization-gap",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Realm initialization and campaign bridge remain open",
+      "scope": "Resource probing, visibility, tutorial handling, campaign Mini mode-4 return and Qt projection remain unexecuted/unimplemented",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056544,
+          "relation": "data",
+          "scope": "Resource probing, visibility, tutorial handling, campaign Mini mode-4 return and Qt projection remain unexecuted/unimplemented"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -14672,6 +14922,114 @@
           "equals": 70
         }
       ]
+    },
+    {
+      "id": "TL06.trajectory-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
+      "record": "research/runtime/effect-trajectory.json",
+      "sha256": "7c86123009abb808c42eeed31e4cd1f69b9f68d7ce017528fd64af9124e42c22",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 8192
+        },
+        {
+          "pointer": "/steps",
+          "equals": 262144
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL06.trajectory-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
+      "record": "research/runtime/effect-trajectory.json",
+      "sha256": "7c86123009abb808c42eeed31e4cd1f69b9f68d7ce017528fd64af9124e42c22",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 8192
+        },
+        {
+          "pointer": "/steps",
+          "equals": 262144
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "UI26.original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "269 original-bytecode fixtures with privately stubbed dependencies; contract observations only, no native equivalence or live integration",
+      "record": "research/runtime/campaign-menu-engine-contract.json",
+      "sha256": "2a0ee2743e0254c52dcd8f55d72f0245c917de018b2d64810e78883f66cf9836",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/main_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/occupancy_cases",
+          "equals": 25
+        },
+        {
+          "pointer": "/admission_cases",
+          "equals": 216
+        },
+        {
+          "pointer": "/auxiliary_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/navigation_cases",
+          "equals": 14
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -15905,6 +16263,56 @@
           ]
         }
       ]
+    },
+    {
+      "id": "campaign.realm-vtable-prefix",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6056544,
+        "relation": "data",
+        "scope": "Six reviewed slots only"
+      },
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "complete": false,
+      "scope": "Only selected lifecycle and input branches observed; later slots and resource initialization not recovered",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -16173,6 +16581,23 @@
         "tests/effect-lighting-installed.cpp",
         "tools/test-effect-lighting.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-trajectory",
+      "level": "headless",
+      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
+      "behaviors": [
+        "TL.effect-trajectory-step"
+      ],
+      "evidence": [
+        "TL06.trajectory-original",
+        "TL06.trajectory-native"
+      ],
+      "tests": [
+        "tests/effect-trajectory-reference.cpp",
+        "tests/effect-trajectory-test.cpp",
+        "tools/test-effect-trajectory.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -16220,6 +16645,51 @@
       "document": "research/runtime/preferences-engine-contract.md",
       "evidence": "UI22.enter",
       "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-4a75c0",
+      "build": "nocd-40209ca7",
+      "start": 4879808,
+      "end": 4879816,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-5517a0",
+      "build": "nocd-40209ca7",
+      "start": 5576608,
+      "end": 5576616,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-552310",
+      "build": "nocd-40209ca7",
+      "start": 5579536,
+      "end": 5579544,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-552210",
+      "build": "nocd-40209ca7",
+      "start": 5579280,
+      "end": 5579288,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-54fd20",
+      "build": "nocd-40209ca7",
+      "start": 5569824,
+      "end": 5569832,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
     }
   ],
   "register_imports": [
@@ -16237,10 +16707,20 @@
       "path": "research/runtime/effect-record-placement-coverage.json",
       "sha256": "cdc1f8c941a99530c19449b78d0cf030017d8d85f202f9d28aed64bee117ac05",
       "scope": "Reviewed common placement, owned policy, creation/type/movement gaps, incomplete 89-entry type dispatch and renewed installed table evidence reconciled into central register"
+    },
+    {
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "sha256": "616799ab7070e53153b79371e8eb7245b527b314602d13605222e9c7543ede2e",
+      "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
+    },
+    {
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "sha256": "db0ef0194f43fe18e7e8801e0b7f3f7d1ddef871867f5253ba5ab8885866d4e4",
+      "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-navigation-commit.json",
-    "sha256": "b8a694e08de5e338fd0f0f2c547e8f71dff4a16bdb3bc555e11dc97bf18ce4ed"
+    "path": "research/runtime/coverage/source-index-campaign-contract.json",
+    "sha256": "6acb1aff25af0b9d8126405fc990107724bfa7c3b4e2a295486d831bcbd245d0"
   }
 }

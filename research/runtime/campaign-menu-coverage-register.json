@@ -1,0 +1,337 @@
+{
+  "schema": 1,
+  "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement.",
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "CP.main-new-game",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Main campaign reset and ingress",
+      "scope": "Original local-0 ordering and request, privately stubbed loading; no live ingress",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4879808,
+          "scope": "Original local-0 ordering and request, privately stubbed loading; no live ingress",
+          "recovered_range": "campaign-entry-4a75c0"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [
+        "tools/export-campaign-menu-support.py"
+      ],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-navigation",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Realm custom lifecycle and Mini ingress",
+      "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5579536,
+          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+          "recovered_range": "campaign-entry-552310"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5576608,
+          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+          "recovered_range": "campaign-entry-5517a0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5579280,
+          "scope": "Reviewed six-slot prefix; isolated Escape and pending-return branches only",
+          "recovered_range": "campaign-entry-552210"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.region-admission",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Selected region admission and occupancy",
+      "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5564048,
+          "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5566144,
+          "scope": "Isolated occupancy, battle-special-case and capacity branches; not complete region-click availability"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-auxiliary",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Realm auxiliary callback flags",
+      "scope": "Original stdcall index-to-flag and cue mapping; full destination pushes static only",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5569824,
+          "scope": "Original stdcall index-to-flag and cue mapping; full destination pushes static only",
+          "recovered_range": "campaign-entry-54fd20"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/campaign-menu-contract-reference.cpp",
+        "tools/test-campaign-menu-contract.py"
+      ],
+      "evidence": [
+        "UI26.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-initialization-gap",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Realm initialization and campaign bridge remain open",
+      "scope": "Resource probing, visibility, tutorial handling, campaign Mini mode-4 return and Qt projection remain unexecuted/unimplemented",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6056544,
+          "relation": "data",
+          "scope": "Resource probing, visibility, tutorial handling, campaign Mini mode-4 return and Qt projection remain unexecuted/unimplemented"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "UI26.original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "269 original-bytecode fixtures with privately stubbed dependencies; contract observations only, no native equivalence or live integration",
+      "record": "research/runtime/campaign-menu-engine-contract.json",
+      "sha256": "2a0ee2743e0254c52dcd8f55d72f0245c917de018b2d64810e78883f66cf9836",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/main_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/occupancy_cases",
+          "equals": 25
+        },
+        {
+          "pointer": "/admission_cases",
+          "equals": 216
+        },
+        {
+          "pointer": "/auxiliary_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/navigation_cases",
+          "equals": 14
+        }
+      ]
+    }
+  ],
+  "scenarios": [],
+  "dispatch_tables": [
+    {
+      "id": "campaign.realm-vtable-prefix",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6056544,
+        "relation": "data",
+        "scope": "Six reviewed slots only"
+      },
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "complete": false,
+      "scope": "Only selected lifecycle and input branches observed; later slots and resource initialization not recovered",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        }
+      ]
+    }
+  ],
+  "recovered_ranges": [
+    {
+      "id": "campaign-entry-4a75c0",
+      "build": "nocd-40209ca7",
+      "start": 4879808,
+      "end": 4879816,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-5517a0",
+      "build": "nocd-40209ca7",
+      "start": 5576608,
+      "end": 5576616,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-552310",
+      "build": "nocd-40209ca7",
+      "start": 5579536,
+      "end": 5579544,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-552210",
+      "build": "nocd-40209ca7",
+      "start": 5579280,
+      "end": 5579288,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-54fd20",
+      "build": "nocd-40209ca7",
+      "start": 5569824,
+      "end": 5569832,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    }
+  ],
+  "classifications": [],
+  "api_bindings": []
+}

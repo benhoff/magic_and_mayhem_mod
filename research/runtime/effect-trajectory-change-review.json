@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "reviews": [
+    {
+      "id": "effect-trajectory-20261005-recorded",
+      "reason": "Recover the entire call-free 004df500 trajectory leaf using owned disjoint state. Whole original comparison checks every word and guards over 262144 continuation steps; independent unit expectations cover signed wrap, XY suppression and unconditional counters. Add standalone CMake target, research, focused import, source census and scoped ledger milestone. Preserve all prior fingerprints and unrelated work.",
+      "files": [
+        {
+          "after_sha256": "d292bb922122dbcab01647fcb74e594f9b9d217e57434257f1598a0c598d581e",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect-trajectory/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "9a271f05ef153cf3032da71f8ada0e1c33562a92cf1c7804d050ccb884611024",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_trajectory.cpp"
+        },
+        {
+          "after_sha256": "1a668bd363315bda2f957ba8ce5c98c1aa9d75535d9b93005456aa5764a3b839",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_trajectory.hpp"
+        },
+        {
+          "after_sha256": "6bd78e36efac5c0046a67a073a9a01b2041bfba8dfd1082ef2d99d4c858c1b3e",
+          "before_sha256": "ab621d47b6fb5e317b9ccda9d512845083dc345728c2cc06e6eff913cb8f7837",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "5a44380f3df840a7f9df2630da04de746c18b4c72e97298508dc052231f581b4",
+          "before_sha256": "9beae2683ccc8aa1ce351c3b28027690f2b780be38cc9ee99eb78d023b2e65aa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "616799ab7070e53153b79371e8eb7245b527b314602d13605222e9c7543ede2e",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "09bb50ef8511b3d84047aaeceff22a6dbd5f0b29454a928b747b351f7bc4cdb1",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory-source-index-reviewed.json"
+        },
+        {
+          "after_sha256": "7c86123009abb808c42eeed31e4cd1f69b9f68d7ce017528fd64af9124e42c22",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory.json"
+        },
+        {
+          "after_sha256": "621482d995b9018d309073e1b9fd8b47c5376c26de31b738ac98aab57898cb9a",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory.md"
+        },
+        {
+          "after_sha256": "60bc49706f9a90de4aae22f87d375986762114d86ffb3c537666f4c7d9902a28",
+          "before_sha256": null,
+          "path": "tests/effect-trajectory-reference.cpp"
+        },
+        {
+          "after_sha256": "31c92f80f0f02708fc381d70f11d6a3ef50308ddadb91007fb0a02216c4f0293",
+          "before_sha256": null,
+          "path": "tests/effect-trajectory-test.cpp"
+        },
+        {
+          "after_sha256": "6ff4a08c796ac7bd35abd1b32ff350a635b1768d0693cf4525dc0b4a8a3fcd4a",
+          "before_sha256": null,
+          "path": "tools/test-effect-trajectory.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "ebc1656bad64ca7f86aeb4d827ff761d57fe2943a28500bbef9780e35cb210dc",
+          "before_sha256": null,
+          "id": "TL.effect-trajectory-step"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL06.trajectory-original",
+          "TL06.trajectory-native"
+        ],
+        "reason": "Hash-pinned unmodified original leaf, 64-bit native and ASan/UBSan streams match across 8192 fixtures and 262144 steps; strict CMake/CTest and normal/sanitized unit checks pass; 2927 immutable originals verified before and after. This records authored trajectory stepping only, not installed setup, parent movement or recount production."
+      }
+    },
+    {
+      "id": "effect-trajectory-20261005-parent-pending",
+      "reason": "Track the actual parent entry 004883f0 separately from internal iteration block 00488540; retain movement/recount, cell membership, collision/type termination, initialization and XY-only step as explicit unimplemented contracts.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "7cdc64129c891a0f29759760dbdf584ccdacb88e32bd36ea1bc0574480b15bee",
+          "before_sha256": null,
+          "id": "TL.effect-movement-recount"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:2c2ff257e3f10374d84cc4db264465b24b7a72f0e37376554524e9d323c9b5c3",
+        "behaviors_without_implementation:2c2ff257e3f10374d84cc4db264465b24b7a72f0e37376554524e9d323c9b5c3",
+        "behaviors_without_scenarios:2c2ff257e3f10374d84cc4db264465b24b7a72f0e37376554524e9d323c9b5c3"
+      ],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Only static call/offset tracing for the movement parent; no parent comparison, native recount update, installed initialization or moving-light integration yet. Historical effect placement/table comparisons remain unchanged."
+      }
+    }
+  ]
+}

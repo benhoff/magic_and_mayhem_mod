@@ -1,0 +1,31 @@
+{
+  "all_match": true,
+  "live_validated": false,
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "fixtures": 8192,
+  "steps": 262144,
+  "primary_z": 156944,
+  "alternate_z": 105200,
+  "skipped_xy": 78398,
+  "primary_xy": 109554,
+  "alternate_xy": 74192,
+  "output_sha256": "0c7a0b98bf5629d420a0fa17bbb49e91e070a85418a33007202bff5b738ca0d3",
+  "helper_sha256": {
+    "original": "7ac6b1d94f6b96b8b9afe05327c20c1d9e4735dda74f7539d67f4729a06bf6be",
+    "native": "9dc2f5f03c62b2f24ed7380ee8960cc071ade3922c0ce56eb6e4b8ea6ffa07b6",
+    "sanitized": "8d8ff8cf2f286207ed4b7d739df3fbbc3bf67b8c7fe31838d89f9cc37d7891c2"
+  },
+  "registered_source_sha256": {
+    "reconstruction/rendering/effect_trajectory.cpp": "9a271f05ef153cf3032da71f8ada0e1c33562a92cf1c7804d050ccb884611024",
+    "reconstruction/rendering/effect_trajectory.hpp": "1a668bd363315bda2f957ba8ce5c98c1aa9d75535d9b93005456aa5764a3b839",
+    "reconstruction/rendering/effect-trajectory/CMakeLists.txt": "d292bb922122dbcab01647fcb74e594f9b9d217e57434257f1598a0c598d581e",
+    "tests/effect-trajectory-test.cpp": "31c92f80f0f02708fc381d70f11d6a3ef50308ddadb91007fb0a02216c4f0293",
+    "tests/effect-trajectory-reference.cpp": "60bc49706f9a90de4aae22f87d375986762114d86ffb3c537666f4c7d9902a28",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-effect-trajectory.py": "6ff4a08c796ac7bd35abd1b32ff350a635b1768d0693cf4525dc0b4a8a3fcd4a"
+  },
+  "unit_passed": true,
+  "sanitized_unit_passed": true,
+  "cmake_tests_passed": 1,
+  "boundary": "Whole unmodified 004df500 with owned disjoint 14-word state, three coordinate words and change counter; no callbacks, patches or stubs; authored initial trajectory state, no initializer, parent movement, cells, recount, collisions or live replacement"
+}

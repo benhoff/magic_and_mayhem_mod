@@ -1,0 +1,133 @@
+{
+  "success": true,
+  "main_cases": 7,
+  "occupancy_cases": 25,
+  "admission_cases": 216,
+  "auxiliary_cases": 7,
+  "navigation_cases": 14,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "real_game_launched": false,
+  "live_validated": false,
+  "original_bytecode_unchanged": true,
+  "scope": "Original Main New Game request/reset ordering, noncampaign controls, occupancy, selected region admission, auxiliary flags, Escape Mini ingress and pending return. Config/wizard/resource/script/audio dependencies privately stubbed; no full initialization, live return, Qt bridge or gameplay.",
+  "anchors": {
+    "0x4a75c0": "51535556578bf989",
+    "0x54e690": "8b910401000033c0",
+    "0x54eec0": "568bf18b0d519f65",
+    "0x54fd20": "b916000000e8763c",
+    "0x552310": "8b44240856572d00",
+    "0x5517a0": "81ec0801000033c0",
+    "0x552210": "8b81370a000085c0"
+  },
+  "sources": {
+    "tools/test-campaign-menu-contract.py": "41628ba0ad43ed5e5a68b126c5d4754bb01d615b8efb4808c4b26a7db7fb022e",
+    "tests/campaign-menu-contract-reference.cpp": "e46981256db1f1806f2e633e14f8a99287b7e39adf14bea57b9f8e6fb2e24317",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/export-campaign-menu-support.py": "8138c3fe703f2a39d27f92e4a484ffeed2b22df913913f0059b007479ed9b1c7",
+    "tools/ghidra/ExportPersistenceProgression.java": "c11ace07ee8e512656dc50fd7fb56a461b57ce4dee63348ac7c304c9845f24f5"
+  },
+  "artifacts": {
+    "original-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reference": "c29d52fc83c065e96e5c0ae9981b9b9d7c5b5e00e1361fd3fdc8bf9cb36d1f13",
+    "campaign_fixture_bytes.h": "49936a05015acbf692eb001a6678a8abe711b82722b532027023f5833726b27a",
+    "reference.log": "d4f42801c135b8db14064070519cefef824d1e7171bd3197cfd2a10e06f5b8c2"
+  },
+  "static_export": {
+    "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "scope": "Static only; no campaign launch or native/live integration",
+    "ranges": {
+      "main": [
+        4879808,
+        4880452
+      ],
+      "realm_view": [
+        5566656,
+        5580096
+      ],
+      "startup": [
+        4977328,
+        4977456
+      ],
+      "realm_state": [
+        5562928,
+        5566720
+      ],
+      "wizard_start": [
+        5847760,
+        5848400
+      ]
+    },
+    "command": [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/toolchain/ghidra_12.1.4_PUBLIC-arm64-uzxqvk1_/support/analyzeHeadless",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/decompiled/nocd-nn0_667n/project",
+      "MagicMayhem",
+      "-process",
+      "Chaos.exe",
+      "-readOnly",
+      "-noanalysis",
+      "-scriptPath",
+      "/home/hoff/swdev/magic_and_mayhem_mod/tools/ghidra",
+      "-postScript",
+      "ExportPersistenceProgression.java",
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/decompiled/campaign-menu-support-7r16wsp7/c",
+      "4a75c0",
+      "4c1370",
+      "4c1380",
+      "54e690",
+      "54eec0",
+      "54f0c0",
+      "54fb30",
+      "54fd20",
+      "54fd70",
+      "5517a0",
+      "552210",
+      "5522f0",
+      "552310",
+      "-max-cpu",
+      "2"
+    ],
+    "sources": {
+      "tools/export-campaign-menu-support.py": "8138c3fe703f2a39d27f92e4a484ffeed2b22df913913f0059b007479ed9b1c7"
+    },
+    "artifacts": {
+      "wizard_start.asm": "b2c60b19cbf17300d30f5c868b0307a87dd12cbaf6b334653f554ef20bd7b612",
+      "realm_view.asm": "401a15278389ebe8f79c6d73c0ab871f400f81441e9cd47247b2c5376a7d8f48",
+      "realm_state.asm": "47cdf537afb0f00ce9249488c9b254561fa0c302c4cd8ac9e8bbc751907a7609",
+      "main.asm": "5a3c971da9d7e220ab482b0fcf2cb191f7568a0c4baf7174384563e14e3049e7",
+      "startup.asm": "813458aa15d22361546e7d1c525343e06d80b2f1938ab71f593488d7bbb1fc18",
+      "objects.json": "ce36185004798e7da9941b6739f012942676f144d3ec7db391d73e01d1a3c558",
+      "tables.json": "ddb3231b3fbdd71f34358f870a8b51853481f2b589c57189940d3ccbf99b92f6",
+      "realm-configs.json": "9e96452a32306f079cae2e14c74131fa86bff879e8ed53416bd15b726476c723",
+      "c/004a75c0.refs": "6d26dc882c9942d4488fb0b0929d703c021c39755bce260cb1b527c383e40d4b",
+      "c/0054e690.c": "2842d7ee512bee599fcdaee80f0736df8b334148c1cdf974f95b68b5c890d1f4",
+      "c/0054eec0.refs": "6c23a529111b9f631a3b4f8d6a1b4f9fee4a39f51fcc8ed264823c80e64d202e",
+      "c/00552210.refs": "c94e8e9c4a22e3b4f99991e5a4e3dcb2728f1c328bc70d54acad05973f78add8",
+      "c/0054fd70.c": "420be979e31335ddb22d079e4d1f224869eb9d6a0cff6e3e94e1b2f7ca442948",
+      "c/004c1370.refs": "e9ca9d9e38fea3640c4780c49bd26890090ab8e7476c221f18a79e01ea48322d",
+      "c/005522f0.refs": "bbfd69ea5725c5052a969e1e3049b8aadff0975d75439717161640dcfa6dd07f",
+      "c/004a75c0.c": "b1d98325f147a638b9f7b293c42825b7645cd0b593b5154e30af45fb2ae9d69b",
+      "c/004c1380.c": "7a8922b6971ffa8df4bed6fa172d4bdf0c6dbcc0fb4167f82dd4497107bc9101",
+      "c/004c1370.c": "4dff89e7107f8e762548252ea7350eb28658272ca2abc3e3a91f372364be6d4c",
+      "c/00552210.c": "6f05888353369468a2c62cd6d830cd4b0e608e877650ea5a52f271e1c7bd81f4",
+      "c/0054fb30.refs": "1641be93769c765b8ea20185df837cc6104ed4b50a701651eee809e6bb0e8067",
+      "c/0054eec0.c": "904b6cd628a5e55936073f81306a8145a5b4e16dfec233fddb1872fb5e504686",
+      "c/0054fd70.refs": "2eb8704e7bc5e004213cef5ebb9c3ddb657c663d83f4105d076a27c605a238ea",
+      "c/0054f0c0.c": "8b7f7ec3c6a26b3ac7211bbb0167d9ee5392411e872041e939239bc902bf3c69",
+      "c/0054f0c0.refs": "c95bee9a1016212ab5c6968a8d0c7d8968b9d985f6a18bc7bb8b5fde74cf378d",
+      "c/0054fb30.c": "cf05b2aa0000525e94045880c821be13cbb101582f44e6e89964f247427393fc",
+      "c/00552310.refs": "eec30ce8da5918659ef03e77023c1efc2161b3afd46c761067deb596c41c7acc",
+      "c/004c1380.refs": "9b034a6e7e51cf33066c1d56b0a5e55e404200d6b277847da344c518378abf46",
+      "c/0054fd20.c": "70e78021b6a8cfe0a67eee44b8d0ad1be1c9b6f445966d9c0029a454f0cb85a6",
+      "c/005522f0.c": "b9b392990039b3a9b9087c1234ed8cc626e83b7bb5e15c2c040b6b651ae979e0",
+      "c/00552310.c": "aa1caec9d8b87762c3d5d62abb9d4d8baed3754dd2f5d1a7c6cc6eac19195934",
+      "c/0054e690.refs": "2639d753e2a09561f87a645fed3ad4b47903386e8751bc0f3efafb7bebd73911",
+      "c/005517a0.refs": "41a0b5a1868016c42bb9c4843633296585ee05c0c8c9161edf6575e8582c9b1f",
+      "c/0054fd20.refs": "59a0ae4d2f0c1901dad09f7aab38b5d46e028ff00bbc4c17bc52415edb0b36d9",
+      "c/005517a0.c": "76460c65f160b9d4c7025d8d45332840acfb53ebd671084ef5198ba644fe8560"
+    }
+  },
+  "experiment": "working/tests/campaign-menu-contract/run-yhsaxukq",
+  "static_directory": "working/decompiled/campaign-menu-support-7r16wsp7",
+  "original_after_sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+}
