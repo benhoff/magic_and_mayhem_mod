@@ -50,6 +50,28 @@ void TerrainLightField::stamp(TerrainLightSource s){
   }
  }
 }
+void TerrainLightField::stampStatic(TerrainLightSource s){
+ if(s.column>=width_ || s.row>=height_ || s.layer>=mapLayers_ || s.size<2 || s.size>17 || width_<s.size || height_<s.size)throw std::invalid_argument("Unsupported static terrain light source bounds/size");
+ const auto wrap=[](int v,unsigned limit){if(v<0)v+=int(limit);else if(v>=int(limit))v-=int(limit);return unsigned(v);};
+ const auto n=s.size;
+ for(unsigned dz=0;dz<n;++dz)for(unsigned dy=0;dy<n;++dy)for(unsigned dx=0;dx<n;++dx){
+  const auto value=kernels_[n][(dz*n+dy)*n+dx];
+  const auto add=[&](int z,int ys,int xs){
+   if(z<0 || 2*z>=int(mapLayers_))return;
+   const auto x=wrap(int(s.column)+xs*int(dx),width_),y=wrap(int(s.row)+ys*int(dy),height_);
+   auto& cell=buffers_[1][(std::size_t(z)*height_+y)*width_+x];
+   cell=std::int8_t(std::clamp(int(cell)+int(value)+127,-127,0));
+  };
+  // Original always adds the two diagonal signs, aliasing twice at dx=dy=0.
+  // Cross signs require both dx and dy nonzero; negative Z excludes dz=0.
+  const int positive=int(s.layer/2)+int(dz),negative=int(s.layer/2)-int(dz);
+  add(positive,1,1);add(positive,-1,-1);
+  if(dx && dy){add(positive,-1,1);add(positive,1,-1);}
+  if(dz){add(negative,1,1);add(negative,-1,-1);
+   if(dx && dy){add(negative,-1,1);add(negative,1,-1);}
+  }
+ }
+}
 void TerrainLightField::publish(){buffers_[0]=buffers_[3];}
 std::int8_t TerrainLightField::at(unsigned x,unsigned y,unsigned z) const{
  if(x>=width_ || y>=height_ || z>=mapLayers_)throw std::out_of_range("Terrain light cell outside field");

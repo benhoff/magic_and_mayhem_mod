@@ -1,0 +1,89 @@
+{
+  "all_match": true,
+  "live_validated": false,
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "trials": 128,
+  "ticks": 3072,
+  "combined_ticks": 1536,
+  "gates": 32768,
+  "stamps": 4096,
+  "buffer_bytes": 104160840,
+  "state_values": 18432,
+  "compared_builds": [
+    "original and native 32-bit",
+    "native 64-bit",
+    "native 64-bit ASan/UBSan"
+  ],
+  "output_sha256": "f9ddf81063932432fbcd8bf08070c1afd73453d2ccd912f04495ef816287f6d9",
+  "helper_sha256": {
+    "original": "1846467a9ea9028c615a98ba6c6933aa8cf4e1a62775ba23af2f9ac424a21e41",
+    "native": "473056a24defb99c170ef02bee60e81d3e6771b9138214946bbfe7cc9a77164b",
+    "sanitized": "5cdb4d8c7112191f0138892f37d3348dd08760cf7d5886642218642f6a050771",
+    "unit": "bf66d16f3fdaf676ce3e1db5f7542c5255d322aae2ec5bf83a856bf85d083b00",
+    "unit-sanitized": "fd19ac976e613c6f81c8a94b7626b8ace26717f6bde282b41dcfe2fcf828ca73"
+  },
+  "source_and_input_sha256": {
+    "working/game-nocd/Chaos.exe": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "tools/test-terrain-static-lights.py": "fdb818bfdd04fc00d075e1b43c54eba5d831cbff516e683544bc678fe9434fdb",
+    "working/tests/terrain-static-source/tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "working/tests/terrain-static-source/tests/terrain-static-lighting-reference.cpp": "37a114ac7e519d56fd3d3182966285139169b89283aa9001eae15155c05ed04b",
+    "working/tests/terrain-static-source/tests/terrain-static-lighting-test.cpp": "bc94ff97151b95a66520e8f480d2fc01da35235b8e59c8a5fec2d8d91dee1879",
+    "working/tests/terrain-static-source/reconstruction/rendering/terrain_lighting.cpp": "71362a12b9c39430f935172eee6b86bdd69e569baeb802f2b5bcef86941128d6",
+    "working/tests/terrain-static-source/reconstruction/rendering/terrain_lighting.hpp": "0d6dbe9a670c7c9fe9d21c5daa23cdb704db9a75ebb2f1f7112c9727c2e88762",
+    "working/tests/terrain-static-source/reconstruction/rendering/terrain_creature_lighting.cpp": "230416703569b15643bf13481af726beaf3c3db0308a694fe6ba268b9a09e354",
+    "working/tests/terrain-static-source/reconstruction/rendering/terrain_creature_lighting.hpp": "d7202a69c681ab0a8f2b161b746542e08c75f48e03f5c3e5877e2651817b1d75",
+    "working/tests/terrain-static-source/reconstruction/rendering/terrain_static_lighting.cpp": "6f8b744d24544c844b92211896be4a2404beba3711761f9cdacc95ac7d1ac587",
+    "working/tests/terrain-static-source/reconstruction/rendering/terrain_static_lighting.hpp": "f371003796bfe462159ef0ed49433cd2be51b2658b903aa9a211b20b75c7c589"
+  },
+  "boundary": "Unmodified 004ff700/004ff820 admission, 0049cf60 light-index selection, 004f1c60 additive stamp and 004f2ad0 two-phase updater; 64 combined 004f27a0 creature/static fixtures with preallocated guarded fields; bounded indices/coordinates and owned records; no captured entity inputs, weighted interpolation or live replacement",
+  "evidence_directory": "working/tests/terrain-static-lights/run-sy_b4kwb",
+  "registered_source_sha256": {
+    "working/game-nocd/Chaos.exe": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "tools/test-terrain-static-lights.py": "fdb818bfdd04fc00d075e1b43c54eba5d831cbff516e683544bc678fe9434fdb",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tests/terrain-static-lighting-reference.cpp": "37a114ac7e519d56fd3d3182966285139169b89283aa9001eae15155c05ed04b",
+    "tests/terrain-static-lighting-test.cpp": "bc94ff97151b95a66520e8f480d2fc01da35235b8e59c8a5fec2d8d91dee1879",
+    "reconstruction/rendering/terrain_lighting.cpp": "71362a12b9c39430f935172eee6b86bdd69e569baeb802f2b5bcef86941128d6",
+    "reconstruction/rendering/terrain_lighting.hpp": "0d6dbe9a670c7c9fe9d21c5daa23cdb704db9a75ebb2f1f7112c9727c2e88762",
+    "reconstruction/rendering/terrain_creature_lighting.cpp": "230416703569b15643bf13481af726beaf3c3db0308a694fe6ba268b9a09e354",
+    "reconstruction/rendering/terrain_creature_lighting.hpp": "d7202a69c681ab0a8f2b161b746542e08c75f48e03f5c3e5877e2651817b1d75",
+    "reconstruction/rendering/terrain_static_lighting.cpp": "6f8b744d24544c844b92211896be4a2404beba3711761f9cdacc95ac7d1ac587",
+    "reconstruction/rendering/terrain_static_lighting.hpp": "f371003796bfe462159ef0ed49433cd2be51b2658b903aa9a211b20b75c7c589",
+    "tools/test-terrain-creature-lights.py": "19ba8a4dcfd3cf15862624e008c643a95a64c28c6b7fcd55bcf625e7d72bd35c",
+    "tests/terrain-creature-lighting-reference.cpp": "52bf95a609c2c55073a58126aef7298e36ac2446cfa05e2c23e11add2a1a3e1e",
+    "tests/terrain-creature-lighting-test.cpp": "e42455818ade2b38b1358498bfe58b7acd0d643c5624454d9de31620df72a893"
+  },
+  "full_suites": {
+    "normal": {
+      "tests_passed": 67,
+      "log": "working/tests/terrain-static-lights/ctest-final.log",
+      "sha256": "4784e5685bff56efe966ef99e353891588d4d98743c5fa28ed7197381ae0ee90"
+    },
+    "ASan/UBSan": {
+      "tests_passed": 67,
+      "log": "working/tests/terrain-static-lights/ctest-san-final.log",
+      "sha256": "0ed18292b3a923954e319329212cdaed749e0251e9fb2ba917de0c81c09b9da1"
+    }
+  },
+  "manifest_checks": {
+    "original-before": {
+      "files": 2927,
+      "log": "working/tests/terrain-static-lights/run-sy_b4kwb/original-before.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    "original-after": {
+      "files": 2927,
+      "log": "working/tests/terrain-static-lights/run-sy_b4kwb/original-after.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  },
+  "creature_regression": {
+    "all_match": true,
+    "trials": 96,
+    "ticks": 2304,
+    "buffer_bytes": 18398280,
+    "state_values": 11520,
+    "output_sha256": "deaa406cbc34e840c121af18072323829acba09a8145534b7ea43f2238bc47fe",
+    "evidence_directory": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/terrain-creature-lights/run-w268cbv6"
+  }
+}
