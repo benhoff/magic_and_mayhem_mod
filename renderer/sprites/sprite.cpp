@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 namespace mnm::render {
-UploadedSpriteFrame::UploadedSpriteFrame(GlBlitter& renderer,const assets::Sprite& sprite,std::size_t index)
+UploadedSpriteFrame::UploadedSpriteFrame(GlBlitter& renderer,const assets::Sprite& sprite,std::size_t index,const SpriteColourTable* colours)
     :renderer_(renderer){
     if(index>=sprite.frames.size())throw std::runtime_error("Sprite frame index out of range");
     const auto& f=sprite.frames[index];
@@ -18,6 +18,7 @@ UploadedSpriteFrame::UploadedSpriteFrame(GlBlitter& renderer,const assets::Sprit
         if(!indices || indices->size()!=count || !f.paletteIndex || *f.paletteIndex>=sprite.palettes.size())
             throw std::runtime_error("Invalid indexed sprite pixels/palette");
     }else if(sprite.storage==assets::SpriteStorage::rgb565){
+        if(colours)throw std::invalid_argument("Palette override requires indexed sprite");
         if(!words || words->size()!=count || f.paletteIndex)throw std::runtime_error("Invalid RGB565 sprite pixels");
     }else throw std::runtime_error("Unknown sprite storage");
     Image pixels{int(f.width),int(f.height),std::vector<std::uint32_t>(count)};
@@ -26,7 +27,7 @@ UploadedSpriteFrame::UploadedSpriteFrame(GlBlitter& renderer,const assets::Sprit
         if(f.opaqueMask[i]>1)throw std::runtime_error("Sprite mask must contain zero or one");
         mask.pixels[i]=f.opaqueMask[i];
         if(indices){const auto c=sprite.palettes[*f.paletteIndex][(*indices)[i]];
-            pixels.pixels[i]=(std::uint32_t(c.red>>3)<<11)|(std::uint32_t(c.green>>2)<<5)|(c.blue>>3);
+            pixels.pixels[i]=colours?(*colours)[(*indices)[i]]:(std::uint32_t(c.red>>3)<<11)|(std::uint32_t(c.green>>2)<<5)|(c.blue>>3);
         }else pixels.pixels[i]=(*words)[i];
     }
     width_=int(f.width);height_=int(f.height);originX_=f.originX;originY_=f.originY;

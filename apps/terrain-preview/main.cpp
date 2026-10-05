@@ -35,6 +35,8 @@ int main(int argc,char** argv)try{
  p.addOption({"recovered-camera","Use recovered map binding, viewport and position setters"});
  p.addOption({"scroll","Recovered screen-direction scroll x,y; repeat in order","pixels"});
  p.addOption({"view","Raw view 0..3","index","0"});p.addOption({"visibility","Apply recovered visibility pass"});
+ p.addOption({"palette-shading","Apply recovered mode 0 palettes with explicit count 16 and levels 1 and powers 2"});
+ p.addOption({"light","Controlled uniform terrain light (-127..127); requires palette-shading","value","0"});
  p.addOption({"overlap","Use one anchor for every tile"});p.addOption({"output","New output prefix; writes .565, .png and .json, then exits","prefix"});p.process(app);
  bool ok=false;const auto view=p.value("view").toUInt(&ok);if(!ok || view>3 || !p.isSet("root"))throw std::runtime_error("Specify --root and view 0..3");
  auto configured=mnm::assets::AssetStore::create(p.value("root").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&configured))throw std::runtime_error(e->detail);
@@ -140,10 +142,14 @@ int main(int argc,char** argv)try{
  for(const auto& value:p.value("definitions").split(',')){const auto id=value.toUInt(&ok);if(!ok || tiles.size()>=9)throw std::runtime_error("Expected 1..9 definition IDs");const int row=tiles.size()/3,col=tiles.size()%3;
   tiles.push_back({id,{row,col,0,p.isSet("overlap")?256:256+32*(col-row),p.isSet("overlap")?160:96+16*(col+row),0,0,0,0}});}
  }
- mnm::render::GlBlitter renderer;const auto result=mnm::preview::renderTerrain(renderer,std::get<mnm::assets::TerrainCatalog>(catalog),std::get<mnm::assets::Sprite>(sprite),tiles,{view,world?camera.cutLevel:1},p.isSet("visibility"),world);
+ std::optional<mnm::reconstruction::PaletteShadingConfig> shading;
+ if(p.isSet("palette-shading")){shading.emplace();const auto light=p.value("light").toInt(&ok);if(!ok || light< -127 || light>127)throw std::runtime_error("Light must lie in -127..127");for(auto& tile:tiles)tile.state.light=std::int8_t(light);}
+ else if(p.isSet("light"))throw std::runtime_error("Light requires palette-shading");
+ mnm::render::GlBlitter renderer;const auto result=mnm::preview::renderTerrain(renderer,std::get<mnm::assets::TerrainCatalog>(catalog),std::get<mnm::assets::Sprite>(sprite),tiles,{view,world?camera.cutLevel:1},p.isSet("visibility"),world,shading);
  if(p.isSet("output")){
   QByteArray raw;for(auto word:result.pixels.pixels){raw.append(char(word&255));raw.append(char((word>>8)&255));}
   const auto prefix=p.value("output");writeNew(prefix+".565",raw);QFile png(prefix+".png");if(!png.open(QIODevice::WriteOnly|QIODevice::NewOnly) || !result.image.save(&png,"PNG"))throw std::runtime_error("Cannot save new PNG");
+  mapInfo.insert("palette_shading",bool(shading));if(shading){mapInfo.insert("palette_count",16);mapInfo.insert("controlled_light",p.value("light").toInt());}
   QJsonArray queue;for(const auto& item:result.queue){const auto& d=item.draw;queue.append(QJsonObject{{"tile",qint64(item.tile)},{"frame",qint64(d.frame)},{"role",qint64(d.role)},{"key",d.key},{"kind",d.kind},{"x",d.anchorX},{"y",d.anchorY},{"shade",d.shade}});}
   const auto rgba=result.image.convertToFormat(QImage::Format_RGBA8888);const auto rgbaHash=QCryptographicHash::hash(QByteArray(reinterpret_cast<const char*>(rgba.constBits()),rgba.sizeInBytes()),QCryptographicHash::Sha256).toHex();
   QJsonArray owners;for(const auto& owner:result.owners)owners.append(QJsonArray{owner.flags8,owner.flags10});

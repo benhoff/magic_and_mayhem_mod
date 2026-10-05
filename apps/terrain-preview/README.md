@@ -21,7 +21,7 @@ The 512x256 canvas uses explicit preview layout: a three-column diamond, zero
 world height/priority/light and initially clear owner flags. Layout is not a
 reconstruction of the upstream world traversal, camera, map or light system.
 Draws outside the bounded canvas are rejected. There is no frame ticking.
-Pixels use unshaded embedded palettes; recovered shade values are reported but
+By default, pixels use unshaded embedded palettes; recovered shade values are reported but
 original lighting/palette chains are not applied. Maximum uploads are 27 owned
 frames (body plus two layers per tile), released before returning the result.
 
@@ -58,7 +58,7 @@ Its default is `0,0,0,3,3`. Definition IDs, absolute column/row/layer and initia
 flag words come from the owned MAP reader. Layer supplies recovered queue height;
 anchors still use the local preview diamond/common-anchor layout. This does not
 select the top surface or recover camera placement. The app does not resolve
-object references, normalize post-load flags, create entities or shade pixels.
+object references, normalize post-load flags, create entities or generate spatial lighting.
 JSON includes map dimensions, region and original tile inputs for review.
 
 ```sh
@@ -231,3 +231,19 @@ wrapper validates native cameras before invoking original traversal, records
 unavailable/refused/exhausted cases separately and compares full initialized
 maps and accepted scene frames. See
 [expanded coverage](../../research/runtime/terrain-generated-coverage.md).
+
+Baseline palette shading is now available explicitly:
+
+```bash
+mnm-terrain-preview --root working/game-clean --palette-shading --light -17 \
+  --output working/shaded-terrain
+```
+
+This uses the recovered mode-0 palette builder with count 16, intensity and
+saturation levels 1, and powers 2. `--light` accepts -127..127 and supplies a
+controlled uniform fixture light to every submitted tile, including world and
+generated scenes. Spatial light generation, realm lighting configuration, and
+effect-chain selection remain outstanding. The upload cache distinguishes
+frames at different selected tables and retains owned textures. See
+[palette shading evidence](../../research/runtime/terrain-palette-shading.md)
+for original-binary comparisons and reproduction.

@@ -38,18 +38,20 @@ int main(int argc,char** argv){
             }
             f.opaqueMask[0]=1;indices[0]=0;words[0]=0; // Opaque zero must overwrite background.
             f.opaqueMask[1]=0;indices[1]=0;words[1]=0;
-            const unsigned palette=sample%4;
+            const unsigned palette=sample%4;SpriteColourTable colours{};
+            const bool override=indexed && sample%2;for(auto& word:colours)word=std::uint16_t(random());
             for(std::size_t i=0;i<35;++i)if(f.opaqueMask[i]){
                 auto pixel=std::uint32_t(words[i]);
                 if(indexed){const auto c=sprite.palettes[palette][indices[i]];
                     pixel=(std::uint32_t(c.red>>3)<<11)|(std::uint32_t(c.green>>2)<<5)|(c.blue>>3);}
+                if(override)pixel=colours[indices[i]];
                 expected.pixels[(i/7+2)*11+i%7+2]=pixel;
             }
             if(indexed){f.paletteIndex=palette;f.pixels=indices;}else f.pixels=words;
             sprite.frames.push_back(f);
             const auto destination=renderer.create({11,9,std::vector<std::uint32_t>(99,0x1234)},spriteFormat);
             {
-                UploadedSpriteFrame uploaded(renderer,sprite,0);sprite={};
+                UploadedSpriteFrame uploaded(renderer,sprite,0,override?&colours:nullptr);sprite={};colours.fill(0);
                 const auto before=renderer.stats();uploaded.draw(destination,-9,15);const auto after=renderer.stats();
                 require(after.uploads==before.uploads && after.nativeReadbacks==before.nativeReadbacks && after.copies==before.copies+1,"Draw did not retain GPU textures");
                 require(renderer.read(destination).pixels==expected.pixels,"Sprite mask/origin draw differs from CPU reference");
@@ -74,7 +76,7 @@ int main(int argc,char** argv){
         direct.frames[0]=f;direct.frames[0].paletteIndex=0;rejected([&]{UploadedSpriteFrame uploaded(renderer,direct,0);});
         direct.frames[0]=f;direct.frames[0].originX=INT32_MIN;
         {UploadedSpriteFrame uploaded(renderer,direct,0);rejected([&]{uploaded.draw(0,INT32_MAX,0);});}
-        direct.frames[0]=f;
+        direct.frames[0]=f;SpriteColourTable override{};bool refused=false;try{UploadedSpriteFrame uploaded(renderer,direct,0,&override);}catch(const std::invalid_argument&){refused=true;}require(refused,"Direct pixels accepted a palette override");
         // Failure while allocating the second surface must release the first.
         std::vector<SurfaceId> handles;for(unsigned i=0;i<63;++i)handles.push_back(renderer.create({1,1,{0}},{8,{}}));
         rejected([&]{UploadedSpriteFrame uploaded(renderer,direct,0);});

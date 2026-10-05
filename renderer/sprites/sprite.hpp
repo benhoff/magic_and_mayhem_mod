@@ -1,15 +1,18 @@
 #pragma once
 #include "blit.hpp"
 #include "sprite_loader.hpp"
+#include <array>
 
 namespace mnm::render {
+using SpriteColourTable=std::array<std::uint16_t,256>;
 inline constexpr PixelFormat spriteFormat{16,{0xf800,0x07e0,0x001f}};
 // An owned RGB565 upload and separate coverage texture. Indexed source colours
-// use embedded RGB >> 3/2/3, without original lighting/palette-chain construction.
+// use embedded RGB >> 3/2/3 or a supplied RGB565 table. Supplied colours
+// are consumed during construction; no caller buffer or palette pointer is retained.
 // Renderer must outlive this object; creation/drawing/destruction use its GUI thread.
 class UploadedSpriteFrame final {
 public:
-    UploadedSpriteFrame(GlBlitter& renderer,const assets::Sprite& sprite,std::size_t frame);
+    UploadedSpriteFrame(GlBlitter& renderer,const assets::Sprite& sprite,std::size_t frame,const SpriteColourTable* colours=nullptr);
     ~UploadedSpriteFrame();
     UploadedSpriteFrame(const UploadedSpriteFrame&)=delete;
     UploadedSpriteFrame& operator=(const UploadedSpriteFrame&)=delete;
