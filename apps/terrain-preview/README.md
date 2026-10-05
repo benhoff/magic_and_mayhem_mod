@@ -286,6 +286,9 @@ hash, admitted ambient/ramp, source requests and each tile's sampled light.
 The preview still uses explicit source requests and immediate publication.
 The separate recovered [creature light cycle](../../research/runtime/terrain-creature-lighting.md)
 now admits owned creature records by player relations and advances the eight-phase
-work/published/target cycle offline. Captured entity inputs, static-object lights,
-interpolation and live lighting remain outstanding. See also
+work/published/target cycle offline. The separate recovered
+[static-object cycle](../../research/runtime/terrain-static-lighting.md) adds wrapped
+region admission, saturated additive stamps and two-phase publication, with the
+combined creature/static updater compared offline. Captured entity inputs,
+object-driven preview scenes and live lighting remain outstanding. See also
 [per-cell lighting evidence](../../research/runtime/terrain-light-fields.md).

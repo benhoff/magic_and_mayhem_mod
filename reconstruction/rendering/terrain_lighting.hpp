@@ -16,11 +16,14 @@ public:
  void stamp(TerrainLightSource);
  // Explicit immediate publication; original smoothing/tick branches are separate.
  void publish();
+ // 004f1c60 additive static-object stamp into prior, including axial aliases.
+ void stampStatic(TerrainLightSource);
  std::int8_t at(unsigned column,unsigned row,unsigned mapLayer) const;
  const std::array<std::vector<std::int8_t>,5>& buffers() const{return buffers_;}
  const std::array<std::vector<std::int8_t>,18>& kernels() const{return kernels_;}
 private:
  friend class TerrainCreatureLightCycle;
+ friend class TerrainStaticLightCycle;
  unsigned width_,height_,mapLayers_;
  TerrainLightingConfig config_;
  // Original +7cc,+7d0,+7d4,+7d8,+7dc: published, prior, target, work, base.
