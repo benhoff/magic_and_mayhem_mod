@@ -7,12 +7,12 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 339 |
-| evidence | 231 |
-| scenarios | 42 |
+| evidence | 233 |
+| scenarios | 45 |
 | functions | 6675 |
 | registered recovered ranges | 12 |
 | incomplete dispatch tables | 7 |
-| indexed sources | 991 |
+| indexed sources | 993 |
 | unclassified functions | 6491 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |

@@ -65,5 +65,7 @@ prove every combined movement/collision branch or installed world production.
 Remaining scope: kind34 creator exception, other effect types/metadata, type35
 terrain mutation, installed descriptors and creature construction/lifecycle,
 installed cell/catalog capture, real caller scheduling/removal/recycling and live
-replacement. Boundary-heavy candidate ordering and mutation between scheduled
-calls remain separate from these bounded authored fixtures.
+replacement. TL17 separately extends the authored comparison to all candidate positions,
+wrapped/aliased and vertical boundaries, competing hits, mixed exits and fixture
+changes between calls. See [expanded proof and limits](effect-creature-boundaries.md).
+Real scheduling, concurrent mutation and exhaustive combined coverage remain open.

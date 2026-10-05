@@ -28,7 +28,8 @@
         }
       ],
       "documents": [
-        "research/runtime/effect-creature-collision.md"
+        "research/runtime/effect-creature-collision.md",
+        "research/runtime/effect-creature-boundaries.md"
       ],
       "implementation": [
         "reconstruction/rendering/effect_creature_collision.cpp",
@@ -38,11 +39,15 @@
       "tests": [
         "tests/effect-creature-reference.cpp",
         "tests/effect-creature-test.cpp",
-        "tools/test-effect-creature.py"
+        "tools/test-effect-creature.py",
+        "tests/effect-creature-boundaries-reference.cpp",
+        "tools/test-effect-creature-boundaries.py"
       ],
       "evidence": [
         "TL16.collision-original",
-        "TL16.collision-native"
+        "TL16.collision-native",
+        "TL17.boundaries-final-original",
+        "TL17.boundaries-final-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -179,6 +184,118 @@
           "equals": 1
         }
       ]
+    },
+    {
+      "id": "TL17.boundaries-final-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Selected whole 004883f0 original/native comparison: all 27 ordered candidate positions across normal/low/high/narrow/aliased worlds; five supported types and both membership modes; null/invalid/creator/status filters and competing first hits; type3 hit then terrain/blocked/height exit, no-hit continuation or different-hit overwrite; authored creature status/cell/fine-position/footprint/id changes between calls; no kind34, installed inputs, concurrent mutation or live replacement",
+      "record": "research/runtime/effect-creature-boundaries.json",
+      "sha256": "5c1e697ad959379991816b90bb18e0996f68b4488686f6eb728fc4f3f7392aef",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 8132
+        },
+        {
+          "pointer": "/calls",
+          "equals": 8144
+        },
+        {
+          "pointer": "/ordered_calls",
+          "equals": 8100
+        },
+        {
+          "pointer": "/mixed_exit_calls",
+          "equals": 20
+        },
+        {
+          "pointer": "/mutation_calls",
+          "equals": 24
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 2814
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 9968584
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL17.boundaries-final-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Selected whole 004883f0 original/native comparison: all 27 ordered candidate positions across normal/low/high/narrow/aliased worlds; five supported types and both membership modes; null/invalid/creator/status filters and competing first hits; type3 hit then terrain/blocked/height exit, no-hit continuation or different-hit overwrite; authored creature status/cell/fine-position/footprint/id changes between calls; no kind34, installed inputs, concurrent mutation or live replacement",
+      "record": "research/runtime/effect-creature-boundaries.json",
+      "sha256": "5c1e697ad959379991816b90bb18e0996f68b4488686f6eb728fc4f3f7392aef",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 8132
+        },
+        {
+          "pointer": "/calls",
+          "equals": 8144
+        },
+        {
+          "pointer": "/ordered_calls",
+          "equals": 8100
+        },
+        {
+          "pointer": "/mixed_exit_calls",
+          "equals": 20
+        },
+        {
+          "pointer": "/mutation_calls",
+          "equals": 24
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 2814
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 9968584
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -197,6 +314,54 @@
         "tests/effect-creature-reference.cpp",
         "tests/effect-creature-test.cpp",
         "tools/test-effect-creature.py"
+      ]
+    },
+    {
+      "id": "terrain-lighting.effect-creature-ordering",
+      "level": "headless",
+      "scope": "Each of 27 candidate positions, six normal/edge/narrow grids, creator/status/invalid filters, five types, membership settings and competing first hits",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "evidence": [
+        "TL17.boundaries-final-original",
+        "TL17.boundaries-final-native"
+      ],
+      "tests": [
+        "tests/effect-creature-boundaries-reference.cpp",
+        "tools/test-effect-creature-boundaries.py"
+      ]
+    },
+    {
+      "id": "terrain-lighting.effect-creature-mixed-exits",
+      "level": "headless",
+      "scope": "Type3 first hit followed by terrain/blocked/height exit, no-hit continuation or different-hit overwrite",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "evidence": [
+        "TL17.boundaries-final-original",
+        "TL17.boundaries-final-native"
+      ],
+      "tests": [
+        "tests/effect-creature-boundaries-reference.cpp",
+        "tools/test-effect-creature-boundaries.py"
+      ]
+    },
+    {
+      "id": "terrain-lighting.effect-creature-mutations",
+      "level": "headless",
+      "scope": "Authored status/current-cell/fine-X/footprint/id/removal changes between separate calls; unchanged current creature buffers during each call",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "evidence": [
+        "TL17.boundaries-final-original",
+        "TL17.boundaries-final-native"
+      ],
+      "tests": [
+        "tests/effect-creature-boundaries-reference.cpp",
+        "tools/test-effect-creature-boundaries.py"
       ]
     }
   ]
