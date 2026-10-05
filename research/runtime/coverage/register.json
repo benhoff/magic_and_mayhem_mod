@@ -11923,6 +11923,41 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.scene-playback",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Native fixed-rate scene Play/Pause and paused stepping",
+      "scope": "Native 10 Hz bounded clock admission, production Qt playback controls/orchestration, pause-preserved orders, paused Step, fresh resume interval, fault pause and deterministic same-tick checkpoint continuation. Original pause/cadence, installed whole-window and live equivalence excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-scene-playback.md"
+      ],
+      "implementation": [
+        "game/simulation/tick_clock.cpp",
+        "game/simulation/tick_clock.hpp",
+        "apps/world-scene/playback.cpp",
+        "apps/world-scene/playback.hpp",
+        "apps/world-scene/playback_controls.cpp",
+        "apps/world-scene/playback_controls.hpp",
+        "apps/world-scene/main.cpp"
+      ],
+      "tests": [
+        "tests/world-playback-test.cpp",
+        "tools/test-scene-playback.py"
+      ],
+      "evidence": [
+        "NS16.scene-playback"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -19651,6 +19686,64 @@
           "equals": 1
         }
       ]
+    },
+    {
+      "id": "NS16.scene-playback",
+      "kind": "native_integration",
+      "scope": "Native 10 Hz bounded clock admission, production Qt playback controls/orchestration, pause-preserved orders, paused Step, fresh resume interval, fault pause and deterministic same-tick checkpoint continuation. Original pause/cadence, installed whole-window and live equivalence excluded.",
+      "record": "research/runtime/native-scene-playback.json",
+      "sha256": "c1a4a388bfd5eb77626160dea7ef6a8e049ff274814950fa922c3f694f99a46f",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_playback/clock_oracle_comparisons",
+          "equals": 10000
+        },
+        {
+          "pointer": "/native_playback/pause_preserves_pending",
+          "equals": true
+        },
+        {
+          "pointer": "/native_playback/paused_step_only",
+          "equals": true
+        },
+        {
+          "pointer": "/native_playback/bounded_catch_up",
+          "equals": true
+        },
+        {
+          "pointer": "/native_playback/fresh_resume_interval",
+          "equals": true
+        },
+        {
+          "pointer": "/native_playback/same_tick_checkpoint_bytes",
+          "equals": true
+        },
+        {
+          "pointer": "/native_playback/failure_pauses",
+          "equals": true
+        },
+        {
+          "pointer": "/native_playback/reentrancy_guard",
+          "equals": true
+        },
+        {
+          "pointer": "/native_playback/qt_timer_dispatch",
+          "equals": true
+        },
+        {
+          "pointer": "/native_playback/real_elapsed_source",
+          "equals": true
+        },
+        {
+          "pointer": "/native_playback/fresh_process_continuations",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -21875,6 +21968,21 @@
         "tests/effect-creature-boundaries-reference.cpp",
         "tools/test-effect-creature-boundaries.py"
       ]
+    },
+    {
+      "id": "world.scene-playback",
+      "level": "preview",
+      "scope": "Native 10 Hz bounded clock admission, production Qt playback controls/orchestration, pause-preserved orders, paused Step, fresh resume interval, fault pause and deterministic same-tick checkpoint continuation. Original pause/cadence, installed whole-window and live equivalence excluded.",
+      "behaviors": [
+        "NP.scene-playback"
+      ],
+      "evidence": [
+        "NS16.scene-playback"
+      ],
+      "tests": [
+        "tests/world-playback-test.cpp",
+        "tools/test-scene-playback.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -22065,7 +22173,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-creature-boundaries-source-index.json",
-    "sha256": "8a0740f3a2fdd09eb835cdaedcb013ba770cb0b6d4740d93a683c383cf872867"
+    "path": "research/runtime/coverage/source-index-scene-playback.json",
+    "sha256": "8e8d66df335552f332657ecabe5060d788f9c55f296aba97d3ee27e83ac7af33"
   }
 }

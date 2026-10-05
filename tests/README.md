@@ -884,3 +884,12 @@ motion stop/reset, FIFO restart, stale/cleanup rejection and rollback/budgets.
 `python3 tools/test-stop-orders.py BUILD/world-stop-test NEW_OUTPUT` retains
 normal/sanitizer evidence and an exact fresh-process pending-v7-stop continuation.
 Original input/stop and installed whole-window equivalence remain open.
+
+## Native scene playback (NS16)
+
+`native-world-playback` covers 10,000 irregular virtual-time oracle checks,
+bounded catch-up, pause debt reset, real Qt controls/timers, deterministic native
+tick batches, pending-order retention, exception/reentrancy handling and exact
+checkpoint continuation. `python3 tools/test-scene-playback.py BUILD/world-playback-test
+NEW_OUTPUT` retains normal/sanitizer reports and a fresh-process continuation.
+Original cadence/pause and installed whole-window equivalence remain open.

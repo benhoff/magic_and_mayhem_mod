@@ -337,3 +337,11 @@ cancellation/reset semantics. `cancelQueuedMoves` atomically removes only one
 full-generation subject’s pending moves without altering active motion. FIFO order,
 queue budgets and rollback remain enforced. Pending stops require snapshot v7;
 older checkpoint contracts stay strict. See [scope](../research/runtime/native-stop-orders.md).
+
+## Native playback admission (NS16)
+
+`TickClock` is Qt-free wall-clock admission with a 100 ms interval, four-tick poll
+cap and explicit dropped-overload intervals. It owns no simulation/checkpoint and
+changes no world tick rules. Pause discards timing debt; resume starts fresh.
+Determinism applies to the same ordered commands/admitted ticks, not to arbitrary
+wall-clock inputs. See [scope](../research/runtime/native-scene-playback.md).
