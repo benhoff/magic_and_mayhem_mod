@@ -28,12 +28,23 @@ struct RoutePoint {
     std::int32_t direction=0,verticalDelta=0,category=0;
     std::uint32_t scalar=0;
 };
+// Continuation state for the bounded animation-sample driver. Coordinates are
+// 32 fine units per XY cell and 16 per Z layer; no legacy object layout.
+struct FineMotion {
+    std::int32_t rate=0,duration=0,heightOrigin=0,heightDelta=0;
+    std::int32_t accumulator=0,progress=0,travelX=0,travelY=0;
+    Point fine;
+    std::int32_t residualX=0,residualY=0;
+    std::uint32_t frame=0;
+};
 struct CreatureMotion {
     Action action=Action::idle;
     Point origin,destination;
     std::optional<Handle> goal;
     std::uint32_t budget=300,next=0;
     std::vector<RoutePoint> route;
+    bool sampleMotion=false;
+    std::optional<FineMotion> fine={};
 };
 struct Entity {
     Family family=Family::creature;

@@ -3,7 +3,7 @@
 `mnm-world` is the first native simulation ownership/checkpoint milestone. It
 runs without Qt, Wine, original assets or injected adapters. It implements
 bounded entity storage, lifetime handles, transactional tick phases, a bounded
-single-creature movement session and native v1/v2 snapshots. It does not yet implement AI, combat/spells, campaign
+single-creature movement session and native v1/v2/v3 snapshots. It does not yet implement AI, combat/spells, campaign
 triggers or a playable world. The original engine remains responsible for live
 gameplay. Native checkpoints are distinct from original version-20 saves.
 
@@ -64,10 +64,35 @@ executing after its admission.
 
 The route helpers follow the recovered contracts. One-waypoint-per-tick
 advancement, exact-target admission, goal guards and the native action enum are
-explicit native test policies. Original motion action `0x005104b0`, fine-position
-integration, animation/speed/timing, complete original order eligibility and
+explicit native test policies. NS03 separately validates selected motion-action arithmetic and route consumption.
+Complete original animation/speed/timing, complete original order eligibility and
 multi-creature occupancy/scheduling remain unvalidated. Stored scalar/direction
 metadata is not a replacement for original velocity or animation.
+
+## Bounded animation-sample movement
+
+`move-fine` uses the same arguments as `move` and selects the recovered arithmetic
+adapter for ordinary forward category 0/4 profiles. With the synthetic fixture,
+tick 2 keeps grid position `(1,1,1)` and advances fine position to `(42,32,16)`;
+ticks 3/4 reach X 52/62, and tick 5 consumes `(2,1,1)` and snaps X to 64. XY uses
+32 fine units per cell and Z 16 per layer. Save during those intra-cell ticks
+and `resume` retains the exact progress, accumulator, displacement and cursor.
+
+```sh
+working/build/native-world/mnm-world-sandbox move-fine /tmp/movement-map.bin \
+  /tmp/fine-moving.mnw 1 1 1 5 1 1 2
+working/build/native-world/mnm-world-sandbox trace /tmp/fine-moving.mnw 15
+```
+
+This opts into native v3. Existing `move` and v1/v2 checkpoints retain their
+pacing. The independent motion model lives in `reconstruction/motion/`; native
+simulation sees only a navigation driver interface. Scalar rates come from the
+recovered route result, duration and twelve samples from the bound profile.
+The twelve-sample cycle event, zeroed segment/interruption state and grid-based
+Z origin are bounded native policies. Full original setup, dynamic speed
+continuity, ANI event production, terrain-height offsets and callbacks remain
+open. Unsupported profiles fail transactionally. See
+[fine-motion evidence](../research/runtime/native-creature-fine-motion.md).
 
 ## Ownership
 
@@ -133,7 +158,8 @@ map first, checks its exact binding, profile, route progression and every saved
 edge, then commits both map and state. A missing/changed resource or invalid
 route retains the existing world and its map. The map fingerprint covers exactly
 the byte buffer decoded by the adapter, preventing a hash/parse reopen mismatch.
-V1 lifecycle checkpoints continue to encode identically; movement uses explicit v2.
+V1 lifecycle and v2 waypoint checkpoints continue to encode identically;
+sample motion uses explicit v3.
 
 The file writer validates/encodes first, writes a private sibling temporary,
 syncs and closes it, atomically publishes with overwrite refusal by default,

@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "milestone": "NS03",
+  "scope": "Bounded forward sample arithmetic and opt-in headless native integration; no full action setup, ANI events, live replacement or original-save writing",
+  "sources": {
+    "game/CMakeLists.txt": "404a114eaeb217eef6bc194b3fd35d3934089b70e31ee70b2539c6b7b5701b60",
+    "game/simulation/world.hpp": "437d3381754d920cf833fc2db82b3d11b39ee8e7d4c6062963cd2b397a8a593c",
+    "game/simulation/world.cpp": "07a0b30934cdbaf773ba5dee6eb7671949dffdc38edbcd3d8829aa6acb1b6e62",
+    "game/simulation/movement.hpp": "47109d36764bd408dd40a5e74cb9b71c9bfa238b3dd227da3b4c909cf76a6a7e",
+    "game/simulation/movement.cpp": "41ac6e55f6f1c67eab0c1e9510228260378007c213ab0d242f81feaeae3a384e",
+    "game/persistence/snapshot.cpp": "5527154d36bf478615ec3400b96231d372383a897a159024fda791a4a4090b09",
+    "apps/world-sandbox/frozen_navigation.cpp": "b04c0ebf7f8ee555d25b43ccbb342d97e3d80f228d44c395f46f75c2aaccd7cb",
+    "apps/world-sandbox/main.cpp": "5510029768f9c0cff5c8d3a30cc7f64fce62dbd622e27bf070a4096e26a15165",
+    "reconstruction/motion/CMakeLists.txt": "38fb1db70c622ef8759e130d96816cad27860dd4be285dd79c74dd3dc4a2a2c6",
+    "reconstruction/motion/creature_motion.hpp": "f91987bbe53b2d8542235dd91334e007a9188a24e981618e345157de94e97475",
+    "reconstruction/motion/creature_motion.cpp": "2857b9c53ad8ec4b3d91db71e64f1ac377adee4ae1be5041ce4b4c746f97a93a",
+    "reconstruction/pathfinding/route_scalar.cpp": "61dacc1b374de6916a0f7067ace6b90bdb6696979f9f3fc6e0e77df406b2d4c4",
+    "reconstruction/pathfinding/route_world.cpp": "80486842416870d4be983f888817ebfca64f6cfbe60eae87e3b79ba1cf1f889e",
+    "tests/creature-motion-test.cpp": "4756c0aae6f99ca41d7fa5a92836f8cf2888eac45f286a470715c7d55cc952ee",
+    "tests/movement-native-reference.hpp": "3224b3d298ed3e3590f9fe34960abadf0f4a3e68fb93de7e8ee80e4e29e96f8a",
+    "tests/native-movement-test.cpp": "e7c9da0136a85632157c40398889f361424037cf647e2766415091aa4eb87c54",
+    "tests/test-native-fine-motion.py": "5141e053930984d2960deb1166bbcf2825bdd8a078e914902bcc2f4fb4ed4ac5",
+    "tests/test-original-creature-motion.py": "22441c501cb9a9727f9bd72534d7f04c45f59d0f54012f09658c76c4a4f1975c",
+    "tools/export-creature-behavior.py": "97b6d8bd678f2cd2d8a93dc3c85f3b37a259d762ab0fc84fddc4887c1620c94b"
+  },
+  "original_comparison": {
+    "report": "working/tests/original-creature-motion-vi57_vhn/report.json",
+    "record": {
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "anchors": {
+        "0x5104b0": "83ec38",
+        "0x512460": "83ec40",
+        "0x5070e0": "8b542404",
+        "0x464ec0": "515355568b",
+        "0x464d70": "53568bf133",
+        "0x51a8f0": "568bf1578b",
+        "0x50f850": "83",
+        "0x51aa30": "83"
+      },
+      "sources": {
+        "reconstruction/motion/creature_motion.cpp": "2857b9c53ad8ec4b3d91db71e64f1ac377adee4ae1be5041ce4b4c746f97a93a",
+        "tests/creature-motion-test.cpp": "4756c0aae6f99ca41d7fa5a92836f8cf2888eac45f286a470715c7d55cc952ee"
+      },
+      "compile": [
+        "g++",
+        "-m32",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-DMNM_MOTION_REFERENCE",
+        "-I/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/motion",
+        "-I/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/pathfinding",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/motion/creature_motion.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/creature-motion-test.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/original-creature-motion-vi57_vhn/compare"
+      ],
+      "returncode": 0,
+      "output": "136 original route-consumption and coordinate-snap cases passed\n455640 bounded motion transitions passed\n",
+      "scope": "Synthetic object; original action with animation event and completion stubs; original consumption with environment callbacks stubbed",
+      "original_manifest_verified_before_after": true,
+      "input_unchanged": true,
+      "comparison_sha256": "17f89743fccf416c13270d8655898d60a338fc98d66567b9bbbd30a401b06e8a",
+      "comparison_log_sha256": "0103354e8479d5d641f6dc47d679aa4e1ee8ece6de0bb0502bbe01ea91cc8a0d"
+    },
+    "action_transitions": 455640,
+    "consumption_cases": 136,
+    "immutable_files_verified": 2927
+  },
+  "static_export": {
+    "manifest": "working/decompiled/creature-behavior-lnbhltzt/manifest.json",
+    "input_unchanged": true,
+    "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "selected_artifacts": {
+      "motion_action.asm": "e683eb9fde477471089d942f50674cdd83d0a48d630b6e22383a76b60a41088b",
+      "motion_segment_setup.asm": "f2c197cee6275d4ec61d2926cee0c08ff194178bef270aa891dead39959f6f52",
+      "motion_route_consumption.asm": "f7293b707937b1269d4fa2acfd387ec58861ce6caaec91ad628c120d400d2f97",
+      "motion_coordinate_snap.asm": "aed4f55e4121d123bc0de304da046ff7db833f8c89e758445c34acae6cf2a430"
+    },
+    "original_manifest_verified_before_after": true
+  },
+  "native_checks": {
+    "normal_ctests": 24,
+    "asan_ubsan_ctests": 24,
+    "leak_detection": false,
+    "leak_reason": "traced execution environment",
+    "continuation_ticks": [
+      "17 vs 2+15",
+      "140 vs 26+114, fractional/cycle",
+      "72 vs 40+32, route-prefix replan"
+    ],
+    "independent_v3_wire_oracle": true,
+    "v1_v2_regressions": true,
+    "transactional_rollback_and_in_place_restore_refusal": true,
+    "profile_map_malformed_refusal": true
+  },
+  "commands": [
+    "cmake -S game -B working/build/native-world -DCMAKE_BUILD_TYPE=Debug",
+    "cmake --build working/build/native-world -j4",
+    "ctest --test-dir working/build/native-world --output-on-failure",
+    "cmake -S game -B working/build/native-world-sanitized -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS='-fsanitize=address,undefined -fno-omit-frame-pointer' -DCMAKE_EXE_LINKER_FLAGS='-fsanitize=address,undefined'",
+    "cmake --build working/build/native-world-sanitized -j4",
+    "ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 ctest --test-dir working/build/native-world-sanitized --output-on-failure",
+    "python3 tests/test-original-creature-motion.py",
+    "./tools/original-manifest.sh verify && python3 tools/export-creature-behavior.py && ./tools/original-manifest.sh verify"
+  ],
+  "artifacts": {
+    "working/tests/original-creature-motion-vi57_vhn/report.json": "b0b3918c1ef8e537c139565a22ac7343b1526905f76aa89d9b29f16995d252c5",
+    "working/decompiled/creature-behavior-lnbhltzt/manifest.json": "2b0e97e79e5adb0498c24ca87893981af44d30f6199118b3ad43d46df9690273",
+    "working/tests/native-fine-motion-validation/normal-build.log": "b51faea0a0cf509551cfffd6c19b4aef6c1edff61dcb303f111a36046b4a419c",
+    "working/tests/native-fine-motion-validation/sanitized-build.log": "9a7b22fc11570145f4d05d695bb639b1454222b9589f5da801b406e7ed4c7963",
+    "working/tests/native-fine-motion-validation/normal-tests.log": "83660aedd4630342b4f80b1ee6b8e2c8f41c94a3718873d59298c43219e7569e",
+    "working/tests/native-fine-motion-validation/sanitized-tests.log": "b7f4d9b9630c7d0c1227239a29a6b3172a9b6aaf0634b0a35c5f46a8de400b4f",
+    "working/build/native-world/mnm-world-sandbox": "a3b97cb18dcf0661de36d56b6fcc12d36fccf3c27a10de8a6a8aa3fe7a568694",
+    "working/build/native-world-sanitized/mnm-world-sandbox": "f411b413caae2f441d7087fcc51a975a9d443237258ea05a08e698916573446c",
+    "working/build/native-world/CMakeCache.txt": "788b7eb5b21e10c5be5a8a3f019e755c19e39af734d9939f8648720819008166",
+    "working/build/native-world-sanitized/CMakeCache.txt": "79996297a24153f2e8b1d15fdd57e6b631c3656b6577c03f59e308666e0b24c1"
+  },
+  "native_policies": [
+    "12-sample cycle event stream",
+    "route-provided predicted rate and raw scalar duration",
+    "zero state on new segment/replacement/cancellation",
+    "grid-based Z origin without terrain offsets"
+  ],
+  "remaining": [
+    "full segment initialization and successive speed continuity",
+    "ANI event generation and reverse/special profiles",
+    "environment/behavior/combat callbacks",
+    "dynamic occupancy and original scheduler",
+    "live validation",
+    "original save compatibility"
+  ]
+}

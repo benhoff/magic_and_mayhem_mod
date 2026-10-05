@@ -7,6 +7,9 @@ namespace mnm::game {
 bool contains(Point p,const NavigationBinding& b) {
     return p.x>=0 && p.y>=0 && p.z>=0 && p.x<b.dimensions.x && p.y<b.dimensions.y && p.z<b.dimensions.z;
 }
+FineMotion Navigation::prepareFineMotion(const Entity&,const RoutePoint&) const {throw std::invalid_argument("sample motion driver unavailable");}
+bool Navigation::advanceFineMotion(const Entity&,const RoutePoint&,FineMotion&) const {throw std::invalid_argument("sample motion driver unavailable");}
+void Navigation::validateFineMotion(const Entity&,const RoutePoint&,const FineMotion&) const {throw std::invalid_argument("sample motion driver unavailable");}
 bool active(Action a) {return a==Action::planning || a==Action::moving;}
 void validateCommand(const Command& c) {
     if(static_cast<std::uint32_t>(c.operation)>4 ||
@@ -26,6 +29,18 @@ void validateMotion(const Entity& e,const NavigationBinding& binding) {
        (m.action!=Action::moving && m.action!=Action::arrived && (!m.route.empty() || m.next)) ||
        (m.action==Action::arrived && (position!=m.destination || m.next!=m.route.size())))
         throw std::invalid_argument("invalid movement progress");
+    if(m.fine) {
+        const auto& f=*m.fine;
+        if(!m.sampleMotion || m.action!=Action::moving || f.rate<1 || f.rate>1000000 ||
+           f.duration<1 || f.duration>1000000 || f.accumulator<0 || f.accumulator>2000000 ||
+           f.progress<0 || f.progress>=192 || f.frame>=12 ||
+           std::llabs(std::int64_t(f.travelX))>f.progress || std::llabs(std::int64_t(f.travelY))>f.progress ||
+           std::llabs(std::int64_t(f.heightDelta))>16 || f.heightOrigin!=position.z*16 ||
+           f.fine.x!=position.x*32+f.travelX/6 || f.fine.y!=position.y*32+f.travelY/6 ||
+           f.fine.z!=f.heightOrigin+f.heightDelta*f.progress/192 ||
+           std::llabs(std::int64_t(f.residualX))>64 || std::llabs(std::int64_t(f.residualY))>64)
+            throw std::invalid_argument("invalid fine motion continuation");
+    }
     Point previous=m.origin;
     for(const auto& waypoint:m.route) {
         const auto p=waypoint.position;
@@ -48,11 +63,16 @@ void MovementSession::validateBinding(const State& state,const Navigation& navig
         const auto& e=*slot.entity;
         if(++creatures>1 || e.type!=navigation.creatureType()) throw std::invalid_argument("movement slice supports one captured creature profile");
         validateMotion(e,*state.navigation);
+        if(e.motion->sampleMotion) {
+            if(e.motion->fine) navigation.validateFineMotion(e,e.motion->route.at(e.motion->next),*e.motion->fine);
+            else if(e.motion->action==Action::moving) (void)navigation.prepareFineMotion(e,e.motion->route.at(e.motion->next));
+        }
         auto probe=e;
         // Validate every saved edge, including already consumed edges, on rebound inputs.
         probe.x=e.motion->origin.x;probe.y=e.motion->origin.y;probe.z=e.motion->origin.z;
         for(const auto& waypoint:e.motion->route) {
             if(!navigation.accepts(probe,waypoint)) throw std::invalid_argument("saved route rejected by rebound map");
+            if(e.motion->sampleMotion) (void)navigation.prepareFineMotion(probe,waypoint);
             probe.x=waypoint.position.x;probe.y=waypoint.position.y;probe.z=waypoint.position.z;
         }
     }
@@ -62,9 +82,9 @@ MovementSession::MovementSession(World world,std::shared_ptr<const Navigation> n
     if(!navigation_) throw std::invalid_argument("navigation resource required");
     validateBinding(world_.state(),*navigation_);
 }
-Handle MovementSession::spawn(Entity entity) {
+Handle MovementSession::spawn(Entity entity,bool sampleMotion) {
     if(entity.family==Family::creature) {
-        entity.motion=CreatureMotion{};entity.motion->origin=entity.motion->destination={entity.x,entity.y,entity.z};
+        entity.motion=CreatureMotion{};entity.motion->sampleMotion=sampleMotion;entity.motion->origin=entity.motion->destination={entity.x,entity.y,entity.z};
         if(entity.type!=navigation_->creatureType()) throw std::invalid_argument("creature profile mismatch");
         for(const auto& slot:world_.state().slots) if(slot.entity && slot.entity->motion) throw std::invalid_argument("only one moving creature supported");
     } else if(entity.motion) throw std::invalid_argument("motion requires creature family");
@@ -87,12 +107,19 @@ TickReport MovementSession::step(TickInput input) {
             if(phase==Phase::maintenance && motion.action==Action::moving) {
                 const auto waypoint=motion.route.at(motion.next);
                 if(!navigation_->accepts(e,waypoint)) {
-                    motion.action=Action::blocked;motion.route.clear();motion.next=0;motion.origin=position;
+                    motion.action=Action::blocked;motion.route.clear();motion.next=0;motion.origin=position;motion.fine.reset();
                 } else {
-                    position=waypoint.position;++motion.next;
-                    if(motion.next==motion.route.size()) {
-                        if(position==motion.destination) motion.action=Action::arrived;
-                        else {motion.action=Action::planning;motion.route.clear();motion.next=0;motion.origin=position;}
+                    bool completed=true;
+                    if(motion.sampleMotion) {
+                        if(!motion.fine) motion.fine=navigation_->prepareFineMotion(e,waypoint);
+                        completed=navigation_->advanceFineMotion(e,waypoint,*motion.fine);
+                    }
+                    if(completed) {
+                        motion.fine.reset();position=waypoint.position;++motion.next;
+                        if(motion.next==motion.route.size()) {
+                            if(position==motion.destination) motion.action=Action::arrived;
+                            else {motion.action=Action::planning;motion.route.clear();motion.next=0;motion.origin=position;}
+                        }
                     }
                 }
                 changed=true;
@@ -104,6 +131,13 @@ TickReport MovementSession::step(TickInput input) {
                 else if(plan.status==PlanStatus::unreachable) motion.action=Action::blocked;
                 else motion.action=position==motion.destination?Action::arrived:Action::moving;
                 if(motion.action==Action::searchLimited || motion.action==Action::blocked) motion.route.clear();
+                if(motion.sampleMotion && motion.action==Action::moving) {
+                    auto probe=e;
+                    for(const auto& point:motion.route) {
+                        (void)navigation_->prepareFineMotion(probe,point);
+                        probe.x=point.position.x;probe.y=point.position.y;probe.z=point.position.z;
+                    }
+                }
                 changed=true;
             }
             if(changed) {
