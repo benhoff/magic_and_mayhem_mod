@@ -167,3 +167,8 @@ policy, Specific placement/fallback and wildcard-location orchestration,
 ten-attempt reset/seed progression, conversion of generated assignments to the
 owned terrain assembly plan and generated scene comparisons. Live integration,
 entities, lighting and water remain separate.
+
+The subsequent [Specific-placement milestone](terrain-region-specific.md) now
+reconstructs the selected two-pass fixed/wildcard placement and recovery driver,
+with an explicit missing-connector refusal boundary. Attempt retries and full
+generated-scene orchestration remain separate.
