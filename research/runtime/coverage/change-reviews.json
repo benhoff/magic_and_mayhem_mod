@@ -3427,6 +3427,189 @@
         "evidence": [],
         "reason": "Index-only reconciliation for the selected staged tree; no new engine validation, evidence refresh or status promotion. Recorded final GPU execution remains NR.gpu-presentation.native-v2 and historical evidence staleness remains explicit."
       }
+    },
+    {
+      "id": "effect-blocked-recorded-cf1dc7d",
+      "reason": "Recover complete-parent blocked destination ordering and committed partial state: real old-cell unlink/column cleanup, skipped insertion and subcell update, current/previous/cache/terrain/recount fields, parameter 7=-1 and return 1. Preserve historical fingerprints and distinct caller lifecycle/native refusal policy. Review committed range e5e5811..cf1dc7d87b44c900bdeca721f7c431ed9a34bc07 with retained exact-hash report working/tests/effect-blocked-history-review.json; reconcile focused imports/census/ledger.",
+      "files": [
+        {
+          "after_sha256": "3de908cc5496ce83d539a6ff0795a2d7d469d2a47f7986a9bd4a112c21f58e06",
+          "before_sha256": "3de908cc5496ce83d539a6ff0795a2d7d469d2a47f7986a9bd4a112c21f58e06",
+          "path": "reconstruction/rendering/effect-transition/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "7884793bbfcca42e0f70d2bd4c3e3510b9b0a7ac12c4a8a2607201dff5d892fa",
+          "before_sha256": "a4c14f19c0205b30c7e41bbc90ef60a1da2f423293649e2942075fcb93ea30db",
+          "path": "reconstruction/rendering/effect_transition.cpp"
+        },
+        {
+          "after_sha256": "26bc40700e5cef61c7bd1048371fc8012455e1011925161545c0265ce3e76f3e",
+          "before_sha256": "d83311ace9e291830d8854fec4443d17776ccf1cc5790f3299312111dce16c55",
+          "path": "reconstruction/rendering/effect_transition.hpp"
+        },
+        {
+          "after_sha256": "73f0a8897b67cbdef44d2271bfe9e06e2ac5e0b6c6aeb6308241a22953f345ba",
+          "before_sha256": "016a756b14e5fa54f12cce25f661696dc04f34449319c031839a07c848555212",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "b8f0c0fd423a8b2faa22c6406969e856e13dbad77c1136e1ad9015798f1c8574",
+          "before_sha256": "c18a036bd36c4da750ce2e992fadc12bdfe6bf6f614d13ec2095a22892f17681",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "519728bf99b5ab5e60327c0aeff50c3cf06e82e1497f4174d7ce4ce8493efc45",
+          "before_sha256": null,
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "63bf0fd90e33684467606cff31146e65c46f8d059856939a33cde67b6fac098f",
+          "before_sha256": null,
+          "path": "research/runtime/effect-blocked-destinations-source-index.json"
+        },
+        {
+          "after_sha256": "b1e64f8fc6d88a07470b9d83b762ef66e0a3448f3a624903a1f0d3f0e832e12d",
+          "before_sha256": null,
+          "path": "research/runtime/effect-blocked-destinations.json"
+        },
+        {
+          "after_sha256": "dd735d1bbc2a53c5c69402bd365fe9c34a5adddb75c19453cc8ef08e0cb731bc",
+          "before_sha256": null,
+          "path": "research/runtime/effect-blocked-destinations.md"
+        },
+        {
+          "after_sha256": "dd4e34fc463438667dcb2639ac2e589f29c8308c340fa0d5b0d06b7d2fcad2ac",
+          "before_sha256": "779e4c7fb3c1d5e484ed7eff54e91beae49b21c15a259e9431b2eeb503156e4f",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "0672801ef36e7412ece419a1e28e12b8df57c983106e2bf3d50f176df0bc0096",
+          "before_sha256": "4be3f118912f6cf3380da76b694e5ce594e0cdd399f83b5724e8c15111074ff9",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "7abf243baa0901c48ee23c0a09aee3e884878925de50797c3ead9b128ffeb5b2",
+          "before_sha256": "ed2a2171edb28bacc495bb7be969fd2a9c8a49db08819706489f3782a106e3ff",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "da3898c948efe07636481f1909d549846634f2736e4dd4dee5a1bb585636f75f",
+          "before_sha256": "02f9a4bdc47d849ebb0bee83e530430083d8776efb1ea191274ccf5408c10c65",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "107ef6d69fce7239bba4aad6890e1adc6ac8e9439370292789a89b08d54e12ce",
+          "before_sha256": null,
+          "path": "tests/effect-blocked-reference.cpp"
+        },
+        {
+          "after_sha256": "1a592e43af9ade0e71f98383cd274f38cc9ada49ade1c13ed65c19b532313825",
+          "before_sha256": "1a592e43af9ade0e71f98383cd274f38cc9ada49ade1c13ed65c19b532313825",
+          "path": "tests/effect-cleanup-reference.cpp"
+        },
+        {
+          "after_sha256": "ad9fb9c5c2075b8ea0c88e43a37c5c7131d5485c01c6d7d935a9092ce12c7213",
+          "before_sha256": "ad9fb9c5c2075b8ea0c88e43a37c5c7131d5485c01c6d7d935a9092ce12c7213",
+          "path": "tests/effect-transition-reference.cpp"
+        },
+        {
+          "after_sha256": "a11ef5194dba5cd63259135883560fa3813609efa37959bd5d9ffb87b273f92f",
+          "before_sha256": "9ad99a7ac6974f1cf9f6e7fcab3a8ee2427ff91bdc5db623c1b14e91c9ba3846",
+          "path": "tests/effect-transition-test.cpp"
+        },
+        {
+          "after_sha256": "32e1dfa244783d60d0ba356bea1ec4152b8af491463e53bf5da78b21a21001f8",
+          "before_sha256": "4a03f2b9dc8daf266eb12a1cccb21145cc350acb4d67f938b83f4feb09fdda99",
+          "path": "tools/test-effect-transition.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "2e05971b49f7956cf7381da1bec3f50e25973d5ae88cd24bc579072a9085fb82",
+          "before_sha256": null,
+          "id": "TL.effect-blocked-destinations"
+        },
+        {
+          "after_sha256": "94ea3396f77fc14dee2b2e429ffbe3a1d943a6a308770c3326f95ed7f6ba30d6",
+          "before_sha256": null,
+          "id": "TL.effect-blocked-policy"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:67ad0bbe4c5f8fe9523e8b03181b64b05f91ac1ddae97dc1d10141b6728eb53f",
+        "stale_evidence:010468acc7f3576bc5b8d27d8475934d8206da8ba0843e1e83ee8b775450f69e",
+        "stale_evidence:1da2015e98e7b62ba200a05519184e57fc982616a56f4e43bf2ae331f2f89e52",
+        "stale_evidence:9da9260b6e58961c2e36065f9f7a54157753a7dcbd30a324591c6b2dbafd9825",
+        "stale_evidence:ab01fa5f0776aa6f914ad6b6285426af036e9d663e1299a02286d8fae879c730",
+        "stale_evidence:cbf769f32a5a4f40e752f536a1ed4c8e22c74af6a17378710ce45983568df098",
+        "stale_evidence:cda1afb725c5f0e0cb6ffe0a820e2f2e605931c3e61aee78f0fad10e52e80921",
+        "stale_evidence:dfa15303e91462dfe6ba35a311246cd80ab1e9b5e47907b7dd9ea27efe4041b0",
+        "stale_evidence:e71516904469fa9518efca154772ff349d16488eff8298cf63ea5dbec347ce61"
+      ],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL10.blocked-original",
+          "TL10.blocked-native"
+        ],
+        "reason": "2048 separate blocked whole-parent calls, including 1102 return-1 outcomes, 4715 executed steps, 3338 traced transitions and 1466 cache advances; complete guarded effect/cell/column/catalog checks match original32/native64/ASan-UBSan. Ordinary zero/nonzero movement rerun: 3232 calls/10288 steps; cleanup/unlink rerun: 6144 calls. Strict normal/sanitized units and CMake/CTest validate active detached state, untouched destination chains/flags/subcells, recount, early stop, refusal on resumption, lighting and rollback. Originals verify before/after. Native exceptions/atomicity are intentional policies, not original malformed-input equivalence."
+      }
+    },
+    {
+      "id": "effect-blocked-history-limitations-cf1dc7d",
+      "reason": "Keep TL08/TL09 historical sources immutable when extending shared transition/runner/tests. Narrow the remaining gap using separate TL10 proof without promoting historical results.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "ae940f8788eea414c59ab9c4fd0c47fec94095cff383d72d49a2da6b3aa78d2a",
+          "before_sha256": "35daf969eb9a0eccd18086bd5f1fd565b9ee5680d91cdaec84ae0b9eebb07772",
+          "id": "TL.effect-cell-cleanup"
+        },
+        {
+          "after_sha256": "ce67b68a8c3f6c1ec1586f1985e8ee3e5fd3ef8c55f34b6efa863b4a1d11ac6c",
+          "before_sha256": "1f3b78cd85ad0ef4c9128df51037ce30417b17648eb39995d4fe9e9e1ae0240b",
+          "id": "TL.effect-cell-transitions"
+        },
+        {
+          "after_sha256": "b8f4c2f493dae2bec454d33c28596b9c8814368bee051468ac70f3cc67d141ea",
+          "before_sha256": "d5d2f379b605f350078b162d5feb59df6bff13148ae1ef86633eb9abd4da6fec",
+          "id": "TL.effect-cleanup-policy"
+        },
+        {
+          "after_sha256": "ef4b7c00af7207dbe91f28bfabbcda5e11e9a6415e62885122d1bb84f378335f",
+          "before_sha256": "97fa8fe68b48a65ea809c5d6aa8dc90885ef91ba154026a47fa1651ade32f26d",
+          "id": "TL.effect-movement-recount"
+        },
+        {
+          "after_sha256": "6d21b6ed519c1ffc814038ca782dd40a7b7ec15d1c3c71ec05fc91403dd85871",
+          "before_sha256": "7ea00431422eb14056952177082cd64d187977e6d68a5c37d6e7c88a657c3a69",
+          "id": "TL.effect-transition-policy"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Historical TL08/TL09 affected fingerprints remain stale and retained. Fresh expanded and ordinary/cleanup reruns are registered separately in TL10. Height exits, disabled membership, occupied collisions, special types/metadata, setup, column construction, caller removal/recycling and live scheduling remain outside current validation."
+      }
+    },
+    {
+      "id": "effect-blocked-summary-cf1dc7d",
+      "reason": "Refresh generated summary for the isolated reviewed register, retaining discovery gaps and historical staleness.",
+      "files": [
+        {
+          "after_sha256": "6cc96d95356f5bd1bdc416f047fc2d0c7f00069611830bb0836b73bd8e1031f4",
+          "before_sha256": "f74ff693de0fc56bee3c64b9abbeb550eabe66948fb20921efeb57c6e8df9576",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated metadata only; no implementation or status promotion."
+      }
     }
   ]
 }
