@@ -32,12 +32,13 @@ public:
 protected:
     void paintEvent(QPaintEvent*) override {
         QPainter p(this);p.setRenderHint(QPainter::SmoothPixmapTransform);p.scale(width()/84.0,height()/86.0);p.setFont(mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Tooltip));
+        const int shelfCount=item_?qMax(0,owner_->available(index_)-((lifted_||owner_->carriedItem_==index_)?1:0)):count;
         if(!isEnabled())p.setOpacity(.45);
-        if(count==0 || lifted_){} // Assigned or temporarily lifted off the shelf.
+        if(shelfCount==0){} // Hide artwork only when no copy remains on the shelf.
         else if(!frame.image.isNull())p.drawImage(-frame.origin,frame.image);
         else {p.setPen(QColor("#fff5d6"));p.drawText(QRect(2,4,80,77),Qt::AlignCenter|Qt::TextWordWrap,text());}
         p.setOpacity(1);if(selected||hasFocus()){p.setPen(QPen(selected?QColor("#ffdd88"):QColor("#fff5d6"),2));p.drawRoundedRect(QRect(1,1,81,83),6,6);}
-        if(count>=0){p.setFont(mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Yellow));p.fillRect(QRect(59,65,24,20),QColor(20,12,8,210));p.setPen(Qt::white);p.drawText(QRect(59,65,24,20),Qt::AlignCenter,QString::number(count));}
+        if(shelfCount>=0){p.setFont(mnm::ui::menuFont(this,mnm::ui::MenuFontRole::Yellow));p.fillRect(QRect(59,65,24,20),QColor(20,12,8,210));p.setPen(Qt::white);p.drawText(QRect(59,65,24,20),Qt::AlignCenter,QString::number(shelfCount));}
     }
     void mousePressEvent(QMouseEvent* e) override {
         start_=e->position().toPoint();
@@ -200,7 +201,7 @@ void SpellboxWidget::populate() {
     auto sync=[this](QVector<SpellboxCell*>& cells,bool item,int count){while(cells.size()>count)delete cells.takeLast();while(cells.size()<count){const int i=cells.size();auto* cell=new SpellboxCell(this,item,i);cell->setObjectName(QString("spellbox%1%2").arg(item?"Item":"Talisman").arg(i));connect(cell,&QPushButton::clicked,this,[this,item,i]{if(item){selectedItem_=i;if(carriedItem_>=0){if(carriedTalisman_>=0)returnCarried();else if(carriedItem_==i)putDown();else carry(i);}else carry(i);}
             else {selectedTalisman_=i;if(carriedItem_>=0)placeCarried(i);else {const int assigned=itemIndex(draft_.talismans[i].itemId);if(assigned>=0)carry(assigned,i);}}populate();});cells.push_back(cell);cell->show();}};
     sync(items_,true,draft_.items.size());sync(talismans_,false,draft_.talismans.size());
-    for(int i=0;i<items_.size();++i){const auto& item=draft_.items[i];auto* cell=items_[i];cell->setText(item.name);cell->setAccessibleName(item.name);cell->setToolTip(QString("%1 — %2 available of %3").arg(item.name).arg(available(i)).arg(item.quantity));cell->frame=item.artworkIndex>=0&&!itemSprites_.isEmpty()?itemSprites_[item.artworkIndex]:mnm::ui::MenuSpriteFrame{};cell->count=available(i);cell->selected=i==selectedItem_;cell->update();}
+    for(int i=0;i<items_.size();++i){const auto& item=draft_.items[i];auto* cell=items_[i];cell->setText(item.name);cell->setAccessibleName(item.name);cell->setToolTip(QString("%1 — %2 available of %3").arg(item.name).arg(available(i)).arg(item.quantity));cell->frame=item.artworkIndex>=0&&!itemSprites_.isEmpty()?itemSprites_[item.artworkIndex]:mnm::ui::MenuSpriteFrame{};cell->count=available(i)-(carriedItem_==i&&carriedTalisman_>=0?1:0);cell->selected=i==selectedItem_;cell->update();}
     for(int t=0;t<talismans_.size();++t){const auto& slot=draft_.talismans[t];auto* cell=talismans_[t];const int a=int(slot.alignment),i=t==hoveredTalisman_&&carriedItem_>=0&&!draft_.items[carriedItem_].spells[a].id.isEmpty()?carriedItem_:itemIndex(slot.itemId);const QString name=alignmentNames_[a]+(i>=0?" — "+draft_.items[i].spells[a].name:QString(" — empty"));cell->setText(name);cell->setAccessibleName(name);cell->setToolTip(name);const int art=i>=0?draft_.items[i].spells[a].artworkIndex:a;cell->frame=art>=0&&!talismanSprites_.isEmpty()?talismanSprites_[art]:mnm::ui::MenuSpriteFrame{};cell->selected=t==selectedTalisman_;cell->update();}
     const int detailTalisman=hoveredTalisman_>=0?hoveredTalisman_:selectedTalisman_;
     const bool slot=selectedTalisman_>=0,item=selectedItem_>=0;const int a=slot?int(draft_.talismans[selectedTalisman_].alignment):0;
@@ -242,6 +243,10 @@ bool SpellboxWidget::eventFilter(QObject* watched,QEvent* event) {
     if(watched==this&&event->type()==QEvent::Hide&&carriedItem_>=0)putDown();
     if(auto* widget=qobject_cast<QWidget*>(watched);widget&&isVisible()&&(widget==this||isAncestorOf(widget))){
         if(event->type()==QEvent::MouseMove&&carriedItem_>=0){auto* mouse=static_cast<QMouseEvent*>(event);pointerAt(mapFromGlobal(mouse->globalPosition().toPoint()));}
+        if(event->type()==QEvent::MouseButtonRelease&&carriedItem_>=0){
+            auto* mouse=static_cast<QMouseEvent*>(event);const QPoint point=mapFromGlobal(mouse->globalPosition().toPoint());const auto canvas=contentRect();
+            if(mouse->button()==Qt::LeftButton&&canvas.contains(point)&&point.x()>=canvas.x()+qRound(290*canvas.width()/800.0))returnCarried();
+        }
         if(event->type()==QEvent::MouseButtonPress&&carriedItem_>=0){auto* mouse=static_cast<QMouseEvent*>(event);if(mouse->button()==Qt::RightButton){putDown();return true;}
             const QPoint point=mapFromGlobal(mouse->globalPosition().toPoint());
             if(widget==this&&mouse->button()==Qt::LeftButton&&contentRect().contains(point)){const auto canvas=contentRect();if(point.x()>=canvas.x()+qRound(290*canvas.width()/800.0))returnCarried();else putDown();return true;}}
