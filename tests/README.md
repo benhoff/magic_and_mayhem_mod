@@ -843,3 +843,16 @@ owned diagnostic presentation from original/live multi-creature equivalence.
 ### Fresh campaign Enter
 
 Run `python3 tools/test-region-entry-bridge.py --enter` for original callback/admission guards, `python3 tools/test-campaign-observer.py` for World forwarding guards, and focused Qt Region Entry/V1/V6 CTests. `python3 tools/test-live-region-enter.py --shell <built-shell> --source-root <compiled-source-tree>` automatically exercises New Game, Adept and Enter through three original gameplay ticks in isolated Xvfb/Wine, ending at a bounded deadline. No manual testing required; campaign return remains pending. See [UI30 evidence](../research/runtime/region-entry-enter-engine-bridge.md).
+
+## Scene selection and move controls (NS13)
+
+`native-world-controls` tests the production Qt widget and Orders controller with
+an owned synthetic multi-creature session: generation-safe selection, queued-only
+commands, selected-actor movement, target preservation, invalid/stale/cleanup
+refusal, blocked results, empty controls and 32 choices.
+
+`python3 tools/test-scene-orders.py BUILD/world-controls-test NEW_OUTPUT` also
+retains a screenshot and exact fresh-process pending-order continuation. Normal
+and ASan/UBSan runs require a local Xvfb display, without original artifacts.
+[Evidence boundaries](../research/runtime/native-scene-orders.md) distinguish
+component/widget execution from original input or full-window picking equivalence.

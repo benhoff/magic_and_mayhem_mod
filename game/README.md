@@ -310,3 +310,12 @@ terrain-motion creatures using independent saved ANI displays and fine positions
 Rendering joins their bodies into the mixed terrain depth queue and exports native
 slot/generation identities. This remains diagnostic native presentation; original
 multi-creature scene equivalence and live integration remain open.
+
+## Scene move controls (NS13)
+
+The native scene now selects individual available creature drivers and queues
+explicit target-cell moves through `MovementSession`. Step applies the command;
+saving first preserves it for restore. Full-generation selection stays outside
+simulation/checkpoint state and refuses stale/cleaned actors.
+[Scope and validation](../research/runtime/native-scene-orders.md) keep original
+input mappings and commander/summoned-creature gameplay separate.

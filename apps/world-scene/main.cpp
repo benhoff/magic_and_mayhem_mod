@@ -1,4 +1,5 @@
 #include "scene.hpp"
+#include "movement_controls.hpp"
 #include "map_navigation.hpp"
 #include "frozen_navigation.hpp"
 #include "persistence/snapshot.hpp"
@@ -13,6 +14,7 @@
 #include <QJsonObject>
 #include <QLabel>
 #include <QMessageBox>
+#include <QPainter>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <iostream>
@@ -139,10 +141,31 @@ int main(int argc,char** argv) try {
     }
     if(p.isSet("frames")) throw std::invalid_argument("Frames requires output");
     QWidget window;window.setWindowTitle("Native movement scene");auto* layout=new QVBoxLayout(&window);
-    auto* image=new QLabel;auto* status=new QLabel;layout->addWidget(image);layout->addWidget(status);
+    auto* image=new QLabel;image->setAlignment(Qt::AlignLeft|Qt::AlignTop);auto* status=new QLabel;layout->addWidget(image);layout->addWidget(status);
+    mnm::scene::Orders orders;auto* controls=new mnm::scene::MovementControls;layout->addWidget(controls);
+    layout->addWidget(new QLabel("Choose a creature and target cell. Queue move, then Step to apply the order."));
     auto* actions=new QHBoxLayout;layout->addLayout(actions);
     auto* step=new QPushButton("Step");auto* save=new QPushButton("Save checkpoint");actions->addWidget(step);actions->addWidget(save);
-    const auto refresh=[&] {const auto frame=draw();image->setPixmap(QPixmap::fromImage(frame.image));status->setText(QString("Tick %1 · terrain scene · view %2").arg(session.world().state().tick).arg(camera.view));};
+    const auto refresh=[&] {
+        orders.synchronize(session.world().state());const auto frame=draw();auto pixels=QPixmap::fromImage(frame.image);
+        if(orders.selected()) {
+            QPainter highlight(&pixels);highlight.setPen(QPen(QColor(255,210,40),2));
+            for(const auto& d:frame.queue) if(d.actor && *d.actor==*orders.selected()) {
+                const auto& body=creature.frames.at(d.frame);
+                highlight.drawRect(d.x-body.originX,d.y-body.originY,int(body.width),int(body.height));
+            }
+        }
+        image->setPixmap(pixels);controls->updateChoices(mnm::scene::creatureChoices(session.world().state()),orders.selected(),navigation->binding().dimensions);
+        status->setText(QString("Tick %1 · terrain scene · view %2").arg(session.world().state().tick).arg(camera.view));
+    };
+    controls->onSelect=[&](std::optional<mnm::game::Handle> actor) {
+        try {orders.select(session.world().state(),actor);refresh();}
+        catch(const std::exception& e) {status->setText(e.what());}
+    };
+    controls->onMove=[&](mnm::game::Point target) {
+        try {orders.move(session,target);refresh();status->setText("Move order queued. Step to apply it.");}
+        catch(const std::exception& e) {status->setText(e.what());}
+    };
     QObject::connect(step,&QPushButton::clicked,[&] {try {session.step();refresh();} catch(const std::exception& e) {QMessageBox::critical(&window,"Cannot step",e.what());}});
     QObject::connect(save,&QPushButton::clicked,[&] {
         const auto path=QFileDialog::getSaveFileName(&window,"New checkpoint",{},"Native checkpoint (*.mnms)");if(path.isEmpty()) return;
