@@ -1,5 +1,6 @@
 #pragma once
 #include "menu_bridge.hpp"
+#include "engine_preferences_store.hpp"
 #include "../../protocols/include/mnm/menu_v4.h"
 #include <QProcess>
 #include <QTimer>
@@ -12,6 +13,7 @@ public:
     explicit LiveMenuSession(QString repository,QObject* parent=nullptr);
     bool resultMenusEnabled=true; // Compatibility harnesses may explicitly retain V3.
     bool preferencesMenusEnabled=true;
+    QString preferencesStorePath; // User-scoped by default; tests isolate it.
     QString winePrefix; // Empty selects the normal menu prefix; tests isolate each run.
     int smokeSeconds=0; // Bounded live validation only; normal sessions have no limit.
     bool start();
@@ -35,6 +37,9 @@ public:
 private:
     void poll();
     QString repo_,root_,channel_;
+    EnginePreferencesStore preferencesStore_;
+    bool preferencesToSave_=false;
+    std::array<int,7> acceptedPreferences_{};
     QProcess process_;
     QTimer timer_;
     QElapsedTimer clock_;

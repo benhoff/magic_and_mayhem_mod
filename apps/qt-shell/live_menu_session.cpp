@@ -2,7 +2,12 @@
 #include "../../protocols/include/mnm/menu_v6.h"
 #include <QDir>
 #include <QProcessEnvironment>
+#include <QStandardPaths>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(parent),repo_(std::move(repository)){
+    preferencesStorePath=QDir(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)).filePath("engine-preferences.json");
     process_.setProcessChannelMode(QProcess::MergedChannels);
     connect(&process_,&QProcess::readyReadStandardOutput,this,[this]{
         const auto bytes=process_.readAllStandardOutput();if(preparing_)preparation_+=bytes;
@@ -17,6 +22,13 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
             for(const auto& line:preparation_.split('\n'))if(line.startsWith("Evidence directory: "))root_=QString::fromLocal8Bit(line.mid(20)).trimmed();
             if(code||status!=QProcess::NormalExit||root_.isEmpty()){
                 fallback("Menu staging failed; see the launch log.");if(finished)finished();return;
+            }
+            if(preferencesMenusEnabled){
+                QFile manifest(QDir(root_).filePath("manifest.json"));
+                if(manifest.open(QIODevice::ReadOnly)){
+                    const auto snapshot=QJsonDocument::fromJson(manifest.readAll()).object().value("preference_store").toObject();
+                    preferencesStore_.begin(preferencesStorePath,snapshot.value("revision").toString().toLatin1());
+                }
             }
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
             if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
@@ -36,10 +48,11 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
 }
 bool LiveMenuSession::start(){
     if(running())return false;
-    preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=inBattle_=false;
+    preferencesStore_.begin(preferencesStorePath,{});
+    preferencesToSave_=false;preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=inBattle_=false;
     auto env=QProcessEnvironment::systemEnvironment();env.remove("MNM_MENU_CHANNEL");env.remove("MNM_RUNNER");env.remove("MNM_MENU_OBSERVE");
     process_.setProcessEnvironment(env);process_.setWorkingDirectory(repo_);preparing_=true;
-    QStringList arguments{"--actions"};if(miniMenusEnabled())arguments.append("--experimental-mini");
+    QStringList arguments{"--actions"};if(preferencesMenusEnabled)arguments.append({"--preferences-store",preferencesStorePath});if(miniMenusEnabled())arguments.append("--experimental-mini");
     process_.start(QDir(repo_).filePath("tools/prepare-menu-observer.py"),arguments);return true;
 }
 bool LiveMenuSession::running() const{return preparing_||process_.state()!=QProcess::NotRunning;}
@@ -57,6 +70,7 @@ bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<i
 }
 bool LiveMenuSession::requestPreferences(quint32 action,const std::array<int,7>& values,quint32 slider){
     if(!preferencesMenusEnabled||!active_||inBattle_||pending_||transition_||state_.screen!=10||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->requestPreferences(action,state_,values,slider))return false;
+    if(action==MNM_MENU_PREFERENCES_OK){preferencesToSave_=true;acceptedPreferences_=values;}
     pending_=true;requestedAt_=clock_.elapsed();action_=action;target_=action==MNM_MENU_PREFERENCES_PREVIEW?10:3;
     if(action!=MNM_MENU_PREFERENCES_PREVIEW&&stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
@@ -87,7 +101,7 @@ bool LiveMenuSession::finishSpells(const std::array<int,63>& assignments){
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 void LiveMenuSession::fallback(const QString& reason){
-    active_=false;bypass_=true;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
+    preferencesToSave_=false;active_=false;bypass_=true;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
     if(failed)failed(reason);
 }
 void LiveMenuSession::poll(){
@@ -135,6 +149,11 @@ void LiveMenuSession::poll(){
             if(!next.ready||(next.screen!=3&&next.screen!=22)||next.handoff||next.thread!=state_.thread||next.generation==state_.generation||next.ack!=state_.ack||next.status!=MNM_MENU_OK)return;
             inBattle_=false;
             if(output)output("Original battle returned; restoring native menus.\n");
+        }
+        if(preferencesToSave_&&!pending_&&next.ready&&next.screen==3){
+            preferencesToSave_=false;QString error;
+            const bool saved=preferencesStore_.accept(QDir(root_).filePath("game/CFG/prefs.cfg"),acceptedPreferences_,&error);
+            if(output)output(saved?"Preferences saved for future launches.\n":"Preferences remain available in this session; persistence failed: "+error+"\n");
         }
         state_=next;
         if(transition_&&next.screen==target_&&next.ready)transition_=false;

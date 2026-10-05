@@ -688,3 +688,14 @@ callbacks and V6 ownership/transaction guards in an isolated PE32 fixture.
 `python3 tools/test-live-menus.py --preferences` automates Preview, Cancel rollback,
 OK/file readback, reopen and Preferences window-close Cancel/Main Quit in Xvfb/Wine.
 No manual interactions are required. See [scope/evidence](../research/runtime/preferences-engine-bridge.md).
+
+### Main Preferences cross-launch persistence
+
+`python3 tests/test-menu-preferences-store.py` checks synthetic importer/schema
+and all-copy preflight. Build `engine-preferences-store-test`, then run
+`ctest --test-dir working/build/qt-shell -R qt-engine-preferences-store --output-on-failure`
+for original readback validation, atomic saving, locks and session conflicts.
+`python3 tools/test-live-menus.py --preferences-restart` uses isolated config and
+Wine prefixes to validate accepted settings across two fresh shell/game runs,
+including byte-identical Cancel and normal original Quit. No manual interaction
+is required. See [UI24 evidence](../research/runtime/preferences-persistence.md).

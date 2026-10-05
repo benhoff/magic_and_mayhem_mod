@@ -61,7 +61,7 @@ then invokes original Main Quit. Original-menu fallback permanently retires the
 channel; it does not retry an outstanding command. Every new session stages a
 disposable copy, so a write affects that session's `game/CFG/prefs.cfg`, not the
 immutable media or the source working installation. Cross-launch user preference
-persistence is a separate application-lifecycle milestone.
+persistence is implemented separately by [UI24](preferences-persistence.md).
 
 The V6 observer retains V5 results and V3 spell selection. Explicit older-version
 compatibility fixtures remain available. No campaign, realm or Mini caller is
@@ -117,8 +117,8 @@ The observer keeps its existing 256-record bound.
 
 Physical sound and CD playback, real hardware input, resolution/resource rebuild,
 all remaining caller variants, gameplay pause/cadence, failure recovery for actual
-profile writes, process-restart durability and broad graphics-device combinations
-remain unvalidated. The original writer ignores profile API failures and writes
+profile writes, power-loss durability and broad graphics-device combinations
+remain unvalidated. Selected-setting process restart is covered separately by UI24. The original writer ignores profile API failures and writes
 more keys than this menu exposes; its original behavior is retained. Do not infer
 a full engine replacement from this bounded presentation/action integration.
 
