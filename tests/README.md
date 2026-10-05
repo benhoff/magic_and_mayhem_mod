@@ -763,3 +763,13 @@ its own prefix/process group. No manual interaction is needed. It verifies
 original inputs before/after; it does not enter a region, alter campaign state
 through a native dispatcher or validate campaign Mini mode 4. See
 [UI27 evidence](../research/runtime/campaign-menu-entry-observation.md).
+
+### Configured creature navigation
+
+The world-scene build adds `configured-creature-profile` for selected CFG parsing,
+recovered normalization, eight-facing ground ANI shape and derived sample/max
+admission. `tools/test-creature-navigation.py BUILD_DIRECTORY` compares selected
+original profile conversion, installed ANI sample/maximum construction and motion
+states, then six configured installed-map crops, complete pixels in four views
+and fresh-process continuation. It requires isolated PE32 execution and Xvfb;
+immutable manifests are verified before/after. See [NS09](../research/runtime/native-creature-profile.md).

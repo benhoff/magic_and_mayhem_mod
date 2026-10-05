@@ -15,7 +15,9 @@ int main(int argc,char** argv)try{
     const auto s=read_route_world(argv[2]);
     if(std::uint64_t(s->dimensions.x)*s->dimensions.y*s->dimensions.z>4096)throw std::invalid_argument("Reference crop budget");
     const CellValidityMapView v{{s->dimensions,s->cells.data(),s->cells.size(),s->rows.data(),s->rows.size(),s->layers.data(),s->layers.size(),s->plane_stride,s->dimensions.z},s->terrain.data(),s->terrain.size()};
-    const CreatureMovementParameters p{1,1,0,0,0,0,0};
+    const auto typeField=[&](unsigned at){int n;std::memcpy(&n,s->scalar_type.data()+at,4);return n;};
+    int typeIndex;std::memcpy(&typeIndex,reinterpret_cast<const unsigned char*>(&s->object)+0xa8,4);
+    const CreatureMovementParameters p{typeField(12),typeField(8),0,typeField(0x44),0,typeIndex,0};
     auto h=with_boundary_test(with_clearance_tests(MovementHelpers{s->dimensions,[&]{return s->boundary;},[&]{return s->dimensions.z;},{},{}},v));
     h=with_validity_test(h,with_cell_validity_test(ValidityHelpers{s->dimensions,{}},v));
     h=with_record_query(h,with_cell_support(RecordQueryHelpers{s->dimensions,[&]{return s->boundary;},{}},v));

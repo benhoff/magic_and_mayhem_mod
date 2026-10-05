@@ -150,5 +150,14 @@ int main(int argc,char** argv) try {
     }
     check(restored);consumption();
 #endif
+    // Installed ground-only profiles have zero flying banks. Unused and event-boundary zeros
+    // admit; a negative sample refuses before committing arithmetic state.
+    {MotionInputs p;p.separateCursor=true;p.rate=8;p.duration=8;p.samples.fill(0);
+     for(unsigned i=0;i<24;++i)p.samples[i]=8;
+     MotionState state;check(!advance_creature_motion(state,p));check(state.progress==8);
+     state.frame=24;check(!advance_creature_motion(state,p));check(state.progress==8 && state.frame==25);
+     p.samples[25]=-1;const auto before=state;bool refused=false;
+     try{advance_creature_motion(state,p);}catch(const std::invalid_argument&){refused=true;}
+     check(refused && state.progress==before.progress && state.accumulator==before.accumulator && state.frame==before.frame);}
     std::cout<<cases<<" bounded motion transitions passed\n";return 0;
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}

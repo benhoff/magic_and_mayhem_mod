@@ -108,3 +108,40 @@ It uses local Xvfb and isolated hash-checked original predicates, verifies the
 immutable-input manifest before/after, and retains new evidence under
 `working/tests/map-navigation/`. It compares geometry bytes, predicate decisions,
 complete pixels, route arrival, mismatch refusal and fresh-process continuation.
+
+### Configured ground Redcap (NS09)
+
+Append type `10` to the map exporter to use installed creature CFG dimensions,
+acceleration, swimming admission and ANI-derived movement samples. Append start
+XYZ, goal XYZ and a bounded tick count to create an owned checkpoint directly:
+
+```bash
+cmake -S apps/world-scene -B working/build/world-creature-navigation
+cmake --build working/build/world-creature-navigation -j4
+./tools/original-manifest.sh verify
+working/build/world-creature-navigation/mnm-map-navigation-export \
+  working/game-clean Realms/Celtic/Plains/CPsec01.map Realms/Celtic/Plains \
+  0 0 8 8 working/redcap-navigation 10 1 1 3 4 6 3 0
+working/build/world-creature-navigation/mnm-world-scene-preview \
+  --checkpoint working/redcap-navigation.mnms --root working/game-clean \
+  --realm Realms/Celtic/Plains --terrain-map working/redcap-navigation.geometry \
+  --ticks 133 --frames 1 --output working/redcap-arrival
+./tools/original-manifest.sh verify
+```
+
+All output paths must be unused. Configured creation selects the normal installed
+Redcap ANI and base-0 ground programs internally; checkpoint ANI bytes are owned.
+The report includes profile fields, samples, generator maximum and exact CFG,
+ANI and SPR hashes. Without type 10 the prior synthetic exporter is unchanged.
+
+This path currently admits one ordinary ground Redcap, one cell wide and three
+layers tall for the installed CFG. Other types and flying/swimming action
+profiles reject. Camera convention, dynamic occupancy, runtime objects, the
+remaining original creature fields and live scheduling remain separate.
+`GroundSpeed` is recorded; actual pacing uses the recovered ANI samples and
+scalar/setup contracts. The real ANI event boundary has a zero displacement
+sample, now compared against the original controller/action.
+
+Run `python3 tools/test-creature-navigation.py working/build/world-creature-navigation`
+for isolated-original profile/motion comparisons and configured installed-map
+pixels/continuation. [Scope and evidence](../../research/runtime/native-creature-profile.md).

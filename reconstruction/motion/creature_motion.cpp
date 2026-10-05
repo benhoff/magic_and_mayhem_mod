@@ -17,7 +17,9 @@ bool advance_creature_motion(MotionState& committed,const MotionInputs& p,const 
        std::abs(std::int64_t(s.fineZ))>1000032 || std::abs(std::int64_t(s.residualX))>1000000 || std::abs(std::int64_t(s.residualY))>1000000)
         throw std::invalid_argument("unsupported bounded motion input");
     if(animation && (!p.separateCursor || !animation->tick || !animation->restart)) throw std::invalid_argument("incomplete motion animation driver");
-    for(unsigned n=0;n<(p.separateCursor?48U:12U);++n) if(p.samples[n]<1 || p.samples[n]>192) throw std::invalid_argument("unsupported motion sample");
+    for(unsigned n=0;n<(p.separateCursor?48U:12U);++n) if(p.samples[n]<0 || p.samples[n]>192) throw std::invalid_argument("unsupported motion sample");
+    // Zero displacement samples occur at installed ANI event boundaries.
+    // Iteration count and cursor bounds still limit every invocation.
     s.accumulator+=p.rate;
     auto count=s.accumulator/p.duration;
     if(count>4096) throw std::invalid_argument("motion substep bound exceeded");

@@ -1,6 +1,6 @@
 # Engine modernization coverage ledger
 
-Ledger reviewed: 2026-10-05 (NS06/NS07/NS08 updates; broader review: 2026-10-04;
+Ledger reviewed: 2026-10-05 (NS06/NS07/NS08/NS09 updates; broader review: 2026-10-04;
 initial baseline: 2026-10-03).
 This ledger tracks reconstructed functionality,
 modern implementations, and replacement of original work during live execution.
@@ -365,6 +365,12 @@ creature presentation is recorded separately in NS07.
 | ID and behavior | Implementation and integration | Evidence and confidence | Remaining boundary and next validation |
 | --- | --- | --- | --- |
 | NS08 Ordinary installed terrain projected to bounded navigation and matched creature scene | Full-source ordinary geometry derived before cropping, sealed XY ring/all layers, exact projected MAP/TTD bytes in frozen navigation, explicit synthetic one-cell profile and strict visual-resource identity checks; actual terrain definitions/flags plus owned creature display | Six Plains/Forest/Village crops per build: 16,896 original support/validity and 5,434 complete movement-helper comparisons (1,050 accept, 4,384 reject, zero sealed-ring accepts), independent geometry/frozen bytes, selected native route arrival, 288 complete pixel comparisons and 24 fresh-process frame/queue/checkpoint continuations in normal and ASan/UBSan builds. 98 normal CTests and three selected sanitizer tests pass. All 2,927 original files preserved. High within the explicit ordinary projection/profile. [Evidence](native-map-navigation.md) | 4..16 XY, 2..32 layers, 4,096 cells and one creature. Runtime object/reference branches omitted; profile, crop sealing and projection are native policies. No original whole-load/search or mixed-scene equivalence, installed creature configuration, dynamic occupancy, live observation/replacement or lighting integration. Next: recover configured creature/object admission or add separately validated dynamic occupancy; coordinate lighting integration with its existing workstream |
+
+### Configured ground creature movement (NS09; reviewed 2026-10-05)
+
+| Milestone | Implemented/validated scope | Evidence | Remaining boundary |
+| --- | --- | --- | --- |
+| NS09 Installed ground Redcap profile | Selected CFG fields and recovered clamps, ANI-derived ground banks/maximum, normal-memory asset binding, configured sealed MAP navigation and owned ANI checkpoint creation | Original selected-field/sample/motion comparisons, installed terrain predicates, complete four-view native pixels and process continuation; [scope/evidence](native-creature-profile.md) | One ordinary ground type; runtime entities/dynamic occupancy, complete type construction/actions, flying/swimming, camera-relative action production and live replacement remain separate |
 
 ## Gameplay areas without recorded replacements
 

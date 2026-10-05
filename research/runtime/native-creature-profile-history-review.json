@@ -1,0 +1,929 @@
+{
+  "range": "84a42ef..d97986e20305a8f9d829d414b7541fac436e16f7",
+  "scope": "Exact committed parent/current file hashes and behavior contracts reviewed separately from NS09 working changes. Retrospective receipts do not assert past gate passes or new runtime validation.",
+  "files": [
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "reconstruction/rendering/effect-trajectory/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "d292bb922122dbcab01647fcb74e594f9b9d217e57434257f1598a0c598d581e",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "reconstruction/rendering/effect_trajectory.cpp",
+      "before_sha256": null,
+      "after_sha256": "9a271f05ef153cf3032da71f8ada0e1c33562a92cf1c7804d050ccb884611024",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "reconstruction/rendering/effect_trajectory.hpp",
+      "before_sha256": null,
+      "after_sha256": "1a668bd363315bda2f957ba8ce5c98c1aa9d75535d9b93005456aa5764a3b839",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/README.md",
+      "before_sha256": "9aad11760b293ac69a0fe71590022703d4cb651bfbf96d96c1bef49b9bc086b5",
+      "after_sha256": "d9b7c45ce8dab09bf5da9ae1a1c58c99c8de1e9fe84156cdb859e5e433bb22a8",
+      "reviews": [
+        "coverage-commit-hook-reconcile-84a42ef"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": null,
+      "after_sha256": "db0ef0194f43fe18e7e8801e0b7f3f7d1ddef871867f5253ba5ab8885866d4e4",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/campaign-menu-engine-contract.json",
+      "before_sha256": null,
+      "after_sha256": "2a0ee2743e0254c52dcd8f55d72f0245c917de018b2d64810e78883f66cf9836",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/campaign-menu-engine-contract.md",
+      "before_sha256": null,
+      "after_sha256": "dc24faeac2d6e7c704122a57211c30fb67df4f3089ec182ff3c51869edb602eb",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "98dad6588b676bd2dc7595f759e069afd407dccbe4a7706d2758127507311146",
+      "after_sha256": "adff9d759d6ef4ccad9ec8e8da845de6f959746567698d9675f137cb3d501aeb",
+      "reviews": [
+        "coverage-commit-hook-reconcile-84a42ef"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "b5ad588f767f98555f43646079d15eb6740d9fde9dbb5e06e6ce1a7b06639620",
+      "after_sha256": "9d3948955f56f9a0d539ee1b3d06487d9ce1b93f9510f77bb7b3062a8afd1816",
+      "reviews": []
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "c3c7732290c94712244d2e74358487ab77c253f16ce3196a23a0d98635904ff9",
+      "after_sha256": "7f2024ca73b32025520071b37b10cbfce9cf0cb16e28fa329411c000f431875f",
+      "reviews": [
+        "coverage-commit-hook-reconcile-84a42ef"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/coverage/source-index-campaign-contract.json",
+      "before_sha256": null,
+      "after_sha256": "6acb1aff25af0b9d8126405fc990107724bfa7c3b4e2a295486d831bcbd245d0",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "ee3cab39f50b28b860a1514e03386b4829fa18c059576b88cd9d5e370a414a15",
+      "after_sha256": "6d844a17a46efc6dd870851ab0611cb48109cf8e66471f15c6872084ae255b83",
+      "reviews": [
+        "coverage-commit-hook-reconcile-84a42ef"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/effect-trajectory-change-review.json",
+      "before_sha256": null,
+      "after_sha256": "1c2c54dd2963f6f392b06488ab8bba1f6f1f87d96bc55301bac68d7111a9034c",
+      "reviews": [
+        "effect-trajectory-20261005-receipt"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "616799ab7070e53153b79371e8eb7245b527b314602d13605222e9c7543ede2e",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/effect-trajectory-source-index-reviewed.json",
+      "before_sha256": null,
+      "after_sha256": "09bb50ef8511b3d84047aaeceff22a6dbd5f0b29454a928b747b351f7bc4cdb1",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/effect-trajectory.json",
+      "before_sha256": null,
+      "after_sha256": "7c86123009abb808c42eeed31e4cd1f69b9f68d7ce017528fd64af9124e42c22",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "research/runtime/effect-trajectory.md",
+      "before_sha256": null,
+      "after_sha256": "621482d995b9018d309073e1b9fd8b47c5376c26de31b738ac98aab57898cb9a",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "tests/README.md",
+      "before_sha256": "3a420d94a768347b4312d2778599e0e430e11bca2b82a37552621f29cf1067b7",
+      "after_sha256": "05359e8206231e17f82eda1f588f416443810b61c2a14de8da4e8b61beedf428",
+      "reviews": [
+        "coverage-commit-hook-reconcile-84a42ef"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "tests/campaign-menu-contract-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "e46981256db1f1806f2e633e14f8a99287b7e39adf14bea57b9f8e6fb2e24317",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "tests/effect-trajectory-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "60bc49706f9a90de4aae22f87d375986762114d86ffb3c537666f4c7d9902a28",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "tests/effect-trajectory-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "31c92f80f0f02708fc381d70f11d6a3ef50308ddadb91007fb0a02216c4f0293",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "tools/export-campaign-menu-support.py",
+      "before_sha256": null,
+      "after_sha256": "8138c3fe703f2a39d27f92e4a484ffeed2b22df913913f0059b007479ed9b1c7",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "tools/test-campaign-menu-contract.py",
+      "before_sha256": null,
+      "after_sha256": "41628ba0ad43ed5e5a68b126c5d4754bb01d615b8efb4808c4b26a7db7fb022e",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "path": "tools/test-effect-trajectory.py",
+      "before_sha256": null,
+      "after_sha256": "6ff4a08c796ac7bd35abd1b32ff350a635b1768d0693cf4525dc0b4a8a3fcd4a",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "8dd69c40a0ab98fa39b4447d0c5f635e752db16e",
+      "path": "research/runtime/README.md",
+      "before_sha256": "d9b7c45ce8dab09bf5da9ae1a1c58c99c8de1e9fe84156cdb859e5e433bb22a8",
+      "after_sha256": "b4355918970cf501a83a308aa2592f71775df1d24e05a169347cd83920162eb3",
+      "reviews": [
+        "campaign-contract-scoped-commit-campaign-commit-zwqmzzn7"
+      ]
+    },
+    {
+      "commit": "8dd69c40a0ab98fa39b4447d0c5f635e752db16e",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "adff9d759d6ef4ccad9ec8e8da845de6f959746567698d9675f137cb3d501aeb",
+      "after_sha256": "7ae97dd7ea98ea256471ed3657daf8b268d17e6c00f2cf0d63e5814d7f90b367",
+      "reviews": [
+        "campaign-contract-scoped-commit-campaign-commit-zwqmzzn7"
+      ]
+    },
+    {
+      "commit": "8dd69c40a0ab98fa39b4447d0c5f635e752db16e",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "9d3948955f56f9a0d539ee1b3d06487d9ce1b93f9510f77bb7b3062a8afd1816",
+      "after_sha256": "51f7a81bf0be3a90b7d13202740a4ec0e9552dde7d9293d39afcf3775ce34bf8",
+      "reviews": []
+    },
+    {
+      "commit": "8dd69c40a0ab98fa39b4447d0c5f635e752db16e",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "7f2024ca73b32025520071b37b10cbfce9cf0cb16e28fa329411c000f431875f",
+      "after_sha256": "c72460dd5e5c1556f4862d88e2ca6ce5ee9af6a26c6ad104964501229a857976",
+      "reviews": [
+        "campaign-contract-scoped-commit-campaign-commit-zwqmzzn7"
+      ]
+    },
+    {
+      "commit": "8dd69c40a0ab98fa39b4447d0c5f635e752db16e",
+      "path": "research/runtime/coverage/source-index-campaign-commit.json",
+      "before_sha256": null,
+      "after_sha256": "6acb1aff25af0b9d8126405fc990107724bfa7c3b4e2a295486d831bcbd245d0",
+      "reviews": [
+        "campaign-contract-scoped-commit-campaign-commit-zwqmzzn7"
+      ]
+    },
+    {
+      "commit": "8dd69c40a0ab98fa39b4447d0c5f635e752db16e",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "6d844a17a46efc6dd870851ab0611cb48109cf8e66471f15c6872084ae255b83",
+      "after_sha256": "2323a1d52fee72a8d93e98235b5398f59c1249c9d4d0afee8d0e4b707c05a9a5",
+      "reviews": [
+        "campaign-contract-scoped-commit-campaign-commit-zwqmzzn7"
+      ]
+    },
+    {
+      "commit": "8dd69c40a0ab98fa39b4447d0c5f635e752db16e",
+      "path": "tests/README.md",
+      "before_sha256": "05359e8206231e17f82eda1f588f416443810b61c2a14de8da4e8b61beedf428",
+      "after_sha256": "db1a7fae16f2f526152e94914b7b05213403614e5cfb2bd6367bed9341f7e3d9",
+      "reviews": [
+        "campaign-contract-scoped-commit-campaign-commit-zwqmzzn7"
+      ]
+    },
+    {
+      "commit": "2afab5ec1308dd66830ad33d441e0d907ade41ca",
+      "path": "research/runtime/README.md",
+      "before_sha256": "b4355918970cf501a83a308aa2592f71775df1d24e05a169347cd83920162eb3",
+      "after_sha256": "d9b7c45ce8dab09bf5da9ae1a1c58c99c8de1e9fe84156cdb859e5e433bb22a8",
+      "reviews": [
+        "campaign-concurrent-commit-reconciliation-20261005"
+      ]
+    },
+    {
+      "commit": "2afab5ec1308dd66830ad33d441e0d907ade41ca",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "7ae97dd7ea98ea256471ed3657daf8b268d17e6c00f2cf0d63e5814d7f90b367",
+      "after_sha256": "adff9d759d6ef4ccad9ec8e8da845de6f959746567698d9675f137cb3d501aeb",
+      "reviews": [
+        "campaign-concurrent-commit-reconciliation-20261005"
+      ]
+    },
+    {
+      "commit": "2afab5ec1308dd66830ad33d441e0d907ade41ca",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "51f7a81bf0be3a90b7d13202740a4ec0e9552dde7d9293d39afcf3775ce34bf8",
+      "after_sha256": "87db0e0fb607bf6847904c08654e8d63b5ac7931ad52977707e54c476347c192",
+      "reviews": []
+    },
+    {
+      "commit": "2afab5ec1308dd66830ad33d441e0d907ade41ca",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "c72460dd5e5c1556f4862d88e2ca6ce5ee9af6a26c6ad104964501229a857976",
+      "after_sha256": "bc08d278fe71b958c15503ce57d2db0ff03231ea354b9161d4b9752eea359f07",
+      "reviews": [
+        "campaign-concurrent-commit-reconciliation-20261005"
+      ]
+    },
+    {
+      "commit": "2afab5ec1308dd66830ad33d441e0d907ade41ca",
+      "path": "tests/README.md",
+      "before_sha256": "db1a7fae16f2f526152e94914b7b05213403614e5cfb2bd6367bed9341f7e3d9",
+      "after_sha256": "05359e8206231e17f82eda1f588f416443810b61c2a14de8da4e8b61beedf428",
+      "reviews": [
+        "campaign-concurrent-commit-reconciliation-20261005"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "reconstruction/rendering/effect-projection/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "7a07031ab4cf554a5fe521404c61f8f3708ce23596399b8aad6dab45b959c2cb",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "reconstruction/rendering/effect_projection.cpp",
+      "before_sha256": null,
+      "after_sha256": "622f6961285657c71bd1467a8a7221e1b3417fcf030c0cf824e519e4a6931046",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "reconstruction/rendering/effect_projection.hpp",
+      "before_sha256": null,
+      "after_sha256": "50bfaa5daedfaf33a61731ac8c3dfd27f8e6236fe9ec5cb6b533d058f29671e8",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "adff9d759d6ef4ccad9ec8e8da845de6f959746567698d9675f137cb3d501aeb",
+      "after_sha256": "19bf5a815ac7ea6f1cd5875c7993ec56e0fa9f2b3885f1798051ec1572e9877b",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "87db0e0fb607bf6847904c08654e8d63b5ac7931ad52977707e54c476347c192",
+      "after_sha256": "bd43bc6e862053bd958250eba2247769dd92a65f365249de13fa22a8e8f1aae6",
+      "reviews": []
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "bc08d278fe71b958c15503ce57d2db0ff03231ea354b9161d4b9752eea359f07",
+      "after_sha256": "1896f1de9dcd0b6f79e7b0dbf8c3027f772a03706cda691f09b272c410d36a0f",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "2323a1d52fee72a8d93e98235b5398f59c1249c9d4d0afee8d0e4b707c05a9a5",
+      "after_sha256": "20bf66debe7c3d77f1fab06abe56cea2829c294c6d30c3f228dd7fdca5ddf0b8",
+      "reviews": [
+        "effect-projection-summary-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "263d4b3bf3ef94f0c5bf9abeb7b1801284927c44562f0a2687e7cc5402009a55",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "research/runtime/effect-same-cell-projection-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "b243a72f47ddec4253c0fbc399e06c3ff0e85cfa342b2999278fadc7c13fb876",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "research/runtime/effect-same-cell-projection.json",
+      "before_sha256": null,
+      "after_sha256": "5516fbc39648cd21d33c92347ae34029d24b10712b81710887c9fc843076ca7a",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "research/runtime/effect-same-cell-projection.md",
+      "before_sha256": null,
+      "after_sha256": "52c7d0a24445a9198996e5c08705953f4367777cd871ab9b0d3f77273a4df7f9",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "616799ab7070e53153b79371e8eb7245b527b314602d13605222e9c7543ede2e",
+      "after_sha256": "cd847193f22e932f2e9fe44b255af7fa865d9f2423c859201cd125f43d48d39d",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "tests/effect-projection-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "b6409354bed62c8c11ea5ce824cd2ea82e7609f09f5bc658ccf1105d85e1e991",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "tests/effect-projection-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "7e6671393ca75ae66f6cabd0c2c654339dfff6b3f44fd7a25b58224079fa6b3e",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "path": "tools/test-effect-projection.py",
+      "before_sha256": null,
+      "after_sha256": "d8f41e93ea1552109fa16bfb0ef904766995805f83446367617ec572c7cbc558",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "research/runtime/README.md",
+      "before_sha256": "d9b7c45ce8dab09bf5da9ae1a1c58c99c8de1e9fe84156cdb859e5e433bb22a8",
+      "after_sha256": "73b33849d7b427ad6c4da355ec4e6f529425ceddbdaa625d2bf1acb60be2595b",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": "db0ef0194f43fe18e7e8801e0b7f3f7d1ddef871867f5253ba5ab8885866d4e4",
+      "after_sha256": "f64c45d4d99092dcf6c56dd1a7160cc4f2932c780979e909fd2ba6049107467e",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "research/runtime/campaign-menu-entry-observation.json",
+      "before_sha256": null,
+      "after_sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "research/runtime/campaign-menu-entry-observation.md",
+      "before_sha256": null,
+      "after_sha256": "4f65ffc3c1c10a557a15c59ebbbc373bb9cf464dee581ae254e36bfc63f30cde",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "research/runtime/campaign-menu-observation-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "f90756b363c250a45f92a2c71bb8c83808aab5907462a47ccbe634747bbcb4af",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "19bf5a815ac7ea6f1cd5875c7993ec56e0fa9f2b3885f1798051ec1572e9877b",
+      "after_sha256": "0f7ad72e8290a9ec055f7ceea6f640b7bd88f4021827962a7adeb4b9f44feef5",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "bd43bc6e862053bd958250eba2247769dd92a65f365249de13fa22a8e8f1aae6",
+      "after_sha256": "246850675b086f2ae004d2728b9bbb75f7e6c62aeb557fe1ce61499f1b8fdccb",
+      "reviews": []
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "1896f1de9dcd0b6f79e7b0dbf8c3027f772a03706cda691f09b272c410d36a0f",
+      "after_sha256": "0cbcf781f0e068a2435918c10f8dc20b74dbfd3e8f8646059b4feb505008ecf9",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "research/runtime/coverage/source-index-campaign-observation.json",
+      "before_sha256": null,
+      "after_sha256": "4792986eb7cd0170e6c89d22f13c1a84ef019bdef5cb28119014d9b0695538ad",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "20bf66debe7c3d77f1fab06abe56cea2829c294c6d30c3f228dd7fdca5ddf0b8",
+      "after_sha256": "aa4aaf8529dbc1d7c2246d7aba54d9501f009597467f79cec734b3e95bddc1eb",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "runtime/menu/campaign_observe.h",
+      "before_sha256": null,
+      "after_sha256": "046adaf780652b3996047a496c53b3ff52c4970c2fe75d32b299cc6c5e02b4db",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "runtime/menu/observer.c",
+      "before_sha256": "e8cc4f5cd669ddc6cb836b9622383b58a08dfdaf5ce11494a3452cd42ce603f5",
+      "after_sha256": "57ab38db3227166fcd5656b537f46ec6773203d9055b10ff3a9e770c645cb406",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "tests/README.md",
+      "before_sha256": "05359e8206231e17f82eda1f588f416443810b61c2a14de8da4e8b61beedf428",
+      "after_sha256": "0bb42b49c80be1ef555bf5654483320ad1ddf9139c0356a9302208ca0ca538c2",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "tests/campaign-observer-test.c",
+      "before_sha256": null,
+      "after_sha256": "27c879ec46802e2f52d04d9c83108c1e6560c938b9dc768fe4ad87dbc0459adb",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "tools/build-menu-observer.py",
+      "before_sha256": "4985cb07d670aca84ecbdf15453ec38a9e5fed942c516f005efbaecb30afd6d1",
+      "after_sha256": "4a7f897ee654116f5905b408ebe0e415d25733f5c44d74d578338cfeaf283c27",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "tools/menu-game-runner.py",
+      "before_sha256": "bff6c0eb7d73a5f1408dcdb3000556029cd414fc4877c5c969aa9f7c4a5fb2c9",
+      "after_sha256": "8b8057d0302256548e1c6ba598ccc00d4612ba539bc83021a04912e66acfa855",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "444d3b276ae9f55486c2bc4f8ba8d8051ae3bee306a41ceae5f9a415e8f736a4",
+      "after_sha256": "9169e05631dc96bc9bf9e087c7e678fc42fe96b29ae1ebd74a4d945318fb153c",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "tools/test-campaign-observer.py",
+      "before_sha256": null,
+      "after_sha256": "a763309a677c211764bb445bfc72c151a5f82a842198ac55e52d01936015b9f7",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "path": "tools/test-live-campaign-entry.py",
+      "before_sha256": null,
+      "after_sha256": "58259387aea19736009b1797ce9350e9ce2abaa01bdbe446bdf9343a86fe915b",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    }
+  ],
+  "unmatched": [],
+  "retrospective_receipts": [],
+  "behavior_contracts": [
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "id": "CP.main-new-game",
+      "before_sha256": null,
+      "after_sha256": "a25e18d191f2a33cdb8aa8ccac00cc64107f968b1c347871b3a653c30f414e45",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "id": "CP.realm-auxiliary",
+      "before_sha256": null,
+      "after_sha256": "3f56790928f067622315399046be55ab277f818cfae5871fe92395ff6bcbd98c",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "id": "CP.realm-initialization-gap",
+      "before_sha256": null,
+      "after_sha256": "0b8e420e34bcc161fd3c54e1fee2a0a954895c1e708ea7b3b623f4c4149b6757",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "id": "CP.realm-navigation",
+      "before_sha256": null,
+      "after_sha256": "f353b0d73ee176d0563d8ccc4848d2335dd240cda3a641f20b86f7ab29b8897a",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "id": "CP.region-admission",
+      "before_sha256": null,
+      "after_sha256": "e4bb8c2039bbdb9fd25b916401d2ec684d5056e6c7ae0bfea35a22b7ebd3b14e",
+      "reviews": [
+        "campaign-contract-ui26-20261005"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": null,
+      "after_sha256": "7cdc64129c891a0f29759760dbdf584ccdacb88e32bd36ea1bc0574480b15bee",
+      "reviews": [
+        "effect-trajectory-20261005-parent-pending"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "id": "TL.effect-trajectory-step",
+      "before_sha256": null,
+      "after_sha256": "ebc1656bad64ca7f86aeb4d827ff761d57fe2943a28500bbef9780e35cb210dc",
+      "reviews": [
+        "effect-trajectory-20261005-recorded"
+      ]
+    },
+    {
+      "commit": "706b2f579ba278023557d28a6c77463aca3f1a5e",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "b713312ef00e878317ef259663548f358ffe92a9c53f60425bbe3aeee3d3819f",
+      "after_sha256": "c78df6a6f04a75951c52180c3ce2885865c7862f47a099c51467a5704fe6bb9b",
+      "reviews": [
+        "coverage-commit-hook-reconcile-84a42ef"
+      ]
+    },
+    {
+      "commit": "8dd69c40a0ab98fa39b4447d0c5f635e752db16e",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "c78df6a6f04a75951c52180c3ce2885865c7862f47a099c51467a5704fe6bb9b",
+      "after_sha256": "b14cb1b0eea725e3ce31902aab7fe200367937354173d165cfb1bf31833e4d00",
+      "reviews": [
+        "campaign-contract-scoped-commit-campaign-commit-zwqmzzn7"
+      ]
+    },
+    {
+      "commit": "2afab5ec1308dd66830ad33d441e0d907ade41ca",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "b14cb1b0eea725e3ce31902aab7fe200367937354173d165cfb1bf31833e4d00",
+      "after_sha256": "c78df6a6f04a75951c52180c3ce2885865c7862f47a099c51467a5704fe6bb9b",
+      "reviews": [
+        "campaign-concurrent-commit-reconciliation-20261005"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "7cdc64129c891a0f29759760dbdf584ccdacb88e32bd36ea1bc0574480b15bee",
+      "after_sha256": "099d3f5296d5253719d97b43f73fa9e12c15635baed93106478b8eef7b664e29",
+      "reviews": [
+        "effect-projection-remaining-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "id": "TL.effect-projection-policy",
+      "before_sha256": null,
+      "after_sha256": "e79168c5e7e033f6c15a98665c85dcec12642232aced0decdafe27cf25aa07ff",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "a344ba5154db579239148c3689666108a1e4611f",
+      "id": "TL.effect-same-cell-projection",
+      "before_sha256": null,
+      "after_sha256": "fe3f01c76af2506d605f41d0e05668d77a842a190a93a304610b3f986aa6fced",
+      "reviews": [
+        "effect-projection-recorded-2afab5e"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "BR.battle",
+      "before_sha256": "93464b9fe6c59141c28b6f87f3c65723305468520ff7710c55c338c404102b96",
+      "after_sha256": "82904722242e283ab7c085078c1905da2399cf8c8773a3d7a2aea6a84a9d49ae",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "BR.main",
+      "before_sha256": "eb29a8129acf22d9e5e1f305f5081a8e593d9b5511f6a9e140a1d3dbd4ac8857",
+      "after_sha256": "93085cec9dcf279a3e8aa40fa5394a13a95157db6c5496f1854b25c4da7b8852",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "BR.mini",
+      "before_sha256": "f269c885a6f4da830af4af3292cb9519a5ac7cc0e9d77b03146cca43ad694f12",
+      "after_sha256": "564b9f18c74eec84a928d3f0d2ad39d08c62ecfc726480ba045db2c753ee4ed0",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "BR.result",
+      "before_sha256": "17ae2045af6c55aa24d72c57b30bcb97c050573b6a536fd61a092ceb6b5f8816",
+      "after_sha256": "cc586ff95645a662ca4be1f61e5edd8d7f7bb9181ed512ca887550cd68b84a76",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "BR.spell",
+      "before_sha256": "fbeea40a73e9e32ed749c68150b4569a74756832d341bb192f575154766d640a",
+      "after_sha256": "a69e8602d8ded4acdb9b1d9ffb74543e635ca3062a63f4ae39bc9295724769e3",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "CP.main-new-game",
+      "before_sha256": "a25e18d191f2a33cdb8aa8ccac00cc64107f968b1c347871b3a653c30f414e45",
+      "after_sha256": "bbf325b220eb8a19ef75045e418b31ea4e3bdd9ae857a8160dafc6c2fb03080e",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "CP.realm-auxiliary",
+      "before_sha256": "3f56790928f067622315399046be55ab277f818cfae5871fe92395ff6bcbd98c",
+      "after_sha256": "3f56790928f067622315399046be55ab277f818cfae5871fe92395ff6bcbd98c",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "CP.realm-initialization-gap",
+      "before_sha256": "0b8e420e34bcc161fd3c54e1fee2a0a954895c1e708ea7b3b623f4c4149b6757",
+      "after_sha256": "f11707f5750c0a45fc6af6ff78a970e9a22c6c30475b9d712375d376535a58f0",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "CP.realm-navigation",
+      "before_sha256": "f353b0d73ee176d0563d8ccc4848d2335dd240cda3a641f20b86f7ab29b8897a",
+      "after_sha256": "f353b0d73ee176d0563d8ccc4848d2335dd240cda3a641f20b86f7ab29b8897a",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "CP.realm-observation",
+      "before_sha256": null,
+      "after_sha256": "bc0f9f99b2d91aff392024aeebc60d6d47aa048a56cb25f0b6ba3b5ab77866c4",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d",
+        "campaign-observation-ui27-execution-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "CP.region-admission",
+      "before_sha256": "e4bb8c2039bbdb9fd25b916401d2ec684d5056e6c7ae0bfea35a22b7ebd3b14e",
+      "after_sha256": "e4bb8c2039bbdb9fd25b916401d2ec684d5056e6c7ae0bfea35a22b7ebd3b14e",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "NP.preferences-draft",
+      "before_sha256": "56bbeaf2f45a4db898f94d758c0e6fcf4c10d3aee7b1c54c8a9e1fb65fcd0412",
+      "after_sha256": "56bbeaf2f45a4db898f94d758c0e6fcf4c10d3aee7b1c54c8a9e1fb65fcd0412",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "NP.preferences-persistence",
+      "before_sha256": "ee496b828e05ffa4cd5a3479c0e6d5560430feb2f44d92f2aa730fae824403f3",
+      "after_sha256": "2242fe024d1e91f2a60a51d2abe5c9c35dade133c5576589d89a1f1d79d58904",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "PR.apply",
+      "before_sha256": "d4118f9c00c420c0c2ad23167fc8d8cb3f822720aefbc126313770af4c1eb50b",
+      "after_sha256": "0bbe45e7b72fffd5fcbd77e782fc4223f1a2e33c16fcb7250c0a1a99f67af66a",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "PR.audio-preview-cancel",
+      "before_sha256": "431e71a71cafe0f30995bbf79f5af1d9dd27ca950b07d5884b6d384e05dddd13",
+      "after_sha256": "3b8215c7b5bd7500238622da52a4582fab42e5ad734efbf5e07e06a145d401af",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "PR.control-admission",
+      "before_sha256": "1ab8ba9de7afd9770495b617499e8157c060d28c311d8c35c7a0034a4891052e",
+      "after_sha256": "3225853b0ce84396ca232c7929ee3f361534cf2685ecaf4b36d0d49bb54955de",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "PR.display-rebuild",
+      "before_sha256": "6f3d84423a059dacdaa75bf53c992c72c5e321acf0b4eedbd224bd29772f38ea",
+      "after_sha256": "8b76f4e82d4d96ac34e4beaedc370fc772ab0d4ad95ee2b2a94afe34b5cc91b2",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "PR.main-entry",
+      "before_sha256": "78a9c26e1e08a2c7c9de8ff639a149aa37dec1e67d8024b082774e65edaab755",
+      "after_sha256": "18e2a4ae4747e131a95bfb8cd86b235aa9af2ecdd0ead4171cfd3543220637fa",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "c78df6a6f04a75951c52180c3ce2885865c7862f47a099c51467a5704fe6bb9b",
+      "after_sha256": "07fa0c393cb5596040254c50ad68a8729c83c36c44728c59ea26a83265036ce0",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    },
+    {
+      "commit": "d97986e20305a8f9d829d414b7541fac436e16f7",
+      "id": "WIRE.menu_fixtures",
+      "before_sha256": "668de02663ab7a27458691dbc683fe84ea29fc59ca8c6c233bf26e98534fc4c7",
+      "after_sha256": "668de02663ab7a27458691dbc683fe84ea29fc59ca8c6c233bf26e98534fc4c7",
+      "reviews": [
+        "campaign-observation-ui27-campaign-observation-commit-qtp7ug3d"
+      ]
+    }
+  ],
+  "journal_note": "Append-only review journal changes are not self-receipted; all other committed file versions have matching prior receipts."
+}

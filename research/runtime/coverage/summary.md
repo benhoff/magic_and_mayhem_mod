@@ -6,14 +6,14 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | Accounting boundary | Count |
 | --- | ---: |
 | builds | 1 |
-| behaviors | 305 |
-| evidence | 182 |
-| scenarios | 17 |
+| behaviors | 306 |
+| evidence | 184 |
+| scenarios | 19 |
 | functions | 6675 |
 | registered recovered ranges | 10 |
 | incomplete dispatch tables | 5 |
-| indexed sources | 884 |
-| unclassified functions | 6503 |
+| indexed sources | 891 |
+| unclassified functions | 6500 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
 | unmapped imports | 190 |
@@ -26,7 +26,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 141 |
 | behaviors without comparison | 258 |
 | behaviors without tests | 1 |
-| stale evidence | 43 |
+| stale evidence | 52 |
 | behavior anchors outside discovered functions | 21 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
@@ -36,11 +36,11 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Independent status | Counts |
 | --- | --- |
-| understanding | partial: 231; scoped: 41; unknown: 33 |
-| implementation | none: 141; partial: 127; scoped: 37 |
-| comparison | none: 258; recorded: 47 |
-| integration | headless: 23; live_equivalence: 0; live_observation: 8; none: 264; preview: 10 |
-| replacement | none: 305; scoped_live: 0 |
+| understanding | partial: 231; scoped: 42; unknown: 33 |
+| implementation | none: 141; partial: 127; scoped: 38 |
+| comparison | none: 258; recorded: 48 |
+| integration | headless: 24; live_equivalence: 0; live_observation: 8; none: 264; preview: 10 |
+| replacement | none: 306; scoped_live: 0 |
 
 ## Animation checklist
 
@@ -155,7 +155,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | MV.event-4 | Movement animation event 4 consumer | `0x5104b0` | partial | none | none | none | none | no_evidence |
 | MV.event-5 | Movement animation event 5 consumer | `0x5104b0` | partial | none | none | none | none | no_evidence |
 | MV.event-6 | Movement animation event 6 consumer | `0x5104b0` | partial | none | none | none | none | no_evidence |
-| MV.vertical-setup | Vertical/category-four setup and heights | `0x510e80` | scoped | scoped | recorded | headless | none | current_fingerprints |
+| MV.vertical-setup | Vertical/category-four setup and heights | `0x510e80` | scoped | scoped | recorded | headless | none | stale |
 | MV.reverse | Reverse animation and movement profiles | `0x510e80` | partial | none | none | none | none | no_evidence |
 | MV.special-profile | Type/category-specific forced movement | `0x5104b0` | partial | partial | recorded | none | none | stale |
 | MV.profile-selection | Original action/config animation selection | `0x50db60`, `0x510e80` | partial | none | none | none | none | no_evidence |
@@ -167,8 +167,9 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | MV.pause-clock | Original pause, admission and world tick cadence | `0x46afc0` | partial | none | none | none | none | no_evidence |
 | NP.move-orders | Native queued orders, cancellation and target guards | native policy | scoped | scoped | none | headless | none | stale |
 | NP.checkpoints | Native checkpoint and fresh-process continuation | native policy | scoped | scoped | none | headless | none | stale |
-| NP.presentation | World movement connected to terrain/sprite presentation | native policy | scoped | scoped | none | preview | none | current_fingerprints |
-| MV.ordinary-terrain-height | Ordinary terrain height and coordinate snap | `0x511301`, `0x5070e0` | scoped | scoped | recorded | headless | none | current_fingerprints |
+| NP.presentation | World movement connected to terrain/sprite presentation | native policy | scoped | scoped | none | preview | none | stale |
+| MV.ordinary-terrain-height | Ordinary terrain height and coordinate snap | `0x511301`, `0x5070e0` | scoped | scoped | recorded | headless | none | stale |
+| MV.creature-profile | Selected creature CFG normalization and ground ANI sample/binding construction | `0x502b20`, `0x505220`, `0x505160`, `0x5057b0` | scoped | scoped | recorded | headless | none | current_fingerprints |
 
 ## Native Audio checklist
 
@@ -199,21 +200,21 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | ID | Behavior | Original addresses | Understanding | Implementation | Comparison | Integration | Replacement | Evidence freshness |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | WORLD.owned | Owned world records and persistence | native policy | partial | partial | none | none | none | current_fingerprints |
-| WORLD.sandbox | Headless world fixture and frozen navigation | native policy | partial | partial | none | none | none | current_fingerprints |
-| NP.map-navigation | Ordinary installed MAP crop to frozen navigation and matched presentation | native policy | scoped | scoped | none | preview | none | current_fingerprints |
+| WORLD.sandbox | Headless world fixture and frozen navigation | native policy | partial | partial | none | none | none | stale |
+| NP.map-navigation | Ordinary installed MAP crop to frozen navigation and matched presentation | native policy | scoped | scoped | none | preview | none | stale |
 
 ## Pathfinding checklist
 
 | ID | Behavior | Original addresses | Understanding | Implementation | Comparison | Integration | Replacement | Evidence freshness |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | PF.creature_acceptance | Creature acceptance | `0x514360` | partial | partial | none | none | none | current_fingerprints |
-| PF.movement | Movement cell predicate | `0x4f3990` | partial | partial | recorded | headless | none | current_fingerprints |
+| PF.movement | Movement cell predicate | `0x4f3990` | partial | partial | recorded | headless | none | stale |
 | PF.cell | Cell transition predicate | `0x4f47d0` | partial | partial | none | none | none | current_fingerprints |
 | PF.occupancy | Packed occupancy predicate | `0x4f3550` | partial | partial | none | none | none | current_fingerprints |
 | PF.validity | Region validity predicate | `0x4f46b0` | partial | partial | none | none | none | current_fingerprints |
-| PF.cell_validity | Cell validity predicate | `0x4f3440` | partial | partial | recorded | headless | none | current_fingerprints |
+| PF.cell_validity | Cell validity predicate | `0x4f3440` | partial | partial | recorded | headless | none | stale |
 | PF.record_query | Cell record query | `0x4f4330` | partial | partial | none | none | none | current_fingerprints |
-| PF.cell_support | Cell support predicate | `0x4f3320` | partial | partial | recorded | headless | none | current_fingerprints |
+| PF.cell_support | Cell support predicate | `0x4f3320` | partial | partial | recorded | headless | none | stale |
 | PF.boundary | Boundary predicate | `0x4f41a0` | partial | partial | none | none | none | current_fingerprints |
 | PF.clearance | Clearance predicates | `0x4f44e0` | partial | partial | none | none | none | current_fingerprints |
 | PF.scalar | Creature cost scalar | `0x5205b0` | partial | partial | none | none | none | current_fingerprints |
@@ -440,8 +441,8 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | TL.object-fixture-policy | Authored bounded lighting fixtures and atomic refusal | native policy | scoped | scoped | none | preview | none | stale |
 | TL.effect-table-loader | Installed effect lighting table loader and type selection | `0x49c2e0`, `0x49cf60`, `0x59c519`, `0x59db40` | scoped | scoped | recorded | headless | none | stale |
 | TL.effect-table-policy | Owned installed effect fields and authored source adapter | native policy | scoped | scoped | none | headless | none | stale |
-| TL.effect-common-placement | Common placement of five installed emitting effect types | `0x493f20` | scoped | scoped | recorded | headless | none | current_fingerprints |
-| TL.effect-placement-policy | Owned effect placement bounds, rollback and pending recount guard | native policy | scoped | scoped | none | headless | none | current_fingerprints |
+| TL.effect-common-placement | Common placement of five installed emitting effect types | `0x493f20` | scoped | scoped | recorded | headless | none | stale |
+| TL.effect-placement-policy | Owned effect placement bounds, rollback and pending recount guard | native policy | scoped | scoped | none | headless | none | stale |
 | TL.effect-type-setup | Effect type-specific animation and trajectory setup remains open | `0x494ab0` | partial | none | none | none | none | no_evidence |
 | TL.effect-creation-variants | Creator and alternate effect creation-position paths remain open | `0x493f20` | partial | none | none | none | none | no_evidence |
 | TL.effect-trajectory-step | Whole effect trajectory stepping from authored state | `0x4df500` | scoped | scoped | recorded | headless | none | current_fingerprints |
@@ -460,15 +461,17 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 ## Evidence freshness
 
 - **NS04.setup**: `reconstruction/motion/segment_setup.cpp`, `tests/segment-setup-test.cpp`
-- **NS04.motion**: `reconstruction/motion/creature_motion.cpp`
-- **NS05.composition**: `tests/ani-motion-test.cpp`
-- **NS05.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/main.cpp`, `assets/CMakeLists.txt`, `game/CMakeLists.txt`, `game/README.md`, `game/persistence/snapshot.cpp`, `game/simulation/movement.cpp`, `game/simulation/movement.hpp`, `game/simulation/world.cpp`, `game/simulation/world.hpp`, `reconstruction/motion/README.md`, `tests/ani-motion-test.cpp`, `tests/test-original-ani-motion.py`
+- **NS04.motion**: `reconstruction/motion/creature_motion.cpp`, `tests/creature-motion-test.cpp`
+- **NS05.composition**: `reconstruction/motion/creature_motion.cpp`, `tests/ani-motion-test.cpp`
+- **NS05.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-sandbox/main.cpp`, `assets/CMakeLists.txt`, `game/CMakeLists.txt`, `game/README.md`, `game/persistence/snapshot.cpp`, `game/simulation/movement.cpp`, `game/simulation/movement.hpp`, `game/simulation/world.cpp`, `game/simulation/world.hpp`, `reconstruction/motion/README.md`, `reconstruction/motion/creature_motion.cpp`, `tests/ani-motion-test.cpp`, `tests/test-original-ani-motion.py`
+- **NS06.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `reconstruction/motion/creature_motion.cpp`, `tests/creature-motion-test.cpp`
 - **REVIEW.NR.world_scene**: `apps/world-scene/main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`
 - **REVIEW.BR.main**: `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `runtime/menu/observer.c`
 - **REVIEW.BR.battle**: `runtime/menu/observer.c`
 - **REVIEW.BR.spell**: `runtime/menu/observer.c`
 - **REVIEW.BR.result**: `runtime/menu/observer.c`
 - **REVIEW.BR.mini**: `runtime/menu/observer.c`
+- **REVIEW.WORLD.sandbox**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`
 - **ORIGINAL.animation-forward-contract**: `assets/animation.cpp`, `assets/animation.hpp`, `reconstruction/animation/no_cd.cpp`, `reconstruction/animation/no_cd.hpp`, `tests/animation-binary-reference.cpp`, `tools/test-animation-contract.py`
 - **ORIGINAL.animation-direction-selection**: `reconstruction/animation/no_cd.cpp`, `reconstruction/animation/no_cd.hpp`
 - **ORIGINAL.animation-placement-attachments**: `assets/animation.hpp`
@@ -483,7 +486,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **ORIGINAL.terrain-region-generation**: `reconstruction/rendering/CMakeLists.txt`
 - **ORIGINAL.terrain-region-catalog**: `reconstruction/rendering/CMakeLists.txt`
 - **ORIGINAL.terrain-palette-shading**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `reconstruction/rendering/palette_shading.cpp`, `reconstruction/rendering/palette_shading.hpp`, `tests/palette-shading-native.cpp`, `tests/palette-shading-reference.cpp`
-- **ORIGINAL.terrain-light-fields**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `reconstruction/rendering/terrain_lighting.cpp`, `reconstruction/rendering/terrain_lighting.hpp`, `tests/ani-motion-test.cpp`, `tests/native-movement-test.cpp`, `tests/segment-setup-test.cpp`, `tests/test-original-ani-motion.py`, `tests/test-original-segment-setup.py`, `tests/test-tooling.sh`
+- **ORIGINAL.terrain-light-fields**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`, `reconstruction/rendering/terrain_lighting.cpp`, `reconstruction/rendering/terrain_lighting.hpp`, `tests/ani-motion-test.cpp`, `tests/creature-motion-test.cpp`, `tests/native-movement-test.cpp`, `tests/segment-setup-test.cpp`, `tests/test-original-ani-motion.py`, `tests/test-original-segment-setup.py`, `tests/test-tooling.sh`
 - **ORIGINAL.terrain-creature-lighting**: `reconstruction/rendering/terrain_lighting.cpp`, `reconstruction/rendering/terrain_lighting.hpp`
 - **ORIGINAL.terrain-palette-preferences**: `apps/terrain-preview/CMakeLists.txt`, `apps/terrain-preview/main.cpp`, `assets/CMakeLists.txt`, `assets/palette_lighting.cpp`, `assets/palette_lighting.hpp`, `reconstruction/rendering/CMakeLists.txt`
 - **NATIVE.native-world-scene**: `apps/world-scene/CMakeLists.txt`, `apps/world-scene/README.md`, `apps/world-scene/main.cpp`, `apps/world-scene/scene.cpp`, `apps/world-scene/scene.hpp`
@@ -497,11 +500,18 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **TL03.object-scenes-native**: `apps/terrain-preview/CMakeLists.txt`, `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`
 - **UI24.live**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/test-live-menus.py`
 - **UI24.native**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_test.cpp`, `apps/qt-shell/live_menu_test.hpp`, `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`, `tools/test-live-menus.py`
+- **NS08.original**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `tests/map-navigation-reference.cpp`
+- **NS08.native**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `tests/map-navigation-reference.cpp`
 - **UI25.original**: `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`
 - **UI25.live**: `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`
 - **UI25.qt**: `runtime/menu/observer.c`, `tools/build-menu-observer.py`, `tools/prepare-menu-observer.py`
-- **TL04.effects-original**: `reconstruction/rendering/CMakeLists.txt`
-- **TL04.effects-native**: `reconstruction/rendering/CMakeLists.txt`
+- **NS08.installed-ani**: `apps/world-sandbox/frozen_navigation.cpp`, `apps/world-sandbox/frozen_navigation.hpp`, `apps/world-scene/CMakeLists.txt`, `apps/world-scene/map_navigation.cpp`, `apps/world-scene/map_navigation.hpp`, `apps/world-scene/map_navigation_main.cpp`, `tests/map-navigation-reference.cpp`
+- **TL04.effects-original**: `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`
+- **TL04.effects-native**: `assets/CMakeLists.txt`, `reconstruction/rendering/CMakeLists.txt`
+- **TL05.placement-original**: `assets/CMakeLists.txt`
+- **TL05.placement-native**: `assets/CMakeLists.txt`
+- **TL05.tables-original**: `assets/CMakeLists.txt`
+- **TL05.tables-native**: `assets/CMakeLists.txt`
 
 ## Checklist gaps
 
