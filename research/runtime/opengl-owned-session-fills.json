@@ -1,0 +1,437 @@
+{
+  "schema": 1,
+  "sources": {
+    "runtime/render/adapter_startup.h": "52457ffc947fbbf242a6949d4a871779a171aaafc8e0ae741868f33a20374192",
+    "runtime/render/bootstrap_selftest.h": "dcd7e92c8af2fb1b4868db11aa6edaed1a71561f617d5aaa7fd4ab6134bd250e",
+    "runtime/render/bridge.c": "6b3f883fce977dd12dc8636e5c3adbfc698ce51167ece235c9958c6562fdf33b",
+    "runtime/render/command_channel.h": "8305acad4f9423470e69843e2318936dd02c316a4d8aa7e7e40ab7e57e09afa2",
+    "runtime/render/dc_selftest.h": "07af25dc8f599c624318a6af9bcdd01e79d65bd6c81e23ee07081b71d3a5e3b2",
+    "runtime/render/draw_capture.h": "7b6e113cc86c0015f855711fdd893fc6efc83d0fa4287f91d829847b9612b868",
+    "runtime/render/draw_selftest.h": "03799a2bd9c3df1ac3b426c85b34b7f1d25b36791947ca95ac2af687d177d24f",
+    "runtime/render/failure_diagnostics.h": "97d72ef8174e01c80c4b3eb57f4fa80cedfd8f56f25f7b77904121d0996baf11",
+    "runtime/render/flip_history.h": "4c1910ed299700ba95e9b49923710b54817ab8dd2d2cba823b40ccf4dbc388d8",
+    "runtime/render/flip_selftest.h": "f46d45004a39a82283021903e468730b365825c6efec1cbebe61d2fd875eb03b",
+    "runtime/render/frame_pixels.h": "671110ec34e214010c51d2a13838cd56e08869ecebdf7d38c8aaaae9156109be",
+    "runtime/render/history_selftest.h": "077d923f30ff81d927fa770f6b841e0461a345e4fc4310ab3048fa284ec3bdb5",
+    "runtime/render/indexed_copy_selftest.h": "9d3fc4c7a0d8f66a7ba765172c920cb4889301b63dea02556c7eeb3ef5e45fb6",
+    "runtime/render/indexed_owned_selftest.h": "7ab70e041a806281903ec11a5708fa9b3e69fe2e5bd6a54baa131793b19ba723",
+    "runtime/render/input_polling.h": "95d53d43f99b3de9390b07a150db112ae7d280e7bb112ba5957e3ce62dca736c",
+    "runtime/render/input_selftest.h": "78d5c31ec213d5bd06daa667e38320671807a5700903a392fbb78f8cfeb9abab",
+    "runtime/render/lock_aliases.h": "df4a344c6f010b8f8022c99ec1a1ce04cd708564248d18a3362d2ad165745a95",
+    "runtime/render/lock_blit_selftest.h": "e0083a9c20400e058e0a914f80b9bcda79d13f81c070e39aa34f36bec59b64fa",
+    "runtime/render/lock_dc.h": "5717970196c172b56e0165aa77b33bda3b84a81d4c7630db7068bda0fb7cc39e",
+    "runtime/render/lock_diagnostics.h": "e21d9134b6f2d0a9d7624a017a2ea0b52ee05aae6a249a1c84ccf8740959b5a0",
+    "runtime/render/lock_flip.h": "a423a22742ca55c968ef6487088a8b587decc5def07c7ef7bf701ad9b909fd2e",
+    "runtime/render/lock_lifecycle.h": "0f4e6f311630c14e76998bf542a5822f4d74293af905c4db3777669c451376ce",
+    "runtime/render/lock_lifecycle_selftest.h": "ebdfe7dd2773746496a1b138e6309b0250e2207b67d4e2ba6f05f24843bcb406",
+    "runtime/render/lock_palette.h": "ad65d84a74aacd2d08c5ce92c948ce0cfb413b0d26dee9e965f0d5b7f5b09452",
+    "runtime/render/lock_surfaces.h": "868f26cd0a736f1d5c70d0e13a14167347563ec3a3f6cde58861d3bd35982342",
+    "runtime/render/lock_updates.h": "4fd32d69ac6b2a8f6557e9bb3cc5ddd5540e4f6ea942fbebaf9b43f9725c78a3",
+    "runtime/render/media_bridge.h": "dc7e64883ef491ac42f42a2f10c36dda1ca5a04eda993cdab04e9645df572e6f",
+    "runtime/render/media_selftest.h": "9f9592dc30aeed9b8d0f7fa622c4335fd9fc6357b84d67eb5077ff795143e4b0",
+    "runtime/render/owned_session.h": "09560df9079a32c2894a91a6793db3bb07228bc9803db9415ed38448a0ea3afe",
+    "runtime/render/owned_session_selftest.h": "33caf5163cf835391febcf6611b482fa9b8b42cb5e2a9ed38f4b867f79b9c003",
+    "runtime/render/palette_history.h": "d298ee386d6a70c406dd3ec248eb071e79a0688daf5c7da8f91a43bc4a2cad72",
+    "runtime/render/palette_selftest.h": "5d7e6f9c254d9ed634f4656b0256dda811adbc6cfe1f0c768abc8242aa43b73d",
+    "runtime/render/partial_lock_selftest.h": "ddb5c59ec8065d326171a3be974917ff1e1f8414f3c6302aeb3ad165179d9356",
+    "runtime/render/selftest.c": "b784dd59ed996fe488ae195b92a50bff7620bf2dd10a64b710ed520d4def34a1",
+    "runtime/render/surface_commands.h": "2353c4a1d704bef43594c0042c97d3f0c65927fb8d14abb60a10ec0b4c4bb8cf",
+    "runtime/render/surface_history.h": "63976b18f13b5db96ca4385c30d6783769a7f25f32656888023171ce111ffa7d",
+    "tools/test-render-session-fills.py": "62ba69ec24b967fa80a71534c232bf3b1fe20f33e196d8a4869f8cf881951a50",
+    "tools/test-live-render-channel.py": "67e53e5580ee45eae7bc5d046917eee6eb1cd03efacf907a698474686a08ba44",
+    "tools/test-render-bootstrap.py": "e0f582675deac11cc8f6326eaf81ec61e03b57eafb3da6477f0693d299479a90",
+    "tools/build-render-bridge.py": "2eadb622107f0b1854f002db08794eec305b0ca51da918c54f66e3ba973b6d44",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/live-render-channel-test.cpp": "c063ecc7de3a1352e234fb0a6bdac809c558dc1c5082046b45f2a01ce4585b7d",
+    "renderer/blit.cpp": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+    "renderer/blit.hpp": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+    "renderer/commands.cpp": "96029cdf2e773901c54c38913c589a12273b7d6179129a0ad77c919f27e6881c",
+    "renderer/commands.hpp": "cafda600a8f9c5573f8929932edfc02c9f29a34027a1e86fb741d03052f6813d",
+    "renderer/command_state.hpp": "a1b59d3255c81e932c10d20c48402987d8723710c22848f50bef3100a4a4617c",
+    "renderer/command_consumer.cpp": "94d7bb452124133054ee5d5c02a94554e2137bc7a255f4d68d587e23a3b17ee7",
+    "apps/qt-shell/command_channel.cpp": "1826fb0332ff5fbdbb3073d9ac71901ad185736d4bdd857dec9d4ca5eccb939b",
+    "apps/qt-shell/command_channel.hpp": "db6053575483d912c2ef3e1e8cae46ca028e4e27bcdb666d3f18f99e5239aaad",
+    "apps/qt-shell/live_command_renderer.cpp": "d69398904ef9791487fe2e2f647914d7dcd1e3e38c50ead8d7b5e700686ad0ff",
+    "apps/qt-shell/live_command_renderer.hpp": "1a61318c945566e38bb4eca73f798e0732127e9589f06c250108827271148001",
+    "apps/qt-shell/gl_viewport.cpp": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+    "apps/qt-shell/gl_viewport.hpp": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+    "protocols/include/mnm/render_commands_v1.h": "da3687442c203a85bbec98810c084346154a860bce2d3b65bb0f96c13dd66a0f",
+    "protocols/python/mnm_protocols/render_commands_v1.py": "17d3c1fcea8d55d2d9ae146c50ad8d56d820ffc24f86770b9a3f50be4e17b256"
+  },
+  "scope": "Synthetic owned constant fills through unchanged v1 UPDATE admission into live native GPU presentation; independent complete original fixture pixels. No original-game pixel equivalence or replacement.",
+  "cases": [
+    {
+      "mode": "fill8",
+      "bits": 8,
+      "fill_updates": [
+        [
+          2,
+          0,
+          0,
+          800,
+          600
+        ]
+      ],
+      "native_check_verify": {
+        "backend": "opengl_native_integer",
+        "checks": 6,
+        "color_checks": 0,
+        "command_sha256": "8dcf931077bae84d5d005435020b4af91755a50fe0a0446c580452a07d474419",
+        "commands": 18,
+        "output_sha256": "fb9393cb1be52df7a62c9bde7f861e97a8df30acfd0e2666bbce90fafcd60a06",
+        "presentation_rgba_sha256": "8def9fa93068113655b844e30eac3ed8c96e5de219188c1a2f3610322cc87910",
+        "presentations": 2,
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "palette_updates": 1,
+          "surfaces": 0,
+          "uploads": 4
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+      },
+      "before_producer_exit": true,
+      "error": "",
+      "frames": [
+        "de37a9b142ef9d734fb255033a544651ee4faeb19f6e42b11badb70e1d537997",
+        "0b03403fb5a0aea8c9431eb147edfb5b6276e99f86521031c81246e0ead9d7bb"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "fill",
+      "bits": 16,
+      "fill_updates": [
+        [
+          2,
+          0,
+          0,
+          800,
+          600
+        ]
+      ],
+      "native_check_verify": {
+        "backend": "opengl_native_integer",
+        "checks": 6,
+        "color_checks": 0,
+        "command_sha256": "e3ac84e2c5309b1d9b930459860b9ef1ff8e4c13671debff5611326b801543a6",
+        "commands": 17,
+        "output_sha256": "6c2cc31cb66ff81fb78c45762d9bb984c54271d6e3284b639812ca45fef79f0a",
+        "presentation_rgba_sha256": "89f5ea3f0519597c308bf9c0080e08f9a345432f4eef84f14fb10baeed82484a",
+        "presentations": 2,
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "palette_updates": 0,
+          "surfaces": 0,
+          "uploads": 4
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+      },
+      "before_producer_exit": true,
+      "error": "",
+      "frames": [
+        "091b325ca216634ff3b999f725853fab80f6d5c7676977ac60ea8cde4f89633e",
+        "11a155d9dd4951f47ede93e2611d0706d477ab2dffd4ceaa1319d4bab54d8363"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "fill24",
+      "bits": 24,
+      "fill_updates": [
+        [
+          2,
+          0,
+          0,
+          800,
+          600
+        ]
+      ],
+      "native_check_verify": {
+        "backend": "opengl_native_integer",
+        "checks": 6,
+        "color_checks": 0,
+        "command_sha256": "d639bfb9eade7273203198dc9fb474b08e406fce7cbb0e4231f8510ead65bf3e",
+        "commands": 17,
+        "output_sha256": "08ad89ed7219718b2f163c3cc9f7069f315d7984deb351b6feff81937c3e2622",
+        "presentation_rgba_sha256": "b9a50412de3c9c4a99c864f8bd1b73b2e08482747dd42582332cd488feaff078",
+        "presentations": 2,
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "palette_updates": 0,
+          "surfaces": 0,
+          "uploads": 4
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+      },
+      "before_producer_exit": true,
+      "error": "",
+      "frames": [
+        "b5708cdd1786a20068191d3a08e89d810bd53da5fbfdb9a9eb40d8d6aa57aedd",
+        "d2e620f752d660115f5c84045e03c01d1760270463e50bcf5bd218efc3ad0c04"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "fill32",
+      "bits": 32,
+      "fill_updates": [
+        [
+          2,
+          0,
+          0,
+          800,
+          600
+        ]
+      ],
+      "native_check_verify": {
+        "backend": "opengl_native_integer",
+        "checks": 6,
+        "color_checks": 0,
+        "command_sha256": "48974481cf4ceb7a30bec14261a99f4b9720ef7986e6267d890b0610f7bcb805",
+        "commands": 17,
+        "output_sha256": "67c1ac3fd6040f0ce0a387cfbf9f0e296fa8d4ce8ad2767b92f62ec2ae274943",
+        "presentation_rgba_sha256": "1a0bf5faee06e05822b921a3c06d81b1f1034c7dc48410adb9f5c68f7ee9709a",
+        "presentations": 2,
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "palette_updates": 0,
+          "surfaces": 0,
+          "uploads": 4
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+      },
+      "before_producer_exit": true,
+      "error": "",
+      "frames": [
+        "b5708cdd1786a20068191d3a08e89d810bd53da5fbfdb9a9eb40d8d6aa57aedd",
+        "5e29f1b9c577643129e756aec1cd38e721f0c5010d987114bd80219f4e7eac23"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "fill-failed",
+      "bits": 16,
+      "fill_updates": [
+        [
+          2,
+          0,
+          0,
+          800,
+          600
+        ]
+      ],
+      "native_check_verify": {
+        "backend": "opengl_native_integer",
+        "checks": 6,
+        "color_checks": 0,
+        "command_sha256": "e3ac84e2c5309b1d9b930459860b9ef1ff8e4c13671debff5611326b801543a6",
+        "commands": 17,
+        "output_sha256": "6c2cc31cb66ff81fb78c45762d9bb984c54271d6e3284b639812ca45fef79f0a",
+        "presentation_rgba_sha256": "89f5ea3f0519597c308bf9c0080e08f9a345432f4eef84f14fb10baeed82484a",
+        "presentations": 2,
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "palette_updates": 0,
+          "surfaces": 0,
+          "uploads": 4
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+      },
+      "before_producer_exit": true,
+      "error": "",
+      "frames": [
+        "091b325ca216634ff3b999f725853fab80f6d5c7676977ac60ea8cde4f89633e",
+        "11a155d9dd4951f47ede93e2611d0706d477ab2dffd4ceaa1319d4bab54d8363"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "fill-partial",
+      "bits": 16,
+      "fill_updates": [
+        [
+          2,
+          0,
+          0,
+          800,
+          600
+        ]
+      ],
+      "native_check_verify": {
+        "backend": "opengl_native_integer",
+        "checks": 6,
+        "color_checks": 0,
+        "command_sha256": "e3ac84e2c5309b1d9b930459860b9ef1ff8e4c13671debff5611326b801543a6",
+        "commands": 17,
+        "output_sha256": "6c2cc31cb66ff81fb78c45762d9bb984c54271d6e3284b639812ca45fef79f0a",
+        "presentation_rgba_sha256": "89f5ea3f0519597c308bf9c0080e08f9a345432f4eef84f14fb10baeed82484a",
+        "presentations": 2,
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "palette_updates": 0,
+          "surfaces": 0,
+          "uploads": 4
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+      },
+      "before_producer_exit": true,
+      "error": "",
+      "frames": [
+        "091b325ca216634ff3b999f725853fab80f6d5c7676977ac60ea8cde4f89633e",
+        "11a155d9dd4951f47ede93e2611d0706d477ab2dffd4ceaa1319d4bab54d8363"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "fill-update",
+      "bits": 16,
+      "fill_updates": [
+        [
+          2,
+          0,
+          0,
+          800,
+          600
+        ],
+        [
+          2,
+          1,
+          2,
+          19,
+          28
+        ]
+      ],
+      "native_check_verify": {
+        "backend": "opengl_native_integer",
+        "checks": 8,
+        "color_checks": 0,
+        "command_sha256": "9ad1ec0a75c4f5b445bc6ef9e51f2397c47520c4a79287d1c2f44af3604c2531",
+        "commands": 21,
+        "output_sha256": "b299afe4734a8922f52d46dec54b9717cef28c4bfa387c68d2460b2d9932474a",
+        "presentation_rgba_sha256": "51d45ae921719dc4b7615b0c2a19f8434d1ac3d17e5ed2f8678af25dea1de4b7",
+        "presentations": 3,
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "palette_updates": 0,
+          "surfaces": 0,
+          "uploads": 5
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+      },
+      "before_producer_exit": true,
+      "error": "",
+      "frames": [
+        "091b325ca216634ff3b999f725853fab80f6d5c7676977ac60ea8cde4f89633e",
+        "52ad155dbc868c3c281d0ded8bc47ae0631adbc3dae4c1366b541a66ecfef8e9",
+        "3688249d2ed55e66421a336cacd994bdb96d7bff394c39ec141891c2f0a8d1d6"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 3,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "fill-session",
+      "bits": 16,
+      "fill_updates": [
+        [
+          2,
+          0,
+          0,
+          800,
+          600
+        ]
+      ],
+      "native_check_verify": {
+        "backend": "opengl_native_integer",
+        "checks": 6,
+        "color_checks": 0,
+        "command_sha256": "e3ac84e2c5309b1d9b930459860b9ef1ff8e4c13671debff5611326b801543a6",
+        "commands": 17,
+        "output_sha256": "6c2cc31cb66ff81fb78c45762d9bb984c54271d6e3284b639812ca45fef79f0a",
+        "presentation_rgba_sha256": "89f5ea3f0519597c308bf9c0080e08f9a345432f4eef84f14fb10baeed82484a",
+        "presentations": 2,
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "palette_updates": 0,
+          "surfaces": 0,
+          "uploads": 4
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+      },
+      "before_producer_exit": true,
+      "error": "",
+      "frames": [
+        "091b325ca216634ff3b999f725853fab80f6d5c7676977ac60ea8cde4f89633e",
+        "11a155d9dd4951f47ede93e2611d0706d477ab2dffd4ceaa1319d4bab54d8363"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    }
+  ],
+  "success": true,
+  "full_frame_comparisons": 17,
+  "ordinary_readbacks": 0,
+  "viewport_uploads": 0
+}

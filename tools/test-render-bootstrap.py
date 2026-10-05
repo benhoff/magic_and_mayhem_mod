@@ -47,6 +47,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--case', choices=cases, action='append')
     parser.add_argument('--tracker-wait-ms', type=int, choices=range(51))
+    parser.add_argument('--build', type=Path, default=REPO / 'working/build/qt-shell',
+                        help='Dedicated Qt build directory for this validation')
     args = parser.parse_args()
     selected = args.case or cases
     dll = load('bootstrap_build', 'tools/build-render-bridge.py').build(True)
@@ -55,7 +57,7 @@ def main():
     parent = REPO / 'working/tests/render-bootstrap'
     parent.mkdir(parents=True, exist_ok=True)
     root = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
-    build = REPO / 'working/build/qt-shell'
+    build = args.build.resolve()
     subprocess.run(['cmake', '-S', str(REPO / 'apps/qt-shell'), '-B', str(build)], check=True)
     subprocess.run(['cmake', '--build', str(build), '--target', 'mnm-qt-shell', 'mnm-render-commands', '--parallel', '4'], check=True)
     # Keep this report's executables stable if another task rebuilds the shared
@@ -196,8 +198,15 @@ def main():
                 assert seq == len(records) + 1 and at + 12 + length <= len(session)
                 records.append((op, session[at + 12:at + 12 + length]))
                 at += 12 + length
-            assert records[-1] == (9, struct.pack('<I', 6))
-            assert [op for op, _ in records] == [1, 5, 9], records
+            assert records[-1] == (8, b'') and not any(op == 9 for op, _ in records)
+            fills = [p for op, p in records if op == 2 and struct.unpack_from('<I', p)[0] == 2]
+            assert len(fills) == 1 and struct.unpack_from('<5I', fills[0]) == (2, 0, 0, 800, 600)
+            assert fills[0][20:] == struct.pack('<H', 0x1234) * (800 * 600)
+            assert oracle.cpu_replay(session) == (case / 'original-00000002.bin').read_bytes()
+            output = case / 'session-gpu.bin'
+            result = subprocess.run(['xvfb-run', '-a', str(replay_binary), str(capture / 'session-00000001.bin'),
+                                     '--output', str(output)], env=env, capture_output=True, text=True, timeout=30)
+            assert result.returncode == 0 and output.read_bytes() == oracle.cpu_replay(session), result.stderr
         if mode == 'continuous-unmatched':
             assert 'unlock_target_invalidated' in reasons and 'unlock_epoch_invalidated' not in reasons
         if mode == 'descriptor-key':

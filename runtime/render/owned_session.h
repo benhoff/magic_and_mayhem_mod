@@ -113,14 +113,31 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
 }
 static void game_session_blit_begin(struct GameBlit* p){
     if(!game_session_enabled)return;
-    /* Per-operation replay supports constant fills; ordered session identity
-     * recording has no fill operation yet. Never invent a NULL surface ID. */
-    if(p->fill){game_session_gap(6);return;}
+    if(p->fill){
+        /* Only the destination has an original identity. Bootstrap before
+         * pixels are synthetic and are not an original comparison checkpoint. */
+        struct SessionSurface* b=session_surface(p->target,&p->dst);
+        if(b && !p->bootstrap)session_check(b,&p->dst);
+        return;
+    }
     struct SessionSurface* a=session_surface(p->source,&p->src),*b=session_surface(p->target,&p->dst);
     if(!session_check(a,&p->src) || !session_check(b,&p->dst))return;
 }
 static void game_session_blit_end(struct GameBlit* p,u32 primary){
     if(!session_file)return;
+    if(p->fill){
+        struct SessionSurface* b=session_find(p->target);if(!b){game_session_gap(4);return;}
+        u32 width=p->fields[4]-p->fields[2],height=p->fields[5]-p->fields[3];
+        u32 fields[5]={b->id,p->fields[6],p->fields[7],width,height};
+        u32 length=width*height*(p->dst.bits/8);
+        /* game_fill_before derives this entire constant buffer from dwFillColor.
+         * Its first rectangle-sized prefix is already tightly packed, including
+         * partial fills. Never use reconstructed CHECK output as render input. */
+        if(!p->src.data || length>p->src.length){game_session_gap(4);return;}
+        if(!session_record(2,fields,20,p->src.data,length) || !session_check(b,&p->dst) ||
+           (primary && !session_present(b)))return;
+        session_done();return;
+    }
     struct SessionSurface *a=session_find(p->source),*b=session_find(p->target);if(!a || !b){game_session_gap(4);return;}
     u32 fields[10];copy(fields,p->fields,40);fields[0]=a->id;fields[1]=b->id;
     if(!session_record(3,fields,40,0,0) || !session_check(b,&p->dst) || (primary && !session_present(b)))return;session_done();

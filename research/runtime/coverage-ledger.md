@@ -718,3 +718,21 @@ error pause and reentrancy; native regressions are separate from original compar
 window interaction, group/faction/commander gameplay and live replacement gaps.
 `MV.pause-clock` stays independently partial without implementation/comparison.
 Historical shared-source evidence keeps its fingerprints and can remain stale.
+
+## Ordered native constant fills (2026-10-05)
+
+`NR.owned-session-fill` routes admitted successful full/rectangular fills through
+one existing UPDATE using pixels derived from captured dwFillColor. Initial
+zero storage is synthetic and has no before-CHECK; there is no fake source ID
+or new wire opcode. [Implementation and evidence](opengl-owned-session-fills.md)
+cover eight indexed8/RGB16/24/32 fixture sessions and 17 independent full GPU
+frame comparisons, explicit native-byte CHECK replay, failed-call retry and
+initial partial-fill refusal. Ordinary native reads and viewport uploads remain zero.
+
+The original startup now publishes 15 records (five CREATE/UPDATE/CHECK groups),
+then fails with tracked-surface invalidation GAP 3 immediately before dc_acquired.
+The existing application GetDC path invalidates ordered ownership; it is the next
+boundary. Original Main drawing continues and 2,927 originals verify unchanged.
+No real-game native PRESENT or driver-pixel equivalence is established. Shared
+hook/fixture edits leave historical evidence stale; old records/hashes are retained.
+
