@@ -319,3 +319,13 @@ saving first preserves it for restore. Full-generation selection stays outside
 simulation/checkpoint state and refuses stale/cleaned actors.
 [Scope and validation](../research/runtime/native-scene-orders.md) keep original
 input mappings and commander/summoned-creature gameplay separate.
+
+## Mouse move orders (NS14)
+
+The native scene now selects creatures from displayed sprite coverage and queues
+right-click terrain-cell moves through the same Orders/MovementSession path as
+numeric controls. Commands still apply at Step and survive Save before stepping.
+Presented identities and explicit terrain standing cells remain transient view
+metadata; stale handles cannot target reused slots.
+[Scope and evidence](../research/runtime/native-scene-picking.md) keep original
+mouse/ray mappings and gameplay permissions separate.

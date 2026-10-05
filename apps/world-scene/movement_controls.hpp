@@ -15,6 +15,7 @@ class MovementControls final:public QWidget {
 public:
     explicit MovementControls(QWidget* parent=nullptr);
     void updateChoices(std::vector<CreatureChoice>,std::optional<game::Handle>,game::Point dimensions);
+    void setTarget(game::Point);
     std::function<void(std::optional<game::Handle>)> onSelect;
     std::function<void(game::Point)> onMove;
 };

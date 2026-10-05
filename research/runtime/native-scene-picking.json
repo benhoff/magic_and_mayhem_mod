@@ -1,0 +1,88 @@
+{
+  "milestone": "NS14",
+  "all_match": true,
+  "live_validated": false,
+  "reports": [
+    "working/tests/scene-picking/normal-complete/report.json",
+    "working/tests/scene-picking/sanitized-complete/report.json",
+    "working/tests/scene-picking/composition-normal/report.json",
+    "working/tests/scene-picking/composition-sanitized/report.json"
+  ],
+  "report_sha256": {
+    "working/tests/scene-picking/normal-complete/report.json": "72f45667697b94d636c10fb6bb97547b5d432180cfcad1e4da2907a519af45a3",
+    "working/tests/scene-picking/sanitized-complete/report.json": "2b8332f0f359d5192e9b4b095eb378a0c976b34a07db438a613ceed2aa5e9c9b",
+    "working/tests/scene-picking/composition-normal/report.json": "991949ecb74b51156ac7147388b3a748d1071facb1c81fdfb561ced27bd47443",
+    "working/tests/scene-picking/composition-sanitized/report.json": "95b384a3d03312d71e94b4a112946ab2d506e8a7af042d905377f7e40ea4f8b6"
+  },
+  "scope": "Native bounded presented-queue masked picking: full viewport forward-ownership oracle, transparency/terrain occlusion, explicit standing layers in four views, synthetic CPU/OpenGL display and actual Qt mouse events, full-generation selected-only queued movement and exact pending-order restart. Original mouse/ray mapping, whole installed-window interaction, group/faction/automatic-play policies and live equivalence excluded.",
+  "source_sha256": {
+    "apps/world-scene/CMakeLists.txt": "300b41669ff02ef07f4518c1926fbc8f0e2479ffe1f8f13924859c1661a8a9e3",
+    "apps/world-scene/main.cpp": "1944c63325f0ffb3638292f3ddd4a193f588d4517a6deaf3d3746f1f949b22d3",
+    "apps/world-scene/map_navigation.cpp": "20eecea7aca4ad16b08093f6dd1cb2f206d14acc929ddad76064cb5910613de5",
+    "apps/world-scene/map_navigation.hpp": "e40b2a8021a7841c03abe2240b12e19c58525faaec776e4f76fa3112c939a4eb",
+    "apps/world-scene/map_navigation_main.cpp": "4b0cf8ded5f10483e677f91e2951e52a09380bc1b818ab3765f05d765e1f32b3",
+    "apps/world-scene/movement_controls.cpp": "29eb7f0cb4689748a89ac524991c358f4a677fd20bc74bbb4f3f97cc4b654ebf",
+    "apps/world-scene/movement_controls.hpp": "2ae54907e80f8143e5f5e75544a73ff61c75d4fb9ea90abce0476a0461b2a7a6",
+    "apps/world-scene/orders.cpp": "a4c5601ef6e3b6764d2789b662ff394f9ad60f6756ece4044f9089b4dfd52c27",
+    "apps/world-scene/orders.hpp": "85f2cbb55848b6c0c5931af65e963c014a3cf2bcb7e3673ca304a4c4774e4401",
+    "apps/world-scene/picking.cpp": "6196b219439d8fbff7d64c0cece22a06d4b1da663d0d2abbcafa48ffc9af7068",
+    "apps/world-scene/picking.hpp": "485535566e1a7537d55be3724f7d0b73e7743b3a75323506f1394f3711100175",
+    "apps/world-scene/scene.cpp": "7f5591f3b135d005c480e867e7872e9610c7354052f0126ba8b84f15e38f7c3f",
+    "apps/world-scene/scene.hpp": "601736b6fffc82e4bdecbeaed0f80d3f361ce5df65869abd0b32a36184a15ddd",
+    "apps/world-scene/scene_canvas.cpp": "03746de8ebd157bcf5f3c9fa9ad91d8c16232a11f35d94e7fb3898e90d8fd756",
+    "apps/world-scene/scene_canvas.hpp": "bb404f87b7bbcfd67561aa33fd20ac1ceccaf5b3b6487468a9980ca939b6477e",
+    "game/persistence/snapshot.cpp": "6f1751e921ca150b6b38b4cbfbc3c655ec0626a163e6b076e193df8211e22bd9",
+    "game/persistence/snapshot.hpp": "900563f38519697e2541ef0bc8d1b797ea8464c8d18a6e6571f25505ea6857e5",
+    "game/persistence/store_posix.cpp": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df",
+    "game/simulation/movement.cpp": "56e051eef1017b39f768b0ef238238753f129cbe52c2adb89c93fbd01398caa9",
+    "game/simulation/movement.hpp": "47f40135b8126bc2d855a7d5b1e8681599f1e2e33274833825b355fc48b220cf",
+    "game/simulation/occupancy.cpp": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+    "game/simulation/occupancy.hpp": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+    "game/simulation/world.cpp": "5e75ebddd738ac141f27875a48d11f5c3e2b35e4af8c30417823c1a147f61135",
+    "game/simulation/world.hpp": "cc2804653b232dbd1e029e10929cf2c683a36fff7c695f68c00571051342669e",
+    "tests/world-picking-test.cpp": "ad16cba35c06e9c089d8d6be751de2d282f5f332c1a930aa54295253a9b9c0ce",
+    "tools/test-scene-picking.py": "375aa5e68f3a933e58f3116e8548e82cdd123967c35a9317f09aa7a73e465762",
+    "apps/world-sandbox/frozen_navigation.cpp": "50d0e1c2b2d5fb9a6bbc54b429db4a575b9a18b7cd90875c7fd32c4329e180b2",
+    "apps/world-sandbox/frozen_navigation.hpp": "d2ee8416faf373418ad2455295fff82c793fd17718410bd634b3acf6ecdcaa59",
+    "apps/world-sandbox/main.cpp": "d1e3b0fc4841f0c13b1281dfdc5fcda0d97f1e0f45aca1bb5c040346ed600e43",
+    "tests/test-native-ani-motion.py": "0b611c861ee49d406332fd4db67c0e2d17c2fdb24ef5f68183ea3f0b1ac7e090",
+    "tests/world-scene-test.cpp": "0ca92707df72ca8029d8a201220901630011f2f6589fbf474d2fc81e58abdd44",
+    "tools/create-movement-fixture.py": "1622b0dd1ee807a6b5a41dafb70a33b7a6ecebdc351cf697e6a4110e72fa3fac",
+    "tools/test-multi-world-scene.py": "e8ef1ff58984f1a07499119f763b3ade5bb3e6db11fa9654228dcb88a3067c43"
+  },
+  "native_picking": {
+    "pixel_pick_comparisons": 4718592,
+    "masked_occlusion": true,
+    "terrain_under_actor": true,
+    "explicit_layers_four_views": true,
+    "actual_mouse_events": true,
+    "fractional_and_bounds": true,
+    "queued_until_step": true,
+    "stale_frame_refusal": true,
+    "fresh_process_continuations": 1
+  },
+  "composition_regression": {
+    "frames_per_build": 144,
+    "continuations_per_build": 12,
+    "scope": "Two same-profile native terrain-motion actors; four diagnostic views, synthetic owned ANI and terrain fixtures with installed SPR pixels; actor identity/independent display and exact split/whole presentation/checkpoints. No captured original multi-actor scene, installed multi-map world or live equivalence."
+  },
+  "test_counts": {
+    "normal": 106,
+    "sanitized_selected": 6
+  },
+  "test_log_sha256": {
+    "working/tests/scene-picking/ns14-normal-accepted-tests.log": "d6d42cf2ea3f94c5634e46b07bd6b13de15f8f619d21f1f0d52da2b03b0fb602",
+    "working/tests/scene-picking/ns14-sanitized-accepted-tests.log": "80be47d8daeb64702b89d9089d97d79cd4a236aca0df60b041fc251b190aea2b",
+    "working/tests/scene-picking/composition-normal/manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/scene-picking/composition-normal/manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/scene-picking/composition-sanitized/manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/scene-picking/composition-sanitized/manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+  },
+  "remaining": [
+    "Whole installed main-window mouse interaction",
+    "Original mouse/ray/input equivalence",
+    "Group selection, stop/cancel, faction permissions and automatic playback",
+    "Commander/summoned creature gameplay",
+    "Live integration/replacement"
+  ]
+}

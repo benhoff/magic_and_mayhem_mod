@@ -175,3 +175,16 @@ Target fields survive ordinary refreshes and reset to the new creature's cell wh
 selection changes. Navigation still decides reachability and occupancy outcomes.
 These are explicit diagnostic controls; mouse picking and automatic playback remain
 open. [Contract and evidence](../../research/runtime/native-scene-orders.md).
+
+## Mouse selection and move targets (NS14)
+
+Left-click a visible opaque creature pixel to select it; background clears
+selection. Right-click terrain to queue a move to that tile's declared standing
+cell, then Step. The target fields show the picked cell, and Save retains queued
+orders. Transparent sprite holes and foreground terrain affect selection; creature
+bodies do not intercept terrain destinations. Tiles without a movement cell cannot
+be picked through.
+
+Picking uses each tile's rendered artwork and parent cell, with the displayed depth
+order and exact SPR coverage. It is a diagnostic policy rather than original ray
+picking. [Contract and accepted evidence](../../research/runtime/native-scene-picking.md).

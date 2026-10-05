@@ -47,4 +47,10 @@ void MovementControls::updateChoices(std::vector<CreatureChoice> choices,std::op
     for(auto* spin:{x_,y_,z_}) spin->setEnabled(bool(selected_));
     move_->setEnabled(bool(selected_));
 }
+void MovementControls::setTarget(game::Point p) {
+    if(p.x<x_->minimum() || p.x>x_->maximum() || p.y<y_->minimum() || p.y>y_->maximum() || p.z<z_->minimum() || p.z>z_->maximum())
+        throw std::invalid_argument("Target cell outside controls domain");
+    x_->setValue(p.x);y_->setValue(p.y);z_->setValue(p.z);
+}
+
 }

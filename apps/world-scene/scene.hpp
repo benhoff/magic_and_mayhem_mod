@@ -9,8 +9,8 @@
 namespace mnm::scene {
 // Explicit diagnostic camera, without legacy map/camera pointer ownership.
 struct Camera { std::uint32_t view=0; game::Point origin{}; int x=256,y=64; };
-struct Tile { std::uint32_t definition=0; game::Point surface; std::uint16_t flags8=4,flags10=0; };
-struct Draw { bool creature=false; std::uint32_t frame=0; int x=0,y=0; std::int32_t key=0; std::optional<game::Handle> actor{}; };
+struct Tile { std::uint32_t definition=0; game::Point surface; std::uint16_t flags8=4,flags10=0; std::optional<game::Point> standing{}; };
+struct Draw { bool creature=false; std::uint32_t frame=0; int x=0,y=0; std::int32_t key=0; std::optional<game::Handle> actor{}; std::optional<game::Point> standing{}; };
 struct Frame { render::Image pixels; QImage image; std::vector<Draw> queue; };
 reconstruction::AnimationOffset project(game::Point,const Camera&);
 // Reads the exact owned controller display; never advances a second ANI clock.
