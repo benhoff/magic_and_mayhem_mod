@@ -1,6 +1,7 @@
 # Engine modernization coverage ledger
 
-Ledger reviewed: 2026-10-04 (initial baseline: 2026-10-03).
+Ledger reviewed: 2026-10-05 (NS06/NS07 updates; broader review: 2026-10-04;
+initial baseline: 2026-10-03).
 This ledger tracks reconstructed functionality,
 modern implementations, and replacement of original work during live execution.
 Those are separate milestones: offline tests and capture hooks do not establish
@@ -336,6 +337,23 @@ playable world. New-order resets and supplied event timing remain native policie
 V5 embeds ANI bytes and controller state; prior native checkpoint layouts/pacing
 remain compatible. This remains a frozen one-creature headless slice, not a
 playable restored world or original-save writer.
+
+### Native terrain-aware motion (NS06; reviewed 2026-10-05)
+
+| ID and behavior | Implementation and integration | Evidence and confidence | Remaining boundary and next validation |
+| --- | --- | --- | --- |
+| NS06 Ordinary terrain heights, sloped/vertical/category-four setup and owned continuation | Recovered selected setup/ordinary snap, opt-in `move-terrain`/`move-terrain-ani`, frozen terrain lookup, native v6 with previous edge origin and optional owned ANI; headless only | 55,296 planar regression and 5,760 terrain/vertical/category-four original setup cases, 192 ordinary original snaps, 576,000 composed original ANI/motion transitions; 960,696 arithmetic and 136 consumption regressions. 32 normal and 32 ASan/UBSan CTests, independent v6 bytes and 264 fresh-process restart/trace comparisons, rollback and resource/corruption refusal. Original manifest preserved (2,927 files). High for selected isolated forward contracts; controlled eligibility/environment dependencies. [Evidence](native-terrain-motion.md) | One creature/4,096 frozen cells, terrain offsets -16..16 and height differences -32..32; special height helper, reverse/other categories, complete action/config mapping, installed MAP navigation/entity admission, dynamic occupancy/scheduling and live agreement remain open. Next: a bounded terrain-and-creature presentation using validated movement and explicit resource/facing/depth inputs |
+
+This advances offline reconstruction and native synthetic integration only.
+Earlier native checkpoint modes retain their formats and pacing; no gameplay
+balance change or live replacement is claimed by NS06. The bounded diagnostic
+creature presentation is recorded separately in NS07.
+
+### Native terrain and creature presentation (NS07; reviewed 2026-10-05)
+
+| ID and behavior | Implementation and integration | Evidence and confidence | Remaining boundary and next validation |
+| --- | --- | --- | --- |
+| NS07 Bounded movement-checkpoint scene | Standalone Qt/OpenGL app reads NS06 fine positions and owned current/completed ANI displays; explicit diagnostic terrain fixture, recovered body offsets/SPR origins and mixed signed depth queue; step/save/export | 72 independent CPU/OpenGL full-image checks, four projection views and display boundary/refusal checks; 144 installed-SPR full-image comparisons and 12 fresh-process frame/queue/checkpoint continuations in both normal and ASan/UBSan builds; headless fine positions agree. Original manifest preserved (2,927 files). High for bounded native integration. [Evidence](native-world-scene.md) | One creature, 64 body-only visual terrain tiles; diagnostic projection/centering and selected standing-layer display are native policies. No installed MAP navigation, original mixed-scene comparison, camera-relative action selection, shaded/visibility/attachment integration or live replacement. Next: pair real world geometry with validated navigation admission, then dynamic occupancy and multiple-creature scheduling |
 
 ## Gameplay areas without recorded replacements
 

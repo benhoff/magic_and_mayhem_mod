@@ -3,7 +3,7 @@
 `mnm-world` is the first native simulation ownership/checkpoint milestone. It
 runs without Qt, Wine, original assets or injected adapters. It implements
 bounded entity storage, lifetime handles, transactional tick phases, a bounded
-single-creature movement session and native v1/v2/v3/v4/v5 snapshots. It does not yet implement AI, combat/spells, campaign
+single-creature movement session and native v1/v2/v3/v4/v5/v6 snapshots. It does not yet implement AI, combat/spells, campaign
 triggers or a playable world. The original engine remains responsible for live
 gameplay. Native checkpoints are distinct from original version-20 saves.
 
@@ -158,6 +158,34 @@ real-time performance. Original action selection, other animation events,
 reverse/special/vertical motion, sprite presentation and live validation remain
 open. See [ANI motion evidence](../research/runtime/native-ani-motion.md).
 
+## Terrain-aware movement
+
+`move-terrain` uses the same arguments as `move` and selects ordinary terrain
+height inputs, sloped edges and category-zero/four setup, including pure vertical
+movement. `move-terrain-ani` uses the same arguments as `move-ani` and combines
+this with owned ANI continuation. Both select native v6; earlier modes retain
+their existing layouts and pacing.
+
+```sh
+python3 tools/create-movement-fixture.py /tmp/terrain-motion.bin --terrain-profile slope
+working/build/native-world/mnm-world-sandbox move-terrain /tmp/terrain-motion.bin \
+  /tmp/climbing.mnw 1 1 1 5 1 2 6
+working/build/native-world/mnm-world-sandbox trace /tmp/climbing.mnw 18
+```
+
+Fixture profiles `terrace`, `slope` and `vertical` are synthetic frozen inputs.
+The latter admits category-four vertical examples `(1,1,2)` to `(1,1,3)` and
+back. They do not restore an installed MAP's entities or occupancy. Terrain
+offsets are bounded to -16..16; segment differences to -32..32. Special creature
+height helpers and unsupported motion categories remain refused. V6 owns the
+completed edge origin so height/profile validation and ongoing replay survive
+layer changes and prefix replanning. ANI selection remains an explicit base.
+
+Trace output resolves terrain-aware fine position even at segment boundaries.
+`inspect-json` is structural and reports `fine: null` when a terrain-aware actor
+has no ongoing fine state; use `trace FILE 0` to resolve the bound map.
+See [NS06 evidence and limits](../research/runtime/native-terrain-motion.md).
+
 ## Ownership
 
 `simulation/` owns state and tick orchestration. `persistence/` owns explicit
@@ -223,7 +251,7 @@ edge, then commits both map and state. A missing/changed resource or invalid
 route retains the existing world and its map. The map fingerprint covers exactly
 the byte buffer decoded by the adapter, preventing a hash/parse reopen mismatch.
 V1 lifecycle and v2 waypoint checkpoints continue to encode identically;
-sample motion uses explicit v3; continuous segment motion uses v4; ANI-driven continuation uses v5.
+sample motion uses explicit v3; continuous segment motion uses v4; ANI-driven continuation uses v5; terrain-aware continuation uses v6.
 
 The file writer validates/encodes first, writes a private sibling temporary,
 syncs and closes it, atomically publishes with overwrite refusal by default,
@@ -240,3 +268,7 @@ release scans and save preparation are not measured real-time policies.
 See [foundation validation](../research/runtime/native-world-foundation.md),
 [movement validation and boundaries](../research/runtime/native-creature-movement.md)
 and the [coverage ledger](../research/runtime/coverage-ledger.md).
+
+The [native movement scene](../apps/world-scene/README.md) presents this owned
+terrain/ANI continuation with explicit diagnostic terrain assets and a shared
+depth queue. Rendering reads simulation state without advancing an ANI clock.

@@ -13,7 +13,7 @@ HASH = '40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 ANCHORS = {0x510e80:'83ec305355568bf1',0x516ee0:'55568bf133ed8b86',
            0x514360:'83ec385355568bd9',0x5093e0:'8b4424088b54240c',
            0x509230:'8b4424088b54240c',0x464cb0:'8b44240453568bf1',
-           0x50db60:'55568bf133ed39ae'}
+           0x50db60:'55568bf133ed39ae',0x5070e0:'8b5424048b442408'}
 
 def compare():
     source = ROOT / 'working/game-nocd/Chaos.exe'
@@ -35,6 +35,9 @@ def compare():
     parent = ROOT/'working/tests'; parent.mkdir(exist_ok=True)
     out = Path(tempfile.mkdtemp(prefix='original-segment-setup-', dir=parent))
     (out/'reference.exe').write_bytes(data)
+    for name, start, end in [('motion_segment_setup', 0x510e80, 0x511c0c), ('motion_coordinate_snap', 0x5070e0, 0x507189)]:
+        assembly = subprocess.run(['objdump', '-d', '-M', 'intel', f'--start-address={start}', f'--stop-address={end}', str(out/'reference.exe')], check=True, capture_output=True, text=True)
+        (out/(name+'.asm')).write_text(assembly.stdout)
     sources = ['reconstruction/motion/segment_setup.cpp','reconstruction/pathfinding/route_scalar.cpp','reconstruction/pathfinding/route_request.cpp','reconstruction/pathfinding/route_search.cpp','tests/segment-setup-test.cpp']
     command = [os.environ.get('CXX', 'g++'), '-m32', '-std=c++17', '-Wall', '-Wextra', '-Werror',
                '-DMNM_SEGMENT_REFERENCE','-ffunction-sections','-Wl,--gc-sections', '-I'+str(ROOT/'reconstruction/motion'),
@@ -45,7 +48,7 @@ def compare():
     report = {'source_sha256': HASH, 'anchors': {hex(k):v for k,v in ANCHORS.items()},
               'sources': {p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'compile': command, 'returncode': result.returncode, 'output': result.stdout+result.stderr,
-              'scope': 'Synthetic admitted category-zero planar segment; original complete setup, scalar and direction/wrap helpers; hazard, acceptance, occupancy, animation selection and action transition controlled'}
+              'scope': 'Synthetic admitted category-zero/four planar, sloped and vertical setup plus ordinary terrain snap; original complete setup, scalar and direction/wrap helpers and coordinate snap; hazard, acceptance, occupancy, animation selection and action transition controlled; special generator class-two height helper excluded'}
     (out/'report.json').write_text(json.dumps(report, indent=2)+'\n')
     print(out);print(result.stdout+result.stderr, end='')
     if source.read_bytes()!=data: raise ValueError('Input changed')

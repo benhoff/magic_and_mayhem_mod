@@ -1,0 +1,55 @@
+{
+  "reviewed": "2026-10-05",
+  "milestone": "NS07",
+  "all_match": true,
+  "live_validated": false,
+  "scope": "Bounded native diagnostic projection/terrain and one creature; no original mixed-scene or installed MAP navigation equivalence",
+  "normal_ctests": {
+    "passed": 97,
+    "method": "91 passed in initial suite, five display tests passed with local Xvfb; final sprite test passed serially after display cleanup collision"
+  },
+  "scene_ctest": {
+    "cpu_opengl_comparisons_per_build": 72,
+    "normal": true,
+    "asan_ubsan": true
+  },
+  "integration_reports": [
+    "working/tests/world-scene/run-ivaacvnw/report.json",
+    "working/tests/world-scene/run-4t0plrh8/report.json"
+  ],
+  "comparisons_per_build": 144,
+  "fresh_process_continuations_per_build": 12,
+  "installed_ani_demo": {
+    "checkpoint": "working/tests/world-scene/run-ivaacvnw/installed-ani.mnms",
+    "ani": "working/game-clean/Creatures/redcap.ani",
+    "sequence_base": 8,
+    "realm": "Realms/Celtic/Plains",
+    "definition": 1,
+    "verification": "manual image inspection; not original mixed-scene comparison"
+  },
+  "final_source_sha256": {
+    "apps/world-scene/scene.cpp": "34a99037603e7dbdaa0b723fdd09d3d57ac8eabe619d969330c19324827eab5e",
+    "apps/world-scene/CMakeLists.txt": "e407bca9bfafea29a1f8e5a657012309e0f06910a83c37e2c8fde3ceb1ac219d",
+    "apps/world-scene/README.md": "b9ef0288ef8893de88f95d27dca9a0d0d19341d167e2c0978e72b7724b614e32",
+    "apps/world-scene/main.cpp": "c379736b9781b7e8db9e505b80f806191791982b6f82c1c41bfbf1b629016116",
+    "apps/world-scene/scene.hpp": "52a0da1c552a754138d90385207e4850476ea2db2f9ac2eae2c0d3541f36e631",
+    "tests/world-scene-test.cpp": "aa7d3fb18048f80c3af6d8b110cc801a308f48effdf1af02d8bed13f7885913c",
+    "tools/test-world-scene.py": "d3230950e5d8d254a0b3c1875819b02eb094d2b44a11c753d3ee62750bd236df"
+  },
+  "artifact_sha256": {
+    "working/tests/world-scene/run-ivaacvnw/report.json": "ef47b041ee31d2da6b2d94844fc77f1d22b80c0d6a31fa6cf01bc757b2633393",
+    "working/tests/world-scene/run-4t0plrh8/report.json": "43714f509eb7c8cb7f9c220b4032545d9bf1926b2e84b1645060ea41a7224203",
+    "working/tests/world-scene/run-4t0plrh8/normal-build.log": "d2019449bdecb1f6922f3b5e7c12481b27c20a29fa85ce743384cadb3fa43674",
+    "working/tests/world-scene/run-4t0plrh8/normal-suite.log": "c3e556b104a05c3de94a4520a4b779cd0ec0d37879a78b68c6f7956a73252a2c",
+    "working/tests/world-scene/run-4t0plrh8/normal-opengl-retry.log": "98a313260de13af8caa8d2747ee0a37bf0853e00abbb8c807118adb3f71c899c",
+    "working/tests/world-scene/run-4t0plrh8/normal-final-display-retry.log": "51441aae8525ec0940a3c0a731ea5cdedc4f84186a81e40f67f50a1f7ae7225e",
+    "working/tests/world-scene/run-4t0plrh8/sanitized-build.log": "038a05e159eb787d387f9dc648a20479dbefd6336b84202a04a7bf25af7eeebc",
+    "working/tests/world-scene/run-4t0plrh8/sanitized-scene-test.log": "023ca55c814b235c760e400f1c4ca109236d3d4567c87d8258fffb822802fa1c",
+    "working/tests/world-scene/run-4t0plrh8/installed-demo-manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/world-scene/run-4t0plrh8/installed-demo-manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/world-scene/run-4t0plrh8/manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/world-scene/run-4t0plrh8/manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/world-scene/run-ivaacvnw/installed-demo-000.png": "9cde49107a6e1d5bfa14c4e687499947b9354637fd227af3ce49fc5839b41ed7",
+    "working/tests/world-scene/run-ivaacvnw/installed-demo.json": "33f867626fa68d99e8c863c3847a4b97b7de3e71ae50e2ed4eb94bef2c91ce21"
+  }
+}

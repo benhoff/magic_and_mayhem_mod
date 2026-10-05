@@ -1,11 +1,16 @@
 #include "movement.hpp"
 #include "persistence/snapshot.hpp"
+#include <algorithm>
 #include <cstdlib>
 #include <stdexcept>
 
 namespace mnm::game {
 bool contains(Point p,const NavigationBinding& b) {
     return p.x>=0 && p.y>=0 && p.z>=0 && p.x<b.dimensions.x && p.y<b.dimensions.y && p.z<b.dimensions.z;
+}
+Point Navigation::finePosition(const Entity& e) const {
+    if(e.motion && e.motion->terrainMotion) throw std::invalid_argument("terrain height driver unavailable");
+    return {e.x*32,e.y*32,e.z*16};
 }
 void Navigation::validateSegmentHistory(const Entity&,const SegmentHistory&) const {throw std::invalid_argument("segment setup driver unavailable");}
 FineMotion Navigation::prepareFineMotion(const Entity&,const RoutePoint&) const {throw std::invalid_argument("sample motion driver unavailable");}
@@ -30,7 +35,7 @@ void validateMotion(const Entity& e,const NavigationBinding& binding) {
        (m.action!=Action::moving && m.action!=Action::arrived && (!m.route.empty() || m.next)) ||
        (m.action==Action::arrived && (position!=m.destination || m.next!=m.route.size())))
         throw std::invalid_argument("invalid movement progress");
-    if((m.continuousMotion && !m.sampleMotion) || (!m.continuousMotion && (m.previous || m.segmentTicks)) ||
+    if((m.continuousMotion && !m.sampleMotion) || (m.terrainMotion && !m.continuousMotion) || (!m.continuousMotion && (m.previous || m.segmentTicks)) ||
        m.segmentTicks>100000 || (!m.fine && m.segmentTicks) ||
        (m.continuousMotion && ((m.fine && !m.segmentTicks) || (m.next && !m.previous)))) throw std::invalid_argument("invalid segment continuation policy");
     auto cursor=[&](const FineMotion& f) {
@@ -41,14 +46,28 @@ void validateMotion(const Entity& e,const NavigationBinding& binding) {
     };
     if(m.fine) cursor(*m.fine);
     if(m.previous) cursor(m.previous->motion);
+    const auto heightValid=[&](const FineMotion& f,bool completed) {
+        if(!m.terrainMotion) return completed?
+            f.heightDelta==0 && f.heightOrigin==position.z*16 && f.fine.z==position.z*16:
+            std::llabs(std::int64_t(f.heightDelta))<=16 && f.heightOrigin==position.z*16 && f.fine.z==f.heightOrigin+f.heightDelta*f.progress/192;
+        if(std::llabs(std::int64_t(f.heightDelta))>32 || f.heightOrigin<-16 || f.heightOrigin>binding.dimensions.z*16+16) return false;
+        const auto interpolated=f.heightOrigin+std::clamp(f.heightDelta*f.progress/192,-16,16);
+        // A carried segment may admit no substep yet and retain the snapped origin.
+        // Resource binding replays the ongoing segment to distinguish these cases.
+        return f.fine.z==interpolated || (!completed && f.fine.z==f.heightOrigin);
+    };
     if(m.previous) {
         const auto& h=*m.previous;const auto& f=h.motion;
+        if(!m.terrainMotion && h.origin!=Point{}) throw std::invalid_argument("legacy history has terrain origin state");
+        if(m.terrainMotion && !contains(h.origin,binding)) throw std::invalid_argument("invalid previous segment origin");
+        if(m.terrainMotion && m.next && h.origin!=(m.next>1?m.route.at(m.next-2).position:m.origin))
+            throw std::invalid_argument("previous segment origin disagrees with consumed route");
         if(m.next && (h.direction!=m.route.at(m.next-1).direction || h.vertical!=m.route.at(m.next-1).verticalDelta || h.category!=m.route.at(m.next-1).category))
             throw std::invalid_argument("previous segment disagrees with consumed route point");
-        if(h.direction<0 || h.direction>7 || h.vertical || h.category || f.progress<192 || f.progress>=384 ||
+        if(h.direction<0 || h.direction>7 || (m.terrainMotion?(h.vertical<-1 || h.vertical>1 || (h.category!=0 && h.category!=4)):(h.vertical!=0 || h.category!=0)) || f.progress<192 || f.progress>=384 ||
            f.rate<0 || f.rate>1000000 || f.duration<1 || f.duration>1000000 || f.accumulator<0 || f.accumulator>2000000 ||
            f.frame>48 || f.animationFrame>=(f.animation?50U:12U) || f.initialFrame>=48 || std::llabs(std::int64_t(f.initialResidualX))>1000000 || std::llabs(std::int64_t(f.initialResidualY))>1000000 || std::llabs(std::int64_t(f.travelX))>f.progress || std::llabs(std::int64_t(f.travelY))>f.progress ||
-           f.heightDelta || f.heightOrigin!=position.z*16 || f.fine.z!=position.z*16 ||
+           !heightValid(f,true) ||
            std::llabs(std::int64_t(f.fine.x))>binding.dimensions.x*32+64 ||
            std::llabs(std::int64_t(f.fine.y))>binding.dimensions.y*32+64 ||
            std::llabs(std::int64_t(f.residualX))>1000000 || std::llabs(std::int64_t(f.residualY))>1000000)
@@ -62,10 +81,9 @@ void validateMotion(const Entity& e,const NavigationBinding& binding) {
            f.progress<0 || f.progress>=192 || f.frame>=(m.continuousMotion?48U:12U) ||
            (m.continuousMotion && (f.animationFrame>=(f.animation?50U:12U) || f.initialFrame>=48 || std::llabs(std::int64_t(f.initialResidualX))>1000000 || std::llabs(std::int64_t(f.initialResidualY))>1000000)) ||
            std::llabs(std::int64_t(f.travelX))>f.progress || std::llabs(std::int64_t(f.travelY))>f.progress ||
-           std::llabs(std::int64_t(f.heightDelta))>16 || f.heightOrigin!=position.z*16 ||
+           !heightValid(f,false) ||
            (!m.continuousMotion && (f.fine.x!=position.x*32+f.travelX/6 || f.fine.y!=position.y*32+f.travelY/6)) ||
            (m.continuousMotion && (std::llabs(std::int64_t(f.fine.x)-position.x*32)>64 || std::llabs(std::int64_t(f.fine.y)-position.y*32)>64)) ||
-           f.fine.z!=f.heightOrigin+f.heightDelta*f.progress/192 ||
            std::llabs(std::int64_t(f.residualX))>(m.continuousMotion?1000000:64) || std::llabs(std::int64_t(f.residualY))>(m.continuousMotion?1000000:64))
             throw std::invalid_argument("invalid fine motion continuation");
     }
@@ -92,6 +110,7 @@ void MovementSession::validateBinding(const State& state,const Navigation& navig
         const auto& e=*slot.entity;
         if(++creatures>1 || e.type!=navigation.creatureType()) throw std::invalid_argument("movement slice supports one captured creature profile");
         validateMotion(e,*state.navigation);
+        if(e.motion->terrainMotion) (void)navigation.finePosition(e);
         if(e.motion->previous) navigation.validateSegmentHistory(e,*e.motion->previous);
         if(e.motion->sampleMotion) {
             if(e.motion->fine) navigation.validateFineMotion(e,e.motion->route.at(e.motion->next),*e.motion->fine);
@@ -113,13 +132,13 @@ MovementSession::MovementSession(World world,std::shared_ptr<const Navigation> n
     if(!navigation_) throw std::invalid_argument("navigation resource required");
     validateBinding(world_.state(),*navigation_);
 }
-Handle MovementSession::spawn(Entity entity,bool sampleMotion,bool continuousMotion) {
+Handle MovementSession::spawn(Entity entity,bool sampleMotion,bool continuousMotion,bool terrainMotion) {
     if(entity.family==Family::creature) {
-        entity.motion=CreatureMotion{};entity.motion->sampleMotion=sampleMotion;entity.motion->continuousMotion=continuousMotion;entity.motion->origin=entity.motion->destination={entity.x,entity.y,entity.z};
+        entity.motion=CreatureMotion{};entity.motion->sampleMotion=sampleMotion;entity.motion->continuousMotion=continuousMotion;entity.motion->terrainMotion=terrainMotion;entity.motion->origin=entity.motion->destination={entity.x,entity.y,entity.z};
         if(entity.type!=navigation_->creatureType()) throw std::invalid_argument("creature profile mismatch");
         for(const auto& slot:world_.state().slots) if(slot.entity && slot.entity->motion) throw std::invalid_argument("only one moving creature supported");
     } else if(entity.motion) throw std::invalid_argument("motion requires creature family");
-    validateMotion(entity,navigation_->binding());return world_.spawn(std::move(entity));
+    validateMotion(entity,navigation_->binding());if(terrainMotion) (void)navigation_->finePosition(entity);return world_.spawn(std::move(entity));
 }
 void MovementSession::enqueue(Command command) {
     if(command.operation==Operation::motion) throw std::invalid_argument("motion updates belong to tick system");
@@ -147,7 +166,7 @@ TickReport MovementSession::step(TickInput input) {
                         if(motion.continuousMotion) ++motion.segmentTicks;
                     }
                     if(completed) {
-                        if(motion.continuousMotion) motion.previous=SegmentHistory{*motion.fine,waypoint.direction,waypoint.verticalDelta,waypoint.category};
+                        if(motion.continuousMotion) motion.previous=SegmentHistory{*motion.fine,waypoint.direction,waypoint.verticalDelta,waypoint.category,motion.terrainMotion?position:Point{}};
                         motion.fine.reset();motion.segmentTicks=0;position=waypoint.position;++motion.next;
                         if(motion.next==motion.route.size()) {
                             if(position==motion.destination) motion.action=Action::arrived;

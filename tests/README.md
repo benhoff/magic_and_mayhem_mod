@@ -656,3 +656,24 @@ Build `menu-spell-bridge-test` and run `ctest --test-dir working/build/qt-shell 
 ### Mini Menu bridge: pending validation
 
 The dormant V4 Mini Menu implementation has **not been tested**. Its activation is OFF by default. The [offline contract](../research/runtime/mini-menu-engine-bridge.md) lists the later isolated callback/ABI, malformed wire/guard, V1–V3 regression and live pause/resume/Preferences/confirmation/return checks. Existing preview and spell bridge checks do not constitute Mini Menu engine evidence.
+
+### Native terrain-aware movement
+
+Build `game/` and run its CTests. `native-terrain-motion-process` checks independent
+v6 wire bytes and fresh-process checkpoint/trace continuation across terrain
+offsets, slopes, pure vertical up/down, category four, turns, seams, fractional
+speed and prefix replanning, with and without ANI. Its C++ companion checks
+planning/tick rollback, failed in-place restore and order/cleanup mode retention.
+`test-original-segment-setup.py` now compares selected terrain/vertical/category-four
+setup and ordinary coordinate snaps; `test-original-ani-motion.py` covers
+planar/vertical motion with clamped height deltas and original ANI events.
+Original runners hash-pin their disposable PE input and verify immutable files
+before/after. See [NS06 evidence](../research/runtime/native-terrain-motion.md).
+
+The `apps/world-scene` build adds `native-world-scene`: 72 masked/clipped mixed
+CPU/OpenGL image comparisons, four diagnostic camera views and owned ANI display
+boundary/refusal checks. `tools/test-world-scene.py SCENE SANDBOX` validates
+installed SPR pixels across three synthetic terrain profiles/four views and
+fresh-process visual continuation; it verifies the original manifest before
+and after. Xvfb tests require a local display socket; run serially to avoid
+concurrent display startup/cleanup collisions. See [NS07](../research/runtime/native-world-scene.md).

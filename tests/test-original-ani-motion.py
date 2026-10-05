@@ -43,7 +43,7 @@ def compare():
     report = {'source_sha256': HASH, 'anchors': {hex(k):v for k,v in ANCHORS.items()},
               'sources': {p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'compile': command, 'returncode': result.returncode, 'output': result.stdout+result.stderr,
-              'scope': 'Synthetic forward category-zero object; original motion action and ANI start/tick/restart execute together unchanged; only completion redirected'}
+              'scope': 'Synthetic forward category-zero/four, planar/vertical objects with non-grid height origin and -32..32 height deltas; original motion action and ANI start/tick/restart execute together unchanged; only completion redirected; inter-segment consumption inputs controlled'}
     (out/'report.json').write_text(json.dumps(report, indent=2)+'\n')
     print(out);print(result.stdout+result.stderr, end='')
     if source.read_bytes()!=data: raise ValueError('Input changed')

@@ -236,3 +236,46 @@ fine record and 124 per history, plus exact blobs and 28 per route point. This
 applies to older versions too without changing their wire bytes or pacing.
 See [NS05 evidence](../runtime/native-ani-motion.md) for independent wire oracles,
 fresh-process restoration and original composed-controller comparisons.
+
+## V6 terrain-aware segment continuation
+
+V6 preserves v5 fine/controller fields and extends two wire contracts:
+
+1. Animation presence after the navigation binding may be zero. When zero no
+   ANI blob/base follows; when one the v5 owned ANI binding follows unchanged.
+   V5 still requires this byte to be one.
+2. Each completed history appends signed grid-origin XYZ DWORDs after its fine
+   record. Each motion then appends a one-byte terrain-driver selection after
+   the continuity/history fields. This flag requires continuous/sample motion.
+
+The encoder selects v6 when any creature selects terrain motion, including idle,
+pending, arrived and cancelled states. Older versions decode with terrain mode
+false and history origin zero; existing v1-v5 states retain their bytes and
+driver policies. V6 fine records include their optional ANI-cursor byte even
+without an ANI binding, so an unanimated fine record is 73 bytes. An unanimated
+history is 97 bytes: 12 metadata bytes, 73 fine bytes and 12 origin bytes.
+Legacy modes require the new history origin to remain zero, so encoding an
+older layout cannot silently discard terrain-origin state.
+
+Terrain-aware history remains category 0/4, vertical -1/0/1, progress 192..383,
+with an in-bounds origin agreeing with the last consumed route edge when that
+edge remains available. Current progress remains 0..191. Height delta is -32..32;
+origin is bounded to -16 through map-layer-count times 16 plus 16. Fine Z uses
+origin plus `clamp(delta * progress / 192, -16, 16)`. An ongoing carried segment
+may retain its snapped origin if no substep has yet been admitted; bound-resource
+replay decides whether that state is valid. Earlier modes retain flat-height
+structural validation. Native conservative history storage charge rises to 136
+bytes; fine/slot/command and blob/route accounting remain as in v5.
+
+The navigation adapter resolves ordinary terrain height from the frozen cell
+definition and runtime terrain record `+0x94`; the native wire stores no offsets
+or pointers. Special generator class-two height lookup is refused. Restore checks
+the previous origin/edge, duration/displacement and both terrain heights, then
+replays the ongoing motion/controller and commits resources/world together.
+Completed history is bounded continuation, not an authenticated past transcript.
+
+Independent Python v6 bytes cover pending, intra-cell, boundary and carried saves,
+including resumption of a Python-authored checkpoint. Fresh-process traces and
+checkpoint bytes cover terrain offsets, slopes, pure vertical/category-four,
+turns, fractional speed and prefix replanning, with and without ANI. See
+[NS06 evidence](../runtime/native-terrain-motion.md).

@@ -26,7 +26,7 @@ static std::int32_t integer(const char* argument) {
 static std::uint32_t ticks(const char* argument) {
     auto count=integer(argument);if(count<0 || count>100000) throw std::invalid_argument("tick count must be 0..100000");return count;
 }
-static void json(const State& state) {
+static void json(const State& state,const MovementSession* session=nullptr) {
     std::cout<<"{\"tick\":"<<state.tick<<",\"sequence\":"<<state.sequence<<",\"pending\":"<<state.pending.size()<<",\"entities\":[";
     bool first=true;
     for(std::uint32_t i=0;i<state.slots.size();++i) if(state.slots[i].entity) {
@@ -37,6 +37,7 @@ static void json(const State& state) {
             std::cout<<",\"action\":"<<static_cast<std::uint32_t>(m.action)<<",\"next\":"<<m.next<<",\"destination\":["<<m.destination.x<<','<<m.destination.y<<','<<m.destination.z<<"],\"route\":[";
             bool initial=true;for(const auto& p:m.route) {if(!initial) std::cout<<',';initial=false;std::cout<<'['<<p.position.x<<','<<p.position.y<<','<<p.position.z<<','<<p.direction<<','<<p.verticalDelta<<','<<p.category<<','<<p.scalar<<']';}
             std::cout<<']';
+            if(m.terrainMotion) std::cout<<",\"terrainMotion\":true";
             if(m.sampleMotion) {
                 std::cout<<",\"sampleMotion\":true";
                 if(m.continuousMotion) {
@@ -47,8 +48,9 @@ static void json(const State& state) {
                 if(m.fine && m.fine->animation) {
                     const auto& a=*m.fine->animation;std::cout<<",\"animation\":["<<a.sequence<<','<<a.pc<<','<<(a.displayed?static_cast<int>(*a.displayed):-1)<<','<<a.active<<','<<a.delay<<','<<a.elapsed<<','<<a.repeats<<','<<a.breakFlag<<']';
                 }
-                if(m.fine) {const auto& f=*m.fine;std::cout<<",\"fine\":["<<f.fine.x<<','<<f.fine.y<<','<<f.fine.z<<"],\"progress\":"<<f.progress<<",\"accumulator\":"<<f.accumulator<<",\"frame\":"<<f.frame;}
-                else std::cout<<",\"fine\":["<<e.x*32<<','<<e.y*32<<','<<e.z*16<<']';
+                if(m.fine) {const auto& f=*m.fine;std::cout<<",\"fine\":["<<f.fine.x<<','<<f.fine.y<<','<<f.fine.z<<"],\"progress\":"<<f.progress<<",\"accumulator\":"<<f.accumulator<<",\"frame\":"<<f.frame;if(m.terrainMotion) std::cout<<",\"heightOrigin\":"<<f.heightOrigin<<",\"heightDelta\":"<<f.heightDelta;}
+                else if(m.terrainMotion && !session) std::cout<<",\"fine\":null";
+                else {const auto at=session?session->finePosition(e):Point{e.x*32,e.y*32,e.z*16};std::cout<<",\"fine\":["<<at.x<<','<<at.y<<','<<at.z<<']';}
             }
         }
         std::cout<<'}';
@@ -60,32 +62,33 @@ static MovementSession session(State state) {
     World world(0);world.restore(std::move(state));return MovementSession(std::move(world),std::move(navigation));
 }
 int main(int argc,char** argv) try {
-    if(argc==13 && std::string_view(argv[1])=="move-ani") {
+    if(argc==13 && (std::string_view(argv[1])=="move-ani" || std::string_view(argv[1])=="move-terrain-ani")) {
         auto base=integer(argv[4]);if(base<0 || base>4088) throw std::invalid_argument("ANI sequence base outside 0..4088");
         auto animation=mnm::sandbox::loadMovementAnimation(argv[3],base);
         auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2],animation);World world(8);
         auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();state.animation=std::move(animation);world.restore(std::move(state));
         MovementSession movement(std::move(world),navigation);
         Entity e;e.type=navigation->creatureType();e.x=integer(argv[6]);e.y=integer(argv[7]);e.z=integer(argv[8]);
-        auto creature=movement.spawn(e,true,true);movement.move(creature,{integer(argv[9]),integer(argv[10]),integer(argv[11])});
+        auto creature=movement.spawn(e,true,true,std::string_view(argv[1])=="move-terrain-ani");movement.move(creature,{integer(argv[9]),integer(argv[10]),integer(argv[11])});
         for(std::uint32_t i=0,count=ticks(argv[12]);i<count;++i) movement.step();
         auto commit=writeSnapshot(argv[5],movement.world().state());if(!commit.durable) throw std::runtime_error(commit.detail);
-        json(movement.world().state());return 0;
+        json(movement.world().state(),&movement);return 0;
     }
-    if(argc==11 && (std::string_view(argv[1])=="move" || std::string_view(argv[1])=="move-fine" || std::string_view(argv[1])=="move-continuous")) {
+    if(argc==11 && (std::string_view(argv[1])=="move" || std::string_view(argv[1])=="move-fine" || std::string_view(argv[1])=="move-continuous" || std::string_view(argv[1])=="move-terrain")) {
         auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2]);World world(8);
         auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();world.restore(std::move(state));
         MovementSession movement(std::move(world),navigation);
         Entity e;e.type=navigation->creatureType();e.x=integer(argv[4]);e.y=integer(argv[5]);e.z=integer(argv[6]);
-        auto creature=movement.spawn(e,std::string_view(argv[1])!="move",std::string_view(argv[1])=="move-continuous");movement.move(creature,{integer(argv[7]),integer(argv[8]),integer(argv[9])});
+        const bool terrain=std::string_view(argv[1])=="move-terrain";
+        auto creature=movement.spawn(e,std::string_view(argv[1])!="move",terrain || std::string_view(argv[1])=="move-continuous",terrain);movement.move(creature,{integer(argv[7]),integer(argv[8]),integer(argv[9])});
         for(std::uint32_t i=0,count=ticks(argv[10]);i<count;++i) movement.step();
         auto commit=writeSnapshot(argv[3],movement.world().state());if(!commit.durable) throw std::runtime_error(commit.detail);
-        json(movement.world().state());return 0;
+        json(movement.world().state(),&movement);return 0;
     }
     if(argc==3 && std::string_view(argv[1])=="inspect-json") {json(readSnapshot(argv[2]));return 0;}
     if(argc==4 && std::string_view(argv[1])=="trace") {
-        auto movement=session(readSnapshot(argv[2]));json(movement.world().state());
-        for(std::uint32_t i=0,count=ticks(argv[3]);i<count;++i) {movement.step();json(movement.world().state());}return 0;
+        auto movement=session(readSnapshot(argv[2]));json(movement.world().state(),&movement);
+        for(std::uint32_t i=0,count=ticks(argv[3]);i<count;++i) {movement.step();json(movement.world().state(),&movement);}return 0;
     }
     if(argc==3 && std::string_view(argv[1])=="create") {
         auto world=fixture();auto commit=writeSnapshot(argv[2],world.state());
@@ -101,12 +104,12 @@ int main(int argc,char** argv) try {
         if(state.navigation) {
             auto movement=session(std::move(state));for(std::uint32_t i=0;i<count;++i) movement.step();
             auto commit=writeSnapshot(argv[3],movement.world().state());if(!commit.durable) throw std::runtime_error(commit.detail);
-            json(movement.world().state());return 0;
+            json(movement.world().state(),&movement);return 0;
         }
         World world;world.restore(std::move(state));
         for(std::uint32_t i=0;i<count;++i) world.step();
         auto commit=writeSnapshot(argv[3],world.state());if(!commit.durable) throw std::runtime_error(commit.detail);
         std::cout<<"resumed "<<count<<" admitted idle ticks\n";return 0;
     }
-    std::cerr<<"usage: mnm-world-sandbox create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous MAP OUTPUT SX SY SZ TX TY TZ TICKS | move-ani MAP ANI BASE OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
+    std::cerr<<"usage: mnm-world-sandbox create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous|move-terrain MAP OUTPUT SX SY SZ TX TY TZ TICKS | move-ani|move-terrain-ani MAP ANI BASE OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}

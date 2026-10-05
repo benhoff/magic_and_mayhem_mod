@@ -131,6 +131,8 @@ int main() try {
     check(continuous.world().find(continuousActor)->x==2 && continuous.world().find(continuousActor)->motion->previous.has_value());
     continuous.step();check(continuous.world().find(continuousActor)->motion->fine.has_value());
     const auto continuousBytes=bytes(continuous);check(continuousBytes[8]==4);
+    auto unsupportedOrigin=continuous.world().state();unsupportedOrigin.slots[continuousActor.slot].entity->motion->previous->origin={1,1,1};
+    rejected([&]{encodeSnapshot(unsupportedOrigin);});
     fineNavigation->failAdvance=true;rejected([&]{continuous.step();});check(bytes(continuous)==continuousBytes);fineNavigation->failAdvance=false;
     auto invalidHistory=continuous.world().state();invalidHistory.slots[continuousActor.slot].entity->motion->previous->motion.rate=51;
     const auto historyCheckpoint=cleanup.path/"invalid-history.mnw";writeSnapshot(historyCheckpoint,invalidHistory);

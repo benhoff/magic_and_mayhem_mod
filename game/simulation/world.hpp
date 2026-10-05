@@ -53,8 +53,9 @@ struct FineMotion {
 struct SegmentHistory {
     FineMotion motion;
     std::int32_t direction=0,vertical=0,category=0;
+    Point origin{}; // v6 previous edge origin, needed for slopes and layer changes.
 };
-static_assert(sizeof(FineMotion)<=112 && sizeof(SegmentHistory)<=124,"motion storage charges must cover owned records");
+static_assert(sizeof(FineMotion)<=112 && sizeof(SegmentHistory)<=136,"motion storage charges must cover owned records");
 struct CreatureMotion {
     Action action=Action::idle;
     Point origin,destination;
@@ -66,6 +67,7 @@ struct CreatureMotion {
     bool continuousMotion=false;
     std::optional<SegmentHistory> previous={};
     std::uint32_t segmentTicks=0;
+    bool terrainMotion=false; // Explicit v6 terrain-height/setup policy.
 };
 struct Entity {
     Family family=Family::creature;

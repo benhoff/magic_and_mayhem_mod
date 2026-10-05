@@ -38,3 +38,12 @@ Callbacks must mutate only caller-staged state, since the arithmetic transaction
 cannot undo external callback effects. `move-ani` stages an owned recovered player
 and saves it with ANI bytes in native v5. The default supplied-clock contract
 remains unchanged. See [NS05](../../research/runtime/native-ani-motion.md).
+
+`segment_setup` now also admits forward category four, sloped XYZ edges and pure
+vertical movement with supplied ordinary terrain heights. `ordinary_creature_height`
+models the selected coordinate snap; special generator class-two height lookup
+is excluded. The expanded original setup runner compares these branches and
+ordinary coordinate snaps. The composed ANI runner includes vertical movement
+and clamped height deltas. Native `move-terrain`/`move-terrain-ani` resolve heights
+from owned frozen map inputs and opt into v6, preserving older driver policies.
+See [NS06 evidence and remaining scope](../../research/runtime/native-terrain-motion.md).

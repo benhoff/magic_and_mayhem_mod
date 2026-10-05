@@ -3,7 +3,7 @@
 #include <filesystem>
 
 namespace mnm::game {
-// Native v1 lifecycle/v2 movement formats; not original Magic & Mayhem .sav files.
+// Native v1-v6 lifecycle/movement formats; not original Magic & Mayhem .sav files.
 Bytes encodeSnapshot(const State&,const Limits& = {});
 State decodeSnapshot(const Bytes&,const Limits& = {});
 State readSnapshot(const std::filesystem::path&,const Limits& = {});
