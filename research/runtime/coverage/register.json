@@ -10075,13 +10075,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 and footprint initializer 004e1260 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory setup and creature descriptor/footprint production, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Initial kind34 creator exception, other types/metadata and termination, type35 terrain mutation, original trajectory setup, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 and footprint initializer 004e1260 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory setup and creature descriptor/footprint production, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures"
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Initial kind34 creator exception, other types/metadata and termination, type35 terrain mutation, original trajectory setup, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures."
         }
       ],
       "documents": [
@@ -10094,7 +10094,8 @@
         "research/runtime/effect-membership-disabled.md",
         "research/runtime/effect-terrain-occupancy.md",
         "research/runtime/creature-occupancy-lookup.md",
-        "research/runtime/creature-footprint-initializer.md"
+        "research/runtime/creature-footprint-initializer.md",
+        "research/runtime/effect-creature-collision.md"
       ],
       "implementation": [],
       "tests": [],
@@ -11837,6 +11838,45 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-creature-collision",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect creature candidate snapshot and collision scanning",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-creature-collision.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_creature_collision.cpp",
+        "reconstruction/rendering/effect_creature_collision.hpp",
+        "reconstruction/rendering/effect-creature/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-creature-reference.cpp",
+        "tests/effect-creature-test.cpp",
+        "tools/test-effect-creature.py"
+      ],
+      "evidence": [
+        "TL16.collision-original",
+        "TL16.collision-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -19313,6 +19353,94 @@
           "equals": 1
         }
       ]
+    },
+    {
+      "id": "TL16.collision-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "record": "research/runtime/effect-creature-collision.json",
+      "sha256": "6b7f9438c157a386f0612f4442fd56e3a65f7882eb9ab68d56efe432edbd1337",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 560
+        },
+        {
+          "pointer": "/calls",
+          "equals": 1120
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 48
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 27008000
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL16.collision-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "record": "research/runtime/effect-creature-collision.json",
+      "sha256": "6b7f9438c157a386f0612f4442fd56e3a65f7882eb9ab68d56efe432edbd1337",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 560
+        },
+        {
+          "pointer": "/calls",
+          "equals": 1120
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 48
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 27008000
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -21457,6 +21585,23 @@
         "tools/test-scene-picking.py",
         "tools/test-multi-world-scene.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-creature-collision",
+      "level": "headless",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "evidence": [
+        "TL16.collision-original",
+        "TL16.collision-native"
+      ],
+      "tests": [
+        "tests/effect-creature-reference.cpp",
+        "tests/effect-creature-test.cpp",
+        "tools/test-effect-creature.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -21587,7 +21732,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "fc8f01dd711d9866e4ee689ea2432eaae7c1b32a293701940ac473b9dd632a1c",
+      "sha256": "c35ac4740fb66a2bf3e55ba5a0f4512f90b12ff5885d860c94e16801a77b25fb",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -21597,52 +21742,57 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "8128223b84bde471b6de69ea86f6308be5ac8d55c986983ca45c7f056ad87aab",
+      "sha256": "83edd1d354cb5dba85562539c6a73e41a1eee9beb880bc2845f088ab2ca05bea",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "82e04c6cfc3f68d6d39df61737e3ca3feb73e263e87d150e11dba02b37a6240c",
+      "sha256": "02c4f5268baefac12d88f30a384cf8932273df3918ad8f16dc92ef8be27b3abd",
       "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-cleanup-coverage.json",
-      "sha256": "348ac9d7241944c8b01221736ba1114cb5beb3274367a1f866a4a54d18cf6a2d",
+      "sha256": "9916bf31c74afe8c58815f9006126f1538aa5ffce6743a9b09d9cdb6989809bd",
       "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-blocked-destinations-coverage.json",
-      "sha256": "d6405e942ffb73d30e19b460ba10e689c048be1a88d580e77556dc58ad3c6f43",
+      "sha256": "7fb36088be918959465e3fc827eb6bf1b5e03e2d509f2452c26263649817e99f",
       "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-height-exits-coverage.json",
-      "sha256": "e0a92e3cff0f7483bcf3cd0a20b52e4e4da238640884c04ce882cc48c93c5f1f",
+      "sha256": "e7eea493a6225900ee64a3762dba2b19b7ba36313f2f40131b60ebe8e3995894",
       "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-membership-disabled-coverage.json",
-      "sha256": "dc494ee62d89757fd38819d2723adc39f6e706649e8da1247380fdd45ad446a5",
+      "sha256": "12488f808c5bd4ddc5ea0a4a9708869c0b86c03813d42130b11f7655d8e3d026",
       "scope": "Reviewed complete-parent disabled-membership movement and preserved graph/flags, ordinary/blocked/height/cleanup reruns and native reconciliation admission; remaining occupied collision/setup/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-terrain-occupancy-coverage.json",
-      "sha256": "977aa3b133f6c9305e5dc16cc223f681c55bedd21d915283b43005c0ab424735",
+      "sha256": "c95fe0618d6f24c2c50b9a16193f94e740de0edfd6183a4365de0536514f95ab",
       "scope": "Reviewed complete-parent terrain occupancy bitmap/cache-gated sampling, hit ordering and both membership modes with fresh prior-contract reruns; remaining creature/special-type/catalog/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/creature-occupancy-lookup-coverage.json",
-      "sha256": "407b498d6bc0c9d4b3f62f77d3d22ac86d0f064fda4aa72b214e804f28171513",
+      "sha256": "badd7b1412a736c8f4a0ce798bc6863b309314a439ef655301c03d924b58478a",
       "scope": "Reviewed complete 004e1200 creature footprint lookup and owned read-only storage, independent rectangle tests and raw-height wrapping; original candidate/parent/initializer/capture/live work remains separate and historical effect proofs are preserved"
     },
     {
       "path": "research/runtime/creature-footprint-initializer-coverage.json",
-      "sha256": "f0caab0788dd413f202df8540c519513508e6466dd19be9faba82c24437e9b7e",
+      "sha256": "0415278769923b9327e4bef452c6d1575f5a0ab47a4b01241ed3989c123668fc",
       "scope": "Reviewed complete 004e1260 footprint initializer, original/native guarded overwrite and query composition; creature construction parent/capture/live remain separate"
+    },
+    {
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "sha256": "d543689f91052a740e81c488071da0abd95640f340870c858b372723e4c3d6be",
+      "scope": "Reviewed selected whole 004883f0 creature candidates and collision integration, refreshed ordered snapshots, raw coordinate/query composition, creator and status filters, first-hit and type3 continuation; installed capture/live remain separate"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-picking.json",
-    "sha256": "6107cb39e075a4b075cb10ee9ed8bc0b8c1f8ef473cd172c75d3c9dee1848a43"
+    "path": "research/runtime/effect-creature-collision-source-index.json",
+    "sha256": "5193628b79b140215ac9ce7f782b0c4757835022666e8fadec86fe4a7e949f90"
   }
 }

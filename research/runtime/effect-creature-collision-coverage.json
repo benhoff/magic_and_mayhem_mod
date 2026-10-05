@@ -1,0 +1,203 @@
+{
+  "schema": 1,
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "dispatch_tables": [],
+  "recovered_ranges": [],
+  "classifications": [],
+  "api_bindings": [],
+  "behaviors": [
+    {
+      "id": "TL.effect-creature-collision",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect creature candidate snapshot and collision scanning",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-creature-collision.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_creature_collision.cpp",
+        "reconstruction/rendering/effect_creature_collision.hpp",
+        "reconstruction/rendering/effect-creature/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-creature-reference.cpp",
+        "tests/effect-creature-test.cpp",
+        "tools/test-effect-creature.py"
+      ],
+      "evidence": [
+        "TL16.collision-original",
+        "TL16.collision-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-movement-recount",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Remaining effect movement and lifecycle contracts",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Initial kind34 creator exception, other types/metadata and termination, type35 terrain mutation, original trajectory setup, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Initial kind34 creator exception, other types/metadata and termination, type35 terrain mutation, original trajectory setup, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures."
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory.md",
+        "research/runtime/effect-same-cell-projection.md",
+        "research/runtime/effect-cell-transitions.md",
+        "research/runtime/effect-cell-cleanup.md",
+        "research/runtime/effect-blocked-destinations.md",
+        "research/runtime/effect-height-exits.md",
+        "research/runtime/effect-membership-disabled.md",
+        "research/runtime/effect-terrain-occupancy.md",
+        "research/runtime/creature-occupancy-lookup.md",
+        "research/runtime/creature-footprint-initializer.md",
+        "research/runtime/effect-creature-collision.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "TL16.collision-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "record": "research/runtime/effect-creature-collision.json",
+      "sha256": "6b7f9438c157a386f0612f4442fd56e3a65f7882eb9ab68d56efe432edbd1337",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 560
+        },
+        {
+          "pointer": "/calls",
+          "equals": 1120
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 48
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 27008000
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL16.collision-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "record": "research/runtime/effect-creature-collision.json",
+      "sha256": "6b7f9438c157a386f0612f4442fd56e3a65f7882eb9ab68d56efe432edbd1337",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 560
+        },
+        {
+          "pointer": "/calls",
+          "equals": 1120
+        },
+        {
+          "pointer": "/creature_hits",
+          "equals": 48
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 27008000
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "terrain-lighting.effect-creature-collision",
+      "level": "headless",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "evidence": [
+        "TL16.collision-original",
+        "TL16.collision-native"
+      ],
+      "tests": [
+        "tests/effect-creature-reference.cpp",
+        "tests/effect-creature-test.cpp",
+        "tools/test-effect-creature.py"
+      ]
+    }
+  ]
+}
