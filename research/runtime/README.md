@@ -162,5 +162,3 @@ confidence, and whether it remains stable across launches.
 - [Bounded installed MAP navigation and creature presentation](native-map-navigation.md): ordinary full-source geometry projected to a sealed crop, matched frozen navigation/visual bytes, original terrain predicate comparisons and owned frame continuation.
 
 - [Campaign menu entry contract](campaign-menu-engine-contract.md): original New Game reset, Realm custom lifecycle, region admission and auxiliary flags; UI26 isolated evidence, campaign bridge and mode-4 Mini return still pending.
-
-- [Campaign menu entry contract](campaign-menu-engine-contract.md): original New Game reset, Realm custom lifecycle, region admission and auxiliary flags; UI26 isolated evidence, campaign bridge and mode-4 Mini return still pending.
