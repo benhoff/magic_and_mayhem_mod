@@ -85,4 +85,9 @@ static void battle_fixture_tests(TickFn fn){
     generation=channel[33];battle_fixture_host(MNM_MENU_SETUP_APPLY,generation,0);channel[27]=1;
     battle_fixture_tick(fn,14);require(channel[37]==MNM_MENU_INVALID,82);
     battle_fixture_host(MNM_MENU_SETUP_START,generation,0);battle_fixture_tick(fn,14);require(channel[37]==MNM_MENU_OK&&channel[39]==2&&get((void*)0x6589a3)==0x6903b8,80);
+    // A fresh root-menu tick clears handoff and permits the next session action.
+    reset(22,0x5c641c);channel_tick(fn);
+    require(channel[34]==22&&channel[35]==1&&channel[39]==0,85);
+    battle_fixture_host(MNM_MENU_OPEN_SINGLE,channel[33],0);channel_tick(fn);
+    require(channel[37]==MNM_MENU_OK&&get(object+0x33)==0x658970,86);
 }

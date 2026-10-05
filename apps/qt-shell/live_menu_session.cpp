@@ -1,5 +1,5 @@
 #include "live_menu_session.hpp"
-#include "../../protocols/include/mnm/menu_v2.h"
+#include "../../protocols/include/mnm/menu_v4.h"
 #include <QDir>
 #include <QProcessEnvironment>
 LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(parent),repo_(std::move(repository)){
@@ -19,7 +19,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
                 fallback("Menu staging failed; see the launch log.");if(finished)finished();return;
             }
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
-            if(!bridge_->create(channel_,true)){fallback("Cannot create menu channel.");if(finished)finished();return;}
+            if(!bridge_->create(channel_,true,true,miniMenusEnabled())){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             if(active_)timer_.start();else bridge_->retire();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath("working/tests/menu-live-wine"):winePrefix};
@@ -36,14 +36,15 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
 }
 bool LiveMenuSession::start(){
     if(running())return false;
-    preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=false;
+    preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=inBattle_=false;
     auto env=QProcessEnvironment::systemEnvironment();env.remove("MNM_MENU_CHANNEL");env.remove("MNM_RUNNER");env.remove("MNM_MENU_OBSERVE");
     process_.setProcessEnvironment(env);process_.setWorkingDirectory(repo_);preparing_=true;
-    process_.start(QDir(repo_).filePath("tools/prepare-menu-observer.py"),{"--actions"});return true;
+    QStringList arguments{"--actions"};if(miniMenusEnabled())arguments.append("--experimental-mini");
+    process_.start(QDir(repo_).filePath("tools/prepare-menu-observer.py"),arguments);return true;
 }
 bool LiveMenuSession::running() const{return preparing_||process_.state()!=QProcess::NotRunning;}
 bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<int,17>* rules){
-    if(!active_||pending_||transition_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->request(action,state_,argument,rules))return false;
+    if(!active_||inBattle_||pending_||transition_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->request(action,state_,argument,rules))return false;
     quitting_=action==MNM_MENU_QUIT;pending_=true;requestedAt_=clock_.elapsed();action_=action;
     switch(action){
     case MNM_MENU_OPEN_QUICK:case MNM_MENU_SETUP_CANCEL:target_=22;break;
@@ -53,16 +54,27 @@ bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<i
     }
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
+bool LiveMenuSession::requestMini(quint32 action){
+    if(!miniMenusEnabled()||!active_||inBattle_||pending_||transition_||state_.screen!=MNM_MENU_MINI_SCREEN||
+       clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->request(action,state_))return false;
+    pending_=true;requestedAt_=clock_.elapsed();action_=action;
+    if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
+}
 bool LiveMenuSession::requestExit(){
-    if(!active_||!sequence_||(!pending_&&!transition_&&state_.screen!=3&&state_.screen!=22&&state_.screen!=14&&state_.screen!=25))return false;
+    if(!active_||inBattle_||!sequence_||(!pending_&&!transition_&&state_.screen!=3&&state_.screen!=22&&state_.screen!=14&&state_.screen!=25))return false;
     exitRequested_=true;
     if(!pending_&&!transition_&&state_.ready){
         if(!request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT)){exitRequested_=false;return false;}
     }
     return true;
 }
+bool LiveMenuSession::finishSpells(const std::array<int,63>& assignments){
+    if(!active_||inBattle_||pending_||transition_||clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->finishSpells(state_,assignments))return false;
+    pending_=true;requestedAt_=clock_.elapsed();action_=MNM_MENU_SPELL_FINISH;
+    if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
+}
 void LiveMenuSession::fallback(const QString& reason){
-    active_=false;bypass_=true;timer_.stop();pending_=transition_=false;if(bridge_)bridge_->retire();
+    active_=false;bypass_=true;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
     if(failed)failed(reason);
 }
 void LiveMenuSession::poll(){
@@ -76,9 +88,16 @@ void LiveMenuSession::poll(){
             if(next.status!=MNM_MENU_OK){fallback(QString("Menu action rejected (%1); using original menus.").arg(next.status));return;}
             if(action_==MNM_MENU_SETUP_START){
                 if(!next.handoff){fallback("Engine Start returned an unknown destination; using original viewport.");return;}
-                timer_.stop();active_=false;bypass_=true;bridge_->retire();state_=next;
+                if(next.handoff==1){transition_=true;target_=7;state_=next;return;}
+                inBattle_=true;transition_=false;state_=next;
                 if(battleStarted)battleStarted(next.handoff);
                 return;
+            }
+            if(action_==MNM_MENU_SPELL_FINISH){inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(2);return;}
+            if(action_==MNM_MENU_MINI_CANCEL||action_==MNM_MENU_MINI_PREFERENCES||action_==MNM_MENU_MINI_QUIT){
+                // Original viewport owns gameplay, Preferences and Quit confirmation.
+                // Confirmation Yes/No semantics remain entirely in the original game.
+                inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
             }
             if(quitting_){
                 // Quit was accepted by the original callback. No further menu ticks
@@ -89,12 +108,24 @@ void LiveMenuSession::poll(){
             }
             transition_=true;
         }
+        if(!inBattle_&&!pending_&&state_.screen==7&&next.screen==0&&next.handoff==2){inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(2);return;}
+        if(inBattle_){
+            // Only a fresh, engine-confirmed return to a supported root menu
+            // restores command ownership. Setup ticks during Start are ignored.
+            if(miniMenusEnabled()&&next.ready&&next.screen==MNM_MENU_MINI_SCREEN&&next.mini.battle&&!next.mini.confirmation&&
+               next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
+                inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
+            }
+            if(!next.ready||(next.screen!=3&&next.screen!=22)||next.handoff||next.thread!=state_.thread||next.generation==state_.generation||next.ack!=state_.ack||next.status!=MNM_MENU_OK)return;
+            inBattle_=false;
+            if(output)output("Original battle returned; restoring native menus.\n");
+        }
         state_=next;
         if(transition_&&next.screen==target_&&next.ready)transition_=false;
         if(stateChanged){if(pending_||transition_)next.ready=0;stateChanged(next);}
         if(exitRequested_&&!pending_&&!transition_&&state_.ready)
             request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT);
     }
-    if(clock_.elapsed()-lastState_>(sequence_?MNM_MENU_V1_LEASE_MS:120000)||((pending_||transition_)&&clock_.elapsed()-requestedAt_>10000))
+    if(!inBattle_&&(clock_.elapsed()-lastState_>(sequence_?MNM_MENU_V1_LEASE_MS:120000)||((pending_||transition_)&&clock_.elapsed()-requestedAt_>10000)))
         fallback("Menu adapter timed out; using original menus. Requests will not be retried.");
 }

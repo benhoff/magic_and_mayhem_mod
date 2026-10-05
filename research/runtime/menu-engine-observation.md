@@ -70,7 +70,7 @@ selected conditions; direct state-field writes would bypass those semantics.
 
 Main indices 0/1/3/4/5 cover campaign start, load, preferences, quit and
 command-line handling. They require further bounded validation before adaptation.
-Mini Menu remains static-export coverage and a native preview only.
+Mini Menu now has separate [offline bridge preparation](mini-menu-engine-bridge.md); activation is disabled and runtime behavior remains unvalidated.
 
 Observed object fields are unaligned: vtable `+0`, ID `+4`, initialized `+8`,
 fade byte `+0xc`, fade counter dword `+0xd`, pending screen pointer `+0x33`,

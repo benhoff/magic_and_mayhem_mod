@@ -603,11 +603,22 @@ missing slider guards. Keep this distinct from live validation.
 engine snapshots, chooses explicit disposable test settings to take direct
 battle loading, captures the original viewport, and uses isolated XTest input to exit through
 the original result Quit and require a Main/Quick tick. `--battle spells` preserves
-original item/talisman defaults to validate original spell-selection handoff.
-Both use isolated Xvfb and Wine prefixes, bounded 90-second game runs and
+original item/talisman defaults, exercises native reset and assignment, commits
+through original callbacks and compares engine control assignments with Qt.
+It requires a battle, Qt Quick return and normal Back/Quit. The spell run has a
+180-second launch deadline; the direct run uses a 90-second game bound.
+Both use isolated Xvfb and Wine prefixes and
 original manifest checks before/after. Inspect captures before claiming actual
 battle or spell-selection presentation. See
 [contracts/evidence](../research/runtime/single-player-menu-bridge.md).
+
+`./tools/test-live-menus.py --battle direct --battle-repeat` requires two Start
+handoffs, two engine-confirmed Qt Quick Battle restorations, a fresh setup between
+battles, and native Back/Quit followed by successful launcher exit. The game run
+is bounded to 180 seconds; each battle exits through original result controls.
+Explicit original-menu fallback remains permanent for that session. Existing evidence can be
+rechecked without launching via `--validate-run working/tests/live-menus/RUN`.
+
 
 ### Native planar segment continuity
 
@@ -637,3 +648,11 @@ start/tick/restart together with the motion action, with only completion redirec
 selected controller traces. Both verify immutable input before/after. Profile
 selection remains explicit numeric input; unsupported gameplay events are refused.
 See [NS05 evidence](../research/runtime/native-ani-motion.md).
+
+### Live pre-battle spell selection
+
+Build `menu-spell-bridge-test` and run `ctest --test-dir working/build/qt-shell -R qt-menu-spell-bridge --output-on-failure`. Run `./tools/test-menu-observer.py --spells` for isolated original PE32 callback checks and `./tools/test-live-menus.py --battle spells` for the separate live path. See [contracts and evidence](../research/runtime/spell-selection-menu-bridge.md).
+
+### Mini Menu bridge: pending validation
+
+The dormant V4 Mini Menu implementation has **not been tested**. Its activation is OFF by default. The [offline contract](../research/runtime/mini-menu-engine-bridge.md) lists the later isolated callback/ABI, malformed wire/guard, V1–V3 regression and live pause/resume/Preferences/confirmation/return checks. Existing preview and spell bridge checks do not constitute Mini Menu engine evidence.

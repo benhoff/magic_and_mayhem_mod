@@ -53,6 +53,9 @@ static u32 THIS quick_action(void* object,u32 action){
 static u32 THIS main_action(void*,u32);
 static u32 THIS quick_action(void*,u32);
 #include "channel.h"
+static u32 THIS spell_tick(void* object){
+    record(1,object,0,0);menu_poll(object,1);u32 result=((TickFn)0x576830)(object);menu_poll(object,0);record(4,object,0,result);return result;
+}
 static u32 THIS tick(void* object){
     record(1,object,0,0);menu_poll(object,1);u32 result=original_tick(object);menu_poll(object,0);record(4,object,0,result);return result;
 }
@@ -111,7 +114,21 @@ static int install(void){
     if(log_file){
         original_tick=(TickFn)0x5595d0;
         menu_init();
-        if(menu_version==2&&!install_battle())menu_retired=1;
+        if(menu_version>=2&&!install_battle())menu_retired=1;
+        if(menu_version>=3){
+            u32 old,unused;
+            if(!readable((void*)0x5c776c,4)||get((void*)0x5c776c)!=0x576830||!equal((void*)0x576830,(u8[]){0x81,0xec,0,2},4)||
+               !VirtualProtect((void*)0x5c776c,4,0x40,&old))menu_retired=1;
+            else{put((void*)0x5c776c,(u32)&spell_tick);VirtualProtect((void*)0x5c776c,4,old,&unused);}
+        }
+        if(menu_version==4&&MNM_MENU_MINI_EXPERIMENTAL){
+            u32 old,restore;
+            const u8 callback_bytes[]={0x64,0xa1,0,0,0,0};
+            if(!readable((void*)0x5c6654,4)||get((void*)0x5c6654)!=0x5595d0||
+               !readable((void*)0x4b23f0,6)||!equal((void*)0x4b23f0,callback_bytes,6)||
+               !VirtualProtect((void*)0x5c6654,4,0x40,&old))menu_retired=1;
+            else {put((void*)0x5c6654,(u32)&tick);VirtualProtect((void*)0x5c6654,4,old,&restore);}
+        }
         jump(0x4a75c0,(u32)&main_action,7);jump(0x4a83a0,(u32)&quick_action,8);
         put((void*)0x5c63f4,(u32)&tick);put((void*)0x5c642c,(u32)&tick);
         FlushInstructionCache(GetCurrentProcess(),(void*)0x4a75c0,7);
