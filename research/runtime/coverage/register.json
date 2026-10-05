@@ -1437,8 +1437,8 @@
       "subsystem": "pathfinding",
       "kind": "recovered",
       "title": "Cell transition predicate",
-      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "scope": "Valid supplied owned cells/tables: original occupied-cell exclusion and width-one/two wrapped footprint under the recorded fixture domain. Original occupancy production, corrupt pointers and live integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -1447,22 +1447,25 @@
         }
       ],
       "documents": [
-        "research/runtime/pathfinding-cell-test.md"
+        "research/runtime/pathfinding-cell-test.md",
+        "research/runtime/native-stationary-occupancy.md"
       ],
       "implementation": [
         "reconstruction/pathfinding/route_cell.cpp",
         "reconstruction/pathfinding/route_cell.hpp"
       ],
       "tests": [
-        "tests/route-cell-test.cpp"
+        "tests/route-cell-test.cpp",
+        "tools/test-dynamic-occupancy.py"
       ],
       "evidence": [
-        "REVIEW.PF.cell"
+        "REVIEW.PF.cell",
+        "NS10.occupancy-original"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       }
@@ -1472,8 +1475,8 @@
       "subsystem": "pathfinding",
       "kind": "recovered",
       "title": "Packed occupancy predicate",
-      "scope": "Owned snapshot inputs and selected wrapped arithmetic; live world production remains separate. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "scope": "Valid supplied owned cells/tables: original occupied-cell exclusion and width-one/two wrapped footprint under the recorded fixture domain. Original occupancy production, corrupt pointers and live integration excluded.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -1482,22 +1485,25 @@
         }
       ],
       "documents": [
-        "research/runtime/pathfinding-occupancy-test.md"
+        "research/runtime/pathfinding-occupancy-test.md",
+        "research/runtime/native-stationary-occupancy.md"
       ],
       "implementation": [
         "reconstruction/pathfinding/route_occupancy.cpp",
         "reconstruction/pathfinding/route_occupancy.hpp"
       ],
       "tests": [
-        "tests/route-occupancy-test.cpp"
+        "tests/route-occupancy-test.cpp",
+        "tools/test-dynamic-occupancy.py"
       ],
       "evidence": [
-        "REVIEW.PF.occupancy"
+        "REVIEW.PF.occupancy",
+        "NS10.occupancy-original"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       }
@@ -10441,6 +10447,28 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.stationary-occupancy",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Owned stationary creature occupancy over frozen navigation",
+      "scope": "Planned opt-in one moving creature and stationary same-profile blockers; native logical boxes and generational identity. Original placement/reservations and multiple moving creature scheduling excluded.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-stationary-occupancy.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -15448,6 +15476,34 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS10.occupancy-original",
+      "kind": "isolated_original",
+      "scope": "Original 004f3550 occupancy and 004f47d0 footprint; supplied valid owned cells/tables, exempt/self/foreign tokens, full-DWORD owner, extents/clipping/overflow and wrapped footprints. Five unrelated movement dependencies redirected privately by existing loader; neither compared routine calls them. No original occupancy production, pointer lifetime, moving reservations or live scheduling claim.",
+      "record": "research/runtime/native-stationary-occupancy-original.json",
+      "sha256": "60da671c8594623bec8fd7eb80fae1c1fa93d5c3efea156b669b87dd868c126d",
+      "build": "nocd-40209ca7",
+      "sources_pointer": "/source_sha256",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/cell_comparisons",
+          "equals": 9509
+        },
+        {
+          "pointer": "/footprint_comparisons",
+          "equals": 576
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -17217,7 +17273,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-creature-navigation-commit.json",
-    "sha256": "b1148ac20e32556a7822f6936890847aaf26f643226867f013d14ccdc3db4a88"
+    "path": "research/runtime/coverage/source-index-stationary-original.json",
+    "sha256": "014fd0989533372ea5821f60684e5e052f33e74796de10449eaf6402853ee321"
   }
 }

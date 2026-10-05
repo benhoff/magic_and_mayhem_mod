@@ -1,0 +1,490 @@
+{
+  "range": "2522edf9b7c918ae6aff475197f49b6841b42d4a^..2522edf9b7c918ae6aff475197f49b6841b42d4a",
+  "scope": "Exact committed parent/current file and behavior fingerprints checked against existing receipts. Journal is append-only and not self-receipted. No past gate-pass or new runtime validation assertion.",
+  "files": [
+    {
+      "path": "apps/world-sandbox/frozen_navigation.cpp",
+      "before_sha256": "a1590eee8cf92ef13628d9656c772f694607e2d7b2832b4f7e1d646dd4395c3e",
+      "after_sha256": "abbe9255e5b658981540828f909e94b0f58d8f758385cc629c35a2b700f37898",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "apps/world-sandbox/frozen_navigation.hpp",
+      "before_sha256": "ce4773406cead7eeb98ed49fd8da297c2bc0be23b46d005c9668495a9c2a11f6",
+      "after_sha256": "0b49b9e848631dc2b4306c3148441a81d174e5d9423360504f35d88005d12b74",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "apps/world-scene/CMakeLists.txt",
+      "before_sha256": "e542c934281da849f002b56da6b03b209724bf616c414b708ee476ead5ee5097",
+      "after_sha256": "f1b884efb1b071a00dd4c946a05c36add42ee2adb6b6534e860ed7f56f9e267d",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "apps/world-scene/README.md",
+      "before_sha256": "91101a8c835a180cd1fe45b44af55e7ef839154128f5ab5b6e2b3030e2e709f5",
+      "after_sha256": "c6f15d869363241fa5bcca3f277e7e3d13cae57745d97aa731933ad510df2c3b",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "apps/world-scene/map_navigation.cpp",
+      "before_sha256": "8e8bcacbffc224609908069eae72437d2525443fba852c154743856d98e24a1b",
+      "after_sha256": "20eecea7aca4ad16b08093f6dd1cb2f206d14acc929ddad76064cb5910613de5",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "apps/world-scene/map_navigation.hpp",
+      "before_sha256": "2d042c32ce037a54fd22f9fde966bdfa37660f9401c43f333fe0602b2462d01f",
+      "after_sha256": "e40b2a8021a7841c03abe2240b12e19c58525faaec776e4f76fa3112c939a4eb",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "apps/world-scene/map_navigation_main.cpp",
+      "before_sha256": "cff69bce4a75aa0ef7c098333be6acdb47836aecb3e8ec6ee513c72ec927c0bc",
+      "after_sha256": "4b0cf8ded5f10483e677f91e2951e52a09380bc1b818ab3765f05d765e1f32b3",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "assets/CMakeLists.txt",
+      "before_sha256": "4a00cbede6f2ba313b036fb61bbe00633d0ac5bf231596a881d320716dcbe4c2",
+      "after_sha256": "919f6b4c789b36256d9573dd3c388d8cb03e7c9b4f6bb99577a5c99f8596fb9c",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "assets/creature_movement.cpp",
+      "before_sha256": null,
+      "after_sha256": "0ceaa3cdc3e9a5f45a695ac2f8f0f5f122288e296af04c586185524582d337c6",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "assets/creature_movement.hpp",
+      "before_sha256": null,
+      "after_sha256": "5f2ac13f91904f8af7a9737fc357b1751745217d73de9f4103ef0ca8f6996953",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "reconstruction/motion/creature_motion.cpp",
+      "before_sha256": "d04e0e5435eb7c15256b9dc171e3383d7fc14ff1bea50f77ee455a471838873b",
+      "after_sha256": "7b223a9d55f7ccbb5f2902ac143610b6953b6e147dc630d36e2759f573e23e04",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "reconstruction/motion/creature_profile.cpp",
+      "before_sha256": null,
+      "after_sha256": "03117cc42f206e91de098c7957e451247a333c49a94af363367e3e7602ffdadb",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "reconstruction/motion/creature_profile.hpp",
+      "before_sha256": null,
+      "after_sha256": "c6820cc3fc930914e671a236fe6de64c279d5cefc6d81eee0200d530fdd5b9c5",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "research/formats/creature-movement-config.md",
+      "before_sha256": null,
+      "after_sha256": "13895358625004097ea0a90e91b8fe22c565afd38aab49f55f4bdbfb3a115a2c",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "research/runtime/README.md",
+      "before_sha256": "73b33849d7b427ad6c4da355ec4e6f529425ceddbdaa625d2bf1acb60be2595b",
+      "after_sha256": "7eab8ecc65f2347e884ea3945c1d2f421b183081dccdae3abab47d0a0328ae31",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "0f7ad72e8290a9ec055f7ceea6f640b7bd88f4021827962a7adeb4b9f44feef5",
+      "after_sha256": "22566932d964e49c3f6748937c579fd796233d02e2f6317e2518859a807a6a04",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "246850675b086f2ae004d2728b9bbb75f7e6c62aeb557fe1ce61499f1b8fdccb",
+      "after_sha256": "042ab2fc1d3c54befd5fae41f37fe2dfa44b3be839e4e488b7c3aac2fb4b6a51",
+      "reviews": []
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "0cbcf781f0e068a2435918c10f8dc20b74dbfd3e8f8646059b4feb505008ecf9",
+      "after_sha256": "954d0425e25457853532c6f53081c1adf51e77fdfac0dd52b9d5fe61dc8f70b1",
+      "reviews": [
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-creature-navigation-commit.json",
+      "before_sha256": null,
+      "after_sha256": "b1148ac20e32556a7822f6936890847aaf26f643226867f013d14ccdc3db4a88",
+      "reviews": [
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-creature-navigation.json",
+      "before_sha256": null,
+      "after_sha256": "94eff0b523542b39a7ef96f3a8a79fbe9112341c4245ea890e729eebc2f33b45",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "aa4aaf8529dbc1d7c2246d7aba54d9501f009597467f79cec734b3e95bddc1eb",
+      "after_sha256": "bf019d8ab5266d4dc48d1874ad959cadce42940b930b6e7d352165c35b1b9c6d",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "research/runtime/native-creature-profile-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "21136f322459d2f84915bdb52ccf536fcbd608b3139fd831b3083be81067c5ba",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "research/runtime/native-creature-profile.json",
+      "before_sha256": null,
+      "after_sha256": "f2fd90a823c05372b50971e315a1790ac881b5c2630d5cf97af735b91b1cdfdc",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "research/runtime/native-creature-profile.md",
+      "before_sha256": null,
+      "after_sha256": "1735ab1f3872597ad60b02e25f2d3e6ede28b163dd6db2da9f1da37ed01902ef",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "tests/README.md",
+      "before_sha256": "0bb42b49c80be1ef555bf5654483320ad1ddf9139c0356a9302208ca0ca538c2",
+      "after_sha256": "8f413d5cb4ac0509e147ac0941b261594392162eea02e0204e4ef308baa625f4",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "tests/creature-motion-test.cpp",
+      "before_sha256": "754ffe255372b708602b83068ebd992c8165a4fb2e0b8670220dad6cd40bb2b1",
+      "after_sha256": "e6e5d3ce2a543757561be5fdb5e15b8496fa7fdd9e1c9d3cb7f0f2c892d37ac6",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "tests/creature-profile-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "f74ad72f640eeda9ef407110dbd92d75466416b22b571ab3f6adc40d3eb55068",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "tests/creature-profile-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "1a31497d0b73d3ab97b0673591ef2d43085ad44422507d0d0f18c0bea567ad24",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "tests/map-navigation-reference.cpp",
+      "before_sha256": "293db4cf7f7cf5549eeade42514f5d9bb8841cf3527b2af7409887cdf3817572",
+      "after_sha256": "ee3566c6ca04414abdfb24eaae78f14601fab9acf18ae8de2b9f90e4f7858b7c",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "path": "tools/test-creature-navigation.py",
+      "before_sha256": null,
+      "after_sha256": "be345e23307d7dc7d178e8685d0cc090326bd980d00ef48ad85ba0b86fa79cff",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    }
+  ],
+  "behavior_contracts": [
+    {
+      "id": "MV.ani-forward",
+      "before_sha256": "832618cc925aab1563fa4c9d508d68136da47454db577fe077a2fc4d0734dec5",
+      "after_sha256": "8c5bd5decbbb438d3737f43ff290dac95b96f7ddb663ecbbe0d1004691c750ca",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.creature-profile",
+      "before_sha256": null,
+      "after_sha256": "70d5fae8c7c328b8bf335e5ed77e6bc8e03859fb66ef31b3cf55f05589fa0697",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.configured-ground-recorded-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.event-0",
+      "before_sha256": "6a04bcaff7afe4764dcf3fe9b1a8b936b8f8e981a6ff567ca4807d78e6fbb610",
+      "after_sha256": "333270291161e00eb481c6221033b7d62c611ea14c71508d68d8b191ebc41b33",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.event-2",
+      "before_sha256": "cb2c4d5e9249f98e4e59090e3ae356f0bc5ba7afcca88620e2fc49caa055ffc9",
+      "after_sha256": "c3d75d515839b9838f438185994d8cd1e4ccc7bf3ac73e5260c1fd527fa5367a",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.fine-motion",
+      "before_sha256": "6bde1bd1b09201ab9256f816fb98eb5882aae301d8a9db0ce8f670adfb3d086a",
+      "after_sha256": "7bc7bb4402bdc9fd268e89aa9625fd8bac3bd0172115ad36a79f18fd13259103",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.legality",
+      "before_sha256": "74aad1d77820bb7f3aba0b387b2ef5a464702b0e40aa291af0d847c8260c3c94",
+      "after_sha256": "39b96c4e587da5bd0c6301b0d9bb39a895c2316cb5314625205f29b4ca89f4a3",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.ordinary-terrain-height",
+      "before_sha256": "68d7d74bad660d323f9f76c8046b553a071f7d85bb2d7ea3d3b2d23c5918adc1",
+      "after_sha256": "1f0a1c6cc3185fd65f5f9aa8018f3eee83232c58d99b4a8b4e8241dad8b1ce97",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.planar-setup",
+      "before_sha256": "dbe3a12aba3b71070b4b88793638390339734cf08c665535c402c6cc95c801d2",
+      "after_sha256": "66d781a33ffd26d6c0b3d4d45733618de3b20c5dc6dc8a61b7aea30df16a2cb6",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.profile-selection",
+      "before_sha256": "a557bc28b7c4f4ac5e6c6ea49b2eb9e266fb0f7139ac38244d8544627250116d",
+      "after_sha256": "27dfb8fc1d65e9b57d0e0ff1b032d00b5302cd9eaf201d6913ebaf6f6bad45c8",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.request",
+      "before_sha256": "58a3ae61e65f791377ef8073691dfa9441368e5562040c32157a6356a241d927",
+      "after_sha256": "05b3cc2a776f308e9c0512a9c752ac008721504eb8ee66ede616b10f13ae4201",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.route-consumption",
+      "before_sha256": "28578c5c08e98553d49b7ebdc9ff2f1f8c82718d55284175c36fc8ef91295c52",
+      "after_sha256": "283769adfd087aa4b0ea5607effc7da3f9ed112ca22e19dcb25c98596ea55deb",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.search",
+      "before_sha256": "de2850ea7f2db58a4bd1bbbe6ec681e90397e3b22d235ec4254f2045de9cc481",
+      "after_sha256": "3894f7b36f8d5c418d246e5750d65986ba7e09975458fdfb48b75c5b95e25855",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.special-profile",
+      "before_sha256": "00bcc63a711b2887c103ffc69076bc39b1a5d93ef2a6580be4e24de617aae5f1",
+      "after_sha256": "3def006104bce4738e915bc291275c46084fca4de1e2040b76552cb20c8818d7",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "MV.vertical-setup",
+      "before_sha256": "fe143cc311ed53d03782914b4dd876d1944e9e3b56cc9b9a4190ce844b549c49",
+      "after_sha256": "f0ae9c7552dfa2d0ee87897916489d39d8ea74778aa40f081fe52469d58fb74c",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "NP.checkpoints",
+      "before_sha256": "c806a81b627379db8d466a0a5c97395a19ccfdbf1956a1c234c276c95929f60a",
+      "after_sha256": "ef954f95c9fdffecaed64a11842b897db8632963b2fb33f766d0e74d52d8827f",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "NP.map-navigation",
+      "before_sha256": "9bfd5940f6c014e5b91e1a00938a71026c09133a627b091c42765696dc5de9b0",
+      "after_sha256": "fdf586569b4ee5e30b1a7d828cdcba5883931314ed06179d5f035fde63e87e5b",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "NP.presentation",
+      "before_sha256": "90f966e63ec8d7a0c87a384b540895822bec9e2c2eed61b9c868f88513f6a94a",
+      "after_sha256": "1cb5d672a30945b4fa5530b0912e2d2616da9636388d9c4808c59a585fd9050a",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "NR.world_scene",
+      "before_sha256": "5e74b0a64295f42a6bd25fb58ef12398f0df3473865c09756dee90d8e0f7f135",
+      "after_sha256": "20e2a664bb851ae2fe8d23875536a04d5f4fb663a1799ad5cb9275888667cfb4",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "PF.cell_support",
+      "before_sha256": "6e0c63a90d3700bbbb15751e59089e8f2b87ddcd2527e6bd3138191731885a1a",
+      "after_sha256": "de63f725296d102edf8e5196a82799368b4757eef00d0604cd49b51f897f6842",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "PF.cell_validity",
+      "before_sha256": "6379876b75f90102bfe2f7950d6fd5fc57c72fe28c71a4594512b66e958e2f6c",
+      "after_sha256": "45cac35464c20c91e88ac012c2b0fe8519654a4a7996c8ae6660aa797528e24e",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "PF.movement",
+      "before_sha256": "ecc6849db0589a84fd4b8a822ff78baf6241341cfd9a02020f38ede641a6bc85",
+      "after_sha256": "2147214f1861dae5e2bcfc20003e1771aa5da6878d669d1592f0e73f8e93fe2c",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "TL.effect-table-policy",
+      "before_sha256": "482be64855aeee0e96c9fb1b40c1a4a5272aa0d746cfa405450ef7d7bf948b96",
+      "after_sha256": "7bfc2dbbd214205e7c0cced00e3e39fb6b208252fce52c029763949061771531",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "07fa0c393cb5596040254c50ad68a8729c83c36c44728c59ea26a83265036ce0",
+      "after_sha256": "920092c801a6f6c6f37fbb4b44f1eb5335cc881fb1c74d326c60311107ecc43a",
+      "reviews": [
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    },
+    {
+      "id": "WORLD.sandbox",
+      "before_sha256": "30ef6a37ccc8de947fab4e1fbb6b5ce1254a2f09f5290dd481675f8eab25facd",
+      "after_sha256": "8ff1a6e7085777e0924928971aa6e0d7874638f73210e5b603c3579a871b3ecb",
+      "reviews": [
+        "NS09.configured-ground-source-review-20261005",
+        "NS09.exact-staged-milestone-20261005"
+      ]
+    }
+  ],
+  "unmatched": []
+}

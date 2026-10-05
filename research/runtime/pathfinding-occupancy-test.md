@@ -105,3 +105,10 @@ hash is checked again afterward; raw decompilation artifacts remain unchanged.
 The cell-footprint chain now has no unresolved decision helpers. Follow-up: [the validity wrapper](pathfinding-validity-test.md) now supplies
 `0x004f46b0`, the initial check used by `0x004f3990`. Its lower `0x004f3440`
 cell rules remain to be reconstructed.
+
+## Fresh accounting result (2026-10-05)
+
+The [NS10 comparison](native-stationary-occupancy.md) reruns all 9,509 direct
+and 576 footprint cases against the pinned original. New hashes are preserved
+under a new evidence ID; historical results are unchanged. This validates the
+predicate, not original dynamic occupancy production.

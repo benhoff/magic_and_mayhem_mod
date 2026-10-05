@@ -2187,6 +2187,109 @@
         "reason": "NS09.original and NS09.native remain fresh for the configured milestone; its separate recorded receipt supports the selected profile promotion. Existing historical stale evidence and all exact new gap identities remain explicit. Other linked shared-adapter/document/tool contracts receive no new comparison, integration or replacement assertion. Staged-tree audit/gate is required before this commit.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "5769201730604a4fd0624fd9f433e15cb3449366f9d68ced9e603dcbff7549b7",
+          "before_sha256": null,
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "21854a4887d29190b0666f3432db836240e2708542b4a8b832e14ea95d132e6e",
+          "before_sha256": "e028fe8c04de6fb9f285eeb122bdc92079b60552c80095727ef59fefa8bcaf27",
+          "id": "PF.cell"
+        },
+        {
+          "after_sha256": "0dac6025787e9eed19e6cadf639340a0659f178727ca14cf33f8fd5af9e671c4",
+          "before_sha256": "79b8e04ce8d9034acbaea983824cf30b6dfff4f2d24c59cc3c12e99267eae9b9",
+          "id": "PF.occupancy"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "0d3b13b7bfbe2523191d9b64a836381e565fb8e6952c56236220c97ea96c78b5",
+          "before_sha256": "22566932d964e49c3f6748937c579fd796233d02e2f6317e2518859a807a6a04",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "0663f7245be0abc0b01e3ef0714041ebb9f215a84abf8c51f38b65ca06549bc4",
+          "before_sha256": "954d0425e25457853532c6f53081c1adf51e77fdfac0dd52b9d5fe61dc8f70b1",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "014fd0989533372ea5821f60684e5e052f33e74796de10449eaf6402853ee321",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-stationary-original.json"
+        },
+        {
+          "after_sha256": "49fc3e69565fac30eb361cf48f5e7d13b3e4248f1662cb50f92cf01b9a773b9a",
+          "before_sha256": "bf019d8ab5266d4dc48d1874ad959cadce42940b930b6e7d352165c35b1b9c6d",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "4280f65ff966eebfb1b5d9bbc9971e121302f7fbae34ee705c3e81a3c0e964d3",
+          "before_sha256": null,
+          "path": "research/runtime/native-stationary-occupancy-history-review.json"
+        },
+        {
+          "after_sha256": "60da671c8594623bec8fd7eb80fae1c1fa93d5c3efea156b669b87dd868c126d",
+          "before_sha256": null,
+          "path": "research/runtime/native-stationary-occupancy-original.json"
+        },
+        {
+          "after_sha256": "339e606b7e60393c653dc2ce24c89b110b248f1d0980e0216a203dd46928227f",
+          "before_sha256": null,
+          "path": "research/runtime/native-stationary-occupancy.md"
+        },
+        {
+          "after_sha256": "64e6a35cc9ff2b6a1546a0d05e70742d3bb5525aac241e726d15a96f9c31d083",
+          "before_sha256": "3f6786644ad87268d3f3fddb524f14c68ad15547790805f4cf0505bbc5175068",
+          "path": "research/runtime/pathfinding-occupancy-test.md"
+        },
+        {
+          "after_sha256": "6bb6b5fee2c070582aebdce07d8da29390455c1068a22273104ca354ab47a720",
+          "before_sha256": null,
+          "path": "tools/test-dynamic-occupancy.py"
+        }
+      ],
+      "id": "NS10.occupancy-predicate-accounting",
+      "pending_gaps": [
+        "behaviors_without_comparison:f966cda4bac07591feb47893e8c4bd9b0ba11662944a07c532d15a151372dce0",
+        "behaviors_without_implementation:f966cda4bac07591feb47893e8c4bd9b0ba11662944a07c532d15a151372dce0",
+        "behaviors_without_scenarios:f966cda4bac07591feb47893e8c4bd9b0ba11662944a07c532d15a151372dce0"
+      ],
+      "reason": "Refresh only the valid owned occupancy and wrapped width-one/two footprint predicates. Pin a new original execution record, retain historical fingerprints, seed the native stationary-blocker policy before its implementation, and review the committed Redcap milestone separately. Staged census and central register exclude concurrent native implementation and unrelated campaign/effect/hook edits.",
+      "validation": {
+        "status": "pending",
+        "reason": "New NS10.occupancy-original validates the bounded predicates. Native stationary-blocker placement and integration remain pending in this first commit; original occupancy creation, invalid pointers, live mapping and multi-mover scheduling remain unresolved. New gap identities explicitly retained.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS10.occupancy-predicate-recorded",
+      "reason": "Promote the bounded occupied-cell and footprint predicates after fresh isolated original execution; full-DWORD self exclusion and supplied tables/height/wrapping verified, not original occupancy production.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "21854a4887d29190b0666f3432db836240e2708542b4a8b832e14ea95d132e6e",
+          "before_sha256": "e028fe8c04de6fb9f285eeb122bdc92079b60552c80095727ef59fefa8bcaf27",
+          "id": "PF.cell"
+        },
+        {
+          "after_sha256": "0dac6025787e9eed19e6cadf639340a0659f178727ca14cf33f8fd5af9e671c4",
+          "before_sha256": "79b8e04ce8d9034acbaea983824cf30b6dfff4f2d24c59cc3c12e99267eae9b9",
+          "id": "PF.occupancy"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "9509 direct and 576 footprint cases match preserved original 004f3550/004f47d0 code; source hashes and pinned build match, map/parameter/context bytes unchanged and original manifests pass before/after.",
+        "evidence": [
+          "NS10.occupancy-original"
+        ]
+      }
     }
   ]
 }
