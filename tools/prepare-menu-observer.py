@@ -32,7 +32,7 @@ def prepare(actions=False,experimental_mini=False):
         if patched[at:at+end-start]!=data[at:at+end-start]:raise ValueError('Callback code changed during staging')
     metadata={'origin':'menu_action_bridge' if actions else 'menu_observation_only','source_sha256':HASH,'staged_sha256':hashlib.sha256(patched).hexdigest(),
               'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'game_copy':str(game),'events':str(root/'events.bin'),
-              'experimental_mini':experimental_mini,'preferences':edits,'scope':('UNVALIDATED Mini Menu bridge; dedicated validation staging; original confirmation/drawing retained' if experimental_mini else 'Bounded Main/Quick/Single Player/Map/Spell engine-thread action bridge; original menu logic/drawing retained') if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
+              'experimental_mini':experimental_mini,'preferences':edits,'scope':('UNVALIDATED Mini Menu bridge; dedicated validation staging; original confirmation/drawing retained' if experimental_mini else 'Bounded Main/Quick/Single Player/Map/Spell/Quick results engine-thread action bridge; original menu logic/drawing retained') if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')

@@ -1,5 +1,5 @@
 #include "menu_bridge.hpp"
-#include "../../protocols/include/mnm/menu_v4.h"
+#include "../../protocols/include/mnm/menu_v5.h"
 #include <QtEndian>
 #include <cstring>
 #include <algorithm>
@@ -8,21 +8,21 @@ quint32 load(const quint32* p){return qFromLittleEndian(__atomic_load_n(p,__ATOM
 void store(quint32* p,quint32 v){__atomic_store_n(p,qToLittleEndian(v),__ATOMIC_RELEASE);}
 }
 MenuBridge::~MenuBridge(){retire();if(mapping_)file_.unmap(mapping_);}
-bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini){
-    mini_=mini;spells_=spells||mini;battle_=battle||spells_;const int size=mini?MNM_MENU_V4_SIZE:spells?MNM_MENU_V3_SIZE:battle?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE;
+bool MenuBridge::create(const QString& path,bool battle,bool spells,bool mini,bool results){
+    results_=results;mini_=mini;spells_=spells||mini||results;battle_=battle||spells_;const int size=results?MNM_MENU_V5_SIZE:mini?MNM_MENU_V4_SIZE:spells?MNM_MENU_V3_SIZE:battle?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE;
     if(file_.isOpen())return false;
     file_.setFileName(path);
     if(!file_.open(QIODevice::ReadWrite|QIODevice::NewOnly)||!file_.resize(size))return false;
-    QByteArray data(size,0);std::memcpy(data.data(),mini?MNM_MENU_V4_MAGIC:spells?MNM_MENU_V3_MAGIC:battle?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8);
-    qToLittleEndian<quint32>(mini?4:spells?3:battle?2:1,data.data()+8);qToLittleEndian<quint32>(size,data.data()+12);
+    QByteArray data(size,0);std::memcpy(data.data(),results?MNM_MENU_V5_MAGIC:mini?MNM_MENU_V4_MAGIC:spells?MNM_MENU_V3_MAGIC:battle?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8);
+    qToLittleEndian<quint32>(results?5:mini?4:spells?3:battle?2:1,data.data()+8);qToLittleEndian<quint32>(size,data.data()+12);
     if(file_.write(data)!=data.size()||!file_.flush())return false;
     mapping_=file_.map(0,data.size());if(!mapping_)return false;
     heartbeat();return true;
 }
 bool MenuBridge::read(State& state) const {
-    if(!mapping_||std::memcmp(mapping_,mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
+    if(!mapping_||std::memcmp(mapping_,results_?MNM_MENU_V5_MAGIC:mini_?MNM_MENU_V4_MAGIC:spells_?MNM_MENU_V3_MAGIC:battle_?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8))return false;
     auto* words=reinterpret_cast<quint32*>(mapping_);
-    if(load(words+2)!=(mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
+    if(load(words+2)!=(results_?5u:mini_?4u:spells_?3u:battle_?2u:1u)||load(words+3)!=(results_?MNM_MENU_V5_SIZE:mini_?MNM_MENU_V4_SIZE:spells_?MNM_MENU_V3_SIZE:battle_?MNM_MENU_V2_SIZE:MNM_MENU_V1_SIZE))return false;
     auto* p=words+(battle_?MNM_MENU_V2_ENGINE_WORD:MNM_MENU_V1_ENGINE_WORD);const auto seq=load(p);if(!seq||(seq&1))return false;
     State next;next.generation=load(p+1);next.screen=load(p+2);next.ready=load(p+3);next.ack=load(p+4);next.status=load(p+5);next.thread=load(p+6);next.sequence=seq;
     auto name=[&](int offset,int length,QString& text){
@@ -63,10 +63,22 @@ bool MenuBridge::read(State& state) const {
     if(mini_&&next.screen==MNM_MENU_MINI_SCREEN){
         auto* m=words+MNM_MENU_V4_MINI/4;auto& b=next.mini;
         b.battle=load(m);b.confirmation=load(m+1);b.depth=load(m+2);b.parentScreen=load(m+3);b.actions=load(m+4);b.context=load(m+5);
-        if(load(m+6)||load(m+7)||b.battle!=1||b.confirmation>1||b.depth<1||b.depth>15||(b.actions&~7u)||(b.confirmation&&b.actions)||(next.ready&&(b.confirmation||b.actions!=7)))return false;
+        if(load(m+6)||load(m+7)||b.battle!=1||b.confirmation>1||b.depth<1||b.depth>15||b.parentScreen!=MNM_MENU_MINI_PARENT_SCREEN||b.context==5||(b.actions&~7u)||(b.confirmation&&b.actions)||(next.ready&&(b.confirmation||b.actions!=7)))return false;
+    }
+    if(results_&&next.screen==MNM_MENU_RESULT_SCREEN){
+        const int at=MNM_MENU_V5_RESULTS;auto* r=words+at/4;auto& b=next.results;
+        b.actions=load(r);b.context=load(r+1);b.depth=load(r+2);
+        if(!b.actions||(b.actions&~3u)||b.context!=1||b.depth<1||b.depth>15||load(r+3))return false;
+        for(int i=0;i<4;++i){auto& row=b.players[i];const int off=at+16+i*648;const auto active=load(words+off/4);
+            if(active>1||load(words+(off+4)/4)!=UINT32_MAX)return false;
+            row.active=active;
+            QString* cells[]={&row.name,&row.kills,&row.deaths,&row.handicap,&row.score};
+            for(int c=0;c<5;++c)if(!name(off+8+c*128,128,*cells[c]))return false;
+            if(row.active!=!row.name.isEmpty())return false;
+        }
     }
     __atomic_thread_fence(__ATOMIC_ACQUIRE);if(seq!=load(p))return false;
-    if(next.ready>1||next.status>(battle_?MNM_MENU_INVALID:MNM_MENU_RETIRED)||next.handoff>2||(next.screen!=0&&next.screen!=3&&next.screen!=22&&!(battle_&&(next.screen==14||next.screen==25||(spells_&&next.screen==7)||(mini_&&next.screen==MNM_MENU_MINI_SCREEN)))))return false;
+    if(next.ready>1||next.status>(battle_?MNM_MENU_INVALID:MNM_MENU_RETIRED)||next.handoff>2||(next.screen!=0&&next.screen!=3&&next.screen!=22&&!(battle_&&(next.screen==14||next.screen==25||(spells_&&next.screen==7)||(mini_&&next.screen==MNM_MENU_MINI_SCREEN)||(results_&&next.screen==MNM_MENU_RESULT_SCREEN)))))return false;
     state=next;return true;
 }
 void MenuBridge::publish(bool alive,quint32 action,quint32 generation,quint32 argument,const std::array<int,17>* rules,const std::array<int,63>* assignments){
@@ -85,7 +97,8 @@ bool MenuBridge::request(quint32 action,const State& state,quint32 argument,cons
     if(!read(current))return false;
     const bool setupAction=action==MNM_MENU_SETUP_MAP||action==MNM_MENU_SETUP_START||action==MNM_MENU_SETUP_PLAYER||action==MNM_MENU_SETUP_APPLY;
     const bool miniAction=mini_&&current.screen==MNM_MENU_MINI_SCREEN&&current.mini.battle&&!current.mini.confirmation&&((action==MNM_MENU_MINI_CANCEL&&(current.mini.actions&MNM_MENU_MINI_CAN_CANCEL))||(action==MNM_MENU_MINI_PREFERENCES&&(current.mini.actions&MNM_MENU_MINI_CAN_PREFERENCES))||(action==MNM_MENU_MINI_QUIT&&(current.mini.actions&MNM_MENU_MINI_CAN_QUIT)));
-    const bool allowed=miniAction||(action==MNM_MENU_OPEN_QUICK&&current.screen==3)||(action==MNM_MENU_BACK&&current.screen==22)||(action==MNM_MENU_QUIT&&current.screen==3)||
+    const bool resultAction=results_&&current.screen==MNM_MENU_RESULT_SCREEN&&((action==MNM_MENU_RESULT_CONTINUE&&(current.results.actions&1))||(action==MNM_MENU_RESULT_QUIT&&(current.results.actions&2)));
+    const bool allowed=resultAction||miniAction||(action==MNM_MENU_OPEN_QUICK&&current.screen==3)||(action==MNM_MENU_BACK&&current.screen==22)||(action==MNM_MENU_QUIT&&current.screen==3)||
         (battle_&&((action==MNM_MENU_OPEN_SINGLE&&current.screen==22)||((setupAction||action==MNM_MENU_SETUP_CANCEL)&&current.screen==14)||((action==MNM_MENU_MAP_OK||action==MNM_MENU_MAP_CANCEL)&&current.screen==25)));
     if(!allowed||(setupAction&&!rules)||(rules&&std::any_of(rules->begin(),rules->end(),[](int value){return value<0||value>10000;})))return false;
     if(retired_||!current.ready||current.status==MNM_MENU_RETIRED||current.ack!=request_||

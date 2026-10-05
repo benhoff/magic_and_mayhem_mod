@@ -15,12 +15,13 @@ REPO=Path(__file__).resolve().parents[1]
 def validate(root,args):
     report=json.loads((root/'report.json').read_text())
     expected_screens=[3,22,14,22,14,25,14,25,14,14,14,14] if args.battle else [3,22,3]
+    if args.battle=='results':expected_screens += [26,26,22]
     if args.battle_repeat:expected_screens += [22,14,22]
     if args.battle=='spells':expected_screens += [7,22]
     if not report['success'] or [(s['screen'],s['ack']) for s in report['states']]!=list(zip(expected_screens,range(len(expected_screens)))):
         raise RuntimeError('Incomplete live transition evidence')
     lines=(root/'shell.log').read_text().splitlines()
-    if (args.exit_from or args.battle_repeat or args.battle=='spells') and not any(line.startswith('Menu launcher exited with status 0.') for line in lines):
+    if (args.exit_from or args.battle_repeat or args.battle in ('spells','results')) and not any(line.startswith('Menu launcher exited with status 0.') for line in lines):
         raise RuntimeError('Original Quit did not complete with a successful launcher exit')
     if args.battle_repeat and (report.get('native_returns')!=2 or report.get('battles')!=2 or any(line.startswith('Smoke test passed:') for line in lines)):
         raise RuntimeError('Repeated battle validation must end through original Quit, not the run deadline')
@@ -32,6 +33,7 @@ def validate(root,args):
     rows=decoder.decode((experiment/'events.bin').read_bytes())
     actions=[(r['menu_id'],r['argument']) for r in rows if r['event']==3]
     expected_actions=[(3,2),(22,2),(14,0),(22,2),(14,2),(25,1),(14,2),(25,0),(14,256),(14,257),(14,259),(14,1)] if args.battle else ([(3,2),(22,3),(3,4)] if args.exit_from else [(3,2),(22,3)])
+    if args.battle=='results':expected_actions += [(26,1),(26,2),(22,3),(3,4)]
     if args.battle_repeat:expected_actions += [(22,2),(14,1),(22,3),(3,4)]
     if args.battle=='spells':
         shelves=report['spell_initial_shelves'][:]
@@ -50,11 +52,21 @@ def validate(root,args):
         actual=struct.unpack_from('<63i',raw,18000+28)
         if list(actual)!=expected:raise RuntimeError('Original spell controls disagree with Qt loadout')
         report['engine_spell_assignments']=list(actual)
+    if args.battle=='results':
+        states=[s for s in report['states'] if s['screen']==26]
+        if len(states)!=2 or any(s['result_actions']!=3 for s in states) or report['native_returns']!=1 or report['battles']!=1:raise RuntimeError('Incomplete native results ownership/return evidence')
+        raw=(experiment/'channel.bin').read_bytes();actual=[]
+        for i in range(4):
+            at=42100+16+i*648;active,portrait=struct.unpack_from('<II',raw,at)
+            cells=[raw[at+8+c*128:at+8+(c+1)*128].split(b'\0',1)[0].decode('cp1252') for c in range(5)]
+            actual.append(dict(zip(['name','kills','deaths','handicap','score'],cells),active=bool(active)))
+        if states[-1]['results']!=actual:raise RuntimeError('Qt results disagree with engine display snapshot')
+        report['engine_result_rows']=actual
     if actions!=expected_actions:raise RuntimeError('Unexpected original callback trace')
     words=struct.unpack_from('<48I',(experiment/'channel.bin').read_bytes())
-    if words[5]!=0 or words[36]!=(16 if args.battle_repeat else 15 if args.battle=='spells' else 12 if args.battle else 3 if args.exit_from else 2) or (not args.exit_from and not args.battle and words[37]!=5):raise RuntimeError('Fallback did not retire acknowledged channel')
+    if words[5]!=0 or words[36]!=(16 if args.battle=='results' or args.battle_repeat else 15 if args.battle=='spells' else 12 if args.battle else 3 if args.exit_from else 2) or (not args.exit_from and not args.battle and words[37]!=5):raise RuntimeError('Fallback did not retire acknowledged channel')
     if args.battle=='direct' and not args.battle_repeat and words[34] not in (3,22):raise RuntimeError('Original battle exit did not return to Main or Quick Battle')
-    report.update(original_return_screen=(report['states'][-1]['screen'] if args.battle_repeat or args.battle=='spells' else words[34]) if args.battle else None,experiment=str(experiment),original_callback_trace=actions,channel_retired=True,normal_exit=bool(args.exit_from or args.battle_repeat or args.battle=='spells'))
+    report.update(original_return_screen=(report['states'][-1]['screen'] if args.battle_repeat or args.battle in ('spells','results') else words[34]) if args.battle else None,experiment=str(experiment),original_callback_trace=actions,channel_retired=True,normal_exit=bool(args.exit_from or args.battle_repeat or args.battle in ('spells','results')))
     (root/'report.json').write_text(json.dumps(report,indent=2)+'\n')
     (root/'artifacts.json').write_text(json.dumps({p.name:hashlib.sha256(p.read_bytes()).hexdigest()
         for p in root.iterdir() if p.is_file() and p.name!='artifacts.json'},indent=2)+'\n')
@@ -62,13 +74,15 @@ def validate(root,args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--exit-from',choices=['main','quick'],help='Validate native Quit or window close instead of original fallback')
-    parser.add_argument('--battle',choices=['direct','spells'],help='Validate Single Player setup and original Start handoff')
+    parser.add_argument('--exit-from',choices=['main','quick','results'],help='Validate native Quit or window close instead of original fallback')
+    parser.add_argument('--battle',choices=['direct','spells','results'],help='Validate Single Player setup and original Start handoff')
     parser.add_argument('--battle-repeat',action='store_true',help='Require two battles, two native menu returns and normal Quit (use with --battle direct)')
+    parser.add_argument('--shell',type=Path,default=REPO/'working/build/qt-shell/mnm-qt-shell',help='Alternate shell binary for a dedicated validation build')
     parser.add_argument('--validate-run',type=Path,help='Recheck existing live evidence without launching another game')
     args=parser.parse_args()
     if args.battle_repeat and args.battle!='direct':parser.error('--battle-repeat requires --battle direct')
-    if args.battle and args.exit_from:parser.error('Choose battle or exit validation')
+    if args.exit_from=='results' and args.battle!='results':parser.error('--exit-from results requires --battle results')
+    if args.battle and args.exit_from and args.exit_from!='results':parser.error('Choose battle or exit validation')
     if args.validate_run:
         validate(args.validate_run.resolve(),args);return
     parent=REPO/'working/tests/live-menus';parent.mkdir(parents=True,exist_ok=True)
@@ -96,7 +110,7 @@ def main():
             if args.exit_from:env['MNM_LIVE_MENU_TEST_EXIT']=args.exit_from
             else:env.pop('MNM_LIVE_MENU_TEST_EXIT',None)
             with (root/'shell.log').open('w') as log:
-                shell=subprocess.Popen([str(REPO/'working/build/qt-shell/mnm-qt-shell'),'--repo',str(REPO),
+                shell=subprocess.Popen([str(args.shell.resolve()),'--repo',str(REPO),
                     '--live-menus','--live-menu-test',str(root/'report.json')],env=env,cwd=REPO,
                     stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
                 if shell.wait(timeout=540 if args.battle_repeat else 420):raise RuntimeError('Live Qt menu test failed; inspect shell.log')

@@ -1,6 +1,7 @@
 #include "battle.h"
 #include "spells.h"
 #include "mini.h"
+#include "results.h"
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
 API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 API int WIN UnmapViewOfFile(const void*);
@@ -14,7 +15,7 @@ static int menu_retired;
 static u32 menu_handoff;
 static u32 menu_load(u32* p){return __atomic_load_n(p,__ATOMIC_ACQUIRE);}
 static void menu_store(u32* p,u32 v){__atomic_store_n(p,v,__ATOMIC_RELEASE);}
-static int menu_header(void){return equal(menu_words,menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
+static int menu_header(void){return equal(menu_words,menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
 static int menu_host(u32* out){
     u32* p=menu_words+MNM_MENU_V1_HOST_WORD;u32 seq=menu_load(p);if(seq&1)return 0;
     for(u32 i=0;i<(menu_version>=2?23u:5u);++i)out[i]=menu_load(p+1+i);
@@ -29,15 +30,16 @@ static void menu_publish(void){
     if(menu_version>=2)menu_store(p+7,menu_handoff);
     if(menu_version>=2)copy((u8*)menu_words+MNM_MENU_V2_MAP,battle_payload,sizeof(battle_payload));
     if(menu_version>=3)copy((u8*)menu_words+MNM_MENU_V3_SPELL,spell_payload,sizeof(spell_payload));
-    if(menu_version==4)copy((u8*)menu_words+MNM_MENU_V4_MINI,mini_payload,sizeof(mini_payload));
+    if(menu_version==5)copy((u8*)menu_words+MNM_MENU_V5_RESULTS,result_payload,sizeof(result_payload));
+    if(menu_version>=4)copy((u8*)menu_words+MNM_MENU_V4_MINI,mini_payload,sizeof(mini_payload));
     menu_store(p,seq+2);
 }
 static void menu_init(void){
     char path[1024];u32 length=GetEnvironmentVariableA("MNM_MENU_CHANNEL",path,sizeof(path));if(!length||length>=sizeof(path))return;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return;
     menu_size=GetFileSize(file,0);
-    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE){CloseHandle(file);return;}
-    menu_version=menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
+    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE){CloseHandle(file);return;}
+    menu_version=menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
     HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);if(!mapping)return;
     menu_words=MapViewOfFile(mapping,2,0,0,menu_size);CloseHandle(mapping);if(!menu_words)return;
     u32 host[86];
@@ -61,13 +63,20 @@ static void menu_state(void* object){
         if(ready){static u8 next[MNM_MENU_V3_SPELL_SIZE];if(!spell_snapshot(object,next))ready=0;
             else {if(!spell_valid||!equal(next,spell_payload,4)||!equal(next+8,spell_payload+8,sizeof(next)-8))++menu_generation;copy(spell_payload,next,sizeof(next));spell_valid=1;}}
     }
-    if(menu_version==4&&MNM_MENU_MINI_EXPERIMENTAL&&owner==(u32)object&&readable(object,0x5b)&&get(object)==0x5c6644&&get((u8*)object+4)==MNM_MENU_MINI_SCREEN){
+    if(menu_version>=4&&MNM_MENU_MINI_EXPERIMENTAL&&owner==(u32)object&&readable(object,0x5b)&&get(object)==0x5c6644&&get((u8*)object+4)==MNM_MENU_MINI_SCREEN){
         u8 next[MNM_MENU_V4_MINI_SIZE];
         if(mini_snapshot(object,next)){
             screen=MNM_MENU_MINI_SCREEN;
             if(!equal(next,mini_payload,sizeof(next)))++menu_generation;
             copy(mini_payload,next,sizeof(next));u8* p=object;
             ready=get(p+8)==1&&!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x43)&&!get(next+4);
+        }
+    }
+    if(menu_version==5&&owner==(u32)object&&readable(object,0x85)&&get(object)==0x5c5ef4&&get((u8*)object+4)==26){
+        static u8 next[MNM_MENU_V5_RESULTS_SIZE];
+        if(result_snapshot(object,next)){
+            screen=26;if(!equal(next,result_payload,sizeof(next)))++menu_generation;copy(result_payload,next,sizeof(next));
+            u8* p=object;ready=get(p+8)==1&&!p[0xc]&&!get(p+0x33)&&!get(p+0x37)&&!get(p+0x43)&&!get(p+0x3b);
         }
     }
     if(menu_version>=3&&menu_screen==7&&screen==0&&owner!=menu_owner)menu_handoff=2;
@@ -102,7 +111,8 @@ static void menu_poll(void* object,int execute){
             else if(host[3]==MNM_MENU_BACK&&menu_screen==22)quick_action(object,3);
             else if(host[3]==MNM_MENU_QUIT&&menu_screen==3)main_action(object,4);
             else if(menu_version>=3&&menu_screen==7&&host[3]==MNM_MENU_SPELL_FINISH)menu_status=spell_finish(object,host+23);
-            else if(menu_version==4&&menu_screen==MNM_MENU_MINI_SCREEN)menu_status=mini_dispatch(object,host[3]);
+            else if(menu_version==5&&menu_screen==26)menu_status=result_dispatch(object,host[3]);
+            else if(menu_version>=4&&MNM_MENU_MINI_EXPERIMENTAL&&menu_screen==MNM_MENU_MINI_SCREEN)menu_status=mini_dispatch(object,host[3]);
             else if(menu_version>=2)menu_status=battle_dispatch(object,host,menu_screen);
             else menu_status=MNM_MENU_UNSUPPORTED;
             if(menu_version>=2&&host[3]==MNM_MENU_SETUP_START&&menu_status==MNM_MENU_OK){

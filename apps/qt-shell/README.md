@@ -539,4 +539,6 @@ layout was found; see [scope and evidence](../../research/runtime/spell-research
 
 ## Dormant Mini Menu bridge
 
-An offline V4 Mini Menu bridge is prepared behind `MNM_EXPERIMENTAL_MINI_MENUS`, which defaults to **OFF**. Normal live-menu sessions retain V3 and original in-battle menus. The new bridge has compilation and static evidence only; no tests or game sessions were run for it. See the [contract and future validation procedure](../../research/runtime/mini-menu-engine-bridge.md) before enabling a dedicated validation build.
+The V4 Mini Menu bridge remains behind `MNM_EXPERIMENTAL_MINI_MENUS`, which defaults to **OFF**. Isolated callback/wire checks passed, but live Quick Battle Escape reaches Game Over instead of Mini. Campaign ingress, confirmation and pause remain unvalidated. See the [recovery and boundaries](../../research/runtime/mini-menu-engine-bridge.md).
+
+Normal `--live-menus` sessions now use V5 Quick Battle results. The Qt Game Over screen reads the engine's displayed player/stat rows; Continue returns to original gameplay and Quit follows the engine back to Quick Battle. Window close on a ready results screen follows original Quit through Quick and Main to shutdown. Spectate/multiplayer and campaign results remain in the original viewport, and portrait sprites are still placeholders. See [results integration and evidence](../../research/runtime/quick-battle-results-engine-bridge.md).

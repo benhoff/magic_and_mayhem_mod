@@ -6,7 +6,8 @@ static int mini_snapshot(void* object,u8* out){
        !readable((void*)0x68991c,8)||!get((void*)0x68991c)||get((void*)0x689920)==5||get(p+0x53)==4||get(p+0x57)!=3)return 0;
     if(!readable((void*)0x6f349c,0x48))return 0;
     u32 depth=get((void*)0x6f349c);if(depth<1||depth>15||get((void*)(0x6f34a0+depth*4))!=(u32)object)return 0;
-    u8* parent=(u8*)get((void*)(0x6f34a0+(depth-1)*4));if(!readable(parent,8))return 0;
+    u8* parent=(u8*)get((void*)(0x6f34a0+(depth-1)*4));
+    if(parent!=(u8*)0x6cbb78||!readable(parent,8)||get(parent)!=0x5c5dd8||get(parent+4)!=MNM_MENU_MINI_PARENT_SCREEN)return 0;
     // Validate the original three-word callback object registered for buttons.
     u8* pair=(u8*)get(p+0x4f);if(!readable(pair,8))return 0;
     u8* cb=(u8*)get(pair);if(!readable(cb,12)||get(cb)!=0x5c6674||get(cb+4)!=0x4b23f0||get(cb+8)!=(u32)object)return 0;

@@ -1,5 +1,5 @@
 #include "live_menu_session.hpp"
-#include "../../protocols/include/mnm/menu_v4.h"
+#include "../../protocols/include/mnm/menu_v5.h"
 #include <QDir>
 #include <QProcessEnvironment>
 LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(parent),repo_(std::move(repository)){
@@ -19,7 +19,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
                 fallback("Menu staging failed; see the launch log.");if(finished)finished();return;
             }
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
-            if(!bridge_->create(channel_,true,true,miniMenusEnabled())){fallback("Cannot create menu channel.");if(finished)finished();return;}
+            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             if(active_)timer_.start();else bridge_->retire();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath("working/tests/menu-live-wine"):winePrefix};
@@ -54,6 +54,12 @@ bool LiveMenuSession::request(quint32 action,quint32 argument,const std::array<i
     }
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
+bool LiveMenuSession::requestResults(quint32 action){
+    if(!active_||inBattle_||pending_||transition_||state_.screen!=MNM_MENU_RESULT_SCREEN||
+       clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->request(action,state_))return false;
+    pending_=true;requestedAt_=clock_.elapsed();action_=action;
+    if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
+}
 bool LiveMenuSession::requestMini(quint32 action){
     if(!miniMenusEnabled()||!active_||inBattle_||pending_||transition_||state_.screen!=MNM_MENU_MINI_SCREEN||
        clock_.elapsed()-lastState_>MNM_MENU_V1_LEASE_MS||!bridge_->request(action,state_))return false;
@@ -61,10 +67,11 @@ bool LiveMenuSession::requestMini(quint32 action){
     if(stateChanged){auto waiting=state_;waiting.ready=0;stateChanged(waiting);}return true;
 }
 bool LiveMenuSession::requestExit(){
-    if(!active_||inBattle_||!sequence_||(!pending_&&!transition_&&state_.screen!=3&&state_.screen!=22&&state_.screen!=14&&state_.screen!=25))return false;
+    if(!active_||inBattle_||!sequence_||(!pending_&&!transition_&&state_.screen!=3&&state_.screen!=22&&state_.screen!=14&&state_.screen!=25&&state_.screen!=MNM_MENU_RESULT_SCREEN))return false;
     exitRequested_=true;
     if(!pending_&&!transition_&&state_.ready){
-        if(!request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT)){exitRequested_=false;return false;}
+        const bool accepted=state_.screen==MNM_MENU_RESULT_SCREEN?requestResults(MNM_MENU_RESULT_QUIT):request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT);
+        if(!accepted){exitRequested_=false;return false;}
     }
     return true;
 }
@@ -94,7 +101,7 @@ void LiveMenuSession::poll(){
                 return;
             }
             if(action_==MNM_MENU_SPELL_FINISH){inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(2);return;}
-            if(action_==MNM_MENU_MINI_CANCEL||action_==MNM_MENU_MINI_PREFERENCES||action_==MNM_MENU_MINI_QUIT){
+            if(action_==MNM_MENU_RESULT_CONTINUE||action_==MNM_MENU_RESULT_QUIT||action_==MNM_MENU_MINI_CANCEL||action_==MNM_MENU_MINI_PREFERENCES||action_==MNM_MENU_MINI_QUIT){
                 // Original viewport owns gameplay, Preferences and Quit confirmation.
                 // Confirmation Yes/No semantics remain entirely in the original game.
                 inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
@@ -112,6 +119,9 @@ void LiveMenuSession::poll(){
         if(inBattle_){
             // Only a fresh, engine-confirmed return to a supported root menu
             // restores command ownership. Setup ticks during Start are ignored.
+            if(next.ready&&next.screen==MNM_MENU_RESULT_SCREEN&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
+                inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
+            }
             if(miniMenusEnabled()&&next.ready&&next.screen==MNM_MENU_MINI_SCREEN&&next.mini.battle&&!next.mini.confirmation&&
                next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
@@ -123,8 +133,10 @@ void LiveMenuSession::poll(){
         state_=next;
         if(transition_&&next.screen==target_&&next.ready)transition_=false;
         if(stateChanged){if(pending_||transition_)next.ready=0;stateChanged(next);}
-        if(exitRequested_&&!pending_&&!transition_&&state_.ready)
-            request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT);
+        if(exitRequested_&&!pending_&&!transition_&&state_.ready){
+            if(state_.screen==MNM_MENU_RESULT_SCREEN)requestResults(MNM_MENU_RESULT_QUIT);
+            else request(state_.screen==25?MNM_MENU_MAP_CANCEL:state_.screen==14?MNM_MENU_SETUP_CANCEL:state_.screen==22?MNM_MENU_BACK:MNM_MENU_QUIT);
+        }
     }
     if(!inBattle_&&(clock_.elapsed()-lastState_>(sequence_?MNM_MENU_V1_LEASE_MS:120000)||((pending_||transition_)&&clock_.elapsed()-requestedAt_>10000)))
         fallback("Menu adapter timed out; using original menus. Requests will not be retried.");

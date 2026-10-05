@@ -80,6 +80,7 @@ bool QuickBattleResultWidget::loadAssets(const QString& root, QString* error) {
     }
 }
 void QuickBattleResultWidget::setResults(const Results& results) {
+    const bool actionsChanged=results.primaryAction!=results_.primaryAction || results.canQuit!=results_.canQuit;
     results_=results;
     for (int i=0;i<4;++i) {
         const auto& player=results.players[i];
@@ -95,7 +96,8 @@ void QuickBattleResultWidget::setResults(const Results& results) {
     buttons_[0]->setVisible(spectate); buttons_[0]->setEnabled(spectate);
     buttons_[1]->setVisible(proceed); buttons_[1]->setEnabled(proceed);
     buttons_[2]->setEnabled(results.canQuit);
-    if (isVisible()) focusFirstAction();
+    auto* focused=focusWidget();
+    if (isVisible() && (actionsChanged || !focused || !focused->isVisibleTo(this) || !focused->isEnabled())) focusFirstAction();
 }
 void QuickBattleResultWidget::focusFirstAction() {
     for (auto* button:buttons_) if (button->isEnabled()) { button->setFocus(Qt::OtherFocusReason); return; }
