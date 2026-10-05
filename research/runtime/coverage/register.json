@@ -713,7 +713,7 @@
       "subsystem": "movement",
       "kind": "recovered",
       "title": "Live occupancy production and movement interactions",
-      "scope": "Frozen helper inputs do not establish dynamic occupancy creation, changes or multi-creature interactions.",
+      "scope": "Original occupancy insertion/removal, lifetime, moving interactions/reservations and world production remain unrecovered. NS10 supplies a separately registered native stationary-blocker policy; it does not establish this original contract.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -728,7 +728,8 @@
       ],
       "documents": [
         "research/runtime/pathfinding-creature-acceptance.md",
-        "research/runtime/native-ani-motion.md"
+        "research/runtime/native-ani-motion.md",
+        "research/runtime/native-stationary-occupancy.md"
       ],
       "implementation": [],
       "tests": [],
@@ -10222,20 +10223,33 @@
       "subsystem": "native_world",
       "kind": "native_policy",
       "title": "Owned stationary creature occupancy over frozen navigation",
-      "scope": "Planned opt-in one moving creature and stationary same-profile blockers; native logical boxes and generational identity. Original placement/reservations and multiple moving creature scheduling excluded.",
-      "confidence": "provisional",
+      "scope": "Opt-in owned logical occupancy for one mover and stationary same-profile creatures, nonwrapping bounded boxes, full-generation native self identity with validated slot token projection, cleanup/release, next-edge checks, explicit occupied-goal refusal and existing-wire checkpoint rebuilding. Original world production, fine reservations/collisions, multiple moving scheduling, other entity blockers and live replacement excluded.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-stationary-occupancy.md"
       ],
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
+      "implementation": [
+        "game/simulation/occupancy.cpp",
+        "game/simulation/occupancy.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp",
+        "apps/world-sandbox/main.cpp"
+      ],
+      "tests": [
+        "tests/native-occupancy-test.cpp",
+        "tests/test-native-occupancy.py"
+      ],
+      "evidence": [
+        "NS10.stationary-native"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -15862,6 +15876,36 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NS10.stationary-native",
+      "kind": "native_integration",
+      "scope": "Native opt-in logical occupancy for one mover and stationary same-profile blockers; native slot token projection, positive nonwrapping bounded boxes, cleanup/release and per-tick edge checks. No original world production/reservation or multiple moving creature equivalence.",
+      "record": "research/runtime/native-stationary-occupancy-native.json",
+      "sha256": "4a7ba79feddd6d9543b0c67ce33caaaf39c163541f2ba5e448834e5cad2a8c4a",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/fresh_process_continuations_per_build",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_integration/detour_arrival",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/intra_cell_obstruction",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/overlap_refused_before_output",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -17617,6 +17661,21 @@
         "tools/test-live-campaign-entry.py",
         "tools/test-campaign-observer.py"
       ]
+    },
+    {
+      "id": "world.stationary-blockers",
+      "level": "headless",
+      "scope": "Native opt-in logical occupancy for one mover and stationary same-profile blockers; native slot token projection, positive nonwrapping bounded boxes, cleanup/release and per-tick edge checks. No original world production/reservation or multiple moving creature equivalence. Three split/whole process continuations per build, late and intra-cell blockage, mode identity, overlap/bound refusal and static detour arrival.",
+      "behaviors": [
+        "NP.stationary-occupancy"
+      ],
+      "evidence": [
+        "NS10.stationary-native"
+      ],
+      "tests": [
+        "tests/native-occupancy-test.cpp",
+        "tests/test-native-occupancy.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -17749,7 +17808,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-region-entry.json",
-    "sha256": "a5247baf4e0ad0e53791e0d3705256bd92cfa64dcef69672c62645d916c83299"
+    "path": "research/runtime/coverage/source-index-stationary-native-commit.json",
+    "sha256": "7571b1c4556434d66cf1d7a4464c373dc3575e23c9bf68173d09b12ed51157f6"
   }
 }

@@ -16,6 +16,19 @@ void Navigation::validateSegmentHistory(const Entity&,const SegmentHistory&) con
 FineMotion Navigation::prepareFineMotion(const Entity&,const RoutePoint&) const {throw std::invalid_argument("sample motion driver unavailable");}
 bool Navigation::advanceFineMotion(const Entity&,const RoutePoint&,FineMotion&) const {throw std::invalid_argument("sample motion driver unavailable");}
 void Navigation::validateFineMotion(const Entity&,const RoutePoint&,const FineMotion&) const {throw std::invalid_argument("sample motion driver unavailable");}
+namespace {
+const Entity& actor(const State& state,Handle h) {
+    const auto& slot=state.slots.at(h.slot);
+    if(slot.generation!=h.generation || !slot.entity) throw std::invalid_argument("stale navigation actor");
+    return *slot.entity;
+}
+}
+RoutePlan Navigation::planInWorld(const State& state,Handle h,Point target,std::uint32_t budget) const {
+    return plan(actor(state,h),target,budget);
+}
+bool Navigation::acceptsInWorld(const State& state,Handle h,const RoutePoint& waypoint) const {
+    return accepts(actor(state,h),waypoint);
+}
 bool active(Action a) {return a==Action::planning || a==Action::moving;}
 void validateCommand(const Command& c) {
     if(static_cast<std::uint32_t>(c.operation)>4 ||
@@ -105,6 +118,7 @@ void MovementSession::validateBinding(const State& state,const Navigation& navig
     if(!state.navigation || !(*state.navigation==navigation.binding()) || state.map.empty())
         throw std::invalid_argument("movement map identity mismatch");
     if(!(state.animation==navigation.animationBinding())) throw std::invalid_argument("movement animation resource mismatch");
+    navigation.validateOccupants(state);
     unsigned creatures=0;
     for(const auto& slot:state.slots) if(slot.entity && slot.entity->motion) {
         const auto& e=*slot.entity;
@@ -138,7 +152,13 @@ Handle MovementSession::spawn(Entity entity,bool sampleMotion,bool continuousMot
         if(entity.type!=navigation_->creatureType()) throw std::invalid_argument("creature profile mismatch");
         for(const auto& slot:world_.state().slots) if(slot.entity && slot.entity->motion) throw std::invalid_argument("only one moving creature supported");
     } else if(entity.motion) throw std::invalid_argument("motion requires creature family");
-    validateMotion(entity,navigation_->binding());if(terrainMotion) (void)navigation_->finePosition(entity);return world_.spawn(std::move(entity));
+    validateMotion(entity,navigation_->binding());if(terrainMotion) (void)navigation_->finePosition(entity);
+    auto candidate=world_;auto h=candidate.spawn(std::move(entity));navigation_->validateOccupants(candidate.state());world_=std::move(candidate);return h;
+}
+Handle MovementSession::spawnBlocker(Entity entity) {
+    if(!navigation_->supportsStationaryOccupants() || entity.family!=Family::creature || entity.motion || entity.cleaned || entity.type!=navigation_->creatureType())
+        throw std::invalid_argument("stationary occupant profile unavailable");
+    auto candidate=world_;auto h=candidate.spawn(std::move(entity));navigation_->validateOccupants(candidate.state());world_=std::move(candidate);return h;
 }
 void MovementSession::enqueue(Command command) {
     if(command.operation==Operation::motion) throw std::invalid_argument("motion updates belong to tick system");
@@ -152,11 +172,12 @@ TickReport MovementSession::step(TickInput input) {
     return world_.step(input,[this,input](Phase phase,const State& state,std::vector<Command>& commands) {
         if(phase!=Phase::maintenance && phase!=Phase::decisions) return;
         if(!state.navigation || !(*state.navigation==navigation_->binding())) throw std::invalid_argument("movement resource changed");
+        navigation_->validateOccupants(state);
         for(std::uint32_t i=0;i<state.slots.size();++i) if(state.slots[i].entity && state.slots[i].entity->motion) {
             const auto& e=*state.slots[i].entity;auto motion=*e.motion;Point position{e.x,e.y,e.z};bool changed=false;
             if(phase==Phase::maintenance && motion.action==Action::moving) {
                 const auto waypoint=motion.route.at(motion.next);
-                if(!navigation_->accepts(e,waypoint)) {
+                if(!navigation_->acceptsInWorld(state,{i,state.slots[i].generation},waypoint)) {
                     motion.action=Action::blocked;motion.route.clear();motion.next=0;motion.origin=position;motion.fine.reset();motion.previous.reset();motion.segmentTicks=0;
                 } else {
                     bool completed=true;
@@ -177,7 +198,7 @@ TickReport MovementSession::step(TickInput input) {
                 changed=true;
             }
             if(phase==Phase::decisions && motion.action==Action::planning && !input.suppressSearch) {
-                auto plan=navigation_->plan(e,motion.destination,motion.budget);
+                auto plan=navigation_->planInWorld(state,{i,state.slots[i].generation},motion.destination,motion.budget);
                 motion.origin=position;motion.next=0;motion.route=std::move(plan.route);
                 if(plan.status==PlanStatus::budgetExhausted) motion.action=Action::searchLimited;
                 else if(plan.status==PlanStatus::unreachable) motion.action=Action::blocked;

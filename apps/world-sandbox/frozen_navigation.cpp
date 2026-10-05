@@ -1,5 +1,6 @@
 #include "frozen_navigation.hpp"
 #include "route_world.hpp"
+#include "simulation/occupancy.hpp"
 #include "creature_motion.hpp"
 #include "segment_setup.hpp"
 #include "no_cd.hpp"
@@ -20,6 +21,7 @@ g::Point point(r::Coordinates p) {return {p.x,p.y,p.z};}
 class FrozenNavigation final:public g::Navigation {
     std::shared_ptr<const r::RouteWorldSnapshot> frozen_;
     g::NavigationBinding binding_;
+    bool stationaryOccupancy_=false;
     std::optional<g::AnimationBinding> animation_;
     std::array<std::vector<assets::AnimationRecord>,8> sequences_;
     static r::AnimationState controllerState(const g::AnimationCursor& c) {
@@ -51,8 +53,41 @@ class FrozenNavigation final:public g::Navigation {
         put(&copy->object,8,e.x);put(&copy->object,12,e.y);put(&copy->object,16,e.z);
         copy->target=coordinate(target);return copy;
     }
+    r::NeighborHelpers checkedNeighbors(std::shared_ptr<const r::RouteWorldSnapshot> snapshot) const {
+        auto neighbors=r::snapshot_neighbors(std::move(snapshot));
+        if(stationaryOccupancy_) {
+            const auto accept=neighbors.accept;const auto dims=binding_.dimensions;
+            const auto width=read<int>(frozen_->scalar_type.data(),8),height=read<int>(frozen_->scalar_type.data(),12);
+            // Native blocker policy: even the requested goal must pass occupancy.
+            // The original selected-goal special flag otherwise bypasses it.
+            neighbors.accept=[accept,dims,width,height](const r::NeighborDescriptor& desc,r::Coordinates from,r::Coordinates to,
+                const r::NeighborRecord& record,bool,std::int32_t& category) {
+                if(to.x<0 || to.y<0 || to.z<0 || to.x>dims.x-width || to.y>dims.y-width || to.z>dims.z-height) {category=5;return false;}
+                return accept(desc,from,to,record,false,category);
+            };
+        }
+        return neighbors;
+    }
+    g::Occupancy occupancy(const g::State& state) const {
+        return g::Occupancy(state,binding_.dimensions,creatureType(),
+            {read<int>(frozen_->scalar_type.data(),8),read<int>(frozen_->scalar_type.data(),8),read<int>(frozen_->scalar_type.data(),12)});
+    }
+    std::shared_ptr<r::RouteWorldSnapshot> occupiedInputs(const g::State& state,g::Handle self,g::Point target) const {
+        const auto& slot=state.slots.at(self.slot);
+        if(slot.generation!=self.generation || !slot.entity || !slot.entity->motion)
+            throw std::invalid_argument("stale/nonmoving occupancy actor");
+        auto copy=inputs(*slot.entity,target);const auto owned=occupancy(state);
+        put(&copy->object,0,self.slot); // Deliberate slot-token projection; generation checked above.
+        const auto d=binding_.dimensions;
+        for(int z=0;z<d.z;++z) for(int y=0;y<d.y;++y) for(int x=0;x<d.x;++x) {
+            const auto h=owned.owner({x,y,z});if(!h) continue;
+            auto& cell=copy->cells.at(std::size_t(copy->layers.at(z))+copy->rows.at(y)+x);
+            cell.flags_0a|=1;cell.occupant_04=static_cast<std::uint16_t>(h->slot);
+        }
+        return copy;
+    }
 public:
-    FrozenNavigation(std::shared_ptr<const r::RouteWorldSnapshot> snapshot,std::uint64_t hash,const std::optional<g::AnimationBinding>& animation):frozen_(std::move(snapshot)),animation_(animation) {
+    FrozenNavigation(std::shared_ptr<const r::RouteWorldSnapshot> snapshot,std::uint64_t hash,const std::optional<g::AnimationBinding>& animation,bool stationaryOccupancy):frozen_(std::move(snapshot)),stationaryOccupancy_(stationaryOccupancy),animation_(animation) {
         if(animation_) {
             auto decoded=assets::decodeAnimation(animation_->data);
             if(auto* error=std::get_if<assets::AnimationError>(&decoded)) throw std::invalid_argument(error->detail);
@@ -73,6 +108,12 @@ public:
         const auto height=read<std::int32_t>(frozen_->scalar_type.data(),12);
         if(width<1 || width>2 || height<1 || height>d.z || frozen_->boundary<0 || frozen_->boundary>d.z)
             throw std::invalid_argument("unsupported frozen creature/map geometry");
+        if(stationaryOccupancy_) {
+            for(const auto& cell:frozen_->cells) if(cell.flags_0a&3)
+                throw std::invalid_argument("stationary overlay requires an occupancy-free frozen baseline");
+            // Version the native occupancy policy in the existing resource identity.
+            for(unsigned char c:std::string("stationary-occupancy-v1")) {hash^=c;hash*=1099511628211ULL;}
+        }
         binding_={point({d.x,d.y,d.z}),hash};
         (void)r::snapshot_neighbors(frozen_); // Validate full row/layer ownership at resource admission.
     }
@@ -93,12 +134,24 @@ public:
         return {e.x*32,e.y*32,e.motion && e.motion->terrainMotion?r::ordinary_creature_height(e.z,terrainOffset({e.x,e.y,e.z})):e.z*16};
     }
     std::uint32_t creatureType() const override {return read<std::uint32_t>(&frozen_->object,0xa8);}
+    bool supportsStationaryOccupants() const override {return stationaryOccupancy_;}
+    void validateOccupants(const g::State& state) const override {
+        if(stationaryOccupancy_) (void)occupancy(state);
+    }
     g::RoutePlan plan(const g::Entity& e,g::Point destination,std::uint32_t budget) const override {
-        auto snapshot=inputs(e,destination);r::RouteContextPrefix context{};context.unknown_route_flag=1;r::SearchState state;
+        return planSnapshot(inputs(e,destination),destination,budget);
+    }
+    g::RoutePlan planInWorld(const g::State& state,g::Handle self,g::Point destination,std::uint32_t budget) const override {
+        if(!stationaryOccupancy_) return Navigation::planInWorld(state,self,destination,budget);
+        return planSnapshot(occupiedInputs(state,self,destination),destination,budget);
+    }
+    g::RoutePlan planSnapshot(std::shared_ptr<r::RouteWorldSnapshot> snapshot,g::Point destination,std::uint32_t budget) const {
+        r::RouteContextPrefix context{};context.unknown_route_flag=1;r::SearchState state;
         auto remaining=static_cast<std::int32_t>(budget);
-        auto result=r::replay_route_world(snapshot,context,state,remaining);
+        auto neighbors=checkedNeighbors(snapshot);
+        auto result=r::route_search(context,snapshot->object,snapshot->unknown_argument,snapshot->target,remaining,state,
+            r::neighbor_search_world(neighbors,snapshot->target,snapshot->object_token));
         if(result.stop==r::SearchStop::budget_exhausted) return {g::PlanStatus::budgetExhausted,{}};
-        auto neighbors=r::snapshot_neighbors(snapshot);
         if(result.path.empty() || point(neighbors.coordinates(result.path.back()))!=destination) return {g::PlanStatus::unreachable,{}};
         g::RoutePlan out{g::PlanStatus::reachable,{}};
         for(std::uint32_t i=0;i<context.route.waypoint_count;++i) {
@@ -244,7 +297,15 @@ public:
     }
     bool accepts(const g::Entity& e,const g::RoutePoint& waypoint) const override {
         if(!e.motion) return false;
-        auto snapshot=inputs(e,e.motion->destination);auto neighbors=r::snapshot_neighbors(snapshot);
+        return acceptsSnapshot(e,waypoint,inputs(e,e.motion->destination));
+    }
+    bool acceptsInWorld(const g::State& state,g::Handle self,const g::RoutePoint& waypoint) const override {
+        if(!stationaryOccupancy_) return Navigation::acceptsInWorld(state,self,waypoint);
+        const auto snapshot=occupiedInputs(state,self,waypoint.position);
+        return acceptsSnapshot(*state.slots.at(self.slot).entity,waypoint,snapshot);
+    }
+    bool acceptsSnapshot(const g::Entity& e,const g::RoutePoint& waypoint,std::shared_ptr<r::RouteWorldSnapshot> snapshot) const {
+        auto neighbors=checkedNeighbors(snapshot);
         const auto from=r::Coordinates{e.x,e.y,e.z};
         auto candidates=r::generate_neighbors(neighbors.node_at(from),r::MovementPayload{},
             r::creature_descriptor(snapshot->object,snapshot->object_token,snapshot->unknown_argument,snapshot->target),neighbors);
@@ -268,17 +329,17 @@ game::AnimationBinding loadMovementAnimation(const std::string& path,std::uint32
     f.seekg(0);game::AnimationBinding binding;binding.data.resize(static_cast<std::size_t>(size));binding.sequenceBase=sequenceBase;
     f.read(reinterpret_cast<char*>(binding.data.data()),size);if(!f) throw std::runtime_error("cannot read movement ANI");return binding;
 }
-std::shared_ptr<const game::Navigation> loadFrozenNavigation(const std::string& path,const std::optional<game::AnimationBinding>& animation) {
+std::shared_ptr<const game::Navigation> loadFrozenNavigation(const std::string& path,const std::optional<game::AnimationBinding>& animation,bool stationaryOccupancy) {
     if(path.find('\0')!=std::string::npos) throw std::invalid_argument("map path contains NUL");
     std::ifstream f(path,std::ios::binary|std::ios::ate);if(!f) throw std::runtime_error("cannot open frozen movement map");
     const auto size=f.tellg();if(size<92 || size>64*1024*1024) throw std::invalid_argument("invalid frozen map size");
     f.seekg(0);std::vector<std::byte> bytes(static_cast<std::size_t>(size));
     f.read(reinterpret_cast<char*>(bytes.data()),size);if(!f) throw std::runtime_error("cannot read frozen movement map");
-    return loadFrozenNavigationBytes(bytes,animation);
+    return loadFrozenNavigationBytes(bytes,animation,stationaryOccupancy);
 }
-std::shared_ptr<const game::Navigation> loadFrozenNavigationBytes(const std::vector<std::byte>& bytes,const std::optional<game::AnimationBinding>& animation) {
+std::shared_ptr<const game::Navigation> loadFrozenNavigationBytes(const std::vector<std::byte>& bytes,const std::optional<game::AnimationBinding>& animation,bool stationaryOccupancy) {
     std::uint64_t hash=14695981039346656037ULL;
     for(auto byte:bytes) {hash^=std::to_integer<std::uint8_t>(byte);hash*=1099511628211ULL;}
-    return std::make_shared<FrozenNavigation>(reconstruction::decode_route_world(bytes),hash,animation);
+    return std::make_shared<FrozenNavigation>(reconstruction::decode_route_world(bytes),hash,animation,stationaryOccupancy);
 }
 }
