@@ -2290,6 +2290,141 @@
           "NS10.occupancy-original"
         ]
       }
+    },
+    {
+      "id": "effect-transition-recorded-5e24b3b",
+      "reason": "Recover the complete 004883f0 membership-on nonzero-empty-terrain transition path without stubs or patches: owned previous/fine/cell/cache/subcell/recount fields, real trajectory/unlink/neighbour/terrain helpers, changed chains/terrain references and return 3. Verify that moving sources clear old light locations and illuminate new locations in the headless cycle. Reconcile focused imports/census/ledger; preserve historical source hashes. Reviewed committed range a344ba5..5e24b3bfd26ac46d24df8d06f19ec0c2d5a24938 in working/tests/effect-transition-history-review.json; all non-journal intermediate file versions have exact receipts.",
+      "files": [
+        {
+          "after_sha256": "a51779dc93e047ecd4e2ac7ac0464c2539ca4d7cfe4ab97afedf7e809d50047e",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect-transition/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "371f2b9be01dc8377e51683431a1ac5494df67ffa8ce79238308e4fc0f6400ea",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_transition.cpp"
+        },
+        {
+          "after_sha256": "fb76fa22117311628a2410af1493cc2bb3205ad580e10ae02cfd552e6fbbc6fe",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_transition.hpp"
+        },
+        {
+          "after_sha256": "6bad944adebf1446cc4cc60c973a94a597314962594ad0e06c83986ac51a5cc2",
+          "before_sha256": "0d3b13b7bfbe2523191d9b64a836381e565fb8e6952c56236220c97ea96c78b5",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "3c5caced8771ddf0ca14be84895712d097595af181c05cb3c8e9ffc2ef266ac5",
+          "before_sha256": "0663f7245be0abc0b01e3ef0714041ebb9f215a84abf8c51f38b65ca06549bc4",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "a23b1e62b54ade406087dec7ab557a8eef27bbb24c3e215814417d537b82c6f8",
+          "before_sha256": null,
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "9f9357b46da74848f4f4d020b18bc8a39b800a6ca095aa3d0f52a11f74a5f3fb",
+          "before_sha256": null,
+          "path": "research/runtime/effect-cell-transitions-source-index.json"
+        },
+        {
+          "after_sha256": "a30a2f5d0b3b0080611ebb8d0164e1e0ef8313fa46e35f0bfcca78bdf825b4c6",
+          "before_sha256": null,
+          "path": "research/runtime/effect-cell-transitions.json"
+        },
+        {
+          "after_sha256": "4ca6a72adc921be585b807e6b37ac43567adc55c8785fdec93b92f7c3520b256",
+          "before_sha256": null,
+          "path": "research/runtime/effect-cell-transitions.md"
+        },
+        {
+          "after_sha256": "97c464891b54f4511626326521766e8764e7e7d721687a42dd44dba6c21bddc6",
+          "before_sha256": "263d4b3bf3ef94f0c5bf9abeb7b1801284927c44562f0a2687e7cc5402009a55",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "5a88dd909cf561f960c322ae80a38a7d700a3034ad51e861fab3d8fa600e7fcd",
+          "before_sha256": "cd847193f22e932f2e9fe44b255af7fa865d9f2423c859201cd125f43d48d39d",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "6e63316fbe6d7758ff355f8ca052054e07d0cdc05f842f0d806fa73a64fc81cd",
+          "before_sha256": null,
+          "path": "tests/effect-transition-reference.cpp"
+        },
+        {
+          "after_sha256": "3aceeca4061c79b63b02fc1c925046f3c120451adff1d91fe972179f99ba4998",
+          "before_sha256": null,
+          "path": "tests/effect-transition-test.cpp"
+        },
+        {
+          "after_sha256": "0939e47cb57eef61ea25c73b6235cf1d3e4e823e817fa0f82975fc6945f24a1d",
+          "before_sha256": null,
+          "path": "tools/test-effect-transition.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "b1ac00d4a5b3352a9049b3e34c6265759f9a272ccf2a026886acdd035c3d1bd5",
+          "before_sha256": null,
+          "id": "TL.effect-cell-transitions"
+        },
+        {
+          "after_sha256": "308574c76b7945a1b619ea2964292dbc66c7eb0b02880eeeb4f8e95cfaa56ace",
+          "before_sha256": null,
+          "id": "TL.effect-transition-policy"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:cb58dd52fdc2984f9f9ea0ca86ea332d51e583ce178ccccc3bc451f8061ac0ae"
+      ],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL08.transition-original",
+          "TL08.transition-native"
+        ],
+        "reason": "2048 fixtures, 3232 whole-parent calls and 10288 trajectory steps; owned one-step trace counts 8911 transitions and 5784 cache advances; 86639360 guarded cell-allocation bytes match 32-bit native/original, 64-bit native and ASan/UBSan streams. Strict CMake/CTest and normal/sanitized lighting-composition/atomic-refusal tests pass; immutable originals verify before/after. Native-policy comparison absence is intentional; empty collision context and authored setup remain explicit preconditions."
+      }
+    },
+    {
+      "id": "effect-transition-remaining-5e24b3b",
+      "reason": "Narrow the existing movement/recount gap to the remaining branches after separately validating the selected transition path. Retain ordinal-zero cleanup, blocked cells, membership-disabled moves, occupied collisions, other metadata/termination, setup and live lifecycle as unimplemented/unverified.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "46971a7f27bb9df66bab29b5565695306d36788bdb74a4b510607b98f6cf07ec",
+          "before_sha256": "099d3f5296d5253719d97b43f73fa9e12c15635baed93106478b8eef7b664e29",
+          "id": "TL.effect-movement-recount"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "No comparison or implementation of ordinal-zero cleanup, blocked destinations, membership-disabled moves, occupied collision behavior, special types/termination, trajectory setup, removal/recycling or live scheduling. Current scoped evidence applies only to the separate transition behavior."
+      }
+    },
+    {
+      "id": "effect-transition-summary-5e24b3b",
+      "reason": "Refresh generated summary for the isolated reviewed register containing this chunk. Unknown functions, incomplete tables and historical staleness remain.",
+      "files": [
+        {
+          "after_sha256": "0024bc61f0d841ad82b66106b8d9f8e35c0d5193069cae6f8a1491cd0b8c0a2c",
+          "before_sha256": "49fc3e69565fac30eb361cf48f5e7d13b3e4248f1662cb50f92cf01b9a773b9a",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated audit metadata only; no implementation or status promotion."
+      }
     }
   ]
 }

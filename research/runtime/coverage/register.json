@@ -10065,18 +10065,19 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected empty-world same-cell parent projection/recount recovered separately; cell membership changes, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified",
+      "scope": "Selected same-cell and membership-on nonzero-empty-terrain parent transitions recovered separately; ordinal-zero cleanup, blocked cells, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected empty-world same-cell parent projection/recount recovered separately; cell membership changes, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified"
+          "scope": "Selected same-cell and membership-on nonzero-empty-terrain parent transitions recovered separately; ordinal-zero cleanup, blocked cells, membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling and live scheduling remain unimplemented/unverified"
         }
       ],
       "documents": [
         "research/runtime/effect-trajectory.md",
-        "research/runtime/effect-same-cell-projection.md"
+        "research/runtime/effect-same-cell-projection.md",
+        "research/runtime/effect-cell-transitions.md"
       ],
       "implementation": [],
       "tests": [],
@@ -10467,6 +10468,77 @@
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-cell-transitions",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Empty-world effect transitions and cell membership",
+      "scope": "Complete 004883f0 membership-on transition path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, touched terrain ordinals 1..3 without blocked flag, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, old/new chains, current/previous/cached cells, terrain references and return 3; authored setup, no ordinal-zero cleanup, blocked or membership-disabled moves, occupied collisions, special termination or live scheduling",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Complete 004883f0 membership-on transition path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, touched terrain ordinals 1..3 without blocked flag, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, old/new chains, current/previous/cached cells, terrain references and return 3; authored setup, no ordinal-zero cleanup, blocked or membership-disabled moves, occupied collisions, special termination or live scheduling"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-cell-transitions.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-transition-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL08.transition-original",
+        "TL08.transition-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-transition-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Atomic owned effect transitions and moving lighting composition",
+      "scope": "Owned candidate-copy atomic refusals for unsupported type/creator/kind/count/counter/dimensions, inconsistent positions/cache/terrain, corrupt/duplicate/missing chains, height exits, horizontal excursions, unsupported touched cells and later failures; moved source clears its old light location and illuminates its new location and composes with the existing headless lighting cycle; empty collision context is a caller precondition, not live world certification",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-cell-transitions.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp",
+        "reconstruction/rendering/effect-transition/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-transition-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL08.transition-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -15504,6 +15576,110 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "TL08.transition-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Complete 004883f0 membership-on transition path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, touched terrain ordinals 1..3 without blocked flag, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, old/new chains, current/previous/cached cells, terrain references and return 3; authored setup, no ordinal-zero cleanup, blocked or membership-disabled moves, occupied collisions, special termination or live scheduling",
+      "record": "research/runtime/effect-cell-transitions.json",
+      "sha256": "a30a2f5d0b3b0080611ebb8d0164e1e0ef8313fa46e35f0bfcca78bdf825b4c6",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/steps",
+          "equals": 10288
+        },
+        {
+          "pointer": "/transitions",
+          "equals": 8911
+        },
+        {
+          "pointer": "/cache_updates",
+          "equals": 5784
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL08.transition-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Owned candidate-copy atomic refusals for unsupported type/creator/kind/count/counter/dimensions, inconsistent positions/cache/terrain, corrupt/duplicate/missing chains, height exits, horizontal excursions, unsupported touched cells and later failures; moved source clears its old light location and illuminates its new location and composes with the existing headless lighting cycle; empty collision context is a caller precondition, not live world certification",
+      "record": "research/runtime/effect-cell-transitions.json",
+      "sha256": "a30a2f5d0b3b0080611ebb8d0164e1e0ef8313fa46e35f0bfcca78bdf825b4c6",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/steps",
+          "equals": 10288
+        },
+        {
+          "pointer": "/transitions",
+          "equals": 8911
+        },
+        {
+          "pointer": "/cache_updates",
+          "equals": 5784
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -17146,6 +17322,24 @@
       "tests": [
         "tools/test-creature-navigation.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-cell-transitions",
+      "level": "headless",
+      "scope": "Complete 004883f0 membership-on transition path for types 3/13/22/24/36, no creator, empty terrain bits/no creatures, touched terrain ordinals 1..3 without blocked flag, metadata kind 0/68 and zero distance allowance, 0..8 iterations and initial counter 0..32; real trajectory and terrain helpers, fine/previous/subcell/recount coordinates, old/new chains, current/previous/cached cells, terrain references and return 3; authored setup, no ordinal-zero cleanup, blocked or membership-disabled moves, occupied collisions, special termination or live scheduling; Owned candidate-copy atomic refusals for unsupported type/creator/kind/count/counter/dimensions, inconsistent positions/cache/terrain, corrupt/duplicate/missing chains, height exits, horizontal excursions, unsupported touched cells and later failures; moved source clears its old light location and illuminates its new location and composes with the existing headless lighting cycle; empty collision context is a caller precondition, not live world certification",
+      "behaviors": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy"
+      ],
+      "evidence": [
+        "TL08.transition-original",
+        "TL08.transition-native"
+      ],
+      "tests": [
+        "tests/effect-transition-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -17258,7 +17452,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "cd847193f22e932f2e9fe44b255af7fa865d9f2423c859201cd125f43d48d39d",
+      "sha256": "5a88dd909cf561f960c322ae80a38a7d700a3034ad51e861fab3d8fa600e7fcd",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -17268,12 +17462,17 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "263d4b3bf3ef94f0c5bf9abeb7b1801284927c44562f0a2687e7cc5402009a55",
+      "sha256": "97c464891b54f4511626326521766e8764e7e7d721687a42dd44dba6c21bddc6",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
+    },
+    {
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "sha256": "a23b1e62b54ade406087dec7ab557a8eef27bbb24c3e215814417d537b82c6f8",
+      "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-stationary-original.json",
-    "sha256": "014fd0989533372ea5821f60684e5e052f33e74796de10449eaf6402853ee321"
+    "path": "research/runtime/effect-cell-transitions-source-index.json",
+    "sha256": "9f9357b46da74848f4f4d020b18bc8a39b800a6ca095aa3d0f52a11f74a5f3fb"
   }
 }
