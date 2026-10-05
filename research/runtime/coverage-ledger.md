@@ -548,3 +548,18 @@ occupancy after checkpoint restore. Normal/sanitizer model and process checks
 include detour arrival, cleanup/release, stale generations and late/intra-cell
 obstructions. Original occupancy production, moving reservations, multiple
 moving creature scheduling/presentation and live replacement remain open.
+
+## Direct GPU command replay (2026-10-05)
+
+`NR.gpu-presentation` adds explicit shared-context texture presentation from the
+native renderer into Qt. Bounded `--commands` replay displays each PRESENT with
+no CPU pixel readback or viewport upload; explicit CHECK diagnostics and image
+exports retain readback. Fenced texture leases survive source/renderer release.
+416 independent complete-frame comparisons pass across normal/high-DPI and
+ordinary/ASan/UBSan builds; the shell replay and GAP refusal pass. Ten existing
+renderer/viewport/input regressions pass. [Scope/evidence](opengl-direct-presentation.md).
+
+This is synthetic native preview integration on Mesa/Xvfb. It does not advance
+RE02 continuous game capture, live command transport, original rendering
+replacement or hardware performance. Historical reports keep their recorded
+hashes; edits to shared renderer/host files leave older evidence stale.

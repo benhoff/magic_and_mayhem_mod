@@ -6,6 +6,8 @@
 #include <vector>
 #include <array>
 #include <QImage>
+#include <QSize>
+class QOpenGLContext;
 
 namespace mnm::render {
 struct Image {
@@ -27,8 +29,26 @@ struct Driver {std::string vendor, renderer, version;};
 using SurfaceId=std::uint64_t;
 struct PixelFormat {unsigned bits=0;std::array<std::uint32_t,3> masks{};};
 struct Rgb {std::uint8_t red=0,green=0,blue=0;};
+// GUI-thread lease of the latest GPU presentation. Copies share its texture.
+// It survives source-surface and renderer destruction; subsequent presentations
+// of that surface update existing leases. Consumers bracket draws with these
+// methods in a sharing context, establishing GPU ordering in both directions.
+class GpuFrame final {
+public:
+    GpuFrame()=default;
+    QSize size() const;
+    bool valid() const {return bool(data_);}
+    unsigned textureForCurrentContext() const;
+    void samplingComplete() const;
+private:
+    struct Data;
+    std::shared_ptr<Data> data_;
+    explicit GpuFrame(std::shared_ptr<Data> data):data_(std::move(data)){}
+    friend class GlBlitter;
+};
 struct RenderStats {
     std::uint64_t uploads=0,copies=0,paletteUpdates=0,nativeReadbacks=0,presentations=0;
+    std::uint64_t rgbaReadbacks=0,gpuPresentations=0;
     std::size_t surfaces=0,pixels=0;
 };
 
@@ -36,7 +56,7 @@ struct RenderStats {
 // supplied to draw(): only source pixels, the old destination and the command.
 class GlBlitter final {
 public:
-    GlBlitter();
+    explicit GlBlitter(QOpenGLContext* shareContext=nullptr);
     ~GlBlitter();
     GlBlitter(const GlBlitter&)=delete;
     GlBlitter& operator=(const GlBlitter&)=delete;
@@ -57,9 +77,11 @@ public:
     void setPalette(SurfaceId surface,unsigned first,const std::vector<Rgb>& colors);
     Image read(SurfaceId surface);
     QImage present(SurfaceId surface);
+    GpuFrame presentGpu(SurfaceId surface);
     RenderStats stats() const;
 private:
     struct Impl;
-    std::unique_ptr<Impl> impl_;
+    std::shared_ptr<Impl> impl_;
+    friend class GpuFrame;
 };
 }

@@ -6,6 +6,7 @@
 #include <QOpenGLShaderProgram>
 #include <QSurfaceFormat>
 #include <QThread>
+#include <QPointer>
 #include <algorithm>
 #include <atomic>
 #include <unordered_map>
@@ -102,8 +103,16 @@ SurfaceId nextId(){
     for(;;){if(id==UINT64_MAX)throw std::runtime_error("Surface IDs exhausted");if(serial.compare_exchange_weak(id,id+1))return id;}
 }
 }
+struct GpuFrame::Data {
+    std::shared_ptr<GlBlitter::Impl> owner;
+    GLuint texture=0;
+    QSize dimensions;
+    QPointer<QOpenGLContext> consumer;
+    GLsync produced=nullptr,consumed=nullptr;
+    ~Data();
+};
 struct GlBlitter::Impl {
-    struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;};
+    struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;std::weak_ptr<GpuFrame::Data> gpu;};
     QOffscreenSurface surface;
     QOpenGLContext context;
     QOpenGLFunctions_3_3_Core gl;
@@ -113,13 +122,20 @@ struct GlBlitter::Impl {
     Driver info;
     RenderStats counters;
     std::unordered_map<SurfaceId,Surface> surfaces;
-    Impl(){
+    explicit Impl(QOpenGLContext* shareContext){
         if(!qobject_cast<QGuiApplication*>(QCoreApplication::instance()) ||
            QThread::currentThread()!=QCoreApplication::instance()->thread())
             throw std::runtime_error("GlBlitter requires the Qt GUI thread");
         QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);
         context.setFormat(format);
+        if(shareContext){
+            if(!shareContext->isValid() || shareContext->thread()!=QThread::currentThread())
+                throw std::runtime_error("Invalid GUI-thread sharing context");
+            context.setShareContext(shareContext);
+        }
         if(!context.create() || context.isOpenGLES())throw std::runtime_error("Desktop OpenGL 3.3 is unavailable");
+        if(shareContext && !QOpenGLContext::areSharing(&context,shareContext))
+            throw std::runtime_error("OpenGL context sharing failed");
         surface.setFormat(context.format());surface.create();
         if(!surface.isValid())throw std::runtime_error("Cannot create an offscreen OpenGL surface");
         Current current(context,&surface);
@@ -163,8 +179,40 @@ struct GlBlitter::Impl {
         }
     }
 };
-GlBlitter::GlBlitter():impl_(std::make_unique<Impl>()){}
-GlBlitter::~GlBlitter()=default;
+GpuFrame::Data::~Data(){
+    owner->thread();Current current(owner->context,&owner->surface);
+    if(produced)owner->gl.glDeleteSync(produced);
+    if(consumed)owner->gl.glDeleteSync(consumed);
+    owner->gl.glDeleteTextures(1,&texture);
+}
+QSize GpuFrame::size() const{return data_?data_->dimensions:QSize{};}
+unsigned GpuFrame::textureForCurrentContext() const{
+    if(!data_)throw std::runtime_error("Empty GPU frame");
+    auto& p=*data_->owner;p.thread();auto* current=QOpenGLContext::currentContext();
+    if(!current || !QOpenGLContext::areSharing(current,&p.context))
+        throw std::runtime_error("GPU frame requires a sharing current context");
+    if(data_->consumer && data_->consumer!=current)
+        throw std::runtime_error("GPU frame supports one consumer context");
+    data_->consumer=current;
+    if(data_->produced)p.gl.glWaitSync(data_->produced,0,GL_TIMEOUT_IGNORED);
+    return data_->texture;
+}
+void GpuFrame::samplingComplete() const{
+    textureForCurrentContext();auto& g=data_->owner->gl;
+    if(data_->consumed)g.glDeleteSync(data_->consumed);
+    data_->consumed=g.glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
+    if(!data_->consumed)throw std::runtime_error("Cannot fence GPU sampling");
+    g.glFlush();
+}
+GlBlitter::GlBlitter(QOpenGLContext* shareContext):impl_(std::make_shared<Impl>(shareContext)){}
+GlBlitter::~GlBlitter(){
+    // Frames retain the context, but must not retain unrelated native surfaces.
+    try {
+        auto& p=*impl_;p.thread();Current current(p.context,&p.surface);
+        for(auto& pair:p.surfaces)p.release(pair.second);
+        p.surfaces.clear();p.counters.pixels=0;
+    }catch(const std::exception&){}
+}
 Driver GlBlitter::driver() const{return impl_->info;}
 RenderStats GlBlitter::stats() const{impl_->thread();auto result=impl_->counters;result.surfaces=impl_->surfaces.size();return result;}
 SurfaceId GlBlitter::create(const Image& image,PixelFormat format){
@@ -240,10 +288,12 @@ Image GlBlitter::read(SurfaceId id){
     p.gl.glPixelStorei(GL_PACK_ALIGNMENT,4);p.gl.glReadPixels(0,0,s.width,s.height,GL_RED_INTEGER,GL_UNSIGNED_INT,out.pixels.data());
     p.check();++p.counters.nativeReadbacks;return out;
 }
-QImage GlBlitter::present(SurfaceId id){
-    auto& p=*impl_;p.thread();auto& s=p.get(id);Current current(p.context,&p.surface);auto& g=p.gl;
-    if(!s.rgba){g.glActiveTexture(GL_TEXTURE0);s.rgba=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);}
-    p.attach(s.rgba,s.width,s.height);g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
+namespace {
+// Kept local to the owning renderer; both output paths use identical conversion.
+template<class Owner,class Surface>
+void resolvePresentation(Owner& p,Surface& s,GLuint target){
+    auto& g=p.gl;
+    p.attach(target,s.width,s.height);g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
     g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,s.palette);
     if(!p.presentation->bind())throw std::runtime_error("Cannot bind presentation shader");
     g.glUniform1i(p.presentation->uniformLocation("nativePixels"),0);g.glUniform1i(p.presentation->uniformLocation("palette"),1);
@@ -253,9 +303,33 @@ QImage GlBlitter::present(SurfaceId id){
     g.glUniform3uiv(p.presentation->uniformLocation("masks"),1,s.format.masks.data());
     g.glUniform3uiv(p.presentation->uniformLocation("lowBits"),1,low.data());g.glUniform3uiv(p.presentation->uniformLocation("maxima"),1,maximum.data());
     g.glBindVertexArray(p.vao);g.glDrawArrays(GL_TRIANGLES,0,3);g.glBindVertexArray(0);p.presentation->release();
+    p.check();
+}
+}
+QImage GlBlitter::present(SurfaceId id){
+    auto& p=*impl_;p.thread();auto& s=p.get(id);Current current(p.context,&p.surface);auto& g=p.gl;
+    if(!s.rgba){g.glActiveTexture(GL_TEXTURE0);s.rgba=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);}
+    resolvePresentation(p,s,s.rgba);
     QImage out(s.width,s.height,QImage::Format_RGBA8888);if(out.isNull())throw std::runtime_error("Cannot allocate presentation image");
     g.glPixelStorei(GL_PACK_ALIGNMENT,4);g.glReadPixels(0,0,s.width,s.height,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,out.bits());
-    p.check();++p.counters.presentations;return out;
+    p.check();++p.counters.presentations;++p.counters.rgbaReadbacks;return out;
+}
+GpuFrame GlBlitter::presentGpu(SurfaceId id){
+    auto& p=*impl_;p.thread();auto& s=p.get(id);Current current(p.context,&p.surface);auto& g=p.gl;
+    auto frame=s.gpu.lock();
+    if(!frame){
+        frame=std::make_shared<GpuFrame::Data>();frame->owner=impl_;frame->dimensions={s.width,s.height};
+        g.glActiveTexture(GL_TEXTURE0);
+        frame->texture=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);
+        s.gpu=frame;
+    }
+    if(frame->consumed){g.glWaitSync(frame->consumed,0,GL_TIMEOUT_IGNORED);g.glDeleteSync(frame->consumed);frame->consumed=nullptr;}
+    resolvePresentation(p,s,frame->texture);
+    if(frame->produced)g.glDeleteSync(frame->produced);
+    frame->produced=g.glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
+    if(!frame->produced)throw std::runtime_error("Cannot fence GPU presentation");
+    g.glFlush();p.check();++p.counters.presentations;++p.counters.gpuPresentations;
+    return GpuFrame(std::move(frame));
 }
 Image GlBlitter::draw(const Blit& c){
     validate(c);

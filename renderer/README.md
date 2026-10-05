@@ -96,8 +96,10 @@ Persistent surfaces support up to 2048x2048, with at most 64 surfaces and
 clipping/stretching/effects and conversion remain unsupported. Existing single
 capture replay keeps its original 256x256 source bound. `draw` is a compatibility
 wrapper that creates temporary surfaces, copies, reads and destroys them.
-Presentation currently reads RGBA back to Qt for upload by its viewport;
-direct shared-texture presentation remains later work.
+`present` retains RGBA readback for image export. `presentGpu` returns a GUI-thread
+texture lease for a sharing viewport, with producer/consumer fences and no pixel
+readback. The Qt `--commands` replay uses this direct path; live engine command
+routing remains pending. See [direct presentation](../research/runtime/opengl-direct-presentation.md).
 
 See [implementation and validation evidence](../research/runtime/opengl-blit-replay.md)
 and [capture format](../research/formats/render-draw-capture.md).

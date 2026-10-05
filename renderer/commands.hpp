@@ -2,6 +2,7 @@
 #include "blit.hpp"
 #include <QByteArray>
 #include <array>
+#include <functional>
 
 namespace mnm::render {
 constexpr qint64 maxCommandBytes=64*1024*1024;
@@ -23,4 +24,8 @@ struct CommandResult {
     Driver driver;
 };
 CommandResult replayCommands(const std::vector<SurfaceCommand>& commands);
+// Decoded, complete bounded replay. PRESENT sends a GPU lease; CHECK operations
+// retain their explicit diagnostic readbacks. Callback runs on the GUI thread.
+CommandResult replayCommandsGpu(const std::vector<SurfaceCommand>& commands,
+                               GlBlitter& renderer,const std::function<void(GpuFrame)>& present);
 }

@@ -565,3 +565,16 @@ resolution draft, applies four alternating High/Low changes and checks original
 game client sizes, leave flags, font modes and reopened controls before Quit.
 The forwarding leave observer is enabled only for this test. See
 [UI25 scope/evidence](../../research/runtime/preferences-display-rebuild.md).
+
+## Direct GPU command replay
+
+`--commands FILE` now displays each bounded replay PRESENT directly from the
+renderer-owned shared texture. It avoids PRESENT pixel readback and viewport
+re-upload; explicit pixel/color CHECK commands remain diagnostic readbacks.
+The last texture survives stream END and source destruction. Image exports
+retain the existing readback path. This is offline replay, separate from live
+game capture or draw replacement.
+
+Run `python3 tools/test-gpu-presentation.py working/build/qt-shell` for independent
+complete-frame, lifetime, normal/high-DPI and shell-entry checks. See
+[ownership, synchronization and evidence](../../research/runtime/opengl-direct-presentation.md).

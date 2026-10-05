@@ -10653,6 +10653,44 @@
       }
     },
     {
+      "id": "NR.gpu-presentation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Direct shared-texture command replay presentation",
+      "scope": "GUI-thread, single-consumer latest-frame texture lease; explicit context sharing, bidirectional GPU fences, reuse, resize and source/renderer lifetime. Bounded decoded command replay PRESENT and Qt viewport; CHECK readbacks retained. Synthetic Mesa native integration only; live transport, original replacement and hardware performance remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-direct-presentation.md",
+        "renderer/README.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/gpu-presentation-test.cpp",
+        "tools/test-gpu-presentation.py"
+      ],
+      "evidence": [
+        "NR.gpu-presentation.native",
+        "NR.gpu-presentation.native-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "TL.effect-cell-cleanup",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
@@ -15797,6 +15835,36 @@
       ]
     },
     {
+      "id": "NS10.stationary-native",
+      "kind": "native_integration",
+      "scope": "Native opt-in logical occupancy for one mover and stationary same-profile blockers; native slot token projection, positive nonwrapping bounded boxes, cleanup/release and per-tick edge checks. No original world production/reservation or multiple moving creature equivalence.",
+      "record": "research/runtime/native-stationary-occupancy-native.json",
+      "sha256": "4a7ba79feddd6d9543b0c67ce33caaaf39c163541f2ba5e448834e5cad2a8c4a",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/fresh_process_continuations_per_build",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_integration/detour_arrival",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/intra_cell_obstruction",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/overlap_refused_before_output",
+          "equals": true
+        }
+      ]
+    },
+    {
       "id": "UI26.original",
       "kind": "isolated_original",
       "build": "nocd-40209ca7",
@@ -15966,32 +16034,32 @@
       "original_hash_pointer": "/source_sha256"
     },
     {
-      "id": "NS10.stationary-native",
+      "id": "NR.gpu-presentation.native",
       "kind": "native_integration",
-      "scope": "Native opt-in logical occupancy for one mover and stationary same-profile blockers; native slot token projection, positive nonwrapping bounded boxes, cleanup/release and per-tick edge checks. No original world production/reservation or multiple moving creature equivalence.",
-      "record": "research/runtime/native-stationary-occupancy-native.json",
-      "sha256": "4a7ba79feddd6d9543b0c67ce33caaaf39c163541f2ba5e448834e5cad2a8c4a",
+      "scope": "416 independent complete framebuffer comparisons in normal/high-DPI ordinary and ASan/UBSan builds; zero PRESENT readbacks/uploads, retained texture reuse, source/renderer release, sharing refusal, bounded shell replay and GAP refusal. Synthetic fixtures only.",
+      "record": "research/runtime/opengl-direct-presentation.json",
+      "sha256": "b7169681d961872b89bc0436824fa2ff8ec63a669e6553f5a5f852e88c2afe43",
       "sources_pointer": "/source_sha256",
       "assertions": [
         {
-          "pointer": "/all_match",
+          "pointer": "/success",
           "equals": true
         },
         {
-          "pointer": "/native_integration/fresh_process_continuations_per_build",
-          "equals": 3
-        },
-        {
-          "pointer": "/native_integration/detour_arrival",
+          "pointer": "/native_integration/all_match",
           "equals": true
         },
         {
-          "pointer": "/native_integration/intra_cell_obstruction",
-          "equals": true
+          "pointer": "/native_integration/full_frame_comparisons",
+          "equals": 416
         },
         {
-          "pointer": "/native_integration/overlap_refused_before_output",
-          "equals": true
+          "pointer": "/native_integration/presentation_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/gpu_viewport_uploads",
+          "equals": 0
         }
       ]
     },
@@ -16120,6 +16188,36 @@
         {
           "pointer": "/cmake_tests_passed",
           "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "NR.gpu-presentation.native-v2",
+      "kind": "native_integration",
+      "scope": "416 independent complete framebuffer comparisons in normal/high-DPI ordinary and ASan/UBSan builds; zero PRESENT readbacks/uploads, retained texture reuse, source/renderer release, sharing refusal, bounded shell replay and GAP refusal. Synthetic fixtures only. Final teardown additionally releases live native surfaces, verifies last-lease texture deletion and refuses a second sharing consumer.",
+      "record": "research/runtime/opengl-direct-presentation-v2.json",
+      "sha256": "c1c63cb0478d336971a7b78de30404b0f5681f773655d1283bcf6625482e3f2f",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/full_frame_comparisons",
+          "equals": 416
+        },
+        {
+          "pointer": "/native_integration/presentation_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/gpu_viewport_uploads",
+          "equals": 0
         }
       ]
     }
@@ -17840,6 +17938,21 @@
       ]
     },
     {
+      "id": "world.stationary-blockers",
+      "level": "headless",
+      "scope": "Native opt-in logical occupancy for one mover and stationary same-profile blockers; native slot token projection, positive nonwrapping bounded boxes, cleanup/release and per-tick edge checks. No original world production/reservation or multiple moving creature equivalence. Three split/whole process continuations per build, late and intra-cell blockage, mode identity, overlap/bound refusal and static detour arrival.",
+      "behaviors": [
+        "NP.stationary-occupancy"
+      ],
+      "evidence": [
+        "NS10.stationary-native"
+      ],
+      "tests": [
+        "tests/native-occupancy-test.cpp",
+        "tests/test-native-occupancy.py"
+      ]
+    },
+    {
       "id": "campaign.fresh-ingress",
       "level": "live_observation",
       "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
@@ -17879,18 +17992,19 @@
       ]
     },
     {
-      "id": "world.stationary-blockers",
-      "level": "headless",
-      "scope": "Native opt-in logical occupancy for one mover and stationary same-profile blockers; native slot token projection, positive nonwrapping bounded boxes, cleanup/release and per-tick edge checks. No original world production/reservation or multiple moving creature equivalence. Three split/whole process continuations per build, late and intra-cell blockage, mode identity, overlap/bound refusal and static detour arrival.",
+      "id": "native-rendering.direct-gpu-replay",
+      "level": "preview",
+      "scope": "Synthetic complete bounded commands to shared-texture Qt presentation, normal/high-DPI and sanitizer pixel/lifetime checks; no live game.",
       "behaviors": [
-        "NP.stationary-occupancy"
+        "NR.gpu-presentation"
       ],
       "evidence": [
-        "NS10.stationary-native"
+        "NR.gpu-presentation.native",
+        "NR.gpu-presentation.native-v2"
       ],
       "tests": [
-        "tests/native-occupancy-test.cpp",
-        "tests/test-native-occupancy.py"
+        "tests/gpu-presentation-test.cpp",
+        "tools/test-gpu-presentation.py"
       ]
     },
     {
@@ -18048,7 +18162,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-cell-cleanup-source-index.json",
-    "sha256": "83ae6c361ff22385bf0f6f1892be123daf197f04fc62a0931945d406b5a72c91"
+    "path": "research/runtime/coverage/source-index-direct-gpu-commit-20261005.json",
+    "sha256": "444a372b5b849cd46c4112af25490b589cdec35a0fd53892d13e5953df42537c"
   }
 }

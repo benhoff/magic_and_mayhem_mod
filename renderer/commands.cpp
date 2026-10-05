@@ -92,8 +92,10 @@ std::vector<SurfaceCommand> decodeCommands(const QByteArray& data){
     }
     require(ended,"Missing command stream END");return commands;
 }
-CommandResult replayCommands(const std::vector<SurfaceCommand>& commands){
-    GlBlitter gl;std::map<unsigned,SurfaceId> handles;std::map<unsigned,unsigned> bits;CommandResult result;
+namespace {
+CommandResult replay(const std::vector<SurfaceCommand>& commands,GlBlitter& gl,const std::function<void(GpuFrame)>& present){
+    std::map<unsigned,SurfaceId> handles;std::map<unsigned,unsigned> bits;CommandResult result;
+    try {
     for(const auto& c:commands){const auto& w=c.words;
         switch(c.operation){
         case 1:handles.emplace(w[0],gl.create(c.image,c.format));bits.emplace(w[0],c.format.bits);break;
@@ -103,7 +105,10 @@ CommandResult replayCommands(const std::vector<SurfaceCommand>& commands){
         case 11:gl.swapContents(handles.at(w[0]),handles.at(w[1]));break;
         case 4:gl.setPalette(handles.at(w[0]),w[1],c.colors);break;
         case 5:require(encodeNative(gl.read(handles.at(w[0])),bits.at(w[0]))==c.expected,"Original native pixels disagree with command replay");++result.checks;break;
-        case 6:result.native=encodeNative(gl.read(handles.at(w[0])),bits.at(w[0]));result.presentation=gl.present(handles.at(w[0]));++result.presents;break;
+        case 6:
+            if(present)present(gl.presentGpu(handles.at(w[0])));
+            else {result.native=encodeNative(gl.read(handles.at(w[0])),bits.at(w[0]));result.presentation=gl.present(handles.at(w[0]));}
+            ++result.presents;break;
         case 7:gl.destroy(handles.at(w[0]));handles.erase(w[0]);bits.erase(w[0]);break;
         case 8:break;
         case 10:{const auto image=gl.present(handles.at(w[0]));
@@ -112,6 +117,16 @@ CommandResult replayCommands(const std::vector<SurfaceCommand>& commands){
         default:throw std::runtime_error("Unsupported replay command");
         }
     }
+    }catch(...){for(const auto& pair:handles)gl.destroy(pair.second);throw;}
     result.stats=gl.stats();result.driver=gl.driver();return result;
+}
+}
+CommandResult replayCommands(const std::vector<SurfaceCommand>& commands){
+    GlBlitter gl;return replay(commands,gl,{});
+}
+CommandResult replayCommandsGpu(const std::vector<SurfaceCommand>& commands,GlBlitter& renderer,
+                               const std::function<void(GpuFrame)>& present){
+    require(bool(present),"GPU replay requires a presentation callback");
+    return replay(commands,renderer,present);
 }
 }

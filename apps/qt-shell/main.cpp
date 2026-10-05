@@ -504,16 +504,31 @@ int main(int argc,char** argv){
             if(!file.open(QIODevice::ReadOnly) || file.size()>mnm::render::maxCommandBytes)
                 throw std::runtime_error("Cannot read bounded command stream");
             const auto commands=mnm::render::decodeCommands(file.read(mnm::render::maxCommandBytes+1));
-            const auto result=mnm::render::replayCommands(commands);
-            GlViewport viewport;viewport.setWindowTitle("Magic & Mayhem — captured command replay");
-            viewport.resize(640,480);viewport.setFrame(result.presentation);viewport.show();
+            GlViewport viewport;viewport.setWindowTitle("Magic & Mayhem — GPU command replay");
+            viewport.resize(640,480);viewport.show();
+            QImage expected;
+            if(parser.isSet("smoke-test"))expected=mnm::render::replayCommands(commands).presentation;
+            QTimer::singleShot(0,&viewport,[&]{
+                try {
+                    if(!viewport.ready())throw std::runtime_error("Viewport OpenGL context is unavailable");
+                    mnm::render::GlBlitter renderer(viewport.context());
+                    const auto result=mnm::render::replayCommandsGpu(commands,renderer,[&](auto frame){
+                        viewport.setGpuFrame(std::move(frame));viewport.repaint();
+                        if(!viewport.error().isEmpty())throw std::runtime_error(viewport.error().toStdString());
+                    });
+                    std::fprintf(stderr,"GPU replay: %u presentations, %llu native CHECK readbacks, %llu RGBA CHECK readbacks, %llu viewport uploads\n",
+                        result.presents,static_cast<unsigned long long>(result.stats.nativeReadbacks),
+                        static_cast<unsigned long long>(result.stats.rgbaReadbacks),
+                        static_cast<unsigned long long>(viewport.imageUploads()));
+                }catch(const std::exception& error){std::fprintf(stderr,"GPU replay failed: %s\n",error.what());app.exit(8);}
+            });
             if(parser.isSet("smoke-test"))QTimer::singleShot(500,&app,[&]{
-                if(!viewport.ready()){app.exit(6);return;}
-                const auto actual=viewport.grabFramebuffer();const auto& image=result.presentation;
+                if(!viewport.ready() || !viewport.error().isEmpty()){app.exit(6);return;}
+                const auto actual=viewport.grabFramebuffer();const auto& image=expected;
                 const auto scale=qMin(double(actual.width())/image.width(),double(actual.height())/image.height());
                 const int w=qRound(image.width()*scale),h=qRound(image.height()*scale);
                 const int left=(actual.width()-w)/2,top=actual.height()-h-(actual.height()-h)/2;
-                bool ok=true;
+                bool ok=viewport.imageUploads()==0;
                 for(int y=0;y<3;++y)for(int x=0;x<3;++x){
                     const int px=(2*x+1)*w/6,py=(2*y+1)*h/6;
                     const int ix=qMin(image.width()-1,int((px+0.5)*image.width()/w));
