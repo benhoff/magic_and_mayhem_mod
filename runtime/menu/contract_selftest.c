@@ -1,7 +1,8 @@
 #include "../shadow/win32_min.h"
 #include "menu_fixture_bytes.h"
 API int WIN MenuInstallForTest(void);
-typedef u32 (__attribute__((thiscall)) *TickFn)(void*);
+#define THIS __attribute__((thiscall))
+typedef u32 (THIS *TickFn)(void*);
 u32 saved_esp,callback_result,abi_failure;
 static u32 helper_count,helper_object;
 u32 invoke_action(u32,void*,u32);
@@ -28,11 +29,14 @@ static void check(u32 site,u32 action,u32 next,u32 returning){
     require(get(object+0x33)==next&&get(object+0x43)==returning,14);
     require(object[0xc]==1&&get(object+0xd)==0&&get(object+8)==1&&object[0x32]==0xa5&&object[0x47]==0xa5,15);
 }
+#include "channel_selftest.h"
+#include "battle_selftest.h"
 void start(void){
     u32 old;
     fixture_space[0]=1;
     require(VirtualProtect((void*)0x4a0000,0x260000,0x40,&old),1);
     copy((void*)0x4a75c0,main_callback,sizeof(main_callback));copy((void*)0x4a83a0,quick_callback,sizeof(quick_callback));
+    battle_fixture_init();
     // The real common helper depends on engine services. Substitute only it.
     u8 helper[]={0xff,0x05,0,0,0,0,0x89,0x0d,0,0,0,0,0xc6,0x41,0x0c,1,0xc7,0x41,0x0d,0,0,0,0,0xc3};
     put(helper+2,(u32)&helper_count);put(helper+8,(u32)&helper_object);copy((void*)0x557510,helper,sizeof(helper));
@@ -48,6 +52,7 @@ void start(void){
             SetLastError(0xabc123);require(MenuInstallForTest()&&GetLastError()==0xabc123,24);
             require(get((void*)0x5c63f4)!=0x5595d0&&get((void*)0x5c63f4)==get((void*)0x5c642c),25);
         }
+        *(u8*)0x6e2030=0;check(0x4a75c0,4,0,1);
         check(0x4a75c0,2,0x6e0020,0);check(0x4a75c0,0xffffffff,0,0);
         check(0x4a83a0,0,0x6de750,0);check(0x4a83a0,1,0x6a5018,0);
         check(0x4a83a0,2,0x658970,0);check(0x4a83a0,3,0,1);check(0x4a83a0,0xffffffff,0,0);
@@ -57,5 +62,6 @@ void start(void){
     for(u32 i=0;i<300;++i)require(observed_tick(object)==0x13579bdf&&GetLastError()==0xabc123,31);
     // Original code/slot checks reject repeat installation with no new writes.
     require(!MenuInstallForTest(),32);
+    if(battle_fixture_enabled())battle_fixture_tests(observed_tick);else channel_tests(observed_tick);
     ExitProcess(0);
 }

@@ -1,5 +1,11 @@
 # Main menu migration to a Qt widget: assessment
 
+## Subsequent live integration
+
+The bounded Main/Quick action bridge is now implemented separately; see
+[the contract and current validation](menu-action-bridge.md). The assessment
+below preserves the earlier standalone milestone and its original boundaries.
+
 ## Native widget milestone (2026-10-04)
 
 `apps/qt-shell/main_menu_widget.*` now implements the first bounded step below.

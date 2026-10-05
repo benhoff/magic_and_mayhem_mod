@@ -29,6 +29,8 @@ public:
     explicit SinglePlayerBattleWidget(QWidget* parent = nullptr);
     bool loadAssets(const QString& root, QString* error = nullptr);
     bool setSetup(const Setup& setup, QString* error = nullptr);
+    // Original defaults are clamped by the engine but need not lie on a step.
+    bool setEngineSetup(const Setup& setup,QString* error=nullptr);
     Setup setup() const;
     QRect contentRect() const;
     void focusFirstControl();
@@ -46,7 +48,7 @@ protected:
     void resizeEvent(QResizeEvent*) override;
 private:
     bool validSetup(const Setup&, const std::array<int,17>& minimum,
-                    const std::array<int,17>& maximum, const std::array<int,17>& step) const;
+                    const std::array<int,17>& maximum, const std::array<int,17>& step,bool requireStep=true) const;
     void populate();
     void start();
     void arrange();

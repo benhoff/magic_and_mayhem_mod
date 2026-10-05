@@ -12,7 +12,7 @@ REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
-def prepare():
+def prepare(actions=False):
     source=REPO/'working/game-nocd';data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:raise ValueError('Unsupported executable; refusing staging')
     dll=module('menu_build','tools/build-menu-observer.py').build()
@@ -29,16 +29,18 @@ def prepare():
     for start,end in exporter.CALLBACKS.values():
         at=exporter.image_offset(data,start,end-start)
         if patched[at:at+end-start]!=data[at:at+end-start]:raise ValueError('Callback code changed during staging')
-    metadata={'origin':'menu_observation_only','source_sha256':HASH,'staged_sha256':hashlib.sha256(patched).hexdigest(),
+    metadata={'origin':'menu_action_bridge' if actions else 'menu_observation_only','source_sha256':HASH,'staged_sha256':hashlib.sha256(patched).hexdigest(),
               'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'game_copy':str(game),'events':str(root/'events.bin'),
-              'preferences':edits,'scope':'Bounded callback/tick observation; original menu/drawing/actions retained',
+              'preferences':edits,'scope':'Bounded Main/Quick/Single Player/Map engine-thread action bridge; original menu logic/drawing retained' if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
     if hashlib.sha256((source/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Source executable changed')
     return root
 if __name__=='__main__':
-    argparse.ArgumentParser(description=__doc__).parse_args()
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--actions',action='store_true',help='Stage the opt-in bounded menu action bridge')
+    args=parser.parse_args()
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    try:print(f'Evidence directory: {prepare()}',flush=True)
+    try:print(f'Evidence directory: {prepare(args.actions)}',flush=True)
     finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

@@ -529,6 +529,27 @@ motion action/consumption in an isolated i386 process with controlled callbacks
 and verifies the immutable manifest before/after. See
 [fine-motion evidence](../research/runtime/native-creature-fine-motion.md).
 
+### Live Single Player setup
+
+Build `mnm-qt-shell`, `menu-battle-bridge-test` and `single-player-battle-test`
+from `apps/qt-shell`. `qt-menu-battle-bridge` checks V2 state/payload snapshots,
+Windows-1252 names, malformed bounds and whole settings requests. The setup
+widget check also preserves off-step original defaults without snapping.
+`./tools/test-menu-observer.py --battle` executes selected original PE32 setup,
+rule setter/callback and map list/button bytecode with engine display/loading
+services stubbed, including whole-transaction rejection and removed players'
+missing slider guards. Keep this distinct from live validation.
+
+`./tools/test-live-menus.py --battle direct` exercises the real Qt buttons and
+engine snapshots, chooses explicit disposable test settings to take direct
+battle loading, captures the original viewport, and uses isolated XTest input to exit through
+the original result Quit and require a Main/Quick tick. `--battle spells` preserves
+original item/talisman defaults to validate original spell-selection handoff.
+Both use isolated Xvfb and Wine prefixes, bounded 90-second game runs and
+original manifest checks before/after. Inspect captures before claiming actual
+battle or spell-selection presentation. See
+[contracts/evidence](../research/runtime/single-player-menu-bridge.md).
+
 ### Native planar segment continuity
 
 Build and run `ctest` from `game/` as documented in [game/README.md](../game/README.md).

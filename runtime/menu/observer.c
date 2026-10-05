@@ -1,4 +1,4 @@
-/* Pinned PE32 observation only: never issues menu actions or changes screen state. */
+/* Pinned PE32 forwarding observation, with an independently opt-in menu adapter. */
 #include "../shadow/win32_min.h"
 API u32 WIN GetCurrentThreadId(void);
 #define THIS __attribute__((thiscall))
@@ -9,8 +9,8 @@ static TickFn original_tick;
 static HANDLE log_file;
 static volatile u32 log_busy;
 static u32 sequence;
-static u32 last_state[2][9];
-static int have_state[2];
+static u32 last_state[4][9];
+static int have_state[4];
 static u32 get(const void* p){const u8* b=p;return b[0]|((u32)b[1]<<8)|((u32)b[2]<<16)|((u32)b[3]<<24);}
 static void put(void* p,u32 v){u8* b=p;b[0]=v;b[1]=v>>8;b[2]=v>>16;b[3]=v>>24;}
 static void copy(void* out,const void* in,u32 n){u8* d=out;const u8* s=in;while(n--)*d++=*s++;}
@@ -35,7 +35,7 @@ static void record(u32 event,void* object,u32 argument,u32 result){
         if(event==1||event==4){
             const u32 indices[9]={3,4,5,6,7,8,11,12,14};u32 key[9];
             for(u32 i=0;i<9;++i)key[i]=values[indices[i]];
-            u32 slot=values[3]==3?0:1;
+            u32 slot=values[3]==3?0:values[3]==22?1:values[3]==14?2:3;
             if(have_state[slot]&&equal(key,last_state[slot],sizeof(key))){--sequence;__sync_lock_release(&log_busy);SetLastError(error);return;}
             copy(last_state[slot],key,sizeof(key));have_state[slot]=1;
         }
@@ -50,8 +50,11 @@ static u32 THIS main_action(void* object,u32 action){
 static u32 THIS quick_action(void* object,u32 action){
     record(2,object,action,0);u32 result=original_quick(object,action);record(3,object,action,result);return result;
 }
+static u32 THIS main_action(void*,u32);
+static u32 THIS quick_action(void*,u32);
+#include "channel.h"
 static u32 THIS tick(void* object){
-    record(1,object,0,0);u32 result=original_tick(object);record(4,object,0,result);return result;
+    record(1,object,0,0);menu_poll(object,1);u32 result=original_tick(object);menu_poll(object,0);record(4,object,0,result);return result;
 }
 static void* trampoline(u32 site,u32 length,int relative_call){
     u8* out=VirtualAlloc(0,length+5,0x3000,0x40);if(!out)return 0;
@@ -62,6 +65,20 @@ static void* trampoline(u32 site,u32 length,int relative_call){
 }
 static void jump(u32 site,u32 target,u32 length){
     u8* p=(u8*)site;p[0]=0xe9;put(p+1,target-site-5);for(u32 i=5;i<length;++i)p[i]=0x90;
+}
+static int install_battle(void){
+    // Additional slots are touched only for the separate V2 contract.
+    const u8 setup_bytes[8]={0x56,0x8b,0xf1,0xe8,0x68,0x9e,0x0a,0x00};
+    const u8 map_bytes[9]={0x56,0x57,0x8b,0xf1,0xe8,0x17,0xb9,0x09,0x00};
+    if(!readable((void*)0x5c6544,4)||!readable((void*)0x5c6950,4)||
+       get((void*)0x5c6544)!=0x5595d0||get((void*)0x5c6950)!=0x5595d0||
+       !readable((void*)0x4ad6a0,8)||!equal((void*)0x4ad6a0,setup_bytes,8)||
+       !readable((void*)0x4bbbf0,9)||!equal((void*)0x4bbbf0,map_bytes,9))return 0;
+    u32 a,b,unused;
+    if(!VirtualProtect((void*)0x5c6544,4,0x40,&a))return 0;
+    if(!VirtualProtect((void*)0x5c6950,4,0x40,&b)){VirtualProtect((void*)0x5c6544,4,a,&unused);return 0;}
+    put((void*)0x5c6544,(u32)&tick);put((void*)0x5c6950,(u32)&tick);
+    VirtualProtect((void*)0x5c6950,4,b,&unused);VirtualProtect((void*)0x5c6544,4,a,&unused);return 1;
 }
 static int install(void){
     const u8 main_bytes[7]={0x51,0x53,0x55,0x56,0x57,0x8b,0xf9};
@@ -93,6 +110,8 @@ static int install(void){
     }
     if(log_file){
         original_tick=(TickFn)0x5595d0;
+        menu_init();
+        if(menu_version==2&&!install_battle())menu_retired=1;
         jump(0x4a75c0,(u32)&main_action,7);jump(0x4a83a0,(u32)&quick_action,8);
         put((void*)0x5c63f4,(u32)&tick);put((void*)0x5c642c,(u32)&tick);
         FlushInstructionCache(GetCurrentProcess(),(void*)0x4a75c0,7);
@@ -111,5 +130,5 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
 #ifndef MNM_MENU_SELFTEST
     if(reason==1){u32 error=GetLastError();install();SetLastError(error);}
 #endif
-    if(reason==0&&log_file)CloseHandle(log_file);return 1;
+    if(reason==0){if(log_file)CloseHandle(log_file);if(menu_words)UnmapViewOfFile(menu_words);}return 1;
 }
