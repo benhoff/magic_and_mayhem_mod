@@ -85,3 +85,8 @@ Selected single-block edge classification and occurrence admission now have
 [offline native/original helper comparisons](../runtime/terrain-region-selection.md).
 Random counts are admission maxima rather than selection weights; this does not
 claim whole-generator or CFG-parser equivalence.
+
+Descriptor expansion for all installed block shapes, internal connector pairs
+and counter progression now have
+[offline native/original comparisons](../runtime/terrain-region-constraints.md).
+Connector threshold initialization and whole-region generation remain separate.
