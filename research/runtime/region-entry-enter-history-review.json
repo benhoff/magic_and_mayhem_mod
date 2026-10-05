@@ -1,0 +1,631 @@
+{
+  "schema": 1,
+  "range": "25b06af..85614712fa6e14e81fec0b704c66caf3ecb878b4",
+  "scope": "Exact committed parent/current file receipts only; no retrospective gate pass or new execution validation",
+  "commits": [
+    {
+      "commit": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "parent": "25b06aff4333bd9060ea9a289c3eb448686989ac",
+      "files": [
+        {
+          "path": "apps/world-sandbox/frozen_navigation.cpp",
+          "before_sha256": "a0f843077db161aca4b8e7b07e7187a93a1cc21744e16324271939f2933b26a9",
+          "after_sha256": "50d0e1c2b2d5fb9a6bbc54b429db4a575b9a18b7cd90875c7fd32c4329e180b2",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "apps/world-sandbox/frozen_navigation.hpp",
+          "before_sha256": "02e88b5aae824a4ea0d9b6edc1ad9a47da791934c73a2a16ef26829a2cb464dd",
+          "after_sha256": "d2ee8416faf373418ad2455295fff82c793fd17718410bd634b3acf6ecdcaa59",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "apps/world-sandbox/main.cpp",
+          "before_sha256": "1cbf7cbf14b2a2b9dfe3166fdb390466820e59f9acdf1c7e861037d262f381c1",
+          "after_sha256": "5af74c9ef3293a3f2f877317b90af3f0e39cbafc2916c62526c045c894326030",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "game/CMakeLists.txt",
+          "before_sha256": "8364e2f0ac1a13abce82906609757d8f124969ffed812bea16b9f100a8448b65",
+          "after_sha256": "f435b02dba909970d6b94571393437eba838feadaddfa9cf51a35c02989c9fa4",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "game/README.md",
+          "before_sha256": "f609a641a34c3cf37944a7f43d19152c497df7a2ad64815ae946ebac2f77cc9b",
+          "after_sha256": "6001417e565170fcf346df423e018a48562c070c43df93f129b62e53622ceefb",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "game/simulation/movement.cpp",
+          "before_sha256": "c88bf769710493fbf5d25d451e61f7a3a777b2d781f74d475b42005216802f8f",
+          "after_sha256": "56e051eef1017b39f768b0ef238238753f129cbe52c2adb89c93fbd01398caa9",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "game/simulation/movement.hpp",
+          "before_sha256": "8f55899d5404586dc7d065133e151aa2af7dd6e5d3a46108b7e8116cf1bab7fc",
+          "after_sha256": "47f40135b8126bc2d855a7d5b1e8681599f1e2e33274833825b355fc48b220cf",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "game/simulation/occupancy.cpp",
+          "before_sha256": "8b6a33e6a60e0d80e54d94cd206b59c36ce1d107c1def639a184ff381807e82f",
+          "after_sha256": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "game/simulation/occupancy.hpp",
+          "before_sha256": "4b94b25903e85b0955fb1522019ba48ba0768a4335a226ddc437b8996518b42c",
+          "after_sha256": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "game/simulation/world.hpp",
+          "before_sha256": "1b228d4967876541f0d762679d37bb1a3ee2021410a3942d3ae732b62ced6864",
+          "after_sha256": "cc2804653b232dbd1e029e10929cf2c683a36fff7c695f68c00571051342669e",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "a0b088fb4c55f84b9d211af60c356f12d75953e554e81c6de4c334c795e38533",
+          "after_sha256": "b507a58db57bc101bcdab1171e286441133d387c85dca212f06ea968c653e3ec",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "40f7f784b2946a451ce12f0d1c6e3d6786980044fa28ae1f4bc6b8c464e7693a",
+          "after_sha256": "e944b9b2faaada3cf53b6330b296d67ce2522eb0dcd1358cd4a2d17292fb8ba0",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-multi-movement.json",
+          "before_sha256": null,
+          "after_sha256": "5b1ed8ad7381a039a968867f04dc944dec9dff3e177eea24639ae2b01b88a426",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "46212957992b0567c334d50de4bfdcf6b135d47396c77fdfd0b1969a38004bb1",
+          "after_sha256": "2e0336c896f7746da587c90e0f45976d504b94038637bf4d883c3a3b1309a167",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/native-multi-creature-movement-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "90d4df36fa6523db3b81d11c942b16a1171c0d968f46f4ab144d9836fee4ccfa",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/native-multi-creature-movement.json",
+          "before_sha256": null,
+          "after_sha256": "43b03ce2296a4272228e9383cfa040d81446a796cbc2d38e45bdb7647bfaff3b",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "research/runtime/native-multi-creature-movement.md",
+          "before_sha256": null,
+          "after_sha256": "c697b522211c73089e0c0220e1bf674a0b57bc1c2189a808c287d0c12e2ab6ee",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "tests/README.md",
+          "before_sha256": "68961b23425d8efba8bb4d5a5b0831b85d414a94a017feb21ef6dd7fb2c571d1",
+          "after_sha256": "c2cdbcaf11170753824ed17a232d1ede7381bf85b25b5383f807440a648694cd",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "tests/native-multi-movement-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "ced74a39cebd2a6f6b4370a515bbf55de1a6c6e4a4b1e02d1bce3a1bc67dc8d9",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        },
+        {
+          "path": "tests/test-native-multi-movement.py",
+          "before_sha256": null,
+          "after_sha256": "d822fdf8f62a9b7cdf713ba8992df47bdc93213f80cd2167d86a99d37c471bb1",
+          "receipts": [
+            "NS11.multi-movement-exact-staged"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "41380db87019c954933de98f2435585f5b7fca05",
+      "parent": "8d2f8b5d873322c4571a999d3ad07994c2f41661",
+      "files": [
+        {
+          "path": "reconstruction/rendering/effect_transition.cpp",
+          "before_sha256": "9aab83bdaafd76e203431a73ee4a7fa546fb556f7f7675186512d859b45607ae",
+          "after_sha256": "2907d8a1ed6f691d94c0b1b8911c180022ad2a7481dd73ef5137592bc21d1117",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_transition.hpp",
+          "before_sha256": "292938bdc5c16e762716279a3f22d87c1a1635facd2fb26afebecdf08024ad8e",
+          "after_sha256": "92945eb0c66a5c86277ddb02a3273f8044c4567baf09c0955f1ddd1d44c3122f",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "b507a58db57bc101bcdab1171e286441133d387c85dca212f06ea968c653e3ec",
+          "after_sha256": "aa71cce1dcd657121e15a6d5b43d4338d2ba823b46e409627f2cf0b0b446bfef",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "e944b9b2faaada3cf53b6330b296d67ce2522eb0dcd1358cd4a2d17292fb8ba0",
+          "after_sha256": "abd5b5d90fbc0473060e1102509be059acb1fd2704fd95750b219955dd1f1fd4",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "2e0336c896f7746da587c90e0f45976d504b94038637bf4d883c3a3b1309a167",
+          "after_sha256": "392a094e7cdae292840923c7753bfa55ae071566b26dcc4da835a5a9b8703e27",
+          "receipts": [
+            "effect-membership-summary-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-blocked-destinations-coverage.json",
+          "before_sha256": "ed39f90639c48708e235d02cce8bae8c64de4b65d25b8ab1a41730f00e6ff06c",
+          "after_sha256": "3f7cb05ccb725e8d0b89f1f92bf42a20acd3c64cad9a64591580170b06c3df92",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-cleanup-coverage.json",
+          "before_sha256": "201a2639db6f9a68354056ea245af6529653bfb153402877c73e59b2309addd7",
+          "after_sha256": "a54f1637a8747a5771bebf6268c260a6408cd605d4165ab1e7716ee267173892",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-transitions-coverage.json",
+          "before_sha256": "a3b6b873966591a545bcd1f2439a229d077d5c50ccefd86de90a81c70fb6b998",
+          "after_sha256": "403071e05c7be62352029b2b2873f6c206eeb126f7ec6ae0a308590a06a0251c",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-height-exits-coverage.json",
+          "before_sha256": "d7fcb09331a783033ec346217610dbcdf40f68f1ec0a6dcb6de2148bf42a4326",
+          "after_sha256": "f18cb15fe35b8cca5411dc2f29b8a57bfaafc6001464fcfda58a65032b3ea841",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-membership-disabled-coverage.json",
+          "before_sha256": null,
+          "after_sha256": "7c4e0565007c4ba6ee3604cb8616c300756ce91e87a7c349acb51dbcb2001f4c",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-membership-disabled-source-index.json",
+          "before_sha256": null,
+          "after_sha256": "fe5962ef3e2641e269e494af5bf8980ac9c612d0216b6082b0dde6640d3f63a6",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-membership-disabled.json",
+          "before_sha256": null,
+          "after_sha256": "26f7fbc29e01c936d123ed56de33374c333a8ec397ded59a357836a088fa1832",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-membership-disabled.md",
+          "before_sha256": null,
+          "after_sha256": "3bcd6ff0f21de0eb49321c971f3c464656fcafe24c4dac8ece9e197792c074c5",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-same-cell-projection-coverage.json",
+          "before_sha256": "b189df2872513eab56bbf0075336d6e82b104d5b177b3c4ff5d029a6f6338638",
+          "after_sha256": "d11e402e9713451be795c31e0996c898dd82939776b0c6dc1a387dc34f0487a6",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-trajectory-coverage.json",
+          "before_sha256": "9f8ff4155c60381dbf1b09e147f04ccb2dc8f70ffb135d22e3edbc89eacc8203",
+          "after_sha256": "9235ff21766cfe88b811b299f80b77233c8c7caeaf0ed0236ac362be016b2cb3",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "tests/effect-membership-reference.cpp",
+          "before_sha256": null,
+          "after_sha256": "39270864aa875ce07d2ce32e083f1c0cc100941fafc537fc93b1df81b2575bc6",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "tests/effect-transition-test.cpp",
+          "before_sha256": "967401af9c85d39bb4b304bad5c837b84436e6ffd5836f2bf0cd93be2d90a527",
+          "after_sha256": "a8f5ad6ebb462d1dd6c6a67d52d0c17c3e96418eef2cbd322e533972834f56a0",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        },
+        {
+          "path": "tools/test-effect-transition.py",
+          "before_sha256": "0f59356ec4e313ffca96d68ff630847f0de4461d365551477000a10779b145a4",
+          "after_sha256": "b25d071a8f695d99fcd42f30f68b45627c38475fc29905ad0d470f5754f142da",
+          "receipts": [
+            "effect-membership-recorded-8d2f8b5"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "parent": "41380db87019c954933de98f2435585f5b7fca05",
+      "files": [
+        {
+          "path": "apps/world-sandbox/main.cpp",
+          "before_sha256": "5af74c9ef3293a3f2f877317b90af3f0e39cbafc2916c62526c045c894326030",
+          "after_sha256": "d1e3b0fc4841f0c13b1281dfdc5fcda0d97f1e0f45aca1bb5c040346ed600e43",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "apps/world-scene/README.md",
+          "before_sha256": "c6f15d869363241fa5bcca3f277e7e3d13cae57745d97aa731933ad510df2c3b",
+          "after_sha256": "454b300288f669b07dce94c95364237009a2be7ca3381e64438b4786f535d62a",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "apps/world-scene/main.cpp",
+          "before_sha256": "1cf1829df5542482b72ab5e969f8619c8f957274c2ec972db6b009ae60bb4544",
+          "after_sha256": "67c0270359768ac915a19302becb89df2a6bae5b008c880d1e6c178db564a0a0",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "apps/world-scene/scene.cpp",
+          "before_sha256": "2f794d060f6a10959cb667cbe8913935e0d7894863dc2e96fbd049ebf6ffa8e9",
+          "after_sha256": "af1a60229a4d459f81d4f42f31db833b58819f835bfdb01ff8b59a5d467baa28",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "apps/world-scene/scene.hpp",
+          "before_sha256": "bc158f1d5570dbb944773b1cbfba3327c15387c2243e700aa0b4d68f096ceada",
+          "after_sha256": "e4b485295070758f8acdbaf7911c9db4b5f5557c75c16d5440388f5963865ccf",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "game/README.md",
+          "before_sha256": "6001417e565170fcf346df423e018a48562c070c43df93f129b62e53622ceefb",
+          "after_sha256": "a641c4202b7481884e5e09022b014ed94177a2e84e8de60b170ea04076a3a5ec",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "aa71cce1dcd657121e15a6d5b43d4338d2ba823b46e409627f2cf0b0b446bfef",
+          "after_sha256": "f0d4c914e6cfb67f5a9cff59f8d62fe8a02cbfaae38192461784c871beb921f4",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "abd5b5d90fbc0473060e1102509be059acb1fd2704fd95750b219955dd1f1fd4",
+          "after_sha256": "fcf27460581e74418b4ce3267da1e93be4fafdb39726a644490d12809f8d85a7",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-multi-world-scene.json",
+          "before_sha256": null,
+          "after_sha256": "27d37eb5be44f97131eaf34c22a8bf30feadf2d6df5ccac0acef267cad421526",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "392a094e7cdae292840923c7753bfa55ae071566b26dcc4da835a5a9b8703e27",
+          "after_sha256": "b344a014433c7539006220e81d52cb6e216b4c10999e0294c827d2b74cb04493",
+          "receipts": [
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "research/runtime/native-multi-world-scene-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "2b17cdd7b583195b21ecbbe4d8dfd8167c1286846d9ff4716112ee3968a7afab",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "research/runtime/native-multi-world-scene.json",
+          "before_sha256": null,
+          "after_sha256": "008c229c9ad74d3a9fc2d0dee5b4e94112e1be01c5f9fe5c74ded4541b620052",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "research/runtime/native-multi-world-scene.md",
+          "before_sha256": null,
+          "after_sha256": "5911bd8845adbc5c5df4ca1123046a510aa92d4499592d1e08c947fcc8f9ef12",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "tests/README.md",
+          "before_sha256": "c2cdbcaf11170753824ed17a232d1ede7381bf85b25b5383f807440a648694cd",
+          "after_sha256": "0364a3e254dfe42452286d73d1b1587108536072bd2fc83ad031aa206db38b18",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "tests/world-scene-test.cpp",
+          "before_sha256": "aa7d3fb18048f80c3af6d8b110cc801a308f48effdf1af02d8bed13f7885913c",
+          "after_sha256": "0ca92707df72ca8029d8a201220901630011f2f6589fbf474d2fc81e58abdd44",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        },
+        {
+          "path": "tools/test-multi-world-scene.py",
+          "before_sha256": null,
+          "after_sha256": "e8ef1ff58984f1a07499119f763b3ade5bb3e6db11fa9654228dcb88a3067c43",
+          "receipts": [
+            "NS12.multi-scene-exact-staged",
+            "NS12.multi-scene-exact-isolated-checkout"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "parent": "66834490516e026a31968fccdae7e21bfc26b213",
+      "files": [
+        {
+          "path": "reconstruction/rendering/effect_transition.cpp",
+          "before_sha256": "2907d8a1ed6f691d94c0b1b8911c180022ad2a7481dd73ef5137592bc21d1117",
+          "after_sha256": "86f2b270a29363f834c4405eb4db4dd5d3de06d00dae1c3ea27196b9ba77449f",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_transition.hpp",
+          "before_sha256": "92945eb0c66a5c86277ddb02a3273f8044c4567baf09c0955f1ddd1d44c3122f",
+          "after_sha256": "712a7d70c06c6f61cb55d76875518a0559b2e29d006f7458c5908c0afc083961",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "f0d4c914e6cfb67f5a9cff59f8d62fe8a02cbfaae38192461784c871beb921f4",
+          "after_sha256": "4aa62fa214bc5c6690b36df2a540439e32cb09b98a0618d6d86cfb757b5e3ed2",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "fcf27460581e74418b4ce3267da1e93be4fafdb39726a644490d12809f8d85a7",
+          "after_sha256": "09c546ec5fb99abf8cb4a6179fe57aff7b016dd65d5436cf63c0d8bcf98c7fad",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "b344a014433c7539006220e81d52cb6e216b4c10999e0294c827d2b74cb04493",
+          "after_sha256": "c3f136ad77657afb150a272f56da5ec8bdb8405ab2e67e30a7db1f733c7d78cc",
+          "receipts": [
+            "effect-occupancy-summary-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-blocked-destinations-coverage.json",
+          "before_sha256": "3f7cb05ccb725e8d0b89f1f92bf42a20acd3c64cad9a64591580170b06c3df92",
+          "after_sha256": "870be44d6e400c5d2a174d60990c0b8f123859a5dd2659fd51aa0b87d6f574dd",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-cleanup-coverage.json",
+          "before_sha256": "a54f1637a8747a5771bebf6268c260a6408cd605d4165ab1e7716ee267173892",
+          "after_sha256": "e1dc2f2176ee23d68db657f16fcfd7a3f7531a2d92fddddebc85d54d86e99344",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-transitions-coverage.json",
+          "before_sha256": "403071e05c7be62352029b2b2873f6c206eeb126f7ec6ae0a308590a06a0251c",
+          "after_sha256": "a96b0eba3adb463f5a4e4e89464d125a6eb6db83856d087e3fcab4eab709b6cc",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-height-exits-coverage.json",
+          "before_sha256": "f18cb15fe35b8cca5411dc2f29b8a57bfaafc6001464fcfda58a65032b3ea841",
+          "after_sha256": "bbdc6c90fe2d8dbdd4e4c8e82383a8089484d621410c3a17f06ab51f601ad62b",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-membership-disabled-coverage.json",
+          "before_sha256": "7c4e0565007c4ba6ee3604cb8616c300756ce91e87a7c349acb51dbcb2001f4c",
+          "after_sha256": "51db32e20198d9c7207980386b38ae186ec643a25c7fcb395e6ee91f86eebdcd",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-same-cell-projection-coverage.json",
+          "before_sha256": "d11e402e9713451be795c31e0996c898dd82939776b0c6dc1a387dc34f0487a6",
+          "after_sha256": "892ca3d8e55c827f439705658b18a08c85c99cdea301cd7a0bfe574bf58655e5",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+          "before_sha256": null,
+          "after_sha256": "bb632fb424dd8b1b9cf7cc3feda43983ed46f6d2e23893535a41bc57b2a7b43f",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-terrain-occupancy-source-index.json",
+          "before_sha256": null,
+          "after_sha256": "4e2392268e2430aa1fff4c51c1c9a461213e510a8872a352128a94eadb04586d",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-terrain-occupancy.json",
+          "before_sha256": null,
+          "after_sha256": "469f00f1d4c3e8b6d75fef571ee2904b73e808e455dc73f8b6bddab11813265d",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-terrain-occupancy.md",
+          "before_sha256": null,
+          "after_sha256": "79793ab69066b97c74e7e6414f4b35e66c68e64b89d6aad49228cc665f33728b",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-trajectory-coverage.json",
+          "before_sha256": "9235ff21766cfe88b811b299f80b77233c8c7caeaf0ed0236ac362be016b2cb3",
+          "after_sha256": "691e18085d2a1a3be849fc9f314966cc545bb31ba21bdb1ffd3569dbb2110369",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "tests/effect-occupancy-reference.cpp",
+          "before_sha256": null,
+          "after_sha256": "d184dbcd55cbe5f51b40ab1666a7631870b23c884d5ba5303d12cca1e63202d2",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "tests/effect-transition-test.cpp",
+          "before_sha256": "a8f5ad6ebb462d1dd6c6a67d52d0c17c3e96418eef2cbd322e533972834f56a0",
+          "after_sha256": "edc4ba591d5c55c37dc849698be607ce4fac2887435f88b35a53bfd9e3a167c9",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        },
+        {
+          "path": "tools/test-effect-transition.py",
+          "before_sha256": "b25d071a8f695d99fcd42f30f68b45627c38475fc29905ad0d470f5754f142da",
+          "after_sha256": "714e7fb4e10b81de9607e5075ac432f0534863c92044777fbdee4173a3cb6e40",
+          "receipts": [
+            "effect-occupancy-recorded-6683449"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved": []
+}

@@ -34,7 +34,7 @@ public:
     Region region() const { return region_; }
     QRect contentRect() const;
     void focusFirstControl();
-    void setControlAvailability(quint32 difficulties,bool cancel);
+    void setControlAvailability(quint32 difficulties,bool cancel,bool enter=false);
     bool setDifficulty(Difficulty difficulty);
 signals:
     void enterRequested(const RegionEntryWidget::Request& request);

@@ -113,9 +113,9 @@ void RegionEntryWidget::populate() {
     enter_->setEnabled(!region_.id.isEmpty() && region_.enterAvailable);
     for (int i=0;i<3;++i) auxiliary_[i]->setEnabled(!region_.id.isEmpty() && region_.auxiliaryAvailable[i]);
 }
-void RegionEntryWidget::setControlAvailability(quint32 difficulties,bool cancel){
+void RegionEntryWidget::setControlAvailability(quint32 difficulties,bool cancel,bool enter){
     for(int i=0;i<4;++i)radios_[i]->setEnabled(difficulties&(1u<<i));
-    cancel_->setEnabled(cancel);
+    cancel_->setEnabled(cancel);region_.enterAvailable=enter;enter_->setEnabled(enter&&!region_.id.isEmpty());
 }
 bool RegionEntryWidget::setDifficulty(Difficulty difficulty){
     const int value=int(difficulty);if(value<0||value>3)return false;

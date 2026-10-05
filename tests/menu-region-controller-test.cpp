@@ -17,6 +17,8 @@ int main(int argc,char** argv){
  s.region.available=3;s.region.actions=0;require(controller.present(s)&&!radio->isEnabled());QKeyEvent escape(QEvent::KeyPress,Qt::Key_Escape,Qt::NoModifier);QApplication::sendEvent(&widget,&escape);require(cancelled==0);
  require(!widget.setDifficulty(RegionEntryWidget::Difficulty(4))&&int(widget.region().difficulty)==3);
  s.screen=3;require(controller.present(s));s.screen=18;s.region.difficulty=1;require(controller.present(s)&&int(widget.region().difficulty)==1&&changed==1);
+ s.region.actions=3;require(controller.present(s)&&widget.findChild<QPushButton*>("regionEntryEnter")->isEnabled());
+ s.region.actions=1;require(controller.present(s)&&!widget.findChild<QPushButton*>("regionEntryEnter")->isEnabled());
  s.screen=3;require(controller.present(s));s.screen=18;s.region.caller=22;QString error;require(!controller.present(s,&error)&&!error.isEmpty());
  std::puts("Region controller checks passed");
 }

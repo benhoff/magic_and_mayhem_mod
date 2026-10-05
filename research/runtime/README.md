@@ -170,3 +170,5 @@ confidence, and whether it remains stable across launches.
 - [Region Entry engine contract and return observation](region-entry-engine-contract.md): caller-dependent actions, difficulty controls and fresh Cancel to Main; Qt bridge and battle start pending.
 
 - [Region Entry engine bridge](region-entry-engine-bridge.md): Qt New Game, original difficulty selection and fresh Cancel to Main; battle launch pending.
+
+- [Fresh Region Entry Enter bridge](region-entry-enter-engine-bridge.md): Qt Enter to original gameplay, bounded automated evidence; campaign return pending.

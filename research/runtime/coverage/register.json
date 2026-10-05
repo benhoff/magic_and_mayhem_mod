@@ -11002,11 +11002,12 @@
       "subsystem": "campaign",
       "kind": "native_policy",
       "title": "Fresh Region Entry command restrictions and semantic Qt projection",
-      "scope": "Intentional current Celtic region 1/Realm caller restriction; no Enter/auxiliary commands; silent engine projection, queued draft/Cancel and window-close Cancel/Quit",
+      "scope": "Intentional fresh Celtic region 1/Realm caller restriction; Enter only for player/opponent admission, semantic queued difficulty/Enter/Cancel, original viewport handoff; auxiliary/loaded callers unsupported",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/region-entry-engine-bridge.md"
+        "research/runtime/region-entry-engine-bridge.md",
+        "research/runtime/region-entry-enter-engine-bridge.md"
       ],
       "implementation": [
         "protocols/include/mnm/menu_v7.h",
@@ -11024,7 +11025,10 @@
         "apps/qt-shell/live_region_entry_controller.cpp",
         "apps/qt-shell/live_region_entry_controller.hpp",
         "apps/qt-shell/region_entry_widget.cpp",
-        "apps/qt-shell/region_entry_widget.hpp"
+        "apps/qt-shell/region_entry_widget.hpp",
+        "protocols/include/mnm/menu_v8.h",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/export-campaign-handoff-support.py"
       ],
       "tests": [
         "tests/region-entry-bridge-reference.c",
@@ -11036,12 +11040,19 @@
         "apps/qt-shell/live_menu_test.hpp",
         "tools/test-live-region-entry.py",
         "tools/test-menu-observer.py",
-        "tools/test-campaign-observer.py"
+        "tools/test-campaign-observer.py",
+        "apps/qt-shell/live_region_enter_test.cpp",
+        "tests/campaign-observer-test.c",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-live-region-enter.py"
       ],
       "evidence": [
         "UI29.fixture",
         "UI29.qt",
-        "UI29.live"
+        "UI29.live",
+        "UI30.fixture",
+        "UI30.qt",
+        "UI30.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -11227,6 +11238,154 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.region-entry-enter",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Fresh Region Entry Enter to original campaign gameplay",
+      "scope": "Guarded caller 4/Celtic region 1; original callback, difficulty commit and opponent-admission branch; original loading observed through three gameplay ticks; other admission branches remain recovered separately, not exposed",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4928544,
+          "scope": "Fresh Enter callback only"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5566144,
+          "scope": "Player/opponent in region 1 admission branch only"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5574864,
+          "scope": "Static handoff prefix plus live destination observation, not complete loading recovery"
+        }
+      ],
+      "documents": [
+        "research/runtime/region-entry-enter-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v7.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/region_entry_widget.hpp",
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/live_region_entry_controller.hpp",
+        "apps/qt-shell/live_region_entry_controller.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "protocols/include/mnm/menu_v8.h",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "tools/export-campaign-handoff-support.py"
+      ],
+      "tests": [
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "tests/menu-region-bridge-test.cpp",
+        "tests/menu-region-controller-test.cpp",
+        "tests/region-entry-bridge-reference.c",
+        "tools/test-region-entry-bridge.py",
+        "apps/qt-shell/live_region_enter_test.cpp",
+        "tests/campaign-observer-test.c",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-live-region-enter.py",
+        "tools/test-campaign-observer.py",
+        "tools/test-live-region-entry.py"
+      ],
+      "evidence": [
+        "UI30.fixture",
+        "UI30.qt",
+        "UI30.diagnostic",
+        "UI30.original-live",
+        "UI30.live",
+        "UI30.static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.campaign-world-handoff-observation",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original World tick forwarding and campaign handoff observation",
+      "scope": "Pinned first-eight-byte/slot guard and bounded first three original World tick pairs; V8 heartbeat forwarding while original simulation owns viewport",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Selected entry guard and original tick forwarding; no World simulation recovery"
+        }
+      ],
+      "documents": [
+        "research/runtime/region-entry-enter-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v7.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/region_entry_widget.hpp",
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/live_region_entry_controller.hpp",
+        "apps/qt-shell/live_region_entry_controller.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "protocols/include/mnm/menu_v8.h",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "tools/export-campaign-handoff-support.py"
+      ],
+      "tests": [
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "tests/menu-region-bridge-test.cpp",
+        "tests/menu-region-controller-test.cpp",
+        "tests/region-entry-bridge-reference.c",
+        "tools/test-region-entry-bridge.py",
+        "apps/qt-shell/live_region_enter_test.cpp",
+        "tests/campaign-observer-test.c",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-live-region-enter.py",
+        "tools/test-campaign-observer.py",
+        "tools/test-live-region-entry.py"
+      ],
+      "evidence": [
+        "UI30.fixture",
+        "UI30.qt",
+        "UI30.diagnostic",
+        "UI30.original-live",
+        "UI30.live",
+        "UI30.static"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -17967,6 +18126,142 @@
           "equals": 86639360
         }
       ]
+    },
+    {
+      "id": "UI30.fixture",
+      "kind": "isolated_original",
+      "scope": "Original guarded Enter/admission battle request plus four radio selections and Cancel callback in private PE32 fixture, engine-thread generation/readiness/one-shot guards and guarded fresh-caller snapshots; tick and transition dependencies synthetic; no native equivalence or live integration",
+      "record": "research/runtime/region-entry-enter-engine-bridge.json",
+      "sha256": "a4b61b716a27a2b35cb7fac725ca4c4556149f65f821d27e93fd2b9f57b86de7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/enter_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI30.qt",
+      "kind": "native_integration",
+      "scope": "Six targeted Qt V8 Enter, V7 compatibility, Region Entry controller/widget, V1 and V6 Preferences checks; no engine equivalence",
+      "record": "research/runtime/region-entry-enter-engine-bridge.json",
+      "sha256": "a4b61b716a27a2b35cb7fac725ca4c4556149f65f821d27e93fd2b9f57b86de7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/qt/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI30.diagnostic",
+      "kind": "native_integration",
+      "scope": "Synthetic forwarding tick, original-slot/byte guards, repeat rejection, receiver guard, LastError/return preservation, 300 idle ticks deduplicated, two-phase state changes and navigation/resume/world-tick guards; not original-bytecode or live equivalence",
+      "record": "research/runtime/region-entry-enter-engine-bridge.json",
+      "sha256": "a4b61b716a27a2b35cb7fac725ca4c4556149f65f821d27e93fd2b9f57b86de7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/diagnostic/success",
+          "equals": true
+        },
+        {
+          "pointer": "/diagnostic/real_game_launched",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "UI30.original-live",
+      "kind": "live_observation",
+      "scope": "Original New Game, difficulty choices and Enter through three original gameplay ticks; no Qt Enter integration, loaded Realm or native replacement",
+      "record": "research/runtime/region-entry-enter-engine-bridge.json",
+      "sha256": "a4b61b716a27a2b35cb7fac725ca4c4556149f65f821d27e93fd2b9f57b86de7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/original_live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_live/region_enter",
+          "equals": true
+        },
+        {
+          "pointer": "/original_live/world_owner_screen",
+          "equals": 2
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI30.live",
+      "kind": "live_observation",
+      "scope": "Qt New Game, Adept difficulty and original fresh Celtic region 1 Enter; original gameplay ticks checked independently; bounded termination, campaign return pending",
+      "record": "research/runtime/region-entry-enter-engine-bridge.json",
+      "sha256": "a4b61b716a27a2b35cb7fac725ca4c4556149f65f821d27e93fd2b9f57b86de7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/campaign_handoff",
+          "equals": true
+        },
+        {
+          "pointer": "/live/original_viewport_presented",
+          "equals": true
+        },
+        {
+          "pointer": "/live/bounded_termination",
+          "equals": true
+        },
+        {
+          "pointer": "/live/live_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cancel_regression/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cancel_regression/normal_exit",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI30.static",
+      "kind": "static",
+      "scope": "Selected static handoff function and world vtable prefix; no execution or complete world lifecycle",
+      "record": "research/runtime/region-entry-enter-engine-bridge.json",
+      "sha256": "a4b61b716a27a2b35cb7fac725ca4c4556149f65f821d27e93fd2b9f57b86de7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/static/world_tick",
+          "equals": "0x46afc0"
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "classifications": [],
@@ -19903,6 +20198,38 @@
         "tests/effect-transition-test.cpp",
         "tools/test-effect-transition.py"
       ]
+    },
+    {
+      "id": "campaign.qt-region-enter-gameplay",
+      "level": "live_observation",
+      "scope": "Qt New Game, Adept selection, fresh Enter, embedded original viewport and three original gameplay ticks; bounded termination; campaign return pending",
+      "behaviors": [
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation",
+        "NP.region-entry-fresh-policy"
+      ],
+      "evidence": [
+        "UI30.fixture",
+        "UI30.qt",
+        "UI30.diagnostic",
+        "UI30.original-live",
+        "UI30.live"
+      ],
+      "tests": [
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "tests/menu-region-bridge-test.cpp",
+        "tests/menu-region-controller-test.cpp",
+        "tests/region-entry-bridge-reference.c",
+        "tools/test-region-entry-bridge.py",
+        "apps/qt-shell/live_region_enter_test.cpp",
+        "tests/campaign-observer-test.c",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-live-region-enter.py",
+        "tools/test-campaign-observer.py",
+        "tools/test-live-region-entry.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -20020,7 +20347,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "7b2ed8e23157a6f2c1987b9946188a7a971ec775c19c723fffbc57b81eb185f4",
+      "sha256": "880a79ca75e87188e02d09103268d962ef4334caef5926109aaeabc4b20bdb25",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
     },
     {
@@ -20060,7 +20387,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-terrain-occupancy-source-index.json",
-    "sha256": "4e2392268e2430aa1fff4c51c1c9a461213e510a8872a352128a94eadb04586d"
+    "path": "research/runtime/coverage/source-index-region-entry-enter.json",
+    "sha256": "327b8ffe0dff3bb55242a507b19f25b66b22bc77a77f01598ede2d67339a5e1e"
   }
 }

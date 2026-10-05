@@ -1,5 +1,5 @@
 #include "menu_bridge.hpp"
-#include "../protocols/include/mnm/menu_v7.h"
+#include "../protocols/include/mnm/menu_v8.h"
 #include <QCoreApplication>
 #include <QTemporaryDir>
 #include <QtEndian>
@@ -28,5 +28,11 @@ int main(int argc,char** argv){
  state(18,6,2);put(128,seq+1);require(!bridge.read(s));
  state(18,7,2);require(bridge.read(s)&&bridge.request(MNM_MENU_REGION_CANCEL,s));state(18,8,3);require(bridge.read(s));bridge.retire();require(!bridge.request(MNM_MENU_REGION_CANCEL,s));peer.unmap(b);
  MenuBridge legacy;require(legacy.create(root.filePath("v6.bin"),false,false,false,false,true));require(!legacy.request(MNM_MENU_NEW_GAME,s));
+ MenuBridge enter;auto enterPath=root.filePath("enter.bin");require(enter.create(enterPath,false,false,false,false,false,true,true));
+ QFile p8(enterPath);require(p8.open(QIODevice::ReadWrite));b=p8.map(0,MNM_MENU_V8_SIZE);require(b);seq=0;
+ state(18,1,0);put(MNM_MENU_V7_REGION+20,3);require(enter.read(s)&&enter.request(MNM_MENU_REGION_DIFFICULTY,s,2));
+ require(!enter.request(MNM_MENU_REGION_ENTER,s));state(18,2,1);put(MNM_MENU_V7_REGION+20,1);require(enter.read(s)&&!enter.request(MNM_MENU_REGION_ENTER,s));
+ put(MNM_MENU_V7_REGION+20,3);require(enter.read(s)&&enter.request(MNM_MENU_REGION_ENTER,s));state(0,3,2,0);put(156,3);require(enter.read(s)&&s.handoff==3&&s.ack==2);put(156,4);require(!enter.read(s));
+ enter.retire();require(!enter.request(MNM_MENU_REGION_ENTER,s));p8.unmap(b);
  std::puts("Region bridge checks passed");
 }

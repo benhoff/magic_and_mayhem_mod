@@ -1,5 +1,5 @@
 #include "live_menu_session.hpp"
-#include "../../protocols/include/mnm/menu_v7.h"
+#include "../../protocols/include/mnm/menu_v8.h"
 #include <QDir>
 #include <QProcessEnvironment>
 #include <QStandardPaths>
@@ -31,7 +31,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
                 }
             }
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
-            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
+            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             if(active_)timer_.start();else bridge_->retire();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath("working/tests/menu-live-wine"):winePrefix};
@@ -114,6 +114,10 @@ void LiveMenuSession::poll(){
         if(pending_&&next.ack!=state_.ack){
             pending_=false;
             if(next.status!=MNM_MENU_OK){fallback(QString("Menu action rejected (%1); using original menus.").arg(next.status));return;}
+            if(action_==MNM_MENU_REGION_ENTER){
+                if(next.handoff!=3){fallback("Original campaign Enter returned an unknown destination; using original controls.");return;}
+                inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(3);return;
+            }
             if(action_==MNM_MENU_SETUP_START){
                 if(!next.handoff){fallback("Engine Start returned an unknown destination; using original viewport.");return;}
                 if(next.handoff==1){transition_=true;target_=7;state_=next;return;}

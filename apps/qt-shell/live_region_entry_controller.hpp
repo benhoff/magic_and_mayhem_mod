@@ -9,5 +9,5 @@ private:
     void pump();
     LiveMenuSession& session_;RegionEntryWidget& widget_;QTimer timer_;
     bool entered_=false,closing_=false,dirty_=false;
-    quint32 draft_=0;
+    quint32 draft_=0,action_=0;
 };
