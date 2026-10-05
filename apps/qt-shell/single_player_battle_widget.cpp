@@ -122,11 +122,11 @@ bool SinglePlayerBattleWidget::loadAssets(const QString& root,QString* error) {
         populate();arrange();update();return true;
     } catch (const std::exception& failure) {if (error) *error=QString::fromUtf8(failure.what());return false;}
 }
-bool SinglePlayerBattleWidget::validSetup(const Setup& value,const std::array<int,17>& minimum,const std::array<int,17>& maximum,const std::array<int,17>& step) const {
+bool SinglePlayerBattleWidget::validSetup(const Setup& value,const std::array<int,17>& minimum,const std::array<int,17>& maximum,const std::array<int,17>& step,bool requireStep) const {
     if (value.mapId.isEmpty()!=value.mapName.isEmpty()) return false;
     for (int i=0;i<17;++i) {
         const int n=i<13?value.values[i]:value.players[i-13].handicap;
-        if (n<minimum[i] || n>maximum[i] || (n-minimum[i])%step[i]) return false;
+        if (n<minimum[i] || n>maximum[i] || (requireStep&&(n-minimum[i])%step[i])) return false;
     }
     for (const auto& player:value.players) {
         if (player.portraitIndex<-1 || player.portraitIndex>11 || player.colourIndex<-1 || player.colourIndex>7) return false;
@@ -137,6 +137,11 @@ bool SinglePlayerBattleWidget::validSetup(const Setup& value,const std::array<in
 bool SinglePlayerBattleWidget::setSetup(const Setup& value,QString* error) {
     if (error) error->clear();
     if (!validSetup(value,minimum_,maximum_,step_)) {if (error) *error="Invalid battle setup model.";return false;}
+    setup_=value;populate();arrange();return true;
+}
+bool SinglePlayerBattleWidget::setEngineSetup(const Setup& value,QString* error){
+    if(error)error->clear();
+    if(!validSetup(value,minimum_,maximum_,step_,false)){if(error)*error="Engine battle setup outside recovered bounds.";return false;}
     setup_=value;populate();arrange();return true;
 }
 SinglePlayerBattleWidget::Setup SinglePlayerBattleWidget::setup() const { return setup_; }

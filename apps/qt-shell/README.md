@@ -1,5 +1,40 @@
 # Magic & Mayhem Qt shell
 
+## Live Main / Quick Battle menus
+
+```bash
+./tools/run-qt-shell.sh --live-menus
+```
+
+Click **Launch game**. Startup may take a few minutes while the launcher verifies
+the original files, stages a disposable installation and runs launch preflight.
+The viewport displays startup progress; the launch log shows completed checks.
+The shell stages a fresh hash-checked installation and
+connects native Main Quick Battle/Quit, Quick Battle Create Single Player/Cancel,
+and Single Player Map/Cancel/Start to the original engine callbacks. Setup uses
+the actual map, players, rules and handicaps. Human portrait/colour cycling and
+opponent removal retain the original actions; opponent portraits/colours are
+read-only. Edits apply on Map, a player action, or Start. Other actions use the
+original menus. The shell waits for engine-confirmed readiness.
+
+**Use original menus** exposes the Wine viewport and permanently retires the
+command channel for that session. The native Main Quit button and window close use the original Quit callback;
+closing from Quick Battle returns to Main first. After choosing original menus,
+exit through the game before closing the shell. Relaunch stages a new copy/channel. This mode uses the Wine viewport;
+it is separate from OpenGL capture and the standalone preview options.
+Original menu logic, fades and drawing remain active.
+
+**Start** returns to the original viewport for spell selection (when required)
+and battle loading/play. Complete spell selection using the original controls.
+After this handoff, the session keeps using original menus, including battle
+exit; relaunch restores native menu integration. The viewport stays at 800x600
+inside the shell to avoid stale pixels from enlarging the Wine desktop.
+See [Single Player bridge](../../research/runtime/single-player-menu-bridge.md)
+for the validated scope and remaining boundaries.
+
+Run `./tools/test-live-menus.py` for the bounded isolated Xvfb/Wine round trip
+and fallback check. See [the bridge contract and validation](../../research/runtime/menu-action-bridge.md).
+
 ## Native main menu preview
 
 ```bash

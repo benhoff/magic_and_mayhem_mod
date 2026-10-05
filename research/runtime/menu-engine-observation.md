@@ -139,3 +139,8 @@ original callbacks with validated active-screen ownership. Add a versioned
 semantic command channel with stale-screen/duplicate rejection outside widgets;
 then connect `MainMenuWidget` and `QuickBattleMenuWidget`. Replacing original
 menu drawing and validating complete transitions remain later milestones.
+
+The subsequent opt-in Main/Quick command adapter and Qt integration are described
+in [menu-action-bridge.md](menu-action-bridge.md). Observation-only staging remains
+the default; `prepare-menu-observer.py --actions` explicitly enables action-capable
+staging, and launch requires the separate `--menu-channel` option.

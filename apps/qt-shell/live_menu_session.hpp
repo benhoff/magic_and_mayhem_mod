@@ -1,0 +1,37 @@
+#pragma once
+#include "menu_bridge.hpp"
+#include <QProcess>
+#include <QTimer>
+#include <QElapsedTimer>
+#include <functional>
+#include <memory>
+// Process staging, launch and wire protocol remain outside presentation widgets.
+class LiveMenuSession final : public QObject {
+public:
+    explicit LiveMenuSession(QString repository,QObject* parent=nullptr);
+    QString winePrefix; // Empty selects the normal menu prefix; tests isolate each run.
+    int smokeSeconds=0; // Bounded live validation only; normal sessions have no limit.
+    bool start();
+    bool running() const;
+    bool request(quint32 action,quint32 argument=0,const std::array<int,17>* rules=nullptr);
+    bool requestExit(); // Back from Quick Battle, then original Main Quit.
+    void fallback(const QString& reason);
+    std::function<void(const MenuBridge::State&)> stateChanged;
+    std::function<void(const QString&)> output;
+    std::function<void(const QString&)> failed;
+    std::function<void()> finished;
+    std::function<void()> launched;
+    std::function<void(quint32)> battleStarted;
+private:
+    void poll();
+    QString repo_,root_,channel_;
+    QProcess process_;
+    QTimer timer_;
+    QElapsedTimer clock_;
+    QByteArray preparation_;
+    std::unique_ptr<MenuBridge> bridge_;
+    MenuBridge::State state_;
+    bool preparing_=false,active_=false,pending_=false,transition_=false,bypass_=false,exitRequested_=false,quitting_=false;
+    qint64 lastState_=0,requestedAt_=0;
+    quint32 sequence_=0,target_=0,action_=0;
+};
