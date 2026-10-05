@@ -100,6 +100,7 @@ static i32 WIN bs_blt(void* target,void* dest,void* source,void* rect,u32 flags,
 }
 static i32 WIN bs_fast(void* target,u32 x,u32 y,void* source,void* rect,u32 flags){return bs_copy(target,0,source,rect,flags,1,x,y);}
 static void bs_record(struct BsSurface* target){
+    char delay[4];if(GetEnvironmentVariableA("MNM_COMMAND_TEST_DELAY",delay,sizeof(delay)))Sleep(250);
     char native[]="original-00000000.bin",frame[]="frame-00000000.bin";static const char hex[]="0123456789abcdef";
     for(u32 i=0;i<8;++i){native[9+i]=hex[(bs_draws>>(28-i*4))&15];frame[6+i]=native[9+i];}
     u32 length=target->width*target->height*(target->bits/8),written=0;

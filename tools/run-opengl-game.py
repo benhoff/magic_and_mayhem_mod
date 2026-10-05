@@ -15,7 +15,7 @@ REPO=Path(__file__).resolve().parent.parent
 # Shared wire definitions are repository-local; no package installation required.
 import sys
 sys.path.insert(0, str(REPO / "protocols/python"))
-from mnm_protocols import frame_v1 as frame_protocol, input_v1 as input_protocol, media_v1 as media_protocol
+from mnm_protocols import frame_v1 as frame_protocol, input_v1 as input_protocol, media_v1 as media_protocol, render_commands_v1 as command_protocol
 
 
 def load(name,file):
@@ -67,6 +67,7 @@ def disable_cd_music(game):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stream',type=Path,required=True);parser.add_argument('--stage-only',action='store_true')
+    parser.add_argument('--command-channel',type=Path,help='Opt-in bounded mapped native command channel; implies capture-locks')
     parser.add_argument('--voice-channel',type=Path,help='Experimental pre-created native DirectSound voice channel')
     parser.add_argument('--media-channel',type=Path,help='Opt-in pre-created Qt movie/file-sound channel')
     parser.add_argument('--input',type=Path,help='Pre-created Qt keyboard/cursor polling channel')
@@ -76,10 +77,19 @@ def main():
     parser.add_argument('--no-readback',action='store_true',help='Diagnostic: log game calls without extra surface locks or Qt frames')
     parser.add_argument('--skip-movies',action='store_true',help='Disable movie playback only in the disposable staged preferences')
     args=parser.parse_args();args.capture_draws |= args.capture_history
+    args.capture_locks |= bool(args.command_channel)
     stream=args.stream.resolve()
     if not stream.is_relative_to(REPO/'working'):raise ValueError('Frame stream must be under working/')
     with stream.open('rb') as file:
         if not frame_protocol.valid_header(file.read(frame_protocol.HEADER_SIZE), stream.stat().st_size):raise ValueError('Invalid pre-created frame stream')
+    command_path=args.command_channel.resolve() if args.command_channel else None
+    if command_path:
+        if not command_path.is_relative_to(REPO/'working'):raise ValueError('Command channel must be under working/')
+        with command_path.open('rb') as file:
+            header=file.read(command_protocol.HEADER_SIZE)
+            if not command_protocol.valid_header(header,command_path.stat().st_size):raise ValueError('Invalid command channel')
+            import struct
+            if not struct.unpack_from('<I',header,16)[0] or any(header[20:]):raise ValueError('Command channel is not a fresh session')
     input_path=args.input.resolve() if args.input else None
     if input_path:
         if not input_path.is_relative_to(REPO/'working'):raise ValueError('Input channel must be under working/')
@@ -118,6 +128,7 @@ def main():
     metadata['voice_channel']=str(voice_path) if voice_path else None
     metadata['audio_dll_sha256']=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None
     metadata['media_channel']=str(media_path) if media_path else None
+    metadata['command_channel']=str(command_path) if command_path else None
     metadata['input_channel']=str(input_path) if input_path else None
     if args.capture_locks:
         lock_capture=root/'lock-capture';lock_capture.mkdir();metadata['lock_capture_directory']=str(lock_capture);metadata['lock_lifecycle_log']=str(lock_capture/'lifecycle.log')
@@ -136,6 +147,10 @@ def main():
     if media_path:env['MNM_RENDER_MEDIA']='Z:'+str(media_path).replace('/','\\')
     env.pop('MNM_RENDER_INPUT',None)
     if input_path:env['MNM_RENDER_INPUT']='Z:'+str(input_path).replace('/','\\')
+    env.pop('MNM_RENDER_COMMAND_CHANNEL',None)
+    if command_path:
+        env['MNM_RENDER_COMMAND_CHANNEL']='Z:'+str(command_path).replace('/','\\')
+        env['MNM_RENDER_OWNED_SESSION']='1'
     env.pop('MNM_RENDER_LOCK_CAPTURE_DIR',None)
     if args.capture_locks:env['MNM_RENDER_LOCK_CAPTURE_DIR']='Z:'+str(lock_capture).replace('/','\\')
     env.pop('MNM_RENDER_NO_READBACK',None)

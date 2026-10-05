@@ -90,3 +90,11 @@ skipped/stopped/cancelled and sound-busy return failure without replay.
 Unsupported legacy sound calls cancel a previous native sound; accepted native
 sounds retire legacy asynchronous sounds. Keep these lifecycle decisions in
 adapters; shared constants do not implement them.
+
+## Render commands: bounded append-only injected producer, native consumer
+
+The independent render_commands-v1 channel publishes immutable prefixes of the
+surface-command v1 stream and a separate terminal state. It uses a fresh file
+per session, writer claim, nonzero session token, monotonic byte count and
+consumer cancellation. It fails on capacity/gaps instead of overwriting or
+resynchronizing. See [exact layout and lifecycle](../research/formats/render-command-channel.md).

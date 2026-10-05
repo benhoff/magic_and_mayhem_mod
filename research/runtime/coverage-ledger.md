@@ -597,3 +597,41 @@ evidence](native-multi-world-scene.md). Original multi-entity admission/renderin
 equivalence, mixed asset profiles, attachments, shaded/light/visibility integration,
 automatic play and live replacement remain open. Historical shared-source evidence
 keeps its hashes and may be stale; no recovered original status is promoted.
+
+## Incremental native command consumer (2026-10-05)
+
+`NR.incremental-command-consumer` now has scoped native implementation and
+synthetic preview evidence: persistent surface/palette state across batches,
+shared decoder/consumer admission and session quotas, explicit Verify versus
+Skip diagnostics, END/failure/interruption cleanup and direct shared-texture
+PRESENT. Qt file replay feeds up to 32 commands per timer event. The new
+[record](opengl-incremental-commands.json) passes 64 partitioned sessions, 708
+complete framebuffer comparisons and 60 failure cases in normal and sanitizer
+builds, plus production CLI replay. Ordinary readbacks/image uploads are zero.
+
+Live engine transport, fragmented-byte framing, overflow/resynchronization,
+original drawing coverage, shadow comparison and live replacement remain pending.
+Historical direct-presentation/UI evidence retains its hashes and statuses;
+shared command/main/document changes leave affected historical results stale.
+Current synthetic consumer evidence does not refresh original/live comparisons.
+
+
+## Live bounded native command transport (2026-10-05)
+
+`NR.live-command-transport` connects owned PE32 session records through a separate
+versioned append-only mapped channel to fragmented decoding and the persistent
+Qt GPU consumer. Writer claims, immutable publication, cancellation, terminal
+draining and explicit failure cleanup are native policies. The opt-in
+`--native-commands` launcher wiring preserves original drawing and retains the
+existing 16-operation observation limit. Qt executes at most 32 commands per poll.
+
+The new [native integration record](opengl-live-command-transport.json) passes
+normal/sanitizer fragment checks and eleven exact C writer cases, plus seven
+Wine COM-hook sessions: four complete RGB/indexed sessions match every independent
+fixture native pixel at PRESENT while the producer runs; three incomplete or
+cancelled sessions refuse. Ordinary native readbacks and viewport uploads are zero.
+All eight renderer CTests pass. No original artifacts are consumed. Original-game
+shadow comparison, unsupported drawing/initialization branches, indefinite-session
+checkpoint/resynchronization policy, physical GPU performance and replacement
+remain pending. Shared decoder/hook edits leave affected historical evidence
+stale; old records and hashes are preserved.

@@ -7,7 +7,7 @@
 namespace mnm::render {
 constexpr qint64 maxCommandBytes=64*1024*1024;
 struct SurfaceCommand {
-    unsigned operation=0;
+    unsigned operation=0,sequence=0;
     std::array<std::uint32_t,10> words{};
     Image image;
     PixelFormat format;
@@ -16,12 +16,56 @@ struct SurfaceCommand {
 };
 // Complete bounded streams only. Validate ordering, handles and geometry before GL.
 std::vector<SurfaceCommand> decodeCommands(const QByteArray& data);
+// Stateful byte framing for an append-only bounded session; no GL work.
+class CommandDecoder final {
+public:
+    CommandDecoder();
+    ~CommandDecoder();
+    CommandDecoder(const CommandDecoder&)=delete;
+    CommandDecoder& operator=(const CommandDecoder&)=delete;
+    std::vector<SurfaceCommand> append(const QByteArray& bytes);
+    void finish();
+    void abort();
+private:
+    struct Impl;
+    std::unique_ptr<Impl> impl_;
+};
 struct CommandResult {
     QByteArray native;
     QImage presentation;
-    unsigned checks=0,presents=0,colorChecks=0;
+    unsigned commands=0,checks=0,presents=0,colorChecks=0,skippedChecks=0,skippedColorChecks=0;
+    std::size_t liveSurfaces=0,livePixels=0;
     RenderStats stats;
     Driver driver;
+};
+enum class CommandDiagnostics {Skip,Verify};
+enum class CommandConsumerState {Active,Ended,Aborted,Failed};
+struct CommandConsumerOptions {
+    CommandDiagnostics diagnostics=CommandDiagnostics::Skip;
+    // Explicit offline export mode; ordinary GPU execution never reads PRESENT.
+    bool exportImages=false;
+};
+// GUI-thread session. Renderer must outlive consumer; GPU leases may outlive both.
+// Batches commit command by command, never transactionally. An execution or
+// admission failure terminates the session and releases only its owned surfaces.
+// CHECK records are structurally validated even when comparison is disabled.
+class CommandConsumer final {
+public:
+    CommandConsumer(GlBlitter& renderer,std::function<void(GpuFrame)> present,
+                    CommandConsumerOptions options={});
+    ~CommandConsumer();
+    CommandConsumer(const CommandConsumer&)=delete;
+    CommandConsumer& operator=(const CommandConsumer&)=delete;
+    void submit(const SurfaceCommand& command);
+    void submit(const SurfaceCommand* commands,std::size_t count);
+    // Signal producer completion. Requires an accepted END; missing END fails.
+    void finish();
+    void abort();
+    CommandConsumerState state() const;
+    const CommandResult& result() const;
+private:
+    struct Impl;
+    std::unique_ptr<Impl> impl_;
 };
 CommandResult replayCommands(const std::vector<SurfaceCommand>& commands);
 // Decoded, complete bounded replay. PRESENT sends a GPU lease; CHECK operations

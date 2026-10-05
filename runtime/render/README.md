@@ -134,3 +134,9 @@ records one bounded ordered session combining owned uploads, copies, Flips and
 palette changes. Run `./tools/test-render-owned-session.py` without the game for
 CPU/OpenGL replay, independent engine pixel comparisons, Qt readback and
 incompleteness checks. See [scope and limits](../../research/runtime/opengl-owned-session.md).
+
+`MNM_RENDER_COMMAND_CHANNEL` optionally mirrors the existing owned session into
+an acquired append-only mapped channel for immediate native GPU execution.
+The launcher supplies it with `--native-commands`; original calls/drawing remain
+active. The session remains bounded and gaps fail the native preview. See
+[live transport and limits](../../research/runtime/opengl-live-command-transport.md).

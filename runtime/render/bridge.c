@@ -54,6 +54,7 @@ static i32 WIN input_cooperative(void* object,void* window,u32 flags){
     struct Table* table=lookup(object);i32 result=((i32 (WIN *)(void*,void*,u32))table->original[20])(object,window,flags);
     if(result>=0 && window)input_window=window;return result;
 }
+#include "command_channel.h"
 #include "draw_capture.h"
 #include "lock_lifecycle.h"
 #include "lock_flip.h"
@@ -391,7 +392,7 @@ __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
-    if(reason==0){game_session_finish();history_finish();return 1;}
+    if(reason==0){game_session_finish();history_finish();command_channel_close();return 1;}
     if(reason!=1)return 1;
     char path[512];u32 size=GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path));
     if(!size || size>=sizeof(path))return 1;
@@ -402,7 +403,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     if(!mapping)return 1;
     stream=MapViewOfFile(mapping,2,0,0,STREAM_SIZE);CloseHandle(mapping);
     if(!stream || !same(stream,MNM_FRAME_V1_MAGIC,MNM_FRAME_V1_MAGIC_SIZE) || stream[MNM_FRAME_V1_VERSION_OFFSET/4]!=MNM_FRAME_V1_VERSION || stream[MNM_FRAME_V1_DECLARED_SIZE_OFFSET/4]!=MNM_FRAME_V1_DECLARED_SIZE){stream=0;return 1;}
-    input_init();media_init();
+    input_init();media_init();command_channel_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();
     if(lock_capture_path_length)readback_disabled=1;

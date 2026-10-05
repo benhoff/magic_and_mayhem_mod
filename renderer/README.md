@@ -169,3 +169,21 @@ attached to their logical surfaces. Tests cover indexed and RGB swaps and reject
 incompatible dimensions/formats, stale handles and aliases. Integrated x86 Wine
 validation: `./tools/test-render-flips.py`; see
 [flip evidence and limits](../research/runtime/opengl-double-buffer-flips.md).
+
+## Incremental decoded command execution
+
+`CommandConsumer` preserves surfaces/palettes between batches and validates each
+command through the same admission rules as complete-file decoding. END, abort
+and failure are distinct; cleanup releases only its owned surfaces. Ordinary
+GPU execution counts skipped CHECK diagnostics without reading pixels. Verify
+mode and explicit image export remain available. Sessions retain the existing
+4096-command/64-MiB bounds; a live transport is still pending.
+
+The shell's `--commands FILE` service now executes 32-command timer batches.
+Add `--command-checks` to compare diagnostic native/RGBA bytes. See
+[persistent consumer scope and checks](../research/runtime/opengl-incremental-commands.md).
+
+`CommandDecoder` admits the existing command bytes across arbitrary fragments,
+retaining framing/state until complete records arrive. `finish()` requires END;
+`abort()` discards partial state and closes the decoder. Live channel adapters
+remain outside the renderer; see [transport scope](../research/runtime/opengl-live-command-transport.md).

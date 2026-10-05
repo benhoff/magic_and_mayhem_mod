@@ -84,3 +84,8 @@ claim follows from this extraction.
 
 Audio's existing v2 contract in `runtime/audio/protocol.h` is a separate future
 migration. It is not moved or redesigned here.
+
+The optional `render_commands-v1.json` schema defines bounded append-only native
+render command transport. It does not extend frame v1. Its generated bindings
+are `mnm/render_commands_v1.h` and `mnm_protocols.render_commands_v1`; publication
+and failure semantics are documented in [the channel format](../research/formats/render-command-channel.md).

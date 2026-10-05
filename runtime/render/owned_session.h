@@ -5,6 +5,7 @@ static struct SessionSurface session_surfaces[32];
 static HANDLE session_file;
 static u32 session_started,session_epoch,session_sequence,session_bytes,session_operations,session_presented,session_pixels;
 static void game_session_gap(u32 reason){
+    command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_GAP);
     if(!session_file)return;
     u32 record[4]={9,++session_sequence,4,reason};write_all(session_file,record,16);
     CloseHandle(session_file);session_file=0;
@@ -17,7 +18,9 @@ static int session_record(u32 op,const void* fields,u32 fl,const void* pixels,u3
     if(!session_file)return 0;
     /* Reserve cleanup for 32 surfaces, END, and a GAP if a limit is reached. */
     if(session_sequence>=4062 || 12+fl+length>64*1024*1024-540-session_bytes){game_session_gap(2);return 0;}
-    if(!command_record(session_file,&session_sequence,op,fields,fl,pixels,length)){
+    if(!command_record(session_file,&session_sequence,op,fields,fl,pixels,length) ||
+       !command_channel_record(session_sequence,op,fields,fl,pixels,length)){
+        command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);
         CloseHandle(session_file);session_file=0;lock_diagnostic("session_file_failed",0,0,0,0,0,0,0);return 0;
     }
     session_bytes+=12+fl+length;return 1;
@@ -28,9 +31,10 @@ static int session_start(void){
     session_started=1;session_epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);
     char path[544];copy(path,lock_capture_path,lock_capture_path_length);copy(path+lock_capture_path_length,"\\session-00000001.bin",22);
     session_file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
-    if(session_file==(HANDLE)-1){session_file=0;lock_diagnostic("session_file_failed",0,0,0,0,0,0,0);return 0;}
+    if(session_file==(HANDLE)-1){command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);session_file=0;lock_diagnostic("session_file_failed",0,0,0,0,0,0,0);return 0;}
     u32 header[4];copy(header,"MNMCMD01",8);header[2]=1;header[3]=16;
-    if(!write_all(session_file,header,16)){CloseHandle(session_file);session_file=0;return 0;}
+    if(!write_all(session_file,header,16) || !command_channel_append(header,16,0,0,0,0)){
+        command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);CloseHandle(session_file);session_file=0;return 0;}
     session_bytes=16;lock_diagnostic("session_started",0,0,0,0,0,0,0);return 1;
 }
 static struct SessionSurface* session_find(void* object){
@@ -80,8 +84,12 @@ static void session_finish_owned(void){
     for(u32 i=0;i<32;++i)if(game_locks[i].active && session_find(game_locks[i].object)){game_session_gap(3);return;}
     if(!session_file)return;
     int ok=1;
-    for(u32 i=0;ok && i<32;++i)if(session_surfaces[i].id)ok=command_record(session_file,&session_sequence,7,&session_surfaces[i].id,4,0,0);
-    if(ok)ok=command_record(session_file,&session_sequence,8,0,0,0,0);
+    for(u32 i=0;ok && i<32;++i)if(session_surfaces[i].id){
+        ok=command_record(session_file,&session_sequence,7,&session_surfaces[i].id,4,0,0) &&
+           command_channel_record(session_sequence,7,&session_surfaces[i].id,4,0,0);
+    }
+    if(ok)ok=command_record(session_file,&session_sequence,8,0,0,0,0) && command_channel_record(session_sequence,8,0,0,0,0);
+    if(ok)command_channel_end();else command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);
     CloseHandle(session_file);session_file=0;
     lock_diagnostic(ok?"session_finished":"session_file_failed",0,0,session_operations,0,0,0,0);
 }

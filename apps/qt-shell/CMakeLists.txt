@@ -304,3 +304,9 @@ if(BUILD_TESTING)
     add_test(NAME qt-menu-music-recovery COMMAND menu-music-recovery-test)
     set_tests_properties(qt-menu-music-recovery PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen" TIMEOUT 15)
 endif()
+
+# Incremental command replay service; independent of game/menu lifecycle.
+target_sources(mnm-qt-shell PRIVATE command_replay.cpp)
+
+# Bounded mapped command transport and presentation adapter.
+target_sources(mnm-qt-shell PRIVATE command_channel.cpp live_command_renderer.cpp)
