@@ -11,8 +11,10 @@ confirms eleven text sections, twelve radio buttons, two sliders and OK/Cancel.
 The installed `Battle Options Screen 800-600.JPG` supplies the 800x600 background.
 Labels, Rect2 positions, LEFT/CENTRE alignment and LARGE/SMALL roles are loaded
 from CFG and the installed string table. Three blank text sections remain hidden.
-Confidence is high for installed contents; the original state/activation contract
-has not been recovered or validated live.
+Confidence is high for installed contents. The later
+[engine contract recovery](preferences-engine-contract.md) establishes pinned
+state/action mappings and isolated callback effects; live activation remains
+unconnected.
 
 Five independent exclusive groups follow the labels and layout:
 
@@ -73,5 +75,7 @@ and accepted local values across reopening. Installed-asset CLI smoke and
 conflicting-preview rejection passed. The offscreen capture
 `working/tests/preferences-preview/preview.png` was visually inspected.
 Original-manifest verification surrounds installed-artifact consumption.
-Engine option mapping, dynamic availability, audio/display application, settings
-persistence and live equivalence remain separate integration milestones.
+Pinned engine option mapping, static availability and isolated apply/rollback/
+writer effects now have [contract evidence](preferences-engine-contract.md).
+Live audio/display application, persistence durability and caller equivalence
+remain separate integration milestones.
