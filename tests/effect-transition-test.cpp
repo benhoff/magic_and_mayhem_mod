@@ -71,6 +71,20 @@ int main(){
         }else require(r.units[2]==33 && r.position[2]==2 && r.sentinels[8]==2 && pool.cells()[r.cell].head==1);
         bool refusedHeight=false;try{transitionEffectEmptyWorld(pool,1,state,32,32,3);}catch(const std::invalid_argument&){refusedHeight=true;}require(refusedHeight);
     }
+    // Disabled membership supports continuations while the selected record's
+    // current cell diverges from its original chain, without touching any links/flags.
+    pool=created();state={};state.previousPosition=pool.records()[1].position;
+    pool.cells()[oldCell].terrain=0;state.terrain=0;state.motion.trajectory.words[4]=8*32;
+    pool.cells()[newCell].flags=0x40001280u;
+    const auto fixed=pool;const auto link=pool.records()[1].next;
+    std::vector<EffectCleanupColumn> unused(1); // ignored in disabled mode
+    require(transitionEffectEmptyWorld(pool,1,state,32,32,3,unused,false)==1);
+    require(pool.records()[1].next==link && pool.records()[1].cell==newCell && pool.records()[1].active);
+    for(unsigned i=0;i<pool.cells().size();++i)require(pool.cells()[i].head==fixed.cells()[i].head && pool.cells()[i].flags==fixed.cells()[i].flags);
+    bool refusedEnable=false;try{transitionEffectEmptyWorld(pool,1,state,32,32,3);}catch(const std::invalid_argument&){refusedEnable=true;}require(refusedEnable);
+    require(transitionEffectEmptyWorld(pool,1,state,32,32,3,unused,false)==3);
+    require(pool.records()[1].position[0]==24 && pool.records()[1].next==link);
+    for(unsigned i=0;i<pool.cells().size();++i)require(pool.cells()[i].head==fixed.cells()[i].head && pool.cells()[i].flags==fixed.cells()[i].flags);
     for(unsigned mode=0;mode<7;++mode){
         pool=created();state={};state.previousPosition=pool.records()[1].position;state.motion.trajectory.words[4]=8*32;
         if(mode==0)pool.records()[0].next=0;

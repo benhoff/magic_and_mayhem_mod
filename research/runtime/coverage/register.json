@@ -10066,13 +10066,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked destination and height exit partial state recovered separately. Membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified",
+      "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked/height partial state and bounded membership-disabled motion recovered separately. Occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified; disabled-height combinations are not compared in the new disabled fixtures",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked destination and height exit partial state recovered separately. Membership-disabled moves, occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified"
+          "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked/height partial state and bounded membership-disabled motion recovered separately. Occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified; disabled-height combinations are not compared in the new disabled fixtures"
         }
       ],
       "documents": [
@@ -10081,7 +10081,8 @@
         "research/runtime/effect-cell-transitions.md",
         "research/runtime/effect-cell-cleanup.md",
         "research/runtime/effect-blocked-destinations.md",
-        "research/runtime/effect-height-exits.md"
+        "research/runtime/effect-height-exits.md",
+        "research/runtime/effect-membership-disabled.md"
       ],
       "implementation": [],
       "tests": [],
@@ -11070,6 +11071,75 @@
       ],
       "evidence": [
         "NS11.multi-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-membership-disabled",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect movement with disabled cell membership updates",
+      "scope": "Complete unmodified 004883f0 selected empty-world arg=0 movement: five emitting types, no creator, kind 0/68, terrain 0..3, authored 0..8 iterations and existing bounded counter/wrapping/dimensions; unchanged heads/next links/cell flags and no column cleanup, current fine/cell/terrain/previous/cache/subcell/recount updates, return 3 or blocked parameter 7=-1/return 1, repeated bounded disabled calls including blocked-to-unblocked continuation and inaccessible unused cleanup receiver; fresh enabled ordinary/blocked/height/cleanup reruns; no disabled-height fixtures, occupied collisions, special metadata/types or caller/live lifecycle",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Complete unmodified 004883f0 selected empty-world arg=0 movement: five emitting types, no creator, kind 0/68, terrain 0..3, authored 0..8 iterations and existing bounded counter/wrapping/dimensions; unchanged heads/next links/cell flags and no column cleanup, current fine/cell/terrain/previous/cache/subcell/recount updates, return 3 or blocked parameter 7=-1/return 1, repeated bounded disabled calls including blocked-to-unblocked continuation and inaccessible unused cleanup receiver; fresh enabled ordinary/blocked/height/cleanup reruns; no disabled-height fixtures, occupied collisions, special metadata/types or caller/live lifecycle"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-membership-disabled.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp"
+      ],
+      "tests": [
+        "tests/effect-membership-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL12.membership-original",
+        "TL12.membership-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-membership-policy",
+      "subsystem": "terrain_lighting",
+      "kind": "native_policy",
+      "title": "Owned divergent cell/chain admission and reconciliation",
+      "scope": "Owned admission permits only selected moving record current-cell/chain-location divergence in disabled mode; validates owned chain structure and other records, requires slot membership, ignores unused cleanup input, and refuses enabled updates without reconciliation; supported partial results commit atomically while unsupported inputs retain exception rollback; original malformed graph/caller handling is not implied",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/effect-membership-disabled.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_transition.cpp",
+        "reconstruction/rendering/effect_transition.hpp"
+      ],
+      "tests": [
+        "tests/effect-membership-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ],
+      "evidence": [
+        "TL12.membership-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -17094,6 +17164,318 @@
           "equals": 9
         }
       ]
+    },
+    {
+      "id": "TL12.membership-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Complete unmodified 004883f0 selected empty-world arg=0 movement: five emitting types, no creator, kind 0/68, terrain 0..3, authored 0..8 iterations and existing bounded counter/wrapping/dimensions; unchanged heads/next links/cell flags and no column cleanup, current fine/cell/terrain/previous/cache/subcell/recount updates, return 3 or blocked parameter 7=-1/return 1, repeated bounded disabled calls including blocked-to-unblocked continuation and inaccessible unused cleanup receiver; fresh enabled ordinary/blocked/height/cleanup reruns; no disabled-height fixtures, occupied collisions, special metadata/types or caller/live lifecycle",
+      "record": "research/runtime/effect-membership-disabled.json",
+      "sha256": "26f7fbc29e01c936d123ed56de33374c333a8ec397ded59a357836a088fa1832",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/steps",
+          "equals": 10288
+        },
+        {
+          "pointer": "/transitions",
+          "equals": 8911
+        },
+        {
+          "pointer": "/cache_updates",
+          "equals": 5784
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/cleanup_fixtures",
+          "equals": 3072
+        },
+        {
+          "pointer": "/cleanup_calls",
+          "equals": 6144
+        },
+        {
+          "pointer": "/marked",
+          "equals": 922
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        },
+        {
+          "pointer": "/blocked_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/steps",
+          "equals": 4715
+        },
+        {
+          "pointer": "/blocked_comparison/transitions",
+          "equals": 3338
+        },
+        {
+          "pointer": "/blocked_comparison/cache_updates",
+          "equals": 1466
+        },
+        {
+          "pointer": "/blocked_comparison/blocked",
+          "equals": 1102
+        },
+        {
+          "pointer": "/blocked_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/height_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/steps",
+          "equals": 3447
+        },
+        {
+          "pointer": "/height_comparison/transitions",
+          "equals": 1911
+        },
+        {
+          "pointer": "/height_comparison/cache_updates",
+          "equals": 746
+        },
+        {
+          "pointer": "/height_comparison/height_exits",
+          "equals": 1536
+        },
+        {
+          "pointer": "/height_comparison/lower_exits",
+          "equals": 878
+        },
+        {
+          "pointer": "/height_comparison/upper_exits",
+          "equals": 658
+        },
+        {
+          "pointer": "/height_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/membership_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/membership_comparison/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/membership_comparison/steps",
+          "equals": 6733
+        },
+        {
+          "pointer": "/membership_comparison/transitions",
+          "equals": 5356
+        },
+        {
+          "pointer": "/membership_comparison/cache_updates",
+          "equals": 2802
+        },
+        {
+          "pointer": "/membership_comparison/blocked",
+          "equals": 1439
+        },
+        {
+          "pointer": "/membership_comparison/cell_bytes",
+          "equals": 86639360
+        }
+      ]
+    },
+    {
+      "id": "TL12.membership-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Owned admission permits only selected moving record current-cell/chain-location divergence in disabled mode; validates owned chain structure and other records, requires slot membership, ignores unused cleanup input, and refuses enabled updates without reconciliation; supported partial results commit atomically while unsupported inputs retain exception rollback; original malformed graph/caller handling is not implied",
+      "record": "research/runtime/effect-membership-disabled.json",
+      "sha256": "26f7fbc29e01c936d123ed56de33374c333a8ec397ded59a357836a088fa1832",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/steps",
+          "equals": 10288
+        },
+        {
+          "pointer": "/transitions",
+          "equals": 8911
+        },
+        {
+          "pointer": "/cache_updates",
+          "equals": 5784
+        },
+        {
+          "pointer": "/cell_bytes",
+          "equals": 86639360
+        },
+        {
+          "pointer": "/cleanup_fixtures",
+          "equals": 3072
+        },
+        {
+          "pointer": "/cleanup_calls",
+          "equals": 6144
+        },
+        {
+          "pointer": "/marked",
+          "equals": 922
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        },
+        {
+          "pointer": "/blocked_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/blocked_comparison/steps",
+          "equals": 4715
+        },
+        {
+          "pointer": "/blocked_comparison/transitions",
+          "equals": 3338
+        },
+        {
+          "pointer": "/blocked_comparison/cache_updates",
+          "equals": 1466
+        },
+        {
+          "pointer": "/blocked_comparison/blocked",
+          "equals": 1102
+        },
+        {
+          "pointer": "/blocked_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/height_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/calls",
+          "equals": 2048
+        },
+        {
+          "pointer": "/height_comparison/steps",
+          "equals": 3447
+        },
+        {
+          "pointer": "/height_comparison/transitions",
+          "equals": 1911
+        },
+        {
+          "pointer": "/height_comparison/cache_updates",
+          "equals": 746
+        },
+        {
+          "pointer": "/height_comparison/height_exits",
+          "equals": 1536
+        },
+        {
+          "pointer": "/height_comparison/lower_exits",
+          "equals": 878
+        },
+        {
+          "pointer": "/height_comparison/upper_exits",
+          "equals": 658
+        },
+        {
+          "pointer": "/height_comparison/cell_bytes",
+          "equals": 53393920
+        },
+        {
+          "pointer": "/membership_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/membership_comparison/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/membership_comparison/steps",
+          "equals": 6733
+        },
+        {
+          "pointer": "/membership_comparison/transitions",
+          "equals": 5356
+        },
+        {
+          "pointer": "/membership_comparison/cache_updates",
+          "equals": 2802
+        },
+        {
+          "pointer": "/membership_comparison/blocked",
+          "equals": 1439
+        },
+        {
+          "pointer": "/membership_comparison/cell_bytes",
+          "equals": 86639360
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -18978,6 +19360,24 @@
         "tests/native-multi-movement-test.cpp",
         "tests/test-native-multi-movement.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-membership-disabled",
+      "level": "headless",
+      "scope": "Complete unmodified 004883f0 selected empty-world arg=0 movement: five emitting types, no creator, kind 0/68, terrain 0..3, authored 0..8 iterations and existing bounded counter/wrapping/dimensions; unchanged heads/next links/cell flags and no column cleanup, current fine/cell/terrain/previous/cache/subcell/recount updates, return 3 or blocked parameter 7=-1/return 1, repeated bounded disabled calls including blocked-to-unblocked continuation and inaccessible unused cleanup receiver; fresh enabled ordinary/blocked/height/cleanup reruns; no disabled-height fixtures, occupied collisions, special metadata/types or caller/live lifecycle; Owned admission permits only selected moving record current-cell/chain-location divergence in disabled mode; validates owned chain structure and other records, requires slot membership, ignores unused cleanup input, and refuses enabled updates without reconciliation; supported partial results commit atomically while unsupported inputs retain exception rollback; original malformed graph/caller handling is not implied",
+      "behaviors": [
+        "TL.effect-membership-disabled",
+        "TL.effect-membership-policy"
+      ],
+      "evidence": [
+        "TL12.membership-original",
+        "TL12.membership-native"
+      ],
+      "tests": [
+        "tests/effect-membership-reference.cpp",
+        "tests/effect-transition-test.cpp",
+        "tools/test-effect-transition.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -19090,7 +19490,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "9f8ff4155c60381dbf1b09e147f04ccb2dc8f70ffb135d22e3edbc89eacc8203",
+      "sha256": "9235ff21766cfe88b811b299f80b77233c8c7caeaf0ed0236ac362be016b2cb3",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -19100,32 +19500,37 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "b189df2872513eab56bbf0075336d6e82b104d5b177b3c4ff5d029a6f6338638",
+      "sha256": "d11e402e9713451be795c31e0996c898dd82939776b0c6dc1a387dc34f0487a6",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "a3b6b873966591a545bcd1f2439a229d077d5c50ccefd86de90a81c70fb6b998",
+      "sha256": "403071e05c7be62352029b2b2873f6c206eeb126f7ec6ae0a308590a06a0251c",
       "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-cleanup-coverage.json",
-      "sha256": "201a2639db6f9a68354056ea245af6529653bfb153402877c73e59b2309addd7",
+      "sha256": "a54f1637a8747a5771bebf6268c260a6408cd605d4165ab1e7716ee267173892",
       "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-blocked-destinations-coverage.json",
-      "sha256": "ed39f90639c48708e235d02cce8bae8c64de4b65d25b8ab1a41730f00e6ff06c",
+      "sha256": "3f7cb05ccb725e8d0b89f1f92bf42a20acd3c64cad9a64591580170b06c3df92",
       "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-height-exits-coverage.json",
-      "sha256": "d7fcb09331a783033ec346217610dbcdf40f68f1ec0a6dcb6de2148bf42a4326",
+      "sha256": "f18cb15fe35b8cca5411dc2f29b8a57bfaafc6001464fcfda58a65032b3ea841",
       "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
+    },
+    {
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "sha256": "7c4e0565007c4ba6ee3604cb8616c300756ce91e87a7c349acb51dbcb2001f4c",
+      "scope": "Reviewed complete-parent disabled-membership movement and preserved graph/flags, ordinary/blocked/height/cleanup reruns and native reconciliation admission; remaining occupied collision/setup/lifecycle gaps and historical fingerprints preserved"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-multi-movement.json",
-    "sha256": "5b1ed8ad7381a039a968867f04dc944dec9dff3e177eea24639ae2b01b88a426"
+    "path": "research/runtime/effect-membership-disabled-source-index.json",
+    "sha256": "fe5962ef3e2641e269e494af5bf8980ac9c612d0216b6082b0dde6640d3f63a6"
   }
 }

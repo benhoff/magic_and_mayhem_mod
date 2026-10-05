@@ -14,34 +14,34 @@
   "api_bindings": [],
   "behaviors": [
     {
-      "id": "TL.effect-height-exits",
+      "id": "TL.effect-membership-disabled",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
-      "title": "Effect height exit partial state and return 2",
-      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle",
+      "title": "Effect movement with disabled cell membership updates",
+      "scope": "Complete unmodified 004883f0 selected empty-world arg=0 movement: five emitting types, no creator, kind 0/68, terrain 0..3, authored 0..8 iterations and existing bounded counter/wrapping/dimensions; unchanged heads/next links/cell flags and no column cleanup, current fine/cell/terrain/previous/cache/subcell/recount updates, return 3 or blocked parameter 7=-1/return 1, repeated bounded disabled calls including blocked-to-unblocked continuation and inaccessible unused cleanup receiver; fresh enabled ordinary/blocked/height/cleanup reruns; no disabled-height fixtures, occupied collisions, special metadata/types or caller/live lifecycle",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle"
+          "scope": "Complete unmodified 004883f0 selected empty-world arg=0 movement: five emitting types, no creator, kind 0/68, terrain 0..3, authored 0..8 iterations and existing bounded counter/wrapping/dimensions; unchanged heads/next links/cell flags and no column cleanup, current fine/cell/terrain/previous/cache/subcell/recount updates, return 3 or blocked parameter 7=-1/return 1, repeated bounded disabled calls including blocked-to-unblocked continuation and inaccessible unused cleanup receiver; fresh enabled ordinary/blocked/height/cleanup reruns; no disabled-height fixtures, occupied collisions, special metadata/types or caller/live lifecycle"
         }
       ],
       "documents": [
-        "research/runtime/effect-height-exits.md"
+        "research/runtime/effect-membership-disabled.md"
       ],
       "implementation": [
         "reconstruction/rendering/effect_transition.cpp",
         "reconstruction/rendering/effect_transition.hpp"
       ],
       "tests": [
-        "tests/effect-height-reference.cpp",
+        "tests/effect-membership-reference.cpp",
         "tests/effect-transition-test.cpp",
         "tools/test-effect-transition.py"
       ],
       "evidence": [
-        "TL11.height-original",
-        "TL11.height-native"
+        "TL12.membership-original",
+        "TL12.membership-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -52,27 +52,27 @@
       }
     },
     {
-      "id": "TL.effect-height-policy",
+      "id": "TL.effect-membership-policy",
       "subsystem": "terrain_lighting",
       "kind": "native_policy",
-      "title": "Owned height exit publication and resumption admission",
-      "scope": "Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
+      "title": "Owned divergent cell/chain admission and reconciliation",
+      "scope": "Owned admission permits only selected moving record current-cell/chain-location divergence in disabled mode; validates owned chain structure and other records, requires slot membership, ignores unused cleanup input, and refuses enabled updates without reconciliation; supported partial results commit atomically while unsupported inputs retain exception rollback; original malformed graph/caller handling is not implied",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/effect-height-exits.md"
+        "research/runtime/effect-membership-disabled.md"
       ],
       "implementation": [
         "reconstruction/rendering/effect_transition.cpp",
         "reconstruction/rendering/effect_transition.hpp"
       ],
       "tests": [
-        "tests/effect-height-reference.cpp",
+        "tests/effect-membership-reference.cpp",
         "tests/effect-transition-test.cpp",
         "tools/test-effect-transition.py"
       ],
       "evidence": [
-        "TL11.height-native"
+        "TL12.membership-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -119,12 +119,12 @@
   ],
   "evidence": [
     {
-      "id": "TL11.height-original",
+      "id": "TL12.membership-original",
       "kind": "isolated_original",
       "build": "nocd-40209ca7",
-      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle",
-      "record": "research/runtime/effect-height-exits.json",
-      "sha256": "349dc5bbbf2749780cf14a83dd8e239d827178fa7d9d3c04d768aafd42fb45cb",
+      "scope": "Complete unmodified 004883f0 selected empty-world arg=0 movement: five emitting types, no creator, kind 0/68, terrain 0..3, authored 0..8 iterations and existing bounded counter/wrapping/dimensions; unchanged heads/next links/cell flags and no column cleanup, current fine/cell/terrain/previous/cache/subcell/recount updates, return 3 or blocked parameter 7=-1/return 1, repeated bounded disabled calls including blocked-to-unblocked continuation and inaccessible unused cleanup receiver; fresh enabled ordinary/blocked/height/cleanup reruns; no disabled-height fixtures, occupied collisions, special metadata/types or caller/live lifecycle",
+      "record": "research/runtime/effect-membership-disabled.json",
+      "sha256": "26f7fbc29e01c936d123ed56de33374c333a8ec397ded59a357836a088fa1832",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -243,16 +243,44 @@
         {
           "pointer": "/height_comparison/cell_bytes",
           "equals": 53393920
+        },
+        {
+          "pointer": "/membership_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/membership_comparison/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/membership_comparison/steps",
+          "equals": 6733
+        },
+        {
+          "pointer": "/membership_comparison/transitions",
+          "equals": 5356
+        },
+        {
+          "pointer": "/membership_comparison/cache_updates",
+          "equals": 2802
+        },
+        {
+          "pointer": "/membership_comparison/blocked",
+          "equals": 1439
+        },
+        {
+          "pointer": "/membership_comparison/cell_bytes",
+          "equals": 86639360
         }
       ]
     },
     {
-      "id": "TL11.height-native",
+      "id": "TL12.membership-native",
       "kind": "native_integration",
       "build": "nocd-40209ca7",
-      "scope": "Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
-      "record": "research/runtime/effect-height-exits.json",
-      "sha256": "349dc5bbbf2749780cf14a83dd8e239d827178fa7d9d3c04d768aafd42fb45cb",
+      "scope": "Owned admission permits only selected moving record current-cell/chain-location divergence in disabled mode; validates owned chain structure and other records, requires slot membership, ignores unused cleanup input, and refuses enabled updates without reconciliation; supported partial results commit atomically while unsupported inputs retain exception rollback; original malformed graph/caller handling is not implied",
+      "record": "research/runtime/effect-membership-disabled.json",
+      "sha256": "26f7fbc29e01c936d123ed56de33374c333a8ec397ded59a357836a088fa1832",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -371,25 +399,53 @@
         {
           "pointer": "/height_comparison/cell_bytes",
           "equals": 53393920
+        },
+        {
+          "pointer": "/membership_comparison/fixtures",
+          "equals": 2048
+        },
+        {
+          "pointer": "/membership_comparison/calls",
+          "equals": 3232
+        },
+        {
+          "pointer": "/membership_comparison/steps",
+          "equals": 6733
+        },
+        {
+          "pointer": "/membership_comparison/transitions",
+          "equals": 5356
+        },
+        {
+          "pointer": "/membership_comparison/cache_updates",
+          "equals": 2802
+        },
+        {
+          "pointer": "/membership_comparison/blocked",
+          "equals": 1439
+        },
+        {
+          "pointer": "/membership_comparison/cell_bytes",
+          "equals": 86639360
         }
       ]
     }
   ],
   "scenarios": [
     {
-      "id": "terrain-lighting.effect-height-exits",
+      "id": "terrain-lighting.effect-membership-disabled",
       "level": "headless",
-      "scope": "Complete unmodified 004883f0 empty-world membership-on height exit path: five emitting types, no creator, kind 0/68, catalog 0..3, authored 0..8 iterations and initial counter 0..32; first/later lower or upper Z exits preserve raw XYZ parameters, real trajectory/counter and saved previous fine XYZ, retain last-valid fine/cell/reference/cache/recount/membership state and parameter 7, stop remaining iterations and return 2 before horizontal wrapping; fresh ordinary/blocked/cleanup reruns; no occupied collisions, special metadata/types, disabled membership or caller/live lifecycle; Owned supported return-2 partial state commits atomically, including earlier successful steps; active linked record retains last-valid published coordinates and incoherent raw parameters are refused on resumption; unsupported inputs retain atomic exception rollback with headless lighting/blocked/cleanup checks; original caller resumption/removal is not implied",
+      "scope": "Complete unmodified 004883f0 selected empty-world arg=0 movement: five emitting types, no creator, kind 0/68, terrain 0..3, authored 0..8 iterations and existing bounded counter/wrapping/dimensions; unchanged heads/next links/cell flags and no column cleanup, current fine/cell/terrain/previous/cache/subcell/recount updates, return 3 or blocked parameter 7=-1/return 1, repeated bounded disabled calls including blocked-to-unblocked continuation and inaccessible unused cleanup receiver; fresh enabled ordinary/blocked/height/cleanup reruns; no disabled-height fixtures, occupied collisions, special metadata/types or caller/live lifecycle; Owned admission permits only selected moving record current-cell/chain-location divergence in disabled mode; validates owned chain structure and other records, requires slot membership, ignores unused cleanup input, and refuses enabled updates without reconciliation; supported partial results commit atomically while unsupported inputs retain exception rollback; original malformed graph/caller handling is not implied",
       "behaviors": [
-        "TL.effect-height-exits",
-        "TL.effect-height-policy"
+        "TL.effect-membership-disabled",
+        "TL.effect-membership-policy"
       ],
       "evidence": [
-        "TL11.height-original",
-        "TL11.height-native"
+        "TL12.membership-original",
+        "TL12.membership-native"
       ],
       "tests": [
-        "tests/effect-height-reference.cpp",
+        "tests/effect-membership-reference.cpp",
         "tests/effect-transition-test.cpp",
         "tools/test-effect-transition.py"
       ]
