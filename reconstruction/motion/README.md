@@ -20,3 +20,14 @@ segment/order reset, sample-cycle events and predicted route speed are explicit
 bounded policies. Complete original setup, event production, reverse/special
 profiles and live behavior remain open. See
 [evidence and boundaries](../../research/runtime/native-creature-fine-motion.md).
+
+`segment_setup` additionally models admitted planar category-zero initialization
+at `0x00510e80`, using recovered scalar adjustment and deterministic signed
+shortest direction change. `python3 tests/test-original-segment-setup.py`
+compares the complete original setup entry with controlled eligibility,
+occupancy and animation/action dependencies. Same-segment continuation retains
+sample and initial sample cursors separately from the animation clock; turns
+reset the sample bank and residual snapshot. Native `move-continuous` composes
+this through the same app adapter and uses native v4 continuation. This does not
+recover the ANI event generator or the original order/occupancy lifecycle.
+See [NS04 evidence](../../research/runtime/native-creature-segment-continuity.md).

@@ -232,6 +232,16 @@ boundaries are explicit bounded native policies. NS03 does not complete original
 motion or replace live gameplay. V1/v2 checkpoint bytes and their policies remain
 compatible; v3 retains only the new owned intra-cell continuation.
 
+### Native planar segment continuity (NS04)
+
+| ID and behavior | Implementation and integration | Evidence and confidence | Remaining boundary and next validation |
+| --- | --- | --- | --- |
+| NS04 Planar category-zero setup and successive-segment continuation | Recovered scalar/setup model, opt-in `move-continuous`, owned completed history, separate sample/animation cursors, replay-validated native v4 | 55,296 isolated complete original setup cases; 960,696 motion transitions and 136 original consumption/snap cases; 26 normal and 26 ASan/UBSan CTests including independent v4 bytes, boundary/turn/fractional/prefix restart, refusal and rollback. Original manifest preserved (2,927 files). High for tested setup/arithmetic with controlled environment/animation dependencies. [Evidence](native-creature-segment-continuity.md) | ANI event production still uses a supplied twelve-frame clock; vertical/category-four/reverse/special setup, terrain, original eligibility, dynamic occupancy and live agreement remain open. Next: independently recover and compare animation frame/event production |
+
+Native v1/v2/v3 layouts and policies remain compatible. V4 owns the continuation
+needed for the bounded profile; it is not an original save writer or restored
+playable world. New-order resets and supplied event timing remain native policies.
+
 ## Gameplay areas without recorded replacements
 
 These entries are baseline gaps, not proof that no research exists. Recovered

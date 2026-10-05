@@ -17,7 +17,7 @@ template<class T> void put(std::vector<unsigned char>& o,unsigned at,T v) {std::
 int get(const std::vector<unsigned char>& o,unsigned at) {int v;std::memcpy(&v,o.data()+at,4);return v;}
 void original(MotionState& s,const MotionInputs& p,bool expected) {
     std::vector<unsigned char> object(0xe4b,0);
-    std::array<int,12> samples=p.samples;
+    std::array<int,48> samples=p.samples;
     put(object,4,1);put(object,8,p.gridX);put(object,12,p.gridY);
     put(object,0x14,s.fineX);put(object,0x18,s.fineY);put(object,0x1c,s.fineZ);
     put(object,0xa8,p.force32?12:17);put(object,0x10c,p.force32?2:0);
@@ -27,8 +27,9 @@ void original(MotionState& s,const MotionInputs& p,bool expected) {
     put(object,0xb63,p.rate);put(object,0xb67,p.duration);put(object,0xb6b,s.accumulator);
     put(object,0xb7b,s.residualX);put(object,0xb7f,s.residualY);
     put(object,0xb8f,static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(samples.data()+s.frame)));
-    put(object,0xb93,static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(samples.data())));
-    events=s.frame;completed=false;
+    put(object,0xb93,static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(samples.data()+s.initialFrame)));
+    put(object,0xb83,s.initialResidualX);put(object,0xb87,s.initialResidualY);
+    events=p.separateCursor?s.animationFrame:s.frame;completed=false;
     using Fn=void (__attribute__((thiscall)) *)(void*);
     reinterpret_cast<Fn>(0x5104b0)(object.data());
     check(completed==expected);
@@ -37,6 +38,7 @@ void original(MotionState& s,const MotionInputs& p,bool expected) {
     output.fineX=get(object,0x14);output.fineY=get(object,0x18);output.fineZ=get(object,0x1c);
     output.residualX=get(object,0xb7b);output.residualY=get(object,0xb7f);
     output.frame=(get(object,0xb8f)-reinterpret_cast<std::uintptr_t>(samples.data()))/4;
+    if(p.separateCursor) output.animationFrame=events;
     s=output;
 }
 void consumption() {
@@ -86,9 +88,13 @@ int main(int argc,char** argv) try {
     MotionState unchanged;auto invalid=simple;invalid.duration=0;
     bool caught=false;try {advance_creature_motion(unchanged,invalid);} catch(const std::invalid_argument&) {caught=true;}
     check(caught && unchanged.progress==0 && unchanged.accumulator==0);
+    auto bounded=simple;bounded.separateCursor=true;bounded.rate=720;bounded.duration=120;
+    MotionState end;end.frame=47;
+    caught=false;try {advance_creature_motion(end,bounded);} catch(const std::invalid_argument&) {caught=true;}
+    check(caught && end.frame==47 && end.progress==0 && end.accumulator==0);
     unsigned cases=0;
     for(int direction=0;direction<8;++direction) for(int vertical=0;vertical<2;++vertical)
-    for(int force=0;force<2;++force) for(int rate:{1,30,119,120,121,300,999})
+    for(int force=0;force<2;++force) for(int rate:{0,1,30,119,120,121,300,999})
     for(int duration:{60,120,700}) for(int height:{-32,-16,0,16,32}) {
         MotionInputs p;p.rate=rate;p.duration=duration;p.gridX=3;p.gridY=2;
         p.heightOrigin=16;p.heightDelta=height;p.direction=direction;p.vertical=vertical;p.force32=force;
@@ -107,6 +113,29 @@ int main(int argc,char** argv) try {
                   model.residualX==reference.residualX && model.residualY==reference.residualY && model.frame==reference.frame);
 #endif
             check(done==(model.progress>=192));++cases;if(done) break;
+        }
+    }
+    for(int direction=0;direction<8;++direction) for(unsigned initial:{0u,4u,12u,16u})
+    for(unsigned clock:{0u,4u,10u}) for(int rate:{0,60,720}) for(int duration:{120,720}) {
+        MotionInputs p;p.separateCursor=true;p.direction=direction;p.rate=rate;p.duration=duration;
+        p.gridX=3;p.gridY=2;p.heightOrigin=16;
+        for(unsigned i=0;i<48;++i) p.samples[i]=i%2?40:60;
+        MotionState model;model.frame=initial+4;model.initialFrame=initial;model.animationFrame=clock;
+        model.fineX=96;model.fineY=64;model.fineZ=16;model.initialResidualX=-40;
+        for(unsigned tick=0;tick<100;++tick) {
+#ifdef MNM_MOTION_REFERENCE
+            auto reference=model;
+#endif
+            auto done=advance_creature_motion(model,p);
+#ifdef MNM_MOTION_REFERENCE
+            original(reference,p,done);
+            check(model.accumulator==reference.accumulator && model.progress==reference.progress &&
+                  model.travelX==reference.travelX && model.travelY==reference.travelY &&
+                  model.fineX==reference.fineX && model.fineY==reference.fineY && model.fineZ==reference.fineZ &&
+                  model.residualX==reference.residualX && model.residualY==reference.residualY &&
+                  model.frame==reference.frame && model.animationFrame==reference.animationFrame);
+#endif
+            ++cases;if(done) break;
         }
     }
 #ifdef MNM_MOTION_REFERENCE

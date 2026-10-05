@@ -35,7 +35,12 @@ struct FineMotion {
     std::int32_t accumulator=0,progress=0,travelX=0,travelY=0;
     Point fine;
     std::int32_t residualX=0,residualY=0;
-    std::uint32_t frame=0;
+    std::uint32_t frame=0,animationFrame=0,initialFrame=0;
+    std::int32_t initialResidualX=0,initialResidualY=0;
+};
+struct SegmentHistory {
+    FineMotion motion;
+    std::int32_t direction=0,vertical=0,category=0;
 };
 struct CreatureMotion {
     Action action=Action::idle;
@@ -45,6 +50,9 @@ struct CreatureMotion {
     std::vector<RoutePoint> route;
     bool sampleMotion=false;
     std::optional<FineMotion> fine={};
+    bool continuousMotion=false;
+    std::optional<SegmentHistory> previous={};
+    std::uint32_t segmentTicks=0;
 };
 struct Entity {
     Family family=Family::creature;
@@ -74,10 +82,11 @@ struct State {
     std::optional<NavigationBinding> navigation={};
 };
 struct Limits {
-    static constexpr std::uint64_t slotCharge=256,commandCharge=256;
+    static constexpr std::uint64_t slotCharge=384,commandCharge=384;
     std::uint32_t slots=65536, commands=65536;
     std::uint64_t bytes=64*1024*1024;
 };
+static_assert(sizeof(Slot)<=Limits::slotCharge && sizeof(Command)<=Limits::commandCharge,"world storage charge must cover owned record storage");
 enum class Phase {maintenance, decisions, secondaryCreatures, effects, map, queuedMap, audio};
 struct TickInput {
     bool admitted=true, alternateMode=false, suppressSearch=false;

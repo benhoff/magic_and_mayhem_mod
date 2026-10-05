@@ -1,4 +1,4 @@
-# Native world snapshots v1, v2 and v3
+# Native world snapshots v1, v2, v3 and v4
 
 This is an owned native checkpoint format, independent of original Magic &
 Mayhem saves. Extension `.mnw` is a sandbox convention. No original save
@@ -8,7 +8,7 @@ encoding; signed coordinates use 32-bit two's-complement bit patterns.
 | Header offset | Size | Meaning |
 | --- | --- | --- |
 | 0 | 8 | `MNMNWLD` followed by NUL |
-| 8 | 4 | Version: 1 lifecycle, 2 waypoint movement, 3 sample motion |
+| 8 | 4 | Version: 1 lifecycle, 2 waypoint movement, 3 sample motion, 4 segment continuity |
 | 12 | 4 | Payload byte count, exactly file length minus 24 |
 | 16 | 8 | FNV-1a-64 of the payload |
 
@@ -42,9 +42,9 @@ accepted in the queue and later rejected by tick admission; active entity target
 references must resolve immediately against the complete restored slot table.
 
 Limits default to 65,536 slots, 65,536 commands and 64 MiB of encoded payload
-and conservative decoded-storage accounting. Current storage accounting charges 256 bytes
+and conservative decoded-storage accounting. Current storage accounting charges 384 bytes
 per slot and per pending command, exact blob lengths, and 28 bytes per route
-point, plus 56 bytes for present fine-motion continuation. The initial v1 implementation charged 128/32 for slot/command storage;
+point, plus 72 bytes for present fine-motion continuation and 84 for completed-segment history. The initial v1 implementation charged 128/32 for slot/command storage;
 the larger typed motion records required a stricter resource policy without
 changing v1 wire bytes. It is an explicit
 budget policy, not a host `sizeof` ABI. Construction and decoding check bounds
@@ -63,7 +63,7 @@ invalid states, and split-process continuation. See
 
 The header/checksum and existing fields retain their meaning. Encoders select
 v2 when a navigation binding is present and otherwise retain exact v1 encoding.
-All three versions decode; no original game save is converted by this codec.
+All four versions decode; no original game save is converted by this codec.
 
 After the three blobs, v2 adds a binding-presence byte (must be 1), signed XYZ
 dimension DWORDs and a 64-bit FNV-1a fingerprint of the entire external frozen
@@ -140,3 +140,50 @@ The independent Python v3 oracle checks complete initial, intra-cell and arrived
 bytes, restores a Python-authored checkpoint, and compares every fresh-process
 continuation trace. See [fine-motion evidence](../runtime/native-creature-fine-motion.md)
 for the tested contracts and the unimplemented original-motion boundaries.
+
+## V4 planar segment continuity
+
+V4 retains the v3 layout but extends each present fine record to eighteen DWORDs
+(72 bytes). After the fourteen v3 fields it adds unsigned animation-frame index,
+unsigned initial sample index, signed initial residual X and signed initial
+residual Y. These distinguish the supplied cycle clock from the absolute cursor
+within the 48 owned scalar samples. Legacy-driver records in a v4 world use zero
+for these four fields.
+
+After each motion record's sample/fine fields, v4 adds:
+
+1. One-byte continuous-driver selection (requires sample selection).
+2. Unsigned current-segment tick count DWORD.
+3. One-byte completed-segment history presence.
+4. When present, signed direction/vertical/category DWORDs, followed by a full
+   eighteen-DWORD fine record: 84 bytes total.
+
+The encoder selects v4 when any creature selects continuity, including pending,
+arrived or cancelled states. V1/v2/v3 bytes retain their existing layout. Readers
+initialize absent continuity fields to zero; no automatic behavioral upgrade
+occurs. Storage accounting is now 384 bytes per slot/command, 72 per present
+fine record even for legacy wire versions, 84 per history and 28 per route point.
+This tighter native budget policy does not alter older wire formats.
+
+Continuous motion supports zero rate, duration 1..1,000,000, animation index
+0..11, current/initial sample indices 0..47, and residual magnitudes at most
+1,000,000. Completed history requires progress 192..383 and permits terminal
+sample index 48; the driver refuses any subsequent read outside owned storage.
+History is planar category zero and vertical zero, with flat grid-based Z.
+Current progress is 0..191. Current-segment ticks are at most 100,000, nonzero
+exactly when a current fine record exists. History is required after a route
+point has been consumed; it can also exist at a replanned prefix's cursor zero.
+Cleanup, blocked movement and replacement orders clear history/tick state.
+
+The navigation driver checks history duration/displacement/fine coordinates
+against the bound profile and previous grid edge. For an ongoing segment it
+reconstructs setup from history, replays exactly the saved tick count, and
+compares every fine field before committing state/map. History is not an
+authenticated transcript of all past ticks; a well-formed history need not be
+provably reachable from a previous checkpoint. Structural decoding alone does
+not validate driver/profile semantics. Recomputed checksums cannot bypass
+current-segment replay or exact map binding.
+
+Independent Python v4 encoding tests boundary and intra-cell bytes, a
+Python-authored checkpoint, fractional speed, turns, prefix replanning and
+fresh-process continuation. See [NS04 evidence](../runtime/native-creature-segment-continuity.md).

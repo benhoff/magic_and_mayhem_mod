@@ -3,7 +3,7 @@
 `mnm-world` is the first native simulation ownership/checkpoint milestone. It
 runs without Qt, Wine, original assets or injected adapters. It implements
 bounded entity storage, lifetime handles, transactional tick phases, a bounded
-single-creature movement session and native v1/v2/v3 snapshots. It does not yet implement AI, combat/spells, campaign
+single-creature movement session and native v1/v2/v3/v4 snapshots. It does not yet implement AI, combat/spells, campaign
 triggers or a playable world. The original engine remains responsible for live
 gameplay. Native checkpoints are distinct from original version-20 saves.
 
@@ -65,7 +65,8 @@ executing after its admission.
 The route helpers follow the recovered contracts. One-waypoint-per-tick
 advancement, exact-target admission, goal guards and the native action enum are
 explicit native test policies. NS03 separately validates selected motion-action arithmetic and route consumption.
-Complete original animation/speed/timing, complete original order eligibility and
+NS04 validates bounded planar segment setup and speed continuation. Complete
+original animation event timing, complete original order eligibility and
 multi-creature occupancy/scheduling remain unvalidated. Stored scalar/direction
 metadata is not a replacement for original velocity or animation.
 
@@ -89,10 +90,36 @@ pacing. The independent motion model lives in `reconstruction/motion/`; native
 simulation sees only a navigation driver interface. Scalar rates come from the
 recovered route result, duration and twelve samples from the bound profile.
 The twelve-sample cycle event, zeroed segment/interruption state and grid-based
-Z origin are bounded native policies. Full original setup, dynamic speed
-continuity, ANI event production, terrain-height offsets and callbacks remain
-open. Unsupported profiles fail transactionally. See
+Z origin are bounded native policies. `move-continuous` below adds recovered
+planar category-zero setup and speed continuity; complete original setup, ANI
+event production, terrain-height offsets and callbacks remain open. Unsupported profiles fail transactionally. See
 [fine-motion evidence](../research/runtime/native-creature-fine-motion.md).
+
+## Planar segment continuity
+
+`move-continuous` accepts the same arguments and opts into native v4. It uses
+recovered category-zero planar setup rather than the predicted route rate.
+Successive matching segments retain rate, fractional accumulator, excess
+progress, sample cursor, animation clock and cycle residual snapshots. A turn
+resets progress and selects the appropriate sample bank while retaining the
+admitted speed/accumulator. New orders and cancellation clear continuation as
+an explicit native policy.
+
+```sh
+working/build/native-world/mnm-world-sandbox move-continuous /tmp/movement-map.bin \
+  /tmp/continuous.mnw 1 1 1 5 1 1 6
+working/build/native-world/mnm-world-sandbox resume /tmp/continuous.mnw \
+  /tmp/continuous-restored.mnw 12
+```
+
+The checkpoint owns completed-segment history and current-segment tick count.
+Restore checks the map/profile and replays the bounded current segment to verify
+all saved continuation fields before committing. The driver owns all 48 scalar
+samples and refuses a cursor outside that storage. Animation cycle events still
+come from a supplied twelve-frame clock; decoding ANI files does not provide
+original event production. Vertical/category-four setup, reverse and special
+profiles, terrain offsets and live behavior remain open. See
+[segment continuity evidence](../research/runtime/native-creature-segment-continuity.md).
 
 ## Ownership
 
@@ -159,7 +186,7 @@ edge, then commits both map and state. A missing/changed resource or invalid
 route retains the existing world and its map. The map fingerprint covers exactly
 the byte buffer decoded by the adapter, preventing a hash/parse reopen mismatch.
 V1 lifecycle and v2 waypoint checkpoints continue to encode identically;
-sample motion uses explicit v3.
+sample motion uses explicit v3; continuous segment motion uses v4.
 
 The file writer validates/encodes first, writes a private sibling temporary,
 syncs and closes it, atomically publishes with overwrite refusal by default,

@@ -1,6 +1,7 @@
 #include "frozen_navigation.hpp"
 #include "route_world.hpp"
 #include "creature_motion.hpp"
+#include "segment_setup.hpp"
 #include <array>
 #include <cmath>
 #include <cstring>
@@ -54,6 +55,43 @@ public:
         }
         return out;
     }
+    r::CreatureScalarState scalarState() const {
+        r::CreatureScalarState s;s.type_3c=read<std::int32_t>(frozen_->scalar_type.data(),0x3c);
+        s.type_10=read<std::int32_t>(frozen_->scalar_type.data(),0x10);
+        std::memcpy(s.type_d8.data(),frozen_->scalar_type.data()+0xd8,sizeof(s.type_d8));
+        s.object_778=read<std::int32_t>(&frozen_->object,0x778);s.object_77c=read<std::int32_t>(&frozen_->object,0x77c);
+        s.default_scalar=frozen_->default_scalar;s.slope_global=frozen_->slope_global;return s;
+    }
+    static r::MotionState motionState(const g::FineMotion& f) {return {f.accumulator,f.progress,f.travelX,f.travelY,f.fine.x,f.fine.y,f.fine.z,f.residualX,f.residualY,f.frame,f.animationFrame,f.initialFrame,f.initialResidualX,f.initialResidualY};}
+    static void store(g::FineMotion& f,const r::MotionState& s) {
+        f.accumulator=s.accumulator;f.progress=s.progress;f.travelX=s.travelX;f.travelY=s.travelY;
+        f.fine={s.fineX,s.fineY,s.fineZ};f.residualX=s.residualX;f.residualY=s.residualY;f.frame=s.frame;f.animationFrame=s.animationFrame;f.initialFrame=s.initialFrame;f.initialResidualX=s.initialResidualX;f.initialResidualY=s.initialResidualY;
+    }
+    void validateSegmentHistory(const g::Entity& e,const g::SegmentHistory& h) const override {
+        constexpr int dx[8]={0,1,1,1,0,-1,-1,-1},dy[8]={-1,-1,0,1,1,1,0,-1};
+        const auto& f=h.motion;
+        if(h.direction<0 || h.direction>7 || h.vertical || h.category) throw std::invalid_argument("unsupported segment history");
+        const auto x=dx[h.direction],y=dy[h.direction];
+        const auto px=(e.x-x+binding_.dimensions.x)%binding_.dimensions.x,py=(e.y-y+binding_.dimensions.y)%binding_.dimensions.y;
+        if(f.duration!=static_cast<int>(r::base_movement_scalar(0,{x,y,0},scalarState())) ||
+           f.travelX!=x*f.progress || f.travelY!=y*f.progress || f.fine.x!=px*32+f.travelX/6 || f.fine.y!=py*32+f.travelY/6)
+            throw std::invalid_argument("segment history disagrees with bound profile/position");
+    }
+    g::FineMotion prepareContinuous(const g::Entity& e,const g::RoutePoint& point) const {
+        if(point.category || point.verticalDelta || point.position.z!=e.z) throw std::invalid_argument("continuous driver requires planar category zero");
+        r::SegmentPrevious previous;
+        if(e.motion->previous) {
+            const auto& h=*e.motion->previous;validateSegmentHistory(e,h);
+            previous.state=motionState(h.motion);previous.rate=h.motion.rate;
+            previous.action=2;previous.direction=h.direction;previous.vertical=h.vertical;previous.category=h.category;
+        }
+        previous.state.fineX=e.x*32;previous.state.fineY=e.y*32;previous.state.fineZ=e.z*16;
+        r::SegmentRequest request;request.gridX=e.x;request.gridY=e.y;request.heightOrigin=e.z*16;request.direction=point.direction;
+        request.delta={r::wrapped_difference(point.position.x,e.x,binding_.dimensions.x),r::wrapped_difference(point.position.y,e.y,binding_.dimensions.y),0};
+        const auto result=r::initialize_creature_segment(previous,request,scalarState());
+        if(result.rate>1000000 || !result.duration || result.duration>1000000) throw std::invalid_argument("segment scalar outside bounded profile");
+        g::FineMotion out;out.rate=result.rate;out.duration=result.duration;out.heightOrigin=e.z*16;store(out,result.state);return out;
+    }
     r::MotionInputs motionInputs(const g::Entity& e,const g::RoutePoint& waypoint) const {
         if((waypoint.category!=0 && waypoint.category!=4) || e.type==12 ||
            read<std::uint8_t>(&frozen_->object,0x722)!=0 ||
@@ -71,12 +109,22 @@ public:
             throw std::invalid_argument("unsupported sample motion rate/duration");
         r::MotionInputs p;p.rate=waypoint.scalar;p.duration=duration;p.gridX=e.x;p.gridY=e.y;
         p.heightOrigin=e.z*16;p.heightDelta=delta.z*16;p.direction=waypoint.direction;p.vertical=waypoint.verticalDelta!=0;
+        if(e.motion && e.motion->continuousMotion) {
+            p.separateCursor=true;
+            for(unsigned i=0;i<48;++i) p.samples[i]=read<std::int32_t>(frozen_->scalar_type.data(),0xd8+i*4);
+            return p;
+        }
         const auto bank=p.vertical?0:(waypoint.direction&1);
         for(unsigned i=0;i<12;++i) p.samples[i]=read<std::int32_t>(frozen_->scalar_type.data(),0xd8+(bank*12+i)*4);
         return p;
     }
     g::FineMotion prepareFineMotion(const g::Entity& e,const g::RoutePoint& waypoint) const override {
-        const auto p=motionInputs(e,waypoint);g::FineMotion f;
+        auto p=motionInputs(e,waypoint);
+        if(e.motion && e.motion->continuousMotion) {
+            auto f=prepareContinuous(e,waypoint);p.rate=f.rate;p.duration=f.duration;
+            auto probe=motionState(f);(void)r::advance_creature_motion(probe,p);return f;
+        }
+        g::FineMotion f;
         f.rate=p.rate;f.duration=p.duration;f.heightOrigin=p.heightOrigin;f.heightDelta=p.heightDelta;
         f.fine={e.x*32,e.y*32,e.z*16};
         // Check sample/config admission even if no iteration is admitted yet.
@@ -84,7 +132,17 @@ public:
         (void)r::advance_creature_motion(probe,p);return f;
     }
     void validateFineMotion(const g::Entity& e,const g::RoutePoint& waypoint,const g::FineMotion& f) const override {
-        const auto expected=prepareFineMotion(e,waypoint);const auto p=motionInputs(e,waypoint);
+        const auto expected=prepareFineMotion(e,waypoint);auto p=motionInputs(e,waypoint);
+        if(e.motion->continuousMotion) {
+            auto replay=expected;p.rate=replay.rate;p.duration=replay.duration;auto s=motionState(replay);
+            for(unsigned i=0;i<e.motion->segmentTicks;++i) if(r::advance_creature_motion(s,p)) throw std::invalid_argument("saved ongoing segment already completed");
+            store(replay,s);
+            if(replay.rate!=f.rate || replay.duration!=f.duration || replay.heightOrigin!=f.heightOrigin || replay.heightDelta!=f.heightDelta ||
+               replay.accumulator!=f.accumulator || replay.progress!=f.progress || replay.travelX!=f.travelX || replay.travelY!=f.travelY ||
+               replay.fine!=f.fine || replay.residualX!=f.residualX || replay.residualY!=f.residualY || replay.frame!=f.frame || replay.animationFrame!=f.animationFrame || replay.initialFrame!=f.initialFrame || replay.initialResidualX!=f.initialResidualX || replay.initialResidualY!=f.initialResidualY)
+                throw std::invalid_argument("saved segment initialization/replay mismatch");
+            return;
+        }
         int cycle=0,prefix=0;
         for(unsigned i=0;i<12;++i) {const auto step=p.samples[i]*(p.vertical?2:1);cycle+=step;if(i<f.frame) prefix+=step;}
         constexpr int dx[8]={0,1,1,1,0,-1,-1,-1},dy[8]={-1,-1,0,1,1,1,0,-1};
@@ -98,11 +156,13 @@ public:
             throw std::invalid_argument("saved sample motion profile disagrees with map");
     }
     bool advanceFineMotion(const g::Entity& e,const g::RoutePoint& waypoint,g::FineMotion& f) const override {
-        validateFineMotion(e,waypoint,f);const auto inputs=motionInputs(e,waypoint);
-        r::MotionState s{f.accumulator,f.progress,f.travelX,f.travelY,f.fine.x,f.fine.y,f.fine.z,f.residualX,f.residualY,f.frame};
-        const auto complete=r::advance_creature_motion(s,inputs);
-        f.accumulator=s.accumulator;f.progress=s.progress;f.travelX=s.travelX;f.travelY=s.travelY;
-        f.fine={s.fineX,s.fineY,s.fineZ};f.residualX=s.residualX;f.residualY=s.residualY;f.frame=s.frame;
+        auto inputs=motionInputs(e,waypoint);
+        if(e.motion->continuousMotion) {
+            const auto expected=prepareContinuous(e,waypoint);
+            if(f.rate!=expected.rate || f.duration!=expected.duration) throw std::invalid_argument("segment scalar disagreement");
+            inputs.rate=f.rate;inputs.duration=f.duration;
+        } else validateFineMotion(e,waypoint,f);
+        auto s=motionState(f);const auto complete=r::advance_creature_motion(s,inputs);store(f,s);
         return complete;
     }
     bool accepts(const g::Entity& e,const g::RoutePoint& waypoint) const override {

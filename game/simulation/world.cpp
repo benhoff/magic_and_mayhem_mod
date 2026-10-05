@@ -14,7 +14,7 @@ const Entity* resolve(const State& s,Handle h) {
 bool known(Family f) {return static_cast<std::uint32_t>(f)<=2;}
 void cancel(Entity& e) {
     if(!e.motion) return;
-    auto& m=*e.motion;m.action=Action::cancelled;m.route.clear();m.next=0;m.goal.reset();m.origin={e.x,e.y,e.z};m.fine.reset();
+    auto& m=*e.motion;m.action=Action::cancelled;m.route.clear();m.next=0;m.goal.reset();m.origin={e.x,e.y,e.z};m.fine.reset();m.previous.reset();m.segmentTicks=0;
 }
 bool apply(State& s,const Command& c) {
     if(!resolve(s,c.subject)) return false;
@@ -41,8 +41,8 @@ bool apply(State& s,const Command& c) {
         auto destination=*c.destination;
         if(c.target) {const auto* goal=resolve(s,*c.target);destination={goal->x,goal->y,goal->z};}
         if(!contains(destination,*s.navigation)) return false;
-        const auto budget=e.motion->budget;const auto sampleMotion=e.motion->sampleMotion;
-        e.motion=CreatureMotion{};e.motion->sampleMotion=sampleMotion;e.motion->action=Action::planning;e.motion->origin={e.x,e.y,e.z};
+        const auto budget=e.motion->budget;const auto sampleMotion=e.motion->sampleMotion;const auto continuousMotion=e.motion->continuousMotion;
+        e.motion=CreatureMotion{};e.motion->sampleMotion=sampleMotion;e.motion->continuousMotion=continuousMotion;e.motion->action=Action::planning;e.motion->origin={e.x,e.y,e.z};
         e.motion->destination=destination;e.motion->goal=c.target;e.motion->budget=budget;break;
     }
     case Operation::motion: {
@@ -76,7 +76,8 @@ void World::validate(const State& s,const Limits& l) {
         if(slot.entity->motion) {
             if(!s.navigation) throw std::invalid_argument("movement state requires bound map");
             validateMotion(*slot.entity,*s.navigation);charge(slot.entity->motion->route.size()*28);
-            if(slot.entity->motion->fine) charge(56);
+            if(slot.entity->motion->fine) charge(72);
+            if(slot.entity->motion->previous) charge(84);
             if(slot.entity->motion->goal && !resolve(s,*slot.entity->motion->goal)) throw std::invalid_argument("dangling movement goal");
         }
     }

@@ -22,9 +22,15 @@ struct FixtureNavigation:Navigation {
         while(x!=target.x && result.route.size()<16) {x+=x<target.x?1:-1;result.route.push_back({{x,target.y,target.z},x>e.x?2:6,0,0,720});}
         return result;
     }
-    FineMotion prepareFineMotion(const Entity& e,const RoutePoint&) const override {
-        FineMotion f;f.rate=50;f.duration=100;f.heightOrigin=e.z*16;f.fine={e.x*32,e.y*32,e.z*16};return f;
+    FineMotion prepareFineMotion(const Entity& e,const RoutePoint& p) const override {
+        FineMotion f;f.rate=50;f.duration=100;f.heightOrigin=e.z*16;f.fine={e.x*32,e.y*32,e.z*16};
+        if(e.motion->continuousMotion && e.motion->previous) {
+            const auto& h=*e.motion->previous;f.accumulator=h.motion.accumulator;
+            if(h.direction==p.direction) {f.progress=h.motion.progress-192;f.travelX=(p.direction==2?1:-1)*f.progress;f.frame=h.motion.frame;}
+        }
+        return f;
     }
+    void validateSegmentHistory(const Entity&,const SegmentHistory& h) const override {if(h.motion.rate!=50 || h.motion.duration!=100) throw std::invalid_argument("fixture history profile mismatch");}
     void validateFineMotion(const Entity&,const RoutePoint&,const FineMotion& f) const override {if(f.rate!=50 || f.duration!=100) throw std::invalid_argument("fixture fine profile mismatch");}
     bool advanceFineMotion(const Entity& e,const RoutePoint& p,FineMotion& f) const override {
         if(failAdvance) throw std::runtime_error("fixture advance failure");
@@ -119,5 +125,19 @@ int main() try {
     fine.enqueue({Operation::cleanup,fineActor,{}});fine.step();
     check(fine.world().find(fineActor)->motion->sampleMotion && !fine.world().find(fineActor)->motion->fine);
     check(fine.world().find(fineActor)->motion->action==Action::cancelled);
+    // Completed-segment continuation must remain transactional and owned.
+    auto continuous=session(fineNavigation);auto continuousActor=continuous.spawn(fineEntity,true,true);
+    continuous.move(continuousActor,{5,1,1});for(int i=0;i<15;++i) continuous.step();
+    check(continuous.world().find(continuousActor)->x==2 && continuous.world().find(continuousActor)->motion->previous.has_value());
+    continuous.step();check(continuous.world().find(continuousActor)->motion->fine.has_value());
+    const auto continuousBytes=bytes(continuous);check(continuousBytes[8]==4);
+    fineNavigation->failAdvance=true;rejected([&]{continuous.step();});check(bytes(continuous)==continuousBytes);fineNavigation->failAdvance=false;
+    auto invalidHistory=continuous.world().state();invalidHistory.slots[continuousActor.slot].entity->motion->previous->motion.rate=51;
+    const auto historyCheckpoint=cleanup.path/"invalid-history.mnw";writeSnapshot(historyCheckpoint,invalidHistory);
+    rejected([&]{continuous.restore(historyCheckpoint,[&](const std::string&){return fineNavigation;});});check(bytes(continuous)==continuousBytes);
+    continuous.move(continuousActor,{4,1,1});continuous.step();
+    check(continuous.world().find(continuousActor)->motion->continuousMotion && !continuous.world().find(continuousActor)->motion->previous);
+    continuous.enqueue({Operation::cleanup,continuousActor,{}});continuous.step();
+    check(!continuous.world().find(continuousActor)->motion->previous && continuous.world().find(continuousActor)->motion->segmentTicks==0);
     std::cout<<"typed motion, staged orders, target/release, bounded routes and atomic map restoration passed\n";return 0;
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}
