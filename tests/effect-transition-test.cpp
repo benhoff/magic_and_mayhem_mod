@@ -85,6 +85,20 @@ int main(){
     require(transitionEffectEmptyWorld(pool,1,state,32,32,3,unused,false)==3);
     require(pool.records()[1].position[0]==24 && pool.records()[1].next==link);
     for(unsigned i=0;i<pool.cells().size();++i)require(pool.cells()[i].head==fixed.cells()[i].head && pool.cells()[i].flags==fixed.cells()[i].flags);
+    // Terrain hit follows membership insertion, but precedes subcell publication.
+    for(unsigned mode=0;mode<3;++mode){
+        pool=created();state={};state.previousPosition=pool.records()[1].position;state.motion.trajectory.words[4]=8*32;
+        EffectTerrainOccupancy bits{};for(auto& entry:bits)entry.fill(0xff);
+        const auto previous=pool.records()[1].sentinels;
+        if(mode==2)for(unsigned k=0;k<3;++k)pool.records()[1].sentinels[k]=0;
+        const auto next=pool.records()[1].next;
+        const auto result=transitionEffectEmptyWorld(pool,1,state,32,32,3,{},mode!=1,bits);
+        require(result==(mode==2?3u:1u));
+        require(pool.records()[1].cell==newCell && pool.records()[1].active);
+        if(mode!=2){require(pool.records()[1].parameters[7]==0xffffffffu);for(unsigned k=0;k<3;++k)require(pool.records()[1].sentinels[k]==previous[k]);}
+        if(mode==1)require(pool.records()[1].next==next && pool.records()[0].next==1 && pool.records()[2].next==NoEffect);
+        else require(pool.records()[0].next==NoEffect && pool.records()[2].next==1);
+    }
     for(unsigned mode=0;mode<7;++mode){
         pool=created();state={};state.previousPosition=pool.records()[1].position;state.motion.trajectory.words[4]=8*32;
         if(mode==0)pool.records()[0].next=0;

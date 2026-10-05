@@ -19,12 +19,13 @@ bool near(std::array<unsigned,3> a,std::array<unsigned,3> b,unsigned w,unsigned 
 }
 void validateCell(const EffectCell& cell){
     if(cell.terrain>3)
-        throw std::invalid_argument("Effect transition requires empty terrain entries in catalog 0..3");
+        throw std::invalid_argument("Effect transition requires terrain entries in catalog 0..3");
 }
 }
 unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,EffectTransitionState& state,
                                     unsigned width,unsigned height,unsigned layers,
-                                    const std::vector<EffectCleanupColumn>& columns,bool updateMembership){
+                                    const std::vector<EffectCleanupColumn>& columns,bool updateMembership,
+                                    const EffectTerrainOccupancy& occupancy){
     if(!width || !height || !layers || width>128 || height>128 || layers>32 ||
        pool.cells().size()!=std::size_t(width)*height*layers || slot>=pool.records().size())
         throw std::invalid_argument("Effect transition pool dimensions/slot outside owned bounds");
@@ -96,7 +97,14 @@ unsigned transitionEffectEmptyWorld(EffectPlacementPool& pool,unsigned slot,Effe
                 pool=std::move(candidate);state=std::move(movement);return 1;
             }
         }
-        r.sentinels[0]=(units[0]>>2)&7;r.sentinels[1]=(units[1]>>2)&7;r.sentinels[2]=(units[2]>>2)&3;
+        const std::array<unsigned,3> local{(units[0]>>2)&7,(units[1]>>2)&7,(units[2]>>2)&3};
+        if(!std::equal(local.begin(),local.end(),r.sentinels.begin())){
+            if(occupancy[movement.terrain][local[1]+local[2]*8] & (0x80u>>local[0])){
+                r.parameters[7]=0xffffffffu;
+                pool=std::move(candidate);state=std::move(movement);return 1;
+            }
+            std::copy(local.begin(),local.end(),r.sentinels.begin());
+        }
     }
     pool=std::move(candidate);state=std::move(movement);return 3;
 }

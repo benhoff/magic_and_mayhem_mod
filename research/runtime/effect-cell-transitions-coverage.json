@@ -85,13 +85,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked/height partial state and bounded membership-disabled motion recovered separately. Occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified; disabled-height combinations are not compared in the new disabled fixtures",
+      "scope": "Selected same-cell, zero/nonzero terrain transitions, column cleanup, blocked/height partial state, bounded disabled membership and no-creature terrain occupancy recovered separately. Creature occupancy/collisions, type-35 terrain mutation, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, installed terrain catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions are not newly compared by dedicated fixtures",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected same-cell, zero/nonzero empty-terrain transitions, column cleanup, blocked/height partial state and bounded membership-disabled motion recovered separately. Occupied terrain/creature collisions, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, column-table construction and live scheduling remain unimplemented/unverified; disabled-height combinations are not compared in the new disabled fixtures"
+          "scope": "Selected same-cell, zero/nonzero terrain transitions, column cleanup, blocked/height partial state, bounded disabled membership and no-creature terrain occupancy recovered separately. Creature occupancy/collisions, type-35 terrain mutation, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, installed terrain catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions are not newly compared by dedicated fixtures"
         }
       ],
       "documents": [
@@ -101,7 +101,8 @@
         "research/runtime/effect-cell-cleanup.md",
         "research/runtime/effect-blocked-destinations.md",
         "research/runtime/effect-height-exits.md",
-        "research/runtime/effect-membership-disabled.md"
+        "research/runtime/effect-membership-disabled.md",
+        "research/runtime/effect-terrain-occupancy.md"
       ],
       "implementation": [],
       "tests": [],
