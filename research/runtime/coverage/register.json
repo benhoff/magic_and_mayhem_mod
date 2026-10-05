@@ -10075,13 +10075,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected same-cell, zero/nonzero terrain transitions, column cleanup, blocked/height partial state, bounded disabled membership and no-creature terrain occupancy recovered separately. Creature occupancy/collisions, type-35 terrain mutation, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, installed terrain catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions are not newly compared by dedicated fixtures",
+      "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory/footprint setup, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected same-cell, zero/nonzero terrain transitions, column cleanup, blocked/height partial state, bounded disabled membership and no-creature terrain occupancy recovered separately. Creature occupancy/collisions, type-35 terrain mutation, other metadata/types and termination, original trajectory setup, XY-only stepping, removal/recycling, installed terrain catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions are not newly compared by dedicated fixtures"
+          "scope": "Selected effect movement/terrain branches and whole creature occupancy query 004e1200 are recovered separately. Creature candidate gathering/status filtering/coordinate production and collision-parent integration, type-35 terrain mutation, other metadata/types and termination, original trajectory/footprint setup, XY-only stepping, removal/recycling, installed terrain/creature catalog and column construction and live scheduling remain unimplemented/unverified; disabled-height and bitmap/blocked/height interactions remain outside dedicated combined fixtures"
         }
       ],
       "documents": [
@@ -10092,7 +10092,8 @@
         "research/runtime/effect-blocked-destinations.md",
         "research/runtime/effect-height-exits.md",
         "research/runtime/effect-membership-disabled.md",
-        "research/runtime/effect-terrain-occupancy.md"
+        "research/runtime/effect-terrain-occupancy.md",
+        "research/runtime/creature-occupancy-lookup.md"
       ],
       "implementation": [],
       "tests": [],
@@ -11476,6 +11477,45 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.creature-occupancy-lookup",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Creature footprint occupancy and raw height gating",
+      "scope": "Whole 004e1200 read-only query on valid owned receiver: sixteen WORD MSB-first footprint rows plus raw height DWORD, all signed32 XYZ and raw uint32 heights, negative/64 XY and negative/wrapped height-limit Z rejection, four-fine-unit XY blocks and normalized result; exhaustive authored fine XY, height/sign/boundary fixtures, immutable guarded original inputs and independent rectangle tests; no 004e1260 construction, candidate/transform/parent/live collision integration",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5116416,
+          "scope": "Whole 004e1200 read-only query on valid owned receiver: sixteen WORD MSB-first footprint rows plus raw height DWORD, all signed32 XYZ and raw uint32 heights, negative/64 XY and negative/wrapped height-limit Z rejection, four-fine-unit XY blocks and normalized result; exhaustive authored fine XY, height/sign/boundary fixtures, immutable guarded original inputs and independent rectangle tests; no 004e1260 construction, candidate/transform/parent/live collision integration"
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-occupancy-lookup.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/creature_occupancy.cpp",
+        "reconstruction/rendering/creature_occupancy.hpp",
+        "reconstruction/rendering/creature-occupancy/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/creature-occupancy-reference.cpp",
+        "tests/creature-occupancy-test.cpp",
+        "tools/test-creature-occupancy.py"
+      ],
+      "evidence": [
+        "TL14.creature-original",
+        "TL14.creature-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -18522,6 +18562,94 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "TL14.creature-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 004e1200 read-only query on valid owned receiver: sixteen WORD MSB-first footprint rows plus raw height DWORD, all signed32 XYZ and raw uint32 heights, negative/64 XY and negative/wrapped height-limit Z rejection, four-fine-unit XY blocks and normalized result; exhaustive authored fine XY, height/sign/boundary fixtures, immutable guarded original inputs and independent rectangle tests; no 004e1260 construction, candidate/transform/parent/live collision integration",
+      "record": "research/runtime/creature-occupancy-lookup.json",
+      "sha256": "8e27ceaddb0b9729e191aec7f9f8aaca74cc6dbea73a2e65e9caf44108b6be49",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 52
+        },
+        {
+          "pointer": "/calls",
+          "equals": 1984320
+        },
+        {
+          "pointer": "/hits",
+          "equals": 340684
+        },
+        {
+          "pointer": "/guard_bytes",
+          "equals": 134933760
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL14.creature-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 004e1200 read-only query on valid owned receiver: sixteen WORD MSB-first footprint rows plus raw height DWORD, all signed32 XYZ and raw uint32 heights, negative/64 XY and negative/wrapped height-limit Z rejection, four-fine-unit XY blocks and normalized result; exhaustive authored fine XY, height/sign/boundary fixtures, immutable guarded original inputs and independent rectangle tests; no 004e1260 construction, candidate/transform/parent/live collision integration",
+      "record": "research/runtime/creature-occupancy-lookup.json",
+      "sha256": "8e27ceaddb0b9729e191aec7f9f8aaca74cc6dbea73a2e65e9caf44108b6be49",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 52
+        },
+        {
+          "pointer": "/calls",
+          "equals": 1984320
+        },
+        {
+          "pointer": "/hits",
+          "equals": 340684
+        },
+        {
+          "pointer": "/guard_bytes",
+          "equals": 134933760
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -20523,6 +20651,23 @@
         "tests/render-command-writer-test.c",
         "tools/test-live-render-channel.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.creature-occupancy-lookup",
+      "level": "headless",
+      "scope": "Whole 004e1200 read-only query on valid owned receiver: sixteen WORD MSB-first footprint rows plus raw height DWORD, all signed32 XYZ and raw uint32 heights, negative/64 XY and negative/wrapped height-limit Z rejection, four-fine-unit XY blocks and normalized result; exhaustive authored fine XY, height/sign/boundary fixtures, immutable guarded original inputs and independent rectangle tests; no 004e1260 construction, candidate/transform/parent/live collision integration",
+      "behaviors": [
+        "TL.creature-occupancy-lookup"
+      ],
+      "evidence": [
+        "TL14.creature-original",
+        "TL14.creature-native"
+      ],
+      "tests": [
+        "tests/creature-occupancy-reference.cpp",
+        "tests/creature-occupancy-test.cpp",
+        "tools/test-creature-occupancy.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -20635,7 +20780,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "691e18085d2a1a3be849fc9f314966cc545bb31ba21bdb1ffd3569dbb2110369",
+      "sha256": "e3dbc72febc632144c7d28774f4e595abe51ede09b30b890e706a1c2c2ab5c3c",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -20645,42 +20790,47 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "892ca3d8e55c827f439705658b18a08c85c99cdea301cd7a0bfe574bf58655e5",
+      "sha256": "c7a85593e2d880e3ad8202ac279fd7d9a132b9c38a24d954e29da385403642cd",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "a96b0eba3adb463f5a4e4e89464d125a6eb6db83856d087e3fcab4eab709b6cc",
+      "sha256": "b8c6fa982fb942a53d7ed340a4ff503d7a341e060db53c886e31c49a0bbdd335",
       "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-cleanup-coverage.json",
-      "sha256": "e1dc2f2176ee23d68db657f16fcfd7a3f7531a2d92fddddebc85d54d86e99344",
+      "sha256": "c8b0b211511fd39b214ae5276721f06bd5b97cbeef3343713db89e9275746bcb",
       "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-blocked-destinations-coverage.json",
-      "sha256": "870be44d6e400c5d2a174d60990c0b8f123859a5dd2659fd51aa0b87d6f574dd",
+      "sha256": "9c1f74f7b9ec52ed33a65a22bdf44faecf49e6477cf894ed0b4e931f36f9eb72",
       "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-height-exits-coverage.json",
-      "sha256": "bbdc6c90fe2d8dbdd4e4c8e82383a8089484d621410c3a17f06ab51f601ad62b",
+      "sha256": "1ff1daab68aad8f14292bc907f0d4121a8df6f008c125f5f1e1d77271c0cefbf",
       "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-membership-disabled-coverage.json",
-      "sha256": "51db32e20198d9c7207980386b38ae186ec643a25c7fcb395e6ee91f86eebdcd",
+      "sha256": "e0ffbe6565f4e5d98814a60c679d5276773f718c0f09f0e149419e4106320607",
       "scope": "Reviewed complete-parent disabled-membership movement and preserved graph/flags, ordinary/blocked/height/cleanup reruns and native reconciliation admission; remaining occupied collision/setup/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-terrain-occupancy-coverage.json",
-      "sha256": "bb632fb424dd8b1b9cf7cc3feda43983ed46f6d2e23893535a41bc57b2a7b43f",
+      "sha256": "b152dc32d6bb81c53704bf6a5010fc7675b5a431519fdb4ca03f957edab80e18",
       "scope": "Reviewed complete-parent terrain occupancy bitmap/cache-gated sampling, hit ordering and both membership modes with fresh prior-contract reruns; remaining creature/special-type/catalog/lifecycle gaps and historical fingerprints preserved"
+    },
+    {
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "sha256": "a58f6cb785cb7ca9ee612300af791f685405429a7b2ce39f081d407f1e7fe124",
+      "scope": "Reviewed complete 004e1200 creature footprint lookup and owned read-only storage, independent rectangle tests and raw-height wrapping; original candidate/parent/initializer/capture/live work remains separate and historical effect proofs are preserved"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-command-commit-v2.json",
-    "sha256": "e7839c9a6f8538bf89f1a3e631a18c4261908245c32daae683d783e09eca52ba"
+    "path": "research/runtime/creature-occupancy-lookup-source-index.json",
+    "sha256": "0b85341b048cb7e3ad8ba653541bc8270e180e8aa20b4d47b02676300226d042"
   }
 }
