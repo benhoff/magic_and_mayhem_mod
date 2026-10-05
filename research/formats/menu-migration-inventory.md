@@ -101,7 +101,7 @@ Cancel navigation. Actual persistence and engine overwrite rules remain open.
 Preferences has a [native settings preview](../runtime/preferences-qt.md),
 [recovered original contract](../runtime/preferences-engine-contract.md), and
 [Main Menu V6 bridge](../runtime/preferences-engine-bridge.md). Other callers,
-resolution rebuild validation and cross-launch settings persistence remain separate.
+resolution rebuild validation remain separate; [UI24](../runtime/preferences-persistence.md) adds selected cross-launch settings persistence.
 
 Join and Create Multiplayer now have [native setup previews](../runtime/multiplayer-setup-qt.md)
 with username/game-name inputs, exclusive transport choices and typed request

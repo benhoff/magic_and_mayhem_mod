@@ -53,7 +53,8 @@
       "evidence": [
         "UI23.original",
         "UI23.live",
-        "UI23.qt"
+        "UI23.qt",
+        "UI24.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -112,7 +113,8 @@
       "evidence": [
         "UI23.original",
         "UI23.live",
-        "UI23.qt"
+        "UI23.qt",
+        "UI24.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -170,7 +172,8 @@
       "evidence": [
         "UI23.original",
         "UI23.live",
-        "UI23.qt"
+        "UI23.qt",
+        "UI24.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -322,7 +325,46 @@
       ],
       "evidence": [
         "UI23.live",
-        "UI23.qt"
+        "UI23.qt",
+        "UI24.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "NP.preferences-persistence",
+      "subsystem": "preferences",
+      "kind": "native_policy",
+      "title": "Accepted Main Preferences across process launches",
+      "scope": "Seven values saved only after original OK/readback/ready Main; fresh disposable import, atomic store, conflict refusal and Cancel preservation. No power-loss or all-caller claim.",
+      "original": [],
+      "documents": [
+        "research/runtime/preferences-persistence.md",
+        "research/formats/engine-preferences-store.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "tools/menu_preferences_store.py",
+        "tools/prepare-menu-observer.py"
+      ],
+      "tests": [
+        "tests/engine-preferences-store-test.cpp",
+        "tests/test-menu-preferences-store.py",
+        "apps/qt-shell/live_preferences_restore_test.cpp",
+        "tools/test-live-menus.py"
+      ],
+      "evidence": [
+        "UI24.live",
+        "UI24.native"
       ],
       "status": {
         "understanding": "scoped",
@@ -394,6 +436,34 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/recovery_oracle/source_sha256"
+    },
+    {
+      "id": "UI24.live",
+      "kind": "live_observation",
+      "scope": "UI24 native policy: accepted Main Preferences persist across fresh processes; original writer and V6 callbacks retained. No engine replacement or power-loss durability claim.",
+      "record": "research/runtime/preferences-persistence.json",
+      "sha256": "f685638adedbf50543a33baec8a10b6bcf0cbe7c1ed0b1df85de4c7ed1f1cdcc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/cross_launch",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI24.native",
+      "kind": "native_integration",
+      "scope": "UI24 native policy: accepted Main Preferences persist across fresh processes; original writer and V6 callbacks retained. No engine replacement or power-loss durability claim.",
+      "record": "research/runtime/preferences-persistence.json",
+      "sha256": "f685638adedbf50543a33baec8a10b6bcf0cbe7c1ed0b1df85de4c7ed1f1cdcc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/synthetic/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -413,6 +483,27 @@
       ],
       "tests": [
         "tools/test-live-menus.py"
+      ]
+    },
+    {
+      "id": "preferences.cross-launch",
+      "level": "live_observation",
+      "scope": "Seven values saved only after original OK/readback/ready Main; fresh disposable import, atomic store, conflict refusal and Cancel preservation. No power-loss or all-caller claim.",
+      "behaviors": [
+        "NP.preferences-persistence",
+        "PR.main-entry",
+        "PR.audio-preview-cancel",
+        "PR.apply",
+        "NP.preferences-draft"
+      ],
+      "evidence": [
+        "UI24.live",
+        "UI24.native"
+      ],
+      "tests": [
+        "tools/test-live-menus.py",
+        "tests/engine-preferences-store-test.cpp",
+        "tests/test-menu-preferences-store.py"
       ]
     }
   ],

@@ -8,3 +8,5 @@ void installLiveMenuTest(QApplication&,QMainWindow&,LiveMenuSession&,const QStri
 void installLiveBattleMenuTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLivePreferencesMenuTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLivePreferencesRestoreTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);

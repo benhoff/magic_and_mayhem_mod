@@ -83,21 +83,43 @@ def validate(root,args):
         for p in root.iterdir() if p.is_file() and p.name!='artifacts.json'},indent=2)+'\n')
     print('Live Qt menu round trip passed',flush=True)
 
+def validate_restart(root,args):
+    restart=root/'restart'
+    restored=json.loads((restart/'report.json').read_text());lines=(restart/'shell.log').read_text().splitlines()
+    if not restored['success'] or not restored['store_unchanged'] or [(s['screen'],s['ack']) for s in restored['states']]!=[(3,0),(10,1)]:raise RuntimeError('Incomplete restart evidence')
+    if not any(l.startswith('Menu launcher exited with status 0.') for l in lines):raise RuntimeError('Restart did not end through original Quit')
+    experiment=Path(next(l[20:] for l in lines if l.startswith('Evidence directory: ')))
+    spec=importlib.util.spec_from_file_location('decode',REPO/'tools/test-menu-observer.py');decoder=importlib.util.module_from_spec(spec);spec.loader.exec_module(decoder)
+    trace=[(r['menu_id'],r['argument']) for r in decoder.decode((experiment/'events.bin').read_bytes()) if r['event']==3]
+    if trace!=[(3,3),(10,1),(3,4)]:raise RuntimeError('Unexpected restart callback trace')
+    first=json.loads((root/'report.json').read_text());store=root/'config/mnm-qt-shell/engine-preferences.json'
+    if json.loads(store.read_text())['values']!=first['committed'] or restored['states'][-1]['values']!=first['committed']:raise RuntimeError('Persisted store and fresh engine disagree')
+    words=struct.unpack_from('<48I',(experiment/'channel.bin').read_bytes())
+    if words[5]!=0 or words[36]!=3:raise RuntimeError('Restart channel did not retire after acknowledged Quit')
+    first.update(restart=restored,restart_experiment=str(experiment),restart_trace=trace,persistence_store=str(store),cross_launch=True)
+    (root/'report.json').write_text(json.dumps(first,indent=2)+'\n');print('Preferences fresh-process persistence passed',flush=True)
+    paths=[p for p in root.iterdir() if p.is_file() and p.name!='artifacts.json']+[restart/'report.json',restart/'shell.log',store]
+    (root/'artifacts.json').write_text(json.dumps({str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},indent=2)+'\n')
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--exit-from',choices=['main','quick','results'],help='Validate native Quit or window close instead of original fallback')
+    parser.add_argument('--preferences-restart',action='store_true',help='Validate Preferences store across two shell/game processes, including unchanged Cancel')
     parser.add_argument('--preferences',action='store_true',help='Validate Main Preferences preview, Cancel, OK, reopen and window close')
     parser.add_argument('--battle',choices=['direct','spells','results'],help='Validate Single Player setup and original Start handoff')
     parser.add_argument('--battle-repeat',action='store_true',help='Require two battles, two native menu returns and normal Quit (use with --battle direct)')
     parser.add_argument('--shell',type=Path,default=REPO/'working/build/qt-shell/mnm-qt-shell',help='Alternate shell binary for a dedicated validation build')
     parser.add_argument('--validate-run',type=Path,help='Recheck existing live evidence without launching another game')
     args=parser.parse_args()
+    if args.preferences_restart:args.preferences=True
     if args.preferences and (args.battle or args.exit_from or args.battle_repeat):parser.error("Choose Preferences or battle/exit validation")
     if args.battle_repeat and args.battle!='direct':parser.error('--battle-repeat requires --battle direct')
     if args.exit_from=='results' and args.battle!='results':parser.error('--exit-from results requires --battle results')
     if args.battle and args.exit_from and args.exit_from!='results':parser.error('Choose battle or exit validation')
     if args.validate_run:
-        validate(args.validate_run.resolve(),args);return
+        validate(args.validate_run.resolve(),args)
+        if args.preferences_restart:validate_restart(args.validate_run.resolve(),args)
+        return
     parent=REPO/'working/tests/live-menus';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(root,flush=True)
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
@@ -114,7 +136,8 @@ def main():
                 if server.poll() is not None:raise RuntimeError('Xvfb failed')
                 time.sleep(.1)
             else:raise RuntimeError('Xvfb did not become ready')
-            env=dict(os.environ,DISPLAY=':'+number,QT_QPA_PLATFORM='xcb',WINEDEBUG='-all')
+            env=dict(os.environ,DISPLAY=':'+number,QT_QPA_PLATFORM='xcb',WINEDEBUG='-all',XDG_CONFIG_HOME=str(root/'config'))
+            env.pop('MNM_LIVE_MENU_TEST_PREFERENCES_RESTORE',None)
             env.pop('WAYLAND_DISPLAY',None)
             if args.preferences:env['MNM_LIVE_MENU_TEST_PREFERENCES']='1'
             else:env.pop('MNM_LIVE_MENU_TEST_PREFERENCES',None)
@@ -130,12 +153,20 @@ def main():
                     stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
                 if shell.wait(timeout=540 if args.battle_repeat else 420):raise RuntimeError('Live Qt menu test failed; inspect shell.log')
         validate(root,args)
+        if args.preferences_restart:
+            restart=root/'restart';restart.mkdir();env['MNM_LIVE_MENU_TEST_PREFERENCES_RESTORE']='1'
+            with (restart/'shell.log').open('w') as log:
+                shell=subprocess.Popen([str(args.shell.resolve()),'--repo',str(REPO),'--live-menus','--live-menu-test',str(restart/'report.json')],env=env,cwd=REPO,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+                if shell.wait(timeout=420):raise RuntimeError('Preferences restart test failed; inspect restart/shell.log')
+            validate_restart(root,args)
     finally:
         if shell is not None and shell.poll() is None:
             os.killpg(shell.pid,signal.SIGTERM)
             try:shell.wait(timeout=5)
             except subprocess.TimeoutExpired:os.killpg(shell.pid,signal.SIGKILL);shell.wait()
         prefix=root/'wineprefix'
+        restart_prefix=root/'restart/wineprefix'
+        if restart_prefix.exists():subprocess.run(['wineserver','-k'],env=dict(os.environ,WINEPREFIX=str(restart_prefix)),stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=10,check=False)
         if prefix.exists():
             subprocess.run(['wineserver','-k'],env=dict(os.environ,WINEPREFIX=str(prefix)),
                            stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=10,check=False)

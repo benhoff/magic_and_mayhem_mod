@@ -38,3 +38,8 @@ claimed; profile API errors are ignored by the original writer.
 Subsequent [Main Preferences integration](../runtime/preferences-engine-bridge.md)
 validates original writes to a disposable session file and reopened engine values.
 This does not establish restart durability or persistence across launcher sessions.
+
+[UI24](../runtime/preferences-persistence.md) adds application-owned cross-launch
+persistence of the seven exposed values, validated against the original writer.
+Staging overlays them into both config copies; unrelated profile values stay local
+to each installation. The separate store is defined in [schema 1](engine-preferences-store.md).

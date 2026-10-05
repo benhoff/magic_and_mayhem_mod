@@ -12,7 +12,7 @@ REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
-def prepare(actions=False,experimental_mini=False):
+def prepare(actions=False,experimental_mini=False,preferences_store=None):
     if experimental_mini and not actions:raise ValueError("Experimental Mini Menu requires action staging")
     source=REPO/'working/game-nocd';data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:raise ValueError('Unsupported executable; refusing staging')
@@ -24,6 +24,11 @@ def prepare(actions=False,experimental_mini=False):
     patched=module('menu_import','tools/prepare-shadow-experiment.py').add_import(data,'MnmMenu.dll','MenuAnchor',b'.mnmenu')
     (game/'Chaos.exe').write_bytes(patched);shutil.copy2(dll,game/dll.name)
     preferences=module('menu_preferences','tools/run-opengl-game.py')
+    stored=None
+    if preferences_store:
+        encoder=preferences.load('preferences_encoder','tools/encode-cfg.py');decoder=encoder.load_decoder(REPO)
+        stored=module('preferences_store','tools/menu_preferences_store.py').stage(game,preferences_store,encoder,decoder)
+        if stored['warning']:print('Preferences store ignored: '+stored['warning'],flush=True)
     edits=preferences.disable_cd_music(game)+preferences.skip_movies(game)
     # Source engine code stays byte-identical; only the additional import is staged.
     exporter=module('menu_export','tools/export-menu-support.py')
@@ -32,7 +37,7 @@ def prepare(actions=False,experimental_mini=False):
         if patched[at:at+end-start]!=data[at:at+end-start]:raise ValueError('Callback code changed during staging')
     metadata={'origin':'menu_action_bridge' if actions else 'menu_observation_only','source_sha256':HASH,'staged_sha256':hashlib.sha256(patched).hexdigest(),
               'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'game_copy':str(game),'events':str(root/'events.bin'),
-              'experimental_mini':experimental_mini,'preferences':edits,'scope':('UNVALIDATED Mini Menu bridge; dedicated validation staging; original confirmation/drawing retained' if experimental_mini else 'Bounded Main/Quick/Single Player/Map/Spell/Quick results/Main Preferences engine-thread action bridge; original menu logic/drawing retained') if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
+              'experimental_mini':experimental_mini,'preference_store':stored,'preferences':edits,'scope':('UNVALIDATED Mini Menu bridge; dedicated validation staging; original confirmation/drawing retained' if experimental_mini else 'Bounded Main/Quick/Single Player/Map/Spell/Quick results/Main Preferences engine-thread action bridge; original menu logic/drawing retained') if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
@@ -42,8 +47,9 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--actions',action='store_true',help='Stage the opt-in bounded menu action bridge')
     parser.add_argument("--experimental-mini",action="store_true",help="UNVALIDATED: build Mini Menu hooks for a dedicated future validation run")
+    parser.add_argument("--preferences-store",type=Path,help="Import only exposed Preferences settings into the disposable copy")
     args=parser.parse_args()
     if args.experimental_mini and not args.actions:parser.error("--experimental-mini requires --actions")
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini)}',flush=True)
+    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store)}',flush=True)
     finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

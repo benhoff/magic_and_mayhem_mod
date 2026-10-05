@@ -548,8 +548,14 @@ Normal `--live-menus` sessions use V6 Main Preferences alongside V5 Quick Battle
 Main **Preferences** reads the engine's current settings and available controls.
 Audio sliders preview through the original services; radio edits apply on OK.
 Cancel restores entry audio through the engine. The original engine handles the
-settings writer and display rebuilding. Changes are stored in the disposable
-session installation; persistence across launches is not implemented. Mini and
+settings writer and display rebuilding. Accepted settings are validated against the original-written file and saved for
+future launches in the user-scoped engine Preferences store. Mini and
 campaign callers remain outside this adapter. Validate without manual interaction
 with `python3 tools/test-live-menus.py --preferences`; see the
 [Preferences bridge and evidence](../../research/runtime/preferences-engine-bridge.md).
+
+The [cross-launch persistence policy](../../research/runtime/preferences-persistence.md)
+imports only the seven exposed settings into each fresh session. Cancel, previews
+and startup do not save. Failed persistence keeps the current game session usable
+and reports the reason in the launch log. Run `python3 tools/test-live-menus.py
+--preferences-restart` for automated save/relaunch/restore/Cancel validation.
