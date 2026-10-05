@@ -699,3 +699,13 @@ for original readback validation, atomic saving, locks and session conflicts.
 Wine prefixes to validate accepted settings across two fresh shell/game runs,
 including byte-identical Cancel and normal original Quit. No manual interaction
 is required. See [UI24 evidence](../research/runtime/preferences-persistence.md).
+
+### Main Preferences resolution rebuilding
+
+`python3 tools/test-preferences-contract.py` includes six original leave branch
+and repeated-leave checks with private resource dependencies.
+`python3 tools/test-live-menus.py --preferences-display` automates four original
+resolution rebuilds, changed-draft Cancel and reopened controls in Xvfb/Wine.
+It checks original client dimensions and font modes with a test-only forwarding
+probe, then exits through original Quit. No manual interaction is required.
+See [UI25 evidence](../research/runtime/preferences-display-rebuild.md).

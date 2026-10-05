@@ -559,3 +559,9 @@ imports only the seven exposed settings into each fresh session. Cancel, preview
 and startup do not save. Failed persistence keeps the current game session usable
 and reports the reason in the launch log. Run `python3 tools/test-live-menus.py
 --preferences-restart` for automated save/relaunch/restore/Cancel validation.
+
+`python3 tools/test-live-menus.py --preferences-display` automatically cancels a
+resolution draft, applies four alternating High/Low changes and checks original
+game client sizes, leave flags, font modes and reopened controls before Quit.
+The forwarding leave observer is enabled only for this test. See
+[UI25 scope/evidence](../../research/runtime/preferences-display-rebuild.md).

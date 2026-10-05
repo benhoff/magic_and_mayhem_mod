@@ -10,3 +10,5 @@ void installLiveBattleMenuTest(QApplication&,QMainWindow&,LiveMenuSession&,const
 void installLivePreferencesMenuTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLivePreferencesRestoreTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLivePreferencesDisplayTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
