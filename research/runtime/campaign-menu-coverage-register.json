@@ -26,7 +26,8 @@
         }
       ],
       "documents": [
-        "research/runtime/campaign-menu-engine-contract.md"
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/campaign-menu-entry-observation.md"
       ],
       "implementation": [
         "tools/export-campaign-menu-support.py"
@@ -36,7 +37,8 @@
         "tools/test-campaign-menu-contract.py"
       ],
       "evidence": [
-        "UI26.original"
+        "UI26.original",
+        "UI27.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -180,16 +182,63 @@
         }
       ],
       "documents": [
-        "research/runtime/campaign-menu-engine-contract.md"
+        "research/runtime/campaign-menu-engine-contract.md",
+        "research/runtime/campaign-menu-entry-observation.md"
       ],
       "implementation": [],
       "tests": [],
-      "evidence": [],
+      "evidence": [
+        "UI27.live"
+      ],
       "status": {
         "understanding": "partial",
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.realm-observation",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Fresh campaign ingress observation and guarded tick forwarding",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5576608,
+          "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+          "recovered_range": "campaign-entry-5517a0"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-menu-entry-observation.md",
+        "research/runtime/campaign-menu-engine-contract.md"
+      ],
+      "implementation": [
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/observer.c",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/build-menu-observer.py"
+      ],
+      "tests": [
+        "tests/campaign-observer-test.c",
+        "tools/test-campaign-observer.py",
+        "tools/test-live-campaign-entry.py",
+        "tools/test-menu-observer.py"
+      ],
+      "evidence": [
+        "UI27.live",
+        "UI27.fixture"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -230,9 +279,74 @@
           "equals": 14
         }
       ]
+    },
+    {
+      "id": "UI27.live",
+      "kind": "live_observation",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+      "record": "research/runtime/campaign-menu-entry-observation.json",
+      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/original_tick_forwarded",
+          "equals": true
+        },
+        {
+          "pointer": "/live/realm_resources_observed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI27.fixture",
+      "kind": "native_integration",
+      "scope": "Synthetic opt-in forwarding guards/deduplication and disabled-probe Preferences regression; no original/native engine equivalence",
+      "record": "research/runtime/campaign-menu-entry-observation.json",
+      "sha256": "5b3c9327646014c39a8f0bfd9f8d8bd87a107a66ad406c8952dd5bbc4470c088",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        },
+        {
+          "pointer": "/preferences_regression/success",
+          "equals": true
+        }
+      ]
     }
   ],
-  "scenarios": [],
+  "scenarios": [
+    {
+      "id": "campaign.fresh-ingress",
+      "level": "live_observation",
+      "scope": "Opt-in original Realm tick forwarding and fresh New Game automatic Region Entry ingress; resources remain uninitialized; no Qt campaign actions, loaded Realm ownership, region interaction, Mini return or replacement",
+      "behaviors": [
+        "CP.realm-observation",
+        "CP.main-new-game",
+        "CP.realm-initialization-gap"
+      ],
+      "evidence": [
+        "UI27.live",
+        "UI27.fixture"
+      ],
+      "tests": [
+        "tools/test-live-campaign-entry.py",
+        "tools/test-campaign-observer.py"
+      ]
+    }
+  ],
   "dispatch_tables": [
     {
       "id": "campaign.realm-vtable-prefix",
