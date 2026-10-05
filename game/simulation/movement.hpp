@@ -50,6 +50,8 @@ public:
     Handle spawnBlocker(Entity); // Stationary same-profile creature; owns no motion driver.
     void enqueue(Command);
     void move(Handle,Point,std::optional<Handle> goal={});
+    void stop(Handle h) {enqueue({Operation::stop,h,{}});}
+    std::uint32_t cancelQueuedMoves(Handle h) {return world_.cancelQueuedMoves(h);}
     TickReport step(TickInput={});
     Point finePosition(const Entity& e) const {return e.motion && e.motion->fine?e.motion->fine->fine:navigation_->finePosition(e);}
     // Load map + validate routes before committing either resource or world.

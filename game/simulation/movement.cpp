@@ -32,7 +32,7 @@ bool Navigation::acceptsInWorld(const State& state,Handle h,const RoutePoint& wa
 }
 bool active(Action a) {return a==Action::planning || a==Action::moving;}
 void validateCommand(const Command& c) {
-    if(static_cast<std::uint32_t>(c.operation)>4 ||
+    if(static_cast<std::uint32_t>(c.operation)>5 ||
        (c.operation!=Operation::target && c.operation!=Operation::move && c.target) ||
        ((c.operation==Operation::move)!=bool(c.destination)) ||
        ((c.operation==Operation::motion)!=bool(c.update)))

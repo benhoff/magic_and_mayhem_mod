@@ -11879,6 +11879,45 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.stop-orders",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Native queued stop and cancellation of pending moves",
+      "scope": "Synthetic production Qt stop/cancel controls: selected pending move removal without active-route mutation, FIFO tick-boundary stops, fine motion reset to committed logical cell, identity/cleanup refusal, transactional rollback and v7 exact pending-stop restart. Original stop/input and whole installed-window/live equivalence excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-stop-orders.md",
+        "research/formats/native-world-snapshot.md"
+      ],
+      "implementation": [
+        "apps/world-scene/orders.cpp",
+        "apps/world-scene/orders.hpp",
+        "apps/world-scene/movement_controls.cpp",
+        "apps/world-scene/movement_controls.hpp",
+        "apps/world-scene/main.cpp",
+        "game/simulation/world.cpp",
+        "game/simulation/world.hpp",
+        "game/simulation/movement.cpp",
+        "game/simulation/movement.hpp",
+        "game/persistence/snapshot.cpp"
+      ],
+      "tests": [
+        "tests/world-stop-test.cpp",
+        "tools/test-stop-orders.py"
+      ],
+      "evidence": [
+        "NS15.stop-orders"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -19441,6 +19480,60 @@
           "equals": 1
         }
       ]
+    },
+    {
+      "id": "NS15.stop-orders",
+      "kind": "native_integration",
+      "scope": "Synthetic production Qt stop/cancel controls: selected pending move removal without active-route mutation, FIFO tick-boundary stops, fine motion reset to committed logical cell, identity/cleanup refusal, transactional rollback and v7 exact pending-stop restart. Original stop/input and whole installed-window/live equivalence excluded.",
+      "record": "research/runtime/native-stop-orders.json",
+      "sha256": "d95a47673a598686dea1294c5d0b969e15f7747d07bd2f02391c8ea3db966087",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_stop/selected_pending_only",
+          "equals": true
+        },
+        {
+          "pointer": "/native_stop/active_route_preserved_by_cancel",
+          "equals": true
+        },
+        {
+          "pointer": "/native_stop/tick_boundary_stop",
+          "equals": true
+        },
+        {
+          "pointer": "/native_stop/fine_snap_to_logical_cell",
+          "equals": true
+        },
+        {
+          "pointer": "/native_stop/fifo_restart",
+          "equals": true
+        },
+        {
+          "pointer": "/native_stop/v7_roundtrip",
+          "equals": true
+        },
+        {
+          "pointer": "/native_stop/legacy_stop_refusal",
+          "equals": true
+        },
+        {
+          "pointer": "/native_stop/stale_cleanup_refusal",
+          "equals": true
+        },
+        {
+          "pointer": "/native_stop/transaction_rollback",
+          "equals": true
+        },
+        {
+          "pointer": "/native_stop/fresh_process_continuations",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -21602,6 +21695,21 @@
         "tests/effect-creature-test.cpp",
         "tools/test-effect-creature.py"
       ]
+    },
+    {
+      "id": "world.stop-orders",
+      "level": "preview",
+      "scope": "Synthetic production Qt stop/cancel controls: selected pending move removal without active-route mutation, FIFO tick-boundary stops, fine motion reset to committed logical cell, identity/cleanup refusal, transactional rollback and v7 exact pending-stop restart. Original stop/input and whole installed-window/live equivalence excluded.",
+      "behaviors": [
+        "NP.stop-orders"
+      ],
+      "evidence": [
+        "NS15.stop-orders"
+      ],
+      "tests": [
+        "tests/world-stop-test.cpp",
+        "tools/test-stop-orders.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -21792,7 +21900,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-creature-collision-source-index.json",
-    "sha256": "5193628b79b140215ac9ce7f782b0c4757835022666e8fadec86fe4a7e949f90"
+    "path": "research/runtime/coverage/source-index-stop-orders.json",
+    "sha256": "26235cd7720e3f781d5dfc26e8a573a423526ce23b21af552bef20f80541c33e"
   }
 }

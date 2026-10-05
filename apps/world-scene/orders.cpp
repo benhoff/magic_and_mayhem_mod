@@ -23,6 +23,16 @@ void Orders::select(const game::State& state,std::optional<game::Handle> h) {
 void Orders::synchronize(const game::State& state) {
     if(selected_ && !valid(state,*selected_)) selected_.reset();
 }
+void Orders::stop(game::MovementSession& session) {
+    synchronize(session.world().state());
+    if(!selected_) throw std::invalid_argument("Select a creature first");
+    session.stop(*selected_);
+}
+std::uint32_t Orders::cancelQueuedMoves(game::MovementSession& session) {
+    synchronize(session.world().state());
+    if(!selected_) throw std::invalid_argument("Select a creature first");
+    return session.cancelQueuedMoves(*selected_);
+}
 void Orders::move(game::MovementSession& session,game::Point target) {
     synchronize(session.world().state());
     if(!selected_) throw std::invalid_argument("Select a creature first");

@@ -11,5 +11,7 @@ public:
     void select(const game::State&,std::optional<game::Handle>);
     void synchronize(const game::State&);
     void move(game::MovementSession&,game::Point);
+    void stop(game::MovementSession&);
+    std::uint32_t cancelQueuedMoves(game::MovementSession&);
 };
 }

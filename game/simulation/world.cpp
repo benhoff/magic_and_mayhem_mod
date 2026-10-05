@@ -1,6 +1,7 @@
 #include "world.hpp"
 #include "movement.hpp"
 #include <limits>
+#include <algorithm>
 #include <stdexcept>
 #include <utility>
 
@@ -45,6 +46,9 @@ bool apply(State& s,const Command& c) {
         e.motion=CreatureMotion{};e.motion->sampleMotion=sampleMotion;e.motion->continuousMotion=continuousMotion;e.motion->terrainMotion=terrainMotion;e.motion->action=Action::planning;e.motion->origin={e.x,e.y,e.z};
         e.motion->destination=destination;e.motion->goal=c.target;e.motion->budget=budget;break;
     }
+    case Operation::stop:
+        if(!slot.entity->motion || slot.entity->cleaned) return false;
+        cancel(*slot.entity);break;
     case Operation::motion: {
         auto& e=*slot.entity;if(!e.motion || e.cleaned) return false;
         e.x=c.update->position.x;e.y=c.update->position.y;e.z=c.update->position.z;e.motion=c.update->motion;break;
@@ -93,6 +97,7 @@ void World::validate(const State& s,const Limits& l) {
     for(const auto& c:s.pending) {
         validateCommand(c);
         if(c.operation==Operation::motion) throw std::invalid_argument("internal motion update cannot be queued");
+        if(c.operation==Operation::stop && !s.navigation) throw std::invalid_argument("stop requires navigation binding");
         if(c.destination && (!s.navigation || !contains(*c.destination,*s.navigation))) throw std::invalid_argument("invalid queued move destination");
     }
 }
@@ -112,6 +117,16 @@ Handle World::spawn(Entity entity) {
 void World::enqueue(Command command) {
     if(stepping_) throw std::logic_error("emit tick commands through callback output");
     auto next=state_;next.pending.push_back(command);validate(next,limits_);state_=std::move(next);
+}
+std::uint32_t World::cancelQueuedMoves(Handle subject) {
+    if(stepping_) throw std::logic_error("cannot cancel queued moves during tick");
+    const auto* e=find(subject);
+    if(!e || !e->motion || e->cleaned) throw std::invalid_argument("invalid cancellation actor");
+    auto next=state_;const auto before=next.pending.size();
+    next.pending.erase(std::remove_if(next.pending.begin(),next.pending.end(),[&](const Command& c) {
+        return c.operation==Operation::move && c.subject==subject;
+    }),next.pending.end());
+    validate(next,limits_);const auto removed=before-next.pending.size();state_=std::move(next);return removed;
 }
 TickReport World::step(TickInput input,const System& system) {
     if(stepping_) throw std::logic_error("recursive world tick");

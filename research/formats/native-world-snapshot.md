@@ -279,3 +279,14 @@ including resumption of a Python-authored checkpoint. Fresh-process traces and
 checkpoint bytes cover terrain offsets, slopes, pure vertical/category-four,
 turns, fractional speed and prefix replanning, with and without ANI. See
 [NS06 evidence](../runtime/native-terrain-motion.md).
+
+## V7 pending native stop command (NS15)
+
+The writer emits v7 only when a pending operation-5 stop exists. V7 uses the v6
+payload superset: navigation binding, optional animation binding, motion flags and
+terrain-policy fields, with operation 5 admitted. Stop has subject only: no target,
+destination or internal motion update. Navigation is required. It is applied FIFO
+at the next admitted tick and may be rejected for stale, cleaned or motionless
+subjects. Versions 1–6 explicitly reject operation 5. With no pending stops, output
+retains its prior minimum version (including v1 lifecycle and v6 terrain motion).
+This format is native policy and asserts no original save or stop compatibility.

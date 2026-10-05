@@ -172,6 +172,14 @@ int main(int argc,char** argv) try {
         try {orders.move(session,target);refresh();status->setText("Move order queued. Step to apply it.");}
         catch(const std::exception& e) {refresh();status->setText(e.what());}
     };
+    controls->onStop=[&] {
+        try {orders.stop(session);refresh();status->setText("Stop queued. Step to apply it.");}
+        catch(const std::exception& e) {refresh();status->setText(e.what());}
+    };
+    controls->onCancelQueuedMoves=[&] {
+        try {const auto n=orders.cancelQueuedMoves(session);refresh();status->setText(QString("Removed %1 queued moves.").arg(n));}
+        catch(const std::exception& e) {refresh();status->setText(e.what());}
+    };
     image->onSelectAt=[&](int x,int y) {
         try {controls->onSelect(mnm::scene::pickActor(displayedQueue,terrain,creature,x,y));}
         catch(const std::exception& e) {status->setText(e.what());}

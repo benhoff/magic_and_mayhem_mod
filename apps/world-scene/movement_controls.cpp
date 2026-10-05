@@ -26,6 +26,12 @@ MovementControls::MovementControls(QWidget* parent):QWidget(parent) {
     for(auto* spin:{x_,y_,z_}) coordinates->addWidget(spin);
     x_->setPrefix("X ");y_->setPrefix("Y ");z_->setPrefix("Z ");
     layout->addRow("Target cell",coordinates);move_=new QPushButton("Queue move",this);move_->setObjectName("queueMove");layout->addRow(move_);
+    stop_=new QPushButton("Queue stop",this);stop_->setObjectName("queueStop");layout->addRow(stop_);
+    cancel_=new QPushButton("Cancel queued moves",this);cancel_->setObjectName("cancelQueuedMoves");layout->addRow(cancel_);
+    stop_->setToolTip("Cancel the selected creature route on the next Step. Later queued moves can restart it.");
+    cancel_->setToolTip("Remove selected pending moves now; active movement and queued stops remain.");
+    connect(stop_,&QPushButton::clicked,this,[this] {if(onStop) onStop();});
+    connect(cancel_,&QPushButton::clicked,this,[this] {if(onCancelQueuedMoves) onCancelQueuedMoves();});
     connect(creatures_,&QComboBox::currentIndexChanged,this,[this](int i) {
         if(onSelect) onSelect(i>0 && std::size_t(i)<=choices_.size()?std::optional<game::Handle>(choices_[i-1].handle):std::nullopt);
     });
@@ -45,7 +51,7 @@ void MovementControls::updateChoices(std::vector<CreatureChoice> choices,std::op
     if(current && changed) {x_->setValue(current->position.x);y_->setValue(current->position.y);z_->setValue(current->position.z);}
     creatures_->setCurrentIndex(index);choices_=std::move(choices);
     for(auto* spin:{x_,y_,z_}) spin->setEnabled(bool(selected_));
-    move_->setEnabled(bool(selected_));
+    move_->setEnabled(bool(selected_));stop_->setEnabled(bool(selected_));cancel_->setEnabled(bool(selected_));
 }
 void MovementControls::setTarget(game::Point p) {
     if(p.x<x_->minimum() || p.x>x_->maximum() || p.y<y_->minimum() || p.y>y_->maximum() || p.z<z_->minimum() || p.z>z_->maximum())

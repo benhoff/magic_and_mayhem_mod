@@ -9,7 +9,7 @@ namespace mnm::scene {
 class MovementControls final:public QWidget {
     QComboBox* creatures_;
     QSpinBox *x_,*y_,*z_;
-    QPushButton* move_;
+    QPushButton *move_,*stop_,*cancel_;
     std::vector<CreatureChoice> choices_;
     std::optional<game::Handle> selected_;
 public:
@@ -18,5 +18,6 @@ public:
     void setTarget(game::Point);
     std::function<void(std::optional<game::Handle>)> onSelect;
     std::function<void(game::Point)> onMove;
+    std::function<void()> onStop,onCancelQueuedMoves;
 };
 }
