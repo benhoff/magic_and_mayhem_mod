@@ -8605,6 +8605,256 @@
         "evidence": [],
         "reason": "Generated metadata only; no implementation or status promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "d8d2f3365f19bff64d2880e1f2c7fd98d3736de1263982de61b2c988d637bc6f",
+          "before_sha256": "dc30455537e508ea58cc08f772133145aa723cc3245f3fb06a0574594b0370f4",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "03919c8ddb791e178a6be9e982ce31430de2193447ecbdf57c02b23ef001a440",
+          "before_sha256": "5a473df71c1ef35608228a2cf3b73c241c66ce52ddd8907fd26309d0f1a555aa",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "d3b9d14c572d87ffcd4562c3f073b94b795ea3a73a7a33adad43ab6914d9cd64",
+          "before_sha256": "4980634a1301fa5ab66fa2f849e0df9c35e20d21615279c1d72c8f955bc0acdc",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "009cdd30e942bc3b0c7dc4caa43dbbe4b3965c2e6671ce9d62c7099b9aadd5f4",
+          "before_sha256": "5c3f974266a4e5abc9dbaa91e35de346352cbcf672ec965f06d3c649c2ec4194",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "cd9e5650a8be3604b4cb00b8a407f93ac78c0810ea9f522bce6b8b15a14c6195",
+          "before_sha256": "f15d684fa587e50cd254446b0051ed64a24c0342fa3baf382ffcf6610162b5ac",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "9b28e51c7b287e68c320ec37ac343ba08b83b13287e08bfe575ab1bf56332615",
+          "before_sha256": "066d1e026237b603de338883f142d8562762bc6ef719282c78beb3ae5aabb52f",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "a65d5c68db89b11356dad40f3342c3bef88c1f0caa65c40fc13505f2bc75669b",
+          "before_sha256": "7da7875a2a619135c2b8c7c36df53b7e817d8842c0c21a0986bd7cc96f2d4f46",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "816aa88d7f3a183caea9b02b1be066665077e1bdb14affdbd6c8820ff9098b37",
+          "before_sha256": "7bec22825773ccd69a49f496930e89ef3f51c25add59978f42147100758ab9a4",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "471517ae54169b99c407f7409cc05bf6ae9a945f871043ef9d0657403f1a9879",
+          "before_sha256": null,
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "aa19e1b058bcd992d6e97f3c68288f31705c63ea49adc304ccc3cf76db229ff9",
+          "before_sha256": "678b980caa4fbfd6de3cf9ce353c64a5dfa1b13665c8acf9b9a521a565516c83",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "7d9cc25c4dd1e17db919d21c5a583494a90345091c76e0388f2bc47f6a41fd90",
+          "before_sha256": "091a361c3fc2416c5cac45bf1d95a86d14832fe4c7ca56413f63deb35d922322",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "1b0998728513b111291a0bc4d96b1ed9f1b010b0e69386b33a7999d2382a8237",
+          "before_sha256": "d417d9ceb2707a65105831d147ae98a1742ab12f9e1d3c11e3fba77e8cdc97e0",
+          "id": "WORLD.owned"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "49a35666946c95c7d1aa4375055738a3c532fbd06a5d5206bb3d77edbf184e78",
+          "before_sha256": "300b41669ff02ef07f4518c1926fbc8f0e2479ffe1f8f13924859c1661a8a9e3",
+          "path": "apps/world-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "2f6bed3c7cf8b52d3e2badd607208be47fd6f300efe9c8bcaf70a3f86c368282",
+          "before_sha256": "06cbfa270f6d7b9b56d68ddc61d765ca88a0f3e451a6f7c9d071d10dbdbe0396",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "8f7b0c6cbb06b22a173970a4204eba860b9de0d9e35f874a6a04d3a71f5dd355",
+          "before_sha256": "1944c63325f0ffb3638292f3ddd4a193f588d4517a6deaf3d3746f1f949b22d3",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "fd36bf86195f89f7bf53f7d76b1b8d36b02767c3fa044370bcbe76ea65507402",
+          "before_sha256": "29eb7f0cb4689748a89ac524991c358f4a677fd20bc74bbb4f3f97cc4b654ebf",
+          "path": "apps/world-scene/movement_controls.cpp"
+        },
+        {
+          "after_sha256": "a401433ecc002623afeb1a46f16781b86b6c2615f1849f55ba39a763493500e7",
+          "before_sha256": "2ae54907e80f8143e5f5e75544a73ff61c75d4fb9ea90abce0476a0461b2a7a6",
+          "path": "apps/world-scene/movement_controls.hpp"
+        },
+        {
+          "after_sha256": "46f64e2af5f7defc2cc93852738fcb04e48720d72187c448f74ad1b134805817",
+          "before_sha256": "a4c5601ef6e3b6764d2789b662ff394f9ad60f6756ece4044f9089b4dfd52c27",
+          "path": "apps/world-scene/orders.cpp"
+        },
+        {
+          "after_sha256": "845ac3543b04b196801d44d89322b1359ab66b38c55fd421f7c89f70957c4690",
+          "before_sha256": "85f2cbb55848b6c0c5931af65e963c014a3cf2bcb7e3673ca304a4c4774e4401",
+          "path": "apps/world-scene/orders.hpp"
+        },
+        {
+          "after_sha256": "e571201da002cbeaa5190ba690afb9b111aef871dc657218da15022300e6d927",
+          "before_sha256": "f57fccdeca9a521e496ede4bc444b1d6310b30cbdde91c76e7391d9fd7a060bc",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "63a5da14c55d1255fe53ad35d04999e9ca68dda2d597bd559f4415212594f9cb",
+          "before_sha256": "6f1751e921ca150b6b38b4cbfbc3c655ec0626a163e6b076e193df8211e22bd9",
+          "path": "game/persistence/snapshot.cpp"
+        },
+        {
+          "after_sha256": "e85f5c509b4b132eb4019188b73a0d11301957731c981dcd9b035e13b6dcfd78",
+          "before_sha256": "56e051eef1017b39f768b0ef238238753f129cbe52c2adb89c93fbd01398caa9",
+          "path": "game/simulation/movement.cpp"
+        },
+        {
+          "after_sha256": "d99af9c7f7acfdf52f6b09ee10a717479475af962768ec4a7d8458bf1fe82cc4",
+          "before_sha256": "47f40135b8126bc2d855a7d5b1e8681599f1e2e33274833825b355fc48b220cf",
+          "path": "game/simulation/movement.hpp"
+        },
+        {
+          "after_sha256": "019458d31ce835a1ef7b17d2bd0b6431f95beb7cbbeff16b9d7f0e1f35037251",
+          "before_sha256": "5e75ebddd738ac141f27875a48d11f5c3e2b35e4af8c30417823c1a147f61135",
+          "path": "game/simulation/world.cpp"
+        },
+        {
+          "after_sha256": "51564429ada9da7aca99076e58bf4cd41c5ab300ff202e3e6a8f5f31c62c77f3",
+          "before_sha256": "cc2804653b232dbd1e029e10929cf2c683a36fff7c695f68c00571051342669e",
+          "path": "game/simulation/world.hpp"
+        },
+        {
+          "after_sha256": "95661a33a19b06e6dc66500c856165cabdb33d2b4c876e27464f2df3661a83a4",
+          "before_sha256": "2268126f59b322de4c8937d1b869c002091965abeb0ba2d741b6f6b03e6ed8cd",
+          "path": "research/formats/native-world-snapshot.md"
+        },
+        {
+          "after_sha256": "ee3f5b9b834ca9de6a2e5931d869c28f4100e5f46457ad0d37a17fa5f0226ad0",
+          "before_sha256": "e41b06190f302c2f853a10da66a93b433a08f860d28656fdc52363d875b6d0f7",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "7f8be5d6f1cb6d3c34476de34dcc8de06e18f16d89dd503b2800444c46181ffb",
+          "before_sha256": "ffb00cebc8f55f6ace5417508715049d3e8b025adc30534ac50b7817377baebc",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "26235cd7720e3f781d5dfc26e8a573a423526ce23b21af552bef20f80541c33e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-stop-orders.json"
+        },
+        {
+          "after_sha256": "4fb1bb753b3a5dd3883faff6c30f8c28c243eb43a67b41f5f86dc84011149231",
+          "before_sha256": "3957d20d890e1bb0e011a2adfabf79d09f7691d05b05deb616d19f4d582876e6",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "48c86d642515a29b9155fc75bc0a4990712c7830727e7890ae9b3b0cce7416b1",
+          "before_sha256": null,
+          "path": "research/runtime/native-stop-orders-history-review.json"
+        },
+        {
+          "after_sha256": "d95a47673a598686dea1294c5d0b969e15f7747d07bd2f02391c8ea3db966087",
+          "before_sha256": null,
+          "path": "research/runtime/native-stop-orders.json"
+        },
+        {
+          "after_sha256": "7527b379f5ca63e0529f3daf85d5a630877bf9906125c6c6197bfeda9d0d7383",
+          "before_sha256": null,
+          "path": "research/runtime/native-stop-orders.md"
+        },
+        {
+          "after_sha256": "a3ea343da41c76a144c987da0b1a965ac2b27875094148fc24591ee37d8b46bc",
+          "before_sha256": "2ad52c20ad1e665a7173b6ce85bcd8e4705bfb59cbe6cadbe124fb6f0322a362",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "75dea34bf023979e595f68be11cc4c533331925e0ba99b372b7e0047bcb82afb",
+          "before_sha256": null,
+          "path": "tests/world-stop-test.cpp"
+        },
+        {
+          "after_sha256": "53805a2807d62c0c62bfd9990c78c63b1b4c827277076b565645b454b704d91f",
+          "before_sha256": null,
+          "path": "tools/test-stop-orders.py"
+        }
+      ],
+      "id": "NS15.stop-orders-exact-staged",
+      "pending_gaps": [
+        "behaviors_without_comparison:62398b4fa8263c0de1ea19edb4d54c64b392348afd1fc7522aa4dd932137777b",
+        "stale_evidence:108e08725ad67558de0f21dbdf01373bfc0322729ebc1f9002b80e388e56c8e3",
+        "stale_evidence:114512fad694c0e6c728d4bbbb25c5056899d4683a9c5f8975c3a5be94beb8a9",
+        "stale_evidence:1c10876d7a441e183606516dd94ef42803a209814d854fe6298f0a067e526841",
+        "stale_evidence:2707bd0300114213d3f4f11147ba02c01350d9231d513d259660bd3d768ada0e",
+        "stale_evidence:36986fccde4ec6b8cb431c35d5a2487a2d3821a466724c335827a890ecbb8dc1",
+        "stale_evidence:49d4ee47b14b84ffdfd27eb064457e412867fdd03e5d78d9a1d10323ac908dac",
+        "stale_evidence:4c732c157e95084f5e4e7b8e1702af429b0c9789288863b41e9d4db41690cbb5",
+        "stale_evidence:4e97c00ca305dc30e48e7e64270b2b4e08e65500d04231a26f1abe9bd4744ed0",
+        "stale_evidence:5408f9c0217465d5cb9645566105926e2a4d506389a4196795a6b67b25c00e89",
+        "stale_evidence:54de1dc5a0b93170c15a276264420ab0bef92a0dbcc9e81af52a4ef772ea07f3",
+        "stale_evidence:59e6d37d4fb63948e5218eaec0177c833355eb35aa7574eb6c0ac26c581af3f1",
+        "stale_evidence:65860c5e4bd1616dc109c38a688ee7f640c6e39ac795a1410f013270be9a9c38",
+        "stale_evidence:6e056fac11efd2151256f3db4fb12dccc4ed6d2957833fd39a6fa7f76ae79352",
+        "stale_evidence:71e59067e580539a2755fcbbe0fa63898e7ba4f33472d38604ea18dc0b8140ef",
+        "stale_evidence:74927abb9b72fa15dda303998bfaec66de641db92519ba0293cb4497306b24fe",
+        "stale_evidence:7fb43fec6ff43cea0a4e265c599015d76fa6878f4dce2dfda02df5aaa7e4f5fa",
+        "stale_evidence:80bc8873b245031421ca5bc4d16bc73a0eee52b0b4726d45727bff549ed5db55",
+        "stale_evidence:86f91370876fce9340deee660ed48fbb4640eee1868d80a2ef85a1d1459eafe2",
+        "stale_evidence:8f16ff8e669fd22151b8edaa1a93441b5b64c1dccf310ac54b801ce827d0703b",
+        "stale_evidence:933d6ae7a98f7629dcf8434fe134d6a5095b0a5b0f040c44227e74c386dba032",
+        "stale_evidence:95caebdcd911b582f832a00ff265afb377321fae24559194d7c596770254d3e2",
+        "stale_evidence:994916bfbf9839b9384bb1d20504ad98d263982125a1bce4eea2da1410e9ea81",
+        "stale_evidence:a0b28fe1566361ee354e7411c30db1d08a85a82310d3f082cbfbe3ab120c7c9b",
+        "stale_evidence:ab28cf7fa0522b072a657bcd819b7901ae735596b61c7bb5caa1fa9dc3aaa1ac",
+        "stale_evidence:ac78bbb7ce0433e1ca0d4a3dc4aaebe36b42e092397750c676b6ee9d1c166a45",
+        "stale_evidence:bb94803ff4f154430924c5e94b68078355d1e5223435fc5d64e66191fbe20ee2",
+        "stale_evidence:becba9a7d18c779f04757666bc5997e64e12da67954ae1f760ead153c0efdbc2",
+        "stale_evidence:d022619cbdf66dcb64a4879b3cf85ec39fc05c3f4108fed83be58306c67d0584",
+        "stale_evidence:ee7307cf6c53ae5fbfadd4aae94a013689bab1c3e13352f4b33116117202a60b",
+        "stale_evidence:f069b4ecde78f5370f1423046945541a190e44871e2b8ef6222992889b1636d6",
+        "stale_evidence:f1069c48e0b5dd9201f665e543ea1e58684ed93b3a01e29a1568fd0f4c085ee6",
+        "stale_evidence:f109abc8a774ba1f88b1e7913209d1f5b78203d5a8add11b27f55253951530d2",
+        "stale_evidence:f1206344f3a0ef9e40c52c967a7f04e4966ee31938fedbb0198f06a922dd35f9",
+        "stale_evidence:f98cc205cdb82f7b077efec784dfe7034d42f508bcb6e33a4314b621b624fa85"
+      ],
+      "reason": "Review appended native stop opcode 5 without renumbering prior commands, payload refusal, navigation requirement and existing queued budget enforcement. Review FIFO application before maintenance, cleaned/motionless/stale admission, shared native cancellation reset to last committed cell retaining flags/budget/entity target, and later move restart. Review atomic stable selected-full-generation move-only filtering, no tick/active-route mutation, reentrancy guard and validation before commit. Review snapshot v7 emitted only for pending stop using v6 superset fields, explicit old-version opcode refusal and unchanged old minimum versions without stops. Review semantic production widget buttons/tooltips, empty-selection disablement, identity synchronization, application callbacks/status/refresh and synthetic tests/checkpoint continuation. Exact history de0a942..3c43d10 retains matching receipts for all committed file and canonical behavior contract versions. Review new evidence, docs, staged census, register links and summary while preserving unrelated workstreams.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh NS15 execution validates only the native stop/cancel synthetic preview slice; regression suite success is separate from new original comparison. Thirty-four stale-evidence gap identities caused or changed by shared native source fingerprints retain their original records, statuses and hashes. Original stop/input comparison remains absent and explicitly pending. Full installed-window actions, group/faction/automatic-play policies, commander/summoned gameplay and live replacement remain pending. No existing recovered/native contract is promoted from historical evidence.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS15.stop-orders-recorded",
+      "reason": "Promote only the bounded native stop policy after real production-button/controller/session execution, selected-only stable queue removal, partial fine reset, FIFO restart, refusal/rollback and exact pending-v7-stop restart. Main-window callback wiring is source-reviewed and compiled; installed whole-window or original input equivalence is not asserted.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "471517ae54169b99c407f7409cc05bf6ae9a945f871043ef9d0657403f1a9879",
+          "before_sha256": null,
+          "id": "NP.stop-orders"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh normal and ASan/UBSan reports pass stable selected pending-only move filtering, preservation of active route, admitted tick stop/reset, retained driver/entity state, FIFO repeated-stop/restart, v7 roundtrip with v6 stop refusal, generation/cleanup guards, malformed payload/budget refusal and transactional rollback. Each build passes one exact fresh-process pending-stop continuation. All 107 normal CTests and ten focused sanitizer suites pass, including existing terrain/ANI/fine/multi motion, lifecycle, picking, controls and scene rendering regressions. Original manifest checks before/after experiments verify all 2927 inputs. All accepted source fingerprints match staged code/tests. No original stop/input/save or live equivalence asserted.",
+        "evidence": [
+          "NS15.stop-orders"
+        ]
+      }
     }
   ]
 }

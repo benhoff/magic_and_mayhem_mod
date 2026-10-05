@@ -329,3 +329,11 @@ Presented identities and explicit terrain standing cells remain transient view
 metadata; stale handles cannot target reused slots.
 [Scope and evidence](../research/runtime/native-scene-picking.md) keep original
 mouse/ray mappings and gameplay permissions separate.
+
+## Native stop orders (NS15)
+
+Operation 5 queues a payload-free stop at the tick boundary, using existing native
+cancellation/reset semantics. `cancelQueuedMoves` atomically removes only one
+full-generation subject’s pending moves without altering active motion. FIFO order,
+queue budgets and rollback remain enforced. Pending stops require snapshot v7;
+older checkpoint contracts stay strict. See [scope](../research/runtime/native-stop-orders.md).

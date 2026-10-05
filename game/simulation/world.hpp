@@ -79,7 +79,7 @@ struct Entity {
     std::optional<CreatureMotion> motion={};
 };
 struct Slot {std::uint32_t generation=1; std::optional<Entity> entity;};
-enum class Operation : std::uint32_t {target, cleanup, release, move, motion};
+enum class Operation : std::uint32_t {target, cleanup, release, move, motion, stop};
 struct MotionUpdate {Point position; CreatureMotion motion;};
 struct Command {
     Operation operation=Operation::cleanup;
@@ -122,6 +122,7 @@ public:
     const Entity* find(Handle) const;
     Handle spawn(Entity);
     void enqueue(Command);
+    std::uint32_t cancelQueuedMoves(Handle);
     // Invalid queued identities are rejected and counted at the tick boundary.
     TickReport step(TickInput={},const System& = {});
     void restore(State); // Validate everything before committing; failures preserve state.

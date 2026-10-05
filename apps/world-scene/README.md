@@ -188,3 +188,12 @@ be picked through.
 Picking uses each tile's rendered artwork and parent cell, with the displayed depth
 order and exact SPR coverage. It is a diagnostic policy rather than original ray
 picking. [Contract and accepted evidence](../../research/runtime/native-scene-picking.md).
+
+## Stop and cancel controls (NS15)
+
+Queue stop cancels the selected creature route on the next Step. Cancel queued
+moves removes only its pending moves immediately; active motion and queued stops
+remain. Commands apply in order, so a later move can restart after a stop.
+Stopping fine motion resets to the last committed logical cell. Save preserves
+pending stops using native checkpoint v7. These are native diagnostic policies;
+see [contract](../../research/runtime/native-stop-orders.md).

@@ -875,3 +875,12 @@ with original-manifest verification around installed SPR/TTD reads.
 [Evidence boundaries](../research/runtime/native-scene-picking.md) distinguish
 native masked diagnostic picking from original rays or installed whole-window
 interaction equivalence.
+
+## Native stop/cancel validation (NS15)
+
+`native-world-stop` exercises production Qt buttons and native controller/session
+with owned synthetic data: selected-only stable queue cancellation, active fine
+motion stop/reset, FIFO restart, stale/cleanup rejection and rollback/budgets.
+`python3 tools/test-stop-orders.py BUILD/world-stop-test NEW_OUTPUT` retains
+normal/sanitizer evidence and an exact fresh-process pending-v7-stop continuation.
+Original input/stop and installed whole-window equivalence remain open.

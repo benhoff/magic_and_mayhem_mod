@@ -1,0 +1,71 @@
+{
+  "milestone": "NS15",
+  "all_match": true,
+  "live_validated": false,
+  "reports": [
+    "working/tests/stop-orders/normal-complete/report.json",
+    "working/tests/stop-orders/sanitized-complete/report.json"
+  ],
+  "report_sha256": {
+    "working/tests/stop-orders/normal-complete/report.json": "d72bf529ed7b25a3dda5afc21099589e39035f928fd0596739c0d43ab4ecb07c",
+    "working/tests/stop-orders/sanitized-complete/report.json": "a4674bf4ba85208c6e62c0b8f0b114436d4087cac4a85602784c8de387014966"
+  },
+  "scope": "Synthetic production Qt stop/cancel controls: selected pending move removal without active-route mutation, FIFO tick-boundary stops, fine motion reset to committed logical cell, identity/cleanup refusal, transactional rollback and v7 exact pending-stop restart. Original stop/input and whole installed-window/live equivalence excluded.",
+  "source_sha256": {
+    "apps/world-scene/CMakeLists.txt": "49a35666946c95c7d1aa4375055738a3c532fbd06a5d5206bb3d77edbf184e78",
+    "apps/world-scene/main.cpp": "8f7b0c6cbb06b22a173970a4204eba860b9de0d9e35f874a6a04d3a71f5dd355",
+    "apps/world-scene/map_navigation.cpp": "20eecea7aca4ad16b08093f6dd1cb2f206d14acc929ddad76064cb5910613de5",
+    "apps/world-scene/map_navigation.hpp": "e40b2a8021a7841c03abe2240b12e19c58525faaec776e4f76fa3112c939a4eb",
+    "apps/world-scene/map_navigation_main.cpp": "4b0cf8ded5f10483e677f91e2951e52a09380bc1b818ab3765f05d765e1f32b3",
+    "apps/world-scene/movement_controls.cpp": "fd36bf86195f89f7bf53f7d76b1b8d36b02767c3fa044370bcbe76ea65507402",
+    "apps/world-scene/movement_controls.hpp": "a401433ecc002623afeb1a46f16781b86b6c2615f1849f55ba39a763493500e7",
+    "apps/world-scene/orders.cpp": "46f64e2af5f7defc2cc93852738fcb04e48720d72187c448f74ad1b134805817",
+    "apps/world-scene/orders.hpp": "845ac3543b04b196801d44d89322b1359ab66b38c55fd421f7c89f70957c4690",
+    "apps/world-scene/picking.cpp": "6196b219439d8fbff7d64c0cece22a06d4b1da663d0d2abbcafa48ffc9af7068",
+    "apps/world-scene/picking.hpp": "485535566e1a7537d55be3724f7d0b73e7743b3a75323506f1394f3711100175",
+    "apps/world-scene/scene.cpp": "7f5591f3b135d005c480e867e7872e9610c7354052f0126ba8b84f15e38f7c3f",
+    "apps/world-scene/scene.hpp": "601736b6fffc82e4bdecbeaed0f80d3f361ce5df65869abd0b32a36184a15ddd",
+    "apps/world-scene/scene_canvas.cpp": "03746de8ebd157bcf5f3c9fa9ad91d8c16232a11f35d94e7fb3898e90d8fd756",
+    "apps/world-scene/scene_canvas.hpp": "bb404f87b7bbcfd67561aa33fd20ac1ceccaf5b3b6487468a9980ca939b6477e",
+    "game/persistence/snapshot.cpp": "63a5da14c55d1255fe53ad35d04999e9ca68dda2d597bd559f4415212594f9cb",
+    "game/persistence/snapshot.hpp": "900563f38519697e2541ef0bc8d1b797ea8464c8d18a6e6571f25505ea6857e5",
+    "game/persistence/store_posix.cpp": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df",
+    "game/simulation/movement.cpp": "e85f5c509b4b132eb4019188b73a0d11301957731c981dcd9b035e13b6dcfd78",
+    "game/simulation/movement.hpp": "d99af9c7f7acfdf52f6b09ee10a717479475af962768ec4a7d8458bf1fe82cc4",
+    "game/simulation/occupancy.cpp": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+    "game/simulation/occupancy.hpp": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+    "game/simulation/world.cpp": "019458d31ce835a1ef7b17d2bd0b6431f95beb7cbbeff16b9d7f0e1f35037251",
+    "game/simulation/world.hpp": "51564429ada9da7aca99076e58bf4cd41c5ab300ff202e3e6a8f5f31c62c77f3",
+    "tests/world-stop-test.cpp": "75dea34bf023979e595f68be11cc4c533331925e0ba99b372b7e0047bcb82afb",
+    "tools/test-stop-orders.py": "53805a2807d62c0c62bfd9990c78c63b1b4c827277076b565645b454b704d91f"
+  },
+  "native_stop": {
+    "selected_pending_only": true,
+    "active_route_preserved_by_cancel": true,
+    "tick_boundary_stop": true,
+    "fine_snap_to_logical_cell": true,
+    "fifo_restart": true,
+    "v7_roundtrip": true,
+    "legacy_stop_refusal": true,
+    "stale_cleanup_refusal": true,
+    "transaction_rollback": true,
+    "fresh_process_continuations": 1
+  },
+  "test_counts": {
+    "normal": 107,
+    "sanitized_selected": 10
+  },
+  "test_log_sha256": {
+    "working/tests/stop-orders/ns15-normal-accepted-tests.log": "aecddc100ac913cb0032a3478e6d82e734f44d83d0897fd3009dc04a89673993",
+    "working/tests/stop-orders/ns15-sanitized-accepted-tests.log": "2cb7f78c9ea608ddd26c2709acff6c3a31000ba5428de1a14daccd047c29620e",
+    "working/tests/stop-orders/ns15-manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/stop-orders/ns15-manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+  },
+  "remaining": [
+    "Whole installed main-window stop/cancel interaction",
+    "Original stop/input/save equivalence",
+    "Group/faction/automatic playback policies",
+    "Commander/summoned creature gameplay",
+    "Live integration/replacement"
+  ]
+}

@@ -1,0 +1,537 @@
+{
+  "range": "de0a942..3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+  "scope": "Read committed Git trees without executing historical code. Compare exact parent/current file hashes and canonical behavior contracts (record, implementation/test/doc hashes, builds, evidence definitions and scenario links) against retained receipts. Historical census-scope migrations are not rerun as old gates; this is separate from current staged validation and asserts neither past gate success nor new runtime equivalence. Journal is append-only and not self-receipted.",
+  "files": [
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/CMakeLists.txt",
+      "before_sha256": "c1cfd46b1049368fc72438fb9a7ac636d8db60ce497b5edf346f58e8f761970c",
+      "after_sha256": "300b41669ff02ef07f4518c1926fbc8f0e2479ffe1f8f13924859c1661a8a9e3",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/README.md",
+      "before_sha256": "a4cff0b167a9805533758df215b70493264365afc4799ced9c97b75368b0e074",
+      "after_sha256": "06cbfa270f6d7b9b56d68ddc61d765ca88a0f3e451a6f7c9d071d10dbdbe0396",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/main.cpp",
+      "before_sha256": "0f9f4911ea1debd5b4885055307763c9171fff41cea019db69b8271224706d1f",
+      "after_sha256": "1944c63325f0ffb3638292f3ddd4a193f588d4517a6deaf3d3746f1f949b22d3",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/movement_controls.cpp",
+      "before_sha256": "9ca35468f85a28de58c6b68297fd29c9f1a85f34d0d724cf9fe1fa7a9ce3977f",
+      "after_sha256": "29eb7f0cb4689748a89ac524991c358f4a677fd20bc74bbb4f3f97cc4b654ebf",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/movement_controls.hpp",
+      "before_sha256": "b94189185f75da0f34101ac4daa4bb8db8691e5e35e66caeee4b573a9734c185",
+      "after_sha256": "2ae54907e80f8143e5f5e75544a73ff61c75d4fb9ea90abce0476a0461b2a7a6",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/picking.cpp",
+      "before_sha256": null,
+      "after_sha256": "6196b219439d8fbff7d64c0cece22a06d4b1da663d0d2abbcafa48ffc9af7068",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/picking.hpp",
+      "before_sha256": null,
+      "after_sha256": "485535566e1a7537d55be3724f7d0b73e7743b3a75323506f1394f3711100175",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/scene.cpp",
+      "before_sha256": "af1a60229a4d459f81d4f42f31db833b58819f835bfdb01ff8b59a5d467baa28",
+      "after_sha256": "7f5591f3b135d005c480e867e7872e9610c7354052f0126ba8b84f15e38f7c3f",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/scene.hpp",
+      "before_sha256": "e4b485295070758f8acdbaf7911c9db4b5f5557c75c16d5440388f5963865ccf",
+      "after_sha256": "601736b6fffc82e4bdecbeaed0f80d3f361ce5df65869abd0b32a36184a15ddd",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/scene_canvas.cpp",
+      "before_sha256": null,
+      "after_sha256": "03746de8ebd157bcf5f3c9fa9ad91d8c16232a11f35d94e7fb3898e90d8fd756",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "apps/world-scene/scene_canvas.hpp",
+      "before_sha256": null,
+      "after_sha256": "bb404f87b7bbcfd67561aa33fd20ac1ceccaf5b3b6487468a9980ca939b6477e",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "game/README.md",
+      "before_sha256": "a32c6a5c8dc10fe1e966b149a7ba720fa7a75ee8ba45cfd7d64aa0038b837d25",
+      "after_sha256": "f57fccdeca9a521e496ede4bc444b1d6310b30cbdde91c76e7391d9fd7a060bc",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "74f60f57b028596c2a51d253a591db71cffdaa210d5057f1c5c07c30ef6274c1",
+      "after_sha256": "c915d37ba7dd19d9ab925ec899d3d123423060696619c42e1deccd51ab1b99d1",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "c0f5909f2aed6fc53ee5ed136382568d9533645e48238d1937327d577d878502",
+      "after_sha256": "15538538bd323c2d7c821ea57b458f73ad59f8ea6b808459b996f07451b6c4b3",
+      "reviews": []
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "3113002f9b4960b9f6a29e3b8af120523a5d9c42b58cce45be87cfa17b01f4de",
+      "after_sha256": "e8982712d74d357faa49686d48c83e0d606c70e40cd60c576abe3f11ac483639",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "research/runtime/coverage/source-index-scene-picking.json",
+      "before_sha256": null,
+      "after_sha256": "6107cb39e075a4b075cb10ee9ed8bc0b8c1f8ef473cd172c75d3c9dee1848a43",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "70621aa44638c2bcfa96ba2749971b48a7735688c07a778588dcd7e608942bbf",
+      "after_sha256": "6c2ea5995d2aa22450a87e45f86f793cbaa0cfd294373ddaca76d0b37235b96b",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "research/runtime/native-scene-picking-history-extension.json",
+      "before_sha256": null,
+      "after_sha256": "34ebbcfb7c764a1dc3155850d4680c8e3c1bd4fa65ca58f38aa8b1ea6bc95325",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "research/runtime/native-scene-picking-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "b614ba2edeecbda5ff6b08680e6487eeb2ef71316cd27bd13f63c7c143dda43e",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "research/runtime/native-scene-picking.json",
+      "before_sha256": null,
+      "after_sha256": "ab9ddd2cc9a82f616f64598f9cfe8954fe078dd32d9c85dba8894d1c131ea0b9",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "research/runtime/native-scene-picking.md",
+      "before_sha256": null,
+      "after_sha256": "0853143dec966566f3471dd04c428f2b61d99b2b3a2764301eb6d76c7b909f8f",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "tests/README.md",
+      "before_sha256": "c3a7eee7e959654bd896851793919e57f95b666b70c8c402ce51a27ac3b2c22b",
+      "after_sha256": "2ad52c20ad1e665a7173b6ce85bcd8e4705bfb59cbe6cadbe124fb6f0322a362",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "tests/world-picking-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ad16cba35c06e9c089d8d6be751de2d282f5f332c1a930aa54295253a9b9c0ce",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "path": "tools/test-scene-picking.py",
+      "before_sha256": null,
+      "after_sha256": "375aa5e68f3a933e58f3116e8548e82cdd123967c35a9317f09aa7a73e465762",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "reconstruction/rendering/effect-creature/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "9bedfd9775acb3090259d3e18e36b4b12949a62266809a1ca789df12e971d568",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "reconstruction/rendering/effect_creature_collision.cpp",
+      "before_sha256": null,
+      "after_sha256": "10c4a2dd7c8f431d2b79c8f763b14c87f86dbf95699365027ff5ba8a4176233d",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "reconstruction/rendering/effect_creature_collision.hpp",
+      "before_sha256": null,
+      "after_sha256": "81f7d672068522f762379d92244ebd20d81004ad0d5f971cdf40a4d15899eefb",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "c915d37ba7dd19d9ab925ec899d3d123423060696619c42e1deccd51ab1b99d1",
+      "after_sha256": "e41b06190f302c2f853a10da66a93b433a08f860d28656fdc52363d875b6d0f7",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "15538538bd323c2d7c821ea57b458f73ad59f8ea6b808459b996f07451b6c4b3",
+      "after_sha256": "4d7295a060fa27791428502ebc2f02e29159a499ec8b19dfdd2794a3ac68c525",
+      "reviews": []
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "e8982712d74d357faa49686d48c83e0d606c70e40cd60c576abe3f11ac483639",
+      "after_sha256": "ffb00cebc8f55f6ace5417508715049d3e8b025adc30534ac50b7817377baebc",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "6c2ea5995d2aa22450a87e45f86f793cbaa0cfd294373ddaca76d0b37235b96b",
+      "after_sha256": "3957d20d890e1bb0e011a2adfabf79d09f7691d05b05deb616d19f4d582876e6",
+      "reviews": [
+        "effect-creature-summary-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "before_sha256": "f0caab0788dd413f202df8540c519513508e6466dd19be9faba82c24437e9b7e",
+      "after_sha256": "0415278769923b9327e4bef452c6d1575f5a0ab47a4b01241ed3989c123668fc",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": "407b498d6bc0c9d4b3f62f77d3d22ac86d0f064fda4aa72b214e804f28171513",
+      "after_sha256": "badd7b1412a736c8f4a0ce798bc6863b309314a439ef655301c03d924b58478a",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "d6405e942ffb73d30e19b460ba10e689c048be1a88d580e77556dc58ad3c6f43",
+      "after_sha256": "7fb36088be918959465e3fc827eb6bf1b5e03e2d509f2452c26263649817e99f",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "348ac9d7241944c8b01221736ba1114cb5beb3274367a1f866a4a54d18cf6a2d",
+      "after_sha256": "9916bf31c74afe8c58815f9006126f1538aa5ffce6743a9b09d9cdb6989809bd",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "82e04c6cfc3f68d6d39df61737e3ca3feb73e263e87d150e11dba02b37a6240c",
+      "after_sha256": "02c4f5268baefac12d88f30a384cf8932273df3918ad8f16dc92ef8be27b3abd",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "d543689f91052a740e81c488071da0abd95640f340870c858b372723e4c3d6be",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-creature-collision-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "5193628b79b140215ac9ce7f782b0c4757835022666e8fadec86fe4a7e949f90",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-creature-collision.json",
+      "before_sha256": null,
+      "after_sha256": "6b7f9438c157a386f0612f4442fd56e3a65f7882eb9ab68d56efe432edbd1337",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-creature-collision.md",
+      "before_sha256": null,
+      "after_sha256": "36b9200c9012bbcaf16cd502a5129c2da1ff26388e8ec25c45a4b281cce71162",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "e0a92e3cff0f7483bcf3cd0a20b52e4e4da238640884c04ce882cc48c93c5f1f",
+      "after_sha256": "e7eea493a6225900ee64a3762dba2b19b7ba36313f2f40131b60ebe8e3995894",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "dc494ee62d89757fd38819d2723adc39f6e706649e8da1247380fdd45ad446a5",
+      "after_sha256": "12488f808c5bd4ddc5ea0a4a9708869c0b86c03813d42130b11f7655d8e3d026",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "8128223b84bde471b6de69ea86f6308be5ac8d55c986983ca45c7f056ad87aab",
+      "after_sha256": "83edd1d354cb5dba85562539c6a73e41a1eee9beb880bc2845f088ab2ca05bea",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "977aa3b133f6c9305e5dc16cc223f681c55bedd21d915283b43005c0ab424735",
+      "after_sha256": "c95fe0618d6f24c2c50b9a16193f94e740de0edfd6183a4365de0536514f95ab",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "fc8f01dd711d9866e4ee689ea2432eaae7c1b32a293701940ac473b9dd632a1c",
+      "after_sha256": "c35ac4740fb66a2bf3e55ba5a0f4512f90b12ff5885d860c94e16801a77b25fb",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "tests/effect-creature-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "c0d2006e96b208a67c93e5a780d182a9210ebdd0a0092a2014600edf972ceac2",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "tests/effect-creature-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "00370ea4ff774724424e6adb7fbfded03af1e02a15639158810554147eaa4d6a",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "path": "tools/test-effect-creature.py",
+      "before_sha256": null,
+      "after_sha256": "bc5a5d3c7d2f71d7986c53dcf8dee303c92e0460cc90aaa47ff467e1b13214f2",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    }
+  ],
+  "behavior_contracts": [
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "id": "NP.checkpoints",
+      "before_sha256": "2044c961e9d57a23402314c42d2c1f0e79901628a1d2b0c8b5ba916506a63c4e",
+      "after_sha256": "dc30455537e508ea58cc08f772133145aa723cc3245f3fb06a0574594b0370f4",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "id": "NP.map-navigation",
+      "before_sha256": "5b97693647b630be01d3b8b26c953dd08641a7f812d53a016c7dbf85406b518b",
+      "after_sha256": "5a473df71c1ef35608228a2cf3b73c241c66ce52ddd8907fd26309d0f1a555aa",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "id": "NP.move-orders",
+      "before_sha256": "11a30726d8761c11e5cc88c7c7aab320a7e264f3e68bc10d8b5294e2b43acf1a",
+      "after_sha256": "4980634a1301fa5ab66fa2f849e0df9c35e20d21615279c1d72c8f955bc0acdc",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "id": "NP.presentation",
+      "before_sha256": "0836f4fa854616ea8b81adabf1c08156cbb1cdc8dd8d35e15b2a7dcaa7e74eff",
+      "after_sha256": "f15d684fa587e50cd254446b0051ed64a24c0342fa3baf382ffcf6610162b5ac",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "id": "NP.scene-orders",
+      "before_sha256": "2a97b60877cc45e0fa74ce2119c00bf9b3aa9dc79a9880f6680a6748f11857a5",
+      "after_sha256": "066d1e026237b603de338883f142d8562762bc6ef719282c78beb3ae5aabb52f",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "id": "NP.scene-picking",
+      "before_sha256": null,
+      "after_sha256": "7da7875a2a619135c2b8c7c36df53b7e817d8842c0c21a0986bd7cc96f2d4f46",
+      "reviews": [
+        "NS14.scene-picking-exact-staged",
+        "NS14.scene-picking-recorded"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "id": "NR.world_scene",
+      "before_sha256": "ef6edbb6f9d4b648a23c87c6f2b3b1cc10dd786433c1b4a853e35611dad253fc",
+      "after_sha256": "678b980caa4fbfd6de3cf9ce353c64a5dfa1b13665c8acf9b9a521a565516c83",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "7f7d1759e04a9830c98b6e3721962de07a1c98d96b8db4801e97157251a25155",
+      "after_sha256": "091a361c3fc2416c5cac45bf1d95a86d14832fe4c7ca56413f63deb35d922322",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "7496e50a020d4eb2c782d1c27b57901fb0b91ae8",
+      "id": "WORLD.owned",
+      "before_sha256": "97f84fc9035be436bbdde6081086e59b7b32c39e920627333d96d79bf7b54aa0",
+      "after_sha256": "d417d9ceb2707a65105831d147ae98a1742ab12f9e1d3c11e3fba77e8cdc97e0",
+      "reviews": [
+        "NS14.scene-picking-exact-staged"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "id": "TL.effect-creature-collision",
+      "before_sha256": null,
+      "after_sha256": "8cb88c4cd16bf78f941cba959938a0d53d9374d8c4268a8d594a5d90f6609902",
+      "reviews": [
+        "effect-creature-recorded-7496e50"
+      ]
+    },
+    {
+      "commit": "3c43d1027e35ae6d624a387aa7d261c8c0b60e1a",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "4d1061ab92314e8a106ae96aaa3f73467513fcc7e9d5ec030409a7e21f7cb233",
+      "after_sha256": "be15833451ac3b67aba3389ddc8f13c02eb39d5c4e80afc7e26e2d3471e6062f",
+      "reviews": [
+        "effect-creature-remaining-7496e50"
+      ]
+    }
+  ],
+  "unmatched": []
+}

@@ -688,3 +688,18 @@ Original rays/input mappings, whole installed-window interaction, group/stop
 actions, faction rules, automatic playback, commander gameplay and live replacement
 remain open. Historical shared-source evidence retains its hashes and may be stale;
 committed intermediate receipts are reviewed separately.
+
+## NS15 — native stop and cancellation of queued moves
+
+`NP.stop-orders` adds semantic scene controls and native operation 5: selected
+full-generation pending move removal without ticking or altering active motion,
+and FIFO tick-boundary route cancellation/reset at the committed logical cell.
+Pending stops select native checkpoint v7; versions 1–6 retain strict opcode
+contracts and unchanged minimum-version output when no stop remains. Native
+preview validation uses production widget/controller/session with synthetic owned
+navigation, exact pending-stop restart, fine-motion reset, stale/cleanup refusal,
+queue budgets and rollback; existing native tests provide regression coverage.
+Evidence: `NS15.stop-orders`, [contract](native-stop-orders.md). Historical source
+fingerprints are preserved; older shared-source claims may remain stale. Original
+stop/input mapping, installed whole-window interaction, group/faction/playback
+policies, commander/summoned gameplay and live replacement remain outstanding.
