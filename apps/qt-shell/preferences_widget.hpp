@@ -30,6 +30,13 @@ public:
                 animation==other.animation && dialogueSpeed==other.dialogueSpeed && gameSpeed==other.gameSpeed && borderPicture==other.borderPicture;
         }
     };
+    struct ControlPolicy {
+        std::array<int,2> minimum{0,-2500},maximum{15,0},step{1,50};
+        std::array<bool,12> radios{};std::array<bool,2> sliders{};
+        bool canApply=false,canCancel=false;
+    };
+    bool setEngineSettings(const Settings&,const ControlPolicy&,QString* error=nullptr);
+    void setControlAvailability(const ControlPolicy&);
     explicit PreferencesWidget(QWidget* parent = nullptr);
     bool loadAssets(const QString& root, QString* error = nullptr);
     bool setSettings(const Settings& settings, QString* error = nullptr);
@@ -40,6 +47,7 @@ public:
 signals:
     void settingsApplied(const PreferencesWidget::Settings& settings);
     void cancelled();
+    void audioLevelChanged(int channel,int value);
 protected:
     bool eventFilter(QObject* watched, QEvent* event) override;
     void paintEvent(QPaintEvent*) override;
@@ -52,6 +60,7 @@ private:
     void cancel();
     void arrange();
     Settings accepted_;
+    bool populating_=false,engineMode_=false;
     QImage background_;
     std::array<QLabel*,11> labels_{};
     std::array<QRect,11> labelRectangles_{};

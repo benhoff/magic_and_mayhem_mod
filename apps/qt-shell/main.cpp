@@ -13,6 +13,8 @@
 #include "live_spell_menu_controller.hpp"
 #include "live_mini_menu_controller.hpp"
 #include "live_result_menu_controller.hpp"
+#include "live_preferences_menu_controller.hpp"
+#include "../../protocols/include/mnm/menu_v6.h"
 #include "../../protocols/include/mnm/menu_v5.h"
 #include "live_menu_test.hpp"
 #include "../../protocols/include/mnm/menu_v2.h"
@@ -70,12 +72,15 @@ public:
             spellMenus_=std::make_unique<LiveSpellMenuController>(*liveMenus_,*liveSpells_);
             liveResults_=new QuickBattleResultWidget(menuStack_);menuStack_->addWidget(liveResults_);
             resultMenus_=std::make_unique<LiveResultMenuController>(*liveMenus_,*liveResults_);
+            livePreferences_=new PreferencesWidget(menuStack_);menuStack_->addWidget(livePreferences_);
+            preferencesMenus_=std::make_unique<LivePreferencesMenuController>(*liveMenus_,*livePreferences_);
             if(liveMenus_->miniMenusEnabled()){
                 liveMini_=new MiniMenuWidget(menuStack_);menuStack_->addWidget(liveMini_);
                 miniMenus_=std::make_unique<LiveMiniMenuController>(*liveMenus_,*liveMini_);
             }
             connect(liveMain_,&MainMenuWidget::actionRequested,this,[this](MainMenuWidget::Action action){
                 if(action==MainMenuWidget::Action::QuickBattle)liveMenus_->request(MNM_MENU_OPEN_QUICK);
+                else if(action==MainMenuWidget::Action::Preferences)liveMenus_->request(MNM_MENU_OPEN_PREFERENCES);
                 else if(action==MainMenuWidget::Action::Quit)close();
             });
             connect(liveQuick_,&QuickBattleMenuWidget::actionRequested,this,[this](QuickBattleMenuWidget::Action action){
@@ -90,19 +95,20 @@ public:
             liveMenus_->finished=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);finished();if(closeAfterGame_)close();};
             liveMenus_->stateChanged=[this](const MenuBridge::State& state){
                 if(!menuAssetsLoaded_){QString error;const auto root=QDir(repo_).filePath("working/game-nocd");
-                    if(!liveResults_->loadAssets(root,&error)||!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)||!liveSpells_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
+                    if(!livePreferences_->loadAssets(root,&error)||!liveResults_->loadAssets(root,&error)||!liveMain_->loadAssets(root,&error)||!liveQuick_->loadAssets(root,&error)||!battleMenus_->loadAssets(root,&error)||!liveSpells_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
                     if(liveMini_&&!liveMini_->loadAssets(root,&error)){liveMenus_->fallback(error);return;}
-                    for(int i=0;i<6;++i)if(i!=2&&i!=4)liveMain_->findChild<QPushButton*>(QString("mainMenuAction%1").arg(i))->setEnabled(false);
+                    for(int i=0;i<6;++i)if(i!=2&&i!=3&&i!=4)liveMain_->findChild<QPushButton*>(QString("mainMenuAction%1").arg(i))->setEnabled(false);
                     for(int i=0;i<2;++i)liveQuick_->findChild<QPushButton*>(QString("quickBattleAction%1").arg(i))->setEnabled(false);
                     menuAssetsLoaded_=true;
                 }
-                QString error;if(!resultMenus_->present(state,&error)||!battleMenus_->present(state,&error)||!spellMenus_->present(state,&error)||(miniMenus_&&!miniMenus_->present(state,&error))){liveMenus_->fallback(error);return;}
-                QWidget* screen=state.screen==MNM_MENU_RESULT_SCREEN?static_cast<QWidget*>(liveResults_):liveMini_&&state.screen==MNM_MENU_MINI_SCREEN?static_cast<QWidget*>(liveMini_):state.screen==7?static_cast<QWidget*>(liveSpells_):state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
+                QString error;if(!preferencesMenus_->present(state,&error)||!resultMenus_->present(state,&error)||!battleMenus_->present(state,&error)||!spellMenus_->present(state,&error)||(miniMenus_&&!miniMenus_->present(state,&error))){liveMenus_->fallback(error);return;}
+                QWidget* screen=state.screen==10?static_cast<QWidget*>(livePreferences_):state.screen==MNM_MENU_RESULT_SCREEN?static_cast<QWidget*>(liveResults_):liveMini_&&state.screen==MNM_MENU_MINI_SCREEN?static_cast<QWidget*>(liveMini_):state.screen==7?static_cast<QWidget*>(liveSpells_):state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
                 fallback_->setEnabled(true);const bool changed=menuStack_->currentWidget()!=screen;const bool gainedReady=state.ready&&(changed||!screen->isEnabled());menuStack_->setCurrentWidget(screen);
                 liveSpells_->setEnabled(state.ready&&state.screen==7);liveMain_->setEnabled(state.ready&&state.screen==3);liveQuick_->setEnabled(state.ready&&state.screen==22);liveSetup_->setEnabled(state.ready&&state.screen==14);liveMap_->setEnabled(state.ready&&state.screen==25);
+                livePreferences_->setEnabled(state.ready&&state.screen==10);
                 liveResults_->setEnabled(state.ready&&state.screen==MNM_MENU_RESULT_SCREEN);
                 if(liveMini_)liveMini_->setEnabled(state.ready&&state.screen==MNM_MENU_MINI_SCREEN);
-                if(gainedReady){if(state.screen==MNM_MENU_RESULT_SCREEN)liveResults_->focusFirstAction();else if(liveMini_&&state.screen==MNM_MENU_MINI_SCREEN)liveMini_->focusFirstAction();else if(state.screen==7)liveSpells_->focusFirstControl();else if(state.screen==14)liveSetup_->focusFirstControl();else if(state.screen==25)liveMap_->focusSelection();else if(state.screen==22)liveQuick_->focusFirstAction();else if(state.screen==3)liveMain_->findChild<QPushButton*>("mainMenuAction2")->setFocus();}
+                if(gainedReady){if(state.screen==10)livePreferences_->focusFirstControl();else if(state.screen==MNM_MENU_RESULT_SCREEN)liveResults_->focusFirstAction();else if(liveMini_&&state.screen==MNM_MENU_MINI_SCREEN)liveMini_->focusFirstAction();else if(state.screen==7)liveSpells_->focusFirstControl();else if(state.screen==14)liveSetup_->focusFirstControl();else if(state.screen==25)liveMap_->focusSelection();else if(state.screen==22)liveQuick_->focusFirstAction();else if(state.screen==3)liveMain_->findChild<QPushButton*>("mainMenuAction2")->setFocus();}
                 statusBar()->showMessage(state.ready?(state.screen==7?QString("Spell selection connected. Edits apply on Start battle. Time remaining: %1").arg(state.spells.seconds<0?QString("expired"):QString::number(state.spells.seconds)):state.screen==14?"Battle setup connected. Edits apply when opening Map, changing a player or starting.":"Native menu connected to the engine. Other actions are available through Use original menus."):"Waiting for the engine menu transition…");
             };
         }
@@ -260,6 +266,7 @@ private:
         launch_->setEnabled(opengl_ || host_.available());check_->setEnabled(true);
     }
     SinglePlayerBattleWidget* liveSetup_=nullptr;MapSelectionWidget* liveMap_=nullptr;
+    PreferencesWidget* livePreferences_=nullptr;std::unique_ptr<LivePreferencesMenuController> preferencesMenus_;
     QuickBattleResultWidget* liveResults_=nullptr;std::unique_ptr<LiveResultMenuController> resultMenus_;
     MiniMenuWidget* liveMini_=nullptr;std::unique_ptr<LiveMiniMenuController> miniMenus_;
     SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;

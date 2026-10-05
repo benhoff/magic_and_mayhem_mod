@@ -677,3 +677,14 @@ installed SPR pixels across three synthetic terrain profiles/four views and
 fresh-process visual continuation; it verifies the original manifest before
 and after. Xvfb tests require a local display socket; run serially to avoid
 concurrent display startup/cleanup collisions. See [NS07](../research/runtime/native-world-scene.md).
+
+### Main Preferences engine bridge
+
+Build `menu-preferences-bridge-test`, `menu-preferences-controller-test` and
+`preferences-test` in `working/build/qt-shell`; run `ctest --test-dir
+working/build/qt-shell -R 'qt-(menu-preferences|preferences)' --output-on-failure`.
+`python3 tools/test-menu-observer.py --preferences` checks pinned original setters,
+callbacks and V6 ownership/transaction guards in an isolated PE32 fixture.
+`python3 tools/test-live-menus.py --preferences` automates Preview, Cancel rollback,
+OK/file readback, reopen and Preferences window-close Cancel/Main Quit in Xvfb/Wine.
+No manual interactions are required. See [scope/evidence](../research/runtime/preferences-engine-bridge.md).

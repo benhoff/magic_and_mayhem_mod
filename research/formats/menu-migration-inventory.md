@@ -98,11 +98,10 @@ Save Game now has a [native naming/selection preview](../runtime/save-game-qt.md
 with supplied save IDs, local overwrite/delete confirmation and caller-specific
 Cancel navigation. Actual persistence and engine overwrite rules remain open.
 
-Preferences now has a [native settings preview](../runtime/preferences-qt.md)
-with independent radio groups, configured slider bounds and local apply/cancel.
-Pinned enum/slider mappings, entry snapshots and original callbacks now have
-[static and isolated contract evidence](../runtime/preferences-engine-contract.md).
-Live settings binding, actions and persistence remain unconnected.
+Preferences has a [native settings preview](../runtime/preferences-qt.md),
+[recovered original contract](../runtime/preferences-engine-contract.md), and
+[Main Menu V6 bridge](../runtime/preferences-engine-bridge.md). Other callers,
+resolution rebuild validation and cross-launch settings persistence remain separate.
 
 Join and Create Multiplayer now have [native setup previews](../runtime/multiplayer-setup-qt.md)
 with username/game-name inputs, exclusive transport choices and typed request

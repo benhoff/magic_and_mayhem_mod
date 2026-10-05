@@ -26,10 +26,11 @@ def main():
     parser.add_argument('--mini',action='store_true',help='Exercise gated V4 battle Mini callbacks and ownership guards')
     parser.add_argument("--mini-disabled",action="store_true",help="Require V4 retirement with the compile gate disabled")
     parser.add_argument("--results",action="store_true",help="Exercise V5 Quick Battle results callbacks and display snapshot guards")
+    parser.add_argument("--preferences",action="store_true",help="Exercise V6 Preferences original setters, callbacks and ownership/transaction guards")
     args=parser.parse_args()
     if args.mini_disabled:args.mini=True
-    if sum((args.battle,args.spells,args.mini,args.results))>1:parser.error("Choose one extended channel fixture mode")
-    if args.battle or args.spells or args.mini or args.results:args.channel=True
+    if sum((args.battle,args.spells,args.mini,args.results,args.preferences))>1:parser.error("Choose one extended channel fixture mode")
+    if args.battle or args.spells or args.mini or args.results or args.preferences:args.channel=True
     parent=REPO/'working/tests/menu-observer';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(root,flush=True)
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
@@ -39,7 +40,7 @@ def main():
         for name,(start,end) in exporter.CALLBACKS.items():
             at=exporter.image_offset(data,start,end-start);values=data[at:at+end-start]
             header+=f'static const unsigned char {name}_callback[]={{'+','.join(hex(v) for v in values)+'};\n'
-        for name,start,end in [('setup_button',0x4ad6a0,0x4ad6f0),('map_button',0x4bbbf0,0x4bbca0),('slider_set',0x4cdf40,0x4cdfe4),('rule_change',0x4ad860,0x4ada70),('list_select',0x4d1060,0x4d113b),('list_get',0x4d1df0,0x4d1e4d),('list_index',0x4d1ed0,0x4d1f35),('spell_slot_button',0x576380,0x5765c7),('spell_shelf_button',0x5765d0,0x5767c2),('spell_slot_set',0x579710,0x5797dc),('spell_ok_button',0x576810,0x57682c),('spell_tick_bytes',0x576830,0x576836),('mini_button',0x4b23f0,0x4b24f0),('result_button',0x475860,0x475897)]:
+        for name,start,end in [('setup_button',0x4ad6a0,0x4ad6f0),('map_button',0x4bbbf0,0x4bbca0),('slider_set',0x4cdf40,0x4cdfe4),('rule_change',0x4ad860,0x4ada70),('list_select',0x4d1060,0x4d113b),('list_get',0x4d1df0,0x4d1e4d),('list_index',0x4d1ed0,0x4d1f35),('spell_slot_button',0x576380,0x5765c7),('spell_shelf_button',0x5765d0,0x5767c2),('spell_slot_set',0x579710,0x5797dc),('spell_ok_button',0x576810,0x57682c),('spell_tick_bytes',0x576830,0x576836),('mini_button',0x4b23f0,0x4b24f0),('result_button',0x475860,0x475897),('pref_button_bytes',0x4a9840,0x4a9b00),('pref_slider_bytes',0x4a9700,0x4a97d0),('pref_group_bytes',0x4ce730,0x4ce798)]:
             at=exporter.image_offset(data,start,end-start)
             header+=f'static const unsigned char {name}[]={{'+','.join(hex(v) for v in data[at:at+end-start])+'};\n'
         (root/'menu_fixture_bytes.h').write_text(header)
@@ -47,8 +48,8 @@ def main():
         env=dict(os.environ,WINEPREFIX=str(REPO/'working/tests/menu-observer-wine'),WINEDEBUG='-all',
                  MNM_MENU_OBSERVE='Z:'+str(root/'events.bin').replace('/','\\'))
         if args.channel:
-            size=73728 if args.results else 69632 if args.mini else 65536 if args.spells else 32768 if args.battle else 128
-            channel=bytearray(size);channel[:16]=(b'MNMMCMD5' if args.results else b'MNMMCMD4' if args.mini else b'MNMMCMD3' if args.spells else b'MNMMCMD2' if args.battle else b'MNMMCMD1')+struct.pack('<II',5 if args.results else 4 if args.mini else 3 if args.spells else 2 if args.battle else 1,size)
+            size=77824 if args.preferences else 73728 if args.results else 69632 if args.mini else 65536 if args.spells else 32768 if args.battle else 128
+            channel=bytearray(size);channel[:16]=(b'MNMMCMD6' if args.preferences else b'MNMMCMD5' if args.results else b'MNMMCMD4' if args.mini else b'MNMMCMD3' if args.spells else b'MNMMCMD2' if args.battle else b'MNMMCMD1')+struct.pack('<II',6 if args.preferences else 5 if args.results else 4 if args.mini else 3 if args.spells else 2 if args.battle else 1,size)
             struct.pack_into('<III',channel,16,2,1,1)
             (root/'channel.bin').write_bytes(channel)
             env['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')
@@ -65,7 +66,7 @@ def main():
         unchanged=hashlib.sha256(executable.read_bytes()).hexdigest()==exporter.HASH
         if not unchanged:raise ValueError('Source executable changed')
         report={'success':True,'source_sha256':exporter.HASH,'input_unchanged':True,'real_game_launched':False,
-                'result_guard_checks':bool(args.results),'mini_guard_checks':bool(args.mini),'mini_disabled_gate':bool(args.mini_disabled),'spell_guard_checks':bool(args.spells),'channel_guard_checks':bool(args.channel),'battle_guard_checks':bool(args.battle),'original_callbacks_executed':True,'callback_cases':22 if args.mini else 20 if args.results else 16,'helper_stubbed':True,'tick_stubbed':True,
+                'preferences_guard_checks':bool(args.preferences),'result_guard_checks':bool(args.results),'mini_guard_checks':bool(args.mini),'mini_disabled_gate':bool(args.mini_disabled),'spell_guard_checks':bool(args.spells),'channel_guard_checks':bool(args.channel),'battle_guard_checks':bool(args.battle),'original_callbacks_executed':True,'callback_cases':20 if args.preferences else 22 if args.mini else 20 if args.results else 16,'helper_stubbed':True,'tick_stubbed':True,
                 'scope':'Selected bytecode mapping/thiscall ABI and observer installation/logging; no live equivalence',
                 'artifacts':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in root.iterdir() if p.is_file()},'records':rows}
         (root/'report.json').write_text(json.dumps(report,indent=2)+'\n');print('Menu observer fixture passed',flush=True)

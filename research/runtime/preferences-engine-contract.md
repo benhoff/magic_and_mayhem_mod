@@ -4,7 +4,8 @@ Recovered 2026-10-05 for the working no-CD `Chaos.exe`, SHA-256
 `40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`.
 This milestone is read-only static recovery plus isolated original-bytecode
 execution. It does not enable live Qt Preferences or establish device/display,
-file persistence, pause or live caller equivalence.
+file persistence, pause or live caller equivalence. Subsequent Main integration is
+tracked separately in the [V6 bridge](preferences-engine-bridge.md).
 
 ## Identity, entry and return
 
@@ -172,6 +173,6 @@ oracle runs. No game or manual testing was required for this milestone.
 Confidence is high for pinned static fields and isolated callback effects.
 Availability/control initialization and actual display rebuild remain static;
 actual audio, filesystem durability and complete caller transitions remain
-unvalidated. Next chunk: guarded Main-to-Preferences state/action publication,
-semantic Qt enum/slider conversion, original callbacks and automated bounded
-return checks. Leave live activation unchanged until that chunk is validated.
+unvalidated by this recovery milestone. The subsequent guarded Main-to-Preferences
+state/action publication, semantic conversion and automated caller checks are
+recorded independently in the [V6 bridge](preferences-engine-bridge.md).

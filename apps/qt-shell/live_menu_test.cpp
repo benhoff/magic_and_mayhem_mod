@@ -14,6 +14,7 @@
 #include <memory>
 #include <cstdio>
 void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path){
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_PREFERENCES")){installLivePreferencesMenuTest(app,window,session,path);return;}
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_BATTLE")){installLiveBattleMenuTest(app,window,session,path);return;}
     struct Evidence {int stage=0;quint32 thread=0;bool consistent=true,fallback=false;QJsonArray states;};
     auto evidence=std::make_shared<Evidence>();

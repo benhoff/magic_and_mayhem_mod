@@ -1,0 +1,503 @@
+{
+  "schema": 1,
+  "scope": "Incremental Preferences-only register; scoped Main integration; no full-function coverage, equivalence or replacement. Other subsystem registers remain independent.",
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "PR.main-entry",
+      "subsystem": "preferences",
+      "kind": "recovered",
+      "title": "Main Preferences ownership and return",
+      "scope": "Main caller only; original screen stack, initialized controls and lifecycle authorize dispatch.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4879808,
+          "scope": "Main local index 3",
+          "recovered_range": "preferences-entry-4a75c0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4885232,
+          "scope": "Preferences enter and audio snapshots",
+          "recovered_range": "preferences-entry-4a8af0"
+        }
+      ],
+      "documents": [
+        "research/runtime/preferences-engine-contract.md",
+        "research/runtime/preferences-engine-bridge.md"
+      ],
+      "implementation": [
+        "runtime/menu/preferences.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "protocols/include/mnm/menu_v6.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/preferences_widget.cpp"
+      ],
+      "tests": [
+        "tools/test-menu-observer.py",
+        "tools/test-live-menus.py",
+        "tests/menu-preferences-bridge-test.cpp",
+        "tests/menu-preferences-controller-test.cpp"
+      ],
+      "evidence": [
+        "UI23.original",
+        "UI23.live",
+        "UI23.qt"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "PR.audio-preview-cancel",
+      "subsystem": "preferences",
+      "kind": "recovered",
+      "title": "Audio previews and Cancel rollback",
+      "scope": "Effects preview validated live; music branches and device behavior remain isolated/static, no audible equivalence.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4888320,
+          "scope": "Original slider callback",
+          "recovered_range": "preferences-entry-4a9700"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5037888,
+          "scope": "Original slider value setter"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4888640,
+          "scope": "Original Cancel restores entry audio",
+          "recovered_range": "preferences-entry-4a9840"
+        }
+      ],
+      "documents": [
+        "research/runtime/preferences-engine-contract.md",
+        "research/runtime/preferences-engine-bridge.md"
+      ],
+      "implementation": [
+        "runtime/menu/preferences.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "protocols/include/mnm/menu_v6.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/preferences_widget.cpp"
+      ],
+      "tests": [
+        "tools/test-menu-observer.py",
+        "tools/test-live-menus.py",
+        "tests/menu-preferences-bridge-test.cpp",
+        "tests/menu-preferences-controller-test.cpp"
+      ],
+      "evidence": [
+        "UI23.original",
+        "UI23.live",
+        "UI23.qt"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "PR.apply",
+      "subsystem": "preferences",
+      "kind": "recovered",
+      "title": "Preferences OK and original writer delegation",
+      "scope": "Dialog/effects writes and reopen validated live; original group/radio/audio mappings isolated; no restart durability.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4888640,
+          "scope": "Original OK callback",
+          "recovered_range": "preferences-entry-4a9840"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5039920,
+          "scope": "Original radio selection"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5556368,
+          "scope": "Original profile writer retained; actual edited keys read back"
+        }
+      ],
+      "documents": [
+        "research/runtime/preferences-engine-contract.md",
+        "research/runtime/preferences-engine-bridge.md"
+      ],
+      "implementation": [
+        "runtime/menu/preferences.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "protocols/include/mnm/menu_v6.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/preferences_widget.cpp"
+      ],
+      "tests": [
+        "tools/test-menu-observer.py",
+        "tools/test-live-menus.py",
+        "tests/menu-preferences-bridge-test.cpp",
+        "tests/menu-preferences-controller-test.cpp"
+      ],
+      "evidence": [
+        "UI23.original",
+        "UI23.live",
+        "UI23.qt"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "PR.control-admission",
+      "subsystem": "preferences",
+      "kind": "recovered",
+      "title": "Original control identity and availability",
+      "scope": "Bounded array, callback, vtable, group and availability guards; Main live control construction, synthetic rejected shapes.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6054820,
+          "relation": "data",
+          "scope": "Pinned radio-group membership; builder remains documented, not assigned a discovered function here."
+        }
+      ],
+      "documents": [
+        "research/runtime/preferences-engine-contract.md",
+        "research/runtime/preferences-engine-bridge.md"
+      ],
+      "implementation": [
+        "runtime/menu/preferences.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/observer.c",
+        "protocols/include/mnm/menu_v6.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/preferences_widget.cpp"
+      ],
+      "tests": [
+        "tools/test-menu-observer.py",
+        "tools/test-live-menus.py",
+        "tests/menu-preferences-bridge-test.cpp",
+        "tests/menu-preferences-controller-test.cpp"
+      ],
+      "evidence": [
+        "UI23.original",
+        "UI23.live",
+        "UI23.qt"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "PR.other-callers",
+      "subsystem": "preferences",
+      "kind": "recovered",
+      "title": "Other Preferences caller contracts",
+      "scope": "Mini ingress known statically; no live Mini, campaign or realm admission.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 6055492,
+          "relation": "data",
+          "scope": "Mini vtable identity; ingress documented statically, unimplemented by Preferences adapter."
+        }
+      ],
+      "documents": [
+        "research/runtime/preferences-engine-contract.md",
+        "research/runtime/preferences-engine-bridge.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/export-preferences-support.py"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "PR.display-rebuild",
+      "subsystem": "preferences",
+      "kind": "recovered",
+      "title": "Resolution change leave/display rebuild",
+      "scope": "Original leave retained; display resources and actual resolution change remain unvalidated.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4885344,
+          "scope": "Leave decides rebuild"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4884720,
+          "scope": "Display rebuild, static recovery only"
+        }
+      ],
+      "documents": [
+        "research/runtime/preferences-engine-contract.md",
+        "research/runtime/preferences-engine-bridge.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tools/export-preferences-support.py"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    },
+    {
+      "id": "NP.preferences-draft",
+      "subsystem": "preferences",
+      "kind": "native_policy",
+      "title": "Qt draft and audio-command queue",
+      "scope": "Intentional host policy: preserve draft across ACKs, coalesce edits and queue final action while preview outstanding.",
+      "original": [],
+      "documents": [
+        "research/runtime/preferences-engine-contract.md",
+        "research/runtime/preferences-engine-bridge.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/preferences_widget.cpp"
+      ],
+      "tests": [
+        "tools/test-menu-observer.py",
+        "tools/test-live-menus.py",
+        "tests/menu-preferences-bridge-test.cpp",
+        "tests/menu-preferences-controller-test.cpp"
+      ],
+      "evidence": [
+        "UI23.live",
+        "UI23.qt"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "UI23.original",
+      "kind": "isolated_original",
+      "scope": "V6 Main Preferences original delegation and Qt ownership; no native engine replacement, hardware audio, resolution change or restart durability",
+      "record": "research/runtime/preferences-engine-bridge.json",
+      "sha256": "ed9f7b89858c6ad0153af4c721bd149e23d21c9c5153139601d8387a5e02da92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/isolated/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI23.live",
+      "kind": "live_observation",
+      "scope": "V6 Main Preferences original delegation and Qt ownership; no native engine replacement, hardware audio, resolution change or restart durability",
+      "record": "research/runtime/preferences-engine-bridge.json",
+      "sha256": "ed9f7b89858c6ad0153af4c721bd149e23d21c9c5153139601d8387a5e02da92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI23.qt",
+      "kind": "native_integration",
+      "scope": "V6 Main Preferences original delegation and Qt ownership; no native engine replacement, hardware audio, resolution change or restart durability",
+      "record": "research/runtime/preferences-engine-bridge.json",
+      "sha256": "ed9f7b89858c6ad0153af4c721bd149e23d21c9c5153139601d8387a5e02da92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/qt/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI22.enter",
+      "kind": "isolated_original",
+      "scope": "Historical original Preferences enter/entry snapshot checks with controlled initialization; no new control-builder validation",
+      "record": "research/runtime/preferences-engine-bridge.json",
+      "sha256": "ed9f7b89858c6ad0153af4c721bd149e23d21c9c5153139601d8387a5e02da92",
+      "sources_pointer": "/recovery_oracle/source_files",
+      "assertions": [
+        {
+          "pointer": "/recovery_oracle/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/recovery_oracle/source_sha256"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "preferences.main-round-trip",
+      "level": "live_observation",
+      "scope": "V6 Main Preferences original delegation and Qt ownership; no native engine replacement, hardware audio, resolution change or restart durability",
+      "behaviors": [
+        "PR.main-entry",
+        "PR.audio-preview-cancel",
+        "PR.apply",
+        "PR.control-admission",
+        "NP.preferences-draft"
+      ],
+      "evidence": [
+        "UI23.live"
+      ],
+      "tests": [
+        "tools/test-live-menus.py"
+      ]
+    }
+  ],
+  "dispatch_tables": [
+    {
+      "id": "preferences.vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6055052,
+        "relation": "data",
+        "scope": "Recovered Preferences vtable; selected behavioral links only"
+      },
+      "document": "research/runtime/preferences-engine-contract.md",
+      "complete": false,
+      "scope": "Enter/leave/tick/control building links; other slots and caller branches remain separately unrecovered or retained original.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "PR.main-entry"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "PR.display-rebuild"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "PR.main-entry"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": [
+            "PR.control-admission"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    }
+  ],
+  "recovered_ranges": [
+    {
+      "id": "preferences-entry-4a75c0",
+      "build": "nocd-40209ca7",
+      "start": 4879808,
+      "end": 4879816,
+      "document": "research/runtime/preferences-engine-contract.md",
+      "evidence": "UI23.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "preferences-entry-4a9700",
+      "build": "nocd-40209ca7",
+      "start": 4888320,
+      "end": 4888328,
+      "document": "research/runtime/preferences-engine-contract.md",
+      "evidence": "UI23.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "preferences-entry-4a9840",
+      "build": "nocd-40209ca7",
+      "start": 4888640,
+      "end": 4888648,
+      "document": "research/runtime/preferences-engine-contract.md",
+      "evidence": "UI23.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "preferences-entry-4a8af0",
+      "build": "nocd-40209ca7",
+      "start": 4885232,
+      "end": 4885240,
+      "document": "research/runtime/preferences-engine-contract.md",
+      "evidence": "UI22.enter",
+      "anchors_pointer": "/anchors"
+    }
+  ],
+  "classifications": [],
+  "api_bindings": []
+}
