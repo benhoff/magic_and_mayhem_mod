@@ -164,3 +164,5 @@ confidence, and whether it remains stable across launches.
 - [Campaign menu entry contract](campaign-menu-engine-contract.md): original New Game reset, Realm custom lifecycle, region admission and auxiliary flags; UI26 isolated evidence, campaign bridge and mode-4 Mini return still pending.
 
 - [Original campaign entry observation](campaign-menu-entry-observation.md): automated fresh New Game reaches Forest of Pain Region Entry before Realm map initialization; forwarding probe and live evidence, no native campaign dispatch.
+
+- [Configured ground creature movement](native-creature-profile.md): selected Redcap CFG normalization, original ANI-derived banks and maximum, normal asset binding, owned checkpoint creation and installed-map continuation.

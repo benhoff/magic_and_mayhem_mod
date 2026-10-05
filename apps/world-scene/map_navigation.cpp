@@ -2,6 +2,7 @@
 #include "terrain_map.hpp"
 #include "route_world.hpp"
 #include "route_cell_support.hpp"
+#include "creature_profile.hpp"
 #include <cstring>
 #include <stdexcept>
 namespace mnm::scene {
@@ -91,4 +92,30 @@ MapNavigation projectMapNavigation(const assets::MapAsset& source,const assets::
     }
     validateMapGeometry(m,t,result.frozen);return result;
 }
+MapNavigation projectCreatureMapNavigation(const assets::MapAsset& source,const assets::TerrainCatalog& t,MapCrop crop,const assets::CreatureMovementConfig& c,const assets::Animation& ani){
+    if(c.type!=10 || c.width!=1 || c.canFly || c.swimming!=1 || c.height<1 || c.height>5 || c.acceleration<0 || c.acceleration>1000000)
+        throw std::invalid_argument("Configured navigation currently admits ordinary ground Redcap only");
+    const auto samples=reconstruction::groundMovementSamples(ani);
+    for(auto sample:samples)if(sample>192)throw std::invalid_argument("Configured movement sample exceeds native driver bound");
+    const auto maximum=reconstruction::groundMovementMaximum(samples);
+    auto result=projectMapNavigation(source,t,crop);auto& b=result.frozen;
+    unsigned cursor=92;
+    for(unsigned i=0;i<4;++i){std::uint32_t n=0;std::memcpy(&n,b.data()+64+i*4,4);cursor+=n;}
+    const auto object=cursor,type=object+0xd07,generator=type+0x198;
+    put(b,object+0xa8,c.type);put(b,type+8,c.width);put(b,type+12,c.height);put(b,type+16,c.acceleration);put(b,type+0x44,c.swimming);
+    for(unsigned i=0;i<48;++i)put(b,type+0xd8+4*i,samples[i]);
+    put(b,generator+0x589,maximum);
+    // All projected cell/TTD bytes and default global policies remain identical.
+    const auto world=decode(b);result.standing.clear();
+    const reconstruction::CellValidityMapView view{{world->dimensions,world->cells.data(),world->cells.size(),world->rows.data(),world->rows.size(),world->layers.data(),world->layers.size(),world->plane_stride,world->dimensions.z},world->terrain.data(),world->terrain.size()};
+    const reconstruction::CreatureMovementParameters p{c.height,c.width,0,c.swimming,0,int(c.type),0};
+    const auto& m=result.geometry;
+    for(unsigned z=1;z<m.layers;++z)for(unsigned y=1;y+1<m.height;++y)for(unsigned x=1;x+1<m.width;++x){
+        const reconstruction::Coordinates at{int(x),int(y),int(z)};
+        const auto height=world->terrain[m.cell(x,y,z).definition].classification_94;
+        if(height>=-16 && height<=16 && reconstruction::test_cell_validity(at,p,view) && reconstruction::test_cell_support(at,p,view))result.standing.push_back({int(x),int(y),int(z)});
+    }
+    validateMapGeometry(m,t,b);return result;
+}
+
 }

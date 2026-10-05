@@ -189,7 +189,8 @@
       ],
       "documents": [
         "research/runtime/native-creature-fine-motion.md",
-        "research/runtime/native-creature-segment-continuity.md"
+        "research/runtime/native-creature-segment-continuity.md",
+        "research/runtime/native-creature-profile.md"
       ],
       "implementation": [
         "reconstruction/motion/creature_motion.cpp",
@@ -200,11 +201,15 @@
       "tests": [
         "tests/creature-motion-test.cpp",
         "tests/test-original-creature-motion.py",
-        "tests/test-native-ani-motion.py"
+        "tests/test-native-ani-motion.py",
+        "tests/creature-profile-reference.cpp",
+        "tools/test-creature-navigation.py"
       ],
       "evidence": [
         "NS04.motion",
-        "NS05.native"
+        "NS05.native",
+        "NS09.native",
+        "NS09.original"
       ],
       "status": {
         "understanding": "scoped",
@@ -280,7 +285,8 @@
         }
       ],
       "documents": [
-        "research/runtime/native-ani-motion.md"
+        "research/runtime/native-ani-motion.md",
+        "research/runtime/native-creature-profile.md"
       ],
       "implementation": [
         "reconstruction/motion/creature_motion.cpp",
@@ -293,11 +299,15 @@
       "tests": [
         "tests/ani-motion-test.cpp",
         "tests/test-original-ani-motion.py",
-        "tests/test-native-ani-motion.py"
+        "tests/test-native-ani-motion.py",
+        "tests/creature-profile-reference.cpp",
+        "tools/test-creature-navigation.py"
       ],
       "evidence": [
         "NS05.composition",
-        "NS05.native"
+        "NS05.native",
+        "NS09.native",
+        "NS09.original"
       ],
       "status": {
         "understanding": "scoped",
@@ -323,7 +333,8 @@
         }
       ],
       "documents": [
-        "research/runtime/native-ani-motion.md"
+        "research/runtime/native-ani-motion.md",
+        "research/runtime/native-creature-profile.md"
       ],
       "implementation": [
         "reconstruction/motion/creature_motion.cpp",
@@ -334,11 +345,15 @@
       "tests": [
         "tests/ani-motion-test.cpp",
         "tests/test-original-ani-motion.py",
-        "tests/test-native-ani-motion.py"
+        "tests/test-native-ani-motion.py",
+        "tests/creature-profile-reference.cpp",
+        "tools/test-creature-navigation.py"
       ],
       "evidence": [
         "NS05.composition",
-        "NS05.native"
+        "NS05.native",
+        "NS09.native",
+        "NS09.original"
       ],
       "status": {
         "understanding": "scoped",
@@ -369,7 +384,8 @@
         }
       ],
       "documents": [
-        "research/runtime/native-ani-motion.md"
+        "research/runtime/native-ani-motion.md",
+        "research/runtime/native-creature-profile.md"
       ],
       "implementation": [
         "reconstruction/motion/creature_motion.cpp",
@@ -382,11 +398,15 @@
       "tests": [
         "tests/ani-motion-test.cpp",
         "tests/test-original-ani-motion.py",
-        "tests/test-native-ani-motion.py"
+        "tests/test-native-ani-motion.py",
+        "tests/creature-profile-reference.cpp",
+        "tools/test-creature-navigation.py"
       ],
       "evidence": [
         "NS05.composition",
-        "NS05.native"
+        "NS05.native",
+        "NS09.native",
+        "NS09.original"
       ],
       "status": {
         "understanding": "scoped",
@@ -658,7 +678,7 @@
       "subsystem": "movement",
       "kind": "recovered",
       "title": "Original action/config animation selection",
-      "scope": "Native numeric directional base is explicit policy; complete original selection and compass/resource binding unresolved.",
+      "scope": "Original action/config selection remains incomplete. NS09 bounds normal-memory Redcap asset binding and ordinary ground base zero; flying/attachment and camera-relative action production remain unresolved.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -673,7 +693,8 @@
       ],
       "documents": [
         "research/runtime/native-ani-motion.md",
-        "research/runtime/creature-ai-combat-spells.md"
+        "research/runtime/creature-ai-combat-spells.md",
+        "research/runtime/native-creature-profile.md"
       ],
       "implementation": [],
       "tests": [],
@@ -957,7 +978,8 @@
       "documents": [
         "research/runtime/native-world-scene.md",
         "research/runtime/native-map-navigation.md",
-        "apps/world-scene/README.md"
+        "apps/world-scene/README.md",
+        "research/runtime/native-creature-profile.md"
       ],
       "implementation": [
         "apps/world-scene/scene.cpp",
@@ -966,11 +988,13 @@
       ],
       "tests": [
         "tests/world-scene-test.cpp",
-        "tools/test-map-navigation.py"
+        "tools/test-map-navigation.py",
+        "tools/test-creature-navigation.py"
       ],
       "evidence": [
         "NS08.native",
-        "NS08.installed-ani"
+        "NS08.installed-ani",
+        "NS09.native"
       ],
       "status": {
         "understanding": "scoped",
@@ -1380,7 +1404,8 @@
       ],
       "documents": [
         "research/runtime/pathfinding-movement-test.md",
-        "research/runtime/native-map-navigation.md"
+        "research/runtime/native-map-navigation.md",
+        "research/runtime/native-creature-profile.md"
       ],
       "implementation": [
         "reconstruction/pathfinding/route_movement.cpp",
@@ -1389,12 +1414,15 @@
       "tests": [
         "tests/route-movement-test.cpp",
         "tests/map-navigation-reference.cpp",
-        "tools/test-map-navigation.py"
+        "tools/test-map-navigation.py",
+        "tools/test-creature-navigation.py"
       ],
       "evidence": [
         "REVIEW.PF.movement",
         "NS08.original",
-        "NS08.native"
+        "NS08.native",
+        "NS09.native",
+        "NS09.original"
       ],
       "status": {
         "understanding": "partial",
@@ -1525,7 +1553,8 @@
       ],
       "documents": [
         "research/runtime/pathfinding-cell-validity.md",
-        "research/runtime/native-map-navigation.md"
+        "research/runtime/native-map-navigation.md",
+        "research/runtime/native-creature-profile.md"
       ],
       "implementation": [
         "reconstruction/pathfinding/route_cell_validity.cpp",
@@ -1534,12 +1563,15 @@
       "tests": [
         "tests/route-cell-validity-test.cpp",
         "tests/map-navigation-reference.cpp",
-        "tools/test-map-navigation.py"
+        "tools/test-map-navigation.py",
+        "tools/test-creature-navigation.py"
       ],
       "evidence": [
         "REVIEW.PF.cell_validity",
         "NS08.original",
-        "NS08.native"
+        "NS08.native",
+        "NS09.native",
+        "NS09.original"
       ],
       "status": {
         "understanding": "partial",
@@ -1600,7 +1632,8 @@
       ],
       "documents": [
         "research/runtime/pathfinding-cell-support.md",
-        "research/runtime/native-map-navigation.md"
+        "research/runtime/native-map-navigation.md",
+        "research/runtime/native-creature-profile.md"
       ],
       "implementation": [
         "reconstruction/pathfinding/route_cell_support.cpp",
@@ -1609,12 +1642,15 @@
       "tests": [
         "tests/route-cell-support-test.cpp",
         "tests/map-navigation-reference.cpp",
-        "tools/test-map-navigation.py"
+        "tools/test-map-navigation.py",
+        "tools/test-creature-navigation.py"
       ],
       "evidence": [
         "REVIEW.PF.cell_support",
         "NS08.original",
-        "NS08.native"
+        "NS08.native",
+        "NS09.native",
+        "NS09.original"
       ],
       "status": {
         "understanding": "partial",
@@ -9568,27 +9604,32 @@
       "id": "NP.map-navigation",
       "subsystem": "native_world",
       "title": "Ordinary installed MAP crop to frozen navigation and matched presentation",
-      "scope": "Native ordinary-terrain projection, sealed cropped perimeter and explicit synthetic one-cell profile. Installed geometry and frozen cell/TTD identity; full engine map/entity/config admission excluded.",
+      "scope": "Native ordinary-terrain projection, sealed crop, explicit synthetic profile or bounded installed ground Redcap profile and owned checkpoint creation. Installed geometry/frozen cell/TTD identity; full engine map/entity admission excluded.",
       "confidence": "high_within_scope",
       "kind": "native_policy",
       "original": [],
       "documents": [
         "research/runtime/native-map-navigation.md",
-        "apps/world-scene/README.md"
+        "apps/world-scene/README.md",
+        "research/runtime/native-creature-profile.md"
       ],
       "implementation": [
         "apps/world-scene/map_navigation.cpp",
         "apps/world-scene/map_navigation.hpp",
-        "apps/world-scene/map_navigation_main.cpp"
+        "apps/world-scene/map_navigation_main.cpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/frozen_navigation.hpp"
       ],
       "tests": [
         "tests/map-navigation-test.cpp",
         "tests/map-navigation-reference.cpp",
-        "tools/test-map-navigation.py"
+        "tools/test-map-navigation.py",
+        "tools/test-creature-navigation.py"
       ],
       "evidence": [
         "NS08.native",
-        "NS08.installed-ani"
+        "NS08.installed-ani",
+        "NS09.native"
       ],
       "status": {
         "understanding": "scoped",
@@ -10342,6 +10383,62 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "MV.creature-profile",
+      "subsystem": "movement",
+      "kind": "recovered",
+      "title": "Selected creature CFG normalization and ground ANI sample/binding construction",
+      "scope": "Seven required selected fields, ground banks from ANI +8 endpoints, ground-only maximum and normal-memory Redcap binding. Strict native parsing/shape limits; full type/HTH initialization, flying/swimming, camera/action lifecycle and live replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5253920,
+          "scope": "Selected field reads/conversions only; remaining creature and HTH values absent in isolated fixtures"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5263904,
+          "scope": "Ground sample-bank branch with owned normalized installed ANI; non-movement duration fields not claimed"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5263712,
+          "scope": "Ground-only generator maximum with SwimmingAbility 1"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5265328,
+          "scope": "Type 10, normal-memory asset selection only"
+        }
+      ],
+      "documents": [
+        "research/runtime/native-creature-profile.md",
+        "research/formats/creature-movement-config.md"
+      ],
+      "implementation": [
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "reconstruction/motion/creature_profile.cpp",
+        "reconstruction/motion/creature_profile.hpp"
+      ],
+      "tests": [
+        "tests/creature-profile-test.cpp",
+        "tests/creature-profile-reference.cpp",
+        "tools/test-creature-navigation.py"
+      ],
+      "evidence": [
+        "NS09.native",
+        "NS09.original"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -15293,6 +15390,64 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NS09.original",
+      "kind": "isolated_original",
+      "scope": "Selected CFG fields via controlled profile callbacks; unmodified ANI sample builder; installed movement action with private completion adapter; unmodified support/validity and complete movement-helper predicates on projected installed terrain; no original whole-search or map/entity load equivalence",
+      "record": "research/runtime/native-creature-profile.json",
+      "sha256": "f2fd90a823c05372b50971e315a1790ac881b5c2630d5cf97af735b91b1cdfdc",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_profile/selected_field_comparisons",
+          "equals": 1176
+        },
+        {
+          "pointer": "/original_profile/motion_comparisons",
+          "equals": 7968
+        },
+        {
+          "pointer": "/comparisons_per_build/predicate_comparisons",
+          "equals": 16896
+        },
+        {
+          "pointer": "/comparisons_per_build/moves",
+          "equals": 5434
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NS09.native",
+      "kind": "native_integration",
+      "scope": "Configured ground Redcap, exact owned profile/checkpoint admission, sealed ordinary MAP navigation, independent complete four-view pixels and fresh-process continuation. Native policies; no original full-scene or live equivalence.",
+      "record": "research/runtime/native-creature-profile.json",
+      "sha256": "f2fd90a823c05372b50971e315a1790ac881b5c2630d5cf97af735b91b1cdfdc",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/pixels_per_build",
+          "equals": 672
+        },
+        {
+          "pointer": "/native_integration/fresh_process_continuations_per_build",
+          "equals": 24
+        },
+        {
+          "pointer": "/native_integration/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -16897,6 +17052,44 @@
         "tools/test-live-campaign-entry.py",
         "tools/test-campaign-observer.py"
       ]
+    },
+    {
+      "id": "world.configured-ground-creature",
+      "level": "headless",
+      "scope": "Selected installed Redcap configuration/ANI banks, zero-sample arithmetic/controller and original terrain predicate comparisons; one creature, ordinary categories 0/4, sealed crops, no occupancy/actions/live replacement",
+      "behaviors": [
+        "MV.creature-profile",
+        "MV.fine-motion",
+        "MV.ani-forward",
+        "MV.event-0",
+        "MV.event-2",
+        "PF.movement",
+        "PF.cell_validity",
+        "PF.cell_support"
+      ],
+      "evidence": [
+        "NS09.original",
+        "NS09.native"
+      ],
+      "tests": [
+        "tests/creature-profile-reference.cpp",
+        "tools/test-creature-navigation.py"
+      ]
+    },
+    {
+      "id": "world.configured-ground-preview",
+      "level": "preview",
+      "scope": "Configured Redcap owned checkpoint on six sealed ordinary installed MAP crops, four diagnostic views, independent pixels and fresh-process continuation; no original full-scene/camera convention equivalence",
+      "behaviors": [
+        "NP.map-navigation",
+        "NP.presentation"
+      ],
+      "evidence": [
+        "NS09.native"
+      ],
+      "tests": [
+        "tools/test-creature-navigation.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -17024,7 +17217,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-observation.json",
-    "sha256": "4792986eb7cd0170e6c89d22f13c1a84ef019bdef5cb28119014d9b0695538ad"
+    "path": "research/runtime/coverage/source-index-creature-navigation-commit.json",
+    "sha256": "b1148ac20e32556a7822f6936890847aaf26f643226867f013d14ccdc3db4a88"
   }
 }

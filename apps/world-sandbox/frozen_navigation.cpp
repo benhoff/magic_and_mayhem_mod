@@ -274,6 +274,9 @@ std::shared_ptr<const game::Navigation> loadFrozenNavigation(const std::string& 
     const auto size=f.tellg();if(size<92 || size>64*1024*1024) throw std::invalid_argument("invalid frozen map size");
     f.seekg(0);std::vector<std::byte> bytes(static_cast<std::size_t>(size));
     f.read(reinterpret_cast<char*>(bytes.data()),size);if(!f) throw std::runtime_error("cannot read frozen movement map");
+    return loadFrozenNavigationBytes(bytes,animation);
+}
+std::shared_ptr<const game::Navigation> loadFrozenNavigationBytes(const std::vector<std::byte>& bytes,const std::optional<game::AnimationBinding>& animation) {
     std::uint64_t hash=14695981039346656037ULL;
     for(auto byte:bytes) {hash^=std::to_integer<std::uint8_t>(byte);hash*=1099511628211ULL;}
     return std::make_shared<FrozenNavigation>(reconstruction::decode_route_world(bytes),hash,animation);
