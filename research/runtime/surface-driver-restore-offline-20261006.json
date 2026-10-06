@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/fixtures/surfaces/surface-driver-restore-corpus.json": "27ef543f12031ae2446b4cfb619d5b27bc96491eaa8510742f4657f46a50f1ae",
+    "research/runtime/surface-driver-restore-16-capture-20261006.json": "fcb341b0ef2a2dc150c4493467d1b459eef8a6b0bca036af4513272cb2398f04",
+    "tests/surface-driver-restore-reference.c": "0b39460afb524e40d58c1ffa49b3db28316889c7ec58329ad18cc8ff2eac2b12",
+    "tools/capture-surface-driver-restore.py": "4721e1494823f6400249340e44a4670d4d2db96daa94fe85139dac848a39ce1c",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "research/runtime/surface-driver-restore-32-capture-20261006.json": "47b323166d156758849095034bdf94980365c6cfecae57e86102ea7e27fc3a74",
+    "tools/check-surface-driver-restore.py": "073182ce03ee3cf68af90aa05b2ccf851b459558af92adfe327239810e622fbd",
+    "tests/test-surface-driver-restore.py": "8d5ae28d56eb7edf923964ef2659e20b46c23d6f21dfb53d31f6ccf7c12c35a5"
+  },
+  "captures": 2,
+  "checked_rows": 2458,
+  "original_wrapper_executed": false,
+  "native_renderer_executed": false,
+  "scope": "Offline full trace/provenance verification of two real Wine API captures. Captured HRESULT/key states and explicitly filled bytes checked; unknown post-Restore bytes only have internal hash checks. No game-wrapper, Windows-driver, palette or live replacement equivalence."
+}

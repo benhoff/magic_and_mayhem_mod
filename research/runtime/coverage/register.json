@@ -14851,7 +14851,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original surface loss/Restore/retry wrapper scheduling",
-      "scope": "Four unchanged original fill/copy wrappers,4480 scripted draw/Restore/key result schedules and bounded reload/UI endpoints. CPU ordering and consumed-result counts match; selected source-before-destination recovery, no/one/unbounded retry differences and ignored key failure. Driver loss/Restore pixel validity, palette, asset/sentinel reload, null mutation/window retries and native/live replacement pending. Portable C++ adapter scheduling now matches4480 captured traces; explicit budget stops preserve original event prefixes and never claim original success. Test-only fill adapters compose this with native content invalidation/explicit reload; real driver/live recovery remains pending.",
+      "scope": "Four unchanged original fill/copy wrappers,4480 scripted draw/Restore/key result schedules and bounded reload/UI endpoints. CPU ordering and consumed-result counts match; selected source-before-destination recovery, no/one/unbounded retry differences and ignored key failure. Driver loss/Restore pixel validity, palette, asset/sentinel reload, null mutation/window retries and native/live replacement pending. Portable C++ adapter scheduling now matches4480 captured traces; explicit budget stops preserve original event prefixes and never claim original success. Test-only fill adapters compose this with native content invalidation/explicit reload; real driver/live recovery remains pending. Separate standalone real Wine API loss/Restore/key observations are now linked; lost COLORFILL returns success in that driver probe, so original-wrapper composition with real lost draw results remains pending.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -14882,7 +14882,8 @@
       ],
       "documents": [
         "research/runtime/original-surface-retry.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/surface-driver-restore.md"
       ],
       "implementation": [
         "tools/check-original-surface-retry.py",
@@ -14901,7 +14902,10 @@
       "evidence": [
         "ORIGINAL.surface-copy.restore-retry.capture-20261006",
         "ORIGINAL.surface-copy.restore-retry.cpu-20261006",
-        "ORIGINAL.surface-copy.restore-retry.native-20261006"
+        "ORIGINAL.surface-copy.restore-retry.native-20261006",
+        "DRIVER.surface-loss.restore.16-capture-20261006",
+        "DRIVER.surface-loss.restore.32-capture-20261006",
+        "DRIVER.surface-loss.restore.offline-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14977,6 +14981,46 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-driver.loss-restore",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Wine Surface2 loss/Restore observations at the original driver boundary",
+      "scope": "Two standalone API probes, four requested cap classes and16/32 display formats: system-memory unaffected by mode changes; other surfaces IsLost/Lock lost; offscreen Restore succeeds in changed dimensions, primary wrong dimensions refused then succeeds in original mode; repeated Restore and source-key retention. Lost COLORFILL still returns success. Original anchors identify the external Restore caller boundary only; original functions are not executed here. Unknown restored bytes/XRGB padding are excluded from portable equivalence. Original-wrapper composition, palette/clipper/flip-chain and Windows driver/asset/live recovery remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Original full-fill wrapper calls external surface Restore; anchor covers caller boundary only. Standalone driver probe does not execute this original function; scheduling evidence belongs to RE.surface-copy.restore-retry."
+        }
+      ],
+      "documents": [
+        "research/runtime/surface-driver-restore.md",
+        "research/runtime/original-surface-retry.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/surface-driver-restore-reference.c",
+        "tests/test-surface-driver-restore.py",
+        "tools/capture-surface-driver-restore.py",
+        "tools/check-surface-driver-restore.py",
+        "tests/fixtures/surfaces/surface-driver-restore-corpus.json"
+      ],
+      "evidence": [
+        "DRIVER.surface-loss.restore.16-capture-20261006",
+        "DRIVER.surface-loss.restore.32-capture-20261006",
+        "DRIVER.surface-loss.restore.offline-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
         "replacement": "none"
       }
     }
@@ -26895,6 +26939,48 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRIVER.surface-loss.restore.16-capture-20261006",
+      "kind": "native_integration",
+      "scope": "Standalone real Wine11.16 built-in Surface2 driver API captures and offline2458-row verification. No game image/wrapper or native renderer executed; restored bytes are observations, not portable expected output. Source keys only; palettes/live replacement pending.",
+      "record": "research/runtime/surface-driver-restore-16-capture-20261006.json",
+      "sha256": "fcb341b0ef2a2dc150c4493467d1b459eef8a6b0bca036af4513272cb2398f04",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-loss.restore.32-capture-20261006",
+      "kind": "native_integration",
+      "scope": "Standalone real Wine11.16 built-in Surface2 driver API captures and offline2458-row verification. No game image/wrapper or native renderer executed; restored bytes are observations, not portable expected output. Source keys only; palettes/live replacement pending.",
+      "record": "research/runtime/surface-driver-restore-32-capture-20261006.json",
+      "sha256": "47b323166d156758849095034bdf94980365c6cfecae57e86102ea7e27fc3a74",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-loss.restore.offline-20261006",
+      "kind": "native_integration",
+      "scope": "Standalone real Wine11.16 built-in Surface2 driver API captures and offline2458-row verification. No game image/wrapper or native renderer executed; restored bytes are observations, not portable expected output. Source keys only; palettes/live replacement pending.",
+      "record": "research/runtime/surface-driver-restore-offline-20261006.json",
+      "sha256": "121481ebb3dddff3bd3cb21e1b072f9721cb7cea3ff55c9a0639418c6db4561b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -31518,7 +31604,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-summon-20261006.json",
-    "sha256": "f083fbbd184154858436cf56c11e99d8ee540ac769df681811488273ea67a61c"
+    "path": "research/runtime/coverage/source-index-driver-restore-20261006.json",
+    "sha256": "85a0b5463b880a1254f06770bd69bcde5861d10bb97d994f320c24f1cb6b8cfc"
   }
 }

@@ -80,3 +80,12 @@ Calling the reload callback alone does not establish its success or pixel bytes.
 Real driver loss/Restore, palette retention, asset reloader internals, the `-1`
 reload sentinel route `0x4a2f90`, null-interface mutation during recovery, window
 translation during retries and live adapter/replacement remain pending.
+
+## Subsequent standalone driver evidence
+
+[Real Wine Surface2 observations](surface-driver-restore.md) now cover mode-change
+loss, successful/repeated Restore, primary wrong-dimension refusal and source-key
+retention in two display formats. This API-only probe does not load original
+wrappers; its COLORFILL returns success even while IsLost/Lock report loss.
+Original wrapper composition with real lost draw results, palettes/reloaders
+and live recovery remain pending. The native validity policy is unchanged.
