@@ -6,13 +6,22 @@ typedef uint32_t u32;typedef uint8_t u8;typedef int32_t i32;typedef void* HANDLE
 #define API
 #define WIN
 static u32 storage[16+67108864/4];
+static const char *continuous_env,*stall_env;
 static u32 env=1,unmaps,mapped_size=sizeof(storage),last_error,fail_alloc;
 static HANDLE GetProcessHeap(void){return storage;}
 static void* HeapAlloc(HANDLE h,u32 flags,u32 size){(void)h;(void)flags;return fail_alloc?0:malloc(size);}
 static int HeapFree(HANDLE h,u32 flags,void* memory){(void)h;(void)flags;free(memory);return 1;}
+static u32 clock_ms;
+static u32 GetTickCount(void){return clock_ms;}
 static u32 GetLastError(void){return last_error;}
 static void SetLastError(u32 value){last_error=value;}
-static u32 GetEnvironmentVariableA(const char* key,char* path,u32 n){(void)key;(void)n;if(!env)return 0;memcpy(path,"test",5);return 4;}
+static u32 GetEnvironmentVariableA(const char* key,char* path,u32 n){
+    const char* value=!strcmp(key,"MNM_RENDER_CONTINUOUS")?continuous_env:
+        !strcmp(key,"MNM_RENDER_STALL_TIMEOUT_MS")?stall_env:env?"test":0;
+    if(!value)return 0;
+    u32 length=(u32)strlen(value);if(length>=n)return length+1;
+    memcpy(path,value,length+1);return length;
+}
 static HANDLE CreateFileA(const char* p,u32 a,u32 b,void* c,u32 d,u32 e,void* f){(void)p;(void)a;(void)b;(void)c;(void)d;(void)e;(void)f;return storage;}
 static u32 GetFileSize(HANDLE h,u32* high){(void)h;(void)high;return mapped_size;}
 static i32 CloseHandle(HANDLE h){(void)h;return 1;}

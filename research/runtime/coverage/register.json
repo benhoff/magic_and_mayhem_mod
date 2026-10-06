@@ -5532,7 +5532,8 @@
         "runtime/render/command_channel.h",
         "runtime/render/continuous_selftest.h",
         "runtime/render/resource_selftest.h",
-        "runtime/render/mutation_selftest.h"
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/backpressure_selftest.h"
       ],
       "tests": [
         "runtime/render/selftest.c",
@@ -5541,7 +5542,8 @@
         "tests/test-render-stream-rate.py",
         "tools/test-render-continuous-producer.py",
         "tools/test-render-resource-lifecycle.py",
-        "tools/test-render-mutations.py"
+        "tools/test-render-mutations.py",
+        "tools/test-render-backpressure.py"
       ],
       "evidence": [
         "REVIEW.RT.render"
@@ -13928,6 +13930,46 @@
         "NR.continuous-mutations.synthetic",
         "NR.continuous-mutations.resource-regression",
         "NR.continuous-mutations.continuity-regression"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.command-backpressure",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded retry and continuous no-ACK stalled-reader refusal",
+      "scope": "v2 owned queue preserves complete ordered bytes through transient FULL with bounded adaptive retries, conservative peak/FULL diagnostics and sticky overload. Every pump validates idle cancellation/identity/ACK. Continuous-only10..5000ms no-ACK deadline defaults5000, resets on validated ACK and disarms when fully drained; open stalled stream refuses INTERRUPTED without game-side peer waits. Terminal publication is not GPU completion. Synthetic queue/PE32/healthy GPU validation recorded; original gameplay, pacing/coalescing, real-time OS guarantees and recovery excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-command-backpressure.md"
+      ],
+      "implementation": [
+        "runtime/render/command_queue.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_scheduler.h"
+      ],
+      "tests": [
+        "tests/render-command-queue-test.c",
+        "tests/render-command-writer-test.c",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-backpressure.py",
+        "tools/test-render-command-queue.py",
+        "tools/test-render-command-idle.py",
+        "tools/test-render-continuous-producer.py"
+      ],
+      "evidence": [
+        "NR.command-backpressure.queue",
+        "NR.command-backpressure.pe32",
+        "NR.command-backpressure.idle",
+        "NR.command-backpressure.gpu"
       ],
       "status": {
         "understanding": "scoped",
@@ -24282,6 +24324,62 @@
           "equals": 352
         }
       ]
+    },
+    {
+      "id": "NR.command-backpressure.queue",
+      "kind": "native_integration",
+      "scope": "Actual queue/channel native and ASan/UBSan with leak checks: deterministic deadline equality/clock wrap, ACK resets, idle disarming/cancellation/malformed ACK, config bounds, sticky hard overflow and independent owned byte/wrap checks.",
+      "record": "research/runtime/opengl-command-backpressure-queue.json",
+      "sha256": "581a289343041d0d0d3b723704ee02a8b304ffb6dafcf68ad3ee6d05a4ad5aa8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-backpressure.pe32",
+      "kind": "native_integration",
+      "scope": "Eight actual synthetic PE32 idle scheduler/ring cases: transient FULL and slow ACK preserve every poisoned-source byte, fully drained idle survives, no-ACK stalls refuse before shutdown, quiet cancellation/invalid ACK and hard overflow preserve sticky reasons. Error preservation and worker timeout logs; no GPU/original game.",
+      "record": "research/runtime/opengl-command-backpressure-pe32.json",
+      "sha256": "6f2162de33bb93740bd63aa3af7a8a9e1a340ccdc53e22718a4e88e7a1ee591e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-backpressure.idle",
+      "kind": "native_integration",
+      "scope": "Fresh five-case actual synthetic PE32 default idle lifecycle regression: retry, shutdown, cancellation, timeout and detach with independent owned raw bytes; no original game or GPU.",
+      "record": "research/runtime/opengl-command-backpressure-idle-regression.json",
+      "sha256": "4f94544c183d33a1f33d256531cb2d56513a43d10450e596e07b0768e747ed57",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-backpressure.gpu",
+      "kind": "native_integration",
+      "scope": "Fresh eight-case synthetic PE32 continuous producer-to-native GPU regression with352 independent full frames: healthy >64MiB sessions, optional archives and retained refusal boundaries with new retry/deadline code. No original game or driver equivalence.",
+      "record": "research/runtime/opengl-command-backpressure-gpu-regression.json",
+      "sha256": "991313db85fcdac92d3519fea2a9098acd5231b97b4e77e1a8dc977fea1c7a04",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -28044,6 +28142,30 @@
         "tools/test-render-mutations.py",
         "tests/live-render-channel-test.cpp"
       ]
+    },
+    {
+      "id": "NR.command-backpressure-fixture",
+      "level": "preview",
+      "scope": "Deterministic native/sanitized queue clocks and actual PE32 paused/stalled raw readers, plus healthy actual owned producer/native GPU regression. No original game/driver equivalence or recovery.",
+      "behaviors": [
+        "NR.command-backpressure"
+      ],
+      "evidence": [
+        "NR.command-backpressure.queue",
+        "NR.command-backpressure.pe32",
+        "NR.command-backpressure.idle",
+        "NR.command-backpressure.gpu"
+      ],
+      "tests": [
+        "tests/render-command-queue-test.c",
+        "tests/render-command-writer-test.c",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-backpressure.py",
+        "tools/test-render-command-queue.py",
+        "tools/test-render-command-idle.py",
+        "tools/test-render-continuous-producer.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -28291,7 +28413,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-continuous-mutations-20261006.json",
-    "sha256": "675b9c681e5ec57e676500d37776dd3de6d552a755f28627addda43015db013e"
+    "path": "research/runtime/coverage/source-index-command-backpressure-20261006.json",
+    "sha256": "963f6ff214b6a07270e9b1bcea5ed1e472bebb0d554e0ef80e2c727c18be9a1b"
   }
 }

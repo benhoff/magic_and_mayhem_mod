@@ -1199,3 +1199,20 @@ depth and mask-only RGB565-to-RGB555 changes, then RGB24/indexed8 with fresh IDs
 Forty two-entry palette RGB updates and flags-only cache changes are checked.
 Fresh lifetime and continuity regressions pass nine/63 and eight/352 cases/frames
 under separate new evidence IDs. Production and selftest PE32 builds pass.
+
+## Continuous command backpressure
+
+2026-10-06: `NR.command-backpressure` retains bounded whole-append ownership and
+sticky hard overload while adding guarded validation during idle, adaptive worker
+retry intervals, pressure diagnostics, and continuous-only no-ACK timeout.
+Validated ACK progress refreshes the deadline; fully drained work disarms it.
+Cancellation and malformed ACK retain their own reasons; a no-progress open
+stream refuses INTERRUPTED. Producer callbacks never wait for the reader, and
+terminal publication remains distinct from GPU completion.
+
+[Backpressure policy](opengl-command-backpressure.md) separates raw PE32/queue
+ownership tests from independent healthy native GPU frames. Historical source
+fingerprints/statuses are retained. No original artifacts/gameplay or semantic
+coalescing, dynamic budgets, OS scheduling guarantee, orchestrated shutdown or
+recovery is claimed. The completed inventory/first three producer chunks are
+committed in 422be2a; subsequent chunks are committed after staged accounting.

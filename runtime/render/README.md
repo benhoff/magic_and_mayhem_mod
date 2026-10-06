@@ -181,3 +181,9 @@ entry flags remain metadata. Sustained mixed writes/fills/copies/flips, palette
 changes and RGB DIB handoffs are covered by
 [continuous mutation research](../../research/runtime/opengl-continuous-mutations.md)
 and `tools/test-render-mutations.py` under Xvfb.
+
+Continuous command transport bounds no-ACK stalls to 5000ms by default;
+`MNM_RENDER_STALL_TIMEOUT_MS` accepts 10..5000ms. Fully acknowledged idle streams
+remain open, while cancellation/invalid ACK is checked even after the queue drains.
+FULL retains ordered bytes with bounded worker retries; hard queue overflow still
+refuses. See [backpressure policy](../../research/runtime/opengl-command-backpressure.md).
