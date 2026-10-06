@@ -23,6 +23,7 @@ public:
     explicit BattleResultWidget(QWidget* parent = nullptr);
     bool loadAssets(const QString& root, Outcome outcome, QString* error = nullptr);
     void setResults(const Results& results);
+    void setOriginalReport(const QString& title,const std::array<QString,21>& texts);
     Outcome outcome() const { return outcome_; }
     QRect contentRect() const;
     void focusContinue();

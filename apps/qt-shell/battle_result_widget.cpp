@@ -91,6 +91,10 @@ void BattleResultWidget::setResults(const Results& results) {
     labels_[19]->setText(results.summary); labels_[19]->setVisible(!results.summary.isEmpty());
     labels_[20]->setText(ratingLabel_+" "+results.rating); labels_[20]->setVisible(!results.rating.isEmpty());
 }
+void BattleResultWidget::setOriginalReport(const QString& title,const std::array<QString,21>& texts) {
+    title_->setText(title);title_->setVisible(!title.isEmpty());
+    for(int i=0;i<21;++i){labels_[i]->setText(texts[i]);labels_[i]->setVisible(!texts[i].isEmpty());}
+}
 QRect BattleResultWidget::contentRect() const { return mnm::ui::menuContentRect(size()); }
 void BattleResultWidget::focusContinue() { continue_->setFocus(Qt::OtherFocusReason); }
 void BattleResultWidget::arrange() {

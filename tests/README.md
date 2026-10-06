@@ -908,3 +908,7 @@ fresh-window continuations per build. The real timer stays active; an observer
 clicks Pause after exact committed tick boundaries. No manual interaction is needed.
 Tests record the current missing stopped/idle body display. Original input/ray/clock
 equivalence and other installed-world profiles remain outside this scenario.
+
+### Campaign Quit defeat report
+
+Run `python3 tools/test-campaign-defeat-bridge.py` and the V10 regression `python3 tools/test-campaign-mini-quit-bridge.py`. Eleven focused Qt checks include `qt-menu-campaign-defeat` and prior Mini, Region Entry, Quick Battle results, V1/V6 bridges. `python3 tools/test-live-qt-campaign-defeat.py --shell <built-shell> --source-root <compiled-tree>` checks native original-text report, original OK and normal Main Quit in an isolated bounded run without manual input. Static recovery is reproducible with `tools/export-campaign-defeat-support.py`. See [UI33 evidence](../research/runtime/campaign-defeat-engine-bridge.md).

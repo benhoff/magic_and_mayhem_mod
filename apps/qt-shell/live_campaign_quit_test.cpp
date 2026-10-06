@@ -16,6 +16,7 @@
 #include <QtEndian>
 #include <memory>
 void installLiveCampaignQuitTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path){
+ session.campaignDefeatEnabled=false;
  installLiveRegionEnterTest(app,window,session,path);
  session.smokeSeconds=0; // This bounded harness requires normal Quit, not deadline survival.
  struct Evidence {int menus=0,returns=0;bool game=false,waiting=false,main=false;QJsonArray states;QString error;};auto e=std::make_shared<Evidence>();
