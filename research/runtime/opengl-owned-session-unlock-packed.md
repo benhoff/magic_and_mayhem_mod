@@ -98,3 +98,11 @@ primary PRESENT while retaining independent command, byte, surface and ownership
 limits. Validate this policy separately before rerunning original startup. Historical evidence
 retains its hashes; changed shared headers leave older validation stale unless
 separately rerun under a new evidence ID.
+
+## Continuous delta increment
+
+The [continuous owned unlock delta policy](opengl-owned-unlock-deltas.md) retains
+matching baselines privately during full writable locks and publishes only the
+changed storage-pixel envelope after a successful Unlock. Unchanged unlocks retain
+PRESENT and ownership/counter handling. The bounded policy and partial regions
+above remain unchanged; historical evidence retains its original source hashes.

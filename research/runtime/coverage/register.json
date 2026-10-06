@@ -12696,27 +12696,43 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Packed ordered unlock rectangle updates",
-      "scope": "Bounded native policy to serialize an admitted owned full or partial unlock rectangle as a single existing v1 UPDATE, preserving partial base CHECK, normalized native row layout, ownership/failure guards and existing command/resource limits. First full checkpoint still uses CREATE. No original-driver pixel equivalence or replacement.",
+      "scope": "Bounded native policy to serialize an admitted owned full or partial unlock rectangle as a single existing v1 UPDATE, preserving partial base CHECK, normalized native row layout, ownership/failure guards and existing command/resource limits. First full checkpoint still uses CREATE. No original-driver pixel equivalence or replacement. Continuous full writable locks quarantine matching owned baselines and, after successful Unlock, publish the minimal changed native-storage envelope; unchanged writes retain PRESENT. Missing/layout-changing baselines and bounded/partial policies retain prior behavior.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-owned-session-unlock-packed.md"
+        "research/runtime/opengl-owned-session-unlock-packed.md",
+        "research/runtime/opengl-owned-unlock-deltas.md"
       ],
       "implementation": [
-        "runtime/render/owned_session.h"
+        "runtime/render/owned_session.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/lock_lifecycle.h"
       ],
       "tests": [
         "runtime/render/partial_lock_selftest.h",
         "runtime/render/owned_session_selftest.h",
         "tools/test-render-session-unlocks.py",
-        "tools/test-render-owned-session.py"
+        "tools/test-render-owned-session.py",
+        "tests/render-dirty-region-test.c",
+        "tools/test-render-dirty-region.py",
+        "runtime/render/continuous_selftest.h",
+        "tools/test-render-continuous-producer.py",
+        "tools/test-render-checkpoint.py",
+        "tools/test-render-host-recovery.py",
+        "tools/test-live-render-recovery.py"
       ],
       "evidence": [
         "NR.owned-session-unlock-packed.initial",
         "NR.owned-session-unlock-packed.native",
         "NR.owned-session-unlock-packed.startup",
         "NR.owned-session-unlock-packed.legacy",
-        "NR.owned-session-unlock-packed.startup-regression"
+        "NR.owned-session-unlock-packed.startup-regression",
+        "NR.owned-session-unlock-packed.delta-native-20261006",
+        "NR.owned-session-unlock-packed.delta-queue-20261006",
+        "NR.owned-session-unlock-packed.delta-continuous-verified-20261006",
+        "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006",
+        "NR.owned-session-unlock-packed.delta-host-verified-20261006",
+        "NR.owned-session-unlock-packed.delta-game-verified-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13837,17 +13853,19 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous owned publication independent of bounded command archives",
-      "scope": "Explicit v2 continuous producer beyond sample operation/presentation/cumulative archive limits, optional independently bounded command archive; retained surface/pixel/snapshot/queue/ring and finite sequence/byte limits. Default bounded policy retained. Synthetic admitted updates only; resource retirement is covered separately by NR.continuous-resource-lifetime; recovery, automatic orchestration shutdown and sustained original-driver/gameplay equivalence remain pending.",
+      "scope": "Explicit v2 continuous producer beyond sample operation/presentation/cumulative archive limits, optional independently bounded command archive; retained surface/pixel/snapshot/queue/ring and finite sequence/byte limits. Default bounded policy retained. Synthetic admitted updates only; resource retirement is covered separately by NR.continuous-resource-lifetime; recovery, automatic orchestration shutdown and sustained original-driver/gameplay equivalence remain pending. Compact successful full-unlock updates retain exact native pixels and finite pending ownership budgets. Bounded original startup recovery now publishes over100 frames spanning11 seconds in one healthy session; sustained gameplay/movie/driver equivalence remains pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-continuous-producer.md"
+        "research/runtime/opengl-continuous-producer.md",
+        "research/runtime/opengl-owned-unlock-deltas.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
         "runtime/render/lock_lifecycle.h",
         "tools/run-opengl-game.py",
-        "apps/qt-shell/main.cpp"
+        "apps/qt-shell/main.cpp",
+        "runtime/render/dirty_region.h"
       ],
       "tests": [
         "runtime/render/continuous_selftest.h",
@@ -13857,7 +13875,10 @@
         "tools/test-render-session-sequence.py",
         "tools/test-render-command-idle.py",
         "tools/test-render-command-queue.py",
-        "tools/test-render-session-dc.py"
+        "tools/test-render-session-dc.py",
+        "tools/test-render-dirty-region.py",
+        "tests/render-dirty-region-test.c",
+        "tools/test-live-render-recovery.py"
       ],
       "evidence": [
         "NR.continuous-producer.synthetic",
@@ -13867,7 +13888,9 @@
         "NR.continuous-producer.regression.queue",
         "NR.continuous-producer.regression.dc",
         "NR.continuous-resource-lifetime.continuity-regression",
-        "NR.continuous-mutations.continuity-regression"
+        "NR.continuous-mutations.continuity-regression",
+        "NR.owned-session-unlock-packed.delta-continuous-verified-20261006",
+        "NR.owned-session-unlock-packed.delta-game-verified-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13919,11 +13942,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous mixed resource mutations and committed full-layout replacement",
-      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families.",
+      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-continuous-mutations.md"
+        "research/runtime/opengl-continuous-mutations.md",
+        "research/runtime/opengl-owned-unlock-deltas.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -13931,18 +13955,24 @@
         "runtime/render/lock_surfaces.h",
         "runtime/render/lock_palette.h",
         "runtime/render/lock_flip.h",
-        "runtime/render/lock_dc.h"
+        "runtime/render/lock_dc.h",
+        "runtime/render/dirty_region.h"
       ],
       "tests": [
         "runtime/render/mutation_selftest.h",
         "runtime/render/selftest.c",
         "tools/test-render-mutations.py",
-        "tests/live-render-channel-test.cpp"
+        "tests/live-render-channel-test.cpp",
+        "tools/test-render-dirty-region.py",
+        "tests/render-dirty-region-test.c"
       ],
       "evidence": [
         "NR.continuous-mutations.synthetic",
         "NR.continuous-mutations.resource-regression",
-        "NR.continuous-mutations.continuity-regression"
+        "NR.continuous-mutations.continuity-regression",
+        "NR.owned-session-unlock-packed.delta-native-20261006",
+        "NR.owned-session-unlock-packed.delta-continuous-verified-20261006",
+        "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14096,7 +14126,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Qt fresh-session recovery over a versioned producer control channel",
-      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending.",
+      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14104,7 +14134,8 @@
         "research/formats/render-control-v1.md",
         "protocols/CONTRACTS.md",
         "apps/qt-shell/README.md",
-        "research/runtime/opengl-automatic-checkpoint-recovery.md"
+        "research/runtime/opengl-automatic-checkpoint-recovery.md",
+        "research/runtime/opengl-owned-unlock-deltas.md"
       ],
       "implementation": [
         "apps/qt-shell/render_control.cpp",
@@ -14146,7 +14177,10 @@
         "NR.command-host-recovery.auto-checkpoint-host-20261006",
         "NR.command-host-recovery.auto-checkpoint-strict-20261006",
         "NR.command-host-recovery.auto-checkpoint-explicit-20261006",
-        "NR.command-host-recovery.auto-checkpoint-game-20261006"
+        "NR.command-host-recovery.auto-checkpoint-game-20261006",
+        "NR.owned-session-unlock-packed.delta-host-verified-20261006",
+        "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006",
+        "NR.owned-session-unlock-packed.delta-game-verified-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -25826,6 +25860,106 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.delta-native-20261006",
+      "kind": "native_integration",
+      "scope": "5,928 envelope cases in each native and ASan/UBSan build, independent reconstruction and minimal-edge checks across 8/16/24/32-bit storage.",
+      "record": "research/runtime/opengl-unlock-delta-native-20261006.json",
+      "sha256": "9a89ef7a332e141a407386416f53d9020a287c9fefc4fcb67cebbc4aa8aa1526",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.delta-queue-20261006",
+      "kind": "native_integration",
+      "scope": "Native/sanitized finite queue, ordering, sticky overflow, cancellation, idle ACK and timeout regression; no queue policy change.",
+      "record": "research/runtime/opengl-unlock-delta-queue-20261006.json",
+      "sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.delta-continuous-verified-20261006",
+      "kind": "native_integration",
+      "scope": "Three actual PE32 continuity cases and142 independent complete GPU frames. Sparse/unchanged/high-byte locks publish1,051,588 bytes with46 one-pixel primary UPDATEs and70 PRESENTs; dense input still exceeds64MiB/4096 commands.",
+      "record": "research/runtime/opengl-unlock-delta-continuous-verified-20261006.json",
+      "sha256": "602bcd4e3b8720faa4b290eb0aad068602fe9fe6e4477861d10d75717ce3b8f8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006",
+      "kind": "native_integration",
+      "scope": "Twenty strict checkpoint cases and294 independent GPU frame comparisons, including pending ownership, mixed updates, resource budgets, failure, stale ACK, overflow and cancellation.",
+      "record": "research/runtime/opengl-unlock-delta-checkpoint-verified-20261006.json",
+      "sha256": "df2027cc5da082c1cc2aa93dc66e98aa12f481a98f5ba48bb4f244d9e008942f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.delta-host-verified-20261006",
+      "kind": "native_integration",
+      "scope": "Sixteen administrative cases and189 independent GPU frame comparisons, control-client native/sanitizer and protocol guards; pending full-lock baseline ownership and recovery cleanup.",
+      "record": "research/runtime/opengl-unlock-delta-host-verified-20261006.json",
+      "sha256": "56e1c30411164cd59db763c94e19e6ebd90663bf8c3d2bd9c7c6020562aaaecd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.delta-game-verified-20261006",
+      "kind": "live_observation",
+      "scope": "Bounded original no-CD startup observation:208 checkpoint and235 automatic recovery frames in one healthy session each for12 seconds; original manifests before/after and cleanup/no ordinary readbacks. Early incomplete attachment refuses. No independent original pixels, gameplay/movie or replacement claim.",
+      "record": "research/runtime/opengl-unlock-delta-game-verified-20261006.json",
+      "sha256": "18c4338ee9b1d3112fdab6263f136e11281a1887061182bae04c239b712abdea",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sustained_recovery_required",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -30024,6 +30158,47 @@
         "tests/fixtures/surfaces/yu55vq8i.bin.gz",
         "tests/fixtures/surfaces/zpfft1bo.bin.gz"
       ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.delta-preview-20261006",
+      "level": "preview",
+      "scope": "Compact owned full-unlock publication and exact storage-byte reconstruction with unchanged PRESENTs, pending lifetime cleanup and bounded finite queue regression.",
+      "behaviors": [
+        "NR.owned-session-unlock-packed",
+        "NR.continuous-producer",
+        "NR.continuous-mutations"
+      ],
+      "evidence": [
+        "NR.owned-session-unlock-packed.delta-native-20261006",
+        "NR.owned-session-unlock-packed.delta-continuous-verified-20261006",
+        "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006",
+        "NR.owned-session-unlock-packed.delta-queue-20261006"
+      ],
+      "tests": [
+        "tools/test-render-dirty-region.py",
+        "tests/render-dirty-region-test.c",
+        "runtime/render/continuous_selftest.h",
+        "tools/test-render-continuous-producer.py",
+        "tools/test-render-checkpoint.py",
+        "tools/test-render-command-queue.py"
+      ]
+    },
+    {
+      "id": "NR.command-host-recovery.delta-live-observation-20261006",
+      "level": "live_observation",
+      "scope": "Two twelve-second healthy startup recovery sessions with at least100 native frames each; original pixels/gameplay/movies excluded.",
+      "behaviors": [
+        "NR.command-host-recovery",
+        "NR.continuous-producer",
+        "NR.owned-session-unlock-packed"
+      ],
+      "evidence": [
+        "NR.owned-session-unlock-packed.delta-game-verified-20261006"
+      ],
+      "tests": [
+        "tools/test-live-render-recovery.py",
+        "tests/live-render-recovery-probe.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -30271,7 +30446,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-clipping-stream-20261006.json",
-    "sha256": "3ec796003de6b99126ec9c89f61331c81b7b50d9421e27a37b02a0362de98329"
+    "path": "research/runtime/coverage/source-index-unlock-delta-20261006.json",
+    "sha256": "4b759982fa82eb5d904ea0acfba41cf290894600b306ac5312d6cb12f1bd88f5"
   }
 }

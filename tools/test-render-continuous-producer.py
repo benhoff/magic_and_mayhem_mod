@@ -24,7 +24,7 @@ def archive_records(data):
     while at < len(data):
         op, seq, size = struct.unpack_from('<III', data, at)
         assert seq == len(result)+1 and at+12+size <= len(data)
-        result.append((op, size, data[at+12:at+16] if size else b''))
+        result.append((op, size, data[at+12:at+12+size] if size else b''))
         at += 12+size
     return result
 
@@ -33,7 +33,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('build', type=Path)
     parser.add_argument('--case', action='append', choices=['no-archive', 'record-archive', 'byte-archive',
-                        'failed-archive', 'short-archive', 'v1', 'missing-present', 'limit'])
+                        'failed-archive', 'short-archive', 'delta', 'v1', 'missing-present', 'limit'])
     args = parser.parse_args()
     if not os.environ.get('DISPLAY'):
         parser.error('Run under xvfb-run -a')
@@ -59,7 +59,7 @@ def main():
     env.update(QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1', WINEDEBUG='-all',
                WINEPREFIX=str(ROOT/'working/tests/render-wine'))
     cases = args.case or ['no-archive', 'record-archive', 'byte-archive', 'failed-archive',
-                         'short-archive', 'v1', 'missing-present', 'limit']
+                         'short-archive', 'delta', 'v1', 'missing-present', 'limit']
     report = dict(schema=1, sources=fingerprints, cases=[], scope='Synthetic actual PE32 hooked Lock/Unlock '
                   'through owned producer, v2 queue/idle scheduler, native streaming decoder and GPU. '
                   'Independent complete RGB32 display frames and poisoned padded borrowed storage. '
@@ -98,7 +98,7 @@ def main():
                      MNM_RENDER_COMMAND_CHANNEL='Z:'+str(channel).replace('/', '\\'),
                      MNM_RENDER_STREAM='Z:'+str(frame).replace('/', '\\'),
                      MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/', '\\'))
-        archive = mode in ['record-archive', 'byte-archive', 'failed-archive', 'short-archive']
+        archive = mode in ['record-archive', 'byte-archive', 'failed-archive', 'short-archive','delta']
         if archive:
             child['MNM_RENDER_SESSION_ARCHIVE'] = '1'
         valid = mode not in ['v1', 'missing-present', 'limit']
@@ -120,32 +120,47 @@ def main():
                         process.terminate();process.wait(timeout=5)
         observed = json.loads(output.read_text())
         locks, unlocks, count = struct.unpack('<III', (case/'engine-counts.bin').read_bytes())
-        expected = []
+        expected = [];delta_pixels=bytearray(bytes([0,0,0,0xa5])*(512*512))
         for i in range(count):
             rgb = ((i*37)&255, (i*71)&255, (i*19)&255)
-            expected.append(hashlib.sha256(bytes([rgb[2], rgb[1], rgb[0], 255])*(512*512)).hexdigest())
+            if mode=='delta':
+                at=((i*29%512)*512+i*17%512)*4
+                if i%3==1:struct.pack_into('<I',delta_pixels,at,0xa5000000|(i*0x254713&0xffffff))
+                elif i%3==2:delta_pixels[at+3]^=0x80
+                display=bytearray(delta_pixels);display[3::4]=bytes([255])*(512*512)
+                expected.append(hashlib.sha256(display).hexdigest())
+            else:expected.append(hashlib.sha256(bytes([rgb[2], rgb[1], rgb[0], 255])*(512*512)).hexdigest())
         assert observed['frames'] == expected and observed['presentations'] == count
         assert locks == unlocks and observed['success'] == valid
         assert observed.get('native_readbacks', 0) == observed.get('rgba_readbacks', 0) == observed['viewport_uploads'] == observed.get('live_surfaces', 0) == 0
         if count:
             i = count-1
             native = bytes([(i*19)&255, (i*71)&255, (i*37)&255, 0xa5])*(512*512)
+            if mode=='delta':native=delta_pixels
             assert (case/'engine-final.bin').read_bytes() == native
             assert observed['before_producer_exit']
         with channel.open('rb') as file:
             control = file.read(64)
         published, state, reason = struct.unpack_from('<III', control, 20)
-        if valid and mode != 'short-archive':
+        if valid and mode not in ['short-archive','delta']:
             assert published > 64*1024*1024 and observed['decoded_commands'] > 4096 and locks > 256 and count > 32
             assert struct.unpack_from('<I', control, 36)[0] == published
         assert state == (2 if valid else 3)
         assert reason == (0 if valid else 5 if mode == 'v1' else 2)
         archived = None
-        if mode in ['record-archive', 'byte-archive', 'short-archive']:
+        if mode in ['record-archive', 'byte-archive', 'short-archive','delta']:
             data = archive_path.read_bytes();records = archive_records(data)
             assert len(data) <= 64*1024*1024 and len(records) <= 4096
             assert not any(op in [5,10] for op,_,_ in records)
-            if mode == 'short-archive':
+            if mode=='delta':
+                updates=[payload for op,_,payload in records if op==2]
+                # One complete offscreen overwrite plus 46 changed primary
+                # pixels; unchanged locks still produce every PRESENT.
+                assert len(updates)==47 and len(data)<1100000 and published==len(data)
+                assert all(struct.unpack_from('<II',p,12)==(1,1) and len(p)==24 for p in updates[1:])
+                assert sum(op==6 for op,_,_ in records)==70
+                assert [op for op,_,_ in records[-3:]]==[7,7,8]
+            elif mode == 'short-archive':
                 assert [op for op,_,_ in records[-3:]] == [7,7,8]
             else:
                 assert records[-1] == (9,4,struct.pack('<I',2))

@@ -2,7 +2,8 @@
  * the actual asynchronous PE32 control worker while application drawing runs. */
 API HANDLE WIN CreateThread(void*,u32,u32 (WIN *)(void*),void*,u32,u32*);
 API u32 WIN WaitForSingleObject(HANDLE,u32);
-static u32 WIN hc_blocked(void* unused){(void)unused;cs_delay=500;cs_update(&cs_big,0xa5ffffff);return 0;}
+static void hc_wait_release(void){rc_wait("release-",0);}
+static u32 WIN hc_blocked(void* unused){(void)unused;cs_wait_release=hc_wait_release;cs_delay=1;cs_update(&cs_big,0xa5ffffff);return 0;}
 static void test_host_recovery(const char* mode){
     SetLastError(0x77);if(!RenderStartup() || GetLastError()!=0x77)ExitProcess(430);
     if(mode[0]=='s' && mode[1]=='t' && mode[2]=='a' && mode[3]=='r')RenderShutdown(0);

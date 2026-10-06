@@ -135,7 +135,14 @@ static void game_lock_observed(void* object,struct Table* table,void* rect,const
         surface->pixels.width==desc[3] && surface->pixels.height==desc[2] &&
         surface->pixels.bits==desc[21] && surface->pixels.flags==desc[19] &&
         surface->pixels.r==desc[22] && surface->pixels.g==desc[23] && surface->pixels.b==desc[24];
-    if(partial){copy(&base,&surface->pixels,sizeof(base));surface->pixels.data=0;
+    /* Retain a matching owned baseline privately for continuous full-lock
+     * deltas. It is not authoritative while the application holds the lock;
+     * pending storage accounting and normal invalidation/clear own its life. */
+    int delta=game_session_continuous && !rect && valid && !(flags&0x10) && !(flags&~0x4831u) &&
+        surface && surface->pixels.data && surface->pixels.width==desc[3] && surface->pixels.height==desc[2] &&
+        surface->pixels.bits==desc[21] && surface->pixels.flags==desc[19] &&
+        surface->pixels.r==desc[22] && surface->pixels.g==desc[23] && surface->pixels.b==desc[24];
+    if(partial || delta){copy(&base,&surface->pixels,sizeof(base));surface->pixels.data=0;
         game_surface_bytes-=base.length;__atomic_add_fetch(&lock_capture_reserved,base.length,__ATOMIC_RELAXED);}
     game_surface_pixels_invalidate_locked(object);
     if(valid)game_surface_descriptor_key_locked(object,desc);
@@ -151,7 +158,8 @@ static void game_lock_observed(void* object,struct Table* table,void* rect,const
         if((!rect || partial) && !(flags&0x10) && !(flags&~0x4831u) && valid && desc[0]==size){
             slot->epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);slot->owner=GetCurrentThreadId();slot->kind=table->kind;slot->flags=flags;
             copy(slot->desc,desc,size);slot->active=1;
-            if(partial){slot->rectangle=rect;copy(&slot->region,region,16);copy(&slot->base,&base,sizeof(base));base.data=0;}
+            if(partial){slot->rectangle=rect;copy(&slot->region,region,16);}
+            if(base.data){copy(&slot->base,&base,sizeof(base));base.data=0;}
         }
     }
     if(slot && !slot->active)game_session_invalidate(object);

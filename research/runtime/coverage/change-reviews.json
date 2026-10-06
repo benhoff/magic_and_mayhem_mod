@@ -28142,6 +28142,304 @@
         "evidence": [],
         "reason": "Shared decoder/consumer/header/build changes retain old broad GPU, palette, transport and recovery fingerprints and statuses. Targeted v1/v2 regressions pass; broader preview/live validation and live v3 negotiation/producer output remain pending. Native external-Wine policy does not establish original game or Windows-driver equivalence."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "50528a946bbffd54dfdd79dbe1adac7393394d6249ebc2f146b16668f655ace8",
+          "before_sha256": "6bc303dc253a53c7bdb0a47f13c7e75a0ce566d29d0e7391a12c8c60d0c9b40f",
+          "id": "NR.command-backpressure"
+        },
+        {
+          "after_sha256": "d6763e6aefe8d48121cdafc250bd6de100a49188bd868299ed824041d35257ce",
+          "before_sha256": "4a17d6da939255fe939ef8441b046f94594c72dddcee64687edc1726402359ca",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "4dba7e9b27e50335934d352b8d4239ba180b6fdc0c6acd4af93ceb684a6b205f",
+          "before_sha256": "9f20f8e8d19184922067b4765f073d09f0c809c5f09b1559842f7c07bfd5c7ef",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "90de67921f5c0d3cd9161d18742461adb7e83790b321a99c15e9805e0fd7ab4d",
+          "before_sha256": "78b5531b606b9dfe438d8ca11529ab45e61e4df7cf3d95a67c3d7b36f8819c7a",
+          "id": "NR.command-orchestration"
+        },
+        {
+          "after_sha256": "9c75c0e7d384884782e56a7f39828bfbe7e1103b4a17084663e1f4eb513fe667",
+          "before_sha256": "4f3e991b09265822b6eb48b00f5361334df8bc94b9d868b45ffaf94083c88ae4",
+          "id": "NR.command-recovery"
+        },
+        {
+          "after_sha256": "018f5a9be14b43619204bfcecb28bdc5cd2bd9539810358703959d940d21b956",
+          "before_sha256": "7a40f7b7743179b6bba894ba48b8e977c7a31c0390ef79f4b1a67704e680b4ef",
+          "id": "NR.command-ring-adapter"
+        },
+        {
+          "after_sha256": "2584e9c3cc90faaa884c9cbf5b33bdeaee8e3e62559e601e8c24919f959462d3",
+          "before_sha256": "4261ece4a2de8fdfc3d90b6f58dc3e423a85dcdf7cd582b0401d2c635bcf8d73",
+          "id": "NR.continuous-mutations"
+        },
+        {
+          "after_sha256": "f2cde87edde7bc19fb802d37070789a74f460ec1691ec235ed95cb438e6ca2d9",
+          "before_sha256": "b7e33c3a9d14e6c0bc00142cdad30781212def4abff6f29e7c1cdd9537d60776",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "3fbc8aae42f117f1d86dbdcb28fbbb147f59d22312ae32cc4c305bf96007a643",
+          "before_sha256": "06440bdea8c8e01c4a97de381c68ce616fb21c0b45d130f07ec60e4169d089fc",
+          "id": "NR.continuous-resource-lifetime"
+        },
+        {
+          "after_sha256": "ddc7038d85b9e76b9356eb03884abd21eac27ae2c9abee3acb06118f026063bc",
+          "before_sha256": "c101260015b1b98f8e5905f7c41fdc62022e66193f9155ceb8484db66d947cda",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "c2e9f1f10ae33a3597980438d6474fc03d950d6a3491df36d45d4f3681360ae1",
+          "before_sha256": "ac5eb5fd935ee5d2316b8f2741144fed10bcbf58930eb51670d2b470b8b35891",
+          "id": "NR.owned-session-dc"
+        },
+        {
+          "after_sha256": "bd1214a9a5319f0014304a3e4ef3b9350d84902d81ff9d52e462b7ac3f8f3ddd",
+          "before_sha256": "f2d7009b8fc2b64c9c496cd189d5096eadea14d69b602a0472669dd7d841b4d9",
+          "id": "NR.owned-session-fill"
+        },
+        {
+          "after_sha256": "925fa5be6fae7b687ae8e1f540cc8cffd2cff33d7aff2aea58bd2755d3bb6ca1",
+          "before_sha256": "91f990017b50e393642d23b975c24dd5f5a90d33feaca4eeb0869fec60625f7d",
+          "id": "NR.owned-session-sequence"
+        },
+        {
+          "after_sha256": "a856f8fffca056250f3b2b60411ad87d2c56b8e9fb8f4330dd048920ded86227",
+          "before_sha256": "4225e6f1d04504f2c9665a80d8e8eba825e8af6fcc167e3089bc6638205e26f2",
+          "id": "NR.owned-session-startup"
+        },
+        {
+          "after_sha256": "0b831845c5de527d99a82b263778feaeec6408645bfd5d279eef7eff90e5601a",
+          "before_sha256": "c6b0094a74acf99ec3105729272075b685b086a9202f61276bff2c5cb468e77b",
+          "id": "NR.owned-session-unlock-packed"
+        },
+        {
+          "after_sha256": "29aaa8eddff9081e49b4e0d22b8018e0d5592831017017401f228c9e2b5f1be1",
+          "before_sha256": "5ec83314aa1923d14a9c35e4d8747c92cb1a9ca1ebb7702bd51356592cfd2333",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "01e88c19f6e7293393d367ba4cc2c5092ef5b8ffaccd75e6ad795255ca4914e6",
+          "before_sha256": "0b7334e0cacf82cdea9aabfef5e056fe4d095332125870f2f19adda481d81703",
+          "id": "NR.real-game-command-shadow"
+        },
+        {
+          "after_sha256": "5012b7ecc7f99d29d02513bc435287120f88098a13c6c0d25c3a5d53529f43a1",
+          "before_sha256": "d576fa9dd7ae27b665abe7369abcb6eb765bc4973eb3ad36d8297236586829c2",
+          "id": "RT.render"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "80ae5fff9c6ae7651e1bdd5acf12bea90d13da93b51fe2baa91b25153707e462",
+          "before_sha256": "eb3d05358dfbbcf2923eb348c9ec73b7ee722ccb994d76d83dd59b1ebb5cd572",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "196551eaed21d156b55e170eb952832e4c5f7ddf064b77ffeaedd993cefad536",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-unlock-delta-20261006.json"
+        },
+        {
+          "after_sha256": "59f6a10e2ec5b2bb42a3a5833e96810bb8487298354a6aaaf26408382bef0dda",
+          "before_sha256": "c34aefab89f27237b796c592b54616e69cf27bda190b5aba7ef6c7ae29251e97",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "4b759982fa82eb5d904ea0acfba41cf290894600b306ac5312d6cb12f1bd88f5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-unlock-delta-20261006.json"
+        },
+        {
+          "after_sha256": "f76a16039f070fc23c75b452aef196e3aefc231212edf6871fbb3bfc4e1506bb",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-unlock-delta-20261006.md"
+        },
+        {
+          "after_sha256": "473a32c848c056fed4305f69111706cd9783cb6a7a813e5f274662434b03dc00",
+          "before_sha256": "5b1747fe2960d58c821066e50559af7c5b64f84e9c1cd59bbbf1662d22c9a9a0",
+          "path": "research/runtime/opengl-owned-session-unlock-packed.md"
+        },
+        {
+          "after_sha256": "adce52268af30a27d7279b2f933a4773003c75cd7fe11855fdc4918a734645f2",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-owned-unlock-deltas.md"
+        },
+        {
+          "after_sha256": "df2027cc5da082c1cc2aa93dc66e98aa12f481a98f5ba48bb4f244d9e008942f",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-unlock-delta-checkpoint-verified-20261006.json"
+        },
+        {
+          "after_sha256": "602bcd4e3b8720faa4b290eb0aad068602fe9fe6e4477861d10d75717ce3b8f8",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-unlock-delta-continuous-verified-20261006.json"
+        },
+        {
+          "after_sha256": "18c4338ee9b1d3112fdab6263f136e11281a1887061182bae04c239b712abdea",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-unlock-delta-game-verified-20261006.json"
+        },
+        {
+          "after_sha256": "56e1c30411164cd59db763c94e19e6ebd90663bf8c3d2bd9c7c6020562aaaecd",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-unlock-delta-host-verified-20261006.json"
+        },
+        {
+          "after_sha256": "9a89ef7a332e141a407386416f53d9020a287c9fefc4fcb67cebbc4aa8aa1526",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-unlock-delta-native-20261006.json"
+        },
+        {
+          "after_sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-unlock-delta-queue-20261006.json"
+        },
+        {
+          "after_sha256": "af693ffde67faadc24b79aa8f229a5980fa7cba983b934b19b6a1c0c32879b77",
+          "before_sha256": "53bb2834d3075236afa16972899b3e7ab18f7f55135b7bf56b51ff5d9a7eb39d",
+          "path": "runtime/render/continuous_selftest.h"
+        },
+        {
+          "after_sha256": "e5743b9c82b63debe1b0431269d576672fcfee83ca42817e21d5558ec1ba936b",
+          "before_sha256": null,
+          "path": "runtime/render/dirty_region.h"
+        },
+        {
+          "after_sha256": "7981baf6069b7caab473461f33e49798d26ad6cc5bcb07731d4916d00f873024",
+          "before_sha256": "8b05bb4b89899fda7e72ce87c2a8e6e4cbca6cc2cc4f11b9cb0c78f9385ebcf2",
+          "path": "runtime/render/host_recovery_selftest.h"
+        },
+        {
+          "after_sha256": "e60932bcaf016535ce69e6c43538ce978d32e2869d449d540d6512960cdd172a",
+          "before_sha256": "ff22b737dce7f047fab284ab8c2615530cf5407bb5aeed458740a694af884948",
+          "path": "runtime/render/lock_lifecycle.h"
+        },
+        {
+          "after_sha256": "2e2f7b2890a4c1547dbfbda63b35f5da9b5a4019519d302594ffab207ca7f9d2",
+          "before_sha256": "e68b5e4fea09a4a275bb8d0cfda9473afb798ee39cdc9d132c44861c18e20829",
+          "path": "runtime/render/owned_session.h"
+        },
+        {
+          "after_sha256": "e5cbed4ff2e63e40a4112ad2ce84e25cb9e60a2057d35106face9f4c17b3f31c",
+          "before_sha256": null,
+          "path": "tests/render-dirty-region-test.c"
+        },
+        {
+          "after_sha256": "3cb14fa6eb409a9b70cf58f2ffe7dcd14e8b42123aba934eef759824198bd8da",
+          "before_sha256": "7bf20cdd7dd60a4a847903f89b21612bb2b1284d38ca5b97b73e58f84d8783af",
+          "path": "tools/test-live-render-recovery.py"
+        },
+        {
+          "after_sha256": "224ebc4d8c85bad4441d73da3818457e902596d9c8f68f8b557225a9d6bb9ee7",
+          "before_sha256": "224ebc4d8c85bad4441d73da3818457e902596d9c8f68f8b557225a9d6bb9ee7",
+          "path": "tools/test-render-checkpoint.py"
+        },
+        {
+          "after_sha256": "4e46e49bdfdb2c2161d744528a57030b7a9028c3301069b5bbd7136129a2127f",
+          "before_sha256": "b1644032c844f27cbe47635ad864775ca0a5865e3a4edaf00335688ea8f5764b",
+          "path": "tools/test-render-continuous-producer.py"
+        },
+        {
+          "after_sha256": "0b60e3c7830fa4f77074ab9c204a6141187666c4a92e66ef50bec2f7d230f7a1",
+          "before_sha256": null,
+          "path": "tools/test-render-dirty-region.py"
+        },
+        {
+          "after_sha256": "71144e0c4365b4838373cb797e45fbbc56f083ac4d46efff9f66dbddd337ddb1",
+          "before_sha256": "0141e356b78943da2b6afabeee93489cef018618cb3d149372203475a631d881",
+          "path": "tools/test-render-host-recovery.py"
+        }
+      ],
+      "id": "REVIEW.compact-continuous-owned-unlock-updates-20261006",
+      "pending_gaps": [
+        "stale_evidence:057f1cd42c0667bdb3665e7fd873b9a5c77ca97538c1658f1044feaf243ed9d0",
+        "stale_evidence:07010ad88f93bc16cd6681c7a4a765a3956be178a3933820444e3b216618e2bd",
+        "stale_evidence:0c30981320c5ad01146c862e5d1c17ab07a3b0d5def1ccdc4450baa0f0f69124",
+        "stale_evidence:0dd0a17baa1270787a71a7f46ec9eae3fafe1a682c4cbd68e750bebb39445d40",
+        "stale_evidence:0ed36e369fb7b3a67a9c43f81564393596a03d98c9c7184aa77e7bfdb8e9faaa",
+        "stale_evidence:1abd70fb2084996bd87915bd92c3ff1f81bf80c60471c0c43be257ae3505d305",
+        "stale_evidence:1bd8879ceeff226b40bff4548f8052a080aefb76d9c441e9d1209166bcaae683",
+        "stale_evidence:2371dc47feffa985e056e632e53611ff420b7f7814c53810bd76a9de60474c3a",
+        "stale_evidence:2be47ca548cc96ca89ac18e36ab6b3f716742547f761c56cf919e1fa0f3b090d",
+        "stale_evidence:2c9136fddf63e373096854f300ebad58355efcc8b4055cfc54acb495f73c5d0c",
+        "stale_evidence:2caafe7493222942c173b573a878645e09634cdf2a8bb9b976b3e30a46553797",
+        "stale_evidence:36da7221f383fb9a0ba4423c20d666d0bc5f95f49724405172f5fc66b1a43561",
+        "stale_evidence:3a23bc11bfd621f29693ab228835dca919a134765d82802a5301b4fef095a571",
+        "stale_evidence:43e7b0011dd165bba04d302d65f635b3c6bee210419c34bbd132cfddbfeba6ec",
+        "stale_evidence:448b5c4fc22a4882f002d1a408909d82b67a97cfa2150d95ead969d9dd713c26",
+        "stale_evidence:466018f42b6b073775c7b83b4cbbcba9d1da63fd508bb9afb8a7d61030c2fe05",
+        "stale_evidence:46ef10688f6296e8d379685c604fd858de9e258ca5327ab77f18e26f7ced74fe",
+        "stale_evidence:488de40d46c12b9f1e591d83cff8cc818817a35a64fce1073797cfbf0846b6c6",
+        "stale_evidence:48c9639562e470eff4d674b2b80f65320e5ca511dd69a48d94063cd34426362a",
+        "stale_evidence:4a793c913c8b3e7d9c60825c604e95a2dacddbf84f63759558f36247d89fb312",
+        "stale_evidence:4aa78859c3ddc158a19af611b4b7e72198a0ee46d8023a0b4c8259dc50d45343",
+        "stale_evidence:50d789cbf06bd1abe966d8860fcfe4911db9d8be51f1860431d97e9eaa340dd3",
+        "stale_evidence:581f06e706e2e8f3b2822e2a7047d1aab52d8065373758e8c93bb6d6747fc7cd",
+        "stale_evidence:5e3f91528d9561f4ca25662be6048c12c31a6c0fc1c1063480ecdaf9b06d65fe",
+        "stale_evidence:5fd07f60fe6faba3cc59354c0eaf42c69bce2aeba1faa12dc53b1fabae44b9b2",
+        "stale_evidence:6174522b606f367287c8158edfc5e6730d946a251e3c8dc5ef2cda18cdad4ff8",
+        "stale_evidence:6409426e00ba6f7db45f9ec5679d284a04ee857903a5db9ecdf0c17a63f4ac61",
+        "stale_evidence:650c8b1072bbbd1eb1a861519151755f5c815962c976a316f06e1476041b563f",
+        "stale_evidence:6666bb072cf6740c659a4fcf6d02fa9646bf2e730e52da94960311a4af3f31c2",
+        "stale_evidence:6a4e2c3f6d1bfa26ae88673e95dcc84087e2d50fbb509b64d841ddd655819a18",
+        "stale_evidence:6d2b1795cc2ead4f0fe5c221194c25c50bc0772ef8dbefb6aea1b1c6178e6cc9",
+        "stale_evidence:76ee5c090c40c41b6aedcf6777cf2ed5a9f333e9bb3606aebeb517237c68bca9",
+        "stale_evidence:79f3a539e159680d8d80525cb998aaa54db9f935f0d18d62ffaae1457d22b0cc",
+        "stale_evidence:7d737546055d7672622921ca262bf10a93f6824c1d3fc0f369a8080f49a9d233",
+        "stale_evidence:7e053ef916fe2d883e50ec1124d78e88dbb67a225880b20a700be1b57c21ff2e",
+        "stale_evidence:7f3e2e5ae70dff96f0658010c6f2e43108dbaf5c1a0a6b43b1636ea710658e86",
+        "stale_evidence:828806e6c83819e7dea97f527e09bf250c8f39ce8e4f6fd596c050295fffd758",
+        "stale_evidence:85fef065863226c49b8208a7c6c063e3657ce3c791209b7a08b6a8bd9ad043b9",
+        "stale_evidence:97966473e032f164cb03558a5abf0a178270e8da86e90f99171f412604201c34",
+        "stale_evidence:9a69a0ee58aca7745591c8498be46ac0f52d157710ac66ae911895b6205a8399",
+        "stale_evidence:a44b8ac753dc70a3fb1d367ee52e31e12d450a0117c9acfa06264678f2bf1e26",
+        "stale_evidence:a4f82dc4b86f34799481c61acfd6f35f4d56eab4c3b4bec7097e3955af40b5b5",
+        "stale_evidence:a5a713c932975d7ce97e6bfaebffd2804dfed69323eded37b22ac32a0659d153",
+        "stale_evidence:a7f992fb3d530ea398df7c7279ff9d9387f4e6e4dea3ba21a7cae991a388c113",
+        "stale_evidence:ab598e34ed80d4a54b91eb72e7bc9a50314e281eca8fb9e8e54782295365c3db",
+        "stale_evidence:af4bec4e28734f6d3fc29cc39797235462de1ec8a049067b7cd377e43915f914",
+        "stale_evidence:b03d78f5f24f27aca912097906e8ce0b667e067a890d03f4b888ab29ce530918",
+        "stale_evidence:b71aeab51686cab951b08621795b76ac654f284516137ca2cee3606293e6b243",
+        "stale_evidence:b73fa12217f055b8bd51722281efb3f691ef42a20542ba45489c7103d92e8ef6",
+        "stale_evidence:b74cb98f48f4cd516b841d4b864cfcefb4390e58d0d35d3e1d5351afe0f14698",
+        "stale_evidence:bea31b2cf54d55757129d5ee88c3b9f3d01f33dfe9f0a7223999142786a13ec4",
+        "stale_evidence:c3ed08aeb4aa83a7e9d02440859970dcba25a084470f78db502e8305b8dcc5b3",
+        "stale_evidence:ca85912511d6c6618657e8fd53c9cca61c93c3e77b126d367be39e651c086cbf",
+        "stale_evidence:cfecffab8eb467459356054a596c15ceb77af1944b6db912fc21c5ea9d60ff2b",
+        "stale_evidence:d583ef9ff0387272801d3933de9b827abfceb31eed30ba1a26a4cd212e736a97",
+        "stale_evidence:d6bcd365b28820ac16c16ec84308f944e7817457535373f9b2d60c6573f47219",
+        "stale_evidence:dc7ff9ecd7cda8970147df0b11ddbb7195cfffdee19ae04e2839800a8e7435e5",
+        "stale_evidence:dfa2704c6dae0bce076ecc7ba94874e6cd8fe91f3eef7f010c793ff27a102a9d",
+        "stale_evidence:e058a7451996da22b8a678acc5f0645ef10051841ac64f9da5b7d9ce293ce539",
+        "stale_evidence:e1045cd2bf3dc3caf685ef78519e00d693d174bbe7959222c239f3d96820fac9",
+        "stale_evidence:e70a9657cd168e98ac5251faf5b8b396d74683af8c7f1bab15cdccd4b25fd1fc",
+        "stale_evidence:eb55a1654301443f41e5efdd90af18b25ffd63410bb4eb4d52f1691f61bad195",
+        "stale_evidence:ed55c1e33340d7ddfe320612dd695cb8bed0c94e6d891c89683246b65d88c2a1",
+        "stale_evidence:ef3839e171b4fd3374f6993ea82d85448c1ac107f2dc5a3c98eda8555205eed5",
+        "stale_evidence:ef45f59976bc8627efebb4d329c8b991a4532980941e36373e6d9d58075c6557",
+        "stale_evidence:f04c38b3adef8dc1c8885a4faf8b62ab66b298b479e0ebad92e609055b6adbcd"
+      ],
+      "reason": "Reviewed full-lock transfer of matching owned pixels into pending baseline storage: tracker/epoch/generation, layout/flags/masks, writable admission, failed Unlock retention and normal retirement/clear continue to own lifetime. The baseline is not authoritative while borrowed and remains charged to the existing64MiB limit. Successful original Unlock compares all storage bytes, emits a tightly packed minimal envelope for existing continuous resources, and preserves PRESENT/palette/counters/checkpoint maintenance when unchanged. Initial, missing and changed-layout baselines, bounded capture, partial locks, DC handoffs, fills, wire versions, queue/ring limits and sticky overload retain prior policies. Reviewed sparse/high-byte/unchanged fixtures, complete independent Python frames, explicit sustained game assertion, and deterministic blocked-callback refusal/release handshake replacing a fixed-sleep assumption. Reviewed three committed changes e95da91..2013cae against exact parent/current source and behavior receipts in the retained history report. Census, four scoped policy entries, two scenarios, six immutable execution records, research and ledger are included; independent validation/replacement dimensions remain unchanged.",
+      "validation": {
+        "evidence": [
+          "NR.owned-session-unlock-packed.delta-native-20261006",
+          "NR.owned-session-unlock-packed.delta-queue-20261006",
+          "NR.owned-session-unlock-packed.delta-continuous-verified-20261006",
+          "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006",
+          "NR.owned-session-unlock-packed.delta-host-verified-20261006",
+          "NR.owned-session-unlock-packed.delta-game-verified-20261006"
+        ],
+        "reason": "Fresh native and ASan/UBSan envelope checks:5,928 cases per build with independent reconstruction/minimality. Three final actual-PE32 continuity cases:142 independent GPU frames, sparse publication1,051,588 bytes and dense publication73,723,756 bytes beyond64MiB/4096 commands. Strict checkpoint20 cases/294 comparisons and administrative16 cases/189 comparisons pass, including deterministic held-callback refusal, pending baseline cleanup, faults, stale ACK, overflow/cancellation and control native/sanitizer/protocol checks. Final production PE32 and native fixture builds passed. Bounded actual-game startup required one healthy recovered session with at least100 frames spanning11 seconds:208 checkpoint and235 automatic frames over12 seconds, zero ordinary readbacks/uploads, zero terminal consumer resources, original process retained and2,927 immutable originals verified before/after. Exact final source fingerprints were checked against the staged tree. The66 newly stale historical evidence/source gaps retain original hashes and remain pending; these results do not assert current equivalence for every affected shared-header contract. Independent original-driver pixels, gameplay/movies, long-running counter exhaustion, high-memory scenes and forced packed-scratch failure remain pending. Exploratory failures and earlier source snapshots remain under working; the accidental symlinked working installation staging was restored to exact verified prior bytes, with failed artifacts preserved before restoration.",
+        "status": "pending"
+      }
     }
   ]
 }
