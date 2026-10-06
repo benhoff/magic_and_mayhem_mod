@@ -15,7 +15,7 @@ REPO=Path(__file__).resolve().parent.parent
 # Shared wire definitions are repository-local; no package installation required.
 import sys
 sys.path.insert(0, str(REPO / "protocols/python"))
-from mnm_protocols import frame_v1 as frame_protocol, input_v1 as input_protocol, media_v1 as media_protocol, render_commands_v1 as command_protocol
+from mnm_protocols import frame_v1 as frame_protocol, input_v1 as input_protocol, media_v1 as media_protocol, render_commands_v1 as command_protocol, render_commands_v2 as ring_protocol
 
 
 def load(name,file):
@@ -87,7 +87,7 @@ def main():
         if not command_path.is_relative_to(REPO/'working'):raise ValueError('Command channel must be under working/')
         with command_path.open('rb') as file:
             header=file.read(command_protocol.HEADER_SIZE)
-            if not command_protocol.valid_header(header,command_path.stat().st_size):raise ValueError('Invalid command channel')
+            if not (command_protocol.valid_header(header,command_path.stat().st_size) or ring_protocol.valid_header(header,command_path.stat().st_size)):raise ValueError('Invalid command channel')
             import struct
             if not struct.unpack_from('<I',header,16)[0] or any(header[20:]):raise ValueError('Command channel is not a fresh session')
     input_path=args.input.resolve() if args.input else None

@@ -1,0 +1,621 @@
+{
+  "range": "2f45bb7..62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+  "scope": "Read-only committed parent/current hashes against exact receipts; no retrospective gate pass or execution claim.",
+  "files": [
+    {
+      "commit": "a217b2b1c70b290793307e6fa38114d71a8984df",
+      "path": ".githooks/pre-commit",
+      "before_sha256": "9a7f7ba435c1129855066a3e5cc6b423a270b16fbb887bf8a0366cc7eb2e8c60",
+      "after_sha256": "9886586a24d3d207adc00c41be1ab93f251fb70f5a90aa54651d160d3c2891e6",
+      "behaviors": [],
+      "role": "control",
+      "change": "modified",
+      "reviews": [
+        "coverage-hook-descriptive-failures-20261005",
+        "nonrender-final-hook-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "a217b2b1c70b290793307e6fa38114d71a8984df",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "60f9c778d3870104144be967bdc66a9c29ff17693844826fb1fb2c156a62d1eb",
+      "after_sha256": "c1556b89c4168891b73b2554f72ff58f6c7fb400bf93de86448b1ea1c4bb66e5",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "nonrender-final-hook-20261005"
+      ]
+    },
+    {
+      "commit": "a217b2b1c70b290793307e6fa38114d71a8984df",
+      "path": "research/runtime/coverage/source-index-nonrender-hook-final-20261005.json",
+      "before_sha256": null,
+      "after_sha256": "50135e0a3ab756442df08c47df06283db51fbc772fc76a9e326c682794a045ec",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "nonrender-final-hook-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "a217b2b1c70b290793307e6fa38114d71a8984df",
+      "path": "tests/test-coverage-gate.py",
+      "before_sha256": "8ef78d1e12e70fe6c7252f5df46476136eb88e60197575323ea490be76e05516",
+      "after_sha256": "cca0ffd65cccd2013cba1b34172c087202c05153c4ce36468df8305cb892c65f",
+      "behaviors": [
+        "TOOL.coverage-gate"
+      ],
+      "role": "test",
+      "change": "modified",
+      "reviews": [
+        "nonrender-final-hook-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "a67e48fd0686d22a658d376adbea68bc2b803c602cb548e480736f2d689598e9",
+      "after_sha256": "ae5d018a831ea012c00ac8c856a2a7f8b4f7af79a14914cd686827bd9b8f7826",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "nonrender-final-audio-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "c1556b89c4168891b73b2554f72ff58f6c7fb400bf93de86448b1ea1c4bb66e5",
+      "after_sha256": "3a2ab3494737cff31ba05f0c43da681d5a9a93f5cc25463188c372fdb366e91b",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "nonrender-final-audio-20261005"
+      ]
+    },
+    {
+      "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+      "path": "research/runtime/coverage/summary-native-audio-observation-20261005.md",
+      "before_sha256": null,
+      "after_sha256": "f4a1026efe4c2b30cd7f5d238920e6ae64c1a13dfb578c4e3e93af1e4241efaa",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "nonrender-final-audio-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+      "path": "research/runtime/native-audio-live-observation-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "969f7a1c11ac5f063bd3ca8a4903520e79f320d71b7f724e695bc7cfd4997fbe",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "nonrender-final-audio-20261005",
+        "AU06.user-observation-20261006-documentation",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+      "path": "research/runtime/native-audio-voice-bridge.md",
+      "before_sha256": "84b7cf5db7c54e58d02ae12c1132afeb54b20229afa73b77e6f86475447020a9",
+      "after_sha256": "2382b529725ce78db6821590b57bede238334976d84ac3eba76bfcf9ef9e86ab",
+      "behaviors": [
+        "NA.voice_bridge",
+        "RT.audio"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "nonrender-final-audio-20261005",
+        "AU06.user-observation-20261006-documentation",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+      "path": "research/runtime/coverage/committed-history-nonrender-20261005.json",
+      "before_sha256": null,
+      "after_sha256": "89a7cd26a88490bb8c756e1d2bc8296212e5405d13378fbe5965e4027876c140",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "nonrender-final-archives-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+      "path": "research/runtime/coverage/source-index-hook-messages-20261005.json",
+      "before_sha256": null,
+      "after_sha256": "2c1febf7a4f11868695591a5ca0260aaf5fd36ac309e2e313685a667dc1763b5",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "coverage-hook-descriptive-failures-20261005",
+        "nonrender-final-archives-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+      "path": "research/runtime/coverage/source-index-native-audio-boundaries-20261005.json",
+      "before_sha256": null,
+      "after_sha256": "4a2779c5fd84b54706f6223fe9f6aa8fcf0a15937d99c7b7e583785e0e241864",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NA.core-boundaries-workspace-accounting-20261005",
+        "nonrender-final-archives-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+      "path": "research/runtime/coverage/source-index-native-audio-boundaries-isolated-20261005.json",
+      "before_sha256": null,
+      "after_sha256": "4e00c7585037cad1c25e9df3f2beb7b2c004d3375d913c6af1797452ef2e8934",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "nonrender-final-archives-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+      "path": "research/runtime/coverage/summary-native-audio-boundaries-20261005.md",
+      "before_sha256": null,
+      "after_sha256": "daf7b42e030d68e4923310d8fb46172703242542a74ae87846f6feee1d4b043c",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NA.core-boundaries-workspace-accounting-20261005",
+        "nonrender-final-archives-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+      "path": "tests/README.md",
+      "before_sha256": "310a64c7e1124d868a05c0e9598563e9952b29fb512fec4ba8d0a24ef847b2d9",
+      "after_sha256": "f4880fb89c4d5fbf598300b9fb39cc7183f54715607ffc44fec4b2f334689d1e",
+      "behaviors": [
+        "TOOL.coverage-gate"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "nonrender-final-archives-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-command-ring-commit.json",
+      "before_sha256": null,
+      "after_sha256": "d24dc89c45ca9182ecc183b381ee4783accdc8de8e0cdde61160ff490c28b63a",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.command-ring.exact-commit",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-dc-isolated.json",
+      "before_sha256": null,
+      "after_sha256": "7e6dee8880703279ed9bb36ac2d34b7654c98a06d11e5dbe76a900167882dedb",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-fills-current.json",
+      "before_sha256": null,
+      "after_sha256": "7444acce281d27f67f1bf161c2e7fb62857892aed6cc594d25075e385da2baf3",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-fills-isolated-v2.json",
+      "before_sha256": null,
+      "after_sha256": "303c2a84cfcc14f98b964ff65ec0c0719c13854b03b9b068bcc18302b5039ceb",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated-v2",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-fills-isolated.json",
+      "before_sha256": null,
+      "after_sha256": "c73dd797dcd041ccbb5e7c1f60d7e81184fbf09c2ac33715349fb8e0883a4c5e",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-sequence-commit.json",
+      "before_sha256": null,
+      "after_sha256": "7facf20d4c2909b7a47fc6e5ad2429d55762a29b4949fa7034f96f20dcff07fb",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-sequence.exact-commit",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-sequence-current.json",
+      "before_sha256": null,
+      "after_sha256": "b59d814e4b901dea1cb8b17465e0059fbe8d04266eb420c221c418172a0f6d9b",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-sequence.workspace-index",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-sequence-isolated.json",
+      "before_sha256": null,
+      "after_sha256": "8bb801d409aae41ec7b0f416f20f0838e1189365529ae8b47ab93d5a75ab33f3",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-sequence.exact",
+        "NR.owned-session-sequence.exact-final",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-startup-current.json",
+      "before_sha256": null,
+      "after_sha256": "5b73f1040b646245a8e5ba8e4f25589c36be61ddd8ca9d0d29d3cf69186e6d21",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-startup.workspace-index",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-startup-isolated-v2.json",
+      "before_sha256": null,
+      "after_sha256": "897a207fc00b95974026102c49f30d628bb1eee25817ed63354504ec385db576",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-startup.exact-v2",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-startup-isolated.json",
+      "before_sha256": null,
+      "after_sha256": "2eb444106b7a4f006b796fa5ff784c0c502a7776b01d953728cde456a2b697d6",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-startup.exact",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-unlock-commit-v3.json",
+      "before_sha256": null,
+      "after_sha256": "ef5d095d2053924f45f0474184bee1efc896a3ff153e14c5d82166c96945e65d",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/source-index-owned-session-unlock-isolated.json",
+      "before_sha256": null,
+      "after_sha256": "93bb6076fb487e1a5fc9678e042c9f528f970068a68c97de10fbaf6441149da5",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-command-ring-commit.md",
+      "before_sha256": null,
+      "after_sha256": "38862055f0b88c4eb0919dfe30b9e8ec6558310a072d407ed5579f3b2e79b145",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.command-ring.exact-commit",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-dc-isolated.md",
+      "before_sha256": null,
+      "after_sha256": "3fa3ffdc69332827e1866b127e367be01830e6610d75053e99c64c242fd24035",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-fills-current.md",
+      "before_sha256": null,
+      "after_sha256": "c6e50a475d59fa1d34a0a1c1b2320d9acb9ad2167ce9cd0a2c50d19a15144989",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-fills-isolated-v2.md",
+      "before_sha256": null,
+      "after_sha256": "ec29e17986dce8e4fd516214a9113fa12ce5c7605882c3ab2894172fba10dad2",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated-v2",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-fills-isolated.md",
+      "before_sha256": null,
+      "after_sha256": "4e9ac3402b5caa69bccde19199413fd83a94edf121d83016da755256052f59e5",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-sequence-commit.md",
+      "before_sha256": null,
+      "after_sha256": "1b38586fcb9e25e3a9394b02de58b04b497a5df7ed2d8a1ebbd2349d525b5298",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-sequence.exact-commit",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-sequence-current.md",
+      "before_sha256": null,
+      "after_sha256": "033e8e2c5d1b3bc0ff3bf371b0774eed291f898dd4bcbae8b0adcd733c807d8f",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-sequence.workspace-index",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-sequence-isolated.md",
+      "before_sha256": null,
+      "after_sha256": "470d5b874f4ddd6bbcb82dd5f5792c0b85b10148cbfc1ad6b564290b28a20d77",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-sequence.exact",
+        "NR.owned-session-sequence.exact-final",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-startup-current.md",
+      "before_sha256": null,
+      "after_sha256": "2f89892f6fdc4d5f5bd64a8f38a00471b5159fa2db32d1390a059b375c11a590",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-startup.workspace-index",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-startup-isolated-v2.md",
+      "before_sha256": null,
+      "after_sha256": "3545f2d4be1c44850cfca76bd31b29318a3907d36cad6652527cbcfae52a8268",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-startup.exact-v2",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-startup-isolated.md",
+      "before_sha256": null,
+      "after_sha256": "bb8c10bed1ee2df603093cd8d736a4ca19b60a0218476cc2028a6b98f54f9e19",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-startup.exact",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-unlock-commit-v3.md",
+      "before_sha256": null,
+      "after_sha256": "27799d5da84473774978497c0d88e8d953ef3aa2cf1b9b8457bc73686ae6ce2d",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-unlock-current-v2.md",
+      "before_sha256": null,
+      "after_sha256": "46e727416493314477a224a879d7038a62b455d590dbef4f70066f75b427469f",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-unlock-current.md",
+      "before_sha256": null,
+      "after_sha256": "2ce5a0598e7a83a6f24888553f96d7f222c5f8feb1aef3c34a7221ea3b411aae",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    },
+    {
+      "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+      "path": "research/runtime/coverage/summary-owned-session-unlock-isolated.md",
+      "before_sha256": null,
+      "after_sha256": "3ff907449b264b9079f64834990fb738fd72f8e6004bb9cfeb96ea1c46c3a4bc",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "COVERAGE.render-archives-preservation-20261005"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "a217b2b1c70b290793307e6fa38114d71a8984df",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "a441dcf31bf67cfb2ae549ea6586ee8e286dcf0d015b55e39993c63416005815",
+      "after_sha256": "d2bd179d731ce007be67428b31ee8f6ab7c0c78f4eee14751d378f253b29c545",
+      "reviews": [
+        "nonrender-final-hook-20261005"
+      ]
+    },
+    {
+      "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+      "id": "NA.voice_bridge",
+      "before_sha256": "ddc58373f0edb8e8ac704483f960e64716ac008aa03c272e0c32dae7f0597ced",
+      "after_sha256": "fbd7c9fd3d98822efa04da1fda472738262b84c02beae4b7433d2912bde4caba",
+      "reviews": [
+        "nonrender-final-audio-20261005",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+      "id": "RT.audio",
+      "before_sha256": "394d892a21bb5a3a1df7aebc8e66944a56ff43da288f58358a5866311d3fcdf8",
+      "after_sha256": "d4d20e2707a864300515b200a836f4519c9e65c97b70e08ce4b282c60a05b599",
+      "reviews": [
+        "nonrender-final-audio-20261005",
+        "AU06.user-observation-20261006-documentation",
+        "nonrender-final-combined-stack-20261005"
+      ]
+    },
+    {
+      "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "d2bd179d731ce007be67428b31ee8f6ab7c0c78f4eee14751d378f253b29c545",
+      "after_sha256": "56166a9170fb7e43b71f5eee22783b0b20ebcb703e626f3ac69735df66b2be14",
+      "reviews": [
+        "nonrender-final-archives-20261005"
+      ]
+    }
+  ],
+  "unmatched": []
+}

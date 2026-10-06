@@ -6,10 +6,15 @@ typedef uint32_t u32;typedef uint8_t u8;typedef int32_t i32;typedef void* HANDLE
 #define API
 #define WIN
 static u32 storage[16+67108864/4];
-static u32 env=1,unmaps;
+static u32 env=1,unmaps,mapped_size=sizeof(storage),last_error,fail_alloc;
+static HANDLE GetProcessHeap(void){return storage;}
+static void* HeapAlloc(HANDLE h,u32 flags,u32 size){(void)h;(void)flags;return fail_alloc?0:malloc(size);}
+static int HeapFree(HANDLE h,u32 flags,void* memory){(void)h;(void)flags;free(memory);return 1;}
+static u32 GetLastError(void){return last_error;}
+static void SetLastError(u32 value){last_error=value;}
 static u32 GetEnvironmentVariableA(const char* key,char* path,u32 n){(void)key;(void)n;if(!env)return 0;memcpy(path,"test",5);return 4;}
 static HANDLE CreateFileA(const char* p,u32 a,u32 b,void* c,u32 d,u32 e,void* f){(void)p;(void)a;(void)b;(void)c;(void)d;(void)e;(void)f;return storage;}
-static u32 GetFileSize(HANDLE h,u32* high){(void)h;(void)high;return sizeof(storage);}
+static u32 GetFileSize(HANDLE h,u32* high){(void)h;(void)high;return mapped_size;}
 static i32 CloseHandle(HANDLE h){(void)h;return 1;}
 static HANDLE CreateFileMappingA(HANDLE h,void* p,u32 a,u32 b,u32 c,const char* d){(void)h;(void)p;(void)a;(void)b;(void)c;(void)d;return storage;}
 static void* MapViewOfFile(HANDLE h,u32 a,u32 b,u32 c,u32 d){(void)h;(void)a;(void)b;(void)c;(void)d;return storage;}
@@ -35,5 +40,6 @@ int main(void){
     reset();storage[6]=1;command_channel_init();check(!command_channel && storage[6]==1);
     reset();command_channel_init();storage[4]=999;check(!command_channel_record(1,8,0,0,0,0));check(storage[5]==0);command_channel_close();
     reset();env=0;command_channel_init();check(command_channel_append(0,0,0,0,0,0));check(unmaps>=6);
+    command_channel_pump();
     puts("{\"success\":true,\"cases\":11}");return 0;
 }

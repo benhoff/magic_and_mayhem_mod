@@ -4,7 +4,7 @@
 #include <algorithm>
 LiveCommandRenderer::LiveCommandRenderer(GlViewport& viewport,bool verify):viewport_(viewport),verify_(verify){}
 LiveCommandRenderer::~LiveCommandRenderer(){abort();}
-bool LiveCommandRenderer::create(const QString& path,quint32 session){if(!channel_.create(path,session)){error_=channel_.error();closed_=true;return false;}return true;}
+bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}return true;}
 bool LiveCommandRenderer::open(const QString& path){if(!channel_.open(path)){error_=channel_.error();closed_=true;return false;}return true;}
 void LiveCommandRenderer::fail(const QString& reason){error_=reason;abort();viewport_.setGpuFrame({});}
 void LiveCommandRenderer::abort(){

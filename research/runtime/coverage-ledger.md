@@ -1006,3 +1006,27 @@ is not connected to PE32 hooks or live original-game rendering. Existing v1
 remains active; queues/retry scheduling outside tracker, Qt mapped adapter,
 launcher/shutdown/recovery and removal of bounded decoder/archive limits remain
 pending. See [wire, limits and execution](../formats/render-command-ring-v2.md).
+
+## Cooperative mapped command ring integration
+
+2026-10-06: `NR.command-ring-adapter` connects the version2 native reader to a
+32MiB owned PE32 producer queue, drained nonblocking after tracker release in
+bounded1MiB attempts. FULL retains bytes for later callbacks; first failure is
+sticky, END waits for publication, cancellation/overflow/interrupted detach
+refuse. v1 remains supported. Queue and mapped-ring budgets are separate from
+existing owned-pixel/archive limits.
+
+Native and ASan/UBSan11 legacy plus7 queue cases pass, including35,653,675 bytes
+across private queue wrap, delayed-reader retries, poisoning and failure paths.
+Eight v2 PE32 sequence fixtures validate44 complete independent GPU frames;
+eight v1 startup regressions pass. Native incremental/live-channel CTests pass.
+Original no-CD40209ca7 startup sends39,363,820 bytes through1MiB ring and completes
+three native PRESENTs before producer exit, cleanEND and zero live native surfaces.
+Original drawing remains active; the three early-startup pixels are identical.
+All2927 immutable files verified before/after. See
+[adapter evidence and limits](opengl-command-ring-adapter.md).
+
+Idle retry scheduling and explicit lifecycle shutdown outside DllMain are next.
+The decoder/archive64MiB/4096 limits, sustained gameplay, original pixel comparison
+and replacement remain outstanding. Shared historical source evidence remains
+independently stale; scoped fresh records do not promote unrelated contracts.

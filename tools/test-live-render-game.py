@@ -14,7 +14,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'protocols/python'))
-from mnm_protocols import frame_v1, render_commands_v1
+from mnm_protocols import frame_v1, render_commands_v1, render_commands_v2
 
 
 def sha(path):
@@ -40,6 +40,7 @@ def stop(process):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('build', type=Path, help='Build containing live-render-channel-test')
+    parser.add_argument('--wire-version', type=int, choices=[1,2], default=1)
     parser.add_argument('--seconds', type=int, default=20, choices=range(5, 31))
     parser.add_argument('--presentations', type=int, choices=range(1, 33),
                         help='Request a bounded successive-frame session instead of the ordinary sample')
@@ -47,6 +48,7 @@ def main():
     args = parser.parse_args()
     if not os.environ.get('DISPLAY'):
         parser.error("Run under xvfb-run -a -s '-screen 0 1280x1024x24'")
+    protocol = render_commands_v2 if args.wire_version == 2 else render_commands_v1
     sources = sorted((ROOT / 'runtime/render').glob('*.[ch]'))
     sources += [ROOT / p for p in [
         'tools/test-live-render-game.py', 'tools/run-opengl-game.py',
@@ -56,7 +58,8 @@ def main():
         'renderer/command_consumer.cpp', 'apps/qt-shell/command_channel.cpp',
         'apps/qt-shell/command_channel.hpp', 'apps/qt-shell/live_command_renderer.cpp',
         'apps/qt-shell/live_command_renderer.hpp', 'apps/qt-shell/gl_viewport.cpp',
-        'apps/qt-shell/gl_viewport.hpp', 'protocols/include/mnm/render_commands_v1.h',
+        'apps/qt-shell/gl_viewport.hpp', 'protocols/include/mnm/render_commands_v1.h', 'protocols/include/mnm/render_commands_v2.h',
+        'protocols/include/mnm/render_command_ring.h', 'protocols/python/mnm_protocols/render_commands_v2.py',
         'protocols/python/mnm_protocols/render_commands_v1.py',
         'protocols/python/mnm_protocols/frame_v1.py', 'runtime/shadow/win32_min.h']]
     fingerprints = {str(p.relative_to(ROOT)): sha(p) for p in sources}
@@ -80,9 +83,9 @@ def main():
                            stderr=log, timeout=90, check=True)
         frame, channel = run / 'frame.bin', run / 'commands.bin'
         create(frame, frame_v1.initial_header(), frame_v1.SIZE)
-        header = bytearray(render_commands_v1.initial_header())
+        header = bytearray(protocol.initial_header())
         struct.pack_into('<I', header, 16, 1)
-        create(channel, header, render_commands_v1.SIZE)
+        create(channel, header, protocol.SIZE)
         staged = subprocess.run([sys.executable, str(ROOT / 'tools/run-opengl-game.py'),
                                  '--stream', str(frame), '--command-channel', str(channel),
                                  '--capture-draws', '--skip-movies', '--stage-only'],
@@ -147,6 +150,18 @@ def main():
             published = struct.unpack_from('<I', control, 20)[0]
             payload = file.read(published)
         mirror = experiment / 'lock-capture/session-00000001.bin'
+        mirror_bytes = mirror.read_bytes() if mirror.exists() else b''
+        if args.wire_version == 2:
+            # Ring stores only the retained suffix; command archive stays exact.
+            with channel.open('rb') as file:
+                file.seek(64);ring_bytes = file.read(protocol.CAPACITY)
+            start = max(0,published-protocol.CAPACITY)
+            offset = start % protocol.CAPACITY
+            retained = (ring_bytes[offset:]+ring_bytes[:offset])[:published-start]
+            mirror_matches = retained == mirror_bytes[start:published]
+            payload = mirror_bytes[:published]
+        else:
+            mirror_matches = mirror_bytes[:published] == payload
         qt_report = json.loads(output.read_text())
         diagnostics = (experiment / 'lock-capture/lifecycle.log').read_text()
         with frame.open('rb') as file:
@@ -165,7 +180,7 @@ def main():
                 raise RuntimeError('Staged binary changed during execution')
         if any(sha(ROOT / p) != h for p, h in fingerprints.items()):
             raise RuntimeError('Source changed during execution')
-        report = dict(schema=1, success=True, scope='Bounded original-game startup observation; '
+        report = dict(schema=1, success=True, wire_version=args.wire_version, scope='Bounded original-game startup observation; '
                       'original rendering retained. No independent pixel equivalence or replacement claim.',
                       sources=fingerprints, source_sha256=metadata['source_sha256'],
                       experiment=str(experiment.relative_to(ROOT)), seconds=args.seconds,
@@ -174,8 +189,7 @@ def main():
                       producer_reason=struct.unpack_from('<I', control, 28)[0],
                       requested_presentations=args.presentations,
                       published_bytes=published, records=records, native_consumer=qt_report,
-                      mirror_prefix_matches=(mirror.read_bytes()[:published] == payload
-                                             if mirror.exists() else None),
+                      mirror_prefix_matches=mirror_matches,
                       startup_fill_gap=startup_fill_gap,
                       original_owned_frame_sequence=frame_header[4],
                       original_owned_frame_size=list(frame_header[5:7]),

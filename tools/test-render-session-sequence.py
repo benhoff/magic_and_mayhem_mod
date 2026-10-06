@@ -33,6 +33,7 @@ def records(data):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('build', type=Path)
+    parser.add_argument('--wire-version', type=int, choices=[1,2], default=1)
     args = parser.parse_args()
     if not os.environ.get('DISPLAY'):
         parser.error('Run under xvfb-run -a')
@@ -45,9 +46,15 @@ def main():
         'apps/qt-shell/command_channel.cpp', 'apps/qt-shell/command_channel.hpp',
         'apps/qt-shell/live_command_renderer.cpp', 'apps/qt-shell/live_command_renderer.hpp',
         'apps/qt-shell/gl_viewport.cpp', 'apps/qt-shell/gl_viewport.hpp',
-        'protocols/include/mnm/render_commands_v1.h', 'protocols/python/mnm_protocols/render_commands_v1.py']]
+        'protocols/include/mnm/render_commands_v1.h', 'protocols/include/mnm/render_commands_v2.h',
+        'protocols/include/mnm/render_command_ring.h', 'protocols/python/mnm_protocols/render_commands_v2.py', 'protocols/python/mnm_protocols/render_commands_v1.py']]
     fingerprints = {str(p.relative_to(ROOT)): live.sha(p) for p in sources}
-    parent = ROOT/'working/tests/render-session-sequence'
+    if args.wire_version == 2:
+        from mnm_protocols import render_commands_v2
+        protocol = render_commands_v2
+    else:
+        protocol = live.protocol
+    parent = ROOT/('working/tests/render-session-sequence' if args.wire_version == 1 else 'working/tests/render-ring-sequence')
     parent.mkdir(parents=True, exist_ok=True)
     run = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
     print(run, flush=True)
@@ -57,7 +64,7 @@ def main():
     env = {k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
     env.update(QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1', WINEDEBUG='-all',
                WINEPREFIX=str(ROOT/'working/tests/render-wine'))
-    report = dict(schema=1, sources=fingerprints, scope='Bounded successive PRESENTs with64-operation startup and256-operation total ceiling; '
+    report = dict(schema=1, wire_version=args.wire_version, sources=fingerprints, scope='Bounded successive PRESENTs with64-operation startup and256-operation total ceiling; '
                   'ordinary16-operation sample retained. Independent synthetic GPU '
                   'fixture pixels only, no original-driver equivalence or replacement.', cases=[])
     for mode in CASES:
@@ -68,9 +75,9 @@ def main():
         capture = case/'capture'
         capture.mkdir(parents=True)
         channel, frame = case/'commands.bin', case/'frame.bin'
-        header = bytearray(live.protocol.initial_header())
+        header = bytearray(protocol.initial_header())
         struct.pack_into('<I', header, 16, 123)
-        live.create(channel, header, live.protocol.SIZE)
+        live.create(channel, header, protocol.SIZE)
         live.create(frame, live.frame_v1.initial_header(), live.frame_v1.SIZE)
         shutil.copyfile(dll, case/dll.name)
         (case/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),

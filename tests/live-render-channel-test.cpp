@@ -27,13 +27,25 @@ QByteArray fixture(){
 }
 struct Writer {
     QFile file;uchar* map=nullptr;unsigned bytes=0;
-    explicit Writer(const QString& path):file(path){check(file.open(QIODevice::ReadWrite),"writer open");map=file.map(0,MNM_RENDER_COMMANDS_V1_SIZE);check(map,"writer map");}
+    explicit Writer(const QString& path):file(path){check(file.open(QIODevice::ReadWrite),"writer open");map=file.map(0,file.size());check(map,"writer map");}
     ~Writer(){file.unmap(map);}
     void set(unsigned at,unsigned value){__atomic_store_n(reinterpret_cast<quint32*>(map+at),qToLittleEndian<quint32>(value),__ATOMIC_RELEASE);}
     void append(const QByteArray& data){std::memcpy(map+64+bytes,data.constData(),data.size());bytes+=data.size();set(20,bytes);}
 };
 unsigned synthetic(GlViewport& viewport){
     unsigned count=0;const auto bytes=fixture();
+    for(unsigned batch:{1u,7u,65536u}){
+        QTemporaryDir dir;LiveCommandRenderer live(viewport);auto path=dir.filePath("ring");check(live.create(path,123,2),"ring create");Writer mapped(path);
+        mnm_ring_writer writer{};check(mnm_ring_writer_bind(&writer,mapped.map,MNM_RENDER_COMMANDS_V2_SIZE),"ring claim");unsigned shown=0;
+        live.framePresented=[&]{
+            const auto image=viewport.grabFramebuffer();const QRgb colors[4]={shown?qRgb(0,0,0):qRgb(255,0,0),qRgb(0,255,0),qRgb(0,0,255),qRgb(255,255,255)};
+            for(int y=0;y<64;++y)for(int x=0;x<64;++x){check(image.pixel(x,y)==colors[(y/32)*2+x/32],"ring full framebuffer");}
+            ++shown;++count;
+        };
+        for(qsizetype at=0;at<bytes.size();at+=batch){auto part=bytes.mid(at,batch);check(mnm_ring_write(&writer,part.constData(),part.size())==1,"ring write");check(live.poll(qMin(batch,1048576u)),"ring fragment poll");}
+        check(mnm_ring_end(&writer) && live.finishProducer() && shown==2,"ring terminal drain");
+        check(live.result()->liveSurfaces==0 && live.result()->stats.nativeReadbacks==0 && live.result()->stats.rgbaReadbacks==0 && viewport.imageUploads()==0,"ring counters");
+    }
     for(unsigned batch:{1u,7u,65536u}){
         QTemporaryDir dir;LiveCommandRenderer live(viewport);const auto path=dir.filePath("channel");check(live.create(path,123),"create channel");
         Writer writer(path);writer.set(24,1);unsigned shown=0;
