@@ -8,7 +8,8 @@
     "research/runtime/render-drawing-inventory.md",
     "research/runtime/surface-driver-clipping.md",
     "research/runtime/native-surface-clipping.md",
-    "research/formats/render-surface-commands-v3.md"
+    "research/formats/render-surface-commands-v3.md",
+    "research/runtime/original-surface-keys.md"
   ],
   "operations": [
     {
@@ -125,7 +126,8 @@
       "wire_support": "COPY exact source key",
       "behavior_ids": [
         "RI.copies",
-        "NR.surfaces"
+        "NR.surfaces",
+        "RE.surface-copy.rgb565-keyed"
       ],
       "original": [
         {
@@ -151,8 +153,18 @@
         "key mutation",
         "failed keyed call"
       ],
-      "original_fixture_ids": [],
-      "remaining_gap": "Existing synthetic evidence only in this corpus; capture independent original before/after and key state."
+      "original_fixture_ids": [
+        "original-rgb565-keyed-58ca90-20261006"
+      ],
+      "remaining_gap": "436 unchanged original wrapper0x58ca90 calls against Wine Surface2 captured;434 successful RGB565 outputs compared offline. Two missing-key Blt errors retained without native keyed HRESULT equivalence. Other keyed wrappers, indexed duplicate-color indices, clipping, live caller scenarios and Windows-driver equivalence remain pending.",
+      "original_wrapper_fixture": {
+        "catalog": "tests/fixtures/surfaces/original-rgb565-keyed-corpus.json",
+        "capture": "research/runtime/original-surface-keys-capture-20261006.json",
+        "comparison": "research/runtime/original-surface-keys-replay-20261006.json",
+        "cases": 436,
+        "native_success_cases": 434,
+        "scope": "Isolated unchanged original routine with real Wine driver; no live original-game capture or replacement."
+      }
     },
     {
       "id": "SURF.palette",

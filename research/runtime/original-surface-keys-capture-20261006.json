@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-key-reference.c": "afbde88e95a563438cfce6cb477e1570451fceb0eac7041b508d307f01d5ff17",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tests/fixtures/surfaces/original-rgb565-keyed.json.gz": "3ff187072a520bf787811b9a73a0aa02e75e88048329194d6bac52e16982dc33",
+    "tests/fixtures/surfaces/original-rgb565-keyed-corpus.json": "3f8f6cf2e41f97af88e2359a04d59ffc0257329e55b901f3da48b67e92748e69"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "original_wrapper_executed": true,
+  "original_instruction_bytes_patched": false,
+  "driver_calls": true,
+  "native_renderer_executed": false,
+  "scope": "Unchanged original wrapper0x58ca90 executed in a private PE mapping against Wine built-in Surface2 RGB565 system-memory objects. Independent original/API outputs; bounded caller globals, no live gameplay, original retry/Restore or Windows-driver equivalence.",
+  "environment": {
+    "wine": "wine-11.16",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b",
+    "surface_interface": "IDirectDrawSurface2",
+    "caps": 2112,
+    "cooperative_level": "NORMAL"
+  },
+  "cases": 436,
+  "hresults": {
+    "0x00000000": 434,
+    "0x80070057": 2
+  },
+  "artifacts": "working/tests/original-surface-keys/run-9q7a9ze4",
+  "probe_sha256": "4e524ce436a8b36a4e589f271b90368385d5c7b6f42d4fe436e66eb595d6afe1",
+  "inputs_sha256": "8cdbf83551093e0ac6c591798773d30793be4b8c79cf5ffee2062d78684da682",
+  "outputs_sha256": "09395bee6db4b31e420c260c536f161132d43fb833f0555a3491c3ad99a77ee5",
+  "fixture": {
+    "schema": 1,
+    "path": "original-rgb565-keyed.json.gz",
+    "sha256": "3ff187072a520bf787811b9a73a0aa02e75e88048329194d6bac52e16982dc33",
+    "raw_sha256": "3a78f273795b69ea1e3e515dd0a261058d3bfb56fb5d1fc5cfdd166806911353",
+    "cases": 436,
+    "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "entry": 5819024,
+    "oracle": "unchanged_original_wrapper_real_surface2_post_call_lock",
+    "scope": "Unchanged original wrapper0x58ca90 executed in a private PE mapping against Wine built-in Surface2 RGB565 system-memory objects. Independent original/API outputs; bounded caller globals, no live gameplay, original retry/Restore or Windows-driver equivalence."
+  },
+  "original_manifest_verified_before_after": true
+}

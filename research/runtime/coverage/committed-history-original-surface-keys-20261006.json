@@ -1,0 +1,983 @@
+{
+  "schema": 1,
+  "base": "454c5d5",
+  "head": "e6b493aed793922a0970fef6701199340fcd6c98",
+  "scope": "Exact committed parent/current file receipt review; separate from new keyed/fill work. No historical gate-pass or fresh execution claim. Behavior receipt IDs retained for contract review. Exact affected behavior fingerprints and original/evidence/scenario links compared using the current accounting tool; all intermediate versions have matching receipts.",
+  "commits": [
+    {
+      "commit": "2013caeb6bb0c8c86a7ae98a538494574d5d8c96",
+      "parent": "454c5d5b080469b4b7f5198c382376ad1c0c9506",
+      "files": [
+        {
+          "path": "protocols/include/mnm/render_stream_v3.h",
+          "before_sha256": null,
+          "after_sha256": "5dcb2dcb44b2ab94c8800babe8cbddeec66fccf18ab2dcc9c7153d57d63bb152",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "protocols/python/mnm_protocols/render_stream_v3.py",
+          "before_sha256": null,
+          "after_sha256": "b6394c3928b5b52ec135c066c71718aed55018611e101fb42fd890701f63df8a",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "protocols/schemas/render_stream-v3.json",
+          "before_sha256": null,
+          "after_sha256": "0e2f6df940c293dea8b40ea6a553234479c10400ecf851d8e1b311c12c748a07",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "82838e102b3ad4437e79fc4f6620e5c53fdd879b401a65f11802e4861fdda9c6",
+          "after_sha256": "3df6da095e1fe6e13652d14a4336745641128fa26d1e91632fdae19b0c2b2853",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "renderer/command_consumer.cpp",
+          "before_sha256": "39f9c48ebaef77164f59f1b8a3aa2c5203e69fe799fc56ef12a54ba33e9ec2c6",
+          "after_sha256": "be2ac2c2c86ec1f2e00cfaca8a5e66f574d3df4e9159b1c4a1be2c4fa377da38",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "renderer/command_state.hpp",
+          "before_sha256": "534e6d935993abf0252618598728f8f6aee8c57d7d54c9c14355e52aece6185c",
+          "after_sha256": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "renderer/commands.cpp",
+          "before_sha256": "77ce3018dfd245c7e69eb0cc938949734b88cb4f6efa29efafd243621b1c349d",
+          "after_sha256": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "renderer/commands.hpp",
+          "before_sha256": "3c730d314f3430c10e1f17a3eea14d0c10b85499df964d10e7e789b7d64bab9d",
+          "after_sha256": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "renderer/commands_main.cpp",
+          "before_sha256": "8fe8fe048edccf170ce088f1cc6a8f94ebfa7113932e74ce1531fe5fd63c0143",
+          "after_sha256": "91a5119315d2435ae3028da6393f104763f9da55c3862de56b8687bc57a3aacd",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/formats/render-surface-commands-v3.md",
+          "before_sha256": null,
+          "after_sha256": "fd1591541891e8c41d5353f3e2cafa70599f36574dadbbf6696bb080215d8174",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "2aaa7c728a536b08ae1e75837970082f4f0a9d3d383ea8b3b56ffc581dfc27cc",
+          "after_sha256": "eb3d05358dfbbcf2923eb348c9ec73b7ee722ccb994d76d83dd59b1ebb5cd572",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "0ab6c23bcc698e3e22019ea44ed1ff56741d2e6067135b7ebced983f67205490",
+          "after_sha256": "bdc2ffde5e0a6be6bb24ce0344361b8880250caea507e8162e2d84f06a48a68d",
+          "receipts": [],
+          "journal": true
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-native-clipping-stream-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "5f0e02cbfc4cf138d8eef0f003c63a8281280af15772ac35bed5ec247b7cba02",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "7b680da2f69267d088a13bfc3befd5cad946e5ac8b9c7dfa67201abd495d40ed",
+          "after_sha256": "c34aefab89f27237b796c592b54616e69cf27bda190b5aba7ef6c7ae29251e97",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-clipping-stream-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "3ec796003de6b99126ec9c89f61331c81b7b50d9421e27a37b02a0362de98329",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-clipping-stream-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "a68c84596aad2af691a1b197377459a29b654c4c00518c9bc89b38fa7e0bbda8",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/native-clipping-stream-v3-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "24840edba1c09ce6f961e81295241d168d8ffe264690db109e8b4f1f3c34dc90",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/native-clipping-stream-v3-final-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "3fcb5c88891ff0375a6f68000a96ce4e3f77c40b61315a9eb6070e38cbc9c2f2",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/native-surface-clipping-after-stream-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "c48186cf54821a34f06cc272cac38fc727bbb6534083223ff26edf04b4b77839",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/native-surface-clipping.md",
+          "before_sha256": "6b4102f695af9c196ef777fdc71aeedcb2cc55d9e5f879ea1f8db2bedb5cf0c2",
+          "after_sha256": "95f53b0e4690e0fd24045db2681b060ab4ccf696014fae6325c0a9d38cd8f5e6",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/native-surface-fixtures-clipping-stream-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "f82e2606b783618208d34e7b8bc9fe0d8cec73516db9c20a82a54ce54e41ac83",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "bd1ef90e6d6e5debef8f41c54494ce34c827cd00483279eb5ff3cf2d9de8df33",
+          "after_sha256": "0095b5350295109fde0c11d0dca485d1b636a2e528bd891fffff2ce3cc3a22ad",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "tests/render-clipping-stream-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "d7382c80f30ee50128f8b792afa60cbfb128ab04d7496bc5bf8f319a51773360",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        },
+        {
+          "path": "tools/check-native-clipping-stream.py",
+          "before_sha256": null,
+          "after_sha256": "76f3efcc309f20092a700163576ac51978aa281282870a590ab4391a78da4ad5",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ],
+          "journal": false
+        }
+      ],
+      "affected_behaviors": [
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "9d29835209fcfa2817a094b4fa30a4a581695726475d995b8d6ee5099b5b7351",
+          "after_sha256": "4a17d6da939255fe939ef8441b046f94594c72dddcee64687edc1726402359ca",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-shared-pending"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "668b7dd7dac3a11e5bef62d0ce8f7280508358c6ee83b1bdd15d2ffffd929f9f",
+          "after_sha256": "9f20f8e8d19184922067b4765f073d09f0c809c5f09b1559842f7c07bfd5c7ef",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-shared-pending"
+          ]
+        },
+        {
+          "id": "NR.command-ring",
+          "before_sha256": "3cd17de96a0844faaaadd68372df8b6a7864c2c84a06aeb1b3d4a01a0fd85cb6",
+          "after_sha256": "b67e0a12e435cbb8ec88f92af7a258619d4a09b81df41205f78d9003220a4276",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-shared-pending"
+          ]
+        },
+        {
+          "id": "NR.command-streaming",
+          "before_sha256": "c6a3597688e5bf1ac5aa6a9e4f467abd9272e71778219a596c921f8233c29eef",
+          "after_sha256": "d7ee4b0fc38aac5de36c4bfc8b5ab1be5f9b089fa2cbdea2a02106b448651675",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-shared-pending"
+          ]
+        },
+        {
+          "id": "NR.gpu-presentation",
+          "before_sha256": "71004a74821491f9c21cff1ea8a394754ba3123f11adcbd48e735cf22719f19e",
+          "after_sha256": "b691edfb2dab06c0d31aacab00d676476e8628861b0603348919703f5df54f12",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-shared-pending"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "0bcc0cb8083d03f35f5d033a80aedfdd43875b19a38674068d7045da7571134a",
+          "after_sha256": "287f6ae11a506419f15b44bb3e10c3a79681960712ea2fdf63ba5ab2283a5369",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-shared-pending"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "2f2703da6d918c78a851267cf2d0102008f46bf2e4b65c73b7e8536f94d252d6",
+          "after_sha256": "c101260015b1b98f8e5905f7c41fdc62022e66193f9155ceb8484db66d947cda",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-shared-pending"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "edfa87ebd52e6cd7a6282f6d5525396a608c8ca42b7fbf7a0b2c85df1032494d",
+          "after_sha256": "5ec83314aa1923d14a9c35e4d8747c92cb1a9ca1ebb7702bd51356592cfd2333",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-shared-pending"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "d0bb1bb83334ab069772915f0d4523a6e8067a054aa73c9c622ef4aec463a9d1",
+          "after_sha256": "766dab26d02a1447b6d6f4a1e448fca3b841309997ae20f532d6289761b12260",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": null,
+          "after_sha256": "7ee4b1a4dc0337568899a8b6ca1ad1787e91ef0c13e8164baefeb119d45754a6",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "7cbc721acc7aa3b795e084d81db685f279309b22f45df9066f3d5061d53de61e",
+          "after_sha256": "073e491398ed36c09990dc3692f0b36b3975e44c0c86b03f24e87dc4ee57e907",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-shared-pending"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "b4b54af10b130108a044be05c09305b293fb0245fb9136ea95db8ae7d788a858",
+          "after_sha256": "074a2f7c976ba3e9ddab7e6151f51152b39ac78f8caea92a6c9a76aafc9ea02c",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ]
+        },
+        {
+          "id": "NR.surfaces",
+          "before_sha256": "d3ceb801bb28ab9cb6fc2a20dd3966230272c192693d0040726727253215f306",
+          "after_sha256": "03abbc4ecca53b2e5688df27a843d019e1a0f14fb4091b0225d2898db9922a59",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-shared-pending"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "8c7e934dab0cfd901def3b066bf465585ac8287dc3e30629ce66167a521b1b13",
+          "after_sha256": "e27e3bda27ab5fd512ea81597612eb236fbecb350d08336965ccf11d55f2aa2b",
+          "receipts": [
+            "native-clipping-stream-v3-20261006-recorded"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "63863bcf5df19d5c2814670467dd8a720928c2e2",
+      "parent": "2013caeb6bb0c8c86a7ae98a538494574d5d8c96",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "eb3d05358dfbbcf2923eb348c9ec73b7ee722ccb994d76d83dd59b1ebb5cd572",
+          "after_sha256": "80ae5fff9c6ae7651e1bdd5acf12bea90d13da93b51fe2baa91b25153707e462",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "bdc2ffde5e0a6be6bb24ce0344361b8880250caea507e8162e2d84f06a48a68d",
+          "after_sha256": "6b38a5cb3d0cf4423adb93f5ccb02fa645ff7f5a0bece9d88c44f93a7ce2fec2",
+          "receipts": [],
+          "journal": true
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-unlock-delta-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "196551eaed21d156b55e170eb952832e4c5f7ddf064b77ffeaedd993cefad536",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "c34aefab89f27237b796c592b54616e69cf27bda190b5aba7ef6c7ae29251e97",
+          "after_sha256": "59f6a10e2ec5b2bb42a3a5833e96810bb8487298354a6aaaf26408382bef0dda",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-unlock-delta-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "4b759982fa82eb5d904ea0acfba41cf290894600b306ac5312d6cb12f1bd88f5",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/summary-unlock-delta-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "f76a16039f070fc23c75b452aef196e3aefc231212edf6871fbb3bfc4e1506bb",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlock-packed.md",
+          "before_sha256": "5b1747fe2960d58c821066e50559af7c5b64f84e9c1cd59bbbf1662d22c9a9a0",
+          "after_sha256": "473a32c848c056fed4305f69111706cd9783cb6a7a813e5f274662434b03dc00",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/opengl-owned-unlock-deltas.md",
+          "before_sha256": null,
+          "after_sha256": "adce52268af30a27d7279b2f933a4773003c75cd7fe11855fdc4918a734645f2",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-checkpoint-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "df2027cc5da082c1cc2aa93dc66e98aa12f481a98f5ba48bb4f244d9e008942f",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-continuous-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "602bcd4e3b8720faa4b290eb0aad068602fe9fe6e4477861d10d75717ce3b8f8",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-game-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "18c4338ee9b1d3112fdab6263f136e11281a1887061182bae04c239b712abdea",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-host-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "56e1c30411164cd59db763c94e19e6ebd90663bf8c3d2bd9c7c6020562aaaecd",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "9a89ef7a332e141a407386416f53d9020a287c9fefc4fcb67cebbc4aa8aa1526",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-queue-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "runtime/render/continuous_selftest.h",
+          "before_sha256": "53bb2834d3075236afa16972899b3e7ab18f7f55135b7bf56b51ff5d9a7eb39d",
+          "after_sha256": "af693ffde67faadc24b79aa8f229a5980fa7cba983b934b19b6a1c0c32879b77",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "runtime/render/dirty_region.h",
+          "before_sha256": null,
+          "after_sha256": "e5743b9c82b63debe1b0431269d576672fcfee83ca42817e21d5558ec1ba936b",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "runtime/render/host_recovery_selftest.h",
+          "before_sha256": "8b05bb4b89899fda7e72ce87c2a8e6e4cbca6cc2cc4f11b9cb0c78f9385ebcf2",
+          "after_sha256": "7981baf6069b7caab473461f33e49798d26ad6cc5bcb07731d4916d00f873024",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "runtime/render/lock_lifecycle.h",
+          "before_sha256": "ff22b737dce7f047fab284ab8c2615530cf5407bb5aeed458740a694af884948",
+          "after_sha256": "e60932bcaf016535ce69e6c43538ce978d32e2869d449d540d6512960cdd172a",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "runtime/render/owned_session.h",
+          "before_sha256": "e68b5e4fea09a4a275bb8d0cfda9473afb798ee39cdc9d132c44861c18e20829",
+          "after_sha256": "2e2f7b2890a4c1547dbfbda63b35f5da9b5a4019519d302594ffab207ca7f9d2",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "tests/render-dirty-region-test.c",
+          "before_sha256": null,
+          "after_sha256": "e5cbed4ff2e63e40a4112ad2ce84e25cb9e60a2057d35106face9f4c17b3f31c",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "tools/test-live-render-recovery.py",
+          "before_sha256": "7bf20cdd7dd60a4a847903f89b21612bb2b1284d38ca5b97b73e58f84d8783af",
+          "after_sha256": "3cb14fa6eb409a9b70cf58f2ffe7dcd14e8b42123aba934eef759824198bd8da",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "tools/test-render-continuous-producer.py",
+          "before_sha256": "b1644032c844f27cbe47635ad864775ca0a5865e3a4edaf00335688ea8f5764b",
+          "after_sha256": "4e46e49bdfdb2c2161d744528a57030b7a9028c3301069b5bbd7136129a2127f",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "tools/test-render-dirty-region.py",
+          "before_sha256": null,
+          "after_sha256": "0b60e3c7830fa4f77074ab9c204a6141187666c4a92e66ef50bec2f7d230f7a1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "tools/test-render-host-recovery.py",
+          "before_sha256": "0141e356b78943da2b6afabeee93489cef018618cb3d149372203475a631d881",
+          "after_sha256": "71144e0c4365b4838373cb797e45fbbc56f083ac4d46efff9f66dbddd337ddb1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ],
+          "journal": false
+        }
+      ],
+      "affected_behaviors": [
+        {
+          "id": "NR.command-backpressure",
+          "before_sha256": "6bc303dc253a53c7bdb0a47f13c7e75a0ce566d29d0e7391a12c8c60d0c9b40f",
+          "after_sha256": "50528a946bbffd54dfdd79dbe1adac7393394d6249ebc2f146b16668f655ace8",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "4a17d6da939255fe939ef8441b046f94594c72dddcee64687edc1726402359ca",
+          "after_sha256": "d6763e6aefe8d48121cdafc250bd6de100a49188bd868299ed824041d35257ce",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "9f20f8e8d19184922067b4765f073d09f0c809c5f09b1559842f7c07bfd5c7ef",
+          "after_sha256": "4dba7e9b27e50335934d352b8d4239ba180b6fdc0c6acd4af93ceb684a6b205f",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "78b5531b606b9dfe438d8ca11529ab45e61e4df7cf3d95a67c3d7b36f8819c7a",
+          "after_sha256": "90de67921f5c0d3cd9161d18742461adb7e83790b321a99c15e9805e0fd7ab4d",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "4f3e991b09265822b6eb48b00f5361334df8bc94b9d868b45ffaf94083c88ae4",
+          "after_sha256": "9c75c0e7d384884782e56a7f39828bfbe7e1103b4a17084663e1f4eb513fe667",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring-adapter",
+          "before_sha256": "7a40f7b7743179b6bba894ba48b8e977c7a31c0390ef79f4b1a67704e680b4ef",
+          "after_sha256": "018f5a9be14b43619204bfcecb28bdc5cd2bd9539810358703959d940d21b956",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "4261ece4a2de8fdfc3d90b6f58dc3e423a85dcdf7cd582b0401d2c635bcf8d73",
+          "after_sha256": "2584e9c3cc90faaa884c9cbf5b33bdeaee8e3e62559e601e8c24919f959462d3",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "b7e33c3a9d14e6c0bc00142cdad30781212def4abff6f29e7c1cdd9537d60776",
+          "after_sha256": "f2cde87edde7bc19fb802d37070789a74f460ec1691ec235ed95cb438e6ca2d9",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "06440bdea8c8e01c4a97de381c68ce616fb21c0b45d130f07ec60e4169d089fc",
+          "after_sha256": "3fbc8aae42f117f1d86dbdcb28fbbb147f59d22312ae32cc4c305bf96007a643",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "c101260015b1b98f8e5905f7c41fdc62022e66193f9155ceb8484db66d947cda",
+          "after_sha256": "ddc7038d85b9e76b9356eb03884abd21eac27ae2c9abee3acb06118f026063bc",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-dc",
+          "before_sha256": "ac5eb5fd935ee5d2316b8f2741144fed10bcbf58930eb51670d2b470b8b35891",
+          "after_sha256": "c2e9f1f10ae33a3597980438d6474fc03d950d6a3491df36d45d4f3681360ae1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-fill",
+          "before_sha256": "f2d7009b8fc2b64c9c496cd189d5096eadea14d69b602a0472669dd7d841b4d9",
+          "after_sha256": "bd1214a9a5319f0014304a3e4ef3b9350d84902d81ff9d52e462b7ac3f8f3ddd",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": "91f990017b50e393642d23b975c24dd5f5a90d33feaca4eeb0869fec60625f7d",
+          "after_sha256": "925fa5be6fae7b687ae8e1f540cc8cffd2cff33d7aff2aea58bd2755d3bb6ca1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-startup",
+          "before_sha256": "4225e6f1d04504f2c9665a80d8e8eba825e8af6fcc167e3089bc6638205e26f2",
+          "after_sha256": "a856f8fffca056250f3b2b60411ad87d2c56b8e9fb8f4330dd048920ded86227",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-unlock-packed",
+          "before_sha256": "c6b0094a74acf99ec3105729272075b685b086a9202f61276bff2c5cb468e77b",
+          "after_sha256": "0b831845c5de527d99a82b263778feaeec6408645bfd5d279eef7eff90e5601a",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "5ec83314aa1923d14a9c35e4d8747c92cb1a9ca1ebb7702bd51356592cfd2333",
+          "after_sha256": "29aaa8eddff9081e49b4e0d22b8018e0d5592831017017401f228c9e2b5f1be1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "0b7334e0cacf82cdea9aabfef5e056fe4d095332125870f2f19adda481d81703",
+          "after_sha256": "01e88c19f6e7293393d367ba4cc2c5092ef5b8ffaccd75e6ad795255ca4914e6",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "d576fa9dd7ae27b665abe7369abcb6eb765bc4973eb3ad36d8297236586829c2",
+          "after_sha256": "5012b7ecc7f99d29d02513bc435287120f88098a13c6c0d25c3a5d53529f43a1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "e6b493aed793922a0970fef6701199340fcd6c98",
+      "parent": "63863bcf5df19d5c2814670467dd8a720928c2e2",
+      "files": [
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "3df6da095e1fe6e13652d14a4336745641128fa26d1e91632fdae19b0c2b2853",
+          "after_sha256": "fe9f4119ffeb11dae11264fd63197be20cbb6c9331477a3b74aa6cb0788ea3a5",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "80ae5fff9c6ae7651e1bdd5acf12bea90d13da93b51fe2baa91b25153707e462",
+          "after_sha256": "7d11fdecc15acaa3609a2c953c411a9497846d290c9402f79d8cdcde6089d533",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "6b38a5cb3d0cf4423adb93f5ccb02fa645ff7f5a0bece9d88c44f93a7ce2fec2",
+          "after_sha256": "987421f2be877d8ab1cac4fb53f407fc92770899dd396c02250c394f9fec2dec",
+          "receipts": [],
+          "journal": true
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-render-routes-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "3fc6f322e5f9fa9681500a1f243f3776b9d4578b259a7fc99adcc62ea58a8bac",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "59f6a10e2ec5b2bb42a3a5833e96810bb8487298354a6aaaf26408382bef0dda",
+          "after_sha256": "de21f1cf26cc8989399491dd8cd62a04e5225e595379a512c5e6011a9f035087",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-render-routes-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "1eb5fbf5ef1384a0667058bc1704a98493c8e678b88cdb7ab34151f2ad2f7cb4",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/coverage/summary-render-routes-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "70337add787338f342d816bf6643b2e5c8a6ca7c8d202708b15e6b30dab8d479",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/opengl-render-routes-live-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "4cd8068de8fdb9a786554a56356d4474728b93e8b77cf474d3bf0120e5fbb125",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/opengl-render-routes.md",
+          "before_sha256": null,
+          "after_sha256": "41542b4ea4ff6711a1de46366b1fbf22afb376b6719d0f8de6bd321b6b412ff6",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "research/runtime/render-drawing-inventory.md",
+          "before_sha256": "971f13bb59e0416cefda0bc8589e2ddafa010eb5449b4491abadbf9735811c28",
+          "after_sha256": "9fad3da61bf7c9f6328a29c42818a1527d082c7ee3994708e32f1679adb5d8fb",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "tests/live-render-route-probe.cpp",
+          "before_sha256": null,
+          "after_sha256": "16622a7c16456649ddadc4368bcf32b9e95a19c090843eef431c8f12f47a876a",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        },
+        {
+          "path": "tools/test-live-render-routes.py",
+          "before_sha256": null,
+          "after_sha256": "a17a222ec9319b06102e6f5ef8c19df8fee8d7be4fdf7475475411fadb7df066",
+          "receipts": [
+            "review-render-routes-20261006"
+          ],
+          "journal": false
+        }
+      ],
+      "affected_behaviors": [
+        {
+          "id": "EXT.dependencies",
+          "before_sha256": "18bfcbc359e74fa17684d6d3f167e2b7e093ab8de985a61af5442883743dbcf7",
+          "after_sha256": "5f1bc68d8a394aeef6fb7cae280fbc2093a8366d51e7f73b6f1f69e18492e4bd",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "d6763e6aefe8d48121cdafc250bd6de100a49188bd868299ed824041d35257ce",
+          "after_sha256": "178c5c500843cdf3a97fd02a9a571a59aaff4b70b6899082955f6e0a436f0b22",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "4dba7e9b27e50335934d352b8d4239ba180b6fdc0c6acd4af93ceb684a6b205f",
+          "after_sha256": "316a579a7f716855b84f603554247d2d9ac9f7b494542a9cd14353e9506fe23a",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring",
+          "before_sha256": "b67e0a12e435cbb8ec88f92af7a258619d4a09b81df41205f78d9003220a4276",
+          "after_sha256": "e195012972e56a0daa0831104ac29fae173dd18ec5626e163aed3fe12ba81cb2",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "f2cde87edde7bc19fb802d37070789a74f460ec1691ec235ed95cb438e6ca2d9",
+          "after_sha256": "c86a06d1f1910e31e9019a1a4f332aede9ff0dc586dd9a5f0524635f8b164927",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "287f6ae11a506419f15b44bb3e10c3a79681960712ea2fdf63ba5ab2283a5369",
+          "after_sha256": "0851dba496bbdba43ccd0fa9b21e9dbe0d6040493d40ef14f7daf367b2729b11",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "ddc7038d85b9e76b9356eb03884abd21eac27ae2c9abee3acb06118f026063bc",
+          "after_sha256": "83a3cf2d04886a4df84d24c7cfc4c5d903a1edab9f416faa3bf16e6083471bd0",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "29aaa8eddff9081e49b4e0d22b8018e0d5592831017017401f228c9e2b5f1be1",
+          "after_sha256": "fdb4a1e7021f326738f0295d6ae0173c5eb0118d3d1b7ee863d655cfacd39797",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "01e88c19f6e7293393d367ba4cc2c5092ef5b8ffaccd75e6ad795255ca4914e6",
+          "after_sha256": "6b7200c6095ca214cc79d966f4b09ac89925fe359635ce5481b0c170aa56f058",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "RI.copies",
+          "before_sha256": "7796151b17d8b33badbe901ee89cc61a7b5329d07cf77eb5889e1af07c4ff893",
+          "after_sha256": "8bd0bb9a269638700693da1e5847228686ee2ba7d5ae101306c99b7dd0d2311a",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "RI.effects",
+          "before_sha256": "c574a74290cd658745dfdad40519b04f951b21b6883533c84a9fd09aa9cdfd2e",
+          "after_sha256": "dbf4192987c15b91302ba559aee5f76d46e02eb7fdde4ae86d2fb5134168bca4",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "RI.fills",
+          "before_sha256": "4f0fe9ea7d81e41905b18dea9fdf998fe836c91da390e6cdcad0628d561248fa",
+          "after_sha256": "12270b7785854c00fbb9b23ad9389f996e129b7ad21fd37dd84879bba2c1d8b6",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "RI.gdi-text",
+          "before_sha256": "a07fb14dc2b0e463f78ca35ef8717bc665790550313dfec2f42ad5c31dc6e97d",
+          "after_sha256": "0c257000ef73522ad6f333d4133eae5c89af952c2ecc65ce1bf3c33be4e068f2",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "RI.locked-writes",
+          "before_sha256": "716dd9ca297c9049bac4f13412ec3ede6de24808caa321e9b2e069b0b6616fa9",
+          "after_sha256": "8d34d0cfc24ada6cee2ae06126d279461236dbad0f4c8bdae513a74da87b60b2",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "RI.movies",
+          "before_sha256": "8e4a041c73235b753e1e135cf57ba45c472640b1e504777c65a88ef650acfb3e",
+          "after_sha256": "efbfaa3a26c68aaae9199f9a61dbb8bf331a61f0622f755476c37d206a6fd204",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "RI.sprites",
+          "before_sha256": "489355309e72f128886f65f99bedc84083c66a522c1c8e4bd0c8e1f5f968f0f7",
+          "after_sha256": "7c440274a90b26978c0c5fbb0850c612dfaa5bc9fe474cf7034e5c1a6b35b279",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "RI.terrain",
+          "before_sha256": "8deb8f5dd2c0d64a404a7e2058d79fc1f6ae1ea14532bca032bcbd4e777edd0a",
+          "after_sha256": "5bc86a80ee458d3462e6cf53b094435c2a571d8dac8a83ce3c890972d4bacc1c",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "RI.ui",
+          "before_sha256": "27b789ffea9a2a9e83e530dce172011c60745a9f577614ac63d55d5d3fac352a",
+          "after_sha256": "ce23f3cf589c94c8b2a1b0c9682c4405b7d1748874c990799ef9de67c2c55d86",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "5012b7ecc7f99d29d02513bc435287120f88098a13c6c0d25c3a5d53529f43a1",
+          "after_sha256": "4a521072c698454cbf4943925252d574311de3c72035cd8037e41e36fd679388",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        },
+        {
+          "id": "TOOL.traceability",
+          "before_sha256": "acf6b054dc33e215b1adbed51d1c0b2fc209872caf9f508b588766a9ed424b15",
+          "after_sha256": "0fbf47f08aa315b5bc2e915d5b1a011c84e0bf6cb4c747b3b515d271b353d949",
+          "receipts": [
+            "review-render-routes-20261006"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}
