@@ -1,7 +1,7 @@
 /* Forward the registered campaign confirmation receiver; never choose an answer. */
 static u32 THIS campaign_quit_answer(void* object,u32 answer){
     u32 error=GetLastError();record(21,object,answer,0);record(24,object,get((void*)0x689920),((u32)*(u8*)0x6dbc18)|((u32)*(u8*)0x6dbc19<<8));SetLastError(error);
-    u32 result=((ActionFn)0x4b24f0)(object,answer);error=GetLastError();record(22,object,answer,result);record(25,object,get((void*)0x689920),((u32)*(u8*)0x6dbc18)|((u32)*(u8*)0x6dbc19<<8));SetLastError(error);return result;
+    u32 result=((ActionFn)0x4b24f0)(object,answer);error=GetLastError();if(menu_version>=11&&answer==0&&object==(void*)0x6a5088&&get((u8*)object+0x53)==2&&get((void*)0x689920)==5&&*(u8*)0x6dbc18)defeat_quit_pending=1;record(22,object,answer,result);record(25,object,get((void*)0x689920),((u32)*(u8*)0x6dbc18)|((u32)*(u8*)0x6dbc19<<8));SetLastError(error);return result;
 }
 static void campaign_quit_observe(void* object){
     u8* p=object;if(p!=(u8*)0x6a5088||!readable(p,0x5b)||get(p)!=0x5c6644||get(p+4)!=17||get(p+0x53)!=2||get(p+0x57)!=5||get((void*)0x68991c)||get((void*)0x689920)!=5)return;

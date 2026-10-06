@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Scoped fresh campaign entry, gameplay Mini Cancel/Escape and Quit with original confirmation No/Yes and Main return. Native confirmation, other auxiliary actions, Realm mode 4, loaded scenarios and pause contracts pending.",
+  "scope": "Fresh campaign entry, gameplay Mini Cancel/Quit, original confirmation and native Quit defeat report/OK with original World/Realm return; other outcomes, native Realm/confirmation, auxiliary actions, loaded scenarios and pause/scoring contracts pending.",
   "builds": [
     {
       "id": "nocd-40209ca7",
@@ -981,6 +981,130 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CP.campaign-defeat-report",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Campaign Quit defeat display and original OK/fade",
+      "scope": "Fresh Quit/Yes report ID6, original title and 21 label strings, registered local-21 OK/return and selected fade-start branch; audio/focus and scoring/setup/tick/World/Realm dependencies not reconstructed",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4671392,
+          "scope": "Original registered OK callback: fade-start call, return flag and zero result only"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5600528,
+          "scope": "Selected enabled/inactive fade flag/counter branch; audio and virtual focus helper opaque"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-defeat-engine-bridge.md"
+      ],
+      "implementation": [
+        "runtime/menu/channel.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "protocols/include/mnm/menu_v11.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/campaign_defeat.h",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.hpp",
+        "apps/qt-shell/battle_result_widget.cpp",
+        "apps/qt-shell/battle_result_widget.hpp",
+        "runtime/menu/campaign_quit_observe.h",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_quit_test.cpp",
+        "apps/qt-shell/live_campaign_defeat_test.cpp",
+        "tools/test-campaign-defeat-bridge.py",
+        "tools/test-live-qt-campaign-defeat.py",
+        "tests/campaign-defeat-reference.c",
+        "tests/menu-campaign-defeat-test.cpp",
+        "tools/test-campaign-mini-quit-bridge.py"
+      ],
+      "evidence": [
+        "UI33.fixture",
+        "UI33.qt",
+        "UI33.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "original_candidates": [
+        "0x473d70",
+        "0x474940",
+        "0x474b50"
+      ]
+    },
+    {
+      "id": "NP.campaign-defeat-policy",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Native campaign Quit defeat admission and presentation",
+      "scope": "V11 observed Quit/Yes provenance plus exact report/parents/context/receiver guards; CP1252 original title/text, native OK and original viewport return/fresh Main; empty-label visibility/title placement are native policy, other outcomes remain original-owned",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-defeat-engine-bridge.md"
+      ],
+      "implementation": [
+        "runtime/menu/channel.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "protocols/include/mnm/menu_v11.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/campaign_defeat.h",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.hpp",
+        "apps/qt-shell/battle_result_widget.cpp",
+        "apps/qt-shell/battle_result_widget.hpp",
+        "runtime/menu/campaign_quit_observe.h",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_quit_test.cpp",
+        "apps/qt-shell/live_campaign_defeat_test.cpp",
+        "tools/test-campaign-defeat-bridge.py",
+        "tools/test-live-qt-campaign-defeat.py",
+        "tests/campaign-defeat-reference.c",
+        "tests/menu-campaign-defeat-test.cpp",
+        "tools/test-campaign-mini-quit-bridge.py"
+      ],
+      "evidence": [
+        "UI33.fixture",
+        "UI33.qt",
+        "UI33.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -1554,6 +1678,80 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI33.fixture",
+      "kind": "isolated_original",
+      "scope": "Original campaign defeat OK and fade-start bytecode behind V11 original report/display/callback/stack/context guards; stale/modal/retired/one-shot and unsupported requests; text fidelity and bounded strings; audio/focus synthetic, original World/Realm unwind not run in fixture; no scoring equivalence",
+      "record": "research/runtime/campaign-defeat-engine-bridge.json",
+      "sha256": "04bc9c765cfc1220738b7f565a68ababeb73482ec97ca468b403b3c241994872",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        },
+        {
+          "pointer": "/legacy_quit/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI33.qt",
+      "kind": "native_integration",
+      "scope": "Eleven focused Qt V11 report/wire/controller and V9/V10 Mini, Region Entry, Quick Battle results, V1/V6 checks; text fidelity and malformed/stale/retired guards, no engine equivalence",
+      "record": "research/runtime/campaign-defeat-engine-bridge.json",
+      "sha256": "04bc9c765cfc1220738b7f565a68ababeb73482ec97ca468b403b3c241994872",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/qt/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI33.live",
+      "kind": "live_observation",
+      "scope": "Qt New Game/Adept/Enter, original gameplay Escape, native campaign Quit to original confirmation No and World resume, repeat Quit/Yes to original defeat report, native report with all original text and original OK callback, World/Realm return, native Main and normal Main Quit; save/load/preferences and timer pause equivalence pending",
+      "record": "research/runtime/campaign-defeat-engine-bridge.json",
+      "sha256": "04bc9c765cfc1220738b7f565a68ababeb73482ec97ca468b403b3c241994872",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/native_defeat",
+          "equals": true
+        },
+        {
+          "pointer": "/live/viewport_returns",
+          "equals": 3
+        },
+        {
+          "pointer": "/live/main_return",
+          "equals": true
+        },
+        {
+          "pointer": "/live/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/live/live_validated",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "scenarios": [
@@ -1707,6 +1905,31 @@
         "apps/qt-shell/live_campaign_quit_test.cpp",
         "tools/test-live-campaign-mini.py",
         "tools/test-campaign-mini-bridge.py"
+      ]
+    },
+    {
+      "id": "campaign.qt-quit-defeat-ok",
+      "level": "live_observation",
+      "scope": "Fresh campaign native Quit/original No resume, repeat Quit/Yes, native original-text report and original OK, World/Realm return to fresh Main, normal Main Quit; no other outcome/scoring/pixel/dependency equivalence or replacement",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "evidence": [
+        "UI33.fixture",
+        "UI33.qt",
+        "UI33.live"
+      ],
+      "tests": [
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_quit_test.cpp",
+        "apps/qt-shell/live_campaign_defeat_test.cpp",
+        "tools/test-campaign-defeat-bridge.py",
+        "tools/test-live-qt-campaign-defeat.py",
+        "tests/campaign-defeat-reference.c",
+        "tests/menu-campaign-defeat-test.cpp",
+        "tools/test-campaign-mini-quit-bridge.py"
       ]
     }
   ],
@@ -1895,6 +2118,25 @@
           "value": 1,
           "behaviors": [
             "CP.campaign-mini-quit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campaign.quit-defeat-ok",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4671392,
+        "scope": "Original registered OK callback; local index 21 in selected fresh Quit defeat report"
+      },
+      "document": "research/runtime/campaign-defeat-engine-bridge.md",
+      "complete": false,
+      "scope": "Selected report OK receiver/index 21 only; other report outcomes/contexts and direct noncanonical callback arguments pending",
+      "entries": [
+        {
+          "value": 21,
+          "behaviors": [
+            "CP.campaign-defeat-report"
           ]
         }
       ]

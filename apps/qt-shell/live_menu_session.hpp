@@ -11,6 +11,7 @@
 class LiveMenuSession final : public QObject {
 public:
     explicit LiveMenuSession(QString repository,QObject* parent=nullptr);
+    bool campaignDefeatEnabled=true;
     bool resultMenusEnabled=true; // Compatibility harnesses may explicitly retain V3.
     bool preferencesMenusEnabled=true;
     bool regionMenusEnabled=true;
@@ -27,6 +28,7 @@ public:
     bool finishSpells(const std::array<int,63>& assignments);
     bool miniMenusEnabled() const {return campaignMiniEnabled||MNM_MENU_MINI_EXPERIMENTAL!=0;}
     bool requestPreferences(quint32 action,const std::array<int,7>& values,quint32 slider=0);
+    bool requestDefeatContinue();
     bool requestResults(quint32 action);
     bool requestMini(quint32 action);
     bool requestExit(); // Back from Quick Battle, then original Main Quit.

@@ -176,3 +176,5 @@ confidence, and whether it remains stable across launches.
 - [Campaign gameplay Mini Cancel bridge](campaign-mini-cancel-engine-bridge.md): original Escape opens native Mini; Cancel/Escape return to original gameplay.
 
 - [Campaign gameplay Mini Quit bridge](campaign-mini-quit-engine-bridge.md): native Quit hands confirmation to the original game; No resumes World, Yes opens the original defeat report; original report OK and World/Realm return restore Main.
+
+- [Campaign Quit defeat report bridge](campaign-defeat-engine-bridge.md): V11 native original-text report and original OK, World/Realm return to Main; other outcomes remain original.

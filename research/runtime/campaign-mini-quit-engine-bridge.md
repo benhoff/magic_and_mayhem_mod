@@ -120,3 +120,7 @@ Mini, Realm mode 4, loaded campaigns, other campaign completion/result paths,
 allocation/cleanup/helper equivalence, and timer/mana/audio pause behavior.
 Only entry-prefix recovered ranges are linked where the discovery inventory
 lacks a function boundary; unknown bodies and unimplemented dispatch cases remain.
+
+## Native defeat report activation (UI33)
+
+[Separate V11 report integration](campaign-defeat-engine-bridge.md) admits the report only after observed campaign Quit/Yes, copies the original title and all 21 display strings, and sends native OK through original local index 21. Fade and World/Realm return stay original. V10 retains the original report viewport path; victory, other defeats and loaded campaigns remain outside V11 admission.
