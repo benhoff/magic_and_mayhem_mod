@@ -112,6 +112,7 @@ static void command_recovery_checkpoints(int preserve){
     session_started=session_epoch=session_sequence=session_bytes=session_operations=session_presented=session_pixels=0;
     session_archive_sequence=session_archive_bytes=session_last_id=0;++session_archive_id;
 }
+enum { COMMAND_RECOVER_FRESH=0, COMMAND_RECOVER_CHECKPOINT=1, COMMAND_RECOVER_PREFER_CHECKPOINT=2 };
 static u32 command_recover_mode(const char* path,u32 expected_session,int checkpoint){
     u32 error=GetLastError(),ready=0,stage=1;struct CommandCandidate next;zero(&next,sizeof(next));
     if(!__sync_bool_compare_and_swap(&command_shutdown_busy,0,1)){SetLastError(error);return 0;}
@@ -124,7 +125,13 @@ static u32 command_recover_mode(const char* path,u32 expected_session,int checkp
     if(!game_tracker_acquire())goto done;
     stage=4;
     if(!command_recovery_quiet() || game_lock_epoch==0xffffffffu || game_metadata_epoch==0xffffffffu ||
-       game_surface_generation>0xffffffffu-GAME_SURFACE_COUNT || session_archive_id==0xffffffffu || (checkpoint && !command_checkpoint_complete())){game_tracker_release();goto done;}
+       game_surface_generation>0xffffffffu-GAME_SURFACE_COUNT || session_archive_id==0xffffffffu || (checkpoint==COMMAND_RECOVER_CHECKPOINT && !command_checkpoint_complete())){game_tracker_release();goto done;}
+    /* Select once behind exclusive admission. Incomplete state can use fresh
+     * observations; a failed claimed checkpoint must never retry that same file. */
+    if(checkpoint==COMMAND_RECOVER_PREFER_CHECKPOINT){
+        checkpoint=command_checkpoint_complete()?COMMAND_RECOVER_CHECKPOINT:COMMAND_RECOVER_FRESH;
+        lock_diagnostic("command_recovery_policy",0,0,checkpoint,expected_session,0,0,0);
+    }
     /* Join retired the old worker; also exclude callback-side idle pumps while
      * resetting host cursors and publishing the new mapping/queue pair. */
     if(!__sync_bool_compare_and_swap(&command_queue_draining,0,1)){game_tracker_release();goto done;}

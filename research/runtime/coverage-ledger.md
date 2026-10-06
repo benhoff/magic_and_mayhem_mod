@@ -1423,3 +1423,23 @@ retains aliases but misses required source pixel baselines and falls back. Every
 consumer cleaned up, original main menus remained visible and original manifests
 passed before/after. First-frame delivery does not establish sustained recovery or
 equivalence. See [the diagnosis](opengl-command-recovery-metadata.md).
+
+
+## Automatic owned-checkpoint recovery (2026-10-06)
+
+Administrative RECOVER now prefers complete independently owned state before
+candidate claim, preserving initialized source pixels under fresh wire IDs.
+Incomplete state uses fresh observations; borrowed/lifecycle admission and failed
+claimed checkpoints refuse. Direct RenderRecover and strict CHECKPOINT remain
+separate policies. No finite budget or wire version was relaxed.
+
+Fresh validation passed 16 administrative cases/189 independent GPU comparisons,
+20 strict cases/294 comparisons and 4 direct-export cases/20 comparisons, plus
+native/sanitized client checks and selected CTests. A static-drawing case restores
+a frame without any new original locks; incomplete and worker-fault cases prove
+the fallback/refusal boundary. Original-game automatic retries selected complete
+checkpoints for sessions 124/125/126 and presented three native frames. Sustained
+queue overflow still exhausts recovery; original windows and cleanup remain intact.
+Original manifests passed before/after. First-frame recovery is validated within
+this bounded observation; sustained gameplay and pixel equivalence remain pending.
+See [automatic checkpoint recovery](opengl-automatic-checkpoint-recovery.md).

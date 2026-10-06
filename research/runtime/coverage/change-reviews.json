@@ -27144,6 +27144,200 @@
         "evidence": [],
         "reason": "Pilot source fingerprints intentionally remain historical. Final Surface2 execution and offline regression supply current validation. Original game error/retry/Restore, Windows-driver equivalence and native clipping remain pending."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "ba780024b58d5e6eb1fbe3231603575ea6af401375690f608859051078bb2951",
+          "before_sha256": "7c3bb54862c7bc95b0417d37833748a278138f8ec4618778ba3bd8d71fd04043",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "e9927d88e42324ed2621eb4fa32570089b5731bddc0d5800a3c9660a33e885f1",
+          "before_sha256": "f1ce44b5d23b5ba84021ede20058bb9f0926ff0da715b965ab7673db4d687495",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "4f3e991b09265822b6eb48b00f5361334df8bc94b9d868b45ffaf94083c88ae4",
+          "before_sha256": "42c2109dec4434d9e168b7082f4701ef67eb7082999ee7dd3e2f8f44aaf77186",
+          "id": "NR.command-recovery"
+        },
+        {
+          "after_sha256": "7a40f7b7743179b6bba894ba48b8e977c7a31c0390ef79f4b1a67704e680b4ef",
+          "before_sha256": "a7f9222d05a38c5a7c5acd95499382ce9c3de7bd6d3c68d696f0588bfc78ddec",
+          "id": "NR.command-ring-adapter"
+        },
+        {
+          "after_sha256": "ecc83c04068e656073982d5edb746d24b0165ad915c6fe3598260768b2c24eeb",
+          "before_sha256": "c3d3fef673c923d5bb2d78b1925837ee99851051acb4243c775c583104aefc4d",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "d576fa9dd7ae27b665abe7369abcb6eb765bc4973eb3ad36d8297236586829c2",
+          "before_sha256": "f12bc484ce0748e4d683bfd663c97143f74df104e99e341cb4a0841602a14817",
+          "id": "RT.render"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "1f511952d43966bc01c8a74fe9782b2e4169c324dea887883d72dedb4185db99",
+          "before_sha256": "fd22c206fa3833255048ffc9dc2b9e32e551130c4571c88851628545c023faa1",
+          "path": "protocols/CONTRACTS.md"
+        },
+        {
+          "after_sha256": "6ff58741912aca8f84d3cb09efa8615f37ec6ffc2469aa12f2660db3feccc603",
+          "before_sha256": "b3ba7b39862edff17e012c552ebbe4eb4ecce663ce06dc6c9166e48975913f08",
+          "path": "research/formats/render-control-v1.md"
+        },
+        {
+          "after_sha256": "44452969096122648fa3754e7767a72ea2fe9cb2441c87287930eb25c04f346a",
+          "before_sha256": "be045de39d6151039c74c3523b402c6115ca89dfed8847502fa27facc728e76c",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "fc8d5f1e277a7e469eb9d45394d304348c8595a6499dedd37723198de106c3cf",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-auto-checkpoint-20261006.json"
+        },
+        {
+          "after_sha256": "3c531dc791910b466c7c1c541fab0279de854d82ab9586855c1fa806dad0d79d",
+          "before_sha256": "44e29f6e3e3f1d7da89a3492afa53b31d763aa99eda2ebfcf72baf81dfd70b21",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "9c3fa877c860f520333f8437640d85bf2e63cde8c56409d2cf4ca89b21093a9f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-auto-checkpoint-final-20261006.json"
+        },
+        {
+          "after_sha256": "7d8e0ac81c87a3e83a0805d82a39de1867dc454665a13c2b01b79e722c8df58d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-auto-checkpoint-final-20261006.md"
+        },
+        {
+          "after_sha256": "5d9415413efea26dc16c67b70621b07f2d214cff503632a5aaa80b53f9c1cd80",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-auto-checkpoint-explicit-20261006.json"
+        },
+        {
+          "after_sha256": "a1be2d38e153b8c38dacfae781512b4827c0915e154982f977cbc9d0b1fe6a90",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-auto-checkpoint-game-20261006.json"
+        },
+        {
+          "after_sha256": "8ee46a22c65411037caca79fa863fcffba35231ffc12555946103ba632c1d38d",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-auto-checkpoint-host-20261006.json"
+        },
+        {
+          "after_sha256": "52644afde885c43b4eab40df3c6923406e8967e98a9817ccb47c5f62d2e6a68e",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-auto-checkpoint-strict-20261006.json"
+        },
+        {
+          "after_sha256": "a181e46f4951266406f7d541db710d176cddd68d794f48e01b5063de22a4bfd9",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-automatic-checkpoint-recovery.md"
+        },
+        {
+          "after_sha256": "d37aca1a0e85d6cd435f785f28f20a4e4135fbdfe4e79e861ae36496c27bd5e1",
+          "before_sha256": "79c7bca2f01bdca7899fe92143363acf3d4a290f23c3ab4ac93b71ec9a550507",
+          "path": "research/runtime/opengl-command-host-recovery.md"
+        },
+        {
+          "after_sha256": "e4bdb2c58052eb9efde6d9082a7f4c850a8bb6531014aa41fe70b131c2f48719",
+          "before_sha256": "1bbe16d98dba2f78365e027b23d6eed7470e9ca5e815a08068d05a250bc459eb",
+          "path": "runtime/render/command_control.h"
+        },
+        {
+          "after_sha256": "f635345877bd61c747a8fe1b33def085473ff1dca0ad19d22cf7960c70a6a6e2",
+          "before_sha256": "704835087854a2f2f447c044b9dbbbfa38f75036c87b356ec61aae224518e495",
+          "path": "runtime/render/command_recovery.h"
+        },
+        {
+          "after_sha256": "8b05bb4b89899fda7e72ce87c2a8e6e4cbca6cc2cc4f11b9cb0c78f9385ebcf2",
+          "before_sha256": "2cbc36afcb620a64e5f4ffbc12ef8972e934514fbe464fc861863244a0e583bf",
+          "path": "runtime/render/host_recovery_selftest.h"
+        },
+        {
+          "after_sha256": "35acaf9566624eea2dac2d4a8146f6fcafbe5e46e5b7a45f723c3b1cf112ff83",
+          "before_sha256": "32c6e43aec503ab3fb33606abe86c7a0ce89ce31dfe48e66a516931711f1cbbe",
+          "path": "tests/live-command-recovery-test.cpp"
+        },
+        {
+          "after_sha256": "c1bdd484029809bebc2087ed6cec6eefd7211456b386c61de0a34608d7981371",
+          "before_sha256": "c1bdd484029809bebc2087ed6cec6eefd7211456b386c61de0a34608d7981371",
+          "path": "tests/live-render-recovery-probe.cpp"
+        },
+        {
+          "after_sha256": "7bf20cdd7dd60a4a847903f89b21612bb2b1284d38ca5b97b73e58f84d8783af",
+          "before_sha256": "69ef82b06df147e2fdc530e36844662234b1bcb44b443ba793b1fd0ffc6b808b",
+          "path": "tools/test-live-render-recovery.py"
+        },
+        {
+          "after_sha256": "224ebc4d8c85bad4441d73da3818457e902596d9c8f68f8b557225a9d6bb9ee7",
+          "before_sha256": "224ebc4d8c85bad4441d73da3818457e902596d9c8f68f8b557225a9d6bb9ee7",
+          "path": "tools/test-render-checkpoint.py"
+        },
+        {
+          "after_sha256": "0141e356b78943da2b6afabeee93489cef018618cb3d149372203475a631d881",
+          "before_sha256": "8c12c65f47f1e4ded500a233c8e8598d8d335dab766f4bfb39ac8e84d8e8efe4",
+          "path": "tools/test-render-host-recovery.py"
+        }
+      ],
+      "id": "REVIEW.automatic-owned-checkpoint-recovery-20261006",
+      "pending_gaps": [
+        "stale_evidence:014b4fd7d1ccfe0fc199fddbfab21751062d951591b8fe6a3fabf9f67fab9495",
+        "stale_evidence:0b0d00ffa5fab020523d449a5b41cb765f6426f8aaaaceeb961f1ee7ef9acee3",
+        "stale_evidence:1299faba37dd946b03a959e01966a8a22c70273a8899dede1020b0add1d8032d",
+        "stale_evidence:18e5ebe46f0ec0d5c855c2a9a71171962a33ca2d4b2bc3d56a427617a9fb6982",
+        "stale_evidence:1b47217de7cb8c532dea959a9b20308617290ad56ead95f6ea8f12a10987c13e",
+        "stale_evidence:236721ca506e984d91a6fba58c1ede27439bc883dedf5ed010e615ebf76f8269",
+        "stale_evidence:242378fac4fa8320312eddac7d3919f2dee380a43a7fe6182d1a96944b6d8b7a",
+        "stale_evidence:25051188fdf95a2f40f504821ab78c5d64b32a1767102b652e5961271f251817",
+        "stale_evidence:27e237dc7f934fcd510ad274432b4d5f3e52bbbe91f690fae417f57b114ca4e7",
+        "stale_evidence:28e13ad0897747fa5c1120c96a60775bb81521ac98150b9736fd793c12e102cb",
+        "stale_evidence:326231be5a03ffa966a76a10b972ea295d8e0def09bfcca2ae3186033c88f3e7",
+        "stale_evidence:35958b89207c9cbe65c84fa8ba799883274a1ccfe7737580ce0ffea6bc03e95d",
+        "stale_evidence:3b2011c95d1753c151853133cdaa617b40db6ec25f7ac1c96a2a3c7e0050e720",
+        "stale_evidence:3bcb27c7a46a1a162c9b23fcf9edb07b12ae8fd89e5bd95dca39543d7637531d",
+        "stale_evidence:3ec595abed6bc272b94c446fc1db658dbe8bf3a3f705b1cd2f87cab743a17aca",
+        "stale_evidence:5618d2733739066a944f2c35405e000bd053655b650d419feb18e200d74a3e86",
+        "stale_evidence:5f52b66e54d162b9a299bc941592e083ed54ad65add87e99763f9ba4bcd828fe",
+        "stale_evidence:673bc5168f967cf13be855d8717b8fde08d42d3b3d1115efad00d5c6d7989ea4",
+        "stale_evidence:693c709ef349119bd63ec3cd10d99ddf1ddd6439de4be6173cf4afbc63abdc01",
+        "stale_evidence:7475b22b95a0f19bbe21bfa7961c29abb6740fde408f741dd0046b344f18ca1f",
+        "stale_evidence:74a1b1e8e9d3baaf193d64f06c439969720b94201300c341b64620cae9740214",
+        "stale_evidence:775bcdcc8d8f6a385a075cfefef1d45faafc28fc4adda669bfff5d6c5a1c04c2",
+        "stale_evidence:8645115c51e81d29f2be09054490df1f768db467c19e44ad44a53d2c6c0f0ec3",
+        "stale_evidence:868e8703240428379626d88536ec0e79c926c7be405110863a243ececd13663b",
+        "stale_evidence:8a10dc0601d659ccde3f4b0164650e7a0d32c66484918f195946fdd822d86b1f",
+        "stale_evidence:a29f1b96da89703d1b428a7dde0015bff96d6ab8eb8c9b2ad12f078e985ff849",
+        "stale_evidence:a838558bf221158a5ac9c81406360be623db0ed81af7bc68610054cf40842725",
+        "stale_evidence:aba9f47d17f0fee182273c70f4403dd67fde31290747fe029555f1d7c09cdf7c",
+        "stale_evidence:adffb3f4a587505ea4f0d1f950a3fe080302894c0a564218db922f76f5319afe",
+        "stale_evidence:b5274a405ca6c8b319531b8cec8c49e1743ee1e80147ad03e118c35ce6d246d2",
+        "stale_evidence:bc34b8774088aaeace272c94748729b87f07e8c32b01e4a2da90fdddfdc2977b",
+        "stale_evidence:d224811fd0b3e19f77f4bb2f76b495af22480002e684fddef2f7f8deaddce9be",
+        "stale_evidence:e63181e27cac97ae093d24aa8d746841bc0aca69e486dd7d24ee147229704209",
+        "stale_evidence:eccf08ef39289bf4a69262fa360a41dc6e63a87c530e916a0e1ca02a3bb7be94",
+        "stale_evidence:f2fda14849f2988053eb30343f34f5687f674b4a8d1ec612e0f0db5669416133",
+        "stale_evidence:f4c26af0e3f7142436db28960371bc87dc5972ddc0a251d960a825fa176a69b7",
+        "stale_evidence:f8f6a21e778ca1f3df5d0ccb2675a26bc0c7a60521266b91435d0c06ba0a3513",
+        "stale_evidence:fa03bb1343a38245c429f00c28e04e735ea554b735d84d61dd3151f8b7a30d26",
+        "stale_evidence:feb9722d20034a9466190e4adc3342faac10e314cacceb8f39ed4c5699ce427c"
+      ],
+      "reason": "Reviewed automatic RECOVER selection under the exclusive producer gate: select the existing strict owned-checkpoint path once before claiming the destination when completeness is verified; otherwise select the existing fresh-observation path. Claimed checkpoint publication failure refuses the candidate without a fresh retry. Direct RenderRecover remains fresh and CHECKPOINT remains strict; wire fields, budgets and timeout bounds are unchanged. Reviewed static, incomplete and post-claim worker-fault fixtures, independent per-session pixel comparisons and the explicit startup fixture boundary. Updated contracts, research, ledger, three behavior entries, four preserved execution records and the source census. Reviewed the committed range 99be762..e95da91 with exact parent/current receipts in the retained history report. Concurrent renderer refactoring is excluded from this staged change. Historical evidence hashes and status dimensions are preserved.",
+      "validation": {
+        "evidence": [
+          "NR.command-host-recovery.auto-checkpoint-host-20261006",
+          "NR.command-host-recovery.auto-checkpoint-strict-20261006",
+          "NR.command-host-recovery.auto-checkpoint-explicit-20261006",
+          "NR.command-host-recovery.auto-checkpoint-game-20261006"
+        ],
+        "reason": "Fresh host matrix: 16 cases and 189 independent GPU frame comparisons, including cached-only restoration, incomplete fallback and claimed worker failure refusal. Strict checkpoint regression: 20 cases and 294 comparisons. Direct-export recovery regression: four cases and 20 comparisons. Native/sanitizer control-client and protocol checks, production PE32 and Qt builds, and three selected CTests passed. The bounded actual-game run verified original manifests before and after; automatic recovery selected complete owned checkpoints for three successive sessions and presented one native frame in each. Early incomplete startup refused safely. Sustained overflow still exhausted the retry budget; no actual-game pixel equivalence, sustained gameplay, movie coverage or live replacement is claimed. The 39 newly stale historical evidence gaps remain explicitly pending with their original fingerprints; fresh results do not establish current equivalence for every historically linked contract.",
+        "status": "pending"
+      }
     }
   ]
 }

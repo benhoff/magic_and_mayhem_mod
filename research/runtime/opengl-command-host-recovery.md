@@ -55,7 +55,16 @@ Once exclusive, the worker calls RenderShutdown(0) to close producer admission,
 finish or refuse the old stream, and join/retire retry-worker storage. Its result
 can be false because the host deliberately cancelled the old ring. Private
 recovery requires the request's expected session ID, the existing lifecycle,
-tracker/drain serialization and full checkpoint/alias/palette reset. Unknown
+tracker/drain serialization and a fresh wire resource namespace. Administrative
+RECOVER prefers complete owned state, chosen behind the tracker and exclusive
+callback gate after old-worker join. It uses the same strict checkpoint predicate
+as CHECKPOINT, queues resource creation and initial PRESENT before READY, and
+retains initialized source pixels. When completeness is unavailable before claim,
+it uses fresh observations with current verified lifetime metadata. A failed
+claimed checkpoint refuses rather than resetting/retrying that candidate. The
+local RenderRecover export retains its fresh-pixel policy. Historical reports
+below remain pinned to their original implementation; see the
+[automatic checkpoint validation](opengl-automatic-checkpoint-recovery.md). Unknown
 operations or changed request identity/path/session/sequence refuse. The worker
 checks cancellation before and after admission; candidate bytes stay invisible
 to the Qt consumer until READY.

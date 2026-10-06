@@ -1,0 +1,522 @@
+{
+  "schema": 1,
+  "scope": "Exact committed parent/current SHA256 and behavior receipt review, independent of uncommitted changes or new validation. Retain concurrent journal interleaving explicitly.",
+  "base": "99be762",
+  "head": "e95da91585068c28e6513e819c3426769958032f",
+  "commits": [
+    {
+      "parent": "99be7626ea6ecad49047e875b64cf5918bba51e0",
+      "commit": "011c5a1c190de49d0a5c2f8e7bebc2f3d6ef9ca5",
+      "files": [
+        {
+          "path": "apps/qt-shell/live_command_renderer.cpp",
+          "before_sha256": "95ae524071a0ffcf7ae9c75786c56085c74d80bb3089762708e922544cfde299",
+          "after_sha256": "d5288ce683e65418a5e791781df33c5efbcb1f85558eda2feced7e2142e21dcc",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "92239ffcceca6e515896d764cad58776b6d48c0706919f06932bebd355402994",
+          "after_sha256": "2a1105b9be630ff6eb18a4c602c1861365adc279f46385efe6bfe97718329ab0",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "f68004c45f6e406e93deb6cf54427ac605846c3af3236e7eabbb36143a0580f0",
+          "after_sha256": "3a001d9dfc4323a1232db14fa097a14455b2cf7e1da83c6d00a144af300f9b04",
+          "receipts": [
+            "prior receipt bytes and relative order checked separately; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-render-recovery-metadata-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "87f3ca6f9001690c1900d65a33dfb6aaa69ef55ea7f33a4b9d6eb0400a8e0cbc",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "744734564ce16fca35d846f816c960a1d916bdf90af14b88dcc6ae2f4c5bd776",
+          "after_sha256": "45a15fd8b1557689d296a4e852a1394ea22fccc1b2ee6c4746f3c4488dc9dd69",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-render-recovery-metadata-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7f884b232bf1a1001dc872cdf2bc83df50482893a93392b789c04fca9d523e14",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-render-recovery-metadata-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "b2170ef651f0b6cec0ff474891385464d5b0b5a5f801832be9fac1c9e4c5660d",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-metadata-channel-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "f85c9846174dbb98ffbd199f33919215550be483108863773147522fc4a9379b",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-metadata-checkpoint-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7429c27d56160f28fcadf05716efea7fcd54c2e5902c7e2e5b9731c928c7b76c",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-metadata-explicit-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "04b178209787f25dd2ff8da31bc2ed72ae56f1e6c428cbe8f4db0e65bb79ee5e",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-metadata-game-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d2d58b0587907a809d85f1b59dc26047db4e5de0b4f592ef1f325b71f9b1cf6b",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-metadata-host-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "5ab862387acdb08bbe4d1bb1def7b4b238bcf473b1c0beea1ff3dd00319de973",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-metadata-queue-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-metadata.md",
+          "before_sha256": null,
+          "after_sha256": "b06b6fc7dddf8bb9f3cced0401cfda7904d6a13276bc3d35d74686f36423b9c0",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery.md",
+          "before_sha256": "0f4c95da91513d6c34294deddff80b2ca73742fa5fad22bdfc061aeecbec2e42",
+          "after_sha256": "8c844e6a798482638a0aef8584371c8b5ebe661bd13b34ed7ffe10ad8d11dc4f",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_recovery.h",
+          "before_sha256": "4ddf26f00a5f2c43ed64c88266390f02c2cb3ae78957bd112edba11f516ffb9c",
+          "after_sha256": "704835087854a2f2f447c044b9dbbbfa38f75036c87b356ec61aae224518e495",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/recovery_selftest.h",
+          "before_sha256": "d902eb05f98c13560f264bdfda39547217ae99f07cb5a6ce3e34c3c6a0a024c7",
+          "after_sha256": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "tests/live-render-channel-test.cpp",
+          "before_sha256": "6d52cce6e5d97fc077d7882f7c99d30c219d62be2ab682d93efe84101f46e60c",
+          "after_sha256": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "tests/live-render-recovery-probe.cpp",
+          "before_sha256": "facf6439652117ee403847c758cae377255d4ade22a0a6e569b5aa1fc650794e",
+          "after_sha256": "c1bdd484029809bebc2087ed6cec6eefd7211456b386c61de0a34608d7981371",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-recovery.py",
+          "before_sha256": "b0855bfd5d7f59cfd095ce6659ff7182729f8aa69921f69a63a05c121062a3ab",
+          "after_sha256": "69ef82b06df147e2fdc530e36844662234b1bcb44b443ba793b1fd0ffc6b808b",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-recovery.py",
+          "before_sha256": "e7e06e0c4e53e3bf7d654743f296a852eecbcde647501dbf12a6121b93822c66",
+          "after_sha256": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "f2f1f651ad498ebdd225e7b168441811ceb79baba895675f76d21cec5e9079ae",
+          "after_sha256": "7c3bb54862c7bc95b0417d37833748a278138f8ec4618778ba3bd8d71fd04043",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "14810b1910163e83437c83935dba2e569cc27f1f3638540a7685b1f3a13f512e",
+          "after_sha256": "f1ce44b5d23b5ba84021ede20058bb9f0926ff0da715b965ab7673db4d687495",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "e472f1bdcc588f00b1252636ea103f7b5c62dabd773cdcbc1f8b6db74642dd2c",
+          "after_sha256": "42c2109dec4434d9e168b7082f4701ef67eb7082999ee7dd3e2f8f44aaf77186",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring-adapter",
+          "before_sha256": "71e29a1973964e438de55b590b3bf6a127c2bd43cd001efa15e664ec34518e38",
+          "after_sha256": "a7f9222d05a38c5a7c5acd95499382ce9c3de7bd6d3c68d696f0588bfc78ddec",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-streaming",
+          "before_sha256": "2ce6aa87e272b994faa428ee5157bf9171b2284b3b8542d1f51d09994013ba22",
+          "after_sha256": "c6a3597688e5bf1ac5aa6a9e4f467abd9272e71778219a596c921f8233c29eef",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "137324179314c611a6f6e9a53b7469ef294610a1fd1cf85ed18f343376ae7741",
+          "after_sha256": "4261ece4a2de8fdfc3d90b6f58dc3e423a85dcdf7cd582b0401d2c635bcf8d73",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "4f547b97e37200e771d4c84127fabaf10b77684ca84f4492821c4f4e6bdcc5b9",
+          "after_sha256": "b7e33c3a9d14e6c0bc00142cdad30781212def4abff6f29e7c1cdd9537d60776",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "206272c3f2ba5ea8b8c6ff194c21cbff4309f1f2dd55e5dc787f574935947176",
+          "after_sha256": "06440bdea8c8e01c4a97de381c68ce616fb21c0b45d130f07ec60e4169d089fc",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "bf84c133192c191309de4694e6c6f91b5762d5224f0e288548b4d139d3f6961b",
+          "after_sha256": "e9a42a8724c662e97b1d557efcc91d48d12bacdbb38fa982637a138626612775",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "ccabbac4a5d93cdfae2759e4cf1ea0dd3cf309f38bb4daad7761aa427f7eed25",
+          "after_sha256": "3eb960fda07cb158cdfd2ed800957717007f23c3ad906074d84b064948543c4e",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "575de7e40d60e40708c3e6cde4c60397d60ca91664f2a3de5cfd50bfddddaa4a",
+          "after_sha256": "c3d3fef673c923d5bb2d78b1925837ee99851051acb4243c775c583104aefc4d",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "cd5eee1070c547941aa45eeefe5975fa0646ae9bd99c372068ac39b6def90a9a",
+          "after_sha256": "0b7334e0cacf82cdea9aabfef5e056fe4d095332125870f2f19adda481d81703",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "fefe70dbb8811c16dc800b988566eeb092a447e8188b32b99535ebd3c76196f6",
+          "after_sha256": "f12bc484ce0748e4d683bfd663c97143f74df104e99e341cb4a0841602a14817",
+          "receipts": [
+            "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "historical_limitations": [],
+      "unresolved_exact_receipts": []
+    },
+    {
+      "parent": "011c5a1c190de49d0a5c2f8e7bebc2f3d6ef9ca5",
+      "commit": "e95da91585068c28e6513e819c3426769958032f",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "2a1105b9be630ff6eb18a4c602c1861365adc279f46385efe6bfe97718329ab0",
+          "after_sha256": "be045de39d6151039c74c3523b402c6115ca89dfed8847502fa27facc728e76c",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "3a001d9dfc4323a1232db14fa097a14455b2cf7e1da83c6d00a144af300f9b04",
+          "after_sha256": "311007ba8dfb211c6b11114bb2d53d6abba2cb25c8d6fbc838c9d2e925e93a05",
+          "receipts": [
+            "prior receipt bytes and relative order checked separately; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-driver-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "09c2727b7f610d22a8f8e40274552399198e7c2d57d7c42d8937bd9cf3da1d4c",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-driver-concurrent-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "9f8c36dd64a8a88b3933c4848170c4dd1bf71ff84ce74ce194db7a8d429c5c50",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-driver-contracts-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d1f0c2fb2c26fffe863ee491b1451cb4e6b06ec074f13e1190d34e74f769964d",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "45a15fd8b1557689d296a4e852a1394ea22fccc1b2ee6c4746f3c4488dc9dd69",
+          "after_sha256": "44e29f6e3e3f1d7da89a3492afa53b31d763aa99eda2ebfcf72baf81dfd70b21",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-driver-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "e9ca00f2ec3842b1b4564794098f9101fa230b05dad3dadbfdd05f0a363bcadc",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-driver-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "3bf28c93ac573bf8962a1f3793e3c4b3b956d006be9e83f3b95351b0d9e5fc69",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-fixtures-post-driver-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "02fcbf4db30f9761ac13852bce9d0e78f5ef5706b43578210b957d19d14582df",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "b52b1b513b212dda875288b02a567088811877d58fd12aa2201ce0328baa39d5",
+          "after_sha256": "1bd47f423630ac1764659c1a40089079f89aeea3ba8251bdcb0b019a853c20a6",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-driver-clipping-offline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "8b54962ff68a7b0aa0746e454cece60447b595f13d5c6c25d214d197705fd2b0",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-driver-clipping-surface2-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d906fa624faffebb712c9228a21cb18697defd7e07dd601ffd127850a990759f",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-driver-clipping-wine-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "6df13ce5b5619eb0d0aef0ea471d4e11df5174bc785c805bc93175496ffdd425",
+          "receipts": [
+            "surface-driver-pilot-preservation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-driver-clipping-wine-v2-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "2cdfbdca3311818cc8754db51e9741b4b5d47ba57fd381b812de96d958af87a7",
+          "receipts": [
+            "surface-driver-pilot-preservation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-driver-clipping.md",
+          "before_sha256": null,
+          "after_sha256": "244fe9a57a02898535a537881150d158ea8ac42e6e013d4e11dbf90f33ce98fd",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/driver-clipping-corpus.json",
+          "before_sha256": null,
+          "after_sha256": "3c8a2b844a9eca30115a6eb1a5524c0eb6d2c1c954e42eaab9cf0e51c05b6486",
+          "receipts": [
+            "surface-driver-pilot-preservation-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/driver-clipping-original.json.gz",
+          "before_sha256": null,
+          "after_sha256": "37372a56c680ff368ab25a71a9051a85f7bed0c79fd135000593098af3a68fe1",
+          "receipts": [
+            "surface-driver-pilot-preservation-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+          "before_sha256": null,
+          "after_sha256": "f903c01cae3d08486bd24d4f619af4ad96d6ee21dd55394420fe1d7bf6633cbe",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz",
+          "before_sha256": null,
+          "after_sha256": "c6ae4c39de508610c2fc765c3acc4eff65e0f253e89a8457ea153b3f21522e7c",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/driver-clipping-v2-corpus.json",
+          "before_sha256": null,
+          "after_sha256": "c71a2f4e201dddc66ab4ccdb7d6b48417d751ba639b34510979c4f950fcf4951",
+          "receipts": [
+            "surface-driver-pilot-preservation-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/driver-clipping-v2-original.json.gz",
+          "before_sha256": null,
+          "after_sha256": "c6ae4c39de508610c2fc765c3acc4eff65e0f253e89a8457ea153b3f21522e7c",
+          "receipts": [
+            "surface-driver-pilot-preservation-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-driver-reference.c",
+          "before_sha256": null,
+          "after_sha256": "6d21e9bf881245893e9baf164418e1efc13dd4021aef5a965f6001caad181051",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-surface-driver.py",
+          "before_sha256": null,
+          "after_sha256": "b11152d05ec2f30b171757a494d0a0ca9a709c59b7ea5e116c8c5a08e748af99",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-surface-driver.py",
+          "before_sha256": null,
+          "after_sha256": "f1ef8f47e225d6de1f0b664e6915ae9cd7316a3a6f7c86081cae116b6ee94f24",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": null,
+          "after_sha256": "b37caf4711c862f6d15f750a212ae03500d07db2df16ba7205edb56fed661bac",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "11ed7ed881d09555877f85014af5fa8dc3e5d744a7b16c50821c7f489c976181",
+          "after_sha256": "8a9724c6d7fb6cec7f899dd9cdac4efd65e36e8d03667c68e94ffa7c8c0b5cfa",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "2029f84e04af8dd257af10d5aa96e2f619259e71df87d3d6cff5ace0a116251b",
+          "after_sha256": "f70b45a865bfc3f5b350943ad8445156dbaa75b6e897fb8122089f6cd92f78fe",
+          "receipts": [
+            "surface-driver-clipping-recorded-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "historical_limitations": [],
+      "unresolved_exact_receipts": []
+    }
+  ]
+}

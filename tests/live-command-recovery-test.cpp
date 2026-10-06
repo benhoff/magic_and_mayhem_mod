@@ -27,13 +27,14 @@ int main(int argc,char** argv){
             const auto pixel=image.pixel(0,0);unsigned index=40;
             for(unsigned i=0;i<40;++i){const auto color=i*0x254713u&0xffffff;if(pixel==qRgb((color>>16)&255,(color>>8)&255,color&255)){index=i;break;}}
             check(index<40,"unexpected color");for(int y=0;y<512;++y)for(int x=0;x<512;++x)check(image.pixel(x,y)==pixel,"incomplete independent frame");
-            if(!frames.isEmpty())check(index>unsigned(frames.last().toObject()["index"].toInt()),"stale or reordered frame");
+            if(!frames.isEmpty()){auto previous=frames.last().toObject();check(index>unsigned(previous["index"].toInt()) || (int(session.recoveries())!=previous["session"].toInt() && index==unsigned(previous["index"].toInt())),"stale or reordered incremental frame");}
             frames.append(QJsonObject{{"index",int(index)},{"session",int(session.recoveries())}});
             check(viewport.imageUploads()==0,"CPU viewport upload");
             check(session.result() && session.result()->stats.nativeReadbacks==0 && session.result()->stats.rgbaReadbacks==0,"ordinary consumer readback");save(dir.filePath("progress.json"),{{"frames",frames},{"states",states}});
         };
         QTimer timer;QObject::connect(&timer,&QTimer::timeout,[&]{
             try{
+                if(dir.dirName()=="startup" && !QFile::exists(dir.filePath("drawn-00000000.bin")))return;
                 const bool healthy=session.poll();
                 if(!healthy || session.ended() || elapsed.elapsed()>22000){
                     timer.stop();check(elapsed.elapsed()<=22000,"test deadline");

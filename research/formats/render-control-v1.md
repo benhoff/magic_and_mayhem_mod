@@ -25,7 +25,11 @@ request again before acceptance. Response status precedes release publication
 of its sequence. Online state is independent; READY acknowledges admission and
 worker startup. For CHECKPOINT, READY additionally acknowledges complete owned
 resource serialization and a queued initial PRESENT; GPU completion remains
-independent. RECOVER waits for fresh full observations. No host pointers,
+independent. RECOVER now prefers a complete owned checkpoint when the same
+strict state/ownership/budget admission succeeds; otherwise it waits for fresh
+full observations. A checkpoint publication/startup failure after claim refuses
+and retires that candidate, without retrying it as a fresh stream. The direct
+PE32 RenderRecover export continues to require fresh pixels. No host pointers,
 COM pointers, wire C++ objects or game addresses cross this channel.
 
 Initial files are exclusive, fresh and zeroed. Launch staging requires continuous
