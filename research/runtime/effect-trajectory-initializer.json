@@ -1,0 +1,30 @@
+{
+  "all_match": true,
+  "live_validated": false,
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "fixtures": 18112,
+  "steps": 579584,
+  "xy_enabled": 12749,
+  "z_primary": 306978,
+  "output_sha256": "aaf38c346f98bb85ac839279618b7df13fa563b70e40540df253d54bd8d6e36d",
+  "helper_sha256": {
+    "original": "84a09d326ab998d8c5d6b25577ccd6d76d31b26479b32f85ce80fe5ec540d859",
+    "native": "478f25d0a149f977121ed816acef3dc25c34684cdaa02d51501af0e3ca781c05",
+    "sanitized": "65a0ee247dac1319736240ec108898629ab79c2518665d50dbe94145d7c7211d"
+  },
+  "registered_source_sha256": {
+    "reconstruction/rendering/effect_trajectory.cpp": "9a271f05ef153cf3032da71f8ada0e1c33562a92cf1c7804d050ccb884611024",
+    "reconstruction/rendering/effect_trajectory.hpp": "1a668bd363315bda2f957ba8ce5c98c1aa9d75535d9b93005456aa5764a3b839",
+    "reconstruction/rendering/effect_trajectory_initializer.cpp": "cd301e5bacf34c31457ba9e974ce34990cbe8c287fb3646b0bb69922c2017043",
+    "reconstruction/rendering/effect_trajectory_initializer.hpp": "9b1b43a22e10a227b5e10ddf29de7d610faf329c53b4d016b4e931685aa4fb6f",
+    "reconstruction/rendering/effect-trajectory-initializer/CMakeLists.txt": "1fa38846f2da2add74d09be615239c91aa1cb4c230cc02bf19c2ddbea56d6023",
+    "tests/effect-trajectory-initializer-test.cpp": "95446c50ef02e4023269dea40e05cdfe742d85457af266a3724d807c63a37073",
+    "tests/effect-trajectory-initializer-reference.cpp": "2cab6c99f2c2def0027af8da57878fd9a341a2e4176b64c673c37687becdb73a",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-effect-trajectory-initializer.py": "95c227e6861b337acb5f4678d8b287073445bfe7ee985dbacca6fad1754c8eec"
+  },
+  "unit_passed": true,
+  "sanitized_unit_passed": true,
+  "cmake_tests_passed": 1,
+  "boundary": "Whole unmodified 004df3a0 initializer including original 004df260, authored coordinates/periods/multiplier and retained state word3; guarded complete state/counter plus 32 chained 004df500 steps; no effect creation parent, installed inputs or live replacement"
+}

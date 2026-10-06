@@ -10075,13 +10075,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, original trajectory setup, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures.",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, effect creation parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, original trajectory setup, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures."
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, effect creation parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs."
         }
       ],
       "documents": [
@@ -10096,7 +10096,8 @@
         "research/runtime/creature-occupancy-lookup.md",
         "research/runtime/creature-footprint-initializer.md",
         "research/runtime/effect-creature-collision.md",
-        "research/runtime/effect-kind34-creator.md"
+        "research/runtime/effect-kind34-creator.md",
+        "research/runtime/effect-trajectory-initializer.md"
       ],
       "implementation": [],
       "tests": [],
@@ -12033,6 +12034,50 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-trajectory-initializer",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect trajectory initialization with horizontal wrap selection",
+      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5108640,
+          "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5108320,
+          "scope": "Whole XY initializer helper executed by 004df3a0; native private direction/error initialization within the full initializer contract"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory-initializer.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_trajectory_initializer.cpp",
+        "reconstruction/rendering/effect_trajectory_initializer.hpp",
+        "reconstruction/rendering/effect-trajectory-initializer/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-trajectory-initializer-reference.cpp",
+        "tests/effect-trajectory-initializer-test.cpp",
+        "tools/test-effect-trajectory-initializer.py"
+      ],
+      "evidence": [
+        "TL19.initializer-original",
+        "TL19.initializer-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -20243,6 +20288,78 @@
           "equals": []
         }
       ]
+    },
+    {
+      "id": "TL19.initializer-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
+      "record": "research/runtime/effect-trajectory-initializer.json",
+      "sha256": "69d2ddf54bfe1afb2531c82203c11361469d346f504fe93366c879f7e3307eab",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 18112
+        },
+        {
+          "pointer": "/steps",
+          "equals": 579584
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL19.initializer-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
+      "record": "research/runtime/effect-trajectory-initializer.json",
+      "sha256": "69d2ddf54bfe1afb2531c82203c11361469d346f504fe93366c879f7e3307eab",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 18112
+        },
+        {
+          "pointer": "/steps",
+          "equals": 579584
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -22574,6 +22691,23 @@
         "tests/test-coverage-ui.py",
         "tests/test-coverage-ui-browser.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-trajectory-initializer",
+      "level": "headless",
+      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
+      "behaviors": [
+        "TL.effect-trajectory-initializer"
+      ],
+      "evidence": [
+        "TL19.initializer-original",
+        "TL19.initializer-native"
+      ],
+      "tests": [
+        "tests/effect-trajectory-initializer-reference.cpp",
+        "tests/effect-trajectory-initializer-test.cpp",
+        "tools/test-effect-trajectory-initializer.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -22704,7 +22838,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "3c56962b2aa9c7c408377392c29c87a4106538e8e7acda6edc0d44b45c6ba3ad",
+      "sha256": "038580b272d662995fd2969c412a505370115ca71352e3619e5a84501240b5a8",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -22714,57 +22848,62 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "c8501ee3373b9454c83f45c01c76ae8695470f1fddd314725b99e4d5d333e789",
+      "sha256": "8a65b3cfef111bfe5a36b1a94d7eb19c0e759ede647789d2bd7bf222c8f53e35",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "54d041981e425fc2bc99296a4dea830b4b69f2572886dd6a5f5beee95c37dd4d",
+      "sha256": "3ad99b9776ace75bc656e2e15c3fb35ee2dd391ef0069e4abcd5cb0211833a87",
       "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-cleanup-coverage.json",
-      "sha256": "21bd9c88e43efa27a8e462d0fd07f64e5ef5da2836d705fdda338edf6c60a2fe",
+      "sha256": "0ceb12e9bdcf2649b6806836f460035fe491d33af0da4d1ac158a9c6306b0bed",
       "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-blocked-destinations-coverage.json",
-      "sha256": "c8d036d28663ef734c2c7a84085aff7b73ce51a054866d3029d60b87a411e441",
+      "sha256": "d33ed221b1cf7c7ae4190bf592fcf0fcb432014ce322ae6b4850c4d2f113876f",
       "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-height-exits-coverage.json",
-      "sha256": "aa61f719cc78ff1cdde60f547db353c1f79ae10a081da230cebc0290052d0fe0",
+      "sha256": "77e1e72bbcdf71b9ac247aa86c9ffd95d3d7df1fc6bcc2628456951cb4d62063",
       "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-membership-disabled-coverage.json",
-      "sha256": "10efb7569f0aff5c78275d6f1c3f73399b0a1def30d72f231f4a9a7fcc3e13e2",
+      "sha256": "ab301a69259468d31958cef2462f35c5decc5536fb3727ff82f691d43ac09a61",
       "scope": "Reviewed complete-parent disabled-membership movement and preserved graph/flags, ordinary/blocked/height/cleanup reruns and native reconciliation admission; remaining occupied collision/setup/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-terrain-occupancy-coverage.json",
-      "sha256": "2f6e5367a077e4fef1df1946066fd82553ca925c7dc6e7b5b4e24ba8beddd1f2",
+      "sha256": "3647ba063072f2389072590fbec1376ca3bb1486f582a3112a368502e377900b",
       "scope": "Reviewed complete-parent terrain occupancy bitmap/cache-gated sampling, hit ordering and both membership modes with fresh prior-contract reruns; remaining creature/special-type/catalog/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/creature-occupancy-lookup-coverage.json",
-      "sha256": "a14014bc52257b04578dc4d8659eed9c881360699a15a968b559ac48aec89662",
+      "sha256": "1603d114578a451e555fecee6c3de6cd4b1ab9cf47e37a2683913bed0a5893a4",
       "scope": "Reviewed complete 004e1200 creature footprint lookup and owned read-only storage, independent rectangle tests and raw-height wrapping; original candidate/parent/initializer/capture/live work remains separate and historical effect proofs are preserved"
     },
     {
       "path": "research/runtime/creature-footprint-initializer-coverage.json",
-      "sha256": "caa6591c5ad495830adfd7fdab4230ea5cd63700f9e99c0727fea86cd523c37a",
+      "sha256": "b38487f741985d49cdfd493a8840be75f440d092f48a37f1e8a23976d479d3b3",
       "scope": "Reviewed complete 004e1260 footprint initializer, original/native guarded overwrite and query composition; creature construction parent/capture/live remain separate"
     },
     {
       "path": "research/runtime/effect-creature-collision-coverage.json",
-      "sha256": "3a47712837c89be62e1e493737f5fb6d1d65bf51982ebd58a1446f10149b4d6d",
+      "sha256": "f33649c08aeb0005f22f13c865e41e591bd8721965a7523582bcf69802e69817",
       "scope": "Reviewed selected whole 004883f0 creature candidates and collision integration, refreshed ordered snapshots, raw coordinate/query composition, creator and status filters, first-hit and type3 continuation; installed capture/live remain separate"
+    },
+    {
+      "path": "research/runtime/effect-trajectory-initializer-coverage.json",
+      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
+      "sha256": "4961a888dcb779cb88f37716858fb242e3341169407d1881a7e5f43d1f32f78d"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-coverage-ui-commit.json",
-    "sha256": "5275e84b971439ac65bec9ea50f4163b08319b3d3cd1a9994d326f1cbd327b07"
+    "path": "research/runtime/effect-trajectory-initializer-source-index.json",
+    "sha256": "a93d87a067345959fc524ec19d44540bc78224ffe03bf02b91f093853edd943a"
   }
 }

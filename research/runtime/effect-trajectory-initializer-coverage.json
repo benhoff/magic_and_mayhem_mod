@@ -8,37 +8,46 @@
       "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
     }
   ],
+  "dispatch_tables": [],
+  "recovered_ranges": [],
+  "classifications": [],
+  "api_bindings": [],
   "behaviors": [
     {
-      "id": "TL.effect-trajectory-step",
+      "id": "TL.effect-trajectory-initializer",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
-      "title": "Whole effect trajectory stepping from authored state",
-      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
+      "title": "Effect trajectory initialization with horizontal wrap selection",
+      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
-          "address": 5108992,
-          "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling"
+          "address": 5108640,
+          "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5108320,
+          "scope": "Whole XY initializer helper executed by 004df3a0; native private direction/error initialization within the full initializer contract"
         }
       ],
       "documents": [
-        "research/runtime/effect-trajectory.md"
+        "research/runtime/effect-trajectory-initializer.md"
       ],
       "implementation": [
-        "reconstruction/rendering/effect_trajectory.cpp",
-        "reconstruction/rendering/effect_trajectory.hpp",
-        "reconstruction/rendering/effect-trajectory/CMakeLists.txt"
+        "reconstruction/rendering/effect_trajectory_initializer.cpp",
+        "reconstruction/rendering/effect_trajectory_initializer.hpp",
+        "reconstruction/rendering/effect-trajectory-initializer/CMakeLists.txt"
       ],
       "tests": [
-        "tests/effect-trajectory-reference.cpp",
-        "tests/effect-trajectory-test.cpp",
-        "tools/test-effect-trajectory.py"
+        "tests/effect-trajectory-initializer-reference.cpp",
+        "tests/effect-trajectory-initializer-test.cpp",
+        "tools/test-effect-trajectory-initializer.py"
       ],
       "evidence": [
-        "TL06.trajectory-original",
-        "TL06.trajectory-native"
+        "TL19.initializer-original",
+        "TL19.initializer-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -91,12 +100,12 @@
   ],
   "evidence": [
     {
-      "id": "TL06.trajectory-original",
+      "id": "TL19.initializer-original",
       "kind": "isolated_original",
       "build": "nocd-40209ca7",
-      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
-      "record": "research/runtime/effect-trajectory.json",
-      "sha256": "7c86123009abb808c42eeed31e4cd1f69b9f68d7ce017528fd64af9124e42c22",
+      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
+      "record": "research/runtime/effect-trajectory-initializer.json",
+      "sha256": "69d2ddf54bfe1afb2531c82203c11361469d346f504fe93366c879f7e3307eab",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -106,11 +115,11 @@
         },
         {
           "pointer": "/fixtures",
-          "equals": 8192
+          "equals": 18112
         },
         {
           "pointer": "/steps",
-          "equals": 262144
+          "equals": 579584
         },
         {
           "pointer": "/unit_passed",
@@ -127,12 +136,12 @@
       ]
     },
     {
-      "id": "TL06.trajectory-native",
+      "id": "TL19.initializer-native",
       "kind": "native_integration",
       "build": "nocd-40209ca7",
-      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
-      "record": "research/runtime/effect-trajectory.json",
-      "sha256": "7c86123009abb808c42eeed31e4cd1f69b9f68d7ce017528fd64af9124e42c22",
+      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
+      "record": "research/runtime/effect-trajectory-initializer.json",
+      "sha256": "69d2ddf54bfe1afb2531c82203c11361469d346f504fe93366c879f7e3307eab",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -142,11 +151,11 @@
         },
         {
           "pointer": "/fixtures",
-          "equals": 8192
+          "equals": 18112
         },
         {
           "pointer": "/steps",
-          "equals": 262144
+          "equals": 579584
         },
         {
           "pointer": "/unit_passed",
@@ -165,25 +174,21 @@
   ],
   "scenarios": [
     {
-      "id": "terrain-lighting.effect-trajectory",
+      "id": "terrain-lighting.effect-trajectory-initializer",
       "level": "headless",
-      "scope": "Whole 004df500 trajectory step with disjoint owned 14-word state, X/Y/Z and counter: wrapped signed-error selection, optional XY update and unconditional branch counter increments; authored initial state, no initializer, movement parent, cells, recount, collisions or live scheduling",
+      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
       "behaviors": [
-        "TL.effect-trajectory-step"
+        "TL.effect-trajectory-initializer"
       ],
       "evidence": [
-        "TL06.trajectory-original",
-        "TL06.trajectory-native"
+        "TL19.initializer-original",
+        "TL19.initializer-native"
       ],
       "tests": [
-        "tests/effect-trajectory-reference.cpp",
-        "tests/effect-trajectory-test.cpp",
-        "tools/test-effect-trajectory.py"
+        "tests/effect-trajectory-initializer-reference.cpp",
+        "tests/effect-trajectory-initializer-test.cpp",
+        "tools/test-effect-trajectory-initializer.py"
       ]
     }
-  ],
-  "recovered_ranges": [],
-  "dispatch_tables": [],
-  "classifications": [],
-  "api_bindings": []
+  ]
 }

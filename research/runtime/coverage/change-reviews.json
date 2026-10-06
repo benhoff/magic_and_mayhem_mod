@@ -10986,6 +10986,179 @@
         "reason": "Selected commit tree passes 45 coverage audit and 44 coverage gate regressions, including legacy/web provenance and obsolete receipt cases. Census/control/history bookkeeping does not refresh original comparisons or promote tooling/engine status. Explicit new gaps preserve historical UI evidence and native policy comparison limitations.",
         "evidence": []
       }
+    },
+    {
+      "id": "trajectory-initializer-recorded-aee4f87",
+      "reason": "Recover complete 004df3a0 and its original 004df260 XY helper using owned raw input words and period globals. Preserve receiver word3 and signed/wrapped arithmetic including independent wrap selections, equality direction and doubled-error overflow. Add isolated comparison/units/build target and TL19 evidence, reconcile focused imports/census/ledger without rewriting historical evidence. Reviewed committed range 930ca14..aee4f872209853345c4de5add3291a3b7aeaa940 in working/tests/trajectory-init-history-review.json has exact receipts/evidence bindings; this is history accounting, not inferred execution.",
+      "files": [
+        {
+          "after_sha256": "1fa38846f2da2add74d09be615239c91aa1cb4c230cc02bf19c2ddbea56d6023",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect-trajectory-initializer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "cd301e5bacf34c31457ba9e974ce34990cbe8c287fb3646b0bb69922c2017043",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_trajectory_initializer.cpp"
+        },
+        {
+          "after_sha256": "9b1b43a22e10a227b5e10ddf29de7d610faf329c53b4d016b4e931685aa4fb6f",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_trajectory_initializer.hpp"
+        },
+        {
+          "after_sha256": "aa310a44824bc16a2e36a932ed1cddb220fd8afe257f0864c0fc1b8c0608b439",
+          "before_sha256": "9d29ac03a5d25518ab25263c9d068a6e48585efd13fdbfc60dc3e92bcba6814e",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "ca62186d538f0dac0858339f8fd11e0ac809138c14842540f89d984192fed857",
+          "before_sha256": "c488a07e9098a4eb78fce88853ef4c2be651512e1758a6828675e1cae2a46918",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b38487f741985d49cdfd493a8840be75f440d092f48a37f1e8a23976d479d3b3",
+          "before_sha256": "caa6591c5ad495830adfd7fdab4230ea5cd63700f9e99c0727fea86cd523c37a",
+          "path": "research/runtime/creature-footprint-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "1603d114578a451e555fecee6c3de6cd4b1ab9cf47e37a2683913bed0a5893a4",
+          "before_sha256": "a14014bc52257b04578dc4d8659eed9c881360699a15a968b559ac48aec89662",
+          "path": "research/runtime/creature-occupancy-lookup-coverage.json"
+        },
+        {
+          "after_sha256": "d33ed221b1cf7c7ae4190bf592fcf0fcb432014ce322ae6b4850c4d2f113876f",
+          "before_sha256": "c8d036d28663ef734c2c7a84085aff7b73ce51a054866d3029d60b87a411e441",
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "0ceb12e9bdcf2649b6806836f460035fe491d33af0da4d1ac158a9c6306b0bed",
+          "before_sha256": "21bd9c88e43efa27a8e462d0fd07f64e5ef5da2836d705fdda338edf6c60a2fe",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "3ad99b9776ace75bc656e2e15c3fb35ee2dd391ef0069e4abcd5cb0211833a87",
+          "before_sha256": "54d041981e425fc2bc99296a4dea830b4b69f2572886dd6a5f5beee95c37dd4d",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "f33649c08aeb0005f22f13c865e41e591bd8721965a7523582bcf69802e69817",
+          "before_sha256": "3a47712837c89be62e1e493737f5fb6d1d65bf51982ebd58a1446f10149b4d6d",
+          "path": "research/runtime/effect-creature-collision-coverage.json"
+        },
+        {
+          "after_sha256": "77e1e72bbcdf71b9ac247aa86c9ffd95d3d7df1fc6bcc2628456951cb4d62063",
+          "before_sha256": "aa61f719cc78ff1cdde60f547db353c1f79ae10a081da230cebc0290052d0fe0",
+          "path": "research/runtime/effect-height-exits-coverage.json"
+        },
+        {
+          "after_sha256": "ab301a69259468d31958cef2462f35c5decc5536fb3727ff82f691d43ac09a61",
+          "before_sha256": "10efb7569f0aff5c78275d6f1c3f73399b0a1def30d72f231f4a9a7fcc3e13e2",
+          "path": "research/runtime/effect-membership-disabled-coverage.json"
+        },
+        {
+          "after_sha256": "8a65b3cfef111bfe5a36b1a94d7eb19c0e759ede647789d2bd7bf222c8f53e35",
+          "before_sha256": "c8501ee3373b9454c83f45c01c76ae8695470f1fddd314725b99e4d5d333e789",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "3647ba063072f2389072590fbec1376ca3bb1486f582a3112a368502e377900b",
+          "before_sha256": "2f6e5367a077e4fef1df1946066fd82553ca925c7dc6e7b5b4e24ba8beddd1f2",
+          "path": "research/runtime/effect-terrain-occupancy-coverage.json"
+        },
+        {
+          "after_sha256": "038580b272d662995fd2969c412a505370115ca71352e3619e5a84501240b5a8",
+          "before_sha256": "3c56962b2aa9c7c408377392c29c87a4106538e8e7acda6edc0d44b45c6ba3ad",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "4961a888dcb779cb88f37716858fb242e3341169407d1881a7e5f43d1f32f78d",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "a93d87a067345959fc524ec19d44540bc78224ffe03bf02b91f093853edd943a",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory-initializer-source-index.json"
+        },
+        {
+          "after_sha256": "69d2ddf54bfe1afb2531c82203c11361469d346f504fe93366c879f7e3307eab",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory-initializer.json"
+        },
+        {
+          "after_sha256": "d7f9c3a9ed32c9799d61b95eae2736e94285add987827925e97737d1ef5345b7",
+          "before_sha256": null,
+          "path": "research/runtime/effect-trajectory-initializer.md"
+        },
+        {
+          "after_sha256": "2cab6c99f2c2def0027af8da57878fd9a341a2e4176b64c673c37687becdb73a",
+          "before_sha256": null,
+          "path": "tests/effect-trajectory-initializer-reference.cpp"
+        },
+        {
+          "after_sha256": "95446c50ef02e4023269dea40e05cdfe742d85457af266a3724d807c63a37073",
+          "before_sha256": null,
+          "path": "tests/effect-trajectory-initializer-test.cpp"
+        },
+        {
+          "after_sha256": "95c227e6861b337acb5f4678d8b287073445bfe7ee985dbacca6fad1754c8eec",
+          "before_sha256": null,
+          "path": "tools/test-effect-trajectory-initializer.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "dd46eea5fb1b68175e75cb04d0de4a153167386b530575e39a631ec1cd68f9a3",
+          "before_sha256": null,
+          "id": "TL.effect-trajectory-initializer"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL19.initializer-original",
+          "TL19.initializer-native"
+        ],
+        "reason": "18,112 complete guarded initializations and 579,584 chained trajectory steps match unmodified privately mapped PE32, native64 and ASan/UBSan outputs. Raw endpoint/period/multiplier boundaries and random words cover overflow, signed comparisons, zero/ties and preserved state word3; normal/sanitized explicit branch units and standalone CTest pass. Exact executable and source fingerprints stable; manifests verify all 2,927 original files before/after. Period and coordinate inputs remain authored; no creation parent, installed input provenance or live replacement is asserted."
+      }
+    },
+    {
+      "id": "trajectory-initializer-remaining-aee4f87",
+      "reason": "Narrow the shared remaining movement contract by separating the now recovered trajectory initializer from effect creation parents and installed trajectory inputs; keep all lifecycle and live gaps.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "db96e8faff47efd3bf7767f950197d9505ca09243c86c95d6131c930a9965c3d",
+          "before_sha256": "ed81b8bed4810bc7ee2917c5889bd668c3c3bb8942a9dcb76f08dee03dcd2439",
+          "id": "TL.effect-movement-recount"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Creation parents/creator ownership, installed coordinate and period provenance, creature construction/cells/catalogs/columns, other effect types/metadata/termination/type35, scheduling/removal/recycling and live replacement remain unverified. Static 004891e0 caller mapping is not a parent execution comparison."
+      }
+    },
+    {
+      "id": "trajectory-initializer-summary-aee4f87",
+      "reason": "Refresh generated summary for the isolated register including new scoped initializer and retained discovery and historical evidence gaps.",
+      "files": [
+        {
+          "after_sha256": "860cfae203998c1c122decc489d313bf93bf48aa903fff7e6adabdd7b9a087a5",
+          "before_sha256": "6544f8a9f5f7c378479a412a143d20910f5170c26618498fe8f00b8028df321d",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated research metadata only; no engine implementation or independent validation/status promotion."
+      }
     }
   ]
 }
