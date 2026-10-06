@@ -75,6 +75,7 @@ constexpr auto presentationSource=R"(#version 330 core
 uniform usampler2D nativePixels;
 uniform usampler2D palette;
 uniform bool indexed;
+uniform bool rgb565;
 uniform uvec3 masks;
 uniform uvec3 lowBits;
 uniform uvec3 maxima;
@@ -82,7 +83,11 @@ layout(location=0) out uvec4 color;
 void main(){
     uint pixel=texelFetch(nativePixels,ivec2(gl_FragCoord.xy),0).r;
     if(indexed)color=texelFetch(palette,ivec2(int(pixel),0),0);
-    else color=uvec4(((uvec3(pixel)&masks)/lowBits)*255u/maxima,255u);
+    else {
+        uvec3 channels=(uvec3(pixel)&masks)/lowBits;
+        // Match observed Surface2 GetDC/GetPixel expansion for canonical RGB565.
+        color=uvec4(rgb565?((channels<<uvec3(3,2,3))|(channels>>uvec3(2,4,2))):channels*255u/maxima,255u);
+    }
 })";
 void validateImage(const Image& i,unsigned bits){
     if(bits!=8 && bits!=16 && bits!=24 && bits!=32)throw std::runtime_error("Unsupported native pixel size");
@@ -274,13 +279,15 @@ void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
 }
 void GlBlitter::reloadDib(SurfaceId id,const DibInput& dib){
     auto& p=*impl_;p.thread();auto& s=p.get(id);
-    if((s.format.bits!=24 && s.format.bits!=32) || s.format.masks!=std::array<std::uint32_t,3>{0xff0000,0xff00,0xff})
-        throw std::runtime_error("DIB reload requires canonical RGB24/32 target");
+    const bool rgb565=s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f};
+    if(!rgb565 && ((s.format.bits!=24 && s.format.bits!=32) || s.format.masks!=std::array<std::uint32_t,3>{0xff0000,0xff00,0xff}))
+        throw std::runtime_error("DIB reload requires RGB565 or canonical RGB24/32 target");
     if(s.clipper.attached)throw std::runtime_error("DIB reload with DC clipping is not validated");
     auto image=decodeDibRgb(dib);
     const int w=std::min(image.width,s.width),h=std::min(image.height,s.height);
     Image patch{w,h,std::vector<std::uint32_t>(std::size_t(w)*h)};
     for(int y=0;y<h;++y)std::copy_n(image.pixels.begin()+std::size_t(y)*image.width,w,patch.pixels.begin()+std::size_t(y)*w);
+    if(rgb565)for(auto& pixel:patch.pixels)pixel=((pixel>>19)&31u)<<11|((pixel>>10)&63u)<<5|((pixel>>3)&31u);
     update(id,0,0,patch);
 }
 void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key,
@@ -360,6 +367,7 @@ void resolvePresentation(Owner& p,Surface& s,GLuint target){
     if(!p.presentation->bind())throw std::runtime_error("Cannot bind presentation shader");
     g.glUniform1i(p.presentation->uniformLocation("nativePixels"),0);g.glUniform1i(p.presentation->uniformLocation("palette"),1);
     g.glUniform1i(p.presentation->uniformLocation("indexed"),s.format.bits==8);
+    g.glUniform1i(p.presentation->uniformLocation("rgb565"),s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f});
     std::array<GLuint,3> low{1,1,1},maximum{1,1,1};
     if(s.format.bits!=8)for(unsigned i=0;i<3;++i){low[i]=s.format.masks[i]&(~s.format.masks[i]+1);maximum[i]=s.format.masks[i]/low[i];}
     g.glUniform3uiv(p.presentation->uniformLocation("masks"),1,s.format.masks.data());

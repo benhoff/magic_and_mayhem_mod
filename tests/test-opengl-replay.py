@@ -36,7 +36,15 @@ def main():
             assert output.read_bytes() == expected, name
             assert report['capture_sha256'] == hashlib.sha256(data).hexdigest()
             assert report['output_sha256'] == hashlib.sha256(expected).hexdigest()
-            rgb = replay.ppm(replay.decode(data), expected).split(b'\n', 3)[3]
+            capture = replay.decode(data)
+            rgb = replay.ppm(capture, expected).split(b'\n', 3)[3]
+            # Native RGB565 presentation follows independently captured DC bit
+            # replication; the retained CPU preview policy remains historical.
+            if capture['bits'] == 16:
+                rgb = b''.join(bytes(((word >> 8) & 0xf8 | (word >> 13),
+                                      (word >> 3) & 0xfc | (word >> 9) & 3,
+                                      (word << 3) & 0xf8 | (word >> 2) & 7))
+                               for (word,) in struct.iter_unpack('<H', expected))
             rgba = b''.join(rgb[i:i+3]+b'\xff' for i in range(0, len(rgb), 3))
             assert report['presentation_rgba_sha256'] == hashlib.sha256(rgba).hexdigest()
             assert preview.read_bytes().startswith(b'\x89PNG\r\n\x1a\n')

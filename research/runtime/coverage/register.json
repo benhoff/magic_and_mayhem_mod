@@ -4428,7 +4428,8 @@
       "original": [],
       "documents": [
         "renderer/README.md",
-        "research/runtime/opengl-surface-command-replay.md"
+        "research/runtime/opengl-surface-command-replay.md",
+        "research/runtime/surface-dib-ddraw.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -4448,7 +4449,8 @@
         "tests/test-render-commands.py"
       ],
       "evidence": [
-        "REVIEW.NR.surfaces"
+        "REVIEW.NR.surfaces",
+        "NR.surface-colors.rgb565-dc.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -4467,7 +4469,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/native-sprite-rendering.md"
+        "research/runtime/native-sprite-rendering.md",
+        "research/runtime/surface-dib-ddraw.md"
       ],
       "implementation": [
         "renderer/sprites/preview_main.cpp",
@@ -4479,7 +4482,8 @@
         "tests/sprite-binary-reference.cpp"
       ],
       "evidence": [
-        "REVIEW.NR.sprites"
+        "REVIEW.NR.sprites",
+        "NR.surface-colors.rgb565-dc.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -4498,7 +4502,8 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "apps/sprite-scene/README.md"
+        "apps/sprite-scene/README.md",
+        "research/runtime/surface-dib-ddraw.md"
       ],
       "implementation": [
         "apps/sprite-scene/attachment_recipe.cpp",
@@ -4513,7 +4518,8 @@
       ],
       "evidence": [
         "REVIEW.NR.sprite_scene",
-        "NATIVE.native-animation-scene"
+        "NATIVE.native-animation-scene",
+        "NR.surface-colors.rgb565-dc.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -10444,7 +10450,8 @@
       "original": [],
       "documents": [
         "research/runtime/opengl-direct-presentation.md",
-        "renderer/README.md"
+        "renderer/README.md",
+        "research/runtime/surface-dib-ddraw.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -10466,7 +10473,8 @@
       ],
       "evidence": [
         "NR.gpu-presentation.native",
-        "NR.gpu-presentation.native-v2"
+        "NR.gpu-presentation.native-v2",
+        "NR.surface-colors.rgb565-dc.regressions-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -11514,7 +11522,8 @@
       "documents": [
         "research/runtime/opengl-incremental-commands.md",
         "renderer/README.md",
-        "apps/qt-shell/README.md"
+        "apps/qt-shell/README.md",
+        "research/runtime/surface-dib-ddraw.md"
       ],
       "implementation": [
         "renderer/commands.cpp",
@@ -11533,7 +11542,8 @@
       ],
       "evidence": [
         "NR.incremental-command-consumer.native",
-        "NR.incremental-command-consumer.native-v2"
+        "NR.incremental-command-consumer.native-v2",
+        "NR.surface-colors.rgb565-dc.regressions-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15033,14 +15043,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Explicit native undefined-content validity after restoration",
-      "scope": "GlBlitter invalidateContents declares all native bytes undefined without inventing/clearing pixels or changing uploads. Written update/opaque copy regions become known; source/mask sampling, keyed/masked destinations, full read and CPU/GPU presentation refuse unknown pixels. Validity follows swapped storage; clipper/palette metadata remains native policy.30 GL tests include explicit recovered fill adapters. No real driver Restore/palette retention, live hook or new wire integration. Nine indexed8 palette/reload cases add45 unknown-content refusals,18 captured index-input comparisons and864 input-derived RGB pixels. Verified palette installation does not define unknown indices; partial reload remains unreadable, full reload establishes pixels and subsequent palette/rebind inputs retain indices. No independently captured driver RGB/COM shared identity or original asset reload equivalence. Bounded DIB reload defines only cropped written regions; larger invalid targets retain unknown borders.12 scripted cursor-recovery compositions retain unknown triggering surfaces and137 native refusal checks pass across36 RGB24/32 cases. Existing30 validity checks freshly pass; no actual-lost DirectDraw/live claim.",
+      "scope": "GlBlitter invalidateContents declares all native bytes undefined without inventing/clearing pixels or changing uploads. Written update/opaque copy regions become known; source/mask sampling, keyed/masked destinations, full read and CPU/GPU presentation refuse unknown pixels. Validity follows swapped storage; clipper/palette metadata remains native policy.30 GL tests include explicit recovered fill adapters. No real driver Restore/palette retention, live hook or new wire integration. Nine indexed8 palette/reload cases add45 unknown-content refusals,18 captured index-input comparisons and864 input-derived RGB pixels. Verified palette installation does not define unknown indices; partial reload remains unreadable, full reload establishes pixels and subsequent palette/rebind inputs retain indices. No independently captured driver RGB/COM shared identity or original asset reload equivalence. Bounded DIB reload defines only cropped written regions; larger invalid targets retain unknown borders.12 scripted cursor-recovery compositions retain unknown triggering surfaces and137 native refusal checks pass across36 RGB24/32 cases. Existing30 validity checks freshly pass; no actual-lost DirectDraw/live claim. Subsequent72 RGB565/RGB32 DC-raster cases/24 scripted recovery compositions keep only cropped written region known, preserve unknown borders and triggering surfaces;253 refusals pass. Real Restore/loss/live remain excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/original-surface-retry.md",
         "research/runtime/native-surface-operation-matrix.json",
         "research/runtime/surface-palette-restore.md",
-        "research/runtime/native-cursor-reload.md"
+        "research/runtime/native-cursor-reload.md",
+        "research/runtime/surface-dib-ddraw.md"
       ],
       "implementation": [
         "renderer/known_pixels.hpp",
@@ -15053,13 +15064,17 @@
         "tests/render-palette-restore-test.cpp",
         "tools/check-native-palette-restore.py",
         "tests/render-cursor-reload-test.cpp",
-        "tools/check-native-cursor-reload.py"
+        "tools/check-native-cursor-reload.py",
+        "tests/render-ddraw-dib-test.cpp",
+        "tools/check-native-ddraw-dib.py"
       ],
       "evidence": [
         "NR.surface-contents.validity.native-20261006",
         "DRIVER.surface-palette.restore.native-20261006",
         "NR.surface-contents.validity.cursor-regression-20261006",
-        "NR.surface-reload.dib-rgb.native-20261006"
+        "NR.surface-reload.dib-rgb.native-20261006",
+        "NR.surface-reload.dib-rgb.ddraw-20261006",
+        "NR.surface-reload.dib-rgb.after-ddraw-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15194,7 +15209,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original global cursor sentinel and bounded bitmap-to-DC reload",
-      "scope": "Recovered object+40 zero/callback/-1 routes in four wrappers, fixed global cursor/path sentinel returning0, original bitmap/DC loader returning file-load status while ignoring DC/GDI results, bounded1/4/8/24-bit file reads/cleanup including installed cursor.1698 original x86 traces/20060 endpoint events independently compared offline. Scripted CRT/COM/GDI boundaries, submitted buffers only; second allocation failure, malformed/extreme BMP semantics, real GDI raster pixels, native resource routing/conversion, other reload bodies and live recovery remain pending. Explicit global cursor route and bounded sequential BMP input parser now compare1456 projected original dispatch traces/12 submitted-buffer cases;813 budget stops preserve prefixes.12 scripted native GL recovery compositions bind a global cursor and retain triggering-surface invalidity. DirectDraw DC/other formats/loss/live remain pending; current native RGB raster coverage is separate from original control flow.",
+      "scope": "Recovered object+40 zero/callback/-1 routes in four wrappers, fixed global cursor/path sentinel returning0, original bitmap/DC loader returning file-load status while ignoring DC/GDI results, bounded1/4/8/24-bit file reads/cleanup including installed cursor.1698 original x86 traces/20060 endpoint events independently compared offline. Scripted CRT/COM/GDI boundaries, submitted buffers only; second allocation failure, malformed/extreme BMP semantics, real GDI raster pixels, native resource routing/conversion, other reload bodies and live recovery remain pending. Explicit global cursor route and bounded sequential BMP input parser now compare1456 projected original dispatch traces/12 submitted-buffer cases;813 budget stops preserve prefixes.12 scripted native GL recovery compositions bind a global cursor and retain triggering-surface invalidity. DirectDraw DC/other formats/loss/live remain pending; current native RGB raster coverage is separate from original control flow. Subsequent72 nativeRGB565/RGB32 cases match real standalone Surface2 DC outputs and24 scripted recovered/global-cursor compositions pass.1456 original projections/12 exact buffers freshly compare. No native DC admission, real original lost-draw/live composition.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -15257,7 +15272,8 @@
       "documents": [
         "research/runtime/original-surface-sentinel.md",
         "research/runtime/native-surface-operation-matrix.json",
-        "research/runtime/native-cursor-reload.md"
+        "research/runtime/native-cursor-reload.md",
+        "research/runtime/surface-dib-ddraw.md"
       ],
       "implementation": [
         "tools/check-original-surface-sentinel.py",
@@ -15273,14 +15289,18 @@
         "tests/fixtures/surfaces/original-sentinel-corpus.json",
         "tests/surface-cursor-retry-model.cpp",
         "tests/render-cursor-reload-test.cpp",
-        "tools/check-native-cursor-reload.py"
+        "tools/check-native-cursor-reload.py",
+        "tests/render-ddraw-dib-test.cpp",
+        "tools/check-native-ddraw-dib.py"
       ],
       "evidence": [
         "ORIGINAL.surface-reload.cursor-sentinel.capture-20261006",
         "ORIGINAL.surface-reload.cursor-sentinel.cpu-20261006",
         "ORIGINAL.surface-reload.cursor-sentinel.native-initial-20261006",
         "ORIGINAL.surface-reload.cursor-sentinel.native-20261006",
-        "NR.surface-reload.dib-rgb.native-20261006"
+        "NR.surface-reload.dib-rgb.native-20261006",
+        "ORIGINAL.surface-reload.cursor-sentinel.ddraw-20261006",
+        "NR.surface-reload.dib-rgb.ddraw-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -15334,12 +15354,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded native owned DIB RGB reload and written-region validity",
-      "scope": "Owned positive-height BI_RGB40-byte1/4/8-bit full RGB palette usage0 or24-bit BGR usage1 converts to top-down RGB. GlBlitter writes origin/crops to canonicalRGB24/32 destination; only written region becomes known. Unsupported layouts/palette counts/dimensions/extent, attached clipper, indexed/RGB565/alternate mask destinations and absent global binding refuse.36 cases match1346928 independent standalone GDI RGB pixel observations including read/present;12 scripted recovery compositions and137 refusals. This intentional bounded native API is not real DirectDraw Restore/GetDC or live/wire replacement.",
+      "scope": "Owned positive-height BI_RGB40-byte1/4/8-bit full RGB palette usage0 or24-bit BGR usage1 converts to top-down RGB. GlBlitter writes origin/crops to canonicalRGB24/32 destination; only written region becomes known. Unsupported layouts/palette counts/dimensions/extent, attached clipper, indexed/RGB565/alternate mask destinations and absent global binding refuse.36 cases match1346928 independent standalone GDI RGB pixel observations including read/present;12 scripted recovery compositions and137 refusals. This intentional bounded native API is not real DirectDraw Restore/GetDC or live/wire replacement. Subsequent canonical RGB565 reload supersedes the earlier16-bit refusal for masksf800/07e0/001f; truncating native packing and bit-replicated presentation match72 independently captured Surface2 native/DC frames in2693856 pixel comparisons. RGB555/indexed/attachedDCclipper still refuse.24 scripted compositions/253 refusals pass.36 RGB24/32 compatibility cases also freshly pass. Earlier source fingerprints remain historical.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-cursor-reload.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/surface-dib-ddraw.md"
       ],
       "implementation": [
         "renderer/dib.cpp",
@@ -15351,13 +15372,18 @@
         "tests/render-cursor-reload-test.cpp",
         "tools/check-native-cursor-reload.py",
         "tests/test-surface-dib-gdi.py",
-        "tools/check-surface-dib-gdi.py"
+        "tools/check-surface-dib-gdi.py",
+        "tests/render-ddraw-dib-test.cpp",
+        "tools/check-native-ddraw-dib.py"
       ],
       "evidence": [
         "DRIVER.surface-dib.gdi.capture-20261006",
         "DRIVER.surface-dib.gdi.offline-20261006",
         "NR.surface-reload.dib-rgb.native-20261006",
-        "NR.surface-reload.dib-rgb.renderer-regressions-20261006"
+        "NR.surface-reload.dib-rgb.renderer-regressions-20261006",
+        "NR.surface-reload.dib-rgb.ddraw-20261006",
+        "NR.surface-reload.dib-rgb.after-ddraw-20261006",
+        "NR.surface-colors.rgb565-dc.regressions-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15435,6 +15461,96 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-driver.dc-raster",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Standalone Surface2 DC raster and admission observations",
+      "scope": "Wine11.16 real Surface2 offscreenRGB565/RGB32 GetDC/GDI/ReleaseDC,72 cases covering6 original submitted inputs/3 crop shapes/2 formats/2 requested caps. Captured native words and all DC GetPixel outputs compare1346928 pixels each; actual caps/selected bitmap/repeated DC and Lock admission/out-handle states recorded. Original helper addresses anchor input boundary only; no game instructions, actual loss/indexed/DC clipping/Windows hardware/live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745856,
+          "scope": "Original helper submitted input boundary previously captured; standalone probe does not execute it."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5820832,
+          "scope": "Cursor caller boundary only, no original execution or full function equivalence in this capture."
+        }
+      ],
+      "documents": [
+        "research/runtime/surface-dib-ddraw.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/surface-dib-ddraw-reference.c",
+        "tests/surface-dib-ddraw-rgb-reference.c",
+        "tools/capture-surface-dib-ddraw.py",
+        "tools/capture-surface-dib-ddraw-rgb.py",
+        "tools/check-surface-dib-ddraw.py",
+        "tools/check-surface-dib-ddraw-rgb.py",
+        "tests/test-surface-dib-ddraw.py",
+        "tests/test-surface-dib-ddraw-rgb.py",
+        "tests/fixtures/surfaces/surface-dib-ddraw.json.gz",
+        "tests/fixtures/surfaces/surface-dib-ddraw-rgb.json.gz"
+      ],
+      "evidence": [
+        "DRIVER.surface-dib.ddraw.capture-20261006",
+        "DRIVER.surface-dib.ddraw.offline-20261006",
+        "DRIVER.surface-dib.ddraw-rgb.capture-20261006",
+        "DRIVER.surface-dib.ddraw-rgb.offline-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.surface-colors.rgb565-dc",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native RGB565 presentation aligned to independently observed DC colors",
+      "scope": "CanonicalRGB565 f800/07e0/001f presentation uses5/6/5-bit replication in shared CPU-readback/GPU-texture resolution; other masks retain policy.72 native reload/read/presentation cases compare2693856 real Surface2 native/DC pixels; all32/64/32 channel levels represented, oldfloor differs89860pixels.104 viewport frames at scales1/1.5 and9renderer/2sprite regressions pass. Runtime CPU frame adapter/retained CPU preview floor-scaling and live/wire color equivalence remain pending separately.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/surface-dib-ddraw.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp"
+      ],
+      "tests": [
+        "tests/render-ddraw-dib-test.cpp",
+        "tools/check-native-ddraw-dib.py",
+        "tests/gpu-presentation-test.cpp",
+        "tests/render-surfaces-test.cpp",
+        "tests/render-command-consumer-test.cpp",
+        "tests/test-opengl-replay.py",
+        "tests/test-render-commands.py",
+        "tests/sprite-render-test.cpp",
+        "tests/sprite-scene-test.cpp"
+      ],
+      "evidence": [
+        "DRIVER.surface-dib.ddraw-rgb.capture-20261006",
+        "DRIVER.surface-dib.ddraw-rgb.offline-20261006",
+        "NR.surface-reload.dib-rgb.ddraw-20261006",
+        "NR.surface-colors.rgb565-dc.regressions-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -27937,6 +28053,120 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRIVER.surface-dib.ddraw.capture-20261006",
+      "kind": "native_integration",
+      "scope": "First72 standalone real Wine Surface2 GetDC/GDI/ReleaseDC RGB565/RGB32 cases from original submitted inputs:1346928 native words,216 DC samples and exact admission/out-handle states. Original instructions, actual loss/indexed/DC clipping/live excluded.",
+      "record": "research/runtime/surface-dib-ddraw-capture-20261006.json",
+      "sha256": "ea20816300b1c93bb16d5d8c51f5fc4c8363a2b427d01bc907f23fc068d49fe3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-dib.ddraw.offline-20261006",
+      "kind": "native_integration",
+      "scope": "Input-derived72 native-word/admission cases/216 DC samples compare retained independent real Surface2 outputs. First capture/report hashes preserved; no original instruction/live equivalence.",
+      "record": "research/runtime/surface-dib-ddraw-offline-20261006.json",
+      "sha256": "04644163bc1e67e727171e9db62e38a376c3750d45809231efe977e573d34b19",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-dib.ddraw-rgb.capture-20261006",
+      "kind": "native_integration",
+      "scope": "Second serialized Wine run captures72 complete independent native-word/DC GetPixel frames,1346928 values each, Surface2 admission/out-handle/bitmap observations. No original game, actual loss/indexed/DC clipping/live equivalence.",
+      "record": "research/runtime/surface-dib-ddraw-rgb-capture-20261006.json",
+      "sha256": "c3e5e0ad22679969dd7e7925b7429f89a057e0fb95bc2cb680fb7440927b6aac",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-dib.ddraw-rgb.offline-20261006",
+      "kind": "native_integration",
+      "scope": "72 full native/DC frames compare input-derived RGB565 packing/bit replication and RGB32 model; every32/64/32 channel level represented,89860 prior floor-expansion differences. High unusedRGB32 byte excluded; build-scoped standalone driver only.",
+      "record": "research/runtime/surface-dib-ddraw-rgb-offline-20261006.json",
+      "sha256": "846cb55d9cb050fbdfe0592165f77a976d11ea1b167adffaba99f0f0625a2198",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-reload.cursor-sentinel.ddraw-20261006",
+      "kind": "isolated_original",
+      "scope": "Fresh1456 recovered C++ dispatch projections and12 original return/header/palette/pixel-buffer cases versus unchanged original x86 captures;813 bounded stops/two invalid budgets. Native raster registered separately. No original CRT/DC/loss/live composition equivalence.",
+      "record": "research/runtime/native-ddraw-dib-20261006.json",
+      "sha256": "d91d70175011b5fc2d8202487dc07b112fa29ae2f64a88039911f7e7b4090e83",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NR.surface-reload.dib-rgb.ddraw-20261006",
+      "kind": "native_integration",
+      "scope": "72 nativeRGB565/RGB32 reload/read/present cases versus full independent Surface2 native-word/DC outputs,2693856 pixel comparisons;24 scripted cursor recovery compositions/253 refusals and zero final surfaces. Native DC leases/indexed/clipping/actual loss/live excluded.",
+      "record": "research/runtime/native-ddraw-dib-20261006.json",
+      "sha256": "d91d70175011b5fc2d8202487dc07b112fa29ae2f64a88039911f7e7b4090e83",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-reload.dib-rgb.after-ddraw-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh36 RGB24/32 reload cases,1346928 standaloneGDI RGB comparisons,12 scripted compositions/137 refusals after RGB565 extension.1456 dispatch/12 input comparisons also pass; no new original DC/loss/live equivalence.",
+      "record": "research/runtime/native-cursor-after-ddraw-20261006.json",
+      "sha256": "beb11fb1d1e92eb6f1b8ba71a422e826157c8eff5da05fe4b655048ff8b7dd04",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-colors.rgb565-dc.regressions-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh9 renderer/2 sprite regressions,104 full-frame viewport comparisons at scales1/1.5 and10 offline mutation tests. Prior floor CPU runtime adapter/preview intentionally unchanged; no original/live validation for broader contracts.",
+      "record": "research/runtime/ddraw-dib-regressions-20261006.json",
+      "sha256": "4ca0a057086486fbeb1d91b739164e6705d51848339a6df822f29bbd0bd45972",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -32483,6 +32713,24 @@
         "tools/test-live-render-routes.py",
         "tests/live-render-route-probe.cpp"
       ]
+    },
+    {
+      "id": "NR.surface-reload.ddraw-dib.headless",
+      "level": "headless",
+      "scope": "72 nativeRGB565/RGB32 DIB reload/native-word and DC-RGB comparisons plus24 scripted cursor compositions; captured standalone driver outputs independent of native implementation. Triggering surfaces/unknown borders remain invalid. Native DC leases, actual loss/indexed/clipping/live excluded.",
+      "behaviors": [
+        "RE.surface-reload.cursor-sentinel",
+        "NR.surface-reload.dib-rgb",
+        "NR.surface-contents.validity",
+        "NR.surface-colors.rgb565-dc"
+      ],
+      "evidence": [
+        "NR.surface-reload.dib-rgb.ddraw-20261006"
+      ],
+      "tests": [
+        "tests/render-ddraw-dib-test.cpp",
+        "tools/check-native-ddraw-dib.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -32730,7 +32978,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-palette-property-order-20261006.json",
-    "sha256": "251aeeed8b401d192298ac4eda871e85e0913c47ce9fff960ecf24d354644c1a"
+    "path": "research/runtime/coverage/source-index-ddraw-dib-20261006.json",
+    "sha256": "34c8d238b84fa1c2e83c9a63c687d3f8c5b54f50b01e0313039eaa93d7410221"
   }
 }

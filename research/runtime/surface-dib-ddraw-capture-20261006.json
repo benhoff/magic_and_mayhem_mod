@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-dib-ddraw-reference.c": "6c5595e4af4f33c26c9e2cdb468f10995dd45805ee204a536a8a28359f52d67d",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-dib-ddraw.py": "c4331e517ac98f29f80c9e44e3c73a221b6c9d4639592413def3cfca936c2e1f",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/check-original-surface-sentinel.py": "6021b11bd95cc14ba957e2b86f4558c07060aa8fb73e320c23b9720008aa1082",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+    "tests/fixtures/surfaces/surface-dib-ddraw.json.gz": "b47a8d5cad19cd906fa1f5151fd5b11bc105281ccd2c47664a6c830eac200f8d"
+  },
+  "cases": 72,
+  "pixels": 1346928,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-dib-ddraw.json.gz",
+    "sha256": "b47a8d5cad19cd906fa1f5151fd5b11bc105281ccd2c47664a6c830eac200f8d"
+  },
+  "inputs_sha256": "642bb89855628e2b3ed974c82cf8b9b06cf7e4bccf5d1dd0a9add59f66fae986",
+  "outputs_sha256": "422ea9d74ff408ccdc14df6490026d6907d6058ab648f2ecd12bb06b3a0f9699",
+  "probe_sha256": "6678a708a51f7ef56ae1fcdef331c47596c4ae402c8389fbc94966bed3d5fc03",
+  "artifacts": "working/tests/surface-dib-ddraw/run-ty4v036j",
+  "environment": {
+    "wine": "wine-11.16",
+    "gdi32_sha256": "089d8e8e7e5d7b26c72f6d0b90b89531fe43e915c900d4dd485f2924ab584b0c",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b"
+  },
+  "original_game_executed": false,
+  "scope": "Standalone real Wine Surface2 GetDC/GDI/ReleaseDC to requested RGB565/RGB32 offscreen surfaces with two cap classes,72 cases from retained original loader inputs; locked/repeated DC admission, output-handle states, selected bitmap and native Lock pixel outputs. No original game execution, actual surface loss, indexed/DC clipping, Windows hardware or live equivalence.",
+  "original_manifest_verified_before_after": true
+}

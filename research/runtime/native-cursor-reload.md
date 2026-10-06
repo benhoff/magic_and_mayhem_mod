@@ -110,3 +110,13 @@ or malformed original allocation branches, other reload callback bodies,
 real lost-draw composition, Windows hardware drivers and live/wire recovery
 remain pending. Headless composition binds the global cursor through the test
 adapter; no live interception or engine bypass is introduced.
+
+## Subsequent DirectDraw DC step
+
+The subsequent [Surface2 DC comparison](surface-dib-ddraw.md) adds real
+GetDC/GDI/ReleaseDC RGB565/RGB32 outputs and bounded native RGB565 reload.
+All 72 native/DC cases match 2,693,856 pixel comparisons. RGB565 native
+presentation now uses observed bit replication; 24 scripted cursor compositions
+pass. This supersedes the earlier RGB565 destination refusal for canonical masks.
+The earlier results above retain their exact historical hashes. Indexed/DC
+clipping, native DC admission, actual loss and live/wire recovery remain pending.

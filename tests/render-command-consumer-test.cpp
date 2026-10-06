@@ -18,6 +18,10 @@ QImage rgba(const Image& image,PixelFormat format,const std::vector<Rgb>& palett
         const auto p=image.pixels[std::size_t(y)*image.width+x];unsigned rgb[3];
         if(format.bits==8){const auto c=palette.at(p);rgb[0]=c.red;rgb[1]=c.green;rgb[2]=c.blue;}
         else for(unsigned i=0;i<3;++i){const auto mask=format.masks[i],low=mask&(~mask+1);rgb[i]=((p&mask)/low)*255/(mask/low);}
+        if(format.bits==16 && format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}){
+            const auto r=(p>>11)&31,g=(p>>5)&63,b=p&31;
+            rgb[0]=(r<<3)|(r>>2);rgb[1]=(g<<2)|(g>>4);rgb[2]=(b<<3)|(b>>2);
+        }
         out.setPixelColor(x,y,QColor(rgb[0],rgb[1],rgb[2]));
     }
     return out;

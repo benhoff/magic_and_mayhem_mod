@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "renderer/blit.cpp": "22bd2b922f61c0ffe1f57985c0cc6ab48d32a5ad973044677909d90bc4be0a24",
+    "renderer/blit.hpp": "d96603003a2b6510bc863c0a3dbc480a0999eae33ea73cfa8c6c7f3b7f733f21",
+    "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "renderer/CMakeLists.txt": "05b10d3caa4ae23a94491c94394596b47615f79cdfff99e118b2cd78d394b021",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "renderer/known_pixels.hpp": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+    "tests/render-blit-test.cpp": "1cbd3b85a3270f8ef52d8a5cb086d53531a8973853d8ca931ebb0bfdcc887f35",
+    "tests/render-surfaces-test.cpp": "62c9962b8e4aa28e42fdc99a2a1a96e55dab4a9a6800710e6e276a8cfc88efc9",
+    "tests/render-surface-copy-fixtures.cpp": "e676443e82f419e77f200295424fdd4ae606c703a241db9abb7be200f18ec5d7",
+    "tests/render-clipping-stream-test.cpp": "d7382c80f30ee50128f8b792afa60cbfb128ab04d7496bc5bf8f319a51773360",
+    "tests/render-command-consumer-test.cpp": "18e55539ba5d02dc2d182ca6745d20d2a15732c2af4c401304fd6ae33ef6abc2",
+    "tests/test-render-capture.py": "135aa5d0f3fc9f6e79b495f5052c872fd35aa4868d64670d462c2b047b52ea31",
+    "tests/test-opengl-replay.py": "a65a736eacc8f16d18105fd418d61d47b5c995f2878f274e9ebc0f3f5dbdccc3",
+    "tests/test-render-commands.py": "ba42952b3cd657f9389c043c3652454710bfc41947dec82b67845a26f3407734",
+    "tests/gpu-presentation-test.cpp": "01a0c59fa147b14c813a3870d2ab43c636516c280e28bbaf22a5b21b435abee3",
+    "apps/qt-shell/gl_viewport.cpp": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+    "apps/qt-shell/gl_viewport.hpp": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+    "tests/sprite-render-test.cpp": "93e9c6d0ea228e8cb03b29824152a52aad0862c355fdabe341cb8e9fb9ada5ca",
+    "tests/sprite-scene-test.cpp": "e54a47f4241c476113ae02de68455400762e20b51dd28496a1ad139b5f072d84",
+    "renderer/sprites/sprite.cpp": "15c9c4b2ced791fba045795ff02525d76b4c6a1ee12caab7a11655b4de0b66bf",
+    "renderer/sprites/sprite.hpp": "8026c4bff5313c1adbf870f5ae53ca0525c1cfe6eab7d511b8d52078b5f660a0",
+    "apps/sprite-scene/scene.cpp": "2d4747e4e976774dc2ed2c534c0a23c5b4d2d87599c0d6c7489f8c45cdb20a98",
+    "apps/sprite-scene/scene.hpp": "85defac68b301a9f2b21cc5041b93363757d8f7629293aa63deeebc3f0b7e0c3",
+    "tests/test-surface-dib-ddraw.py": "87bb720aa288beeb98d3a10dbefa8a8a8ff1adc768b23658a91d140d2d301d9b",
+    "tests/test-surface-dib-ddraw-rgb.py": "2ca7008ccf97c8abae053412425d92c75babf7139f6ff4c21f2efeb783eabc46"
+  },
+  "renderer_tests": 9,
+  "sprite_tests": 2,
+  "offline_mutation_tests": 10,
+  "ctest": [
+    {
+      "path": "working/tests/ddraw-dib-renderer-final.xml",
+      "sha256": "4fbc29911dd83e80492c3b65b987ef644d5a2749bfa05d3e2da897577947771f",
+      "tests": 9,
+      "names": [
+        "renderer-help",
+        "native-capture-reference",
+        "opengl-clipping-stream",
+        "opengl-surface-clipping",
+        "opengl-incremental-consumer",
+        "opengl-command-stream",
+        "opengl-native-blits",
+        "opengl-persistent-surfaces",
+        "opengl-capture-replay"
+      ]
+    },
+    {
+      "path": "working/tests/ddraw-dib-sprites.xml",
+      "sha256": "c58385d5dc3dbfd0b55f647ba5bdbb11cc3111984d9b798acad436d189a195b9",
+      "tests": 2,
+      "names": [
+        "opengl-animation-scene",
+        "opengl-sprite-frames"
+      ]
+    }
+  ],
+  "gpu": [
+    {
+      "scale": "1",
+      "result": {
+        "success": true,
+        "full_frame_comparisons": 104,
+        "command_presentations": 2,
+        "gpu_presentations": 99,
+        "rgba_readbacks": 0,
+        "gpu_viewport_uploads": 0,
+        "unshared_context_refused": true,
+        "owner_release_survived": true,
+        "driver": "llvmpipe (LLVM 22.1.8, 256 bits)"
+      },
+      "log_sha256": "0425200ef34a02e581f19b76a24170e1a48a7c6c7e347f5c60d614419ab292dd"
+    },
+    {
+      "scale": "1.5",
+      "result": {
+        "success": true,
+        "full_frame_comparisons": 104,
+        "command_presentations": 2,
+        "gpu_presentations": 99,
+        "rgba_readbacks": 0,
+        "gpu_viewport_uploads": 0,
+        "unshared_context_refused": true,
+        "owner_release_survived": true,
+        "driver": "llvmpipe (LLVM 22.1.8, 256 bits)"
+      },
+      "log_sha256": "0425200ef34a02e581f19b76a24170e1a48a7c6c7e347f5c60d614419ab292dd"
+    }
+  ],
+  "library_sha256": "656a480eb5c709aa95c64d49a73ba30e1fa3aa040ae035f823b69ab72a2426ec",
+  "gpu_binary_sha256": "f6979f55e996846a30d09faf5026b919608edc8d0b5ac645811a6c8eeb388b5c",
+  "scope": "Fresh focused renderer9/sprite2 tests and GPU viewport104 full-frame comparisons at scales1/1.5, plus10 offline mutation tests after RGB565 bit-replication correction. Native synthetic regression only; no original/live equivalence for these other contracts."
+}

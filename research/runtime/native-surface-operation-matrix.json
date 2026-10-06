@@ -391,7 +391,7 @@
       "id": "SURF.restore",
       "requirement": "required",
       "requirement_evidence": "Milestone restoration requirement; unchanged original wrapper Restore/retry scheduling captured using explicit fault inputs.",
-      "native_backend": "partial: bounded recovered retry/global cursor input reload and native RGB24/32 DIB writes with explicit content validity",
+      "native_backend": "partial: bounded recovered cursor retry and native RGB565/RGB24/RGB32 DIB writes with cropped validity and observed RGB565 DC color expansion",
       "wire_support": "Offline callback replay and native API only; v3/lifecycle recovery wire unchanged",
       "behavior_ids": [
         "RI.fills",
@@ -404,7 +404,9 @@
         "RE.surface-driver.indexed-restore",
         "RE.surface-reload.cursor-sentinel",
         "RE.surface-driver.dib-raster",
-        "NR.surface-reload.dib-rgb"
+        "NR.surface-reload.dib-rgb",
+        "RE.surface-driver.dc-raster",
+        "NR.surface-colors.rgb565-dc"
       ],
       "original": [
         {
@@ -435,9 +437,11 @@
         "surface-driver-restore-corpus.json",
         "surface-palette-restore.json.gz",
         "original-sentinel-corpus.json",
-        "surface-dib-gdi.json.gz"
+        "surface-dib-gdi.json.gz",
+        "surface-dib-ddraw.json.gz",
+        "surface-dib-ddraw-rgb.json.gz"
       ],
-      "remaining_gap": "1456 explicit cursor/callback/none route traces and12 exact submitted-buffer cases compare original captures;36 nativeRGB24/32 cases compare1346928 independent real GDI RGB pixels,12 scripted recovery compositions preserve triggering-surface invalidity.4480 legacy callback schedules and30 validity checks freshly pass. DirectDraw GetDC formats/RGB565/indexed conversion/clipping/palettes, other reload callback bodies, malformed/second allocation failures, actual-lost-draw composition, Windows/live/wire recovery remain pending."
+      "remaining_gap": "1456 explicit cursor/callback/none route traces and12 exact submitted-buffer cases compare original captures;36 nativeRGB24/32 cases compare1346928 independent real GDI RGB pixels,12 scripted recovery compositions preserve triggering-surface invalidity.4480 legacy callback schedules and30 validity checks freshly pass. DirectDraw GetDC formats/RGB565/indexed conversion/clipping/palettes, other reload callback bodies, malformed/second allocation failures, actual-lost-draw composition, Windows/live/wire recovery remain pending. Subsequent72 real Surface2RGB565/RGB32 native/DC frames now captured independently; native matches2693856 pixels and24 scripted cursor compositions. RGB565 conversion/presentation is validated within this DC scope. Native DC admission, indexed destination palettes/DC clipping, actual loss/other callback bodies/Windows/live/wire recovery and runtime CPU floor-color alignment remain pending."
     },
     {
       "id": "SURF.lifetime_updates",

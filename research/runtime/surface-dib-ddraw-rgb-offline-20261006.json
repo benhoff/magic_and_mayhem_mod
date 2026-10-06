@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/check-surface-dib-ddraw-rgb.py": "fcf125a1b14650874c6688841b721498b26e6568cf3b46280afdd57bcc2334b6",
+    "tests/test-surface-dib-ddraw-rgb.py": "2ca7008ccf97c8abae053412425d92c75babf7139f6ff4c21f2efeb783eabc46",
+    "tools/check-surface-dib-ddraw.py": "31036dba35e0382c9734b7169d8f57bf2c3c47991c64360134fe832a1db748cd",
+    "tools/check-surface-dib-gdi.py": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+    "research/runtime/surface-dib-ddraw-rgb-capture-20261006.json": "c3e5e0ad22679969dd7e7925b7429f89a057e0fb95bc2cb680fb7440927b6aac",
+    "tests/fixtures/surfaces/surface-dib-ddraw-rgb.json.gz": "f5d620a22922e9616b3ffc8cb297ced47cfb3016ba968194c6ecd5fcb3300413",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52"
+  },
+  "cases": 72,
+  "native_pixels": 1346928,
+  "dc_samples": 216,
+  "presentation_policy_differences": 70,
+  "dc_rgb_pixels": 1346928,
+  "floor_rgb_differences": 89860,
+  "rgb565_channel_levels": [
+    32,
+    64,
+    32
+  ],
+  "scope": "72 real Surface2 GetDC/GDI/ReleaseDC native-word and complete DC GetPixel RGB frames match input-derived model; all32/64/32 RGB565 channel levels represented. High unusedRGB32 byte excluded. Floor-scaling mismatch counted separately. No original instructions, actual loss, indexed/DC clipping, Windows hardware or live/wire equivalence."
+}

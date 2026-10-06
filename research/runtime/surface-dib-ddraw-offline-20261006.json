@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/check-surface-dib-ddraw.py": "31036dba35e0382c9734b7169d8f57bf2c3c47991c64360134fe832a1db748cd",
+    "tests/test-surface-dib-ddraw.py": "87bb720aa288beeb98d3a10dbefa8a8a8ff1adc768b23658a91d140d2d301d9b",
+    "tools/check-surface-dib-gdi.py": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+    "research/runtime/surface-dib-ddraw-capture-20261006.json": "ea20816300b1c93bb16d5d8c51f5fc4c8363a2b427d01bc907f23fc068d49fe3",
+    "tests/fixtures/surfaces/surface-dib-ddraw.json.gz": "b47a8d5cad19cd906fa1f5151fd5b11bc105281ccd2c47664a6c830eac200f8d",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52"
+  },
+  "cases": 72,
+  "native_pixels": 1346928,
+  "dc_samples": 216,
+  "presentation_policy_differences": 70,
+  "admission": {
+    "get_dc_while_locked": 0,
+    "locked_out_state": 2,
+    "get_dc": 0,
+    "dc_out_state": 2,
+    "repeated_get_dc": 2289435244,
+    "repeated_out_state": 0,
+    "lock_while_dc": 2289435054,
+    "release_dc": 0,
+    "repeated_release_dc": 2289435210
+  },
+  "scope": "Offline input-derived RGB565/RGB32 native words compare72 real Surface2 GetDC/GDI/ReleaseDC outcomes and216 DC GetPixel samples. Exact driver admission/out-handle observations are build-scoped; native floor-expanded RGB565 presentation is separately classified from DC bit-replicated RGB. No original image, actual loss, indexed/DC clipping or live equivalence."
+}

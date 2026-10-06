@@ -24,7 +24,7 @@ int main(int argc,char** argv){
                 for(unsigned g=0;g<4;++g){const auto id=g*32+frame;const auto x=int((g+1)*512/5);
                     require(actors[g].sprite==(active?std::optional<std::uint32_t>(id):std::nullopt),"Scene restart/selection policy differs");
                     if(active){expected.pixels[190*512+x]=id+1;const auto p=id+1;
-                        require(image.pixelColor(x,190)==QColor(((p>>11)&31)*255/31,((p>>5)&63)*255/63,(p&31)*255/31),"Scene presentation marker differs");}
+                        require(image.pixelColor(x,190)==QColor((((p>>11)&31)<<3)|(p>>13),(((p>>5)&63)<<2)|((p>>9)&3),((p&31)<<3)|((p>>2)&7)),"Scene presentation marker differs");}
                 }
                 require(scene.read().pixels==expected.pixels,"Scene retained trails or composed wrong markers");
                 require(renderer.stats().surfaces<=50,"Scene cache exceeded 24 owned uploads");

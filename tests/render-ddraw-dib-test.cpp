@@ -36,9 +36,9 @@ int main(int argc,char** argv){QGuiApplication app(argc,argv);try{
     require(argc==4,"Expected manifest, asset directory and pixel output");std::ifstream input(argv[1]);require(bool(input),"Missing case manifest");std::ofstream output(argv[3],std::ios::binary);require(bool(output),"Cannot write outputs");GlBlitter gl;unsigned cases=0;std::uint32_t id,w,h,bits;std::string name;
     const PixelFormat rgb{32,{0xff0000,0xff00,0xff}};
     while(input>>id>>name>>w>>h>>bits){
-        require(bits==24 || bits==32,"Target format");const PixelFormat format{bits,rgb.masks};
+        require(bits==16 || bits==32,"Target format");const PixelFormat format{bits,bits==16?std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}:rgb.masks};
         auto bitmap=parseSurfaceBitmap(bytes(std::string(argv[2])+"/"+name+".bmp"));require(bool(bitmap),"Expected valid original input");
-        Image initial{int(w),int(h),std::vector<std::uint32_t>(std::size_t(w)*h,0x556677)};
+        Image initial{int(w),int(h),std::vector<std::uint32_t>(std::size_t(w)*h,bits==16?0x2bab:0x556677)};
         const auto target=gl.create(initial,format);gl.reloadDib(target,*bitmap);const auto native=gl.read(target);const auto presented=gl.present(target);
         std::uint32_t head[4]={id,w,h,bits};output.write(reinterpret_cast<const char*>(head),sizeof(head));output.write(reinterpret_cast<const char*>(native.pixels.data()),std::streamsize(native.pixels.size()*4));
         for(unsigned y=0;y<h;++y)for(unsigned x=0;x<w;++x){auto p=presented.pixel(int(x),int(y))&0xffffff;output.write(reinterpret_cast<const char*>(&p),4);}
@@ -50,7 +50,7 @@ int main(int argc,char** argv){QGuiApplication app(argc,argv);try{
         else require(gl.read(target).pixels==native.pixels,"Complete reload differs");
         gl.destroy(target);++cases;
     }
-    require(input.eof()&&cases==36,"Case count");
+    require(input.eof()&&cases==72,"Case count");
     auto inputBytes=bytes(std::string(argv[2])+"/indexed8.bmp");const auto good=*parseSurfaceBitmap(inputBytes);
     auto target=gl.create({8,6,std::vector<std::uint32_t>(48,0x556677)},rgb);gl.invalidateContents(target);
     auto malformed=good;malformed.pixels.resize(1);refused([&]{gl.reloadDib(target,malformed);});refused([&]{gl.read(target);});
@@ -62,13 +62,14 @@ int main(int argc,char** argv){QGuiApplication app(argc,argv);try{
     for(const auto format:std::array<PixelFormat,3>{{{8,{}},{16,{0x7c00,0x3e0,0x1f}},{32,{0xff,0xff00,0xff0000}}}}){auto incompatible=gl.create({8,6,std::vector<std::uint32_t>(48)},format);refused([&]{gl.reloadDib(incompatible,good);});gl.destroy(incompatible);}
     refused([&]{gl.reloadDib(target,good);});
     unsigned compositions=0;
-    for(unsigned wrapper=0;wrapper<4;++wrapper)for(unsigned mode=0;mode<3;++mode){
-        std::array<SurfaceId,3> surfaces;for(auto& surface:surfaces)surface=gl.create({8,6,std::vector<std::uint32_t>(48,0x556677)},rgb);gl.invalidateContents(surfaces[2]);
+    for(unsigned depth:{16u,32u})for(unsigned wrapper=0;wrapper<4;++wrapper)for(unsigned mode=0;mode<3;++mode){
+        const PixelFormat recoveryFormat{depth,depth==16?std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}:rgb.masks};
+        std::array<SurfaceId,3> surfaces;for(auto& surface:surfaces)surface=gl.create({8,6,std::vector<std::uint32_t>(48,depth==16?0x2bab:0x556677)},recoveryFormat);gl.invalidateContents(surfaces[2]);
         Recovery a(gl,surfaces,inputBytes);a.missing=mode==1;a.failRestore=mode==2;
         SurfaceRetryInput config;config.wrapper=SurfaceWrapper(wrapper);config.sourceRoute=config.destinationRoute=SurfaceReloadRoute::CursorBitmap;config.keyEnabled=true;
         const auto result=runSurfaceRetry(config,a,3);require(result.returned&&!result.budgetExhausted,"Recovery result");
         const unsigned reloads=mode==2?0:wrapper<2?1:2;require(a.cursorReloads==reloads,"Global cursor dispatch count");
-        if(mode==0)require(gl.read(surfaces[2]).pixels==decodeDibRgb(good).pixels,"Global cursor pixels");else refused([&]{gl.read(surfaces[2]);});
+        if(mode==0){auto expected=decodeDibRgb(good);if(depth==16)for(auto& p:expected.pixels)p=((p>>19)&31)<<11|((p>>10)&63)<<5|((p>>3)&31);require(gl.read(surfaces[2]).pixels==expected.pixels,"Global cursor pixels");}else refused([&]{gl.read(surfaces[2]);});
         if(mode!=2){refused([&]{gl.read(surfaces[1]);});if(wrapper>=2)refused([&]{gl.read(surfaces[0]);});}
         for(auto surface:surfaces)gl.destroy(surface);
         ++compositions;
