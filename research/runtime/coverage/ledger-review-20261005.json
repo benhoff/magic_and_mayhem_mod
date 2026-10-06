@@ -1,0 +1,1489 @@
+{
+  "schema": 1,
+  "scope": "Static ledger documentation/accounting review against committed baseline 62d8ac9 and retained evidence. Concurrent working-tree renderer and scene work excluded. No original artifact consumed, subsystem experiment rerun, semantic mapping inferred or engine status promoted.",
+  "reviewed_git_head": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+  "review_date": "2026-10-05",
+  "counts": {
+    "builds": 1,
+    "behaviors": 364,
+    "evidence": 291,
+    "scenarios": 81,
+    "functions": 6675,
+    "registered_recovered_ranges": 15,
+    "incomplete_dispatch_tables": 10,
+    "indexed_sources": 1098,
+    "unclassified_functions": 6483,
+    "unassigned_executable_ranges": 4248,
+    "unresolved_indirect_flows": 1543,
+    "unmapped_imports": 190,
+    "computed_flows_with_inferred_targets": 2174,
+    "unmapped_callback_candidates": 3004,
+    "unmapped_dispatch_candidates": 335,
+    "calls_to_uninventoried_targets": 0,
+    "unmapped_dispatch_entries": 34,
+    "behaviors_without_scenarios": 258,
+    "behaviors_without_implementation": 142,
+    "behaviors_without_comparison": 300,
+    "behaviors_without_tests": 1,
+    "stale_evidence": 141,
+    "behavior_anchors_outside_discovered_functions": 34,
+    "changed_focused_registers": 0,
+    "new_sources_without_index": 0,
+    "removed_indexed_sources": 0,
+    "changed_indexed_sources": 0,
+    "sources_without_behavior_links": 233
+  },
+  "audit_errors": [],
+  "historical_warnings": [
+    "Recorded evidence fingerprints older source; historical claims are retained, current validation is not implied.",
+    "Pinned recovered code exists outside Ghidra function bodies; explicit range links preserve this discovery gap."
+  ],
+  "review_inputs": {
+    "research/runtime/coverage/README.md": "e4c2af60fc7f536624eeb3579a71125f1c85a6249159df82666f73bb300604e6",
+    "research/runtime/coverage/register.json": "3a2ab3494737cff31ba05f0c43da681d5a9a93f5cc25463188c372fdb366e91b",
+    "research/runtime/coverage/source-index-nonrender-hook-final-20261005.json": "50135e0a3ab756442df08c47df06283db51fbc772fc76a9e326c682794a045ec"
+  },
+  "ledger_sha256": "4b11fe52dbb6ee5b6fe1b7e83f2f11fee853545f24f74d4c2192d25589f0f702",
+  "local_links_checked": 312,
+  "missing_local_links": [],
+  "referenced_document_sha256": {
+    "research/runtime/coverage/summary-ledger-audit-20261005.md": "cc403344680bfa06842cd356bc8d5b25ac6d8e2e21574561ab5f2baa117f6d28",
+    "research/runtime/native-audio-voice-bridge.md": "2382b529725ce78db6821590b57bede238334976d84ac3eba76bfcf9ef9e86ab",
+    "research/runtime/native-audio-boundaries.md": "ebef116b2a1d9f2c6e15eca99b040343e39ac97cd98790a98d0a514ed4a0bac4",
+    "research/runtime/opengl-game-owned-dc.md": "cdf5e4bc76a7d184185cb6c997fe6b0bba293b057013c7c5cf5c4e2b5a72fa0a",
+    "research/runtime/render-startup-black-screen.md": "f13a20b8e2ef4f0a9f506f695b3c103e97195f50168dd5dccdd553919d063f0f",
+    "research/runtime/qt-shell-hosting.md": "51782fb020539111d77f7417e030ec4f1c01c3a4bce174bb84c2e49e250e924f",
+    "reconstruction/pathfinding/README.md": "cf2e895494a3a6faaff7727ea0a8fae071c5121a9cb45709621f1a4d74c8afc7",
+    "research/runtime/pathfinding-search-sequence.md": "2622e7b96c6a9a0c6f84a8b7c3b9dd8dd5769bb207d6ffc3954c08505e96f9ba",
+    "research/formats/route-world-snapshot.md": "57a77f3f61c4f7eb29217b8dacad22b2c182dbc80d61adbfb15c7a78709f0d79",
+    "renderer/README.md": "1bb039869543934df034e906f4da5bf05a56bb4631ba48e6a4603456c0556ceb",
+    "research/runtime/native-sprite-rendering.md": "4efb6d5fb8ad9a5a901739022c0287b7cbb87f9a513712ed7ea71645bc0526ce",
+    "research/runtime/opengl-presentation.md": "2c3cd3c3776329206118b4249f27f29b406e0f87768410dad24325c87bff4148",
+    "research/runtime/opengl-owned-session.md": "eeb166f3121483a464ce2e74b094a74f0e076d910a5d0d07d6374ccf7e6b709f",
+    "research/runtime/opengl-owned-session-sequence.md": "d1be9a371f3a15194fc061c5d690ea6dc0a5e263f1cec1aaf5c84aaa5a026b00",
+    "research/runtime/qt-input-forwarding.md": "62c5a0dd2301c46e71d30b1ab0ee2611f1bb2128698d81cac276cc26130d85b1",
+    "research/runtime/qt-native-media.md": "b26048d960ef52bea48ba17fdce713b8eb53b839cab7a0d3c02580416d7d9aa3",
+    "research/runtime/directsound-buffer-setup.md": "6a5a36e7b88358bf64877375fce1b587f6e69c7071cda5606175597fda88e5e2",
+    "audio/README.md": "57b5851f4640b2678cb8347260c5f6d30ea2127e82ddfc03bcd84978e22ff9f0",
+    "research/runtime/directsound-voice-controls.md": "a951664753eee6d2431161d6b81cf6aa734e93fa9d9de3e280b0a81f08e2a0b6",
+    "research/runtime/native-audio-voice-state.md": "bfa174ddfa8a1e7c114c38fa33731c0224dfd5256fa65bd12b72edef6b2f2931",
+    "research/runtime/native-audio-mixer.md": "fe841ac60a1f33a3ab120214343b40a7447855911db03f62869e6d05894a579e",
+    "research/runtime/native-audio-output.md": "3365ba425d66d8b6d69c90d186fe63566c8cee16af4113c60b980a65a2ea91da",
+    "research/runtime/primary-audio-manager.md": "53764e82a1280b5673fe099b669a5e775d0d6c3797035e924d9499253a3b3509",
+    "research/runtime/audio-voice-lifetimes.md": "f826fe6e6fdfacb8f2612f3c267a44be6ec84faf441528d90b4337a5d8f74997",
+    "research/runtime/audio-voice-scheduler.md": "11a0b08d5d1a143ead1144711fa69c697e00b769760ddd1385e950118ca6c7fb",
+    "research/runtime/positional-audio.md": "b5bba97e87699c94ab34b282cf53128fe66fed7225785ac4e7a6791bd008e11c",
+    "research/runtime/audio-camera-projection.md": "1a08a15824b2799c1d077aba1823fb9a443bcc1c4cc01fa93702611ac60d9045",
+    "research/runtime/audio-attenuation-map.md": "b662b7a69b52745933c637e193ac9574e6598d048da87bf83efc3dac3f2424f8",
+    "research/runtime/audio-voice-admission.md": "853dabe1f1e6bfbb6241682c57948f36c58aaf4c5c3712ffb079365c0bff9f58",
+    "research/runtime/audio-source-cache.md": "5389a6ab19904ea8428f8af9e7596f202bcf12db9a4c2d3b91fc73da8566efa2",
+    "research/runtime/audio-manager-configuration.md": "85f8811dce925b690bfa9064d1191483273c7eca13e6c86018ea3c65ebb4e6b7",
+    "research/runtime/audio-manager-lifecycle.md": "90fe73aa3e34dbb84c669862da59744f3af3749c408b88a1ec7cee6b4a6f6001",
+    "research/runtime/native-audio-manager-backend.md": "cba73d88eb529c9bd04c5c00fb72afd44cc5e1ebe5a13917a4127a1c5bb27a3f",
+    "research/formats/profile-api-comparison.md": "20c0dcfb18779e040e6a722d9ae381ff1c68d8e4ebd228f0303233fe22f83636",
+    "research/formats/installed-audio-profile-comparison.md": "2c6768ba5a47b27965f48cce1e5516f7e85076a7cb01980e2ac86ccea1f669c4",
+    "research/runtime/installed-native-audio-manager.md": "ed451f5b83ba922385c96593f87d90916c5c30b2679192361ae4ac45a0ad1f3a",
+    "research/runtime/audio-source-filenames.md": "13188ae89c53007fba9bdd614dba6b025a36b1b6018b72a09353502546aa0bcb",
+    "research/runtime/audio-catalog-preflight.md": "c5cc3c7d51b481b279e5eb731a7506fe6ff6da745e4c1fcbb251ef8e033003bb",
+    "research/runtime/qt-audio-manager-session.md": "693a260b291622eacf4e5f2a0e0cd82faa9cdcef10941aa80df33dbd94c30520",
+    "research/runtime/menu-audio-integration.md": "94ef45f3366e09907d84cdfaa3e9a416ba755d0a47ae41701d0b3b39933e036f",
+    "research/runtime/audio-output-recovery.md": "97285f818789d104b52e90c8cd41be5f57833b7af4710754d24f17350009f66c",
+    "research/runtime/menu-audio-preferences.md": "f9c6ec2c87fc4f741a6ea7ac4826dc7e68bd9588073ff3bcc90f5b63a844e5df",
+    "research/runtime/native-menu-music.md": "b0bcdd71b5f4e34f5f35319a2143eef368063325c5d95e439736b6b3ab383195",
+    "research/runtime/menu-music-recovery.md": "970d2c4b1bae72daf2f93526c6836f5c9b4cc525523534e75d2cbe9ea3731427",
+    "assets/README.md": "e3c2a8ea580f581e732f4db58c09bb2c40d7b5f9cd1aedf96519ce9cf40df40f",
+    "research/formats/asset-file-comparison.md": "3d504091b5784d3d6f1ac5ebdbf7c06fad79fd5bd0bcd27ba527765727c8f9c7",
+    "research/formats/pcm-wav-loading.md": "422c38f194e2fa493f07857ab19d307d478d450c7c6117f92159e948e12474f6",
+    "research/runtime/windows-file-api-audit.md": "eacc3971948d495e78ed3d3ab312d83a59addac8e1989f000fa419236d2f11f6",
+    "research/formats/spr-native-loading.md": "6ea3aa249bde6da5d96bb7d2cd3c0253fbe1d6423396af2fe4f76812dfc5159c",
+    "research/formats/ani-native-loading.md": "2a9189767ee30cdf3b6f94c2db40c87f41ad3e03c404170a2997199184b9076a",
+    "research/runtime/animation-forward-contract.md": "1c256938c411f04cf9de4ca9aa1d27a35570a79861bb50978a8dbaba98978ca1",
+    "research/runtime/animation-direction-selection.md": "497053914839d53d2541ad53c1fb3df5e9a8b2ab73b2f6dbb7fb4ea98636583b",
+    "research/runtime/animation-placement-attachments.md": "bf9ed237361934291f89726114e85b7bf0d4819a6673c9de548ca2c6766a4421",
+    "research/runtime/native-attachment-recipe.md": "03d6c698e6632f6d011ed7442a8636163aee9fb1ab01ea90068d23e3c344d50e",
+    "research/runtime/sprite-queue-order.md": "87ea81c54cf94c0fb0438235d783adb47cc38b9d400e2f4882231390df716f6b",
+    "research/runtime/native-sprite-queue-scene.md": "522a33f2cba00659cb193d7c2a225f7b8b3ad9c3341e52b11454474ab163b4d8",
+    "research/runtime/sprite-visibility.md": "9eff225c87c5d3f381acf1b979e7ae748186ba1b4bce4cc925da64cf69649434",
+    "research/runtime/native-sprite-visibility-scene.md": "42f95616e0314be88a448dbff8a16c797cb6fd2ea798e3bf66b38610ac9d7586",
+    "research/runtime/terrain-submission.md": "e8c727865648b917e7bc52d4c18a603d04fa4dc3ad0e3b28f79056a0442ad2ed",
+    "research/formats/ttd-native-loading.md": "fd6fa88e74389c3d1b2f18c617e50a59c5106d3f3d8aee1b7dff0ecf8eaf5b49",
+    "research/runtime/native-terrain-preview.md": "672b875fb40d53699211fdcd1fefbfcb02ec1f6a419ed8c03b3b7398b765288d",
+    "research/formats/map-native-loading.md": "a7734d487f626bb54dd79088543e4ab080970dd98b73396722ca0e4b6193ed77",
+    "research/runtime/map-grid-loading.md": "25f6e5143a6fe481a4a316247a8f043bf69dcdaca847aa1e6c73e50e4cc5a804",
+    "research/runtime/native-map-terrain-preview.md": "538ad6600d2347fb1fad0d81fe650bc44709fa6a73015e98b8722d5404e7668f",
+    "research/runtime/terrain-world-traversal.md": "686119fa2daae5a8fc46b65ec6f0b992e8573819181dc630bd8452a3c5f887b3",
+    "research/runtime/terrain-traversal-rotations.md": "3eb39e8d38d3f1df8e14f9c0376d7c4090eaff508a774e25a29f146ec84906bb",
+    "research/runtime/terrain-camera-setters.md": "9ae4a6fff31e7f5641044f9ee396b72c04c6df8ec17c8d19afde9a732a082a94",
+    "research/runtime/terrain-map-initialization.md": "c3453f3988040739d161c24d5fe6f0167c2b904445cbdff1e0f531f449d51892",
+    "research/runtime/terrain-section-assembly.md": "5f3316ef1f111be1e153f8f9b11e9e0722f84e1bd7d5d0b1c131c284d4c47a4c",
+    "research/runtime/terrain-authored-regions.md": "fb0985c7769826547302ae21acc82b26855857e264d756077a671c0f9ac5c6e8",
+    "research/runtime/terrain-region-selection.md": "f7d46b028ad38b0e084ddab5f22e2e1a3e061a4165b40b595a48c3143af42ce1",
+    "research/runtime/terrain-region-constraints.md": "cab6be0f5a54ce4d03d20314c52c294c2885c09258447c5ffecc33800e542af1",
+    "research/runtime/terrain-region-solver.md": "3180e40004f3e3960de00f03f85d2b4087c3b901b8495e6f2e5bb9457c6e61a7",
+    "research/runtime/terrain-region-specific.md": "88b3af7ad036fb63dc0d12071960755dc2dc2d47d9d471b259362ffab565879b",
+    "research/runtime/terrain-region-generation.md": "212081a29ec8bf11a3eba824b16365160a3559677075cccd0cfbf2dda2eba3cf",
+    "research/runtime/terrain-region-catalog.md": "1aae25df74e0871df73e2d579868ac017546bd48a5d2183e71e2bbcc8a266c64",
+    "research/runtime/terrain-generated-plans.md": "180bb9471c611507710cc7a0b371ebfa5b025b251ce808022df03ee9e91be7fe",
+    "research/runtime/native-generated-terrain-scenes.md": "bdd274e38ae759d395ad205b7a03662abd3838e01304db298d8671c3dd65a3c2",
+    "research/runtime/terrain-generated-coverage.md": "f5c8ce093d85e7f84db42707f638d3b5d7112867df51d2f6bbd9b08d7b2fb497",
+    "research/runtime/terrain-palette-shading.md": "5173b72e8ab7ca4189537597f366724a40d7924f3fc25521c93ea41239ed7c60",
+    "research/runtime/terrain-lighting-config.md": "a76b975b28519ac82a7a4bdb5ca854977eba308a61fed6afef05688a18387cef",
+    "research/runtime/terrain-palette-preferences.md": "b6062d3648ee245d51a2363ce02a55826fd0102d613eed86303b7f06ef78af07",
+    "research/runtime/terrain-light-fields.md": "f956e1e122eed24004a5a806b179cff2fd03800b894b5b965bc900e299fbc5aa",
+    "research/runtime/terrain-creature-lighting.md": "2db4690b855078d6f66c929cd70d639c5970b6b67abebd81d81859e123e972f3",
+    "research/runtime/terrain-static-lighting.md": "acde8b7278695e54a01357485d474992f5d1e5178a2ef72a5f246f0bd32b7d9a",
+    "research/runtime/terrain-object-lighting-scenes.md": "9f0a268ca561dc81b78d22574447ada2edea5fa1032d8cc8961fcb9431aa3c16",
+    "research/runtime/effect-lighting.md": "5d0a7b326d8bf3db6a8dcc90e934ada3fdef61894d006c97c8206ec08126a035",
+    "research/runtime/effect-record-placement.md": "57c63a8d2dbedf89dbcf496bc3a4b97ac66b8329cd2a2f6bf64eab99005997d6",
+    "research/runtime/effect-trajectory.md": "621482d995b9018d309073e1b9fd8b47c5376c26de31b738ac98aab57898cb9a",
+    "research/runtime/effect-same-cell-projection.md": "52c7d0a24445a9198996e5c08705953f4367777cd871ab9b0d3f77273a4df7f9",
+    "research/runtime/effect-cell-transitions.md": "4ca6a72adc921be585b807e6b37ac43567adc55c8785fdec93b92f7c3520b256",
+    "research/runtime/effect-cell-cleanup.md": "a9d291b4dfd65fba8c33c779b9b16c33ccf00771f6c55701b38bdd1915e8c407",
+    "research/runtime/effect-blocked-destinations.md": "dd735d1bbc2a53c5c69402bd365fe9c34a5adddb75c19453cc8ef08e0cb731bc",
+    "research/runtime/effect-height-exits.md": "a911e493882ed860ec54c1a2128f30175085d6ea548177fedc966abff183af7b",
+    "research/runtime/effect-membership-disabled.md": "3bcd6ff0f21de0eb49321c971f3c464656fcafe24c4dac8ece9e197792c074c5",
+    "research/runtime/effect-terrain-occupancy.md": "79793ab69066b97c74e7e6414f4b35e66c68e64b89d6aad49228cc665f33728b",
+    "research/runtime/creature-occupancy-lookup.md": "1c5718268b5090de3f1a0116abbdd5b485084535131389b9bf03888c6a59be7a",
+    "research/runtime/creature-footprint-initializer.md": "80b2c176227186bc87702b488d0fa6d8acd5bc10c133cd13fb358e4c586b4a24",
+    "research/runtime/effect-creature-collision.md": "4bdc19d8c7727f6b7f1c317824d3009c83f7b625187cc5ef79be15a4fb3ef0de",
+    "research/runtime/effect-creature-boundaries.md": "7f3a011423133a1063837adbb981bc55859e6a3721c9a02e60ef508f70ae4dc6",
+    "research/runtime/effect-kind34-creator.md": "0c7ee6a0eed3de59091a0cdaddc9cf47e9a301a74ca10dcfc48f01782313bf52",
+    "research/runtime/effect-trajectory-initializer.md": "a7aa88e28bcb49d883634b62070666ff027bbad8a5bed65bc252796f827774a7",
+    "research/runtime/effect-motion-initializer.md": "571bba0c1c32fe9a9720145eb59515d3c265b4dec9c71ebf4b7f67ba8727b6aa",
+    "research/runtime/effect-animation-selection.md": "3e88dcb2955af6578692361b124bdb78fa94eaed8ccec3e28c1d7db1f828bff7",
+    "research/runtime/effect-animation-binding.md": "13a56ab2bfe90292252acbd161a0e4fef214849d3ae1b8b3e71d91ecec7d1991",
+    "research/runtime/effect-animation-catalog.md": "44beade6f601b23a68d45ca9575ef4e5c5b541f981f0e279829129ffa8510563",
+    "research/runtime/effect-animation-metadata.md": "36b3e4be7e09c5a481b2cd161b5be442d2c15a6174f1a4f157972fe04ae6c8e9",
+    "research/formats/persistence-native-loading.md": "e64c1a26a60b31757a9ee4744071ee2e573441ba81a087dfd5c1600863299444",
+    "research/formats/save-game.md": "af593f13c7a0ad9e63eb1e77ca09b6ba5273a47919e889b0cd57d6f1df12a679",
+    "research/formats/wzd-native-loading.md": "332ac362113bf927866a376e50fd15abf935a1ca2e3c1ef0cb592685ab532f91",
+    "research/formats/cur-native-loading.md": "8df9d2ba258db9c806f117b96d6d32bb66f5287c6cd8594465ff458a7bc6f503",
+    "research/formats/pcx-native-loading.md": "1aac2b056969b3c6f0f81bc774a5211d9a4dcdcc08c966e25f97fd67e026005a",
+    "research/runtime/menu-image-integration.md": "8e6973451724d8be34e50f4cc8c23177a6341438795342a41d11804d547b0b2d",
+    "research/formats/bmp-native-loading.md": "c7bc709438fe96fcdf2d7bfc9deea5cc11aed0d1a7b7dd1221cda798ab16d102",
+    "research/formats/jpeg-native-loading.md": "ea3ca5f3eae1648e345917d5a62755b7dc848d153ffc062fa8d15d668c571717",
+    "research/formats/mps-native-loading.md": "89a6b94baf9340ebb4366d625683667f6469fe3001e47a8f8f019064f7390309",
+    "research/runtime/mps-placement-loading.md": "537e77e6f3b992eaa9d3604ae70fd79ba9975218330c8c06245f78baef369b6e",
+    "research/formats/evt-native-loading.md": "8bae51e88f3f0b750b74678afa3e5fccb7c846a03b02041c903008f5212d21cb",
+    "research/runtime/evt-area-loading.md": "cb8b42f970d7b49a90a2872af932b59fec43e738964b007c66b1683c1a2d2ce5",
+    "research/formats/tag-native-loading.md": "0f40c62ccb9d0be53f09a8bf10c9082dc33c619b8392f0536608844a09e5dcf8",
+    "research/runtime/tag-sprite-tables.md": "c6119e567fe1d8a4191b936252be7d67bf6b6c5562012c8aeae22b5194e249fe",
+    "research/formats/fp-native-loading.md": "cae4fe4517eb07bbfdbc0ac3c175c721a2bfd9abfd883e6a9495ca1e106b7812",
+    "research/runtime/fp-flag-path-loading.md": "01a0909090510c7cff6d1772c68a25642063decc9fe92919c21a40145d5d4ea9",
+    "research/formats/sft-native-loading.md": "79a9a6258aa785741d26e89220b77aa0e800d9f9fed87ad0378b35fb86ef9635",
+    "research/runtime/sft-font-loading.md": "5580ed54f8d0a7b43a1db1cf917d26026ac4720ae2f7901b0922b713a3bc3213",
+    "research/formats/nod-native-loading.md": "ec6e95781fb68413f8fbcb29c3e55603058bfc326d558ccb4638630f2fdd7a17",
+    "research/runtime/nod-node-loading.md": "3d750428486ff3d868a5f81c6767a2aabb2f15b6d6d3427db1ed5c9de9c77855",
+    "research/formats/txt-wbt-native-loading.md": "3af0b4fa89dd57cb2c62e5f015adeeb95ad952118a072c5952a50006920c0cf8",
+    "research/formats/dat-native-loading.md": "983700ddca71b5ca9f5972647290374c5a9ffa42a445e17f9a97500a0ec06767",
+    "research/runtime/dat-ai-loading.md": "9cdd51165c65c70eddf6babbb9b23e6a66d52eae2f68d70dec6686a46db7c087",
+    "research/formats/legacy-ani-spr-loading.md": "28eefbd331f4da125a09e6a61c73c91517004a292812b74348bf9a689cf64f62",
+    "research/formats/save-world-native-loading.md": "046fb619c97f8fc15195e282811620bfcb46c2ac9cf3de9b2af2fb486a933b09",
+    "research/runtime/save-world-serialization.md": "89403d5fab9d61fe8d1cfc78f9b9252465a075f85d99bc232957b846c0c5314b",
+    "research/formats/encrypted-cfg.md": "0d235eb7e4538980777932815cd77a2733962048757d0ad7c1f03f376d4d218f",
+    "research/formats/cfg-precedence.md": "fb02700fff2a52c87d2b3a5e1db8301e0bf7f2518da0636a91e251cd38907306",
+    "research/formats/cfg-writer.md": "ab5844a98209d8f5f0fbda0f1df9691c850951d3b522e73efc84d1e7d826fee1",
+    "research/runtime/threading.md": "c5e929857e215dfb08b8a62b76dc8033511c0f0a22e5d92d5947dafa719e4be9",
+    "research/runtime/world-tick-loop.md": "3f7ce156be8628aa54c24708500ede5308a06f68b042bf660cb97df08cf7fa54",
+    "research/runtime/main-menu-qt-migration.md": "a1382d7b43495b0c1d4e4b60143e2ee2a63c80ecddd303fe41c1be9dd645e0a0",
+    "research/runtime/quick-battle-qt-menu.md": "219bcc11038275fe96eca8eaca1c4b729383e171ed4aa2a0d032e5aed740ef26",
+    "research/runtime/mini-menu-qt.md": "bf1e88428e3b875c358f70fd9e1fa876c2929b94eebaa846e87fe78287ab9fe0",
+    "research/runtime/battle-results-qt.md": "cf7d6799e2126b031b0866404d5d0f2d216e32c22622cfce3a9f0981eea522df",
+    "research/runtime/quick-battle-results-qt.md": "6da2ee3873d201f59f418dcb3b0093f0682647237052240e58e3fb27b3fe3a10",
+    "research/runtime/map-selection-qt.md": "a8cb6c341c4fa502ae8828d3c148345c347d13568c5912528e16f24a1b7b8dd8",
+    "research/runtime/menu-engine-observation.md": "198296c1ad59ff09a6451b60149f7e2f3f2f933de9a32f03c028e2ecb09673fa",
+    "research/runtime/multiplayer-game-selection-qt.md": "14b800533fd5c21b616876b3932a7a40bc8d5cec3af64bbc485a7135c82b3863",
+    "research/runtime/single-player-battle-qt.md": "91e2207ffb125b59539b122132de000368e5514e26e341f73730aa4ff84e10fd",
+    "research/runtime/multiplayer-lobby-qt.md": "7f309426251049b83c71910a05f3f3b9815a60661ce91289761a7cd85219605c",
+    "research/runtime/region-entry-qt.md": "be53173c38523b498ca8c5a6c878c61de29813895a7abe15dd1e64a07977f9be",
+    "research/runtime/character-screen-qt.md": "584a6aca1455fb029a1e9c4c166f17c8703127bf1cd3393e96d9c74b79dd9c33",
+    "research/runtime/menu-sprite-integration.md": "d88cc0a69d7cf3e317549d789a86b7a9f3bbbfd195177d462dc38c471b535d39",
+    "research/runtime/grimoire-qt.md": "556c66209b39a4d7b070678fdea9e7cee2f8eb7784e4a442025a231565a398bd",
+    "research/formats/grimoire-text.md": "b691c7ce0313cebd9ec4b282db5d85f222d8a3ca376f878ec1cf5ed4f845d66b",
+    "research/runtime/spellbox-qt.md": "2735ad0e18930149948ccdf35fe8d74750a739c8df0eecd8d30eb90d304fb7bc",
+    "research/formats/spellbox-assets.md": "3be056d1b4ddc9f349eb8ea2d3fcf173e690228ba10ea8d83ec7bcabb9369a50",
+    "research/runtime/realm-viewer-qt.md": "720ebdeb698265402933d89487ece35f414f11f7e6387def0ee2a5e1ac4d174d",
+    "research/formats/realm-viewer-assets.md": "7b5a2f4c5ad574e43d7003efba0cb3c1d7acf443233e5f0317554b60dd3f3e3a",
+    "research/runtime/menu-font-integration.md": "1d4b13ac2fd0c59a869a5812e18e77073dcd47c24a560465e4702a4a03d8cc1a",
+    "research/runtime/realm-viewer-visuals.md": "ddbf6cc9ad68e3b3c56316ac53c3549a5710dab5a6a105120bbf7f9b701097c4",
+    "research/runtime/spell-research-qt.md": "5da7a7e9ae6cfdeb72dec0475428e66f33af1052cb0c96b59085645432c7297f",
+    "research/runtime/menu-action-bridge.md": "5113d78303ec9f2758df030684f15b7bc887bd114b82f910839b1cad9c67bd05",
+    "research/runtime/single-player-menu-bridge.md": "0d3377792fac7378b29206db4783265cc95b9bba82dddea6f6c472d3e98c7ae4",
+    "research/runtime/spell-selection-menu-bridge.md": "2a86491ca7d50726ee576670febf460967f263fb3801efb802423f344ec96eed",
+    "research/runtime/mini-menu-engine-bridge.md": "72b15694d371f6a8eb7c8da4502fe75d179a46086bc8685c7375c70a95a1a2bc",
+    "research/runtime/quick-battle-results-engine-bridge.md": "7a4838803c3bccc1a0a6627eb12d0c014528b53eb0e8b03d9529de1e73683c1a",
+    "research/runtime/preferences-engine-contract.md": "0188e6230f1e59ae2630fba14e2e5e3d779f6408876cfa2c7aabf9cc48a9cddf",
+    "research/runtime/preferences-engine-bridge.md": "cf5d09e2725f99a1cb64d57e9bb6009ce98159925cc36cb2efc63e7972666220",
+    "research/runtime/preferences-coverage-register.json": "4e7b92835b2f38e1a7194d7bc1a2844396f09c00b9c3236662e9410dc133270e",
+    "research/runtime/preferences-persistence.md": "8ba999e9bd73f820c82971e9b6ccfcce96b75372044f7290dddce9a9a98d17ce",
+    "research/runtime/preferences-display-rebuild.md": "bbf4320aa9bea6c7e2c15dff46f4e692a6bb56a9940334bb39b6f8a079a1644c",
+    "research/runtime/campaign-menu-engine-contract.md": "dc24faeac2d6e7c704122a57211c30fb67df4f3089ec182ff3c51869edb602eb",
+    "research/runtime/campaign-menu-entry-observation.md": "4f65ffc3c1c10a557a15c59ebbbc373bb9cf464dee581ae254e36bfc63f30cde",
+    "research/runtime/region-entry-engine-contract.md": "3cdd52acf45f5766078c675299dfb3e0b8f9563b8d98d490f75056b9efd68050",
+    "research/runtime/region-entry-engine-bridge.md": "e51bf26787fcce35ca24065666ec068dd44ecef57f58f963939ce8ae22d498f6",
+    "research/runtime/region-entry-enter-engine-bridge.md": "f8421a9b4aa3434b05c1c6cb30091cc2964c2e348f942e0a8f2098dae6d2d478",
+    "research/runtime/campaign-mini-cancel-engine-bridge.md": "7f2356a3d582cc3ed8fc52a7d080901a1444469a382dbcc77132e7f89d193563",
+    "research/runtime/campaign-mini-quit-engine-bridge.md": "5f680cb0cd8db909c526f1f9ddfa67ac8264f923aff42710c7968740e66c8018",
+    "research/runtime/campaign-defeat-engine-bridge.md": "fb01bdfb26901df275a28b07d6022504103cdba7a74f56c7174248dfbe12e7ba",
+    "research/runtime/campaign-preferences-engine-bridge.md": "d4f9481f0f35e6f43dfb70bfc8d8279d72a56f8d163428c06fce9490564b3ef6",
+    "research/runtime/campaign-preferences-live-engine-bridge.md": "bbe3add048ca44ca7eb4bd3e848ce07fce5db1a59826e681f787e92dce97aa05",
+    "protocols/VALIDATION.md": "5bd883711020dce84ff0a4b2dbf001898c7a57478876275dc53218333c74671e",
+    "research/runtime/native-world-foundation.md": "ab204a1b5aa002f3ae11b51508a6c9976f8e0ebca0f9600f18ec541682049823",
+    "game/README.md": "8d7125bb3956ac073877bac4e274e8c87fdf54fa43fba3720a115df074789db7",
+    "research/formats/native-world-snapshot.md": "ab1f5554b1ce033942084265fd0d3a8c102c95f525561717d2159a0b8a894df4",
+    "research/runtime/native-creature-movement.md": "29cf483e3740d7cf01a5b80e2bf869e74fbfeccec77653a6099832ec02f14236",
+    "research/runtime/native-creature-fine-motion.md": "129d33f2e3369975e77a6d74913a5d589cc63c2c6b5018cc8e0df5ab2a284bc2",
+    "research/runtime/native-creature-segment-continuity.md": "d5c1bc6c5679b8b038e80b3591eedcb777d1e4ffba26fa995b1d21114d0c6409",
+    "research/runtime/native-ani-motion.md": "9f37bc61c526d49504a78aeadddee8718843569aa23af7bacd31a6bb042c8899",
+    "research/runtime/native-terrain-motion.md": "e9751ab8094e7630ddb97c09bf9bfa60006a316d7e520b42f448ffb76fdd1563",
+    "research/runtime/native-world-scene.md": "1c0bc5dcc18be3af315cd6ae54b04b999e764665d6bb2fb7e161f7bf90c74cd5",
+    "research/runtime/native-map-navigation.md": "5c8d1cc7a6aa5c3485ae4ab874f9aa67cf0da121dc8170365b7bfd77c05a541d",
+    "research/runtime/native-creature-profile.md": "1735ab1f3872597ad60b02e25f2d3e6ede28b163dd6db2da9f1da37ed01902ef",
+    "research/runtime/creature-ai-combat-spells.md": "47cf1effb027a71355a89f4c22021f4286a90987ba392f355458ec0cb76c2eb6",
+    "research/runtime/spell-dispatch-inventory.md": "d6c0fce3cbe3c6870db3f803d6ccb28a03ec61fd56bf6a911a6fea6a237abe58",
+    "research/runtime/persistence-progression.md": "0bd2c6285de5470b3a7092af395193f8e5b9147ed29a9067433367a18f7d44fe",
+    "research/runtime/native-animation-scene.md": "b71c8ea01c98664a0a192641063e1c47e397c96a09d44bcef528cd9e81ed4ac8",
+    "research/formats/menu-migration-inventory.md": "b72ca090094348b4402f454f9c7d3da1bbc324ad94ef8d09ef92b71e186cf4d4",
+    "research/runtime/entity-lifetimes.md": "b8e741dc99b82b72cb0098d50efeab2181dcff76a5f60fa546a0eeefa5108631",
+    "research/runtime/coverage/README.md": "e4c2af60fc7f536624eeb3579a71125f1c85a6249159df82666f73bb300604e6",
+    "research/runtime/coverage/source-index-nonrender-hook-final-20261005.json": "50135e0a3ab756442df08c47df06283db51fbc772fc76a9e326c682794a045ec",
+    "research/runtime/coverage/summary.md": "d445bbcd08633c20ee9d9260a6424c911468c02da280b694fb789e20d964c6d4",
+    "research/runtime/coverage/summary-initial-movement.md": "a870c5dde748be020fc64d706c8201117f6ef7b0275b83d85fc623f8bb228861",
+    "research/runtime/coverage/validation.json": "5507ba4c9e20104fa6bccbcce6706857615bbd4813d6ee4b6f9c3126ff3837d4",
+    "research/runtime/coverage/code-index-validation-20261005-final.json": "1f680cbc39881a4e126870ab92104221040cf857f5e067ec7ccd39a634f09d0e",
+    "research/runtime/native-stationary-occupancy.md": "14ce6408c3409f08e087de60e8a99758c6638ce7b80570e3ee3f5c074083da45",
+    "research/runtime/opengl-direct-presentation.md": "f5816ad9d7c1034beebbc4a4fbc20077897408a004753e5bf2f2fb6aa1f917fa",
+    "research/runtime/native-multi-creature-movement.md": "c697b522211c73089e0c0220e1bf674a0b57bc1c2189a808c287d0c12e2ab6ee",
+    "research/runtime/opengl-incremental-commands.json": "dfab0f3c9b9706de24684a01f547ae1a7ba0b21b503040246c746fdf519d4af0",
+    "research/runtime/native-multi-world-scene.md": "5911bd8845adbc5c5df4ca1123046a510aa92d4499592d1e08c947fcc8f9ef12",
+    "apps/coverage-ui/README.md": "379b578c9a12400bd1ae249a5fccb2f8d0cb5968b45593c2b86ee4ffb130bd64",
+    "research/runtime/coverage-ui-validation-final.json": "7ada5e4f160a7e27a0414a466523f75e6de02e68fca7a6b4f30c017baa81bb91",
+    "research/runtime/opengl-live-command-transport.json": "aaf3e55eab6481be7067e530b155a0f608f97134d97db82aebcd36787072c09d",
+    "research/runtime/coverage-ui-direct-call-validation.json": "97c290dcfcd4d24a95dc4580d2d0610626a024f669375a401e2a10056e984285",
+    "research/runtime/native-scene-orders.md": "69ab88d4b9d3e7af9de335ea946cf9ea248a9b689343108f780dffd724b447dd",
+    "research/runtime/opengl-real-game-shadow.md": "b38d2e4f2e270cd418bce36d29ad258832f1eebbb6f5b3fc8d8af6568e8b85ff",
+    "research/runtime/native-scene-picking.md": "b2abe19699a1e1e464767357659da59f4b51073d59231a2876250ffa48b9f117",
+    "research/runtime/opengl-owned-session-fills.md": "4d50a87e9c2a5c157228cd3383270ac745eb67b985d85feea0ea2a44334bf2b8",
+    "research/runtime/native-stop-orders.md": "7527b379f5ca63e0529f3daf85d5a630877bf9906125c6c6197bfeda9d0d7383",
+    "research/runtime/native-scene-playback.md": "529aa15e9f15bdb906160afa45841b0f101c40c42935f57a9c32f906373db3ea",
+    "research/runtime/opengl-owned-session-dc.md": "46426ae6f6a5fa733a898470dd20003e9b2fc41cb5c5d9851e3c54659c9078c4",
+    "research/runtime/native-scene-window.md": "b211943bcb4ef39a95fc0e498615d193e57c4579cfb33a6523dd98ed6da0dd01",
+    "research/runtime/opengl-owned-session-unlock-packed.md": "5b1747fe2960d58c821066e50559af7c5b64f84e9c1cd59bbbf1662d22c9a9a0",
+    "research/runtime/native-idle-display.md": "13eff25fb70b675bd3e7e94d27f0bdfd600727f3f2d0d0d71739fe3169e0e9f8",
+    "research/runtime/native-spawn-display.md": "e2ce709dd2ac68ca1f36c4186e09432a9191f47970d9282f28920ee9d26f9f95",
+    "research/runtime/opengl-owned-session-startup.md": "9e7d0043caa3414cfc9951f02a697da370b9b6deab71795b01ddd82a5427b285",
+    "research/runtime/native-scene-spawning.md": "75bdf846c170aadcdb8847f54985485798774febcbc7d013aa033a38c4cba6e9",
+    "research/formats/render-command-ring-v2.md": "b42efebf46469510d7ce6cd42798ad9e0522e4f4b345a84036878e691b54b282"
+  },
+  "findings": [
+    {
+      "id": "review-header",
+      "correction": "Reconcile the review scope through the reviewed Git head, preserve dates on individual historical evidence and distinguish register freshness from recorded milestone results."
+    },
+    {
+      "id": "current-accounting",
+      "correction": "Replace current-sounding adoption counts and census/summary links with current audited counts and pinned census; retain prior snapshots explicitly as historical."
+    },
+    {
+      "id": "historical-terrain-section",
+      "correction": "Remove obsolete unvalidated-working-tree assertion; cite retained ordinary-branch original comparison and assembled-scene scope without promoting its partial central registration."
+    },
+    {
+      "id": "menu-timeline",
+      "correction": "Cross-reference later UI23\u2013UI35 validations in earlier rows, distinguish disabled V4 from fresh campaign V9\u2013V12, and update GP09/remaining-work planning."
+    },
+    {
+      "id": "native-audio-observation",
+      "correction": "Place the already registered native selection/user audible report in AU06 implementation/evidence columns and retain unresolved fallback/timing/lifecycle boundaries."
+    },
+    {
+      "id": "render-planning",
+      "correction": "Account for bounded original startup frames and unintegrated reusable transport; keep sustained rendering and driver comparison pending."
+    },
+    {
+      "id": "native-hosting",
+      "correction": "Include already documented unenumerated live user observation while retaining explicit interaction/duration gaps."
+    },
+    {
+      "id": "structure",
+      "correction": "Restore missing UI04 dashboard heading and retain pending historical-section reordering/duplicate NS18 and NS20 cleanup."
+    },
+    {
+      "id": "independent-statuses",
+      "correction": "Use the register independent understanding, implementation, comparison, integration and replacement dimensions, with evidence kind/freshness and confidence separate. Distinguish historical ledger milestone labels from stable behavior IDs, including atlas label reuse."
+    }
+  ],
+  "affected_contracts": [],
+  "registration_statuses_unchanged": true,
+  "historical_evidence_preserved": true,
+  "committed_history_review": {
+    "range": "2f45bb72b38e884af1226132102928e375ac11af..62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+    "files": [
+      {
+        "commit": "a217b2b1c70b290793307e6fa38114d71a8984df",
+        "path": ".githooks/pre-commit",
+        "before_sha256": "9a7f7ba435c1129855066a3e5cc6b423a270b16fbb887bf8a0366cc7eb2e8c60",
+        "after_sha256": "9886586a24d3d207adc00c41be1ab93f251fb70f5a90aa54651d160d3c2891e6",
+        "exact_receipts": [
+          "coverage-hook-descriptive-failures-20261005",
+          "nonrender-final-hook-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "a217b2b1c70b290793307e6fa38114d71a8984df",
+        "path": "research/runtime/coverage/register.json",
+        "before_sha256": "60f9c778d3870104144be967bdc66a9c29ff17693844826fb1fb2c156a62d1eb",
+        "after_sha256": "c1556b89c4168891b73b2554f72ff58f6c7fb400bf93de86448b1ea1c4bb66e5",
+        "exact_receipts": [
+          "nonrender-final-hook-20261005"
+        ]
+      },
+      {
+        "commit": "a217b2b1c70b290793307e6fa38114d71a8984df",
+        "path": "research/runtime/coverage/source-index-nonrender-hook-final-20261005.json",
+        "before_sha256": null,
+        "after_sha256": "50135e0a3ab756442df08c47df06283db51fbc772fc76a9e326c682794a045ec",
+        "exact_receipts": [
+          "nonrender-final-hook-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "a217b2b1c70b290793307e6fa38114d71a8984df",
+        "path": "tests/test-coverage-gate.py",
+        "before_sha256": "8ef78d1e12e70fe6c7252f5df46476136eb88e60197575323ea490be76e05516",
+        "after_sha256": "cca0ffd65cccd2013cba1b34172c087202c05153c4ce36468df8305cb892c65f",
+        "exact_receipts": [
+          "nonrender-final-hook-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+        "path": "research/runtime/coverage-ledger.md",
+        "before_sha256": "a67e48fd0686d22a658d376adbea68bc2b803c602cb548e480736f2d689598e9",
+        "after_sha256": "ae5d018a831ea012c00ac8c856a2a7f8b4f7af79a14914cd686827bd9b8f7826",
+        "exact_receipts": [
+          "nonrender-final-audio-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+        "path": "research/runtime/coverage/register.json",
+        "before_sha256": "c1556b89c4168891b73b2554f72ff58f6c7fb400bf93de86448b1ea1c4bb66e5",
+        "after_sha256": "3a2ab3494737cff31ba05f0c43da681d5a9a93f5cc25463188c372fdb366e91b",
+        "exact_receipts": [
+          "nonrender-final-audio-20261005"
+        ]
+      },
+      {
+        "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+        "path": "research/runtime/coverage/summary-native-audio-observation-20261005.md",
+        "before_sha256": null,
+        "after_sha256": "f4a1026efe4c2b30cd7f5d238920e6ae64c1a13dfb578c4e3e93af1e4241efaa",
+        "exact_receipts": [
+          "nonrender-final-audio-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+        "path": "research/runtime/native-audio-live-observation-20261006.json",
+        "before_sha256": null,
+        "after_sha256": "969f7a1c11ac5f063bd3ca8a4903520e79f320d71b7f724e695bc7cfd4997fbe",
+        "exact_receipts": [
+          "nonrender-final-audio-20261005",
+          "AU06.user-observation-20261006-documentation",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "ccd8342518b26f2aa9c07d9cd2ad5bc2347240f8",
+        "path": "research/runtime/native-audio-voice-bridge.md",
+        "before_sha256": "84b7cf5db7c54e58d02ae12c1132afeb54b20229afa73b77e6f86475447020a9",
+        "after_sha256": "2382b529725ce78db6821590b57bede238334976d84ac3eba76bfcf9ef9e86ab",
+        "exact_receipts": [
+          "nonrender-final-audio-20261005",
+          "AU06.user-observation-20261006-documentation",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+        "path": "research/runtime/coverage/committed-history-nonrender-20261005.json",
+        "before_sha256": null,
+        "after_sha256": "89a7cd26a88490bb8c756e1d2bc8296212e5405d13378fbe5965e4027876c140",
+        "exact_receipts": [
+          "nonrender-final-archives-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+        "path": "research/runtime/coverage/source-index-hook-messages-20261005.json",
+        "before_sha256": null,
+        "after_sha256": "2c1febf7a4f11868695591a5ca0260aaf5fd36ac309e2e313685a667dc1763b5",
+        "exact_receipts": [
+          "coverage-hook-descriptive-failures-20261005",
+          "nonrender-final-archives-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+        "path": "research/runtime/coverage/source-index-native-audio-boundaries-20261005.json",
+        "before_sha256": null,
+        "after_sha256": "4a2779c5fd84b54706f6223fe9f6aa8fcf0a15937d99c7b7e583785e0e241864",
+        "exact_receipts": [
+          "NA.core-boundaries-workspace-accounting-20261005",
+          "nonrender-final-archives-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+        "path": "research/runtime/coverage/source-index-native-audio-boundaries-isolated-20261005.json",
+        "before_sha256": null,
+        "after_sha256": "4e00c7585037cad1c25e9df3f2beb7b2c004d3375d913c6af1797452ef2e8934",
+        "exact_receipts": [
+          "NA.core-boundaries-scoped-execution-20261005",
+          "nonrender-final-archives-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+        "path": "research/runtime/coverage/summary-native-audio-boundaries-20261005.md",
+        "before_sha256": null,
+        "after_sha256": "daf7b42e030d68e4923310d8fb46172703242542a74ae87846f6feee1d4b043c",
+        "exact_receipts": [
+          "NA.core-boundaries-workspace-accounting-20261005",
+          "nonrender-final-archives-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "912bcc6b551efc48e0fe81ee34cfbeb9de381bfd",
+        "path": "tests/README.md",
+        "before_sha256": "310a64c7e1124d868a05c0e9598563e9952b29fb512fec4ba8d0a24ef847b2d9",
+        "after_sha256": "f4880fb89c4d5fbf598300b9fb39cc7183f54715607ffc44fec4b2f334689d1e",
+        "exact_receipts": [
+          "nonrender-final-archives-20261005",
+          "nonrender-final-combined-stack-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-command-ring-commit.json",
+        "before_sha256": null,
+        "after_sha256": "d24dc89c45ca9182ecc183b381ee4783accdc8de8e0cdde61160ff490c28b63a",
+        "exact_receipts": [
+          "NR.command-ring.exact-commit",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-dc-isolated.json",
+        "before_sha256": null,
+        "after_sha256": "7e6dee8880703279ed9bb36ac2d34b7654c98a06d11e5dbe76a900167882dedb",
+        "exact_receipts": [
+          "NR.owned-session-dc.exact-isolated",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-fills-current.json",
+        "before_sha256": null,
+        "after_sha256": "7444acce281d27f67f1bf161c2e7fb62857892aed6cc594d25075e385da2baf3",
+        "exact_receipts": [
+          "NR.owned-session-fill.exact-isolated",
+          "NR.owned-session-fill.exact-isolated-v2",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-fills-isolated-v2.json",
+        "before_sha256": null,
+        "after_sha256": "303c2a84cfcc14f98b964ff65ec0c0719c13854b03b9b068bcc18302b5039ceb",
+        "exact_receipts": [
+          "NR.owned-session-fill.exact-isolated-v2",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-fills-isolated.json",
+        "before_sha256": null,
+        "after_sha256": "c73dd797dcd041ccbb5e7c1f60d7e81184fbf09c2ac33715349fb8e0883a4c5e",
+        "exact_receipts": [
+          "NR.owned-session-fill.exact-isolated",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-sequence-commit.json",
+        "before_sha256": null,
+        "after_sha256": "7facf20d4c2909b7a47fc6e5ad2429d55762a29b4949fa7034f96f20dcff07fb",
+        "exact_receipts": [
+          "NR.owned-session-sequence.exact-commit",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-sequence-current.json",
+        "before_sha256": null,
+        "after_sha256": "b59d814e4b901dea1cb8b17465e0059fbe8d04266eb420c221c418172a0f6d9b",
+        "exact_receipts": [
+          "NR.owned-session-sequence.workspace-index",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-sequence-isolated.json",
+        "before_sha256": null,
+        "after_sha256": "8bb801d409aae41ec7b0f416f20f0838e1189365529ae8b47ab93d5a75ab33f3",
+        "exact_receipts": [
+          "NR.owned-session-sequence.exact",
+          "NR.owned-session-sequence.exact-final",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-startup-current.json",
+        "before_sha256": null,
+        "after_sha256": "5b73f1040b646245a8e5ba8e4f25589c36be61ddd8ca9d0d29d3cf69186e6d21",
+        "exact_receipts": [
+          "NR.owned-session-startup.workspace-index",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-startup-isolated-v2.json",
+        "before_sha256": null,
+        "after_sha256": "897a207fc00b95974026102c49f30d628bb1eee25817ed63354504ec385db576",
+        "exact_receipts": [
+          "NR.owned-session-startup.exact-v2",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-startup-isolated.json",
+        "before_sha256": null,
+        "after_sha256": "2eb444106b7a4f006b796fa5ff784c0c502a7776b01d953728cde456a2b697d6",
+        "exact_receipts": [
+          "NR.owned-session-startup.exact",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-unlock-commit-v3.json",
+        "before_sha256": null,
+        "after_sha256": "ef5d095d2053924f45f0474184bee1efc896a3ff153e14c5d82166c96945e65d",
+        "exact_receipts": [
+          "NR.owned-session-unlock-packed.exact-commit-v3",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/source-index-owned-session-unlock-isolated.json",
+        "before_sha256": null,
+        "after_sha256": "93bb6076fb487e1a5fc9678e042c9f528f970068a68c97de10fbaf6441149da5",
+        "exact_receipts": [
+          "NR.owned-session-unlock-packed.exact-isolated",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-command-ring-commit.md",
+        "before_sha256": null,
+        "after_sha256": "38862055f0b88c4eb0919dfe30b9e8ec6558310a072d407ed5579f3b2e79b145",
+        "exact_receipts": [
+          "NR.command-ring.exact-commit",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-dc-isolated.md",
+        "before_sha256": null,
+        "after_sha256": "3fa3ffdc69332827e1866b127e367be01830e6610d75053e99c64c242fd24035",
+        "exact_receipts": [
+          "NR.owned-session-dc.exact-isolated",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-fills-current.md",
+        "before_sha256": null,
+        "after_sha256": "c6e50a475d59fa1d34a0a1c1b2320d9acb9ad2167ce9cd0a2c50d19a15144989",
+        "exact_receipts": [
+          "NR.owned-session-fill.exact-isolated",
+          "NR.owned-session-fill.exact-isolated-v2",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-fills-isolated-v2.md",
+        "before_sha256": null,
+        "after_sha256": "ec29e17986dce8e4fd516214a9113fa12ce5c7605882c3ab2894172fba10dad2",
+        "exact_receipts": [
+          "NR.owned-session-fill.exact-isolated-v2",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-fills-isolated.md",
+        "before_sha256": null,
+        "after_sha256": "4e9ac3402b5caa69bccde19199413fd83a94edf121d83016da755256052f59e5",
+        "exact_receipts": [
+          "NR.owned-session-fill.exact-isolated",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-sequence-commit.md",
+        "before_sha256": null,
+        "after_sha256": "1b38586fcb9e25e3a9394b02de58b04b497a5df7ed2d8a1ebbd2349d525b5298",
+        "exact_receipts": [
+          "NR.owned-session-sequence.exact-commit",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-sequence-current.md",
+        "before_sha256": null,
+        "after_sha256": "033e8e2c5d1b3bc0ff3bf371b0774eed291f898dd4bcbae8b0adcd733c807d8f",
+        "exact_receipts": [
+          "NR.owned-session-sequence.workspace-index",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-sequence-isolated.md",
+        "before_sha256": null,
+        "after_sha256": "470d5b874f4ddd6bbcb82dd5f5792c0b85b10148cbfc1ad6b564290b28a20d77",
+        "exact_receipts": [
+          "NR.owned-session-sequence.exact",
+          "NR.owned-session-sequence.exact-final",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-startup-current.md",
+        "before_sha256": null,
+        "after_sha256": "2f89892f6fdc4d5f5bd64a8f38a00471b5159fa2db32d1390a059b375c11a590",
+        "exact_receipts": [
+          "NR.owned-session-startup.workspace-index",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-startup-isolated-v2.md",
+        "before_sha256": null,
+        "after_sha256": "3545f2d4be1c44850cfca76bd31b29318a3907d36cad6652527cbcfae52a8268",
+        "exact_receipts": [
+          "NR.owned-session-startup.exact-v2",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-startup-isolated.md",
+        "before_sha256": null,
+        "after_sha256": "bb8c10bed1ee2df603093cd8d736a4ca19b60a0218476cc2028a6b98f54f9e19",
+        "exact_receipts": [
+          "NR.owned-session-startup.exact",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-unlock-commit-v3.md",
+        "before_sha256": null,
+        "after_sha256": "27799d5da84473774978497c0d88e8d953ef3aa2cf1b9b8457bc73686ae6ce2d",
+        "exact_receipts": [
+          "NR.owned-session-unlock-packed.exact-commit-v3",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-unlock-current-v2.md",
+        "before_sha256": null,
+        "after_sha256": "46e727416493314477a224a879d7038a62b455d590dbef4f70066f75b427469f",
+        "exact_receipts": [
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-unlock-current.md",
+        "before_sha256": null,
+        "after_sha256": "2ce5a0598e7a83a6f24888553f96d7f222c5f8feb1aef3c34a7221ea3b411aae",
+        "exact_receipts": [
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      },
+      {
+        "commit": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7",
+        "path": "research/runtime/coverage/summary-owned-session-unlock-isolated.md",
+        "before_sha256": null,
+        "after_sha256": "3ff907449b264b9079f64834990fb738fd72f8e6004bb9cfeb96ea1c46c3a4bc",
+        "exact_receipts": [
+          "NR.owned-session-unlock-packed.exact-isolated",
+          "COVERAGE.render-archives-preservation-20261005"
+        ]
+      }
+    ],
+    "unresolved_gaps": []
+  },
+  "missing_heading_anchors": [],
+  "reference_scope": "Hashes refer to committed-baseline documents plus the ledger/summary drafted in this review, not to concurrent working-tree source versions.",
+  "working_tree_boundary": {
+    "scope": "Latest full-workspace audit observation during this review; concurrent renderer work not repaired or credited. Counts may change as that work proceeds.",
+    "audit_report_sha256": "0aa4b13619a2f31f5d0a1d3d8a586112b0884d1d5f32020af098d5f012b4b8b0",
+    "errors": [
+      "apps/qt-shell/command_channel.cpp: source index/register link drift",
+      "apps/qt-shell/command_channel.hpp: source index/register link drift",
+      "runtime/render/command_channel.h: source index/register link drift"
+    ],
+    "source_drift_counts": {
+      "new_sources_without_index": 5,
+      "changed_indexed_sources": 12,
+      "removed_indexed_sources": 0,
+      "stale_evidence": 144
+    },
+    "validation": "pending contributor accounting and execution; does not invalidate historical committed results"
+  },
+  "working_tree_follow_up": {
+    "scope": "Later snapshot after concurrent contributor census reconciliation; source/contract accounting and engine validation remain separate from this documentary review.",
+    "audit_report_sha256": "cee81873bf7ce84588a79b006a3d2b955ffd615aee64f8ef790928445d905099",
+    "audit_errors": [],
+    "counts": {
+      "builds": 1,
+      "behaviors": 366,
+      "evidence": 291,
+      "scenarios": 81,
+      "functions": 6675,
+      "registered_recovered_ranges": 15,
+      "incomplete_dispatch_tables": 10,
+      "indexed_sources": 1104,
+      "unclassified_functions": 6483,
+      "unassigned_executable_ranges": 4248,
+      "unresolved_indirect_flows": 1543,
+      "unmapped_imports": 190,
+      "computed_flows_with_inferred_targets": 2174,
+      "unmapped_callback_candidates": 3004,
+      "unmapped_dispatch_candidates": 335,
+      "calls_to_uninventoried_targets": 0,
+      "unmapped_dispatch_entries": 34,
+      "behaviors_without_scenarios": 260,
+      "behaviors_without_implementation": 142,
+      "behaviors_without_comparison": 302,
+      "behaviors_without_tests": 2,
+      "stale_evidence": 144,
+      "behavior_anchors_outside_discovered_functions": 34,
+      "changed_focused_registers": 0,
+      "new_sources_without_index": 0,
+      "removed_indexed_sources": 0,
+      "changed_indexed_sources": 0,
+      "sources_without_behavior_links": 236
+    },
+    "gate_report_sha256": "a7679206fc22f4d05b665ff957a8fdd67c8dc61217f3eaec35a6aca4243a0d85",
+    "gate_counts": {
+      "affected_behaviors": 11,
+      "changed_files": 28,
+      "existing_gaps": 20060,
+      "new_gaps": 189
+    },
+    "unreviewed_behaviors": [
+      "Unreviewed behavior change: NP.bounded-scene",
+      "Unreviewed behavior change: NP.map-navigation",
+      "Unreviewed behavior change: NP.presentation",
+      "Unreviewed behavior change: NR.command-ring",
+      "Unreviewed behavior change: NR.command-ring-adapter",
+      "Unreviewed behavior change: NR.incremental-command-consumer",
+      "Unreviewed behavior change: NR.live-command-transport",
+      "Unreviewed behavior change: NR.owned-session-sequence",
+      "Unreviewed behavior change: NR.real-game-command-shadow",
+      "Unreviewed behavior change: NR.world_scene",
+      "Unreviewed behavior change: RT.render"
+    ],
+    "pending": "Concurrent renderer/scene exact receipts and new gap accounting; no new engine status claimed by this review."
+  },
+  "commit_follow_up": {
+    "commit_base": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+    "scope": "Preserve subsequently committed adapter and bounded-scene sections; update their previously pending timeline and next tasks. Concurrent renderer source edits remain excluded. Prior baseline counts/evidence fingerprints stay historical.",
+    "committed_history_review": {
+      "range": "62d8ac93a15c57c144d88c99e6ae497ab45b9ba7..c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "files": [
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "apps/qt-shell/command_channel.cpp",
+          "before_sha256": "1826fb0332ff5fbdbb3073d9ac71901ad185736d4bdd857dec9d4ca5eccb939b",
+          "after_sha256": "cef42f0fb6e7d9dc7dafd032d5c52e384de94d97b06a8d6028c8c572ff3d0ba4",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "apps/qt-shell/command_channel.hpp",
+          "before_sha256": "db6053575483d912c2ef3e1e8cae46ca028e4e27bcdb666d3f18f99e5239aaad",
+          "after_sha256": "d9a19f0de7c533c21cb4f5cc68efcc2f86ea33ef7a1f1c0c6ca619794a30da1c",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "apps/qt-shell/live_command_renderer.cpp",
+          "before_sha256": "d69398904ef9791487fe2e2f647914d7dcd1e3e38c50ead8d7b5e700686ad0ff",
+          "after_sha256": "33b08f27e8e9155f287d6d79f818f2102640790e8c435fc328756a838cadcd3b",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "apps/qt-shell/live_command_renderer.hpp",
+          "before_sha256": "1a61318c945566e38bb4eca73f798e0732127e9589f06c250108827271148001",
+          "after_sha256": "aedcff39dfcc6f02bab235279dbcb698427fe1f5b446cfb38b022e865b7bb694",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "ae5d018a831ea012c00ac8c856a2a7f8b4f7af79a14914cd686827bd9b8f7826",
+          "after_sha256": "f273c8b678d1ae9fbe0231caf1c53814ea39e8e2bafb60aed8a3a09a3a7cd58d",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "3a2ab3494737cff31ba05f0c43da681d5a9a93f5cc25463188c372fdb366e91b",
+          "after_sha256": "3bdaa3d2ad5185d75033c48e933a9ea59d761321b66c4cf18c6565d9351e090a",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/coverage/source-index-command-ring-adapter.json",
+          "before_sha256": null,
+          "after_sha256": "2dd789995f51023606825f4fccb3db3d9d9f7901f3917dcb9023808311a1eba5",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/coverage/summary-command-ring-adapter.md",
+          "before_sha256": null,
+          "after_sha256": "81733b9e515e8f000cbd14da898c1d177ddc30b8d521cdc07067aa793ff24c58",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/opengl-command-ring-adapter-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "de39ea874fe8ef477591eb752b5cd24270e5fb28de8eb015c2f81c5587a64f18",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/opengl-command-ring-adapter-live.json",
+          "before_sha256": null,
+          "after_sha256": "284cd4be7e69e7310f948093a319e49cffeef0c3c78372012e4f562fc94d1853",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/opengl-command-ring-adapter-queue.json",
+          "before_sha256": null,
+          "after_sha256": "5c82cbb867bd69deed5180636ba723b50de3aa94b44d125e198fa9120fc3d3cf",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/opengl-command-ring-adapter-sequence.json",
+          "before_sha256": null,
+          "after_sha256": "afad44c720a4b1ec3e9f6cbef0ccb08e3ee671250a31a7da18778ffeb5e23885",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/opengl-command-ring-adapter-startup.json",
+          "before_sha256": null,
+          "after_sha256": "36f032b176cf594361da5129f678d5d2412ee87e65daf2274b812ae176b411ba",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/opengl-command-ring-adapter.md",
+          "before_sha256": null,
+          "after_sha256": "d170b1511154d823f94f98d351e9398ecb247b01412e03e3d15874fbe56b75ef",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "research/runtime/opengl-real-game-ring-adapter-initial.json",
+          "before_sha256": null,
+          "after_sha256": "1b72619cc6d22d23692d0323f048361a80fbb4d4168b7071f8b1d2ffc5eca8b0",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "runtime/render/command_channel.h",
+          "before_sha256": "8305acad4f9423470e69843e2318936dd02c316a4d8aa7e7e40ab7e57e09afa2",
+          "after_sha256": "355812215e02b911820c547165d1286416ccc470415dcab9ea42accef102ca59",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "runtime/render/command_queue.h",
+          "before_sha256": null,
+          "after_sha256": "ddc14044d200529fc9a14a34c3d4ca1369af388c2ff40f1595eca5e9de7f5ea4",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "runtime/render/lock_lifecycle.h",
+          "before_sha256": "18cbb796069a889cb96abdd8b843f7f4c4e0f24a1746c3dda703be02725ea196",
+          "after_sha256": "813e31a3f231df73992a7dd81ddaee21334b59ce0d43c01f5c39180dcfb4008b",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "tests/live-render-channel-test.cpp",
+          "before_sha256": "c063ecc7de3a1352e234fb0a6bdac809c558dc1c5082046b45f2a01ce4585b7d",
+          "after_sha256": "47488ae38cc3258d1c391580fea9041eb54bb06cede04eb9caa307452490f189",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "tests/render-command-queue-test.c",
+          "before_sha256": null,
+          "after_sha256": "a796e372dfba6d0a9431abf23900bb6206a9c055b32bc7a93e68e3e52dcd35af",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "tests/render-command-writer-test.c",
+          "before_sha256": "2c1e21320fd44a5523390b30388ff3462fec378d9bf61fbf0ff37c392f667ca0",
+          "after_sha256": "b0eb0c1768ea79a01073a6a1c0e642839b40d432fd90803dced90ff28c8e68c1",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "tools/build-render-bridge.py",
+          "before_sha256": "2eadb622107f0b1854f002db08794eec305b0ca51da918c54f66e3ba973b6d44",
+          "after_sha256": "805559a5ca621b7145ae9b06475f19673f7d493bb37d8753ea0055d8ee249278",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "tools/run-opengl-game.py",
+          "before_sha256": "26016986bdabda47b552b32b53078f48c32922bde0668f36454a5889b0cd50f8",
+          "after_sha256": "f2dd5cc45ecf8c9fc797fb26e30ef67b231cc34ca842bf5d0e1e27489aa31f7d",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "tools/test-live-render-game.py",
+          "before_sha256": "91c90f93c1c788d2a649f30bcfd32a53ce6b6922d6e5d08e63456b20d16ffb94",
+          "after_sha256": "9d0e15467395a30e5f59cce3151972e3165fc1e325fce2111414f30e409637fe",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "tools/test-render-command-queue.py",
+          "before_sha256": null,
+          "after_sha256": "854c3c90b38e11d7e0922f703e97fdb64f88bd2bc562d659f55e72adec78c9d8",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "d955595c12ca0829538cba2e1bd4ee89ae4aa60a",
+          "path": "tools/test-render-session-sequence.py",
+          "before_sha256": "5178608cfb3c7f201846961bfe1512784171fd3fae90d507f88da008d837b076",
+          "after_sha256": "807bb66e956ff6d454fa7e871c98b0ef1d6affc70fed0642012642e0fd96b279",
+          "exact_receipts": [
+            "NR.command-ring-adapter.exact"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "apps/world-scene/README.md",
+          "before_sha256": "4d4911491b99c23c4c0f31dc118405a58d28f2ddd81bb3280e41cd18f4cb2655",
+          "after_sha256": "7009f987159c6a30f401c0d0413134e76df7be850ea5acd808c5a455439ca0d6",
+          "exact_receipts": [
+            "WS01.scene-construction-accounting-20261005",
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/formats/bounded-scene-specification.md",
+          "before_sha256": null,
+          "after_sha256": "481b123346aeaee1ccb0e35a71b2941007222fc8890a2b53e25cfc3db6195993",
+          "exact_receipts": [
+            "WS01.scene-construction-accounting-20261005",
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/bounded-scene-commit-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "c1240366170e4e656d18f77610123fa9b6285672dc8e0de5115d9d5afc55b16f",
+          "exact_receipts": [
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/bounded-scene-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "47a572055b6bccfd1e6b18505868459597c0c94cee14ce1f79f81efd9297baac",
+          "exact_receipts": [
+            "WS01.scene-construction-accounting-20261005",
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/bounded-scene-native-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "81c59a109c87e508af1d016a92dfa09fbfb1f212072b762be440722c16344852",
+          "exact_receipts": [
+            "WS01.scene-construction-accounting-20261005",
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "f273c8b678d1ae9fbe0231caf1c53814ea39e8e2bafb60aed8a3a09a3a7cd58d",
+          "after_sha256": "b9397d32f8cfd4d5a958b4d1ad1cc597b9ad683eafafbae2eb892d5f15051e40",
+          "exact_receipts": [
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "3bdaa3d2ad5185d75033c48e933a9ea59d761321b66c4cf18c6565d9351e090a",
+          "after_sha256": "7bfde4269f018d100e463200585280b62a4144d659e1b5a3545c96f7606cff7b",
+          "exact_receipts": [
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/coverage/source-index-bounded-scene-20261005-final.json",
+          "before_sha256": null,
+          "after_sha256": "e543c63fca1e3eafaa181e00df1d6606a07e906ee5d380b6ea80cb83c0472897",
+          "exact_receipts": [
+            "WS01.scene-construction-accounting-20261005",
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/coverage/source-index-bounded-scene-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "f2179fd51ed3d70a9ef456f7b115fb7bb7beacf1a83ddd4bec0da38c82719866",
+          "exact_receipts": [
+            "WS01.scene-construction-accounting-20261005",
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/coverage/source-index-bounded-scene-commit-head.json",
+          "before_sha256": null,
+          "after_sha256": "9768fc83880d5cbd5b66b8642a78db825c80aa1dda919be546bdb7c3808742d2",
+          "exact_receipts": [
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/coverage/source-index-bounded-scene-commit.json",
+          "before_sha256": null,
+          "after_sha256": "61b644cba5e385f85a3bca48a7bcd77ea4147e5e8fb03bbd0441e7b546cc8749",
+          "exact_receipts": [
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/coverage/summary-bounded-scene-20261005.md",
+          "before_sha256": null,
+          "after_sha256": "36452f909a6708c2a3e6cb1638dfb0619e7efff031e8ab8076fc58619f0b5662",
+          "exact_receipts": [
+            "WS01.scene-construction-accounting-20261005",
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/coverage/summary-bounded-scene-commit-head.md",
+          "before_sha256": null,
+          "after_sha256": "13b43cd0933a79a18f2dd6c2eae9348cd1f9c218e5a6f804840ffa15c39205a3",
+          "exact_receipts": [
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "research/runtime/coverage/summary-bounded-scene-commit.md",
+          "before_sha256": null,
+          "after_sha256": "36963cd1124d11c532c3b2ca965e9801bdc57cad22ee939e9596988ed3051f48",
+          "exact_receipts": [
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "tests/fixtures/forest-redcap-scene.json",
+          "before_sha256": null,
+          "after_sha256": "757b79e4479836224797d4503d77f2ab53152e7dc91c68d26f6fe3bf22fb8272",
+          "exact_receipts": [
+            "WS01.scene-construction-accounting-20261005",
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "tests/test-bounded-scene.py",
+          "before_sha256": null,
+          "after_sha256": "e19a5a1d43b09924432ab320046773a8b8fcbd88025fafe900679a601da6ada4",
+          "exact_receipts": [
+            "WS01.scene-construction-accounting-20261005",
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        },
+        {
+          "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+          "path": "tools/load-bounded-scene.py",
+          "before_sha256": null,
+          "after_sha256": "d16242b5ae1c3d0dfb17976b0a4e1980da01b2ee14ca8985b2ba18b338f658d1",
+          "exact_receipts": [
+            "WS01.scene-construction-accounting-20261005",
+            "WS01.scene-construction-commit-accounting",
+            "WS01.scene-construction-commit-head-d955595"
+          ]
+        }
+      ],
+      "unresolved_gaps": []
+    },
+    "referenced_committed_documents_sha256": {
+      "research/runtime/native-audio-voice-bridge.md": "2382b529725ce78db6821590b57bede238334976d84ac3eba76bfcf9ef9e86ab",
+      "research/runtime/native-audio-boundaries.md": "ebef116b2a1d9f2c6e15eca99b040343e39ac97cd98790a98d0a514ed4a0bac4",
+      "research/runtime/opengl-game-owned-dc.md": "cdf5e4bc76a7d184185cb6c997fe6b0bba293b057013c7c5cf5c4e2b5a72fa0a",
+      "research/runtime/render-startup-black-screen.md": "f13a20b8e2ef4f0a9f506f695b3c103e97195f50168dd5dccdd553919d063f0f",
+      "research/runtime/qt-shell-hosting.md": "51782fb020539111d77f7417e030ec4f1c01c3a4bce174bb84c2e49e250e924f",
+      "reconstruction/pathfinding/README.md": "cf2e895494a3a6faaff7727ea0a8fae071c5121a9cb45709621f1a4d74c8afc7",
+      "research/runtime/pathfinding-search-sequence.md": "2622e7b96c6a9a0c6f84a8b7c3b9dd8dd5769bb207d6ffc3954c08505e96f9ba",
+      "research/formats/route-world-snapshot.md": "57a77f3f61c4f7eb29217b8dacad22b2c182dbc80d61adbfb15c7a78709f0d79",
+      "renderer/README.md": "1bb039869543934df034e906f4da5bf05a56bb4631ba48e6a4603456c0556ceb",
+      "research/runtime/native-sprite-rendering.md": "4efb6d5fb8ad9a5a901739022c0287b7cbb87f9a513712ed7ea71645bc0526ce",
+      "research/runtime/opengl-presentation.md": "2c3cd3c3776329206118b4249f27f29b406e0f87768410dad24325c87bff4148",
+      "research/runtime/opengl-owned-session.md": "eeb166f3121483a464ce2e74b094a74f0e076d910a5d0d07d6374ccf7e6b709f",
+      "research/runtime/opengl-owned-session-sequence.md": "d1be9a371f3a15194fc061c5d690ea6dc0a5e263f1cec1aaf5c84aaa5a026b00",
+      "research/runtime/qt-input-forwarding.md": "62c5a0dd2301c46e71d30b1ab0ee2611f1bb2128698d81cac276cc26130d85b1",
+      "research/runtime/qt-native-media.md": "b26048d960ef52bea48ba17fdce713b8eb53b839cab7a0d3c02580416d7d9aa3",
+      "research/runtime/directsound-buffer-setup.md": "6a5a36e7b88358bf64877375fce1b587f6e69c7071cda5606175597fda88e5e2",
+      "audio/README.md": "57b5851f4640b2678cb8347260c5f6d30ea2127e82ddfc03bcd84978e22ff9f0",
+      "research/runtime/directsound-voice-controls.md": "a951664753eee6d2431161d6b81cf6aa734e93fa9d9de3e280b0a81f08e2a0b6",
+      "research/runtime/native-audio-voice-state.md": "bfa174ddfa8a1e7c114c38fa33731c0224dfd5256fa65bd12b72edef6b2f2931",
+      "research/runtime/native-audio-mixer.md": "fe841ac60a1f33a3ab120214343b40a7447855911db03f62869e6d05894a579e",
+      "research/runtime/native-audio-output.md": "3365ba425d66d8b6d69c90d186fe63566c8cee16af4113c60b980a65a2ea91da",
+      "research/runtime/primary-audio-manager.md": "53764e82a1280b5673fe099b669a5e775d0d6c3797035e924d9499253a3b3509",
+      "research/runtime/audio-voice-lifetimes.md": "f826fe6e6fdfacb8f2612f3c267a44be6ec84faf441528d90b4337a5d8f74997",
+      "research/runtime/audio-voice-scheduler.md": "11a0b08d5d1a143ead1144711fa69c697e00b769760ddd1385e950118ca6c7fb",
+      "research/runtime/positional-audio.md": "b5bba97e87699c94ab34b282cf53128fe66fed7225785ac4e7a6791bd008e11c",
+      "research/runtime/audio-camera-projection.md": "1a08a15824b2799c1d077aba1823fb9a443bcc1c4cc01fa93702611ac60d9045",
+      "research/runtime/audio-attenuation-map.md": "b662b7a69b52745933c637e193ac9574e6598d048da87bf83efc3dac3f2424f8",
+      "research/runtime/audio-voice-admission.md": "853dabe1f1e6bfbb6241682c57948f36c58aaf4c5c3712ffb079365c0bff9f58",
+      "research/runtime/audio-source-cache.md": "5389a6ab19904ea8428f8af9e7596f202bcf12db9a4c2d3b91fc73da8566efa2",
+      "research/runtime/audio-manager-configuration.md": "85f8811dce925b690bfa9064d1191483273c7eca13e6c86018ea3c65ebb4e6b7",
+      "research/runtime/audio-manager-lifecycle.md": "90fe73aa3e34dbb84c669862da59744f3af3749c408b88a1ec7cee6b4a6f6001",
+      "research/runtime/native-audio-manager-backend.md": "cba73d88eb529c9bd04c5c00fb72afd44cc5e1ebe5a13917a4127a1c5bb27a3f",
+      "research/formats/profile-api-comparison.md": "20c0dcfb18779e040e6a722d9ae381ff1c68d8e4ebd228f0303233fe22f83636",
+      "research/formats/installed-audio-profile-comparison.md": "2c6768ba5a47b27965f48cce1e5516f7e85076a7cb01980e2ac86ccea1f669c4",
+      "research/runtime/installed-native-audio-manager.md": "ed451f5b83ba922385c96593f87d90916c5c30b2679192361ae4ac45a0ad1f3a",
+      "research/runtime/audio-source-filenames.md": "13188ae89c53007fba9bdd614dba6b025a36b1b6018b72a09353502546aa0bcb",
+      "research/runtime/audio-catalog-preflight.md": "c5cc3c7d51b481b279e5eb731a7506fe6ff6da745e4c1fcbb251ef8e033003bb",
+      "research/runtime/qt-audio-manager-session.md": "693a260b291622eacf4e5f2a0e0cd82faa9cdcef10941aa80df33dbd94c30520",
+      "research/runtime/menu-audio-integration.md": "94ef45f3366e09907d84cdfaa3e9a416ba755d0a47ae41701d0b3b39933e036f",
+      "research/runtime/audio-output-recovery.md": "97285f818789d104b52e90c8cd41be5f57833b7af4710754d24f17350009f66c",
+      "research/runtime/menu-audio-preferences.md": "f9c6ec2c87fc4f741a6ea7ac4826dc7e68bd9588073ff3bcc90f5b63a844e5df",
+      "research/runtime/native-menu-music.md": "b0bcdd71b5f4e34f5f35319a2143eef368063325c5d95e439736b6b3ab383195",
+      "research/runtime/menu-music-recovery.md": "970d2c4b1bae72daf2f93526c6836f5c9b4cc525523534e75d2cbe9ea3731427",
+      "assets/README.md": "e3c2a8ea580f581e732f4db58c09bb2c40d7b5f9cd1aedf96519ce9cf40df40f",
+      "research/formats/asset-file-comparison.md": "3d504091b5784d3d6f1ac5ebdbf7c06fad79fd5bd0bcd27ba527765727c8f9c7",
+      "research/formats/pcm-wav-loading.md": "422c38f194e2fa493f07857ab19d307d478d450c7c6117f92159e948e12474f6",
+      "research/runtime/windows-file-api-audit.md": "eacc3971948d495e78ed3d3ab312d83a59addac8e1989f000fa419236d2f11f6",
+      "research/formats/spr-native-loading.md": "6ea3aa249bde6da5d96bb7d2cd3c0253fbe1d6423396af2fe4f76812dfc5159c",
+      "research/formats/ani-native-loading.md": "2a9189767ee30cdf3b6f94c2db40c87f41ad3e03c404170a2997199184b9076a",
+      "research/runtime/animation-forward-contract.md": "1c256938c411f04cf9de4ca9aa1d27a35570a79861bb50978a8dbaba98978ca1",
+      "research/runtime/animation-direction-selection.md": "497053914839d53d2541ad53c1fb3df5e9a8b2ab73b2f6dbb7fb4ea98636583b",
+      "research/runtime/animation-placement-attachments.md": "bf9ed237361934291f89726114e85b7bf0d4819a6673c9de548ca2c6766a4421",
+      "research/runtime/native-attachment-recipe.md": "03d6c698e6632f6d011ed7442a8636163aee9fb1ab01ea90068d23e3c344d50e",
+      "research/runtime/sprite-queue-order.md": "87ea81c54cf94c0fb0438235d783adb47cc38b9d400e2f4882231390df716f6b",
+      "research/runtime/native-sprite-queue-scene.md": "522a33f2cba00659cb193d7c2a225f7b8b3ad9c3341e52b11454474ab163b4d8",
+      "research/runtime/sprite-visibility.md": "9eff225c87c5d3f381acf1b979e7ae748186ba1b4bce4cc925da64cf69649434",
+      "research/runtime/native-sprite-visibility-scene.md": "42f95616e0314be88a448dbff8a16c797cb6fd2ea798e3bf66b38610ac9d7586",
+      "research/runtime/terrain-submission.md": "e8c727865648b917e7bc52d4c18a603d04fa4dc3ad0e3b28f79056a0442ad2ed",
+      "research/formats/ttd-native-loading.md": "fd6fa88e74389c3d1b2f18c617e50a59c5106d3f3d8aee1b7dff0ecf8eaf5b49",
+      "research/runtime/native-terrain-preview.md": "672b875fb40d53699211fdcd1fefbfcb02ec1f6a419ed8c03b3b7398b765288d",
+      "research/formats/map-native-loading.md": "a7734d487f626bb54dd79088543e4ab080970dd98b73396722ca0e4b6193ed77",
+      "research/runtime/map-grid-loading.md": "25f6e5143a6fe481a4a316247a8f043bf69dcdaca847aa1e6c73e50e4cc5a804",
+      "research/runtime/native-map-terrain-preview.md": "538ad6600d2347fb1fad0d81fe650bc44709fa6a73015e98b8722d5404e7668f",
+      "research/runtime/terrain-world-traversal.md": "686119fa2daae5a8fc46b65ec6f0b992e8573819181dc630bd8452a3c5f887b3",
+      "research/runtime/terrain-traversal-rotations.md": "3eb39e8d38d3f1df8e14f9c0376d7c4090eaff508a774e25a29f146ec84906bb",
+      "research/runtime/terrain-camera-setters.md": "9ae4a6fff31e7f5641044f9ee396b72c04c6df8ec17c8d19afde9a732a082a94",
+      "research/runtime/terrain-map-initialization.md": "c3453f3988040739d161c24d5fe6f0167c2b904445cbdff1e0f531f449d51892",
+      "research/runtime/terrain-section-assembly.md": "5f3316ef1f111be1e153f8f9b11e9e0722f84e1bd7d5d0b1c131c284d4c47a4c",
+      "research/runtime/terrain-authored-regions.md": "fb0985c7769826547302ae21acc82b26855857e264d756077a671c0f9ac5c6e8",
+      "research/runtime/terrain-region-selection.md": "f7d46b028ad38b0e084ddab5f22e2e1a3e061a4165b40b595a48c3143af42ce1",
+      "research/runtime/terrain-region-constraints.md": "cab6be0f5a54ce4d03d20314c52c294c2885c09258447c5ffecc33800e542af1",
+      "research/runtime/terrain-region-solver.md": "3180e40004f3e3960de00f03f85d2b4087c3b901b8495e6f2e5bb9457c6e61a7",
+      "research/runtime/terrain-region-specific.md": "88b3af7ad036fb63dc0d12071960755dc2dc2d47d9d471b259362ffab565879b",
+      "research/runtime/terrain-region-generation.md": "212081a29ec8bf11a3eba824b16365160a3559677075cccd0cfbf2dda2eba3cf",
+      "research/runtime/terrain-region-catalog.md": "1aae25df74e0871df73e2d579868ac017546bd48a5d2183e71e2bbcc8a266c64",
+      "research/runtime/terrain-generated-plans.md": "180bb9471c611507710cc7a0b371ebfa5b025b251ce808022df03ee9e91be7fe",
+      "research/runtime/native-generated-terrain-scenes.md": "bdd274e38ae759d395ad205b7a03662abd3838e01304db298d8671c3dd65a3c2",
+      "research/runtime/terrain-generated-coverage.md": "f5c8ce093d85e7f84db42707f638d3b5d7112867df51d2f6bbd9b08d7b2fb497",
+      "research/runtime/terrain-palette-shading.md": "5173b72e8ab7ca4189537597f366724a40d7924f3fc25521c93ea41239ed7c60",
+      "research/runtime/terrain-lighting-config.md": "a76b975b28519ac82a7a4bdb5ca854977eba308a61fed6afef05688a18387cef",
+      "research/runtime/terrain-palette-preferences.md": "b6062d3648ee245d51a2363ce02a55826fd0102d613eed86303b7f06ef78af07",
+      "research/runtime/terrain-light-fields.md": "f956e1e122eed24004a5a806b179cff2fd03800b894b5b965bc900e299fbc5aa",
+      "research/runtime/terrain-creature-lighting.md": "2db4690b855078d6f66c929cd70d639c5970b6b67abebd81d81859e123e972f3",
+      "research/runtime/terrain-static-lighting.md": "acde8b7278695e54a01357485d474992f5d1e5178a2ef72a5f246f0bd32b7d9a",
+      "research/runtime/terrain-object-lighting-scenes.md": "9f0a268ca561dc81b78d22574447ada2edea5fa1032d8cc8961fcb9431aa3c16",
+      "research/runtime/effect-lighting.md": "5d0a7b326d8bf3db6a8dcc90e934ada3fdef61894d006c97c8206ec08126a035",
+      "research/runtime/effect-record-placement.md": "57c63a8d2dbedf89dbcf496bc3a4b97ac66b8329cd2a2f6bf64eab99005997d6",
+      "research/runtime/effect-trajectory.md": "621482d995b9018d309073e1b9fd8b47c5376c26de31b738ac98aab57898cb9a",
+      "research/runtime/effect-same-cell-projection.md": "52c7d0a24445a9198996e5c08705953f4367777cd871ab9b0d3f77273a4df7f9",
+      "research/runtime/effect-cell-transitions.md": "4ca6a72adc921be585b807e6b37ac43567adc55c8785fdec93b92f7c3520b256",
+      "research/runtime/effect-cell-cleanup.md": "a9d291b4dfd65fba8c33c779b9b16c33ccf00771f6c55701b38bdd1915e8c407",
+      "research/runtime/effect-blocked-destinations.md": "dd735d1bbc2a53c5c69402bd365fe9c34a5adddb75c19453cc8ef08e0cb731bc",
+      "research/runtime/effect-height-exits.md": "a911e493882ed860ec54c1a2128f30175085d6ea548177fedc966abff183af7b",
+      "research/runtime/effect-membership-disabled.md": "3bcd6ff0f21de0eb49321c971f3c464656fcafe24c4dac8ece9e197792c074c5",
+      "research/runtime/effect-terrain-occupancy.md": "79793ab69066b97c74e7e6414f4b35e66c68e64b89d6aad49228cc665f33728b",
+      "research/runtime/creature-occupancy-lookup.md": "1c5718268b5090de3f1a0116abbdd5b485084535131389b9bf03888c6a59be7a",
+      "research/runtime/creature-footprint-initializer.md": "80b2c176227186bc87702b488d0fa6d8acd5bc10c133cd13fb358e4c586b4a24",
+      "research/runtime/effect-creature-collision.md": "4bdc19d8c7727f6b7f1c317824d3009c83f7b625187cc5ef79be15a4fb3ef0de",
+      "research/runtime/effect-creature-boundaries.md": "7f3a011423133a1063837adbb981bc55859e6a3721c9a02e60ef508f70ae4dc6",
+      "research/runtime/effect-kind34-creator.md": "0c7ee6a0eed3de59091a0cdaddc9cf47e9a301a74ca10dcfc48f01782313bf52",
+      "research/runtime/effect-trajectory-initializer.md": "a7aa88e28bcb49d883634b62070666ff027bbad8a5bed65bc252796f827774a7",
+      "research/runtime/effect-motion-initializer.md": "571bba0c1c32fe9a9720145eb59515d3c265b4dec9c71ebf4b7f67ba8727b6aa",
+      "research/runtime/effect-animation-selection.md": "3e88dcb2955af6578692361b124bdb78fa94eaed8ccec3e28c1d7db1f828bff7",
+      "research/runtime/effect-animation-binding.md": "13a56ab2bfe90292252acbd161a0e4fef214849d3ae1b8b3e71d91ecec7d1991",
+      "research/runtime/effect-animation-catalog.md": "44beade6f601b23a68d45ca9575ef4e5c5b541f981f0e279829129ffa8510563",
+      "research/runtime/effect-animation-metadata.md": "36b3e4be7e09c5a481b2cd161b5be442d2c15a6174f1a4f157972fe04ae6c8e9",
+      "research/formats/persistence-native-loading.md": "e64c1a26a60b31757a9ee4744071ee2e573441ba81a087dfd5c1600863299444",
+      "research/formats/save-game.md": "af593f13c7a0ad9e63eb1e77ca09b6ba5273a47919e889b0cd57d6f1df12a679",
+      "research/formats/wzd-native-loading.md": "332ac362113bf927866a376e50fd15abf935a1ca2e3c1ef0cb592685ab532f91",
+      "research/formats/cur-native-loading.md": "8df9d2ba258db9c806f117b96d6d32bb66f5287c6cd8594465ff458a7bc6f503",
+      "research/formats/pcx-native-loading.md": "1aac2b056969b3c6f0f81bc774a5211d9a4dcdcc08c966e25f97fd67e026005a",
+      "research/runtime/menu-image-integration.md": "8e6973451724d8be34e50f4cc8c23177a6341438795342a41d11804d547b0b2d",
+      "research/formats/bmp-native-loading.md": "c7bc709438fe96fcdf2d7bfc9deea5cc11aed0d1a7b7dd1221cda798ab16d102",
+      "research/formats/jpeg-native-loading.md": "ea3ca5f3eae1648e345917d5a62755b7dc848d153ffc062fa8d15d668c571717",
+      "research/formats/mps-native-loading.md": "89a6b94baf9340ebb4366d625683667f6469fe3001e47a8f8f019064f7390309",
+      "research/runtime/mps-placement-loading.md": "537e77e6f3b992eaa9d3604ae70fd79ba9975218330c8c06245f78baef369b6e",
+      "research/formats/evt-native-loading.md": "8bae51e88f3f0b750b74678afa3e5fccb7c846a03b02041c903008f5212d21cb",
+      "research/runtime/evt-area-loading.md": "cb8b42f970d7b49a90a2872af932b59fec43e738964b007c66b1683c1a2d2ce5",
+      "research/formats/tag-native-loading.md": "0f40c62ccb9d0be53f09a8bf10c9082dc33c619b8392f0536608844a09e5dcf8",
+      "research/runtime/tag-sprite-tables.md": "c6119e567fe1d8a4191b936252be7d67bf6b6c5562012c8aeae22b5194e249fe",
+      "research/formats/fp-native-loading.md": "cae4fe4517eb07bbfdbc0ac3c175c721a2bfd9abfd883e6a9495ca1e106b7812",
+      "research/runtime/fp-flag-path-loading.md": "01a0909090510c7cff6d1772c68a25642063decc9fe92919c21a40145d5d4ea9",
+      "research/formats/sft-native-loading.md": "79a9a6258aa785741d26e89220b77aa0e800d9f9fed87ad0378b35fb86ef9635",
+      "research/runtime/sft-font-loading.md": "5580ed54f8d0a7b43a1db1cf917d26026ac4720ae2f7901b0922b713a3bc3213",
+      "research/formats/nod-native-loading.md": "ec6e95781fb68413f8fbcb29c3e55603058bfc326d558ccb4638630f2fdd7a17",
+      "research/runtime/nod-node-loading.md": "3d750428486ff3d868a5f81c6767a2aabb2f15b6d6d3427db1ed5c9de9c77855",
+      "research/formats/txt-wbt-native-loading.md": "3af0b4fa89dd57cb2c62e5f015adeeb95ad952118a072c5952a50006920c0cf8",
+      "research/formats/dat-native-loading.md": "983700ddca71b5ca9f5972647290374c5a9ffa42a445e17f9a97500a0ec06767",
+      "research/runtime/dat-ai-loading.md": "9cdd51165c65c70eddf6babbb9b23e6a66d52eae2f68d70dec6686a46db7c087",
+      "research/formats/legacy-ani-spr-loading.md": "28eefbd331f4da125a09e6a61c73c91517004a292812b74348bf9a689cf64f62",
+      "research/formats/save-world-native-loading.md": "046fb619c97f8fc15195e282811620bfcb46c2ac9cf3de9b2af2fb486a933b09",
+      "research/runtime/save-world-serialization.md": "89403d5fab9d61fe8d1cfc78f9b9252465a075f85d99bc232957b846c0c5314b",
+      "research/formats/encrypted-cfg.md": "0d235eb7e4538980777932815cd77a2733962048757d0ad7c1f03f376d4d218f",
+      "research/formats/cfg-precedence.md": "fb02700fff2a52c87d2b3a5e1db8301e0bf7f2518da0636a91e251cd38907306",
+      "research/formats/cfg-writer.md": "ab5844a98209d8f5f0fbda0f1df9691c850951d3b522e73efc84d1e7d826fee1",
+      "research/runtime/threading.md": "c5e929857e215dfb08b8a62b76dc8033511c0f0a22e5d92d5947dafa719e4be9",
+      "research/runtime/world-tick-loop.md": "3f7ce156be8628aa54c24708500ede5308a06f68b042bf660cb97df08cf7fa54",
+      "research/runtime/main-menu-qt-migration.md": "a1382d7b43495b0c1d4e4b60143e2ee2a63c80ecddd303fe41c1be9dd645e0a0",
+      "research/runtime/quick-battle-qt-menu.md": "219bcc11038275fe96eca8eaca1c4b729383e171ed4aa2a0d032e5aed740ef26",
+      "research/runtime/mini-menu-qt.md": "bf1e88428e3b875c358f70fd9e1fa876c2929b94eebaa846e87fe78287ab9fe0",
+      "research/runtime/battle-results-qt.md": "cf7d6799e2126b031b0866404d5d0f2d216e32c22622cfce3a9f0981eea522df",
+      "research/runtime/quick-battle-results-qt.md": "6da2ee3873d201f59f418dcb3b0093f0682647237052240e58e3fb27b3fe3a10",
+      "research/runtime/map-selection-qt.md": "a8cb6c341c4fa502ae8828d3c148345c347d13568c5912528e16f24a1b7b8dd8",
+      "research/runtime/menu-engine-observation.md": "198296c1ad59ff09a6451b60149f7e2f3f2f933de9a32f03c028e2ecb09673fa",
+      "research/runtime/multiplayer-game-selection-qt.md": "14b800533fd5c21b616876b3932a7a40bc8d5cec3af64bbc485a7135c82b3863",
+      "research/runtime/single-player-battle-qt.md": "91e2207ffb125b59539b122132de000368e5514e26e341f73730aa4ff84e10fd",
+      "research/runtime/multiplayer-lobby-qt.md": "7f309426251049b83c71910a05f3f3b9815a60661ce91289761a7cd85219605c",
+      "research/runtime/region-entry-qt.md": "be53173c38523b498ca8c5a6c878c61de29813895a7abe15dd1e64a07977f9be",
+      "research/runtime/character-screen-qt.md": "584a6aca1455fb029a1e9c4c166f17c8703127bf1cd3393e96d9c74b79dd9c33",
+      "research/runtime/menu-sprite-integration.md": "d88cc0a69d7cf3e317549d789a86b7a9f3bbbfd195177d462dc38c471b535d39",
+      "research/runtime/grimoire-qt.md": "556c66209b39a4d7b070678fdea9e7cee2f8eb7784e4a442025a231565a398bd",
+      "research/formats/grimoire-text.md": "b691c7ce0313cebd9ec4b282db5d85f222d8a3ca376f878ec1cf5ed4f845d66b",
+      "research/runtime/spellbox-qt.md": "2735ad0e18930149948ccdf35fe8d74750a739c8df0eecd8d30eb90d304fb7bc",
+      "research/formats/spellbox-assets.md": "3be056d1b4ddc9f349eb8ea2d3fcf173e690228ba10ea8d83ec7bcabb9369a50",
+      "research/runtime/realm-viewer-qt.md": "720ebdeb698265402933d89487ece35f414f11f7e6387def0ee2a5e1ac4d174d",
+      "research/formats/realm-viewer-assets.md": "7b5a2f4c5ad574e43d7003efba0cb3c1d7acf443233e5f0317554b60dd3f3e3a",
+      "research/runtime/menu-font-integration.md": "1d4b13ac2fd0c59a869a5812e18e77073dcd47c24a560465e4702a4a03d8cc1a",
+      "research/runtime/realm-viewer-visuals.md": "ddbf6cc9ad68e3b3c56316ac53c3549a5710dab5a6a105120bbf7f9b701097c4",
+      "research/runtime/spell-research-qt.md": "5da7a7e9ae6cfdeb72dec0475428e66f33af1052cb0c96b59085645432c7297f",
+      "research/runtime/menu-action-bridge.md": "5113d78303ec9f2758df030684f15b7bc887bd114b82f910839b1cad9c67bd05",
+      "research/runtime/single-player-menu-bridge.md": "0d3377792fac7378b29206db4783265cc95b9bba82dddea6f6c472d3e98c7ae4",
+      "research/runtime/spell-selection-menu-bridge.md": "2a86491ca7d50726ee576670febf460967f263fb3801efb802423f344ec96eed",
+      "research/runtime/mini-menu-engine-bridge.md": "72b15694d371f6a8eb7c8da4502fe75d179a46086bc8685c7375c70a95a1a2bc",
+      "research/runtime/quick-battle-results-engine-bridge.md": "7a4838803c3bccc1a0a6627eb12d0c014528b53eb0e8b03d9529de1e73683c1a",
+      "research/runtime/preferences-engine-contract.md": "0188e6230f1e59ae2630fba14e2e5e3d779f6408876cfa2c7aabf9cc48a9cddf",
+      "research/runtime/preferences-engine-bridge.md": "cf5d09e2725f99a1cb64d57e9bb6009ce98159925cc36cb2efc63e7972666220",
+      "research/runtime/preferences-coverage-register.json": "4e7b92835b2f38e1a7194d7bc1a2844396f09c00b9c3236662e9410dc133270e",
+      "research/runtime/preferences-persistence.md": "8ba999e9bd73f820c82971e9b6ccfcce96b75372044f7290dddce9a9a98d17ce",
+      "research/runtime/preferences-display-rebuild.md": "bbf4320aa9bea6c7e2c15dff46f4e692a6bb56a9940334bb39b6f8a079a1644c",
+      "research/runtime/campaign-menu-engine-contract.md": "dc24faeac2d6e7c704122a57211c30fb67df4f3089ec182ff3c51869edb602eb",
+      "research/runtime/campaign-menu-entry-observation.md": "4f65ffc3c1c10a557a15c59ebbbc373bb9cf464dee581ae254e36bfc63f30cde",
+      "research/runtime/region-entry-engine-contract.md": "3cdd52acf45f5766078c675299dfb3e0b8f9563b8d98d490f75056b9efd68050",
+      "research/runtime/region-entry-engine-bridge.md": "e51bf26787fcce35ca24065666ec068dd44ecef57f58f963939ce8ae22d498f6",
+      "research/runtime/region-entry-enter-engine-bridge.md": "f8421a9b4aa3434b05c1c6cb30091cc2964c2e348f942e0a8f2098dae6d2d478",
+      "research/runtime/campaign-mini-cancel-engine-bridge.md": "7f2356a3d582cc3ed8fc52a7d080901a1444469a382dbcc77132e7f89d193563",
+      "research/runtime/campaign-mini-quit-engine-bridge.md": "5f680cb0cd8db909c526f1f9ddfa67ac8264f923aff42710c7968740e66c8018",
+      "research/runtime/campaign-defeat-engine-bridge.md": "fb01bdfb26901df275a28b07d6022504103cdba7a74f56c7174248dfbe12e7ba",
+      "research/runtime/campaign-preferences-engine-bridge.md": "d4f9481f0f35e6f43dfb70bfc8d8279d72a56f8d163428c06fce9490564b3ef6",
+      "research/runtime/campaign-preferences-live-engine-bridge.md": "bbe3add048ca44ca7eb4bd3e848ce07fce5db1a59826e681f787e92dce97aa05",
+      "protocols/VALIDATION.md": "5bd883711020dce84ff0a4b2dbf001898c7a57478876275dc53218333c74671e",
+      "research/runtime/native-world-foundation.md": "ab204a1b5aa002f3ae11b51508a6c9976f8e0ebca0f9600f18ec541682049823",
+      "game/README.md": "8d7125bb3956ac073877bac4e274e8c87fdf54fa43fba3720a115df074789db7",
+      "research/formats/native-world-snapshot.md": "ab1f5554b1ce033942084265fd0d3a8c102c95f525561717d2159a0b8a894df4",
+      "research/runtime/native-creature-movement.md": "29cf483e3740d7cf01a5b80e2bf869e74fbfeccec77653a6099832ec02f14236",
+      "research/runtime/native-creature-fine-motion.md": "129d33f2e3369975e77a6d74913a5d589cc63c2c6b5018cc8e0df5ab2a284bc2",
+      "research/runtime/native-creature-segment-continuity.md": "d5c1bc6c5679b8b038e80b3591eedcb777d1e4ffba26fa995b1d21114d0c6409",
+      "research/runtime/native-ani-motion.md": "9f37bc61c526d49504a78aeadddee8718843569aa23af7bacd31a6bb042c8899",
+      "research/runtime/native-terrain-motion.md": "e9751ab8094e7630ddb97c09bf9bfa60006a316d7e520b42f448ffb76fdd1563",
+      "research/runtime/native-world-scene.md": "1c0bc5dcc18be3af315cd6ae54b04b999e764665d6bb2fb7e161f7bf90c74cd5",
+      "research/runtime/native-map-navigation.md": "5c8d1cc7a6aa5c3485ae4ab874f9aa67cf0da121dc8170365b7bfd77c05a541d",
+      "research/runtime/native-creature-profile.md": "1735ab1f3872597ad60b02e25f2d3e6ede28b163dd6db2da9f1da37ed01902ef",
+      "research/runtime/creature-ai-combat-spells.md": "47cf1effb027a71355a89f4c22021f4286a90987ba392f355458ec0cb76c2eb6",
+      "research/runtime/spell-dispatch-inventory.md": "d6c0fce3cbe3c6870db3f803d6ccb28a03ec61fd56bf6a911a6fea6a237abe58",
+      "research/runtime/persistence-progression.md": "0bd2c6285de5470b3a7092af395193f8e5b9147ed29a9067433367a18f7d44fe",
+      "research/runtime/native-animation-scene.md": "b71c8ea01c98664a0a192641063e1c47e397c96a09d44bcef528cd9e81ed4ac8",
+      "research/formats/menu-migration-inventory.md": "b72ca090094348b4402f454f9c7d3da1bbc324ad94ef8d09ef92b71e186cf4d4",
+      "research/runtime/entity-lifetimes.md": "b8e741dc99b82b72cb0098d50efeab2181dcff76a5f60fa546a0eeefa5108631",
+      "research/runtime/coverage/README.md": "e4c2af60fc7f536624eeb3579a71125f1c85a6249159df82666f73bb300604e6",
+      "research/runtime/coverage/source-index-nonrender-hook-final-20261005.json": "50135e0a3ab756442df08c47df06283db51fbc772fc76a9e326c682794a045ec",
+      "research/runtime/coverage/summary.md": "d445bbcd08633c20ee9d9260a6424c911468c02da280b694fb789e20d964c6d4",
+      "research/runtime/coverage/summary-initial-movement.md": "a870c5dde748be020fc64d706c8201117f6ef7b0275b83d85fc623f8bb228861",
+      "research/runtime/coverage/validation.json": "5507ba4c9e20104fa6bccbcce6706857615bbd4813d6ee4b6f9c3126ff3837d4",
+      "research/runtime/coverage/code-index-validation-20261005-final.json": "1f680cbc39881a4e126870ab92104221040cf857f5e067ec7ccd39a634f09d0e",
+      "research/runtime/native-stationary-occupancy.md": "14ce6408c3409f08e087de60e8a99758c6638ce7b80570e3ee3f5c074083da45",
+      "research/runtime/opengl-direct-presentation.md": "f5816ad9d7c1034beebbc4a4fbc20077897408a004753e5bf2f2fb6aa1f917fa",
+      "research/runtime/native-multi-creature-movement.md": "c697b522211c73089e0c0220e1bf674a0b57bc1c2189a808c287d0c12e2ab6ee",
+      "research/runtime/opengl-incremental-commands.json": "dfab0f3c9b9706de24684a01f547ae1a7ba0b21b503040246c746fdf519d4af0",
+      "research/runtime/native-multi-world-scene.md": "5911bd8845adbc5c5df4ca1123046a510aa92d4499592d1e08c947fcc8f9ef12",
+      "apps/coverage-ui/README.md": "379b578c9a12400bd1ae249a5fccb2f8d0cb5968b45593c2b86ee4ffb130bd64",
+      "research/runtime/coverage-ui-validation-final.json": "7ada5e4f160a7e27a0414a466523f75e6de02e68fca7a6b4f30c017baa81bb91",
+      "research/runtime/opengl-live-command-transport.json": "aaf3e55eab6481be7067e530b155a0f608f97134d97db82aebcd36787072c09d",
+      "research/runtime/coverage-ui-direct-call-validation.json": "97c290dcfcd4d24a95dc4580d2d0610626a024f669375a401e2a10056e984285",
+      "research/runtime/native-scene-orders.md": "69ab88d4b9d3e7af9de335ea946cf9ea248a9b689343108f780dffd724b447dd",
+      "research/runtime/opengl-real-game-shadow.md": "b38d2e4f2e270cd418bce36d29ad258832f1eebbb6f5b3fc8d8af6568e8b85ff",
+      "research/runtime/native-scene-picking.md": "b2abe19699a1e1e464767357659da59f4b51073d59231a2876250ffa48b9f117",
+      "research/runtime/opengl-owned-session-fills.md": "4d50a87e9c2a5c157228cd3383270ac745eb67b985d85feea0ea2a44334bf2b8",
+      "research/runtime/native-stop-orders.md": "7527b379f5ca63e0529f3daf85d5a630877bf9906125c6c6197bfeda9d0d7383",
+      "research/runtime/native-scene-playback.md": "529aa15e9f15bdb906160afa45841b0f101c40c42935f57a9c32f906373db3ea",
+      "research/runtime/opengl-owned-session-dc.md": "46426ae6f6a5fa733a898470dd20003e9b2fc41cb5c5d9851e3c54659c9078c4",
+      "research/runtime/native-scene-window.md": "b211943bcb4ef39a95fc0e498615d193e57c4579cfb33a6523dd98ed6da0dd01",
+      "research/runtime/opengl-owned-session-unlock-packed.md": "5b1747fe2960d58c821066e50559af7c5b64f84e9c1cd59bbbf1662d22c9a9a0",
+      "research/runtime/native-idle-display.md": "13eff25fb70b675bd3e7e94d27f0bdfd600727f3f2d0d0d71739fe3169e0e9f8",
+      "research/runtime/native-spawn-display.md": "e2ce709dd2ac68ca1f36c4186e09432a9191f47970d9282f28920ee9d26f9f95",
+      "research/runtime/opengl-owned-session-startup.md": "9e7d0043caa3414cfc9951f02a697da370b9b6deab71795b01ddd82a5427b285",
+      "research/runtime/native-scene-spawning.md": "75bdf846c170aadcdb8847f54985485798774febcbc7d013aa033a38c4cba6e9",
+      "research/formats/render-command-ring-v2.md": "b42efebf46469510d7ce6cd42798ad9e0522e4f4b345a84036878e691b54b282",
+      "research/runtime/opengl-command-ring-adapter.md": "d170b1511154d823f94f98d351e9398ecb247b01412e03e3d15874fbe56b75ef",
+      "research/formats/bounded-scene-specification.md": "481b123346aeaee1ccb0e35a71b2941007222fc8890a2b53e25cfc3db6195993",
+      "research/runtime/bounded-scene-native-20261005.json": "81c59a109c87e508af1d016a92dfa09fbfb1f212072b762be440722c16344852"
+    },
+    "ledger_sha256": "4b11fe52dbb6ee5b6fe1b7e83f2f11fee853545f24f74d4c2192d25589f0f702",
+    "local_links_checked": 312,
+    "missing_links_or_anchors": []
+  }
+}

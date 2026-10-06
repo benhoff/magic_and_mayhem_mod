@@ -1,16 +1,35 @@
 # Engine modernization coverage ledger
 
-Ledger reviewed: 2026-10-05 (NS06/NS07/NS08/NS09 updates; broader review: 2026-10-04;
-initial baseline: 2026-10-03).
+Ledger reviewed: 2026-10-05 (cross-subsystem register, evidence, links and
+remaining-work reconciliation; initial baseline: 2026-10-03). Dates on individual
+milestones remain the dates recorded in their evidence, including 2026-10-06.
 This ledger tracks reconstructed functionality,
 modern implementations, and replacement of original work during live execution.
 Those are separate milestones: offline tests and capture hooks do not establish
 completed engine replacements.
 
-This review reconciles recorded audio, SPR/ANI scene, native menu and shared
-protocol milestones with the current source tree. Audio reconstruction remains
-offline; Qt output has separate native host-backend smoke evidence. Default
+This review reconciles the central register and retained research through
+`62d8ac9`, including native audio boundaries, campaign menus through UI35,
+native scenes through NS20, effect metadata regions and command transport.
+Recovered audio models remain offline; Qt output and selected native voice
+routing have separate host-backend and live user-observation evidence. Default
 game launches retain Wine DirectSound.
+
+The committed-baseline offline audit at `62d8ac9` passes with 364
+behavior/policy/gap entries, 291 evidence records and 81 bounded scenarios. It
+reports 141 stale evidence records and no source-census or focused-register
+drift. No registered behavior in that baseline claims live replacement.
+Concurrent renderer edits initially produced working-tree census/link drift.
+A later audit after their census refresh passed with 366 entries, 1,104 indexed
+files and 144 stale evidence records, while their change receipts were pending.
+The cooperative ring adapter and bounded scene subsequently landed in
+`d955595` and `c06fffa`; their scoped evidence is recorded below. New renderer
+edits remain separate from this documentation review and require their own
+accounting and validation.
+This review checks documentation and accounting; it does not rerun original
+comparisons or promote engine status. See the
+[committed-baseline audit summary](coverage/summary-ledger-audit-20261005.md) and
+[ledger review](coverage/ledger-review-20261005.json).
 
 2026-10-06 native audio follow-up: the user reports working native audio in the
 readback-disabled configuration. Latest matching experiment `run-f2336iox`
@@ -37,7 +56,7 @@ original menu transitions have live observation evidence with original work reta
 No complete gameplay subsystem is established as replaced by the reviewed
 evidence. Whole-game functional and performance coverage are **unknown**.
 
-Latest menu follow-up `run-qyfqz9tj`: the user identifies a 20+ second stale
+2026-10-04 menu follow-up `run-qyfqz9tj`: the user identifies a 20+ second stale
 Forest of Pain difficulty picture while Wine remains smooth. The publication
 journal records long early gaps. An isolated live reproduction confirms menu
 contexts written through GDI were invalidated without a new checkpoint.
@@ -49,7 +68,7 @@ pass independent pixel/replay/Qt checks. This is bounded menu evidence with
 original drawing retained; NVIDIA Qt latency and long battle sessions remain
 unverified. See [GDI checkpoint evidence](opengl-game-owned-dc.md).
 
-Latest performance follow-up `run-8s6ddeg4`: the user still reports slow Qt
+2026-10-04 performance follow-up `run-8s6ddeg4`: the user still reports slow Qt
 presentation. Retained state has 165 updates, but post-exit inspection provides
 no live rate. Primary-scoped contention remains in the bounded log. Bounded
 cross-thread guard waiting now delivers 20/20 synthetic overlap updates versus
@@ -58,7 +77,7 @@ A read-only per-run publication-rate log now supplies the missing timing boundar
 Live presentation performance remains unverified. See
 [bounded-wait evidence](render-startup-black-screen.md#2026-10-04-low-qt-update-cadence-bounded-tracker-waiting).
 
-Latest follow-up `run-wf_pb32k`: the user reports intermittent menu and battle
+2026-10-04 freeze follow-up `run-wf_pb32k`: the user reports intermittent menu and battle
 freezes in Qt while Wine continues animating and responding. The retained frame
 stream contains 61 frames; bounded lifecycle evidence records pixel contention,
 whole-pixel resets and rejected incomplete bootstrap operations. Continuous live
@@ -140,13 +159,20 @@ not assert stable runtime pointers or compatibility with other builds.
 
 Status applies to the behavior named in each row, not its entire subsystem.
 These dimensions are independent; do not add them into a completion score.
+Short ledger labels identify historical milestones, not canonical behavior IDs.
+The atlas also used UI02/UI03/UI04 labels; its `TOOL.coverage-ui` registration is
+separate from Map Selection, Main/Quick dispatch and Multiplayer Game Selection.
+Use the register's stable behavior IDs when accounting for a changed contract.
 
 | Dimension | Values | Meaning |
 | --- | --- | --- |
-| Implementation | None recorded; partial; scoped implementation | Code exists for the named scope; scoped does not mean the whole original contract |
-| Integration | Offline; observation; optional adapter; live replacement | Observation forwards original work; an optional adapter can replace supported calls; live replacement requires actual game evidence |
-| Validation | Static; synthetic; installed assets; live observation; live equivalence | Record all applicable types; observing a live call does not establish replacement equivalence |
-| Confidence | High within scope; provisional; unknown | Confidence in stated evidence, not untested compatibility |
+| Understanding | Unknown; partial; scoped | Recovered knowledge within the named scope; a function link does not cover every branch |
+| Implementation | None; partial; scoped | Code exists for the named scope; scoped does not mean the whole original contract |
+| Original comparison | None; recorded | Matching-build execution evidence within its stated scope; current source freshness is separate |
+| Integration | None; headless; preview; live observation; live equivalence | Observation retains original work; preview and headless checks do not imply game integration |
+| Replacement | None; scoped live | Requires recorded comparison, live equivalence and evidence that the original work was bypassed |
+| Evidence type | Static; synthetic; original comparison; installed assets; native integration; live observation/equivalence | Record all applicable kinds without promoting another status dimension |
+| Confidence | Unknown; provisional; high within scope | Confidence in stated evidence, not untested compatibility or current fingerprint freshness |
 
 Synthetic x86 tests establish particular ABI/lifecycle contracts. Installed
 asset comparisons establish byte/decode agreement, not playback or loader
@@ -159,11 +185,15 @@ updated after the six-chunk native asset workflow: installed raw-byte/PCM
 checks and the pinned Windows file API audit were rerun with original-manifest
 verification before/after. This does not promote those paths to live replacement.
 
-The 2026-10-04 ledger refresh reviews source, linked research and the retained
-scene report; it does not rerun game experiments or subsystem test suites.
-Validation counts below are recorded results from those milestones, not new
-results from this documentation update. Incomplete declarations and inspection
-tools without a documented validated contract do not advance coverage.
+Validation counts below are historical results from the linked milestones,
+not new results from this documentation update. Earlier rows describe their
+bounded scenarios; later milestones may resolve a listed next step for another
+scope. The central register records independent status dimensions and current
+fingerprint freshness. Broad baseline entries with static `REVIEW.*` evidence
+may remain partial even when their research documents report narrower tests;
+this review does not infer missing semantic mappings or promote those entries.
+Incomplete declarations and inspection tools without a documented validated
+contract do not advance coverage.
 
 ## Subsystem coverage
 
@@ -173,17 +203,17 @@ tools without a documented validated contract do not advance coverage.
 | PF02 Neighbors, acceptance, movement predicates and costs | Scoped reconstructed rules with explicit world inputs; offline | Static/synthetic and isolated original i386 comparisons; high for tested helpers. [Evidence](../../reconstruction/pathfinding/README.md#evidence-and-confidence) | Match real-map candidates and costs; helper agreement alone does not establish complete search agreement |
 | PF03 Frozen world ownership and per-context replay | Scoped snapshots containing one creature; offline | Synthetic capture/replay checks; high within scope. [World format](../formats/route-world-snapshot.md), [continuation](pathfinding-search-sequence.md) | Validate coherent live capture and refreshed continuation inputs; multi-creature scheduling remains separate |
 | RE01 Persistent surfaces, rectangular updates, opaque/keyed/masked copies, palettes and compatible swaps | Scoped OpenGL implementation; offline replay/demo and sprite upload | Synthetic CPU/OpenGL comparisons; selected installed SPR draws/presentation match isolated original routines. [Renderer](../../renderer/README.md), [sprites](native-sprite-rendering.md) | Inventory unsupported operations and real-map usage; original live drawing remains active |
-| RE02 Frame capture, owned pixel tracking and Qt presentation | Scoped bridges; observation and optional viewport | Synthetic x86/CPU/OpenGL/Qt comparisons; high within bounded contracts. [Presentation](opengl-presentation.md), [owned session](opengl-owned-session.md) | Validate complete maps/transitions without gaps; bounded captures do not prove continuous replacement rendering |
-| RE03 Complete live rendering backend | Partial foundation; no complete replacement recorded | End-to-end equivalence unknown. [Renderer boundaries](../../renderer/README.md), [startup investigation](render-startup-black-screen.md) | Route live commands to native surfaces, preserve CPU locks, cover required operations and validate long sessions |
-| IN01 Qt shell and foreign-window hosting | Scoped X11/XWayland host; optional shell | Synthetic embedding/detachment; high for fixture contract. [Hosting](qt-shell-hosting.md) | Actual game focus, dialogs, resize, detach and exit; native Wayland unsupported |
+| RE02 Frame capture, owned pixel tracking and Qt presentation | Scoped bridges; observation and optional viewport | Synthetic x86/CPU/OpenGL/Qt comparisons and bounded original startup command observation; high within bounded contracts. [Presentation](opengl-presentation.md), [owned session](opengl-owned-session.md), [successive startup frames](opengl-owned-session-sequence.md) | Validate complete maps/transitions without gaps; bounded captures do not prove continuous replacement rendering |
+| RE03 Complete live rendering backend | Partial foundation; no complete replacement recorded | End-to-end equivalence unknown. [Renderer boundaries](../../renderer/README.md), [startup investigation](render-startup-black-screen.md) | Extend the bounded cooperative PE32/Qt ring adapter with idle retry/shutdown and streaming-limit handling; preserve CPU locks and recovery, inventory required drawing operations and validate sustained gameplay against the original driver |
+| IN01 Qt shell and foreign-window hosting | Scoped X11/XWayland host; optional shell | Synthetic embedding/detachment and separate user-reported working live hosting; high for fixtures, bounded user observation. [Hosting](qt-shell-hosting.md) | Enumerate actual game focus, dialogs, resize, detach, exit and duration; the unenumerated user report does not establish full-session equivalence; native Wayland unsupported |
 | IN02 Input forwarding and selected polling APIs | Scoped event forwarding and three USER32 hooks; optional adapter | Synthetic Qt/X11 and Qt-to-x86 checks; high within scope. [Input](qt-input-forwarding.md) | Live menus, movement, scrolling and focus; original window/message handling retained |
 | ME01 Movies and supported WinMM file sounds | Scoped Qt playback/hooks; optional adapter with fallback | Synthetic ABI/lifecycle/decode and installed Intro0 decode probe; high within scope. [Media](qt-native-media.md) | Full live playback, audible output, skip/return and call frequency; unsupported calls remain legacy |
-| AU01 DirectSound setup, static PCM upload and duplicate storage | Scoped reconstructed setup/native storage; offline | Static/synthetic and 356 installed WAV comparisons; high for bytes/ownership. [Evidence](directsound-buffer-setup.md), [storage](../../audio/README.md) | Live adapter remains; voice/mixer/output evidence is separate in AU02–AU05; game effects/voices remain Wine DirectSound |
+| AU01 DirectSound setup, static PCM upload and duplicate storage | Scoped reconstructed setup/native storage; offline | Static/synthetic and 356 installed WAV comparisons; high for bytes/ownership. [Evidence](directsound-buffer-setup.md), [storage](../../audio/README.md) | Optional selected voice routing is AU06; native voice/mixer/output evidence is separate in AU02–AU05. Default game launches retain Wine DirectSound; complete original manager and live upload/ownership equivalence remain unverified |
 | AU02 Recovered voice controls and retirement contracts | Scoped selected engine blocks and fake backend; offline | Static/synthetic: play/stop, looping, volume/pan, status/zero reset, deadlines and bounded frequency/cursor audit; high within selected contracts. [Evidence](directsound-voice-controls.md) | Selected retirement, scheduling, positional and camera contracts have separate AU08–AU11 evidence; whole-program call coverage and live timing remain unverified |
 | AU03 Native secondary voice state | Scoped native implementation; offline only | Synthetic source-frame advancement, independent duplicates/controls, completion/loops and ownership; high within tested native policies. [Evidence and repeatable check](native-audio-voice-state.md) | Qt output/routing are separate in AU05/AU06; no validated live replacement; completion/cursor policies are not demonstrated Wine equivalence; fractional output-frame timing is covered separately in AU04 |
 | AU04 Native stereo PCM mixing and resampling | Scoped native implementation; offline only | Synthetic PCM fixtures and 120 independent format/rate/loop scenarios, exact split-block continuity, gain/clipping and lifecycle checks; high within tested native policies. [Evidence and repeatable check](native-audio-mixer.md) | Qt output/routing are separate in AU05/AU06; no validated live replacement; linear interpolation is not band-limited downsampling or bit-exact DirectSound; real-time allocation/latency remain unverified |
 | AU05 Native Qt PCM output | Scoped native device adapter; fixture and host-backend smoke validated | Synthetic format negotiation/partial-write/backpressure/lifecycle tests; default host stereo Int16 48 kHz tone delivered before and after restart. [Evidence](native-audio-output.md) | Optional voice routing has separate AU06 evidence; speaker audibility, live x86 replacement, long sessions, latency and device-change recovery remain unverified |
-| AU06 Selected x86 DirectSound voice routing | Optional native adapter; fixtures and staging only | Native PCM/control/lifetime and mapped-channel tests, PE32 stdcall COM fixture, stale-host timeout and guarded disposable import checks. [Evidence](native-audio-voice-bridge.md) | Live native selection and user-reported audible playback in run-f2336iox; no aural/timing equivalence; primary device metadata is scaffolding; pitch, nonzero seeks and cursor queries unsupported; live selection/fallback, transitions and timing remain unverified |
+| AU06 Selected x86 DirectSound voice routing | Optional native adapter; fixtures/staging and bounded live selection observation | Native PCM/control/lifetime and mapped-channel tests, PE32 stdcall COM fixture, stale-host timeout and guarded import checks; one native selection and user-reported audible playback in inferred run-f2336iox. [Evidence](native-audio-voice-bridge.md) | No original waveform/timing equivalence or complete replacement; primary caps remain scaffolding; pitch, nonzero seeks and cursor queries unsupported. Fallback/unsupported paths, transitions, duration and complete voice lifecycle remain unverified live |
 | AU07 Primary audio and selected manager lifecycle | Static reconstruction and native/x86 fixtures; offline only | Startup volume capture, control gates, selected disable/shutdown ordering, native master attenuation and protocol-v2 COM controls; matrices, exact PCM, sanitizers and staging. [Evidence](primary-audio-manager.md) | Full wrapper/list/COM destruction, hardware format negotiation, primary pan and live/aural/timing equivalence remain unverified; manager model is not injected |
 | AU08 Voice retirement and wrapper ownership | Static reconstruction and synthetic native fixtures; offline only | Stop/reset/notification failure ordering, duplicate traversal, postorder Release/free, reset fields and circular reusable-ring transforms; 432 retirement and 204 ring cases plus exact native PCM/ownership and sanitizers. [Evidence](audio-voice-lifetimes.md) | Full source-list/allocator ownership, initialization unwind, manager integration and live timing/thread behavior remain unverified; no runtime replacement |
 | AU09 Voice scheduler selection and ordering | Static reconstruction and synthetic native fixtures; offline only | Free/expired selection, strict-volume admission, former-tail eviction, assignment, old-volume reordering and whole-ring clearing; 5184 selection/972 ordering/64 failure cases, exact native PCM and sanitizers. [Evidence](audio-voice-scheduler.md) | Full manager start/duplicate admission, source-list ownership and live thread/cadence compatibility remain unverified; no injected scheduler |
@@ -231,8 +261,10 @@ tools without a documented validated contract do not advance coverage.
 
 ## Native menus and original menu observation
 
-Reviewed 2026-10-04. Native preview behavior and recovered engine transitions
-have separate evidence. Original in-game menus and actions remain active.
+Reconciled 2026-10-05 through UI35. Native preview behavior and recovered engine
+transitions have separate evidence. Bounded adapters delegate original actions;
+original drawing, simulation and unadapted menu paths remain active. Historical
+UI20 V4 restrictions do not disable the separate campaign V9–V12 integrations.
 
 | ID and behavior | Implementation and integration | Evidence and confidence | Remaining boundary and next validation |
 | --- | --- | --- | --- |
@@ -242,7 +274,7 @@ have separate evidence. Original in-game menus and actions remain active.
 | UI04 Native Multiplayer Game Selection | Caller-supplied stable-ID session list and Join/Cancel preview routes; offline only | Synthetic selection/refresh/keyboard/asset/navigation checks and installed-art smoke/visual inspection; high within native preview policies. [Evidence](multiplayer-game-selection-qt.md) | Discovery, original session handles, transport/join behavior and engine action adapter remain unconnected; font/control styling approximate |
 | UI05 Native Single Player Battle Setup | Configured sliders, supplied player/map model, semantic setup actions and Quick/Map caller navigation; offline only | Synthetic model/input/layout/navigation checks and installed-art smoke/visual inspection; high within native preview policies. [Evidence](single-player-battle-qt.md) | Original setup field/default/units mapping, wizard catalogs and battle creation remain unconnected; sprites/font/control styling approximate |
 | UI06 Native Multiplayer Battle Setup | Separate host/guest layouts, supplied roster/settings, local chat/Ready and Create/Join/Map caller navigation; offline only | Synthetic model/ownership/input/chat/layout/navigation checks and installed-art smoke/visual inspection; high within native preview policies. [Evidence](multiplayer-lobby-qt.md) | Networking, authoritative membership/settings/readiness, chat delivery and engine action adapter remain unconnected; original sprite/control fidelity and live SFT text equivalence unverified (native fonts: UI14) |
-| UI07 Native Region Entry | Supplied region ID/artwork, difficulty/availability and semantic Enter/auxiliary requests; standalone preview only | Synthetic model/input/layout/artwork/transaction/navigation checks and installed-art smoke/visual inspection; high within native preview policies. [Evidence](region-entry-qt.md) | Campaign flow/unlocking, engine region/difficulty mapping and auxiliary screens remain unconnected; icon/font/control styling approximate |
+| UI07 Native Region Entry | Supplied region ID/artwork, difficulty/availability and semantic Enter/auxiliary requests; standalone preview only | Synthetic model/input/layout/artwork/transaction/navigation checks and installed-art smoke/visual inspection; high within native preview policies. [Evidence](region-entry-qt.md) | Preview policies remain distinct; fresh campaign difficulty/Enter/Cancel actions now have UI29/UI30 evidence. Loaded Realm/unlocking, auxiliary lifecycles and original visual/input equivalence remain unvalidated |
 | UI08 Native Character Improvement | Supplied stats/cost schedules, configured increments, original BMP stat textures/selected JPEG faces, local budgeted draft edits and Region Entry caller navigation; offline only | Synthetic budget/refund/model/input/layout/transaction/navigation checks and installed-art smoke/visual inspection; high within native preview policies. [Evidence](character-screen-qt.md) | Original pricing/indexing/refunds, campaign snapshot/persistence and engine action adapter remain unconnected; portrait/bar/font/control fidelity approximate |
 | UI09 Native menu BMP/JPEG consumption | All implemented menu backgrounds through native loader APIs; Character stat textures and explicit face selection; offline only | 22 targeted Qt/loader checks, 20 installed preview smoke modes and inspected Character capture; high for input/ownership/rendering policies. [Evidence](menu-image-integration.md) | Other SPR controls remain pending; shared SFT font integration has UI14 evidence; original bar clipping/portrait transparency/placement and live caller equivalence unverified |
 | UI10 Native menu SPR consumption | Character adjustment/gem art, Region icons and explicit setup/lobby portrait/colour/boot sprites; offline only | 20 targeted menu/SPR-loader checks, 20 installed menu smoke modes and five inspected captures; high within native rendering policies. [Evidence](menu-sprite-integration.md) | Original file/catalog/state mappings and live callbacks remain unverified; SFT font integration has UI14 evidence; sliders/radios and other menu controls pending |
@@ -253,23 +285,23 @@ have separate evidence. Original in-game menus and actions remain active.
 | UI15 Native Realm Viewer shapes/animation | Original PCX border overlays and binary mask hit testing, ANI green flags; unsolicited FP-route figure removed after hands-on feedback; offline only | 25 targeted Qt checks; synthetic shape holes/keying, input/availability, timing/loops, hidden timer and reload rollback checks; all 36 installed regions selectable at three sizes, all eleven flag frames fit, and three inspected map captures. [Evidence](realm-viewer-visuals.md) | Original colour-key callbacks, animation clock/roles, direction/route/slot choice, movement speed and campaign travel/engine commands remain unverified; native preview policies explicit |
 | UI16 Native Spell Research | Original Grimoire art/spell prose and Realm Research sprite entry; supplied catalog, filtering/availability and typed owner/spell intents; offline only | 26 targeted Qt checks; synthetic model/input/font/asset rollback and Realm return checks; all 42 installed descriptions traversed at three sizes and inspected capture; shared font audit covers 22 variants. [Evidence](spell-research-qt.md) | No dedicated original research-screen layout/caller contract recovered; knowledge/cost/progression IDs and engine-thread commands remain unconnected; native view is explicit |
 | UI17 Live native Main / Quick Battle actions | Opt-in versioned command/state bridge, guarded engine-thread original callbacks, acknowledged screen ownership and session fallback; original logic/drawing retained | Five targeted Qt CTests, original-bytecode PE32 command guard fixture and isolated 45-second Qt-driven Main → Quick → Cancel → Main run with acknowledgements 1/2 and one engine thread; original viewport reattached, direct X11 fallback capture inspected and channel permanently retired; additional Main Quit original-bytecode guards and live Main Quit button/window close from Quick reach normal launcher status 0; high within this scope. [Contract and evidence](menu-action-bridge.md) | Other buttons/data, hardware focus/keys, shutdown during preparation/fallback, longer sessions, OpenGL viewport integration and original drawing suppression remain unverified |
-| UI18 Live native Single Player setup / Map / Start | Separate V2 data/action contract, original defaults/player generation/map order, guarded full settings transactions and original control callbacks; Start suspends native commands for original loading or waits for UI19 native spell selection; fresh ready Main/Quick return restores Qt | Eight targeted Qt CTests; pinned PE32 setup/list/rule setter/callback guards (including Lives propagation and removed sliders); bounded native setup Cancel, Map Cancel/OK, rule/player edits, then Start, with engine acknowledgements 1–12; inspected real battlefield and original spell-selection captures; genuine XTest original result Quit returns to original Quick Battle, confirmed by capture and retired-channel screen 22; additional two-battle direct-loading run restores Qt twice, refreshes second setup, and completes original Back/Quit at acknowledgement 16 with launcher status 0; inspected captures and before/after immutable checks; high within this scope. [Contracts/evidence](single-player-menu-bridge.md) | Native in-battle menus, longer play, hardware focus/input, OpenGL integration and suppression of original drawing remain unvalidated; spell selection is separately recorded in UI19; native edits are committed on Map/player/Start actions |
+| UI18 Live native Single Player setup / Map / Start | Separate V2 data/action contract, original defaults/player generation/map order, guarded full settings transactions and original control callbacks; Start suspends native commands for original loading or waits for UI19 native spell selection; fresh ready Main/Quick return restores Qt | Eight targeted Qt CTests; pinned PE32 setup/list/rule setter/callback guards (including Lives propagation and removed sliders); bounded native setup Cancel, Map Cancel/OK, rule/player edits, then Start, with engine acknowledgements 1–12; inspected real battlefield and original spell-selection captures; genuine XTest original result Quit returns to original Quick Battle, confirmed by capture and retired-channel screen 22; additional two-battle direct-loading run restores Qt twice, refreshes second setup, and completes original Back/Quit at acknowledgement 16 with launcher status 0; inspected captures and before/after immutable checks; high within this scope. [Contracts/evidence](single-player-menu-bridge.md) | Quick Battle in-battle menus, longer play, hardware input, OpenGL integration and original drawing suppression remain unvalidated; campaign Mini actions are separately scoped in UI31–UI35. Spell selection is UI19; setup edits commit on Map/player/Start actions |
 | UI19 Live native pre-battle Spellbox | V3 owner/inventory/recipe/name/talisman snapshots; local draft/reset; whole-loadout guards and original shelf/talisman/OK callbacks on the engine thread; original loading/play and fresh Qt root return; Quick Battle Single Player only | Fourteen selected Qt CTests pass, including V3 malformed pool/request and timer-draft checks; pinned PE32 callback/setter/OK fixture covers rejection, existing-assignment removal, cross-alignment placement, input guards and once-only dispatch; corrected live run selects two ingredients, proves all 63 engine control assignments agree, shows selected spells in inspected battle HUD, restores Qt Quick once and completes normal Back/Quit at acknowledgement 15; before/after 2927 immutable checks; high within bounded scope. [Contract/evidence](spell-selection-menu-bridge.md) | Campaign/multiplayer selection, all recipes/alignments live, actual casting, rebuilt spell-list byte comparison, timer expiry with local draft, native previews/in-battle menus, physical focus/input and drawing suppression remain unvalidated; unsubmitted drafts remain local |
-| UI20 Mini Menu bridge preparation | Static Mini/callback/confirmation/parent contract; V4 guarded bridge and Qt/controller/session wiring; activation OFF | Pinned read-only export, isolated original-bytecode callback/guard and disabled-gate checks, focused V4 wire checks; high for those scopes. Proposed live Quick Battle Escape ingress instead reached Game Over and timed out, matching recovered context exclusion. [Evidence](mini-menu-engine-bridge.md) | Campaign Mini live ingress, Preferences/confirmation, actual pause/timers/audio and hardware input remain unvalidated. No forced context changes or default activation; normal V5 results flow is UI21 |
+| UI20 Mini Menu bridge preparation | Historical V4 Mini/callback/confirmation preparation; V4 activation OFF; separate campaign V9–V12 adapters are UI31–UI35 | Pinned read-only export, isolated original-bytecode callback/guard and disabled-gate checks, focused V4 wire checks; high for those scopes. Proposed live Quick Battle Escape ingress instead reached Game Over and timed out, matching recovered context exclusion. [Evidence](mini-menu-engine-bridge.md) | Quick Battle V4 ingress and complete pause/timer/audio semantics remain unvalidated; failed Escape probe is retained. Fresh campaign Mini Cancel/Quit/report/Preferences have separate UI31–UI35 evidence; Realm mode 4, loaded campaigns and hardware input remain pending |
 | UI21 Quick Battle results engine bridge | V5 engine-formatted display rows and original Continue/Quit dispatch; Qt results ownership and original gameplay/Quick return; context 1 only | Pinned read-only disassembly/vtable/Ghidra, original-bytecode receiver/ABI/effects/guard fixture, focused Qt wire/controller/widget regressions and three bounded live runs including results window-close with exact callback/ack trace and normal exit; high within selected scope. [Contract/evidence](quick-battle-results-engine-bridge.md) | Spectate/multiplayer/campaign, portrait sprites, original font/input equivalence, full victory paths, live nonzero scoring, complete pause semantics and longer play remain unverified; original drawing/tick/results updater retained |
-| UI22 Preferences contract recovery | Pinned screen/settings identity, packed fields, original radio/slider units, availability, entry snapshots, OK/Cancel and profile writer; live Qt activation unchanged | Read-only disassembly/Ghidra and isolated original-bytecode enter/slider/button/writer matrix, including rollback, device/MCI branches and ignored write failure; targeted Qt preview regression; high for those scopes. [Contract/evidence](preferences-engine-contract.md) | Main-to-Preferences bridge is tracked separately in UI23; control-builder/display-rebuild availability is static only; actual audio, file durability, caller round trips, campaign/Mini variants and live pause remain unvalidated |
-| UI23 Main Preferences engine bridge | V6 Main-only guarded settings/control snapshot, original preview/OK/Cancel delegation and Qt draft/window-close ownership; original services retained | Pinned original setter/callback and rejection fixture, nine targeted Qt tests, V5 fixture regression and automated bounded Preview/Cancel/OK/reopen/window-close run with exact ACK/dispatch trace, byte-identical Cancel file and edited-key readback; high within scope. [Evidence](preferences-engine-bridge.md), [behavior register](preferences-coverage-register.json) | Other callers/Mini activation, physical audio/CD, actual resolution rebuild, original write failures, restart durability and cross-launch persistence remain unvalidated; no engine replacement |
+| UI22 Preferences contract recovery | Pinned screen/settings identity, packed fields, original radio/slider units, availability, entry snapshots, OK/Cancel and profile writer; live Qt activation unchanged | Read-only disassembly/Ghidra and isolated original-bytecode enter/slider/button/writer matrix, including rollback, device/MCI branches and ignored write failure; targeted Qt preview regression; high for those scopes. [Contract/evidence](preferences-engine-contract.md) | Main bridge/persistence/display round trips are UI23–UI25 and selected campaign Preferences are UI34/UI35. Physical audio/CD, original write-failure handling, other callers and pause/resolution equivalence beyond those scenarios remain unvalidated |
+| UI23 Main Preferences engine bridge | V6 Main-only guarded settings/control snapshot, original preview/OK/Cancel delegation and Qt draft/window-close ownership; original services retained | Pinned original setter/callback and rejection fixture, nine targeted Qt tests, V5 fixture regression and automated bounded Preview/Cancel/OK/reopen/window-close run with exact ACK/dispatch trace, byte-identical Cancel file and edited-key readback; high within scope. [Evidence](preferences-engine-bridge.md), [behavior register](preferences-coverage-register.json) | Main-only scope; selected campaign caller integration is separate UI34/UI35. Physical audio/CD, original write failures, power-loss durability and unsupported callers remain unvalidated; later persistence/display checks are UI24/UI25; no engine replacement |
 | UI24 Main Preferences cross-launch persistence | Native store for seven original-accepted Main settings; original writer/callbacks retained, atomic accepted readback and fresh disposable import | Ten targeted Qt checks, three synthetic Python checks and automated two-process Preview/Cancel/OK/reopen/restore/Cancel/Quit; all seven fresh engine/Qt values agree and Cancel preserves store bytes. Original manifests match 2,927 files before/after. [Evidence](preferences-persistence.md) | Other callers, original-menu fallback export, physical audio/CD, actual resolution rebuild and power-loss durability remain unvalidated; no engine replacement |
 | UI25 Main Preferences display rebuild validation | Retained original leave/rebuild path, test-only forwarding observation and Qt resolution round trips | Six original leave branch/repeat cases, V6 observer regression, ten targeted Qt checks and automated four-change Main run: exact callback/ACKs, 800×600/640×480 client sizes, cleared flags, restored font modes and reopened settings. [Evidence](preferences-display-rebuild.md) | Gameplay resources validated only by isolated ordering; physical monitor/fullscreen/device failure, pixel/font equivalence and other callers remain unvalidated; no replacement |
-| UI26 Campaign menu entry contract | Original Main New Game reset/request, Realm lifecycle prefix, admission and auxiliary/navigation branches; Qt bridge remains pending | 269 isolated original-bytecode cases (7 Main, 25 occupancy, 216 admission, 7 auxiliary, 14 navigation); read-only static export; all 2,927 originals preserved. [Contract/evidence](campaign-menu-engine-contract.md) | Full resource initialization, visibility/tutorial gates, campaign Mini mode 4 return, live ownership and Region Entry remain unvalidated; no native equivalence, live integration or replacement |
-| UI27 Original campaign ingress observation | Opt-in guarded Realm custom-tick forwarding; fresh campaign observer only | Synthetic wrong-slot/bytes/receiver/repeat guards, 300-call deduplication and V6 original callback regression; automated Xvfb/Wine New Game records Realm states 0→1→2 and original Region Entry screen 18. All 2,927 originals preserved. [Evidence](campaign-menu-entry-observation.md) | Realm resources remain uninitialized; loaded-Realm ownership, Region Entry actions, Qt campaign dispatch and campaign Mini mode 4 return remain unvalidated; no native engine equivalence/replacement |
-| UI28 Region Entry contract and return observation | Caller-dependent actions, deferred world request, opt-in Region Entry tick and Realm resume forwarding; original controls only | 175 isolated original-code cases, synthetic guard/forwarding checks, V6 regression and automated four-difficulty/Cancel run. Fresh Cancel resumes Realm then returns to Main; all 2,927 originals preserved. [Evidence](region-entry-engine-contract.md) | Qt semantic bridge, live Enter/world initialization, loaded-Realm return and auxiliary destination lifecycles remain pending. Historical UI26/UI27 source hashes retained, affected evidence now stale; no native equivalence/replacement |
-| UI29 Region Entry engine bridge | V7 fresh New Game, Qt difficulty/Cancel dispatch, engine-confirmed Main return and window-close Cancel/Quit | Private original selector/Cancel guards, six targeted Qt checks, V6 Preferences/diagnostic regressions and automated live round trip; original drawing/tick retained. All 2,927 originals preserved. [Evidence](region-entry-engine-bridge.md) | Fresh Celtic region 1 only; Enter/world loading, other callers/regions, loaded Realm, auxiliary lifecycles and campaign Mini remain pending. Historical observer evidence retained, affected hashes now stale; no native engine equivalence/replacement |
-| UI30 Fresh Region Entry Enter | V8 Qt difficulty/Enter and original fresh campaign loading handoff | Original callback/admission guards, World forwarding guards, six Qt checks, original-only and Qt Enter to three initialized gameplay ticks, V7 Cancel/Quit regression; all 2,927 originals preserved. [Evidence](region-entry-enter-engine-bridge.md) | Fresh Celtic region 1 only. Original loading/draw/simulation retained; campaign return, loaded Realm, other regions, auxiliary/campaign Mini and equivalence/replacement pending. Historical fingerprints preserved |
-| UI31 Campaign gameplay Mini Cancel | V9 native campaign Mini after original Escape; Cancel/Escape return to original World | Original-only ingress/two returns, pinned Cancel/forwarding guards, seven Qt checks, both V4 gate fixtures and bounded Qt round trip. All 2,927 originals preserved. [Evidence](campaign-mini-cancel-engine-bridge.md) | Original drawing/simulation retained. Save/load/Preferences/quit, Realm mode 4, loaded campaigns, timer/mana/audio pause, equivalence/replacement pending; historical hashes preserved |
+| UI26 Campaign menu entry contract | Original Main New Game reset/request, Realm lifecycle prefix, admission and auxiliary/navigation branches; Qt bridge remains pending | 269 isolated original-bytecode cases (7 Main, 25 occupancy, 216 admission, 7 auxiliary, 14 navigation); read-only static export; all 2,927 originals preserved. [Contract/evidence](campaign-menu-engine-contract.md) | Historical recovery stage; fresh ingress, Region Entry actions and campaign Mini follow in UI27–UI35. Full resource/auxiliary lifecycles, loaded Realm, mode-4 return and original/native equivalence or replacement remain unvalidated |
+| UI27 Original campaign ingress observation | Opt-in guarded Realm custom-tick forwarding; fresh campaign observer only | Synthetic wrong-slot/bytes/receiver/repeat guards, 300-call deduplication and V6 original callback regression; automated Xvfb/Wine New Game records Realm states 0→1→2 and original Region Entry screen 18. All 2,927 originals preserved. [Evidence](campaign-menu-entry-observation.md) | The observed fresh path admits Region Entry before Realm-map resources initialize; loaded-Realm readiness remains unknown. Fresh Entry/Qt actions follow in UI28–UI30 and gameplay Mini in UI31–UI35; auxiliary lifecycles, mode-4 return and equivalence/replacement remain pending |
+| UI28 Region Entry contract and return observation | Caller-dependent actions, deferred world request, opt-in Region Entry tick and Realm resume forwarding; original controls only | 175 isolated original-code cases, synthetic guard/forwarding checks, V6 regression and automated four-difficulty/Cancel run. Fresh Cancel resumes Realm then returns to Main; all 2,927 originals preserved. [Evidence](region-entry-engine-contract.md) | Fresh Qt difficulty/Cancel/Enter now have separate UI29/UI30 evidence; loaded-Realm return and auxiliary destination lifecycles remain pending. Historical source fingerprints retain their staleness; no native equivalence/replacement |
+| UI29 Region Entry engine bridge | V7 fresh New Game, Qt difficulty/Cancel dispatch, engine-confirmed Main return and window-close Cancel/Quit | Private original selector/Cancel guards, six targeted Qt checks, V6 Preferences/diagnostic regressions and automated live round trip; original drawing/tick retained. All 2,927 originals preserved. [Evidence](region-entry-engine-bridge.md) | Fresh Celtic region 1 only; Enter/world loading follows in UI30 and gameplay Mini in UI31–UI35. Loaded Realm, other regions/callers, auxiliary lifecycles and equivalence/replacement remain pending; historical fingerprints retained |
+| UI30 Fresh Region Entry Enter | V8 Qt difficulty/Enter and original fresh campaign loading handoff | Original callback/admission guards, World forwarding guards, six Qt checks, original-only and Qt Enter to three initialized gameplay ticks, V7 Cancel/Quit regression; all 2,927 originals preserved. [Evidence](region-entry-enter-engine-bridge.md) | Fresh Celtic region 1 only; campaign Mini Cancel/Quit/report/Preferences now have UI31–UI35 evidence. Original loading/draw/simulation retained; loaded Realm/campaigns, other regions, auxiliary lifecycles and equivalence/replacement remain pending |
+| UI31 Campaign gameplay Mini Cancel | V9 native campaign Mini after original Escape; Cancel/Escape return to original World | Original-only ingress/two returns, pinned Cancel/forwarding guards, seven Qt checks, both V4 gate fixtures and bounded Qt round trip. All 2,927 originals preserved. [Evidence](campaign-mini-cancel-engine-bridge.md) | Original drawing/simulation retained. Quit/report and selected Preferences follow in UI32–UI35; save/load, Realm mode 4, loaded campaigns, timer/mana/audio pause semantics and equivalence/replacement remain pending; historical hashes preserved |
 | UI32 Campaign gameplay Mini Quit | V10 native Quit to original confirmation No/Yes; World resume or original defeat/report/Realm return to Main and normal Main Quit | Pinned original Quit/answer fixtures, eight Qt checks, V9 Cancel regression, original-only and Qt automated No/Yes runs. All 2,927 originals preserved. [Evidence](campaign-mini-quit-engine-bridge.md) | Original confirmation, cleanup, drawing and simulation retained. Native confirmation, auxiliary actions, Realm mode 4, loaded campaigns, pause/helper equivalence and replacement pending; historical hashes retained |
 | UI33 Campaign Quit defeat report | V11 native report after observed Quit/Yes, original title/21 labels and original OK; World/Realm return to native Main | Original OK/fade bytecode guard fixture, V10 Quit regression, eleven Qt checks and bounded automated native No/Yes/report/OK/Main Quit run. All 2,927 originals preserved. [Evidence](campaign-defeat-engine-bridge.md) | Native admission/presentation policies separate; other outcomes, scoring/helper/pixel equivalence, native confirmation/Realm and replacement pending; historical hashes retained |
-| UI34 Campaign Mini Preferences | V12 original Mini local2 and Preferences parent17/depth6; native preview/Cancel/OK and viewport return policy | Pinned bytecode fixture and six targeted Qt bridge/controller/session/store checks; original files verified before/after. [Evidence](campaign-preferences-engine-bridge.md) | Full original campaign lifecycle, resolution/timer/pause equivalence, other callers and replacement pending; historical hashes retained |
+| UI34 Campaign Mini Preferences | V12 original Mini local2 and Preferences parent17/depth6; native preview/Cancel/OK and viewport return policy | Pinned bytecode fixture and six targeted Qt bridge/controller/session/store checks; original files verified before/after. [Evidence](campaign-preferences-engine-bridge.md) | Selected live preview/Cancel/OK/reopen and World returns are separately recorded in UI35. Resolution/game-speed/pause equivalence, loaded campaigns, other callers and replacement remain pending; historical hashes retained |
 | UI35 Campaign Preferences live round trip | V12 native Mini/Preferences with original preview, Cancel rollback, OK persistence, reopen and original World resumes | Automated bounded private Wine/Xvfb native workflow, exact callback/ACK/thread/value trace, original profile plus native store, three Preferences returns then normal campaign/Main Quit; six targeted Qt checks. [Evidence](campaign-preferences-live-engine-bridge.md) | Selected effects/dialogue settings; resolution rebuild, game-speed/pause cadence, restart and other callers/equivalence/replacement remain pending; UI34 historical hashes retained |
 
 2026-10-04 hands-on menu corrections (UI07/UI12/UI15): difficulty options now
@@ -306,8 +338,9 @@ press/release shelf-pixel/quantity checks. This remains native policy validation
 
 ## Shared frame, input and media protocol ownership
 
-Reviewed 2026-10-04. `protocols/` owns the v1 wire schemas, generated C/C++ and
-Python definitions, publication semantics and compatibility rules. Injected
+The 2026-10-04 extraction established `protocols/` ownership of the v1 wire
+schemas, generated C/C++ and Python definitions, publication semantics and
+compatibility rules. Injected
 render/input/media adapters, Qt clients and Python fixture/launcher tooling now
 consume those definitions. Wire bytes and existing publication/fallback behavior
 are preserved; this extraction does not advance live replacement coverage.
@@ -318,8 +351,10 @@ integration workflows pass. PE32 `.text` sections match the pre-migration build
 for live and self-test bridge code. Original-manifest verification passes before
 and after validation. Confidence is high within synthetic v1 scope; no new live
 game validation. The input timer's literal 50 ms in actively edited `main.cpp`
-remains a deferred one-line adoption. Audio v2 and capture/menu formats are
-outside this change. See [migration evidence](../../protocols/VALIDATION.md) for
+was deferred at that milestone. Audio v2 and later versioned menu formats were
+outside that extraction. The reusable render-command v2 foundation is recorded
+separately below; its PE32/Qt integration remains pending. See
+[migration evidence](../../protocols/VALIDATION.md) for
 commands, report paths, build provenance and limitations.
 
 ## Native simulation ownership and checkpoints
@@ -413,40 +448,41 @@ movement predicates do not cover the whole creature update or AI system.
 | GP06 | Campaign, scenario scripting and triggers | Static No-CD realm initialization, configured Celtic/Greek/Medieval chain, selected battle-return region ownership changes and realm-change state mapped; script-state serializer sizes identified; native config/name readers have offline AS05 evidence. Result producers, full trigger semantics and live progression remain unverified; no native replacement. [Evidence](persistence-progression.md) |
 | GP07 | Saves and persistent state | Static No-CD named save/load dispatch, version-20 decoded header, outer packing/obfuscation, campaign blocks and optional world serializer dispatch mapped. Destination truncation precedes completion; final move/delete failures are unchecked. Offline native input readers now parse campaign blocks and preserve world bytes (AS05), with explicit structural decoding (AS20). No real-save round trip, writer or live persistence service. [Runtime](persistence-progression.md), [format](../formats/save-game.md) |
 | GP08 | Terrain/sprite loading, animation and scene composition | Native SPR/ANI loading, selected forward/phase-switch and placement helpers, bounded group/facing and two-child/configured mode-one preview and selected original depth/sort queue and SPR bitmask visibility pass and selected ordinary terrain producer/direct TTD/SPR tile preview plus owned MAP loading and bounded installed MAP slice preview and selected four-orientation camera/world terrain traversal with clipped presentation and selected recovered camera setters plus ordinary-terrain initialization, geometry/surface admission and explicit section-grid placement/rotation and owned authored-region recipe loading/mixed-height assembly plus selected single-block candidate/location/seeded selection primitives plus multi-block descriptors/connectors/admission and bounded pruning plus owned placement/count rollback and a selected one-attempt backtracking driver plus two-pass Specific placement/rotation/location fallback plus ten-attempt reset/seed orchestration plus owned recipe/header catalog construction and original connector-threshold policy plus generation from complete available recipe catalogs and successful-assignment conversion to owned ordinary assembly plans plus complete installed generated MAP loading/assembly, geometry initialization and bounded generated Qt/OpenGL scene production plus owned mode-0 palettes and controlled-light shaded scene drawing and installed global palette controls and terrain palette-count preference dispatch and owned per-cell light fields/controlled source stamps and selected creature admission/eight-phase work/published/target refresh plus static region admission/additive staging/two-phase publication and combined updater plus owned object-snapshot lit Qt terrain scenes and installed effects light-table loading and selected common effect-record placement and whole effect trajectory stepping plus empty-world same-cell motion/recount and bounded membership-on cell transitions and headless lighting composition from authored state validated offline; captured entity light-source inputs, type-specific effect setup, remaining effect movement/recount and region input production, special size-one lights, spectator/sentinel admission and remaining lighting lifecycle, non-power-of-two palette counts and palette effect/ordinal selection, complete terrain, named actions, attachment lifecycle, full camera lifecycle, original CFG/file-error recovery and full map lifecycle and entity initialization, full world admission/entities, remaining terrain producers and visibility activation and live pipeline remain unimplemented. [Scene](native-animation-scene.md), [selection](animation-direction-selection.md), [placement/layers](animation-placement-attachments.md), [configured attachment](native-attachment-recipe.md), [queue/overlap](native-sprite-queue-scene.md), [visibility](native-sprite-visibility-scene.md), [terrain producer](terrain-submission.md), [terrain preview](native-terrain-preview.md), [MAP slice preview](native-map-terrain-preview.md), [world traversal](terrain-world-traversal.md), [rotated traversal](terrain-traversal-rotations.md), [camera setters](terrain-camera-setters.md), [map geometry](terrain-map-initialization.md), [section assembly](terrain-section-assembly.md), [authored regions](terrain-authored-regions.md), [seeded selection](terrain-region-selection.md), [region constraints](terrain-region-constraints.md), [region solver](terrain-region-solver.md), [Specific placement](terrain-region-specific.md), [generation attempts](terrain-region-generation.md), [region catalog](terrain-region-catalog.md), [generated plans](terrain-generated-plans.md), [generated scenes](native-generated-terrain-scenes.md), [expanded generated coverage](terrain-generated-coverage.md), [baseline palette shading](terrain-palette-shading.md), [configured global lighting](terrain-lighting-config.md), [terrain palette preferences](terrain-palette-preferences.md), [terrain light fields](terrain-light-fields.md), [creature lighting](terrain-creature-lighting.md), [static lighting](terrain-static-lighting.md), [object-driven lighting scenes](terrain-object-lighting-scenes.md), [effect tables](effect-lighting.md), [effect record placement](effect-record-placement.md), [effect trajectory](effect-trajectory.md), [effect projection](effect-same-cell-projection.md), [effect cell transitions](effect-cell-transitions.md), [effect cell cleanup](effect-cell-cleanup.md), [blocked effect destinations](effect-blocked-destinations.md), [effect height exits](effect-height-exits.md), [disabled membership](effect-membership-disabled.md), [effect terrain occupancy](effect-terrain-occupancy.md), [creature occupancy lookup](creature-occupancy-lookup.md), [creature footprint initializer](creature-footprint-initializer.md), [effect creature collision](effect-creature-collision.md), [effect creature boundaries](effect-creature-boundaries.md), [effect kind34 creator](effect-kind34-creator.md)  Whole trajectory initializer now recovered from authored inputs; effect creation parents and installed trajectory inputs remain pending. [Trajectory initializer](effect-trajectory-initializer.md)  Whole motion creation helper recovered from valid authored starts; remaining type-dispatch/animation parents, ballistic update, installed inputs and membership/ownership remain pending. [Motion initializer](effect-motion-initializer.md)  Whole animation selector recovered from owned kind/creature metadata; complete type creation and animation asset/frame/direction binding remain pending. [Animation selection](effect-animation-selection.md)  Owned effect ANI binding and forward controller initialization now scoped; complete dispatcher/installed binding and original effect rendering remain pending. [Animation binding](effect-animation-binding.md)  Installed effect catalog now feeds owned forward playback offline; full dispatcher asset admission, direction variants, property consumers and original effect drawing remain pending. [Installed effect catalog](effect-animation-catalog.md)  Original effect metadata region rules now compared separately; full creation dispatcher, direction variants, property consumers and drawing remain pending. [Metadata producer](effect-animation-metadata.md) |
-| GP09 | In-game menus and interface logic | Native menu/result, map, session, battle setup, lobby, Region Entry, Character, Grimoire, Spellbox and Realm Viewer previews have UI01/UI02/UI04/UI05/UI06/UI07/UI08/UI11/UI12/UI13 evidence; selected original callbacks and transitions have UI03 observation evidence. Original in-game logic retained; bounded Main/Quick actions have UI17 live evidence; Single Player setup/map/settings/player actions and original Start handoff have UI18 live evidence. Pre-battle spell selection has a separate V3 adapter and UI19 evidence. Quick Battle results have bounded V5 Continue/Quit and display/ownership evidence in UI21; Mini activation remains disabled (UI20). Main Preferences has V6 bounded UI23 evidence; other menu integration remains outstanding. [Layout inventory](../formats/menu-migration-inventory.md), [Engine observation](menu-engine-observation.md) |
+| GP09 | In-game menus and interface logic | Native menu, setup, auxiliary and result previews retain their independent scopes. Bounded Main/Quick/setup/Spellbox/results actions have UI17–UI21 evidence; Main Preferences recovery, persistence and display checks are UI22–UI25. Fresh campaign ingress/Region Entry and gameplay Mini Cancel/Quit/report/Preferences are UI26–UI35, including automated UI35 World returns. Historical V4 Mini activation remains disabled in UI20; separate campaign V9–V12 adapters delegate original callbacks. Loaded Realm/campaigns, save/load auxiliaries, complete pause/input/pixel equivalence and broad replacement remain open. [Layout inventory](../formats/menu-migration-inventory.md), [engine observation](menu-engine-observation.md), [campaign Preferences](campaign-preferences-live-engine-bridge.md) |
 | GP10 | Entity lifetimes and ownership | Static No-CD creature allocation/reset/activation, cleanup versus release, slot reuse, selected reference repair and expiry recovered; secondary missile/effect admission/removal, third map-linked pool and teardown order mapped. NS01 adds a bounded native slot/generation and reference-ownership policy with native checkpoint restoration; no original lifecycle equivalence, live observation or native replacement. Complete death states, backing-array ownership, legacy save/load and reference audit remain open. [Evidence](entity-lifetimes.md), [native foundation](native-world-foundation.md) |
 
 ## Remaining work and next milestones
 
-Reviewed 2026-10-04 against current source and linked evidence. This is a
+Reconciled 2026-10-05 against the current register and linked evidence. This is a
 planning summary of the boundaries above, not new experimental evidence or a
 claim of replacement. Existing test/run counts were not rerun for this update.
 
 | Area | Remaining work | Next bounded milestone and acceptance evidence |
 | --- | --- | --- |
-| Live frame capture/presentation (RE02) | Resolve readback-related surface-busy failures and live primary-frame admission; checkpoint/recording separation has a code fix awaiting fresh live validation | Record a menu → map → menu run with continuous game-owned frames reaching Qt, capture gaps/failures counted and original drawing retained; compare against readback-disabled operation |
-| Native rendering and world scenes (RE01/RE03/AS04/GP08) | Complete section assembly/rotation, entity admission, remaining terrain producers, lighting/palettes, camera/map lifecycle and command routing with CPU-lock compatibility | Validate selected section-copy/rotation bytes against the pinned original, then compare a bounded assembled scene; keep offline scene agreement separate from live rendering replacement |
-| Native menus (UI01–UI21/GP09) | Bind real engine data, semantic actions, acknowledgement/failure, screen ownership and pause/resume; recover remaining inventory/research/campaign contracts | Extend UI21 results to recovered portrait/control fidelity and broader outcomes; campaign Mini live ingress/pause/confirmation remains deferred in UI20; spell-selection adapter boundaries are tracked separately in UI19 and repeated direct-battle native restoration has UI18 evidence; validate hardware input and longer play before suppressing original menu drawing |
-| Audio (AU01–AU28) | Live selection/routing, listener/map state, ownership/cadence and audible transitions; unsupported pitch/seek/cursor calls; physical device recovery and music coexistence | Exercise one supported live voice lifecycle with observed admission, PCM/output, completion and fallback outcomes; compare audible behavior and timing separately from exact offline PCM |
+| Live frame capture/presentation (RE02) | Bounded GDI menu capture and three identical early-startup native frames are recorded; continuous animated menus/gameplay, driver-pixel agreement and readback safety remain unresolved | Validate a sustained menu → map → menu scenario with explicit gaps, failure counts and independent original-driver comparison; preserve the bounded startup and historical readback-failure evidence |
+| Native rendering and world scenes (RE01/RE03/AS04/GP08) | Ordinary section rotation/assembly, selected region generation, bounded scene admission and cooperative PE32/Qt ring transport have scoped evidence; object-linked rotation, complete entity/drawing/lighting/camera lifecycles and sustained command routing remain partial | Validate idle retry, explicit shutdown/recovery and streaming limits beyond the bounded ring adapter; then compare changing game frames without promoting synthetic agreement to live replacement |
+| Native menus (UI01–UI35/GP09) | Bounded menu integration now extends through UI35; loaded Realm/campaigns, remaining auxiliaries, pause/timer/audio semantics, hardware input and longer sessions remain unvalidated | Validate a selected loaded-campaign or auxiliary lifecycle with engine acknowledgements and observed resume/ownership; retain fresh campaign Mini/Preferences and Quick Battle results as separate successful scopes |
+| Audio (AU01–AU28) | Scoped headless PCM core and one live native selection/user audible report are recorded; unsupported pitch/seek/cursor calls, listener/map state, ownership/cadence, transitions and physical recovery remain open | Exercise an enumerated live voice lifecycle with admission, completion, fallback and unsupported-call outcomes; compare audible behavior/timing separately from exact offline PCM |
 | Pathfinding (PF01–PF03) | Coherent live world capture, real-map search agreement, refreshed continuation inputs and multi-creature scheduling | Compare fresh and resumed requests in both known contexts: candidates/costs, route bytes, budgets and flags; retain original search until agreement is recorded |
 | Input, hosting and media (IN01/IN02/ME01) | Enumerated focus/dialog/resize/detach/exit checks, game controls and full movie/sound playback/skip/return | Record a bounded actual-game interaction/playback protocol with explicit actions and outcomes; keep successful embedding evidence separate from frame-stream presentation |
 | Native simulation (GP01/GP02/GP05/GP10/TH01) | Complete AI/combat/spell contracts, entity/reference ownership, world-update implementation and live thread/cadence evidence | Observe tick/thread/pause behavior and validate one selected entity or spell lifecycle independently before changing scheduling or replacing simulation work |
 | Campaign, assets and persistence (AS02/AS05/AS06–AS20/CF01/GP06/GP07) | Live caller contracts, resource/reference reconstruction, triggers/progression, compatible save writing and simulation restoration | Obtain a real-save corpus and compare complete original read/write extents, then validate a bounded native round trip; preserve raw/unknown fields and separate structural decoding from restored gameplay |
-| Application and protocol boundaries | Finish lifecycle extraction as integration requires it; extend versioned contracts to uncovered menu/audio paths | Validate each new action/channel independently with ownership, timeout/failure and fallback evidence; existing frame/input/media protocol extraction is already recorded above |
+| Application and protocol boundaries | v1 frame/input/media extraction, audio/menu contracts and reusable render v2 foundation have separate evidence; remaining caller/lifecycle/fallback integration is incomplete | Validate each new action/channel independently with ownership, saturation/backpressure, timeout/failure, shutdown and fallback evidence; keep original work retained until the replacement scope is demonstrated |
 | Gameplay enhancements (GP01/GP03/GP04) | Commander orders, per-creature veterancy and more active mana tempo/economy remain unimplemented | Define and test intentional rules separately from recovered baseline behavior after the affected engine contracts are established |
 
 Recommended immediate validation priority is RE02 continuous capture and
 presentation. This is a proposed next milestone; the successful Wine-window
 hosting run remains useful independently of that unresolved path.
 
-**Unvalidated working-tree implementation:** `terrain_sections.hpp/.cpp` and
-its CMake registration introduce selected ordinary-cell copying/rotation and an
-explicit complete-grid assembly policy. No linked evidence report currently
-establishes original agreement, installed-scene validation or live integration.
-The registered `tests/terrain-sections-test.cpp` is present, but this review
-did not execute it; this work does not advance AS04/GP08 validated coverage.
-Random section choice,
-object-linked rotation and entity admission remain separate boundaries.
+Selected ordinary section copying/rotation and explicit grid assembly already
+have [recorded original comparisons and assembled-scene checks](terrain-section-assembly.md):
+8,192 synthetic fixtures, 683 installed selections across four rotations and
+96 complete assembled images. `RE.terrain_sections` links that historical
+comparison; its broader registration remains partial. Later region-generation
+research separately covers selected seeded choices and placement drivers.
+Object-linked rotation, complete entity admission and live pipeline equivalence
+remain outside those results. This documentation review does not rerun them or
+refresh their source fingerprints.
 
 ## Coverage measurements
 
@@ -454,7 +490,8 @@ No aggregate percentage is assigned. Rows are a starter inventory, not equally
 sized units of functionality. Source lines, tests, imports and row counts must
 not become a whole-engine percentage.
 
-For functional coverage, split each subsystem into stable behavior IDs first.
+For functional coverage, use the register's stable behavior IDs and retain
+unmapped branches and explicitly pending gaps.
 For example, separate audio upload, duplication, play/stop, looping, volume,
 pan, frequency, cursor state and device output. Report separate fractions for
 implemented, original-equivalent and live-replaced behaviors. Include the
@@ -475,35 +512,35 @@ optimization benefits remain hypotheses until matched measurements show them.
 
 Suggested broader scenarios: startup/movie/menu; idle map; individual movement;
 simultaneous orders; blocked destination; combat/spells; palette/effect updates;
-overlapping sounds; map transition; save/load; clean exit. This broader matrix remains proposed; the bounded live Main → Quick → Cancel →
-Main observation in UI03 covers only that menu path. Record actual maps,
-creatures and settings exercised.
+overlapping sounds; map transition; save/load; clean exit. Complete coverage of
+this matrix remains proposed. UI17–UI35 and bounded startup command observation
+cover selected paths, not every scenario or a matched performance comparison.
+Record actual maps, creatures and settings exercised.
 
 ## Binary-to-behavior accounting (2026-10-05)
 
 The [traceability package](coverage/README.md) connects the hash-pinned No-CD
-Ghidra discovery inventory to a cross-subsystem code/behavior index. The
-reconciled register has 285 behavior/policy/gap entries, including all 104 spell
-configuration IDs, and six bounded scenarios. It covers pathfinding/motion,
-audio, assets, rendering/animation, Qt menus/services, runtime adapters,
+Ghidra discovery inventory to a cross-subsystem code/behavior index. The reviewed
+committed register at `62d8ac9` has 364 behavior/policy/gap entries, including all
+104 spell configuration IDs, 291 evidence records and 81 bounded scenarios.
+It covers pathfinding/motion, audio, assets, rendering/animation, Qt menus/services, runtime adapters,
 protocols, native world/tooling and outstanding gameplay contracts. The detailed
 Preferences register was consolidated without broadening its live-observation
 scope. Selected original comparison reports and native scene reports retain
 unchanged historical source fingerprints; code review itself is static evidence.
 
-The [source census](coverage/source-index-20261005-final.json) indexes 844
-implementation/header/assembly/build/schema/tool/test files, with 600 explicitly
-linked and 244 still unlinked. Support files and in-progress work are retained;
-a file link is not full functional coverage. The audit detects new, removed or
+The [committed-baseline pinned source census](coverage/source-index-nonrender-hook-final-20261005.json)
+indexes 1,098 implementation/header/assembly/build/schema/tool/test/web files,
+with 865 explicitly linked and 233 still unlinked. Support files and in-progress
+work are retained; a file link is not full functional coverage. The audit detects new, removed or
 changed source files, mismatched explicit links, and focused-register changes
 since consolidation. Census refreshes require review and never refresh original
 validation hashes.
 
 Run `python3 tools/audit-re-coverage.py` for current links, independent status
-claims and evidence freshness. The indexing validation passed 39 synthetic guard
-checks and the normal audit with no invalid claims. The snapshot retains 28
-stale evidence records, 6,512 unclassified functions, all 190 unmapped imports,
-1,543 unresolved indirect flows and three incomplete dispatch inventories.
+claims and evidence freshness. The committed-baseline audit has no errors and
+retains 141 stale evidence records, 6,483 unclassified functions, all 190 unmapped imports,
+1,543 unresolved indirect flows and ten incomplete dispatch inventories.
 `--require-fresh` rejects stale evidence; these historical warnings do not mean
 the original comparisons failed when recorded. Source-census drift is reported
 separately. No original comparison, live session or replacement was rerun here.
@@ -515,11 +552,14 @@ Executable gaps can also contain padding/data. Most original functionality still
 requires mapping and bounded validation; no whole-engine completion percentage
 is inferred from these entries.
 
-The [generated summary](coverage/summary.md) is the reconciled snapshot; current
-output comes from the audit. The [initial movement summary](coverage/summary-initial-movement.md)
-and [initial validation](coverage/validation.json) remain historical.
-[Indexing validation](coverage/code-index-validation-20261005-final.json) pins the
-reviewed register, census and complete per-run audit report.
+The [new generated summary](coverage/summary-ledger-audit-20261005.md) records
+the committed-baseline audit. Working-tree renderer drift remains separate.
+The [earlier summary](coverage/summary.md),
+[initial movement summary](coverage/summary-initial-movement.md),
+[initial validation](coverage/validation.json) and
+[indexing validation](coverage/code-index-validation-20261005-final.json) remain
+historical. The adoption snapshot's 285 entries, six scenarios, 844 files and
+39 indexing guard checks describe that earlier review rather than today's tree.
 
 ## Deterministic change-accounting gate (2026-10-05)
 
@@ -555,8 +595,8 @@ does not justify promotion. No live replacement percentage is available yet.
 
 Smallest useful next evidence: continuous game-owned frame capture/presentation,
 live search sequence agreement, real-game draw operation inventory, media
-playback/return validation, live audio field/routing checks, semantic menu-action
-integration, and native config/save file caller contracts. Selected animation
+playback/return validation, live audio field/routing checks, remaining semantic
+menu-action integration, and native config/save file caller contracts. Selected animation
 direction/placement and bounded attachment contracts already have offline AS04
 evidence; complete named actions, reverse mode, attachment lifecycle, entities
 and live scene integration remain open. Installed raw asset and offline WAV
@@ -604,23 +644,6 @@ fine-space collision, deadlock resolution, mixed profiles, multiple-creature Qt
 presentation and live replacement remain open. Prior NS10 original comparisons
 retain their hashes and scope; older shared-source native evidence may be stale.
 
-### Multiple native creature presentation (NS12; reviewed 2026-10-05)
-
-The native diagnostic scene now presents up to 32 same-profile terrain-motion
-creatures from NS11 checkpoints, reading each actor's own saved ANI display and
-fine position. Draws retain slot/generation identity through mixed terrain depth
-sorting and export. Single/stationary/multi policy fingerprints are resolved at
-admission; ordinary-map immutable geometry uses its separate raw byte identity.
-
-Normal and ASan/UBSan runs each pass 144 full CPU/OpenGL pixel comparisons and
-twelve exact fresh-process JSON/RGB565/PNG/checkpoint continuations, covering two
-actors in four views over terrace, slope and vertical fixtures. Installed sprite
-reads pass original-manifest verification before and after. [Scope and accepted
-evidence](native-multi-world-scene.md). Original multi-entity admission/rendering
-equivalence, mixed asset profiles, attachments, shaded/light/visibility integration,
-automatic play and live replacement remain open. Historical shared-source evidence
-keeps its hashes and may be stale; no recovered original status is promoted.
-
 ## Incremental native command consumer (2026-10-05)
 
 `NR.incremental-command-consumer` now has scoped native implementation and
@@ -638,6 +661,48 @@ Historical direct-presentation/UI evidence retains its hashes and statuses;
 shared command/main/document changes leave affected historical results stale.
 Current synthetic consumer evidence does not refresh original/live comparisons.
 
+### Multiple native creature presentation (NS12; reviewed 2026-10-05)
+
+The native diagnostic scene now presents up to 32 same-profile terrain-motion
+creatures from NS11 checkpoints, reading each actor's own saved ANI display and
+fine position. Draws retain slot/generation identity through mixed terrain depth
+sorting and export. Single/stationary/multi policy fingerprints are resolved at
+admission; ordinary-map immutable geometry uses its separate raw byte identity.
+
+Normal and ASan/UBSan runs each pass 144 full CPU/OpenGL pixel comparisons and
+twelve exact fresh-process JSON/RGB565/PNG/checkpoint continuations, covering two
+actors in four views over terrace, slope and vertical fixtures. Installed sprite
+reads pass original-manifest verification before and after. [Scope and accepted
+evidence](native-multi-world-scene.md). Original multi-entity admission/rendering
+equivalence, mixed asset profiles, attachments, shaded/light/visibility integration,
+automatic play and live replacement remain open. Historical shared-source evidence
+keeps its hashes and may be stale; no recovered original status is promoted.
+
+## Interactive coverage atlas (UI02; reviewed 2026-10-05)
+
+`TOOL.coverage-ui` presents a local read-only register/audit snapshot with
+percentage summaries, subsystem drilldowns, partial/missing feature filters,
+verbatim scope boundaries, source/test/evidence links, and binary function
+search with recovered-range exceptions and direct-entry calls.
+[Launch and metric definitions](../../apps/coverage-ui/README.md).
+
+Function-link and associated-body byte percentages measure mapping footprints;
+scoped/partial/missing implementation counts use equally weighted behaviors.
+Original comparison and live replacement use recovered behaviors only. Native
+policies remain distinct. Current, mixed and stale comparison fingerprints do
+not extend historical comparison scope; generic next milestones do not infer
+unrecorded branch semantics or whole-game completion.
+
+Seven focused semantic/HTTP regressions and fifteen real browser checks cover
+percentage denominators, overlaps/interior anchors, data/classification/range
+exclusions, evidence freshness, source-access boundaries, filters, detail links,
+refresh, pagination and responsive layout. The final record additionally runs
+coverage guard suites for web-source census compatibility.
+[UI validation only](coverage-ui-validation-final.json). No engine contract,
+original execution/comparison, gameplay policy or live replacement is promoted.
+Historical UI01 and existing engine evidence retain their original hashes.
+The source census now includes HTML/CSS/JS; exact prior non-web censuses remain
+readable for Git comparisons while new/changed web files remain gate findings.
 
 ## Live bounded native command transport (2026-10-05)
 
@@ -658,6 +723,24 @@ shadow comparison, unsupported drawing/initialization branches, indefinite-sessi
 checkpoint/resynchronization policy, physical GPU performance and replacement
 remain pending. Shared decoder/hook edits leave affected historical evidence
 stale; old records and hashes are preserved.
+
+### Coverage atlas direct call boundary (UI03; 2026-10-05)
+
+Inferred/computed call targets remain in the audit; the function detail graph
+now lists only direct discovered entry-to-entry calls. A focused inferred-target
+fixture would fail if those edges were counted as direct. The seven semantic/HTTP
+and fifteen real browser checks pass again against a freshly started server.
+[Current UI-only validation](coverage-ui-direct-call-validation.json). UI01/UI02
+retain their source hashes and may be stale after the backend/test change; no
+engine evidence or stage is refreshed.
+
+The append-only gate now gives an obsolete recorded receipt no coverage credit
+when none of its exact behavior contracts matches the current delta; unchanged
+files cannot reactivate its stale execution result. The old receipt and hashes
+remain intact, and every current file/contract still needs a matching new review.
+A focused regression rejects both old-only approval and stale current execution
+claims while accepting a new explicit pending review. All 44 gate and 45 discovery
+guard tests pass. This supports UI history upkeep without refreshing engine evidence.
 
 ### Native scene move controls (NS13; reviewed 2026-10-05)
 
@@ -711,6 +794,23 @@ actions, faction rules, automatic playback, commander gameplay and live replacem
 remain open. Historical shared-source evidence retains its hashes and may be stale;
 committed intermediate receipts are reviewed separately.
 
+## Ordered native constant fills (2026-10-05)
+
+`NR.owned-session-fill` routes admitted successful full/rectangular fills through
+one existing UPDATE using pixels derived from captured dwFillColor. Initial
+zero storage is synthetic and has no before-CHECK; there is no fake source ID
+or new wire opcode. [Implementation and evidence](opengl-owned-session-fills.md)
+cover eight indexed8/RGB16/24/32 fixture sessions and 17 independent full GPU
+frame comparisons, explicit native-byte CHECK replay, failed-call retry and
+initial partial-fill refusal. Ordinary native reads and viewport uploads remain zero.
+
+The original startup now publishes 15 records (five CREATE/UPDATE/CHECK groups),
+then fails with tracked-surface invalidation GAP 3 immediately before dc_acquired.
+The existing application GetDC path invalidates ordered ownership; it is the next
+boundary. Original Main drawing continues and 2,927 originals verify unchanged.
+No real-game native PRESENT or driver-pixel equivalence is established. Shared
+hook/fixture edits leave historical evidence stale; old records/hashes are retained.
+
 ## NS15 — native stop and cancellation of queued moves
 
 `NP.stop-orders` adds semantic scene controls and native operation 5: selected
@@ -741,67 +841,6 @@ window interaction, group/faction/commander gameplay and live replacement gaps.
 `MV.pause-clock` stays independently partial without implementation/comparison.
 Historical shared-source evidence keeps its fingerprints and can remain stale.
 
-## Ordered native constant fills (2026-10-05)
-
-`NR.owned-session-fill` routes admitted successful full/rectangular fills through
-one existing UPDATE using pixels derived from captured dwFillColor. Initial
-zero storage is synthetic and has no before-CHECK; there is no fake source ID
-or new wire opcode. [Implementation and evidence](opengl-owned-session-fills.md)
-cover eight indexed8/RGB16/24/32 fixture sessions and 17 independent full GPU
-frame comparisons, explicit native-byte CHECK replay, failed-call retry and
-initial partial-fill refusal. Ordinary native reads and viewport uploads remain zero.
-
-The original startup now publishes 15 records (five CREATE/UPDATE/CHECK groups),
-then fails with tracked-surface invalidation GAP 3 immediately before dc_acquired.
-The existing application GetDC path invalidates ordered ownership; it is the next
-boundary. Original Main drawing continues and 2,927 originals verify unchanged.
-No real-game native PRESENT or driver-pixel equivalence is established. Shared
-hook/fixture edits leave historical evidence stale; old records/hashes are retained.
-
-## Interactive coverage atlas (UI02; reviewed 2026-10-05)
-
-`TOOL.coverage-ui` presents a local read-only register/audit snapshot with
-percentage summaries, subsystem drilldowns, partial/missing feature filters,
-verbatim scope boundaries, source/test/evidence links, and binary function
-search with recovered-range exceptions and direct-entry calls.
-[Launch and metric definitions](../../apps/coverage-ui/README.md).
-
-Function-link and associated-body byte percentages measure mapping footprints;
-scoped/partial/missing implementation counts use equally weighted behaviors.
-Original comparison and live replacement use recovered behaviors only. Native
-policies remain distinct. Current, mixed and stale comparison fingerprints do
-not extend historical comparison scope; generic next milestones do not infer
-unrecorded branch semantics or whole-game completion.
-
-Seven focused semantic/HTTP regressions and fifteen real browser checks cover
-percentage denominators, overlaps/interior anchors, data/classification/range
-exclusions, evidence freshness, source-access boundaries, filters, detail links,
-refresh, pagination and responsive layout. The final record additionally runs
-coverage guard suites for web-source census compatibility.
-[UI validation only](coverage-ui-validation-final.json). No engine contract,
-original execution/comparison, gameplay policy or live replacement is promoted.
-Historical UI01 and existing engine evidence retain their original hashes.
-The source census now includes HTML/CSS/JS; exact prior non-web censuses remain
-readable for Git comparisons while new/changed web files remain gate findings.
-
-### Coverage atlas direct call boundary (UI03; 2026-10-05)
-
-Inferred/computed call targets remain in the audit; the function detail graph
-now lists only direct discovered entry-to-entry calls. A focused inferred-target
-fixture would fail if those edges were counted as direct. The seven semantic/HTTP
-and fifteen real browser checks pass again against a freshly started server.
-[Current UI-only validation](coverage-ui-direct-call-validation.json). UI01/UI02
-retain their source hashes and may be stale after the backend/test change; no
-engine evidence or stage is refreshed.
-
-The append-only gate now gives an obsolete recorded receipt no coverage credit
-when none of its exact behavior contracts matches the current delta; unchanged
-files cannot reactivate its stale execution result. The old receipt and hashes
-remain intact, and every current file/contract still needs a matching new review.
-A focused regression rejects both old-only approval and stale current execution
-claims while accepting a new explicit pending review. All 44 gate and 45 discovery
-guard tests pass. This supports UI history upkeep without refreshing engine evidence.
-
 ## Major engine track dashboard (UI04)
 
 The local coverage atlas now opens on major engine tracks rather than binary
@@ -817,22 +856,6 @@ named-roadmap milestones, not estimates of effort or whole-game completion.
 Twelve semantic/HTTP tests and twenty desktop/mobile Chromium checks passed for
 this UI-only change. No engine implementation/comparison/integration/replacement
 status is promoted and earlier evidence fingerprints remain unchanged.
-
-## NS17 — actual native window playback and checkpoint validation
-
-`NS17.scene-window` extends native playback/picking/presentation preview evidence
-with the production entry-point window, actual Qt mouse/button/modal Save events,
-real timer admission, an installed sealed Forest crop and actual Redcap ANI/SPR.
-Normal and sanitizer runs each cover four orientations, eight windows, 40 complete
-independent CPU/OpenGL frame comparisons and four exact fresh-window checkpoint/
-frame continuations. A test-only observer clicks Pause at committed tick boundaries;
-original pause latency/input/cadence and live equivalence are not asserted. The
-ordinary-map art-to-cell target is corrected from `z+1` to the exported standing
-cell’s own layer above zero. Existing diagnostic explicit layers remain unchanged.
-The stopped actor remains in simulation/selection but has no displayed ANI body
-after cursors are cleared; idle/stopped body retention and original action mapping
-are newly confirmed outstanding display work. Historical evidence and hashes remain
-retained, including source staleness. [Proof and reproduction](native-scene-window.md).
 
 ## Ordered application DC checkpoints (2026-10-05)
 
@@ -860,6 +883,21 @@ independent driver-pixel comparison, continuous sessions and replacement remain
 pending. Historical evidence retains its hashes; older shared-source evidence
 may be stale.
 
+## NS17 — actual native window playback and checkpoint validation
+
+`NS17.scene-window` extends native playback/picking/presentation preview evidence
+with the production entry-point window, actual Qt mouse/button/modal Save events,
+real timer admission, an installed sealed Forest crop and actual Redcap ANI/SPR.
+Normal and sanitizer runs each cover four orientations, eight windows, 40 complete
+independent CPU/OpenGL frame comparisons and four exact fresh-window checkpoint/
+frame continuations. A test-only observer clicks Pause at committed tick boundaries;
+original pause latency/input/cadence and live equivalence are not asserted. The
+ordinary-map art-to-cell target is corrected from `z+1` to the exported standing
+cell’s own layer above zero. Existing diagnostic explicit layers remain unchanged.
+The stopped actor remains in simulation/selection but has no displayed ANI body
+after cursors are cleared; idle/stopped body retention and original action mapping
+are newly confirmed outstanding display work. Historical evidence and hashes remain
+retained, including source staleness. [Proof and reproduction](native-scene-window.md).
 
 ## Packed ordered unlock updates (2026-10-05)
 
@@ -900,19 +938,6 @@ idle/action sequence selection and initially spawned idle bodies remain pending,
 with no original comparison or live replacement promotion. Historical NS17
 records remain unchanged and can be source-stale.
 
-### NS18 — owned static display after native Stop
-
-The native scene retains its last displayed movement bitmap after Stop clears
-movement continuation, at the existing committed-cell Stop position. Snapshot v8
-preserves the compact pose; resource rebound validates the directional ANI bitmap
-and rejects malformed references transactionally. Reorders use the pose until
-an active display takes priority; cleanup/release/reuse clear ownership.
-Evidence and pending boundaries are in
-[native-idle-display.md](native-idle-display.md) and its JSON record. Original
-idle/action sequence selection and initially spawned idle bodies remain pending,
-with no original comparison or live replacement promotion. Historical NS17
-records remain unchanged and can be source-stale.
-
 ### NS19 — explicit initial native creature body
 
 A native spawn initializer owns the first bitmap in movement direction zero
@@ -924,20 +949,6 @@ validated in the bounded Forest/Redcap slice. Scope, evidence and remaining
 original idle/action, animation, initial-facing and full-game admission gaps are
 in [native-spawn-display.md](native-spawn-display.md) and its JSON record.
 No original comparison, live replacement or gameplay balance promotion is made.
-
-### NS20 — paused-window terrain creature spawning
-
-The native scene accepts terrain-cell selection and a semantic paused Spawn
-action. New scene checkpoints admit up to 32 same-profile bodies under the
-already versioned multi-creature occupancy policy. Native terrain validation and
-transactional occupancy/reservation checks reject unsupported, occupied and
-unfinished-edge placement without state or selection mutation. Successful
-spawning selects the new body for orders and persists it in the existing v8
-checkpoint. Synthetic controls/admission/limit checks and actual Forest/Redcap
-window Save/reload/first-order continuation in four views are recorded in
-[native-scene-spawning.md](native-scene-spawning.md) and its JSON record.
-Original spawn/gameplay admission, other profiles and live replacement remain
-pending; historical evidence fingerprints are retained unchanged.
 
 ## Bounded startup through first primary presentation
 
@@ -968,7 +979,6 @@ window Save/reload/first-order continuation in four views are recorded in
 [native-scene-spawning.md](native-scene-spawning.md) and its JSON record.
 Original spawn/gameplay admission, other profiles and live replacement remain
 pending; historical evidence fingerprints are retained unchanged.
-
 
 ## Bounded successive native primary presentations
 
@@ -1006,6 +1016,7 @@ is not connected to PE32 hooks or live original-game rendering. Existing v1
 remains active; queues/retry scheduling outside tracker, Qt mapped adapter,
 launcher/shutdown/recovery and removal of bounded decoder/archive limits remain
 pending. See [wire, limits and execution](../formats/render-command-ring-v2.md).
+
 
 ## Cooperative mapped command ring integration
 
