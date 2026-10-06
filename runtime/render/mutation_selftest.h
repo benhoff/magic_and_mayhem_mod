@@ -1,3 +1,4 @@
+API u32 WIN GetTickCount(void);
 /* Independent small engine: padded/negative borrowed rows, argument-derived
  * native drawing and actual Wine DIBs. Expected output never feeds the hook. */
 struct MuSurface {void** table;u32 width,height,bits,primary,held,variant;u8 native[256],borrowed[512];i32 pitch;void* pointer;};
@@ -37,8 +38,24 @@ static i32 WIN mu_unlock(void* object,void* region){
     for(u32 y=0;y<s->height;++y)copy_bytes(s->native+y*row,top+(i32)y*s->pitch,row);
     for(u32 i=0;i<sizeof(s->borrowed);++i)s->borrowed[i]=0xcc;s->held=0;return 19;
 }
+static u32 mu_gate_mode,mu_gate_ready,mu_gate_arrived,mu_gate_done,mu_gate_original;
+static u32 WIN mu_gate_worker(void* unused){
+    (void)unused;u32 start=GetTickCount();
+    while(!__atomic_load_n(&mu_gate_ready,__ATOMIC_ACQUIRE)){if(GetTickCount()-start>2000)ExitProcess(393);Sleep(0);}
+    __atomic_store_n(&mu_gate_arrived,1,__ATOMIC_RELEASE);SetLastError(0x77);
+    if(((i32 (WIN *)(void*,void*,void*,void*,u32,void*))mu_back.table[5])(&mu_back,0,&mu_front,0,0x1000000,0)!=17 || GetLastError()!=0x88)ExitProcess(394);
+    __atomic_store_n(&mu_gate_done,1,__ATOMIC_RELEASE);return 0;
+}
 static i32 WIN mu_blt(void* object,void* destination,void* source,void* rectangle,u32 flags,void* effects){
-    mu_entry();++mu_calls[6];if(mu_failed==3){mu_failed=0;return -1;}
+    mu_entry();__atomic_add_fetch(&mu_calls[6],1,__ATOMIC_RELAXED);if(mu_failed==3){mu_failed=0;return -1;}
+    if(mu_gate_mode){
+        if(object==&mu_front){
+            __atomic_store_n(&mu_gate_ready,1,__ATOMIC_RELEASE);u32 start=GetTickCount();
+            while(!__atomic_load_n(mu_gate_mode==2?&mu_gate_done:&mu_gate_arrived,__ATOMIC_ACQUIRE)){if(GetTickCount()-start>2000)ExitProcess(395);Sleep(0);}
+            if(mu_gate_mode==1){Sleep(10);if(__atomic_load_n(&mu_gate_original,__ATOMIC_ACQUIRE))ExitProcess(396);}
+            SetLastError(0x88);
+        }else __atomic_store_n(&mu_gate_original,1,__ATOMIC_RELEASE);
+    }
     if(mu_nested_metadata==3 && source){
         mu_nested_metadata=0;struct MuSurface* src=source;SetLastError(0x77);
         if(((i32 (WIN *)(void*,void*,void*,void*,u32,void*))src->table[5])(src,0,object,0,0x1000000,0)!=17 || GetLastError()!=0x88)ExitProcess(391);
@@ -60,6 +77,11 @@ static i32 WIN mu_blt(void* object,void* destination,void* source,void* rectangl
         if(!(flags&0x8000) || value)mu_put(dst->native+(y*dst->width+x)*(dst->bits/8),dst->bits,value);
     }
     return 17;
+}
+static i32 WIN mu_fast(void* object,u32 x,u32 y,void* source,void* rectangle,u32 flags){
+    if(flags!=0x10)ExitProcess(399);struct MuSurface* src=source;
+    i32* r=rectangle;i32 destination[4]={(i32)x,(i32)y,(i32)x+(r?r[2]-r[0]:(i32)src->width),(i32)y+(r?r[3]-r[1]:(i32)src->height)};
+    return mu_blt(object,destination,source,rectangle,0x1000000,0);
 }
 static i32 WIN mu_flip(void* object,void* target,u32 flags){
     mu_entry();++mu_calls[7];if(mu_failed==4){mu_failed=0;return -1;}
@@ -144,11 +166,12 @@ static void test_mutations(const char* mode){
     u32 bits=mode[0]=='i' || mode[0]=='p'?8:mode[0]=='r' || mode[0]=='b' || mode[0]=='u'?32:(u32)(mode[2]-'0')*10+(u32)(mode[3]-'0');
     u32 dc=mode[0]=='d',reshape=rs_mode(mode,"reshape"),bounded=rs_mode(mode,"bounded"),partial=rs_mode(mode,"partial");
     u32 unsupported=rs_mode(mode,"unsupported"),palette_flags=rs_mode(mode,"palette-flags");
+    u32 cross_copy=rs_mode(mode,"cross-copy") || rs_mode(mode,"cross-fast"),copy_timeout=rs_mode(mode,"copy-timeout");
     u32 meta_changed=rs_mode(mode,"meta-change"),source_write=rs_mode(mode,"source-write");mu_nested_metadata=rs_mode(mode,"meta16")?1:meta_changed?2:source_write?3:0;
-    if(mu_nested_metadata)bits=16;
-    u32 valid=!(bounded || partial || unsupported || palette_flags || meta_changed || source_write);
+    if(mu_nested_metadata || cross_copy || copy_timeout)bits=16;
+    u32 valid=!(bounded || partial || unsupported || palette_flags || meta_changed || source_write || copy_timeout);
     if(partial)bits=32;
-    static void* table[33];table[2]=(void*)&mu_surface_release;table[5]=(void*)&mu_blt;table[11]=(void*)&mu_flip;table[12]=(void*)&mu_attached;table[17]=(void*)&mu_get_dc;
+    static void* table[33];table[2]=(void*)&mu_surface_release;table[5]=(void*)&mu_blt;table[7]=(void*)&mu_fast;table[11]=(void*)&mu_flip;table[12]=(void*)&mu_attached;table[17]=(void*)&mu_get_dc;
     table[22]=(void*)&mu_desc;table[25]=(void*)&mu_lock;table[26]=(void*)&mu_release_dc;table[28]=(void*)&mu_clipper;table[29]=(void*)&mu_key;table[31]=(void*)&mu_assign;table[32]=(void*)&mu_unlock;
     mu_front.table=mu_back.table=table;mu_front.width=mu_back.width=6;mu_front.height=mu_back.height=4;mu_front.bits=mu_back.bits=bits;mu_front.primary=1;
     RenderInstallForTest(&mu_front,14);RenderInstallForTest(&mu_back,14);
@@ -179,10 +202,15 @@ static void test_mutations(const char* mode){
     }else{
         u32 d[31]={124};SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[22])(&mu_front,d)!=23 || GetLastError()!=0x88)ExitProcess(371);
         SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[28])(&mu_front,0)!=23 || GetLastError()!=0x88)ExitProcess(372);
-        if(source_write){SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[28])(&mu_back,0)!=23 || GetLastError()!=0x88)ExitProcess(392);}
+        if(source_write || cross_copy || copy_timeout){SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[28])(&mu_back,0)!=23 || GetLastError()!=0x88)ExitProcess(392);}
         u32 key[2]={0,0};SetLastError(0x77);if(((i32 (WIN *)(void*,u32,void*))table[29])(&mu_back,8,key)!=23 || GetLastError()!=0x88)ExitProcess(373);
         u32 requested[4]={4};void* out=0;SetLastError(0x77);if(((i32 (WIN *)(void*,void*,void**))table[12])(&mu_front,requested,&out)!=23 || out!=&mu_back || GetLastError()!=0x88)ExitProcess(374);
-        if(unsupported || meta_changed || source_write){mu_cycle(&mu_back,0,0x44,0);mu_draw(0,0,0,0,unsupported);}
+        if(cross_copy || copy_timeout){
+            mu_cycle(&mu_back,0,0x44,0);mu_gate_mode=copy_timeout?2:1;
+            HANDLE worker=CreateThread(0,0,mu_gate_worker,0,0,0);if(!worker)ExitProcess(397);
+            if(rs_mode(mode,"cross-fast")){SetLastError(0x77);if(((i32 (WIN *)(void*,u32,u32,void*,void*,u32))table[7])(&mu_front,0,0,&mu_back,0,0x10)!=17 || GetLastError()!=0x88)ExitProcess(400);mu_record();}
+            else mu_draw(0,0,0,0,0);if(WaitForSingleObject(worker,2000)!=0)ExitProcess(398);CloseHandle(worker);
+        }else if(unsupported || meta_changed || source_write){mu_cycle(&mu_back,0,0x44,0);mu_draw(0,0,0,0,unsupported);}
         else for(u32 pass=0;pass<40;++pass){
             mu_cycle(&mu_back,0,pass,pass==3);mu_cycle(&mu_back,1,5,0);
             mu_draw(0,0,0,pass==3,0);mu_draw(1,0,17+pass,0,0);mu_draw(0,1,0,0,0);mu_swap(pass==3);mu_cycle(&mu_front,1,9+pass,pass==3);

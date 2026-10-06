@@ -61,6 +61,7 @@ static i32 WIN input_cooperative(void* object,void* window,u32 flags){
 #include "lock_flip.h"
 #include "lock_dc.h"
 #include "command_scheduler.h"
+#include "copy_order.h"
 static int command_control_start(void);
 #include "command_lifecycle.h"
 #include "command_recovery.h"
@@ -208,6 +209,8 @@ done:
 }
 static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,void* effects){
     COMMAND_CALLBACK(((Blt)lookup(object)->original[5])(object,dest,source,rect,flags,effects));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){i32 result=((Blt)lookup(object)->original[5])(object,dest,source,rect,flags,effects);game_copy_unobserved(object);return result;}
     u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
     struct Table* t=lookup(object);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
@@ -221,6 +224,8 @@ static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,voi
 }
 static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 flags){
     COMMAND_CALLBACK(((i32 (WIN *)(void*,u32,u32,void*,void*,u32))lookup(object)->original[7])(object,x,y,source,rect,flags));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){i32 result=((BltFast)lookup(object)->original[7])(object,x,y,source,rect,flags);game_copy_unobserved(object);return result;}
     u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
     struct Table* t=lookup(object);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,0,source,rect,flags,0,2,x,y,caller);

@@ -20,6 +20,7 @@ static void game_lock_clear(struct GameLock* slot){
     if(slot->base.data)__atomic_sub_fetch(&lock_capture_reserved,slot->base.length,__ATOMIC_RELAXED);
     free_snapshot(&slot->base);zero(slot,sizeof(*slot));
 }
+static u32 game_copy_order_enabled;
 static u32 game_session_enabled,game_session_presentations,game_session_continuous,game_session_archive,game_session_palette_resources;
 struct GameSurface;struct GameBlit;struct GamePalette;
 static void game_session_palette_retire(struct GamePalette*);
@@ -42,6 +43,7 @@ static void init_lock_lifecycle(void){
     char session[8];game_session_enabled=GetEnvironmentVariableA("MNM_RENDER_OWNED_SESSION",session,8)==1 && session[0]=='1';
     game_session_continuous=GetEnvironmentVariableA("MNM_RENDER_CONTINUOUS",session,8)==1 && session[0]=='1';
     if(game_session_continuous)game_session_enabled=1;
+    game_copy_order_enabled=game_session_continuous && GetEnvironmentVariableA("MNM_RENDER_ORDERED_COPIES",session,8)==1 && session[0]=='1';
     char resources[8];game_session_palette_resources=game_session_continuous &&
         GetEnvironmentVariableA("MNM_RENDER_PALETTE_RESOURCES",resources,sizeof(resources))==1 && resources[0]=='1';
     game_session_archive=!game_session_continuous ||
