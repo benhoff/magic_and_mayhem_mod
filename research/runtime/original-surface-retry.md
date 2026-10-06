@@ -42,7 +42,37 @@ python3 tests/test-original-surface-retry.py
 python3 tools/check-original-surface-retry.py --report working/tests/retry-new.json
 ```
 
-Native implementation is pending in this findings commit. Unbounded original
+The [portable C++ and native validity comparison](original-surface-retry-native-20261006.json)
+now matches all4,480 traces using `reconstruction/rendering/surface_retry.hpp`.
+Adapters own actual draw, Restore, key/reload and error-report actions; the model
+has no Qt, COM pointer or renderer dependency. Explicit draw budgets refuse zero/
+over65536 and distinguish original return from budget exhaustion.1,536 cases at
+a two-draw budget retain the exact original event prefix without claiming success.
+This bounded stop is intentional native policy.
+
+`GlBlitter::invalidateContents` marks native pixel contents undefined. It neither
+clears storage nor uploads zeros or asserts driver Restore. Explicit updates and
+opaque copies establish only the written regions. Source and mask sampling,
+keyed/masked destinations and whole-surface read/CPU or GPU presentation refuse
+unknown bytes. Validity follows swapped storage; native clipper/palette metadata
+stays with its existing identity. Such metadata retention is a native policy,
+not original driver palette/key evidence. Fully known surfaces allocate no map;
+invalidated surfaces allocate one byte per pixel within the existing surface/
+pixel limits. Prior valid presentation snapshots remain historical valid frames.
+
+Thirty GL checks include partial reloads, guards, swaps, clipped writes and
+a test-only adapter composing recovered fill callbacks with explicit native
+invalidation/reload input bytes. Partial fill without reload leaves contents
+unknown; full fill's second successful UPDATE establishes complete constant
+contents; a supplied reload establishes its own bytes even when key setting
+failed. No live adapter or new wire opcode is enabled.
+
+```sh
+cmake --build working/build/renderer
+xvfb-run -a python3 tools/check-native-surface-retry.py --report working/tests/retry-native-new.json
+```
+
+Eight renderer regressions pass. Unbounded original
 copy loops require an explicit native execution budget; terminating on that
 budget is a native policy, not an original success. Unknown restored pixels must
 remain unknown until an actual reload or overwrite establishes their contents.

@@ -391,14 +391,15 @@
       "id": "SURF.restore",
       "requirement": "required",
       "requirement_evidence": "Milestone restoration requirement; unchanged original wrapper Restore/retry scheduling captured using explicit fault inputs.",
-      "native_backend": "unsupported_baseline",
-      "wire_support": "fresh-session recovery/checkpoint are distinct native policies",
+      "native_backend": "partial: bounded recovered callback scheduling and explicit undefined native contents",
+      "wire_support": "Offline callback replay and native API only; v3/lifecycle recovery wire unchanged",
       "behavior_ids": [
         "RI.fills",
         "RI.copies",
         "NR.command-recovery",
         "NR.command-checkpoint-attachment",
-        "RE.surface-copy.restore-retry"
+        "RE.surface-copy.restore-retry",
+        "NR.surface-contents.validity"
       ],
       "original": [
         {
@@ -427,7 +428,7 @@
       "original_fixture_ids": [
         "original-retry-corpus.json"
       ],
-      "remaining_gap": "4480 original fault traces match an input-derived CPU model. Native bounded scheduling/content validity, real driver loss/Restore/palette, asset/sentinel reload, live integration and Windows behavior remain outstanding."
+      "remaining_gap": "4480 original scripted fault traces match portable C++ scheduling. Native validity policy has30 GL checks; actual driver loss/Restore/restored bytes and palette, asset/sentinel reload, null mutation/window retries and live adapter integration remain pending. Never compare unspecified restored bytes as deterministic output."
     },
     {
       "id": "SURF.lifetime_updates",

@@ -30922,6 +30922,266 @@
         "reason": "Shared operation matrix/ledger and helper test links reviewed; other subsystem historical source fingerprints remain unchanged. No new validation/status promotion for those contracts.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "b3c437852fd7299ec7ad4fbb2218277b41319dbc074aa12065f6bd4e985d94e7",
+          "before_sha256": null,
+          "id": "NR.surface-contents.validity"
+        },
+        {
+          "after_sha256": "8d60c514de0808acddf482896e4b129ecea97bbfd0faeb35b6ddd2d7ecde8213",
+          "before_sha256": "b1f247b4304daddb28a3f184eb9e4a66656f820a682dc3cc61794a6fc4bc47d6",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "f69ebf5fef51e0068f78b12a365854ad8e74d668068eef50dcf5ca622407f242",
+          "before_sha256": "f248d066c4be40a1be4113d65df3386fe6eb05d5cbbc63cd4f648f49c2f1e1ab",
+          "id": "RE.surface-copy.rgb565-overlap"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "f0fe2d25cc5c3233adaf1e6024c317c90592a833130482402029e68013f2303c",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/surface_retry.hpp"
+        },
+        {
+          "after_sha256": "afb45c46fe408ab48d4750e7f4e289fde5236dc4d90a8ea6d336c7ebf9852045",
+          "before_sha256": "7d966c5907fa6c69b8ddb5c15eee5bd6851f1ed0d79febf7b51af158e8298f0c",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "2a32b6387f97b69c1b725029b7985dd99b68858cfe2fe5c62e131f4ce241dbdb",
+          "before_sha256": "217c7caeba8f9c6e843ce52329476a61f1fa71b79f8d6fc653d327b8f62960ff",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+          "before_sha256": null,
+          "path": "renderer/known_pixels.hpp"
+        },
+        {
+          "after_sha256": "4cc3a2db9c238e5a22efee62dd336b5c3cbb7a0da4fcb40dce0b9c90d4278d80",
+          "before_sha256": "d9b8056d04106682300abd2b289316b932bbb8e5e12faaa74a0e30eea9965f42",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "fbf4bf7b41fe186236b8f0ad83482ea77d09ad11ed25c806a75e4d3d4cbad5f8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-native-retry-20261006.json"
+        },
+        {
+          "after_sha256": "c2fca63af9da3d6f9b6b805944fb8ac0d3bd86fed8d256fdf76f0470b8a51a44",
+          "before_sha256": "20a94331255f7ef3d5ab87bafd097d752469fe47a8461cc63e89ff1f209de051",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "28432ffc2310d588432a28967c3383fd14ac821503d50fa754e960fbe4660fcc",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-retry-20261006.json"
+        },
+        {
+          "after_sha256": "e16cb41853b579db6aaacd683af1b2ce3a072bc4d4c5efe33a36d25c8dde3806",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-retry-20261006.md"
+        },
+        {
+          "after_sha256": "0dd81705be11723bf663a843c943008c23431a6ea49e8782f4df0141653da824",
+          "before_sha256": "a4d6291898d2a7e06369302e2a9abbb3d5e605dc37060831f923425759308d01",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "2a0ae0b19bfb5c3fd16a636594babb0375046e95f5e710f8379036238c3d1bea",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-overlap-after-retry-20261006.json"
+        },
+        {
+          "after_sha256": "e83454234408dff1d150376a87157c4433bd7b2614271c42464d2b42158f6d51",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-retry-native-20261006.json"
+        },
+        {
+          "after_sha256": "a70f4e232c6ecdd0efebb951f7b752e3571e916f4aabf05ed313d2f0f83232d1",
+          "before_sha256": "7786df0625312cd59472be1acda2bd1a38fad86bce00ec4e29e5dbb695446cb3",
+          "path": "research/runtime/original-surface-retry.md"
+        },
+        {
+          "after_sha256": "cba5da1d59a7e961cc8f4605bee26c40d691b9f9d4186a6dab560121789aec8d",
+          "before_sha256": null,
+          "path": "tests/render-restoration-test.cpp"
+        },
+        {
+          "after_sha256": "a5a991c503c05c464b5440dd17e8edf538eea3aedb8bc4baa9d18fe1684bd76f",
+          "before_sha256": null,
+          "path": "tests/surface-retry-model.cpp"
+        },
+        {
+          "after_sha256": "3bb2468a788228989b53209339dfe7b638b374062355714dbfcb39cbceed3f84",
+          "before_sha256": null,
+          "path": "tools/check-native-surface-retry.py"
+        }
+      ],
+      "id": "native-retry-validity-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:8436dff68ddcd3be76a7fcbf4efe71eb41a331b8c1b68f56b98cb3cec9061f21",
+        "stale_evidence:21bb0721d9158391778625568b59bf6c9810c31e68b4d723a593269adddc2fa1",
+        "stale_evidence:926eee87f435bfdeddf120a2dd37b13ab8a76cde021a7a539947e7b5d0db791b"
+      ],
+      "reason": "Reviewed recovered callback ordering and explicit bounded prefix completion versus4480 original scripted fault traces; native undefined-region tracking and read/presentation/source/mask/keyed guards, swap/storage validity and30 deterministic GL checks including test-only fill adapters.8 renderer regressions pass; live/driver and original restored-byte claims remain pending.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh portable recovered scheduling compares4480 captured original traces and1536 budget stops preserve event prefixes.30 GL content-validity/explicit reload composition checks pass; native validity is intentional policy rather than original driver-pixel equivalence.",
+        "evidence": [
+          "ORIGINAL.surface-copy.restore-retry.native-20261006",
+          "NR.surface-contents.validity.native-20261006",
+          "ORIGINAL.surface-copy.rgb565-overlap.after-retry-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "74edac77cc8ed1bcc034079c501376bb4e93335130570a8f7476e7193305e833",
+          "before_sha256": "d515c442063d8177dc3cd8b2be5ed3e3d1d7455bf15e7abe34b77eb58acb035d",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "07dd0a785c19003d443bcde38d5dd91b4b24f4c1646d151978aa9ae07f6fd206",
+          "before_sha256": "a8db8233a3cd3f4522500e82bd7eb86fffdd69492980ab89fbc0204032aef426",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "c80cac54cb28f99ddbcdb4004ab809e4416c9c58cd848d0fe4f6779b813c552e",
+          "before_sha256": "8c1181fb9a0f4c23c3f1fa33275babda27823a1e482151af975f4acd3d6a5597",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "f8b6614246c01b50e187a44282cac69c38493ec1c6dab3b9f175a90bfb41a51e",
+          "before_sha256": "dee1242bfc9c64102dd631bde33934ab35ad8122337bb233e2d4077bdcf63c33",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "8a97cd50f7d2a59cab66a6ad9ec356fec87c0a91c2c6816cbef5754e80ee1449",
+          "before_sha256": "2ee8e5a9edb8761d9736ce0d59f9002620264726ea44b6387178d743c3b0b860",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "b38da8c9c0d203864d136e792295dde9f4c5fe1de376531504364068d0c4eb43",
+          "before_sha256": "43c21e407bf9e4b5564ebe288ff9b307ef5bc67950f7d8735cb9be4252b6b1fc",
+          "id": "NR.surfaces"
+        },
+        {
+          "after_sha256": "b3aa42553eed59555247a6b844c89f127c9325cc20061ab39fe14632570c827c",
+          "before_sha256": "6cf4ec485f1dd4626c08434c5c013568e3250baf3364c965cc1f0db3d4b2d611",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "f8ecb1ab60872d677d6d6b65bfa6fb5a025079f69d61a9baeef6c914deaecd51",
+          "before_sha256": "cc194d424648b3a1d2c253fd5935c22db436dc88f68e63c74787778ca286606a",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "e9656560e40f8936f8a65cd3bdc48d9711c0bc7abda3d5095c4f53bee81678aa",
+          "before_sha256": "a1044897bfed992b2c816fd12c207cc5363417b96394ffa31735c19381e83bbf",
+          "id": "RE.surface-fill.rgb565"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "f0fe2d25cc5c3233adaf1e6024c317c90592a833130482402029e68013f2303c",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/surface_retry.hpp"
+        },
+        {
+          "after_sha256": "afb45c46fe408ab48d4750e7f4e289fde5236dc4d90a8ea6d336c7ebf9852045",
+          "before_sha256": "7d966c5907fa6c69b8ddb5c15eee5bd6851f1ed0d79febf7b51af158e8298f0c",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "2a32b6387f97b69c1b725029b7985dd99b68858cfe2fe5c62e131f4ce241dbdb",
+          "before_sha256": "217c7caeba8f9c6e843ce52329476a61f1fa71b79f8d6fc653d327b8f62960ff",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+          "before_sha256": null,
+          "path": "renderer/known_pixels.hpp"
+        },
+        {
+          "after_sha256": "4cc3a2db9c238e5a22efee62dd336b5c3cbb7a0da4fcb40dce0b9c90d4278d80",
+          "before_sha256": "d9b8056d04106682300abd2b289316b932bbb8e5e12faaa74a0e30eea9965f42",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "fbf4bf7b41fe186236b8f0ad83482ea77d09ad11ed25c806a75e4d3d4cbad5f8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-native-retry-20261006.json"
+        },
+        {
+          "after_sha256": "c2fca63af9da3d6f9b6b805944fb8ac0d3bd86fed8d256fdf76f0470b8a51a44",
+          "before_sha256": "20a94331255f7ef3d5ab87bafd097d752469fe47a8461cc63e89ff1f209de051",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "28432ffc2310d588432a28967c3383fd14ac821503d50fa754e960fbe4660fcc",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-retry-20261006.json"
+        },
+        {
+          "after_sha256": "e16cb41853b579db6aaacd683af1b2ce3a072bc4d4c5efe33a36d25c8dde3806",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-retry-20261006.md"
+        },
+        {
+          "after_sha256": "0dd81705be11723bf663a843c943008c23431a6ea49e8782f4df0141653da824",
+          "before_sha256": "a4d6291898d2a7e06369302e2a9abbb3d5e605dc37060831f923425759308d01",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "2a0ae0b19bfb5c3fd16a636594babb0375046e95f5e710f8379036238c3d1bea",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-overlap-after-retry-20261006.json"
+        },
+        {
+          "after_sha256": "e83454234408dff1d150376a87157c4433bd7b2614271c42464d2b42158f6d51",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-retry-native-20261006.json"
+        },
+        {
+          "after_sha256": "a70f4e232c6ecdd0efebb951f7b752e3571e916f4aabf05ed313d2f0f83232d1",
+          "before_sha256": "7786df0625312cd59472be1acda2bd1a38fad86bce00ec4e29e5dbb695446cb3",
+          "path": "research/runtime/original-surface-retry.md"
+        },
+        {
+          "after_sha256": "cba5da1d59a7e961cc8f4605bee26c40d691b9f9d4186a6dab560121789aec8d",
+          "before_sha256": null,
+          "path": "tests/render-restoration-test.cpp"
+        },
+        {
+          "after_sha256": "a5a991c503c05c464b5440dd17e8edf538eea3aedb8bc4baa9d18fe1684bd76f",
+          "before_sha256": null,
+          "path": "tests/surface-retry-model.cpp"
+        },
+        {
+          "after_sha256": "3bb2468a788228989b53209339dfe7b638b374062355714dbfcb39cbceed3f84",
+          "before_sha256": null,
+          "path": "tools/check-native-surface-retry.py"
+        }
+      ],
+      "id": "native-retry-shared-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:8436dff68ddcd3be76a7fcbf4efe71eb41a331b8c1b68f56b98cb3cec9061f21",
+        "stale_evidence:21bb0721d9158391778625568b59bf6c9810c31e68b4d723a593269adddc2fa1",
+        "stale_evidence:926eee87f435bfdeddf120a2dd37b13ab8a76cde021a7a539947e7b5d0db791b"
+      ],
+      "reason": "Reviewed recovered callback ordering and explicit bounded prefix completion versus4480 original scripted fault traces; native undefined-region tracking and read/presentation/source/mask/keyed guards, swap/storage validity and30 deterministic GL checks including test-only fill adapters.8 renderer regressions pass; live/driver and original restored-byte claims remain pending.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared renderer/protocol/helper source changes reviewed and8 focused renderer regressions pass. Recorded overlap evidence is narrowly scoped; historical evidence for other linked behaviors remains historical/stale and is not promoted to current original equivalence.",
+        "evidence": []
+      }
     }
   ]
 }
