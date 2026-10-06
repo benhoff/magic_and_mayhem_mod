@@ -1668,3 +1668,19 @@ remain pending. See [DC and flip ordering](opengl-dc-flip-order.md).
 ## Native global cursor reload and independent GDI pixels — 2026-10-06
 
 Explicit global cursor routing and bounded original sequential BMP input parsing match1456 original dispatch projections and12 file result/submitted buffer cases, with813 bounded prefix stops. One reserved Wine11.16 GDI run captures18 standalone RGB32 DIBSection raster outputs from original input buffers;336732 RGB pixels compare offline and6 mutation tests pass.36 nativeRGB24/32 reload/read/present cases match1346928 captured RGB pixels,12 scripted recovery compositions preserve triggering-surface unknown contents, and137 refusals pass.4480 legacy callback schedules/1536 budget stops,30 restoration checks and8 renderer regressions freshly pass. Historical evidence hashes, including initialRGB32 test provenance, are retained. Headless native cursor composition is recorded separately from pending DirectDraw DC/other formats/loss/live/wire recovery. See [native reload findings](native-cursor-reload.md).
+
+### Palette and property callback admission (2026-10-06)
+
+The existing continuous opt-in gate now spans palette capabilities/entry reads,
+bindings, updates and Initialize, plus surface source-key/clipper setters.
+Timeout forwarding invalidates metadata/pixel epochs before and after originals;
+shared palette uncertainty refuses rather than guesses dependent state. Fourteen
+independent cases compare554 complete frames, including setter retries, explicit
+palette recreation, three distinguishable indexed copy/color phases, timeout
+refusal and same-thread source-key generation invalidation. The strict original
+Zombie summon remains Active with487 more frames over40721ms after
+forced recovery;17 stable regions match and terminal resources retire to zero.
+Source/preference guards and immutable manifest checks pass. Dedicated getter/
+binding/Initialize concurrency, nested palette updates, creation/aliases/final
+release and other metadata callbacks remain pending; see
+[palette/property admission](opengl-palette-property-order.md).
