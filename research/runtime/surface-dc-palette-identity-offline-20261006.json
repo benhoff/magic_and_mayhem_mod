@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/check-surface-dc-palette-identity.py": "82950eeace785c33139070a2ea4e67bc2ce863db9aacbf7d9dfa0cb1e7da8fee",
+    "tests/test-surface-dc-palette-identity.py": "ea93258ff60d39b220bda37e44781685ca7b6a9329d95a230d3e140b7ca23df5",
+    "tools/check-surface-dib-ddraw.py": "31036dba35e0382c9734b7169d8f57bf2c3c47991c64360134fe832a1db748cd",
+    "tools/check-surface-dib-gdi.py": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+    "research/runtime/surface-dc-palette-identity-capture-20261006.json": "6ed7c8726f4d1e3ad6b539db84fe6d876252146d3a435a7fbddc246da4129efd",
+    "tests/fixtures/surfaces/surface-dc-palette-identity.json.gz": "52729ea70e1dbadb2068b53906b08ee1b227d8e305a0483ae036a094ed0633f1",
+    "tools/capture-surface-dc-palette-identity.py": "bd73c4aca8ceb3fbb79afa97b45b398803d55b199ea2964566b60c2ec7bbfd8a"
+  },
+  "cases": 150,
+  "native_pixels": 7200,
+  "dc_rgb_pixels": 7200,
+  "clipped_samples": 7200,
+  "absent_palette_cases": 0,
+  "scope": "Input-derived150 indexed palette identity/duplicate/5-bit-boundary and GDI region cases versus independent Surface2 outputs. Identical full8-bit source/destination palette retains index identity; other palette translation chooses earliest nearest entry, with24-bit source bin centers. Attached DirectDraw clipper admission/box scoped separately from GDI regions. No original instructions, actual loss, live/wire or Windows hardware equivalence."
+}

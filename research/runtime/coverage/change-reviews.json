@@ -35552,6 +35552,553 @@
         "reason": "Historical recovered/comparison/integration status remains independent. Dedicated palette races and nested/failed QI/lifetimes, DirectDrawCreate/startup, other metadata callbacks, borrowed intervals/abnormal termination, unseen interface interception recovery/implicit destruction, legacy archive-timeout replay, repeated scenes/actions and animated/full-frame/original-driver comparison/default enablement remain pending.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "8b022c0643385815a8b62371a8f885214c9c46472abc4cd2e17c9f16527b3d40",
+          "before_sha256": "989eef548df8d3ea3f4da4fc86739d25b3c2b44d87c4368f00ea3da4877aec80",
+          "id": "NR.surface-colors.rgb565-dc"
+        },
+        {
+          "after_sha256": "11ac4423493f2e46fceb7e87883f7c14de0e9e1f2905a5a8a4607ced63a07cad",
+          "before_sha256": "c8c6b2c64ff551ebb7e350a538f09c718294ca5820d82d7ed2b744edd2af79e5",
+          "id": "NR.surface-contents.validity"
+        },
+        {
+          "after_sha256": "bd1ef974117b36570c08663337876380253e7a5991e6bb59884657eb9bcdd217",
+          "before_sha256": null,
+          "id": "NR.surface-reload.dc-regions"
+        },
+        {
+          "after_sha256": "f6ed181966e868959ee32cae61f7c42f1e607a561b716874a6e7b4ae538280df",
+          "before_sha256": null,
+          "id": "NR.surface-reload.dib-indexed"
+        },
+        {
+          "after_sha256": "6ee669c1c7393bffd39be681192ba0ef0f684566f50e4db5ad1999cd528d1322",
+          "before_sha256": "206589daa5e3fbfbfa6051efaeaa123fbb5ffc0ff01eb339ccbe71beb515126f",
+          "id": "NR.surface-reload.dib-rgb"
+        },
+        {
+          "after_sha256": "29e2530181dec319c5f03ae9d577b2e4a1480c4495b946eb929245c0a4de5cc8",
+          "before_sha256": null,
+          "id": "RE.surface-driver.dc-palette-clip"
+        },
+        {
+          "after_sha256": "dd4cb428affb58f91dd90f54da1eb44af02f36358d85d4a9b0518809c88a5123",
+          "before_sha256": "1a335c42e77f09b2822b610ad96d779b1d0abe2cf736b6d528057cbd684b6384",
+          "id": "RE.surface-reload.cursor-sentinel"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "1c0aa177d59eea6116b8f0e733ee0b7d8b36e16b26a739868f229c548318edc8",
+          "before_sha256": "22bd2b922f61c0ffe1f57985c0cc6ab48d32a5ad973044677909d90bc4be0a24",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "d4d7229c0a7ee70a0fd2c6f0c63fb86835b77f6e7282e196cdcb17cb173aa0c3",
+          "before_sha256": "d96603003a2b6510bc863c0a3dbc480a0999eae33ea73cfa8c6c7f3b7f733f21",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "5cfd57f8368c5db113534381ce8dc5f99ef69f05c615ed55599f22967a965967",
+          "before_sha256": "33c77ae2b76a5b103b0308bd9fe61e1df73a2dd08c70e949d92e0d04db7c50c0",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e278aae6eb27d698421fc78458d5495988986f07cd09adc844c6b8854e7e0d4b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-dc-palette-20261006.json"
+        },
+        {
+          "after_sha256": "1aaa2e1b4b3f8547ccad8f277ad8a22009195d0f78aa8e69b60957229ab244be",
+          "before_sha256": "1dfde0e5cfe30b3b917545df4f86583626340d55e43d505b63e5fedeba1fd3d2",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "8a759e0476e5799b9911b2bc815988df0c7189114d0063d72068f4a1782e5442",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-dc-palette-20261006.json"
+        },
+        {
+          "after_sha256": "a204f7095bfee190f623700ecdf1ff42b8a85f837c310dfd71bc22ceb899980c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-dc-palette-20261006.md"
+        },
+        {
+          "after_sha256": "c6c24202315803b7d114586126a9946eb9932d9ed9c0b903cec56f3150aa7f44",
+          "before_sha256": null,
+          "path": "research/runtime/dc-palette-regressions-20261006.json"
+        },
+        {
+          "after_sha256": "0719b0616db81463534cf1421cc23eb22e98dc9fe1a680bce6bbf7e24af33bf6",
+          "before_sha256": null,
+          "path": "research/runtime/native-cursor-after-dc-palette-20261006.json"
+        },
+        {
+          "after_sha256": "dcf8aa1236afd92d2fe20815f39ddb4b170ca23a409c4c83ea79e24f3277e414",
+          "before_sha256": null,
+          "path": "research/runtime/native-dc-palette-20261006.json"
+        },
+        {
+          "after_sha256": "b6243583ddcb1ccd8957780e433d6fa8e8083264aeba716590cfa4d638f077ec",
+          "before_sha256": null,
+          "path": "research/runtime/native-dc-palette-initial-20261006.json"
+        },
+        {
+          "after_sha256": "abfee40e7914f4e59848c01bf757a3755898f9bee8e4fa42c264d1513efc6304",
+          "before_sha256": null,
+          "path": "research/runtime/native-ddraw-after-dc-palette-20261006.json"
+        },
+        {
+          "after_sha256": "0aeebd77eb119876db2990f0c586a46479fb4d03c361d436e2132c93d3b78be3",
+          "before_sha256": "5f6edbecdbb91280460d850b5ddc6e6c9ade25f4ce96356e4d0a213bcf2d5af5",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "50bc362653bbfdbc2444280c8aaf83f4f6d91c9c888ab827a16c6bc1bd1dffda",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dc-palette-capture-20261006.json"
+        },
+        {
+          "after_sha256": "6ed7c8726f4d1e3ad6b539db84fe6d876252146d3a435a7fbddc246da4129efd",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dc-palette-identity-capture-20261006.json"
+        },
+        {
+          "after_sha256": "11f2d9442488af5a7c1b765593572daa4fdb6fb3cf281312e5f2b4e7413519e4",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dc-palette-identity-offline-20261006.json"
+        },
+        {
+          "after_sha256": "f6de48bf18ea0aa9a28198ac1eb59e1ce7e2738c40e33082f11b7fdbab135b27",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dc-palette-offline-20261006.json"
+        },
+        {
+          "after_sha256": "a5b8f2c787db7987f7a6376b390a28a231ff562457b35357476008099fc5abf5",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dc-palette.md"
+        },
+        {
+          "after_sha256": "5d83e299681c7cc945e9c8b69cacad1a8a97807e1ebd711208f25cbf4fe5f21d",
+          "before_sha256": "0c6857a63e8b00e60d92e8439a8f597c0271d8daf27fc74b8e61fa867a22e6a6",
+          "path": "research/runtime/surface-dib-ddraw.md"
+        },
+        {
+          "after_sha256": "93dc9485022faad92a628e27cfc7e472584fc7022310909e37fd0c86a983b408",
+          "before_sha256": "6ae2979c997cff3c0c79979be836d3dbd38cea53c5c846b3ebf595ddc4d121d2",
+          "path": "tests/render-cursor-reload-test.cpp"
+        },
+        {
+          "after_sha256": "6ac530500cededd6ec60ad584143737f7c7692f2b1d355c5bf7e8f5fcc911841",
+          "before_sha256": null,
+          "path": "tests/render-dc-palette-test.cpp"
+        },
+        {
+          "after_sha256": "8e1cd5a4be9c9601252c457f755ef1be405de8bca1729d452534e0643f35eb3f",
+          "before_sha256": "cce915f8ba2bf885e86a4a940fc03eb2c6aad086aab5fcda945a35b3b344aef1",
+          "path": "tests/render-ddraw-dib-test.cpp"
+        },
+        {
+          "after_sha256": "e43a1ddb3719b298a2c602e86d3ca2aeb038256deb1bf24efad42a718a1089a2",
+          "before_sha256": null,
+          "path": "tests/surface-dc-palette-identity-reference.c"
+        },
+        {
+          "after_sha256": "8f1f516a5c7ec8450b3bf6f0a74fd3e8db2ebf720f9892a203ed91f1e8df3a4f",
+          "before_sha256": null,
+          "path": "tests/surface-dc-palette-reference.c"
+        },
+        {
+          "after_sha256": "ea93258ff60d39b220bda37e44781685ca7b6a9329d95a230d3e140b7ca23df5",
+          "before_sha256": null,
+          "path": "tests/test-surface-dc-palette-identity.py"
+        },
+        {
+          "after_sha256": "eaba3f90018941c41e098429123f0607f4756aeaf6b48e46ee631bbad5ee2bd5",
+          "before_sha256": null,
+          "path": "tests/test-surface-dc-palette.py"
+        },
+        {
+          "after_sha256": "bd73c4aca8ceb3fbb79afa97b45b398803d55b199ea2964566b60c2ec7bbfd8a",
+          "before_sha256": null,
+          "path": "tools/capture-surface-dc-palette-identity.py"
+        },
+        {
+          "after_sha256": "70d8587b6d180cfdd6fc3b754cf7131485664cec2a7569c66fea26efc3b9e412",
+          "before_sha256": null,
+          "path": "tools/capture-surface-dc-palette.py"
+        },
+        {
+          "after_sha256": "e1dc8e4d8613b9382b7292b46325cd8b52f343d43aec3d2b7427e0ffe8c84ee4",
+          "before_sha256": null,
+          "path": "tools/check-native-dc-palette.py"
+        },
+        {
+          "after_sha256": "82950eeace785c33139070a2ea4e67bc2ce863db9aacbf7d9dfa0cb1e7da8fee",
+          "before_sha256": null,
+          "path": "tools/check-surface-dc-palette-identity.py"
+        },
+        {
+          "after_sha256": "88578d24576ca3f7a01663020e6fa94fa30d73352633347fb71039155963bd9c",
+          "before_sha256": null,
+          "path": "tools/check-surface-dc-palette.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-dc-palette.json.gz",
+          "before_sha256": null,
+          "after_sha256": "b702cc2606d0567bfa404238d344df9c79205c1fe8e444eacb16883d67a0928a"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-dc-palette-identity.json.gz",
+          "before_sha256": null,
+          "after_sha256": "52729ea70e1dbadb2068b53906b08ee1b227d8e305a0483ae036a094ed0633f1"
+        }
+      ],
+      "id": "surface-dc-palette-clip-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:68c6fd2e2321ca106b564a13e22afdbf6f73295982494c8a15047de80f9e719f",
+        "behaviors_without_comparison:88dd41fe65a635a026be52fa24d953181d56ccb689e21f73c6cce4caa70157d5",
+        "behaviors_without_comparison:e3cf816fd8981685b34ecf1d110dbd257de41e560d5b39dc9fdaa71b52ee8b3b",
+        "behaviors_without_implementation:e3cf816fd8981685b34ecf1d110dbd257de41e560d5b39dc9fdaa71b52ee8b3b",
+        "behaviors_without_scenarios:e3cf816fd8981685b34ecf1d110dbd257de41e560d5b39dc9fdaa71b52ee8b3b",
+        "stale_evidence:12bb2623861fe36c39b58e45029880d519c6f7cc0b973a3da6e881fa5801e7fb",
+        "stale_evidence:1b6b10bf5da1ae66ef0dbce80b3c0c35e89d3c0eddd28bf45ee0459c84d078de",
+        "stale_evidence:1e9feafe40f1ff41ccfdfc8b81cc18ae42570fe9f8de20c1a2aeb8fe1b42fe57",
+        "stale_evidence:3631eb50e4cecafd7c10a0696e07257ad56d985a01e968194e31a47985729d25",
+        "stale_evidence:53c07f4f7daa514aeacfe70eb6b288bb9fc743de80800b7642b00d4197107000",
+        "stale_evidence:68fcbaae31cda02b9eefe1fd028ea4755db0ece2a8412c2fc26dab6ecc8a280b",
+        "stale_evidence:6bf0701633645c14ca3fcd5c2df5895562d4972d5e2dc6737ffa3d1722a2aa67",
+        "stale_evidence:6c3e9c428e040d6c772eca1a501d1ad68aee0ac8aadd428c63800bc3ea635ee7",
+        "stale_evidence:73e0821a75db416cbb086266298b212f9a83d4163e418bc108aa09d9774f79e9",
+        "stale_evidence:78b5aa04403e4336ef1f9ea6ffeafef6998f04cbfb57dde677f7f5d3d57abfbd",
+        "stale_evidence:7ba2e0a146c4bd29afb6fe20f53028840e3f74c154becfc1240bb4c25e41e644",
+        "stale_evidence:7c130480f847b9ad6e978f079896c1afc0d8a8ca2a359ac6988e9d2a347d919d",
+        "stale_evidence:7f4ab9f374382fe3c0447463a8502ee149b74bb91484aadc5b8927e369ecdef7",
+        "stale_evidence:9059ad63a34a57acb5ebed24c798278c3e8e4213ef9c9c17e346e582407021ff",
+        "stale_evidence:a24bb67932b758af23952188f6bd9629995f0383b89cd5c16e2194c917bc0b08",
+        "stale_evidence:a2d47b75b7cd8064457cd09017539b1056f1c87b718d6f719d439cc4074dcf89",
+        "stale_evidence:b6ea39ded7d9e12ce1580d30992da91fb2a59e9f2e619f0fe59a9ed900859cd3",
+        "stale_evidence:c317ec814cb580ac62aeb70fbb87bc673d5ff6e5603785e42ec1b653541da479",
+        "stale_evidence:cfab3f094476f3e3c5873c51fe1edb82c2eecb386cac34934df8e58ab04c7ac8",
+        "stale_evidence:d521ca09dd6f1732141890d399c2b434375c6b2e60c8ff15c41bdff11d40685b",
+        "stale_evidence:dfcaa955cc492ec46564acda0e2a699f046662712b45d945bd4351bc0e6f0aed"
+      ],
+      "reason": "Reviewed independent Surface2 original-input and owned identity/duplicate/bin-boundary probes, exact DC tables/native/GetPixel outputs and separate attached DirectDraw versus application GDI clipping.450 native cases compare43200 independent pixels;13995 defined checks/9510 refusals cover complete palette/region budgets/prewrite admission and unknown holes, plus update/storage ownership policies.9 renderer/15 mutation tests,RGB72/36 compatibility2693856/1346928 pixels and1456 original projections/12 buffers/813budget stops pass. Explicit absent palette/flags/COMleases/arbitrary geometry/indexed original cursor/loss/Windows/live gaps retained. Initial300-case source hashes remain historical; source census/intervening committed identities reviewed.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh independent driver palette/region captures and input-derived models/native outputs justify only stated installed palette, owned DC region and known-content scopes. RGB cursor scheduling/format compatibility freshly checked. No original game executes in driver probes; default palette conversions/indexed original recovery/COMDC/loss/live/Windows remain pending. Initial300-case hashes stale after identity branch/test expansion, retained without refresh.",
+        "evidence": [
+          "DRIVER.surface-dc.palette-clip.capture-20261006",
+          "DRIVER.surface-dc.palette-clip.offline-20261006",
+          "DRIVER.surface-dc.palette-identity.capture-20261006",
+          "DRIVER.surface-dc.palette-identity.offline-20261006",
+          "NR.surface-reload.dc-palette.native-20261006",
+          "ORIGINAL.surface-reload.cursor-sentinel.dc-palette-20261006",
+          "NR.surface-reload.dib-rgb.after-dc-palette-20261006",
+          "NR.surface-reload.dib-rgb.cursor-after-dc-palette-20261006",
+          "NR.surface-reload.dc-palette.regressions-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "ed84cdde87e88fd888df1da2c30839fbf7b34f7a9d822c139e66bc00f80ced8b",
+          "before_sha256": "7d596782b6abbc7dbc567c52cb38703127e66a62a62d5717a6a4d3739d3e751a",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "1f77cbb9fc916eec3a9237b476fe028c33d4aaf468baf082f429446ff6dc312b",
+          "before_sha256": "71904e39f06c75bf3ff85aeaec4b48a15ec42095e27540fc3aac71e89d7c5bc6",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "0b3cd5ec5c2f69bcc9b919205fd6a4dafae550dd6e5aa524db39334b5691d32e",
+          "before_sha256": "fa2c7cb3e1b5f0c26536a74a6463fda4d2d979bdf1fb0f3e07822e3fd429bf1b",
+          "id": "NR.sprite_scene"
+        },
+        {
+          "after_sha256": "ac0a9b74c74c9c100b72d3d95f4a0cb101df4d26d1295cc792c7fd17ca4366df",
+          "before_sha256": "70ff9d7470d3864686c546436780b29985c45bec85f096e64784b198d4e5785d",
+          "id": "NR.sprites"
+        },
+        {
+          "after_sha256": "a7f2ea41541516c0a51134a74c0c9b13166e5ac834016bd8cfb8f6799b81c53f",
+          "before_sha256": "4e40789eb6cc303e2b39e4c2b0be9cb124e22414d2afef29dbd27f86af1fad9c",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "54cd0a47e70754c2440bd82b2cbb1f23cbca17a55feb9a5dd2a76a89dc128623",
+          "before_sha256": "49fb5926e06050ce9dc01956804df30d29e89769cd941c26f0a1bc33c7c27b08",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "2e4461e65b2aee64f01217db8e43d97a505fcc8a491f8fad0ea98c25e364d397",
+          "before_sha256": "7dd970f259e2fca6c1eba5fbd1133b605876a5ea6f4dbcff71ab3e0b0d31a143",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "f159f83bb34526632521831a53f611a003bfa145e11c0c1c8bc1d1ece5545eae",
+          "before_sha256": "5b3f11a43be00e24a141f6b3f1f00e440d5f2db31a752e658afb3dae87f889e7",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "056fd927c77328554df607abf98eed35c0c34d470905e0336fab63aea7e22243",
+          "before_sha256": "be50b337399c23168b24aa2a44b0d0b0d5291221cb7c219597c95d349aa339b8",
+          "id": "NR.surfaces"
+        },
+        {
+          "after_sha256": "f6257ee1a58a05ddb6910963ea5a8eba0c7afae05edeb8dc133a550b56af9dbe",
+          "before_sha256": "37a566e60fbc9a3e4801198f71bbd0798ee512cf7f70e74ad1685c2333c66a2b",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "6483c70b5b959c46a43c8a775cfeb522f6731665fa74d325d5938623fd2ac214",
+          "before_sha256": "aae60cb337cc92c04f5ee21ec508579284151926e254badd6d1637d817bbf738",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "6bb10496a9e56c3fbd3057fb93e6bfb2c700fa360e376dff5526cfd82bb64961",
+          "before_sha256": "36d89b2e8c591a46beeae677af8c0df5dd4d853c3572d3584080e09c739a0276",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "936e07d997a9323798644a6afe64a066b40da627f35e2bbe4c7cfb15ab92d2b5",
+          "before_sha256": "99789e871095b19420269bcbcaf695e04ba48305697b52e22c9d60d44534075c",
+          "id": "RE.surface-copy.rgb565-overlap"
+        },
+        {
+          "after_sha256": "aa0fcab0fef068789c8ab1750fbb1a94bfdbf820b321f73257a0f560f7618bcb",
+          "before_sha256": "2121f1e5decc69c48f456a657bf8dfe88b3852ce9be8f1028d301029ec3d7051",
+          "id": "RE.surface-driver.dc-raster"
+        },
+        {
+          "after_sha256": "57df91552cfeff883180f6b45a4b4c1fc242d9609d1ce60efd02e0d6ddfdf419",
+          "before_sha256": "9be577db69a248fa70386bab11a873d4ed83523f3a879bef1915ddeca423d89b",
+          "id": "RE.surface-driver.dib-raster"
+        },
+        {
+          "after_sha256": "10aef605fbec161c1bb113d90c0cf7e875f63e8b212180e264c9297f76efae89",
+          "before_sha256": "d0a25937b7c10c039d68966a3a1a84b7cdfb6c1c395eeef826674df1eb376d67",
+          "id": "RE.surface-driver.indexed-restore"
+        },
+        {
+          "after_sha256": "65db7ef195b2f0ed48a4b7b55a8c8601a5f433972e3f27ae57ad5c12bc8bbc3d",
+          "before_sha256": "734dca70cdcd39e0ebf59788b7c0b0f6626bfd60a043b828c4b9632da37b968e",
+          "id": "RE.surface-driver.loss-restore"
+        },
+        {
+          "after_sha256": "ff0b49d5af5068ca6c3cae721ed46ddca559468c5ae1ff2c9cde106fd42d4a4e",
+          "before_sha256": "d18ebeae4b0ddbd222554dc001c083547e91a9aee97f9650a926b1acd9fb37a1",
+          "id": "RE.surface-fill.rgb565"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "1c0aa177d59eea6116b8f0e733ee0b7d8b36e16b26a739868f229c548318edc8",
+          "before_sha256": "22bd2b922f61c0ffe1f57985c0cc6ab48d32a5ad973044677909d90bc4be0a24",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "d4d7229c0a7ee70a0fd2c6f0c63fb86835b77f6e7282e196cdcb17cb173aa0c3",
+          "before_sha256": "d96603003a2b6510bc863c0a3dbc480a0999eae33ea73cfa8c6c7f3b7f733f21",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "5cfd57f8368c5db113534381ce8dc5f99ef69f05c615ed55599f22967a965967",
+          "before_sha256": "33c77ae2b76a5b103b0308bd9fe61e1df73a2dd08c70e949d92e0d04db7c50c0",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e278aae6eb27d698421fc78458d5495988986f07cd09adc844c6b8854e7e0d4b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-dc-palette-20261006.json"
+        },
+        {
+          "after_sha256": "1aaa2e1b4b3f8547ccad8f277ad8a22009195d0f78aa8e69b60957229ab244be",
+          "before_sha256": "1dfde0e5cfe30b3b917545df4f86583626340d55e43d505b63e5fedeba1fd3d2",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "8a759e0476e5799b9911b2bc815988df0c7189114d0063d72068f4a1782e5442",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-dc-palette-20261006.json"
+        },
+        {
+          "after_sha256": "a204f7095bfee190f623700ecdf1ff42b8a85f837c310dfd71bc22ceb899980c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-dc-palette-20261006.md"
+        },
+        {
+          "after_sha256": "c6c24202315803b7d114586126a9946eb9932d9ed9c0b903cec56f3150aa7f44",
+          "before_sha256": null,
+          "path": "research/runtime/dc-palette-regressions-20261006.json"
+        },
+        {
+          "after_sha256": "0719b0616db81463534cf1421cc23eb22e98dc9fe1a680bce6bbf7e24af33bf6",
+          "before_sha256": null,
+          "path": "research/runtime/native-cursor-after-dc-palette-20261006.json"
+        },
+        {
+          "after_sha256": "dcf8aa1236afd92d2fe20815f39ddb4b170ca23a409c4c83ea79e24f3277e414",
+          "before_sha256": null,
+          "path": "research/runtime/native-dc-palette-20261006.json"
+        },
+        {
+          "after_sha256": "b6243583ddcb1ccd8957780e433d6fa8e8083264aeba716590cfa4d638f077ec",
+          "before_sha256": null,
+          "path": "research/runtime/native-dc-palette-initial-20261006.json"
+        },
+        {
+          "after_sha256": "abfee40e7914f4e59848c01bf757a3755898f9bee8e4fa42c264d1513efc6304",
+          "before_sha256": null,
+          "path": "research/runtime/native-ddraw-after-dc-palette-20261006.json"
+        },
+        {
+          "after_sha256": "0aeebd77eb119876db2990f0c586a46479fb4d03c361d436e2132c93d3b78be3",
+          "before_sha256": "5f6edbecdbb91280460d850b5ddc6e6c9ade25f4ce96356e4d0a213bcf2d5af5",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "50bc362653bbfdbc2444280c8aaf83f4f6d91c9c888ab827a16c6bc1bd1dffda",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dc-palette-capture-20261006.json"
+        },
+        {
+          "after_sha256": "6ed7c8726f4d1e3ad6b539db84fe6d876252146d3a435a7fbddc246da4129efd",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dc-palette-identity-capture-20261006.json"
+        },
+        {
+          "after_sha256": "11f2d9442488af5a7c1b765593572daa4fdb6fb3cf281312e5f2b4e7413519e4",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dc-palette-identity-offline-20261006.json"
+        },
+        {
+          "after_sha256": "f6de48bf18ea0aa9a28198ac1eb59e1ce7e2738c40e33082f11b7fdbab135b27",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dc-palette-offline-20261006.json"
+        },
+        {
+          "after_sha256": "a5b8f2c787db7987f7a6376b390a28a231ff562457b35357476008099fc5abf5",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dc-palette.md"
+        },
+        {
+          "after_sha256": "5d83e299681c7cc945e9c8b69cacad1a8a97807e1ebd711208f25cbf4fe5f21d",
+          "before_sha256": "0c6857a63e8b00e60d92e8439a8f597c0271d8daf27fc74b8e61fa867a22e6a6",
+          "path": "research/runtime/surface-dib-ddraw.md"
+        },
+        {
+          "after_sha256": "93dc9485022faad92a628e27cfc7e472584fc7022310909e37fd0c86a983b408",
+          "before_sha256": "6ae2979c997cff3c0c79979be836d3dbd38cea53c5c846b3ebf595ddc4d121d2",
+          "path": "tests/render-cursor-reload-test.cpp"
+        },
+        {
+          "after_sha256": "6ac530500cededd6ec60ad584143737f7c7692f2b1d355c5bf7e8f5fcc911841",
+          "before_sha256": null,
+          "path": "tests/render-dc-palette-test.cpp"
+        },
+        {
+          "after_sha256": "8e1cd5a4be9c9601252c457f755ef1be405de8bca1729d452534e0643f35eb3f",
+          "before_sha256": "cce915f8ba2bf885e86a4a940fc03eb2c6aad086aab5fcda945a35b3b344aef1",
+          "path": "tests/render-ddraw-dib-test.cpp"
+        },
+        {
+          "after_sha256": "e43a1ddb3719b298a2c602e86d3ca2aeb038256deb1bf24efad42a718a1089a2",
+          "before_sha256": null,
+          "path": "tests/surface-dc-palette-identity-reference.c"
+        },
+        {
+          "after_sha256": "8f1f516a5c7ec8450b3bf6f0a74fd3e8db2ebf720f9892a203ed91f1e8df3a4f",
+          "before_sha256": null,
+          "path": "tests/surface-dc-palette-reference.c"
+        },
+        {
+          "after_sha256": "ea93258ff60d39b220bda37e44781685ca7b6a9329d95a230d3e140b7ca23df5",
+          "before_sha256": null,
+          "path": "tests/test-surface-dc-palette-identity.py"
+        },
+        {
+          "after_sha256": "eaba3f90018941c41e098429123f0607f4756aeaf6b48e46ee631bbad5ee2bd5",
+          "before_sha256": null,
+          "path": "tests/test-surface-dc-palette.py"
+        },
+        {
+          "after_sha256": "bd73c4aca8ceb3fbb79afa97b45b398803d55b199ea2964566b60c2ec7bbfd8a",
+          "before_sha256": null,
+          "path": "tools/capture-surface-dc-palette-identity.py"
+        },
+        {
+          "after_sha256": "70d8587b6d180cfdd6fc3b754cf7131485664cec2a7569c66fea26efc3b9e412",
+          "before_sha256": null,
+          "path": "tools/capture-surface-dc-palette.py"
+        },
+        {
+          "after_sha256": "e1dc8e4d8613b9382b7292b46325cd8b52f343d43aec3d2b7427e0ffe8c84ee4",
+          "before_sha256": null,
+          "path": "tools/check-native-dc-palette.py"
+        },
+        {
+          "after_sha256": "82950eeace785c33139070a2ea4e67bc2ce863db9aacbf7d9dfa0cb1e7da8fee",
+          "before_sha256": null,
+          "path": "tools/check-surface-dc-palette-identity.py"
+        },
+        {
+          "after_sha256": "88578d24576ca3f7a01663020e6fa94fa30d73352633347fb71039155963bd9c",
+          "before_sha256": null,
+          "path": "tools/check-surface-dc-palette.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-dc-palette.json.gz",
+          "before_sha256": null,
+          "after_sha256": "b702cc2606d0567bfa404238d344df9c79205c1fe8e444eacb16883d67a0928a"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-dc-palette-identity.json.gz",
+          "before_sha256": null,
+          "after_sha256": "52729ea70e1dbadb2068b53906b08ee1b227d8e305a0483ae036a094ed0633f1"
+        }
+      ],
+      "id": "surface-dc-palette-shared-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:68c6fd2e2321ca106b564a13e22afdbf6f73295982494c8a15047de80f9e719f",
+        "behaviors_without_comparison:88dd41fe65a635a026be52fa24d953181d56ccb689e21f73c6cce4caa70157d5",
+        "behaviors_without_comparison:e3cf816fd8981685b34ecf1d110dbd257de41e560d5b39dc9fdaa71b52ee8b3b",
+        "behaviors_without_implementation:e3cf816fd8981685b34ecf1d110dbd257de41e560d5b39dc9fdaa71b52ee8b3b",
+        "behaviors_without_scenarios:e3cf816fd8981685b34ecf1d110dbd257de41e560d5b39dc9fdaa71b52ee8b3b",
+        "stale_evidence:12bb2623861fe36c39b58e45029880d519c6f7cc0b973a3da6e881fa5801e7fb",
+        "stale_evidence:1b6b10bf5da1ae66ef0dbce80b3c0c35e89d3c0eddd28bf45ee0459c84d078de",
+        "stale_evidence:1e9feafe40f1ff41ccfdfc8b81cc18ae42570fe9f8de20c1a2aeb8fe1b42fe57",
+        "stale_evidence:3631eb50e4cecafd7c10a0696e07257ad56d985a01e968194e31a47985729d25",
+        "stale_evidence:53c07f4f7daa514aeacfe70eb6b288bb9fc743de80800b7642b00d4197107000",
+        "stale_evidence:68fcbaae31cda02b9eefe1fd028ea4755db0ece2a8412c2fc26dab6ecc8a280b",
+        "stale_evidence:6bf0701633645c14ca3fcd5c2df5895562d4972d5e2dc6737ffa3d1722a2aa67",
+        "stale_evidence:6c3e9c428e040d6c772eca1a501d1ad68aee0ac8aadd428c63800bc3ea635ee7",
+        "stale_evidence:73e0821a75db416cbb086266298b212f9a83d4163e418bc108aa09d9774f79e9",
+        "stale_evidence:78b5aa04403e4336ef1f9ea6ffeafef6998f04cbfb57dde677f7f5d3d57abfbd",
+        "stale_evidence:7ba2e0a146c4bd29afb6fe20f53028840e3f74c154becfc1240bb4c25e41e644",
+        "stale_evidence:7c130480f847b9ad6e978f079896c1afc0d8a8ca2a359ac6988e9d2a347d919d",
+        "stale_evidence:7f4ab9f374382fe3c0447463a8502ee149b74bb91484aadc5b8927e369ecdef7",
+        "stale_evidence:9059ad63a34a57acb5ebed24c798278c3e8e4213ef9c9c17e346e582407021ff",
+        "stale_evidence:a24bb67932b758af23952188f6bd9629995f0383b89cd5c16e2194c917bc0b08",
+        "stale_evidence:a2d47b75b7cd8064457cd09017539b1056f1c87b718d6f719d439cc4074dcf89",
+        "stale_evidence:b6ea39ded7d9e12ce1580d30992da91fb2a59e9f2e619f0fe59a9ed900859cd3",
+        "stale_evidence:c317ec814cb580ac62aeb70fbb87bc673d5ff6e5603785e42ec1b653541da479",
+        "stale_evidence:cfab3f094476f3e3c5873c51fe1edb82c2eecb386cac34934df8e58ab04c7ac8",
+        "stale_evidence:d521ca09dd6f1732141890d399c2b434375c6b2e60c8ff15c41bdff11d40685b",
+        "stale_evidence:dfcaa955cc492ec46564acda0e2a699f046662712b45d945bd4351bc0e6f0aed"
+      ],
+      "reason": "Reviewed independent Surface2 original-input and owned identity/duplicate/bin-boundary probes, exact DC tables/native/GetPixel outputs and separate attached DirectDraw versus application GDI clipping.450 native cases compare43200 independent pixels;13995 defined checks/9510 refusals cover complete palette/region budgets/prewrite admission and unknown holes, plus update/storage ownership policies.9 renderer/15 mutation tests,RGB72/36 compatibility2693856/1346928 pixels and1456 original projections/12 buffers/813budget stops pass. Explicit absent palette/flags/COMleases/arbitrary geometry/indexed original cursor/loss/Windows/live gaps retained. Initial300-case source hashes remain historical; source census/intervening committed identities reviewed.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared renderer/API/tests/research fingerprints reviewed;9 renderer and fresh format compatibility pass. Broader linked original/asset/runtimeCPU/wire/presentation/sprite scopes retain historical fingerprints/status without new original/live assertions; native full-palette/bin-center/region policy does not claim their equivalence.",
+        "evidence": []
+      }
     }
   ]
 }

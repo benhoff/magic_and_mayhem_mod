@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-dc-palette-identity-reference.c": "e43a1ddb3719b298a2c602e86d3ca2aeb038256deb1bf24efad42a718a1089a2",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-dc-palette-identity.py": "bd73c4aca8ceb3fbb79afa97b45b398803d55b199ea2964566b60c2ec7bbfd8a",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/check-original-surface-sentinel.py": "6021b11bd95cc14ba957e2b86f4558c07060aa8fb73e320c23b9720008aa1082",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+    "tests/fixtures/surfaces/surface-dc-palette-identity.json.gz": "52729ea70e1dbadb2068b53906b08ee1b227d8e305a0483ae036a094ed0633f1"
+  },
+  "cases": 150,
+  "pixels": 7200,
+  "dc_pixels": 7200,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-dc-palette-identity.json.gz",
+    "sha256": "52729ea70e1dbadb2068b53906b08ee1b227d8e305a0483ae036a094ed0633f1"
+  },
+  "inputs_sha256": "2957469830d895900cccd54dc1b1e50b3a19b212f05059e08082e3c892a12962",
+  "outputs_sha256": "0b03bede5f8e06dabf8fcb211483fa4b27feb0820655b427729a600d65625a2e",
+  "probe_sha256": "83e6a74195087949173b51393e9de2d4eecd7dc5028f50729d91302f581dd82d",
+  "artifacts": "working/tests/surface-dc-palette-identity/run-1sy3652i",
+  "environment": {
+    "wine": "wine-11.16",
+    "gdi32_sha256": "089d8e8e7e5d7b26c72f6d0b90b89531fe43e915c900d4dd485f2924ab584b0c",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b"
+  },
+  "original_game_executed": false,
+  "scope": "Standalone real Wine Surface2 GetDC/GDI/ReleaseDC to requested indexed/RGB565/RGB32 offscreen surfaces with system-memory8x6 targets,150 cases from4 owned identity/duplicate/boundary inputs; gray/reversed/cube/exact-source destination palettes, attached one/two/missing/empty DirectDraw clip lists and explicit one/two/empty/overlapping GDI regions plus combined case. Native Lock words, actual DC color tables, before/clipped/cleared GetPixel frames. No original game instructions, actual loss, Windows hardware or live/wire equivalence.",
+  "original_manifest_verified_before_after": true
+}

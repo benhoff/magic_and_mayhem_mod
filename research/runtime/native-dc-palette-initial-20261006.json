@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "renderer/blit.cpp": "db3c5cbff5f71505fe26269d7f9ea6684635e88ec36f5a70b8f211097fa597f6",
+    "renderer/blit.hpp": "d4d7229c0a7ee70a0fd2c6f0c63fb86835b77f6e7282e196cdcb17cb173aa0c3",
+    "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "renderer/known_pixels.hpp": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "renderer/CMakeLists.txt": "05b10d3caa4ae23a94491c94394596b47615f79cdfff99e118b2cd78d394b021",
+    "reconstruction/rendering/surface_bitmap.hpp": "d115f4908653fdc05b745a1067a24a549e2c7dfc4fe969c15a5f9bc6db0c8334",
+    "tests/render-dc-palette-test.cpp": "40d56bbbdb7f00430641c7133e0a7c3b97e1132cfc77de14f7a597bc7ec22ca4",
+    "tools/check-native-dc-palette.py": "e1dc8e4d8613b9382b7292b46325cd8b52f343d43aec3d2b7427e0ffe8c84ee4",
+    "tools/check-surface-dc-palette.py": "88578d24576ca3f7a01663020e6fa94fa30d73352633347fb71039155963bd9c",
+    "tools/check-surface-dib-ddraw.py": "31036dba35e0382c9734b7169d8f57bf2c3c47991c64360134fe832a1db748cd",
+    "tools/check-surface-dib-gdi.py": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+    "research/runtime/surface-dc-palette-capture-20261006.json": "50bc362653bbfdbc2444280c8aaf83f4f6d91c9c888ab827a16c6bc1bd1dffda",
+    "tests/fixtures/surfaces/surface-dc-palette.json.gz": "b702cc2606d0567bfa404238d344df9c79205c1fe8e444eacb16883d67a0928a"
+  },
+  "native": {
+    "success": true,
+    "cases": 300,
+    "refusals": 6300,
+    "known_pixel_checks": 9330
+  },
+  "driver_pixel_comparisons": 28800,
+  "library_sha256": "aee4e68e32ce533f7256c290575c3ac22ee75b4cf42c4f438e9572b2eea81fe2",
+  "native_binary_sha256": "d8304d5c99bf84cb264c717c3f503b50ebc580995da0d8fb5956899a15fbabf0",
+  "pixels_sha256": "1c0da1850256c16147f9c05045b8a22f0451e0ac62202027460ea5fda8dd10f6",
+  "artifacts": "working/tests/native-dc-palette/run-x6oq0g_k",
+  "scope": "Native installed indexed palettes and RGB565/32 DIB reload with separate owned GDI region union versus independent Surface2 native/DC frames. Clipped written-region validity/partial palette/refusals checked without using original restored bytes. Absent palettes, native COM/DC lifetime, actual loss/live/wire/Windows excluded."
+}

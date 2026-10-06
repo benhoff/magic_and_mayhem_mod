@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/check-surface-dc-palette.py": "88578d24576ca3f7a01663020e6fa94fa30d73352633347fb71039155963bd9c",
+    "tests/test-surface-dc-palette.py": "eaba3f90018941c41e098429123f0607f4756aeaf6b48e46ee631bbad5ee2bd5",
+    "tools/check-surface-dib-ddraw.py": "31036dba35e0382c9734b7169d8f57bf2c3c47991c64360134fe832a1db748cd",
+    "tools/check-surface-dib-gdi.py": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+    "research/runtime/surface-dc-palette-capture-20261006.json": "50bc362653bbfdbc2444280c8aaf83f4f6d91c9c888ab827a16c6bc1bd1dffda",
+    "tests/fixtures/surfaces/surface-dc-palette.json.gz": "b702cc2606d0567bfa404238d344df9c79205c1fe8e444eacb16883d67a0928a",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52"
+  },
+  "cases": 360,
+  "native_pixels": 14400,
+  "dc_rgb_pixels": 14400,
+  "clipped_samples": 14400,
+  "absent_palette_cases": 60,
+  "scope": "Input-derived installed palette/explicit GDI clip conversion against independent Surface2 outputs. Absent-palette conversion remains observation-only, no expected conversion or RGB equivalence claimed. Attached DirectDraw clipper admission/box scoped separately from GDI regions. No original instructions, actual loss, live/wire or Windows hardware equivalence."
+}

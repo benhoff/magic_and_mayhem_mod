@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-dc-palette-reference.c": "8f1f516a5c7ec8450b3bf6f0a74fd3e8db2ebf720f9892a203ed91f1e8df3a4f",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-dc-palette.py": "70d8587b6d180cfdd6fc3b754cf7131485664cec2a7569c66fea26efc3b9e412",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/check-original-surface-sentinel.py": "6021b11bd95cc14ba957e2b86f4558c07060aa8fb73e320c23b9720008aa1082",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+    "tests/fixtures/surfaces/surface-dc-palette.json.gz": "b702cc2606d0567bfa404238d344df9c79205c1fe8e444eacb16883d67a0928a"
+  },
+  "cases": 360,
+  "pixels": 17280,
+  "dc_pixels": 17280,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-dc-palette.json.gz",
+    "sha256": "b702cc2606d0567bfa404238d344df9c79205c1fe8e444eacb16883d67a0928a"
+  },
+  "inputs_sha256": "3ecc9760819d8cadaf6d12c071a7b0d092e4f3999c05ed816cdd621a939bbb49",
+  "outputs_sha256": "e555af877b889de43cbf2a07d0563929eb2d86e9f8d40607836d87b7f799ffe8",
+  "probe_sha256": "3a4795aafdaf1790109d8b12130a19813bff464c6cfab5669b7ffc741ab1a616",
+  "artifacts": "working/tests/surface-dc-palette/run-7yxsnpxu",
+  "environment": {
+    "wine": "wine-11.16",
+    "gdi32_sha256": "089d8e8e7e5d7b26c72f6d0b90b89531fe43e915c900d4dd485f2924ab584b0c",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b"
+  },
+  "original_game_executed": false,
+  "scope": "Standalone real Wine Surface2 GetDC/GDI/ReleaseDC to requested indexed/RGB565/RGB32 offscreen surfaces with system-memory8x6 targets,360 cases from6 retained original loader inputs; absent/gray/reversed/cube destination palettes, attached one/two/missing/empty DirectDraw clip lists and explicit one/two/empty/overlapping GDI regions plus combined case. Native Lock words, actual DC color tables, before/clipped/cleared GetPixel frames. No original game instructions, actual loss, Windows hardware or live/wire equivalence.",
+  "original_manifest_verified_before_after": true
+}

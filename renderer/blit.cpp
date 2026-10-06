@@ -120,7 +120,7 @@ struct GpuFrame::Data {
     ~Data();
 };
 struct GlBlitter::Impl {
-    struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;std::weak_ptr<GpuFrame::Data> gpu;ClipperState clipper;KnownPixels validity;};
+    struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;std::weak_ptr<GpuFrame::Data> gpu;ClipperState clipper;KnownPixels validity;std::array<Rgb,256> paletteColors{};std::array<bool,256> paletteKnown{};};
     QOffscreenSurface surface;
     QOpenGLContext context;
     QOpenGLFunctions_3_3_Core gl;
@@ -277,18 +277,62 @@ void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
     g.glPixelStorei(GL_UNPACK_ALIGNMENT,4);g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.pixels.data());
     p.check();s.validity.define({x,y,x+patch.width,y+patch.height});++p.counters.uploads;
 }
-void GlBlitter::reloadDib(SurfaceId id,const DibInput& dib){
+void GlBlitter::reloadDib(SurfaceId id,const DibInput& dib,const std::optional<std::vector<Rect>>& dcRegions){
     auto& p=*impl_;p.thread();auto& s=p.get(id);
+    const bool indexed=s.format.bits==8;
     const bool rgb565=s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f};
-    if(!rgb565 && ((s.format.bits!=24 && s.format.bits!=32) || s.format.masks!=std::array<std::uint32_t,3>{0xff0000,0xff00,0xff}))
-        throw std::runtime_error("DIB reload requires RGB565 or canonical RGB24/32 target");
-    if(s.clipper.attached)throw std::runtime_error("DIB reload with DC clipping is not validated");
+    if(!indexed && !rgb565 && ((s.format.bits!=24 && s.format.bits!=32) || s.format.masks!=std::array<std::uint32_t,3>{0xff0000,0xff00,0xff}))
+        throw std::runtime_error("DIB reload requires indexed8, RGB565 or canonical RGB24/32 target");
+    if(indexed && !std::all_of(s.paletteKnown.begin(),s.paletteKnown.end(),[](bool known){return known;}))
+        throw std::runtime_error("Indexed DIB reload requires all 256 explicit palette entries");
+    if(dcRegions){
+        if(dcRegions->size()>maxClipRegions)throw std::runtime_error("DC region budget exceeded");
+        for(auto r:*dcRegions)if(r.left<0 || r.top<0 || r.left>=r.right || r.top>=r.bottom || r.right>s.width || r.bottom>s.height)
+            throw std::runtime_error("DC region outside destination");
+    }
     auto image=decodeDibRgb(dib);
     const int w=std::min(image.width,s.width),h=std::min(image.height,s.height);
-    Image patch{w,h,std::vector<std::uint32_t>(std::size_t(w)*h)};
-    for(int y=0;y<h;++y)std::copy_n(image.pixels.begin()+std::size_t(y)*image.width,w,patch.pixels.begin()+std::size_t(y)*w);
-    if(rgb565)for(auto& pixel:patch.pixels)pixel=((pixel>>19)&31u)<<11|((pixel>>10)&63u)<<5|((pixel>>3)&31u);
-    update(id,0,0,patch);
+    Image converted{w,h,std::vector<std::uint32_t>(std::size_t(w)*h)};
+    bool identicalPalette=indexed && dib.header[14]==8;
+    if(identicalPalette)for(unsigned i=0;i<256;++i){const auto c=s.paletteColors[i];
+        if(dib.palette[i*4]!=c.blue || dib.palette[i*4+1]!=c.green || dib.palette[i*4+2]!=c.red){identicalPalette=false;break;}
+    }
+    std::unordered_map<std::uint32_t,std::uint32_t> indices;
+    for(int y=0;y<h;++y)for(int x=0;x<w;++x){
+        auto color=image.pixels[std::size_t(y)*image.width+x];
+        if(rgb565)color=((color>>19)&31u)<<11|((color>>10)&63u)<<5|((color>>3)&31u);
+        else if(identicalPalette){
+            const auto stride=(std::size_t(image.width)+3)&~std::size_t(3);
+            color=dib.pixels[std::size_t(image.height-1-y)*stride+x];
+        }else if(indexed){
+            // Observed true-color input uses a 5-bit-bin center lookup; indexed
+            // source palettes retain full channel precision before translation.
+            if(dib.header[14]==24)color=(color&0xf8f8f8u)+0x040404u;
+            const auto found=indices.find(color);
+            if(found!=indices.end())color=found->second;
+            else{
+                const int red=int((color>>16)&255),green=int((color>>8)&255),blue=int(color&255);
+                unsigned best=0,distance=UINT32_MAX;
+                for(unsigned i=0;i<256;++i){const auto c=s.paletteColors[i];
+                    const int r=red-c.red,g=green-c.green,b=blue-c.blue;
+                    const auto d=unsigned(r*r+g*g+b*b);
+                    if(d<distance){distance=d;best=i;}
+                }
+                indices.emplace(color,best);color=best;
+            }
+        }
+        converted.pixels[std::size_t(y)*w+x]=color;
+    }
+    // DirectDraw's attached Blt clipper is separate from the application GDI
+    // region. Overlapping GDI rectangles form a union of identical writes.
+    const std::vector<Rect> whole{{0,0,w,h}};
+    for(auto r:dcRegions?*dcRegions:whole){
+        r.right=std::min(r.right,w);r.bottom=std::min(r.bottom,h);
+        if(r.left>=r.right || r.top>=r.bottom)continue;
+        Image patch{r.right-r.left,r.bottom-r.top,std::vector<std::uint32_t>(std::size_t(r.right-r.left)*(r.bottom-r.top))};
+        for(int y=r.top;y<r.bottom;++y)std::copy_n(converted.pixels.begin()+std::size_t(y)*w+r.left,patch.width,patch.pixels.begin()+std::size_t(y-r.top)*patch.width);
+        update(id,r.left,r.top,patch);
+    }
 }
 void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key,
                      std::optional<SurfaceId> mask){
@@ -349,7 +393,7 @@ void GlBlitter::setPalette(SurfaceId id,unsigned first,const std::vector<Rgb>& c
     for(auto c:colors){bytes.push_back(c.red);bytes.push_back(c.green);bytes.push_back(c.blue);bytes.push_back(255);}
     Current current(p.context,&p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,s.palette);
     g.glPixelStorei(GL_UNPACK_ALIGNMENT,4);g.glTexSubImage2D(GL_TEXTURE_2D,0,int(first),0,int(colors.size()),1,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,bytes.data());
-    p.check();++p.counters.paletteUpdates;
+    p.check();for(unsigned i=0;i<colors.size();++i){s.paletteColors[first+i]=colors[i];s.paletteKnown[first+i]=true;}++p.counters.paletteUpdates;
 }
 Image GlBlitter::read(SurfaceId id){
     auto& p=*impl_;p.thread();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,&p.surface);p.attach(s.native,s.width,s.height);

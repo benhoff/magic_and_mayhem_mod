@@ -99,3 +99,12 @@ adapter and retained CPU replay preview still use their historical floor-scaling
 policy; this change does not claim bridge color equivalence. Their alignment
 requires a separate bounded adapter contract review. Prior evidence fingerprints
 remain historical when shared renderer source changes.
+
+## Subsequent indexed/DC clipping step
+
+[Indexed reload and DC clipping](surface-dc-palette.md) now record separate
+DirectDraw versus GDI region behavior and bounded indexed8 conversion with an
+explicitly installed full palette.450 native cases match43,200 independent
+native/DC pixels. Canonical indexed reload and attached-clipper refusals above
+are superseded within that documented scope. Default palettes, native DC leases,
+actual loss and live/wire recovery remain pending; prior report hashes are retained.
