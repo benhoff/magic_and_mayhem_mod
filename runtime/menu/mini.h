@@ -1,4 +1,5 @@
 #include "../../protocols/include/mnm/menu_v4.h"
+static u32 THIS campaign_quit_answer(void*,u32);
 static u8 mini_payload[MNM_MENU_V4_MINI_SIZE];
 static int mini_snapshot(void* object,u8* out,int campaign){
     u8* p=object;
@@ -15,10 +16,13 @@ static int mini_snapshot(void* object,u8* out,int campaign){
     // Validate the original three-word callback object registered for buttons.
     u8* pair=(u8*)get(p+0x4f);if(!readable(pair,8))return 0;
     u8* cb=(u8*)get(pair);if(!readable(cb,12)||get(cb)!=0x5c6674||get(cb+4)!=0x4b23f0||get(cb+8)!=(u32)object)return 0;
+    if(campaign>=2){
+        u8* answer=(u8*)get(pair+4);if(!readable(answer,12)||get(answer)!=0x5c6674||get(answer+8)!=(u32)object||(get(answer+4)!=0x4b24f0&&get(answer+4)!=(u32)&campaign_quit_answer))return 0;
+    }
     for(u32 i=0;i<MNM_MENU_V4_MINI_SIZE;++i)out[i]=0;
     u32 modal=get(p+0x3b)!=0;
     put(out,campaign?0:1);put(out+4,modal);put(out+8,depth);put(out+12,get(parent+4));
-    put(out+16,modal?0:campaign?MNM_MENU_MINI_CAN_CANCEL:MNM_MENU_MINI_CAN_CANCEL|MNM_MENU_MINI_CAN_PREFERENCES|MNM_MENU_MINI_CAN_QUIT);
+    put(out+16,modal?0:campaign?(MNM_MENU_MINI_CAN_CANCEL|(campaign>=2?MNM_MENU_MINI_CAN_QUIT:0)):MNM_MENU_MINI_CAN_CANCEL|MNM_MENU_MINI_CAN_PREFERENCES|MNM_MENU_MINI_CAN_QUIT);
     put(out+20,get((void*)0x689920));if(campaign)put(out+24,2);return 1;
 }
 static u32 mini_dispatch(void* object,u32 action,int campaign){
@@ -26,7 +30,7 @@ static u32 mini_dispatch(void* object,u32 action,int campaign){
     if(!campaign&&!MNM_MENU_MINI_EXPERIMENTAL)return MNM_MENU_UNSUPPORTED;
     u8 current[MNM_MENU_V4_MINI_SIZE];if(!mini_snapshot(object,current,campaign)||get(current+4))return MNM_MENU_UNAVAILABLE;
     u32 index;
-    if(campaign){if(action!=MNM_MENU_MINI_CANCEL)return MNM_MENU_UNSUPPORTED;index=4;}
+    if(campaign){if(action==MNM_MENU_MINI_CANCEL)index=4;else if(campaign>=2&&action==MNM_MENU_MINI_QUIT)index=3;else return MNM_MENU_UNSUPPORTED;}
     else if(action==MNM_MENU_MINI_CANCEL)index=2;
     else if(action==MNM_MENU_MINI_PREFERENCES)index=0;
     else if(action==MNM_MENU_MINI_QUIT)index=1;

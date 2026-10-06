@@ -31,7 +31,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
                 }
             }
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
-            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
+            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             if(active_)timer_.start();else bridge_->retire();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath("working/tests/menu-live-wine"):winePrefix};

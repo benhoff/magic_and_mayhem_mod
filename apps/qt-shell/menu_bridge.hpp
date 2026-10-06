@@ -16,7 +16,7 @@ public:
     struct RegionEntry {quint32 caller=0,depth=0,different=0,difficulty=0,available=0,actions=0,region=0;QString realm,name;};
     struct State { quint32 generation=0,screen=0,ready=0,ack=0,status=0,thread=0,sequence=0,handoff=0;Battle battle;Spells spells;Mini mini;Results results;Preferences preferences;RegionEntry region; };
     ~MenuBridge();
-    bool create(const QString& path,bool battle=false,bool spells=false,bool mini=false,bool results=false,bool preferences=false,bool region=false,bool enter=false,bool campaignMini=false);
+    bool create(const QString& path,bool battle=false,bool spells=false,bool mini=false,bool results=false,bool preferences=false,bool region=false,bool enter=false,bool campaignMini=false,bool campaignQuit=false);
     bool read(State& state) const;
     void heartbeat(bool alive=true);
     bool request(quint32 action,const State& state,quint32 argument=0,const std::array<int,17>* rules=nullptr);
@@ -27,6 +27,6 @@ private:
     QFile file_;
     uchar* mapping_=nullptr;
     quint32 heartbeat_=0,request_=0;
-    bool retired_=false,battle_=false,spells_=false,mini_=false,results_=false,preferences_=false,region_=false,enter_=false,campaignMini_=false;
+    bool retired_=false,battle_=false,spells_=false,mini_=false,results_=false,preferences_=false,region_=false,enter_=false,campaignMini_=false,campaignQuit_=false;
     void publish(bool alive,quint32 action=0,quint32 generation=0,quint32 argument=0,const std::array<int,17>* rules=nullptr,const std::array<int,63>* assignments=nullptr,const std::array<int,7>* preferences=nullptr);
 };
