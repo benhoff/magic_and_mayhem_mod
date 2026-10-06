@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "success": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "cases": 4480,
+  "matched": 4480,
+  "events": 22720,
+  "real_driver_validation": false,
+  "scope": "Offline input-derived wrapper control-flow model versus unchanged original/scripted COM fault traces. Native storage validity, real driver loss/Restore/palette and asset reload remain separate pending boundaries.",
+  "sources": {
+    "tools/check-original-surface-retry.py": "c8da795ff99a2438d80e8e77fa8e30a8dee643c940a5df252c1336d46961741f",
+    "tests/test-original-surface-retry.py": "cacd54dada93bb9bd41651727464b0790d1837e0c9c91bae411aeca838e7de57",
+    "tests/fixtures/surfaces/original-retry-corpus.json": "ad58af4ddb3c5d09a8c1d6a58ebc958fd37711d45d24047abbec81e72f550e9c",
+    "tests/fixtures/surfaces/original-retry.json.gz": "c111fde6a0364d564d1c059fc6eed5e406518e7799997d62435a4e93553ebad5"
+  }
+}

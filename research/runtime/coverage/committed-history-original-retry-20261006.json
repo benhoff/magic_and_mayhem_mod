@@ -1,0 +1,257 @@
+{
+  "schema": 1,
+  "base": "f99dd0a",
+  "head": "70f5e54e3f5300b8a437e06f10b948ce51457023",
+  "scope": "Exact committed file and behavior receipts; retrospective accounting does not assert a past gate pass or fresh execution.",
+  "commits": [
+    {
+      "commit": "70f5e54e3f5300b8a437e06f10b948ce51457023",
+      "parent": "f99dd0a4a788d5955428e39a31209f33f5d8e8a7",
+      "files": [
+        {
+          "path": "renderer/blit.cpp",
+          "before_sha256": "e21ff91483d417a4e0bc407761c2f476c414ee39064e47e7d0397632e898753a",
+          "after_sha256": "7d966c5907fa6c69b8ddb5c15eee5bd6851f1ed0d79febf7b51af158e8298f0c",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "before_sha256": "b348f7ad14ec06e79dfa07ec1c699388d13639cd74f65b251c79354ae33b3c27",
+          "after_sha256": "217c7caeba8f9c6e843ce52329476a61f1fa71b79f8d6fc653d327b8f62960ff",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/command_consumer.cpp",
+          "before_sha256": "be2ac2c2c86ec1f2e00cfaca8a5e66f574d3df4e9159b1c4a1be2c4fa377da38",
+          "after_sha256": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/formats/render-surface-commands-v3.md",
+          "before_sha256": "fd1591541891e8c41d5353f3e2cafa70599f36574dadbbf6696bb080215d8174",
+          "after_sha256": "23a6f9f034c6e2de770dd1e21dbc247539044c5d4a67a4ba2150d9c51701a101",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "5158321c4e2aa254a0d1a8b91200e62278f47e829823210bfbae008112f9c907",
+          "after_sha256": "6d4ee198c64a47a13021ba1cfe20515fa424411d3f29bad2c974e7e9c7617932",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "95f27c543a12b54f96808b892edeb4486e40e690cf923d85c3662ea13a49345a",
+          "after_sha256": "606f6b65c72163fec0e8d9a2846d386db955f165b6ef14688514fc462660b42e",
+          "receipts": [
+            "append-only journal self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-native-overlap-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "bf4c8f634bb9a1c5d440fd9a9881558f06daf8d55173e9850cb3c31ff4dc31cf",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "89e4dab18d7d90b0bf6cb91ea2c5beeca3f864b0e97266f711ad2eb51fdeb903",
+          "after_sha256": "2e5f1f06ff4a5524e5db30da7cf2af264865252e30db73f052d4d8d82b350db9",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-overlap-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "fef46d37e8154b02f51a760d69b055290c6e1aefe43bb38a52ddc5cd35cf6a69",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-overlap-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "22de3251c6b64b95caf3ca7d2665d59c498a6d310bf6740367e7ac0264895017",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "8eabaf3a1dc45967c574019c439c04bc860d90e054b87fe3bad5e2e74b45fb26",
+          "after_sha256": "69db90705ece625db5c9c7a159b796e3996dec844e9e4b33b9b4efbdc5eecbd8",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "ee42813cdee8646d58fdbfed7ef4f5e86a4195e1b677897ab2339ef575dd74ff",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap.md",
+          "before_sha256": "adc2c3c94560de509b57d535b7963e7a2035bfd777a4df1e6cd943b6c1eea5cc",
+          "after_sha256": "2a78fe2d0659ad7c6095d2cca3ee01a0b31d3ac90c45af1ea8e4594067e82340",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-surface-copy-fixtures.cpp",
+          "before_sha256": "09c1b999b9476b17b2596f7e7d2d104cce1060ab8eb596747fe681e485893742",
+          "after_sha256": "e676443e82f419e77f200295424fdd4ae606c703a241db9abb7be200f18ec5d7",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-native-surface-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "6b4982c0cddaddb9f059d5d45d2ad478bd3cbece2427005cc294f05020613817",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-streaming",
+          "before_sha256": "d7ee4b0fc38aac5de36c4bfc8b5ab1be5f9b089fa2cbdea2a02106b448651675",
+          "after_sha256": "45f81e2bb8fe3ef160e0061ee1ef69a7798b3d990ca73e253f8493cd4e116194",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.gpu-presentation",
+          "before_sha256": "b691edfb2dab06c0d31aacab00d676476e8628861b0603348919703f5df54f12",
+          "after_sha256": "d515c442063d8177dc3cd8b2be5ed3e3d1d7455bf15e7abe34b77eb58acb035d",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "0851dba496bbdba43ccd0fa9b21e9dbe0d6040493d40ef14f7daf367b2729b11",
+          "after_sha256": "b94ca1d0ab977032bb998d77c57528783eefdf53a15ba06545dede5070fcaa38",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "1ccf783012286e713069b1e02912acc7a51e8ee6ff9960031d71e18fbcdbda93",
+          "after_sha256": "3d04febfc56e2d55c0cbe6a27043e39ca110704f74a0a94077c9bb3857c30cf7",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "63a26be9b07095e48c01a644f00efd29273bf68e11e0c2e688fe1e7ca743e34d",
+          "after_sha256": "dd648124e5a98e049e57847451be6a19e3b5b418b959596f775d13e95d121384",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "220d0d4037840a96eb1ba7a4e9476229407da9bfdb0b882adffb33f49f331392",
+          "after_sha256": "d586b756789d167601d4bc10dc6e70b0ea6acab35fc4af3a3900a61b18cf16fa",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "b7ce6d2adebaa229194358e4bc7e051752603b4625f8c24968838c1fac413097",
+          "after_sha256": "4bba31c6a0e16719263102b5d1d8a105c235eb29c0987b11421d319f2c57cfbd",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "0ae2594b731b354e035dd7f0aff79fc48bf0594621165804279352e6fe2d5a58",
+          "after_sha256": "a7feff8625b7a14841fd589f99dd76eb9a124eb94390c99d56c314d6ee1a8bd4",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surfaces",
+          "before_sha256": "03abbc4ecca53b2e5688df27a843d019e1a0f14fb4091b0225d2898db9922a59",
+          "after_sha256": "43c21e407bf9e4b5564ebe288ff9b307ef5bc67950f7d8735cb9be4252b6b1fc",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "f9ddde962af73d775b5086310470800ef078649b59ff895671ae392b1efb9e96",
+          "after_sha256": "7bf33fa9afd38d8acc6555455ce475b05dfa665f46be4e2fb351dc1595b42a35",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "088a2c486fd6a0c1fd1077d1a1b45f843abda72e8e85a91806b90ee5c0971ed0",
+          "after_sha256": "91f8cb7d78397bd64e619cdf563eabc7f6659be2fcce17ad308a0c748c9f8161",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "921d6970b400f821f7ed2a1ddd1b6830a13627dc68d5c4729f75225eb72d29e7",
+          "after_sha256": "aa31c076f61dca8f0387c01ffb6eda2d24c914d1aed4fa28b63e812500b18bc3",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "766add71f1489ca7011aceb010d6aed68f1478034891e61d93db5d6a6ce5ce6e",
+          "after_sha256": "13c6f2593fd7d1c6f3cf28e88f359a7361add51737d39be03238540fc595ad17",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        }
+      ],
+      "unresolved_exact_receipts": []
+    }
+  ],
+  "unresolved_gaps": [],
+  "retrospective_receipts": []
+}

@@ -390,14 +390,15 @@
     {
       "id": "SURF.restore",
       "requirement": "required",
-      "requirement_evidence": "Selected wrappers have restore/retry paths; successful Restore currently invalidates pixels/key and refuses history.",
+      "requirement_evidence": "Milestone restoration requirement; unchanged original wrapper Restore/retry scheduling captured using explicit fault inputs.",
       "native_backend": "unsupported_baseline",
       "wire_support": "fresh-session recovery/checkpoint are distinct native policies",
       "behavior_ids": [
         "RI.fills",
         "RI.copies",
         "NR.command-recovery",
-        "NR.command-checkpoint-attachment"
+        "NR.command-checkpoint-attachment",
+        "RE.surface-copy.restore-retry"
       ],
       "original": [
         {
@@ -423,8 +424,10 @@
         "pixel validity",
         "key/palette retention/reload"
       ],
-      "original_fixture_ids": [],
-      "remaining_gap": "Need original call/state/output sequences, including undefined content validity. Never compare unspecified restored pixels as deterministic output."
+      "original_fixture_ids": [
+        "original-retry-corpus.json"
+      ],
+      "remaining_gap": "4480 original fault traces match an input-derived CPU model. Native bounded scheduling/content validity, real driver loss/Restore/palette, asset/sentinel reload, live integration and Windows behavior remain outstanding."
     },
     {
       "id": "SURF.lifetime_updates",
