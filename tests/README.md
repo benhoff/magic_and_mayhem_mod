@@ -894,10 +894,6 @@ checkpoint continuation. `python3 tools/test-scene-playback.py BUILD/world-playb
 NEW_OUTPUT` retains normal/sanitizer reports and a fresh-process continuation.
 Original cadence/pause and installed whole-window equivalence remain open.
 
-### Campaign gameplay Mini Quit
-
-Run `python3 tools/test-campaign-mini-quit-bridge.py` and the V9 Cancel regression `python3 tools/test-campaign-mini-bridge.py`. Run focused Qt campaign Quit/Cancel, Mini/V4, Region Entry and V1/V6 CTests. `python3 tools/test-live-campaign-quit.py --mini-quit` observes original No/Yes; `python3 tools/test-live-qt-campaign-quit.py --shell <built-shell> --source-root <compiled-tree>` checks native Quit, original No/Yes, Main restoration and normal Main Quit without manual input. Runs are isolated and bounded. See [UI32 evidence](../research/runtime/campaign-mini-quit-engine-bridge.md).
-
 ## Automated actual native scene window (NS17)
 
 `python3 tools/test-native-scene-window.py BUILD NEW_OUTPUT` launches the
@@ -909,9 +905,9 @@ clicks Pause after exact committed tick boundaries. No manual interaction is nee
 Tests record the current missing stopped/idle body display. Original input/ray/clock
 equivalence and other installed-world profiles remain outside this scenario.
 
-### Campaign Quit defeat report
+### Campaign gameplay Mini Quit
 
-Run `python3 tools/test-campaign-defeat-bridge.py` and the V10 regression `python3 tools/test-campaign-mini-quit-bridge.py`. Eleven focused Qt checks include `qt-menu-campaign-defeat` and prior Mini, Region Entry, Quick Battle results, V1/V6 bridges. `python3 tools/test-live-qt-campaign-defeat.py --shell <built-shell> --source-root <compiled-tree>` checks native original-text report, original OK and normal Main Quit in an isolated bounded run without manual input. Static recovery is reproducible with `tools/export-campaign-defeat-support.py`. See [UI33 evidence](../research/runtime/campaign-defeat-engine-bridge.md).
+Run `python3 tools/test-campaign-mini-quit-bridge.py` and the V9 Cancel regression `python3 tools/test-campaign-mini-bridge.py`. Run focused Qt campaign Quit/Cancel, Mini/V4, Region Entry and V1/V6 CTests. `python3 tools/test-live-campaign-quit.py --mini-quit` observes original No/Yes; `python3 tools/test-live-qt-campaign-quit.py --shell <built-shell> --source-root <compiled-tree>` checks native Quit, original No/Yes, Main restoration and normal Main Quit without manual input. Runs are isolated and bounded. See [UI32 evidence](../research/runtime/campaign-mini-quit-engine-bridge.md).
 
 ## Native retained display after Stop (NS18)
 
@@ -923,6 +919,10 @@ entry-point window experiment with static stopped-body pixels, modal Save,
 fresh-window v8 restoration, idle ticks and active movement restart in four views.
 Installed artifacts are read only and bracketed by original-manifest checks.
 See [native idle display](../research/runtime/native-idle-display.md).
+
+### Campaign Quit defeat report
+
+Run `python3 tools/test-campaign-defeat-bridge.py` and the V10 regression `python3 tools/test-campaign-mini-quit-bridge.py`. Eleven focused Qt checks include `qt-menu-campaign-defeat` and prior Mini, Region Entry, Quick Battle results, V1/V6 bridges. `python3 tools/test-live-qt-campaign-defeat.py --shell <built-shell> --source-root <compiled-tree>` checks native original-text report, original OK and normal Main Quit in an isolated bounded run without manual input. Static recovery is reproducible with `tools/export-campaign-defeat-support.py`. See [UI33 evidence](../research/runtime/campaign-defeat-engine-bridge.md).
 
 ## Initial native creature display (NS19)
 
@@ -938,10 +938,6 @@ alongside the movement and Stop checks in four views. See
 
 Run `python3 tools/test-campaign-preferences-bridge.py` and Qt `qt-menu-campaign-preferences`, `qt-menu-preferences-bridge`, `qt-menu-preferences-controller`, `qt-engine-preferences-store`, `qt-menu-campaign-mini-quit` and `qt-menu-campaign-defeat`. These isolated original-bytecode and synthetic Qt checks require no manual input. The full campaign gameplay return remains pending; see [UI34 evidence](../research/runtime/campaign-preferences-engine-bridge.md).
 
-### Campaign Preferences automated live round trip
-
-Run `python3 tools/test-live-qt-campaign-preferences.py --shell <built-shell> --source-root <compiled-tree>`. It creates private Wine/Xvfb/config state and drives native campaign Mini/Preferences three times: preview/Cancel rollback, preview/OK saving, reopened values/Cancel, then original Quit confirmation, report OK and Main Quit. No manual input; bounded execution with exact callback, World-resume, profile/store and source-fingerprint checks. See [UI35 evidence](../research/runtime/campaign-preferences-live-engine-bridge.md).
-
 ## Paused native scene spawning (NS20)
 
 `native-world-spawning` runs production Qt controls with owned frozen/ANI inputs
@@ -951,3 +947,7 @@ two-actor checkpoint continuation. The actual-window runner additionally selects
 terrain, spawns and selects a second creature, rejects duplicate occupancy, saves
 both bodies, and reproduces its first move after a fresh-window reload in four
 views. See [native scene spawning](../research/runtime/native-scene-spawning.md).
+
+### Campaign Preferences automated live round trip
+
+Run `python3 tools/test-live-qt-campaign-preferences.py --shell <built-shell> --source-root <compiled-tree>`. It creates private Wine/Xvfb/config state and drives native campaign Mini/Preferences three times: preview/Cancel rollback, preview/OK saving, reopened values/Cancel, then original Quit confirmation, report OK and Main Quit. No manual input; bounded execution with exact callback, World-resume, profile/store and source-fingerprint checks. See [UI35 evidence](../research/runtime/campaign-preferences-live-engine-bridge.md).
