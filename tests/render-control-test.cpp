@@ -36,5 +36,8 @@ int main(int argc,char** argv){QCoreApplication app(argc,argv);try{
         check(peer.get(40)==1,"permanent cancellation");
     }
     {QTemporaryDir dir;auto path=dir.filePath("existing");QFile f(path);check(f.open(QIODevice::WriteOnly),"existing");f.write("keep");f.close();RenderControl host;check(!host.create(path,17),"existing rejected");check(f.open(QIODevice::ReadOnly) && f.readAll()=="keep","existing unchanged");}
-    std::puts("{\"success\":true,\"cases\":10}");return 0;
+    {QTemporaryDir dir;const auto path=dir.filePath("checkpoint");RenderControl host;check(host.create(path,123),"checkpoint create");Peer peer(path);
+     check(host.checkpoint(dir.filePath("late"),124),"checkpoint request");check(peer.get(24)==2 && peer.get(20)==1 && peer.get(28)==124,"literal checkpoint operation");
+     check(host.poll()==0,"checkpoint before readiness");peer.set(36,1);peer.set(32,1);check(host.poll()==1,"checkpoint matching ready");host.cancel();check(peer.get(40)==1,"checkpoint cancellation");}
+    std::puts("{\"success\":true,\"cases\":11}");return 0;
 }catch(const std::exception& e){std::fprintf(stderr,"%s\n",e.what());return 1;}}

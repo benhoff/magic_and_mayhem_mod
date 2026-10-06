@@ -17,13 +17,17 @@ bool LiveCommandSession::create(const QString& path,quint32 session,quint32 vers
 }
 void LiveCommandSession::abort(){control_.cancel();if(renderer_)renderer_->abort();viewport_.setGpuFrame({});}
 bool LiveCommandSession::fail(const QString& message){error_=message;abort();change(State::Fallback);return false;}
-bool LiveCommandSession::recover(){
+bool LiveCommandSession::attachCheckpoint(){
+    if(state_!=State::WaitingFrame && state_!=State::Active)return false;
+    return recover(true);
+}
+bool LiveCommandSession::recover(bool checkpoint){
     if(version_!=2 || retries_>=MNM_RENDER_CONTROL_V1_MAX_RECOVERIES || session_==std::numeric_limits<quint32>::max())return fail("Rendering recovery unavailable or exhausted");
     renderer_->abort();renderer_.reset();viewport_.setGpuFrame({});
     ++retries_;++session_;const auto next=path_+QString(".retry-%1").arg(retries_);
     change(State::Recovering);
     if(!fresh(next,session_))return false;
-    if(!control_.recover(next,session_))return fail(control_.error());
+    if(!(checkpoint?control_.checkpoint(next,session_):control_.recover(next,session_)))return fail(control_.error());
     return true;
 }
 bool LiveCommandSession::poll(){

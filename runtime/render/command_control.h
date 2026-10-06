@@ -38,9 +38,9 @@ static u32 WIN command_control_run(void* unused){
         if(!command_control_identity() || mnm_ring_load(command_control+10))break;
         u32 request=mnm_ring_load(command_control+5);
         if(request==sequence){Sleep(5);continue;}
-        char path[512];u32 n=command_control[11],target=command_control[7];
+        char path[512];u32 n=command_control[11],target=command_control[7],operation=command_control[6];
         int valid=request==sequence+1 && sequence<MNM_RENDER_CONTROL_V1_MAX_RECOVERIES &&
-            command_control[6]==MNM_RENDER_CONTROL_V1_OPERATION_RECOVER && target && n && n<sizeof(path) &&
+            (operation==MNM_RENDER_CONTROL_V1_OPERATION_RECOVER || operation==MNM_RENDER_CONTROL_V1_OPERATION_CHECKPOINT) && target && n && n<sizeof(path) &&
             !((u8*)command_control)[64+n];
         zero(path,sizeof(path));if(valid){copy(path,(u8*)command_control+64,n);for(u32 i=0;i<n;++i)if(!path[i])valid=0;}
         __atomic_thread_fence(__ATOMIC_ACQUIRE);
@@ -54,9 +54,9 @@ static u32 WIN command_control_run(void* unused){
             char delay[8];if(GetEnvironmentVariableA("MNM_RENDER_CONTROL_DELAY_FOR_TEST",delay,sizeof(delay)))Sleep(200);
 #endif
             if(!mnm_ring_load(command_control+10) && !__atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE))
-                ready=command_recover(path,target);
+                ready=command_recover_mode(path,target,operation==MNM_RENDER_CONTROL_V1_OPERATION_CHECKPOINT);
             if(mnm_ring_load(command_control+10) || !command_control_identity() ||
-               mnm_ring_load(command_control+5)!=request || command_control[6]!=1 || command_control[7]!=target ||
+               mnm_ring_load(command_control+5)!=request || command_control[6]!=operation || command_control[7]!=target ||
                command_control[11]!=n || !same(path,(u8*)command_control+64,n+1) ||
                __atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE))ready=0;
             if(!ready)RenderShutdown(0);
