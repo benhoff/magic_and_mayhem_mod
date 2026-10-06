@@ -14558,12 +14558,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native RGB565 Surface2 clipping and partial-write result policy",
-      "scope": "Distinct RGB565 surfaces, bounded owned destination clip descriptors and one-to-one Blt/BltFast selected HRESULT/native pixel behavior modeled on408 retained Wine Surface2 outputs. Partial writes, empty/missing lists and18 native lifetime/admission checks; busy flags are caller observations only. Other formats, stretching, self-copy, successful keyed clipping, native locks/Restore, original game/Windows equivalence and live replacement remain pending.",
+      "scope": "Distinct RGB565 surfaces, bounded owned destination clip descriptors and one-to-one Blt/BltFast selected HRESULT/native pixel behavior modeled on408 retained Wine Surface2 outputs. Partial writes, empty/missing lists and18 native lifetime/admission checks; busy flags are caller observations only. Other formats, stretching, keyed/masked self-copy, successful keyed clipping, native locks/Restore, original game/Windows equivalence and live replacement remain pending. Opaque RGB565 same-ID overlap extension is separately compared under RE.surface-copy.rgb565-overlap; existing historical evidence retains its original source fingerprints.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-surface-clipping.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/original-surface-overlap.md"
       ],
       "implementation": [
         "renderer/surface_copy.hpp",
@@ -14595,13 +14596,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Version3 clip state and non-atomic Surface2 result replay",
-      "scope": "Offline v3 owned clip descriptors, signed RGB565 one-to-one copy policy and separate result checks;408 retained external Wine outputs checked with816 native pixel comparisons, fragmented GPU replay without ordinary readbacks,16 rejected invalid/mismatch streams and21 ownership/diagnostic checks. Busy bits are explicit admission observations. V1/v2 preserved; live v3 producer/negotiation, native locks/loss/Restore and original game/Windows-driver equivalence pending.",
+      "scope": "Offline v3 owned clip descriptors, signed RGB565 one-to-one copy policy and separate result checks;408 retained external Wine outputs checked with816 native pixel comparisons, fragmented GPU replay without ordinary readbacks,16 rejected invalid/mismatch streams and21 ownership/diagnostic checks. Busy bits are explicit admission observations. V1/v2 preserved; live v3 producer/negotiation, native locks/loss/Restore and original game/Windows-driver equivalence pending. Opaque RGB565 same-ID overlap extension is separately compared under RE.surface-copy.rgb565-overlap; existing historical evidence retains its original source fingerprints.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/formats/render-surface-commands-v3.md",
         "research/runtime/native-surface-clipping.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/original-surface-overlap.md"
       ],
       "implementation": [
         "renderer/commands.hpp",
@@ -14789,7 +14791,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original opaque RGB565 same-surface overlap and alias outputs",
-      "scope": "Unchanged original0x58c360 Wine Surface2 opaque RGB565 same backing, direct interface and verified Surface1 COM aliases, Blt/BltFast WAIT/no-WAIT, direction/identity/ordered clipping/errors. CPU input-derived per-piece source snapshots independently compare all retained results/pixels. Native GPU implementation, keyed/masked/other formats, loss/Restore/retry, live and Windows equivalence pending.",
+      "scope": "Unchanged original0x58c360 Wine Surface2 opaque RGB565 same backing and verified Surface1 COM aliases,1536 controlled calls: direction/identity/ordered clipping/WAIT/errors. Input-derived CPU and GPU per-clip-piece snapshots compare actual HRESULT/full pixels including16 partial errors; v3 same-ID offline replay checks1536 results/shared outputs. Keyed/masked/other formats, loss/Restore/retry, live COM identity tracking/replacement and Windows equivalence pending.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -14800,10 +14802,14 @@
       ],
       "documents": [
         "research/runtime/original-surface-overlap.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/formats/render-surface-commands-v3.md"
       ],
       "implementation": [
-        "tools/check-original-surface-overlap.py"
+        "tools/check-original-surface-overlap.py",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp"
       ],
       "tests": [
         "tests/surface-overlap-reference.c",
@@ -14813,11 +14819,14 @@
         "tests/fixtures/surfaces/original-rgb565-overlap-corpus.json",
         "tests/surface-key-reference.c",
         "tools/capture-original-surface-keys.py",
-        "tools/check-original-surface-keys.py"
+        "tools/check-original-surface-keys.py",
+        "tests/render-surface-copy-fixtures.cpp",
+        "tools/check-native-surface-overlap.py"
       ],
       "evidence": [
         "ORIGINAL.surface-copy.rgb565-overlap.capture-20261006",
-        "ORIGINAL.surface-copy.rgb565-overlap.cpu-20261006"
+        "ORIGINAL.surface-copy.rgb565-overlap.cpu-20261006",
+        "ORIGINAL.surface-copy.rgb565-overlap.native-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -26566,6 +26575,26 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-overlap.native-20261006",
+      "kind": "isolated_original",
+      "scope": "Fresh offline1536 original opaque RGB565 shared-backing result/pixel outputs compared with native GPU per-piece snapshots and v3 logical-ID replay. Direct Surface2 and Surface1 aliases normalize to verified backing identity.20 policy checks,6 rejected streams; no live/Windows/Restore equivalence.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-overlap-native-20261006.json",
+      "sha256": "ee42813cdee8646d58fdbfed7ef4f5e86a4195e1b677897ab2339ef575dd74ff",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1536
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -31140,7 +31169,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-observation-20261006.json",
-    "sha256": "4b6eeddda366f88fd17ce41001310846884ecd198a983704772c63ec26d42058"
+    "path": "research/runtime/coverage/source-index-native-overlap-20261006.json",
+    "sha256": "fef46d37e8154b02f51a760d69b055290c6e1aefe43bb38a52ddc5cd35cf6a69"
   }
 }
