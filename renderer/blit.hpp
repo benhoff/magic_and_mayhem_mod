@@ -71,9 +71,12 @@ public:
     SurfaceId create(const Image& image,PixelFormat format);
     void destroy(SurfaceId surface);
     void update(SurfaceId surface,int x,int y,const Image& patch);
-    // SRCCOPY at origin to RGB565 or canonical RGB24/32, no scaling or DC clip region.
+    // SRCCOPY at origin to indexed8 (fully installed palette), RGB565 or RGB24/32.
+    // Owned application DC regions: nullopt means no clip, empty means no writes.
+    // Attached DirectDraw Blt clippers do not constrain this bitmap operation.
     // Only the cropped written rectangle becomes valid.
-    void reloadDib(SurfaceId surface,const DibInput& dib);
+    void reloadDib(SurfaceId surface,const DibInput& dib,
+                   const std::optional<std::vector<Rect>>& dcRegions=std::nullopt);
     void copy(SurfaceId source,SurfaceId destination,Rect rect,int x,int y,
               std::optional<std::uint32_t> key=std::nullopt,
               std::optional<SurfaceId> mask=std::nullopt);
