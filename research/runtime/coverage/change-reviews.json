@@ -27790,6 +27790,358 @@
         "evidence": [],
         "reason": "Shared renderer/header/build and acceptance-matrix edits leave historical GPU, consumer, transport, palette and recovery evidence at its recorded source versions. Their broader preview/live validations remain pending; new headless clipping and scoped original opaque replay evidence is separate. Native Wine policy does not claim original game or Windows-driver equivalence."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "766dab26d02a1447b6d6f4a1e448fca3b841309997ae20f532d6289761b12260",
+          "before_sha256": "d0bb1bb83334ab069772915f0d4523a6e8067a054aa73c9c622ef4aec463a9d1",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "7ee4b1a4dc0337568899a8b6ca1ad1787e91ef0c13e8164baefeb119d45754a6",
+          "before_sha256": null,
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "074a2f7c976ba3e9ddab7e6151f51152b39ac78f8caea92a6c9a76aafc9ea02c",
+          "before_sha256": "b4b54af10b130108a044be05c09305b293fb0245fb9136ea95db8ae7d788a858",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "e27e3bda27ab5fd512ea81597612eb236fbecb350d08336965ccf11d55f2aa2b",
+          "before_sha256": "8c7e934dab0cfd901def3b066bf465585ac8287dc3e30629ce66167a521b1b13",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "5dcb2dcb44b2ab94c8800babe8cbddeec66fccf18ab2dcc9c7153d57d63bb152",
+          "before_sha256": null,
+          "path": "protocols/include/mnm/render_stream_v3.h"
+        },
+        {
+          "after_sha256": "b6394c3928b5b52ec135c066c71718aed55018611e101fb42fd890701f63df8a",
+          "before_sha256": null,
+          "path": "protocols/python/mnm_protocols/render_stream_v3.py"
+        },
+        {
+          "after_sha256": "0e2f6df940c293dea8b40ea6a553234479c10400ecf851d8e1b311c12c748a07",
+          "before_sha256": null,
+          "path": "protocols/schemas/render_stream-v3.json"
+        },
+        {
+          "after_sha256": "3df6da095e1fe6e13652d14a4336745641128fa26d1e91632fdae19b0c2b2853",
+          "before_sha256": "82838e102b3ad4437e79fc4f6620e5c53fdd879b401a65f11802e4861fdda9c6",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "be2ac2c2c86ec1f2e00cfaca8a5e66f574d3df4e9159b1c4a1be2c4fa377da38",
+          "before_sha256": "39f9c48ebaef77164f59f1b8a3aa2c5203e69fe799fc56ef12a54ba33e9ec2c6",
+          "path": "renderer/command_consumer.cpp"
+        },
+        {
+          "after_sha256": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+          "before_sha256": "534e6d935993abf0252618598728f8f6aee8c57d7d54c9c14355e52aece6185c",
+          "path": "renderer/command_state.hpp"
+        },
+        {
+          "after_sha256": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+          "before_sha256": "77ce3018dfd245c7e69eb0cc938949734b88cb4f6efa29efafd243621b1c349d",
+          "path": "renderer/commands.cpp"
+        },
+        {
+          "after_sha256": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+          "before_sha256": "3c730d314f3430c10e1f17a3eea14d0c10b85499df964d10e7e789b7d64bab9d",
+          "path": "renderer/commands.hpp"
+        },
+        {
+          "after_sha256": "91a5119315d2435ae3028da6393f104763f9da55c3862de56b8687bc57a3aacd",
+          "before_sha256": "8fe8fe048edccf170ce088f1cc6a8f94ebfa7113932e74ce1531fe5fd63c0143",
+          "path": "renderer/commands_main.cpp"
+        },
+        {
+          "after_sha256": "fd1591541891e8c41d5353f3e2cafa70599f36574dadbbf6696bb080215d8174",
+          "before_sha256": null,
+          "path": "research/formats/render-surface-commands-v3.md"
+        },
+        {
+          "after_sha256": "eb3d05358dfbbcf2923eb348c9ec73b7ee722ccb994d76d83dd59b1ebb5cd572",
+          "before_sha256": "2aaa7c728a536b08ae1e75837970082f4f0a9d3d383ea8b3b56ffc581dfc27cc",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "5f0e02cbfc4cf138d8eef0f003c63a8281280af15772ac35bed5ec247b7cba02",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-native-clipping-stream-20261006.json"
+        },
+        {
+          "after_sha256": "c34aefab89f27237b796c592b54616e69cf27bda190b5aba7ef6c7ae29251e97",
+          "before_sha256": "7b680da2f69267d088a13bfc3befd5cad946e5ac8b9c7dfa67201abd495d40ed",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "3ec796003de6b99126ec9c89f61331c81b7b50d9421e27a37b02a0362de98329",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-clipping-stream-20261006.json"
+        },
+        {
+          "after_sha256": "a68c84596aad2af691a1b197377459a29b654c4c00518c9bc89b38fa7e0bbda8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-clipping-stream-20261006.md"
+        },
+        {
+          "after_sha256": "24840edba1c09ce6f961e81295241d168d8ffe264690db109e8b4f1f3c34dc90",
+          "before_sha256": null,
+          "path": "research/runtime/native-clipping-stream-v3-20261006.json"
+        },
+        {
+          "after_sha256": "3fcb5c88891ff0375a6f68000a96ce4e3f77c40b61315a9eb6070e38cbc9c2f2",
+          "before_sha256": null,
+          "path": "research/runtime/native-clipping-stream-v3-final-20261006.json"
+        },
+        {
+          "after_sha256": "c48186cf54821a34f06cc272cac38fc727bbb6534083223ff26edf04b4b77839",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-clipping-after-stream-20261006.json"
+        },
+        {
+          "after_sha256": "95f53b0e4690e0fd24045db2681b060ab4ccf696014fae6325c0a9d38cd8f5e6",
+          "before_sha256": "6b4102f695af9c196ef777fdc71aeedcb2cc55d9e5f879ea1f8db2bedb5cf0c2",
+          "path": "research/runtime/native-surface-clipping.md"
+        },
+        {
+          "after_sha256": "f82e2606b783618208d34e7b8bc9fe0d8cec73516db9c20a82a54ce54e41ac83",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-fixtures-clipping-stream-20261006.json"
+        },
+        {
+          "after_sha256": "0095b5350295109fde0c11d0dca485d1b636a2e528bd891fffff2ce3cc3a22ad",
+          "before_sha256": "bd1ef90e6d6e5debef8f41c54494ce34c827cd00483279eb5ff3cf2d9de8df33",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "f903c01cae3d08486bd24d4f619af4ad96d6ee21dd55394420fe1d7bf6633cbe",
+          "before_sha256": "f903c01cae3d08486bd24d4f619af4ad96d6ee21dd55394420fe1d7bf6633cbe",
+          "path": "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json"
+        },
+        {
+          "after_sha256": "d7382c80f30ee50128f8b792afa60cbfb128ab04d7496bc5bf8f319a51773360",
+          "before_sha256": null,
+          "path": "tests/render-clipping-stream-test.cpp"
+        },
+        {
+          "after_sha256": "76f3efcc309f20092a700163576ac51978aa281282870a590ab4391a78da4ad5",
+          "before_sha256": null,
+          "path": "tools/check-native-clipping-stream.py"
+        }
+      ],
+      "id": "native-clipping-stream-v3-20261006-recorded",
+      "pending_gaps": [
+        "behaviors_without_comparison:3dd7ad7b371dc6daa6a1f060e96d105d41c7c411e9589d8ebdda6536b62fb87b",
+        "stale_evidence:01193370aa972733095f47acf1fd852318d076b6b3bd8cddc476bd52eacb5694",
+        "stale_evidence:04cb59186794905a1ac14b656312875fe11023376d34ddc78c81ae861fff9472",
+        "stale_evidence:0d34c87c8e49977c9776cfa195f0dbc2eb17787451fa6e209f8970c4748c7940",
+        "stale_evidence:155aff9c92704dd1f3b325a601fad325479c58264a62c4af0c708aba0346d5da",
+        "stale_evidence:174ae6b5f95c43ca25bb7ae14e3757ae62b1cb5a5476b67c400e1a7cde50e4e7",
+        "stale_evidence:202ecbc79f8f30f3731a7a591c4a8044de9db9ffb5aebe5db714b4578095d271",
+        "stale_evidence:20c83e03f06e2b6d8178fa8056cca268226cfd665624adf09904c1ff3a387deb",
+        "stale_evidence:2406f3f31ee480c5550326f177cd086e285a01203e404bb05b5530686a8a20c8",
+        "stale_evidence:29cfab5a4ce93de6d5899fa560ba673783607d75af7f32432c83314e4aff7ca2",
+        "stale_evidence:2a92ffe95687e8db78230aef549e7d7b50054df52a617897274b6611df02d34e",
+        "stale_evidence:2d93e0d9fd6520acc0e0d665f140c6d8238ed0c00a3055322fdd48f78d4198f9",
+        "stale_evidence:2f0f5b615d191d655360df5135a26a91cf1eb02ea4dc95ff9c4a6da7b3fe6f56",
+        "stale_evidence:2fce1c8e15e2bd12991fecf6e2f4230983f416a39593495b20ff56e2567ce961",
+        "stale_evidence:2fe7652141f31e29c0ac8ae24ce77e9813f26ca6e3a042738988a694b83665ff",
+        "stale_evidence:319e8bb98401f2e86c1afcbd586c103e46ff68f4cdf8bc76b59c2f9e09a356a2",
+        "stale_evidence:33b3c19551cc8b3537bc4718746d82e045d82ea61c152f2e785f591ae6998db9",
+        "stale_evidence:389f362c079572754d9e467f442be7940a9f61e90e50f083b92e565a07584f31",
+        "stale_evidence:396bba35ff7a00771db1b0b0c12bc6c6595f28abf6357f3474fc786a4edc87bf",
+        "stale_evidence:3df844e795f90824266a8820b2681bb9b7459949f85dd219024cf5e468c6ae17",
+        "stale_evidence:407da8adc904c9a99603f9fb7e1dac767c8112822a45c5dc9055a269bfcbae84",
+        "stale_evidence:41512d1d9a4e8f36abd9190526363c6c6dbfb9c3ab4d523241c9dd983f632096",
+        "stale_evidence:44f72435fa606e61f2f18d6bd29082edd07136fa09ab8161a1e540fc3c4224c9",
+        "stale_evidence:4dfd3390510776cbe05d6642abbaf3c65e1fb25b9394ca8afecc6b018ca8381c",
+        "stale_evidence:54af9f3d764dc4ad669dab1ffd42aec5cea2c66a1fff6f42541ee7311fe0bd80",
+        "stale_evidence:554df0c263cc84091e5dfd2ee513b754177d8bc7db700b0706bfb635076633e3",
+        "stale_evidence:5645bb97ccbee8c643236ddf9d78d6a0133b44a3c84cfd1039a990dad917cdac",
+        "stale_evidence:576560b10c9b0f88aad8e8ee50cc8320d1017ad096eeb8976990e7ea7c105e74",
+        "stale_evidence:5b46733f17f36951f39482000722ddd7856e1b4c935dd1e24292ee7ef2d29341",
+        "stale_evidence:5c16daccbe915e87e1e0a05bdb14f6ca7765098de79d4c0e0fc819f9b506bc7e",
+        "stale_evidence:5ee5565c937b1d4853e85415a174c27992d30da72a25cddcc327e224e73b4fe3",
+        "stale_evidence:63c56de43ea3fea5b56e7b5e3afd6379abc599195e7b96c2da2627ba83129ddf",
+        "stale_evidence:6ac56fa58c5f45e4070d57ee6df57f4dc4701b63a42e1d99e12b3519ea064867",
+        "stale_evidence:732656041ba1c90ec048cfca38336e2cc3966a3af083b385ad63e0dbc27ecaa8",
+        "stale_evidence:7ae5fbcf91f0f1b9194faf6a40c9346c3f3afbbcca0dfe66279a0f834b3cab01",
+        "stale_evidence:800fd650fd2321e79879a70451de4e54746985a9151e6ab2f58e236047735546",
+        "stale_evidence:806efa90d98e07d26c8e26317b13ec7b841417a535a16773080e59b85e892438",
+        "stale_evidence:83d6a4e276c3ffcd65602d3c87b02aaa150291fa99c3ae5702b6848378991f28",
+        "stale_evidence:85bcbc87a58f69c2a3b9fe9aa247988d0b51cf8f41c07652fe04dccf96115c77",
+        "stale_evidence:8b1de5edc3cad3b7a226ddc9f903093c35e9c8c3489dd24cf251b982c37fc1af",
+        "stale_evidence:8eb27416d41bd7305c74716daea1faf4771cfe9312e95eff69c782b96df6f616",
+        "stale_evidence:8eb66e4908b5d1c4c3d8bd29f7a7164e12cb248cc27415b16a9743a06083c0e1",
+        "stale_evidence:946ce51c7e81ba460aba855deac37acfce05dd8ef2e3dffa205d082a6238a62b",
+        "stale_evidence:9cc62f81e92ac07badf1389c525312370bb8f51cf600e4029b9f8dc24e258aa9",
+        "stale_evidence:9d9dc2f05d6bb3baf638902cdcd81adee13e55d8684b604d2a568905f33f1caa",
+        "stale_evidence:9e0f9aaee6803e9e6bed823b8efda950f494386ad64b47a460b1d6a6a326a651",
+        "stale_evidence:9e196120cdcadd7d6b884df4b4e7f3f814c9a69c3ce812d4c8be99a45f4f613f",
+        "stale_evidence:9f40a8fcf40cfd182cca960df4c1f818770153519d99b642f06bc793ee2d6a8b",
+        "stale_evidence:a019141ecd69aeabfb0c4a9d45357eb4cbc44891c58b9cb4479da1754d527dad",
+        "stale_evidence:a4a4a4e7e6635f48b25475c919099ee2b94b295ee406ace8446cda66256f7f19",
+        "stale_evidence:a6e63ffb344b2515c3c32dfa297ec814bf5a561a7573db4321b817511e281f65",
+        "stale_evidence:a7122909f280fed9a47d1e6c85beba261c3af00adbf7dfa156371ab57f60f022",
+        "stale_evidence:abf0bc41ec48d3359771456a1c1c52641b20218ac64f51b22aaf2690d60e7a8c",
+        "stale_evidence:b7c6d003a19609cccca9d95f33d9c9888c07b1b4942775e443369ba07c04fde6",
+        "stale_evidence:c47a37f331d3b7357466ff66313c4a12bc57c95ed0050c1531c62797b644b790",
+        "stale_evidence:cc9655bb018ef9d3cce364a3bdde5c23f7ca870934652a09e1616e024d12e1ae",
+        "stale_evidence:d3705638a265c3218ace8002a6c19397268ef6f5b27581fa7d7ceaddfe64ef08",
+        "stale_evidence:e10442eacf9e7238e14cb64cafc0fc63e20cba1e64566e44c2e735528f31a1d1",
+        "stale_evidence:e5c83b934bddf8cc3c9855c1d75bfedde430c584606bd795e0f4ce30f770f8dc",
+        "stale_evidence:e6e1d8f70790ecf2cff01cf46e75c5d559d62b788490823cf2fd3c2e8cf4be34",
+        "stale_evidence:ebf00e3ff03f4d7d87bb22bbbbcc4abfab979e30112870b846456f14b1685e0d",
+        "stale_evidence:f083f5adae30efd97eeab7c16abb0964ef99e8f5bb4ce0f6420ec33eafe5541a",
+        "stale_evidence:f1b3a69ccea4041adaa77d184ad3dcb35ec850ba7618db6767e2a39121f24338",
+        "stale_evidence:f81c3e5d3d44c1ffe3a177d92c4f3609ec7467083da3814ae0372318959803bc"
+      ],
+      "reason": "Review v3 clip descriptors, explicit signed coordinates, ordered non-atomic copy/HRESULT diagnostics and version gating.408 actual result and816 native pixel comparisons, uneven-fragment no-readback GPU replay,16 rejected invalid/mismatch streams,21 ownership/diagnostic checks and inherited palettes pass. Four v1/v2 command/consumer/palette/ring suites, protocol checks, direct backend408/18-policy and original opaque replay also pass.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.surface-copy.clipping-stream.v3-20261006",
+          "NR.surface-copy.clipping.after-stream-20261006",
+          "NR.surface-fixture-corpus.clipping-stream-20261006",
+          "ORIGINAL.surface-copy.rgb565-bltfast-clipping-stream-20261006"
+        ],
+        "reason": "Review v3 clip descriptors, explicit signed coordinates, ordered non-atomic copy/HRESULT diagnostics and version gating.408 actual result and816 native pixel comparisons, uneven-fragment no-readback GPU replay,16 rejected invalid/mismatch streams,21 ownership/diagnostic checks and inherited palettes pass. Four v1/v2 command/consumer/palette/ring suites, protocol checks, direct backend408/18-policy and original opaque replay also pass."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "4a17d6da939255fe939ef8441b046f94594c72dddcee64687edc1726402359ca",
+          "before_sha256": "9d29835209fcfa2817a094b4fa30a4a581695726475d995b8d6ee5099b5b7351",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "9f20f8e8d19184922067b4765f073d09f0c809c5f09b1559842f7c07bfd5c7ef",
+          "before_sha256": "668b7dd7dac3a11e5bef62d0ce8f7280508358c6ee83b1bdd15d2ffffd929f9f",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "b67e0a12e435cbb8ec88f92af7a258619d4a09b81df41205f78d9003220a4276",
+          "before_sha256": "3cd17de96a0844faaaadd68372df8b6a7864c2c84a06aeb1b3d4a01a0fd85cb6",
+          "id": "NR.command-ring"
+        },
+        {
+          "after_sha256": "d7ee4b0fc38aac5de36c4bfc8b5ab1be5f9b089fa2cbdea2a02106b448651675",
+          "before_sha256": "c6a3597688e5bf1ac5aa6a9e4f467abd9272e71778219a596c921f8233c29eef",
+          "id": "NR.command-streaming"
+        },
+        {
+          "after_sha256": "b691edfb2dab06c0d31aacab00d676476e8628861b0603348919703f5df54f12",
+          "before_sha256": "71004a74821491f9c21cff1ea8a394754ba3123f11adcbd48e735cf22719f19e",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "287f6ae11a506419f15b44bb3e10c3a79681960712ea2fdf63ba5ab2283a5369",
+          "before_sha256": "0bcc0cb8083d03f35f5d033a80aedfdd43875b19a38674068d7045da7571134a",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "c101260015b1b98f8e5905f7c41fdc62022e66193f9155ceb8484db66d947cda",
+          "before_sha256": "2f2703da6d918c78a851267cf2d0102008f46bf2e4b65c73b7e8536f94d252d6",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "5ec83314aa1923d14a9c35e4d8747c92cb1a9ca1ebb7702bd51356592cfd2333",
+          "before_sha256": "edfa87ebd52e6cd7a6282f6d5525396a608c8ca42b7fbf7a0b2c85df1032494d",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "073e491398ed36c09990dc3692f0b36b3975e44c0c86b03f24e87dc4ee57e907",
+          "before_sha256": "7cbc721acc7aa3b795e084d81db685f279309b22f45df9066f3d5061d53de61e",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "03abbc4ecca53b2e5688df27a843d019e1a0f14fb4091b0225d2898db9922a59",
+          "before_sha256": "d3ceb801bb28ab9cb6fc2a20dd3966230272c192693d0040726727253215f306",
+          "id": "NR.surfaces"
+        }
+      ],
+      "files": [],
+      "id": "native-clipping-stream-v3-20261006-shared-pending",
+      "pending_gaps": [
+        "behaviors_without_comparison:3dd7ad7b371dc6daa6a1f060e96d105d41c7c411e9589d8ebdda6536b62fb87b",
+        "stale_evidence:01193370aa972733095f47acf1fd852318d076b6b3bd8cddc476bd52eacb5694",
+        "stale_evidence:04cb59186794905a1ac14b656312875fe11023376d34ddc78c81ae861fff9472",
+        "stale_evidence:0d34c87c8e49977c9776cfa195f0dbc2eb17787451fa6e209f8970c4748c7940",
+        "stale_evidence:155aff9c92704dd1f3b325a601fad325479c58264a62c4af0c708aba0346d5da",
+        "stale_evidence:174ae6b5f95c43ca25bb7ae14e3757ae62b1cb5a5476b67c400e1a7cde50e4e7",
+        "stale_evidence:202ecbc79f8f30f3731a7a591c4a8044de9db9ffb5aebe5db714b4578095d271",
+        "stale_evidence:20c83e03f06e2b6d8178fa8056cca268226cfd665624adf09904c1ff3a387deb",
+        "stale_evidence:2406f3f31ee480c5550326f177cd086e285a01203e404bb05b5530686a8a20c8",
+        "stale_evidence:29cfab5a4ce93de6d5899fa560ba673783607d75af7f32432c83314e4aff7ca2",
+        "stale_evidence:2a92ffe95687e8db78230aef549e7d7b50054df52a617897274b6611df02d34e",
+        "stale_evidence:2d93e0d9fd6520acc0e0d665f140c6d8238ed0c00a3055322fdd48f78d4198f9",
+        "stale_evidence:2f0f5b615d191d655360df5135a26a91cf1eb02ea4dc95ff9c4a6da7b3fe6f56",
+        "stale_evidence:2fce1c8e15e2bd12991fecf6e2f4230983f416a39593495b20ff56e2567ce961",
+        "stale_evidence:2fe7652141f31e29c0ac8ae24ce77e9813f26ca6e3a042738988a694b83665ff",
+        "stale_evidence:319e8bb98401f2e86c1afcbd586c103e46ff68f4cdf8bc76b59c2f9e09a356a2",
+        "stale_evidence:33b3c19551cc8b3537bc4718746d82e045d82ea61c152f2e785f591ae6998db9",
+        "stale_evidence:389f362c079572754d9e467f442be7940a9f61e90e50f083b92e565a07584f31",
+        "stale_evidence:396bba35ff7a00771db1b0b0c12bc6c6595f28abf6357f3474fc786a4edc87bf",
+        "stale_evidence:3df844e795f90824266a8820b2681bb9b7459949f85dd219024cf5e468c6ae17",
+        "stale_evidence:407da8adc904c9a99603f9fb7e1dac767c8112822a45c5dc9055a269bfcbae84",
+        "stale_evidence:41512d1d9a4e8f36abd9190526363c6c6dbfb9c3ab4d523241c9dd983f632096",
+        "stale_evidence:44f72435fa606e61f2f18d6bd29082edd07136fa09ab8161a1e540fc3c4224c9",
+        "stale_evidence:4dfd3390510776cbe05d6642abbaf3c65e1fb25b9394ca8afecc6b018ca8381c",
+        "stale_evidence:54af9f3d764dc4ad669dab1ffd42aec5cea2c66a1fff6f42541ee7311fe0bd80",
+        "stale_evidence:554df0c263cc84091e5dfd2ee513b754177d8bc7db700b0706bfb635076633e3",
+        "stale_evidence:5645bb97ccbee8c643236ddf9d78d6a0133b44a3c84cfd1039a990dad917cdac",
+        "stale_evidence:576560b10c9b0f88aad8e8ee50cc8320d1017ad096eeb8976990e7ea7c105e74",
+        "stale_evidence:5b46733f17f36951f39482000722ddd7856e1b4c935dd1e24292ee7ef2d29341",
+        "stale_evidence:5c16daccbe915e87e1e0a05bdb14f6ca7765098de79d4c0e0fc819f9b506bc7e",
+        "stale_evidence:5ee5565c937b1d4853e85415a174c27992d30da72a25cddcc327e224e73b4fe3",
+        "stale_evidence:63c56de43ea3fea5b56e7b5e3afd6379abc599195e7b96c2da2627ba83129ddf",
+        "stale_evidence:6ac56fa58c5f45e4070d57ee6df57f4dc4701b63a42e1d99e12b3519ea064867",
+        "stale_evidence:732656041ba1c90ec048cfca38336e2cc3966a3af083b385ad63e0dbc27ecaa8",
+        "stale_evidence:7ae5fbcf91f0f1b9194faf6a40c9346c3f3afbbcca0dfe66279a0f834b3cab01",
+        "stale_evidence:800fd650fd2321e79879a70451de4e54746985a9151e6ab2f58e236047735546",
+        "stale_evidence:806efa90d98e07d26c8e26317b13ec7b841417a535a16773080e59b85e892438",
+        "stale_evidence:83d6a4e276c3ffcd65602d3c87b02aaa150291fa99c3ae5702b6848378991f28",
+        "stale_evidence:85bcbc87a58f69c2a3b9fe9aa247988d0b51cf8f41c07652fe04dccf96115c77",
+        "stale_evidence:8b1de5edc3cad3b7a226ddc9f903093c35e9c8c3489dd24cf251b982c37fc1af",
+        "stale_evidence:8eb27416d41bd7305c74716daea1faf4771cfe9312e95eff69c782b96df6f616",
+        "stale_evidence:8eb66e4908b5d1c4c3d8bd29f7a7164e12cb248cc27415b16a9743a06083c0e1",
+        "stale_evidence:946ce51c7e81ba460aba855deac37acfce05dd8ef2e3dffa205d082a6238a62b",
+        "stale_evidence:9cc62f81e92ac07badf1389c525312370bb8f51cf600e4029b9f8dc24e258aa9",
+        "stale_evidence:9d9dc2f05d6bb3baf638902cdcd81adee13e55d8684b604d2a568905f33f1caa",
+        "stale_evidence:9e0f9aaee6803e9e6bed823b8efda950f494386ad64b47a460b1d6a6a326a651",
+        "stale_evidence:9e196120cdcadd7d6b884df4b4e7f3f814c9a69c3ce812d4c8be99a45f4f613f",
+        "stale_evidence:9f40a8fcf40cfd182cca960df4c1f818770153519d99b642f06bc793ee2d6a8b",
+        "stale_evidence:a019141ecd69aeabfb0c4a9d45357eb4cbc44891c58b9cb4479da1754d527dad",
+        "stale_evidence:a4a4a4e7e6635f48b25475c919099ee2b94b295ee406ace8446cda66256f7f19",
+        "stale_evidence:a6e63ffb344b2515c3c32dfa297ec814bf5a561a7573db4321b817511e281f65",
+        "stale_evidence:a7122909f280fed9a47d1e6c85beba261c3af00adbf7dfa156371ab57f60f022",
+        "stale_evidence:abf0bc41ec48d3359771456a1c1c52641b20218ac64f51b22aaf2690d60e7a8c",
+        "stale_evidence:b7c6d003a19609cccca9d95f33d9c9888c07b1b4942775e443369ba07c04fde6",
+        "stale_evidence:c47a37f331d3b7357466ff66313c4a12bc57c95ed0050c1531c62797b644b790",
+        "stale_evidence:cc9655bb018ef9d3cce364a3bdde5c23f7ca870934652a09e1616e024d12e1ae",
+        "stale_evidence:d3705638a265c3218ace8002a6c19397268ef6f5b27581fa7d7ceaddfe64ef08",
+        "stale_evidence:e10442eacf9e7238e14cb64cafc0fc63e20cba1e64566e44c2e735528f31a1d1",
+        "stale_evidence:e5c83b934bddf8cc3c9855c1d75bfedde430c584606bd795e0f4ce30f770f8dc",
+        "stale_evidence:e6e1d8f70790ecf2cff01cf46e75c5d559d62b788490823cf2fd3c2e8cf4be34",
+        "stale_evidence:ebf00e3ff03f4d7d87bb22bbbbcc4abfab979e30112870b846456f14b1685e0d",
+        "stale_evidence:f083f5adae30efd97eeab7c16abb0964ef99e8f5bb4ce0f6420ec33eafe5541a",
+        "stale_evidence:f1b3a69ccea4041adaa77d184ad3dcb35ec850ba7618db6767e2a39121f24338",
+        "stale_evidence:f81c3e5d3d44c1ffe3a177d92c4f3609ec7467083da3814ae0372318959803bc"
+      ],
+      "reason": "Shared decoder/consumer/header/build changes retain old broad GPU, palette, transport and recovery fingerprints and statuses. Targeted v1/v2 regressions pass; broader preview/live validation and live v3 negotiation/producer output remain pending. Native external-Wine policy does not establish original game or Windows-driver equivalence.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Shared decoder/consumer/header/build changes retain old broad GPU, palette, transport and recovery fingerprints and statuses. Targeted v1/v2 regressions pass; broader preview/live validation and live v3 negotiation/producer output remain pending. Native external-Wine policy does not establish original game or Windows-driver equivalence."
+      }
     }
   ]
 }

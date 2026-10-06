@@ -1,5 +1,5 @@
 #pragma once
-#include "blit.hpp"
+#include "surface_copy.hpp"
 #include <QByteArray>
 #include <array>
 #include <functional>
@@ -11,10 +11,11 @@ constexpr qint64 maxStreamingRecordBytes=12+28+2048*2048*4;
 constexpr qint64 maxStreamingAppendBytes=65536;
 struct SurfaceCommand {
     unsigned operation=0,sequence=0,version=1;
-    std::array<std::uint32_t,10> words{};
+    std::array<std::uint32_t,13> words{};
     Image image;
     PixelFormat format;
     std::vector<Rgb> colors;
+    std::vector<Rect> regions;
     QByteArray expected;
 };
 // Complete bounded streams only. Validate ordering, handles and geometry before GL.
@@ -37,6 +38,8 @@ struct CommandResult {
     QByteArray native;
     QImage presentation;
     unsigned commands=0,checks=0,presents=0,colorChecks=0,skippedChecks=0,skippedColorChecks=0;
+    unsigned surfaceCopies=0,surfaceCopyFailures=0,resultChecks=0,skippedResultChecks=0,lastCopySequence=0;
+    SurfaceCopyResult lastCopy;
     std::size_t liveSurfaces=0,livePixels=0,livePalettes=0;
     RenderStats stats;
     Driver driver;

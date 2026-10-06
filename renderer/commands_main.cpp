@@ -31,6 +31,7 @@ int main(int argc,char** argv){
             if(!result.presentation.save(&png,"PNG") || !png.flush()){png.remove();throw std::runtime_error("Failed to write command preview");}
         }
         report={{"rendered",true},{"commands",int(commands.size())},{"checks",int(result.checks)},{"color_checks",int(result.colorChecks)},{"presentations",int(result.presents)},
+            {"surface_copies",int(result.surfaceCopies)},{"surface_copy_failures",int(result.surfaceCopyFailures)},{"result_checks",int(result.resultChecks)},
             {"backend","opengl_native_integer"},{"vendor",QString::fromStdString(result.driver.vendor)},
             {"renderer",QString::fromStdString(result.driver.renderer)},{"version",QString::fromStdString(result.driver.version)},
             {"command_sha256",QString::fromLatin1(QCryptographicHash::hash(data,QCryptographicHash::Sha256).toHex())},

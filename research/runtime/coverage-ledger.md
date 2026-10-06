@@ -1,5 +1,20 @@
 # Engine modernization coverage ledger
 
+## Version3 native clipping replay — 2026-10-06
+
+[Protocol and evidence](../formats/render-surface-commands-v3.md):v3 carries owned
+clip state, signed one-to-one Surface2 copy requests and independent HRESULT checks.
+All408 retained Wine outputs pass408 result and816 native pixel checks; partial
+errors retain earlier writes and allow subsequent commands. Uneven-fragment GPU
+replay performs no ordinary readbacks, retires owned resources and preserves an
+unrelated surface on failures/abort. Sixteen invalid/mismatch streams and21 native
+ownership/diagnostic checks pass; v3 palette inheritance, legacy v1/v2 regressions,
+direct backend408/18-policy checks and original opaque fixture replay pass.
+Live v3 negotiation/producer region observation, other format/key/fill combinations,
+original retry/Restore, native locks/loss and Windows/game equivalence remain pending.
+Historical shared-protocol/consumer evidence remains at its recorded hashes.
+
+
 ## Native RGB565 clipping backend — 2026-10-06
 
 [Backend policy and evidence](native-surface-clipping.md):408 independent retained

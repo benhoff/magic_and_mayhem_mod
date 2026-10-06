@@ -14316,7 +14316,8 @@
       "evidence": [
         "ORIGINAL.surface-copy.rgb565-bltfast-20261006",
         "ORIGINAL.surface-copy.rgb565-bltfast-post-driver-20261006",
-        "ORIGINAL.surface-copy.rgb565-bltfast-clipping-backend-20261006"
+        "ORIGINAL.surface-copy.rgb565-bltfast-clipping-backend-20261006",
+        "ORIGINAL.surface-copy.rgb565-bltfast-clipping-stream-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14358,7 +14359,8 @@
       "evidence": [
         "NR.surface-fixture-corpus.offline-20261006",
         "NR.surface-fixture-corpus.post-driver-20261006",
-        "NR.surface-fixture-corpus.clipping-backend-20261006"
+        "NR.surface-fixture-corpus.clipping-backend-20261006",
+        "NR.surface-fixture-corpus.clipping-stream-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14489,7 +14491,49 @@
         "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz"
       ],
       "evidence": [
-        "NR.surface-copy.clipping.backend-20261006"
+        "NR.surface-copy.clipping.backend-20261006",
+        "NR.surface-copy.clipping.after-stream-20261006",
+        "NR.surface-copy.clipping-stream.v3-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.surface-copy.clipping-stream",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Version3 clip state and non-atomic Surface2 result replay",
+      "scope": "Offline v3 owned clip descriptors, signed RGB565 one-to-one copy policy and separate result checks;408 retained external Wine outputs checked with816 native pixel comparisons, fragmented GPU replay without ordinary readbacks,16 rejected invalid/mismatch streams and21 ownership/diagnostic checks. Busy bits are explicit admission observations. V1/v2 preserved; live v3 producer/negotiation, native locks/loss/Restore and original game/Windows-driver equivalence pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/formats/render-surface-commands-v3.md",
+        "research/runtime/native-surface-clipping.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "renderer/commands.hpp",
+        "renderer/commands.cpp",
+        "renderer/command_state.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/commands_main.cpp",
+        "protocols/schemas/render_stream-v3.json",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/python/mnm_protocols/render_stream_v3.py"
+      ],
+      "tests": [
+        "tests/render-clipping-stream-test.cpp",
+        "tools/check-native-clipping-stream.py",
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz"
+      ],
+      "evidence": [
+        "NR.surface-copy.clipping-stream.v3-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -25668,6 +25712,120 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.surface-copy.clipping-stream.v3-20261006",
+      "kind": "native_integration",
+      "scope": "Offline v3 owned clip descriptors, signed RGB565 one-to-one copy policy and separate result checks;408 retained external Wine outputs checked with816 native pixel comparisons, fragmented GPU replay without ordinary readbacks,16 rejected invalid/mismatch streams and21 ownership/diagnostic checks. Busy bits are explicit admission observations. V1/v2 preserved; live v3 producer/negotiation, native locks/loss/Restore and original game/Windows-driver equivalence pending.",
+      "record": "research/runtime/native-clipping-stream-v3-final-20261006.json",
+      "sha256": "3fcb5c88891ff0375a6f68000a96ce4e3f77c40b61315a9eb6070e38cbc9c2f2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/driver_cases",
+          "equals": 408
+        },
+        {
+          "pointer": "/hresult_checks",
+          "equals": 408
+        },
+        {
+          "pointer": "/pixel_checks",
+          "equals": 816
+        },
+        {
+          "pointer": "/partial_failure_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/malformed_cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/fragmented/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/fragmented/policy_checks",
+          "equals": 21
+        },
+        {
+          "pointer": "/palette_v3/color_checks",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-copy.clipping.after-stream-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh direct native RGB565 backend regression after v3 changes; same retained Wine inputs and18 lifetime/admission tests. No original game or live replacement.",
+      "record": "research/runtime/native-surface-clipping-after-stream-20261006.json",
+      "sha256": "c48186cf54821a34f06cc272cac38fc727bbb6534083223ff26edf04b4b77839",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/matched",
+          "equals": 408
+        },
+        {
+          "pointer": "/native/policy_tests",
+          "equals": 18
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-bltfast-clipping-stream-20261006",
+      "kind": "isolated_original",
+      "scope": "Offline native/CPU comparison with five retained independent original-game driver RGB565 opaque BltFast destination outputs at return PC0x0058c5be within wrapper0x0058c4a0. Includes three40x40, one40x3 and one unchanged40x1 rectangles with full800x600 destination comparisons. Not wrapper reexecution, timing, clipping, physical-driver, current collector or live equivalence. Evidence kind denotes isolated offline comparison against historical live captures, not a new isolated execution of original machine code.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/native-surface-fixtures-clipping-stream-20261006.json",
+      "sha256": "f82e2606b783618208d34e7b8bc9fe0d8cec73516db9c20a82a54ce54e41ac83",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/backend",
+          "equals": "opengl"
+        },
+        {
+          "pointer": "/milestone_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-fixture-corpus.clipping-stream-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh CPU/OpenGL replay of the same five original RGB565 opaque fixtures after the acceptance matrix correction; new driver corpus does not count toward original fixture or native clipping coverage.",
+      "record": "research/runtime/native-surface-fixtures-clipping-stream-20261006.json",
+      "sha256": "f82e2606b783618208d34e7b8bc9fe0d8cec73516db9c20a82a54ce54e41ac83",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/backend",
+          "equals": "opengl"
+        },
+        {
+          "pointer": "/milestone_complete",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -29819,6 +29977,53 @@
         "tests/fixtures/surfaces/yu55vq8i.bin.gz",
         "tests/fixtures/surfaces/zpfft1bo.bin.gz"
       ]
+    },
+    {
+      "id": "NR.surface-copy.clipping-stream.v3",
+      "level": "headless",
+      "scope": "V3 native bounded/fragmented offline driver fixture replay, malformed inputs, inherited palettes and session ownership. No source media or live original producer.",
+      "behaviors": [
+        "NR.surface-copy.clipping-stream",
+        "NR.surface-copy.clipping"
+      ],
+      "evidence": [
+        "NR.surface-copy.clipping-stream.v3-20261006",
+        "NR.surface-copy.clipping.after-stream-20261006"
+      ],
+      "tests": [
+        "tests/render-clipping-stream-test.cpp",
+        "tools/check-native-clipping-stream.py",
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz"
+      ]
+    },
+    {
+      "id": "NR.surface-fixture-corpus.clipping-stream",
+      "level": "headless",
+      "scope": "Five retained original-game RGB565 opaque rectangle captures replayed entirely offline through CPU and Mesa OpenGL; whole-destination native comparison and independent RGB conversion. All other matrix requirements remain pending.",
+      "behaviors": [
+        "NR.surface-fixture-corpus",
+        "RE.surface-copy.rgb565-bltfast"
+      ],
+      "evidence": [
+        "NR.surface-fixture-corpus.clipping-stream-20261006",
+        "ORIGINAL.surface-copy.rgb565-bltfast-clipping-stream-20261006"
+      ],
+      "tests": [
+        "tools/check-surface-fixtures.py",
+        "tests/test-surface-fixtures.py",
+        "tests/fixtures/surfaces/corpus.json",
+        "tests/fixtures/surfaces/g34xhs0b.manifest.json",
+        "tests/fixtures/surfaces/p66k189j.manifest.json",
+        "tests/fixtures/surfaces/ugdn7zhm.manifest.json",
+        "tests/fixtures/surfaces/yu55vq8i.manifest.json",
+        "tests/fixtures/surfaces/zpfft1bo.manifest.json",
+        "tests/fixtures/surfaces/g34xhs0b.bin.gz",
+        "tests/fixtures/surfaces/p66k189j.bin.gz",
+        "tests/fixtures/surfaces/ugdn7zhm.bin.gz",
+        "tests/fixtures/surfaces/yu55vq8i.bin.gz",
+        "tests/fixtures/surfaces/zpfft1bo.bin.gz"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -30066,7 +30271,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-clipping-backend-20261006.json",
-    "sha256": "f534019722969a017727b9f241490dab9cd7519331b8d1b2af135820d8cae369"
+    "path": "research/runtime/coverage/source-index-native-clipping-stream-20261006.json",
+    "sha256": "3ec796003de6b99126ec9c89f61331c81b7b50d9421e27a37b02a0362de98329"
   }
 }

@@ -1,0 +1,60 @@
+{
+  "name": "render_stream",
+  "version": 3,
+  "magic": "MNMCMD03",
+  "size": 16,
+  "header_size": 16,
+  "declared_size_kind": "size",
+  "byte_order": "little",
+  "fields": [
+    {
+      "name": "magic",
+      "offset": 0,
+      "size": 8,
+      "type": "bytes",
+      "owner": "creator"
+    },
+    {
+      "name": "version",
+      "offset": 8,
+      "size": 4,
+      "type": "u32le",
+      "owner": "creator"
+    },
+    {
+      "name": "declared_size",
+      "offset": 12,
+      "size": 4,
+      "type": "u32le",
+      "owner": "creator"
+    }
+  ],
+  "constants": {
+    "palette_capacity": 32,
+    "palette_entries": 256,
+    "clip_region_capacity": 32,
+    "surface_copy_words": 13,
+    "clipper_fixed_bytes": 12,
+    "clip_rect_bytes": 16
+  },
+  "enums": {
+    "operation": {
+      "palette_create": 12,
+      "palette_update": 13,
+      "palette_bind": 14,
+      "palette_delete": 15,
+      "clipper_set": 16,
+      "surface_copy": 17,
+      "surface_result_check": 18
+    },
+    "clip_mode": {
+      "detached": 0,
+      "regions": 1,
+      "missing_list": 2
+    },
+    "copy_api": {
+      "blt": 0,
+      "bltfast": 1
+    }
+  }
+}
