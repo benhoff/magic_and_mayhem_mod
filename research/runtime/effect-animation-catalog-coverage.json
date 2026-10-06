@@ -1,0 +1,192 @@
+{
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "AS.effect-animation-catalog",
+      "subsystem": "assets",
+      "kind": "native_policy",
+      "title": "Installed owned effect animation catalog and forward binding",
+      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4834736,
+          "scope": "Static windows 0049c653..0049c735 count/allocation, 0049c841..0049caae 16-byte metadata producer and 0049cabe..0049cc11 paired path construction; no whole loader execution or equivalence"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-animation-catalog.md"
+      ],
+      "implementation": [
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/CMakeLists.txt",
+        "reconstruction/rendering/effect_animation_catalog_binding.cpp",
+        "reconstruction/rendering/effect_animation_catalog_binding.hpp",
+        "reconstruction/rendering/effect-animation-catalog/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-animation-catalog-test.cpp",
+        "tools/test-effect-animation-catalog.py"
+      ],
+      "evidence": [
+        "AS23.effect-animation-catalog-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-type-setup",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect type-specific animation and trajectory setup remains open",
+      "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, dispatcher asset admission and remaining direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified. The native owned-entry/ANI binding adapter and composed original forward controller start/tick are recovered separately; inline caller resolution and full dispatcher remain unexecuted. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4803248,
+          "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, dispatcher asset admission and remaining direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified. The native owned-entry/ANI binding adapter and composed original forward controller start/tick are recovered separately; inline caller resolution and full dispatcher remain unexecuted. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-record-placement.md",
+        "research/runtime/effect-motion-initializer.md",
+        "research/runtime/effect-animation-selection.md",
+        "research/runtime/effect-animation-binding.md",
+        "research/runtime/effect-animation-catalog.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-movement-recount",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Remaining effect movement and lifecycle contracts",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors. Owned effect ANI binding and forward controller state are recovered separately from static caller resolution and authored inputs; full caller integration remains pending. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors. Owned effect ANI binding and forward controller state are recovered separately from static caller resolution and authored inputs; full caller integration remains pending. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory.md",
+        "research/runtime/effect-same-cell-projection.md",
+        "research/runtime/effect-cell-transitions.md",
+        "research/runtime/effect-cell-cleanup.md",
+        "research/runtime/effect-blocked-destinations.md",
+        "research/runtime/effect-height-exits.md",
+        "research/runtime/effect-membership-disabled.md",
+        "research/runtime/effect-terrain-occupancy.md",
+        "research/runtime/creature-occupancy-lookup.md",
+        "research/runtime/creature-footprint-initializer.md",
+        "research/runtime/effect-creature-collision.md",
+        "research/runtime/effect-kind34-creator.md",
+        "research/runtime/effect-trajectory-initializer.md",
+        "research/runtime/effect-motion-initializer.md",
+        "research/runtime/effect-animation-selection.md",
+        "research/runtime/effect-animation-binding.md",
+        "research/runtime/effect-animation-catalog.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "AS23.effect-animation-catalog-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement.",
+      "record": "research/runtime/effect-animation-catalog.json",
+      "sha256": "73ea8449670d4fca0764856bc89e6bc003b76648842c1f78372d6ac980148f61",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_loader_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/installed_files",
+          "equals": 13
+        },
+        {
+          "pointer": "/installed_entries",
+          "equals": 222
+        },
+        {
+          "pointer": "/normal/states",
+          "equals": 14430
+        },
+        {
+          "pointer": "/sanitized/states",
+          "equals": 14430
+        },
+        {
+          "pointer": "/refusal_cases_per_build",
+          "equals": 3
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "assets.effect-animation-catalog-installed",
+      "level": "headless",
+      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement.",
+      "behaviors": [
+        "AS.effect-animation-catalog"
+      ],
+      "evidence": [
+        "AS23.effect-animation-catalog-native"
+      ],
+      "tests": [
+        "tests/effect-animation-catalog-test.cpp",
+        "tools/test-effect-animation-catalog.py"
+      ]
+    }
+  ],
+  "dispatch_tables": [],
+  "recovered_ranges": [],
+  "classifications": [],
+  "api_bindings": [],
+  "schema": 1
+}
