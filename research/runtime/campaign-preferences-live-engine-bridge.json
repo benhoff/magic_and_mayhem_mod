@@ -1,0 +1,517 @@
+{
+  "schema": 1,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+    "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+    "runtime/menu/observer.c": "04137d835048e078c65fffd46cf532bc273b323c05d8dcabd566ae78cebd39e1",
+    "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+    "runtime/menu/campaign_world_observe.h": "6f2eb6187cb077c5d1bab2e85c3c7301ef0a2e887fc6a89e4bccf57ea1c316f0",
+    "runtime/menu/region_entry.h": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+    "apps/qt-shell/live_campaign_preferences_test.cpp": "ec8d9ee795ac75ee249a801404a503d6c042a31da7ea2652c4dcab12ac46ec12",
+    "apps/qt-shell/live_region_enter_test.cpp": "06b970b2ffac15190e4b85957cf7c52e7da3a9f9414285ba44adcdc8dcfb2e3f",
+    "apps/qt-shell/live_menu_session.cpp": "25ccbbd8f260523a060dc04455e82421ea439528ef6f64e0e894a02d5cbe2a2c",
+    "apps/qt-shell/live_menu_session.hpp": "9253ed4ecaa4bd341a0423d33d42504c1e0c0700cb3ce842c9348286dcfdd3b8",
+    "apps/qt-shell/menu_bridge.cpp": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+    "apps/qt-shell/menu_bridge.hpp": "631087eda5168c3ddaaaa590c22c19e7958a49c7d9026f71bbde0702a1ec62fa",
+    "apps/qt-shell/live_menu_test.cpp": "4a0bf155a2e9a95d4b05d4ef148df3ac9c7e245dbd19d5a31eb8868f4c8f5876",
+    "apps/qt-shell/live_menu_test.hpp": "71b7196b49a3aaa187de3efaf16d133e9467b387603e5e9a7d094e9fa108be44",
+    "apps/qt-shell/CMakeLists.txt": "5ca5edd9598277072402c395576cca95cfbbc3a43fc96d327144a0feda130c10",
+    "apps/qt-shell/live_preferences_menu_controller.cpp": "1bc94f804ecceb7213ba387f80679b11791e2dc135dadd3cd54ae367cacb4c38",
+    "apps/qt-shell/live_mini_menu_controller.cpp": "e3fc55a11796a2f4ca9b930b1bcbd1e5e47b66f20917eaabc10d5f3665cc4f15",
+    "apps/qt-shell/preferences_widget.cpp": "ea13de1de4aae5d68c7110205980e5d2a05f83424a171316487691c02a4e2c8e",
+    "apps/qt-shell/engine_preferences_store.cpp": "6d5b716d2cf9096dad24639d2bf264bf61df5c3e7509a34114f3b02a77d5f83d",
+    "apps/qt-shell/main.cpp": "71765dc86403a82fd2732c4200993327e2cddce6518a5654c0320cb5017d0e0e",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/run-menu-observer.py": "42b40bbd9db95fe2cf096ec76f3b7d7102a0f2eb9a36b9b17e64a795e2a6bd56",
+    "tools/test-live-qt-campaign-preferences.py": "30fb89047b3f6714b27f21c0aa15756b0a988341c35dd4749bea18a42c7ff8df",
+    "tools/test-live-qt-campaign-defeat.py": "e98cf2450ddae9db4ac8f1523c3dbd65f8bf09d4d29958bddb9f7ef3369b55ea",
+    "tools/test-live-campaign-mini.py": "886050526ad714e82965cbaedcf9e834d7202c2e5ffa5016794177a6697459ee",
+    "tools/test-live-menus.py": "43c3974d4799ea817b441444392b0e90b518591df42a6bdfb7a603c8d3eeca63",
+    "tests/menu-campaign-preferences-test.cpp": "3e865cd32baa24a07954118b11df78cb97aaaeb37527f392bb6b5c14eb751f01",
+    "tests/menu-preferences-bridge-test.cpp": "29360a112edae1dfadc6dc2821ad1eabf146b9a4c1729ec0ca6bc035eff768e3",
+    "tests/menu-preferences-controller-test.cpp": "484d0905e227b40e1c467549048cf50cd2111a591fbf30057302db24d81e20c5",
+    "tests/engine-preferences-store-test.cpp": "56f8503739029f2848cd22152a2a702af1af824fe28c77592c1d8cc54537c74a",
+    "tests/menu-campaign-mini-quit-test.cpp": "fe6e20ac7a11edb66cc3efba1ccc2201c35ea72653dfb72f1fa609132070e799",
+    "tests/menu-campaign-defeat-test.cpp": "c4f88a0aba1317fca989b676c83dea90f43a96acd59efb9b4ff9323027543dc4"
+  },
+  "live": {
+    "campaign_handoff": true,
+    "campaign_preferences_states": [
+      {
+        "ack": 3,
+        "generation": 12,
+        "screen": 17,
+        "thread": 400
+      },
+      {
+        "ack": 4,
+        "available": 12287,
+        "depth": 6,
+        "generation": 16,
+        "parent": 17,
+        "screen": 10,
+        "thread": 400,
+        "values": [
+          0,
+          -250,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "ack": 5,
+        "available": 12287,
+        "depth": 6,
+        "generation": 17,
+        "parent": 17,
+        "screen": 10,
+        "thread": 400,
+        "values": [
+          0,
+          -500,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "ack": 6,
+        "generation": 23,
+        "screen": 17,
+        "thread": 400
+      },
+      {
+        "ack": 7,
+        "available": 12287,
+        "depth": 6,
+        "generation": 27,
+        "parent": 17,
+        "screen": 10,
+        "thread": 400,
+        "values": [
+          0,
+          -250,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "ack": 8,
+        "available": 12287,
+        "depth": 6,
+        "generation": 28,
+        "parent": 17,
+        "screen": 10,
+        "thread": 400,
+        "values": [
+          0,
+          -500,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "ack": 9,
+        "generation": 34,
+        "screen": 17,
+        "thread": 400
+      },
+      {
+        "ack": 10,
+        "available": 12287,
+        "depth": 6,
+        "generation": 38,
+        "parent": 17,
+        "screen": 10,
+        "thread": 400,
+        "values": [
+          0,
+          -500,
+          0,
+          0,
+          2,
+          0,
+          0
+        ]
+      },
+      {
+        "ack": 11,
+        "generation": 44,
+        "screen": 17,
+        "thread": 400
+      },
+      {
+        "ack": 12,
+        "generation": 51,
+        "screen": 6,
+        "thread": 400
+      }
+    ],
+    "cancel_file_unchanged": true,
+    "committed": [
+      0,
+      -500,
+      0,
+      0,
+      2,
+      0,
+      0
+    ],
+    "error": "",
+    "final_cancel_store_unchanged": true,
+    "initial": [
+      0,
+      -250,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "main_return": true,
+    "original_viewport_presented": true,
+    "preferences_error": "",
+    "scope": "Fresh campaign original Escape, native Mini/Preferences preview/Cancel rollback and World resume, repeat preview/OK persistence and World resume, reopen saved settings/Cancel, native Quit/original Yes/native defeat OK/Main Quit; resolution/game-speed changes, pause timing and other callers pending",
+    "states": [
+      {
+        "ack": 0,
+        "difficulty": 0,
+        "generation": 1,
+        "screen": 3,
+        "thread": 400
+      },
+      {
+        "ack": 1,
+        "difficulty": 0,
+        "generation": 5,
+        "screen": 18,
+        "thread": 400
+      },
+      {
+        "ack": 2,
+        "difficulty": 2,
+        "generation": 6,
+        "screen": 18,
+        "thread": 400
+      }
+    ],
+    "store_verified": true,
+    "success": true,
+    "viewport_returns": 8,
+    "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "sources": {
+      "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+      "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+      "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+      "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+      "runtime/menu/observer.c": "04137d835048e078c65fffd46cf532bc273b323c05d8dcabd566ae78cebd39e1",
+      "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+      "runtime/menu/campaign_world_observe.h": "6f2eb6187cb077c5d1bab2e85c3c7301ef0a2e887fc6a89e4bccf57ea1c316f0",
+      "runtime/menu/region_entry.h": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+      "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+      "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+      "apps/qt-shell/live_campaign_preferences_test.cpp": "ec8d9ee795ac75ee249a801404a503d6c042a31da7ea2652c4dcab12ac46ec12",
+      "apps/qt-shell/live_region_enter_test.cpp": "06b970b2ffac15190e4b85957cf7c52e7da3a9f9414285ba44adcdc8dcfb2e3f",
+      "apps/qt-shell/live_menu_session.cpp": "25ccbbd8f260523a060dc04455e82421ea439528ef6f64e0e894a02d5cbe2a2c",
+      "apps/qt-shell/live_menu_session.hpp": "9253ed4ecaa4bd341a0423d33d42504c1e0c0700cb3ce842c9348286dcfdd3b8",
+      "apps/qt-shell/menu_bridge.cpp": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+      "apps/qt-shell/menu_bridge.hpp": "631087eda5168c3ddaaaa590c22c19e7958a49c7d9026f71bbde0702a1ec62fa",
+      "apps/qt-shell/live_menu_test.cpp": "4a0bf155a2e9a95d4b05d4ef148df3ac9c7e245dbd19d5a31eb8868f4c8f5876",
+      "apps/qt-shell/live_menu_test.hpp": "71b7196b49a3aaa187de3efaf16d133e9467b387603e5e9a7d094e9fa108be44",
+      "apps/qt-shell/CMakeLists.txt": "5ca5edd9598277072402c395576cca95cfbbc3a43fc96d327144a0feda130c10",
+      "apps/qt-shell/live_preferences_menu_controller.cpp": "1bc94f804ecceb7213ba387f80679b11791e2dc135dadd3cd54ae367cacb4c38",
+      "apps/qt-shell/live_mini_menu_controller.cpp": "e3fc55a11796a2f4ca9b930b1bcbd1e5e47b66f20917eaabc10d5f3665cc4f15",
+      "apps/qt-shell/preferences_widget.cpp": "ea13de1de4aae5d68c7110205980e5d2a05f83424a171316487691c02a4e2c8e",
+      "apps/qt-shell/engine_preferences_store.cpp": "6d5b716d2cf9096dad24639d2bf264bf61df5c3e7509a34114f3b02a77d5f83d",
+      "apps/qt-shell/main.cpp": "71765dc86403a82fd2732c4200993327e2cddce6518a5654c0320cb5017d0e0e",
+      "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+      "tools/run-menu-observer.py": "42b40bbd9db95fe2cf096ec76f3b7d7102a0f2eb9a36b9b17e64a795e2a6bd56",
+      "tools/test-live-qt-campaign-preferences.py": "30fb89047b3f6714b27f21c0aa15756b0a988341c35dd4749bea18a42c7ff8df",
+      "tools/test-live-qt-campaign-defeat.py": "e98cf2450ddae9db4ac8f1523c3dbd65f8bf09d4d29958bddb9f7ef3369b55ea",
+      "tools/test-live-campaign-mini.py": "886050526ad714e82965cbaedcf9e834d7202c2e5ffa5016794177a6697459ee",
+      "tools/test-live-menus.py": "43c3974d4799ea817b441444392b0e90b518591df42a6bdfb7a603c8d3eeca63"
+    },
+    "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/menu-observer/run-837ca26h",
+    "original_callback_trace": [
+      [
+        3,
+        0
+      ],
+      [
+        18,
+        65538
+      ],
+      [
+        18,
+        0
+      ],
+      [
+        17,
+        2
+      ],
+      [
+        10,
+        65537
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        17,
+        2
+      ],
+      [
+        10,
+        65537
+      ],
+      [
+        10,
+        0
+      ],
+      [
+        17,
+        2
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        17,
+        3
+      ],
+      [
+        6,
+        21
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "world_ticks": [
+      {
+        "sequence": 12,
+        "event": 12,
+        "thread": 400,
+        "menu_id": 2,
+        "object": 7125880,
+        "vtable": 6053336,
+        "initialized": 1,
+        "next_screen": 0,
+        "returning": 0,
+        "argument": 0,
+        "result": 0,
+        "active_screen": 7125880,
+        "depth": 4,
+        "last_error": 0,
+        "fade_active": 0,
+        "fade_counter": 0
+      },
+      {
+        "sequence": 14,
+        "event": 12,
+        "thread": 400,
+        "menu_id": 2,
+        "object": 7125880,
+        "vtable": 6053336,
+        "initialized": 1,
+        "next_screen": 0,
+        "returning": 0,
+        "argument": 1,
+        "result": 5,
+        "active_screen": 7125880,
+        "depth": 4,
+        "last_error": 0,
+        "fade_active": 0,
+        "fade_counter": 0
+      },
+      {
+        "sequence": 16,
+        "event": 12,
+        "thread": 400,
+        "menu_id": 2,
+        "object": 7125880,
+        "vtable": 6053336,
+        "initialized": 1,
+        "next_screen": 0,
+        "returning": 0,
+        "argument": 2,
+        "result": 0,
+        "active_screen": 7125880,
+        "depth": 4,
+        "last_error": 0,
+        "fade_active": 0,
+        "fade_counter": 0
+      }
+    ],
+    "world_resumes": [
+      {
+        "sequence": 39,
+        "event": 20,
+        "thread": 400,
+        "menu_id": 2,
+        "object": 7125880,
+        "vtable": 6053336,
+        "initialized": 1,
+        "next_screen": 3087116910,
+        "returning": 1744939631,
+        "argument": 0,
+        "result": 0,
+        "active_screen": 7125880,
+        "depth": 4,
+        "last_error": 0,
+        "fade_active": 0,
+        "fade_counter": 0
+      },
+      {
+        "sequence": 65,
+        "event": 20,
+        "thread": 400,
+        "menu_id": 2,
+        "object": 7125880,
+        "vtable": 6053336,
+        "initialized": 1,
+        "next_screen": 3087116910,
+        "returning": 1744939660,
+        "argument": 0,
+        "result": 0,
+        "active_screen": 7125880,
+        "depth": 4,
+        "last_error": 0,
+        "fade_active": 0,
+        "fade_counter": 0
+      },
+      {
+        "sequence": 89,
+        "event": 20,
+        "thread": 400,
+        "menu_id": 2,
+        "object": 7125880,
+        "vtable": 6053336,
+        "initialized": 1,
+        "next_screen": 3892423353,
+        "returning": 1744939660,
+        "argument": 0,
+        "result": 0,
+        "active_screen": 7125880,
+        "depth": 4,
+        "last_error": 0,
+        "fade_active": 0,
+        "fade_counter": 0
+      },
+      {
+        "sequence": 118,
+        "event": 20,
+        "thread": 400,
+        "menu_id": 2,
+        "object": 7125880,
+        "vtable": 6053336,
+        "initialized": 1,
+        "next_screen": 3758205603,
+        "returning": 1744939660,
+        "argument": 0,
+        "result": 0,
+        "active_screen": 7125880,
+        "depth": 4,
+        "last_error": 0,
+        "fade_active": 0,
+        "fade_counter": 0
+      },
+      {
+        "sequence": 128,
+        "event": 20,
+        "thread": 400,
+        "menu_id": 2,
+        "object": 7125880,
+        "vtable": 6053336,
+        "initialized": 1,
+        "next_screen": 3758205603,
+        "returning": 1744939660,
+        "argument": 0,
+        "result": 0,
+        "active_screen": 7125880,
+        "depth": 4,
+        "last_error": 0,
+        "fade_active": 0,
+        "fade_counter": 0
+      }
+    ],
+    "confirmation_answers": [
+      {
+        "sequence": 109,
+        "event": 22,
+        "thread": 400,
+        "menu_id": 17,
+        "object": 6967432,
+        "vtable": 6055492,
+        "initialized": 1,
+        "next_screen": 0,
+        "returning": 1,
+        "argument": 0,
+        "result": 0,
+        "active_screen": 6967432,
+        "depth": 5,
+        "last_error": 0,
+        "fade_active": 0,
+        "fade_counter": 40
+      }
+    ],
+    "normal_exit": true,
+    "channel_retired": true,
+    "live_validated": true,
+    "lifecycle_observed": true,
+    "pause_equivalence": false
+  },
+  "qt": {
+    "success": true,
+    "tests": 6,
+    "scope": "Current isolated build: campaign Preferences bridge/controller/session/ACK/persistence, V6 bridge/controller/store and V10 Mini/V11 defeat regressions",
+    "log_sha256": "70148a08895c1edfe714c8a40b699047837c41a55ea219ccddccf884a00c5bb7"
+  },
+  "artifacts": {
+    "qt-mini-2.png": "07ce1f5e236c103843240f9c599b4c22d8c0f1098d5452c0cabac8ab8666811c",
+    "qt-mini-4.png": "4961aa16d590d6231b606b2c7b70b6d03c902f79efb0af72ec7107faa9b64446",
+    "qt-region-enter-1.png": "094040db72b539a40e623de9ee6371c0c1399e29ec636baa1d2bf3ee5d5da0f9",
+    "qt-mini-1.png": "07ce1f5e236c103843240f9c599b4c22d8c0f1098d5452c0cabac8ab8666811c",
+    "shell.log": "49f5531ca456a7ca17168b240067801cb0b60c27b8b50e3a58a64d67e0011d03",
+    "qt-preferences-0.png": "fc2b26c896137fec19c519c546e7ef60d08afcd1cc63355bf33f3182ff97490d",
+    "qt-preferences-2.png": "fc2b26c896137fec19c519c546e7ef60d08afcd1cc63355bf33f3182ff97490d",
+    "qt-mini-3.png": "4961aa16d590d6231b606b2c7b70b6d03c902f79efb0af72ec7107faa9b64446",
+    "qt-region-enter-0.png": "fb855f5f4aad73c6c0b331daf3e725561aa6fad632f49cc68661ae2cf9693231",
+    "original-confirmation.json": "cdd863e1c4c71dfb7a05871076ed05b60c2223ea06dcf5aaa4ae8a307ff938f6",
+    "qt-campaign-viewport.png": "c554f0d943ca9984397af9222f3d32ce589482f2618bb9f5bc92bcf08a92e8f1",
+    "display": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+    "qt-region-enter-2.png": "892c3481ab4d4cfced82a4dcaca745ac6327a24ade93097a3b874ae5bfd40b3d",
+    "xvfb.log": "e87602ca644ed5cc111bff973573e6804d6e0c97c7d16088036f7cd37da40d48",
+    "qt-preferences-1.png": "4808bd4cc57550b1e3a57225d1a6a5219a319ad2ee9e83570f7d81d5991ac5b8",
+    "qt-preferences-3.png": "4808bd4cc57550b1e3a57225d1a6a5219a319ad2ee9e83570f7d81d5991ac5b8",
+    "original-confirmation.png": "4f7443a34dc358aac2c77a05a5d7506ba3e3aa8e49b479ca827dcc5406323d94",
+    "qt-preferences-4.png": "f4a69574ef758cdf47766a6c1b162e4f400f919332944dad215bb4e8f61e5b38",
+    "report.json": "615632efb91ed2f35e91908e913528a0ab2cd03029def1ddfe11e45a295770d0"
+  },
+  "pending": [
+    "Resolution rebuild and game-speed/pause timing equivalence",
+    "Other Preferences callers and loaded campaigns",
+    "Cross-launch persistence from campaign settings",
+    "Whole-engine comparison and native replacement"
+  ],
+  "validator_correction": "Initial checker expected four World resumes; observed trace has three Preferences resumes, Quit/Yes resume before defeat and report OK resume. Corrected checker revalidated preserved successful normal-exit run; no new runtime execution or rewritten historical evidence is claimed."
+}

@@ -12755,7 +12755,7 @@
       "subsystem": "campaign",
       "kind": "recovered",
       "title": "Campaign Mini Preferences entry, preview and exit",
-      "scope": "Selected fresh campaign mode2/context5 Mini local2 push, Preferences parent17/depth6, original preview/Cancel/OK bytecode with original setter/group bytecode and synthetic writer/audio/display/fade services; static common push/pop and leave recovery, full original outer lifecycle not executed",
+      "scope": "Selected fresh campaign mode2/context5 Mini local2 entry, parent17/depth6 Preferences preview/Cancel rollback/OK, reopened original settings, engine-written profile/native-store agreement and original World resume observed for effects/dialogue changes; helper bodies, resolution rebuild, game-speed/pause timing and other callers not reconstructed",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -12789,7 +12789,8 @@
         }
       ],
       "documents": [
-        "research/runtime/campaign-preferences-engine-bridge.md"
+        "research/runtime/campaign-preferences-engine-bridge.md",
+        "research/runtime/campaign-preferences-live-engine-bridge.md"
       ],
       "implementation": [
         "protocols/include/mnm/menu_v12.h",
@@ -12811,17 +12812,22 @@
         "tests/campaign-preferences-reference.c",
         "tests/campaign-preferences-selftest.h",
         "tests/menu-campaign-preferences-test.cpp",
-        "tools/test-campaign-preferences-bridge.py"
+        "tools/test-campaign-preferences-bridge.py",
+        "apps/qt-shell/live_campaign_preferences_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-qt-campaign-preferences.py"
       ],
       "evidence": [
         "UI34.fixture",
-        "UI34.qt"
+        "UI34.qt",
+        "UI35.qt",
+        "UI35.live"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       }
     },
@@ -12830,11 +12836,12 @@
       "subsystem": "campaign",
       "kind": "native_policy",
       "title": "Native campaign Preferences admission and return policy",
-      "scope": "Separate V12 exact campaign parent/stack/context guard and Mini capability, Qt native presentation uses original availability; original callback acknowledgement restores viewport ownership on Cancel/OK, fresh generation/thread required for readmission; accepted original-written config persisted; full original live lifecycle pending",
+      "scope": "V12 guarded fresh campaign Mini Preferences capability/native presentation, original availability and fresh same-thread admission, callback-ACK viewport return, accepted original-written profile saving; selected effects/dialogue live round trip, original Quit/report/Main termination; timer/display/other callers/equivalence/replacement pending",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/campaign-preferences-engine-bridge.md"
+        "research/runtime/campaign-preferences-engine-bridge.md",
+        "research/runtime/campaign-preferences-live-engine-bridge.md"
       ],
       "implementation": [
         "protocols/include/mnm/menu_v12.h",
@@ -12856,16 +12863,21 @@
         "tests/campaign-preferences-reference.c",
         "tests/campaign-preferences-selftest.h",
         "tests/menu-campaign-preferences-test.cpp",
-        "tools/test-campaign-preferences-bridge.py"
+        "tools/test-campaign-preferences-bridge.py",
+        "apps/qt-shell/live_campaign_preferences_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-qt-campaign-preferences.py"
       ],
       "evidence": [
-        "UI34.qt"
+        "UI34.qt",
+        "UI35.qt",
+        "UI35.live"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       }
     },
@@ -12906,6 +12918,65 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.campaign-preferences-lifecycle",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Fresh campaign Preferences original return lifecycle",
+      "scope": "Three selected Preferences closes return through original suspended Mini to World, proven by same-thread resume records before fresh Escape/Mini; Cancel restores values without file write, OK saved settings reopen; original Quit/Yes resumes World before defeat and report OK resumes it again before Main Quit; helper internals and pause/resolution equivalence pending",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5608912,
+          "recovered_range": "campaign-mini-entry-5595d0",
+          "scope": "Common menu lifecycle entry; selected push/pop behavior from static recovery plus observed Preferences/World return sequence only"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4885344,
+          "scope": "Original Preferences leave path is retained; observed completed return only, helper bodies opaque"
+        }
+      ],
+      "original_candidates": [
+        "0x4b1f30",
+        "0x4b1f20",
+        "0x4b1f40",
+        "0x46aef0"
+      ],
+      "documents": [
+        "research/runtime/campaign-preferences-live-engine-bridge.md"
+      ],
+      "implementation": [
+        "runtime/menu/preferences.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "protocols/include/mnm/menu_v12.h"
+      ],
+      "tests": [
+        "apps/qt-shell/live_campaign_preferences_test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-qt-campaign-preferences.py",
+        "tests/menu-campaign-preferences-test.cpp"
+      ],
+      "evidence": [
+        "UI35.qt",
+        "UI35.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -22178,6 +22249,60 @@
           "equals": 3
         }
       ]
+    },
+    {
+      "id": "UI35.qt",
+      "kind": "native_integration",
+      "scope": "Current isolated build: campaign Preferences bridge/controller/session/ACK/persistence, V6 bridge/controller/store and V10 Mini/V11 defeat regressions",
+      "record": "research/runtime/campaign-preferences-live-engine-bridge.json",
+      "sha256": "62146addcab5724221c407a83c700ea85ff18938a6683f87613c10fe1bad3f9c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/qt/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI35.live",
+      "kind": "live_observation",
+      "scope": "Fresh campaign original Escape, native Mini/Preferences preview/Cancel rollback and World resume, repeat preview/OK persistence and World resume, reopen saved settings/Cancel, native Quit/original Yes/native defeat OK/Main Quit; resolution/game-speed changes, pause timing and other callers pending",
+      "record": "research/runtime/campaign-preferences-live-engine-bridge.json",
+      "sha256": "62146addcab5724221c407a83c700ea85ff18938a6683f87613c10fe1bad3f9c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/live_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/live/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/live/lifecycle_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/live/cancel_file_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/live/store_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/live/final_cancel_store_unchanged",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "classifications": [],
@@ -25573,6 +25698,27 @@
         "tests/effect-animation-catalog-test.cpp",
         "tools/test-effect-animation-catalog.py"
       ]
+    },
+    {
+      "id": "campaign.qt-preferences-cancel-ok-reopen",
+      "level": "live_observation",
+      "scope": "Fresh campaign original Escape, native Mini/Preferences preview/Cancel rollback and World resume, repeat preview/OK persistence and World resume, reopen saved settings/Cancel, native Quit/original Yes/native defeat OK/Main Quit; resolution/game-speed changes, pause timing and other callers pending",
+      "behaviors": [
+        "CP.campaign-mini-preferences",
+        "NP.campaign-preferences-policy",
+        "CP.campaign-preferences-lifecycle"
+      ],
+      "evidence": [
+        "UI35.qt",
+        "UI35.live"
+      ],
+      "tests": [
+        "apps/qt-shell/live_campaign_preferences_test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "tools/test-live-qt-campaign-preferences.py",
+        "tests/menu-campaign-preferences-test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -25735,7 +25881,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "b9d7ee8a1db40c1814f063cd4f8e031b374074b7f5dbac1ee17be49ed8abe691",
+      "sha256": "95eba80f4a3f499ad478d5ce0db0bbe21e393b2fdfc5182e7ac6d78791c7a0b2",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
     },
     {
@@ -25815,7 +25961,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-animation-catalog-source-index.json",
-    "sha256": "9ac0f06c2dcc9c86a8fdbad295df52e3ed961a6b69195fa428a543cbed283657"
+    "path": "research/runtime/coverage/source-index-campaign-preferences-live.json",
+    "sha256": "aed6a001cf21e69baeade70bf0c2571daebb8b1ad1742d398f3c21a92bcbfc50"
   }
 }

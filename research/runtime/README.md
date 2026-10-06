@@ -180,3 +180,5 @@ confidence, and whether it remains stable across launches.
 - [Campaign Quit defeat report bridge](campaign-defeat-engine-bridge.md): V11 native original-text report and original OK, World/Realm return to Main; other outcomes remain original.
 
 - [Campaign Mini Preferences bridge](campaign-preferences-engine-bridge.md): V12 guarded original entry/preview/Cancel/OK and native caller/lifecycle policy; isolated and headless checks, full live lifecycle pending.
+
+- [Campaign Preferences live round trip](campaign-preferences-live-engine-bridge.md): automated native preview/Cancel rollback, OK saving, reopened settings, original World resume and normal Quit; selected audio/dialogue scope only.

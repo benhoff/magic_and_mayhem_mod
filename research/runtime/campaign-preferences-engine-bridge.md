@@ -60,3 +60,7 @@ Resolution rebuild, game-speed timer/pause cadence, loaded campaigns, Realm and
 Quick Battle callers, full original gameplay return, and native replacement
 remain pending. Historical evidence retains its original hashes; shared source
 changes make earlier results stale without renewing their validation claims.
+
+## Later live validation (UI35)
+
+The selected effects/dialogue Preferences lifecycle is now observed in the [automated native campaign round trip](campaign-preferences-live-engine-bridge.md): Cancel rollback, OK persistence, reopened values, three original World resumes and normal Quit. This separate result retains UI34 evidence and does not renew its old fingerprints or establish timer/resolution/other-caller equivalence.

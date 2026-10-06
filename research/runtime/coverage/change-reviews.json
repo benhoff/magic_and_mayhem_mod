@@ -15050,6 +15050,330 @@
         "evidence": [],
         "reason": "Generated metadata only, no engine behavior or validation promotion."
       }
+    },
+    {
+      "id": "campaign-preferences-ui35-campaign-preferences-live-commit-rdtrjyya",
+      "reason": "Review isolated native V12 campaign Preferences harness, exact entry/preview/Cancel/OK/reopen callback and ACK sequence, original engine thread/caller/World resume provenance, rollback and original-written profile/native-store agreement, final original confirmation/report/Main Quit, six targeted Qt regressions, and preserved historical evidence. Reconcile focused/central registers, census, status promotion and committed history with exact receipts.",
+      "files": [
+        {
+          "path": "apps/qt-shell/CMakeLists.txt",
+          "before_sha256": "1f928df7ee7d5419d9e55d376a3ae0e665b0bd67eca88514c181b5455338a2f2",
+          "after_sha256": "5ca5edd9598277072402c395576cca95cfbbc3a43fc96d327144a0feda130c10"
+        },
+        {
+          "path": "apps/qt-shell/live_campaign_preferences_test.cpp",
+          "before_sha256": null,
+          "after_sha256": "ec8d9ee795ac75ee249a801404a503d6c042a31da7ea2652c4dcab12ac46ec12"
+        },
+        {
+          "path": "apps/qt-shell/live_menu_session.cpp",
+          "before_sha256": "25ccbbd8f260523a060dc04455e82421ea439528ef6f64e0e894a02d5cbe2a2c",
+          "after_sha256": "25ccbbd8f260523a060dc04455e82421ea439528ef6f64e0e894a02d5cbe2a2c"
+        },
+        {
+          "path": "apps/qt-shell/live_menu_test.cpp",
+          "before_sha256": "91caf6b1b45dd080d0c143ea27b74a8e3d218727430b15502c512a8475573ae8",
+          "after_sha256": "4a0bf155a2e9a95d4b05d4ef148df3ac9c7e245dbd19d5a31eb8868f4c8f5876"
+        },
+        {
+          "path": "apps/qt-shell/live_menu_test.hpp",
+          "before_sha256": "bead6b6a176fe7367bb1cb675c8dd7d19b4cbcdf18c4181dcc1a03a496d71521",
+          "after_sha256": "71b7196b49a3aaa187de3efaf16d133e9467b387603e5e9a7d094e9fa108be44"
+        },
+        {
+          "path": "apps/qt-shell/live_mini_menu_controller.cpp",
+          "before_sha256": "e3fc55a11796a2f4ca9b930b1bcbd1e5e47b66f20917eaabc10d5f3665cc4f15",
+          "after_sha256": "e3fc55a11796a2f4ca9b930b1bcbd1e5e47b66f20917eaabc10d5f3665cc4f15"
+        },
+        {
+          "path": "apps/qt-shell/live_preferences_menu_controller.cpp",
+          "before_sha256": "1bc94f804ecceb7213ba387f80679b11791e2dc135dadd3cd54ae367cacb4c38",
+          "after_sha256": "1bc94f804ecceb7213ba387f80679b11791e2dc135dadd3cd54ae367cacb4c38"
+        },
+        {
+          "path": "apps/qt-shell/menu_bridge.cpp",
+          "before_sha256": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+          "after_sha256": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea"
+        },
+        {
+          "path": "protocols/include/mnm/menu_v12.h",
+          "before_sha256": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+          "after_sha256": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5"
+        },
+        {
+          "path": "research/runtime/README.md",
+          "before_sha256": "426baa67a67e7cbd62a1e2983be76c10f5a9f3cb7fef56d66b255eb28bdead75",
+          "after_sha256": "29a48b5cb515cbd353b159165cf32a7408baf9092f5b36d2a5f43a3da0c60bc9"
+        },
+        {
+          "path": "research/runtime/campaign-menu-coverage-register.json",
+          "before_sha256": "b9d7ee8a1db40c1814f063cd4f8e031b374074b7f5dbac1ee17be49ed8abe691",
+          "after_sha256": "95eba80f4a3f499ad478d5ce0db0bbe21e393b2fdfc5182e7ac6d78791c7a0b2"
+        },
+        {
+          "path": "research/runtime/campaign-preferences-engine-bridge.md",
+          "before_sha256": "707cac78ec092409c33596d9548dd139838adcca6ef6da854039986eb849f7af",
+          "after_sha256": "d4f9481f0f35e6f43dfb70bfc8d8279d72a56f8d163428c06fce9490564b3ef6"
+        },
+        {
+          "path": "research/runtime/campaign-preferences-live-engine-bridge.json",
+          "before_sha256": null,
+          "after_sha256": "62146addcab5724221c407a83c700ea85ff18938a6683f87613c10fe1bad3f9c"
+        },
+        {
+          "path": "research/runtime/campaign-preferences-live-engine-bridge.md",
+          "before_sha256": null,
+          "after_sha256": "bbe3add048ca44ca7eb4bd3e848ce07fce5db1a59826e681f787e92dce97aa05"
+        },
+        {
+          "path": "research/runtime/campaign-preferences-live-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "aedd7fac5b3f00376a10622cfbc265303f9c0f603f7de6a9fe9ef71d191777cb"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "268fa9b4579978e3f7e57ac0e6b4613d4f80a0844d61a189415283f1a416e0ef",
+          "after_sha256": "915c8356222e128092979cd49f21a408206d3c64bab84895b553bc1236cd8371"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "d47dda0202f2e9d3638666f80826e926dd81888c850c2a8b06588cdec0942e09",
+          "after_sha256": "9d1e56c656388ac7252a38adae456c68eedd5fba468e97ee2d972bb96ed2f589"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-campaign-preferences-live.json",
+          "before_sha256": null,
+          "after_sha256": "aed6a001cf21e69baeade70bf0c2571daebb8b1ad1742d398f3c21a92bcbfc50"
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "52d1142baaaba7ce84d0808828de634f6d08a423e08ae56df21ae1f96d729447",
+          "after_sha256": "cc32b7699e14640c70540133355ddf2a611d27135aed0f56a788ee341ddeeddf"
+        },
+        {
+          "path": "runtime/menu/campaign_mini_observe.h",
+          "before_sha256": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+          "after_sha256": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e"
+        },
+        {
+          "path": "runtime/menu/channel.h",
+          "before_sha256": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+          "after_sha256": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5"
+        },
+        {
+          "path": "runtime/menu/mini.h",
+          "before_sha256": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+          "after_sha256": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41"
+        },
+        {
+          "path": "runtime/menu/preferences.h",
+          "before_sha256": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+          "after_sha256": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30"
+        },
+        {
+          "path": "tests/README.md",
+          "before_sha256": "62f9f7e1cda1e539b3d3de682f1af0b1023d66c7aca7e00cb810f6f456ec9a90",
+          "after_sha256": "10f1e2b487be4dee02949db2578ed2947b60ef16a47030d4cef7add1ed8cbeea"
+        },
+        {
+          "path": "tests/menu-campaign-preferences-test.cpp",
+          "before_sha256": "3e865cd32baa24a07954118b11df78cb97aaaeb37527f392bb6b5c14eb751f01",
+          "after_sha256": "3e865cd32baa24a07954118b11df78cb97aaaeb37527f392bb6b5c14eb751f01"
+        },
+        {
+          "path": "tools/test-live-qt-campaign-preferences.py",
+          "before_sha256": null,
+          "after_sha256": "30fb89047b3f6714b27f21c0aa15756b0a988341c35dd4749bea18a42c7ff8df"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "BR.battle",
+          "before_sha256": "baad7698a89f23cc9c5074d93ea140654f62b0c5dc1ff74016f5510b3791c763",
+          "after_sha256": "baad7698a89f23cc9c5074d93ea140654f62b0c5dc1ff74016f5510b3791c763"
+        },
+        {
+          "id": "BR.main",
+          "before_sha256": "8a1ee038c62a75fea9056479f88eca5728490d85b199a087090597d8f6bb3fd5",
+          "after_sha256": "caf63311a466c3c4e97478db4464d30bf95e3f4cc499256dc689f6565a03dccd"
+        },
+        {
+          "id": "BR.mini",
+          "before_sha256": "2108aeb5b5b0afe9fef3b19d4ecb0490ca6e821f0b6c8db8231875fdb87b3239",
+          "after_sha256": "2108aeb5b5b0afe9fef3b19d4ecb0490ca6e821f0b6c8db8231875fdb87b3239"
+        },
+        {
+          "id": "BR.result",
+          "before_sha256": "c6903de907fda7cd54be30cb94905c5aeb2d03c7f59c3af57c8a5231d318e2a6",
+          "after_sha256": "c6903de907fda7cd54be30cb94905c5aeb2d03c7f59c3af57c8a5231d318e2a6"
+        },
+        {
+          "id": "BR.spell",
+          "before_sha256": "5f1238ce3016dea9323d3e51cf23342a130440acf76584d439f26672b405bfeb",
+          "after_sha256": "5f1238ce3016dea9323d3e51cf23342a130440acf76584d439f26672b405bfeb"
+        },
+        {
+          "id": "CP.campaign-defeat-report",
+          "before_sha256": "ecf92f91c0cb35e49996e80786aec7a1f8b4ceeeea0862ebd3f133097b618632",
+          "after_sha256": "d405f49cabcfbfb93e0b8241a212a85cb8efca4c7f24834f08fc050b37663a69"
+        },
+        {
+          "id": "CP.campaign-mini-cancel",
+          "before_sha256": "d075c26b72d4daaff4d9581b66b89045c579b67bcce701f86726c3510a8794bb",
+          "after_sha256": "9964b0ce0b72933e8fd17416b9a7d459f19b904f8793b4ed4a0820e6928054e7"
+        },
+        {
+          "id": "CP.campaign-mini-lifecycle",
+          "before_sha256": "245b9832ccaa046da90713ad782e84a59b2eab8a82c32b45ef382bad1f5000e2",
+          "after_sha256": "20ee8a82b1e9161dbad2e89b6af1dd07aa2cb60cd74f3b0e0a47f98f35836d37"
+        },
+        {
+          "id": "CP.campaign-mini-preferences",
+          "before_sha256": "2bfb84b71fd306e7f45172fef806d9e23f42005248f371c3af6d14636b86efc9",
+          "after_sha256": "874c2b0c5251d63cf21385a6237aba81aba08529f9607ad6eda8a9b01c4ee1ed"
+        },
+        {
+          "id": "CP.campaign-mini-quit",
+          "before_sha256": "4a4c0f70ec8f04d73732061f96406cdcc272b52b3e08b1eb8720a248d4225a5b",
+          "after_sha256": "779b217559c43184c6b36bc10d47870ec93dd1367c08bc0efa1e82f31feaf3f2"
+        },
+        {
+          "id": "CP.campaign-mini-quit-lifecycle",
+          "before_sha256": "45adab4d390cded58db399cde7ed0cc064231b136412603e67bad7e386079ebf",
+          "after_sha256": "4b5f081def11b24eb840772ed76572e9c51b18d476276b899fa1c88af69d1fb8"
+        },
+        {
+          "id": "CP.campaign-preferences-lifecycle",
+          "before_sha256": null,
+          "after_sha256": "5efd35c5c66fb677921e380941042c95c4a99910038e10c655f4775e6e1c57cd"
+        },
+        {
+          "id": "CP.campaign-world-handoff-observation",
+          "before_sha256": "8e2fb37afe41bf772a891620b6ad150e59fe5e58f75a0049d6a66b15b9d7a36b",
+          "after_sha256": "59d23e1c51e3a9157ed79f954ec8f0065678fde04733f3d734a1791e47725e38"
+        },
+        {
+          "id": "CP.region-entry-bridge",
+          "before_sha256": "ca998f79c36ef4f0310b7447f4f2719e71dff4f330bc250b561f216446bf0fda",
+          "after_sha256": "af281e490b8ab8701944877e05420e06c79e33a8a14842bba04e6d617c62c95e"
+        },
+        {
+          "id": "CP.region-entry-enter",
+          "before_sha256": "e5d544412fd81fc9e3a4b6d68194391418e94f28ebaa922111b029806b37f0e1",
+          "after_sha256": "6b718509d4eefea4443c35b7e955a38c61fdfdee942460cabcc5a931b503d806"
+        },
+        {
+          "id": "NP.campaign-defeat-policy",
+          "before_sha256": "b10249377bf769fbf8c01e1344de2a2020ae6bf3c4ae60f486b23ffcccb8bee3",
+          "after_sha256": "964afcf0c6634ae0a97b5cbacf938efe1d74d45a50ec1e0c530b1db8f6d6e27d"
+        },
+        {
+          "id": "NP.campaign-mini-cancel-policy",
+          "before_sha256": "c522b5d02f86f0885e606d6a0e1939004012977c119d4582d7983351253358aa",
+          "after_sha256": "3b4fc6f6b84a216c61cbb6a11f979a08256c77b2a8af9480c2970f65f8cc649a"
+        },
+        {
+          "id": "NP.campaign-mini-quit-policy",
+          "before_sha256": "abf8eec34866226ef04a0302c889968413561680b52b69bdd9ae465538bbce9f",
+          "after_sha256": "c2fcaf64f390fd216b0b9879dba65919f6f1ce161fb679b57c3689824a63e2c6"
+        },
+        {
+          "id": "NP.campaign-preferences-policy",
+          "before_sha256": "042d2dd2bd51ae85c1dd119cd5e0b1e42fbdb4b7e82cbf349afc20bd3d525afa",
+          "after_sha256": "0fed722d89ea4fa1f1022e2366351630ae9033b08c4d08faa22e0eafcdbc7e43"
+        },
+        {
+          "id": "NP.preferences-draft",
+          "before_sha256": "1918f56062b2ba7c7d81c7878b6004965a50544c307cea47d9506f0b7851f4f9",
+          "after_sha256": "1918f56062b2ba7c7d81c7878b6004965a50544c307cea47d9506f0b7851f4f9"
+        },
+        {
+          "id": "NP.preferences-persistence",
+          "before_sha256": "6a723967991571d09af2486af99b4ad9c71fdeb5db3f8ca7fbbdc238826016bf",
+          "after_sha256": "6a723967991571d09af2486af99b4ad9c71fdeb5db3f8ca7fbbdc238826016bf"
+        },
+        {
+          "id": "NP.region-entry-fresh-policy",
+          "before_sha256": "0a6c74f4e5a96b456da2ac8ca5a9969e3ecf66006dc98aa900448a06b466f346",
+          "after_sha256": "43e6853435e98d9d0ff06479cf10c16860ca687d68d71089a76e64a54ec2e5e9"
+        },
+        {
+          "id": "NR.gpu-presentation",
+          "before_sha256": "8580c217a68dcbd8ba94ef8eee1fd4ceba7785e5625c66b4bbbe8c5af631e066",
+          "after_sha256": "f4dc6d501571032c5ffc18d20ab9e02bd41abfac7d65886134436c74ac8dd82c"
+        },
+        {
+          "id": "PR.apply",
+          "before_sha256": "a22c5e90f2e899807df648bbb7ce4e7cb812f0f0744bd5105595337a3b0a3b04",
+          "after_sha256": "a22c5e90f2e899807df648bbb7ce4e7cb812f0f0744bd5105595337a3b0a3b04"
+        },
+        {
+          "id": "PR.audio-preview-cancel",
+          "before_sha256": "c7da4283346ad7d58e538e1702ec15065ccdb38d5b97af17b0506f84886bc410",
+          "after_sha256": "c7da4283346ad7d58e538e1702ec15065ccdb38d5b97af17b0506f84886bc410"
+        },
+        {
+          "id": "PR.control-admission",
+          "before_sha256": "a14e6089c022006fb032ffe3fc3739992c844378b47f93d92408218a5e8c88df",
+          "after_sha256": "a14e6089c022006fb032ffe3fc3739992c844378b47f93d92408218a5e8c88df"
+        },
+        {
+          "id": "PR.main-entry",
+          "before_sha256": "c7854aa8144b177b39b55222921320c34088ca95b72f47f86088a0824271d81b",
+          "after_sha256": "c7854aa8144b177b39b55222921320c34088ca95b72f47f86088a0824271d81b"
+        },
+        {
+          "id": "TOOL.coverage-gate",
+          "before_sha256": "71213b3adbde86173146f971a92db61238c7a8687007fac74db8fb071fe4fa41",
+          "after_sha256": "cf880af2ae9c01cd6125481a9e733379dc4b4cafbb28e3c29e92b5f0b5197651"
+        }
+      ],
+      "pending_gaps": [
+        "behavior_anchors_outside_discovered_functions:a5bb141e6794f624875822014453a42cf840c6cf78477aa0370ba1dad28fe76f",
+        "behaviors_without_comparison:551d6fe8d435c474c8d361254e67180c61ecaeee40c789f86ad82cf4333e0e87",
+        "stale_evidence:11cccd7b6ea5935a4c67dbe46d15717f9b3640b990c28e1335132187a83faeea",
+        "stale_evidence:1b5c57544c5eef4d4594c2f540e76b12072c4f4f06859871c518a124bc746e6b",
+        "stale_evidence:841ee04aea332dc042294755f660755b4020b360d6728e833db7558f51388001",
+        "stale_evidence:945f7957963a878ae4c1c8664cc3033e66148381cc4714efd3d1a10a3596b75a",
+        "stale_evidence:a0f3baa48f6aa36f9b3cd3dbae8e47d7fcad2c3d57c5e70885beea1ba31322fc",
+        "stale_evidence:b27174135580bfff27cf5bcaae93bf77a43077f752f0d416b2d943224c1ef8be",
+        "stale_evidence:dff085805e1bd06e1fdef3d6875e1a9373d81da1ebc2ec0af0f74f18cce1e384"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "New selected lifecycle evidence is scoped separately. Shared older UI behaviors retain historical fingerprints/statuses; timer/pause/resolution/other callers, whole-engine comparison and replacement remain pending."
+      }
+    },
+    {
+      "id": "campaign-preferences-ui35-execution-campaign-preferences-live-commit-rdtrjyya",
+      "reason": "Current isolated build passed six Qt tests and automatic real campaign Preferences round trip ending in normal original Quit.",
+      "files": [],
+      "behaviors": [
+        {
+          "id": "CP.campaign-mini-preferences",
+          "before_sha256": "2bfb84b71fd306e7f45172fef806d9e23f42005248f371c3af6d14636b86efc9",
+          "after_sha256": "874c2b0c5251d63cf21385a6237aba81aba08529f9607ad6eda8a9b01c4ee1ed"
+        },
+        {
+          "id": "CP.campaign-preferences-lifecycle",
+          "before_sha256": null,
+          "after_sha256": "5efd35c5c66fb677921e380941042c95c4a99910038e10c655f4775e6e1c57cd"
+        },
+        {
+          "id": "NP.campaign-preferences-policy",
+          "before_sha256": "042d2dd2bd51ae85c1dd119cd5e0b1e42fbdb4b7e82cbf349afc20bd3d525afa",
+          "after_sha256": "0fed722d89ea4fa1f1022e2366351630ae9033b08c4d08faa22e0eafcdbc7e43"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "UI35.qt",
+          "UI35.live"
+        ],
+        "reason": "Fresh source fingerprints and original build match actual native widget actions, exact engine callback/ACK/thread/value trace, Cancel rollback without file changes, OK profile/store agreement and reopened values, three Preferences World resumes, original Yes/report OK/Main Quit and retired channel; no timing/display/other-caller equivalence or native engine replacement claim."
+      }
     }
   ]
 }
