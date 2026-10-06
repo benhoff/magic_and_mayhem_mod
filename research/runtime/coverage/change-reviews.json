@@ -9492,6 +9492,1500 @@
         "evidence": [],
         "reason": "Generated metadata only; no implementation or status promotion."
       }
+    },
+    {
+      "id": "coverage-ui-retrospective-6683449-review-journal",
+      "reason": "Reviewed the sole unmatched committed file digest in 41380db..6683449: the append-only review journal itself. Parent/current journal entries remain preserved; no historical gate pass or engine validation asserted. All other 16 committed file transitions match exact receipts and current behavior links were inspected.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "95cb28b2f86bd72a0fbb3d8f536ab0a263b6fdd08169aa4cf03fa3bdbae3c909",
+          "after_sha256": "a3e3422286c6cde0bcb95b790a6032226a21a9055be83a5fc42772acbe0f0140"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Retrospective accounting of the committed review journal only; does not change an engine/protocol or validate a past change."
+      }
+    },
+    {
+      "id": "coverage-ui-scoped-execution-00b547c",
+      "reason": "Reviewed local read-only UI percentage denominators and independent status dimensions; keep whole-game and effort estimates absent, preserve native-policy N/A, original scopes and historical fingerprints, block unregistered file access and retain explicit binary discovery exceptions.",
+      "files": [
+        {
+          "after_sha256": "75325570daecde4fb5784681e332915a4c3f4637c5fb44c77446f9a1391231d3",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/README.md"
+        },
+        {
+          "after_sha256": "b03c86002d6654cbccab3a20998206d861ff60959ea307625cd76d2e6e1e37a6",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/app.js"
+        },
+        {
+          "after_sha256": "1c9fde16c98a7989a759033f6b7576b94a0c1ce7fb68e998feaf99202e19fd93",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/index.html"
+        },
+        {
+          "after_sha256": "00cbb0ee807ab0d176cefa5f5cbdf263cd8e7d0257477c43ae65050f4cc933b6",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/style.css"
+        },
+        {
+          "after_sha256": "7ada5e4f160a7e27a0414a466523f75e6de02e68fca7a6b4f30c017baa81bb91",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-validation-final.json"
+        },
+        {
+          "after_sha256": "c5971333ea70194bde1e9974e1fc31edad312dba2f4f93ad3f7aecb01b55e88b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-validation.json"
+        },
+        {
+          "after_sha256": "72439a200913593da4def9b3ad7036ca547b5103f6bfef87ca947c0a3f828501",
+          "before_sha256": null,
+          "path": "tests/test-coverage-ui-browser.py"
+        },
+        {
+          "after_sha256": "1aaf80e0ddbded1680451c8b768e1b326881236c0dd7c88bd2ce2df337ca6da8",
+          "before_sha256": null,
+          "path": "tests/test-coverage-ui.py"
+        },
+        {
+          "after_sha256": "af12f96953d53e085b1d7aa2be221a811b7b74c174714038059129c33b955c85",
+          "before_sha256": null,
+          "path": "tools/coverage_ui.py"
+        },
+        {
+          "after_sha256": "35d61abdd323ab944c82c7ff92009344af6a18307f0609224862ea19ab330f7d",
+          "before_sha256": null,
+          "path": "tools/serve-coverage-ui.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "0be06e7dc1ec93a9b7b334c85005ee97856b67195ee10d9932b8485d8718cf5a",
+          "before_sha256": null,
+          "id": "TOOL.coverage-ui"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "UI02.dashboard"
+        ],
+        "reason": "Fresh source-bound seven semantic/HTTP tests and fifteen desktop/mobile browser checks pass. New TOOL.coverage-ui is scoped preview only. Forty-five discovery-audit and forty-three gate regressions pass with background Git maintenance disabled only for temporary fixtures. No engine equivalence or live replacement is claimed."
+      }
+    },
+    {
+      "id": "coverage-ui-census-and-accounting-00b547c",
+      "reason": "Extend census to HTML/CSS/JS; preserve exact historical pre-web declarations without hiding new/changed web files or permitting frontend code as recorded input. Review only the UI/tooling delta against the named committed base in an isolated tree. Historical engine findings/evidence remain unchanged.",
+      "files": [
+        {
+          "after_sha256": "7ea5d661d72048eb43515e5ff26d8c364b4e72efd693fc8896fd47610bf13641",
+          "before_sha256": "69a020abafd28c2a8cb8ddc6e06dbec63ee8799cd52c2da38333e210a23254f7",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "41658c07a44b6c3bca08994a51dcb90f9b72e4e53c58afc1a877e200b73b771f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-resolution.json"
+        },
+        {
+          "after_sha256": "d2ed54e13ba6649995909ebfdeb8e3889cb9a8912f17d64edc33ea705aa1d4cc",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-review.json"
+        },
+        {
+          "after_sha256": "76b9b30c276ba4ae56d5890b7e7c7621d62a2f2e864876504201b57ca67cb072",
+          "before_sha256": "1aa798b7ec2f9b6d09acaae28bbf657ed8f3c522273ffbc901413a7e53c8c2c1",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "16bb7d4bd8ffa3a77cd216fee6cead47f4c9edd6866a8aefddcddce9695e1579",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v2.json"
+        },
+        {
+          "after_sha256": "4557d740fd92a002c155dfd820be8c8cb6a75c9a2d4fb426696bf6ea1e58c80c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v3.json"
+        },
+        {
+          "after_sha256": "ca6fa3ba9af3f64660f773ba9fe74031a53c909954892affd090bc73a2dc298b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated.json"
+        },
+        {
+          "after_sha256": "206cb584e96c1c77159dc0b11339c20b223d514f2ab0f400b1b0c0e3b904385c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui.md"
+        },
+        {
+          "after_sha256": "e58258e996f03e120b3f84db56863f8d26c48d1fd6f417887bd39324cc5655fb",
+          "before_sha256": "9f1345538bbd0506b608c00c2acf5b08e6f0ff6a6dadf2eb5a423fdf7cd43597",
+          "path": "tests/test-coverage-gate.py"
+        },
+        {
+          "after_sha256": "9a836d6fbaf1b3c94d523b7f8c420f0553dae3c94331057b4d685c20f7f4fca6",
+          "before_sha256": "1f86cf86bdfef6c22315a229b5b22c752a3b3f68fd765d48e3fc72309140267d",
+          "path": "tests/test-re-coverage.py"
+        },
+        {
+          "after_sha256": "e632e389d5ecbdfb20192b2806f17d39840e094b3f7f29df07c905008a639a56",
+          "before_sha256": "1668a715bd021c891401e4690b9902ea0cba1766a264574a046b81a3caa27f7a",
+          "path": "tools/coverage_audit.py"
+        },
+        {
+          "after_sha256": "b06f0438360462b7965af998ebcf73ca9f88bcb00befd0d5a46d5e6ae98b56d9",
+          "before_sha256": "6b783efda805feb49d9f959d9ce531895a96014607c257602ad77fc26c07ffca",
+          "path": "tools/index-coverage-sources.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "41e007760b66aca287741b8ac13630e6b44eb885bdfa1aa7d44c06cec2faeae2",
+          "before_sha256": "cf31d9fa2708f4e800e305bc5e802e4505c75578189f2115c8cd31d9e03b0a9b",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "d19c45a2a67ba886a9adc4cf92c2e13d1172053dd91c4ff9f5dfd2b095874bc1",
+          "before_sha256": "632aca1e2d0308cbeec3a27a625c0006610219010e2aff9a9e5ca3aa4920186b",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:dced7475884661e83ce50794350d48f63239bf798f7b4f02ea8f3441c89f99e7",
+        "stale_evidence:ba8de8d0b75e07d4486dc1bbc772afdf9ab5164bbec6ef6891952abf9c0a431e"
+      ],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "The additive census/guard branches pass 45 audit and 43 gate regressions, but historical static tooling evidence keeps original source hashes. No previous engine evidence is refreshed. The isolated gate verifies ownership accounting, not current concurrent campaign/render changes."
+      }
+    },
+    {
+      "id": "coverage-ui-shared-metadata-pending-00b547c",
+      "reason": "Exact current shared register/ledger/census hashes bind UI entries, UI01/UI02 reports and scope explanations. Census records indexing only. Other campaign/renderer entries and source changes remain owned by their contributors and are not validated or approved by this receipt.",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "69a020abafd28c2a8cb8ddc6e06dbec63ee8799cd52c2da38333e210a23254f7",
+          "after_sha256": "524c01101b49a74330b72c44326a063bd2ad3dcfb577ad9cb69afb0e3b6efbaf"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "1aa798b7ec2f9b6d09acaae28bbf657ed8f3c522273ffbc901413a7e53c8c2c1",
+          "after_sha256": "11dfe8a04df448614dbe4d52b57dd01970e3f842382350532761a319af2a1681"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-final.json",
+          "before_sha256": null,
+          "after_sha256": "c1b1a9572052c0ce397f77ddff234e7e8039c52c5246f6f95f07de0070cb9db5"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-prevalidation.json",
+          "before_sha256": null,
+          "after_sha256": "5971d6ed4c53e804facdb1e9276c87283e8da5ba8e758bb47edf003e935e918b"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "TOOL.traceability",
+          "before_sha256": "632aca1e2d0308cbeec3a27a625c0006610219010e2aff9a9e5ca3aa4920186b",
+          "after_sha256": "d19c45a2a67ba886a9adc4cf92c2e13d1172053dd91c4ff9f5dfd2b095874bc1"
+        },
+        {
+          "id": "TOOL.coverage-gate",
+          "before_sha256": "cf31d9fa2708f4e800e305bc5e802e4505c75578189f2115c8cd31d9e03b0a9b",
+          "after_sha256": "5a7b3b941dc1a43f9866097728c49e859751030a02869c5980d684bdd1661ee0"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Tooling hashes include separate pre-existing hook/test edits; historical static evidence remains historical. Current-tree accounting still requires unrelated focused-register/source-drift reconciliation and separate engine receipts; isolated UI-only gate pass does not approve them."
+      }
+    },
+    {
+      "id": "coverage-ui-retrospective-journal-8561471",
+      "reason": "Exact parent/current committed append-only review journal accounting after concurrent engine commits. The journal delta itself has no behavior contract; all original execution/evidence claims remain with their contributor receipts. No historical gate pass asserted.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "a3e3422286c6cde0bcb95b790a6032226a21a9055be83a5fc42772acbe0f0140",
+          "after_sha256": "8b7f74fe661c7386eb281b3b0ac10871a68c7c366b7767b7805ed93035e0d876"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Retrospective journal metadata only. Original evidence identity and engine statuses are not modified."
+      }
+    },
+    {
+      "id": "coverage-ui-retrospective-journal-00b547c",
+      "reason": "Exact parent/current committed append-only review journal accounting after concurrent engine commits. The journal delta itself has no behavior contract; all original execution/evidence claims remain with their contributor receipts. No historical gate pass asserted.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "8b7f74fe661c7386eb281b3b0ac10871a68c7c366b7767b7805ed93035e0d876",
+          "after_sha256": "5668dfd4cf81f7ecfe9e164f8da70a6092eeade8e369aa8a94d5d0eae82901be"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Retrospective journal metadata only. Original evidence identity and engine statuses are not modified."
+      }
+    },
+    {
+      "id": "coverage-ui-final-accounting-reports",
+      "reason": "Retain the isolated UI ownership gate and the exact 6683449..00b547c committed-file/journal review as separate immutable accounting reports. Engine evidence and source status remain unchanged. The isolated report includes unchanged guard validation dependencies alongside actual UI files; they were not edited by the UI work.",
+      "files": [
+        {
+          "after_sha256": "ffab964c6f412e6c201d06dbf4872ad9615b3d0e3892cad121f61b02ac4c2e48",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-accounting.json"
+        },
+        {
+          "after_sha256": "053123de6133fbe3ebefab75259c6983332bf0ee8db741dc518ca8d551835020",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-extension.json"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Report metadata only; reports preserve historical boundaries and do not authorize new engine validation or live replacement."
+      }
+    },
+    {
+      "id": "coverage-ui-current-direct-calls-ui03",
+      "reason": "Current UI prototype is scoped to audited register/inventory presentation; count unique code anchors and association-body unions, preserve independent stages/native-policy N/A, show explicit partial/missing boundaries and historical evidence. Computed/inferred calls are excluded from the direct-entry graph. UI01/UI02 records and prior receipts remain unchanged.",
+      "files": [
+        {
+          "after_sha256": "75325570daecde4fb5784681e332915a4c3f4637c5fb44c77446f9a1391231d3",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/README.md"
+        },
+        {
+          "after_sha256": "b03c86002d6654cbccab3a20998206d861ff60959ea307625cd76d2e6e1e37a6",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/app.js"
+        },
+        {
+          "after_sha256": "1c9fde16c98a7989a759033f6b7576b94a0c1ce7fb68e998feaf99202e19fd93",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/index.html"
+        },
+        {
+          "after_sha256": "00cbb0ee807ab0d176cefa5f5cbdf263cd8e7d0257477c43ae65050f4cc933b6",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/style.css"
+        },
+        {
+          "after_sha256": "97c290dcfcd4d24a95dc4580d2d0610626a024f669375a401e2a10056e984285",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-direct-call-validation.json"
+        },
+        {
+          "after_sha256": "7ada5e4f160a7e27a0414a466523f75e6de02e68fca7a6b4f30c017baa81bb91",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-validation-final.json"
+        },
+        {
+          "after_sha256": "c5971333ea70194bde1e9974e1fc31edad312dba2f4f93ad3f7aecb01b55e88b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-validation.json"
+        },
+        {
+          "after_sha256": "72439a200913593da4def9b3ad7036ca547b5103f6bfef87ca947c0a3f828501",
+          "before_sha256": null,
+          "path": "tests/test-coverage-ui-browser.py"
+        },
+        {
+          "after_sha256": "86af44fd623e2b1cc07aa1a8fd6187f4e40956dbd01c79ed6c94e93438d1c370",
+          "before_sha256": null,
+          "path": "tests/test-coverage-ui.py"
+        },
+        {
+          "after_sha256": "8b5f78f70f08cd860b7a87103b10e9145db9ab47674ebc8cc53a865dc3206fdf",
+          "before_sha256": null,
+          "path": "tools/coverage_ui.py"
+        },
+        {
+          "after_sha256": "35d61abdd323ab944c82c7ff92009344af6a18307f0609224862ea19ab330f7d",
+          "before_sha256": null,
+          "path": "tools/serve-coverage-ui.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "bb4db7010dacaf8261e8731d1dcf7d29c46a604439033c745163727b38887212",
+          "before_sha256": null,
+          "id": "TOOL.coverage-ui"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "UI03.dashboard"
+        ],
+        "reason": "Freshly restarted server passes seven focused semantic/HTTP checks and fifteen real browser checks, including inferred-target exclusion, source-access boundaries, percentage denominators, filters, details, refresh, pagination and desktop/mobile layout. Current UI03 source fingerprints match every linked UI source/test; scoped native preview only, with no original execution/equivalence or engine status promotion."
+      }
+    },
+    {
+      "id": "coverage-ui-current-receipts-and-census",
+      "reason": "Review web census, current metadata hashes and receipt lifecycle: obsolete recorded receipts with no matching behavior contract retain history but receive zero coverage credit, including for unchanged files. New matching receipts remain mandatory, and stale current execution claims are rejected. Preserve UI01/UI02 and all engine source hashes; source-index refresh records indexing only.",
+      "files": [
+        {
+          "after_sha256": "2cbbf33721a8064bf5865b2c5c269fc94539acaac929e17cc67ccbbb8a8910be",
+          "before_sha256": "69a020abafd28c2a8cb8ddc6e06dbec63ee8799cd52c2da38333e210a23254f7",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "ffab964c6f412e6c201d06dbf4872ad9615b3d0e3892cad121f61b02ac4c2e48",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-accounting.json"
+        },
+        {
+          "after_sha256": "053123de6133fbe3ebefab75259c6983332bf0ee8db741dc518ca8d551835020",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-extension.json"
+        },
+        {
+          "after_sha256": "41658c07a44b6c3bca08994a51dcb90f9b72e4e53c58afc1a877e200b73b771f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-resolution.json"
+        },
+        {
+          "after_sha256": "d2ed54e13ba6649995909ebfdeb8e3889cb9a8912f17d64edc33ea705aa1d4cc",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-review.json"
+        },
+        {
+          "after_sha256": "97e42d739affa0ae43677a2ae62de8a2051383266c794841ef5bbb0d6fbf513c",
+          "before_sha256": "1aa798b7ec2f9b6d09acaae28bbf657ed8f3c522273ffbc901413a7e53c8c2c1",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "8454eb042ff8f14a7bc0259ee82220c72b6600ea35908078caf070a0a29891a6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-direct-calls.json"
+        },
+        {
+          "after_sha256": "c1b1a9572052c0ce397f77ddff234e7e8039c52c5246f6f95f07de0070cb9db5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-final.json"
+        },
+        {
+          "after_sha256": "16bb7d4bd8ffa3a77cd216fee6cead47f4c9edd6866a8aefddcddce9695e1579",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v2.json"
+        },
+        {
+          "after_sha256": "4557d740fd92a002c155dfd820be8c8cb6a75c9a2d4fb426696bf6ea1e58c80c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v3.json"
+        },
+        {
+          "after_sha256": "ca6fa3ba9af3f64660f773ba9fe74031a53c909954892affd090bc73a2dc298b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated.json"
+        },
+        {
+          "after_sha256": "5971d6ed4c53e804facdb1e9276c87283e8da5ba8e758bb47edf003e935e918b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-prevalidation.json"
+        },
+        {
+          "after_sha256": "4cb7fc078573389ec37e615c7fe0e337420f3e1ffcfc21e0a868509eb56a373f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-reviewed.json"
+        },
+        {
+          "after_sha256": "1d9951927c4016eec161860b8e946be12fb13759f4895a5671f0bb60f2bb64a9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-direct-calls.md"
+        },
+        {
+          "after_sha256": "343aa3d8b21fa854800efd5adebd5134f41dbad362dbef506c749e3d11db9eaf",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-reviewed.md"
+        },
+        {
+          "after_sha256": "206cb584e96c1c77159dc0b11339c20b223d514f2ab0f400b1b0c0e3b904385c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui.md"
+        },
+        {
+          "after_sha256": "cca0ffd65cccd2013cba1b34172c087202c05153c4ce36468df8305cb892c65f",
+          "before_sha256": "9f1345538bbd0506b608c00c2acf5b08e6f0ff6a6dadf2eb5a423fdf7cd43597",
+          "path": "tests/test-coverage-gate.py"
+        },
+        {
+          "after_sha256": "9a836d6fbaf1b3c94d523b7f8c420f0553dae3c94331057b4d685c20f7f4fca6",
+          "before_sha256": "1f86cf86bdfef6c22315a229b5b22c752a3b3f68fd765d48e3fc72309140267d",
+          "path": "tests/test-re-coverage.py"
+        },
+        {
+          "after_sha256": "e632e389d5ecbdfb20192b2806f17d39840e094b3f7f29df07c905008a639a56",
+          "before_sha256": "1668a715bd021c891401e4690b9902ea0cba1766a264574a046b81a3caa27f7a",
+          "path": "tools/coverage_audit.py"
+        },
+        {
+          "after_sha256": "1c474eecb267f4368df128fa2abc23d0f02bff6f1a617aeaf5a795fd92d1acd2",
+          "before_sha256": "41b96a6fc308bcd58ba13f2f3cf9ebbaf549109f2d90f98c29f9899f7720f909",
+          "path": "tools/coverage_gate.py"
+        },
+        {
+          "after_sha256": "b06f0438360462b7965af998ebcf73ca9f88bcb00befd0d5a46d5e6ae98b56d9",
+          "before_sha256": "6b783efda805feb49d9f959d9ce531895a96014607c257602ad77fc26c07ffca",
+          "path": "tools/index-coverage-sources.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "59faf990056f450d435ce57841c1577500016067379523b66f5eff3f2327edee",
+          "before_sha256": "cf31d9fa2708f4e800e305bc5e802e4505c75578189f2115c8cd31d9e03b0a9b",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "d19c45a2a67ba886a9adc4cf92c2e13d1172053dd91c4ff9f5dfd2b095874bc1",
+          "before_sha256": "632aca1e2d0308cbeec3a27a625c0006610219010e2aff9a9e5ca3aa4920186b",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "pending_gaps": [
+        "stale_evidence:2a8e47c70c9c6dee01963db4d9d6139287027fcd8b4bca61372f999d992d441e",
+        "stale_evidence:5b599478b085efe5f5970950535bab4e76a3e38549e8c90da585e9dc491606d0",
+        "stale_evidence:6a50ef636a76bf7b65914e323c3a9c9131713353bd2ece0f122b7cecee7bdaed",
+        "stale_evidence:a0a8a31c620580f575122ccfaf177f03442344f9759c1a259eb5211c91c0112a",
+        "stale_evidence:bc0ec42416b93c2916240b937610f2fdfb8478a833b893aafab58a541da7bba3",
+        "stale_evidence:d2f081ec7af0b288c36242ebf4c21cd5c73eb09470425804e627011d47090bd4"
+      ],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "All 45 discovery and 44 gate regressions pass, including legacy census visibility and obsolete-receipt zero-credit/stale-current rejection. Old static/tool/UI execution fingerprints remain historical after source changes. No original engine comparison is rerun or promoted; unrelated engine receipts remain with their contributors."
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-1d1ca72",
+      "reason": "Retrospective review of committed append-only coverage journal transition in 1d1ca72e05486e58ba780fc8901afd43fe2d75d3. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "5668dfd4cf81f7ecfe9e164f8da70a6092eeade8e369aa8a94d5d0eae82901be",
+          "after_sha256": "e806f6f0780842b3cd4622070220d316866845c902dfa4e552908b68207afdbb"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-fca9a1b",
+      "reason": "Retrospective review of committed append-only coverage journal transition in fca9a1b67a42d6d801cda971a9ccae3249fab77b. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "e806f6f0780842b3cd4622070220d316866845c902dfa4e552908b68207afdbb",
+          "after_sha256": "177b7ab5205456494ed7b58e6a9b90c899d3ea8afa5829f38188216eaad28bec"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-ad460a0",
+      "reason": "Retrospective review of committed append-only coverage journal transition in ad460a0298e8015fdeeb69019a5f8bcaf8672dfb. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "177b7ab5205456494ed7b58e6a9b90c899d3ea8afa5829f38188216eaad28bec",
+          "after_sha256": "0e9c58672f2d8333ac9f7b0e1dc13151f5a16b8c017ee6c73b510147d6e16f19"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-38e1fd8",
+      "reason": "Retrospective review of committed append-only coverage journal transition in 38e1fd8feb970e7c264ae2651fa80cf993d5bde1. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "0e9c58672f2d8333ac9f7b0e1dc13151f5a16b8c017ee6c73b510147d6e16f19",
+          "after_sha256": "ba71655af4d76a504c56f3a89eaa8990e5592cff4fe5be386891c89f6feccba9"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-cf37d58",
+      "reason": "Retrospective review of committed append-only coverage journal transition in cf37d584a91625ea93e5b93eb40792d8bcd1982d. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "ba71655af4d76a504c56f3a89eaa8990e5592cff4fe5be386891c89f6feccba9",
+          "after_sha256": "d1c9d47470fcb730196be7a3c9c69ab75357e3396b71779b067e4ad46ee3ebe6"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-de0a942",
+      "reason": "Retrospective review of committed append-only coverage journal transition in de0a94297e14ad40edf1a9d08f2f818452da79a5. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "d1c9d47470fcb730196be7a3c9c69ab75357e3396b71779b067e4ad46ee3ebe6",
+          "after_sha256": "c0f5909f2aed6fc53ee5ed136382568d9533645e48238d1937327d577d878502"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-7496e50",
+      "reason": "Retrospective review of committed append-only coverage journal transition in 7496e50a020d4eb2c782d1c27b57901fb0b91ae8. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "c0f5909f2aed6fc53ee5ed136382568d9533645e48238d1937327d577d878502",
+          "after_sha256": "15538538bd323c2d7c821ea57b458f73ad59f8ea6b808459b996f07451b6c4b3"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-3c43d10",
+      "reason": "Retrospective review of committed append-only coverage journal transition in 3c43d1027e35ae6d624a387aa7d261c8c0b60e1a. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "15538538bd323c2d7c821ea57b458f73ad59f8ea6b808459b996f07451b6c4b3",
+          "after_sha256": "4d7295a060fa27791428502ebc2f02e29159a499ec8b19dfdd2794a3ac68c525"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-6d9c8e9",
+      "reason": "Retrospective review of committed append-only coverage journal transition in 6d9c8e94a94479e17be8160ea29f681e540451bd. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "4d7295a060fa27791428502ebc2f02e29159a499ec8b19dfdd2794a3ac68c525",
+          "after_sha256": "4cb20ec077f4ae57d2519f916f778ed084a64f5e54e9a5ca58ad5642e5198fee"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-bfe8b38",
+      "reason": "Retrospective review of committed append-only coverage journal transition in bfe8b3853cd7a5515f777967e57093d7fd194f60. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "4cb20ec077f4ae57d2519f916f778ed084a64f5e54e9a5ca58ad5642e5198fee",
+          "after_sha256": "466f3a65ca1e2f0785444693c4d8491f457672a10b72be2d7c46b263d875f930"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-06463cc",
+      "reason": "Retrospective review of committed append-only coverage journal transition in 06463ccf2298e82153cd56f075147ec28f6c78b1. Parent/current hashes checked exactly; other committed source and research transitions in the retained range have matching receipts. This journal bookkeeping adds no engine validation and asserts no past gate pass.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "466f3a65ca1e2f0785444693c4d8491f457672a10b72be2d7c46b263d875f930",
+          "after_sha256": "aa176e5604722c09370f02bd593de68b48236a4eee575261ed03a8c58fe375b5"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Exact append-only journal bookkeeping only; no engine contract or source change is covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-423df90",
+      "reason": "Retrospective exact committed journal transition in 423df90406ee28c62d8190bedb64666d087f1d4e reviewed after the previous track history report. Other source/research transitions match retained receipts; no historical gate pass or new execution is asserted.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "aa176e5604722c09370f02bd593de68b48236a4eee575261ed03a8c58fe375b5",
+          "after_sha256": "2e91f7b01da93b61c648104ddf0bbac9bc362d2398172515edf139a666bbeb2f"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Append-only journal bookkeeping; no engine contract or source change covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-tracks-retrospective-journal-930ca14",
+      "reason": "Retrospective exact committed journal transition in 930ca14f13f54be67ff62a6ac849b9abc3aa9794 reviewed after the previous track history report. Other source/research transitions match retained receipts; no historical gate pass or new execution is asserted.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "2e91f7b01da93b61c648104ddf0bbac9bc362d2398172515edf139a666bbeb2f",
+          "after_sha256": "ebb8fb94dd380846d81dae99f58b73e2dee5694832c4261013e04367f879d41b"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "reason": "Append-only journal bookkeeping; no engine contract or source change covered.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-major-tracks-ui04-930ca14",
+      "reason": "Reviewed default major-track capability dashboard and curated exact requirement IDs, scopes and concrete next tasks. All contract requirements need explicit stages and execution evidence; partial code and missing IDs never count ready, current proof is separate from historical achievement, spell cases form one goal, observation is distinct from replacement. Existing details, file boundaries and bookmarked filters remain available.",
+      "files": [
+        {
+          "after_sha256": "379b578c9a12400bd1ae249a5fccb2f8d0cb5968b45593c2b86ee4ffb130bd64",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/README.md"
+        },
+        {
+          "after_sha256": "84bf8e3ad9ba4f1f872e13bdecfa476cc538e5a89baade1717004dd3f8c4fcec",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/app.js"
+        },
+        {
+          "after_sha256": "95d0e704266497d78719fa35be34a8888826483914e98c8f5c860fdafa4deaa5",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/index.html"
+        },
+        {
+          "after_sha256": "5e61e0146bfe811c09e6947cd0abc41bc08c3f870810c2c1db3cb103e638ad07",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/style.css"
+        },
+        {
+          "after_sha256": "1362933ce1061b31699bbc3e77ee690fe4f233992e6420de254dd3fe05c32283",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/tracks.json"
+        },
+        {
+          "after_sha256": "43424514aa82ef8ae36b4f71773b11b3fff37545293da849f50cf6905caf71b1",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-tracks-validation.json"
+        },
+        {
+          "after_sha256": "04d7b70e2c370afaeff3e9f62d55c7e9194b1909f300678ca02e0cd008989d2e",
+          "before_sha256": null,
+          "path": "tests/test-coverage-ui-browser.py"
+        },
+        {
+          "after_sha256": "1b8406a7b0cce8239ed3de6b3c5367e6d7e613ccb0652937c1f421557968a164",
+          "before_sha256": null,
+          "path": "tests/test-coverage-ui.py"
+        },
+        {
+          "after_sha256": "3c0bc511363eb2fde0a8e075f1b1e9f377a36508fb57b8eb2eefbb49c836f0f2",
+          "before_sha256": null,
+          "path": "tools/coverage_ui.py"
+        },
+        {
+          "after_sha256": "35d61abdd323ab944c82c7ff92009344af6a18307f0609224862ea19ab330f7d",
+          "before_sha256": null,
+          "path": "tools/serve-coverage-ui.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "6dd63a4b17d1dc1e8e9ca7556e4e7a695cca1c0ac7f1cc5f40e10fdf48b715e7",
+          "before_sha256": null,
+          "id": "TOOL.coverage-ui"
+        }
+      ],
+      "pending_gaps": [
+        "behavior_anchors_outside_discovered_functions:0757281cbb431c98dbe70c878475e989be8ef44909373c7635a00244f2766f0d",
+        "behaviors_without_comparison:22b79632e726b93e366b16d086847d4fbefec3cb22b70b224b25be013a0cd181",
+        "behaviors_without_comparison:b17bb0ee33f1972035ea2292a1e511cf0eff73d096f46ca4786c46912ad520bc",
+        "behaviors_without_comparison:dced7475884661e83ce50794350d48f63239bf798f7b4f02ea8f3441c89f99e7",
+        "behaviors_without_implementation:22b79632e726b93e366b16d086847d4fbefec3cb22b70b224b25be013a0cd181",
+        "behaviors_without_implementation:b17bb0ee33f1972035ea2292a1e511cf0eff73d096f46ca4786c46912ad520bc",
+        "behaviors_without_scenarios:22b79632e726b93e366b16d086847d4fbefec3cb22b70b224b25be013a0cd181",
+        "behaviors_without_scenarios:b17bb0ee33f1972035ea2292a1e511cf0eff73d096f46ca4786c46912ad520bc",
+        "stale_evidence:28dc4cd99932c3eb0e64867b348288832b403feac78d9eaa5cd19fec6340356c",
+        "stale_evidence:2a8e47c70c9c6dee01963db4d9d6139287027fcd8b4bca61372f999d992d441e",
+        "stale_evidence:38e919e72491559cea27c51e8ce51112fb0a1f03ee66893305929cbc89fa63ef",
+        "stale_evidence:4439ac3c997fc21d434ca53d58a4e890f1ca8eb7a85cb3325572ca5d54f45bda",
+        "stale_evidence:531c0cfc2a113e3f71f664f9786a9f1c99432db5da7eed8a791c0b9470871384",
+        "stale_evidence:5b599478b085efe5f5970950535bab4e76a3e38549e8c90da585e9dc491606d0",
+        "stale_evidence:668a9337827ede136fa9433912bc1cbd1e91b8ed40b710e387fd46860e0d27d1",
+        "stale_evidence:6a50ef636a76bf7b65914e323c3a9c9131713353bd2ece0f122b7cecee7bdaed",
+        "stale_evidence:6cab73ba08d679c17abd7adab9a2f267b4f30cb28a2c61bbefe160b1e76951c9",
+        "stale_evidence:7660685e7d8642518eb9e6bc63646fd1b3eaeecd5ec1e3973ec1f31b1f1b80cc",
+        "stale_evidence:778c2f0649b279db9df68983920cbc80d46b270b0c396fce863a365a565ac918",
+        "stale_evidence:7ade490602cf54b5cefea01c38e0f0e7bd6cd4876ccadbecad698747465a374a",
+        "stale_evidence:856be78dc5f38a218b9886fc1f77fb217d92420b8fdb2683b5827fa01eaf2807",
+        "stale_evidence:915f0fb452cbfcf5589ea3da6c68bdc3b076ab01aec10e1188e898611777d94b",
+        "stale_evidence:93cd02c9ced6193234b4fc9210906e3886a332091946812df03333f4e823aa8a",
+        "stale_evidence:9ffe9c2174afccbf17ce7009f5b0103e26583cd5f13f86791a893f5dbc0a0d05",
+        "stale_evidence:a0a8a31c620580f575122ccfaf177f03442344f9759c1a259eb5211c91c0112a",
+        "stale_evidence:b0cc854901c0d5072ca79e4925a69874ce6355c0bcb68d861456a1be0f234d4a",
+        "stale_evidence:bc0ec42416b93c2916240b937610f2fdfb8478a833b893aafab58a541da7bba3",
+        "stale_evidence:cb71215148759eabfb746a3cc36c4a9d6f94ff1c86730ee6318e9976866f5370",
+        "stale_evidence:d2f081ec7af0b288c36242ebf4c21cd5c73eb09470425804e627011d47090bd4",
+        "stale_evidence:d70f990a0f7e9f3bd8d66f9faaa539df1510a5a8b401cfc5739b7dabec5be1c6",
+        "stale_evidence:f3792e1b05b9cc4ea97d434fa7375516774cf0488f513e8adc7dd7b535abeb01"
+      ],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh UI04 execution retains 12 semantic/HTTP checks and 20 real Chromium interaction checks at desktop/mobile sizes. UI-only proof, no engine original comparison or status promotion. Earlier UI records preserve their historical hashes.",
+        "evidence": [
+          "UI04.dashboard"
+        ]
+      }
+    },
+    {
+      "id": "coverage-ui-major-tracks-accounting-930ca14",
+      "reason": "Reviewed exact UI evidence/history/summary/census preservation and central dashboard mapping. Committed ranges 00b547c..930ca14 have exact parent/current source receipts plus retrospective journal-only receipts. Reviewed focused campaign register: existing 15 contracts match central entries; two pending Quit and consumer branches are seeded verbatim with partial understanding, no evidence and no implementation/comparison/integration/replacement claim. Their provisional inherited Cancel/V9 links remain pending until the owning engine work supplies corrected contracts and execution. Shared census records current paths and explicit links only; it does not validate concurrent engine edits.",
+      "files": [
+        {
+          "after_sha256": "6293b56cbcb9b32648c934dd23285b66a6f295be44b3df00c12908ed234bbe5d",
+          "before_sha256": "d47836aabd7365b72363e64b62853b937c5912c0e36a614ee9c17e0941fc878c",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "ffab964c6f412e6c201d06dbf4872ad9615b3d0e3892cad121f61b02ac4c2e48",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-accounting.json"
+        },
+        {
+          "after_sha256": "97c290dcfcd4d24a95dc4580d2d0610626a024f669375a401e2a10056e984285",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-direct-call-validation.json"
+        },
+        {
+          "after_sha256": "053123de6133fbe3ebefab75259c6983332bf0ee8db741dc518ca8d551835020",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-extension.json"
+        },
+        {
+          "after_sha256": "41658c07a44b6c3bca08994a51dcb90f9b72e4e53c58afc1a877e200b73b771f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-resolution.json"
+        },
+        {
+          "after_sha256": "d2ed54e13ba6649995909ebfdeb8e3889cb9a8912f17d64edc33ea705aa1d4cc",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-review.json"
+        },
+        {
+          "after_sha256": "0ba8abd28108e9bb0e042545838aaa6b833fd8a3662ee41627bb1d62bb6a1fd2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-tracks-history-extension.json"
+        },
+        {
+          "after_sha256": "f41698e852eadeec03d8a9546095b465e5b86a37a8d526be365c95a7e7718aad",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-tracks-history-resolution.json"
+        },
+        {
+          "after_sha256": "9a40847483728674cc8c300e222566c79b601baa4a3d5613166fd484cd1f0e1a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-tracks-history-review.json"
+        },
+        {
+          "after_sha256": "7ada5e4f160a7e27a0414a466523f75e6de02e68fca7a6b4f30c017baa81bb91",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-validation-final.json"
+        },
+        {
+          "after_sha256": "c5971333ea70194bde1e9974e1fc31edad312dba2f4f93ad3f7aecb01b55e88b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-validation.json"
+        },
+        {
+          "after_sha256": "941e886f6889e4564ff46252fd7f60c460b122e3a47ee9a7dd47ed32a15bfcc5",
+          "before_sha256": "22731ff6ec0207e42d4e3197d7ec6c8bf62966964f1cd5a025ed608c03bcafb2",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "8454eb042ff8f14a7bc0259ee82220c72b6600ea35908078caf070a0a29891a6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-direct-calls.json"
+        },
+        {
+          "after_sha256": "c1b1a9572052c0ce397f77ddff234e7e8039c52c5246f6f95f07de0070cb9db5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-final.json"
+        },
+        {
+          "after_sha256": "16bb7d4bd8ffa3a77cd216fee6cead47f4c9edd6866a8aefddcddce9695e1579",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v2.json"
+        },
+        {
+          "after_sha256": "4557d740fd92a002c155dfd820be8c8cb6a75c9a2d4fb426696bf6ea1e58c80c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v3.json"
+        },
+        {
+          "after_sha256": "ca6fa3ba9af3f64660f773ba9fe74031a53c909954892affd090bc73a2dc298b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated.json"
+        },
+        {
+          "after_sha256": "5971d6ed4c53e804facdb1e9276c87283e8da5ba8e758bb47edf003e935e918b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-prevalidation.json"
+        },
+        {
+          "after_sha256": "4cb7fc078573389ec37e615c7fe0e337420f3e1ffcfc21e0a868509eb56a373f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-reviewed.json"
+        },
+        {
+          "after_sha256": "6fa1e7ab4de8ff470a90cebdd2beda36660892a93f92d153c073d885e1c40c57",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks-final.json"
+        },
+        {
+          "after_sha256": "1121df95a3ccdc6bec840e8549340a968298c154dd2f829f47b50f0afbd543a8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks-reconciled.json"
+        },
+        {
+          "after_sha256": "5b032a6b14b7f5a1594a3842e4c22b24f6e16a6f90b93a73e2164b4cf42ed447",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks.json"
+        },
+        {
+          "after_sha256": "1d9951927c4016eec161860b8e946be12fb13759f4895a5671f0bb60f2bb64a9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-direct-calls.md"
+        },
+        {
+          "after_sha256": "343aa3d8b21fa854800efd5adebd5134f41dbad362dbef506c749e3d11db9eaf",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-reviewed.md"
+        },
+        {
+          "after_sha256": "2ac3fa7b3849a4ca5e019ad06a0ed09241b3e659fd040f14c362a2f3bb8d5572",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-tracks-v2.md"
+        },
+        {
+          "after_sha256": "8f2e21ae75efebd85e4f7557e1cb8459db4edd7e88a6acea09c47add28e8100b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-tracks.md"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "8c5b492984412e3af88b289788effdec1f08ae978a6e982429411a1b4010deb7",
+          "before_sha256": null,
+          "id": "CP.campaign-mini-quit"
+        },
+        {
+          "after_sha256": "52ab731bd99344422a91b41b480d683fd07cdf6ef8d8f0f1d5b3a32723af6c37",
+          "before_sha256": null,
+          "id": "CP.campaign-mini-quit-lifecycle"
+        }
+      ],
+      "pending_gaps": [
+        "behavior_anchors_outside_discovered_functions:0757281cbb431c98dbe70c878475e989be8ef44909373c7635a00244f2766f0d",
+        "behaviors_without_comparison:22b79632e726b93e366b16d086847d4fbefec3cb22b70b224b25be013a0cd181",
+        "behaviors_without_comparison:b17bb0ee33f1972035ea2292a1e511cf0eff73d096f46ca4786c46912ad520bc",
+        "behaviors_without_comparison:dced7475884661e83ce50794350d48f63239bf798f7b4f02ea8f3441c89f99e7",
+        "behaviors_without_implementation:22b79632e726b93e366b16d086847d4fbefec3cb22b70b224b25be013a0cd181",
+        "behaviors_without_implementation:b17bb0ee33f1972035ea2292a1e511cf0eff73d096f46ca4786c46912ad520bc",
+        "behaviors_without_scenarios:22b79632e726b93e366b16d086847d4fbefec3cb22b70b224b25be013a0cd181",
+        "behaviors_without_scenarios:b17bb0ee33f1972035ea2292a1e511cf0eff73d096f46ca4786c46912ad520bc",
+        "stale_evidence:28dc4cd99932c3eb0e64867b348288832b403feac78d9eaa5cd19fec6340356c",
+        "stale_evidence:2a8e47c70c9c6dee01963db4d9d6139287027fcd8b4bca61372f999d992d441e",
+        "stale_evidence:38e919e72491559cea27c51e8ce51112fb0a1f03ee66893305929cbc89fa63ef",
+        "stale_evidence:4439ac3c997fc21d434ca53d58a4e890f1ca8eb7a85cb3325572ca5d54f45bda",
+        "stale_evidence:531c0cfc2a113e3f71f664f9786a9f1c99432db5da7eed8a791c0b9470871384",
+        "stale_evidence:5b599478b085efe5f5970950535bab4e76a3e38549e8c90da585e9dc491606d0",
+        "stale_evidence:668a9337827ede136fa9433912bc1cbd1e91b8ed40b710e387fd46860e0d27d1",
+        "stale_evidence:6a50ef636a76bf7b65914e323c3a9c9131713353bd2ece0f122b7cecee7bdaed",
+        "stale_evidence:6cab73ba08d679c17abd7adab9a2f267b4f30cb28a2c61bbefe160b1e76951c9",
+        "stale_evidence:7660685e7d8642518eb9e6bc63646fd1b3eaeecd5ec1e3973ec1f31b1f1b80cc",
+        "stale_evidence:778c2f0649b279db9df68983920cbc80d46b270b0c396fce863a365a565ac918",
+        "stale_evidence:7ade490602cf54b5cefea01c38e0f0e7bd6cd4876ccadbecad698747465a374a",
+        "stale_evidence:856be78dc5f38a218b9886fc1f77fb217d92420b8fdb2683b5827fa01eaf2807",
+        "stale_evidence:915f0fb452cbfcf5589ea3da6c68bdc3b076ab01aec10e1188e898611777d94b",
+        "stale_evidence:93cd02c9ced6193234b4fc9210906e3886a332091946812df03333f4e823aa8a",
+        "stale_evidence:9ffe9c2174afccbf17ce7009f5b0103e26583cd5f13f86791a893f5dbc0a0d05",
+        "stale_evidence:a0a8a31c620580f575122ccfaf177f03442344f9759c1a259eb5211c91c0112a",
+        "stale_evidence:b0cc854901c0d5072ca79e4925a69874ce6355c0bcb68d861456a1be0f234d4a",
+        "stale_evidence:bc0ec42416b93c2916240b937610f2fdfb8478a833b893aafab58a541da7bba3",
+        "stale_evidence:cb71215148759eabfb746a3cc36c4a9d6f94ff1c86730ee6318e9976866f5370",
+        "stale_evidence:d2f081ec7af0b288c36242ebf4c21cd5c73eb09470425804e627011d47090bd4",
+        "stale_evidence:d70f990a0f7e9f3bd8d66f9faaa539df1510a5a8b401cfc5739b7dabec5be1c6",
+        "stale_evidence:f3792e1b05b9cc4ea97d434fa7375516774cf0488f513e8adc7dd7b535abeb01"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Named-roadmap metadata and historical preservation reviewed. Campaign Quit source/contract validation remains pending. Full working-tree accounting includes separately owned ongoing campaign and renderer edits; this receipt does not cover or validate those engine source files. Source-only UI changes leave UI01/UI02/UI03 historical; UI04 verifies current UI code only.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-major-tracks-current-metadata-930ca14",
+      "reason": "Exact refreshed hashes for the previously drafted UI register/census/history/summary/ledger bookkeeping. Reviewed UI source links, named major-track requirements and preserved UI01\u2013UI04 evidence records; refreshed census acknowledges current paths and explicit links only. Other authors are concurrently changing renderer and campaign sources; this metadata receipt neither covers their source files nor validates their contracts.",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "d47836aabd7365b72363e64b62853b937c5912c0e36a614ee9c17e0941fc878c",
+          "after_sha256": "6293b56cbcb9b32648c934dd23285b66a6f295be44b3df00c12908ed234bbe5d"
+        },
+        {
+          "path": "research/runtime/coverage-ui-accounting.json",
+          "before_sha256": null,
+          "after_sha256": "ffab964c6f412e6c201d06dbf4872ad9615b3d0e3892cad121f61b02ac4c2e48"
+        },
+        {
+          "path": "research/runtime/coverage-ui-direct-call-validation.json",
+          "before_sha256": null,
+          "after_sha256": "97c290dcfcd4d24a95dc4580d2d0610626a024f669375a401e2a10056e984285"
+        },
+        {
+          "path": "research/runtime/coverage-ui-history-extension.json",
+          "before_sha256": null,
+          "after_sha256": "053123de6133fbe3ebefab75259c6983332bf0ee8db741dc518ca8d551835020"
+        },
+        {
+          "path": "research/runtime/coverage-ui-history-resolution.json",
+          "before_sha256": null,
+          "after_sha256": "41658c07a44b6c3bca08994a51dcb90f9b72e4e53c58afc1a877e200b73b771f"
+        },
+        {
+          "path": "research/runtime/coverage-ui-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "d2ed54e13ba6649995909ebfdeb8e3889cb9a8912f17d64edc33ea705aa1d4cc"
+        },
+        {
+          "path": "research/runtime/coverage-ui-tracks-history-extension.json",
+          "before_sha256": null,
+          "after_sha256": "0ba8abd28108e9bb0e042545838aaa6b833fd8a3662ee41627bb1d62bb6a1fd2"
+        },
+        {
+          "path": "research/runtime/coverage-ui-tracks-history-resolution.json",
+          "before_sha256": null,
+          "after_sha256": "f41698e852eadeec03d8a9546095b465e5b86a37a8d526be365c95a7e7718aad"
+        },
+        {
+          "path": "research/runtime/coverage-ui-tracks-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "9a40847483728674cc8c300e222566c79b601baa4a3d5613166fd484cd1f0e1a"
+        },
+        {
+          "path": "research/runtime/coverage-ui-tracks-validation.json",
+          "before_sha256": null,
+          "after_sha256": "43424514aa82ef8ae36b4f71773b11b3fff37545293da849f50cf6905caf71b1"
+        },
+        {
+          "path": "research/runtime/coverage-ui-validation-final.json",
+          "before_sha256": null,
+          "after_sha256": "7ada5e4f160a7e27a0414a466523f75e6de02e68fca7a6b4f30c017baa81bb91"
+        },
+        {
+          "path": "research/runtime/coverage-ui-validation.json",
+          "before_sha256": null,
+          "after_sha256": "c5971333ea70194bde1e9974e1fc31edad312dba2f4f93ad3f7aecb01b55e88b"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "22731ff6ec0207e42d4e3197d7ec6c8bf62966964f1cd5a025ed608c03bcafb2",
+          "after_sha256": "c62c5aac3d4eb46e6c568af92dd1e6038fc93a459e901114949e638159103dc1"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-direct-calls.json",
+          "before_sha256": null,
+          "after_sha256": "8454eb042ff8f14a7bc0259ee82220c72b6600ea35908078caf070a0a29891a6"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-final.json",
+          "before_sha256": null,
+          "after_sha256": "c1b1a9572052c0ce397f77ddff234e7e8039c52c5246f6f95f07de0070cb9db5"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v2.json",
+          "before_sha256": null,
+          "after_sha256": "16bb7d4bd8ffa3a77cd216fee6cead47f4c9edd6866a8aefddcddce9695e1579"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v3.json",
+          "before_sha256": null,
+          "after_sha256": "4557d740fd92a002c155dfd820be8c8cb6a75c9a2d4fb426696bf6ea1e58c80c"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated.json",
+          "before_sha256": null,
+          "after_sha256": "ca6fa3ba9af3f64660f773ba9fe74031a53c909954892affd090bc73a2dc298b"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-prevalidation.json",
+          "before_sha256": null,
+          "after_sha256": "5971d6ed4c53e804facdb1e9276c87283e8da5ba8e758bb47edf003e935e918b"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-reviewed.json",
+          "before_sha256": null,
+          "after_sha256": "4cb7fc078573389ec37e615c7fe0e337420f3e1ffcfc21e0a868509eb56a373f"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks-current.json",
+          "before_sha256": null,
+          "after_sha256": "6dcb6acc248183cc65fefe077cfdf6f0c9054b2855a6d810a32fb8fdedd49474"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks-final.json",
+          "before_sha256": null,
+          "after_sha256": "6fa1e7ab4de8ff470a90cebdd2beda36660892a93f92d153c073d885e1c40c57"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks-reconciled.json",
+          "before_sha256": null,
+          "after_sha256": "1121df95a3ccdc6bec840e8549340a968298c154dd2f829f47b50f0afbd543a8"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks.json",
+          "before_sha256": null,
+          "after_sha256": "5b032a6b14b7f5a1594a3842e4c22b24f6e16a6f90b93a73e2164b4cf42ed447"
+        },
+        {
+          "path": "research/runtime/coverage/summary-coverage-ui-direct-calls.md",
+          "before_sha256": null,
+          "after_sha256": "1d9951927c4016eec161860b8e946be12fb13759f4895a5671f0bb60f2bb64a9"
+        },
+        {
+          "path": "research/runtime/coverage/summary-coverage-ui-reviewed.md",
+          "before_sha256": null,
+          "after_sha256": "343aa3d8b21fa854800efd5adebd5134f41dbad362dbef506c749e3d11db9eaf"
+        },
+        {
+          "path": "research/runtime/coverage/summary-coverage-ui-tracks-current.md",
+          "before_sha256": null,
+          "after_sha256": "2937f5a1f394f0d3b4635023e34e0d22f304802233d59b7d5774036b2bd6ab72"
+        },
+        {
+          "path": "research/runtime/coverage/summary-coverage-ui-tracks-v2.md",
+          "before_sha256": null,
+          "after_sha256": "2ac3fa7b3849a4ca5e019ad06a0ed09241b3e659fd040f14c362a2f3bb8d5572"
+        },
+        {
+          "path": "research/runtime/coverage/summary-coverage-ui-tracks.md",
+          "before_sha256": null,
+          "after_sha256": "8f2e21ae75efebd85e4f7557e1cb8459db4edd7e88a6acea09c47add28e8100b"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "reason": "UI execution remains the fresh UI04 evidence with an independently verified exact source/contract receipt. This shared metadata/census refresh is an indexing review; the repository-wide gate remains subject to independently reviewed concurrent engine changes.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "coverage-ui-staged-ui04-commit-930ca14",
+      "reason": "Exact staged dashboard, explicit major-track milestone requirements, partial foundations, historic/current proof handling and existing behavior/binary drilldowns reviewed for this commit. The spell checklist forms one named outcome; status and evidence never imply whole-game completion or native replacement.",
+      "files": [
+        {
+          "after_sha256": "379b578c9a12400bd1ae249a5fccb2f8d0cb5968b45593c2b86ee4ffb130bd64",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/README.md"
+        },
+        {
+          "after_sha256": "84bf8e3ad9ba4f1f872e13bdecfa476cc538e5a89baade1717004dd3f8c4fcec",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/app.js"
+        },
+        {
+          "after_sha256": "95d0e704266497d78719fa35be34a8888826483914e98c8f5c860fdafa4deaa5",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/index.html"
+        },
+        {
+          "after_sha256": "5e61e0146bfe811c09e6947cd0abc41bc08c3f870810c2c1db3cb103e638ad07",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/style.css"
+        },
+        {
+          "after_sha256": "1362933ce1061b31699bbc3e77ee690fe4f233992e6420de254dd3fe05c32283",
+          "before_sha256": null,
+          "path": "apps/coverage-ui/tracks.json"
+        },
+        {
+          "after_sha256": "43424514aa82ef8ae36b4f71773b11b3fff37545293da849f50cf6905caf71b1",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-tracks-validation.json"
+        },
+        {
+          "after_sha256": "04d7b70e2c370afaeff3e9f62d55c7e9194b1909f300678ca02e0cd008989d2e",
+          "before_sha256": null,
+          "path": "tests/test-coverage-ui-browser.py"
+        },
+        {
+          "after_sha256": "1b8406a7b0cce8239ed3de6b3c5367e6d7e613ccb0652937c1f421557968a164",
+          "before_sha256": null,
+          "path": "tests/test-coverage-ui.py"
+        },
+        {
+          "after_sha256": "3c0bc511363eb2fde0a8e075f1b1e9f377a36508fb57b8eb2eefbb49c836f0f2",
+          "before_sha256": null,
+          "path": "tools/coverage_ui.py"
+        },
+        {
+          "after_sha256": "35d61abdd323ab944c82c7ff92009344af6a18307f0609224862ea19ab330f7d",
+          "before_sha256": null,
+          "path": "tools/serve-coverage-ui.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "6dd63a4b17d1dc1e8e9ca7556e4e7a695cca1c0ac7f1cc5f40e10fdf48b715e7",
+          "before_sha256": null,
+          "id": "TOOL.coverage-ui"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:dced7475884661e83ce50794350d48f63239bf798f7b4f02ea8f3441c89f99e7",
+        "stale_evidence:28dc4cd99932c3eb0e64867b348288832b403feac78d9eaa5cd19fec6340356c",
+        "stale_evidence:2a8e47c70c9c6dee01963db4d9d6139287027fcd8b4bca61372f999d992d441e",
+        "stale_evidence:38e919e72491559cea27c51e8ce51112fb0a1f03ee66893305929cbc89fa63ef",
+        "stale_evidence:4439ac3c997fc21d434ca53d58a4e890f1ca8eb7a85cb3325572ca5d54f45bda",
+        "stale_evidence:531c0cfc2a113e3f71f664f9786a9f1c99432db5da7eed8a791c0b9470871384",
+        "stale_evidence:5b599478b085efe5f5970950535bab4e76a3e38549e8c90da585e9dc491606d0",
+        "stale_evidence:668a9337827ede136fa9433912bc1cbd1e91b8ed40b710e387fd46860e0d27d1",
+        "stale_evidence:6a50ef636a76bf7b65914e323c3a9c9131713353bd2ece0f122b7cecee7bdaed",
+        "stale_evidence:6cab73ba08d679c17abd7adab9a2f267b4f30cb28a2c61bbefe160b1e76951c9",
+        "stale_evidence:7660685e7d8642518eb9e6bc63646fd1b3eaeecd5ec1e3973ec1f31b1f1b80cc",
+        "stale_evidence:778c2f0649b279db9df68983920cbc80d46b270b0c396fce863a365a565ac918",
+        "stale_evidence:7ade490602cf54b5cefea01c38e0f0e7bd6cd4876ccadbecad698747465a374a",
+        "stale_evidence:856be78dc5f38a218b9886fc1f77fb217d92420b8fdb2683b5827fa01eaf2807",
+        "stale_evidence:915f0fb452cbfcf5589ea3da6c68bdc3b076ab01aec10e1188e898611777d94b",
+        "stale_evidence:93cd02c9ced6193234b4fc9210906e3886a332091946812df03333f4e823aa8a",
+        "stale_evidence:9ffe9c2174afccbf17ce7009f5b0103e26583cd5f13f86791a893f5dbc0a0d05",
+        "stale_evidence:a0a8a31c620580f575122ccfaf177f03442344f9759c1a259eb5211c91c0112a",
+        "stale_evidence:b0cc854901c0d5072ca79e4925a69874ce6355c0bcb68d861456a1be0f234d4a",
+        "stale_evidence:ba8de8d0b75e07d4486dc1bbc772afdf9ab5164bbec6ef6891952abf9c0a431e",
+        "stale_evidence:bc0ec42416b93c2916240b937610f2fdfb8478a833b893aafab58a541da7bba3",
+        "stale_evidence:cb71215148759eabfb746a3cc36c4a9d6f94ff1c86730ee6318e9976866f5370",
+        "stale_evidence:d2f081ec7af0b288c36242ebf4c21cd5c73eb09470425804e627011d47090bd4",
+        "stale_evidence:d70f990a0f7e9f3bd8d66f9faaa539df1510a5a8b401cfc5739b7dabec5be1c6",
+        "stale_evidence:f3792e1b05b9cc4ea97d434fa7375516774cf0488f513e8adc7dd7b535abeb01"
+      ],
+      "validation": {
+        "status": "recorded",
+        "reason": "UI04 retains 12 semantic/HTTP and 20 desktop/mobile Chromium checks and fingerprints these exact UI sources. The selected commit tree repeated all 12 semantic/HTTP checks and JS syntax successfully; no original engine validation or status promotion.",
+        "evidence": [
+          "UI04.dashboard"
+        ]
+      }
+    },
+    {
+      "id": "coverage-ui-staged-accounting-commit-930ca14",
+      "reason": "Exact staged metadata/census/history/ledger and coverage audit/gate support reviewed. This census describes the selected commit tree; shared campaign, renderer and hook-message changes are excluded. Prior receipts, unknown mappings and stale evidence fingerprints remain intact. Web sources join current census accounting while exact older catalogs remain readable and cannot hide new web drift. Obsolete execution receipts receive no credit when all named behavior fingerprints have changed.",
+      "files": [
+        {
+          "after_sha256": "9d29ac03a5d25518ab25263c9d068a6e48585efd13fdbfc60dc3e92bcba6814e",
+          "before_sha256": "d47836aabd7365b72363e64b62853b937c5912c0e36a614ee9c17e0941fc878c",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "ffab964c6f412e6c201d06dbf4872ad9615b3d0e3892cad121f61b02ac4c2e48",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-accounting.json"
+        },
+        {
+          "after_sha256": "97c290dcfcd4d24a95dc4580d2d0610626a024f669375a401e2a10056e984285",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-direct-call-validation.json"
+        },
+        {
+          "after_sha256": "053123de6133fbe3ebefab75259c6983332bf0ee8db741dc518ca8d551835020",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-extension.json"
+        },
+        {
+          "after_sha256": "41658c07a44b6c3bca08994a51dcb90f9b72e4e53c58afc1a877e200b73b771f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-resolution.json"
+        },
+        {
+          "after_sha256": "d2ed54e13ba6649995909ebfdeb8e3889cb9a8912f17d64edc33ea705aa1d4cc",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-history-review.json"
+        },
+        {
+          "after_sha256": "0ba8abd28108e9bb0e042545838aaa6b833fd8a3662ee41627bb1d62bb6a1fd2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-tracks-history-extension.json"
+        },
+        {
+          "after_sha256": "f41698e852eadeec03d8a9546095b465e5b86a37a8d526be365c95a7e7718aad",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-tracks-history-resolution.json"
+        },
+        {
+          "after_sha256": "9a40847483728674cc8c300e222566c79b601baa4a3d5613166fd484cd1f0e1a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-tracks-history-review.json"
+        },
+        {
+          "after_sha256": "7ada5e4f160a7e27a0414a466523f75e6de02e68fca7a6b4f30c017baa81bb91",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-validation-final.json"
+        },
+        {
+          "after_sha256": "c5971333ea70194bde1e9974e1fc31edad312dba2f4f93ad3f7aecb01b55e88b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage-ui-validation.json"
+        },
+        {
+          "after_sha256": "c488a07e9098a4eb78fce88853ef4c2be651512e1758a6828675e1cae2a46918",
+          "before_sha256": "22731ff6ec0207e42d4e3197d7ec6c8bf62966964f1cd5a025ed608c03bcafb2",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "5275e84b971439ac65bec9ea50f4163b08319b3d3cd1a9994d326f1cbd327b07",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-commit.json"
+        },
+        {
+          "after_sha256": "8454eb042ff8f14a7bc0259ee82220c72b6600ea35908078caf070a0a29891a6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-direct-calls.json"
+        },
+        {
+          "after_sha256": "c1b1a9572052c0ce397f77ddff234e7e8039c52c5246f6f95f07de0070cb9db5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-final.json"
+        },
+        {
+          "after_sha256": "16bb7d4bd8ffa3a77cd216fee6cead47f4c9edd6866a8aefddcddce9695e1579",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v2.json"
+        },
+        {
+          "after_sha256": "4557d740fd92a002c155dfd820be8c8cb6a75c9a2d4fb426696bf6ea1e58c80c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v3.json"
+        },
+        {
+          "after_sha256": "ca6fa3ba9af3f64660f773ba9fe74031a53c909954892affd090bc73a2dc298b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-isolated.json"
+        },
+        {
+          "after_sha256": "5971d6ed4c53e804facdb1e9276c87283e8da5ba8e758bb47edf003e935e918b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-prevalidation.json"
+        },
+        {
+          "after_sha256": "4cb7fc078573389ec37e615c7fe0e337420f3e1ffcfc21e0a868509eb56a373f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-reviewed.json"
+        },
+        {
+          "after_sha256": "6dcb6acc248183cc65fefe077cfdf6f0c9054b2855a6d810a32fb8fdedd49474",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks-current.json"
+        },
+        {
+          "after_sha256": "6fa1e7ab4de8ff470a90cebdd2beda36660892a93f92d153c073d885e1c40c57",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks-final.json"
+        },
+        {
+          "after_sha256": "1121df95a3ccdc6bec840e8549340a968298c154dd2f829f47b50f0afbd543a8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks-reconciled.json"
+        },
+        {
+          "after_sha256": "5b032a6b14b7f5a1594a3842e4c22b24f6e16a6f90b93a73e2164b4cf42ed447",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-coverage-ui-tracks.json"
+        },
+        {
+          "after_sha256": "1d9951927c4016eec161860b8e946be12fb13759f4895a5671f0bb60f2bb64a9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-direct-calls.md"
+        },
+        {
+          "after_sha256": "343aa3d8b21fa854800efd5adebd5134f41dbad362dbef506c749e3d11db9eaf",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-reviewed.md"
+        },
+        {
+          "after_sha256": "2937f5a1f394f0d3b4635023e34e0d22f304802233d59b7d5774036b2bd6ab72",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-tracks-current.md"
+        },
+        {
+          "after_sha256": "2ac3fa7b3849a4ca5e019ad06a0ed09241b3e659fd040f14c362a2f3bb8d5572",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-tracks-v2.md"
+        },
+        {
+          "after_sha256": "8f2e21ae75efebd85e4f7557e1cb8459db4edd7e88a6acea09c47add28e8100b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui-tracks.md"
+        },
+        {
+          "after_sha256": "206cb584e96c1c77159dc0b11339c20b223d514f2ab0f400b1b0c0e3b904385c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-coverage-ui.md"
+        },
+        {
+          "after_sha256": "8ef78d1e12e70fe6c7252f5df46476136eb88e60197575323ea490be76e05516",
+          "before_sha256": "9f1345538bbd0506b608c00c2acf5b08e6f0ff6a6dadf2eb5a423fdf7cd43597",
+          "path": "tests/test-coverage-gate.py"
+        },
+        {
+          "after_sha256": "9a836d6fbaf1b3c94d523b7f8c420f0553dae3c94331057b4d685c20f7f4fca6",
+          "before_sha256": "1f86cf86bdfef6c22315a229b5b22c752a3b3f68fd765d48e3fc72309140267d",
+          "path": "tests/test-re-coverage.py"
+        },
+        {
+          "after_sha256": "e632e389d5ecbdfb20192b2806f17d39840e094b3f7f29df07c905008a639a56",
+          "before_sha256": "1668a715bd021c891401e4690b9902ea0cba1766a264574a046b81a3caa27f7a",
+          "path": "tools/coverage_audit.py"
+        },
+        {
+          "after_sha256": "1c474eecb267f4368df128fa2abc23d0f02bff6f1a617aeaf5a795fd92d1acd2",
+          "before_sha256": "41b96a6fc308bcd58ba13f2f3cf9ebbaf549109f2d90f98c29f9899f7720f909",
+          "path": "tools/coverage_gate.py"
+        },
+        {
+          "after_sha256": "b06f0438360462b7965af998ebcf73ca9f88bcb00befd0d5a46d5e6ae98b56d9",
+          "before_sha256": "6b783efda805feb49d9f959d9ce531895a96014607c257602ad77fc26c07ffca",
+          "path": "tools/index-coverage-sources.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "a653d08332d2f69466a55b233fbb3baa752ff4ddd4fa7fa34121bcf3dcd8afd7",
+          "before_sha256": "5f22b6a17111e9a1dfc51f3151c849b694523626c023061b1a31de47e8563e68",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "d19c45a2a67ba886a9adc4cf92c2e13d1172053dd91c4ff9f5dfd2b095874bc1",
+          "before_sha256": "632aca1e2d0308cbeec3a27a625c0006610219010e2aff9a9e5ca3aa4920186b",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:dced7475884661e83ce50794350d48f63239bf798f7b4f02ea8f3441c89f99e7",
+        "stale_evidence:28dc4cd99932c3eb0e64867b348288832b403feac78d9eaa5cd19fec6340356c",
+        "stale_evidence:2a8e47c70c9c6dee01963db4d9d6139287027fcd8b4bca61372f999d992d441e",
+        "stale_evidence:38e919e72491559cea27c51e8ce51112fb0a1f03ee66893305929cbc89fa63ef",
+        "stale_evidence:4439ac3c997fc21d434ca53d58a4e890f1ca8eb7a85cb3325572ca5d54f45bda",
+        "stale_evidence:531c0cfc2a113e3f71f664f9786a9f1c99432db5da7eed8a791c0b9470871384",
+        "stale_evidence:5b599478b085efe5f5970950535bab4e76a3e38549e8c90da585e9dc491606d0",
+        "stale_evidence:668a9337827ede136fa9433912bc1cbd1e91b8ed40b710e387fd46860e0d27d1",
+        "stale_evidence:6a50ef636a76bf7b65914e323c3a9c9131713353bd2ece0f122b7cecee7bdaed",
+        "stale_evidence:6cab73ba08d679c17abd7adab9a2f267b4f30cb28a2c61bbefe160b1e76951c9",
+        "stale_evidence:7660685e7d8642518eb9e6bc63646fd1b3eaeecd5ec1e3973ec1f31b1f1b80cc",
+        "stale_evidence:778c2f0649b279db9df68983920cbc80d46b270b0c396fce863a365a565ac918",
+        "stale_evidence:7ade490602cf54b5cefea01c38e0f0e7bd6cd4876ccadbecad698747465a374a",
+        "stale_evidence:856be78dc5f38a218b9886fc1f77fb217d92420b8fdb2683b5827fa01eaf2807",
+        "stale_evidence:915f0fb452cbfcf5589ea3da6c68bdc3b076ab01aec10e1188e898611777d94b",
+        "stale_evidence:93cd02c9ced6193234b4fc9210906e3886a332091946812df03333f4e823aa8a",
+        "stale_evidence:9ffe9c2174afccbf17ce7009f5b0103e26583cd5f13f86791a893f5dbc0a0d05",
+        "stale_evidence:a0a8a31c620580f575122ccfaf177f03442344f9759c1a259eb5211c91c0112a",
+        "stale_evidence:b0cc854901c0d5072ca79e4925a69874ce6355c0bcb68d861456a1be0f234d4a",
+        "stale_evidence:ba8de8d0b75e07d4486dc1bbc772afdf9ab5164bbec6ef6891952abf9c0a431e",
+        "stale_evidence:bc0ec42416b93c2916240b937610f2fdfb8478a833b893aafab58a541da7bba3",
+        "stale_evidence:cb71215148759eabfb746a3cc36c4a9d6f94ff1c86730ee6318e9976866f5370",
+        "stale_evidence:d2f081ec7af0b288c36242ebf4c21cd5c73eb09470425804e627011d47090bd4",
+        "stale_evidence:d70f990a0f7e9f3bd8d66f9faaa539df1510a5a8b401cfc5739b7dabec5be1c6",
+        "stale_evidence:f3792e1b05b9cc4ea97d434fa7375516774cf0488f513e8adc7dd7b535abeb01"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Selected commit tree passes 45 coverage audit and 44 coverage gate regressions, including legacy/web provenance and obsolete receipt cases. Census/control/history bookkeeping does not refresh original comparisons or promote tooling/engine status. Explicit new gaps preserve historical UI evidence and native policy comparison limitations.",
+        "evidence": []
+      }
     }
   ]
 }

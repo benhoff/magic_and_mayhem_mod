@@ -11998,6 +11998,43 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.coverage-ui",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Interactive read-only coverage atlas",
+      "scope": "Local read-only browser presentation of curated major engine tracks, equally counted named capability milestones, partial foundations and concrete remaining work, with explicit required behavior stages and execution evidence. Track achievements retain historical/current evidence boundaries, separate native policy, observation and replacement, and group the spell dispatch checklist as one outcome. Detailed views retain binary associations, registered checklist stages, applicable baseline comparisons, filters, source links and discovered direct-entry calls. No effort or whole-game completion estimate, semantic address inference, hosted deployment, editing or original execution.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "apps/coverage-ui/README.md"
+      ],
+      "implementation": [
+        "tools/coverage_ui.py",
+        "tools/serve-coverage-ui.py",
+        "apps/coverage-ui/index.html",
+        "apps/coverage-ui/style.css",
+        "apps/coverage-ui/app.js",
+        "apps/coverage-ui/tracks.json"
+      ],
+      "tests": [
+        "tests/test-coverage-ui.py",
+        "tests/test-coverage-ui-browser.py"
+      ],
+      "evidence": [
+        "UI01.dashboard",
+        "UI02.dashboard",
+        "UI03.dashboard",
+        "UI04.dashboard"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -20078,6 +20115,134 @@
           "equals": 30045912
         }
       ]
+    },
+    {
+      "id": "UI01.dashboard",
+      "kind": "native_integration",
+      "scope": "Local coverage dashboard metric, association, freshness and read-only HTTP tests plus real desktop/mobile browser controls. UI only; no engine behavior, original equivalence or live replacement.",
+      "record": "research/runtime/coverage-ui-validation.json",
+      "sha256": "c5971333ea70194bde1e9974e1fc31edad312dba2f4f93ad3f7aecb01b55e88b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/unit_tests/success",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_tests/checks",
+          "equals": 7
+        },
+        {
+          "pointer": "/browser/success",
+          "equals": true
+        },
+        {
+          "pointer": "/browser/checks_count",
+          "equals": 15
+        },
+        {
+          "pointer": "/browser/browser_errors",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "UI02.dashboard",
+      "kind": "native_integration",
+      "scope": "Local UI-only metric/association/freshness/HTTP checks and real desktop/mobile controls; coverage guard regressions additionally test census extension and retained legacy bases. No engine behavior, original equivalence or live replacement.",
+      "record": "research/runtime/coverage-ui-validation-final.json",
+      "sha256": "7ada5e4f160a7e27a0414a466523f75e6de02e68fca7a6b4f30c017baa81bb91",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/unit_tests/success",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_tests/checks",
+          "equals": 7
+        },
+        {
+          "pointer": "/browser/success",
+          "equals": true
+        },
+        {
+          "pointer": "/browser/checks_count",
+          "equals": 15
+        },
+        {
+          "pointer": "/browser/browser_errors",
+          "equals": []
+        },
+        {
+          "pointer": "/coverage_guards/0/success",
+          "equals": true
+        },
+        {
+          "pointer": "/coverage_guards/1/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI03.dashboard",
+      "kind": "native_integration",
+      "scope": "Fresh-server UI regression excludes computed/inferred call targets from direct-entry call edges. Repeats seven semantic/HTTP and fifteen real browser checks; no engine behavior or original equivalence.",
+      "record": "research/runtime/coverage-ui-direct-call-validation.json",
+      "sha256": "97c290dcfcd4d24a95dc4580d2d0610626a024f669375a401e2a10056e984285",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/unit_tests/success",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_tests/checks",
+          "equals": 7
+        },
+        {
+          "pointer": "/browser/success",
+          "equals": true
+        },
+        {
+          "pointer": "/browser/checks_count",
+          "equals": 15
+        },
+        {
+          "pointer": "/browser/browser_errors",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "UI04.dashboard",
+      "kind": "native_integration",
+      "record": "research/runtime/coverage-ui-tracks-validation.json",
+      "sha256": "43424514aa82ef8ae36b4f71773b11b3fff37545293da849f50cf6905caf71b1",
+      "scope": "Read-only major-track roadmap aggregation, named goal all-requirement semantics, missing mappings, native policy/replacement and stale/current evidence separation; loopback HTTP boundaries and 20 actual Chromium interaction checks across tracks and existing coverage drilldowns at desktop/mobile sizes. No engine behavior or current original comparison is validated.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/unit_tests/success",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_tests/checks",
+          "equals": 12
+        },
+        {
+          "pointer": "/browser/success",
+          "equals": true
+        },
+        {
+          "pointer": "/browser/checks_count",
+          "equals": 20
+        },
+        {
+          "pointer": "/browser/browser_errors",
+          "equals": []
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -22364,6 +22529,51 @@
         "tests/effect-kind34-test.cpp",
         "tools/test-effect-kind34.py"
       ]
+    },
+    {
+      "id": "tooling.coverage-atlas-preview",
+      "level": "preview",
+      "scope": "Local browser/read-only HTTP coverage UI on recorded source versions: explicit percentage denominators, association boundaries, partial/missing filters, native-policy N/A, details and links, pagination, audit refresh and responsive desktop/mobile layout. Does not execute the original game or validate registered engine behaviors.",
+      "behaviors": [
+        "TOOL.coverage-ui"
+      ],
+      "evidence": [
+        "UI02.dashboard"
+      ],
+      "tests": [
+        "tests/test-coverage-ui.py",
+        "tests/test-coverage-ui-browser.py"
+      ]
+    },
+    {
+      "id": "tooling.coverage-atlas-direct-calls-preview",
+      "level": "preview",
+      "scope": "UI01/UI02 interaction and numeric cases repeated against a freshly loaded server, plus a computed call with an inferred discovered target that must not appear as a direct edge. Historical UI evidence retains its hashes. No engine or original execution.",
+      "behaviors": [
+        "TOOL.coverage-ui"
+      ],
+      "evidence": [
+        "UI03.dashboard"
+      ],
+      "tests": [
+        "tests/test-coverage-ui.py",
+        "tests/test-coverage-ui-browser.py"
+      ]
+    },
+    {
+      "id": "tooling.major-tracks-preview",
+      "level": "preview",
+      "behaviors": [
+        "TOOL.coverage-ui"
+      ],
+      "evidence": [
+        "UI04.dashboard"
+      ],
+      "scope": "Local dashboard default major tracks, concrete named milestones and partial foundations, behavior/evidence drilldown, preserved inventory views and desktop/mobile Chromium interaction. UI-only validation.",
+      "tests": [
+        "tests/test-coverage-ui.py",
+        "tests/test-coverage-ui-browser.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -22554,7 +22764,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-kind34-source-index.json",
-    "sha256": "f60087751ef7ef87b661d53953ec3559d33855e0e374706d8475a03a3ebe1e39"
+    "path": "research/runtime/coverage/source-index-coverage-ui-commit.json",
+    "sha256": "5275e84b971439ac65bec9ea50f4163b08319b3d3cd1a9994d326f1cbd327b07"
   }
 }

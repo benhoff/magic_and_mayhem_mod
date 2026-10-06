@@ -1,0 +1,232 @@
+{
+  "schema": 1,
+  "range": "41380db87019c954933de98f2435585f5b7fca05..66834490516e026a31968fccdae7e21bfc26b213",
+  "scope": "Exact committed parent/current file digest review after the existing multi-world-scene retrospective boundary. Current behavior links are reviewed separately from uncommitted UI and engine work; no historical gate pass or new engine validation asserted.",
+  "files": [
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "apps/world-sandbox/main.cpp",
+      "before_sha256": "5af74c9ef3293a3f2f877317b90af3f0e39cbafc2916c62526c045c894326030",
+      "after_sha256": "d1e3b0fc4841f0c13b1281dfdc5fcda0d97f1e0f45aca1bb5c040346ed600e43",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": [
+        "WORLD.sandbox",
+        "NP.stationary-occupancy",
+        "NP.multi-movement"
+      ]
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "apps/world-scene/README.md",
+      "before_sha256": "c6f15d869363241fa5bcca3f277e7e3d13cae57745d97aa731933ad510df2c3b",
+      "after_sha256": "454b300288f669b07dce94c95364237009a2be7ca3381e64438b4786f535d62a",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": [
+        "NP.presentation",
+        "NR.world_scene",
+        "NP.map-navigation"
+      ]
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "apps/world-scene/main.cpp",
+      "before_sha256": "1cf1829df5542482b72ab5e969f8619c8f957274c2ec972db6b009ae60bb4544",
+      "after_sha256": "67c0270359768ac915a19302becb89df2a6bae5b008c880d1e6c178db564a0a0",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": [
+        "NP.presentation",
+        "NR.world_scene"
+      ]
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "apps/world-scene/scene.cpp",
+      "before_sha256": "2f794d060f6a10959cb667cbe8913935e0d7894863dc2e96fbd049ebf6ffa8e9",
+      "after_sha256": "af1a60229a4d459f81d4f42f31db833b58819f835bfdb01ff8b59a5d467baa28",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": [
+        "NP.presentation",
+        "NR.world_scene"
+      ]
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "apps/world-scene/scene.hpp",
+      "before_sha256": "bc158f1d5570dbb944773b1cbfba3327c15387c2243e700aa0b4d68f096ceada",
+      "after_sha256": "e4b485295070758f8acdbaf7911c9db4b5f5557c75c16d5440388f5963865ccf",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": [
+        "NP.presentation",
+        "NR.world_scene"
+      ]
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "game/README.md",
+      "before_sha256": "6001417e565170fcf346df423e018a48562c070c43df93f129b62e53622ceefb",
+      "after_sha256": "a641c4202b7481884e5e09022b014ed94177a2e84e8de60b170ea04076a3a5ec",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": [
+        "NP.move-orders",
+        "NP.checkpoints",
+        "WORLD.owned"
+      ]
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "aa71cce1dcd657121e15a6d5b43d4338d2ba823b46e409627f2cf0b0b446bfef",
+      "after_sha256": "f0d4c914e6cfb67f5a9cff59f8d62fe8a02cbfaae38192461784c871beb921f4",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "95cb28b2f86bd72a0fbb3d8f536ab0a263b6fdd08169aa4cf03fa3bdbae3c909",
+      "after_sha256": "a3e3422286c6cde0bcb95b790a6032226a21a9055be83a5fc42772acbe0f0140",
+      "exact_reviews": [],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "abd5b5d90fbc0473060e1102509be059acb1fd2704fd95750b219955dd1f1fd4",
+      "after_sha256": "fcf27460581e74418b4ce3267da1e93be4fafdb39726a644490d12809f8d85a7",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "research/runtime/coverage/source-index-multi-world-scene.json",
+      "before_sha256": null,
+      "after_sha256": "27d37eb5be44f97131eaf34c22a8bf30feadf2d6df5ccac0acef267cad421526",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "392a094e7cdae292840923c7753bfa55ae071566b26dcc4da835a5a9b8703e27",
+      "after_sha256": "b344a014433c7539006220e81d52cb6e216b4c10999e0294c827d2b74cb04493",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "research/runtime/native-multi-world-scene-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "2b17cdd7b583195b21ecbbe4d8dfd8167c1286846d9ff4716112ee3968a7afab",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "research/runtime/native-multi-world-scene.json",
+      "before_sha256": null,
+      "after_sha256": "008c229c9ad74d3a9fc2d0dee5b4e94112e1be01c5f9fe5c74ded4541b620052",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "research/runtime/native-multi-world-scene.md",
+      "before_sha256": null,
+      "after_sha256": "5911bd8845adbc5c5df4ca1123046a510aa92d4499592d1e08c947fcc8f9ef12",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": [
+        "NP.presentation",
+        "NR.world_scene"
+      ]
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "tests/README.md",
+      "before_sha256": "c2cdbcaf11170753824ed17a232d1ede7381bf85b25b5383f807440a648694cd",
+      "after_sha256": "0364a3e254dfe42452286d73d1b1587108536072bd2fc83ad031aa206db38b18",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": [
+        "TOOL.coverage-gate"
+      ]
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "tests/world-scene-test.cpp",
+      "before_sha256": "aa7d3fb18048f80c3af6d8b110cc801a308f48effdf1af02d8bed13f7885913c",
+      "after_sha256": "0ca92707df72ca8029d8a201220901630011f2f6589fbf474d2fc81e58abdd44",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": [
+        "NP.presentation",
+        "NR.world_scene"
+      ]
+    },
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "tools/test-multi-world-scene.py",
+      "before_sha256": null,
+      "after_sha256": "e8ef1ff58984f1a07499119f763b3ade5bb3e6db11fa9654228dcb88a3067c43",
+      "exact_reviews": [
+        "NS12.multi-scene-exact-staged",
+        "NS12.multi-scene-exact-isolated-checkout"
+      ],
+      "current_behavior_links": [
+        "NP.presentation",
+        "NR.world_scene"
+      ]
+    }
+  ],
+  "unmatched": [
+    {
+      "commit": "66834490516e026a31968fccdae7e21bfc26b213",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "95cb28b2f86bd72a0fbb3d8f536ab0a263b6fdd08169aa4cf03fa3bdbae3c909",
+      "after_sha256": "a3e3422286c6cde0bcb95b790a6032226a21a9055be83a5fc42772acbe0f0140",
+      "exact_reviews": [],
+      "current_behavior_links": []
+    }
+  ]
+}

@@ -300,6 +300,27 @@ class GateTests(unittest.TestCase):
         latest['reviews'] = receipt['reviews'] + latest['reviews']
         self.assertEqual(self.result(latest, before=baseline)['errors'], [])
 
+    def test_obsolete_recorded_contract_cannot_reactivate_through_unchanged_file(self):
+        self.write('research/finding.md', 'First clarified scope\n')
+        older = self.receipt()
+        older['reviews'][0]['id'] = 'first-recorded-version'
+        older['reviews'][0]['validation'].update(status='recorded', evidence=['old-original'])
+        self.assertEqual(self.result(older)['errors'], [])
+        # The original base stays fixed: the research file still matches the
+        # earlier receipt, but its behavior contract and evidence are obsolete.
+        self.write('assets/model.cpp', 'Later model version\n')
+        only_old = self.result(older)
+        self.assert_error(only_old, 'Unreviewed source change: research/finding.md')
+        self.assert_error(only_old, 'Unreviewed behavior change: MV.test')
+        latest = self.receipt()
+        latest['reviews'][0]['id'] = 'current-pending-version'
+        latest['reviews'] = older['reviews'] + latest['reviews']
+        self.assertEqual(self.result(latest)['errors'], [])
+        self.assertTrue(any(g['kind'] == 'stale_evidence' for g in self.result(latest)['changes']['new_gaps'].values()))
+        # An applicable current receipt still cannot claim stale execution.
+        latest['reviews'][-1]['validation'].update(status='recorded', evidence=['old-original'])
+        self.assert_error(self.result(latest), 'validation evidence missing, static or stale')
+
     def test_controls_are_watched(self):
         self.write('AGENTS.md', 'Changed workflow\n')
         self.assert_error(self.result(), 'Unreviewed source change: AGENTS.md')

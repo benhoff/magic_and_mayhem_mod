@@ -1,0 +1,104 @@
+{
+  "coverage_guards": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-re-coverage.py"
+      ],
+      "success": true,
+      "returncode": 0,
+      "output": ".............................................\n----------------------------------------------------------------------\nRan 45 tests in 0.066s\n\nOK\n",
+      "git_environment": {
+        "gc.auto": "0",
+        "maintenance.auto": "false"
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-coverage-gate.py"
+      ],
+      "success": true,
+      "returncode": 0,
+      "output": "...........................................\n----------------------------------------------------------------------\nRan 43 tests in 1.402s\n\nOK\n",
+      "git_environment": {
+        "gc.auto": "0",
+        "maintenance.auto": "false"
+      }
+    }
+  ],
+  "schema": 1,
+  "id": "UI02.dashboard",
+  "recorded_at": "2026-10-05T21:16:47.350842+00:00",
+  "scope": "Read-only coverage UI metric/association/freshness/HTTP semantics and browser interaction only. No engine behavior, original comparison or live replacement is validated.",
+  "sources": {
+    "tools/coverage_ui.py": "af12f96953d53e085b1d7aa2be221a811b7b74c174714038059129c33b955c85",
+    "tools/serve-coverage-ui.py": "35d61abdd323ab944c82c7ff92009344af6a18307f0609224862ea19ab330f7d",
+    "apps/coverage-ui/index.html": "1c9fde16c98a7989a759033f6b7576b94a0c1ce7fb68e998feaf99202e19fd93",
+    "apps/coverage-ui/style.css": "00cbb0ee807ab0d176cefa5f5cbdf263cd8e7d0257477c43ae65050f4cc933b6",
+    "apps/coverage-ui/app.js": "b03c86002d6654cbccab3a20998206d861ff60959ea307625cd76d2e6e1e37a6",
+    "apps/coverage-ui/README.md": "75325570daecde4fb5784681e332915a4c3f4637c5fb44c77446f9a1391231d3",
+    "tests/test-coverage-ui.py": "1aaf80e0ddbded1680451c8b768e1b326881236c0dd7c88bd2ce2df337ca6da8",
+    "tests/test-coverage-ui-browser.py": "72439a200913593da4def9b3ad7036ca547b5103f6bfef87ca947c0a3f828501",
+    "tools/index-coverage-sources.py": "b06f0438360462b7965af998ebcf73ca9f88bcb00befd0d5a46d5e6ae98b56d9",
+    "tools/coverage_audit.py": "e632e389d5ecbdfb20192b2806f17d39840e094b3f7f29df07c905008a639a56",
+    "tests/test-re-coverage.py": "9a836d6fbaf1b3c94d523b7f8c420f0553dae3c94331057b4d685c20f7f4fca6",
+    "tests/test-coverage-gate.py": "e58258e996f03e120b3f84db56863f8d26c48d1fd6f417887bd39324cc5655fb",
+    "tools/coverage_gate.py": "41b96a6fc308bcd58ba13f2f3cf9ebbaf549109f2d90f98c29f9899f7720f909"
+  },
+  "unit_tests": {
+    "command": [
+      "python3",
+      "-B",
+      "tests/test-coverage-ui.py"
+    ],
+    "success": true,
+    "returncode": 0,
+    "checks": 7,
+    "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 1.023s\n\nOK\n"
+  },
+  "browser": {
+    "command": [
+      "python3",
+      "tests/test-coverage-ui-browser.py",
+      "--output",
+      "working/tests/coverage-ui-browser-accounted-final"
+    ],
+    "success": true,
+    "returncode": 0,
+    "checks_count": 15,
+    "url": "http://127.0.0.1:8786",
+    "checks": [
+      "baseline scoped percentage matches register",
+      "binary percentage matches global function links",
+      "partial work view has correct total and scope",
+      "feature detail shows exact scope, research, addresses and gaps",
+      "registered research file opens",
+      "Escape closes detail dialog",
+      "interior hexadecimal address finds owning function",
+      "function details include direct call edges and limits",
+      "native policies exclude original-comparison denominator",
+      "subsystem drilldown filters work list",
+      "behavior pagination limits large lists",
+      "next page works",
+      "refresh rebuilds current snapshot without losing filters",
+      "mobile viewport has no horizontal page overflow",
+      "no uncaught browser errors"
+    ],
+    "browser_errors": [],
+    "register_sha256": "882e876bdf064498293f5e99f8470121d7bdd53d986951d96ceced17047b229d",
+    "recorded_at": "2026-10-05T21:16:45.598Z",
+    "screenshots": [
+      "desktop.png",
+      "mobile.png"
+    ]
+  },
+  "limitations": [
+    "Percentages are bounded to explicit inventory associations and registered checklist stages.",
+    "Equal behavior weighting is not an effort/importance or whole-game completion estimate.",
+    "UI checks do not refresh any engine comparisons or integration evidence.",
+    "The browser source snapshot can include separate concurrent register/accounting changes; its SHA-256 is retained as historical provenance."
+  ]
+}

@@ -1,0 +1,860 @@
+{
+  "range": "66834490516e026a31968fccdae7e21bfc26b213..00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+  "scope": "Read-only exact committed parent/current file hashes and current behavior links. Missing journal transitions receive append-only retrospective receipts. Distinct from uncommitted UI/render changes; no historical gate pass or new execution validation.",
+  "files": [
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "reconstruction/rendering/effect_transition.cpp",
+      "before_sha256": "2907d8a1ed6f691d94c0b1b8911c180022ad2a7481dd73ef5137592bc21d1117",
+      "after_sha256": "86f2b270a29363f834c4405eb4db4dd5d3de06d00dae1c3ea27196b9ba77449f",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy",
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-height-exits",
+        "TL.effect-height-policy",
+        "TL.effect-membership-disabled",
+        "TL.effect-membership-policy",
+        "TL.effect-terrain-occupancy",
+        "TL.effect-occupancy-policy"
+      ]
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "reconstruction/rendering/effect_transition.hpp",
+      "before_sha256": "92945eb0c66a5c86277ddb02a3273f8044c4567baf09c0955f1ddd1d44c3122f",
+      "after_sha256": "712a7d70c06c6f61cb55d76875518a0559b2e29d006f7458c5908c0afc083961",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy",
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-height-exits",
+        "TL.effect-height-policy",
+        "TL.effect-membership-disabled",
+        "TL.effect-membership-policy",
+        "TL.effect-terrain-occupancy",
+        "TL.effect-occupancy-policy"
+      ]
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f0d4c914e6cfb67f5a9cff59f8d62fe8a02cbfaae38192461784c871beb921f4",
+      "after_sha256": "4aa62fa214bc5c6690b36df2a540439e32cb09b98a0618d6d86cfb757b5e3ed2",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "a3e3422286c6cde0bcb95b790a6032226a21a9055be83a5fc42772acbe0f0140",
+      "after_sha256": "8b7f74fe661c7386eb281b3b0ac10871a68c7c366b7767b7805ed93035e0d876",
+      "exact_reviews": [],
+      "current_behavior_links": [],
+      "retrospective_review": "coverage-ui-retrospective-journal-8561471"
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "fcf27460581e74418b4ce3267da1e93be4fafdb39726a644490d12809f8d85a7",
+      "after_sha256": "09c546ec5fb99abf8cb4a6179fe57aff7b016dd65d5436cf63c0d8bcf98c7fad",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "b344a014433c7539006220e81d52cb6e216b4c10999e0294c827d2b74cb04493",
+      "after_sha256": "c3f136ad77657afb150a272f56da5ec8bdb8405ab2e67e30a7db1f733c7d78cc",
+      "exact_reviews": [
+        "effect-occupancy-summary-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "3f7cb05ccb725e8d0b89f1f92bf42a20acd3c64cad9a64591580170b06c3df92",
+      "after_sha256": "870be44d6e400c5d2a174d60990c0b8f123859a5dd2659fd51aa0b87d6f574dd",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "a54f1637a8747a5771bebf6268c260a6408cd605d4165ab1e7716ee267173892",
+      "after_sha256": "e1dc2f2176ee23d68db657f16fcfd7a3f7531a2d92fddddebc85d54d86e99344",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "403071e05c7be62352029b2b2873f6c206eeb126f7ec6ae0a308590a06a0251c",
+      "after_sha256": "a96b0eba3adb463f5a4e4e89464d125a6eb6db83856d087e3fcab4eab709b6cc",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "f18cb15fe35b8cca5411dc2f29b8a57bfaafc6001464fcfda58a65032b3ea841",
+      "after_sha256": "bbdc6c90fe2d8dbdd4e4c8e82383a8089484d621410c3a17f06ab51f601ad62b",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "7c4e0565007c4ba6ee3604cb8616c300756ce91e87a7c349acb51dbcb2001f4c",
+      "after_sha256": "51db32e20198d9c7207980386b38ae186ec643a25c7fcb395e6ee91f86eebdcd",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "d11e402e9713451be795c31e0996c898dd82939776b0c6dc1a387dc34f0487a6",
+      "after_sha256": "892ca3d8e55c827f439705658b18a08c85c99cdea301cd7a0bfe574bf58655e5",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "bb632fb424dd8b1b9cf7cc3feda43983ed46f6d2e23893535a41bc57b2a7b43f",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-terrain-occupancy-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "4e2392268e2430aa1fff4c51c1c9a461213e510a8872a352128a94eadb04586d",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-terrain-occupancy.json",
+      "before_sha256": null,
+      "after_sha256": "469f00f1d4c3e8b6d75fef571ee2904b73e808e455dc73f8b6bddab11813265d",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-terrain-occupancy.md",
+      "before_sha256": null,
+      "after_sha256": "79793ab69066b97c74e7e6414f4b35e66c68e64b89d6aad49228cc665f33728b",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": [
+        "TL.effect-movement-recount",
+        "TL.effect-terrain-occupancy",
+        "TL.effect-occupancy-policy"
+      ]
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "9235ff21766cfe88b811b299f80b77233c8c7caeaf0ed0236ac362be016b2cb3",
+      "after_sha256": "691e18085d2a1a3be849fc9f314966cc545bb31ba21bdb1ffd3569dbb2110369",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "tests/effect-occupancy-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "d184dbcd55cbe5f51b40ab1666a7631870b23c884d5ba5303d12cca1e63202d2",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": [
+        "TL.effect-terrain-occupancy",
+        "TL.effect-occupancy-policy"
+      ]
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "tests/effect-transition-test.cpp",
+      "before_sha256": "a8f5ad6ebb462d1dd6c6a67d52d0c17c3e96418eef2cbd322e533972834f56a0",
+      "after_sha256": "edc4ba591d5c55c37dc849698be607ce4fac2887435f88b35a53bfd9e3a167c9",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy",
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-height-exits",
+        "TL.effect-height-policy",
+        "TL.effect-membership-disabled",
+        "TL.effect-membership-policy",
+        "TL.effect-terrain-occupancy",
+        "TL.effect-occupancy-policy"
+      ]
+    },
+    {
+      "commit": "85614712fa6e14e81fec0b704c66caf3ecb878b4",
+      "path": "tools/test-effect-transition.py",
+      "before_sha256": "b25d071a8f695d99fcd42f30f68b45627c38475fc29905ad0d470f5754f142da",
+      "after_sha256": "714e7fb4e10b81de9607e5075ac432f0534863c92044777fbdee4173a3cb6e40",
+      "exact_reviews": [
+        "effect-occupancy-recorded-6683449"
+      ],
+      "current_behavior_links": [
+        "TL.effect-cell-transitions",
+        "TL.effect-transition-policy",
+        "TL.effect-cell-cleanup",
+        "TL.effect-cleanup-policy",
+        "TL.effect-blocked-destinations",
+        "TL.effect-blocked-policy",
+        "TL.effect-height-exits",
+        "TL.effect-height-policy",
+        "TL.effect-membership-disabled",
+        "TL.effect-membership-policy",
+        "TL.effect-terrain-occupancy",
+        "TL.effect-occupancy-policy"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "533352914e3843afbb6db4a9b5c2b54a576ba55b23b9e375cbdc1c854d2e48fb",
+      "after_sha256": "f50fcc68362f04f8dca1f33104ffdb645ed4f02e9d240fc16d65bb89d12f4d36",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "NR.gpu-presentation",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "05d63b139a1856cadee4173e88f17e40beeabf4c5f826d669eb145432aa55eac",
+      "after_sha256": "95b2d2b6cabae2b00ba5e7ed5cf2bcad166eec67c53898328d875a9cd787a45f",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "BR.main",
+        "PR.main-entry",
+        "PR.audio-preview-cancel",
+        "PR.apply",
+        "PR.control-admission",
+        "NP.preferences-draft",
+        "NP.preferences-persistence",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "6d3f5dcd2729233331a6f8e5837db0288ee14723b091f378d1a55a948ae84bda",
+      "after_sha256": "10e715d019c08ee3c2d28cab7b3f1b7e9a681e3477dd45863e7c263b9b6e77de",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "BR.main",
+        "NP.preferences-persistence",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/live_menu_test.cpp",
+      "before_sha256": "0ab793769510c6b253bb77e8b8925766837165c18f47a83414a49782a5b0522f",
+      "after_sha256": "7255c71e9309e79af798234cc10474254ee85988845e09502dba07a97ad7552c",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "BR.main",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/live_menu_test.hpp",
+      "before_sha256": "2e55109f7857ef00ac7dfd3613a9be022683b4457624d0edf43c3cfcf4025f6b",
+      "after_sha256": "455fb3421039ba65d40685ed76a7624d4a00137a9ec376db50e4a898423b0148",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "BR.main",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/live_region_enter_test.cpp",
+      "before_sha256": null,
+      "after_sha256": "06b970b2ffac15190e4b85957cf7c52e7da3a9f9414285ba44adcdc8dcfb2e3f",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/live_region_entry_controller.cpp",
+      "before_sha256": "c8a96cb6a4c6f96483d449aa0b8b5dd69c1935e1801c6aedd1982bdb0a99a2e2",
+      "after_sha256": "5896b9cd45241a96be44ae78ff1ccad3a2b04bf9d040a42bb6eab81ae4161528",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/live_region_entry_controller.hpp",
+      "before_sha256": "e82b973b92e523b3cdf76d226522ff54684609ea314c2331257cc93f827cc7d6",
+      "after_sha256": "73b2a187e7114cfb9a41a256bd4f3884f4896acbe4b4e2d559b41b8c7cf06219",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "268ecb3e383cfd2bc3eb5c5c51f9e297cf7cb2923053342b42549a40b27a9dd1",
+      "after_sha256": "95f729d13fb1ce92d6d59b5d624e83ab8cf533495f5da3cf133c567c2a5b2146",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "HOST.session",
+        "NR.gpu-presentation",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "4c7b65830ec1fc82b039f1242c474ec33c339387cef8e885f22c023ac9486214",
+      "after_sha256": "9d17eb0f58b320f3a89a83c60a57906a186075fd7f8bbf6b31fc4fe202fdbb04",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "BR.main",
+        "PR.main-entry",
+        "PR.audio-preview-cancel",
+        "PR.apply",
+        "PR.control-admission",
+        "NP.preferences-draft",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "74b1608cb43df8d9f619e26c8b4cf0c7a2a821025e11db7bf894d0451241adda",
+      "after_sha256": "464a950bf7267ae31bf695cdf2984341d2d451cb9e8a74155b107a199bb26cdc",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "BR.main",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/region_entry_widget.cpp",
+      "before_sha256": "0c77c0a8ee10175b68cd947b82790179732200f57346fc34936b2b3f65507909",
+      "after_sha256": "4e405caf53303733c302abb9ba781ad54f701c7450443bb0b999ecaa1fcb3e15",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "UI.region_entry",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "apps/qt-shell/region_entry_widget.hpp",
+      "before_sha256": "a9a561f7ec47af1c8830d93e411e2e593c2fca9bc6fe61e3cb92418729cb89ad",
+      "after_sha256": "20125c78ac0cb03fd8e639f2d5fa9414cb02664fad518e93c67fc8a5cc288b08",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "UI.region_entry",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "protocols/include/mnm/menu_v8.h",
+      "before_sha256": null,
+      "after_sha256": "86ca7a24180972b75b84c4ec021c62519b7c94997b260bdfe05dd80388c09f47",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "research/runtime/README.md",
+      "before_sha256": "377707d8e53a36e13b425ae9d39c5455ba8669dece7415b95d7fae30941f7940",
+      "after_sha256": "f93d4c3da678f33c8be06b2c4cf38bda9d3af4e9183e4c6bd278897bbaf6085c",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": "7b2ed8e23157a6f2c1987b9946188a7a971ec775c19c723fffbc57b81eb185f4",
+      "after_sha256": "880a79ca75e87188e02d09103268d962ef4334caef5926109aaeabc4b20bdb25",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "4aa62fa214bc5c6690b36df2a540439e32cb09b98a0618d6d86cfb757b5e3ed2",
+      "after_sha256": "69a020abafd28c2a8cb8ddc6e06dbec63ee8799cd52c2da38333e210a23254f7",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "8b7f74fe661c7386eb281b3b0ac10871a68c7c366b7767b7805ed93035e0d876",
+      "after_sha256": "5668dfd4cf81f7ecfe9e164f8da70a6092eeade8e369aa8a94d5d0eae82901be",
+      "exact_reviews": [],
+      "current_behavior_links": [],
+      "retrospective_review": "coverage-ui-retrospective-journal-00b547c"
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "09c546ec5fb99abf8cb4a6179fe57aff7b016dd65d5436cf63c0d8bcf98c7fad",
+      "after_sha256": "1aa798b7ec2f9b6d09acaae28bbf657ed8f3c522273ffbc901413a7e53c8c2c1",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "research/runtime/coverage/source-index-region-entry-enter.json",
+      "before_sha256": null,
+      "after_sha256": "327b8ffe0dff3bb55242a507b19f25b66b22bc77a77f01598ede2d67339a5e1e",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "c3f136ad77657afb150a272f56da5ec8bdb8405ab2e67e30a7db1f733c7d78cc",
+      "after_sha256": "0ec6059e07816890b2d6df5ba6ed2d7b89903ae7da62578acd4164c6696de383",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "research/runtime/region-entry-enter-engine-bridge.json",
+      "before_sha256": null,
+      "after_sha256": "a4b61b716a27a2b35cb7fac725ca4c4556149f65f821d27e93fd2b9f57b86de7",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "research/runtime/region-entry-enter-engine-bridge.md",
+      "before_sha256": null,
+      "after_sha256": "f8421a9b4aa3434b05c1c6cb30091cc2964c2e348f942e0a8f2098dae6d2d478",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "research/runtime/region-entry-enter-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "50ad5134f693d4e0f61204dbc686d28d8d8ffc8ddabbca550e2dba47c3fa98dc",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "runtime/menu/campaign_world_observe.h",
+      "before_sha256": null,
+      "after_sha256": "9e3caee231a58dccbc8ba84cc64f9d00f443fc95d8b1039b52b2debdbc5cfdce",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "runtime/menu/channel.h",
+      "before_sha256": "514a224290f7a62a5b104fa95fc42b719f10d020b88e80af2a119ba6a3e16a5b",
+      "after_sha256": "e5136cdabe7130f438fda5372a15489dcc245d78186ac990897875dbd6a842d9",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "BR.main",
+        "BR.battle",
+        "BR.spell",
+        "BR.result",
+        "BR.mini",
+        "PR.main-entry",
+        "PR.audio-preview-cancel",
+        "PR.apply",
+        "PR.control-admission",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "runtime/menu/observer.c",
+      "before_sha256": "9596ab6c7ac39e00fafc345d599f6f8681095206fff31d9fda77b679ea7e59a3",
+      "after_sha256": "456cdd6d4e179600617035ee12473cd80258462d99347209aea621050cccc41b",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "BR.main",
+        "BR.battle",
+        "BR.spell",
+        "BR.result",
+        "BR.mini",
+        "PR.main-entry",
+        "PR.audio-preview-cancel",
+        "PR.apply",
+        "PR.control-admission",
+        "PR.display-rebuild",
+        "CP.realm-observation",
+        "CP.region-entry-observation",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "runtime/menu/region_entry.h",
+      "before_sha256": "a6ab4a8e3fd3e3f35d070634a9800f13a111bee1b6810b89d77e2e648ea87e8b",
+      "after_sha256": "06970e758f2b8a113bcf9e534f348643a15eb0faeae3a9be66b90ee3b36981d5",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tests/README.md",
+      "before_sha256": "0364a3e254dfe42452286d73d1b1587108536072bd2fc83ad031aa206db38b18",
+      "after_sha256": "95187885f21a9fe78d8e2078a3e6b0069f5a0a0b07839bf48c571734fd126dfc",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "TOOL.coverage-gate"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tests/campaign-observer-test.c",
+      "before_sha256": "ee6f010291c8763ea4c46dd5985b5c70c0ac805d3b8c5529b91e44ae7ac6ff7e",
+      "after_sha256": "b2511a1e8e2d02c021842c2121807a3376488ff8c81ce3df6d074228412711f5",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.realm-observation",
+        "CP.region-entry-observation",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tests/menu-region-bridge-test.cpp",
+      "before_sha256": "238b4b0830b61418f70770f9053ecbf14be7325495cb9214353b018c3322c34b",
+      "after_sha256": "aeed38329c9d793dcdf1ef82312fbeca75de1635224c8d5f0b4ad9749fd59b5b",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tests/menu-region-controller-test.cpp",
+      "before_sha256": "0dc31faf66ae145258f0b3afe5ea80e129e3139f5e36b4548afdedda3781113a",
+      "after_sha256": "9b321ec316b2f44891994173c4c9e533ff14aa9d34cb4f2d5212a0a5158bd1e4",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tests/region-entry-bridge-reference.c",
+      "before_sha256": "b128e74d288be47405667f1943eac37dd4607b3b613e33e861676c92ab95d987",
+      "after_sha256": "e4604a5e209cd09b50233511025f6b29568bdf77466a767d1fa305fe0c49a54a",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tools/build-menu-observer.py",
+      "before_sha256": "9545425bb1182e76d4970e4f38aa4f8f341f2e548fa9e33e084e2299ac41776d",
+      "after_sha256": "3f97831a3a22a73b198662a54f08206d100b330c465d334fe329a2763c085958",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.realm-observation",
+        "CP.region-entry-observation",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tools/export-campaign-handoff-support.py",
+      "before_sha256": null,
+      "after_sha256": "8994fc99a94f0f00b60c5e9a637e287b00e85b630b9fd55d9aacc5ea9fffd716",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "0b3bbe8249d211c035bc7f1d33383d54d4907e7d83a7dbd0dd269a4e0c37fca1",
+      "after_sha256": "93cab58cefe643b0544dd9e686424da84bdc55b47e2f38d160312f317c03802f",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tools/test-campaign-observer.py",
+      "before_sha256": "3ddc59452657c05eee973d6c7c77f844194b6e78cfba59567a9d160281ee2a58",
+      "after_sha256": "5e314f1168827f7c03e0fafe49071adc3c89296ad022d783abcce80420c35005",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.realm-observation",
+        "CP.region-entry-observation",
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tools/test-live-campaign-entry.py",
+      "before_sha256": "7345ee4fc6b70b7fbabcadda4643effb4c7cd1b5f49204695af796c4c4a18737",
+      "after_sha256": "d9188b9352947cd1d628ab14c0eeab49b75c5b86fa6b633312b779161e6cedd5",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.realm-observation",
+        "CP.region-entry-observation",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tools/test-live-region-enter.py",
+      "before_sha256": null,
+      "after_sha256": "c98067e9518c77f40c1356e24e7f2bd7fd72d8784be9408299ee11a5dd174e01",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    },
+    {
+      "commit": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+      "path": "tools/test-region-entry-bridge.py",
+      "before_sha256": "238e7d54d38f674dc70ec772af981e13dd6121344b938b379d145616c5260706",
+      "after_sha256": "56232bb2193ee3b7201a30c208b580f0b0e8c7d1ec52eaaa52a1069ce9a697c5",
+      "exact_reviews": [
+        "region-entry-enter-ui30-region-enter-commit-j8f_zdyo"
+      ],
+      "current_behavior_links": [
+        "CP.region-entry-bridge",
+        "NP.region-entry-fresh-policy",
+        "CP.region-entry-enter",
+        "CP.campaign-world-handoff-observation"
+      ]
+    }
+  ],
+  "unresolved": []
+}

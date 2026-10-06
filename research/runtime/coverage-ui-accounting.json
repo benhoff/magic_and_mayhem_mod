@@ -1,0 +1,36 @@
+{
+  "scope": "UI/tooling ownership validation against an isolated reviewed commit, separate from concurrent working tree engine changes.",
+  "reviewed_base": "00b547c5cb5a2bd9bee9a95b6e31d554e2453638",
+  "isolated_gate_passed": true,
+  "owned_files": [
+    "apps/coverage-ui/README.md",
+    "apps/coverage-ui/index.html",
+    "apps/coverage-ui/style.css",
+    "apps/coverage-ui/app.js",
+    "tools/coverage_ui.py",
+    "tools/serve-coverage-ui.py",
+    "tests/test-coverage-ui.py",
+    "tests/test-coverage-ui-browser.py",
+    "tools/index-coverage-sources.py",
+    "tools/coverage_audit.py",
+    "tests/test-re-coverage.py",
+    "research/runtime/coverage-ui-validation.json",
+    "research/runtime/coverage-ui-validation-final.json",
+    "research/runtime/coverage-ui-history-review.json",
+    "research/runtime/coverage-ui-history-resolution.json",
+    "research/runtime/coverage/summary-coverage-ui.md",
+    "research/runtime/coverage/source-index-coverage-ui-isolated.json",
+    "research/runtime/coverage/source-index-coverage-ui-isolated-v2.json",
+    "tools/coverage_gate.py",
+    "tests/test-coverage-gate.py"
+  ],
+  "review_ids": [
+    "coverage-ui-scoped-execution-00b547c",
+    "coverage-ui-census-and-accounting-00b547c",
+    "coverage-ui-shared-metadata-pending-00b547c"
+  ],
+  "remaining": [
+    "Current-tree campaign focused-register and renderer source drift are outside this UI review.",
+    "Source census snapshots acknowledge indexing only; historical engine evidence is preserved."
+  ]
+}

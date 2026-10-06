@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "id": "UI04.dashboard",
+  "recorded_at": "2026-10-06T00:00:01.786455+00:00",
+  "scope": "Read-only major-track roadmap aggregation, named goal all-requirement semantics, missing mappings, native policy/replacement and stale/current evidence separation; loopback HTTP boundaries and 20 actual Chromium interaction checks across tracks and existing coverage drilldowns at desktop/mobile sizes. No engine behavior or current original comparison is validated.",
+  "sources": {
+    "tools/coverage_ui.py": "3c0bc511363eb2fde0a8e075f1b1e9f377a36508fb57b8eb2eefbb49c836f0f2",
+    "tools/serve-coverage-ui.py": "35d61abdd323ab944c82c7ff92009344af6a18307f0609224862ea19ab330f7d",
+    "apps/coverage-ui/index.html": "95d0e704266497d78719fa35be34a8888826483914e98c8f5c860fdafa4deaa5",
+    "apps/coverage-ui/style.css": "5e61e0146bfe811c09e6947cd0abc41bc08c3f870810c2c1db3cb103e638ad07",
+    "apps/coverage-ui/app.js": "84bf8e3ad9ba4f1f872e13bdecfa476cc538e5a89baade1717004dd3f8c4fcec",
+    "apps/coverage-ui/tracks.json": "1362933ce1061b31699bbc3e77ee690fe4f233992e6420de254dd3fe05c32283",
+    "tests/test-coverage-ui.py": "1b8406a7b0cce8239ed3de6b3c5367e6d7e613ccb0652937c1f421557968a164",
+    "tests/test-coverage-ui-browser.py": "04d7b70e2c370afaeff3e9f62d55c7e9194b1909f300678ca02e0cd008989d2e",
+    "apps/coverage-ui/README.md": "379b578c9a12400bd1ae249a5fccb2f8d0cb5968b45593c2b86ee4ffb130bd64",
+    "tools/index-coverage-sources.py": "b06f0438360462b7965af998ebcf73ca9f88bcb00befd0d5a46d5e6ae98b56d9",
+    "tools/coverage_audit.py": "e632e389d5ecbdfb20192b2806f17d39840e094b3f7f29df07c905008a639a56"
+  },
+  "unit_tests": {
+    "command": [
+      "python3",
+      "-B",
+      "tests/test-coverage-ui.py"
+    ],
+    "success": true,
+    "returncode": 0,
+    "checks": 12,
+    "output": "............\n----------------------------------------------------------------------\nRan 12 tests in 1.047s\n\nOK\n"
+  },
+  "browser": {
+    "command": [
+      "python3",
+      "tests/test-coverage-ui-browser.py",
+      "--output",
+      "working/tests/coverage-ui-major-tracks-browser-v2"
+    ],
+    "success": true,
+    "returncode": 0,
+    "checks_count": 20,
+    "url": "http://127.0.0.1:8786",
+    "checks": [
+      "default view shows all major tracks with named milestone percentages",
+      "partial audio foundations stay visible at zero demonstrated percent",
+      "track dialog shows concrete next milestones and historical evidence boundary",
+      "track drilldown includes native policies and recovered contracts",
+      "baseline scoped percentage matches register",
+      "binary percentage matches global function links",
+      "partial work view has correct total and scope",
+      "feature detail shows exact scope, research, addresses and gaps",
+      "registered research file opens",
+      "Escape closes detail dialog",
+      "interior hexadecimal address finds owning function",
+      "function details include direct call edges and limits",
+      "native policies exclude original-comparison denominator",
+      "subsystem drilldown filters work list",
+      "behavior pagination limits large lists",
+      "next page works",
+      "refresh rebuilds current snapshot without losing filters",
+      "mobile viewport has no horizontal page overflow",
+      "mobile track dialog fits viewport and exposes replacement boundary",
+      "no uncaught browser errors"
+    ],
+    "browser_errors": [],
+    "register_sha256": "7b424ee2f396803d3e4829894829fd4e5e67f7cb97e3cb9bc6d5f2f755449db4",
+    "recorded_at": "2026-10-05T23:58:21.177Z",
+    "screenshots": [
+      "desktop.png",
+      "mobile.png"
+    ]
+  },
+  "limitations": [
+    "Roadmap goals are curated and equally counted, not estimates of effort or full game/native parity.",
+    "Registered scope and status remain the authority; original observation retains original engine ownership.",
+    "Historical engine evidence remains historical. UI verification does not rerun engine comparisons.",
+    "Concurrent unrelated source/index changes remain separately visible in audit/gate findings; the browser register hash is historical provenance."
+  ]
+}

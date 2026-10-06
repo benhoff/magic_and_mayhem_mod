@@ -1,0 +1,473 @@
+{
+  "range": "06463ccf2298e82153cd56f075147ec28f6c78b1..930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+  "recorded_at": "2026-10-06T00:02:15.103470+00:00",
+  "scope": "Read-only committed parent/current hashes, exact receipt matching and current behavior links; independent from uncommitted dashboard changes. No historical gate pass or new engine validation is asserted.",
+  "files": [
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "be8bda11938204c4083ee0d84f565c76a8def985202b9364d510d2f1b8a97c46",
+      "after_sha256": "05fa18d17089045c606dec087d1021a02479677f7516a53602b8e268b15bf78b",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "aa176e5604722c09370f02bd593de68b48236a4eee575261ed03a8c58fe375b5",
+      "after_sha256": "2e91f7b01da93b61c648104ddf0bbac9bc362d2398172515edf139a666bbeb2f",
+      "exact_reviews": [],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "9c7266bd2d807222ef233c03cecc67d4c419a4fa2be1f0af77aa3e7bc3ece95f",
+      "after_sha256": "dab6643ded29e105249deb35f925b9d4b1455f4aed88b1caa2c2c9947020ed9e",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage/source-index-owned-session-fills-isolated-v3.json",
+      "before_sha256": null,
+      "after_sha256": "303c2a84cfcc14f98b964ff65ec0c0719c13854b03b9b068bcc18302b5039ceb",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage/summary-owned-session-fills-isolated-v3.md",
+      "before_sha256": null,
+      "after_sha256": "ec29e17986dce8e4fd516214a9113fa12ce5c7605882c3ab2894172fba10dad2",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-owned-session-fills-history-review-v2.json",
+      "before_sha256": null,
+      "after_sha256": "98c0a920114037755c091187ad36e6267b838aa75dc1301aa9b44fa7e0581f2f",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-owned-session-fills-history-review-v3.json",
+      "before_sha256": null,
+      "after_sha256": "98c0a920114037755c091187ad36e6267b838aa75dc1301aa9b44fa7e0581f2f",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-owned-session-fills-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "c03f7ee76ba811b3e34f2017b9977a52b2364cee28887c233624817f4341a842",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-owned-session-fills.json",
+      "before_sha256": null,
+      "after_sha256": "4d42a725131839ac7678d08300282c856dba9f3ff568cbc3a330678ecb376e7f",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-owned-session-fills.md",
+      "before_sha256": null,
+      "after_sha256": "4d50a87e9c2a5c157228cd3383270ac745eb67b985d85feea0ea2a44334bf2b8",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": [
+        "NR.real-game-command-shadow",
+        "NR.owned-session-fill",
+        "NR.owned-session-dc"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-real-game-shadow-fills.json",
+      "before_sha256": null,
+      "after_sha256": "33a2f1ac8941cb0d3fad0a15a0b2ef995b5102f6f09ef1de088c1b75c2ae66ab",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "runtime/render/bootstrap_selftest.h",
+      "before_sha256": "9ef98a518f0229272fd96e7a02b6dde259dee001870617b07d695607c857aad3",
+      "after_sha256": "dcd7e92c8af2fb1b4868db11aa6edaed1a71561f617d5aaa7fd4ab6134bd250e",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": [
+        "RT.render",
+        "NR.owned-session-fill"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "runtime/render/owned_session.h",
+      "before_sha256": "3fcced2b0f2006ad0ef0954823f369d80485f6e5c31db9c68546a2e171da708f",
+      "after_sha256": "09560df9079a32c2894a91a6793db3bb07228bc9803db9415ed38448a0ea3afe",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": [
+        "RT.render",
+        "NR.live-command-transport",
+        "NR.owned-session-fill",
+        "NR.owned-session-dc"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "tools/test-render-bootstrap.py",
+      "before_sha256": "bac2146e3723c6b094b68d9f4076ed15c593b97be95a5fa3932d37d746b6ac44",
+      "after_sha256": "e0f582675deac11cc8f6326eaf81ec61e03b57eafb3da6477f0693d299479a90",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": [
+        "NR.owned-session-fill"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "tools/test-render-session-fills.py",
+      "before_sha256": null,
+      "after_sha256": "62ba69ec24b967fa80a71534c232bf3b1fe20f33e196d8a4869f8cf881951a50",
+      "exact_reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ],
+      "current_behavior_links": [
+        "NR.owned-session-fill"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "reconstruction/rendering/effect-creature/CMakeLists.txt",
+      "before_sha256": "9bedfd9775acb3090259d3e18e36b4b12949a62266809a1ca789df12e971d568",
+      "after_sha256": "05cfe6668f59a6897e5f6b2f79e7735167d4f5d62fb4bc9df901f106a6d8986f",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": [
+        "TL.effect-creature-collision"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "reconstruction/rendering/effect_creature_collision.cpp",
+      "before_sha256": "10c4a2dd7c8f431d2b79c8f763b14c87f86dbf95699365027ff5ba8a4176233d",
+      "after_sha256": "4e7d28780ed5e7c3b12943bec4a25a701b5e3943b084e3d3cd4e11a7fee1a523",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": [
+        "TL.effect-creature-collision"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "reconstruction/rendering/effect_creature_collision.hpp",
+      "before_sha256": "81f7d672068522f762379d92244ebd20d81004ad0d5f971cdf40a4d15899eefb",
+      "after_sha256": "7e6fd634ac464b6a19fb2d750953e41f8ad7ce4995d3a714e2c6560391715839",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": [
+        "TL.effect-creature-collision"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "05fa18d17089045c606dec087d1021a02479677f7516a53602b8e268b15bf78b",
+      "after_sha256": "d47836aabd7365b72363e64b62853b937c5912c0e36a614ee9c17e0941fc878c",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "2e91f7b01da93b61c648104ddf0bbac9bc362d2398172515edf139a666bbeb2f",
+      "after_sha256": "ebb8fb94dd380846d81dae99f58b73e2dee5694832c4261013e04367f879d41b",
+      "exact_reviews": [],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "dab6643ded29e105249deb35f925b9d4b1455f4aed88b1caa2c2c9947020ed9e",
+      "after_sha256": "22731ff6ec0207e42d4e3197d7ec6c8bf62966964f1cd5a025ed608c03bcafb2",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "605837f449df07777e1ad2f71124243db20b9c81c5acbd6f86de2ab911d22217",
+      "after_sha256": "6544f8a9f5f7c378479a412a143d20910f5170c26618498fe8f00b8028df321d",
+      "exact_reviews": [
+        "effect-creature-summary-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "before_sha256": "0415278769923b9327e4bef452c6d1575f5a0ab47a4b01241ed3989c123668fc",
+      "after_sha256": "caa6591c5ad495830adfd7fdab4230ea5cd63700f9e99c0727fea86cd523c37a",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": "badd7b1412a736c8f4a0ce798bc6863b309314a439ef655301c03d924b58478a",
+      "after_sha256": "a14014bc52257b04578dc4d8659eed9c881360699a15a968b559ac48aec89662",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "7fb36088be918959465e3fc827eb6bf1b5e03e2d509f2452c26263649817e99f",
+      "after_sha256": "c8d036d28663ef734c2c7a84085aff7b73ce51a054866d3029d60b87a411e441",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "9916bf31c74afe8c58815f9006126f1538aa5ffce6743a9b09d9cdb6989809bd",
+      "after_sha256": "21bd9c88e43efa27a8e462d0fd07f64e5ef5da2836d705fdda338edf6c60a2fe",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "02c4f5268baefac12d88f30a384cf8932273df3918ad8f16dc92ef8be27b3abd",
+      "after_sha256": "54d041981e425fc2bc99296a4dea830b4b69f2572886dd6a5f5beee95c37dd4d",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "before_sha256": "c3ca18abca2d97ad16cd121872ea52cd0985fac3a39b955c970162c42530a01d",
+      "after_sha256": "3a47712837c89be62e1e493737f5fb6d1d65bf51982ebd58a1446f10149b4d6d",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-creature-collision.md",
+      "before_sha256": "1644c453cf170a3ad5106f224ebfa028cb94d1c27dbdd67ef348e7a86fc17d15",
+      "after_sha256": "4bdc19d8c7727f6b7f1c317824d3009c83f7b625187cc5ef79be15a4fb3ef0de",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": [
+        "TL.effect-movement-recount",
+        "TL.effect-creature-collision"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "e7eea493a6225900ee64a3762dba2b19b7ba36313f2f40131b60ebe8e3995894",
+      "after_sha256": "aa61f719cc78ff1cdde60f547db353c1f79ae10a081da230cebc0290052d0fe0",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-kind34-creator.json",
+      "before_sha256": null,
+      "after_sha256": "e5fa4c69373fdd6d3405cff5e2c4d6a038ca4e05b9cec0291c5b6960d57e3fc0",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-kind34-creator.md",
+      "before_sha256": null,
+      "after_sha256": "0c7ee6a0eed3de59091a0cdaddc9cf47e9a301a74ca10dcfc48f01782313bf52",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": [
+        "TL.effect-movement-recount",
+        "TL.effect-creature-collision"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-kind34-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "f60087751ef7ef87b661d53953ec3559d33855e0e374706d8475a03a3ebe1e39",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "12488f808c5bd4ddc5ea0a4a9708869c0b86c03813d42130b11f7655d8e3d026",
+      "after_sha256": "10efb7569f0aff5c78275d6f1c3f73399b0a1def30d72f231f4a9a7fcc3e13e2",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "83edd1d354cb5dba85562539c6a73e41a1eee9beb880bc2845f088ab2ca05bea",
+      "after_sha256": "c8501ee3373b9454c83f45c01c76ae8695470f1fddd314725b99e4d5d333e789",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "c95fe0618d6f24c2c50b9a16193f94e740de0edfd6183a4365de0536514f95ab",
+      "after_sha256": "2f6e5367a077e4fef1df1946066fd82553ca925c7dc6e7b5b4e24ba8beddd1f2",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "c35ac4740fb66a2bf3e55ba5a0f4512f90b12ff5885d860c94e16801a77b25fb",
+      "after_sha256": "3c56962b2aa9c7c408377392c29c87a4106538e8e7acda6edc0d44b45c6ba3ad",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "tests/effect-kind34-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "8c2e2a34388ceceaa9600399602b1cab3726b5d5c732db55fca6ca8288e89628",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": [
+        "TL.effect-creature-collision"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "tests/effect-kind34-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "c96ad497f3f50fba8cadf137b92d6d70b6f6448be0abc93b04e6ded62afc7a1d",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": [
+        "TL.effect-creature-collision"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "tools/test-effect-kind34.py",
+      "before_sha256": null,
+      "after_sha256": "33738e8e05a20069d313d98b3b19b5938b91612d5f2c6c78c313600d8a0685f8",
+      "exact_reviews": [
+        "effect-kind34-recorded-423df90"
+      ],
+      "current_behavior_links": [
+        "TL.effect-creature-collision"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "aa176e5604722c09370f02bd593de68b48236a4eee575261ed03a8c58fe375b5",
+      "after_sha256": "2e91f7b01da93b61c648104ddf0bbac9bc362d2398172515edf139a666bbeb2f",
+      "exact_reviews": [],
+      "current_behavior_links": []
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "2e91f7b01da93b61c648104ddf0bbac9bc362d2398172515edf139a666bbeb2f",
+      "after_sha256": "ebb8fb94dd380846d81dae99f58b73e2dee5694832c4261013e04367f879d41b",
+      "exact_reviews": [],
+      "current_behavior_links": []
+    }
+  ]
+}
