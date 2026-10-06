@@ -1728,3 +1728,19 @@ reconstruction remain pending. See [metadata admission](opengl-metadata-order.md
 ## Default palette context and repeated bitmap DC snapshots — 2026-10-06
 
 One serialized reserved Wine11.16 capture192cases/576leases retains separate preflight default palette input, before/draw tables, normalized DC identity/clip boxes and complete native/DC RGB frames. Manifests pass before/after; a failed compilation attempt produced no retained evidence. Offline27648 native words/27648 RGB values/258048 entries compare;228 indexed leases use supplied default context and9 mutation tests pass. Each new lease resets application clips/snapshots binding/default, while in-lease binding updates defer and direct DC edits remain private. New owned BitmapDcState/raster adapter matches55296 independent pixels/258048 entries with1928 guard/validity refusals and no surfaces; renderer primitives are unchanged. Default context is explicit environment input, not a portable Windows palette formula. Real COMDC/global lock/busy, shared/logical/flag/other GDI state, original loss/Windows/live/wire remain pending; earlier absent-palette evidence remains historical. See [DC reuse findings](surface-dc-reuse.md).
+
+### DirectDraw factory startup admission (2026-10-06)
+
+Continuous opt-in drawing admission now spans DirectDrawCreate startup, original
+factory execution and returned-interface installation. Timed-out originals still
+forward once while resetting uncertain alias/metadata state and leaving unseen
+interfaces uninstalled. Seven first/delayed/failure/null/nested/worker schedules
+pass13 complete frames with six valid/one refused session. The fixture installs
+no test hooks before initial creation;108-byte descriptors and pointer Unlock
+exercise DirectDraw1. Factory startup publishes no incremental packets before
+complete initial pixels and does not reset existing resource/session identity.
+Lifecycle11-case/8-frame and late checkpoint6-case/186-frame regressions pass,
+including incomplete/active Lock/DC refusal. Production/SELFTEST DLLs build.
+Original driver/startup comparison, alternative factory entry points, external
+startup/shutdown/recovery races, unobserved interface recovery and borrowed
+interval ownership remain pending; see [startup admission](opengl-draw-startup-order.md).

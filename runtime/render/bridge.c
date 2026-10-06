@@ -453,13 +453,15 @@ done:__sync_lock_release(&table_busy);
 }
 static i32 WIN create_draw(void* guid,void** result,void* outer){
     COMMAND_CALLBACK(original_create(guid,result,outer));
-    u32 incoming=GetLastError();RenderStartup();SetLastError(incoming);
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(0);
+    u32 incoming=GetLastError();if(copy_lease.observe)RenderStartup();else game_lifetime_invalidate();SetLastError(incoming);
     __atomic_store_n(stream+MNM_FRAME_V1_STATUS_OFFSET/4,MNM_FRAME_V1_STATUS_INSIDE_CREATE,__ATOMIC_RELEASE); /* Entered DirectDrawCreate. */
     __atomic_add_fetch(stream+MNM_FRAME_V1_CREATE_COUNT_OFFSET/4,1,__ATOMIC_RELAXED);
     i32 status=original_create(guid,result,outer);u32 error=GetLastError();
     __atomic_store_n(stream+MNM_FRAME_V1_CREATE_HRESULT_OFFSET/4,(u32)status,__ATOMIC_RELAXED);
-    if(status>=0 && result && *result)install_table(*result,1);
-    u32 state=status<0?MNM_FRAME_V1_STATUS_CREATE_FAILED:result && *result && lookup(*result)?MNM_FRAME_V1_STATUS_INTERFACE_INTERCEPTED:MNM_FRAME_V1_STATUS_INTERCEPTION_FAILED;
+    if(!copy_lease.observe){game_lifetime_invalidate();game_copy_unobserved(0);}
+    else if(status>=0 && result && *result)install_table(*result,1);
+    u32 state=status<0?MNM_FRAME_V1_STATUS_CREATE_FAILED:copy_lease.observe && result && *result && lookup(*result)?MNM_FRAME_V1_STATUS_INTERFACE_INTERCEPTED:MNM_FRAME_V1_STATUS_INTERCEPTION_FAILED;
     __atomic_store_n(stream+MNM_FRAME_V1_STATUS_OFFSET/4,state,__ATOMIC_RELEASE);
     SetLastError(error);return status;
 }
