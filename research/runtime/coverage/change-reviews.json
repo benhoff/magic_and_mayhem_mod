@@ -17863,6 +17863,55 @@
         "reason": "44 gate and 45 discovery regression tests passed; Git auto maintenance was disabled in disposable fixtures after observing a background-pack cleanup race. Existing evidence stays historical; no engine status or execution evidence is promoted.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "fbd7c9fd3d98822efa04da1fda472738262b84c02beae4b7433d2912bde4caba",
+          "before_sha256": "ddc58373f0edb8e8ac704483f960e64716ac008aa03c272e0c32dae7f0597ced",
+          "id": "NA.voice_bridge"
+        },
+        {
+          "after_sha256": "d4d20e2707a864300515b200a836f4519c9e65c97b70e08ce4b282c60a05b599",
+          "before_sha256": "394d892a21bb5a3a1df7aebc8e66944a56ff43da288f58358a5866311d3fcdf8",
+          "id": "RT.audio"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "ae5d018a831ea012c00ac8c856a2a7f8b4f7af79a14914cd686827bd9b8f7826",
+          "before_sha256": "a67e48fd0686d22a658d376adbea68bc2b803c602cb548e480736f2d689598e9",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "3a2ab3494737cff31ba05f0c43da681d5a9a93f5cc25463188c372fdb366e91b",
+          "before_sha256": "c1556b89c4168891b73b2554f72ff58f6c7fb400bf93de86448b1ea1c4bb66e5",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f4a1026efe4c2b30cd7f5d238920e6ae64c1a13dfb578c4e3e93af1e4241efaa",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-audio-observation-20261005.md"
+        },
+        {
+          "after_sha256": "969f7a1c11ac5f063bd3ca8a4903520e79f320d71b7f724e695bc7cfd4997fbe",
+          "before_sha256": null,
+          "path": "research/runtime/native-audio-live-observation-20261006.json"
+        },
+        {
+          "after_sha256": "2382b529725ce78db6821590b57bede238334976d84ac3eba76bfcf9ef9e86ab",
+          "before_sha256": "84b7cf5db7c54e58d02ae12c1132afeb54b20229afa73b77e6f86475447020a9",
+          "path": "research/runtime/native-audio-voice-bridge.md"
+        }
+      ],
+      "id": "nonrender-final-audio-20261005",
+      "pending_gaps": [],
+      "reason": "Record existing native selection counters and user-reported audible playback, disclosing inferred run identity and inspection-time versus executed-binary provenance. Retain all independent status dimensions and historical hashes.",
+      "validation": {
+        "status": "pending",
+        "reason": "Offline coverage audit passes; this observation does not establish a freshly rebuilt binary, waveform/timing equivalence, full-session audio validation or complete replacement. No new game experiment was run.",
+        "evidence": []
+      }
     }
   ]
 }
