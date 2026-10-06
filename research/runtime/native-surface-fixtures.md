@@ -13,7 +13,7 @@ SHA-256 `40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`.
 | `format.rgb565` | Native RGB565 words and color interpretation | Five selected copies; native words compared, displayed RGB conversion independently checked offline |
 | `format.other` | Required indexed/masked formats, pitch and layout | Pending; current synthetic indexed8/RGB555/24/32 coverage remains separate |
 | `copy.opaque` | Whole/rectangle Blt and BltFast, borders and errors | Five RGB565 BltFast rectangles at one return PC |
-| `key.exact_source` | Exact native source key and state changes | Pending |
+| `key.exact_source` | Exact native source key and state changes | 436 isolated original wrapper calls;434 successful RGB565 outputs compared |
 | `palette` | Entries, shared ownership, binding and lifetime | Pending; v2 native resource policy exists |
 | `clip.rectangles` | Boundary/empty handling and coordinate adjustment | Pending; already bounded rectangles are not clipping evidence |
 | `clip.regions` | Required attached clipper regions and changes | Pending; reachable region shapes remain unresolved |
@@ -132,3 +132,12 @@ were found in that committed range. The retained
 [history report](coverage/committed-history-surface-fixtures-20261006.json) does
 not assert historical gate passage or new checkpoint validation. Concurrent
 uncommitted recovery work is outside that review.
+
+## Original keyed wrapper extension
+
+[Keyed wrapper evidence](original-surface-keys.md) adds an independent portable
+corpus from unchanged `0x58ca90` code through real Wine Surface2. It has a separate
+strict checker and provenance contract; the five historical game captures and
+MNMBLT01 admission remain unchanged. It compares434 successful native outputs,
+retains two missing-key Blt errors and144 second calls after key mutation. Native
+keyed HRESULT/retry/Restore, indexed and clipped keys remain pending.

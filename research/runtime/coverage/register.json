@@ -14600,6 +14600,54 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RE.surface-copy.rgb565-keyed",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Original RGB565 exact source-key rectangle pixels",
+      "scope": "Unchanged original wrapper0x58ca90 through Wine Surface2:436 controlled RGB565 keyed calls;434 successful native/CPU full-pixel comparisons,144 second calls after actual key mutation. Two missing-key Blt E_INVALIDARG calls retained without native HRESULT equivalence. Not live gameplay, other wrappers/formats, clipped keys, original retry/Restore or Windows-driver equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819024,
+          "scope": "Selected unchanged rectangle-keyed wrapper/API branch only, controlled globals; no error retry wrapper."
+        }
+      ],
+      "documents": [
+        "research/runtime/original-surface-keys.md",
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/native-surface-fixtures.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands_main.cpp",
+        "tools/check-original-surface-keys.py"
+      ],
+      "tests": [
+        "tests/surface-key-reference.c",
+        "tools/capture-original-surface-keys.py",
+        "tests/test-original-surface-keys.py",
+        "tests/fixtures/surfaces/original-rgb565-keyed-corpus.json",
+        "tests/fixtures/surfaces/original-rgb565-keyed.json.gz"
+      ],
+      "evidence": [
+        "ORIGINAL.surface-copy.rgb565-keyed.capture-20261006",
+        "ORIGINAL.surface-copy.rgb565-keyed.replay-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -26038,6 +26086,38 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-keyed.capture-20261006",
+      "kind": "isolated_original",
+      "scope": "Unchanged original wrapper0x58ca90 through Wine Surface2:436 controlled RGB565 keyed calls;434 successful native/CPU full-pixel comparisons,144 second calls after actual key mutation. Two missing-key Blt E_INVALIDARG calls retained without native HRESULT equivalence. Not live gameplay, other wrappers/formats, clipped keys, original retry/Restore or Windows-driver equivalence.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-keys-capture-20261006.json",
+      "sha256": "9fe227be1ad9df29cc39c26b32c03f20a27285cf86a24cd3ecf8c668ef4b869d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-keyed.replay-20261006",
+      "kind": "isolated_original",
+      "scope": "Unchanged original wrapper0x58ca90 through Wine Surface2:436 controlled RGB565 keyed calls;434 successful native/CPU full-pixel comparisons,144 second calls after actual key mutation. Two missing-key Blt E_INVALIDARG calls retained without native HRESULT equivalence. Not live gameplay, other wrappers/formats, clipped keys, original retry/Restore or Windows-driver equivalence.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-keys-replay-20261006.json",
+      "sha256": "61c85380cbe2c277e4084e22324a2c0cf11c67f2dd4fb87630e21fb40921115e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -30543,7 +30623,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-render-routes-20261006.json",
-    "sha256": "1eb5fbf5ef1384a0667058bc1704a98493c8e678b88cdb7ab34151f2ad2f7cb4"
+    "path": "research/runtime/coverage/source-index-original-keys-20261006.json",
+    "sha256": "a81759ae0c870f7d23d65b453b5edbacce44108a9cea5aea0b21576149e28057"
   }
 }

@@ -1521,5 +1521,18 @@ source/destination checks. Two E_INVALIDARG missing-key Blt calls remain capture
 without native HRESULT equivalence. Seven provenance/state/output refusal tests
 pass. No live gameplay, Windows-driver, indexed/clipped key, retry/Restore or
 replacement claim. Wine experiments are serialized. See
-[findings](original-surface-keys.md). The reviewed454c5d5..63863bc history range
+[findings](original-surface-keys.md). The reviewed454c5d5..e6b493a history range
+has no missing exact file receipts; current uncommitted route work is separate.
+
+## Original RGB565 keyed wrapper outputs — 2026-10-06
+
+Unchanged no-CD wrapper0x58ca90 ran in a private PE mapping against real Wine
+Surface2, retaining436 complete before/after cases, both APIs/WAIT branches,
+exact high-bit keys and144 second calls after key mutation. CPU checks compare
+all436 outputs; native COPY compares434 successful outputs with868 complete
+source/destination checks. Two E_INVALIDARG missing-key Blt calls remain captured
+without native HRESULT equivalence. Seven provenance/state/output refusal tests
+pass. No live gameplay, Windows-driver, indexed/clipped key, retry/Restore or
+replacement claim. Wine experiments are serialized. See
+[findings](original-surface-keys.md). The reviewed454c5d5..e6b493a history range
 has no missing exact file receipts; current uncommitted route work is separate.
