@@ -351,8 +351,8 @@
       "id": "SURF.copy.self_overlap",
       "requirement": "required",
       "requirement_evidence": "Milestone overlap requirement; unchanged original opaque RGB565 wrapper/API overlap and COM aliases captured.",
-      "native_backend": "unsupported",
-      "wire_support": "COPY requires distinct IDs",
+      "native_backend": "partial: opaque RGB565 per-piece GPU snapshots",
+      "wire_support": "v3 SURFACE_COPY permits identical IDs with zero/API WAIT flags; legacy COPY retains distinct IDs",
       "behavior_ids": [
         "RI.copies",
         "NR.surfaces",
@@ -385,7 +385,7 @@
       "original_fixture_ids": [
         "original-rgb565-overlap-corpus.json"
       ],
-      "remaining_gap": "Native GPU implementation/replay pending; keyed/masked overlap, other formats, loss/Restore/retry, live and Windows driver comparison remain outstanding."
+      "remaining_gap": "Keyed/masked overlap, other formats, live COM alias identity tracking, loss/Restore/retry and Windows driver comparison remain outstanding. Offline opaque RGB565 outputs/HRESULTs now match1536 unchanged original wrapper/driver captures."
     },
     {
       "id": "SURF.restore",

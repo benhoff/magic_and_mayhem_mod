@@ -35,13 +35,13 @@ release session-owned resources, preserving unrelated renderer surfaces.
 | Opcode | Payload | Admission and effect |
 | --- | --- | --- |
 | 16 SET_CLIPPER | `surface_id, mode, count`, then `count` RECTs | RGB565 destination, mode 0 detached / 1 explicit list / 2 attached missing list. Modes 0/2 require count zero; mode 1 with zero count means empty exclusion. At most 32 positive, in-bounds, disjoint regions. Supplied order is preserved. Validate before replacing owned state. |
-| 17 SURFACE_COPY | 13 words: `source_id, destination_id, api, flags, busy_observations, source_RECT[4], destination_RECT[4]` | Distinct live RGB565 surfaces. API 0 Blt / 1 BltFast. Positive Blt geometry is one-to-one; invalid rectangles are legitimate semantic inputs. BltFast consumes destination left/top; right/bottom remain serialized input metadata. |
+| 17 SURFACE_COPY | 13 words: `source_id, destination_id, api, flags, busy_observations, source_RECT[4], destination_RECT[4]` | Live RGB565 surfaces; same-ID opaque copies freeze the source separately for each ordered clip piece on the GPU. API 0 Blt / 1 BltFast. Positive Blt geometry is one-to-one; invalid rectangles are legitimate semantic inputs. BltFast consumes destination left/top; right/bottom remain serialized input metadata. |
 | 18 CHECK_SURFACE_RESULT | `surface_copy_sequence, expected_hresult` | Names the latest opcode 17, including one that failed. Explicit diagnostics only; it never determines copy admission or supplies pixels. Verify mode compares the actual result; Skip mode retains structural validation and skips the comparison. |
 
 Clipper payload size is exactly `12 + count*16`; copy is exactly 52 bytes; result
 check is exactly 8 bytes. Unknown modes/APIs, excess counts, overlapping/outside
 regions, invalid IDs/formats, wrong sequences and unvalidated flag combinations
-are rejected. The selected flag values are zero, the selected API's WAIT flag,
+are rejected. Same-ID copies admit only zero or the selected API WAIT flag. Separate source/destination IDs retain their existing selected flags. The selected flag values are zero, the selected API's WAIT flag,
 its missing-source-key flag, or `0x80000000`; broader key/effect combinations are
 outside the captured policy. Busy observation bit 0 means source busy, bit 1
 means destination busy; other bits are rejected. These are explicit caller/fixture

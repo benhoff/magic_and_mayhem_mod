@@ -74,7 +74,8 @@ public:
               std::optional<std::uint32_t> key=std::nullopt,
               std::optional<SurfaceId> mask=std::nullopt);
     // Surface2-style RGB565 operation; see surface_copy.hpp for the bounded policy.
-    // copy() remains the in-bounds primitive used for already resolved pieces.
+    // Same-ID opaque copies freeze each ordered source piece on the GPU (max16MiB
+    // transient storage). copy() retains its distinct-ID primitive contract.
     void setClipper(SurfaceId destination,const ClipperState& clipper);
     SurfaceCopyResult surfaceCopy(SurfaceId source,SurfaceId destination,
                                  const SurfaceCopyRequest& request);

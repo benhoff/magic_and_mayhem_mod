@@ -30339,6 +30339,359 @@
         "evidence": [],
         "reason": "Explicitly account for the three newly stale shared route/probe evidence fingerprints. New live observation establishes only required guided-idle World recovery/publication and stable independent pixel regions; it does not refresh prior route records, synthetic integration matrices, movie coverage or full gameplay equivalence. The Select Zombie tutorial remains awaiting active user actions. Shared contracts keep historical statuses and original comparison/replacement boundaries."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "aa31c076f61dca8f0387c01ffb6eda2d24c914d1aed4fa28b63e812500b18bc3",
+          "before_sha256": "921d6970b400f821f7ed2a1ddd1b6830a13627dc68d5c4729f75225eb72d29e7",
+          "id": "RE.surface-copy.rgb565-overlap"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7d966c5907fa6c69b8ddb5c15eee5bd6851f1ed0d79febf7b51af158e8298f0c",
+          "before_sha256": "e21ff91483d417a4e0bc407761c2f476c414ee39064e47e7d0397632e898753a",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "217c7caeba8f9c6e843ce52329476a61f1fa71b79f8d6fc653d327b8f62960ff",
+          "before_sha256": "b348f7ad14ec06e79dfa07ec1c699388d13639cd74f65b251c79354ae33b3c27",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+          "before_sha256": "be2ac2c2c86ec1f2e00cfaca8a5e66f574d3df4e9159b1c4a1be2c4fa377da38",
+          "path": "renderer/command_consumer.cpp"
+        },
+        {
+          "after_sha256": "23a6f9f034c6e2de770dd1e21dbc247539044c5d4a67a4ba2150d9c51701a101",
+          "before_sha256": "fd1591541891e8c41d5353f3e2cafa70599f36574dadbbf6696bb080215d8174",
+          "path": "research/formats/render-surface-commands-v3.md"
+        },
+        {
+          "after_sha256": "6d4ee198c64a47a13021ba1cfe20515fa424411d3f29bad2c974e7e9c7617932",
+          "before_sha256": "5158321c4e2aa254a0d1a8b91200e62278f47e829823210bfbae008112f9c907",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "bf4c8f634bb9a1c5d440fd9a9881558f06daf8d55173e9850cb3c31ff4dc31cf",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-native-overlap-20261006.json"
+        },
+        {
+          "after_sha256": "2e5f1f06ff4a5524e5db30da7cf2af264865252e30db73f052d4d8d82b350db9",
+          "before_sha256": "89e4dab18d7d90b0bf6cb91ea2c5beeca3f864b0e97266f711ad2eb51fdeb903",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "fef46d37e8154b02f51a760d69b055290c6e1aefe43bb38a52ddc5cd35cf6a69",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-overlap-20261006.json"
+        },
+        {
+          "after_sha256": "22de3251c6b64b95caf3ca7d2665d59c498a6d310bf6740367e7ac0264895017",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-overlap-20261006.md"
+        },
+        {
+          "after_sha256": "69db90705ece625db5c9c7a159b796e3996dec844e9e4b33b9b4efbdc5eecbd8",
+          "before_sha256": "8eabaf3a1dc45967c574019c439c04bc860d90e054b87fe3bad5e2e74b45fb26",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "ee42813cdee8646d58fdbfed7ef4f5e86a4195e1b677897ab2339ef575dd74ff",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-overlap-native-20261006.json"
+        },
+        {
+          "after_sha256": "2a78fe2d0659ad7c6095d2cca3ee01a0b31d3ac90c45af1ea8e4594067e82340",
+          "before_sha256": "adc2c3c94560de509b57d535b7963e7a2035bfd777a4df1e6cd943b6c1eea5cc",
+          "path": "research/runtime/original-surface-overlap.md"
+        },
+        {
+          "after_sha256": "e676443e82f419e77f200295424fdd4ae606c703a241db9abb7be200f18ec5d7",
+          "before_sha256": "09c1b999b9476b17b2596f7e7d2d104cce1060ab8eb596747fe681e485893742",
+          "path": "tests/render-surface-copy-fixtures.cpp"
+        },
+        {
+          "after_sha256": "6b4982c0cddaddb9f059d5d45d2ad478bd3cbece2427005cc294f05020613817",
+          "before_sha256": null,
+          "path": "tools/check-native-surface-overlap.py"
+        }
+      ],
+      "id": "native-overlap-gpu-v3-20261006",
+      "pending_gaps": [
+        "stale_evidence:0cc7f7d5092530a6492f8542b068613b0139a11e69a13296072ef1c1dd4f97f2",
+        "stale_evidence:1394ee7c17b2a1fe15ef3f43b7fc5c609743d102fea3c1b59aa497942cbcb9ba",
+        "stale_evidence:17fb042b20941aa8e2f3e88839729428d8ce57f3e6b83e4437418a93568d5253",
+        "stale_evidence:19928699568fd72f8df1d79128b16761e1c8887d45e8ff81c62b0cf1345db3af",
+        "stale_evidence:1d418a87e56efa7a6eef7c14e1581345b3a09b2673d790d4da280aa383b796ac",
+        "stale_evidence:203f32bcb75d1c00b8d1956e6b36b0062366f142d1e33a711cbb25ece7392155",
+        "stale_evidence:2565bb136eb57bd3386ad65765d528d64f1d5f2c934c354b5982d5f7b6dd0270",
+        "stale_evidence:275ef6d1bc141d5b9589b0f78cd215c74f4aa8984d1d4b1c5343a6898e860fd5",
+        "stale_evidence:2afe86c6af1634dbbfdfadd54cdfa8232bf7729698b1ecc0a56d7db9008aa7ee",
+        "stale_evidence:2bddc550849d222748000d62165279020629be63f47840a174500571e1485799",
+        "stale_evidence:30589eedb923b6052f8ca38b728b9121d6bba741c6870b1e8416452d3f9adbb2",
+        "stale_evidence:30b1b11d9b0bc669e2feb3d83d4c86cff30683e35655e3c00b7bce87906650f8",
+        "stale_evidence:3292f0e0b2024253fa7cd81fb214eb66c40119fa6c38c7648c1bffec373a16b1",
+        "stale_evidence:33e88f50c8fdd511eb860da17602d16c3cb5467b575f9aae9790b4f29ae6dccd",
+        "stale_evidence:390fe7a50493be548755fdbbaabab844a2a1acb0b8dc94caa2256235c76089a0",
+        "stale_evidence:3e8b8d2aa999c455eae8ddf480c8b92cf277d21d5e4f189494972e9c95060721",
+        "stale_evidence:3ecb97c8d385d4defa7a6af33727e75b7b48a528eadb128a55a269e72a36b244",
+        "stale_evidence:435c5ffe5af17e1ea0a6aeb5f60196ace256965a8e1794c8b424c71c72f9f511",
+        "stale_evidence:43c1f4908635be5221d289ea3a96952de69be29538c4f468454f060c1de475d6",
+        "stale_evidence:4a245b64044a5aba8b75395a494af751dbb2e1ea7fa6f600baa91c6742a89571",
+        "stale_evidence:59157c5346b80222b90a880e3cd92b9f4d804fed974c9e14271b4bb91ce3e69c",
+        "stale_evidence:5a90da51969af6fcfa40ec550bbdd32af6479d674d6aec13d433df4866253b7c",
+        "stale_evidence:5ba794b7d5a7bfdc6d512557d8e1db30ad9e52f62bd3fbf73e33486f5b254e7b",
+        "stale_evidence:5fcaf741d3852335f2ea4bdb26180b4e7b7c3347bad59ac7cf3fe8e45502b916",
+        "stale_evidence:66b4a98ba085d52bfaa2fb40166d0c7780c0d2f26c50318151762ca8ee5a10ac",
+        "stale_evidence:66cceb6adf27c3e6bb80209c51e7c0a6ca6fbf1c9b243984d3798fc689f03475",
+        "stale_evidence:6e090f4f18b3751da252eec83f07d177a2fd08b44011747992c72860b3b4c4e2",
+        "stale_evidence:7154f59ad951a70dd2feca18706be417425f749e626c2f9152709f478b298263",
+        "stale_evidence:731b6e361a58262c38d8aacc17ffb35c838b0f56be3001fe0ad652733afec9f6",
+        "stale_evidence:7640a1113aa21f6e16c48d3b7c9378ad8247f7c685359cdd1244c824b0298d2b",
+        "stale_evidence:7d026010884274becc15ca0206e04cf647bdeb6fe781fa953d2b7d91ee49aeab",
+        "stale_evidence:863e9640480cd66b94dcc866ae52e3485f1d2983a7f055ba2827b80e08f0cf0f",
+        "stale_evidence:95844812af12a114cccb5536e517a4150087a01905bedbb6dab2582d5510a7cb",
+        "stale_evidence:98384c95a9f53a761c927e838d4a578ac4c4d3beaa35be355901b5c0b87d3332",
+        "stale_evidence:a47efb1fc7613c38827a9e96e1ebb8e94e3ab0d68ce79733a5526be380626c69",
+        "stale_evidence:a4d53e664c4b3d06884ee29de5fbd12cb2993fe314cbb61fbd95da57e94d6ac9",
+        "stale_evidence:a5da4b2b1b16c2dfc58ca5ec2908f0178ea0a4620fe2414a3b54c32b299dc273",
+        "stale_evidence:ab86995fca771d0050bdbb5b0210263341b4ce0eaa735045e52344aaf0887e1b",
+        "stale_evidence:acc1e9cf9dbc5be7591c0c485c9d9d5944ddf58fc9e710c85e22c1310527e3eb",
+        "stale_evidence:afee900832656e3cd9d89aeb217fa75f4139e15a8986dd418b02795d84af842b",
+        "stale_evidence:b2c05876fa2f9a5206b94f4b2801eb570de00eef09e560fe66f2766b28f2c580",
+        "stale_evidence:b6b0042ed2eb86429c314fc53d0c3a9cc139c95c66f4ea85291b4d3f48031655",
+        "stale_evidence:b8e1e5f6c314d783b2df80e940186f8d069277cb19459797e02bf7313fdbc201",
+        "stale_evidence:b9b62e3b399b35b2c24c753fb262be13bf0a51062161120c604ec1195d7f1a5e",
+        "stale_evidence:cf24cea6a89befb668546658d84e2d97db47b086dfe4544c621563e2edb3ff60",
+        "stale_evidence:d29fdc3fc2be4585c33a0fdc1ef22b0efdbca7196d16cbfce3d9587ece707e8e",
+        "stale_evidence:d531b6e63acff1a1d96144634b302b57a18054216a3d9fcb6b8bb4b4871b2e8b",
+        "stale_evidence:d664c27ad5f80764e30b5154b9e93838d2692903c7bab07dd196dc1d92ed3aad",
+        "stale_evidence:dd8bb0a5ba85d8edbf139e5677287b35f761519d4d9def926b66bac8b156335d",
+        "stale_evidence:de37b8450092c59dad837830f0d130472b32dfbed7ac96f944ba74e386a9edc6",
+        "stale_evidence:e34e12cd4bd0ac97ccff5797981388b72900eb3c0d404db194b6019e7af5044a",
+        "stale_evidence:e792dbf24341dde5bf9917412d6ad091daca8fa81fdab1e6674509fa16804735",
+        "stale_evidence:e86635d832ebd58c20e4cf28cf72627e5fd11f7c597955bbcca26a3452adb42b",
+        "stale_evidence:ec165fa9aaaaf1dfe8ea7f478825e13c4643380740dead15e9ce8df28821e882",
+        "stale_evidence:f52ee7adb62dec6b367f648146e2b4df8120f1af1a4ffaa39232f864c785e9c8",
+        "stale_evidence:f87a9be670d51ccac5a65dee551fbf9635ef8544b183570b4506bdb30e08d436",
+        "stale_evidence:fe162ee63114b34c628ab8a71e37a7ed8a819f888b189b037ee89e780637cf7c",
+        "stale_evidence:fef742fbb12569341e64b7874f95284c3d4e97417742ca9586577ee259dca3ad"
+      ],
+      "reason": "Reviewed GPU scratch snapshots, source/destination sampling separation, per-piece ordering and bounded allocation/exception cleanup; v3 opaque-only same-ID admission and unchanged legacy primitive refusal. Native1536 original results/full outputs,20 policies,6 rejected streams and8 renderer regressions pass; reviewed explicit links and census.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh input-only GPU backend and v3 replay compare independently retained original result/pixel outputs for1536 cases, including16 partial errors; native scratch path performs no ordinary uploads/readbacks.",
+        "evidence": [
+          "ORIGINAL.surface-copy.rgb565-overlap.native-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "45f81e2bb8fe3ef160e0061ee1ef69a7798b3d990ca73e253f8493cd4e116194",
+          "before_sha256": "d7ee4b0fc38aac5de36c4bfc8b5ab1be5f9b089fa2cbdea2a02106b448651675",
+          "id": "NR.command-streaming"
+        },
+        {
+          "after_sha256": "d515c442063d8177dc3cd8b2be5ed3e3d1d7455bf15e7abe34b77eb58acb035d",
+          "before_sha256": "b691edfb2dab06c0d31aacab00d676476e8628861b0603348919703f5df54f12",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "b94ca1d0ab977032bb998d77c57528783eefdf53a15ba06545dede5070fcaa38",
+          "before_sha256": "0851dba496bbdba43ccd0fa9b21e9dbe0d6040493d40ef14f7daf367b2729b11",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "3d04febfc56e2d55c0cbe6a27043e39ca110704f74a0a94077c9bb3857c30cf7",
+          "before_sha256": "1ccf783012286e713069b1e02912acc7a51e8ee6ff9960031d71e18fbcdbda93",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "dd648124e5a98e049e57847451be6a19e3b5b418b959596f775d13e95d121384",
+          "before_sha256": "63a26be9b07095e48c01a644f00efd29273bf68e11e0c2e688fe1e7ca743e34d",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "d586b756789d167601d4bc10dc6e70b0ea6acab35fc4af3a3900a61b18cf16fa",
+          "before_sha256": "220d0d4037840a96eb1ba7a4e9476229407da9bfdb0b882adffb33f49f331392",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "4bba31c6a0e16719263102b5d1d8a105c235eb29c0987b11421d319f2c57cfbd",
+          "before_sha256": "b7ce6d2adebaa229194358e4bc7e051752603b4625f8c24968838c1fac413097",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "a7feff8625b7a14841fd589f99dd76eb9a124eb94390c99d56c314d6ee1a8bd4",
+          "before_sha256": "0ae2594b731b354e035dd7f0aff79fc48bf0594621165804279352e6fe2d5a58",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "43c21e407bf9e4b5564ebe288ff9b307ef5bc67950f7d8735cb9be4252b6b1fc",
+          "before_sha256": "03abbc4ecca53b2e5688df27a843d019e1a0f14fb4091b0225d2898db9922a59",
+          "id": "NR.surfaces"
+        },
+        {
+          "after_sha256": "7bf33fa9afd38d8acc6555455ce475b05dfa665f46be4e2fb351dc1595b42a35",
+          "before_sha256": "f9ddde962af73d775b5086310470800ef078649b59ff895671ae392b1efb9e96",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "91f8cb7d78397bd64e619cdf563eabc7f6659be2fcce17ad308a0c748c9f8161",
+          "before_sha256": "088a2c486fd6a0c1fd1077d1a1b45f843abda72e8e85a91806b90ee5c0971ed0",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "13c6f2593fd7d1c6f3cf28e88f359a7361add51737d39be03238540fc595ad17",
+          "before_sha256": "766add71f1489ca7011aceb010d6aed68f1478034891e61d93db5d6a6ce5ce6e",
+          "id": "RE.surface-fill.rgb565"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7d966c5907fa6c69b8ddb5c15eee5bd6851f1ed0d79febf7b51af158e8298f0c",
+          "before_sha256": "e21ff91483d417a4e0bc407761c2f476c414ee39064e47e7d0397632e898753a",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "217c7caeba8f9c6e843ce52329476a61f1fa71b79f8d6fc653d327b8f62960ff",
+          "before_sha256": "b348f7ad14ec06e79dfa07ec1c699388d13639cd74f65b251c79354ae33b3c27",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+          "before_sha256": "be2ac2c2c86ec1f2e00cfaca8a5e66f574d3df4e9159b1c4a1be2c4fa377da38",
+          "path": "renderer/command_consumer.cpp"
+        },
+        {
+          "after_sha256": "23a6f9f034c6e2de770dd1e21dbc247539044c5d4a67a4ba2150d9c51701a101",
+          "before_sha256": "fd1591541891e8c41d5353f3e2cafa70599f36574dadbbf6696bb080215d8174",
+          "path": "research/formats/render-surface-commands-v3.md"
+        },
+        {
+          "after_sha256": "6d4ee198c64a47a13021ba1cfe20515fa424411d3f29bad2c974e7e9c7617932",
+          "before_sha256": "5158321c4e2aa254a0d1a8b91200e62278f47e829823210bfbae008112f9c907",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "bf4c8f634bb9a1c5d440fd9a9881558f06daf8d55173e9850cb3c31ff4dc31cf",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-native-overlap-20261006.json"
+        },
+        {
+          "after_sha256": "2e5f1f06ff4a5524e5db30da7cf2af264865252e30db73f052d4d8d82b350db9",
+          "before_sha256": "89e4dab18d7d90b0bf6cb91ea2c5beeca3f864b0e97266f711ad2eb51fdeb903",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "fef46d37e8154b02f51a760d69b055290c6e1aefe43bb38a52ddc5cd35cf6a69",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-overlap-20261006.json"
+        },
+        {
+          "after_sha256": "22de3251c6b64b95caf3ca7d2665d59c498a6d310bf6740367e7ac0264895017",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-overlap-20261006.md"
+        },
+        {
+          "after_sha256": "69db90705ece625db5c9c7a159b796e3996dec844e9e4b33b9b4efbdc5eecbd8",
+          "before_sha256": "8eabaf3a1dc45967c574019c439c04bc860d90e054b87fe3bad5e2e74b45fb26",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "ee42813cdee8646d58fdbfed7ef4f5e86a4195e1b677897ab2339ef575dd74ff",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-overlap-native-20261006.json"
+        },
+        {
+          "after_sha256": "2a78fe2d0659ad7c6095d2cca3ee01a0b31d3ac90c45af1ea8e4594067e82340",
+          "before_sha256": "adc2c3c94560de509b57d535b7963e7a2035bfd777a4df1e6cd943b6c1eea5cc",
+          "path": "research/runtime/original-surface-overlap.md"
+        },
+        {
+          "after_sha256": "e676443e82f419e77f200295424fdd4ae606c703a241db9abb7be200f18ec5d7",
+          "before_sha256": "09c1b999b9476b17b2596f7e7d2d104cce1060ab8eb596747fe681e485893742",
+          "path": "tests/render-surface-copy-fixtures.cpp"
+        },
+        {
+          "after_sha256": "6b4982c0cddaddb9f059d5d45d2ad478bd3cbece2427005cc294f05020613817",
+          "before_sha256": null,
+          "path": "tools/check-native-surface-overlap.py"
+        }
+      ],
+      "id": "native-overlap-shared-pending-20261006",
+      "pending_gaps": [
+        "stale_evidence:0cc7f7d5092530a6492f8542b068613b0139a11e69a13296072ef1c1dd4f97f2",
+        "stale_evidence:1394ee7c17b2a1fe15ef3f43b7fc5c609743d102fea3c1b59aa497942cbcb9ba",
+        "stale_evidence:17fb042b20941aa8e2f3e88839729428d8ce57f3e6b83e4437418a93568d5253",
+        "stale_evidence:19928699568fd72f8df1d79128b16761e1c8887d45e8ff81c62b0cf1345db3af",
+        "stale_evidence:1d418a87e56efa7a6eef7c14e1581345b3a09b2673d790d4da280aa383b796ac",
+        "stale_evidence:203f32bcb75d1c00b8d1956e6b36b0062366f142d1e33a711cbb25ece7392155",
+        "stale_evidence:2565bb136eb57bd3386ad65765d528d64f1d5f2c934c354b5982d5f7b6dd0270",
+        "stale_evidence:275ef6d1bc141d5b9589b0f78cd215c74f4aa8984d1d4b1c5343a6898e860fd5",
+        "stale_evidence:2afe86c6af1634dbbfdfadd54cdfa8232bf7729698b1ecc0a56d7db9008aa7ee",
+        "stale_evidence:2bddc550849d222748000d62165279020629be63f47840a174500571e1485799",
+        "stale_evidence:30589eedb923b6052f8ca38b728b9121d6bba741c6870b1e8416452d3f9adbb2",
+        "stale_evidence:30b1b11d9b0bc669e2feb3d83d4c86cff30683e35655e3c00b7bce87906650f8",
+        "stale_evidence:3292f0e0b2024253fa7cd81fb214eb66c40119fa6c38c7648c1bffec373a16b1",
+        "stale_evidence:33e88f50c8fdd511eb860da17602d16c3cb5467b575f9aae9790b4f29ae6dccd",
+        "stale_evidence:390fe7a50493be548755fdbbaabab844a2a1acb0b8dc94caa2256235c76089a0",
+        "stale_evidence:3e8b8d2aa999c455eae8ddf480c8b92cf277d21d5e4f189494972e9c95060721",
+        "stale_evidence:3ecb97c8d385d4defa7a6af33727e75b7b48a528eadb128a55a269e72a36b244",
+        "stale_evidence:435c5ffe5af17e1ea0a6aeb5f60196ace256965a8e1794c8b424c71c72f9f511",
+        "stale_evidence:43c1f4908635be5221d289ea3a96952de69be29538c4f468454f060c1de475d6",
+        "stale_evidence:4a245b64044a5aba8b75395a494af751dbb2e1ea7fa6f600baa91c6742a89571",
+        "stale_evidence:59157c5346b80222b90a880e3cd92b9f4d804fed974c9e14271b4bb91ce3e69c",
+        "stale_evidence:5a90da51969af6fcfa40ec550bbdd32af6479d674d6aec13d433df4866253b7c",
+        "stale_evidence:5ba794b7d5a7bfdc6d512557d8e1db30ad9e52f62bd3fbf73e33486f5b254e7b",
+        "stale_evidence:5fcaf741d3852335f2ea4bdb26180b4e7b7c3347bad59ac7cf3fe8e45502b916",
+        "stale_evidence:66b4a98ba085d52bfaa2fb40166d0c7780c0d2f26c50318151762ca8ee5a10ac",
+        "stale_evidence:66cceb6adf27c3e6bb80209c51e7c0a6ca6fbf1c9b243984d3798fc689f03475",
+        "stale_evidence:6e090f4f18b3751da252eec83f07d177a2fd08b44011747992c72860b3b4c4e2",
+        "stale_evidence:7154f59ad951a70dd2feca18706be417425f749e626c2f9152709f478b298263",
+        "stale_evidence:731b6e361a58262c38d8aacc17ffb35c838b0f56be3001fe0ad652733afec9f6",
+        "stale_evidence:7640a1113aa21f6e16c48d3b7c9378ad8247f7c685359cdd1244c824b0298d2b",
+        "stale_evidence:7d026010884274becc15ca0206e04cf647bdeb6fe781fa953d2b7d91ee49aeab",
+        "stale_evidence:863e9640480cd66b94dcc866ae52e3485f1d2983a7f055ba2827b80e08f0cf0f",
+        "stale_evidence:95844812af12a114cccb5536e517a4150087a01905bedbb6dab2582d5510a7cb",
+        "stale_evidence:98384c95a9f53a761c927e838d4a578ac4c4d3beaa35be355901b5c0b87d3332",
+        "stale_evidence:a47efb1fc7613c38827a9e96e1ebb8e94e3ab0d68ce79733a5526be380626c69",
+        "stale_evidence:a4d53e664c4b3d06884ee29de5fbd12cb2993fe314cbb61fbd95da57e94d6ac9",
+        "stale_evidence:a5da4b2b1b16c2dfc58ca5ec2908f0178ea0a4620fe2414a3b54c32b299dc273",
+        "stale_evidence:ab86995fca771d0050bdbb5b0210263341b4ce0eaa735045e52344aaf0887e1b",
+        "stale_evidence:acc1e9cf9dbc5be7591c0c485c9d9d5944ddf58fc9e710c85e22c1310527e3eb",
+        "stale_evidence:afee900832656e3cd9d89aeb217fa75f4139e15a8986dd418b02795d84af842b",
+        "stale_evidence:b2c05876fa2f9a5206b94f4b2801eb570de00eef09e560fe66f2766b28f2c580",
+        "stale_evidence:b6b0042ed2eb86429c314fc53d0c3a9cc139c95c66f4ea85291b4d3f48031655",
+        "stale_evidence:b8e1e5f6c314d783b2df80e940186f8d069277cb19459797e02bf7313fdbc201",
+        "stale_evidence:b9b62e3b399b35b2c24c753fb262be13bf0a51062161120c604ec1195d7f1a5e",
+        "stale_evidence:cf24cea6a89befb668546658d84e2d97db47b086dfe4544c621563e2edb3ff60",
+        "stale_evidence:d29fdc3fc2be4585c33a0fdc1ef22b0efdbca7196d16cbfce3d9587ece707e8e",
+        "stale_evidence:d531b6e63acff1a1d96144634b302b57a18054216a3d9fcb6b8bb4b4871b2e8b",
+        "stale_evidence:d664c27ad5f80764e30b5154b9e93838d2692903c7bab07dd196dc1d92ed3aad",
+        "stale_evidence:dd8bb0a5ba85d8edbf139e5677287b35f761519d4d9def926b66bac8b156335d",
+        "stale_evidence:de37b8450092c59dad837830f0d130472b32dfbed7ac96f944ba74e386a9edc6",
+        "stale_evidence:e34e12cd4bd0ac97ccff5797981388b72900eb3c0d404db194b6019e7af5044a",
+        "stale_evidence:e792dbf24341dde5bf9917412d6ad091daca8fa81fdab1e6674509fa16804735",
+        "stale_evidence:e86635d832ebd58c20e4cf28cf72627e5fd11f7c597955bbcca26a3452adb42b",
+        "stale_evidence:ec165fa9aaaaf1dfe8ea7f478825e13c4643380740dead15e9ce8df28821e882",
+        "stale_evidence:f52ee7adb62dec6b367f648146e2b4df8120f1af1a4ffaa39232f864c785e9c8",
+        "stale_evidence:f87a9be670d51ccac5a65dee551fbf9635ef8544b183570b4506bdb30e08d436",
+        "stale_evidence:fe162ee63114b34c628ab8a71e37a7ed8a819f888b189b037ee89e780637cf7c",
+        "stale_evidence:fef742fbb12569341e64b7874f95284c3d4e97417742ca9586577ee259dca3ad"
+      ],
+      "reason": "Reviewed GPU scratch snapshots, source/destination sampling separation, per-piece ordering and bounded allocation/exception cleanup; v3 opaque-only same-ID admission and unchanged legacy primitive refusal. Native1536 original results/full outputs,20 policies,6 rejected streams and8 renderer regressions pass; reviewed explicit links and census.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared renderer/protocol/helper source changes reviewed and8 focused renderer regressions pass. Recorded overlap evidence is narrowly scoped; historical evidence for other linked behaviors remains historical/stale and is not promoted to current original equivalence.",
+        "evidence": []
+      }
     }
   ]
 }

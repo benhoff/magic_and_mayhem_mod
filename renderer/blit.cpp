@@ -172,6 +172,35 @@ struct GlBlitter::Impl {
         gl.glDisable(GL_BLEND);gl.glDisable(GL_DITHER);gl.glDisable(GL_FRAMEBUFFER_SRGB);gl.glDisable(GL_DEPTH_TEST);
         gl.glDisable(GL_STENCIL_TEST);gl.glDisable(GL_CULL_FACE);gl.glDisable(GL_SCISSOR_TEST);
     }
+    // Both samplers refer to storage distinct from the attached destination.
+    void copyTexture(GLuint sourceTexture,GLuint maskTexture,Surface& dst,Rect r,int x,int y,
+                     std::optional<std::uint32_t> key){
+        attach(dst.native,dst.width,dst.height);
+        gl.glEnable(GL_SCISSOR_TEST);gl.glScissor(x,y,r.right-r.left,r.bottom-r.top);
+        gl.glActiveTexture(GL_TEXTURE0);gl.glBindTexture(GL_TEXTURE_2D,sourceTexture);
+        gl.glActiveTexture(GL_TEXTURE1);gl.glBindTexture(GL_TEXTURE_2D,maskTexture?maskTexture:sourceTexture);
+        if(!program->bind())throw std::runtime_error("Cannot bind copy shader");
+        gl.glUniform1i(program->uniformLocation("sourcePixels"),0);
+        gl.glUniform1i(program->uniformLocation("sourceMask"),1);
+        gl.glUniform1i(program->uniformLocation("hasMask"),maskTexture!=0);
+        gl.glUniform2i(program->uniformLocation("sourceOrigin"),r.left,r.top);gl.glUniform2i(program->uniformLocation("destinationOrigin"),x,y);
+        gl.glUniform1i(program->uniformLocation("hasKey"),key.has_value());gl.glUniform1ui(program->uniformLocation("sourceKey"),key.value_or(0));
+        gl.glBindVertexArray(vao);gl.glDrawArrays(GL_TRIANGLES,0,3);gl.glBindVertexArray(0);program->release();gl.glDisable(GL_SCISSOR_TEST);
+        check();++counters.copies;
+    }
+    void copyShared(Surface& dst,const SurfaceCopyPiece& piece){
+        const auto r=piece.source;const auto width=r.right-r.left,height=r.bottom-r.top;
+        GLuint frozen=0;
+        try {
+            gl.glActiveTexture(GL_TEXTURE0);
+            frozen=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,width,height,nullptr);
+            attach(dst.native,dst.width,dst.height);
+            gl.glBindTexture(GL_TEXTURE_2D,frozen);
+            gl.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,r.left,r.top,width,height);check();
+            copyTexture(frozen,0,dst,{0,0,width,height},piece.x,piece.y,std::nullopt);
+            gl.glDeleteTextures(1,&frozen);frozen=0;check();
+        }catch(...){gl.glDeleteTextures(1,&frozen);throw;}
+    }
     ~Impl(){
         if(context.isValid() && surface.isValid()){
             try {Current current(context,&surface);for(auto& pair:surfaces)release(pair.second);
@@ -254,31 +283,26 @@ void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,s
         if(*mask==destination || m.format.bits!=8 || m.width!=src.width || m.height!=src.height)
             throw std::runtime_error("Copy mask must be an indexed source-sized surface distinct from destination");
     }
-    Current current(p.context,&p.surface);auto& g=p.gl;p.attach(dst.native,dst.width,dst.height);
-    g.glEnable(GL_SCISSOR_TEST);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);
-    g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,src.native);
-    g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,mask?p.get(*mask).native:src.native);
-    if(!p.program->bind())throw std::runtime_error("Cannot bind copy shader");
-    g.glUniform1i(p.program->uniformLocation("sourcePixels"),0);
-    g.glUniform1i(p.program->uniformLocation("sourceMask"),1);
-    g.glUniform1i(p.program->uniformLocation("hasMask"),mask.has_value());
-    g.glUniform2i(p.program->uniformLocation("sourceOrigin"),r.left,r.top);g.glUniform2i(p.program->uniformLocation("destinationOrigin"),x,y);
-    g.glUniform1i(p.program->uniformLocation("hasKey"),key.has_value());g.glUniform1ui(p.program->uniformLocation("sourceKey"),key.value_or(0));
-    g.glBindVertexArray(p.vao);g.glDrawArrays(GL_TRIANGLES,0,3);g.glBindVertexArray(0);p.program->release();g.glDisable(GL_SCISSOR_TEST);
-    p.check();++p.counters.copies;
+    Current current(p.context,&p.surface);
+    p.copyTexture(src.native,mask?p.get(*mask).native:0,dst,r,x,y,key);
 }
 void GlBlitter::setClipper(SurfaceId id,const ClipperState& clipper){
     auto& p=*impl_;p.thread();auto& s=p.get(id);
     validateClipper(clipper,s.width,s.height);s.clipper=clipper;
 }
 SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest& request){
-    auto& p=*impl_;p.thread();const auto& s=p.get(source);const auto& d=p.get(destination);
+    auto& p=*impl_;p.thread();const auto& s=p.get(source);auto& d=p.get(destination);
     const std::array<std::uint32_t,3> rgb565{0xf800,0x7e0,0x1f};
-    if(source==destination)throw std::runtime_error("Self-copy is unsupported");
+    if(source==destination && request.flags!=0 && request.flags!=(request.api==SurfaceCopyApi::BltFast?0x10u:0x01000000u))
+        throw std::runtime_error("Self-copy requires opaque flags");
     if(s.format.bits!=16 || d.format.bits!=16 || s.format.masks!=rgb565 || d.format.masks!=rgb565)
         throw std::runtime_error("Surface2 copy requires RGB565 surfaces");
     const auto plan=planSurfaceCopy(s.width,s.height,d.width,d.height,d.clipper,request);
-    for(const auto& piece:plan.pieces)copy(source,destination,piece.source,piece.x,piece.y);
+    if(source==destination){
+        Current current(p.context,&p.surface);
+        // Each ordered clip piece sees preceding writes, then freezes its own source.
+        for(const auto& piece:plan.pieces)p.copyShared(d,piece);
+    }else for(const auto& piece:plan.pieces)copy(source,destination,piece.source,piece.x,piece.y);
     return {plan.hresult,unsigned(plan.pieces.size())};
 }
 void GlBlitter::swapContents(SurfaceId first,SurfaceId second){

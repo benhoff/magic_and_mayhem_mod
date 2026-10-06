@@ -1,0 +1,372 @@
+{
+  "schema": 1,
+  "base": "7ed4943",
+  "head": "f99dd0a4a788d5955428e39a31209f33f5d8e8a7",
+  "scope": "Exact committed file and behavior receipts; retrospective accounting does not assert a past gate pass or fresh execution.",
+  "commits": [
+    {
+      "commit": "057f07df4091dce30768c7b3cd6bf555dcdd1649",
+      "parent": "7ed49435c2a93f67c6a852624c1d5c667e65f198",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "477a9ea33f2b36e529d0501427db46cfcbc81d823655e54e2324db48601e2bf7",
+          "after_sha256": "abb7a008d9d236638a7091bd15218ca7dedbb75b422be424c2667383c56cf28d",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "92ab8a41baf3ddcbb7c364e42109ef8b22f42d7a1b726fddc1a6fbc039177269",
+          "after_sha256": "216f95095c4e1f263a9b18078a30b592743c51e2e4f2040e5624ee6ebec1a07f",
+          "receipts": [
+            "append-only journal self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-original-overlap-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "14dddaa46fa1ef086e072adb110548e8c9604fb6765d18b47d315a105f864579",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "54a9c5db9f65de71618257ded8ec183da484021d10a08453e11fff8b6d91fbdb",
+          "after_sha256": "9f14205eaa4cadd3f0bd39a864f4830f2b3873e7b304989ce34ab16fb1b6330c",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-overlap-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "75823176fdda8c92fe4b10d259e2e94461c8004d40bb03ab84da08dc1036fb61",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-overlap-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "2470fdab401ff35e28c9da1548f8f1f9528917ec111037e8d39bfec24918974c",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "220c09dc1fcabc9a9159960876b2efef456dad89a5c4ea983ec5af686784f5e7",
+          "after_sha256": "8eabaf3a1dc45967c574019c439c04bc860d90e054b87fe3bad5e2e74b45fb26",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "98aadf6348ef1bd5fed6be963a3b0bf712538ef889c00556a2db353c64034138",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap-cpu-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "71f20011f58fb4e3e69cbb636ce9249e02be7695efbe4372233bbee91ef6ed36",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap.md",
+          "before_sha256": null,
+          "after_sha256": "adc2c3c94560de509b57d535b7963e7a2035bfd777a4df1e6cd943b6c1eea5cc",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-rgb565-overlap-corpus.json",
+          "before_sha256": null,
+          "after_sha256": "dbb088e45a19a3d354c8cb530f92046ade325c0dddaeb38b4d9e35958ab88fe2",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-rgb565-overlap.json.gz",
+          "before_sha256": null,
+          "after_sha256": "a1750be482070deea5bb4ab100bc3b2887db9e1e63d5f0aed4ca0761bc124f37",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-overlap-reference.c",
+          "before_sha256": null,
+          "after_sha256": "d205006e23a776d10d3e3d19106d54008ed57508d3681f4c76e5b8dfc5d53f37",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-original-surface-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "e68b82192f803ce6b1a0ecddef17ec25c5c4c237034d7d9885d54e596a382bd4",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-original-surface-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "4b6556737124800d3f583013adb95f3400c9c5dcb6f5b42bde2107e49168d28c",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-original-surface-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "a9475f944a4c5351452ecb1230ad2ba50f6a77a581381b9c8d3f72812fc71709",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "2c5690659ae0bc07040874dff90f84d21cdd10ab82f6a1f08075619aab0f112a",
+          "after_sha256": "63a26be9b07095e48c01a644f00efd29273bf68e11e0c2e688fe1e7ca743e34d",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "f38721c348a18f559853d1c18e18e865ab393401c988a7a65756b7a6b6c27397",
+          "after_sha256": "220d0d4037840a96eb1ba7a4e9476229407da9bfdb0b882adffb33f49f331392",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "6aa59e88062f0074110870710647a5eafb4af63482c2b5cffe83cdc6f092a60e",
+          "after_sha256": "b7ce6d2adebaa229194358e4bc7e051752603b4625f8c24968838c1fac413097",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "7f00c211f64aeba1b563bdc5e4167b28f5b67e3ea259910d7876a17a8dd34961",
+          "after_sha256": "0ae2594b731b354e035dd7f0aff79fc48bf0594621165804279352e6fe2d5a58",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "eba0ec0b6b7caf49dbdf8d4cda8113d74d7f79777dc942b2d688336e6843de87",
+          "after_sha256": "f9ddde962af73d775b5086310470800ef078649b59ff895671ae392b1efb9e96",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "e61be205a05caec731c1f2304bb26841d8851620ad210ee5f7e56eea6a6ede74",
+          "after_sha256": "088a2c486fd6a0c1fd1077d1a1b45f843abda72e8e85a91806b90ee5c0971ed0",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": null,
+          "after_sha256": "921d6970b400f821f7ed2a1ddd1b6830a13627dc68d5c4729f75225eb72d29e7",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "3a4f7b521d21a0f70fd871f77e3bfc34b2b471f9d625b8461044ee1be216e0cf",
+          "after_sha256": "766add71f1489ca7011aceb010d6aed68f1478034891e61d93db5d6a6ce5ce6e",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        }
+      ],
+      "unresolved_exact_receipts": []
+    },
+    {
+      "commit": "f99dd0a4a788d5955428e39a31209f33f5d8e8a7",
+      "parent": "057f07df4091dce30768c7b3cd6bf555dcdd1649",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "abb7a008d9d236638a7091bd15218ca7dedbb75b422be424c2667383c56cf28d",
+          "after_sha256": "5158321c4e2aa254a0d1a8b91200e62278f47e829823210bfbae008112f9c907",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "216f95095c4e1f263a9b18078a30b592743c51e2e4f2040e5624ee6ebec1a07f",
+          "after_sha256": "95f27c543a12b54f96808b892edeb4486e40e690cf923d85c3662ea13a49345a",
+          "receipts": [
+            "append-only journal self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-world-observation-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "5ae4005c2a612b26f0184dc249c1e6ac2e01d463bd1e2a9b9e2540323fac60a7",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "9f14205eaa4cadd3f0bd39a864f4830f2b3873e7b304989ce34ab16fb1b6330c",
+          "after_sha256": "89e4dab18d7d90b0bf6cb91ea2c5beeca3f864b0e97266f711ad2eb51fdeb903",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-world-observation-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "4b6eeddda366f88fd17ce41001310846884ecd198a983704772c63ec26d42058",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-observation-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "8b4ca684a7ae8813a3bddc015b3b1c3cb6ff4aa5363267c3027bc3d5eacc8a1b",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-world-observation-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "03e79a13a3edc47b971d94347418565e28e9f18cab1fe52db89a363999a4d106",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-world-observation.md",
+          "before_sha256": null,
+          "after_sha256": "3cd3d5db7af39c63d5649947dc91b641517448fadb6a38cc502f723ebdcc662c",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "tests/live-render-route-probe.cpp",
+          "before_sha256": "16622a7c16456649ddadc4368bcf32b9e95a19c090843eef431c8f12f47a876a",
+          "after_sha256": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-routes.py",
+          "before_sha256": "39453ce9c0fda8c97f7cab2a61b7e4bab7b5b5b28f87d1ce7237e6c7e0456f70",
+          "after_sha256": "a4f093ce423cc7b9661ec70b79de2c7ed0f2dc1e32c636061e3f122413b1cc90",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "7475c62fd5622e0e080181c2431b576debeae020e80610a84eae835dc9930c16",
+          "after_sha256": "c5a04e4eed58abb6d4ff487cdbe012c4cd14ac230545b7cdabcc9b7699eafb27",
+          "receipts": [
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "256712d6564fe277edeb56952295ac9c8a60f6db4ca2c2aae48833ad57b22b62",
+          "after_sha256": "8a6c16a9c3e776a51ec1094c4c432edbc54d9e397befe6be264e07c5af6e9fbc",
+          "receipts": [
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-working-set",
+          "before_sha256": "f61d808d1526713f31e569f128b65ea58f11da60163e8cb407e41e2af078251f",
+          "after_sha256": "c337f1c2d857c3c9a2eef4076bd6a190c97fbb237546d996fca1cc5474996870",
+          "receipts": [
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "832597cb34984a33b10cf626167f31fab6d5b7df37c134ab4658b8d45075c7dc",
+          "after_sha256": "ee563cc7db6612344e2e28fadb00b52c0f6365fb419e5039bc1b176ea4a3d573",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded"
+          ]
+        },
+        {
+          "id": "RI.movies",
+          "before_sha256": "32731dc35034ad92300b98a09e0ab62b65587c844667e40fb620d3ecef6eceaf",
+          "after_sha256": "26dd5610e24579da3c707f0f292cb1468dabad6a401aaea2de03a06f3101600a",
+          "receipts": [
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "RI.ui",
+          "before_sha256": "b4eebeb2545fc9117e803c9eda00c52d23cee06a2961f04b081bf89b7b6fb60e",
+          "after_sha256": "8e144c75e2e71e6a50cccfd586762b9aa82781f74ff32c303a982c09052a58df",
+          "receipts": [
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        }
+      ],
+      "unresolved_exact_receipts": []
+    }
+  ],
+  "unresolved_gaps": [],
+  "retrospective_receipts": []
+}

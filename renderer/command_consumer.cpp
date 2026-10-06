@@ -88,11 +88,12 @@ void CommandState::accept(const SurfaceCommand& c){
         require(s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31},"Clipper command requires RGB565");
         validateClipper(commandClipper(c),s.width,s.height);payload=12+c.regions.size()*16;break;}
     case MNM_RENDER_STREAM_V3_OPERATION_SURFACE_COPY:{
-        const auto& s=get(w[0]);const auto& d=get(w[1]);require(c.version==3 && w[0]!=w[1] && w[2]<=1 && w[4]<=3,"Invalid surface copy identity/API/busy observations");
+        const auto& s=get(w[0]);const auto& d=get(w[1]);require(c.version==3 && w[2]<=1 && w[4]<=3,"Invalid surface copy identity/API/busy observations");
         const std::array<std::uint32_t,3> masks{0xf800,0x7e0,31};
         require(s.format.bits==16 && d.format.bits==16 && s.format.masks==masks && d.format.masks==masks,"Surface copy command requires RGB565");
         const auto wait=w[2]?0x10u:0x01000000u,key=w[2]?1u:0x8000u;
         require(w[3]==0 || w[3]==wait || w[3]==key || w[3]==0x80000000u,"Unvalidated surface copy flags");
+        require(w[0]!=w[1] || w[3]==0 || w[3]==wait,"Self-copy requires opaque flags");
         planSurfaceCopy(s.width,s.height,d.width,d.height,d.clipper,commandSurfaceCopy(c));payload=52;break;}
     case MNM_RENDER_STREAM_V3_OPERATION_SURFACE_RESULT_CHECK:
         require(c.version==3 && w[0] && w[0]==lastCopySequence,"Result check does not name the latest surface copy");payload=8;break;

@@ -47,7 +47,30 @@ initial exploratory runs remains under `working/tests`; final evidence
 uses the expanded distinguishing cases. These are independent driver-backed
 wrapper observations, not a full game launch.
 
-Native GPU overlap/replay is pending in this first change. Keyed/masked overlap,
+The [native GPU comparison](original-surface-overlap-native-20261006.json)
+checks all 1,536 backend HRESULTs and 3,072 source/destination full pixel arrays,
+then all 1,536 v3 replay HRESULTs and shared pixel arrays in six bounded batches.
+Ordinary backend operations perform zero CPU uploads/native or RGBA readbacks.
+Twenty lifetime/admission checks and six poisoned/unsupported streams pass.
+
+`GlBlitter::surfaceCopy` accepts opaque RGB565 same-ID calls and snapshots each
+ordered source piece with `glCopyTexSubImage2D` into a transient R32UI texture.
+Drawing samples that texture, then releases it on success or exceptions. Maximum
+scratch size is 2048×2048 words (16MiB), independent of the64 user surface handle
+budget. Errors retain earlier writes and return the input-derived planner result.
+The v3 opcode17 admits identical logical IDs only with zero/API WAIT flags.
+Expected outputs/results appear only in diagnostics. Legacy opcode3 and keyed/
+masked self-copy remain refused. Separate verified COM aliases normalize to one
+logical backing ID for replay; this does not implement live COM pointer tracking.
+
+Reproduce the native comparison offline after building the renderer:
+
+```sh
+cmake --build working/build/renderer
+xvfb-run -a python3 tools/check-native-surface-overlap.py --report working/tests/overlap-native-new.json
+```
+
+Native support is scoped to these captured opaque RGB565 operations. Keyed/masked overlap,
 other formats, COM pointer tracking in a live adapter, lost surfaces, Restore and
 retry wrappers remain outstanding. Native logical IDs will represent verified
 shared backing; COM pointers are not part of the offline wire contract.

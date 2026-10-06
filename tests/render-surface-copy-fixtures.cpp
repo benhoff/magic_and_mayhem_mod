@@ -36,7 +36,9 @@ static unsigned policyTests(GlBlitter& gl){
     check(gl.read(d).pixels==swapped.pixels,"Swap moved clipper identity");
     gl.destroy(d);const auto replacement=gl.create(a,rgb565);gl.surfaceCopy(s,replacement,request);
     check(gl.read(replacement).pixels==b.pixels,"Replacement inherited clipping");
-    rejected([&]{gl.surfaceCopy(s,s,request);});
+    check(gl.surfaceCopy(s,s,request).hresult==0,"Opaque self-copy rejected");
+    rejected([&]{gl.copy(s,s,{0,0,8,6},0,0);});
+    request.flags=0x8000;rejected([&]{gl.surfaceCopy(s,s,request);});request.flags=0;
     const auto other=gl.create(a,{16,{0x7c00,0x3e0,31}});
     rejected([&]{gl.surfaceCopy(s,other,request);});gl.destroy(other);
     request.destination={0,0,4,3};rejected([&]{gl.surfaceCopy(s,replacement,request);});
@@ -58,19 +60,19 @@ int main(int argc,char** argv){
         GlBlitter gl;const auto policy=policyTests(gl);QJsonArray results;unsigned operations=0;
         for(auto entry:document.array()){
             const auto c=entry.toObject();const auto source=image(c["source_pixels"].toArray()),destination=image(c["destination_pixels"].toArray());
-            const auto s=gl.create(source,rgb565),d=gl.create(destination,rgb565);
+            const auto s=gl.create(source,rgb565),d=c["shared"].toBool()?s:gl.create(destination,rgb565);
             const auto region=c["clip"].toInt();ClipperState clip;
             if(region){clip.attached=true;if(region!=3){clip.regions=std::vector<Rect>{};if(region==1)clip.regions->push_back({2,1,6,5});
-                else if(region==2)*clip.regions={{0,0,3,2},{5,3,8,6}};else require(region==4,"Unknown fixture clip");}}
+                else if(region==2)*clip.regions={{0,0,3,2},{5,3,8,6}};else if(region==5)*clip.regions={{0,0,8,3},{0,4,8,6}};else require(region==4,"Unknown fixture clip");}}
             gl.setClipper(d,clip);SurfaceCopyRequest request;
             request.api=c["fast"].toInt()?SurfaceCopyApi::BltFast:SurfaceCopyApi::Blt;
             request.source=rect(c["source"].toArray());request.destination=rect(c["destination"].toArray());
             request.flags=std::uint32_t(c["flags"].toDouble());request.sourceBusy=c["held"].toInt()==1;request.destinationBusy=c["held"].toInt()==2;
             const auto before=gl.stats();const auto result=gl.surfaceCopy(s,d,request);const auto after=gl.stats();
-            require(after.nativeReadbacks==before.nativeReadbacks && after.uploads==before.uploads,"Ordinary clipping read back/uploaded pixels");
+            require(after.nativeReadbacks==before.nativeReadbacks && after.rgbaReadbacks==before.rgbaReadbacks && after.uploads==before.uploads,"Ordinary clipping read back/uploaded pixels");
             results.append(QJsonObject{{"id",c["id"]},{"hresult",qint64(result.hresult)},{"pieces",int(result.pieces)},
                 {"source_after",pixels(gl.read(s))},{"destination_after",pixels(gl.read(d))}});
-            gl.destroy(s);gl.destroy(d);++operations;
+            gl.destroy(s);if(s!=d)gl.destroy(d);++operations;
         }
         require(gl.stats().surfaces==0,"Fixture resources leaked");const auto driver=gl.driver();
         QJsonObject report{{"success",true},{"policy_tests",int(policy)},{"operations",int(operations)},{"ordinary_readbacks",0},{"ordinary_uploads",0},
