@@ -14007,7 +14007,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous mixed resource mutations and committed full-layout replacement",
-      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending.",
+      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14019,7 +14019,8 @@
         "research/runtime/opengl-cpu-handoff-order.md",
         "research/runtime/opengl-dc-flip-order.md",
         "research/runtime/opengl-palette-property-order.md",
-        "research/runtime/opengl-lifetime-order.md"
+        "research/runtime/opengl-lifetime-order.md",
+        "research/runtime/opengl-metadata-order.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -14056,7 +14057,8 @@
         "NR.cpu-handoff.native-20261006",
         "NR.dc-flip-order.native-isolated-current-20261006",
         "NR.palette-property-order.native-20261006",
-        "NR.lifetime-order.native-20261006"
+        "NR.lifetime-order.native-20261006",
+        "NR.metadata-order.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15010,7 +15012,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in bounded scheduling across hooked original copies",
-      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending.",
+      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -15018,7 +15020,8 @@
         "research/runtime/opengl-cpu-handoff-order.md",
         "research/runtime/opengl-dc-flip-order.md",
         "research/runtime/opengl-palette-property-order.md",
-        "research/runtime/opengl-lifetime-order.md"
+        "research/runtime/opengl-lifetime-order.md",
+        "research/runtime/opengl-metadata-order.md"
       ],
       "implementation": [
         "runtime/render/copy_order.h",
@@ -15038,7 +15041,8 @@
         "NR.cpu-handoff.native-20261006",
         "NR.dc-flip-order.native-isolated-current-20261006",
         "NR.palette-property-order.native-20261006",
-        "NR.lifetime-order.native-20261006"
+        "NR.lifetime-order.native-20261006",
+        "NR.metadata-order.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15429,13 +15433,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in DC handoff and flip ordering with compound timeout invalidation",
-      "scope": "Existing continuous opt-in gate now spans original GetDC/ReleaseDC and Flip plus admitted native handoff/commit. Borrowed DC painting remains outside the lease.50ms gate,8ms tracker, original-result/LastError guards and same-thread behavior remain. Timed-out Flip invalidates metadata/pixel epochs before/after exactly one original call, preventing stale two-buffer checkpoints. Front flip diagnostic origin corrected to11. Other callback-family concurrency, DC/flip-specific reentrant fixtures, borrowed intervals, prolonged originals, abnormal owner-thread termination, archive-timeout replay, repeated scenes, animation/full-frame/driver equivalence and default enablement remain pending. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending.",
+      "scope": "Existing continuous opt-in gate now spans original GetDC/ReleaseDC and Flip plus admitted native handoff/commit. Borrowed DC painting remains outside the lease.50ms gate,8ms tracker, original-result/LastError guards and same-thread behavior remain. Timed-out Flip invalidates metadata/pixel epochs before/after exactly one original call, preventing stale two-buffer checkpoints. Front flip diagnostic origin corrected to11. Other callback-family concurrency, DC/flip-specific reentrant fixtures, borrowed intervals, prolonged originals, abnormal owner-thread termination, archive-timeout replay, repeated scenes, animation/full-frame/driver equivalence and default enablement remain pending. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-dc-flip-order.md",
         "research/runtime/opengl-palette-property-order.md",
-        "research/runtime/opengl-lifetime-order.md"
+        "research/runtime/opengl-lifetime-order.md",
+        "research/runtime/opengl-metadata-order.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -15456,7 +15461,8 @@
         "NR.dc-flip-order.historical-native-isolated-20261006",
         "NR.dc-flip-order.historical-live-isolated-prefsguard-20261006",
         "NR.palette-property-order.native-20261006",
-        "NR.lifetime-order.native-20261006"
+        "NR.lifetime-order.native-20261006",
+        "NR.metadata-order.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15597,11 +15603,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded resource lifetime callback admission",
-      "scope": "Existing continuous opt-in50ms lease spans application QueryInterface/CreateSurface/CreatePalette and surface/palette Release through original and verified processing, without tracker across originals/waits or new references/budgets. Timed-out lifetime calls invalidate metadata/pixel epochs and schedule alias provenance reset before/after original-once forwarding, preventing pointer reuse from inheriting uncertain edges; returned unseen interfaces need later admitted observation. Test-only read-only alias inspection is absent from production. Six new Surface2 worker fixtures check QI/create/final+nonfinal release waiting/timeouts, failed creation/retry, poisoned descriptor, alias reuse and graph reset; palette lifetime recreation is same-thread only. Dedicated palette races, failed/nested QI/lifetimes, DirectDrawCreate/startup, description/attachment/Restore/BltBatch, borrowed intervals/owner termination, unseen-interface recovery/implicit destruction, archive-timeout replay, repeated scenes/actions and original-driver/animated/full-frame equivalence/default enablement remain pending.",
+      "scope": "Existing continuous opt-in50ms lease spans application QueryInterface/CreateSurface/CreatePalette and surface/palette Release through original and verified processing, without tracker across originals/waits or new references/budgets. Timed-out lifetime calls invalidate metadata/pixel epochs and schedule alias provenance reset before/after original-once forwarding, preventing pointer reuse from inheriting uncertain edges; returned unseen interfaces need later admitted observation. Test-only read-only alias inspection is absent from production. Six new Surface2 worker fixtures check QI/create/final+nonfinal release waiting/timeouts, failed creation/retry, poisoned descriptor, alias reuse and graph reset; palette lifetime recreation is same-thread only. Dedicated palette races, failed/nested QI/lifetimes, DirectDrawCreate/startup, description/attachment/Restore/BltBatch, borrowed intervals/owner termination, unseen-interface recovery/implicit destruction, archive-timeout replay, repeated scenes/actions and original-driver/animated/full-frame equivalence/default enablement remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-lifetime-order.md"
+        "research/runtime/opengl-lifetime-order.md",
+        "research/runtime/opengl-metadata-order.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -15619,7 +15626,8 @@
         "NR.lifetime-order.live-20261006",
         "NR.lifetime-order.mutations-20261006",
         "NR.lifetime-order.historical-mutations-workspace-20261006",
-        "NR.lifetime-order.historical-live-workspace-20261006"
+        "NR.lifetime-order.historical-live-workspace-20261006",
+        "NR.metadata-order.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15749,6 +15757,39 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.metadata-order",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded surface metadata and unsupported mutation callback admission",
+      "scope": "Existing continuous opt-in50ms drawing lease spans GetSurfaceDesc/GetAttachedSurface, Add/DeleteAttachedSurface, Restore and BltBatch through original and existing successful observation/invalidation. Timed-out originals forward once with metadata/pixel epochs invalidated on both sides. Surface attachment metadata is separate from interface aliases. Twelve Surface2 synthetic worker schedules cover failure+retry waiting/timeouts, exact arguments/results/LastError, copy-before-invalidation with a consumer drain window, independent native frames and terminal zero storage. Restore/BltBatch pixel reconstruction remains unsupported. Dedicated nested/changed attachment metadata, stale returned interfaces, startup DirectDrawCreate, borrowed CPU/DC intervals/owner termination, unseen-object recovery, dedicated palette lifetime races, archive-timeout replay, repeated scenes/actions and original/live/driver/full-frame equivalence/default enablement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-metadata-order.md"
+      ],
+      "implementation": [
+        "runtime/render/bridge.c",
+        "runtime/render/copy_order.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_surfaces.h"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py"
+      ],
+      "evidence": [
+        "NR.metadata-order.native-20261006",
+        "NR.metadata-order.regression-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -28609,6 +28650,58 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.metadata-order.native-20261006",
+      "kind": "native_integration",
+      "scope": "Synthetic PE32 original callbacks through actual opt-in producer and native GPU: twelve worker failure/retry waiting/timeout schedules; unsupported successful mutations retain refusal after a bounded consumer drain window.",
+      "record": "research/runtime/opengl-metadata-order-native-20261006.json",
+      "sha256": "4dd51887dc6419c24145571436b2835ffba1aced7e1fd2d267257ac9f40bb843",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 18
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 2
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 10
+        }
+      ]
+    },
+    {
+      "id": "NR.metadata-order.regression-20261006",
+      "kind": "native_integration",
+      "scope": "Synthetic PE32 original callbacks through actual opt-in producer and native GPU: nine shared-palette recreation, nested metadata/source-key and drawing/DC/flip/CPU regressions; original driver/application not rerun.",
+      "record": "research/runtime/opengl-metadata-order-regression-20261006.json",
+      "sha256": "85f2f8e1e64c4771c251e9010fad7b9a2af35a659fa3b09b6e2f19790da2cb3f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 745
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 7
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 2
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -33226,6 +33319,24 @@
         "tests/render-dc-palette-test.cpp",
         "tools/check-native-dc-palette.py"
       ]
+    },
+    {
+      "id": "NR.metadata-order.native",
+      "level": "preview",
+      "scope": "Six callback families: failed+successful worker originals, positive admission and forced timeout, complete owned pixels and explicit unsupported mutation refusal. Original application/driver validation pending.",
+      "behaviors": [
+        "NR.metadata-order",
+        "NR.continuous-mutations",
+        "NR.bounded-copy-order"
+      ],
+      "evidence": [
+        "NR.metadata-order.native-20261006",
+        "NR.metadata-order.regression-20261006"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -33473,7 +33584,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-dc-palette-20261006.json",
-    "sha256": "8a759e0476e5799b9911b2bc815988df0c7189114d0063d72068f4a1782e5442"
+    "path": "research/runtime/coverage/source-index-metadata-order-20261006.json",
+    "sha256": "981dc45721dc9361638845e224cd0fafef830787c04e86f447e7e1a65779d301"
   }
 }
