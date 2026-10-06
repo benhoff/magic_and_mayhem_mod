@@ -1,6 +1,6 @@
 /* Ordered, bounded, opt-in sessions. Every entry point holds game_locks_busy.
  * Native pixels come only from owned snapshots; identities from observed aliases. */
-struct SessionSurface {void* object;u32 id,width,height,bits,r,g,b,palette_known;u8 palette[1024];};
+struct SessionSurface {void* object;u32 id,width,height,bits,r,g,b,palette_known,dc_pending;u8 palette[1024];};
 static struct SessionSurface session_surfaces[32];
 static HANDLE session_file;
 static u32 session_started,session_epoch,session_sequence,session_bytes,session_operations,session_presented,session_pixels;
@@ -45,11 +45,20 @@ static struct SessionSurface* session_find(void* object){
     return found;
 }
 static void game_session_invalidate(void* object){if(session_file && session_find(object))game_session_gap(3);}
+/* The last native checkpoint remains allocated, but cannot be consumed while
+ * the application owns its DC. Only an admitted successful release resumes it. */
+static void game_session_dc_acquire(void* object){
+    if(!session_file)return;
+    struct SessionSurface* s=session_find(object);if(!s)return;
+    for(u32 i=0;i<32;++i)if(game_locks[i].active && game_alias_same(object,game_locks[i].object)){game_session_gap(3);return;}
+    if(s->dc_pending){game_session_gap(3);return;}s->dc_pending=1;
+}
 static struct SessionSurface* session_surface(void* object,const struct Snapshot* pixels){
     if(!session_start())return 0;
     struct SessionSurface* s=session_find(object);
     if(!pixels->data){game_session_gap(4);return 0;}
     if(s){
+        if(s->dc_pending){game_session_gap(3);return 0;}
         if(s->width!=pixels->width || s->height!=pixels->height || s->bits!=pixels->bits ||
            s->r!=pixels->r || s->g!=pixels->g || s->b!=pixels->b){game_session_gap(3);return 0;}
         return s;
@@ -72,7 +81,10 @@ static int session_colors(struct SessionSurface* s){
     u32 fields[3]={s->id,0,256};if(!session_record(4,fields,12,rgb,768))return 0;
     copy(s->palette,colors,1024);s->palette_known=1;return 1;
 }
-static int session_check(struct SessionSurface* s,const struct Snapshot* pixels){return s && session_record(5,&s->id,4,pixels->data,pixels->length);}
+static int session_check(struct SessionSurface* s,const struct Snapshot* pixels){
+    if(s && s->dc_pending){game_session_gap(3);return 0;}
+    return s && session_record(5,&s->id,4,pixels->data,pixels->length);
+}
 static int session_present(struct SessionSurface* s){
     if(!s || !session_colors(s) || !session_record(6,&s->id,4,0,0))return 0;
     ++session_presented;return 1;
@@ -81,6 +93,7 @@ static void session_finish_owned(void){
     if(!session_file)return;
     game_session_sync();if(!session_file)return;
     if(!session_presented){game_session_gap(6);return;}
+    for(u32 i=0;i<32;++i)if(session_surfaces[i].id && session_surfaces[i].dc_pending){game_session_gap(3);return;}
     for(u32 i=0;i<32;++i)if(game_locks[i].active && session_find(game_locks[i].object)){game_session_gap(3);return;}
     if(!session_file)return;
     int ok=1;
@@ -98,6 +111,22 @@ static void game_session_finish(void){
     session_finish_owned();game_tracker_release();
 }
 static void session_done(void){if(session_file && ++session_operations>=16)session_finish_owned();}
+static void game_session_dc_checkpoint(struct GameSurface* surface){
+    if(!game_session_enabled || (session_started && !session_file))return;
+    struct SessionSurface* s=session_find(surface->object);int existing=s!=0;
+    if(s){
+        if(!s->dc_pending){game_session_gap(3);return;}s->dc_pending=0;
+    }
+    s=session_surface(surface->object,&surface->pixels);if(!s)return;
+    if(existing){
+        u32 fields[5]={s->id,0,0,s->width,s->height};
+        /* These are admitted pre-ReleaseDC bitmap input pixels, not CHECK
+         * output or a replay of individual GDI operations. */
+        if(!session_record(2,fields,20,surface->pixels.data,surface->pixels.length))return;
+    }
+    if(!session_check(s,&surface->pixels) || (surface->primary && !session_present(s)))return;
+    session_done();
+}
 static void game_session_unlock(struct GameLock* lock,const struct Snapshot* after,u32 primary){
     if(!game_session_enabled)return;
     struct SessionSurface* s=session_find(lock->object);int existing=s!=0;
@@ -106,8 +135,25 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
         struct Rect r={0,0,(i32)after->width,(i32)after->height};if(lock->rectangle)copy(&r,&lock->region,16);
         if(lock->rectangle && !session_check(s,&lock->base))return;
         u32 stride=after->width*(after->bits/8),bytes=(u32)(r.right-r.left)*(after->bits/8);
-        for(i32 y=r.top;y<r.bottom;++y){u32 fields[5]={s->id,(u32)r.left,(u32)y,(u32)(r.right-r.left),1};
-            if(!session_record(2,fields,20,after->data+(u32)y*stride+(u32)r.left*(after->bits/8),bytes))return;}
+        if(!inside(&r,after->width,after->height) || after->length!=stride*after->height){game_session_gap(4);return;}
+        u32 fields[5]={s->id,(u32)r.left,(u32)r.top,(u32)(r.right-r.left),(u32)(r.bottom-r.top)};
+        u32 length=bytes*fields[4];u8* packed=0;
+        const u8* pixels=after->data+(u32)r.top*stride+(u32)r.left*(after->bits/8);
+        if(bytes!=stride){
+            /* The pending after-snapshot is no longer in reserved storage at
+             * this point. Count it as well as the partial base and scratch. */
+            u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
+            if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes ||
+               after->length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved ||
+               length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved-after->length){game_session_gap(2);return;}
+            packed=HeapAlloc(GetProcessHeap(),0,length);if(!packed){game_session_gap(4);return;}
+            __atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
+            for(u32 y=0;y<fields[4];++y)copy(packed+y*bytes,pixels+y*stride,bytes);
+            pixels=packed;
+        }
+        int ok=session_record(2,fields,20,pixels,length);
+        if(packed){HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);}
+        if(!ok)return;
     }
     if(!session_check(s,after) || (primary && !session_present(s)))return;session_done();
 }

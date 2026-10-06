@@ -65,6 +65,7 @@ static void pl_file(const char* path,const void* data,u32 size){u32 written;HAND
     if(f==(HANDLE)-1 || !WriteFile(f,data,size,&written,0) || written!=size)ExitProcess(214);CloseHandle(f);}
 static void (*pl_record_hook)(void);
 static void pl_record(void){
+    char delay[4];if(GetEnvironmentVariableA("MNM_COMMAND_TEST_DELAY",delay,sizeof(delay)))Sleep(30);
     char path[]="original-00000000.bin";static const char hex[]="0123456789abcdef";
     for(u32 i=0;i<8;++i)path[9+i]=hex[(pl_step>>(28-i*4))&15];pl_file(path,pl_surface.native,16*(pl_surface.bits/8));
     if(pl_has_palette()){char colors_path[]="colors-00000000.bin";
@@ -131,13 +132,15 @@ static void test_partial_lock(void){
     static void* table[33];table[25]=(void*)&pl_lock;table[32]=(void*)&pl_unlock;table[27]=(void*)&pl_restore;table[22]=(void*)&pl_description;table[28]=(void*)&pl_clipper;table[5]=(void*)&pl_blt;table[31]=(void*)&pl_palette_assign;
     pl_surface.table=table;pl_surface.kind=pl_mode("legacy")?11:pl_mode("surface2")?12:pl_mode("surface7")?17:14;
     pl_surface.bits=(pl_mode("indexed") || pl_has_palette())?8:pl_mode("rgb24")?24:pl_mode("rgb32")?32:16;
-    pl_surface.pitch=(i32)(4*(pl_surface.bits/8)+8);if(pl_mode("negative"))pl_surface.pitch=-pl_surface.pitch;
+    pl_surface.pitch=(i32)(4*(pl_surface.bits/8)+8);if(pl_mode("negative") || pl_mode("full-width-negative"))pl_surface.pitch=-pl_surface.pitch;
     RenderInstallForTest(&pl_surface,pl_surface.kind);if(pl_has_palette())pl_observe_palette();pl_record();
     if(!pl_mode("no-base"))pl_cycle(0,1,0xf800);
     i32 rect[4]={1,1,3,3};u32 flags=pl_mode("readonly")?0x11:pl_mode("discard")?0x2001:1;
+    if(pl_mode("full-width") || pl_mode("full-width-negative")){rect[0]=0;rect[2]=4;}
+    if(pl_mode("one-row"))rect[3]=2;
     if(pl_mode("failed-lock")){pl_fail_lock=1;pl_cycle(rect,flags,0x7e0);}
     if(pl_mode("retry"))pl_fail_unlock=1;
-    pl_cycle(rect,flags,0x7e0);
+    pl_cycle(pl_mode("full-repeat")?0:rect,flags,0x7e0);
     if(pl_mode("chain")){rect[0]=rect[1]=0;rect[2]=rect[3]=2;pl_cycle(rect,1,0x1f);}
     if(pl_mode("budget"))for(u32 i=0;i<18;++i)pl_cycle(rect,1,0x1f+i);
     if(pl_mode("blit")){

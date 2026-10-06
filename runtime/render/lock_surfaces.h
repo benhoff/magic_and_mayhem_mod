@@ -1,7 +1,7 @@
 #include "../../protocols/include/mnm/frame_v1.h"
 /* Owned native checkpoints; only application calls establish pixels and properties.
  * All access is under game_locks_busy. No observer COM calls or references. */
-struct GameSurface {void* object;u32 epoch,metadata_epoch,generation,clip_known,clip,key_known,key,primary,layout_known,caps,back_count,back_count_known;void *back,*palette,*dc,*dc_bitmap;u32 dc_owner;struct Snapshot pixels;};
+struct GameSurface {void* object;u32 epoch,metadata_epoch,generation,clip_known,clip,key_known,key,primary,layout_known,caps,back_count,back_count_known;void *back,*palette,*dc,*dc_bitmap;u32 dc_owner,dc_generation;struct Snapshot pixels;};
 #define GAME_SURFACE_COUNT 128u
 static struct GameSurface game_surfaces[GAME_SURFACE_COUNT];
 static u32 game_surface_bytes,game_surface_generation,game_blit_count,game_blit_bytes;
@@ -28,7 +28,7 @@ static int game_publish_pixels(const struct Snapshot* s,struct GameSurface* surf
 }
 static void game_surface_drop(struct GameSurface* s){
     if(s->pixels.data){game_surface_bytes-=s->pixels.length;free_snapshot(&s->pixels);}
-    s->dc=0;s->dc_bitmap=0;s->dc_owner=0;s->generation=++game_surface_generation;
+    s->dc=0;s->dc_bitmap=0;s->dc_owner=0;s->dc_generation=0;s->generation=++game_surface_generation;
 }
 static void game_surface_sync(void){
     game_alias_sync();game_session_sync();

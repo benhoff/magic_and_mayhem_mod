@@ -5,9 +5,13 @@ static void game_dc_acquired(void* object,void* dc){
     if(!lock_capture_path_length)return;
     HANDLE bitmap=dc?GetCurrentObject(dc,7):0;
     if(!game_surface_pixels_enter(object))return;
-    game_surface_invalidate_locked(object);
     struct GameSurface* s=game_surface_find(object,0);
-    if(s && dc && bitmap){s->dc=dc;s->dc_bitmap=bitmap;s->dc_owner=GetCurrentThreadId();}
+    if(s && s->layout_known && !s->dc && dc && bitmap){
+        game_session_dc_acquire(object);
+        game_surface_pixels_invalidate_locked(object);
+        s->dc=dc;s->dc_bitmap=bitmap;s->dc_owner=GetCurrentThreadId();
+        s->dc_generation=s->generation;
+    }else game_surface_invalidate_locked(object);
     lock_diagnostic("dc_acquired",object,0,(u32)dc,0,0,0,0);game_tracker_release();
 }
 static void game_dc_before(void* object,void* dc,struct GameDC* pending){
@@ -21,7 +25,8 @@ static void game_dc_before(void* object,void* dc,struct GameDC* pending){
     lock_diagnostic_values("dc_bitmap",values);
     if(!game_surface_pixels_enter(object))return;
     const char* reason="dc_unmatched";struct GameSurface* s=game_surface_find(object,0);
-    if(!s || !s->layout_known || s->dc!=dc || s->dc_bitmap!=bitmap || s->dc_owner!=GetCurrentThreadId())goto done;
+    if(!s || !s->layout_known || s->dc!=dc || s->dc_bitmap!=bitmap || s->dc_owner!=GetCurrentThreadId() ||
+       s->dc_generation!=s->generation)goto done;
     reason="dc_bitmap_rejected";
     struct Snapshot* p=&s->pixels;u32 pitch=dib[3],row=p->width*(p->bits/8),height=p->height;
     i32 dib_height=(i32)dib[8];
@@ -57,6 +62,7 @@ static void game_dc_after(struct GameDC* pending,void* dc,i32 result){
             /* Preserve metadata already observed from application descriptors. */
             game_surface_drop(s);copy(&s->pixels,&pending->pixels,sizeof(s->pixels));pending->pixels.data=0;
             game_surface_bytes+=s->pixels.length;__atomic_sub_fetch(&lock_capture_reserved,s->pixels.length,__ATOMIC_RELAXED);
+            game_session_dc_checkpoint(s);
             if(s->primary)game_surface_publish(s);
             lock_diagnostic("dc_checkpoint",pending->target,0,(u32)dc,0,result,0,0);
         }else game_surface_invalidate_locked(pending->target);

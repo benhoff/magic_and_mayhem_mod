@@ -116,7 +116,9 @@ def indexed(case, capture, stream, build, env, rs, oracle):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--case', choices=CASES, action='append')
-    selected = parser.parse_args().case or CASES
+    parser.add_argument('--build', type=Path, default=REPO / 'working/build/qt-shell')
+    args = parser.parse_args()
+    selected = args.case or CASES
     dll = load('session_build', 'tools/build-render-bridge.py').build(True)
     stage = load('session_stage', 'tools/prepare-shadow-experiment.py')
     oracle = load('session_oracle', 'tools/test-render-lock-blits.py')
@@ -124,7 +126,7 @@ def main():
     parent = REPO / 'working/tests/render-owned-session'
     parent.mkdir(parents=True, exist_ok=True)
     root = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
-    build = REPO / 'working/build/qt-shell'
+    build = args.build.resolve()
     subprocess.run(['cmake', '-S', str(REPO / 'apps/qt-shell'), '-B', str(build)], check=True)
     subprocess.run(['cmake', '--build', str(build), '--target', 'mnm-qt-shell', 'mnm-render-commands', '--parallel', '4'], check=True)
     reports = []
@@ -214,7 +216,7 @@ def main():
                 assert output.read_bytes() == native
                 assert gpu_report['checks'] == len(expected_checks)
                 assert gpu_report['presentations'] == 4
-                assert gpu_report['surface_stats']['uploads'] == (40 if mode == 'limit' else 12)
+                assert gpu_report['surface_stats']['uploads'] == (13 if mode == 'limit' else 6)
                 assert gpu_report['surface_stats']['copies'] == 2
                 assert gpu_report['presentation_rgba_sha256'] == hashlib.sha256(partial.rgba(native, 16, (0xf800, 0x7e0, 0x1f))).hexdigest()
             else:

@@ -212,6 +212,7 @@ static void bs_test_flips(struct BsSurface* front,struct BsSurface* back,struct 
 #include "indexed_owned_selftest.h"
 #include "indexed_copy_selftest.h"
 #include "dc_selftest.h"
+#include "owned_dc_selftest.h"
 static void test_bootstrap(void){
     static void* table[33],*alias_table[33];table[0]=(void*)&bs_query;table[2]=(void*)&bs_release;table[5]=(void*)&bs_blt;table[7]=(void*)&bs_fast;
     table[3]=(void*)&bs_add_attachment;table[8]=(void*)&bs_delete_attachment;table[11]=(void*)&bs_flip;table[12]=(void*)&bs_attached;table[22]=(void*)&bs_description;table[25]=(void*)&bs_lock;table[32]=(void*)&bs_unlock;table[28]=(void*)&bs_clipper;table[29]=(void*)&bs_key;
@@ -222,7 +223,7 @@ static void test_bootstrap(void){
     static struct BsSurface source,target,sprite,alias;
     source.table=target.table=sprite.table=table;source.kind=target.kind=sprite.kind=(bs_mode("legacy") || bs_mode("idx-legacy") || bs_mode("idxcopy-legacy") || bs_mode("idxflip-legacy"))?12:14;
     source.width=target.width=800;source.height=target.height=600;sprite.width=sprite.height=2;
-    source.bits=target.bits=sprite.bits=(bs_is_indexed()||bs_mode("fill8"))?8:(bs_mode("rgb24")||bs_mode("fill24")||bs_mode("dc-rgb24"))?24:(bs_mode("rgb32")||bs_mode("fill32")||bs_mode("dc-rgb32"))?32:16;target.primary=!bs_mode("offscreen");
+    source.bits=target.bits=sprite.bits=(bs_is_indexed()||bs_mode("fill8"))?8:(bs_mode("rgb24")||bs_mode("fill24")||bs_mode("dc-rgb24")||bs_mode("dcs24"))?24:(bs_mode("rgb32")||bs_mode("fill32")||bs_mode("dc-rgb32")||bs_mode("dcs32"))?32:16;target.primary=!bs_mode("offscreen");
     if(bs_mode("descriptor-key") || bs_mode("descriptor-key-range") || bs_is_fill() || bs_mode("continuous-live"))sprite.key=sprite.bits==8?0x7f:sprite.bits==16?0x7ff:0xff00;
     alias.table=alias_table;alias.state=(bs_mode("flip-alias") || bs_mode("idxflip-alias"))?&source:&target;alias.kind=11;bs_alias=&alias;
     struct BsSurface* surfaces[3]={&source,&target,&sprite};u32 bytes=source.bits/8;
@@ -241,6 +242,7 @@ static void test_bootstrap(void){
     bs_stream=MapViewOfFile(mapping,2,0,0,MNM_FRAME_V1_SIZE);CloseHandle(mapping);if(!bs_stream)ExitProcess(171);
     bs_events=CreateFileA("events.bin",0x40000000,1,0,1,0x80,0);if(bs_events==(HANDLE)-1)ExitProcess(172);
     RenderInstallForTest(&source,source.kind);RenderInstallForTest(&alias,11);
+    if(bootstrap_mode[0]=='d' && bootstrap_mode[1]=='c' && bootstrap_mode[2]=='s')bs_test_owned_dc(&target,&source);
     if(bs_is_indexed() && (bootstrap_mode[3]=='c' || bootstrap_mode[3]=='f'))ic_test(&target,&source,&sprite,&alias);
     if(bs_is_indexed())ip_test(&target);
     if(bs_dc_case())bs_dc_seed(&source);else bs_seed(&source);

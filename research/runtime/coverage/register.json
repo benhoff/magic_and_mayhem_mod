@@ -11483,7 +11483,8 @@
         "tools/test-live-render-channel.py"
       ],
       "evidence": [
-        "NR.live-command-transport.native"
+        "NR.live-command-transport.native",
+        "NR.live-command-transport.unlock-regression"
       ],
       "status": {
         "understanding": "scoped",
@@ -11795,7 +11796,9 @@
       "original": [],
       "documents": [
         "research/runtime/opengl-real-game-shadow.md",
-        "research/runtime/opengl-owned-session-fills.md"
+        "research/runtime/opengl-owned-session-fills.md",
+        "research/runtime/opengl-owned-session-dc.md",
+        "research/runtime/opengl-owned-session-unlock-packed.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py"
@@ -11806,7 +11809,9 @@
       ],
       "evidence": [
         "NR.real-game-command-shadow.startup",
-        "NR.owned-session-fill.startup"
+        "NR.owned-session-fill.startup",
+        "NR.owned-session-dc.startup",
+        "NR.owned-session-unlock-packed.startup"
       ],
       "status": {
         "understanding": "scoped",
@@ -12009,7 +12014,9 @@
       ],
       "evidence": [
         "NR.owned-session-fill.native",
-        "NR.owned-session-fill.startup"
+        "NR.owned-session-fill.startup",
+        "NR.owned-session-fill.dc-regression",
+        "NR.owned-session-fill.unlock-regression"
       ],
       "status": {
         "understanding": "scoped",
@@ -12489,6 +12496,76 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.owned-session-dc",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Ordered application DC checkpoint handoff",
+      "scope": "Bounded suspension of a registered native identity while the application holds its DC; a validated pre-ReleaseDC RGB16/24/32 DIB checkpoint becomes existing v1 UPDATE input only after original success. New checkpoint identities use CREATE. Preserve failed-release retry and explicit gaps for invalid ownership, metadata/epoch changes and incomplete sessions. No individual native GDI/font replay, original pixel equivalence or replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-owned-session-dc.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_surfaces.h"
+      ],
+      "tests": [
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "tools/test-render-session-dc.py",
+        "tools/test-render-bootstrap.py"
+      ],
+      "evidence": [
+        "NR.owned-session-dc.native",
+        "NR.owned-session-dc.startup",
+        "NR.owned-session-dc.unlock-regression"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.owned-session-unlock-packed",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Packed ordered unlock rectangle updates",
+      "scope": "Bounded native policy to serialize an admitted owned full or partial unlock rectangle as a single existing v1 UPDATE, preserving partial base CHECK, normalized native row layout, ownership/failure guards and existing command/resource limits. First full checkpoint still uses CREATE. No original-driver pixel equivalence or replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-owned-session-unlock-packed.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h"
+      ],
+      "tests": [
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/owned_session_selftest.h",
+        "tools/test-render-session-unlocks.py",
+        "tools/test-render-owned-session.py"
+      ],
+      "evidence": [
+        "NR.owned-session-unlock-packed.initial",
+        "NR.owned-session-unlock-packed.native",
+        "NR.owned-session-unlock-packed.startup",
+        "NR.owned-session-unlock-packed.legacy"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -21133,6 +21210,356 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NR.owned-session-dc.native",
+      "kind": "native_integration",
+      "scope": "Eighteen bounded Wine DIB sessions: twelve complete native sessions and six explicit failure/ownership refusals; independent native-byte and full GPU fixture comparisons only.",
+      "record": "research/runtime/opengl-owned-session-dc.json",
+      "sha256": "d72ac8c0cda2798e72607315862d5c19cd2ba5a7cd8e2c25205f97c7819a88ff",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 12
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 6
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 38
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/viewport_uploads",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-dc.startup",
+      "kind": "live_observation",
+      "scope": "Pinned original startup passes admitted DC UPDATE then exhausts existing record budget before PRESENT. Original rendering retained; no independent original-driver pixel equivalence or replacement.",
+      "record": "research/runtime/opengl-real-game-shadow-dc.json",
+      "sha256": "056e2f5a4ec06b84d10140eb00167fcfa470891307710ffaef753857268ac815",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordered_dc_updates/0/sequence",
+          "equals": 16
+        },
+        {
+          "pointer": "/ordered_dc_updates/0/fields",
+          "equals": [
+            5,
+            0,
+            0,
+            400,
+            280
+          ]
+        },
+        {
+          "pointer": "/record_limit_reached",
+          "equals": true
+        },
+        {
+          "pointer": "/terminal_file_gap_reason",
+          "equals": 2
+        },
+        {
+          "pointer": "/published_bytes",
+          "equals": 21576532
+        },
+        {
+          "pointer": "/native_consumer/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_consumer/presentations",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_drawing_retained",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NR.owned-session-fill.dc-regression",
+      "kind": "native_integration",
+      "scope": "Current-source regression of committed fill routing after bounded application-DC handoff; eight synthetic cases and 17 full native GPU fixture comparisons, no original pixel equivalence.",
+      "record": "research/runtime/opengl-owned-session-fills-dc-regression.json",
+      "sha256": "92a3df6ac3ee667049b91eb60e711850e836a235383684f5234ac2a4599b892b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 17
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/viewport_uploads",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.initial",
+      "kind": "native_integration",
+      "scope": "Initial packing fixture execution before correction of the separately run legacy bounded-upload assertion. Fingerprints retained; later fresh result required for current-code validation.",
+      "record": "research/runtime/opengl-owned-session-unlocks.json",
+      "sha256": "7d20d0da5bc7814d5802fc7808d9db6a43b30a96b0cbc3026e42626a0dcf835b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 55
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.native",
+      "kind": "native_integration",
+      "scope": "Current-source packed unlock input and native GPU fixture comparisons: 17 complete sessions and nine refusals, 55 full GPU frame comparisons. No original driver equivalence or replacement.",
+      "record": "research/runtime/opengl-owned-session-unlocks-verified.json",
+      "sha256": "ea981a669d639fddd1654a1e12320c7fc7781d7f68f8f3db9bed86583cb77be8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 17
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 9
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 55
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/viewport_uploads",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.startup",
+      "kind": "live_observation",
+      "scope": "Original startup record limit no longer exhausted: 39 records then mirror GAP6 at16 operations before PRESENT. Original drawing retained; no original pixel equivalence or replacement.",
+      "record": "research/runtime/opengl-real-game-shadow-unlocks.json",
+      "sha256": "a6ea28cf8183a8a7d4e70ab24cead1e414809d74344d4829f94483cb219b0ea4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/record_limit_reached",
+          "equals": false
+        },
+        {
+          "pointer": "/operation_limit_before_present",
+          "equals": true
+        },
+        {
+          "pointer": "/terminal_file_gap_reason",
+          "equals": 6
+        },
+        {
+          "pointer": "/published_bytes",
+          "equals": 24594964
+        },
+        {
+          "pointer": "/native_consumer/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native_consumer/presentations",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_drawing_retained",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NR.owned-session-dc.unlock-regression",
+      "kind": "native_integration",
+      "scope": "Fresh bounded DC handoff regression after unlock packing:12 complete/six refused and38 independent GPU frame comparisons, no original pixel equivalence.",
+      "record": "research/runtime/opengl-owned-session-dc-unlock-regression.json",
+      "sha256": "8e09a76c23d82e12b763d614afbb2557d5f4b8a5c85fe50bc49372aeb61c3679",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 12
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 6
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 38
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/viewport_uploads",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-fill.unlock-regression",
+      "kind": "native_integration",
+      "scope": "Fresh eight-case fill routing regression after unlock packing with17 independent GPU frame comparisons; no original pixel equivalence.",
+      "record": "research/runtime/opengl-owned-session-fills-unlock-regression.json",
+      "sha256": "b4558ad018ded63b07913b1b049bc71e832b1e35038366baa0e12d5eca1bd4e4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 17
+        },
+        {
+          "pointer": "/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/viewport_uploads",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.live-command-transport.unlock-regression",
+      "kind": "native_integration",
+      "scope": "Fresh normal native fragmented/refusal suite, ASan/UBSan C wire writer, and seven Wine/live Qt sessions after packing, four complete and three explicit incomplete/restore/held/cancelled cases. Native GPU consumer sanitizer build was not rerun.",
+      "record": "research/runtime/opengl-live-command-unlock-regression.json",
+      "sha256": "84b25a9e61be22b25c856fc9089f38e430dbfbafd18c75a892e9204e9560c91e",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/writer/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/wine_sessions",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_integration/valid_wine_sessions",
+          "equals": 4
+        },
+        {
+          "pointer": "/native_integration/incomplete_sessions",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_integration/before_producer_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/viewport_uploads",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/normal_and_sanitized",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.legacy",
+      "kind": "native_integration",
+      "scope": "Ten legacy owned-session regressions with preserved shell/replay binaries from successful prior build, excluding concurrent unrelated menu CMake edits. Original game equivalence/replacement not asserted.",
+      "record": "research/runtime/opengl-owned-session-unlock-legacy-regression.json",
+      "sha256": "7ce443cb693a1bb7e2408e80f3e4b76a4726bad1bbb16862a61c6e53d41341be",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -24265,6 +24692,146 @@
         "tests/menu-campaign-defeat-test.cpp",
         "tools/test-campaign-mini-quit-bridge.py"
       ]
+    },
+    {
+      "id": "NR.owned-session-dc.preview",
+      "scope": "Bounded recorded-identity suspension, acquisition-generation guard, full successful release UPDATE, post-release ordinary blit, failed acquisition/release retry, repeated handoff, format/bitmap/thread/contention/pending refusals; independent Wine DIB native/GPU pixels.",
+      "level": "preview",
+      "behaviors": [
+        "NR.owned-session-dc"
+      ],
+      "evidence": [
+        "NR.owned-session-dc.native"
+      ],
+      "tests": [
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "tools/test-render-session-dc.py",
+        "tools/test-render-bootstrap.py"
+      ]
+    },
+    {
+      "id": "NR.owned-session-dc.startup",
+      "scope": "Original tracked DC handoff publishes UPDATE; per-row unlock commands exhaust 4062-record budget before PRESENT. Original rendering retained; remaining startup/integration/replacement boundary explicit.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.owned-session-dc",
+        "NR.real-game-command-shadow"
+      ],
+      "evidence": [
+        "NR.owned-session-dc.startup"
+      ],
+      "tests": [
+        "tools/test-live-render-game.py"
+      ]
+    },
+    {
+      "id": "NR.owned-session-fill.dc-regression",
+      "scope": "Eight current-source owned fills through live GPU native presentation after DC handoff changes; independent fixture pixels and native-byte CHECK replay.",
+      "level": "preview",
+      "behaviors": [
+        "NR.owned-session-fill"
+      ],
+      "evidence": [
+        "NR.owned-session-fill.dc-regression"
+      ],
+      "tests": [
+        "tools/test-render-session-fills.py",
+        "runtime/render/bootstrap_selftest.h"
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.preview",
+      "scope": "One packed UPDATE per admitted unlock in 17 complete native sessions, nine explicit refusals; independent native input crop, CPU/CHECK replay and complete GPU frames. Scratch-allocation failure not forced.",
+      "level": "preview",
+      "behaviors": [
+        "NR.owned-session-unlock-packed"
+      ],
+      "evidence": [
+        "NR.owned-session-unlock-packed.native"
+      ],
+      "tests": [
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/owned_session_selftest.h",
+        "tools/test-render-session-unlocks.py",
+        "tools/test-render-owned-session.py"
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.startup",
+      "scope": "Original DC and packed unlocks publish39 records below record limit, then16-operation GAP6 before PRESENT; original drawing retained.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.owned-session-unlock-packed",
+        "NR.real-game-command-shadow",
+        "NR.owned-session-dc"
+      ],
+      "evidence": [
+        "NR.owned-session-unlock-packed.startup"
+      ],
+      "tests": [
+        "tools/test-live-render-game.py"
+      ]
+    },
+    {
+      "id": "NR.owned-session-dc.unlock-regression",
+      "scope": "Fresh bounded DC handoff regression after unlock packing:12 complete/six refused and38 independent GPU frame comparisons, no original pixel equivalence.",
+      "level": "preview",
+      "behaviors": [
+        "NR.owned-session-dc"
+      ],
+      "evidence": [
+        "NR.owned-session-dc.unlock-regression"
+      ],
+      "tests": [
+        "tools/test-render-session-dc.py"
+      ]
+    },
+    {
+      "id": "NR.owned-session-fill.unlock-regression",
+      "scope": "Fresh eight-case fill routing regression after unlock packing with17 independent GPU frame comparisons; no original pixel equivalence.",
+      "level": "preview",
+      "behaviors": [
+        "NR.owned-session-fill"
+      ],
+      "evidence": [
+        "NR.owned-session-fill.unlock-regression"
+      ],
+      "tests": [
+        "tools/test-render-session-fills.py"
+      ]
+    },
+    {
+      "id": "NR.live-command-transport.unlock-regression",
+      "scope": "Fresh normal native fragmented/refusal suite, ASan/UBSan C wire writer, and seven Wine/live Qt sessions after packing, four complete and three explicit incomplete/restore/held/cancelled cases. Native GPU consumer sanitizer build was not rerun.",
+      "level": "preview",
+      "behaviors": [
+        "NR.live-command-transport"
+      ],
+      "evidence": [
+        "NR.live-command-transport.unlock-regression"
+      ],
+      "tests": [
+        "tools/test-live-render-channel.py",
+        "tests/live-render-channel-test.cpp",
+        "tests/render-command-writer-test.c"
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.legacy",
+      "scope": "Ten legacy owned-session regressions with preserved shell/replay binaries from successful prior build, excluding concurrent unrelated menu CMake edits. Original game equivalence/replacement not asserted.",
+      "level": "preview",
+      "behaviors": [
+        "NR.owned-session-unlock-packed"
+      ],
+      "evidence": [
+        "NR.owned-session-unlock-packed.legacy"
+      ],
+      "tests": [
+        "tools/test-render-owned-session.py",
+        "runtime/render/owned_session_selftest.h"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -24479,7 +25046,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-defeat.json",
-    "sha256": "defb7d4c3a762338755a53aea700ebd94b9b9360e4bd5a4c5a752cb40a3093cc"
+    "path": "research/runtime/coverage/source-index-owned-session-unlock-commit-v4.json",
+    "sha256": "ef5d095d2053924f45f0474184bee1efc896a3ff153e14c5d82166c96945e65d"
   }
 }
