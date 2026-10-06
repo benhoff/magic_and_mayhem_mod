@@ -135,3 +135,18 @@ in [primary audio manager](primary-audio-manager.md).
 Device-wide primary controls now provide master attenuation, explicit looping
 play intent and validated requested-format metadata. Primary Stop leaves
 secondary mixing active. See [manager reconstruction and offline evidence](../research/runtime/primary-audio-manager.md).
+
+## Native PCM contract completion
+
+Supported formats, alias/lock lifetime, exception guarantees and scoped execution
+are specified in [native audio boundaries](../research/runtime/native-audio-boundaries.md).
+Fresh unsigned 8-bit buffers contain midpoint silence. Creation publishes IDs
+only after successful insertion; allocation failures propagate without publishing
+outputs or advancing voices. Reproduce synthetic normal and ASan/UBSan checks:
+
+```sh
+python3 tools/test-native-audio-boundaries.py
+```
+
+This contract covers the native PCM core. Physical output and original-game
+agreement retain their separately recorded validation boundaries.

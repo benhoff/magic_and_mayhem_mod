@@ -12,6 +12,15 @@ protocol milestones with the current source tree. Audio reconstruction remains
 offline; Qt output has separate native host-backend smoke evidence. Default
 game launches retain Wine DirectSound.
 
+2026-10-05 native PCM core completion: supported mono/stereo 8/16-bit
+formats, encoding-correct initial silence, alias/lock retirement and allocation
+failure atomicity now have scoped headless execution evidence. Four core fixtures
+pass normally and under ASan/UBSan with leak detection; all 60 standalone
+audio/asset CTests pass. See [contract and execution](native-audio-boundaries.md)
+and `NA.core-boundaries-20261005`. Physical output, concurrency, long sessions,
+counter exhaustion execution and original equivalence remain separate boundaries.
+Historical evidence fingerprints remain intact.
+
 Current assessment: substantial pathfinding reconstruction and native rendering
 infrastructure exist. Selected input and media paths have optional adapters.
 Native menus and a bounded ANI/SPR scene run independently as previews; selected

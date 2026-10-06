@@ -40,7 +40,7 @@ Wave readWave(const std::vector<std::uint8_t>& file){
     return result;
 }
 struct Device::Storage {
-    explicit Storage(std::size_t size):committed(size,0){}
+    Storage(std::size_t size,std::uint8_t silence):committed(size,silence){}
     std::vector<std::uint8_t> committed,staging;
     BufferId owner=0;std::uint64_t ticket=0,revision=0;
     std::size_t offset=0,first=0,second=0;
@@ -53,7 +53,8 @@ Error Device::createPrimary(std::uint32_t flags,BufferId& output){
     if(flags!=0x81)return Error::unsupported;
     if(buffers_.size()>=maxBuffers_)return Error::limit;
     for(const auto& pair:buffers_)if(pair.second.primary)return Error::busy;
-    output=next_++;buffers_.emplace(output,Buffer{true,flags,{},nullptr});return Error::ok;
+    if(!next_)return Error::limit;
+    buffers_.emplace(next_,Buffer{true,flags,{},nullptr});output=next_++;return Error::ok;
 }
 Error Device::setPrimaryFormat(BufferId id,const PcmFormat& format){
     auto it=buffers_.find(id);if(it==buffers_.end() || !it->second.primary)return Error::invalid;
@@ -65,19 +66,21 @@ Error Device::createStatic(std::uint32_t flags,const PcmFormat& format,std::size
     if(!validPcm(format))return Error::badFormat;
     if(!bytes || bytes%format.alignment)return Error::invalid;
     if(bytes>maxBytes_ || buffers_.size()>=maxBuffers_)return Error::limit;
-    auto storage=std::make_shared<Storage>(bytes);output=next_++;
+    if(!next_)return Error::limit;
+    auto storage=std::make_shared<Storage>(bytes,format.bits==8?128:0);
     Buffer buffer{false,flags,format,std::move(storage)};buffer.voice.frames=bytes/format.alignment;
-    buffers_.emplace(output,std::move(buffer));return Error::ok;
+    buffers_.emplace(next_,std::move(buffer));output=next_++;return Error::ok;
 }
 Error Device::duplicate(BufferId source,BufferId& output){
     auto it=buffers_.find(source);if(it==buffers_.end())return Error::invalid;
     if(it->second.primary)return Error::unsupported;
     if(buffers_.size()>=maxBuffers_)return Error::limit;
+    if(!next_)return Error::limit;
     auto buffer=it->second;
     // Duplicate controls, not playback activity or cursor. Samples stay shared.
     buffer.voice.playback=Playback::stopped;buffer.voice.looping=false;buffer.voice.frame=0;
     buffer.phase=0;
-    output=next_++;buffers_.emplace(output,std::move(buffer));return Error::ok;
+    buffers_.emplace(next_,std::move(buffer));output=next_++;return Error::ok;
 }
 Error Device::release(BufferId id){
     auto it=buffers_.find(id);if(it==buffers_.end())return Error::invalid;
@@ -92,8 +95,10 @@ Error Device::lock(BufferId id,std::size_t offset,std::size_t bytes,std::uint32_
     if(flags&2)bytes=s.committed.size();
     if(offset>=s.committed.size() || !bytes || bytes>s.committed.size())return Error::invalid;
     if(s.owner)return Error::busy;
+    if(!ticket_)return Error::limit;
+    s.staging.assign(bytes,0);
     s.first=std::min(bytes,s.committed.size()-offset);s.second=bytes-s.first;s.offset=offset;
-    s.staging.assign(bytes,0);s.owner=id;s.ticket=ticket_++;
+    s.owner=id;s.ticket=ticket_++;
     output={id,s.ticket,{s.staging.data(),s.first},{s.second?s.staging.data()+s.first:nullptr,s.second}};return Error::ok;
 }
 Error Device::unlock(const WriteLock& lock,std::size_t firstWritten,std::size_t secondWritten){

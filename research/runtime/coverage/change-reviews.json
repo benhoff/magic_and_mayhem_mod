@@ -15374,6 +15374,476 @@
         ],
         "reason": "Fresh source fingerprints and original build match actual native widget actions, exact engine callback/ACK/thread/value trace, Cancel rollback without file changes, OK profile/store agreement and reopened values, three Preferences World resumes, original Yes/report OK/Main Quit and retired channel; no timing/display/other-caller equivalence or native engine replacement claim."
       }
+    },
+    {
+      "id": "NA.core-boundaries-scoped-execution-20261005",
+      "reason": "Review native PCM formats, midpoint silence, alias/writer retirement, ID publication after insertion and allocation-before-mutation boundaries. Scoped HEAD overlay excludes unrelated pending workspace files and behavior edits. No original comparison/replacement promotion.",
+      "files": [
+        {
+          "path": "audio/CMakeLists.txt",
+          "before_sha256": "3a28c28153ac5309cac2a359e0e112452b40f25a26ff299855f2448c542b097a",
+          "after_sha256": "b99a18773f8130d83449e75abc88d0733899680cf6bfea283cc231b88df29d0a"
+        },
+        {
+          "path": "audio/README.md",
+          "before_sha256": "4f5ccc6519fdfadfcae08518267f850be8a013990f09eef5d9536fe7cf9f766e",
+          "after_sha256": "57b5851f4640b2678cb8347260c5f6d30ea2127e82ddfc03bcd84978e22ff9f0"
+        },
+        {
+          "path": "audio/buffers.cpp",
+          "before_sha256": "815cb9dace6fb29afd8fd5e5cc671a752cf4ef7bcbe52c7dd93e2d1bf9638e17",
+          "after_sha256": "bbd78334ddc5dcdca9bafeea577fe3d7c0a99b13f25a5f09a31e0a5314ed8d76"
+        },
+        {
+          "path": "audio/buffers.hpp",
+          "before_sha256": "bf688fa6ba89c2830e41b3726114ee545053a20e32bd41b8ac61364479a2701d",
+          "after_sha256": "a1171705d081290769a6493faeec7c0ac36b33f0dff42857238d1bd4740d2ba9"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-audio-boundaries-isolated-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "4e00c7585037cad1c25e9df3f2beb7b2c004d3375d913c6af1797452ef2e8934"
+        },
+        {
+          "path": "research/runtime/native-audio-boundaries-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "81385e95991da550d8da993b8fdf87406ff6de7165cff6415829a10ec25afcbc"
+        },
+        {
+          "path": "research/runtime/native-audio-boundaries-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "456450f7af8999985cd30f0d3761abeee0b676c1be23792ae8a1bbb28e297b88"
+        },
+        {
+          "path": "research/runtime/native-audio-boundaries.md",
+          "before_sha256": null,
+          "after_sha256": "ebef116b2a1d9f2c6e15eca99b040343e39ac97cd98790a98d0a514ed4a0bac4"
+        },
+        {
+          "path": "tests/audio-boundaries-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "c13bf6fbc492440d2a5e5f322bff2dfaaf4f89496f9343ee264587539dedd582"
+        },
+        {
+          "path": "tools/test-native-audio-boundaries.py",
+          "before_sha256": null,
+          "after_sha256": "5cb2ed375ff86f3810c4a68c6d30508c8739c34cf3c556619e7f360133397ece"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NA.buffers",
+          "before_sha256": "780caada56eabdd8881f28ea8a7523984c2c42bf4c024f420fd3f3e8cf70da90",
+          "after_sha256": "f8308399e7533c0644d920fdef53df0ff2bf6011f4e4ace43da2a3740af46f2f"
+        },
+        {
+          "id": "NA.mixer",
+          "before_sha256": "ecd8ecefbf158b117660b0ec9e3acaa8b1a2780517330ab5a493bbc99a76378a",
+          "after_sha256": "87d9879138e994b05fe64172a8e1697efc7f483449032708a7119b6e83a019e9"
+        },
+        {
+          "id": "NA.voices",
+          "before_sha256": "6115851ad514afae36d9fe955578f3296e2ab82ba2c2ebfe4b753cacf317d354",
+          "after_sha256": "3005a7025db96b3ca883c7dd64589d4d1aca63404dd6afe2281bc435e4282d83"
+        },
+        {
+          "id": "NA.wave",
+          "before_sha256": "087a83d8811959c40f12b3278c604a72630acd80fb48543e1f4b7fa8834d8e8f",
+          "after_sha256": "56b5e725818dd4aa7c56a9256d155b7c6588f2397f7200ed7f836dd6a1356d71"
+        }
+      ],
+      "pending_gaps": [
+        "stale_evidence:5692f9bd16e30a45e6d0ae2160360c44bc1556c38f7e0f1ed19cdb7af2dc927b",
+        "stale_evidence:f79124b24ca7cd0aa4eb3d20b8db0300c3bc3e1c05c41820a188b024676dfd9e"
+      ],
+      "validation": {
+        "status": "recorded",
+        "reason": "Four native core fixtures pass normal and ASan/UBSan with leak detection; 60 standalone audio/asset CTests pass. Fresh source fingerprints bind the bounded native contract. No physical device or original execution.",
+        "evidence": [
+          "NA.core-boundaries-20261005"
+        ]
+      }
+    },
+    {
+      "id": "NA.core-boundaries-shared-history-pending-20261005",
+      "reason": "Account for dependent recovered/native contracts linked to shared buffers or audio README. Retain historical comparison/integration statuses and source hashes; native core execution does not establish original equivalence or physical output freshness.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "28072201ddddb88d3f74d2c52aceb5a9884073704578798b6219388f58df79b9",
+          "after_sha256": "718d20c4b611bcc704471ce97aea2e6eb3de7049455bf0cfd02f5c2fe20fb3c5"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NA.cli",
+          "before_sha256": "b7fbaaf0be62b694b6ddb419547a5c916870c22af6c2f31479a3d17cd16a3dcf",
+          "after_sha256": "5c53b6312be92e0fc4dbd104e965adce5eb6f6b48c6979eaea81306ac34f50e0"
+        },
+        {
+          "id": "NA.output",
+          "before_sha256": "2151828afaf7cc812a82ae70ddd2e315e9f72544c596e9c90acd6f19a49d9760",
+          "after_sha256": "8a2c23b93d548ad75cc2999754675668e9aa047cdc8f83bf3de31614d8f960a3"
+        },
+        {
+          "id": "NA.voice_bridge",
+          "before_sha256": "59daaec798815246569616dc46a6d24d3e64a991f33c5a2b74c15f555e934593",
+          "after_sha256": "ddc58373f0edb8e8ac704483f960e64716ac008aa03c272e0c32dae7f0597ced"
+        }
+      ],
+      "pending_gaps": [
+        "stale_evidence:5692f9bd16e30a45e6d0ae2160360c44bc1556c38f7e0f1ed19cdb7af2dc927b",
+        "stale_evidence:f79124b24ca7cd0aa4eb3d20b8db0300c3bc3e1c05c41820a188b024676dfd9e"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Shared changes leave historical evidence stale; rerun subsystem comparisons/device integration before claiming current equivalence. The bounded native policy execution does not validate dependent recovered contracts.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NA.core-boundaries-workspace-accounting-20261005",
+      "reason": "Review native audio metadata merge, exact scoped contracts and shared-source limitations. Preserve all prior receipts and evidence hashes. Source census snapshots current shared workspace indexing only; other pending contributor implementations and focused-register reconciliation are excluded. Scoped HEAD-overlay review/gate passes independently. Committed fea5d9f..08caa57 history file/behavior hashes match retained exact receipts with zero unresolved findings; no historical execution/gate claim. Full workspace audit has zero errors; full gate remains blocked by sixteen concurrently edited effect focused-register imports and two unrelated indexed sources. Shared metadata before hashes are captured at start of this audio task; dependent contract before hashes use the named committed HEAD.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "5090d7fd62f2377fb2db5c0058734113b26ac813ddeb8b5b44c88cb9bbf915d0",
+          "after_sha256": "cb2dd9046301d899362deb49124af5bdb718c3ecc4eaa053bf331515685e9491"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "ea9e2b2b3877dbbb4a5b4ef57e7a4d4ebde70787ffe529cc1702c2158ec678c6",
+          "after_sha256": "88864308a6fa02a32c85fb1b27ced574c6332641c0812ad20c67c0be16488122"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-audio-boundaries-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "4a2779c5fd84b54706f6223fe9f6aa8fcf0a15937d99c7b7e583785e0e241864"
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-audio-boundaries-20261005.md",
+          "before_sha256": null,
+          "after_sha256": "daf7b42e030d68e4923310d8fb46172703242542a74ae87846f6feee1d4b043c"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NA.buffers",
+          "before_sha256": "780caada56eabdd8881f28ea8a7523984c2c42bf4c024f420fd3f3e8cf70da90",
+          "after_sha256": "f8308399e7533c0644d920fdef53df0ff2bf6011f4e4ace43da2a3740af46f2f"
+        },
+        {
+          "id": "NA.voices",
+          "before_sha256": "6115851ad514afae36d9fe955578f3296e2ab82ba2c2ebfe4b753cacf317d354",
+          "after_sha256": "3005a7025db96b3ca883c7dd64589d4d1aca63404dd6afe2281bc435e4282d83"
+        },
+        {
+          "id": "NA.mixer",
+          "before_sha256": "ecd8ecefbf158b117660b0ec9e3acaa8b1a2780517330ab5a493bbc99a76378a",
+          "after_sha256": "87d9879138e994b05fe64172a8e1697efc7f483449032708a7119b6e83a019e9"
+        },
+        {
+          "id": "NA.output",
+          "before_sha256": "2151828afaf7cc812a82ae70ddd2e315e9f72544c596e9c90acd6f19a49d9760",
+          "after_sha256": "8a2c23b93d548ad75cc2999754675668e9aa047cdc8f83bf3de31614d8f960a3"
+        },
+        {
+          "id": "NA.voice_bridge",
+          "before_sha256": "59daaec798815246569616dc46a6d24d3e64a991f33c5a2b74c15f555e934593",
+          "after_sha256": "fbd7c9fd3d98822efa04da1fda472738262b84c02beae4b7433d2912bde4caba"
+        },
+        {
+          "id": "NA.wave",
+          "before_sha256": "087a83d8811959c40f12b3278c604a72630acd80fb48543e1f4b7fa8834d8e8f",
+          "after_sha256": "56b5e725818dd4aa7c56a9256d155b7c6588f2397f7200ed7f836dd6a1356d71"
+        },
+        {
+          "id": "NA.cli",
+          "before_sha256": "b7fbaaf0be62b694b6ddb419547a5c916870c22af6c2f31479a3d17cd16a3dcf",
+          "after_sha256": "5c53b6312be92e0fc4dbd104e965adce5eb6f6b48c6979eaea81306ac34f50e0"
+        }
+      ],
+      "pending_gaps": [
+        "stale_evidence:5692f9bd16e30a45e6d0ae2160360c44bc1556c38f7e0f1ed19cdb7af2dc927b",
+        "stale_evidence:f79124b24ca7cd0aa4eb3d20b8db0300c3bc3e1c05c41820a188b024676dfd9e"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh NA.core-boundaries-20261005 executes the four native PCM contracts; their promotion is authorized by the separate recorded scoped receipt. Dependent recovered/native output contracts remain historically validated and need fresh subsystem execution before current equivalence/device claims. Concurrent shared metadata accounting is not a full workspace or staged gate pass.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NA.core-boundaries-audio-commit-execution-20261005",
+      "reason": "Review supported PCM format and RIFF validation, encoding-correct initial silence, alias/writer lifetime and allocation exception publication/mixing boundaries. Stage native audio source/tests/documentation, immutable scoped execution and matching metadata together. Native policy only; original comparison/replacement remain none.",
+      "files": [
+        {
+          "path": "audio/CMakeLists.txt",
+          "before_sha256": "3a28c28153ac5309cac2a359e0e112452b40f25a26ff299855f2448c542b097a",
+          "after_sha256": "b99a18773f8130d83449e75abc88d0733899680cf6bfea283cc231b88df29d0a"
+        },
+        {
+          "path": "audio/README.md",
+          "before_sha256": "4f5ccc6519fdfadfcae08518267f850be8a013990f09eef5d9536fe7cf9f766e",
+          "after_sha256": "57b5851f4640b2678cb8347260c5f6d30ea2127e82ddfc03bcd84978e22ff9f0"
+        },
+        {
+          "path": "audio/buffers.cpp",
+          "before_sha256": "815cb9dace6fb29afd8fd5e5cc671a752cf4ef7bcbe52c7dd93e2d1bf9638e17",
+          "after_sha256": "bbd78334ddc5dcdca9bafeea577fe3d7c0a99b13f25a5f09a31e0a5314ed8d76"
+        },
+        {
+          "path": "audio/buffers.hpp",
+          "before_sha256": "bf688fa6ba89c2830e41b3726114ee545053a20e32bd41b8ac61364479a2701d",
+          "after_sha256": "a1171705d081290769a6493faeec7c0ac36b33f0dff42857238d1bd4740d2ba9"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "268fa9b4579978e3f7e57ac0e6b4613d4f80a0844d61a189415283f1a416e0ef",
+          "after_sha256": "e5edb87de79989215ff24e8ee1e85d194d8ddf8879a844dad01b29335dc364b1"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-audio-boundaries-commit-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "d5f43008a2d54bad6a51a41a9d5a37867fba41069c15af6c935c7f157a42a5b4"
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-audio-boundaries-commit-20261005.md",
+          "before_sha256": null,
+          "after_sha256": "8fe6fe3d57088e690ec1e373e202c30d96a977a508cb5efc567e761a31fabbc6"
+        },
+        {
+          "path": "research/runtime/native-audio-boundaries-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "81385e95991da550d8da993b8fdf87406ff6de7165cff6415829a10ec25afcbc"
+        },
+        {
+          "path": "research/runtime/native-audio-boundaries-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "86e223dded497ef9ec0bb8796be7715b7790e004499c818ca2d48d40abe3f747"
+        },
+        {
+          "path": "research/runtime/native-audio-boundaries.md",
+          "before_sha256": null,
+          "after_sha256": "ebef116b2a1d9f2c6e15eca99b040343e39ac97cd98790a98d0a514ed4a0bac4"
+        },
+        {
+          "path": "tests/audio-boundaries-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "c13bf6fbc492440d2a5e5f322bff2dfaaf4f89496f9343ee264587539dedd582"
+        },
+        {
+          "path": "tools/test-native-audio-boundaries.py",
+          "before_sha256": null,
+          "after_sha256": "5cb2ed375ff86f3810c4a68c6d30508c8739c34cf3c556619e7f360133397ece"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NA.buffers",
+          "before_sha256": "780caada56eabdd8881f28ea8a7523984c2c42bf4c024f420fd3f3e8cf70da90",
+          "after_sha256": "f8308399e7533c0644d920fdef53df0ff2bf6011f4e4ace43da2a3740af46f2f"
+        },
+        {
+          "id": "NA.mixer",
+          "before_sha256": "ecd8ecefbf158b117660b0ec9e3acaa8b1a2780517330ab5a493bbc99a76378a",
+          "after_sha256": "87d9879138e994b05fe64172a8e1697efc7f483449032708a7119b6e83a019e9"
+        },
+        {
+          "id": "NA.voices",
+          "before_sha256": "6115851ad514afae36d9fe955578f3296e2ab82ba2c2ebfe4b753cacf317d354",
+          "after_sha256": "3005a7025db96b3ca883c7dd64589d4d1aca63404dd6afe2281bc435e4282d83"
+        },
+        {
+          "id": "NA.wave",
+          "before_sha256": "087a83d8811959c40f12b3278c604a72630acd80fb48543e1f4b7fa8834d8e8f",
+          "after_sha256": "56b5e725818dd4aa7c56a9256d155b7c6588f2397f7200ed7f836dd6a1356d71"
+        }
+      ],
+      "pending_gaps": [
+        "stale_evidence:5692f9bd16e30a45e6d0ae2160360c44bc1556c38f7e0f1ed19cdb7af2dc927b",
+        "stale_evidence:f79124b24ca7cd0aa4eb3d20b8db0300c3bc3e1c05c41820a188b024676dfd9e"
+      ],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh NA.core-boundaries-20261005: 60 standalone CTests and four fixtures normally plus ASan/UBSan with leak detection. Verify all recorded source fingerprints before staging. No original execution or physical-device claim.",
+        "evidence": [
+          "NA.core-boundaries-20261005"
+        ]
+      }
+    },
+    {
+      "id": "NA.core-boundaries-audio-commit-pending-20261005",
+      "reason": "Review dependent shared-source contracts, scoped source census, generated summary and ledger. Preserve committed and prior native audio receipts and evidence fingerprints. History review covers fea5d9f through 1016274551f0eba7c3de0ce6537da3dd71db08ef with exact parent/current file and behavior receipt checks; no past gate or runtime claim. Retain historical subsystem freshness limitations.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "d47dda0202f2e9d3638666f80826e926dd81888c850c2a8b06588cdec0942e09",
+          "after_sha256": "6a1ff2016e639a50abfec95604e5e2a4341ae8d3570cdbecf66432977f6a41af"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NA.cli",
+          "before_sha256": "b7fbaaf0be62b694b6ddb419547a5c916870c22af6c2f31479a3d17cd16a3dcf",
+          "after_sha256": "5c53b6312be92e0fc4dbd104e965adce5eb6f6b48c6979eaea81306ac34f50e0"
+        },
+        {
+          "id": "NA.output",
+          "before_sha256": "2151828afaf7cc812a82ae70ddd2e315e9f72544c596e9c90acd6f19a49d9760",
+          "after_sha256": "8a2c23b93d548ad75cc2999754675668e9aa047cdc8f83bf3de31614d8f960a3"
+        },
+        {
+          "id": "NA.voice_bridge",
+          "before_sha256": "59daaec798815246569616dc46a6d24d3e64a991f33c5a2b74c15f555e934593",
+          "after_sha256": "ddc58373f0edb8e8ac704483f960e64716ac008aa03c272e0c32dae7f0597ced"
+        }
+      ],
+      "pending_gaps": [
+        "stale_evidence:5692f9bd16e30a45e6d0ae2160360c44bc1556c38f7e0f1ed19cdb7af2dc927b",
+        "stale_evidence:f79124b24ca7cd0aa4eb3d20b8db0300c3bc3e1c05c41820a188b024676dfd9e"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Dependent recovered/device/CLI policies retain historical statuses; native PCM execution does not rerun original comparisons or physical-device integration. Changed shared source freshness stays explicit.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NA.core-boundaries-audio-commit-execution-20261005-1f60919",
+      "reason": "Review supported PCM format and RIFF validation, encoding-correct initial silence, alias/writer lifetime and allocation exception publication/mixing boundaries. Stage native audio source/tests/documentation, immutable scoped execution and matching metadata together. Native policy only; original comparison/replacement remain none.",
+      "files": [
+        {
+          "path": "audio/CMakeLists.txt",
+          "before_sha256": "3a28c28153ac5309cac2a359e0e112452b40f25a26ff299855f2448c542b097a",
+          "after_sha256": "b99a18773f8130d83449e75abc88d0733899680cf6bfea283cc231b88df29d0a"
+        },
+        {
+          "path": "audio/README.md",
+          "before_sha256": "4f5ccc6519fdfadfcae08518267f850be8a013990f09eef5d9536fe7cf9f766e",
+          "after_sha256": "57b5851f4640b2678cb8347260c5f6d30ea2127e82ddfc03bcd84978e22ff9f0"
+        },
+        {
+          "path": "audio/buffers.cpp",
+          "before_sha256": "815cb9dace6fb29afd8fd5e5cc671a752cf4ef7bcbe52c7dd93e2d1bf9638e17",
+          "after_sha256": "bbd78334ddc5dcdca9bafeea577fe3d7c0a99b13f25a5f09a31e0a5314ed8d76"
+        },
+        {
+          "path": "audio/buffers.hpp",
+          "before_sha256": "bf688fa6ba89c2830e41b3726114ee545053a20e32bd41b8ac61364479a2701d",
+          "after_sha256": "a1171705d081290769a6493faeec7c0ac36b33f0dff42857238d1bd4740d2ba9"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "915c8356222e128092979cd49f21a408206d3c64bab84895b553bc1236cd8371",
+          "after_sha256": "1213adde8b6155955ee6032af96f76732e311244db44e47dedd631d22199f216"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-audio-boundaries-commit-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "28f45b6db14b6afc4e824445c39a4c418b615885f94a3638c40c58e662f210a5"
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-audio-boundaries-commit-20261005.md",
+          "before_sha256": null,
+          "after_sha256": "c97bfc166d6bdc61493c990e29c9b2c3d9b49a540e6ad7394a210b445af0ce82"
+        },
+        {
+          "path": "research/runtime/native-audio-boundaries-20261005.json",
+          "before_sha256": null,
+          "after_sha256": "81385e95991da550d8da993b8fdf87406ff6de7165cff6415829a10ec25afcbc"
+        },
+        {
+          "path": "research/runtime/native-audio-boundaries-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "7f80bbbbe77e2c6cb0b65e6290b1b014f49822e0ba483e0e4f7a9c6bcbd54ccc"
+        },
+        {
+          "path": "research/runtime/native-audio-boundaries.md",
+          "before_sha256": null,
+          "after_sha256": "ebef116b2a1d9f2c6e15eca99b040343e39ac97cd98790a98d0a514ed4a0bac4"
+        },
+        {
+          "path": "tests/audio-boundaries-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "c13bf6fbc492440d2a5e5f322bff2dfaaf4f89496f9343ee264587539dedd582"
+        },
+        {
+          "path": "tools/test-native-audio-boundaries.py",
+          "before_sha256": null,
+          "after_sha256": "5cb2ed375ff86f3810c4a68c6d30508c8739c34cf3c556619e7f360133397ece"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NA.buffers",
+          "before_sha256": "780caada56eabdd8881f28ea8a7523984c2c42bf4c024f420fd3f3e8cf70da90",
+          "after_sha256": "f8308399e7533c0644d920fdef53df0ff2bf6011f4e4ace43da2a3740af46f2f"
+        },
+        {
+          "id": "NA.mixer",
+          "before_sha256": "ecd8ecefbf158b117660b0ec9e3acaa8b1a2780517330ab5a493bbc99a76378a",
+          "after_sha256": "87d9879138e994b05fe64172a8e1697efc7f483449032708a7119b6e83a019e9"
+        },
+        {
+          "id": "NA.voices",
+          "before_sha256": "6115851ad514afae36d9fe955578f3296e2ab82ba2c2ebfe4b753cacf317d354",
+          "after_sha256": "3005a7025db96b3ca883c7dd64589d4d1aca63404dd6afe2281bc435e4282d83"
+        },
+        {
+          "id": "NA.wave",
+          "before_sha256": "087a83d8811959c40f12b3278c604a72630acd80fb48543e1f4b7fa8834d8e8f",
+          "after_sha256": "56b5e725818dd4aa7c56a9256d155b7c6588f2397f7200ed7f836dd6a1356d71"
+        }
+      ],
+      "pending_gaps": [
+        "stale_evidence:5692f9bd16e30a45e6d0ae2160360c44bc1556c38f7e0f1ed19cdb7af2dc927b",
+        "stale_evidence:f79124b24ca7cd0aa4eb3d20b8db0300c3bc3e1c05c41820a188b024676dfd9e"
+      ],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh NA.core-boundaries-20261005: 60 standalone CTests and four fixtures normally plus ASan/UBSan with leak detection. Verify all recorded source fingerprints before staging. No original execution or physical-device claim.",
+        "evidence": [
+          "NA.core-boundaries-20261005"
+        ]
+      }
+    },
+    {
+      "id": "NA.core-boundaries-audio-commit-pending-20261005-1f60919",
+      "reason": "Review dependent shared-source contracts, scoped source census, generated summary and ledger. Preserve committed and prior native audio receipts and evidence fingerprints. History review covers fea5d9f through 1f609197db02127c9b611e734552357551a60f1f with exact parent/current file and behavior receipt checks; no past gate or runtime claim. Retain historical subsystem freshness limitations.",
+      "files": [
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "9d1e56c656388ac7252a38adae456c68eedd5fba468e97ee2d972bb96ed2f589",
+          "after_sha256": "a25b58f38444de1ac9dbc9f5b63849d60509d48971da5596fa30becc12f561c6"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NA.cli",
+          "before_sha256": "b7fbaaf0be62b694b6ddb419547a5c916870c22af6c2f31479a3d17cd16a3dcf",
+          "after_sha256": "5c53b6312be92e0fc4dbd104e965adce5eb6f6b48c6979eaea81306ac34f50e0"
+        },
+        {
+          "id": "NA.output",
+          "before_sha256": "2151828afaf7cc812a82ae70ddd2e315e9f72544c596e9c90acd6f19a49d9760",
+          "after_sha256": "8a2c23b93d548ad75cc2999754675668e9aa047cdc8f83bf3de31614d8f960a3"
+        },
+        {
+          "id": "NA.voice_bridge",
+          "before_sha256": "59daaec798815246569616dc46a6d24d3e64a991f33c5a2b74c15f555e934593",
+          "after_sha256": "ddc58373f0edb8e8ac704483f960e64716ac008aa03c272e0c32dae7f0597ced"
+        }
+      ],
+      "pending_gaps": [
+        "stale_evidence:5692f9bd16e30a45e6d0ae2160360c44bc1556c38f7e0f1ed19cdb7af2dc927b",
+        "stale_evidence:f79124b24ca7cd0aa4eb3d20b8db0300c3bc3e1c05c41820a188b024676dfd9e"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Dependent recovered/device/CLI policies retain historical statuses; native PCM execution does not rerun original comparisons or physical-device integration. Changed shared source freshness stays explicit.",
+        "evidence": []
+      }
     }
   ]
 }

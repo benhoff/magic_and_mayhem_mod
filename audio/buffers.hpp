@@ -38,6 +38,9 @@ struct AdvanceResult {std::uint64_t consumed=0;bool completed=false;};
 
 // Thread-confined sample ownership, playback state and offline mixing. No device output.
 // Duplicated secondary voices share committed samples, with distinct identities.
+// New storage is PCM silence (128 for unsigned 8-bit, 0 for signed 16-bit).
+// Errors preserve outputs/state. Allocation exceptions propagate before publication
+// or playback mutation. Lock pointers expire on unlock, writer release/destruction.
 class Device {
 public:
     explicit Device(std::size_t maxBufferBytes=16*1024*1024,std::size_t maxBuffers=128,
