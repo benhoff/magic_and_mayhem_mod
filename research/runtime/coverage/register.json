@@ -974,14 +974,15 @@
       "subsystem": "movement",
       "kind": "native_policy",
       "title": "World movement connected to terrain/sprite presentation",
-      "scope": "One ordinary terrain-motion creature with owned checkpoint/ANI display, diagnostic cell-centred projection, matched ordinary installed-map geometry/navigation and recovered mixed depth queue. Camera/action mapping, full map/entity admission, shaded/visibility/attachment integration and live replacement excluded. NS12 extends this to bounded same-profile native multi-mover presentation, independent owned displays, identity-bearing mixed depth queues and policy-aware checkpoint admission; original multi-actor scene/live equivalence remains excluded.",
+      "scope": "One ordinary terrain-motion creature with owned checkpoint/ANI display, diagnostic cell-centred projection, matched ordinary installed-map geometry/navigation and recovered mixed depth queue. Camera/action mapping, full map/entity admission, shaded/visibility/attachment integration and live replacement excluded. NS12 extends this to bounded same-profile native multi-mover presentation, independent owned displays, identity-bearing mixed depth queues and policy-aware checkpoint admission; original multi-actor scene/live equivalence remains excluded. NS17 adds 40 complete independently rasterized actual-window frame checks and four exact installed Forest/Redcap native continuations per build. Stop currently clears its ANI cursor and yields no body; idle/stopped display retention remains unimplemented.",
       "original": [],
       "documents": [
         "research/runtime/native-world-scene.md",
         "research/runtime/native-map-navigation.md",
         "apps/world-scene/README.md",
         "research/runtime/native-creature-profile.md",
-        "research/runtime/native-multi-world-scene.md"
+        "research/runtime/native-multi-world-scene.md",
+        "research/runtime/native-scene-window.md"
       ],
       "implementation": [
         "apps/world-scene/scene.cpp",
@@ -992,13 +993,17 @@
         "tests/world-scene-test.cpp",
         "tools/test-map-navigation.py",
         "tools/test-creature-navigation.py",
-        "tools/test-multi-world-scene.py"
+        "tools/test-multi-world-scene.py",
+        "tests/scene-window-driver.cpp",
+        "tests/scene-window-driver.hpp",
+        "tools/test-native-scene-window.py"
       ],
       "evidence": [
         "NS08.native",
         "NS08.installed-ani",
         "NS09.native",
-        "NS12.multi-scene"
+        "NS12.multi-scene",
+        "NS17.scene-window"
       ],
       "status": {
         "understanding": "scoped",
@@ -11812,11 +11817,12 @@
       "subsystem": "native_world",
       "kind": "native_policy",
       "title": "Native presented-pixel selection and terrain click-to-move",
-      "scope": "Native bounded presented-queue masked picking: full viewport forward-ownership oracle, transparency/terrain occlusion, explicit standing layers in four views, synthetic CPU/OpenGL display and actual Qt mouse events, full-generation selected-only queued movement and exact pending-order restart. Original mouse/ray mapping, whole installed-window interaction, group/faction/automatic-play policies and live equivalence excluded.",
+      "scope": "Native bounded presented-queue masked picking with explicit standing cells. NS14 synthetic full-viewport ownership/canvas policy remains historical; NS17 corrects ordinary MAP z+1 annotation to same-layer z above zero and executes installed Forest crop/Redcap pixel clicks in four actual native-window views. Original ray/input mappings, other world profiles and live equivalence remain excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/native-scene-picking.md"
+        "research/runtime/native-scene-picking.md",
+        "research/runtime/native-scene-window.md"
       ],
       "implementation": [
         "apps/world-scene/picking.cpp",
@@ -11832,10 +11838,14 @@
       "tests": [
         "tests/world-picking-test.cpp",
         "tools/test-scene-picking.py",
-        "tools/test-multi-world-scene.py"
+        "tools/test-multi-world-scene.py",
+        "tests/scene-window-driver.cpp",
+        "tests/scene-window-driver.hpp",
+        "tools/test-native-scene-window.py"
       ],
       "evidence": [
-        "NS14.scene-picking"
+        "NS14.scene-picking",
+        "NS17.scene-window"
       ],
       "status": {
         "understanding": "scoped",
@@ -11939,11 +11949,12 @@
       "subsystem": "native_world",
       "kind": "native_policy",
       "title": "Native fixed-rate scene Play/Pause and paused stepping",
-      "scope": "Native 10 Hz bounded clock admission, production Qt playback controls/orchestration, pause-preserved orders, paused Step, fresh resume interval, fault pause and deterministic same-tick checkpoint continuation. Original pause/cadence, installed whole-window and live equivalence excluded.",
+      "scope": "Native 10 Hz bounded clock admission, production Qt playback controls/orchestration, pause-preserved orders, paused Step, fresh resume interval, fault pause and deterministic same-tick checkpoint continuation. Original pause/cadence, installed whole-window and live equivalence excluded. NS17 additionally executes the actual production-entry-point native window with installed Forest/Redcap inputs in four views, modal Save and exact fresh-window continuation; a test-only post-tick observer chooses pause boundaries without replacing the real timer. Original pause/cadence remains excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/native-scene-playback.md"
+        "research/runtime/native-scene-playback.md",
+        "research/runtime/native-scene-window.md"
       ],
       "implementation": [
         "game/simulation/tick_clock.cpp",
@@ -11956,10 +11967,14 @@
       ],
       "tests": [
         "tests/world-playback-test.cpp",
-        "tools/test-scene-playback.py"
+        "tools/test-scene-playback.py",
+        "tests/scene-window-driver.cpp",
+        "tests/scene-window-driver.hpp",
+        "tools/test-native-scene-window.py"
       ],
       "evidence": [
-        "NS16.scene-playback"
+        "NS16.scene-playback",
+        "NS17.scene-window"
       ],
       "status": {
         "understanding": "scoped",
@@ -20639,6 +20654,56 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NS17.scene-window",
+      "kind": "native_integration",
+      "scope": "Same native window entry point, production QTimer/elapsed clock and actual Qt mouse/button/modal Save events: installed Forest 8x8 crop and Redcap movement ANI base 0/SPR, four diagnostic views, corrected same-layer native terrain click mapping, mid-segment pause, pending move/stop admission and byte-exact fresh-process native state/frame continuation. Test-only observer pauses exact committed tick boundaries; original input/rays/cadence and live equivalence excluded. No idle/stopped ANI body retention is claimed.",
+      "record": "research/runtime/native-scene-window.json",
+      "sha256": "5fb7f62b4bd26fc5cbded3aa6e3a59eea6b7628510d4b0be41f5b3feabd79408",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/window_runs",
+          "equals": 8
+        },
+        {
+          "pointer": "/native_window/pixel_comparisons",
+          "equals": 40
+        },
+        {
+          "pointer": "/native_window/fresh_process_continuations",
+          "equals": 4
+        },
+        {
+          "pointer": "/native_window/same_layer_target",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/real_timer_native_window",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/actual_modal_save",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/pause_preserves_motion",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/stop_while_playing",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/stopped_body_display",
+          "equals": "unimplemented"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -23043,6 +23108,24 @@
         "tools/test-live-campaign-mini.py",
         "tools/test-campaign-mini-bridge.py"
       ]
+    },
+    {
+      "id": "world.scene-window",
+      "level": "preview",
+      "scope": "Same native window entry point, production QTimer/elapsed clock and actual Qt mouse/button/modal Save events: installed Forest 8x8 crop and Redcap movement ANI base 0/SPR, four diagnostic views, corrected same-layer native terrain click mapping, mid-segment pause, pending move/stop admission and byte-exact fresh-process native state/frame continuation. Test-only observer pauses exact committed tick boundaries; original input/rays/cadence and live equivalence excluded. No idle/stopped ANI body retention is claimed.",
+      "behaviors": [
+        "NP.scene-playback",
+        "NP.scene-picking",
+        "NP.presentation"
+      ],
+      "evidence": [
+        "NS17.scene-window"
+      ],
+      "tests": [
+        "tests/scene-window-driver.cpp",
+        "tests/scene-window-driver.hpp",
+        "tools/test-native-scene-window.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -23247,7 +23330,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-mini-quit.json",
-    "sha256": "ac010da5556c9abefd3eb6c55b837ff385964ab4541c363998b0fa519f73dce0"
+    "path": "research/runtime/coverage/source-index-scene-window.json",
+    "sha256": "12d96472620fb2f0ccca6ced7d06470b0bea9371611a74a84f53e66af170c05b"
   }
 }

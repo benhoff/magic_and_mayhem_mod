@@ -897,3 +897,14 @@ Original cadence/pause and installed whole-window equivalence remain open.
 ### Campaign gameplay Mini Quit
 
 Run `python3 tools/test-campaign-mini-quit-bridge.py` and the V9 Cancel regression `python3 tools/test-campaign-mini-bridge.py`. Run focused Qt campaign Quit/Cancel, Mini/V4, Region Entry and V1/V6 CTests. `python3 tools/test-live-campaign-quit.py --mini-quit` observes original No/Yes; `python3 tools/test-live-qt-campaign-quit.py --shell <built-shell> --source-root <compiled-tree>` checks native Quit, original No/Yes, Main restoration and normal Main Quit without manual input. Runs are isolated and bounded. See [UI32 evidence](../research/runtime/campaign-mini-quit-engine-bridge.md).
+
+## Automated actual native scene window (NS17)
+
+`python3 tools/test-native-scene-window.py BUILD NEW_OUTPUT` launches the
+`world-scene-window-test` production entry point with a bounded test-only driver.
+Using installed Forest/Redcap inputs, it sends actual Qt mouse/button events,
+accepts modal Save, checks 40 full-frame CPU/OpenGL comparisons and four exact
+fresh-window continuations per build. The real timer stays active; an observer
+clicks Pause after exact committed tick boundaries. No manual interaction is needed.
+Tests record the current missing stopped/idle body display. Original input/ray/clock
+equivalence and other installed-world profiles remain outside this scenario.

@@ -1,4 +1,7 @@
 #include "scene.hpp"
+#ifdef MNM_SCENE_WINDOW_TEST
+#include "../../tests/scene-window-driver.hpp"
+#endif
 #include "playback.hpp"
 #include "playback_controls.hpp"
 #include "picking.hpp"
@@ -35,6 +38,9 @@ unsigned number(const QString& s,unsigned maximum) {
 }
 }
 int main(int argc,char** argv) try {
+#ifdef MNM_SCENE_WINDOW_TEST
+    QCoreApplication::setAttribute(Qt::AA_DontUseNativeDialogs);
+#endif
     QApplication app(argc,argv);QCommandLineParser p;p.addHelpOption();
     p.addOption({"checkpoint","Native terrain-motion checkpoint with owned ANI","file"});
     p.addOption({"root","Installed read-only asset root","directory"});
@@ -47,6 +53,10 @@ int main(int argc,char** argv) try {
     p.addOption({"ticks","Advance before first frame (0..4096)","count","0"});
     p.addOption({"frames","Export consecutive frames (1..64)","count","1"});
     p.addOption({"output","New output prefix; exports PNG/RGB565/JSON and exits","prefix"});
+#ifdef MNM_SCENE_WINDOW_TEST
+    p.addOption({"window-script","Bounded test-only window action script","file"});
+    p.addOption({"window-output","New test-only artifact directory","directory"});
+#endif
     p.process(app);
     if(!p.isSet("checkpoint") || !p.isSet("root")) throw std::invalid_argument("Specify --checkpoint and --root");
     auto state=mnm::game::readSnapshot(p.value("checkpoint").toStdString());
@@ -96,7 +106,7 @@ int main(int argc,char** argv) try {
             const auto& c=map.cell(x,y,z);
             if(c.definition && !(c.flags10&0x4000) && !(c.flags8&0x80)) {
                 std::optional<mnm::game::Point> standing;
-                if(z+1<map.layers) standing=mnm::game::Point{int(x),int(y),int(z+1)};
+                if(z>0) standing=mnm::game::Point{int(x),int(y),int(z)};
                 tiles.push_back({c.definition,{int(x*32),int(y*32),int(z*16+16)},c.flags8,c.flags10,standing});
             }
         }
@@ -148,13 +158,23 @@ int main(int argc,char** argv) try {
         return 0;
     }
     if(p.isSet("frames")) throw std::invalid_argument("Frames requires output");
-    QWidget window;window.setWindowTitle("Native movement scene");auto* layout=new QVBoxLayout(&window);
-    auto* image=new mnm::scene::SceneCanvas;std::vector<mnm::scene::Draw> displayedQueue;auto* status=new QLabel;layout->addWidget(image);layout->addWidget(status);
+    QWidget window;window.setObjectName("nativeSceneWindow");window.setWindowTitle("Native movement scene");auto* layout=new QVBoxLayout(&window);
+    auto* image=new mnm::scene::SceneCanvas;image->setObjectName("sceneCanvas");std::vector<mnm::scene::Draw> displayedQueue;auto* status=new QLabel;layout->addWidget(image);layout->addWidget(status);
     mnm::scene::Orders orders;auto* controls=new mnm::scene::MovementControls;layout->addWidget(controls);
     layout->addWidget(new QLabel("Left-click a creature, then right-click terrain to queue a move. Play runs at 10 ticks/second; Step works while paused. Target-cell fields also work."));
     auto* actions=new QHBoxLayout;layout->addLayout(actions);
-    auto* playbackControls=new mnm::scene::PlaybackControls;auto* save=new QPushButton("Save checkpoint");actions->addWidget(playbackControls);actions->addWidget(save);
-    mnm::scene::Playback playback([&] {session.step();});
+    auto* playbackControls=new mnm::scene::PlaybackControls;auto* save=new QPushButton("Save checkpoint");save->setObjectName("saveCheckpoint");actions->addWidget(playbackControls);actions->addWidget(save);
+#ifdef MNM_SCENE_WINDOW_TEST
+    std::function<void()> afterTick;
+#endif
+    mnm::scene::Playback playback([&] {session.step();
+#ifdef MNM_SCENE_WINDOW_TEST
+        if(afterTick) afterTick();
+#endif
+    });
+#ifdef MNM_SCENE_WINDOW_TEST
+    std::shared_ptr<QObject> testDriver;
+#endif
     const auto refresh=[&] {
         orders.synchronize(session.world().state());const auto frame=draw();auto pixels=QPixmap::fromImage(frame.image);
         if(orders.selected()) {
@@ -208,5 +228,10 @@ int main(int argc,char** argv) try {
         try {const auto result=mnm::game::writeSnapshot(path.toStdString(),session.world().state());if(!result.durable) throw std::runtime_error(result.detail);}
         catch(const std::exception& e) {QMessageBox::critical(&window,"Cannot save",e.what());}
     });
-    refresh();window.show();return app.exec();
+    refresh();window.show();
+#ifdef MNM_SCENE_WINDOW_TEST
+    if(!p.isSet("window-script") || !p.isSet("window-output")) throw std::invalid_argument("Window test requires script and output");
+    testDriver=mnm::scene::test::startWindowScript(p.value("window-script"),p.value("window-output"),window,*image,session,draw,playback,afterTick);
+#endif
+    return app.exec();
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}
