@@ -56,14 +56,16 @@ static struct GameSurface* game_surface_find(void* object,int create){
     if(!found && create && !empty)lock_diagnostic("surface_capacity",object,0,0,0,0,0,0);
     return found;
 }
-static int game_surface_enter(void){
+#define game_surface_enter() game_surface_enter_at(game_tracker_site(__FILE__,__LINE__))
+static int game_surface_enter_at(u32 site){
     if(!lock_capture_path_length)return 0;
-    if(!game_tracker_acquire()){game_metadata_invalidate();return 0;}
+    if(!game_tracker_acquire_at(site)){game_metadata_invalidate();return 0;}
     game_surface_sync();return 1;
 }
-static int game_surface_pixels_enter(void* object){
+#define game_surface_pixels_enter(object) game_surface_pixels_enter_at(object,game_tracker_site(__FILE__,__LINE__))
+static int game_surface_pixels_enter_at(void* object,u32 site){
     if(!lock_capture_path_length)return 0;
-    if(!game_tracker_acquire()){
+    if(!game_tracker_acquire_at(site)){
         game_pixel_missed(object);return 0;
     }
     game_surface_sync();return 1;

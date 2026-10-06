@@ -11896,7 +11896,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original-game command shadow observation",
-      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement.",
+      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -11912,7 +11912,8 @@
         "research/runtime/opengl-resource-working-set.md",
         "research/runtime/opengl-world-observation.md",
         "research/runtime/opengl-world-summon-observation.md",
-        "research/runtime/opengl-copy-order.md"
+        "research/runtime/opengl-copy-order.md",
+        "research/runtime/opengl-cpu-handoff-order.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py",
@@ -11939,7 +11940,8 @@
         "NR.command-world-observation.live-20261006",
         "NR.world-summon.observation-20261006",
         "NR.copy-order.live-20261006",
-        "NR.copy-order.live-verified-20261006"
+        "NR.copy-order.live-verified-20261006",
+        "NR.cpu-handoff.live-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13985,7 +13987,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous mixed resource mutations and committed full-layout replacement",
-      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement.",
+      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -13993,7 +13995,8 @@
         "research/runtime/opengl-owned-unlock-deltas.md",
         "research/runtime/opengl-resource-working-set.md",
         "research/runtime/opengl-world-summon-observation.md",
-        "research/runtime/opengl-copy-order.md"
+        "research/runtime/opengl-copy-order.md",
+        "research/runtime/opengl-cpu-handoff-order.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -14026,7 +14029,8 @@
         "NR.world-summon.mutations-20261006",
         "NR.world-summon.palette-dc-20261006",
         "NR.copy-order.native-20261006",
-        "NR.copy-order.native-verified-20261006"
+        "NR.copy-order.native-verified-20261006",
+        "NR.cpu-handoff.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14180,7 +14184,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Qt fresh-session recovery over a versioned producer control channel",
-      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim.",
+      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14193,7 +14197,8 @@
         "research/runtime/opengl-render-routes.md",
         "research/runtime/opengl-resource-working-set.md",
         "research/runtime/opengl-world-observation.md",
-        "research/runtime/opengl-world-summon-observation.md"
+        "research/runtime/opengl-world-summon-observation.md",
+        "research/runtime/opengl-cpu-handoff-order.md"
       ],
       "implementation": [
         "apps/qt-shell/render_control.cpp",
@@ -14246,7 +14251,8 @@
         "NR.continuous-resource-working-set.host-20261006",
         "NR.continuous-resource-working-set.checkpoint-20261006",
         "NR.continuous-resource-working-set.game-20261006",
-        "NR.command-world-observation.live-20261006"
+        "NR.command-world-observation.live-20261006",
+        "NR.cpu-handoff.live-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14969,11 +14975,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in bounded scheduling across hooked original copies",
-      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim.",
+      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-copy-order.md"
+        "research/runtime/opengl-copy-order.md",
+        "research/runtime/opengl-cpu-handoff-order.md"
       ],
       "implementation": [
         "runtime/render/copy_order.h",
@@ -14989,7 +14996,8 @@
         "NR.copy-order.native-20261006",
         "NR.copy-order.live-20261006",
         "NR.copy-order.native-verified-20261006",
-        "NR.copy-order.live-verified-20261006"
+        "NR.copy-order.live-verified-20261006",
+        "NR.cpu-handoff.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15114,6 +15122,40 @@
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.cpu-handoff-order",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Opt-in CPU handoff ordering and bounded tracker provenance",
+      "scope": "Existing continuous opt-in copy owner now spans application Lock/Unlock admission, original call and commit. It does not span application borrowed intervals.50ms gate and8ms tracker budgets, failed-operation guards, same-thread reentry and timeout invalidation remain. Source-bound19-word diagnostic tags map tracker requests/holds; remote samples may race turnover. Exact historical missed requester, other callback families, abnormal owner-thread termination, archive-timeout replay, animated/full-frame/driver equivalence and default enablement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-cpu-handoff-order.md"
+      ],
+      "implementation": [
+        "runtime/render/bridge.c",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_surfaces.h"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py",
+        "tools/test-live-render-routes.py"
+      ],
+      "evidence": [
+        "NR.cpu-handoff.native-20261006",
+        "NR.cpu-handoff.live-20261006",
+        "NR.tracker-holds.observed-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -27204,6 +27246,76 @@
           "equals": 3
         }
       ]
+    },
+    {
+      "id": "NR.cpu-handoff.native-20261006",
+      "kind": "native_integration",
+      "scope": "Eight independent fixture cases411 full native frames; concurrent Lock serialization and bounded Lock/Unlock timeout/refusal plus copy and metadata regression.",
+      "record": "research/runtime/opengl-cpu-handoff-native-20261006.json",
+      "sha256": "1c7a1d76ef040ff998d46b882fdf0b64e8e094aefcdc983d2bbeb14813b29981",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 411
+        }
+      ]
+    },
+    {
+      "id": "NR.tracker-holds.observed-20261006",
+      "kind": "live_observation",
+      "scope": "Historical diagnostic-only copy gate observation:30-second original summon and source-bound copy commit holds8..15ms. Predates CPU gate extension; no exact identification of earlier missed request.",
+      "record": "research/runtime/opengl-tracker-holds-observation-20261006.json",
+      "sha256": "cf041b7ced65f75c459c918e8940b04955fa6f6affe9075c5b4e8ea890c3f588",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.cpu-handoff.live-20261006",
+      "kind": "live_observation",
+      "scope": "Final-source finite strict original tutorial summon, forced World recovery and30-second stable native regions with CPU handoff scheduling opt-in; no animated/full-frame/driver equivalence.",
+      "record": "research/runtime/opengl-cpu-handoff-live-20261006.json",
+      "sha256": "f7322588dc2876140402e3c0d7e211f10d254a15836e65856d33394eb1434b53",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordered_copies",
+          "equals": true
+        },
+        {
+          "pointer": "/world_summon_required",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/world_active_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/world_summon_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/consumer/terminal_resources",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -31630,6 +31742,41 @@
         "tests/render-palette-restore-test.cpp",
         "tools/check-native-palette-restore.py"
       ]
+    },
+    {
+      "id": "NR.cpu-handoff.native",
+      "level": "preview",
+      "scope": "Eight independent fixtures411 frames, including CPU handoff ordering and timeout refusal.",
+      "behaviors": [
+        "NR.cpu-handoff-order",
+        "NR.bounded-copy-order",
+        "NR.continuous-mutations"
+      ],
+      "evidence": [
+        "NR.cpu-handoff.native-20261006"
+      ],
+      "tests": [
+        "tools/test-render-mutations.py",
+        "runtime/render/mutation_selftest.h"
+      ]
+    },
+    {
+      "id": "NR.cpu-handoff.original-tutorial",
+      "level": "live_observation",
+      "scope": "Bounded original tutorial summon with native stable regions and CPU handoff scheduling; exact historical failed request still unknown.",
+      "behaviors": [
+        "NR.cpu-handoff-order",
+        "NR.real-game-command-shadow",
+        "NR.command-host-recovery"
+      ],
+      "evidence": [
+        "NR.cpu-handoff.live-20261006",
+        "NR.tracker-holds.observed-20261006"
+      ],
+      "tests": [
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -31877,7 +32024,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-copy-order-20261006.json",
-    "sha256": "19ba1f863a92150dd283cc1f0c569f4bff2b9ce2fde32ef7c298d9aacc466a74"
+    "path": "research/runtime/coverage/source-index-cpu-handoff-20261006.json",
+    "sha256": "1f4d51b6a7fd757865864802773f4f64523a79d0d8959534bee46d119a140d5a"
   }
 }
