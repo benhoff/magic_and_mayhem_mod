@@ -690,13 +690,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors.",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors. Owned effect ANI binding and forward controller state are recovered separately from static caller resolution and authored inputs; full caller integration and installed metadata/assets remain pending.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors."
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors. Owned effect ANI binding and forward controller state are recovered separately from static caller resolution and authored inputs; full caller integration and installed metadata/assets remain pending."
         }
       ],
       "documents": [
@@ -714,7 +714,8 @@
         "research/runtime/effect-kind34-creator.md",
         "research/runtime/effect-trajectory-initializer.md",
         "research/runtime/effect-motion-initializer.md",
-        "research/runtime/effect-animation-selection.md"
+        "research/runtime/effect-animation-selection.md",
+        "research/runtime/effect-animation-binding.md"
       ],
       "implementation": [],
       "tests": [],
@@ -732,19 +733,20 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Effect type-specific animation and trajectory setup remains open",
-      "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, metadata/animation asset binding, direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified.",
+      "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, installed metadata/animation asset binding and remaining direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified. The native owned-entry/ANI binding adapter and composed original forward controller start/tick are recovered separately; inline caller resolution and full dispatcher remain unexecuted.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4803248,
-          "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, metadata/animation asset binding, direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified."
+          "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, installed metadata/animation asset binding and remaining direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified. The native owned-entry/ANI binding adapter and composed original forward controller start/tick are recovered separately; inline caller resolution and full dispatcher remain unexecuted."
         }
       ],
       "documents": [
         "research/runtime/effect-record-placement.md",
         "research/runtime/effect-motion-initializer.md",
-        "research/runtime/effect-animation-selection.md"
+        "research/runtime/effect-animation-selection.md",
+        "research/runtime/effect-animation-binding.md"
       ],
       "implementation": [],
       "tests": [],

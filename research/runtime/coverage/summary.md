@@ -6,13 +6,13 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | Accounting boundary | Count |
 | --- | ---: |
 | builds | 1 |
-| behaviors | 353 |
-| evidence | 267 |
-| scenarios | 68 |
+| behaviors | 354 |
+| evidence | 269 |
+| scenarios | 69 |
 | functions | 6675 |
 | registered recovered ranges | 13 |
 | incomplete dispatch tables | 9 |
-| indexed sources | 1057 |
+| indexed sources | 1063 |
 | unclassified functions | 6484 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
@@ -36,11 +36,11 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Independent status | Counts |
 | --- | --- |
-| understanding | partial: 229; scoped: 91; unknown: 33 |
-| implementation | none: 142; partial: 125; scoped: 86 |
-| comparison | none: 291; recorded: 62 |
-| integration | headless: 44; live_equivalence: 0; live_observation: 22; none: 265; preview: 22 |
-| replacement | none: 353; scoped_live: 0 |
+| understanding | partial: 229; scoped: 92; unknown: 33 |
+| implementation | none: 142; partial: 125; scoped: 87 |
+| comparison | none: 291; recorded: 63 |
+| integration | headless: 45; live_equivalence: 0; live_observation: 22; none: 265; preview: 22 |
+| replacement | none: 354; scoped_live: 0 |
 
 ## Animation checklist
 
@@ -495,6 +495,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | TL.effect-trajectory-initializer | Effect trajectory initialization with horizontal wrap selection | `0x4df3a0`, `0x4df260` | scoped | scoped | recorded | headless | none | current_fingerprints |
 | TL.effect-motion-initializer | Whole effect motion record initialization helper | `0x48a950`, `0x4df230` | scoped | scoped | recorded | headless | none | current_fingerprints |
 | TL.effect-animation-selection | Whole effect animation selection from owned kind and creature metadata | `0x489200` | scoped | scoped | recorded | headless | none | current_fingerprints |
+| TL.effect-animation-binding | Owned effect ANI binding and forward controller initialization | `0x494ab0`, `0x464ca0`, `0x464cb0`, `0x464ec0` | scoped | scoped | recorded | headless | none | current_fingerprints |
 
 ## Tooling checklist
 

@@ -1,0 +1,35 @@
+{
+  "all_match": true,
+  "live_validated": false,
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "fixtures": 224,
+  "bindings": 448,
+  "ticks": 28672,
+  "states": 29120,
+  "inputs_unchanged": true,
+  "output_sha256": "e7a9ad2767a16b8c00dd7c3930e8786278d2b08a42ab8425f8fddf9463511a3e",
+  "helper_sha256": {
+    "original": "48df0aebdf8a6dc2cb28618dbc34b40c62b3d8301c63e0df9c0b26ba0d26ae3f",
+    "native": "3902c32a01523534f1e2eeff609f38b0b69fb75adbc94f3b0352b99dc0c98c15",
+    "sanitized": "2d954ad9ef1e105341986620af8c158f4610920afb95b4b012d7df55b66e8aae"
+  },
+  "registered_source_sha256": {
+    "reconstruction/rendering/effect_animation_binding.cpp": "0e0d046ce98d4ffc1b9c33cc43e121f2f77d3caf66ebaf18f9669dbb414efcbb",
+    "reconstruction/rendering/effect_animation_binding.hpp": "1c01d3b074cf46aa3d7c1b9705c1f6a7866639de3eb427b3b0ce33791240f87b",
+    "reconstruction/rendering/effect-animation-binding/CMakeLists.txt": "76ab696527824abb11084b0d0e2414afaa560ebba95edd26ecd87ded14f6dfaa",
+    "tests/effect-animation-binding-test.cpp": "b0cdde403b02d7d1522c933ca56bfd77f15fa3b2ef736e96ce6552c46ea8559b",
+    "tests/effect-animation-binding-reference.cpp": "6699470993a59769ff3fc8eeb93f217fd49e8c7442eaa209d529160b481e544f",
+    "reconstruction/animation/no_cd.cpp": "be3dd04d713192baf728f437ebb507c0dba17797a35bb0de643d8e838d1d8d4e",
+    "reconstruction/animation/no_cd.hpp": "312a0e1ea2dfd4fb1de57ba7e57aa27122aeaccf7ce35311d58ae3682a9edb12",
+    "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "reconstruction/rendering/effect_animation_selection.cpp": "12e9729f797bd32f817a9704de20d47b7792f06ac8279871a0105314a5066dc0",
+    "reconstruction/rendering/effect_animation_selection.hpp": "fe952a38918089e29e339346890e82f8923b5070ab97aeea1edcd359106f41a7",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-effect-animation-binding.py": "b718c361a76258a2ae160114b711a02b4fd656ca4c7f0b72f1f3127d40fd4717"
+  },
+  "unit_passed": true,
+  "sanitized_unit_passed": true,
+  "cmake_tests_passed": 1,
+  "boundary": "Owned effect metadata/sequence adapter with static 00494be3..00494c26 resolution; whole original 00464ca0/00464cb0 forward bind/start and 00464ec0 ticks on authored normalized ANI arrays; complete modeled controller state, preserved guards/reverse counters and immutable input tables; caller binding window/full creation dispatch, installed assets/metadata, reverse playback and live replacement remain separate"
+}

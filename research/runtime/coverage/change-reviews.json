@@ -13927,6 +13927,204 @@
           "NS18.idle-display"
         ]
       }
+    },
+    {
+      "id": "animation-binding-recorded-b186cf0",
+      "reason": "Add owned effect metadata/ANI binding to the existing forward NoCdAnimationPlayer. Resolve entry ordinal, asset and sequence based on static 00494be3..00494c26, retain raw property/opaque words, copy records and start forward without borrowed pointers or input mutation. Keep caller resolution distinct from executed original bind/start/tick and leave complete creation/installed rendering integration pending. Preserve old evidence/source implementations, reconcile imports/census/ledger and inspect committed e0b80d1..b186cf03352cf04f3f79c2f84aa8ddb91e4c0c76 exact receipts/evidence record bindings in working/tests/animation-binding-history-review.json; history accounting asserts no new execution.",
+      "files": [
+        {
+          "after_sha256": "76ab696527824abb11084b0d0e2414afaa560ebba95edd26ecd87ded14f6dfaa",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect-animation-binding/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "0e0d046ce98d4ffc1b9c33cc43e121f2f77d3caf66ebaf18f9669dbb414efcbb",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_animation_binding.cpp"
+        },
+        {
+          "after_sha256": "1c01d3b074cf46aa3d7c1b9705c1f6a7866639de3eb427b3b0ce33791240f87b",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_animation_binding.hpp"
+        },
+        {
+          "after_sha256": "38fd225fc8b031990298a01b0fd2ac5455d1a002eb0fe1f5bd46d0bbe9babe97",
+          "before_sha256": "49f6d27d637ea1e61301565575955203cb7ca1b0a0d76b482ba1836b342de593",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "cc597892c769df78b765b53330d2b725a64485cd46710faa7d0d77051f19e74c",
+          "before_sha256": "25bbbc8c6b33083f321118ef9ba08392d4fd36550a9634db4f7936d6ccbc15d9",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "e500c39765223741813bee96df96d80d49273c23da7b056e976a51828cc28ca7",
+          "before_sha256": "d84281951587b1946de2a4a41e1c749e1d00b6d8a7dc72eeedfb4922bd80524c",
+          "path": "research/runtime/creature-footprint-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "e9c427bb22f170875744494daa70bd6cd3f1928df3eabe32bf881f90f8a1c833",
+          "before_sha256": "cf3911105ff824c9c57d8a3e6a212165221e76d525f7e2cae6de145a0ea84738",
+          "path": "research/runtime/creature-occupancy-lookup-coverage.json"
+        },
+        {
+          "after_sha256": "99f614bbd6e8917b5c9e557f0278f413785d6c9fbc67eb97776f8b270b29b498",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-binding-coverage.json"
+        },
+        {
+          "after_sha256": "247a9a7562837f79a8141991140a2d8e7d5594e0a65a176d04db765405c7be76",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-binding-source-index.json"
+        },
+        {
+          "after_sha256": "0c4d09e09bf77651bad5cdbea2367c02c14a264d874fe8a03b733fe352106d8a",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-binding.json"
+        },
+        {
+          "after_sha256": "13a56ab2bfe90292252acbd161a0e4fef214849d3ae1b8b3e71d91ecec7d1991",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-binding.md"
+        },
+        {
+          "after_sha256": "a46ca53cc72823f32cedec801d3c4578df0843d083f50c0b638b46c3ac184541",
+          "before_sha256": "f04fed76f997deff089b2f40045de525700e01c4508f59def5ae5056d84542bd",
+          "path": "research/runtime/effect-animation-selection-coverage.json"
+        },
+        {
+          "after_sha256": "bf95a677967d6bce37d50f563d1d1e8a935d3dfe3f49337b6b4f7b06562bd656",
+          "before_sha256": "3f6550f68de8a51d4dfe4ad5c49fcf35bb67c8aff6165dd00eb53476eadf09ad",
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "d4825f6cdc18bc0fedc61e746a1eb9ee9923301a89090b68bab200d888176be7",
+          "before_sha256": "67651e119674af3026b6e2b3031c70d3547bb4e3c9f03090b45f3ebaeec6c093",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "4921abc5968022614acb9a24a46709c70fb09296f73d8847d4574f821b881822",
+          "before_sha256": "cf49d0045c3ffcecf4162648e3fa4a5e6b502d1fa10bccca3f4c1d5d3ad39661",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "08c8aa5dd85f8431127959684fb5aacaf5d07296fa9583ed2779228396a50fcb",
+          "before_sha256": "10b43aac95d5a1f0d4c8cdb5c7ba48b69c8b57b31123212eccd02b2219bdeaaf",
+          "path": "research/runtime/effect-creature-collision-coverage.json"
+        },
+        {
+          "after_sha256": "6918e2cf611a5cdb35103ac2b2d2798db1db24dbd12c423ecbb9ad48e3e22f69",
+          "before_sha256": "ad9dec783d20bcc0170bb8ef1bbbcdd749d9f18822030afbc490bdfb707343ab",
+          "path": "research/runtime/effect-height-exits-coverage.json"
+        },
+        {
+          "after_sha256": "1d1684a84bbce67b2515cd22e16bbbaeac402e656f3e268ee848403880c1319f",
+          "before_sha256": "4d233a14ff08b98a74990ed8716fa02c62718cd74516af9f076227909b929b02",
+          "path": "research/runtime/effect-membership-disabled-coverage.json"
+        },
+        {
+          "after_sha256": "2c74f1ab4e481397d08d7add8909b25c81b654bf72b3011708c9cd0dcd5b516f",
+          "before_sha256": "442de83d797f2ba35c9f77a966de29f416dd669007f285bb8c51f3bce4ce9cb2",
+          "path": "research/runtime/effect-motion-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "9f495ef6a9bd168a4b5a59b8b867349aa475ed1bdde61aba51e96e9b25d16871",
+          "before_sha256": "e72378a2e65ccd5bf94abd9e5c270a004e261089ab42b948a4bccabcb4994522",
+          "path": "research/runtime/effect-record-placement-coverage.json"
+        },
+        {
+          "after_sha256": "64694435ebfb5d2b576eaa9ff043420da69de59da06acf4dff42e0a9b236c033",
+          "before_sha256": "5ddaa662669c788ff0e0b5354203b8e8e1779a5899943739bd14b7ee4ef161fe",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "a290228403518685a5ae42969761f7db1876c1e146f097e966a9ebe0d5f5283c",
+          "before_sha256": "4aea24fa72ddea92d65937ae0394cf255b833de8dba0061e6a71ccb47738deb7",
+          "path": "research/runtime/effect-terrain-occupancy-coverage.json"
+        },
+        {
+          "after_sha256": "4e1aa1acb05e98f3248ebb77f3ce340d70698df43818262a85a8037a6323f838",
+          "before_sha256": "4d102fe8078aff6e20ef307882f0ee5b70d7c241aaf583e5fe612554e048c280",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "5c77e03b6ed044cc030227241881ff4b090b0526b0c313a467432cfd93630a45",
+          "before_sha256": "a5f31d5f85c87c0abd632b14b88616f59c3aac255b433038520fdb1e89863dc3",
+          "path": "research/runtime/effect-trajectory-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "6699470993a59769ff3fc8eeb93f217fd49e8c7442eaa209d529160b481e544f",
+          "before_sha256": null,
+          "path": "tests/effect-animation-binding-reference.cpp"
+        },
+        {
+          "after_sha256": "b0cdde403b02d7d1522c933ca56bfd77f15fa3b2ef736e96ce6552c46ea8559b",
+          "before_sha256": null,
+          "path": "tests/effect-animation-binding-test.cpp"
+        },
+        {
+          "after_sha256": "b718c361a76258a2ae160114b711a02b4fd656ca4c7f0b72f1f3127d40fd4717",
+          "before_sha256": null,
+          "path": "tools/test-effect-animation-binding.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "02c821b72fd5df1beb60358a49f6e84efcd86b5d77c8b1e57e062d2a19a29d20",
+          "before_sha256": null,
+          "id": "TL.effect-animation-binding"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL22.animation-binding-original",
+          "TL22.animation-binding-native"
+        ],
+        "reason": "224 authored fixtures across eight ANI assets, seven sequences and four initial byte fills compare 448 whole original binds/forward starts and 28,672 whole forward ticks, totaling 29,120 states, against native64 and ASan/UBSan. Bind-only leaves all other original bytes untouched; modeled pointers normalize to exact owned asset/record indices, state/events/display metadata match, guards and unmodeled reverse counters remain unchanged. All ANI arrays and catalog/header fixtures remain immutable. Strict/sanitized units and CTest pass, including selector composition, copied record ownership after destroying input arrays, restart and atomic missing/invalid metadata/extent/sprite/control refusals. Stable original/source hashes and pre/post manifests verify. Inline original metadata resolution, full type dispatch, installed asset relationships, effect drawing, reverse playback and live replacement are excluded."
+      }
+    },
+    {
+      "id": "animation-binding-remaining-b186cf0",
+      "reason": "Narrow remaining effect setup/movement contracts by distinguishing owned forward ANI binding from pending inline caller and full dispatcher execution. Retain installed metadata/ANI/SPR provenance, remaining direction/frame/property consumers, effects drawing, child/ownership/lifecycle and live gaps.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "2477643e64f2dd7f1ea4f0459f48d547b8ff2763c5677d8b31a398354b7bc3d6",
+          "before_sha256": "b76f13ac583a168c05318610f5e666d7f2fac8b4048c0844f38a1b74e8e2be6f",
+          "id": "TL.effect-movement-recount"
+        },
+        {
+          "after_sha256": "2897fbd84735a02caaa0fa5fe7b27885fa602c2ab74d2c23df2cd321fb437697",
+          "before_sha256": "553b61761733adb1a9d7387b2c9918d2afd4cc714ebed07998d6cd9b350a2be8",
+          "id": "TL.effect-type-setup"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "TL22 executes the actual controller leaves and their real children, but the creation caller metadata-resolution window and full dispatcher remain unexecuted. Historical forward controller/selector/motion/placement implementations and evidence fingerprints are unchanged. Static binding arithmetic and native safety/ownership checks do not establish installed loading, draw integration, property semantics or lifecycle/scheduling/live equivalence."
+      }
+    },
+    {
+      "id": "animation-binding-summary-b186cf0",
+      "reason": "Refresh generated coverage summary for scoped owned binding and forward comparison while retaining independent static caller and full creation gaps.",
+      "files": [
+        {
+          "after_sha256": "d0c0c4a543b5f91361eabd11d6a98289556484095374bc6647547a5ce87cd84b",
+          "before_sha256": "9dbf8a937ebf587342bdfef9b59f327e7a584294c142f0223ceb2d3c297bfd6e",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated research metadata only; no independent engine implementation or validation/status promotion."
+      }
     }
   ]
 }
