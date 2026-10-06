@@ -26721,6 +26721,259 @@
         "evidence": [],
         "reason": "RI.copies gains bounded research link only; broad original copy behavior and driver outputs remain pending."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "7c3bb54862c7bc95b0417d37833748a278138f8ec4618778ba3bd8d71fd04043",
+          "before_sha256": "f2f1f651ad498ebdd225e7b168441811ceb79baba895675f76d21cec5e9079ae",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "f1ce44b5d23b5ba84021ede20058bb9f0926ff0da715b965ab7673db4d687495",
+          "before_sha256": "14810b1910163e83437c83935dba2e569cc27f1f3638540a7685b1f3a13f512e",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "42c2109dec4434d9e168b7082f4701ef67eb7082999ee7dd3e2f8f44aaf77186",
+          "before_sha256": "e472f1bdcc588f00b1252636ea103f7b5c62dabd773cdcbc1f8b6db74642dd2c",
+          "id": "NR.command-recovery"
+        },
+        {
+          "after_sha256": "a7f9222d05a38c5a7c5acd95499382ce9c3de7bd6d3c68d696f0588bfc78ddec",
+          "before_sha256": "71e29a1973964e438de55b590b3bf6a127c2bd43cd001efa15e664ec34518e38",
+          "id": "NR.command-ring-adapter"
+        },
+        {
+          "after_sha256": "c6a3597688e5bf1ac5aa6a9e4f467abd9272e71778219a596c921f8233c29eef",
+          "before_sha256": "2ce6aa87e272b994faa428ee5157bf9171b2284b3b8542d1f51d09994013ba22",
+          "id": "NR.command-streaming"
+        },
+        {
+          "after_sha256": "4261ece4a2de8fdfc3d90b6f58dc3e423a85dcdf7cd582b0401d2c635bcf8d73",
+          "before_sha256": "137324179314c611a6f6e9a53b7469ef294610a1fd1cf85ed18f343376ae7741",
+          "id": "NR.continuous-mutations"
+        },
+        {
+          "after_sha256": "b7e33c3a9d14e6c0bc00142cdad30781212def4abff6f29e7c1cdd9537d60776",
+          "before_sha256": "4f547b97e37200e771d4c84127fabaf10b77684ca84f4492821c4f4e6bdcc5b9",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "06440bdea8c8e01c4a97de381c68ce616fb21c0b45d130f07ec60e4169d089fc",
+          "before_sha256": "206272c3f2ba5ea8b8c6ff194c21cbff4309f1f2dd55e5dc787f574935947176",
+          "id": "NR.continuous-resource-lifetime"
+        },
+        {
+          "after_sha256": "e9a42a8724c662e97b1d557efcc91d48d12bacdbb38fa982637a138626612775",
+          "before_sha256": "bf84c133192c191309de4694e6c6f91b5762d5224f0e288548b4d139d3f6961b",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "3eb960fda07cb158cdfd2ed800957717007f23c3ad906074d84b064948543c4e",
+          "before_sha256": "ccabbac4a5d93cdfae2759e4cf1ea0dd3cf309f38bb4daad7761aa427f7eed25",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "c3d3fef673c923d5bb2d78b1925837ee99851051acb4243c775c583104aefc4d",
+          "before_sha256": "575de7e40d60e40708c3e6cde4c60397d60ca91664f2a3de5cfd50bfddddaa4a",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "0b7334e0cacf82cdea9aabfef5e056fe4d095332125870f2f19adda481d81703",
+          "before_sha256": "cd5eee1070c547941aa45eeefe5975fa0646ae9bd99c372068ac39b6def90a9a",
+          "id": "NR.real-game-command-shadow"
+        },
+        {
+          "after_sha256": "f12bc484ce0748e4d683bfd663c97143f74df104e99e341cb4a0841602a14817",
+          "before_sha256": "fefe70dbb8811c16dc800b988566eeb092a447e8188b32b99535ebd3c76196f6",
+          "id": "RT.render"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d5288ce683e65418a5e791781df33c5efbcb1f85558eda2feced7e2142e21dcc",
+          "before_sha256": "95ae524071a0ffcf7ae9c75786c56085c74d80bb3089762708e922544cfde299",
+          "path": "apps/qt-shell/live_command_renderer.cpp"
+        },
+        {
+          "after_sha256": "2a1105b9be630ff6eb18a4c602c1861365adc279f46385efe6bfe97718329ab0",
+          "before_sha256": "92239ffcceca6e515896d764cad58776b6d48c0706919f06932bebd355402994",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "87f3ca6f9001690c1900d65a33dfb6aaa69ef55ea7f33a4b9d6eb0400a8e0cbc",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-render-recovery-metadata-20261006.json"
+        },
+        {
+          "after_sha256": "45a15fd8b1557689d296a4e852a1394ea22fccc1b2ee6c4746f3c4488dc9dd69",
+          "before_sha256": "744734564ce16fca35d846f816c960a1d916bdf90af14b88dcc6ae2f4c5bd776",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "7f884b232bf1a1001dc872cdf2bc83df50482893a93392b789c04fca9d523e14",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-render-recovery-metadata-20261006.json"
+        },
+        {
+          "after_sha256": "b2170ef651f0b6cec0ff474891385464d5b0b5a5f801832be9fac1c9e4c5660d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-render-recovery-metadata-20261006.md"
+        },
+        {
+          "after_sha256": "f85c9846174dbb98ffbd199f33919215550be483108863773147522fc4a9379b",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-recovery-metadata-channel-20261006.json"
+        },
+        {
+          "after_sha256": "7429c27d56160f28fcadf05716efea7fcd54c2e5902c7e2e5b9731c928c7b76c",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-recovery-metadata-checkpoint-20261006.json"
+        },
+        {
+          "after_sha256": "04b178209787f25dd2ff8da31bc2ed72ae56f1e6c428cbe8f4db0e65bb79ee5e",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-recovery-metadata-explicit-20261006.json"
+        },
+        {
+          "after_sha256": "d2d58b0587907a809d85f1b59dc26047db4e5de0b4f592ef1f325b71f9b1cf6b",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-recovery-metadata-game-20261006.json"
+        },
+        {
+          "after_sha256": "5ab862387acdb08bbe4d1bb1def7b4b238bcf473b1c0beea1ff3dd00319de973",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-recovery-metadata-host-20261006.json"
+        },
+        {
+          "after_sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-recovery-metadata-queue-20261006.json"
+        },
+        {
+          "after_sha256": "b06b6fc7dddf8bb9f3cced0401cfda7904d6a13276bc3d35d74686f36423b9c0",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-recovery-metadata.md"
+        },
+        {
+          "after_sha256": "8c844e6a798482638a0aef8584371c8b5ebe661bd13b34ed7ffe10ad8d11dc4f",
+          "before_sha256": "0f4c95da91513d6c34294deddff80b2ca73742fa5fad22bdfc061aeecbec2e42",
+          "path": "research/runtime/opengl-command-recovery.md"
+        },
+        {
+          "after_sha256": "704835087854a2f2f447c044b9dbbbfa38f75036c87b356ec61aae224518e495",
+          "before_sha256": "4ddf26f00a5f2c43ed64c88266390f02c2cb3ae78957bd112edba11f516ffb9c",
+          "path": "runtime/render/command_recovery.h"
+        },
+        {
+          "after_sha256": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+          "before_sha256": "d902eb05f98c13560f264bdfda39547217ae99f07cb5a6ce3e34c3c6a0a024c7",
+          "path": "runtime/render/recovery_selftest.h"
+        },
+        {
+          "after_sha256": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+          "before_sha256": "6d52cce6e5d97fc077d7882f7c99d30c219d62be2ab682d93efe84101f46e60c",
+          "path": "tests/live-render-channel-test.cpp"
+        },
+        {
+          "after_sha256": "c1bdd484029809bebc2087ed6cec6eefd7211456b386c61de0a34608d7981371",
+          "before_sha256": "facf6439652117ee403847c758cae377255d4ade22a0a6e569b5aa1fc650794e",
+          "path": "tests/live-render-recovery-probe.cpp"
+        },
+        {
+          "after_sha256": "67e53e5580ee45eae7bc5d046917eee6eb1cd03efacf907a698474686a08ba44",
+          "before_sha256": "67e53e5580ee45eae7bc5d046917eee6eb1cd03efacf907a698474686a08ba44",
+          "path": "tools/test-live-render-channel.py"
+        },
+        {
+          "after_sha256": "69ef82b06df147e2fdc530e36844662234b1bcb44b443ba793b1fd0ffc6b808b",
+          "before_sha256": "b0855bfd5d7f59cfd095ce6659ff7182729f8aa69921f69a63a05c121062a3ab",
+          "path": "tools/test-live-render-recovery.py"
+        },
+        {
+          "after_sha256": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
+          "before_sha256": "e7e06e0c4e53e3bf7d654743f296a852eecbcde647501dbf12a6121b93822c66",
+          "path": "tools/test-render-recovery.py"
+        }
+      ],
+      "id": "REVIEW.render-recovery-metadata-and-poll-budget-20261006",
+      "pending_gaps": [
+        "stale_evidence:022f24d2648d696e48c52c96c6cf620a755ad82dea2559b617971a748a868dd6",
+        "stale_evidence:04a644f8dc345b9d53bcea73c68472ef53f75aa63736a4a29e8d48fcb5fd7dd5",
+        "stale_evidence:0672b998eaffcc7753ce64c6fd6a1e8c39dcce3e03e435ebc465d5c5a02c8b47",
+        "stale_evidence:0b4f39b9b3bec9bc8fd3cba097e1b06a8784a46065ef2fafeb6087dab4144b34",
+        "stale_evidence:0eee2790e0266dc98cb4d7d71c0437cee4fa64178014a48345c3919f5985352b",
+        "stale_evidence:107165179b53a6f40eaebc4325f35a7428c7089d3e968d0ff3b895840a5d8d17",
+        "stale_evidence:11f41418b2ee6bcc65137d67b67235687a2a66770cff1423db20bcc91fa83360",
+        "stale_evidence:18577807f1d01549ae8c04d036337ddf82dbd871d555588c7839482d05c55712",
+        "stale_evidence:1a6b03fb3c79762b95b5a92b0ab6f01266a81f34669d910a33a169c1f48da8e6",
+        "stale_evidence:1baab56a288ba9691070800a4b7fd099b150b2b1893e813654556889d0afc00d",
+        "stale_evidence:228ee1171317017be45b15e703cb793429c94f9fea42441b92e141cc25036a45",
+        "stale_evidence:2753ac28f626243023e5f6faaf251e6b6467466d4a11df6a7f3ac253cf8bb1f9",
+        "stale_evidence:27ea32c7d42817e3aeb312e101450bd8b8a87cd8fe196989fd16fb26eb4ccd6b",
+        "stale_evidence:2fd6b4d9527e3d45068bc7dd97a698b0026fd0cad68707c5e964662a630610c9",
+        "stale_evidence:31e76a132b0ecd3f324f10d2699924894ce54de53eb977c9b5f60e356978c0a4",
+        "stale_evidence:32a090a2b8a927db891b1688f085b4931e861e5cbe7065f88c8b28757804880b",
+        "stale_evidence:35f324c885c12214f02aa2249755c4de9f34c5c4484f2a28696b080417f32881",
+        "stale_evidence:381eb2b248e78cad52c36b041f4ffe4811c4190a365c78996bc18d5982c9520c",
+        "stale_evidence:389d27162289746fe87559a8b1c3610728e7c7526e58268223cef30caa9f5c6f",
+        "stale_evidence:3c75d1f97a461bb0fd5fc4c5b6ebbe8b76be035e11e7e885a17223e2e2c4e538",
+        "stale_evidence:40372338f4e3284f9750215584e438a9cd2eb522c0b543106271d76e0facdb45",
+        "stale_evidence:467c13c215a43d5d688e627fdda9db663effb1a785cd2cfafedd96e1257959ec",
+        "stale_evidence:46f5c19eacf93ba4d68b8df3d82997d52afe85ff28b959c9ff952f1da9697603",
+        "stale_evidence:4be0f38de6c333a435a1d8f1f279024f3ec45e9678e3bf8ef22a35fe9126fc65",
+        "stale_evidence:4d26ba3d5caf99c0aa2052e7673356572b48601468fab8f3655b99c12598ece4",
+        "stale_evidence:4fd09cfd666bdba6e1ffe577c989d061761c8ceef3a6f547627b36ba3e31bccd",
+        "stale_evidence:501ab1cb36465c3b89efb9e5466d4491a2e4cf33f7a5a1e627ba720573bec4fd",
+        "stale_evidence:56b5f118438e3e740036b094579cb90aa5ee3ef5cb2e787c880cb04b42a36811",
+        "stale_evidence:589f2cce458e54e468cf1f7d8816aec3163d88c1ce29400f9f5b640b09b232c2",
+        "stale_evidence:5c376d2051fd01ba92f5a2c3ef69cd5bf9ea97e15b1a4732856645e28de94159",
+        "stale_evidence:600ebf3751c6205c66ded9d47cfafb710f78b7f8db4501ff3cadacd3b04e843f",
+        "stale_evidence:6740046983ab698dfc1ba761aa93bbdd2126b8d479bd7a452d750b2cb18f2f7f",
+        "stale_evidence:67464532251a3875b07c630fdff472fe2457d9cf901636c7bb4d382ae3214345",
+        "stale_evidence:68bca6e577614cb2988bde7e09e258d0fa7d5c2d91b01d754fdacf372b637c87",
+        "stale_evidence:6c5e6ca7b2b0615436c27f168e0f0baf8690e081c8006c0e69f2c5038ddddda8",
+        "stale_evidence:6c997e5163686cf5ae96e542a3faed10b0caefa08ac6b92e6804d04aabdded08",
+        "stale_evidence:71bcbe95cca6af56ddfbf30e94b71e1013281be392a62ba388bfcf606cf2c91f",
+        "stale_evidence:72a16e40bd970946b50d6fd77ad50e764cdbda9c1568eca7a07aec26c32becff",
+        "stale_evidence:72e34f074017371a9514cd4b92b06e80b533526a16c5fd53eb21e4b63f0c887e",
+        "stale_evidence:75c57c1f631031612145de5faff6ca282d76df8b1bf178c1b67330cdf09b0857",
+        "stale_evidence:7cbc27f777f6935494e7cf367612c2c3b60e1a1d36a136725dedf6538f94e68a",
+        "stale_evidence:8662551fd4379ad448f7bf9133d37e52b490b01fb43cd8d22714bed71e146a07",
+        "stale_evidence:95186ad27f6c4e4f16c0d138a5e78c3e21756595b863bf3a4e2d2f266d5890d3",
+        "stale_evidence:955a5ce4ab7913b810f4cd7ea70190a92cbbaf89f6543495bcc3abbba7551b63",
+        "stale_evidence:98eed31a71be2587c7ed2e4b9098e01b8137207d2ca6488ce663b83a28e800ea",
+        "stale_evidence:9925776fa7c0b72a777318245d21d5fbbbcc2eab26cd1a17f7454cedd9522139",
+        "stale_evidence:9eeac2dde12988d346795ea7cd9c6e7b3edb8fd5d517304c5b13f0505257c200",
+        "stale_evidence:a1af933b3878695a9db7bc43e10663e739bf469e10fe6ef5adefa72ee0681646",
+        "stale_evidence:a2a2a564f2b6937ea75f3243dbee3693f386ca8d167c7bc2ecf66e43fe5998b1",
+        "stale_evidence:ab47d3000fc7428ea5da6fe7a0b9968637a9a21dcb3d3e3af7ccd4beb2257ad0",
+        "stale_evidence:b039414b0610d422a359effb6bb4421aa1fcfb8b7112e7ab46076eb9bfdf76b1",
+        "stale_evidence:b853bd08f13fad8d1377723871c9b96c3eb0f2c23071b8dd03c39428b7c577a5",
+        "stale_evidence:b95ce9a0ce99bac8a57aae78e8f5e70d710747fda0083d8c8c4b3e824db76025",
+        "stale_evidence:bae152abdfc868fc306519c10a4ccc36e99c5efe191e109fa3b3b3d4aba56475",
+        "stale_evidence:c0ddf311f4bf91d19a0b735d21d1840f23d0f514d269986442a73fce0140f7a9",
+        "stale_evidence:c5217e09c6d09518f9a8e028db97f608616cfe7609ed0477bb4a8704a5ba852a",
+        "stale_evidence:ce40dd57d07f99c5c15acbfe705b6d076265111ad6b56c62ba0228b9ed1f98e0",
+        "stale_evidence:d14549469818681fc2359b27ffaacbc12299e8cb140bc8f9a688b5986ea34da0",
+        "stale_evidence:dbbfc468274975b3ec2915d6c06724711ab2324465876a6b69efab937fb0465f",
+        "stale_evidence:dc1f2342182765fa3197058d2ed587655a973d9991c56834a0d77f94321abc82",
+        "stale_evidence:dfa2ff4accd7f7730a9cde3cd4591cd150b6cbc132e5318957c53e7630f0a343",
+        "stale_evidence:e32c7305e60c5372161516607b9723f7540eb3b6a7177e7335d1c9bdac23b375",
+        "stale_evidence:e74a4068903cda89ebac1f2fbfa189365bc884d79f7649c1590a5d821277aea3",
+        "stale_evidence:e915dd3e893943c8d9b42ef2ff291b246d5ab6307692799a96001d1a3d16223e",
+        "stale_evidence:ecd68c9e80f46d94bb09615e5f55b8122484998d18e2599d1bffe5b8e2839d12",
+        "stale_evidence:f1b0c574c5df9595fc968e20ed528e1737862f6bd615ae2590beb003b3f3a16e",
+        "stale_evidence:f450480f6f991b9bdf2b2d00ad70285c946e57657fb36b23fb70ed8911b10103",
+        "stale_evidence:f473806dbd2a0136fbeeed29b9c2fdf9aad7d1908680997915b0b72f82d3eccc",
+        "stale_evidence:f7224af4d1d15b862c3c07ffb35325f39ca13f730144d624822afb903c3e8e24"
+      ],
+      "reason": "Reviewed recovery and delivery against99be762. Synchronize lifetime/metadata uncertainty before ordinary fresh-session reset; free all owned surface pixels while retaining current application-derived aliases, descriptors, clipping/key/attachment and palette state. Existing final-release/recreation and missed-retirement invalidation remain authoritative; no COM calls/references added. Correct Qt polling to honor finite byte budget across64KiB ring fragments while preserving32-command submission and decoder limits. Add independent ACK/pixel/budget fixtures, one-query cross-interface recovery, bounded opaque checkpoint refusal diagnostics and per-negotiation original-game observations. Reviewed21 changed files,13 affected contracts, isolated source census and committed1f511c6..99be762 history; journal interleaving is documented without rewriting historical receipts or asserting a past gate pass. Separate driver-clipping work is excluded.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh explicit alias/repeat/guards/held cases passed20 independent GPU comparisons, with one initial QueryInterface across three alias sessions.20 CHECKPOINT cases passed294 comparisons; four host cases passed83. Native and ASan/UBSan channel tests passed exact small/large byte-budget ACKs, independently verified pixels, first-poll checkpoint delivery,32-command limits, production beyond64MiB/4096 records and seven PE32 sessions. Native/sanitized queue/client checks, production PE32/Qt shell builds and three permitted CTests passed; sandboxed Xvfb startup failure was rerun successfully. Three original-game observations pin unchanged sources and verify2927 original files before/after: early primary has no owned pixels and refuses, complete CHECKPOINT presents one native frame then overflows, ordinary RECOVER avoids unmatched alias unlock but encounters missing source pixel baselines and invalidates. Consumers clean up and original menus remain available. Six fresh immutable records are linked;69 additional historical stale-evidence gaps retain old fingerprints/statuses. Sustained original recovery, complete source-baseline reacquisition, pacing/throughput, physical-driver/pixel equivalence, gameplay/movies and arbitrary unobserved lifetime ownership remain pending."
+      }
     }
   ]
 }

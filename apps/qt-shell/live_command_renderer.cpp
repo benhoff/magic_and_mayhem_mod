@@ -24,12 +24,21 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 if(framePresented)framePresented();
             },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded});
         }
-        if(cursor_==pending_.size()){
-            pending_=decoder_->append(channel_.poll(budget));cursor_=0;
-        }
-        const auto count=std::min<std::size_t>(32,pending_.size()-cursor_);
-        if(count){consumer_->submit(pending_.data()+cursor_,count);cursor_+=count;}
-        if(cursor_==pending_.size()){pending_.clear();cursor_=0;}
+        // Consume the caller's finite byte budget across ring fragments. A
+        // single 64KiB fragment per GUI tick delays multi-megabyte checkpoints
+        // while the producer continues drawing. Keep the command budget finite.
+        quint32 remaining=budget;std::size_t submitted=0;
+        do {
+            if(cursor_==pending_.size()){
+                const auto bytes=channel_.poll(remaining);
+                remaining-=quint32(bytes.size());
+                pending_=decoder_->append(bytes);cursor_=0;
+                if(bytes.isEmpty())break;
+            }
+            const auto count=std::min<std::size_t>(32-submitted,pending_.size()-cursor_);
+            if(count){consumer_->submit(pending_.data()+cursor_,count);cursor_+=count;submitted+=count;}
+            if(cursor_==pending_.size()){pending_.clear();cursor_=0;}
+        }while(remaining && submitted<32);
         if(channel_.state()==MNM_RENDER_COMMANDS_V1_STATE_ENDED && channel_.drained() && pending_.empty()){
             // poll() can expose terminal state before all bounded bytes drain.
             decoder_->finish();consumer_->finish();ended_=true;closed_=true;

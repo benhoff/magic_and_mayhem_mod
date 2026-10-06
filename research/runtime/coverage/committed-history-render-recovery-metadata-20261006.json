@@ -1,0 +1,487 @@
+{
+  "schema": 1,
+  "scope": "Exact committed parent/current SHA256 and behavior receipt review, independent of uncommitted changes or new validation. Retain concurrent journal interleaving explicitly.",
+  "base": "917b509",
+  "head": "99be7626ea6ecad49047e875b64cf5918bba51e0",
+  "commits": [
+    {
+      "parent": "917b509def0f62d27a399685615bcd76b902cecc",
+      "commit": "1f511c6ca59859404a9f2cde5dc85908159e7cd2",
+      "files": [
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "47135cf8c3e304eb252bf1693e074412c360725924c1d64c7f1b922cdef5c5fe",
+          "after_sha256": "5aa7c972b454e64c76b5a0de476217953f0f89a695bb00f7e1aa01af77f1b780",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "f8edc212f9d3c1ae07603d7ebf6fde83a4ba716a1902195ce24ec029dc8571c3",
+          "after_sha256": "ff5918596f4b31d1afa0298167b35ccded3ca4beac822100429f571f350c05b0",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "d1357cfa79ede86670da085b2754d8a5a164bb9c09f22fbd1e459a7869447b81",
+          "after_sha256": "d662123ba6361223b377a308d2dae4e89fd05f00fc26c4f8b02b0edb8a227ca4",
+          "receipts": [
+            "prior receipt bytes and relative order checked separately; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-recovery-validation-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "41d211574f0dbb7077544c2d52e403e3abb9d1636588ec18310180928366ba9c",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-recovery-validation-concurrent-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "f0777fefd09700f33d08361687418eadd7e8f358981e451f7a57942287e00205",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "d3858e2b37676f3b60b159626edd1636087862fc07f14e56647422efa897b36d",
+          "after_sha256": "e81a6d2632f1d49e2f01980e84dac537770e4509bc554aae8c5a69cfb7c11224",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-recovery-validation-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d4f3a1825d328f65f4a2f38d398e8d3b51c02244d4af3f4dc1bbc98f33a80776",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-recovery-validation-final-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "4b5c59e7ed5b7f34e479f2c8f29292e5f38469f4386075805f51f0e912813ff9",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-recovery-validation-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "1c5aace8cfe14c5b115c75fb6668563c2497349bb49abdaa6f0c19c6369d8ad1",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-recovery-validation-final-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "0fb94e63167ce5ed8d83e0976b0ad844083572e6618b3ca601bb26069e936eef",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-failure-matrix.json",
+          "before_sha256": null,
+          "after_sha256": "beead4fb3a9c3e921f3afd83bae72c359963f1b3578fd9bc2e0f3db078f59b16",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-game-startup-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "cd80c40cb968fcb908ca5889515af5b4c0e4bd5188cd797f0c705ad040a14c81",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-host-regressions-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "137d74ab7a853e670e2bc0e2a174b3259fd001c55a170bcbcccfe2c55a9452cf",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-queue-regressions-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-recovery-validation.md",
+          "before_sha256": null,
+          "after_sha256": "5c476e26c26d83b7c26c9ab2857e30feb4642f64c7e4d2edc001a509a15788e5",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/checkpoint_selftest.h",
+          "before_sha256": "f1bbbc7a51ca943fff2b9662621c25eb1b734c804f30cbaa36e9ccba51eadf79",
+          "after_sha256": "3d88614e72f799680c5519162add9a2f71ff2d54a080c1ebea980f9907abf9d4",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_recovery.h",
+          "before_sha256": "8d4dc5ec30925f3352de6d1c66501d0494968bbb613e0f00f889b395ac724d2b",
+          "after_sha256": "4ddf26f00a5f2c43ed64c88266390f02c2cb3ae78957bd112edba11f516ffb9c",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_scheduler.h",
+          "before_sha256": "a53069a6196416819b000424ca07213c00f37e3ad7e2e1456e95f15bfc31b350",
+          "after_sha256": "49380205a77db5e876308b302dbec9d95633f1adb3d8381df3056d6bea815535",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/mutation_selftest.h",
+          "before_sha256": "fdf2112b9f7fd5f95f266a7f6b8e85ac93785a9d8b07f5874b7cd103dcb7fa60",
+          "after_sha256": "cab3f9f7b895fb52848a9d83556861ea9876c36785d82d2c9d05aeee92a3ff8c",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "tests/live-command-checkpoint-test.cpp",
+          "before_sha256": "6c433c99f1ed70758612e23b58e8d40ec11f4768ebad394a64d1854f518044e4",
+          "after_sha256": "ddd7fe37eadb44fdae01f4ae024ebd57b57256e83c1fcb437791e77d18163445",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "tests/live-render-recovery-probe.cpp",
+          "before_sha256": null,
+          "after_sha256": "facf6439652117ee403847c758cae377255d4ade22a0a6e569b5aa1fc650794e",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "tools/build-render-bridge.py",
+          "before_sha256": "b4679e204ffc4f9043109a77381f735f363eaa9684484c09d2e141fa2bd83d04",
+          "after_sha256": "fb335374d59ffafc898a6959f280f9a43616ad72d7632e6d2929504373ab6263",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-recovery.py",
+          "before_sha256": null,
+          "after_sha256": "b0855bfd5d7f59cfd095ce6659ff7182729f8aa69921f69a63a05c121062a3ab",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-checkpoint.py",
+          "before_sha256": "fbdb37f7ed35d3c5a3f93375b1889b2b6cbe191fdae53a8debdfc8b49b40e718",
+          "after_sha256": "224ebc4d8c85bad4441d73da3818457e902596d9c8f68f8b557225a9d6bb9ee7",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-backpressure",
+          "before_sha256": "eeec5ba1360ae87ccd523917af05b6fd62142ae0721feef4c56c498ce15a1b4c",
+          "after_sha256": "6bc303dc253a53c7bdb0a47f13c7e75a0ce566d29d0e7391a12c8c60d0c9b40f",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "7fc7b0674b4aecc91572d1285981bb17e4fc2609e7b869dfde164d1317597964",
+          "after_sha256": "f2f1f651ad498ebdd225e7b168441811ceb79baba895675f76d21cec5e9079ae",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "0a71b9cba2aae905455c1956c2f74d8c08ffa4513e2c9aff68a9acaa41f2e0df",
+          "after_sha256": "14810b1910163e83437c83935dba2e569cc27f1f3638540a7685b1f3a13f512e",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-idle-lifecycle",
+          "before_sha256": "adf64c81a2671b06e19a3095ecc38c4761d3df3ccfa38aa160691ec9ff483ea5",
+          "after_sha256": "02d9696dc44ef6b52acb1e6d1885740bff4301ba62aa42c5b8bf6cec31933645",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "0b9e09f9f4348f530dc11fb0b9c34d2b797df059aa3253e504cbb024f69a77c7",
+          "after_sha256": "78b5531b606b9dfe438d8ca11529ab45e61e4df7cf3d95a67c3d7b36f8819c7a",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "b90515f0cd6841da942713ce282948f1481719de4ad6de126875e1f370d16255",
+          "after_sha256": "e472f1bdcc588f00b1252636ea103f7b5c62dabd773cdcbc1f8b6db74642dd2c",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring",
+          "before_sha256": "bfd9ea55b69492a66af513df101cf95862992b405e14437ac6fe218b25c7bfd3",
+          "after_sha256": "e748bc97546b50817bac0977a933319aa4807d95ebc14ee5fa2a600ec5d8fb0b",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring-adapter",
+          "before_sha256": "40260b62b4b273ba392fa101d46ce811a8ca132447b6399a368deaf401d88262",
+          "after_sha256": "71e29a1973964e438de55b590b3bf6a127c2bd43cd001efa15e664ec34518e38",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "7e984b8e9818c573108109139975e2f56af3b72e9d6dd7f6ee7cf72b6335f6ec",
+          "after_sha256": "137324179314c611a6f6e9a53b7469ef294610a1fd1cf85ed18f343376ae7741",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "bc8a327046e05538788ee1c97f5b5d0455fec928bb69f750fc85a3894ea97974",
+          "after_sha256": "bf84c133192c191309de4694e6c6f91b5762d5224f0e288548b4d139d3f6961b",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "50976a8758f7c323463d42ca69666905519b5204404d9f87385c092a7790a67b",
+          "after_sha256": "ccabbac4a5d93cdfae2759e4cf1ea0dd3cf309f38bb4daad7761aa427f7eed25",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "7d230149e88bfcd999bb35a7b8e4648bc21caf2724eb23721a07e43d8d0ff40d",
+          "after_sha256": "575de7e40d60e40708c3e6cde4c60397d60ca91664f2a3de5cfd50bfddddaa4a",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "6095bcdc0c76b0a1b21d82a4c02312d07f386f11f7f1f08b96c617ec82da7c52",
+          "after_sha256": "fefe70dbb8811c16dc800b988566eeb092a447e8188b32b99535ebd3c76196f6",
+          "receipts": [
+            "REVIEW.render-recovery-failure-validation-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "historical_limitations": [],
+      "unresolved_exact_receipts": []
+    },
+    {
+      "parent": "1f511c6ca59859404a9f2cde5dc85908159e7cd2",
+      "commit": "99be7626ea6ecad49047e875b64cf5918bba51e0",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "ff5918596f4b31d1afa0298167b35ccded3ca4beac822100429f571f350c05b0",
+          "after_sha256": "92239ffcceca6e515896d764cad58776b6d48c0706919f06932bebd355402994",
+          "receipts": [
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "d662123ba6361223b377a308d2dae4e89fd05f00fc26c4f8b02b0edb8a227ca4",
+          "after_sha256": "f68004c45f6e406e93deb6cf54427ac605846c3af3236e7eabbb36143a0580f0",
+          "receipts": [
+            "prior receipt bytes and relative order checked separately; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-forwarding-next-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "fa78d8e44f8d48d6263016055f02b551a3ca82588beabb7dfc196c073a79d94d",
+          "receipts": [
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-rectangles-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "a6f8c6138ce850716021fa2bc42564313bc975130a892eef67dbeb8d71bd793d",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006",
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "e81a6d2632f1d49e2f01980e84dac537770e4509bc554aae8c5a69cfb7c11224",
+          "after_sha256": "744734564ce16fca35d846f816c960a1d916bdf90af14b88dcc6ae2f4c5bd776",
+          "receipts": [
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-forwarding-final-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "fc0a7f50366103a793e134036474e93133ed2a830daedc6e082b3a96e3dbe647",
+          "receipts": [
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-rectangles-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "fc0a7f50366103a793e134036474e93133ed2a830daedc6e082b3a96e3dbe647",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006",
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-forwarding-final-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "70b48c4095b17eadb6350886f7fba67d80bd52cd464e9fc91807d2f2d0dff45e",
+          "receipts": [
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-rectangles-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "70b48c4095b17eadb6350886f7fba67d80bd52cd464e9fc91807d2f2d0dff45e",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006",
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-rectangle-forwarding-original-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "b1ed1f9bebaee62a5fd8b3ebf757a4e7c4e9edc4ed64179ae4eff3c84dd386a4",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006",
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-rectangle-forwarding.md",
+          "before_sha256": null,
+          "after_sha256": "b42168f3b23ebb31f353db62d9e7cbb36dc30ff791f1fdd9abbac8748566a9f3",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006",
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/rectangle-forwarding-corpus.json",
+          "before_sha256": null,
+          "after_sha256": "4b8428d536705a853e72770e1f70ed017a97f85e59a5cef267bb942c858f494e",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006",
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/rectangle-forwarding-original.json.gz",
+          "before_sha256": null,
+          "after_sha256": "8940a46d4148c4b632f5f8210a6ee46d28bd7c72b0edc7b5d673acda18f1c508",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-rectangle-reference.cpp",
+          "before_sha256": null,
+          "after_sha256": "3fc57e4312c81d23547069df0a0d22c90b1626b2133a563a27cd8dc990645d6d",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006",
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-surface-rectangles.py",
+          "before_sha256": null,
+          "after_sha256": "77432fca60e9212105d63be9465fd0f471539eda2b204bec0edd3853c35fcc5c",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006",
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "path": "tools/compare-surface-rectangles.py",
+          "before_sha256": null,
+          "after_sha256": "ac33064184e6ac001a0be03a50c4debe7fe63f2f4fa4202339989945de28a1f7",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006",
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "RE.surface-rectangle-forwarding",
+          "before_sha256": null,
+          "after_sha256": "7f008fc64480b199cace90fd86bfb6d481738968e8de446f11a2827ac9b54348",
+          "receipts": [
+            "surface-rectangle-forwarding-recorded-20261006",
+            "surface-forwarding-isolated-commit-20261006"
+          ]
+        },
+        {
+          "id": "RI.copies",
+          "before_sha256": "f41348ae8b27b521b68da179acdc55766a241cc8f59add322f51dec770f0f062",
+          "after_sha256": "7796151b17d8b33badbe901ee89cc61a7b5329d07cf77eb5889e1af07c4ff893",
+          "receipts": [
+            "surface-rectangle-inventory-link-review-20261006",
+            "surface-forwarding-inventory-link-commit-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": false,
+      "historical_limitations": [
+        "Concurrent journal additions precede an existing final receipt; all prior receipt bytes and relative order are preserved, but strict prefix append order is not. Historical interleaving retained; no past gate pass inferred."
+      ],
+      "unresolved_exact_receipts": []
+    }
+  ]
+}

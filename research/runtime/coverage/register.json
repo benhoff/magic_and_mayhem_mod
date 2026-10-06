@@ -13291,13 +13291,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Mapped native ring reader and cooperative owned producer queue",
-      "scope": "Version2 mapped adapter and bounded owned queue; idle lifecycle and streaming native decoder policies tracked separately. v1 preserved; sustained original capture, archive rotation and original-driver equivalence remain pending.",
+      "scope": "Version2 mapped adapter and bounded queue. Qt polls consume the caller byte budget across at-most64KiB fragments and submit at-most32 decoded commands per call; checkpoint first-frame delivery and bounded cleanup are tested. v1 retained; sustained original traffic can overflow, with explicit fallback. Original-driver/pixel equivalence remains pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-ring-adapter.md",
         "research/formats/render-command-ring-v2.md",
-        "research/runtime/opengl-command-streaming-lifecycle.md"
+        "research/runtime/opengl-command-streaming-lifecycle.md",
+        "research/runtime/opengl-command-recovery-metadata.md"
       ],
       "implementation": [
         "runtime/render/command_channel.h",
@@ -13316,14 +13317,19 @@
         "tools/test-render-command-queue.py",
         "tests/live-render-channel-test.cpp",
         "tools/test-render-session-sequence.py",
-        "tools/test-live-render-game.py"
+        "tools/test-live-render-game.py",
+        "tools/test-live-render-channel.py",
+        "tests/live-render-recovery-probe.cpp",
+        "tools/test-live-render-recovery.py"
       ],
       "evidence": [
         "NR.command-ring-adapter.queue",
         "NR.command-ring-adapter.sequence",
         "NR.command-ring-adapter.startup",
         "NR.command-ring-adapter.live",
-        "NR.command-streaming.live"
+        "NR.command-streaming.live",
+        "NR.command-recovery.metadata-channel-20261006",
+        "NR.command-recovery.metadata-game-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14035,11 +14041,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Explicit recovery into a fresh continuous producer session",
-      "scope": "Explicit PE32-local recovery by a quiescent caller after shutdown/join and mapping retirement. Distinct exact-size v2 file identities, higher session IDs and sixteen-entry spent history guard new admission. Clear old checkpoints/aliases/palettes and require fresh observations; new archive suffix and resource namespace. Synthetic native integration only; automatic Qt negotiation, same-context texture handoff, unobserved leases, concurrent callbacks/candidate corruption, original-game recovery and fault injection excluded.",
+      "scope": "Explicit quiescent PE32 fresh-session recovery after shutdown/join with distinct v2 files and higher session IDs. Synchronize lifetime/metadata uncertainty, discard owned surface pixels and require fresh complete input; retain current verified application aliases, descriptors/properties and palette state independently of consumer lifetime. Reset wire IDs/session counters. Synthetic cross-interface continuation and existing guard regressions; bounded original-game observation exposes missing source baselines, so sustained game recovery and original equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-command-recovery.md"
+        "research/runtime/opengl-command-recovery.md",
+        "research/runtime/opengl-command-recovery-metadata.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -14059,7 +14066,9 @@
         "tools/test-render-backpressure.py",
         "tools/test-render-command-idle.py",
         "tools/test-render-orchestration.py",
-        "tools/test-render-continuous-producer.py"
+        "tools/test-render-continuous-producer.py",
+        "tests/live-render-recovery-probe.cpp",
+        "tools/test-live-render-recovery.py"
       ],
       "evidence": [
         "NR.command-recovery.pe32",
@@ -14067,7 +14076,11 @@
         "NR.command-recovery.pressure",
         "NR.command-recovery.idle",
         "NR.command-recovery.exit",
-        "NR.command-recovery.gpu"
+        "NR.command-recovery.gpu",
+        "NR.command-recovery.metadata-explicit-20261006",
+        "NR.command-recovery.metadata-host-20261006",
+        "NR.command-recovery.metadata-queue-20261006",
+        "NR.command-recovery.metadata-game-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14187,14 +14200,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Complete owned checkpoint attachment to a fresh rendering session",
-      "scope": "Strict administrative late consumer attachment from complete independently owned pixels, metadata and palettes; 27 synthetic fresh sessions across mixed formats, palette recreation and overflow/stall/foreign-ACK failures, plus allocation/mapping/worker refusal cleanup. Bounded actual-game startup observed safe fallback only: checkpoint refused, ordinary recovery READY then invalid before first native frame. External host takeover, sustained game recovery and pixel equivalence remain pending.",
+      "scope": "Strict complete owned checkpoint attachment with finite state/ownership admission. Broader synthetic failure/format tests retained; bounded admission diagnostic identifies early primary layout without pixels. After an observed complete primary frame, actual-game checkpoint delivered one native frame before overflow and fallback. READY, first frame, sustained recovery and equivalence are separate milestones; sustained game recovery and external host takeover remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-checkpoint.md",
         "research/formats/render-control-v1.md",
         "protocols/CONTRACTS.md",
-        "research/runtime/opengl-command-recovery-validation.md"
+        "research/runtime/opengl-command-recovery-validation.md",
+        "research/runtime/opengl-command-recovery-metadata.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -14231,7 +14245,11 @@
         "NR.command-checkpoint-attachment.failure-matrix",
         "NR.command-checkpoint-attachment.host-regressions-20261006",
         "NR.command-checkpoint-attachment.queue-regressions-20261006",
-        "NR.command-checkpoint-attachment.game-startup-20261006"
+        "NR.command-checkpoint-attachment.game-startup-20261006",
+        "NR.command-recovery.metadata-channel-20261006",
+        "NR.command-recovery.metadata-checkpoint-20261006",
+        "NR.command-recovery.metadata-host-20261006",
+        "NR.command-recovery.metadata-game-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -25213,6 +25231,102 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.command-recovery.metadata-explicit-20261006",
+      "kind": "native_integration",
+      "scope": "Four explicit recovery cases,20 independent GPU comparisons; alias case uses one initial QueryInterface over three sessions with canonical locks/alias unlocks, plus repeat, ownership and candidate guards.",
+      "record": "research/runtime/opengl-command-recovery-metadata-explicit-20261006.json",
+      "sha256": "04b178209787f25dd2ff8da31bc2ed72ae56f1e6c428cbe8f4db0e65bb79ee5e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-recovery.metadata-channel-20261006",
+      "kind": "native_integration",
+      "scope": "Native and ASan/UBSan GPU byte-budget/checkpoint presentation and sustained32-command-limited polling, plus seven PE32 sessions. No original game/driver equivalence.",
+      "record": "research/runtime/opengl-command-recovery-metadata-channel-20261006.json",
+      "sha256": "f85c9846174dbb98ffbd199f33919215550be483108863773147522fc4a9379b",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-recovery.metadata-checkpoint-20261006",
+      "kind": "native_integration",
+      "scope": "Twenty strict checkpoint cases,294 independent GPU comparisons, repeated failures, borrowed/incomplete admission and storage faults after metadata and polling correction.",
+      "record": "research/runtime/opengl-command-recovery-metadata-checkpoint-20261006.json",
+      "sha256": "7429c27d56160f28fcadf05716efea7fcd54c2e5902c7e2e5b9731c928c7b76c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-recovery.metadata-host-20261006",
+      "kind": "native_integration",
+      "scope": "Four Qt/PE32 administrative recovery cases,83 independent GPU comparisons and native/sanitized control-client regressions.",
+      "record": "research/runtime/opengl-command-recovery-metadata-host-20261006.json",
+      "sha256": "5ab862387acdb08bbe4d1bb1def7b4b238bcf473b1c0beea1ff3dd00319de973",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-recovery.metadata-queue-20261006",
+      "kind": "native_integration",
+      "scope": "Native and ASan/UBSan bounded queue heap/map and worker ownership regression checks.",
+      "record": "research/runtime/opengl-command-recovery-metadata-queue-20261006.json",
+      "sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-recovery.metadata-game-20261006",
+      "kind": "live_observation",
+      "scope": "Three bounded original-game startup observations: early incomplete primary refusal, complete checkpoint READY/one native frame then overflow, ordinary recovery with retained aliases but missing source pixel baselines and fallback. Original window retained; no equivalence or sustained recovery.",
+      "record": "research/runtime/opengl-command-recovery-metadata-game-20261006.json",
+      "sha256": "d2d58b0587907a809d85f1b59dc26047db4e5de0b4f592ef1f325b71f9b1cf6b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -29194,6 +29308,49 @@
         "tests/live-render-recovery-probe.cpp",
         "tools/test-live-render-recovery.py"
       ]
+    },
+    {
+      "id": "NR.command-recovery.metadata-preview-20261006",
+      "level": "preview",
+      "scope": "Cross-interface fresh-pixel recovery, finite byte/command polling, strict checkpoint and ownership regressions; synthetic native policies only.",
+      "behaviors": [
+        "NR.command-recovery",
+        "NR.command-ring-adapter",
+        "NR.command-checkpoint-attachment"
+      ],
+      "evidence": [
+        "NR.command-recovery.metadata-explicit-20261006",
+        "NR.command-recovery.metadata-channel-20261006",
+        "NR.command-recovery.metadata-checkpoint-20261006",
+        "NR.command-recovery.metadata-host-20261006",
+        "NR.command-recovery.metadata-queue-20261006"
+      ],
+      "tests": [
+        "runtime/render/recovery_selftest.h",
+        "tools/test-render-recovery.py",
+        "tests/live-render-channel-test.cpp",
+        "tools/test-live-render-channel.py",
+        "tools/test-render-checkpoint.py",
+        "tools/test-render-host-recovery.py",
+        "tools/test-render-command-queue.py"
+      ]
+    },
+    {
+      "id": "NR.command-recovery.metadata-game-20261006",
+      "level": "live_observation",
+      "scope": "Three bounded original-game startup observations: early incomplete primary refusal, complete checkpoint READY/one native frame then overflow, ordinary recovery with retained aliases but missing source pixel baselines and fallback. Original window retained; no equivalence or sustained recovery.",
+      "behaviors": [
+        "NR.command-recovery",
+        "NR.command-ring-adapter",
+        "NR.command-checkpoint-attachment"
+      ],
+      "evidence": [
+        "NR.command-recovery.metadata-game-20261006"
+      ],
+      "tests": [
+        "tests/live-render-recovery-probe.cpp",
+        "tools/test-live-render-recovery.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -29441,7 +29598,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-surface-forwarding-final-20261006.json",
-    "sha256": "fc0a7f50366103a793e134036474e93133ed2a830daedc6e082b3a96e3dbe647"
+    "path": "research/runtime/coverage/source-index-render-recovery-metadata-20261006.json",
+    "sha256": "7f884b232bf1a1001dc872cdf2bc83df50482893a93392b789c04fca9d523e14"
   }
 }

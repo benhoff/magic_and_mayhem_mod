@@ -1,0 +1,513 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "runtime/render/adapter_startup.h": "52457ffc947fbbf242a6949d4a871779a171aaafc8e0ae741868f33a20374192",
+    "runtime/render/backpressure_selftest.h": "c007732548f9791058bdcd1b1778a1674f734f540077a477ea67f1818185380e",
+    "runtime/render/bootstrap_selftest.h": "3fca231aeeb189832182d36fe85a8ed58adab8f6a133499c48a5f5b1311215c7",
+    "runtime/render/bridge.c": "735fa7509cedbe93e329835e652701ad5116d24ab84c666c2ddb5a5ef734420c",
+    "runtime/render/checkpoint_selftest.h": "3d88614e72f799680c5519162add9a2f71ff2d54a080c1ebea980f9907abf9d4",
+    "runtime/render/command_channel.h": "3c0a2e177987cc499f4375deb662896bd320bacdaadce7d9d6537511027f0ebb",
+    "runtime/render/command_control.h": "1bbe16d98dba2f78365e027b23d6eed7470e9ca5e815a08068d05a250bc459eb",
+    "runtime/render/command_gate.h": "c9810ef6ad365daeb255e34123d547992fc72784e0e84bc74337b3776007edc2",
+    "runtime/render/command_idle_selftest.h": "efc9a0be0823c894a5693f748d7f171866e0d3efdc6bd1bf7888ceb3afb96c0b",
+    "runtime/render/command_lifecycle.h": "7a6a04d37998ad9685c7199d415b9a5b87dd7033cf10e2aae5040e53f63f462c",
+    "runtime/render/command_queue.h": "d96f125aa7a712f96d0745a993b48a19820a10470257a629ef0960e29c736877",
+    "runtime/render/command_recovery.h": "704835087854a2f2f447c044b9dbbbfa38f75036c87b356ec61aae224518e495",
+    "runtime/render/command_scheduler.h": "49380205a77db5e876308b302dbec9d95633f1adb3d8381df3056d6bea815535",
+    "runtime/render/continuous_selftest.h": "53bb2834d3075236afa16972899b3e7ab18f7f55135b7bf56b51ff5d9a7eb39d",
+    "runtime/render/dc_selftest.h": "123bf310df0197f17a63df26349e14a5e5757b9a903c8924ef9ac711ee7ef13c",
+    "runtime/render/draw_capture.h": "7b6e113cc86c0015f855711fdd893fc6efc83d0fa4287f91d829847b9612b868",
+    "runtime/render/draw_selftest.h": "03799a2bd9c3df1ac3b426c85b34b7f1d25b36791947ca95ac2af687d177d24f",
+    "runtime/render/failure_diagnostics.h": "97d72ef8174e01c80c4b3eb57f4fa80cedfd8f56f25f7b77904121d0996baf11",
+    "runtime/render/flip_history.h": "4c1910ed299700ba95e9b49923710b54817ab8dd2d2cba823b40ccf4dbc388d8",
+    "runtime/render/flip_selftest.h": "f46d45004a39a82283021903e468730b365825c6efec1cbebe61d2fd875eb03b",
+    "runtime/render/frame_pixels.h": "671110ec34e214010c51d2a13838cd56e08869ecebdf7d38c8aaaae9156109be",
+    "runtime/render/history_selftest.h": "077d923f30ff81d927fa770f6b841e0461a345e4fc4310ab3048fa284ec3bdb5",
+    "runtime/render/host_recovery_selftest.h": "2cbc36afcb620a64e5f4ffbc12ef8972e934514fbe464fc861863244a0e583bf",
+    "runtime/render/indexed_copy_selftest.h": "9d3fc4c7a0d8f66a7ba765172c920cb4889301b63dea02556c7eeb3ef5e45fb6",
+    "runtime/render/indexed_owned_selftest.h": "7ab70e041a806281903ec11a5708fa9b3e69fe2e5bd6a54baa131793b19ba723",
+    "runtime/render/input_polling.h": "95d53d43f99b3de9390b07a150db112ae7d280e7bb112ba5957e3ce62dca736c",
+    "runtime/render/input_selftest.h": "78d5c31ec213d5bd06daa667e38320671807a5700903a392fbb78f8cfeb9abab",
+    "runtime/render/lifecycle_selftest.h": "f68113110b83b034ec94e89660df4a3feb3d283f7ae0e9844790c8cf4b785bcb",
+    "runtime/render/lock_aliases.h": "df4a344c6f010b8f8022c99ec1a1ce04cd708564248d18a3362d2ad165745a95",
+    "runtime/render/lock_blit_selftest.h": "e0083a9c20400e058e0a914f80b9bcda79d13f81c070e39aa34f36bec59b64fa",
+    "runtime/render/lock_dc.h": "c4c86958dffa67829bc60553c783d472b8f22a1e5cf1be6ec009aaa08a457b26",
+    "runtime/render/lock_diagnostics.h": "e21d9134b6f2d0a9d7624a017a2ea0b52ee05aae6a249a1c84ccf8740959b5a0",
+    "runtime/render/lock_flip.h": "a423a22742ca55c968ef6487088a8b587decc5def07c7ef7bf701ad9b909fd2e",
+    "runtime/render/lock_lifecycle.h": "ff22b737dce7f047fab284ab8c2615530cf5407bb5aeed458740a694af884948",
+    "runtime/render/lock_lifecycle_selftest.h": "ebdfe7dd2773746496a1b138e6309b0250e2207b67d4e2ba6f05f24843bcb406",
+    "runtime/render/lock_palette.h": "9357a0191b92714e2a2d9c2d52958e6fd3f1c56aa82ad8fec713d07deaf5330e",
+    "runtime/render/lock_surfaces.h": "91fa1e4957efd6f7f0d5c8a2a55ead7fd952f253531dbbf2ea4dfa75f40f8cd9",
+    "runtime/render/lock_updates.h": "4fd32d69ac6b2a8f6557e9bb3cc5ddd5540e4f6ea942fbebaf9b43f9725c78a3",
+    "runtime/render/media_bridge.h": "dc7e64883ef491ac42f42a2f10c36dda1ca5a04eda993cdab04e9645df572e6f",
+    "runtime/render/media_selftest.h": "9f9592dc30aeed9b8d0f7fa622c4335fd9fc6357b84d67eb5077ff795143e4b0",
+    "runtime/render/mutation_selftest.h": "cab3f9f7b895fb52848a9d83556861ea9876c36785d82d2c9d05aeee92a3ff8c",
+    "runtime/render/owned_dc_selftest.h": "69ea01ac97f58887f9fd63614418974c9d8c925cbdde26c71117b2738fe34407",
+    "runtime/render/owned_session.h": "e68b5e4fea09a4a275bb8d0cfda9473afb798ee39cdc9d132c44861c18e20829",
+    "runtime/render/owned_session_selftest.h": "a3ec9a32d9ca45919eb5c04b3362b4f1904b3a0e1b30174588f77eef5ae0e188",
+    "runtime/render/palette_history.h": "d298ee386d6a70c406dd3ec248eb071e79a0688daf5c7da8f91a43bc4a2cad72",
+    "runtime/render/palette_selftest.h": "5d7e6f9c254d9ed634f4656b0256dda811adbc6cfe1f0c768abc8242aa43b73d",
+    "runtime/render/partial_lock_selftest.h": "6b9df18d4b435e6adcce961abcb060b344a1a3bbc5f19b0266786775f08c3c7f",
+    "runtime/render/recovery_selftest.h": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+    "runtime/render/resource_selftest.h": "64c52c7140527fb7236df0bcc6325ab473e429a762eb9af57ee27a866cdfb9de",
+    "runtime/render/selftest.c": "868633bcbbe0c8e505300d9eace63bf59a2450e4bbf05cb3bc0fc9af040df358",
+    "runtime/render/surface_commands.h": "2353c4a1d704bef43594c0042c97d3f0c65927fb8d14abb60a10ec0b4c4bb8cf",
+    "runtime/render/surface_history.h": "63976b18f13b5db96ca4385c30d6783769a7f25f32656888023171ce111ffa7d",
+    "tools/test-render-recovery.py": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
+    "tools/build-render-bridge.py": "fb335374d59ffafc898a6959f280f9a43616ad72d7632e6d2929504373ab6263",
+    "tools/test-live-render-channel.py": "67e53e5580ee45eae7bc5d046917eee6eb1cd03efacf907a698474686a08ba44",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/live-render-channel-test.cpp": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+    "apps/qt-shell/live_command_renderer.cpp": "d5288ce683e65418a5e791781df33c5efbcb1f85558eda2feced7e2142e21dcc",
+    "apps/qt-shell/live_command_renderer.hpp": "b1f51a4a3ce767c6a4739e25a5cf4f9c82cc8b00f43e144c09bba82a8091a2ae",
+    "apps/qt-shell/command_channel.cpp": "cef42f0fb6e7d9dc7dafd032d5c52e384de94d97b06a8d6028c8c572ff3d0ba4",
+    "apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "renderer/commands.cpp": "77ce3018dfd245c7e69eb0cc938949734b88cb4f6efa29efafd243621b1c349d",
+    "renderer/command_consumer.cpp": "39f9c48ebaef77164f59f1b8a3aa2c5203e69fe799fc56ef12a54ba33e9ec2c6",
+    "protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3"
+  },
+  "cases": [
+    {
+      "mode": "alias",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": true,
+          "session": 123,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "effe07aa650c7590d743392909e694b57d9ba6dceb8ffa0a01cca53a8fb9bfd2",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 2,
+          "valid": true,
+          "session": 125,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0e647a064c73c710df35b8d3879b3f57eeb1075fa290a54fe0d2be8a22cf2721",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "02ed53ca3363b3810fcc7e30a7ecd273f45fad040e80b27c8825159703efd55c",
+              "b011e18feb4a5f05d0d933d026d2e05efb617f1fcb27b336190abd4f5fe7db68"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 9,
+      "original_unlocks": 9,
+      "immutable_terminal_files": 6,
+      "rejected_candidates_unchanged": 0
+    },
+    {
+      "mode": "repeat",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": true,
+          "session": 123,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "effe07aa650c7590d743392909e694b57d9ba6dceb8ffa0a01cca53a8fb9bfd2",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 2,
+          "valid": true,
+          "session": 125,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0e647a064c73c710df35b8d3879b3f57eeb1075fa290a54fe0d2be8a22cf2721",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "02ed53ca3363b3810fcc7e30a7ecd273f45fad040e80b27c8825159703efd55c",
+              "b011e18feb4a5f05d0d933d026d2e05efb617f1fcb27b336190abd4f5fe7db68"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 9,
+      "original_unlocks": 9,
+      "immutable_terminal_files": 6,
+      "rejected_candidates_unchanged": 0
+    },
+    {
+      "mode": "guards",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": true,
+          "session": 123,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "effe07aa650c7590d743392909e694b57d9ba6dceb8ffa0a01cca53a8fb9bfd2",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 6,
+      "original_unlocks": 6,
+      "immutable_terminal_files": 4,
+      "rejected_candidates_unchanged": 6
+    },
+    {
+      "mode": "held",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": false,
+          "session": 123,
+          "state": 3,
+          "reason": 2,
+          "published": 2097344,
+          "archive": {
+            "sha256": "cc592f9814b5554f35d936635398c0b73f2c2fce785041b02b2c797a5fb71144",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              9
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 5,
+            "error": "Command ring failed, cancelled or invalid",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": false,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 7,
+      "original_unlocks": 7,
+      "immutable_terminal_files": 4,
+      "rejected_candidates_unchanged": 0
+    }
+  ],
+  "scope": "Quiescent actual same-process PE32 RenderShutdown/RenderRecover with distinct v2 file identities and strictly increasing session IDs; poisoned borrowed rows and independent complete GPU frames. Fresh consumer per session, sticky immutable old rings/archives, lifecycle and ownership guards. No original game, automatic IPC negotiation, in-flight callback stress, partial checkpoint/palette reconstruction or real-driver equivalence.",
+  "full_frame_comparisons": 20
+}

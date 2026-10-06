@@ -1389,3 +1389,22 @@ original pixel equivalence, movies and live replacement remain pending.
 See [the validation record](opengl-command-recovery-validation.md); synthetic
 success and actual-game fallback are separate milestones. Historical evidence
 retains its hashes; shared-source changes do not refresh earlier comparisons.
+
+
+## Rendering recovery metadata diagnosis (2026-10-06)
+
+Early CHECKPOINT refusal is confirmed: the primary has current 800x600 RGB565
+metadata but no owned pixels. Waiting for a complete original primary permits
+attachment. Ordinary recovery now retains verified lifetime aliases/properties
+while discarding pixels; a one-query canonical-lock/alias-unlock fixture passes
+three sessions. Qt polling now consumes its finite byte budget across 64KiB
+fragments, retaining the 32-command bound, rather than one fragment per GUI tick.
+
+Fresh validation passed 294 CHECKPOINT pixel comparisons, 20 explicit-recovery
+comparisons, 83 host comparisons, native/sanitized GPU budget cases and queue/client
+checks. Production PE32/Qt builds and three selected CTests passed. Original-game
+checkpoint delivered one native frame before sustained overflow; ordinary recovery
+retains aliases but misses required source pixel baselines and falls back. Every
+consumer cleaned up, original main menus remained visible and original manifests
+passed before/after. First-frame delivery does not establish sustained recovery or
+equivalence. See [the diagnosis](opengl-command-recovery-metadata.md).
