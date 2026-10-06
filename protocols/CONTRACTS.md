@@ -121,6 +121,8 @@ supported. This version is independent of the mapped ring transport version.
 
 Administrative CHECKPOINT=2 requests strict attachment through complete retained
 owned state. Resource creation and initial PRESENT are queued before READY;
-incomplete or borrowed state refuses. RECOVER=1 retains its fresh-observation
-policy. Both share the existing three-request budget, immutable negotiation and
+incomplete or borrowed state refuses. RECOVER=1 prefers the same complete owned
+checkpoint admission, falling back to fresh observations only when completeness
+is unavailable before claim. Borrowed/uncertain lifecycle admission still refuses;
+a failed claimed checkpoint is never retried as fresh in the same candidate. Both share the existing three-request budget, immutable negotiation and
 matching-response-before-polling rule. See [checkpoint policy](../research/runtime/opengl-command-checkpoint.md).

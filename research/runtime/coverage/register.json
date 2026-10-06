@@ -14080,7 +14080,8 @@
         "NR.command-recovery.metadata-explicit-20261006",
         "NR.command-recovery.metadata-host-20261006",
         "NR.command-recovery.metadata-queue-20261006",
-        "NR.command-recovery.metadata-game-20261006"
+        "NR.command-recovery.metadata-game-20261006",
+        "NR.command-host-recovery.auto-checkpoint-explicit-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14095,14 +14096,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Qt fresh-session recovery over a versioned producer control channel",
-      "scope": "Versioned Qt/PE32 administrative channel, finite native callback/observed pixel/DC admission, old retry-worker shutdown/join, fresh-file/higher-session candidate and same-context consumer handoff with complete PRESENT before input resumes. Synthetic integration only; original game recovery, real drivers, unobserved leases, movie interaction and failure injection remain pending.",
+      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-host-recovery.md",
         "research/formats/render-control-v1.md",
         "protocols/CONTRACTS.md",
-        "apps/qt-shell/README.md"
+        "apps/qt-shell/README.md",
+        "research/runtime/opengl-automatic-checkpoint-recovery.md"
       ],
       "implementation": [
         "apps/qt-shell/render_control.cpp",
@@ -14131,13 +14133,20 @@
         "renderer/CMakeLists.txt",
         "protocols/tests/test_contracts.py",
         "tools/test-render-control-launcher.py",
-        "tools/test-render-recovery.py"
+        "tools/test-render-recovery.py",
+        "tests/live-render-recovery-probe.cpp",
+        "tools/test-live-render-recovery.py",
+        "tools/test-render-checkpoint.py"
       ],
       "evidence": [
         "NR.command-host-recovery.pe32",
         "NR.command-host-recovery.launcher",
         "NR.command-host-recovery.queue",
-        "NR.command-host-recovery.explicit"
+        "NR.command-host-recovery.explicit",
+        "NR.command-host-recovery.auto-checkpoint-host-20261006",
+        "NR.command-host-recovery.auto-checkpoint-strict-20261006",
+        "NR.command-host-recovery.auto-checkpoint-explicit-20261006",
+        "NR.command-host-recovery.auto-checkpoint-game-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14200,7 +14209,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Complete owned checkpoint attachment to a fresh rendering session",
-      "scope": "Strict complete owned checkpoint attachment with finite state/ownership admission. Broader synthetic failure/format tests retained; bounded admission diagnostic identifies early primary layout without pixels. After an observed complete primary frame, actual-game checkpoint delivered one native frame before overflow and fallback. READY, first frame, sustained recovery and equivalence are separate milestones; sustained game recovery and external host takeover remain pending.",
+      "scope": "Strict complete owned checkpoint attachment with finite state/ownership admission. Broader synthetic failure/format tests retained; bounded admission diagnostic identifies early primary layout without pixels. After an observed complete primary frame, actual-game checkpoint delivered one native frame before overflow and fallback. READY, first frame, sustained recovery and equivalence are separate milestones; sustained game recovery and external host takeover remain pending. Administrative RECOVER now prefers the same complete-state admission before candidate claim; incomplete state falls back to fresh pixels, while claimed checkpoint faults refuse. Bounded automatic game retries preserve initialized source baselines and present three frames before overflow/exhaustion; sustained recovery remains pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14208,7 +14217,8 @@
         "research/formats/render-control-v1.md",
         "protocols/CONTRACTS.md",
         "research/runtime/opengl-command-recovery-validation.md",
-        "research/runtime/opengl-command-recovery-metadata.md"
+        "research/runtime/opengl-command-recovery-metadata.md",
+        "research/runtime/opengl-automatic-checkpoint-recovery.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -14249,7 +14259,10 @@
         "NR.command-recovery.metadata-channel-20261006",
         "NR.command-recovery.metadata-checkpoint-20261006",
         "NR.command-recovery.metadata-host-20261006",
-        "NR.command-recovery.metadata-game-20261006"
+        "NR.command-recovery.metadata-game-20261006",
+        "NR.command-host-recovery.auto-checkpoint-host-20261006",
+        "NR.command-host-recovery.auto-checkpoint-strict-20261006",
+        "NR.command-host-recovery.auto-checkpoint-game-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -25470,6 +25483,74 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.command-host-recovery.auto-checkpoint-host-20261006",
+      "kind": "native_integration",
+      "scope": "Sixteen administrative cases and189 independent GPU frame comparisons, including no-new-drawing checkpoint recovery, incomplete fresh fallback, claimed-checkpoint worker refusal and startup/timeout/collision/cancellation guards.",
+      "record": "research/runtime/opengl-auto-checkpoint-host-20261006.json",
+      "sha256": "8ee46a22c65411037caca79fa863fcffba35231ffc12555946103ba632c1d38d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-host-recovery.auto-checkpoint-strict-20261006",
+      "kind": "native_integration",
+      "scope": "Twenty strict checkpoint regressions and294 independent GPU comparisons; finite admission and borrowed/incomplete refusal unchanged.",
+      "record": "research/runtime/opengl-auto-checkpoint-strict-20261006.json",
+      "sha256": "52644afde885c43b4eab40df3c6923406e8967e98a9817ccb47c5f62d2e6a68e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-host-recovery.auto-checkpoint-explicit-20261006",
+      "kind": "native_integration",
+      "scope": "Four direct RenderRecover fresh-pixel regressions and20 independent GPU comparisons, including one-query alias continuation and candidate/ownership guards.",
+      "record": "research/runtime/opengl-auto-checkpoint-explicit-20261006.json",
+      "sha256": "5d9415413efea26dc16c67b70621b07f2d214cff503632a5aaa80b53f9c1cd80",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-host-recovery.auto-checkpoint-game-20261006",
+      "kind": "live_observation",
+      "scope": "Three bounded original-game failed-reader startup observations. Administrative recovery selects owned checkpoints for sessions124/125/126 and presents three frames; explicit CHECKPOINT plus automatic retries also presents three. Early incomplete-primary refusal, sustained overflow/retry exhaustion and original-window fallback remain distinct; no original pixel equivalence or sustained gameplay.",
+      "record": "research/runtime/opengl-auto-checkpoint-game-20261006.json",
+      "sha256": "a1be2d38e153b8c38dacfae781512b4827c0915e154982f977cbc9d0b1fe6a90",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -29538,6 +29619,44 @@
         "tests/fixtures/surfaces/yu55vq8i.bin.gz",
         "tests/fixtures/surfaces/zpfft1bo.bin.gz"
       ]
+    },
+    {
+      "id": "NR.command-host-recovery.auto-checkpoint-preview-20261006",
+      "level": "preview",
+      "scope": "Sixteen administrative cases and189 independent GPU frame comparisons, including no-new-drawing checkpoint recovery, incomplete fresh fallback, claimed-checkpoint worker refusal and startup/timeout/collision/cancellation guards.",
+      "behaviors": [
+        "NR.command-host-recovery",
+        "NR.command-checkpoint-attachment",
+        "NR.command-recovery"
+      ],
+      "evidence": [
+        "NR.command-host-recovery.auto-checkpoint-host-20261006",
+        "NR.command-host-recovery.auto-checkpoint-strict-20261006",
+        "NR.command-host-recovery.auto-checkpoint-explicit-20261006"
+      ],
+      "tests": [
+        "tools/test-render-host-recovery.py",
+        "runtime/render/host_recovery_selftest.h",
+        "tests/live-command-recovery-test.cpp",
+        "tools/test-render-checkpoint.py",
+        "tools/test-render-recovery.py"
+      ]
+    },
+    {
+      "id": "NR.command-host-recovery.auto-checkpoint-game-20261006",
+      "level": "live_observation",
+      "scope": "Three bounded original-game failed-reader startup observations. Administrative recovery selects owned checkpoints for sessions124/125/126 and presents three frames; explicit CHECKPOINT plus automatic retries also presents three. Early incomplete-primary refusal, sustained overflow/retry exhaustion and original-window fallback remain distinct; no original pixel equivalence or sustained gameplay.",
+      "behaviors": [
+        "NR.command-host-recovery",
+        "NR.command-checkpoint-attachment"
+      ],
+      "evidence": [
+        "NR.command-host-recovery.auto-checkpoint-game-20261006"
+      ],
+      "tests": [
+        "tools/test-live-render-recovery.py",
+        "tests/live-render-recovery-probe.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -29785,7 +29904,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-surface-driver-20261006.json",
-    "sha256": "e9ca00f2ec3842b1b4564794098f9101fa230b05dad3dadbfdd05f0a363bcadc"
+    "path": "research/runtime/coverage/source-index-auto-checkpoint-final-20261006.json",
+    "sha256": "9c3fa877c860f520333f8437640d85bf2e63cde8c56409d2cf4ca89b21093a9f"
   }
 }

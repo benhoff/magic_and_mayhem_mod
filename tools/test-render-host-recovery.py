@@ -43,10 +43,11 @@ def main():
     result=subprocess.run([str(binary)],check=True,capture_output=True,text=True,env=dict(env,ASAN_OPTIONS='detect_leaks=1'),timeout=30)
     (run/'control-sanitized.log').write_text(result.stdout+result.stderr);report['control_sanitized']=json.loads(result.stdout)
     subprocess.run(['python3',str(ROOT/'protocols/tests/test_contracts.py')],check=True)
-    for mode in args.case or ['healthy','repeat','exhausted','held','blocked','collision','invalid-reply','silent','exit','cancel','mutated-request','frame-timeout','startup']:
+    for mode in args.case or ['healthy','static','incomplete','checkpoint-fault','repeat','exhausted','held','blocked','collision','invalid-reply','silent','exit','cancel','mutated-request','frame-timeout','startup']:
         case=run/mode;case.mkdir();capture=case/'capture';capture.mkdir();frame=case/'frame.bin';live.create(frame,live.frame_v1.initial_header(),live.frame_v1.SIZE)
         shutil.copyfile(dll,case/dll.name);(case/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
         child=dict(env,MNM_HOST_RECOVERY_SELFTEST=mode,MNM_RENDER_CONTINUOUS='1',MNM_RENDER_NO_READBACK='1',MNM_RENDER_SESSION_ARCHIVE='1',MNM_RENDER_COMMAND_CHANNEL='Z:'+str(case/'commands.bin').replace('/','\\'),MNM_RENDER_CONTROL='Z:'+str(case/'commands.bin.control').replace('/','\\'),MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'),MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/','\\'))
+        if mode=='checkpoint-fault':child['MNM_RENDER_RECOVERY_FAULT_FOR_TEST']='worker'
         if mode in ['silent','invalid-reply']:child.pop('MNM_RENDER_CONTROL')
         if mode in ['collision','cancel','mutated-request']:child['MNM_RENDER_CONTROL_DELAY_FOR_TEST']='1'
         wine=qt=None;frozen=[]
@@ -73,31 +74,37 @@ def main():
                             if mode=='invalid-reply':struct.pack_into('<I',m,36,99)
                             if mode=='cancel':struct.pack_into('<I',m,40,1)
                         if mode=='exit':wine.terminate();wine.wait(timeout=10)
-                    want=mode in ['healthy','repeat','startup'] or (mode=='exhausted' and phase<3)
+                    want=mode in ['healthy','static','incomplete','repeat','startup'] or (mode=='exhausted' and phase<3)
                     if want:
-                        wait(lambda:sum(x['session']==phase+1 for x in progress(case))>=2,qt)
+                        wait(lambda:sum(x['session']==phase+1 for x in progress(case))>=(1 if mode=='static' else 2),qt)
                         with channel.open('r+b') as f,mmap.mmap(f.fileno(),ring.SIZE) as m:wait(lambda:struct.unpack_from('<I',m,24)[0]==3,qt)
                         frozen.append((channel,live.sha(channel)))
                     else:break
-                if mode in ['healthy','repeat','startup']:
+                if mode in ['healthy','static','incomplete','repeat','startup']:
                     wait(lambda:(case/'done-00000000.bin').exists(),wine);(case/'exit-00000000.bin').write_bytes(b'go');assert wine.wait(timeout=10)==0
                 assert qt.wait(timeout=15)==0,(mode,(case/'qt.log').read_text())
-                observed=json.loads((case/'qt.json').read_text());assert observed['ended']==(mode in ['healthy','repeat','startup']),(mode,observed)
+                observed=json.loads((case/'qt.json').read_text());assert observed['ended']==(mode in ['healthy','static','incomplete','repeat','startup']),(mode,observed)
                 assert observed['same_context'] and observed['viewport_uploads']==0 and observed['clears']>=1
                 if mode=='exhausted':assert observed['recoveries']==3
                 elif mode=='repeat':assert observed['recoveries']==2
                 else:assert observed['recoveries']==1
-                if mode not in ['healthy','repeat','startup']:assert observed['error']
+                if mode not in ['healthy','static','incomplete','repeat','startup']:assert observed['error']
                 for p,h in frozen:assert live.sha(p)==h,'terminal mapping mutated after recovery'
                 if mode!='exit':
                     wait(lambda:(case/'done-00000000.bin').exists(),wine);(case/'exit-00000000.bin').write_bytes(b'go');assert wine.wait(timeout=10)==0,(mode,(case/'wine.log').read_text())
-                    locks,unlocks=struct.unpack('<II',(case/'engine-counts.bin').read_bytes());assert locks==unlocks==(3 if mode=='held' else 41 if mode=='blocked' else 2 if mode=='frame-timeout' else 40),(mode,locks,unlocks)
+                    locks,unlocks=struct.unpack('<II',(case/'engine-counts.bin').read_bytes());assert locks==unlocks==(3 if mode=='held' else 41 if mode=='blocked' else 2 if mode in ['frame-timeout','static'] else 40),(mode,locks,unlocks)
                 with (case/'commands.bin.control').open('r+b') as f,mmap.mmap(f.fileno(),control.SIZE) as m:
                     assert struct.unpack_from('<I',m,40)[0]==1,'host did not cancel on finish/fallback'
                     if mode=='silent':
                         # A reply arriving after timeout cannot resume presentation.
                         struct.pack_into('<II',m,32,1,1)
-                report['cases'].append(dict(mode=mode,success=True,consumer=observed,immutable_old_rings=len(frozen),original_counts_equal=mode!='exit'))
+                diagnostics=(capture/'lifecycle.log').read_text()
+                policies=[int(line.split()[4],16) for line in diagnostics.splitlines() if line.startswith('command_recovery_policy ')]
+                if mode in ['healthy','static','repeat','checkpoint-fault']:assert policies and all(p==1 for p in policies),(mode,policies)
+                if mode=='incomplete':assert policies==[0],(mode,policies)
+                if mode=='checkpoint-fault':assert (case/'commands.bin.retry-1').exists() and not (case/'commands.bin.retry-2').exists(),'failed claimed checkpoint retried'
+                if mode=='static':assert [x['index'] for x in observed['frames'] if x['session']==1]==[1],observed
+                report['cases'].append(dict(mode=mode,success=True,recovery_policies=policies,consumer=observed,immutable_old_rings=len(frozen),original_counts_equal=mode!='exit'))
                 print(mode+': passed',flush=True)
             finally:
                 for process in [wine,qt]:
