@@ -1,0 +1,100 @@
+{
+  "milestone": "NS18",
+  "all_match": true,
+  "live_validated": false,
+  "reports": [
+    "working/tests/idle-display/normal-accepted/report.json",
+    "working/tests/idle-display/sanitized-accepted/report.json"
+  ],
+  "report_sha256": {
+    "working/tests/idle-display/normal-accepted/report.json": "604b5ef48e8a6cf1d6cbdcad1bedd7dfe741627e521857265105c1b297849f9b",
+    "working/tests/idle-display/sanitized-accepted/report.json": "6819d691d89aac7f66058ecce63ec4ef50a304134a3459dda83e6fe2f3d12ff6"
+  },
+  "scope": "Same native window entry point, production QTimer/elapsed clock and actual Qt mouse/button/modal Save events: installed Forest 8x8 crop and Redcap movement ANI base 0/SPR, four diagnostic views, corrected same-layer native terrain click mapping, mid-segment pause, pending move/stop admission and byte-exact fresh-process native state/frame continuation. Test-only observer pauses exact committed tick boundaries; original input/rays/cadence and live equivalence excluded. Static last-displayed ANI pose survives Stop, paused/modal Save, admitted idle ticks and fresh-window v8 restoration; movement restarts an active cursor. Original idle/action sequence selection is not claimed.",
+  "source_sha256": {
+    "apps/world-sandbox/frozen_navigation.cpp": "dce9888c436d092255579f97ffef8b897f7a9be6606fef892d07a965cbcc2e0a",
+    "apps/world-sandbox/frozen_navigation.hpp": "d2ee8416faf373418ad2455295fff82c793fd17718410bd634b3acf6ecdcaa59",
+    "apps/world-sandbox/main.cpp": "d1e3b0fc4841f0c13b1281dfdc5fcda0d97f1e0f45aca1bb5c040346ed600e43",
+    "apps/world-scene/CMakeLists.txt": "e45c451d3134a13a1fbaec215c8e470fda5ab78cd83154e1bd4dcf83c1c190c2",
+    "apps/world-scene/main.cpp": "cff183d59573752e829929e204add22d3e895450da798c3ebd6a6d8e4c7e5b66",
+    "apps/world-scene/map_navigation.cpp": "20eecea7aca4ad16b08093f6dd1cb2f206d14acc929ddad76064cb5910613de5",
+    "apps/world-scene/map_navigation.hpp": "e40b2a8021a7841c03abe2240b12e19c58525faaec776e4f76fa3112c939a4eb",
+    "apps/world-scene/map_navigation_main.cpp": "4b0cf8ded5f10483e677f91e2951e52a09380bc1b818ab3765f05d765e1f32b3",
+    "apps/world-scene/movement_controls.cpp": "79e50c5326fcd9175a5f2187ea4e2bd3f994dc4dfeb45dfe179ac104524349c8",
+    "apps/world-scene/movement_controls.hpp": "a401433ecc002623afeb1a46f16781b86b6c2615f1849f55ba39a763493500e7",
+    "apps/world-scene/orders.cpp": "46f64e2af5f7defc2cc93852738fcb04e48720d72187c448f74ad1b134805817",
+    "apps/world-scene/orders.hpp": "845ac3543b04b196801d44d89322b1359ab66b38c55fd421f7c89f70957c4690",
+    "apps/world-scene/picking.cpp": "6196b219439d8fbff7d64c0cece22a06d4b1da663d0d2abbcafa48ffc9af7068",
+    "apps/world-scene/picking.hpp": "485535566e1a7537d55be3724f7d0b73e7743b3a75323506f1394f3711100175",
+    "apps/world-scene/playback.cpp": "a8bf3565f9250b618ae6044ddb9d0d6828d69ca048d07c9f833cb6bd6f40b7e5",
+    "apps/world-scene/playback.hpp": "4c7d9b85fdddbe2c95178056cb779084b88759ca6e226741616f15033c4efdd3",
+    "apps/world-scene/playback_controls.cpp": "554b9f6442b50174480239daf76909a6400a797d183d0acfdf0bc4b06ed5ec63",
+    "apps/world-scene/playback_controls.hpp": "596ae4fb58ba5e1c6b0c78490fa26d65694317f94a10517ef67ed7944f7bc85d",
+    "apps/world-scene/scene.cpp": "79b68d892e86f5666842cb504c215c2e1a598de9ca0bf85db4cf6dfa3d98d93f",
+    "apps/world-scene/scene.hpp": "601736b6fffc82e4bdecbeaed0f80d3f361ce5df65869abd0b32a36184a15ddd",
+    "apps/world-scene/scene_canvas.cpp": "3fb4faaa5f5c749b08d58c80f0d33fcb039c2f27a53cb8684e0bdd6b8e986e4f",
+    "apps/world-scene/scene_canvas.hpp": "bb404f87b7bbcfd67561aa33fd20ac1ceccaf5b3b6487468a9980ca939b6477e",
+    "game/CMakeLists.txt": "1f3641bc45b2f0409cc2b2d1aebcd7683b0f2d3ea73fd2439a0159bdd6517a1e",
+    "game/persistence/snapshot.cpp": "140d97d013d46b73e2dd32e4837097811f77bde3b036775d882c9662959e4128",
+    "game/persistence/snapshot.hpp": "900563f38519697e2541ef0bc8d1b797ea8464c8d18a6e6571f25505ea6857e5",
+    "game/persistence/store_posix.cpp": "348c5ab6efd050bbfd510a782065d9becbf4b4b853630b9c7092a8acfa22d3df",
+    "game/simulation/movement.cpp": "4ba51faeafe133503422c917abef1f5d2aeeadaf0c56388a77833c27efc05fb9",
+    "game/simulation/movement.hpp": "8c6d2bfaaeb60bb2c1cd07bc40596ae125b6efe7a80e8fb6e8caa91bc44e991c",
+    "game/simulation/occupancy.cpp": "59ae19a64b6bfdcc7b2854572c01ba227f501a46b3c9bcd3e5809007579c9d43",
+    "game/simulation/occupancy.hpp": "5b42c11ff9ef0d44e9510e0187b28a9704c8c531002a4efeebdecd29efaf95ae",
+    "game/simulation/tick_clock.cpp": "9f7374fffc7a479ee16d43e43edb8f2a9b5837bc4c57912096f7885a1245cbb8",
+    "game/simulation/tick_clock.hpp": "74fb27cea09d92bb99b981bbdf279b3a8a48aa565a1d5ce8a40ad96d2a0fac42",
+    "game/simulation/world.cpp": "acb3724b47ee0b78352359a6fcb0b0dd01db59da7ce02414be3d2816437229a2",
+    "game/simulation/world.hpp": "1ff39b0752a44648ec044cde9e7019ea6360f64859d3d521ecb4b0c0bd06a9e9",
+    "tests/scene-window-driver.cpp": "4b81956dcc07c17dd76c50f39ebd3b6925e4bfc7f5172d7b9b0195b9fe2b14bc",
+    "tests/scene-window-driver.hpp": "a13b36f6bd90d4b190728c96090c64c8db7990b93e37c22ef11d0bef5945029b",
+    "tools/test-native-scene-window.py": "0319669d65ff96569f0441bff4ef31b3d6c1e69b8ce4d8c69f10c13faf8cb96d",
+    "tools/test-terrain-preview.py": "123d72e06b847c06f8c49fcfe50ab38ae4fda45f1b56b0be6e37dcf8b9a25686",
+    "tests/native-idle-display-test.cpp": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+    "tests/test-native-idle-display.py": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+    "tests/world-scene-test.cpp": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+    "tests/test-native-ani-motion.py": "0b611c861ee49d406332fd4db67c0e2d17c2fdb24ef5f68183ea3f0b1ac7e090",
+    "tests/test-native-segment-continuity.py": "c785af86e81eb12bd1c1d67b8f2d2d2d5e4b0de6ece9b8065cc8a580191ff703"
+  },
+  "native_window": {
+    "window_runs": 12,
+    "pixel_comparisons": 68,
+    "fresh_process_continuations": 8,
+    "same_layer_target": true,
+    "real_timer_native_window": true,
+    "actual_modal_save": true,
+    "pause_preserves_motion": true,
+    "stop_while_playing": true,
+    "stopped_body_display": "retained-static-pose",
+    "stopped_checkpoint_restart": true
+  },
+  "test_counts": {
+    "normal": 109,
+    "sanitized_selected": 9
+  },
+  "test_log_sha256": {
+    "working/tests/idle-display/ns18-normal-tests.log": "90df986158aaef073939ef950eca706ebc2c0f8e625242b1825283d839e355e4",
+    "working/tests/idle-display/ns18-sanitized-tests.log": "f629e07832269d4cd3e807c222501f971a5b4c944768bbbe26ed0eea754f6cc3",
+    "working/tests/idle-display/ns18-manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/idle-display/ns18-manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/idle-display/normal-accepted/manifest-before.stdout": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/idle-display/normal-accepted/manifest-after.stdout": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/idle-display/sanitized-accepted/manifest-before.stdout": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/idle-display/sanitized-accepted/manifest-after.stdout": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+  },
+  "input_sha256": {
+    "working/game-clean/Realms/Celtic/Forest/CFsec01.map": "69fa6e62aaf678d97cf0d8519bcbbaa783daaba75eb1e378c3ebb0f5ec369ee5",
+    "working/game-clean/Realms/Celtic/Forest/Terrain.spr": "bbff01037b19eaf97c067dc742c2b93bb29f69d4862f0c811a9e2a33fff7b65b",
+    "working/game-clean/Realms/Celtic/Forest/Terrain.ttd": "f644af06f634264786443b3fb30016d5cb4af0757aba760dde16ff2992463c85",
+    "working/game-clean/Creatures/RedCap.spr": "9e62b75682a41d15c1419010e580f3ca4e8087673f7650bfd0b0f64dec97d1e1",
+    "working/game-clean/Creatures/redcap.ani": "6af0d77f2a8a95f44ccc6d09f4330191757a584e4deb8b9417a98f8cd402902e"
+  },
+  "remaining": [
+    "Other installed crops/ANI profiles and world sizes",
+    "Original input/ray/pause/cadence equivalence",
+    "Original idle/action ANI selection and initially spawned idle body mapping",
+    "Live replacement",
+    "Blocked-edge display retention implemented but not separately executed by the installed-window scenario",
+    "Groups/factions and commander/summoned gameplay"
+  ]
+}

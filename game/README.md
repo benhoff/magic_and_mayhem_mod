@@ -353,3 +353,11 @@ against exact native checkpoint bytes and explicit-step processes using installe
 Forest terrain and Redcap ANI assets. No simulation scheduling/checkpoint fields
 are introduced. Native stopped body display remains absent after cancellation
 clears its cursors; see [scope](../research/runtime/native-scene-window.md).
+
+## Retained display pose (NS18)
+
+Owned motion records can retain a compact sequence/bitmap-record pair after
+cancellation or a new order clears movement continuation. The pose carries no
+clock or segment state. Snapshot v8 persists it and resource restoration validates
+the bound movement ANI record transactionally. States without a pose retain
+their existing minimum snapshot version. Original idle behavior remains pending.

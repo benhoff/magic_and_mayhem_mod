@@ -217,3 +217,11 @@ and checks exact fresh-window native state/frame continuation without manual inp
 Ordinary MAP clicks now declare the tile’s own standing layer, correcting the old
 `z+1` annotation. Stop currently clears the ANI display cursor, so idle/stopped body
 retention remains open. See [proof and limits](../../research/runtime/native-scene-window.md).
+
+## Native retained Stop body (NS18)
+
+Stop now retains the last displayed movement bitmap as a static native pose at
+the committed logical cell. The body remains pickable after Stop and save/reload;
+restarted movement displays its active ANI cursor. This is a native fallback,
+not recovered idle animation selection. See
+[the scope and evidence](../../research/runtime/native-idle-display.md).

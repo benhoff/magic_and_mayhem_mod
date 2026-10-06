@@ -1,0 +1,1890 @@
+{
+  "range": "394ff5b..8b8b01cc8e91cc868902112c41944b020577f4de",
+  "scope": "Read committed Git trees without executing historical code. Compare exact parent/current file hashes and canonical behavior contracts (record, implementation/test/doc hashes, builds, evidence definitions and scenario links) against retained receipts. Historical census-scope migrations are not rerun as old gates; this is separate from current staged validation and asserts neither past gate success nor new runtime equivalence. Journal is append-only and not self-receipted.",
+  "files": [
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "apps/world-scene/CMakeLists.txt",
+      "before_sha256": "e1ebff4123f4253fe4ad0be7ee6e04905a69d67d9ecc01596b8219e8c16cec87",
+      "after_sha256": "e45c451d3134a13a1fbaec215c8e470fda5ab78cd83154e1bd4dcf83c1c190c2",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "apps/world-scene/README.md",
+      "before_sha256": "199cdec7ee7490823ba29a2936bdc581f90f3d3188fa90e745069483f4d0cbb4",
+      "after_sha256": "fad61e20c7d5f33ed296554f54008e7d68f758329aed8d8b445f5b9ab3bd8be7",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "apps/world-scene/main.cpp",
+      "before_sha256": "6ca537fa39a92f738e7da29704dc2176de855a7f556eb916776156293d2f09b2",
+      "after_sha256": "cff183d59573752e829929e204add22d3e895450da798c3ebd6a6d8e4c7e5b66",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "game/README.md",
+      "before_sha256": "9a4bad770c216f4b1c1500bb499cca0cc10aa0ee9e2efbc1be871a9be6da5c84",
+      "after_sha256": "6ff7a6574a06724e2c2258f6a4ba32b200cec77a8c4a1436a56d91fdf20776ec",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "6d2736e7ba49a22c22421dfa3bd0b423c4e3a366683c8588fa77b285e12db29d",
+      "after_sha256": "6314c62888c1da59cbafd11a6c81780a3962cbb8d803dcaf15db26748cb453ad",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "d5b5a5beab98de7e1c1e22c21aab226009f0b884b465a1d0dc165cd3de79b253",
+      "after_sha256": "7c9b8cbe0e24d58b047ec0ddb408d927f93cae6ff8285d260584d7c9c6eb21a7",
+      "reviews": []
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "06f39017decb79893c919d43bb3762d50a1b875734cb46dd37ddc55beb67e41d",
+      "after_sha256": "96feb7c22446a098f9cc68b1f80bc5adc9200e9aae92142589e61b0cdc23f170",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "research/runtime/coverage/source-index-scene-window.json",
+      "before_sha256": null,
+      "after_sha256": "12d96472620fb2f0ccca6ced7d06470b0bea9371611a74a84f53e66af170c05b",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "cf5077bd43c32bb1beac54104156d4faeea999df90a4fa12855b72949f71e04a",
+      "after_sha256": "de899275251a20e8ede13e003fd5179cbd753f7f2d761df1ece2dd2caeac8634",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "research/runtime/native-scene-picking.md",
+      "before_sha256": "0853143dec966566f3471dd04c428f2b61d99b2b3a2764301eb6d76c7b909f8f",
+      "after_sha256": "b2abe19699a1e1e464767357659da59f4b51073d59231a2876250ffa48b9f117",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "research/runtime/native-scene-window-history-extension.json",
+      "before_sha256": null,
+      "after_sha256": "63116b2921cc8e9d4b81199145c56b1db8d812d9727b2f344d2485d513a86f13",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "research/runtime/native-scene-window-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "da011714836b71098bb0efee104e275fc62f76bdd2b922339328b41b9e1247b0",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "research/runtime/native-scene-window.json",
+      "before_sha256": null,
+      "after_sha256": "5fb7f62b4bd26fc5cbded3aa6e3a59eea6b7628510d4b0be41f5b3feabd79408",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "research/runtime/native-scene-window.md",
+      "before_sha256": null,
+      "after_sha256": "b211943bcb4ef39a95fc0e498615d193e57c4579cfb33a6523dd98ed6da0dd01",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "tests/README.md",
+      "before_sha256": "ad50fc9a4cf41312cb574eba9b3fb66e9d4642825468df2a600108160503ed9d",
+      "after_sha256": "edd1eeea5b3e40052efbb41ae709461009ebd4cb297724e95fcefd2ecfd47b61",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "tests/scene-window-driver.cpp",
+      "before_sha256": null,
+      "after_sha256": "4b81956dcc07c17dd76c50f39ebd3b6925e4bfc7f5172d7b9b0195b9fe2b14bc",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "tests/scene-window-driver.hpp",
+      "before_sha256": null,
+      "after_sha256": "a13b36f6bd90d4b190728c96090c64c8db7990b93e37c22ef11d0bef5945029b",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "path": "tools/test-native-scene-window.py",
+      "before_sha256": null,
+      "after_sha256": "3fd903a91a1e3e17e52fb6ea9c24926ac91b39246097e9ab65e652666bfbbd33",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "reconstruction/rendering/effect-motion-initializer/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "0cd959b4ab61b4229348079278ad9f2543f3483d7c95b8c0d12643c8a0a1528e",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "reconstruction/rendering/effect_motion_initializer.cpp",
+      "before_sha256": null,
+      "after_sha256": "e1e8df0b2727eb18e4b9d58a45f97e645482290761ab3bd8dc2700a79f8044de",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "reconstruction/rendering/effect_motion_initializer.hpp",
+      "before_sha256": null,
+      "after_sha256": "8055444144b977a2ecf1f656c4b6c9d1dbc4788b0f0a9c5ac42d1541fd353540",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "6314c62888c1da59cbafd11a6c81780a3962cbb8d803dcaf15db26748cb453ad",
+      "after_sha256": "b8be45291a572829a874a81ba4b191e3b15c66b38f7082af4dafc89570f785d2",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "7c9b8cbe0e24d58b047ec0ddb408d927f93cae6ff8285d260584d7c9c6eb21a7",
+      "after_sha256": "0333278efade220aeecc2a4908bc3b3fb544b05d2c059894ee16b450861ed8c4",
+      "reviews": []
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "96feb7c22446a098f9cc68b1f80bc5adc9200e9aae92142589e61b0cdc23f170",
+      "after_sha256": "19ae41f0a50fce594f80979047a1f39c368d4396499ce0fa314a2ee5387bdb7c",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "de899275251a20e8ede13e003fd5179cbd753f7f2d761df1ece2dd2caeac8634",
+      "after_sha256": "195ed6922dd1d5bd3bbf25450fdb560082e5c051550a47ac4004d4fec8f58240",
+      "reviews": [
+        "motion-initializer-summary-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "before_sha256": "b38487f741985d49cdfd493a8840be75f440d092f48a37f1e8a23976d479d3b3",
+      "after_sha256": "1e3bf1f56ffa9d05229c30f2c07cb4314e49e7c8e7027841e1d67bab51740429",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": "1603d114578a451e555fecee6c3de6cd4b1ab9cf47e37a2683913bed0a5893a4",
+      "after_sha256": "f4b1263081806cf396c0063888158cb5aff31f624f76dbe8e9bd55818fb5e029",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "d33ed221b1cf7c7ae4190bf592fcf0fcb432014ce322ae6b4850c4d2f113876f",
+      "after_sha256": "62d7f994305877ff04ed67a74b27728a8131f0c4fbf45a15b0407d191b3a9441",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "0ceb12e9bdcf2649b6806836f460035fe491d33af0da4d1ac158a9c6306b0bed",
+      "after_sha256": "57366eb3fe5a5a4a28c78d35a022c3adf9ca416bb8d958d9ecca36c5ea727bd3",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "3ad99b9776ace75bc656e2e15c3fb35ee2dd391ef0069e4abcd5cb0211833a87",
+      "after_sha256": "5b22a54824a5a4c81fa4ef6fb67b323cf16b3cd53885efa434f5e25e7b426718",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "before_sha256": "f33649c08aeb0005f22f13c865e41e591bd8721965a7523582bcf69802e69817",
+      "after_sha256": "54cc1b713825ac99b78eb6a202a344d5a71871aee47a02cd776c3f08f1f6027e",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "77e1e72bbcdf71b9ac247aa86c9ffd95d3d7df1fc6bcc2628456951cb4d62063",
+      "after_sha256": "7e5bb4786c774296895c0e99dc6e28e63e1ee6c3e1ceca781981e938d1aeed05",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "ab301a69259468d31958cef2462f35c5decc5536fb3727ff82f691d43ac09a61",
+      "after_sha256": "f25e69ec754fec14e0aac3e0bb3003252b78d06e7c4231e6d6486376817e83db",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-motion-initializer-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "5d696ea56c186188a013069a4ee2b35db385f0ceb7792fe1a3d75ed9ac12c98e",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-motion-initializer-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "6ac0f68ce67c6cb6df3b74d6244200f6cca0885132fdaafd0fde9fe15cc9f602",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-motion-initializer.json",
+      "before_sha256": null,
+      "after_sha256": "81727b5c421ba42373edd033f88800b6562fab4c9ff51d83a43ce168f287c6f7",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-motion-initializer.md",
+      "before_sha256": null,
+      "after_sha256": "571bba0c1c32fe9a9720145eb59515d3c265b4dec9c71ebf4b7f67ba8727b6aa",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "8a65b3cfef111bfe5a36b1a94d7eb19c0e759ede647789d2bd7bf222c8f53e35",
+      "after_sha256": "e6933748492b39d3d4c7de6a6d587ecf1acfb14e12fa11ea8cbefb3acd218537",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "3647ba063072f2389072590fbec1376ca3bb1486f582a3112a368502e377900b",
+      "after_sha256": "9b23453ac431fbddd80710f56ae179ff710d1729d2ec01789731972ba473b33e",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "038580b272d662995fd2969c412a505370115ca71352e3619e5a84501240b5a8",
+      "after_sha256": "9efb1c996b2e96b206b3104a5f78927765e8019a1422d1ae762c777135d809dc",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-trajectory-initializer-coverage.json",
+      "before_sha256": "4961a888dcb779cb88f37716858fb242e3341169407d1881a7e5f43d1f32f78d",
+      "after_sha256": "e3f3c0c1fc53739e7e33d80cd85007100147465234adf7589c4373eb13568146",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "research/runtime/effect-trajectory-initializer.md",
+      "before_sha256": "d7f9c3a9ed32c9799d61b95eae2736e94285add987827925e97737d1ef5345b7",
+      "after_sha256": "a7aa88e28bcb49d883634b62070666ff027bbad8a5bed65bc252796f827774a7",
+      "reviews": [
+        "motion-initializer-remaining-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "tests/effect-motion-initializer-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "59c55cd105fee0d23ef44ee6a2123f386b27f8728a3138c686fb707e2a455662",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "tests/effect-motion-initializer-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "a19107e901264ca2a299c553da0ab2cbb67029a8f1a82317a9be3e6b6cd2d6b6",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "path": "tools/test-effect-motion-initializer.py",
+      "before_sha256": null,
+      "after_sha256": "26166d95ab959ee6e98f81ff0a7fada62410e88b53d2edf28b6ac57417d6b115",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "reconstruction/rendering/effect-animation-selection/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "570279540247405835d559bea4020e7a61fa86c10039373ed72151ad277f5317",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "reconstruction/rendering/effect_animation_selection.cpp",
+      "before_sha256": null,
+      "after_sha256": "12e9729f797bd32f817a9704de20d47b7792f06ac8279871a0105314a5066dc0",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "reconstruction/rendering/effect_animation_selection.hpp",
+      "before_sha256": null,
+      "after_sha256": "fe952a38918089e29e339346890e82f8923b5070ab97aeea1edcd359106f41a7",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "b8be45291a572829a874a81ba4b191e3b15c66b38f7082af4dafc89570f785d2",
+      "after_sha256": "80d8cd43654a1e26955ed8fbf762d81a2dcd5b8f16db2924bf85327b3a45aefc",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "0333278efade220aeecc2a4908bc3b3fb544b05d2c059894ee16b450861ed8c4",
+      "after_sha256": "fcae6a9814bcce65f6d89ce585adac28089d04c3fbb5c58dd787aef801a21213",
+      "reviews": []
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "19ae41f0a50fce594f80979047a1f39c368d4396499ce0fa314a2ee5387bdb7c",
+      "after_sha256": "38202543d380220c6f89a04d7ff5d8bb04c4e3fa9902b376593f326323be1138",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "195ed6922dd1d5bd3bbf25450fdb560082e5c051550a47ac4004d4fec8f58240",
+      "after_sha256": "cd7d7aa116dbbf68b18b6b03b7a89080a1963a0fef058674e4ad8e81b6f79b6f",
+      "reviews": [
+        "animation-selection-summary-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "before_sha256": "1e3bf1f56ffa9d05229c30f2c07cb4314e49e7c8e7027841e1d67bab51740429",
+      "after_sha256": "d84281951587b1946de2a4a41e1c749e1d00b6d8a7dc72eeedfb4922bd80524c",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": "f4b1263081806cf396c0063888158cb5aff31f624f76dbe8e9bd55818fb5e029",
+      "after_sha256": "cf3911105ff824c9c57d8a3e6a212165221e76d525f7e2cae6de145a0ea84738",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-animation-selection-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "f04fed76f997deff089b2f40045de525700e01c4508f59def5ae5056d84542bd",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-animation-selection-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "28e9d3746169e6dc97383592d35c0e03540b961513f546fc6a10fcb620ec7d44",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-animation-selection.json",
+      "before_sha256": null,
+      "after_sha256": "cba2e45d130126c747ba49be6a9f8957854054291f98c1efcbf98d9b93de275e",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-animation-selection.md",
+      "before_sha256": null,
+      "after_sha256": "3e88dcb2955af6578692361b124bdb78fa94eaed8ccec3e28c1d7db1f828bff7",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "62d7f994305877ff04ed67a74b27728a8131f0c4fbf45a15b0407d191b3a9441",
+      "after_sha256": "3f6550f68de8a51d4dfe4ad5c49fcf35bb67c8aff6165dd00eb53476eadf09ad",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "57366eb3fe5a5a4a28c78d35a022c3adf9ca416bb8d958d9ecca36c5ea727bd3",
+      "after_sha256": "67651e119674af3026b6e2b3031c70d3547bb4e3c9f03090b45f3ebaeec6c093",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "5b22a54824a5a4c81fa4ef6fb67b323cf16b3cd53885efa434f5e25e7b426718",
+      "after_sha256": "cf49d0045c3ffcecf4162648e3fa4a5e6b502d1fa10bccca3f4c1d5d3ad39661",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "before_sha256": "54cc1b713825ac99b78eb6a202a344d5a71871aee47a02cd776c3f08f1f6027e",
+      "after_sha256": "10b43aac95d5a1f0d4c8cdb5c7ba48b69c8b57b31123212eccd02b2219bdeaaf",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "7e5bb4786c774296895c0e99dc6e28e63e1ee6c3e1ceca781981e938d1aeed05",
+      "after_sha256": "ad9dec783d20bcc0170bb8ef1bbbcdd749d9f18822030afbc490bdfb707343ab",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "f25e69ec754fec14e0aac3e0bb3003252b78d06e7c4231e6d6486376817e83db",
+      "after_sha256": "4d233a14ff08b98a74990ed8716fa02c62718cd74516af9f076227909b929b02",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-motion-initializer-coverage.json",
+      "before_sha256": "5d696ea56c186188a013069a4ee2b35db385f0ceb7792fe1a3d75ed9ac12c98e",
+      "after_sha256": "442de83d797f2ba35c9f77a966de29f416dd669007f285bb8c51f3bce4ce9cb2",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-record-placement-coverage.json",
+      "before_sha256": "cdc1f8c941a99530c19449b78d0cf030017d8d85f202f9d28aed64bee117ac05",
+      "after_sha256": "e72378a2e65ccd5bf94abd9e5c270a004e261089ab42b948a4bccabcb4994522",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "e6933748492b39d3d4c7de6a6d587ecf1acfb14e12fa11ea8cbefb3acd218537",
+      "after_sha256": "5ddaa662669c788ff0e0b5354203b8e8e1779a5899943739bd14b7ee4ef161fe",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "9b23453ac431fbddd80710f56ae179ff710d1729d2ec01789731972ba473b33e",
+      "after_sha256": "4aea24fa72ddea92d65937ae0394cf255b833de8dba0061e6a71ccb47738deb7",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "9efb1c996b2e96b206b3104a5f78927765e8019a1422d1ae762c777135d809dc",
+      "after_sha256": "4d102fe8078aff6e20ef307882f0ee5b70d7c241aaf583e5fe612554e048c280",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "research/runtime/effect-trajectory-initializer-coverage.json",
+      "before_sha256": "e3f3c0c1fc53739e7e33d80cd85007100147465234adf7589c4373eb13568146",
+      "after_sha256": "a5f31d5f85c87c0abd632b14b88616f59c3aac255b433038520fdb1e89863dc3",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "tests/effect-animation-selection-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "a37c2e59b2c784386b9cce523d379c10cb81f34417dfeab931dc7af06834ba1c",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "tests/effect-animation-selection-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "b25114fab8bc41f26f203c5acab492521f0286cce5857fd4d459593821f463aa",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "path": "tools/test-effect-animation-selection.py",
+      "before_sha256": null,
+      "after_sha256": "584ca9cb63e54b997c5a1061778fbcc72e095e61ea3b873047a223916ffbd7c9",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "24cc22df3663dd522de92011a42dfc2f9ec4184e5db7b3d86b21dbc9947c0b39",
+      "after_sha256": "0c118dd8b5f1e12d7768fee363a5d6b9012e47165406523a66c513aa568216ba",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/battle_result_widget.cpp",
+      "before_sha256": "cccfdad4a1c94498955676ea116ab8eea34605cc35c466957c87156330c8f894",
+      "after_sha256": "27b236149b933ef3dcd679fdd65f9a910cba95e1880e28866a67aac6807e5445",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/battle_result_widget.hpp",
+      "before_sha256": "149e118aa1368c4f15500e949c1b8b94337a75ea4499bae86cb38f371ff61ec2",
+      "after_sha256": "0453bbe2415bf4d97c87b1084e7d0899ab3a5fc5e319626845e087f5f431baa6",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_campaign_defeat_controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "778a953e09150345daffb024f2541d54555cbf4c18eba68e7780c3b9307338ce",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_campaign_defeat_controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "56c84313b123ae82a6829925ceb79c63644e641feb84ac74f328b0532fc9fced",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_campaign_defeat_test.cpp",
+      "before_sha256": null,
+      "after_sha256": "2d61c09ffb6606f5c654db86c260bf605b026da04afadc999d58c94b88a1faff",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_campaign_quit_test.cpp",
+      "before_sha256": "6d523a23947fd39bd30c94b9a26a94ce78a135ba996d3839cc7f84d5c7a91ec6",
+      "after_sha256": "09f6f11165d98b471ea336676537e1614eb32f544fb2faa86fb033f3f5737ca8",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "0946c10d676fc18a4e57bfffc9560abecc9c113787120644e889fb93aaf5b12e",
+      "after_sha256": "60c12021e58abce146389da4afdc424756c697ad239639a1999a485adff3b9f0",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "2c60e19e3b9ed91f91acd238b3a6e9a51d1409b525cd5263d57fe56c13e3531b",
+      "after_sha256": "6b53e83a42a7b79da9a604487614c98e0a358d6a4ccc306420b03a277fea4a96",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_menu_test.cpp",
+      "before_sha256": "6525f3ea6dcdee6ce9b32e36c3a264c10d6de23a19bc2b51cca377a7421603eb",
+      "after_sha256": "89cc91453e19f5e40b9a89cdde77fd2db08c7d056f86c50febfb9d61dbc1acd1",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_menu_test.hpp",
+      "before_sha256": "6fb8f9aaf64f2cdfe7e733b1d8db5b74b1fbc5891c9544a5f3d4638d0a698d1b",
+      "after_sha256": "bead6b6a176fe7367bb1cb675c8dd7d19b4cbcdf18c4181dcc1a03a496d71521",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "225825cd69a93ca3dcf5bb08218aba01c057ec918129d40788fa70aaa6a888a2",
+      "after_sha256": "71765dc86403a82fd2732c4200993327e2cddce6518a5654c0320cb5017d0e0e",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "b8b5ef8f2edf0c535e49a234dcd2071afdfaba5f794479d9c958759e4fb6b7ca",
+      "after_sha256": "0016c5268605dcd4db95491abd48befd28a488d0385bbe622036d6d63734cb41",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "1a2de46e95a1cab30d877d0086218aee97941a615fcfe05b645216e8820026e7",
+      "after_sha256": "0c9e85fd7dcb51a828816310becfd93b1178bf4fd2e124954eaae7d13beab361",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "protocols/include/mnm/menu_v11.h",
+      "before_sha256": null,
+      "after_sha256": "cd9a8e80df702ea904dbe15404d392896035b7ab784ceef62dee35559f27c324",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/README.md",
+      "before_sha256": "0a67c7998fcc7ad924555a656ed7167ed96f8ed09eb400e802c62f04d8150323",
+      "after_sha256": "3b68ea7bed534eee137277066f1e5db5967486f18705b9e5552cceef9f835c3c",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/campaign-defeat-engine-bridge.json",
+      "before_sha256": null,
+      "after_sha256": "04bc9c765cfc1220738b7f565a68ababeb73482ec97ca468b403b3c241994872",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/campaign-defeat-engine-bridge.md",
+      "before_sha256": null,
+      "after_sha256": "fb01bdfb26901df275a28b07d6022504103cdba7a74f56c7174248dfbe12e7ba",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/campaign-defeat-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "23f25fc42f6fe29df6a5352c5de3c4af1c648e724c7fd1af059d91fd214e06a5",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": "cb46f3e5f91a460e1148776f1e3b208354ac7e735cadcfadbb33e476879ed024",
+      "after_sha256": "35d8b255a3116cef30d5eedaf1d10a0078abcaa952c5e22a7d8564a69bf47104",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/campaign-mini-quit-engine-bridge.md",
+      "before_sha256": "448881bd7ca33f916c8041b8a79e0ab1da657809874af29589a07db2f7a8b311",
+      "after_sha256": "5f680cb0cd8db909c526f1f9ddfa67ac8264f923aff42710c7968740e66c8018",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "80d8cd43654a1e26955ed8fbf762d81a2dcd5b8f16db2924bf85327b3a45aefc",
+      "after_sha256": "51c752f8429fbedc1b51d6ce87895edac4ccf71a6d09e143b0b9b85a9c7dd5f3",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "fcae6a9814bcce65f6d89ce585adac28089d04c3fbb5c58dd787aef801a21213",
+      "after_sha256": "cda433c3fea351eba80804ae6875f0b9e5137a996b935e382d9eb29b07557687",
+      "reviews": []
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "38202543d380220c6f89a04d7ff5d8bb04c4e3fa9902b376593f326323be1138",
+      "after_sha256": "c14efe01f79b103d0b6b33c07d792128e400f2fa0078abe621e6c6705e377e60",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/coverage/source-index-campaign-defeat.json",
+      "before_sha256": null,
+      "after_sha256": "defb7d4c3a762338755a53aea700ebd94b9b9360e4bd5a4c5a752cb40a3093cc",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "cd7d7aa116dbbf68b18b6b03b7a89080a1963a0fef058674e4ad8e81b6f79b6f",
+      "after_sha256": "eb3b1c8079be8c92cf6ded41035b50c6eff03df8db34f3f1b0d05fa66805613c",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "runtime/menu/campaign_defeat.h",
+      "before_sha256": null,
+      "after_sha256": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "runtime/menu/campaign_quit_observe.h",
+      "before_sha256": "8a279e9111adb5c9ac326d0780e715ba56d3bb9fb84815519334c11c9f2e0070",
+      "after_sha256": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "runtime/menu/channel.h",
+      "before_sha256": "6b1b9970b72e60604cd217f0b802144a3ca2d271216d2a22d5bcfae3d9a3da6a",
+      "after_sha256": "c84271d4a7f16d748904b207d073823729737ff8a429c89b6f3c2dc0bde6d937",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "runtime/menu/observer.c",
+      "before_sha256": "814448f600be8b8202b75f762c93cb451538642fd062c59a51ba8cbc175551af",
+      "after_sha256": "04137d835048e078c65fffd46cf532bc273b323c05d8dcabd566ae78cebd39e1",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tests/README.md",
+      "before_sha256": "edd1eeea5b3e40052efbb41ae709461009ebd4cb297724e95fcefd2ecfd47b61",
+      "after_sha256": "a8c08144c376985a47ec8d89f25953ce660fea2686b810e8873dd45437a8ddf6",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tests/campaign-defeat-reference.c",
+      "before_sha256": null,
+      "after_sha256": "25a8ea0ab6a5bd212bd2afef128069b9ef9d4dc9e9d32973ecfebb20637488c6",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tests/menu-campaign-defeat-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "c4f88a0aba1317fca989b676c83dea90f43a96acd59efb9b4ff9323027543dc4",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/build-menu-observer.py",
+      "before_sha256": "f831783fcb547814355fd10056344d8865d22877e7b15f0c14d8305797efba5e",
+      "after_sha256": "dad8006211c093cc78cf97182fb3a604f752720879abe81be53ebac92c540322",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/export-campaign-defeat-support.py",
+      "before_sha256": null,
+      "after_sha256": "9a805c8aa9f6d7f8071ebc487721d0f8e2147f1fa6a90e948f48d6cfe45603f0",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "11ad1b5263aa09633160bd890049f3cbf48cf0b9340f1434adeec589fe3c0f0a",
+      "after_sha256": "e100b6f586a026d2845492e304b8cf627ed56b10e7b266f93401d68e3fd13ab0",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/test-campaign-defeat-bridge.py",
+      "before_sha256": null,
+      "after_sha256": "4e0e39b392792f7c296c651af7147ab17c20797f7fad80e08b93716171560496",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/test-live-qt-campaign-defeat.py",
+      "before_sha256": null,
+      "after_sha256": "e98cf2450ddae9db4ac8f1523c3dbd65f8bf09d4d29958bddb9f7ef3369b55ea",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "51c752f8429fbedc1b51d6ce87895edac4ccf71a6d09e143b0b9b85a9c7dd5f3",
+      "after_sha256": "c2f8597d405a1891bbd68fdc903d50abf09abc543da3b6fd89dbf6cb0a6feeeb",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "cda433c3fea351eba80804ae6875f0b9e5137a996b935e382d9eb29b07557687",
+      "after_sha256": "328de5acb307c7821949796b9f52226106e37f5d6a5caab153386c33d91e0dc1",
+      "reviews": []
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "c14efe01f79b103d0b6b33c07d792128e400f2fa0078abe621e6c6705e377e60",
+      "after_sha256": "7e97282c3a1298c322dcd2c9762d974223e217a0e66c34a6656fa5c6326f9c07",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/coverage/source-index-owned-session-dc-current.json",
+      "before_sha256": null,
+      "after_sha256": "83e64788deae9d8504d5394c7994f572cd90c74a091df986878430ebf407893b",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/coverage/source-index-owned-session-unlock-commit-v4.json",
+      "before_sha256": null,
+      "after_sha256": "ef5d095d2053924f45f0474184bee1efc896a3ff153e14c5d82166c96945e65d",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/coverage/source-index-owned-session-unlock-current.json",
+      "before_sha256": null,
+      "after_sha256": "7bd9b1ca644111c97f08726ce83c7d42d0911cf4dc667d7224a7c21d2569f977",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/coverage/summary-owned-session-dc-current.md",
+      "before_sha256": null,
+      "after_sha256": "0714d067a15dfb0bb702065f276f8961bea08ab34e44be31d5f4fa161e91e588",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/coverage/summary-owned-session-unlock-commit-v4.md",
+      "before_sha256": null,
+      "after_sha256": "27799d5da84473774978497c0d88e8d953ef3aa2cf1b9b8457bc73686ae6ce2d",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-live-command-unlock-regression.json",
+      "before_sha256": null,
+      "after_sha256": "84b25a9e61be22b25c856fc9089f38e430dbfbafd18c75a892e9204e9560c91e",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-dc-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "7eac2966d7c59d2038c8d4e659e2b1a5371612d7476992d99b449179a3face4e",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-dc-unlock-regression.json",
+      "before_sha256": null,
+      "after_sha256": "8e09a76c23d82e12b763d614afbb2557d5f4b8a5c85fe50bc49372aeb61c3679",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-dc.json",
+      "before_sha256": null,
+      "after_sha256": "d72ac8c0cda2798e72607315862d5c19cd2ba5a7cd8e2c25205f97c7819a88ff",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-dc.md",
+      "before_sha256": null,
+      "after_sha256": "46426ae6f6a5fa733a898470dd20003e9b2fc41cb5c5d9851e3c54659c9078c4",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-fills-dc-regression.json",
+      "before_sha256": null,
+      "after_sha256": "92a3df6ac3ee667049b91eb60e711850e836a235383684f5234ac2a4599b892b",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-fills-unlock-regression.json",
+      "before_sha256": null,
+      "after_sha256": "b4558ad018ded63b07913b1b049bc71e832b1e35038366baa0e12d5eca1bd4e4",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-unlock-history-review-v2.json",
+      "before_sha256": null,
+      "after_sha256": "377bdff2e270e9de3663667313763b1b012552c703a7c540a499a7849ad996e9",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-unlock-history-review-v3.json",
+      "before_sha256": null,
+      "after_sha256": "2d0a31a49757877794993e3bba9b39c81bea13b0e62a3152d3f888befec16dc2",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-unlock-history-review-v4.json",
+      "before_sha256": null,
+      "after_sha256": "983f8f7afd9f683de16d7ba329e76b70974930a2cd8760bbde816612e7fa2e52",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-unlock-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "377bdff2e270e9de3663667313763b1b012552c703a7c540a499a7849ad996e9",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-unlock-legacy-regression.json",
+      "before_sha256": null,
+      "after_sha256": "7ce443cb693a1bb7e2408e80f3e4b76a4726bad1bbb16862a61c6e53d41341be",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-unlock-packed.md",
+      "before_sha256": null,
+      "after_sha256": "5b1747fe2960d58c821066e50559af7c5b64f84e9c1cd59bbbf1662d22c9a9a0",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-unlocks-verified.json",
+      "before_sha256": null,
+      "after_sha256": "ea981a669d639fddd1654a1e12320c7fc7781d7f68f8f3db9bed86583cb77be8",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-owned-session-unlocks.json",
+      "before_sha256": null,
+      "after_sha256": "7d20d0da5bc7814d5802fc7808d9db6a43b30a96b0cbc3026e42626a0dcf835b",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-real-game-shadow-dc.json",
+      "before_sha256": null,
+      "after_sha256": "056e2f5a4ec06b84d10140eb00167fcfa470891307710ffaef753857268ac815",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "research/runtime/opengl-real-game-shadow-unlocks.json",
+      "before_sha256": null,
+      "after_sha256": "a6ea28cf8183a8a7d4e70ab24cead1e414809d74344d4829f94483cb219b0ea4",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "runtime/render/bootstrap_selftest.h",
+      "before_sha256": "dcd7e92c8af2fb1b4868db11aa6edaed1a71561f617d5aaa7fd4ab6134bd250e",
+      "after_sha256": "3fca231aeeb189832182d36fe85a8ed58adab8f6a133499c48a5f5b1311215c7",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "runtime/render/dc_selftest.h",
+      "before_sha256": "07af25dc8f599c624318a6af9bcdd01e79d65bd6c81e23ee07081b71d3a5e3b2",
+      "after_sha256": "123bf310df0197f17a63df26349e14a5e5757b9a903c8924ef9ac711ee7ef13c",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "runtime/render/lock_dc.h",
+      "before_sha256": "5717970196c172b56e0165aa77b33bda3b84a81d4c7630db7068bda0fb7cc39e",
+      "after_sha256": "c4c86958dffa67829bc60553c783d472b8f22a1e5cf1be6ec009aaa08a457b26",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "runtime/render/lock_surfaces.h",
+      "before_sha256": "868f26cd0a736f1d5c70d0e13a14167347563ec3a3f6cde58861d3bd35982342",
+      "after_sha256": "91fa1e4957efd6f7f0d5c8a2a55ead7fd952f253531dbbf2ea4dfa75f40f8cd9",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "runtime/render/owned_dc_selftest.h",
+      "before_sha256": null,
+      "after_sha256": "69ea01ac97f58887f9fd63614418974c9d8c925cbdde26c71117b2738fe34407",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "runtime/render/owned_session.h",
+      "before_sha256": "09560df9079a32c2894a91a6793db3bb07228bc9803db9415ed38448a0ea3afe",
+      "after_sha256": "5408d1ff62936532e6947c00f5060c5ef8f2cc253555eb86615e620650a21199",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "runtime/render/partial_lock_selftest.h",
+      "before_sha256": "ddb5c59ec8065d326171a3be974917ff1e1f8414f3c6302aeb3ad165179d9356",
+      "after_sha256": "6b9df18d4b435e6adcce961abcb060b344a1a3bbc5f19b0266786775f08c3c7f",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "tools/test-render-owned-session.py",
+      "before_sha256": "c746aa203194e4c0dc641c05fdb77635396b58fc7382b2db847cc0fb4171a142",
+      "after_sha256": "8e50eeec76e694dace7a31b43b558ab8034b28456b715a3feccc9cb5440fa7fa",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "tools/test-render-session-dc.py",
+      "before_sha256": null,
+      "after_sha256": "5ecd67ce9ac82cdf4eedfdf272819a3861466ddd585b1b3ba147f8570ed36633",
+      "reviews": [
+        "NR.owned-session-dc.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "path": "tools/test-render-session-unlocks.py",
+      "before_sha256": null,
+      "after_sha256": "893f6d6a06ed2bdeb7f24df7add3fa55018c49cd80c391533ee95a0d86e23f73",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    }
+  ],
+  "behavior_contracts": [
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "NP.checkpoints",
+      "before_sha256": "a1fe22a9f944ad9aff20f4902996ba59ea1dd32fde3b5b547c1d2c82c7380abf",
+      "after_sha256": "dc0360a7aabf942646371ddeb4359f31072f9ba200c13b088033f2facc985eb4",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "NP.map-navigation",
+      "before_sha256": "66bdede2611ab46a499c0c99377cecab63d6465ebae43c278495be330b656d30",
+      "after_sha256": "d95c9dc3fc9a704259b522f0324053898a7bf377695a4f1fc766b6e6969de18f",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "NP.move-orders",
+      "before_sha256": "8aeace91c33421af4660d44af9b8d6694bbfd9b319a6308fcadeba69b05e31da",
+      "after_sha256": "7d4b2ab9a73e7fb6efdd96f0828b168677d03d360fbfb32fcffd11d389f6eb9b",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "NP.presentation",
+      "before_sha256": "a9080a01432079b9e81ff53056da7c262089e35bd2c1b4a62a7f357f1fd4d629",
+      "after_sha256": "70f8f139744635a215d1d16c91a520ca8a65d30836cf2d57788106c6df6539e8",
+      "reviews": [
+        "NS17.scene-window-exact-staged",
+        "NS17.scene-window-recorded"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "NP.scene-orders",
+      "before_sha256": "41be700d175a7a41c0c5c73d0506ba1a35c75f6f73c531f08d2f6e888f81a646",
+      "after_sha256": "43c0bc0fa987aa4e4753dcda5cba88a5148c621b4a6325ae3de8ab95d0365e17",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "NP.scene-picking",
+      "before_sha256": "a1f444b88a862361d35a4391c6f740d3275b5a4e50e5308d64db86e308881037",
+      "after_sha256": "9bb6c000861315079c47c6aad674a811fcfa4898a2699dba85d047bb9888c738",
+      "reviews": [
+        "NS17.scene-window-exact-staged",
+        "NS17.scene-window-recorded"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "NP.scene-playback",
+      "before_sha256": "ec176e9b562e5d22d3f315a211f760b70fa0712f45e3733766e04fc3c071a80d",
+      "after_sha256": "38cb07c388b6f514512ac34f01793d3bab65af006ae7db31d85c2acebdc2b379",
+      "reviews": [
+        "NS17.scene-window-exact-staged",
+        "NS17.scene-window-recorded"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "NP.stop-orders",
+      "before_sha256": "51e835661cb6b997f1f506da43186c0eb8f123e32ca35bb3d2138319e3507b70",
+      "after_sha256": "c2d93cf69b9ac4f5e43369431ba5704d28800d7e4c3cda5620e68e1a22bfe9f3",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "NR.world_scene",
+      "before_sha256": "82dc4b6a2c33f432b99c96e9d16b4f4b4cc333b497017360995c17e23a3f926e",
+      "after_sha256": "c82f93b6ff51e757b0cd96625e6fbc739502e25204a49d5a154ac5b57c6a491f",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "bf93ad92a2c86a438f2c7c65cf5093d86b5e2550204c0a8c1aa23a8c51bcd95c",
+      "after_sha256": "40d74822a4e6d60cb6c0806a72e3c8fcd75718ef395deb0d1e3e4209390989f6",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "a2c9ea234f872f41ed7902939048457aeedb45c1",
+      "id": "WORLD.owned",
+      "before_sha256": "41844f4be6283f6a78248657327724eec7b52cad0cba93b6dcae87fcd44d3c36",
+      "after_sha256": "960be623d79e0ed3dfbb8ea1c41d26b18044f7c87a16024485d4b2d425312b1d",
+      "reviews": [
+        "NS17.scene-window-exact-staged"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "id": "TL.effect-motion-initializer",
+      "before_sha256": null,
+      "after_sha256": "5b55a0755a2433178c23138f30bf4512a5b887e9e1d821972edc5b50c28038ea",
+      "reviews": [
+        "motion-initializer-recorded-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "db96e8faff47efd3bf7767f950197d9505ca09243c86c95d6131c930a9965c3d",
+      "after_sha256": "10b638d7404ee75267309870df3502d9b2bf37e4a6edb63b8572be9e220c3773",
+      "reviews": [
+        "motion-initializer-remaining-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "1b931729f50bdf4b0bc8cc0946bea6a15f9c1301",
+      "id": "TL.effect-trajectory-initializer",
+      "before_sha256": "dd46eea5fb1b68175e75cb04d0de4a153167386b530575e39a631ec1cd68f9a3",
+      "after_sha256": "e73cfd2f53d112a4f901aacbb938ecfeb7539d844817f08739dc124c5d110e94",
+      "reviews": [
+        "motion-initializer-remaining-a2c9ea2"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "id": "TL.effect-animation-selection",
+      "before_sha256": null,
+      "after_sha256": "ebad1f05ad4f2935d81d2134d3100b60453314fd70344f94c72e4b7d28ec89d6",
+      "reviews": [
+        "animation-selection-recorded-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "10b638d7404ee75267309870df3502d9b2bf37e4a6edb63b8572be9e220c3773",
+      "after_sha256": "b76f13ac583a168c05318610f5e666d7f2fac8b4048c0844f38a1b74e8e2be6f",
+      "reviews": [
+        "animation-selection-remaining-1b93172"
+      ]
+    },
+    {
+      "commit": "e0b80d1bf82e83b996426ea35197ca5cfbabe9e7",
+      "id": "TL.effect-type-setup",
+      "before_sha256": "72e14819776449849577bc93e02d44c2dcf4412fad3e0724f6ab49f970a59563",
+      "after_sha256": "553b61761733adb1a9d7387b2c9918d2afd4cc714ebed07998d6cd9b350a2be8",
+      "reviews": [
+        "animation-selection-remaining-1b93172"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "BR.battle",
+      "before_sha256": "9f1b32411589b87e3ee09526824bede75706f2563b4e0aad4603467a8a3ffb65",
+      "after_sha256": "78bb7e14c2730c1fddb2a58aa11fc3656b769523bddaae67a6f18f01f7d5c1db",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "BR.main",
+      "before_sha256": "3d6e42e93329730c16efc3eea73b6eedf568db53e81456feb9c5c0613e226926",
+      "after_sha256": "4ff742e853abb882f381d9f297e2b08fa98811a6e623ff17647d3089a1ed527e",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "BR.mini",
+      "before_sha256": "c2171ea39f3241307a8bec202b1c6e5cb25267745556af76d515ad35814aa2b8",
+      "after_sha256": "98b4e645572687839d233557ad8d35b7fa70010ad3d4140b39ec9c8a085174a0",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "BR.result",
+      "before_sha256": "ab62304fd167925b4854e97db878b07f6cfa0e9374ca81652fc8d16a80c92579",
+      "after_sha256": "fb1f77c289c6ac42bfb91c348fc1f6a4af60817e9ea0d206aa4ed72d5aa00675",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "BR.spell",
+      "before_sha256": "547c19ca366d854b67d7dfa5ce9333e7bf01a52c66b1d573c5108ba05eadb2f7",
+      "after_sha256": "95226043da40037bbae10e7885178f68d6ff7a7fcab355cf65962cd912357b29",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-defeat-report",
+      "before_sha256": null,
+      "after_sha256": "67fcf3270e173d0d633df2b21171b0bce47c5988c0e80bd78f469df055909fa2",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk",
+        "campaign-defeat-ui33-execution-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-mini-cancel",
+      "before_sha256": "96d39ab0bdf637651fc0c2cfe9be981353712a6fd5d5a50a52bf712384d4b257",
+      "after_sha256": "8411df886ff61587658278729aa4f474b112611b99c6d09298a830da21dc9cd5",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-mini-lifecycle",
+      "before_sha256": "518c43f8bdc6d33c3fdf84e92f22dd4619455cb997454afbf1adcc339b83a945",
+      "after_sha256": "2dbf477753699ad04d66fa326cad6d9c701b6e6e54aed4463f916aeacd3979bb",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-mini-quit",
+      "before_sha256": "e8362f346ef03fc648cf03f406a4c6f55df3b611ca78790c02f2e9ab8c102f52",
+      "after_sha256": "51bced3ffccb76d504f4b91840fd03c6dea276e29cf4be5610dde8fa785d68c0",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-mini-quit-lifecycle",
+      "before_sha256": "2971db91e945d2f80e6065847ecb595c871ac5149aaa5be45474c5dae5b1af8f",
+      "after_sha256": "b4127933579e58c2fe7eefb0449e97b16b528dc4ea55335221b308e33e562653",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-world-handoff-observation",
+      "before_sha256": "11510d5f5586fe17481dea4bb7e71b10ceff37224b43fd90cb484064850f36e1",
+      "after_sha256": "25411e448858c2c8da3feb864b51bcd497771b4a35cf65c566d4ef01734682ae",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.realm-observation",
+      "before_sha256": "2007576987e1b53bd26271c18d2c3aa806e55fdce476f5d11e32ca87fdc8685d",
+      "after_sha256": "f1a4edf6008c306a90ef8d00543443165be4f9f49dfd59c8cc80a52fcfcfe241",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.region-entry-bridge",
+      "before_sha256": "f8e002e2ce7c6b6cb6825ac96ce87a40552679b70fcb5f9885b027e9402fc2dc",
+      "after_sha256": "4f94d8f0ac47721c9059f363aeedc8cbec6d2001f49d8d156881f58c3a3c2ee4",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.region-entry-enter",
+      "before_sha256": "ab32156d8643cf27ffdf3c5d7e4239707edecb2a7b46c22aa6605bfa4de8a378",
+      "after_sha256": "1242f62d27553c0c1721babadd971c499051d5d781e11e30355859c81ee3b823",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.region-entry-observation",
+      "before_sha256": "365efa07f149fc79fcebf8d87955f365af6eaae43849ece8d66144bd62957666",
+      "after_sha256": "140ef00c4e41d4b2477302f2bfe48dde3a88aeb2fd913e3e88e95c1bcddb00e4",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "HOST.session",
+      "before_sha256": "a7a3f1824a4061a49eb7c89d2ce282fc9e6009a2b1cef3bad7169e70ca11dab0",
+      "after_sha256": "54ddeab0985a7921ad06fccef4ae6afd27a8a5f10f0b3396c7cfb867d8a01df3",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.campaign-defeat-policy",
+      "before_sha256": null,
+      "after_sha256": "1efd161326ecbd2cd2a3e522a422dc1adf73bb8ba47d846148453a7e1aac6086",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk",
+        "campaign-defeat-ui33-execution-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.campaign-mini-cancel-policy",
+      "before_sha256": "c304208da7a609f1cbff082421d82195511dae0af210178acc966b2360d7ed5a",
+      "after_sha256": "8d707fb456b2849fae87194ab1da1fb12443f8c6a76ced31af9c86f862527b48",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.campaign-mini-quit-policy",
+      "before_sha256": "69941cf7a6b792f995116d2e93926bbb9e71e2586627ec8caeded36e951a230e",
+      "after_sha256": "4afcb3b2200e40a4be971c0612b8901a33dda7bb1c2a4b7e17b9fc9f2e7499e4",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.preferences-draft",
+      "before_sha256": "3a96ef7d30abacc8be8197c87ccee3c3172351d9ac63dfc49b5a8cb2981f26f5",
+      "after_sha256": "93688171490e14591a3886267175ef8abc84b40c9e398d83fc1efbd2c603dfe8",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.preferences-persistence",
+      "before_sha256": "482bfa217fa2367d1439027a6d107cf607c7a1c3be766dea27d5d9c9b2f78a02",
+      "after_sha256": "4ad663076b5f1c16748095405184ec6b4e6ce6a1615d52d4b34f4c035e8eca7d",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.region-entry-fresh-policy",
+      "before_sha256": "e3def8ab6ad9a58c11dae65d61463d93c879ef9f4afc5901393b77fce5c9c8b3",
+      "after_sha256": "98200f7c9e535cd485357976b1756ab6de718bc46b6af1fef1d908ae25e1acd8",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NR.gpu-presentation",
+      "before_sha256": "15bd6ab7c70630dc540e18367708444c43ff781a2e8fe801f201b647871ef5b9",
+      "after_sha256": "51e17340deedf84d767decdeace44768607cde793ffe9628f296ac62028e2ad5",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "PR.apply",
+      "before_sha256": "38fb0d595d67f0c3d755aa3cd09be1b178622f40ec88d741594d646677ad2ece",
+      "after_sha256": "8c04f971ff220e51bb58076a4376aef00827d846300d376a56daec93bedbcc1d",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "PR.audio-preview-cancel",
+      "before_sha256": "07a5e787c8e4cc4638d8ac90d806c1461d9327e49891856a36bb638587dbd7b8",
+      "after_sha256": "790f2cf13767603c6d2b6f48254d586b54fa029ddc52bc471a6a2b9a9febc8ed",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "PR.control-admission",
+      "before_sha256": "e134af89a4d4bb44b71acca44fb16dea0522913cc7c1bd56312532f2c7662c5a",
+      "after_sha256": "d72e6628fadfbad0364ae0b2471ea4b462299eb6d77915f97e38dae23f0014cf",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "PR.display-rebuild",
+      "before_sha256": "b30bb333a072d0deaff129a43ee1096c47ddbd38de43836d75e45db7882de403",
+      "after_sha256": "e6dbcbe896bf4b9d7596083c78113b9cf40a7eae00b146f79c9e8cabedd9c1b4",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "PR.main-entry",
+      "before_sha256": "7ad7c3b7fea34eb4f3b73f34ea7ecdff0de36ea3985a0401d04246d34934aebc",
+      "after_sha256": "4245a0a5766389a783f4dcc05613fd8b73841b591b5611a50c9a541ac62f34ac",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "40d74822a4e6d60cb6c0806a72e3c8fcd75718ef395deb0d1e3e4209390989f6",
+      "after_sha256": "2e6ce3978426cd55104564a7a35a4ae3d9dffa7b4f4382be539a864bd019b873",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "UI.battle_result",
+      "before_sha256": "696f016f209b7b443cbb2607e43763571b281dc4998f926a681ddc9a6a6bf8f5",
+      "after_sha256": "9bb6061667d602c40d657167eb3ade89966690a1d3c15018b383485ee5c89258",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "id": "NR.live-command-transport",
+      "before_sha256": "cf6595c2e2390ee45ff804db2b3f72457f76bb0efe0628a3c8d323eea9c385dd",
+      "after_sha256": "666f61f748f652e1cee380824b16bb0c5f14979fb5b6b6a336bcb332894e12f2",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.recorded",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.recorded-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4",
+        "NR.owned-session-unlock-packed.recorded-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "id": "NR.owned-session-dc",
+      "before_sha256": null,
+      "after_sha256": "fe4c5f7220d337bbd4ea78cd744374f1703e0efc26d9468ae44514a82b81e0ef",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.recorded",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.recorded-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4",
+        "NR.owned-session-unlock-packed.recorded-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "id": "NR.owned-session-fill",
+      "before_sha256": "71b132b32464bfc5f84c4a7271822c32a6c7e754263b8491c09860dfd14b94a1",
+      "after_sha256": "a87efd628881b3448d139112643f3c0d654e8c5596f1545484ed804b03577b96",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.recorded",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.recorded-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4",
+        "NR.owned-session-unlock-packed.recorded-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "id": "NR.owned-session-unlock-packed",
+      "before_sha256": null,
+      "after_sha256": "5c8cdc391c42ecfce94e2303c7e3d6f36858d6d5807ce9cfdd3c5f3cd81282ee",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.recorded",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.recorded-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4",
+        "NR.owned-session-unlock-packed.recorded-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "c987aee06ac972009f27bc3108a091fc0944a60e632e0ffbfdb07c932bcc74c6",
+      "after_sha256": "bd3af49a937df00b0d8538d1f95a71553118cd8035779a8cf227dec866000c86",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    },
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "id": "RT.render",
+      "before_sha256": "75dac20d4630e8ac8b8962d0c8f1040d17f46b09cf5ddbbb6e87223b124e08c1",
+      "after_sha256": "0dd3342a50a028e40b32f7c8b5ad6a2cb180b2a75fce9a1acc965f44623a660f",
+      "reviews": [
+        "NR.owned-session-unlock-packed.exact-isolated",
+        "NR.owned-session-unlock-packed.exact-commit-v3",
+        "NR.owned-session-unlock-packed.exact-commit-v4"
+      ]
+    }
+  ],
+  "unmatched": []
+}

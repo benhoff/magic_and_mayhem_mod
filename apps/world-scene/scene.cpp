@@ -20,13 +20,10 @@ reconstruction::AnimationOffset project(game::Point p,const Camera& c) {
 std::optional<assets::AnimationRecord> displayed(const assets::Animation& a,const game::Entity& e) {
     if(!e.motion) return {};
     const auto& m=*e.motion;
-    const game::AnimationCursor* cursor=nullptr;
-    if(m.fine && m.fine->animation) cursor=&*m.fine->animation;
-    else if(m.previous && m.previous->motion.animation) cursor=&*m.previous->motion.animation;
-    if(!cursor || !cursor->displayed) return {};
-    if(std::uint64_t(cursor->sequence)+1>=a.starts.size()) throw std::invalid_argument("Scene ANI sequence out of bounds");
-    const auto first=a.starts[cursor->sequence],end=a.starts[cursor->sequence+1];
-    const auto index=std::uint64_t(first)+*cursor->displayed;
+    const auto pose=game::displayedPose(m);if(!pose) return {};
+    if(std::uint64_t(pose->sequence)+1>=a.starts.size()) throw std::invalid_argument("Scene ANI sequence out of bounds");
+    const auto first=a.starts[pose->sequence],end=a.starts[pose->sequence+1];
+    const auto index=std::uint64_t(first)+pose->displayed;
     if(first>=end || end>a.records.size() || index>=end || a.records[index].opcode!=0)
         throw std::invalid_argument("Scene ANI display out of bounds");
     return a.records[index];

@@ -36,6 +36,8 @@ struct AnimationCursor {
     bool active=false;
     std::uint32_t delay=0,elapsed=0,repeats=0,breakFlag=0;
 };
+// Static visual reference only: no animation time or movement continuation.
+struct DisplayPose {std::uint32_t sequence=0,displayed=0;};
 struct AnimationBinding {
     Bytes data; // Owned ANI bytes, decoded only by the app navigation adapter.
     std::uint32_t sequenceBase=0; // Explicit caller-selected directional base.
@@ -68,7 +70,9 @@ struct CreatureMotion {
     std::optional<SegmentHistory> previous={};
     std::uint32_t segmentTicks=0;
     bool terrainMotion=false; // Explicit v6 terrain-height/setup policy.
+    std::optional<DisplayPose> pose={}; // Native last display, persisted in v8.
 };
+std::optional<DisplayPose> displayedPose(const CreatureMotion&);
 struct Entity {
     Family family=Family::creature;
     std::uint32_t type=0, owner=0;

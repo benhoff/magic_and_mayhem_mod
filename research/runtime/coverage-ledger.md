@@ -879,3 +879,16 @@ Evidence and pending boundaries are in
 idle/action sequence selection and initially spawned idle bodies remain pending,
 with no original comparison or live replacement promotion. Historical NS17
 records remain unchanged and can be source-stale.
+
+### NS18 — owned static display after native Stop
+
+The native scene retains its last displayed movement bitmap after Stop clears
+movement continuation, at the existing committed-cell Stop position. Snapshot v8
+preserves the compact pose; resource rebound validates the directional ANI bitmap
+and rejects malformed references transactionally. Reorders use the pose until
+an active display takes priority; cleanup/release/reuse clear ownership.
+Evidence and pending boundaries are in
+[native-idle-display.md](native-idle-display.md) and its JSON record. Original
+idle/action sequence selection and initially spawned idle bodies remain pending,
+with no original comparison or live replacement promotion. Historical NS17
+records remain unchanged and can be source-stale.

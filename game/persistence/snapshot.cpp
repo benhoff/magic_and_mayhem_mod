@@ -45,6 +45,7 @@ void motion(Bytes& b,const CreatureMotion& m,unsigned version) {
         if(m.previous) {word(b,static_cast<std::uint32_t>(m.previous->direction));word(b,static_cast<std::uint32_t>(m.previous->vertical));word(b,static_cast<std::uint32_t>(m.previous->category));fine(b,m.previous->motion,version);if(version>=6) point(b,m.previous->origin);}
     }
     if(version>=6) b.push_back(m.terrainMotion?1:0);
+    if(version>=8) {b.push_back(m.pose?1:0);if(m.pose) {word(b,m.pose->sequence);word(b,m.pose->displayed);}}
 }
 struct Reader {
     const Bytes& b;std::size_t p=0;std::uint64_t budget=0,charged=0;
@@ -78,6 +79,7 @@ struct Reader {
             }
         }
         if(version>=6) m.terrainMotion=flag();
+        if(version>=8 && flag()) {DisplayPose p;p.sequence=word();p.displayed=word();m.pose=p;}
         return m;
     }
 };
@@ -93,6 +95,7 @@ Bytes encodeSnapshot(const State& s,const Limits& limits) {
     }
     if(s.animation) version=std::max(version,5U);
     if(std::any_of(s.pending.begin(),s.pending.end(),[](const Command& c) {return c.operation==Operation::stop;})) version=7;
+    for(const auto& slot:s.slots) if(slot.entity && slot.entity->motion && slot.entity->motion->pose) version=8;
     Bytes payload;
     word(payload,s.sequence);word(payload,s.tick);word(payload,s.phase20);word(payload,s.phase90);word(payload,s.expansionBudget);
     blob(payload,Bytes(s.map.begin(),s.map.end()));blob(payload,s.campaign);blob(payload,s.systems);
@@ -120,7 +123,7 @@ Bytes encodeSnapshot(const State& s,const Limits& limits) {
 State decodeSnapshot(const Bytes& b,const Limits& limits) {
     if(b.size()<24 || b.size()-24>limits.bytes) throw std::invalid_argument("snapshot size outside limits");
     if(!std::equal(magic.begin(),magic.end(),b.begin())) throw std::invalid_argument("invalid snapshot magic");
-    Reader r{b,8,limits.bytes,0};const auto version=r.word();if(version<1 || version>7) throw std::invalid_argument("unsupported snapshot version");
+    Reader r{b,8,limits.bytes,0};const auto version=r.word();if(version<1 || version>8) throw std::invalid_argument("unsupported snapshot version");
     if(r.word()!=b.size()-24) throw std::invalid_argument("snapshot size mismatch");
     if(r.word(8)!=hash(b,24)) throw std::invalid_argument("snapshot checksum mismatch");
     State s;s.sequence=r.word();s.tick=r.word();s.phase20=r.word();s.phase90=r.word();s.expansionBudget=r.word();

@@ -12910,6 +12910,1023 @@
           "NR.live-command-transport.unlock-regression"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "00a6e8fa6b628d7f4a7e7182b2f1c49ffe32ede9cd2691e64e2e45b3961f8071",
+          "before_sha256": "705b9f4a8fd3d74f72bbf86bc08483fbde3154c71a46dc817ba34eb81d62d53d",
+          "id": "MV.ani-forward"
+        },
+        {
+          "after_sha256": "29400771471ec338ff1bc9c1080df3168e8b9e179dcd3cc1481edec567546be3",
+          "before_sha256": "ad754f22e687c4bbbc20aaba916f5ac956eff811f902e80c900aeefa44603f53",
+          "id": "MV.event-0"
+        },
+        {
+          "after_sha256": "dbfcc2926f09490746032ba5f4e2ec080341e3d4b34003d696f1362577da8622",
+          "before_sha256": "e7bb85897655cda068269a49426f18f740a6b30dfd4f90f3174e01680ff00209",
+          "id": "MV.event-2"
+        },
+        {
+          "after_sha256": "8b8275328b98765f7ca0fbffb83a0158da0ace9c288bfe28ac30be676d57984e",
+          "before_sha256": "6526623c0fc4a7eaa2f119fd9d4101f14e6134e82cdb1255cd9b6b2dcebe9896",
+          "id": "MV.fine-motion"
+        },
+        {
+          "after_sha256": "82b93399f16ce01830119ec407016bb3719b53ce21e1ca8b9750711a99500ed3",
+          "before_sha256": "24330123218444b254b3e56308b1633af93aaf28bb4adf76c6bcf5d8e3b32f91",
+          "id": "MV.legality"
+        },
+        {
+          "after_sha256": "b741d286bcf42f9e3ed4d6c88a66517ff813f484c78aae25c8230c4a04d9fa95",
+          "before_sha256": "53de3ef2eae1ebfa71f60d2d7ad09d7c935a7941e0601ac85b1d5c4116871771",
+          "id": "MV.ordinary-terrain-height"
+        },
+        {
+          "after_sha256": "4da0f132953ed23155ffb52b2bda2afe71fd99975789beba78919778700d42b5",
+          "before_sha256": "08cc39df6ce216c3575682d82338d29afa324897eba811a8b51c4e61511adefd",
+          "id": "MV.planar-setup"
+        },
+        {
+          "after_sha256": "c9ecca43aa365932f6fcbcefee08093b147fac877195ad1d08c71c28f10b3aaf",
+          "before_sha256": "d68d20d3cedf5ce2567fb4b786d233d5da02b3152bb1ee7097ce884552a0edc7",
+          "id": "MV.request"
+        },
+        {
+          "after_sha256": "37c1ca5ce0c565b59c7f4884b19555ec9df3bc598b1d531ba644f4735a023a02",
+          "before_sha256": "68fc1767d3a5ea0dd89536a88de1f7d48a19610b4be575aad3c935b1f39c5884",
+          "id": "MV.route-consumption"
+        },
+        {
+          "after_sha256": "48f9d185333d6f81b2570de3e978424bddc4eb7e961a9e840ea563f8ebe33a4c",
+          "before_sha256": "94d5aeac022dbe9078cf4616907b631b59e8c64e8d2d3928404d540e154adb1a",
+          "id": "MV.search"
+        },
+        {
+          "after_sha256": "3e8d862ed72bcc70cf8c205eeb18280e86b063a978144a00df723fa275600f80",
+          "before_sha256": "a1a3c135b93f004645f9fa1df1cce72c66152796c3043061b41a29d99d172982",
+          "id": "MV.vertical-setup"
+        },
+        {
+          "after_sha256": "4713a1b6cce3b8f7c54ab44216afc158a8aeb76400ae34992db3d919b31297af",
+          "before_sha256": "dc0360a7aabf942646371ddeb4359f31072f9ba200c13b088033f2facc985eb4",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "51c5aad80124f0ad44886f119c73f1bc2e97fdad6aaac26c3ddb517155143eae",
+          "before_sha256": null,
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "5393e144b581a388de8aab1b51a5145a5c8317154d6e2378cfc99ffd56907606",
+          "before_sha256": "d95c9dc3fc9a704259b522f0324053898a7bf377695a4f1fc766b6e6969de18f",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "30a015442173000fff23f5a6e524e65e8b60ac3d3bd3def07cffd7d970d1a2ee",
+          "before_sha256": "7d4b2ab9a73e7fb6efdd96f0828b168677d03d360fbfb32fcffd11d389f6eb9b",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "4c53bba144581f25b38373dbb87a029d04fdb58d9cbde2baef5399fbb45651b1",
+          "before_sha256": "009cdd30e942bc3b0c7dc4caa43dbbe4b3965c2e6671ce9d62c7099b9aadd5f4",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "fcb5cb25ba5f0d2b8494cd8ef7c472806ea21d21617e7cc58c1ce45011917f28",
+          "before_sha256": "70f8f139744635a215d1d16c91a520ca8a65d30836cf2d57788106c6df6539e8",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "fbc07add5e7e090110493585222e3e5403492d94a5f04dd9740ea1f367b474fa",
+          "before_sha256": "9bb6c000861315079c47c6aad674a811fcfa4898a2699dba85d047bb9888c738",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "855902ae1528a45e0d586c13534aad95526005f78c87217030a3b213f217dab0",
+          "before_sha256": "38cb07c388b6f514512ac34f01793d3bab65af006ae7db31d85c2acebdc2b379",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "ca94c8ad8170b32360db73b4e3d999f8d789286d4fc9d2b2f11113a471357a96",
+          "before_sha256": "816aa88d7f3a183caea9b02b1be066665077e1bdb14affdbd6c8820ff9098b37",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "9f298a5c572286760914790c04e750b532c3123abccc55388e844062a097c4f8",
+          "before_sha256": "c2d93cf69b9ac4f5e43369431ba5704d28800d7e4c3cda5620e68e1a22bfe9f3",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "a4cdf72e7dba0b0c8ab635c6013c6c06388b8794b8d43c08a4d8987c7a87c052",
+          "before_sha256": "c82f93b6ff51e757b0cd96625e6fbc739502e25204a49d5a154ac5b57c6a491f",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "274a2c3ed68a534542ebaf3367ed54b514eb9ef7108e8b0ec6f295fe8207f098",
+          "before_sha256": "40d74822a4e6d60cb6c0806a72e3c8fcd75718ef395deb0d1e3e4209390989f6",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "9423c4f972b154626b253180cae120c4cab13d6d4ac02a7349f0e0c904caf1c9",
+          "before_sha256": "960be623d79e0ed3dfbb8ea1c41d26b18044f7c87a16024485d4b2d425312b1d",
+          "id": "WORLD.owned"
+        },
+        {
+          "after_sha256": "525dee124e041d771b5be2e046648bf6af668728b0b141f390520409322624cd",
+          "before_sha256": "3a0d4c7856a5cb1ff32ffb5762826b6381338a7271910ef0bb84e21a3bfcdb06",
+          "id": "WORLD.sandbox"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "dce9888c436d092255579f97ffef8b897f7a9be6606fef892d07a965cbcc2e0a",
+          "before_sha256": "50d0e1c2b2d5fb9a6bbc54b429db4a575b9a18b7cd90875c7fd32c4329e180b2",
+          "path": "apps/world-sandbox/frozen_navigation.cpp"
+        },
+        {
+          "after_sha256": "575c6caf34642b360988694923c99c87f45acc7a3ae6159e2d1d428cdb003d3a",
+          "before_sha256": "fad61e20c7d5f33ed296554f54008e7d68f758329aed8d8b445f5b9ab3bd8be7",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "79b68d892e86f5666842cb504c215c2e1a598de9ca0bf85db4cf6dfa3d98d93f",
+          "before_sha256": "7f5591f3b135d005c480e867e7872e9610c7354052f0126ba8b84f15e38f7c3f",
+          "path": "apps/world-scene/scene.cpp"
+        },
+        {
+          "after_sha256": "1f3641bc45b2f0409cc2b2d1aebcd7683b0f2d3ea73fd2439a0159bdd6517a1e",
+          "before_sha256": "44b579b593efc98663eb3c1ca4fe169af88ddb2ef4eb6248dea29cd1b8fee326",
+          "path": "game/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "b4733ffbad53c90048a6ae9ab7035d6c3f9a834b318a5a7c3916287cfb54ca06",
+          "before_sha256": "6ff7a6574a06724e2c2258f6a4ba32b200cec77a8c4a1436a56d91fdf20776ec",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "140d97d013d46b73e2dd32e4837097811f77bde3b036775d882c9662959e4128",
+          "before_sha256": "63a5da14c55d1255fe53ad35d04999e9ca68dda2d597bd559f4415212594f9cb",
+          "path": "game/persistence/snapshot.cpp"
+        },
+        {
+          "after_sha256": "4ba51faeafe133503422c917abef1f5d2aeeadaf0c56388a77833c27efc05fb9",
+          "before_sha256": "e85f5c509b4b132eb4019188b73a0d11301957731c981dcd9b035e13b6dcfd78",
+          "path": "game/simulation/movement.cpp"
+        },
+        {
+          "after_sha256": "8c6d2bfaaeb60bb2c1cd07bc40596ae125b6efe7a80e8fb6e8caa91bc44e991c",
+          "before_sha256": "d99af9c7f7acfdf52f6b09ee10a717479475af962768ec4a7d8458bf1fe82cc4",
+          "path": "game/simulation/movement.hpp"
+        },
+        {
+          "after_sha256": "acb3724b47ee0b78352359a6fcb0b0dd01db59da7ce02414be3d2816437229a2",
+          "before_sha256": "019458d31ce835a1ef7b17d2bd0b6431f95beb7cbbeff16b9d7f0e1f35037251",
+          "path": "game/simulation/world.cpp"
+        },
+        {
+          "after_sha256": "1ff39b0752a44648ec044cde9e7019ea6360f64859d3d521ecb4b0c0bd06a9e9",
+          "before_sha256": "51564429ada9da7aca99076e58bf4cd41c5ab300ff202e3e6a8f5f31c62c77f3",
+          "path": "game/simulation/world.hpp"
+        },
+        {
+          "after_sha256": "ab1f5554b1ce033942084265fd0d3a8c102c95f525561717d2159a0b8a894df4",
+          "before_sha256": "95661a33a19b06e6dc66500c856165cabdb33d2b4c876e27464f2df3661a83a4",
+          "path": "research/formats/native-world-snapshot.md"
+        },
+        {
+          "after_sha256": "f4ebb19666bafb2ba1222bd0917401cc5362f81fba15e9bb30213d56b098084b",
+          "before_sha256": "80d8cd43654a1e26955ed8fbf762d81a2dcd5b8f16db2924bf85327b3a45aefc",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "2dccd9d7f8af93cd1f66e467a7c9c4923fa073fd411eabfa5687f3508d9c14ed",
+          "before_sha256": "38202543d380220c6f89a04d7ff5d8bb04c4e3fa9902b376593f326323be1138",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "256a5fca2c71a1c8fd5f1b8621dfdf10e3a6ce8399ef71c1dcf804e2ada7200f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-idle-display.json"
+        },
+        {
+          "after_sha256": "615f4d0d2299dab1db36d0064fe8569d63f601927354e912c6da6b8b9fa0b1ea",
+          "before_sha256": "cd7d7aa116dbbf68b18b6b03b7a89080a1963a0fef058674e4ad8e81b6f79b6f",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "efd21912fc6ed2a8b7b2b0816f58bb5dd1b0856627a4ee2e4c32c4fca495944a",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display-history-extension.json"
+        },
+        {
+          "after_sha256": "6a152ed9224e8480270ed139ffc0e0e8e9c0d62589a95d32b7c685daf8529491",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display-history-review.json"
+        },
+        {
+          "after_sha256": "5a9e56b1cc479b3fb96243f898b15fb920797f4d4d9ad833c04590a1fc4c858b",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display.json"
+        },
+        {
+          "after_sha256": "13eff25fb70b675bd3e7e94d27f0bdfd600727f3f2d0d0d71739fe3169e0e9f8",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display.md"
+        },
+        {
+          "after_sha256": "662bef3e758b4734a8577d248461893af3933745065d4987c6b37a04bd733f5b",
+          "before_sha256": "edd1eeea5b3e40052efbb41ae709461009ebd4cb297724e95fcefd2ecfd47b61",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "before_sha256": null,
+          "path": "tests/native-idle-display-test.cpp"
+        },
+        {
+          "after_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "before_sha256": null,
+          "path": "tests/test-native-idle-display.py"
+        },
+        {
+          "after_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "before_sha256": "0ca92707df72ca8029d8a201220901630011f2f6589fbf474d2fc81e58abdd44",
+          "path": "tests/world-scene-test.cpp"
+        },
+        {
+          "after_sha256": "0319669d65ff96569f0441bff4ef31b3d6c1e69b8ce4d8c69f10c13faf8cb96d",
+          "before_sha256": "3fd903a91a1e3e17e52fb6ea9c24926ac91b39246097e9ab65e652666bfbbd33",
+          "path": "tools/test-native-scene-window.py"
+        }
+      ],
+      "id": "NS18.idle-display-exact-staged",
+      "pending_gaps": [
+        "behaviors_without_comparison:cc82bca15d61ef85a85e2af704142f2ea102e860ec95bd08e344e87cdd554cf2",
+        "stale_evidence:08d8746a8ffb6fbebb5e65d53dd9a99d2d9da7e2a4327968dfc809d1a7d6df24",
+        "stale_evidence:09b92d5c99d658987813fb33801a8d2f155ab3e488c4c72aa445be2d2df65ea0",
+        "stale_evidence:0ba61d95a51736b03822ced0aeb7b4aeb9e9ab33a43a56a199ede3ed428d4418",
+        "stale_evidence:0cbd4bc97e4e68ecf55b8629f5a0c0ae6bfcce8a6d7fb7d9d1b529894656983a",
+        "stale_evidence:0d17c8cbb81c70141ecf9d2240cb77924a92590483f617afdaacf8211bcd3ac5",
+        "stale_evidence:0d4dc7216cd6f3a14d9d9cb899e32def1f4a1d04fe7b1752a3b4e047b9063958",
+        "stale_evidence:1054fb1302a58c97c20da7164f85dd9578c25fe39fe994227970982c14b04f35",
+        "stale_evidence:18c29ca7ec6abeb78f2406fc9171575a9ad3e5de90cb3351d9fa26f804063b7e",
+        "stale_evidence:1e39ac09b0531d7dcf130134ed035f0a81b1d888220920b0c19ba6ec73961891",
+        "stale_evidence:4e176bcea157961e09ac7ca0f3ee59985728d715240b0e2897a85b4b7d4e8012",
+        "stale_evidence:558c3fc928ff7ce21af04a357366ff7df35975d291d6d6b3c0b15cd8f8f32538",
+        "stale_evidence:5a03a1cf1e64fd4aa9f578e46ddd4b8ab3826de80aef506b1d096dae29e90068",
+        "stale_evidence:5f9a0db2e4ed749012faa97c8159fc8a6e96f3748b8166e5a6bdba22982367d0",
+        "stale_evidence:6033e800754b23722ccf53166787354d6edeeaef96665816d97bbfe3e76c33c7",
+        "stale_evidence:608f3b031dbe4369904a0d0f72e00cabf23155a9b23f596fe5026b84b86cb76d",
+        "stale_evidence:7e9be54d54f7472a39be19e531caad9ce54889b578fcde6220c24773babe5cbc",
+        "stale_evidence:83f63a64141a7eff562210064d07727dfdc5977c736083a8920f091e46254535",
+        "stale_evidence:898036f1916f3e3d2edc05e998efb3c311f69d7a9d55705fecd36b92daa9ae89",
+        "stale_evidence:9b25c6867f9580d82c531b17a568b3e935a2116ce3e57cbc004ec439475e1615",
+        "stale_evidence:a69152e3b051d578bdf9fdf23aa94edc5bc4abe45560fc07d4e3eab4ee3644f2",
+        "stale_evidence:a9004ce0902afd80435e43c7bdf75114a8c425e5af5d1308b79275f6f44c0486",
+        "stale_evidence:b4e2e530c50d63b5ad1c82523e94d6f9a2121cb7a858810423b2aeab21ed3cc6",
+        "stale_evidence:d0a87533c426ada2a9ab75ee7e6a03474d9ee12b905c0350de4c428ab4691b07",
+        "stale_evidence:d6bec24c16542053da2728f6bc30061ba187bac8790fdeb586db80765c9c022f",
+        "stale_evidence:d8d101e7f9dc8a2957d018e189e8e170d3d612d59996b13d9a2dec5ca1a70efc",
+        "stale_evidence:e1a1f281d147b89ebd20725ba76aabf4f917b53b54d9a73febe309535a0dc574",
+        "stale_evidence:e20aec9d7950b8cd5a66d95ddb1f086eb40e470d118eb5bb522acaeeed06e960",
+        "stale_evidence:ff2f7c1b480e1e8e1980dc6da4eaa76f066ccc495cf2d2676de4469531fa83b1"
+      ],
+      "reason": "Review compact sequence/record display pose separate from ANI clocks and movement continuation. Stop and goal cancellation capture the last displayed fine/previous/fallback bitmap before clearing route, fine, previous and segment ticks; cleanup strips the pose. Reorders preserve fallback while suppressed planning or blocked route waits; rejected edges capture before clearing. Active fine display takes priority, then completed history, then static fallback. Review optional pose bounds, cleaned/continuous/binding refusal, adapter directional-profile/opcode-0 bitmap validation and transactional rebound. Review v8 per-motion flag/two-word encoding after terrain flag, writer maximum selection even with pending Stop, unchanged v1-v7 selection without pose, and decode bounds/flags/truncation/downgrade rejection. Review synthetic lifecycle/FIFO/reorder/refusal/wire checks and installed Forest/Redcap actual-window Stop, modal Save, idle ticks, pickability and restart across four diagnostic views. Review immutable-input/source/report/artifact fingerprints, independent full SPR rasterization and exact restarted state/frame matches. Register scope, census and reports keep native policy separate from recovered idle/action selection and live replacement. Committed range 394ff5b..e0b80d1 is read without executing historical code and all 73 file and 17 behavior versions match existing exact receipts; retain initial and extension reports. Stage only this milestone and HEAD peer records, excluding concurrent pending work.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared movement/world/snapshot/adapter, test and documentation edits introduce 29 stale-evidence identities and one absent-comparison gap accounted here explicitly. Historical evidence hashes and statuses are preserved; new NS18 native execution does not revalidate every recovered scheduler/search/setup/event or other policy contract linked to shared files. No recovered comparison or live replacement status is promoted. Blocked-edge retention is implemented but lacks a separately executed installed scenario. Original idle/action ANI mapping/timing, initial idle bodies, other installed profiles, full-game admission and gameplay remain pending.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS18.idle-display-recorded",
+      "reason": "Record fresh bounded native Stop-body ownership, checkpoint and actual-window validation. Compact static display cannot resume abandoned motion; original idle/action sequence selection remains excluded.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "4713a1b6cce3b8f7c54ab44216afc158a8aeb76400ae34992db3d919b31297af",
+          "before_sha256": "dc0360a7aabf942646371ddeb4359f31072f9ba200c13b088033f2facc985eb4",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "51c5aad80124f0ad44886f119c73f1bc2e97fdad6aaac26c3ddb517155143eae",
+          "before_sha256": null,
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "fcb5cb25ba5f0d2b8494cd8ef7c472806ea21d21617e7cc58c1ce45011917f28",
+          "before_sha256": "70f8f139744635a215d1d16c91a520ca8a65d30836cf2d57788106c6df6539e8",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "fbc07add5e7e090110493585222e3e5403492d94a5f04dd9740ea1f367b474fa",
+          "before_sha256": "9bb6c000861315079c47c6aad674a811fcfa4898a2699dba85d047bb9888c738",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "855902ae1528a45e0d586c13534aad95526005f78c87217030a3b213f217dab0",
+          "before_sha256": "38cb07c388b6f514512ac34f01793d3bab65af006ae7db31d85c2acebdc2b379",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "9f298a5c572286760914790c04e750b532c3123abccc55388e844062a097c4f8",
+          "before_sha256": "c2d93cf69b9ac4f5e43369431ba5704d28800d7e4c3cda5620e68e1a22bfe9f3",
+          "id": "NP.stop-orders"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Normal 109 CTests and nine selected ASan/UBSan suites pass. Synthetic owned ANI validates mid-motion Stop pose ownership, no fine/history/ticks left, v8 exact continuation, static admitted ticks, directional/control/out-of-range resource refusal with state rollback, binding refusal, repeated Stop, suppressed reorders, active display priority, FIFO restart, cleanup/release/generation reuse. Independent Python asserts v8 layout/checksum and v5 read plus malformed flags, truncation, version downgrade and sequence bounds. Normal and ASan/UBSan each open 12 real entry-point Qt windows across four views, compare 68 complete independently decoded SPR/RGB565 frames, and pass eight byte-exact fresh-window state/canonical JSON/RGB565/PNG continuations including saved stopped poses and active restarts. Real mouse/timer/button/modal Save paths are executed; paused and admitted idle ticks preserve body pixels, fresh transient selection resets then masked stopped-body picking permits restart. Original manifest verifies all 2927 files before/after installed experiments; all retained source/input/artifact/report/log fingerprints match. These are native preview claims only.",
+        "evidence": [
+          "NS18.idle-display"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "00a6e8fa6b628d7f4a7e7182b2f1c49ffe32ede9cd2691e64e2e45b3961f8071",
+          "before_sha256": "705b9f4a8fd3d74f72bbf86bc08483fbde3154c71a46dc817ba34eb81d62d53d",
+          "id": "MV.ani-forward"
+        },
+        {
+          "after_sha256": "29400771471ec338ff1bc9c1080df3168e8b9e179dcd3cc1481edec567546be3",
+          "before_sha256": "ad754f22e687c4bbbc20aaba916f5ac956eff811f902e80c900aeefa44603f53",
+          "id": "MV.event-0"
+        },
+        {
+          "after_sha256": "dbfcc2926f09490746032ba5f4e2ec080341e3d4b34003d696f1362577da8622",
+          "before_sha256": "e7bb85897655cda068269a49426f18f740a6b30dfd4f90f3174e01680ff00209",
+          "id": "MV.event-2"
+        },
+        {
+          "after_sha256": "8b8275328b98765f7ca0fbffb83a0158da0ace9c288bfe28ac30be676d57984e",
+          "before_sha256": "6526623c0fc4a7eaa2f119fd9d4101f14e6134e82cdb1255cd9b6b2dcebe9896",
+          "id": "MV.fine-motion"
+        },
+        {
+          "after_sha256": "82b93399f16ce01830119ec407016bb3719b53ce21e1ca8b9750711a99500ed3",
+          "before_sha256": "24330123218444b254b3e56308b1633af93aaf28bb4adf76c6bcf5d8e3b32f91",
+          "id": "MV.legality"
+        },
+        {
+          "after_sha256": "b741d286bcf42f9e3ed4d6c88a66517ff813f484c78aae25c8230c4a04d9fa95",
+          "before_sha256": "53de3ef2eae1ebfa71f60d2d7ad09d7c935a7941e0601ac85b1d5c4116871771",
+          "id": "MV.ordinary-terrain-height"
+        },
+        {
+          "after_sha256": "4da0f132953ed23155ffb52b2bda2afe71fd99975789beba78919778700d42b5",
+          "before_sha256": "08cc39df6ce216c3575682d82338d29afa324897eba811a8b51c4e61511adefd",
+          "id": "MV.planar-setup"
+        },
+        {
+          "after_sha256": "c9ecca43aa365932f6fcbcefee08093b147fac877195ad1d08c71c28f10b3aaf",
+          "before_sha256": "d68d20d3cedf5ce2567fb4b786d233d5da02b3152bb1ee7097ce884552a0edc7",
+          "id": "MV.request"
+        },
+        {
+          "after_sha256": "37c1ca5ce0c565b59c7f4884b19555ec9df3bc598b1d531ba644f4735a023a02",
+          "before_sha256": "68fc1767d3a5ea0dd89536a88de1f7d48a19610b4be575aad3c935b1f39c5884",
+          "id": "MV.route-consumption"
+        },
+        {
+          "after_sha256": "48f9d185333d6f81b2570de3e978424bddc4eb7e961a9e840ea563f8ebe33a4c",
+          "before_sha256": "94d5aeac022dbe9078cf4616907b631b59e8c64e8d2d3928404d540e154adb1a",
+          "id": "MV.search"
+        },
+        {
+          "after_sha256": "3e8d862ed72bcc70cf8c205eeb18280e86b063a978144a00df723fa275600f80",
+          "before_sha256": "a1a3c135b93f004645f9fa1df1cce72c66152796c3043061b41a29d99d172982",
+          "id": "MV.vertical-setup"
+        },
+        {
+          "after_sha256": "4713a1b6cce3b8f7c54ab44216afc158a8aeb76400ae34992db3d919b31297af",
+          "before_sha256": "dc0360a7aabf942646371ddeb4359f31072f9ba200c13b088033f2facc985eb4",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "51c5aad80124f0ad44886f119c73f1bc2e97fdad6aaac26c3ddb517155143eae",
+          "before_sha256": null,
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "5393e144b581a388de8aab1b51a5145a5c8317154d6e2378cfc99ffd56907606",
+          "before_sha256": "d95c9dc3fc9a704259b522f0324053898a7bf377695a4f1fc766b6e6969de18f",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "30a015442173000fff23f5a6e524e65e8b60ac3d3bd3def07cffd7d970d1a2ee",
+          "before_sha256": "7d4b2ab9a73e7fb6efdd96f0828b168677d03d360fbfb32fcffd11d389f6eb9b",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "4c53bba144581f25b38373dbb87a029d04fdb58d9cbde2baef5399fbb45651b1",
+          "before_sha256": "009cdd30e942bc3b0c7dc4caa43dbbe4b3965c2e6671ce9d62c7099b9aadd5f4",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "fcb5cb25ba5f0d2b8494cd8ef7c472806ea21d21617e7cc58c1ce45011917f28",
+          "before_sha256": "70f8f139744635a215d1d16c91a520ca8a65d30836cf2d57788106c6df6539e8",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "fbc07add5e7e090110493585222e3e5403492d94a5f04dd9740ea1f367b474fa",
+          "before_sha256": "9bb6c000861315079c47c6aad674a811fcfa4898a2699dba85d047bb9888c738",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "855902ae1528a45e0d586c13534aad95526005f78c87217030a3b213f217dab0",
+          "before_sha256": "38cb07c388b6f514512ac34f01793d3bab65af006ae7db31d85c2acebdc2b379",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "ca94c8ad8170b32360db73b4e3d999f8d789286d4fc9d2b2f11113a471357a96",
+          "before_sha256": "816aa88d7f3a183caea9b02b1be066665077e1bdb14affdbd6c8820ff9098b37",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "9f298a5c572286760914790c04e750b532c3123abccc55388e844062a097c4f8",
+          "before_sha256": "c2d93cf69b9ac4f5e43369431ba5704d28800d7e4c3cda5620e68e1a22bfe9f3",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "a4cdf72e7dba0b0c8ab635c6013c6c06388b8794b8d43c08a4d8987c7a87c052",
+          "before_sha256": "c82f93b6ff51e757b0cd96625e6fbc739502e25204a49d5a154ac5b57c6a491f",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "0388a0f5cf9f0ffad5045c6224d81c26229bd285bce6eaa6b4fe7fa3767db0a1",
+          "before_sha256": "2e6ce3978426cd55104564a7a35a4ae3d9dffa7b4f4382be539a864bd019b873",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "9423c4f972b154626b253180cae120c4cab13d6d4ac02a7349f0e0c904caf1c9",
+          "before_sha256": "960be623d79e0ed3dfbb8ea1c41d26b18044f7c87a16024485d4b2d425312b1d",
+          "id": "WORLD.owned"
+        },
+        {
+          "after_sha256": "525dee124e041d771b5be2e046648bf6af668728b0b141f390520409322624cd",
+          "before_sha256": "3a0d4c7856a5cb1ff32ffb5762826b6381338a7271910ef0bb84e21a3bfcdb06",
+          "id": "WORLD.sandbox"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "dce9888c436d092255579f97ffef8b897f7a9be6606fef892d07a965cbcc2e0a",
+          "before_sha256": "50d0e1c2b2d5fb9a6bbc54b429db4a575b9a18b7cd90875c7fd32c4329e180b2",
+          "path": "apps/world-sandbox/frozen_navigation.cpp"
+        },
+        {
+          "after_sha256": "575c6caf34642b360988694923c99c87f45acc7a3ae6159e2d1d428cdb003d3a",
+          "before_sha256": "fad61e20c7d5f33ed296554f54008e7d68f758329aed8d8b445f5b9ab3bd8be7",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "79b68d892e86f5666842cb504c215c2e1a598de9ca0bf85db4cf6dfa3d98d93f",
+          "before_sha256": "7f5591f3b135d005c480e867e7872e9610c7354052f0126ba8b84f15e38f7c3f",
+          "path": "apps/world-scene/scene.cpp"
+        },
+        {
+          "after_sha256": "1f3641bc45b2f0409cc2b2d1aebcd7683b0f2d3ea73fd2439a0159bdd6517a1e",
+          "before_sha256": "44b579b593efc98663eb3c1ca4fe169af88ddb2ef4eb6248dea29cd1b8fee326",
+          "path": "game/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "b4733ffbad53c90048a6ae9ab7035d6c3f9a834b318a5a7c3916287cfb54ca06",
+          "before_sha256": "6ff7a6574a06724e2c2258f6a4ba32b200cec77a8c4a1436a56d91fdf20776ec",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "140d97d013d46b73e2dd32e4837097811f77bde3b036775d882c9662959e4128",
+          "before_sha256": "63a5da14c55d1255fe53ad35d04999e9ca68dda2d597bd559f4415212594f9cb",
+          "path": "game/persistence/snapshot.cpp"
+        },
+        {
+          "after_sha256": "4ba51faeafe133503422c917abef1f5d2aeeadaf0c56388a77833c27efc05fb9",
+          "before_sha256": "e85f5c509b4b132eb4019188b73a0d11301957731c981dcd9b035e13b6dcfd78",
+          "path": "game/simulation/movement.cpp"
+        },
+        {
+          "after_sha256": "8c6d2bfaaeb60bb2c1cd07bc40596ae125b6efe7a80e8fb6e8caa91bc44e991c",
+          "before_sha256": "d99af9c7f7acfdf52f6b09ee10a717479475af962768ec4a7d8458bf1fe82cc4",
+          "path": "game/simulation/movement.hpp"
+        },
+        {
+          "after_sha256": "acb3724b47ee0b78352359a6fcb0b0dd01db59da7ce02414be3d2816437229a2",
+          "before_sha256": "019458d31ce835a1ef7b17d2bd0b6431f95beb7cbbeff16b9d7f0e1f35037251",
+          "path": "game/simulation/world.cpp"
+        },
+        {
+          "after_sha256": "1ff39b0752a44648ec044cde9e7019ea6360f64859d3d521ecb4b0c0bd06a9e9",
+          "before_sha256": "51564429ada9da7aca99076e58bf4cd41c5ab300ff202e3e6a8f5f31c62c77f3",
+          "path": "game/simulation/world.hpp"
+        },
+        {
+          "after_sha256": "ab1f5554b1ce033942084265fd0d3a8c102c95f525561717d2159a0b8a894df4",
+          "before_sha256": "95661a33a19b06e6dc66500c856165cabdb33d2b4c876e27464f2df3661a83a4",
+          "path": "research/formats/native-world-snapshot.md"
+        },
+        {
+          "after_sha256": "50bde960fd13714a848196a89741b8194c63e24485baa28cd57ee49e380fc180",
+          "before_sha256": "51c752f8429fbedc1b51d6ce87895edac4ccf71a6d09e143b0b9b85a9c7dd5f3",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "72594d09d49923aaec7dc3bb31a901c5d39975e29f153e1c125c61d8017d539a",
+          "before_sha256": "c14efe01f79b103d0b6b33c07d792128e400f2fa0078abe621e6c6705e377e60",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "00fc98e62bd05dce3ed106ab55834346bf19462724a1f455df917b9c98e14618",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-idle-display.json"
+        },
+        {
+          "after_sha256": "0ce97a7569930a3007f9fa54d3a1d9dde02405c3a6c390662001c0517cd80352",
+          "before_sha256": "eb3b1c8079be8c92cf6ded41035b50c6eff03df8db34f3f1b0d05fa66805613c",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "233eeed4e68658be5c19bf095e55d3ae8f3311812c2092f81349d8db7169dd25",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display-history-extension-2.json"
+        },
+        {
+          "after_sha256": "efd21912fc6ed2a8b7b2b0816f58bb5dd1b0856627a4ee2e4c32c4fca495944a",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display-history-extension.json"
+        },
+        {
+          "after_sha256": "6a152ed9224e8480270ed139ffc0e0e8e9c0d62589a95d32b7c685daf8529491",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display-history-review.json"
+        },
+        {
+          "after_sha256": "5a9e56b1cc479b3fb96243f898b15fb920797f4d4d9ad833c04590a1fc4c858b",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display.json"
+        },
+        {
+          "after_sha256": "13eff25fb70b675bd3e7e94d27f0bdfd600727f3f2d0d0d71739fe3169e0e9f8",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display.md"
+        },
+        {
+          "after_sha256": "c9e04b15a1cbe0f10f47dabf71a531347afb0eef3f938b47b813352ee9f42469",
+          "before_sha256": "a8c08144c376985a47ec8d89f25953ce660fea2686b810e8873dd45437a8ddf6",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "before_sha256": null,
+          "path": "tests/native-idle-display-test.cpp"
+        },
+        {
+          "after_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "before_sha256": null,
+          "path": "tests/test-native-idle-display.py"
+        },
+        {
+          "after_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "before_sha256": "0ca92707df72ca8029d8a201220901630011f2f6589fbf474d2fc81e58abdd44",
+          "path": "tests/world-scene-test.cpp"
+        },
+        {
+          "after_sha256": "0319669d65ff96569f0441bff4ef31b3d6c1e69b8ce4d8c69f10c13faf8cb96d",
+          "before_sha256": "3fd903a91a1e3e17e52fb6ea9c24926ac91b39246097e9ab65e652666bfbbd33",
+          "path": "tools/test-native-scene-window.py"
+        }
+      ],
+      "id": "NS18.idle-display-exact-staged-v2",
+      "pending_gaps": [
+        "behaviors_without_comparison:cc82bca15d61ef85a85e2af704142f2ea102e860ec95bd08e344e87cdd554cf2",
+        "stale_evidence:08d8746a8ffb6fbebb5e65d53dd9a99d2d9da7e2a4327968dfc809d1a7d6df24",
+        "stale_evidence:09b92d5c99d658987813fb33801a8d2f155ab3e488c4c72aa445be2d2df65ea0",
+        "stale_evidence:0ba61d95a51736b03822ced0aeb7b4aeb9e9ab33a43a56a199ede3ed428d4418",
+        "stale_evidence:0cbd4bc97e4e68ecf55b8629f5a0c0ae6bfcce8a6d7fb7d9d1b529894656983a",
+        "stale_evidence:0d17c8cbb81c70141ecf9d2240cb77924a92590483f617afdaacf8211bcd3ac5",
+        "stale_evidence:0d4dc7216cd6f3a14d9d9cb899e32def1f4a1d04fe7b1752a3b4e047b9063958",
+        "stale_evidence:1054fb1302a58c97c20da7164f85dd9578c25fe39fe994227970982c14b04f35",
+        "stale_evidence:18c29ca7ec6abeb78f2406fc9171575a9ad3e5de90cb3351d9fa26f804063b7e",
+        "stale_evidence:1e39ac09b0531d7dcf130134ed035f0a81b1d888220920b0c19ba6ec73961891",
+        "stale_evidence:4e176bcea157961e09ac7ca0f3ee59985728d715240b0e2897a85b4b7d4e8012",
+        "stale_evidence:558c3fc928ff7ce21af04a357366ff7df35975d291d6d6b3c0b15cd8f8f32538",
+        "stale_evidence:5a03a1cf1e64fd4aa9f578e46ddd4b8ab3826de80aef506b1d096dae29e90068",
+        "stale_evidence:5f9a0db2e4ed749012faa97c8159fc8a6e96f3748b8166e5a6bdba22982367d0",
+        "stale_evidence:6033e800754b23722ccf53166787354d6edeeaef96665816d97bbfe3e76c33c7",
+        "stale_evidence:608f3b031dbe4369904a0d0f72e00cabf23155a9b23f596fe5026b84b86cb76d",
+        "stale_evidence:7e9be54d54f7472a39be19e531caad9ce54889b578fcde6220c24773babe5cbc",
+        "stale_evidence:83f63a64141a7eff562210064d07727dfdc5977c736083a8920f091e46254535",
+        "stale_evidence:898036f1916f3e3d2edc05e998efb3c311f69d7a9d55705fecd36b92daa9ae89",
+        "stale_evidence:9b25c6867f9580d82c531b17a568b3e935a2116ce3e57cbc004ec439475e1615",
+        "stale_evidence:a69152e3b051d578bdf9fdf23aa94edc5bc4abe45560fc07d4e3eab4ee3644f2",
+        "stale_evidence:a9004ce0902afd80435e43c7bdf75114a8c425e5af5d1308b79275f6f44c0486",
+        "stale_evidence:b4e2e530c50d63b5ad1c82523e94d6f9a2121cb7a858810423b2aeab21ed3cc6",
+        "stale_evidence:d0a87533c426ada2a9ab75ee7e6a03474d9ee12b905c0350de4c428ab4691b07",
+        "stale_evidence:d6bec24c16542053da2728f6bc30061ba187bac8790fdeb586db80765c9c022f",
+        "stale_evidence:d8d101e7f9dc8a2957d018e189e8e170d3d612d59996b13d9a2dec5ca1a70efc",
+        "stale_evidence:e1a1f281d147b89ebd20725ba76aabf4f917b53b54d9a73febe309535a0dc574",
+        "stale_evidence:e20aec9d7950b8cd5a66d95ddb1f086eb40e470d118eb5bb522acaeeed06e960",
+        "stale_evidence:ff2f7c1b480e1e8e1980dc6da4eaa76f066ccc495cf2d2676de4469531fa83b1"
+      ],
+      "reason": "Review compact sequence/record display pose separate from ANI clocks and movement continuation. Stop and goal cancellation capture the last displayed fine/previous/fallback bitmap before clearing route, fine, previous and segment ticks; cleanup strips the pose. Reorders preserve fallback while suppressed planning or blocked route waits; rejected edges capture before clearing. Active fine display takes priority, then completed history, then static fallback. Review optional pose bounds, cleaned/continuous/binding refusal, adapter directional-profile/opcode-0 bitmap validation and transactional rebound. Review v8 per-motion flag/two-word encoding after terrain flag, writer maximum selection even with pending Stop, unchanged v1-v7 selection without pose, and decode bounds/flags/truncation/downgrade rejection. Review synthetic lifecycle/FIFO/reorder/refusal/wire checks and installed Forest/Redcap actual-window Stop, modal Save, idle ticks, pickability and restart across four diagnostic views. Review immutable-input/source/report/artifact fingerprints, independent full SPR rasterization and exact restarted state/frame matches. Register scope, census and reports keep native policy separate from recovered idle/action selection and live replacement. Committed range 394ff5b..f8262b3 is read without executing historical code and all 111 file and 47 behavior versions match existing exact receipts; retain initial and extension reports. Stage only this milestone and HEAD peer records, excluding concurrent pending work.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared movement/world/snapshot/adapter, test and documentation edits introduce 28 stale-evidence identities and one absent-comparison gap accounted here explicitly. Historical evidence hashes and statuses are preserved; new NS18 native execution does not revalidate every recovered scheduler/search/setup/event or other policy contract linked to shared files. No recovered comparison or live replacement status is promoted. Blocked-edge retention is implemented but lacks a separately executed installed scenario. Original idle/action ANI mapping/timing, initial idle bodies, other installed profiles, full-game admission and gameplay remain pending.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS18.idle-display-recorded-v2",
+      "reason": "Record fresh bounded native Stop-body ownership, checkpoint and actual-window validation. Compact static display cannot resume abandoned motion; original idle/action sequence selection remains excluded.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "4713a1b6cce3b8f7c54ab44216afc158a8aeb76400ae34992db3d919b31297af",
+          "before_sha256": "dc0360a7aabf942646371ddeb4359f31072f9ba200c13b088033f2facc985eb4",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "51c5aad80124f0ad44886f119c73f1bc2e97fdad6aaac26c3ddb517155143eae",
+          "before_sha256": null,
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "fcb5cb25ba5f0d2b8494cd8ef7c472806ea21d21617e7cc58c1ce45011917f28",
+          "before_sha256": "70f8f139744635a215d1d16c91a520ca8a65d30836cf2d57788106c6df6539e8",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "fbc07add5e7e090110493585222e3e5403492d94a5f04dd9740ea1f367b474fa",
+          "before_sha256": "9bb6c000861315079c47c6aad674a811fcfa4898a2699dba85d047bb9888c738",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "855902ae1528a45e0d586c13534aad95526005f78c87217030a3b213f217dab0",
+          "before_sha256": "38cb07c388b6f514512ac34f01793d3bab65af006ae7db31d85c2acebdc2b379",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "9f298a5c572286760914790c04e750b532c3123abccc55388e844062a097c4f8",
+          "before_sha256": "c2d93cf69b9ac4f5e43369431ba5704d28800d7e4c3cda5620e68e1a22bfe9f3",
+          "id": "NP.stop-orders"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Normal 109 CTests and nine selected ASan/UBSan suites pass. Synthetic owned ANI validates mid-motion Stop pose ownership, no fine/history/ticks left, v8 exact continuation, static admitted ticks, directional/control/out-of-range resource refusal with state rollback, binding refusal, repeated Stop, suppressed reorders, active display priority, FIFO restart, cleanup/release/generation reuse. Independent Python asserts v8 layout/checksum and v5 read plus malformed flags, truncation, version downgrade and sequence bounds. Normal and ASan/UBSan each open 12 real entry-point Qt windows across four views, compare 68 complete independently decoded SPR/RGB565 frames, and pass eight byte-exact fresh-window state/canonical JSON/RGB565/PNG continuations including saved stopped poses and active restarts. Real mouse/timer/button/modal Save paths are executed; paused and admitted idle ticks preserve body pixels, fresh transient selection resets then masked stopped-body picking permits restart. Original manifest verifies all 2927 files before/after installed experiments; all retained source/input/artifact/report/log fingerprints match. These are native preview claims only.",
+        "evidence": [
+          "NS18.idle-display"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "00a6e8fa6b628d7f4a7e7182b2f1c49ffe32ede9cd2691e64e2e45b3961f8071",
+          "before_sha256": "705b9f4a8fd3d74f72bbf86bc08483fbde3154c71a46dc817ba34eb81d62d53d",
+          "id": "MV.ani-forward"
+        },
+        {
+          "after_sha256": "29400771471ec338ff1bc9c1080df3168e8b9e179dcd3cc1481edec567546be3",
+          "before_sha256": "ad754f22e687c4bbbc20aaba916f5ac956eff811f902e80c900aeefa44603f53",
+          "id": "MV.event-0"
+        },
+        {
+          "after_sha256": "dbfcc2926f09490746032ba5f4e2ec080341e3d4b34003d696f1362577da8622",
+          "before_sha256": "e7bb85897655cda068269a49426f18f740a6b30dfd4f90f3174e01680ff00209",
+          "id": "MV.event-2"
+        },
+        {
+          "after_sha256": "8b8275328b98765f7ca0fbffb83a0158da0ace9c288bfe28ac30be676d57984e",
+          "before_sha256": "6526623c0fc4a7eaa2f119fd9d4101f14e6134e82cdb1255cd9b6b2dcebe9896",
+          "id": "MV.fine-motion"
+        },
+        {
+          "after_sha256": "82b93399f16ce01830119ec407016bb3719b53ce21e1ca8b9750711a99500ed3",
+          "before_sha256": "24330123218444b254b3e56308b1633af93aaf28bb4adf76c6bcf5d8e3b32f91",
+          "id": "MV.legality"
+        },
+        {
+          "after_sha256": "b741d286bcf42f9e3ed4d6c88a66517ff813f484c78aae25c8230c4a04d9fa95",
+          "before_sha256": "53de3ef2eae1ebfa71f60d2d7ad09d7c935a7941e0601ac85b1d5c4116871771",
+          "id": "MV.ordinary-terrain-height"
+        },
+        {
+          "after_sha256": "4da0f132953ed23155ffb52b2bda2afe71fd99975789beba78919778700d42b5",
+          "before_sha256": "08cc39df6ce216c3575682d82338d29afa324897eba811a8b51c4e61511adefd",
+          "id": "MV.planar-setup"
+        },
+        {
+          "after_sha256": "c9ecca43aa365932f6fcbcefee08093b147fac877195ad1d08c71c28f10b3aaf",
+          "before_sha256": "d68d20d3cedf5ce2567fb4b786d233d5da02b3152bb1ee7097ce884552a0edc7",
+          "id": "MV.request"
+        },
+        {
+          "after_sha256": "37c1ca5ce0c565b59c7f4884b19555ec9df3bc598b1d531ba644f4735a023a02",
+          "before_sha256": "68fc1767d3a5ea0dd89536a88de1f7d48a19610b4be575aad3c935b1f39c5884",
+          "id": "MV.route-consumption"
+        },
+        {
+          "after_sha256": "48f9d185333d6f81b2570de3e978424bddc4eb7e961a9e840ea563f8ebe33a4c",
+          "before_sha256": "94d5aeac022dbe9078cf4616907b631b59e8c64e8d2d3928404d540e154adb1a",
+          "id": "MV.search"
+        },
+        {
+          "after_sha256": "3e8d862ed72bcc70cf8c205eeb18280e86b063a978144a00df723fa275600f80",
+          "before_sha256": "a1a3c135b93f004645f9fa1df1cce72c66152796c3043061b41a29d99d172982",
+          "id": "MV.vertical-setup"
+        },
+        {
+          "after_sha256": "4713a1b6cce3b8f7c54ab44216afc158a8aeb76400ae34992db3d919b31297af",
+          "before_sha256": "dc0360a7aabf942646371ddeb4359f31072f9ba200c13b088033f2facc985eb4",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "51c5aad80124f0ad44886f119c73f1bc2e97fdad6aaac26c3ddb517155143eae",
+          "before_sha256": null,
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "5393e144b581a388de8aab1b51a5145a5c8317154d6e2378cfc99ffd56907606",
+          "before_sha256": "d95c9dc3fc9a704259b522f0324053898a7bf377695a4f1fc766b6e6969de18f",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "30a015442173000fff23f5a6e524e65e8b60ac3d3bd3def07cffd7d970d1a2ee",
+          "before_sha256": "7d4b2ab9a73e7fb6efdd96f0828b168677d03d360fbfb32fcffd11d389f6eb9b",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "4c53bba144581f25b38373dbb87a029d04fdb58d9cbde2baef5399fbb45651b1",
+          "before_sha256": "009cdd30e942bc3b0c7dc4caa43dbbe4b3965c2e6671ce9d62c7099b9aadd5f4",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "fcb5cb25ba5f0d2b8494cd8ef7c472806ea21d21617e7cc58c1ce45011917f28",
+          "before_sha256": "70f8f139744635a215d1d16c91a520ca8a65d30836cf2d57788106c6df6539e8",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "fbc07add5e7e090110493585222e3e5403492d94a5f04dd9740ea1f367b474fa",
+          "before_sha256": "9bb6c000861315079c47c6aad674a811fcfa4898a2699dba85d047bb9888c738",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "855902ae1528a45e0d586c13534aad95526005f78c87217030a3b213f217dab0",
+          "before_sha256": "38cb07c388b6f514512ac34f01793d3bab65af006ae7db31d85c2acebdc2b379",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "ca94c8ad8170b32360db73b4e3d999f8d789286d4fc9d2b2f11113a471357a96",
+          "before_sha256": "816aa88d7f3a183caea9b02b1be066665077e1bdb14affdbd6c8820ff9098b37",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "9f298a5c572286760914790c04e750b532c3123abccc55388e844062a097c4f8",
+          "before_sha256": "c2d93cf69b9ac4f5e43369431ba5704d28800d7e4c3cda5620e68e1a22bfe9f3",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "a4cdf72e7dba0b0c8ab635c6013c6c06388b8794b8d43c08a4d8987c7a87c052",
+          "before_sha256": "c82f93b6ff51e757b0cd96625e6fbc739502e25204a49d5a154ac5b57c6a491f",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "0388a0f5cf9f0ffad5045c6224d81c26229bd285bce6eaa6b4fe7fa3767db0a1",
+          "before_sha256": "2e6ce3978426cd55104564a7a35a4ae3d9dffa7b4f4382be539a864bd019b873",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "9423c4f972b154626b253180cae120c4cab13d6d4ac02a7349f0e0c904caf1c9",
+          "before_sha256": "960be623d79e0ed3dfbb8ea1c41d26b18044f7c87a16024485d4b2d425312b1d",
+          "id": "WORLD.owned"
+        },
+        {
+          "after_sha256": "525dee124e041d771b5be2e046648bf6af668728b0b141f390520409322624cd",
+          "before_sha256": "3a0d4c7856a5cb1ff32ffb5762826b6381338a7271910ef0bb84e21a3bfcdb06",
+          "id": "WORLD.sandbox"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "dce9888c436d092255579f97ffef8b897f7a9be6606fef892d07a965cbcc2e0a",
+          "before_sha256": "50d0e1c2b2d5fb9a6bbc54b429db4a575b9a18b7cd90875c7fd32c4329e180b2",
+          "path": "apps/world-sandbox/frozen_navigation.cpp"
+        },
+        {
+          "after_sha256": "575c6caf34642b360988694923c99c87f45acc7a3ae6159e2d1d428cdb003d3a",
+          "before_sha256": "fad61e20c7d5f33ed296554f54008e7d68f758329aed8d8b445f5b9ab3bd8be7",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "79b68d892e86f5666842cb504c215c2e1a598de9ca0bf85db4cf6dfa3d98d93f",
+          "before_sha256": "7f5591f3b135d005c480e867e7872e9610c7354052f0126ba8b84f15e38f7c3f",
+          "path": "apps/world-scene/scene.cpp"
+        },
+        {
+          "after_sha256": "1f3641bc45b2f0409cc2b2d1aebcd7683b0f2d3ea73fd2439a0159bdd6517a1e",
+          "before_sha256": "44b579b593efc98663eb3c1ca4fe169af88ddb2ef4eb6248dea29cd1b8fee326",
+          "path": "game/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "b4733ffbad53c90048a6ae9ab7035d6c3f9a834b318a5a7c3916287cfb54ca06",
+          "before_sha256": "6ff7a6574a06724e2c2258f6a4ba32b200cec77a8c4a1436a56d91fdf20776ec",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "140d97d013d46b73e2dd32e4837097811f77bde3b036775d882c9662959e4128",
+          "before_sha256": "63a5da14c55d1255fe53ad35d04999e9ca68dda2d597bd559f4415212594f9cb",
+          "path": "game/persistence/snapshot.cpp"
+        },
+        {
+          "after_sha256": "4ba51faeafe133503422c917abef1f5d2aeeadaf0c56388a77833c27efc05fb9",
+          "before_sha256": "e85f5c509b4b132eb4019188b73a0d11301957731c981dcd9b035e13b6dcfd78",
+          "path": "game/simulation/movement.cpp"
+        },
+        {
+          "after_sha256": "8c6d2bfaaeb60bb2c1cd07bc40596ae125b6efe7a80e8fb6e8caa91bc44e991c",
+          "before_sha256": "d99af9c7f7acfdf52f6b09ee10a717479475af962768ec4a7d8458bf1fe82cc4",
+          "path": "game/simulation/movement.hpp"
+        },
+        {
+          "after_sha256": "acb3724b47ee0b78352359a6fcb0b0dd01db59da7ce02414be3d2816437229a2",
+          "before_sha256": "019458d31ce835a1ef7b17d2bd0b6431f95beb7cbbeff16b9d7f0e1f35037251",
+          "path": "game/simulation/world.cpp"
+        },
+        {
+          "after_sha256": "1ff39b0752a44648ec044cde9e7019ea6360f64859d3d521ecb4b0c0bd06a9e9",
+          "before_sha256": "51564429ada9da7aca99076e58bf4cd41c5ab300ff202e3e6a8f5f31c62c77f3",
+          "path": "game/simulation/world.hpp"
+        },
+        {
+          "after_sha256": "ab1f5554b1ce033942084265fd0d3a8c102c95f525561717d2159a0b8a894df4",
+          "before_sha256": "95661a33a19b06e6dc66500c856165cabdb33d2b4c876e27464f2df3661a83a4",
+          "path": "research/formats/native-world-snapshot.md"
+        },
+        {
+          "after_sha256": "49f6d27d637ea1e61301565575955203cb7ca1b0a0d76b482ba1836b342de593",
+          "before_sha256": "c2f8597d405a1891bbd68fdc903d50abf09abc543da3b6fd89dbf6cb0a6feeeb",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "25bbbc8c6b33083f321118ef9ba08392d4fd36550a9634db4f7936d6ccbc15d9",
+          "before_sha256": "7e97282c3a1298c322dcd2c9762d974223e217a0e66c34a6656fa5c6326f9c07",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "5f0cac933150f3360ca03d420cd1efbb7ee2934fa0971855408397d4a1be297e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-idle-display.json"
+        },
+        {
+          "after_sha256": "9dbf8a937ebf587342bdfef9b59f327e7a584294c142f0223ceb2d3c297bfd6e",
+          "before_sha256": "eb3b1c8079be8c92cf6ded41035b50c6eff03df8db34f3f1b0d05fa66805613c",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "233eeed4e68658be5c19bf095e55d3ae8f3311812c2092f81349d8db7169dd25",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display-history-extension-2.json"
+        },
+        {
+          "after_sha256": "6e6c9d4974e09c5497d31deea72d15506c3b952296a948f6610433853815f56c",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display-history-extension-3.json"
+        },
+        {
+          "after_sha256": "efd21912fc6ed2a8b7b2b0816f58bb5dd1b0856627a4ee2e4c32c4fca495944a",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display-history-extension.json"
+        },
+        {
+          "after_sha256": "6a152ed9224e8480270ed139ffc0e0e8e9c0d62589a95d32b7c685daf8529491",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display-history-review.json"
+        },
+        {
+          "after_sha256": "5a9e56b1cc479b3fb96243f898b15fb920797f4d4d9ad833c04590a1fc4c858b",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display.json"
+        },
+        {
+          "after_sha256": "13eff25fb70b675bd3e7e94d27f0bdfd600727f3f2d0d0d71739fe3169e0e9f8",
+          "before_sha256": null,
+          "path": "research/runtime/native-idle-display.md"
+        },
+        {
+          "after_sha256": "c9e04b15a1cbe0f10f47dabf71a531347afb0eef3f938b47b813352ee9f42469",
+          "before_sha256": "a8c08144c376985a47ec8d89f25953ce660fea2686b810e8873dd45437a8ddf6",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "before_sha256": null,
+          "path": "tests/native-idle-display-test.cpp"
+        },
+        {
+          "after_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "before_sha256": null,
+          "path": "tests/test-native-idle-display.py"
+        },
+        {
+          "after_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "before_sha256": "0ca92707df72ca8029d8a201220901630011f2f6589fbf474d2fc81e58abdd44",
+          "path": "tests/world-scene-test.cpp"
+        },
+        {
+          "after_sha256": "0319669d65ff96569f0441bff4ef31b3d6c1e69b8ce4d8c69f10c13faf8cb96d",
+          "before_sha256": "3fd903a91a1e3e17e52fb6ea9c24926ac91b39246097e9ab65e652666bfbbd33",
+          "path": "tools/test-native-scene-window.py"
+        }
+      ],
+      "id": "NS18.idle-display-exact-staged-v3",
+      "pending_gaps": [
+        "behaviors_without_comparison:cc82bca15d61ef85a85e2af704142f2ea102e860ec95bd08e344e87cdd554cf2",
+        "stale_evidence:08d8746a8ffb6fbebb5e65d53dd9a99d2d9da7e2a4327968dfc809d1a7d6df24",
+        "stale_evidence:09b92d5c99d658987813fb33801a8d2f155ab3e488c4c72aa445be2d2df65ea0",
+        "stale_evidence:0ba61d95a51736b03822ced0aeb7b4aeb9e9ab33a43a56a199ede3ed428d4418",
+        "stale_evidence:0cbd4bc97e4e68ecf55b8629f5a0c0ae6bfcce8a6d7fb7d9d1b529894656983a",
+        "stale_evidence:0d17c8cbb81c70141ecf9d2240cb77924a92590483f617afdaacf8211bcd3ac5",
+        "stale_evidence:0d4dc7216cd6f3a14d9d9cb899e32def1f4a1d04fe7b1752a3b4e047b9063958",
+        "stale_evidence:1054fb1302a58c97c20da7164f85dd9578c25fe39fe994227970982c14b04f35",
+        "stale_evidence:18c29ca7ec6abeb78f2406fc9171575a9ad3e5de90cb3351d9fa26f804063b7e",
+        "stale_evidence:1e39ac09b0531d7dcf130134ed035f0a81b1d888220920b0c19ba6ec73961891",
+        "stale_evidence:4e176bcea157961e09ac7ca0f3ee59985728d715240b0e2897a85b4b7d4e8012",
+        "stale_evidence:558c3fc928ff7ce21af04a357366ff7df35975d291d6d6b3c0b15cd8f8f32538",
+        "stale_evidence:5a03a1cf1e64fd4aa9f578e46ddd4b8ab3826de80aef506b1d096dae29e90068",
+        "stale_evidence:5f9a0db2e4ed749012faa97c8159fc8a6e96f3748b8166e5a6bdba22982367d0",
+        "stale_evidence:6033e800754b23722ccf53166787354d6edeeaef96665816d97bbfe3e76c33c7",
+        "stale_evidence:608f3b031dbe4369904a0d0f72e00cabf23155a9b23f596fe5026b84b86cb76d",
+        "stale_evidence:7e9be54d54f7472a39be19e531caad9ce54889b578fcde6220c24773babe5cbc",
+        "stale_evidence:83f63a64141a7eff562210064d07727dfdc5977c736083a8920f091e46254535",
+        "stale_evidence:898036f1916f3e3d2edc05e998efb3c311f69d7a9d55705fecd36b92daa9ae89",
+        "stale_evidence:9b25c6867f9580d82c531b17a568b3e935a2116ce3e57cbc004ec439475e1615",
+        "stale_evidence:a69152e3b051d578bdf9fdf23aa94edc5bc4abe45560fc07d4e3eab4ee3644f2",
+        "stale_evidence:a9004ce0902afd80435e43c7bdf75114a8c425e5af5d1308b79275f6f44c0486",
+        "stale_evidence:b4e2e530c50d63b5ad1c82523e94d6f9a2121cb7a858810423b2aeab21ed3cc6",
+        "stale_evidence:d0a87533c426ada2a9ab75ee7e6a03474d9ee12b905c0350de4c428ab4691b07",
+        "stale_evidence:d6bec24c16542053da2728f6bc30061ba187bac8790fdeb586db80765c9c022f",
+        "stale_evidence:d8d101e7f9dc8a2957d018e189e8e170d3d612d59996b13d9a2dec5ca1a70efc",
+        "stale_evidence:e1a1f281d147b89ebd20725ba76aabf4f917b53b54d9a73febe309535a0dc574",
+        "stale_evidence:e20aec9d7950b8cd5a66d95ddb1f086eb40e470d118eb5bb522acaeeed06e960",
+        "stale_evidence:ff2f7c1b480e1e8e1980dc6da4eaa76f066ccc495cf2d2676de4469531fa83b1"
+      ],
+      "reason": "Review compact sequence/record display pose separate from ANI clocks and movement continuation. Stop and goal cancellation capture the last displayed fine/previous/fallback bitmap before clearing route, fine, previous and segment ticks; cleanup strips the pose. Reorders preserve fallback while suppressed planning or blocked route waits; rejected edges capture before clearing. Active fine display takes priority, then completed history, then static fallback. Review optional pose bounds, cleaned/continuous/binding refusal, adapter directional-profile/opcode-0 bitmap validation and transactional rebound. Review v8 per-motion flag/two-word encoding after terrain flag, writer maximum selection even with pending Stop, unchanged v1-v7 selection without pose, and decode bounds/flags/truncation/downgrade rejection. Review synthetic lifecycle/FIFO/reorder/refusal/wire checks and installed Forest/Redcap actual-window Stop, modal Save, idle ticks, pickability and restart across four diagnostic views. Review immutable-input/source/report/artifact fingerprints, independent full SPR rasterization and exact restarted state/frame matches. Register scope, census and reports keep native policy separate from recovered idle/action selection and live replacement. Committed range 394ff5b..8b8b01c is read without executing historical code and all reviewed file and behavior versions match existing exact receipts; retain initial and extension reports. Stage only this milestone and HEAD peer records, excluding concurrent pending work.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared movement/world/snapshot/adapter, test and documentation edits introduce stale-evidence identities and the absent-comparison gap accounted here explicitly. Historical evidence hashes and statuses are preserved; new NS18 native execution does not revalidate every recovered scheduler/search/setup/event or other policy contract linked to shared files. No recovered comparison or live replacement status is promoted. Blocked-edge retention is implemented but lacks a separately executed installed scenario. Original idle/action ANI mapping/timing, initial idle bodies, other installed profiles, full-game admission and gameplay remain pending.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS18.idle-display-recorded-v3",
+      "reason": "Record fresh bounded native Stop-body ownership, checkpoint and actual-window validation. Compact static display cannot resume abandoned motion; original idle/action sequence selection remains excluded.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "4713a1b6cce3b8f7c54ab44216afc158a8aeb76400ae34992db3d919b31297af",
+          "before_sha256": "dc0360a7aabf942646371ddeb4359f31072f9ba200c13b088033f2facc985eb4",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "51c5aad80124f0ad44886f119c73f1bc2e97fdad6aaac26c3ddb517155143eae",
+          "before_sha256": null,
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "fcb5cb25ba5f0d2b8494cd8ef7c472806ea21d21617e7cc58c1ce45011917f28",
+          "before_sha256": "70f8f139744635a215d1d16c91a520ca8a65d30836cf2d57788106c6df6539e8",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "fbc07add5e7e090110493585222e3e5403492d94a5f04dd9740ea1f367b474fa",
+          "before_sha256": "9bb6c000861315079c47c6aad674a811fcfa4898a2699dba85d047bb9888c738",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "855902ae1528a45e0d586c13534aad95526005f78c87217030a3b213f217dab0",
+          "before_sha256": "38cb07c388b6f514512ac34f01793d3bab65af006ae7db31d85c2acebdc2b379",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "9f298a5c572286760914790c04e750b532c3123abccc55388e844062a097c4f8",
+          "before_sha256": "c2d93cf69b9ac4f5e43369431ba5704d28800d7e4c3cda5620e68e1a22bfe9f3",
+          "id": "NP.stop-orders"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Normal 109 CTests and nine selected ASan/UBSan suites pass. Synthetic owned ANI validates mid-motion Stop pose ownership, no fine/history/ticks left, v8 exact continuation, static admitted ticks, directional/control/out-of-range resource refusal with state rollback, binding refusal, repeated Stop, suppressed reorders, active display priority, FIFO restart, cleanup/release/generation reuse. Independent Python asserts v8 layout/checksum and v5 read plus malformed flags, truncation, version downgrade and sequence bounds. Normal and ASan/UBSan each open 12 real entry-point Qt windows across four views, compare 68 complete independently decoded SPR/RGB565 frames, and pass eight byte-exact fresh-window state/canonical JSON/RGB565/PNG continuations including saved stopped poses and active restarts. Real mouse/timer/button/modal Save paths are executed; paused and admitted idle ticks preserve body pixels, fresh transient selection resets then masked stopped-body picking permits restart. Original manifest verifies all 2927 files before/after installed experiments; all retained source/input/artifact/report/log fingerprints match. These are native preview claims only.",
+        "evidence": [
+          "NS18.idle-display"
+        ]
+      }
     }
   ]
 }

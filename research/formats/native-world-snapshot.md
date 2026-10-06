@@ -290,3 +290,21 @@ at the next admitted tick and may be rejected for stale, cleaned or motionless
 subjects. Versions 1–6 explicitly reject operation 5. With no pending stops, output
 retains its prior minimum version (including v1 lifecycle and v6 terrain motion).
 This format is native policy and asserts no original save or stop compatibility.
+
+## Native version 8: retained display pose
+
+Version 8 retains the v7 layout, appending a one-byte pose-present flag after
+each motion record's v6 terrain-motion flag. If present, two little-endian uint32
+values follow: ANI sequence index and sequence-relative displayed record index.
+The reference is static; no clock or player continuation is encoded. All motion
+records in a v8 file carry the flag, including records without a pose.
+
+Writers use v8 iff any motion owns a retained pose, even with pending opcode-5
+Stop commands. Without poses, existing minimum v1-v7 selection remains unchanged.
+Readers accept v1-v8; v8 permits the v6/v7 optional ANI binding form but a pose
+requires a binding and continuous motion, and cannot belong to a cleaned entity.
+Core limits are sequence <4096 and record <65536. Resource rebound additionally
+requires one of the selected eight movement sequences and an opcode-0 bitmap
+with nonnegative frame. Scene composition validates the available SPR frame.
+Invalid flags, truncation, bounds or downgrading the v8 payload are rejected.
+This format is native policy and does not claim original version-20 compatibility.

@@ -32,6 +32,7 @@ public:
     virtual bool acceptsInWorld(const State&,Handle,const RoutePoint&) const;
     virtual Point finePosition(const Entity&) const;
     // Optional driver; services without recovered sample evidence refuse it.
+    virtual void validateDisplayPose(const DisplayPose&) const;
     virtual void validateSegmentHistory(const Entity&,const SegmentHistory&) const;
     virtual FineMotion prepareFineMotion(const Entity&,const RoutePoint&) const;
     virtual bool advanceFineMotion(const Entity&,const RoutePoint&,FineMotion&) const;

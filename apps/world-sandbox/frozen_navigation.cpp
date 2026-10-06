@@ -182,6 +182,13 @@ public:
         f.accumulator=s.accumulator;f.progress=s.progress;f.travelX=s.travelX;f.travelY=s.travelY;
         f.fine={s.fineX,s.fineY,s.fineZ};f.residualX=s.residualX;f.residualY=s.residualY;f.frame=s.frame;f.animationFrame=s.animationFrame;f.initialFrame=s.initialFrame;f.initialResidualX=s.initialResidualX;f.initialResidualY=s.initialResidualY;
     }
+    void validateDisplayPose(const g::DisplayPose& pose) const override {
+        if(!animation_ || pose.sequence<animation_->sequenceBase || pose.sequence-animation_->sequenceBase>=8)
+            throw std::invalid_argument("display pose outside bound movement ANI profile");
+        const auto& records=sequences_.at(pose.sequence-animation_->sequenceBase);
+        if(pose.displayed>=records.size() || records[pose.displayed].opcode!=0 || records[pose.displayed].argument<0)
+            throw std::invalid_argument("display pose is not a bound ANI bitmap record");
+    }
     void validateSegmentHistory(const g::Entity& e,const g::SegmentHistory& h) const override {
         constexpr int dx[8]={0,1,1,1,0,-1,-1,-1},dy[8]={-1,-1,0,1,1,1,0,-1};
         const auto& f=h.motion;

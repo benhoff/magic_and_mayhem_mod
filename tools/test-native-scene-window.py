@@ -60,7 +60,7 @@ def main():
             frame=json.loads(Path(str(baseline)+'.json').read_text())['frames'][0];expected,owners,cells=oracle(frame)
             assert Path(str(baseline)+'-000.565').read_bytes()==expected
             select=point(owners,0);destination=point(cells,target)
-            script=[capture('initial'),mouse(select,'left'),mouse(destination,'right'),capture('pending-move'),{'op':'ticks','count':2},capture('mid'),{'op':'wait','ms':220},capture('paused'),{'op':'save','name':'saved-mid','play':True},capture('after-save'),{'op':'ticks','count':2},capture('continued'),{'op':'run','count':1,'before':[button('queueStop'),capture('pending-stop')]},capture('stopped')]
+            script=[capture('initial'),mouse(select,'left'),mouse(destination,'right'),capture('pending-move'),{'op':'ticks','count':2},capture('mid'),{'op':'wait','ms':220},capture('paused'),{'op':'save','name':'saved-mid','play':True},capture('after-save'),{'op':'ticks','count':2},capture('continued'),{'op':'run','count':1,'before':[button('queueStop'),capture('pending-stop')]},capture('stopped'),{'op':'wait','ms':220},capture('idle-paused'),{'op':'save','name':'saved-stop'},capture('idle-after-save'),{'op':'ticks','count':2},capture('idle-advanced'),mouse(destination,'right'),{'op':'ticks','count':2},capture('restarted')]
             path=out/f'v{view}-whole-script.json';path.write_text(json.dumps(script,indent=2)+'\n');whole=out/f'v{view}-whole'
             run([window,'--checkpoint',initial,*options,'--window-script',path,'--window-output',whole],f'window-whole-{view}')
             report=json.loads((whole/'window-report.json').read_text());assert report['all_match'];captures={r['name']:r for r in report['captures']}
@@ -75,7 +75,16 @@ def main():
             assert not captures['after-save']['playing'] and captures['after-save']['selected_index']==1
             assert captures['pending-stop']['playing'] and captures['pending-stop']['pending']==[{'operation':5,'slot':0,'generation':1}]
             stopped=json.loads(run([sandbox,'inspect-json',whole/'stopped.mnw'],f'stopped-state-{view}'));assert stopped['pending']==0 and stopped['entities'][0]['action']==6 and stopped['entities'][0]['route']==[]
-            assert not any(d['creature'] for d in json.loads((whole/'stopped.json').read_text())['queue']), 'Current native stop must have no retained ANI body cursor'
+            stopped_frame=json.loads((whole/'stopped.json').read_text());bodies=[d for d in stopped_frame['queue'] if d['creature']]
+            assert len(bodies)==1 and bodies[0]['slot']==0, 'Stopped actor must retain its body and identity'
+            assert (whole/'stopped.mnw').read_bytes()[8]==8
+            assert (whole/'stopped.mnw').read_bytes()==(whole/'idle-paused.mnw').read_bytes()==(whole/'idle-after-save.mnw').read_bytes()==(whole/'saved-stop.mnms').read_bytes()
+            for name in ['idle-paused','idle-after-save','idle-advanced']:
+                assert (whole/'stopped.565').read_bytes()==(whole/(name+'.565')).read_bytes(), 'Static pose advanced'
+            assert captures['idle-advanced']['tick']==captures['stopped']['tick']+2
+            restarted=json.loads(run([sandbox,'inspect-json',whole/'restarted.mnw'],f'restarted-state-{view}'))
+            assert restarted['entities'][0]['action']==2 and 'animation' in restarted['entities'][0]
+
             # Default admission and commands are identical; a test-only after-tick observer chooses exact pause boundaries.
             for name in captures:
                 f=json.loads((whole/(name+'.json')).read_text());expected,_,_=oracle(f);assert (whole/(name+'.565')).read_bytes()==expected;checks+=1
@@ -95,12 +104,21 @@ def main():
                 assert Path(str(reference)+'.mnms').read_bytes()==(whole/(name+'.mnw')).read_bytes()
                 assert json.loads(Path(str(reference)+'.json').read_text())['frames'][0]==json.loads((whole/(name+'.json')).read_text())
                 for suffix in ['565','png']:assert Path(str(reference)+'-000.'+suffix).read_bytes()==(whole/(name+'.'+suffix)).read_bytes()
-            continuations+=1;cases.append({'view':view,'mid_tick':captures['mid']['tick'],'progress':actor['progress'],'whole':str(whole.relative_to(ROOT)),'resumed':str(resumed.relative_to(ROOT))})
+            _,stopowners,_=oracle(stopped_frame)
+            stop_script=[capture('loaded'),mouse(point(stopowners,0),'left'),{'op':'ticks','count':2},capture('idle-advanced'),mouse(destination,'right'),{'op':'ticks','count':2},capture('restarted')]
+            path=out/f'v{view}-idle-resumed-script.json';path.write_text(json.dumps(stop_script,indent=2)+'\n');idle=out/f'v{view}-idle-resumed'
+            run([window,'--checkpoint',whole/'saved-stop.mnms',*options,'--window-script',path,'--window-output',idle],f'window-idle-resumed-{view}')
+            ir=json.loads((idle/'window-report.json').read_text());assert ir['all_match'] and not ir['captures'][0]['playing'] and ir['captures'][0]['selected_index']==0
+            for current,reference in [('loaded','stopped'),('idle-advanced','idle-advanced'),('restarted','restarted')]:
+                for suffix in ['mnw','json','565','png']:
+                    assert (idle/(current+'.'+suffix)).read_bytes()==(whole/(reference+'.'+suffix)).read_bytes(),(view,current,suffix)
+                f=json.loads((idle/(current+'.json')).read_text());expected,_,_=oracle(f);assert (idle/(current+'.565')).read_bytes()==expected;checks+=1
+            continuations+=2;cases.append({'view':view,'mid_tick':captures['mid']['tick'],'progress':actor['progress'],'whole':str(whole.relative_to(ROOT)),'resumed':str(resumed.relative_to(ROOT))})
         sources=sorted(set([*ROOT.glob('apps/world-scene/*.cpp'),*ROOT.glob('apps/world-scene/*.hpp'),*ROOT.glob('apps/world-sandbox/*.cpp'),*ROOT.glob('apps/world-sandbox/*.hpp'),*ROOT.glob('game/**/*.cpp'),*ROOT.glob('game/**/*.hpp'),ROOT/'apps/world-scene/CMakeLists.txt',ROOT/'game/CMakeLists.txt',ROOT/'tests/scene-window-driver.cpp',ROOT/'tests/scene-window-driver.hpp',ROOT/'tools/test-terrain-preview.py',Path(__file__).resolve()]))
         assert all(sha(ROOT/p)==h for p,h in recorded_inputs.items()),'Installed inputs changed during experiment'
         artifacts={str(p.relative_to(out)):sha(p) for p in sorted(out.rglob('*')) if p.is_file()}
-        report={'all_match':True,'live_validated':False,'scope':'Same native window entry point, production QTimer/elapsed clock and actual Qt mouse/button/modal Save events: installed Forest 8x8 crop and Redcap movement ANI base 0/SPR, four diagnostic views, corrected same-layer native terrain click mapping, mid-segment pause, pending move/stop admission and byte-exact fresh-process native state/frame continuation. Test-only observer pauses exact committed tick boundaries; original input/rays/cadence and live equivalence excluded. No idle/stopped ANI body retention is claimed.',
-                'window_runs':8,'pixel_comparisons':checks,'fresh_process_continuations':continuations,'same_layer_target':True,'real_timer_native_window':True,'actual_modal_save':True,'pause_preserves_motion':True,'stop_while_playing':True,'stopped_body_display':'unimplemented','cases':cases,'source_sha256':{str(p.relative_to(ROOT)):sha(p) for p in sources},'input_sha256':recorded_inputs,'binary_sha256':{str(p.relative_to(ROOT)):sha(p) for p in [window,scene,sandbox,export]},'artifact_sha256':artifacts,'fixture_sha256':{str(p.relative_to(ROOT)):sha(p) for p in [frozen,geometry,initial]},'remaining':['Other installed crops/ANI profiles and world sizes','Original input/ray/pause/cadence equivalence','Idle/stopped creature body retention: native stop clears the ANI cursor','Live replacement']}
-        (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'all_match':True,'window_runs':8,'pixel_comparisons':checks,'fresh_process_continuations':continuations}))
+        report={'all_match':True,'live_validated':False,'scope':'Same native window entry point, production QTimer/elapsed clock and actual Qt mouse/button/modal Save events: installed Forest 8x8 crop and Redcap movement ANI base 0/SPR, four diagnostic views, corrected same-layer native terrain click mapping, mid-segment pause, pending move/stop admission and byte-exact fresh-process native state/frame continuation. Test-only observer pauses exact committed tick boundaries; original input/rays/cadence and live equivalence excluded. Static last-displayed ANI pose survives Stop, paused/modal Save, admitted idle ticks and fresh-window v8 restoration; movement restarts an active cursor. Original idle/action sequence selection is not claimed.',
+                'window_runs':12,'pixel_comparisons':checks,'fresh_process_continuations':continuations,'same_layer_target':True,'real_timer_native_window':True,'actual_modal_save':True,'pause_preserves_motion':True,'stop_while_playing':True,'stopped_body_display':'retained-static-pose','stopped_checkpoint_restart':True,'cases':cases,'source_sha256':{str(p.relative_to(ROOT)):sha(p) for p in sources},'input_sha256':recorded_inputs,'binary_sha256':{str(p.relative_to(ROOT)):sha(p) for p in [window,scene,sandbox,export]},'artifact_sha256':artifacts,'fixture_sha256':{str(p.relative_to(ROOT)):sha(p) for p in [frozen,geometry,initial]},'remaining':['Other installed crops/ANI profiles and world sizes','Original input/ray/pause/cadence equivalence','Original idle/action ANI selection and initially spawned idle body mapping','Live replacement']}
+        (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'all_match':True,'window_runs':12,'pixel_comparisons':checks,'fresh_process_continuations':continuations}))
     finally:verify('after')
 if __name__=='__main__':main()
