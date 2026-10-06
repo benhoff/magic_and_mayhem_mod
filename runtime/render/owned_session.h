@@ -1,4 +1,5 @@
 #include "../../protocols/include/mnm/render_stream_v2.h"
+#include "dirty_region.h"
 /* Ordered opt-in production, independent of bounded diagnostic archives.
  * Every entry point holds game_locks_busy; pixels are owned snapshots only. */
 struct SessionSurface {void* object;u32 id,width,height,bits,r,g,b,palette_known,dc_pending,palette_id,palette_generation;u8 palette[1024];};
@@ -292,6 +293,19 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
     if(lock->rectangle || existing){
         struct Rect r={0,0,(i32)after->width,(i32)after->height};if(lock->rectangle)copy(&r,&lock->region,16);
         if(lock->rectangle && !session_check(s,&lock->base))return;
+        /* The quarantined owned baseline precedes this successful Unlock. Only
+         * continuous existing resources may omit equal storage bytes; missing
+         * or changed layouts retain the complete replacement path. */
+        if(game_session_continuous && existing && !lock->rectangle){
+            const struct Snapshot* before=&lock->base;
+            if(before && before->data && before->length==after->length &&
+               before->width==after->width && before->height==after->height &&
+               before->bits==after->bits && before->r==after->r && before->g==after->g && before->b==after->b){
+                u32 region[4];
+                if(!command_dirty_region(before->data,after->data,after->width,after->height,after->bits/8,region))goto present;
+                r.left=(i32)region[0];r.top=(i32)region[1];r.right=(i32)region[2];r.bottom=(i32)region[3];
+            }
+        }
         u32 stride=after->width*(after->bits/8),bytes=(u32)(r.right-r.left)*(after->bits/8);
         if(!inside(&r,after->width,after->height) || after->length!=stride*after->height){game_session_gap(4);return;}
         u32 fields[5]={s->id,(u32)r.left,(u32)r.top,(u32)(r.right-r.left),(u32)(r.bottom-r.top)};
@@ -313,6 +327,7 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
         if(packed){HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);}
         if(!ok)return;
     }
+ present:
     if(!session_check(s,after) || (primary && !session_present(s)))return;session_done();
 }
 static void game_session_blit_begin(struct GameBlit* p){

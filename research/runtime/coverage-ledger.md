@@ -1472,3 +1472,24 @@ queue overflow still exhausts recovery; original windows and cleanup remain inta
 Original manifests passed before/after. First-frame recovery is validated within
 this bounded observation; sustained gameplay and pixel equivalence remain pending.
 See [automatic checkpoint recovery](opengl-automatic-checkpoint-recovery.md).
+
+## Compact continuous owned unlock updates (2026-10-06)
+
+Continuous full writable locks quarantine a matching owned baseline under pending
+storage accounting. Successful original Unlock emits the smallest changed native
+pixel rectangle, or no UPDATE when storage is unchanged, preserving PRESENT and
+checkpoint/lifetime ordering. Initial/missing/changed-layout baselines retain
+complete replacement. Partial locks, DC handoffs, fills, finite queue/pixel/surface
+budgets and sticky overload refusal retain their existing policies.
+
+Native/sanitizer reconstruction, independent synthetic full-frame continuity and
+checkpoint/recovery guards are recorded in the
+[delta research](opengl-owned-unlock-deltas.md). Bounded original-game startup
+recovery now requires sustained publication in one healthy session. This milestone
+does not assert original pixel equivalence, gameplay/movie interaction, indefinite
+throughput or live replacement; historical source fingerprints remain historical.
+
+The final original-game checkpoint and automatic-recovery observations presented
+208 and 235 native frames respectively, each in one healthy session for 12 seconds,
+with zero ordinary readbacks/uploads and complete consumer cleanup. These exceed
+the earlier three-frame/retry-exhaustion boundary without enlarging any queue.

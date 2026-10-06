@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "sources": {
+    "runtime/render/dirty_region.h": "e5743b9c82b63debe1b0431269d576672fcfee83ca42817e21d5558ec1ba936b",
+    "runtime/render/owned_session.h": "2e2f7b2890a4c1547dbfbda63b35f5da9b5a4019519d302594ffab207ca7f9d2",
+    "tests/render-dirty-region-test.c": "e5cbed4ff2e63e40a4112ad2ce84e25cb9e60a2057d35106face9f4c17b3f31c",
+    "tools/test-render-dirty-region.py": "0b60e3c7830fa4f77074ab9c204a6141187666c4a92e66ef50bec2f7d230f7a1"
+  },
+  "cases": [
+    {
+      "label": "native",
+      "success": true,
+      "cases": 5928,
+      "native_formats": 4
+    },
+    {
+      "label": "sanitized",
+      "success": true,
+      "cases": 5928,
+      "native_formats": 4
+    }
+  ],
+  "scope": "Native storage-byte delta envelope, independent reconstruction and minimality across indexed8/RGB16/24/32. No original pixels or driver equivalence."
+}

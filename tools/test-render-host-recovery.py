@@ -66,6 +66,11 @@ def main():
                     channel=case/('commands.bin' if not phase else f'commands.bin.retry-{phase}')
                     with channel.open('r+b') as f,mmap.mmap(f.fileno(),ring.SIZE) as mapped:struct.pack_into('<I',mapped,32,1)
                     if mode=='blocked':(case/'request-00000000.bin').write_bytes(b'go')
+                    if mode=='blocked':
+                        cp=case/'commands.bin.control'
+                        with cp.open('r+b') as f,mmap.mmap(f.fileno(),control.SIZE) as m:
+                            wait(lambda:struct.unpack_from('<I',m,32)[0]==1 and struct.unpack_from('<I',m,36)[0]==control.STATUS_REFUSED,qt)
+                        (case/'release-00000000.bin').write_bytes(b'go')
                     if mode in ['invalid-reply','cancel','exit','mutated-request']:
                         cp=case/'commands.bin.control'
                         with cp.open('r+b') as f,mmap.mmap(f.fileno(),control.SIZE) as m:
