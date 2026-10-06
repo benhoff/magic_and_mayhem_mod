@@ -11,8 +11,31 @@ if git rev-parse --verify HEAD >/dev/null 2>&1; then
 else
     set --
 fi
+echo 'Coverage accounting: checking staged files, census, behavior links and exact reviews.' >&2
+echo 'Unstaged fixes do not count. Detailed errors and retained historical warnings follow.' >&2
 if python3 -B "$repo/tools/check-re-coverage.py" --staged "$@"; then
+    echo 'Coverage accounting passed; Git may proceed with the commit.' >&2
     exit 0
 fi
-echo 'Coverage accounting blocked this commit. Reconcile and stage the source index, register and exact change reviews; rerun the gate.' >&2
+cat >&2 <<'EOF'
+
+Coverage accounting blocked this commit. No commit was created; your staged files are intact.
+Fix the errors above (historical warnings alone do not block the commit):
+  1. Missing staged files: stage the required register, index, evidence and tooling.
+     Source/focused-register drift: review affected links, create a new source-index
+     snapshot and update the central register's path/hash or focused import hashes.
+  2. Unreviewed file/behavior edits or new gaps: generate an exact draft with
+     tools/check-re-coverage.py --draft-review <new-output-path>, using the same
+     base options shown below. Fill in review/validation reasons and append it to
+     research/runtime/coverage/change-reviews.json. A draft alone is not approval.
+     Evidence/status errors require valid evidence or an honest pending limitation;
+     preserve historical results and receipts instead of rewriting their hashes.
+  3. Stage the matching source, register, index, reviews and documentation together.
+     Rerun the staged check below, then retry git commit after it passes.
+
+Staged check for this commit:
+EOF
+printf '  python3 -B tools/check-re-coverage.py --staged' >&2
+printf ' %s' "$@" >&2
+printf '\nInstructions: research/runtime/coverage/README.md\n' >&2
 exit 1
