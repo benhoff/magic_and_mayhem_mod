@@ -14229,6 +14229,98 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RE.surface-copy.rgb565-bltfast",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Selected original RGB565 opaque BltFast rectangle pixels",
+      "scope": "Offline native/CPU comparison with five retained independent original-game driver RGB565 opaque BltFast destination outputs at return PC0x0058c5be within wrapper0x0058c4a0. Includes three40x40, one40x3 and one unchanged40x1 rectangles with full800x600 destination comparisons. Not wrapper reexecution, timing, clipping, physical-driver, current collector or live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected rectangle wrapper containing captured return PC0x58c5be; pixel transfer only, no complete wrapper or retry semantics."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-surface-fixtures.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/replay_main.cpp",
+        "tools/replay-render-capture.py"
+      ],
+      "tests": [
+        "tools/check-surface-fixtures.py",
+        "tests/test-surface-fixtures.py",
+        "tests/fixtures/surfaces/corpus.json",
+        "tests/fixtures/surfaces/g34xhs0b.manifest.json",
+        "tests/fixtures/surfaces/p66k189j.manifest.json",
+        "tests/fixtures/surfaces/ugdn7zhm.manifest.json",
+        "tests/fixtures/surfaces/yu55vq8i.manifest.json",
+        "tests/fixtures/surfaces/zpfft1bo.manifest.json",
+        "tests/fixtures/surfaces/g34xhs0b.bin.gz",
+        "tests/fixtures/surfaces/p66k189j.bin.gz",
+        "tests/fixtures/surfaces/ugdn7zhm.bin.gz",
+        "tests/fixtures/surfaces/yu55vq8i.bin.gz",
+        "tests/fixtures/surfaces/zpfft1bo.bin.gz"
+      ],
+      "evidence": [
+        "ORIGINAL.surface-copy.rgb565-bltfast-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.surface-fixture-corpus",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Required surface operation matrix and portable independent-output corpus",
+      "scope": "Explicit required/conditional operation matrix and strict hash-bound original RGB565 opaque BltFast corpus, lossless retained captures/manifests, native versus expected separation, complete-destination comparisons and incomplete-milestone reporting. New captures, other operation admission and original collector provenance remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-surface-fixtures.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "tools/check-surface-fixtures.py"
+      ],
+      "tests": [
+        "tests/test-surface-fixtures.py",
+        "tests/fixtures/surfaces/corpus.json",
+        "tests/fixtures/surfaces/g34xhs0b.manifest.json",
+        "tests/fixtures/surfaces/p66k189j.manifest.json",
+        "tests/fixtures/surfaces/ugdn7zhm.manifest.json",
+        "tests/fixtures/surfaces/yu55vq8i.manifest.json",
+        "tests/fixtures/surfaces/zpfft1bo.manifest.json",
+        "tests/fixtures/surfaces/g34xhs0b.bin.gz",
+        "tests/fixtures/surfaces/p66k189j.bin.gz",
+        "tests/fixtures/surfaces/ugdn7zhm.bin.gz",
+        "tests/fixtures/surfaces/yu55vq8i.bin.gz",
+        "tests/fixtures/surfaces/zpfft1bo.bin.gz"
+      ],
+      "evidence": [
+        "NR.surface-fixture-corpus.offline-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -24911,6 +25003,48 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-bltfast-20261006",
+      "kind": "isolated_original",
+      "scope": "Offline native/CPU comparison with five retained independent original-game driver RGB565 opaque BltFast destination outputs at return PC0x0058c5be within wrapper0x0058c4a0. Includes three40x40, one40x3 and one unchanged40x1 rectangles with full800x600 destination comparisons. Not wrapper reexecution, timing, clipping, physical-driver, current collector or live equivalence. Evidence kind denotes isolated offline comparison against historical live captures, not a new isolated execution of original machine code.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/native-surface-fixtures-opengl-20261006.json",
+      "sha256": "fe0128258ac15750312851cd47c542bc45fe30e8f4400511f30bc217b5f61fab",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/backend",
+          "equals": "opengl"
+        },
+        {
+          "pointer": "/milestone_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-fixture-corpus.offline-20261006",
+      "kind": "native_integration",
+      "scope": "Portable hash-bound fixture admission and fresh CPU/OpenGL offline comparison; independent CPU RGB565 presentation conversion; missing matrix operations remain explicit. No new original capture or live integration.",
+      "record": "research/runtime/native-surface-fixtures-opengl-20261006.json",
+      "sha256": "fe0128258ac15750312851cd47c542bc45fe30e8f4400511f30bc217b5f61fab",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/backend",
+          "equals": "opengl"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -28821,6 +28955,34 @@
         "runtime/render/recovery_selftest.h",
         "runtime/render/host_recovery_selftest.h"
       ]
+    },
+    {
+      "id": "NR.surface-fixture-corpus.offline",
+      "level": "headless",
+      "scope": "Five retained original-game RGB565 opaque rectangle captures replayed entirely offline through CPU and Mesa OpenGL; whole-destination native comparison and independent RGB conversion. All other matrix requirements remain pending.",
+      "behaviors": [
+        "NR.surface-fixture-corpus",
+        "RE.surface-copy.rgb565-bltfast"
+      ],
+      "evidence": [
+        "NR.surface-fixture-corpus.offline-20261006",
+        "ORIGINAL.surface-copy.rgb565-bltfast-20261006"
+      ],
+      "tests": [
+        "tools/check-surface-fixtures.py",
+        "tests/test-surface-fixtures.py",
+        "tests/fixtures/surfaces/corpus.json",
+        "tests/fixtures/surfaces/g34xhs0b.manifest.json",
+        "tests/fixtures/surfaces/p66k189j.manifest.json",
+        "tests/fixtures/surfaces/ugdn7zhm.manifest.json",
+        "tests/fixtures/surfaces/yu55vq8i.manifest.json",
+        "tests/fixtures/surfaces/zpfft1bo.manifest.json",
+        "tests/fixtures/surfaces/g34xhs0b.bin.gz",
+        "tests/fixtures/surfaces/p66k189j.bin.gz",
+        "tests/fixtures/surfaces/ugdn7zhm.bin.gz",
+        "tests/fixtures/surfaces/yu55vq8i.bin.gz",
+        "tests/fixtures/surfaces/zpfft1bo.bin.gz"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -29068,7 +29230,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-checkpoint-20261006.json",
-    "sha256": "eb682050518084e111c0f85bdc8f1c4617181330ebcffe9d25d8b8c00580bbc0"
+    "path": "research/runtime/coverage/source-index-surface-fixtures-commit-20261006.json",
+    "sha256": "c20219172452ffadb2be7d82b8bc9c44f06d20fc721718e140086e1e09a4702b"
   }
 }
