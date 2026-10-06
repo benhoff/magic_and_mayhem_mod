@@ -109,3 +109,12 @@ As in the existing Qt/Mesa harness, integration uses detect_leaks=0; the C queue
 ASan/UBSan runner enables leak checking. Native surface cleanup is asserted
 separately. The initial v1 regression attempt was invalidated by a source change
 while running; its final fresh rerun above passes without hash changes.
+
+
+## Subsequent producer increment
+
+[Continuous owned production](opengl-continuous-producer.md) now has its own
+opt-in `MNM_RENDER_CONTINUOUS=1` policy, independent of the historical bounded
+sample described above. The v2 consumer/queue budgets and finite counter
+lifetimes remain; optional command archives retain their old bounded limits.
+Default bounded sessions and this increment's historical evidence are preserved.

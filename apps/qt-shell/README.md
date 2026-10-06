@@ -592,3 +592,12 @@ owned PE32 hooks and implies `--capture-locks`. It uses a fresh mapped command
 channel per launch, processes at most 32 commands per poll and refuses incomplete
 sessions. The original Wine window remains available after native refusal.
 See [scope and validation](../../research/runtime/opengl-live-command-transport.md).
+
+
+`MNM_RENDER_CONTINUOUS=1 ./tools/run-qt-shell.sh --native-commands` selects a v2
+channel and the continuous owned producer. Its command archive defaults off;
+`MNM_RENDER_SESSION_ARCHIVE=1` retains a bounded diagnostic prefix independently
+of live progress. Default launches retain their bounded sample policy. This
+mode retains original drawing and refuses unsupported ownership/operations;
+resource release, automatic shutdown and recovery remain pending. See the
+[producer contract](../../research/runtime/opengl-continuous-producer.md).

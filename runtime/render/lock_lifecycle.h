@@ -20,7 +20,7 @@ static void game_lock_clear(struct GameLock* slot){
     if(slot->base.data)__atomic_sub_fetch(&lock_capture_reserved,slot->base.length,__ATOMIC_RELAXED);
     free_snapshot(&slot->base);zero(slot,sizeof(*slot));
 }
-static u32 game_session_enabled,game_session_presentations;
+static u32 game_session_enabled,game_session_presentations,game_session_continuous,game_session_archive;
 struct GameSurface;struct GameBlit;
 static void game_session_gap(u32);
 static void game_session_sync(void);
@@ -38,6 +38,10 @@ static void init_lock_lifecycle(void){
         if(valid && value<=50)game_tracker_wait_ms=value;
     }
     char session[8];game_session_enabled=GetEnvironmentVariableA("MNM_RENDER_OWNED_SESSION",session,8)==1 && session[0]=='1';
+    game_session_continuous=GetEnvironmentVariableA("MNM_RENDER_CONTINUOUS",session,8)==1 && session[0]=='1';
+    if(game_session_continuous)game_session_enabled=1;
+    game_session_archive=!game_session_continuous ||
+        (GetEnvironmentVariableA("MNM_RENDER_SESSION_ARCHIVE",session,8)==1 && session[0]=='1');
     /* Explicit finite multi-frame observation; malformed values retain the
      * ordinary sample. This does not enlarge the append-only transport. */
     char frames[4];u32 frames_length=GetEnvironmentVariableA("MNM_RENDER_SESSION_PRESENTATIONS",frames,sizeof(frames));
@@ -101,7 +105,7 @@ static void game_lock_retire(void* object){
     game_surface_sync();
     /* Retire this observed interface component, preserving unrelated primary
      * metadata/checkpoints. Contended retirement still invalidates the epoch. */
-    game_session_invalidate(object);
+    game_session_retire(object);
     for(u32 i=0;i<32;++i)if(game_alias_same(game_locks[i].object,object))game_lock_clear(game_locks+i);
     for(u32 i=0;i<GAME_SURFACE_COUNT;++i){struct GameSurface* surface=game_surfaces+i;
         if(surface->object && game_alias_same(surface->object,object)){

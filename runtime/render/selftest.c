@@ -42,7 +42,13 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "input_selftest.h"
 #include "media_selftest.h"
 #include "command_idle_selftest.h"
+#include "continuous_selftest.h"
+#include "resource_selftest.h"
+#include "mutation_selftest.h"
 void start(void){
+    char mutation_mode[24];if(GetEnvironmentVariableA("MNM_MUTATION_SELFTEST",mutation_mode,sizeof(mutation_mode)))test_mutations(mutation_mode);
+    char resource_mode[16];if(GetEnvironmentVariableA("MNM_RESOURCE_SELFTEST",resource_mode,sizeof(resource_mode)))test_resources(resource_mode);
+    char continuous_mode[16];if(GetEnvironmentVariableA("MNM_CONTINUOUS_SELFTEST",continuous_mode,sizeof(continuous_mode)))test_continuous(continuous_mode);
     char idle_mode[16];if(GetEnvironmentVariableA("MNM_COMMAND_IDLE_SELFTEST",idle_mode,sizeof(idle_mode)))test_command_idle(idle_mode);
     char media_mode[8];if(GetEnvironmentVariableA("MNM_MEDIA_SELFTEST",media_mode,sizeof(media_mode)))test_media();
     char input_mode[8];if(GetEnvironmentVariableA("MNM_INPUT_SELFTEST",input_mode,sizeof(input_mode)))test_input();

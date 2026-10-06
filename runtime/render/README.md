@@ -149,3 +149,35 @@ existing64MiB and ownership limits still apply. Run
 `python3 tools/test-render-session-sequence.py working/build/live-render-channel`
 under Xvfb for changing-frame and partial-session checks. See
 [bounded sequence scope](../../research/runtime/opengl-owned-session-sequence.md).
+
+
+Continuous production is a separate opt-in:
+
+```sh
+MNM_RENDER_CONTINUOUS=1 ./tools/run-qt-shell.sh --native-commands
+```
+
+The launcher selects a v2 ring. Live publication no longer ends at the sample
+operation/presentation or archive limits. Command archives default off; add
+`MNM_RENDER_SESSION_ARCHIVE=1` for a bounded prefix that closes with GAP on
+exhaustion while live publication continues. Existing per-operation diagnostic
+files remain bounded independently. Resource, queue, ownership and finite counter
+limits still refuse; failure/release recovery and application shutdown invocation
+remain separate work. Original drawing continues. See
+[contract and synthetic evidence](../../research/runtime/opengl-continuous-producer.md).
+
+Continuous sessions now assign CREATE IDs independently of reusable table slots.
+A confirmed application final Release emits DELETE and reclaims its surface/pixel
+budget; observed aliases share that retirement. Nonfinal and untracked releases
+emit no deletion. Pending lock/DC work, ambiguous aliases and missed retirement
+still refuse. See [resource lifetime contract](../../research/runtime/opengl-continuous-resource-lifetime.md).
+Run `tools/test-render-resource-lifecycle.py working/build/render-ring` under
+Xvfb for the synthetic PE32-to-GPU lifetime suite.
+
+Continuous full writable Unlock can replace an observed layout with ordered
+DELETE/fresh CREATE after original success. Partial writes retain their complete
+base requirement. Indexed palette changes send the smallest changed RGB range;
+entry flags remain metadata. Sustained mixed writes/fills/copies/flips, palette
+changes and RGB DIB handoffs are covered by
+[continuous mutation research](../../research/runtime/opengl-continuous-mutations.md)
+and `tools/test-render-mutations.py` under Xvfb.
