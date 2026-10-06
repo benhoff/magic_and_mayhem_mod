@@ -11889,7 +11889,8 @@
         "research/runtime/opengl-owned-session-dc.md",
         "research/runtime/opengl-owned-session-unlock-packed.md",
         "research/runtime/opengl-owned-session-startup.md",
-        "research/runtime/opengl-owned-session-sequence.md"
+        "research/runtime/opengl-owned-session-sequence.md",
+        "research/runtime/opengl-command-ring-adapter.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py"
@@ -11904,7 +11905,8 @@
         "NR.owned-session-dc.startup",
         "NR.owned-session-unlock-packed.startup",
         "NR.owned-session-startup.live",
-        "NR.owned-session-sequence.live"
+        "NR.owned-session-sequence.live",
+        "NR.command-ring-adapter.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -13263,6 +13265,51 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.command-ring-adapter",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Mapped native ring reader and cooperative owned producer queue",
+      "scope": "Version2 adapter and bounded queue drained nonblocking after tracker release. v1 preserved; idle scheduling, sustained decoder/archive lifetime and original-driver equivalence remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-command-ring-adapter.md",
+        "research/formats/render-command-ring-v2.md"
+      ],
+      "implementation": [
+        "runtime/render/command_channel.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/lock_lifecycle.h",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "tools/build-render-bridge.py",
+        "tools/run-opengl-game.py"
+      ],
+      "tests": [
+        "tests/render-command-writer-test.c",
+        "tests/render-command-queue-test.c",
+        "tools/test-render-command-queue.py",
+        "tests/live-render-channel-test.cpp",
+        "tools/test-render-session-sequence.py",
+        "tools/test-live-render-game.py"
+      ],
+      "evidence": [
+        "NR.command-ring-adapter.queue",
+        "NR.command-ring-adapter.sequence",
+        "NR.command-ring-adapter.startup",
+        "NR.command-ring-adapter.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -23043,6 +23090,100 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NR.command-ring-adapter.queue",
+      "kind": "native_integration",
+      "scope": "Actual C producer queue/channel under mapped-file/heap fakes;11 legacy and7 queue cases native/ASan/UBSan, owned bytes, delayed reader, FULL retries,35.65MB queue wrap, first refusal and shutdown failures. No original call comparison.",
+      "record": "research/runtime/opengl-command-ring-adapter-queue.json",
+      "sha256": "5c82cbb867bd69deed5180636ba723b50de3aa94b44d125e198fa9120fc3d3cf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/1/queue_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/native/1/queue_wrap_bytes",
+          "equals": 35653675
+        }
+      ]
+    },
+    {
+      "id": "NR.command-ring-adapter.sequence",
+      "kind": "native_integration",
+      "scope": "Eight v2 PE32 synthetic sessions; five complete, three refused;44 independent complete GPU frame comparisons, original synthetic calls/results/errors retained. Bounded active-callback integration only.",
+      "record": "research/runtime/opengl-command-ring-adapter-sequence.json",
+      "sha256": "afad44c720a4b1ec3e9f6cbef0ccb08e3ee671250a31a7da18778ffeb5e23885",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/wire_version",
+          "equals": 2
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 44
+        }
+      ]
+    },
+    {
+      "id": "NR.command-ring-adapter.startup",
+      "kind": "native_integration",
+      "scope": "Eight default v1 startup regressions after shared producer lifecycle change; independent synthetic frame checks and explicit refusal paths.",
+      "record": "research/runtime/opengl-command-ring-adapter-startup.json",
+      "sha256": "36f032b176cf594361da5129f678d5d2412ee87e65daf2274b812ae176b411ba",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-ring-adapter.live",
+      "kind": "live_observation",
+      "scope": "Original no-CD40209ca7 startup retains original drawing; three native PRESENTs through1MiB ring,39,363,820 published bytes, cleanEND/zero native surfaces. Identical early-startup frames; no original-driver pixel comparison or replacement.",
+      "record": "research/runtime/opengl-command-ring-adapter-live.json",
+      "sha256": "284cd4be7e69e7310f948093a319e49cffeef0c3c78372012e4f562fc94d1853",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/wire_version",
+          "equals": 2
+        },
+        {
+          "pointer": "/producer_state",
+          "equals": 2
+        },
+        {
+          "pointer": "/published_bytes",
+          "equals": 39363820
+        },
+        {
+          "pointer": "/native_consumer/presentations",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_consumer/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "classifications": [],
@@ -26607,6 +26748,40 @@
         "tests/render-command-ring-gpu-test.cpp",
         "tools/test-render-command-ring.py"
       ]
+    },
+    {
+      "id": "NR.command-ring-adapter.preview",
+      "level": "preview",
+      "scope": "Bounded v2 adapter/cooperative queue integration; idle scheduling and archive/decoder lifetime remain pending. No recovered original equivalence or replacement.",
+      "behaviors": [
+        "NR.command-ring-adapter"
+      ],
+      "evidence": [
+        "NR.command-ring-adapter.queue",
+        "NR.command-ring-adapter.sequence",
+        "NR.command-ring-adapter.startup"
+      ],
+      "tests": [
+        "tools/test-render-command-queue.py",
+        "tools/test-render-session-sequence.py",
+        "tools/test-render-session-startup.py"
+      ]
+    },
+    {
+      "id": "NR.command-ring-adapter.live",
+      "level": "live_observation",
+      "scope": "Bounded v2 adapter/cooperative queue integration; idle scheduling and archive/decoder lifetime remain pending. No recovered original equivalence or replacement.",
+      "behaviors": [
+        "NR.command-ring-adapter",
+        "NR.real-game-command-shadow"
+      ],
+      "evidence": [
+        "NR.command-ring-adapter.live"
+      ],
+      "tests": [
+        "tools/test-live-render-game.py",
+        "tests/live-render-channel-test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -26854,7 +27029,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-nonrender-hook-final-20261005.json",
-    "sha256": "50135e0a3ab756442df08c47df06283db51fbc772fc76a9e326c682794a045ec"
+    "path": "research/runtime/coverage/source-index-command-ring-adapter.json",
+    "sha256": "2dd789995f51023606825f4fccb3db3d9d9f7901f3917dcb9023808311a1eba5"
   }
 }

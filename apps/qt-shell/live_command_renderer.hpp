@@ -8,7 +8,7 @@ class LiveCommandRenderer final {
 public:
     explicit LiveCommandRenderer(GlViewport& viewport,bool verify=false);
     ~LiveCommandRenderer();
-    bool create(const QString& path,quint32 session);
+    bool create(const QString& path,quint32 session,quint32 version=1);
     bool open(const QString& path);
     bool poll(quint32 budget=MNM_RENDER_COMMANDS_V1_POLL_BYTES);
     bool finishProducer();

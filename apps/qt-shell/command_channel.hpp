@@ -1,12 +1,13 @@
 #pragma once
 #include "../../protocols/include/mnm/render_commands_v1.h"
+#include "../../protocols/include/mnm/render_command_ring.h"
 #include <QFile>
 #include <QByteArray>
 // One native reader per launch; mapping survives until producer has exited.
 class CommandChannel final {
 public:
     ~CommandChannel();
-    bool create(const QString& path,quint32 session);
+    bool create(const QString& path,quint32 session,quint32 version=1);
     bool open(const QString& path);
     QByteArray poll(quint32 budget=MNM_RENDER_COMMANDS_V1_POLL_BYTES);
     void cancel();
@@ -20,4 +21,6 @@ private:
     void validate() const;
     QFile file_;uchar* mapping_=nullptr;quint32 session_=0,consumed_=0,published_=0,state_=0,reason_=0;
     QString error_;
+    quint32 version_=1,size_=MNM_RENDER_COMMANDS_V1_SIZE;
+    mnm_ring_reader ring_{};
 };

@@ -8,25 +8,28 @@ void require(bool ok,const char* reason){if(!ok)throw std::runtime_error(reason)
 }
 CommandChannel::~CommandChannel(){cancel();if(mapping_)file_.unmap(mapping_);}
 void CommandChannel::validate() const {
-    require(mapping_ && file_.size()==MNM_RENDER_COMMANDS_V1_SIZE,"Invalid command channel size");
+    require(mapping_ && file_.size()==size_,"Invalid command channel size");
+    if(version_==2){require(mnm_ring_identity(reinterpret_cast<const uint32_t*>(mapping_),session_),"Invalid command ring identity");return;}
     require(!std::memcmp(mapping_,MNM_RENDER_COMMANDS_V1_MAGIC,8) && qFromLittleEndian<quint32>(mapping_+8)==1 &&
         qFromLittleEndian<quint32>(mapping_+12)==MNM_RENDER_COMMANDS_V1_SIZE &&
         qFromLittleEndian<quint32>(mapping_+16)==session_ && session_,"Invalid command channel identity");
     for(unsigned i=36;i<64;++i)require(!mapping_[i],"Nonzero command channel reserved byte");
 }
 bool CommandChannel::map(){
-    if(file_.size()!=MNM_RENDER_COMMANDS_V1_SIZE){error_="Invalid command channel size";return false;}
-    mapping_=file_.map(0,MNM_RENDER_COMMANDS_V1_SIZE);
+    size_=quint32(file_.size());version_=size_==MNM_RENDER_COMMANDS_V2_SIZE?2:1;
+    if(file_.size()!=MNM_RENDER_COMMANDS_V1_SIZE && file_.size()!=MNM_RENDER_COMMANDS_V2_SIZE){error_="Invalid command channel size";return false;}
+    mapping_=file_.map(0,size_);
     if(!mapping_){error_=file_.errorString();return false;}
     session_=qFromLittleEndian<quint32>(mapping_+16);
-    try{validate();return true;}catch(const std::exception& e){error_=e.what();file_.unmap(mapping_);mapping_=nullptr;return false;}
+    try{validate();if(version_==2)require(mnm_ring_reader_bind(&ring_,mapping_,size_),"Command ring reader already acknowledged or invalid");return true;}catch(const std::exception& e){error_=e.what();file_.unmap(mapping_);mapping_=nullptr;return false;}
 }
-bool CommandChannel::create(const QString& path,quint32 session){
-    if(file_.isOpen() || !session)return false;
+bool CommandChannel::create(const QString& path,quint32 session,quint32 version){
+    if(file_.isOpen() || !session || (version!=1 && version!=2))return false;
+    version_=version;size_=version==2?MNM_RENDER_COMMANDS_V2_SIZE:MNM_RENDER_COMMANDS_V1_SIZE;
     file_.setFileName(path);
-    if(!file_.open(QIODevice::ReadWrite|QIODevice::NewOnly)||!file_.resize(MNM_RENDER_COMMANDS_V1_SIZE)){error_=file_.errorString();return false;}
-    QByteArray header(64,0);std::memcpy(header.data(),MNM_RENDER_COMMANDS_V1_MAGIC,8);
-    qToLittleEndian<quint32>(1,header.data()+8);qToLittleEndian<quint32>(MNM_RENDER_COMMANDS_V1_SIZE,header.data()+12);qToLittleEndian(session,header.data()+16);
+    if(!file_.open(QIODevice::ReadWrite|QIODevice::NewOnly)||!file_.resize(size_)){error_=file_.errorString();return false;}
+    QByteArray header(64,0);std::memcpy(header.data(),version==2?MNM_RENDER_COMMANDS_V2_MAGIC:MNM_RENDER_COMMANDS_V1_MAGIC,8);
+    qToLittleEndian(version,header.data()+8);qToLittleEndian(size_,header.data()+12);qToLittleEndian(session,header.data()+16);
     if(file_.write(header)!=64 || !file_.flush()){error_=file_.errorString();return false;}return map();
 }
 bool CommandChannel::open(const QString& path){
@@ -38,6 +41,12 @@ QByteArray CommandChannel::poll(quint32 budget){
     if(!error_.isEmpty())throw std::runtime_error(error_.toStdString());
     try{
         validate();require(budget && budget<=MNM_RENDER_COMMANDS_V1_POLL_BYTES,"Invalid command poll budget");
+        if(version_==2){
+            QByteArray result(qMin(budget,quint32(MNM_RENDER_COMMANDS_V2_POLL_BYTES)),0);
+            const auto count=mnm_ring_read(&ring_,result.data(),quint32(result.size()));
+            require(count>=0,"Command ring failed, cancelled or invalid");result.resize(count);
+            state_=ring_.state;published_=ring_.published;consumed_=ring_.consumed;reason_=state_>=2?load(mapping_,28):0;return result;
+        }
         const auto state=load(mapping_,24);const auto published=load(mapping_,20);const auto cancelled=load(mapping_,32);
         require(state<=MNM_RENDER_COMMANDS_V1_STATE_FAILED && cancelled<=1,"Invalid command channel state");
         require(published<=MNM_RENDER_COMMANDS_V1_CAPACITY && published>=published_,"Command channel publication regressed or overflowed");
@@ -51,4 +60,4 @@ QByteArray CommandChannel::poll(quint32 budget){
         QByteArray result(reinterpret_cast<const char*>(mapping_+64+consumed_),count);consumed_+=count;return result;
     }catch(const std::exception& e){error_=e.what();cancel();throw;}
 }
-void CommandChannel::cancel(){if(mapping_)__atomic_store_n(reinterpret_cast<quint32*>(mapping_+32),qToLittleEndian<quint32>(1),__ATOMIC_RELEASE);}
+void CommandChannel::cancel(){if(version_==2){mnm_ring_cancel(&ring_);return;}if(mapping_)__atomic_store_n(reinterpret_cast<quint32*>(mapping_+32),qToLittleEndian<quint32>(1),__ATOMIC_RELEASE);}

@@ -75,6 +75,7 @@ static int game_tracker_acquire(void){
 }
 static void game_tracker_release(void){
     __atomic_store_n(&game_locks_owner,0,__ATOMIC_RELEASE);__sync_lock_release(&game_locks_busy);
+    command_channel_pump();
 }
 static void game_pixel_missed(void* object){
     if(object)for(u32 i=0;i<128;++i){
