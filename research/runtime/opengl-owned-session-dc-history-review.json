@@ -1,0 +1,333 @@
+{
+  "range": "423df90..930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+  "scope": "Read-only parent/current committed file and behavior fingerprints against append-only exact receipts. No retrospective gate pass or new execution/equivalence claim.",
+  "files": [
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "reconstruction/rendering/effect-creature/CMakeLists.txt",
+      "before_sha256": "9bedfd9775acb3090259d3e18e36b4b12949a62266809a1ca789df12e971d568",
+      "after_sha256": "05cfe6668f59a6897e5f6b2f79e7735167d4f5d62fb4bc9df901f106a6d8986f",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "role": "build",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "reconstruction/rendering/effect_creature_collision.cpp",
+      "before_sha256": "10c4a2dd7c8f431d2b79c8f763b14c87f86dbf95699365027ff5ba8a4176233d",
+      "after_sha256": "4e7d28780ed5e7c3b12943bec4a25a701b5e3943b084e3d3cd4e11a7fee1a523",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "reconstruction/rendering/effect_creature_collision.hpp",
+      "before_sha256": "81f7d672068522f762379d92244ebd20d81004ad0d5f971cdf40a4d15899eefb",
+      "after_sha256": "7e6fd634ac464b6a19fb2d750953e41f8ad7ce4995d3a714e2c6560391715839",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "05fa18d17089045c606dec087d1021a02479677f7516a53602b8e268b15bf78b",
+      "after_sha256": "d47836aabd7365b72363e64b62853b937c5912c0e36a614ee9c17e0941fc878c",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "dab6643ded29e105249deb35f925b9d4b1455f4aed88b1caa2c2c9947020ed9e",
+      "after_sha256": "22731ff6ec0207e42d4e3197d7ec6c8bf62966964f1cd5a025ed608c03bcafb2",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "605837f449df07777e1ad2f71124243db20b9c81c5acbd6f86de2ab911d22217",
+      "after_sha256": "6544f8a9f5f7c378479a412a143d20910f5170c26618498fe8f00b8028df321d",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-creature-summary-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "before_sha256": "0415278769923b9327e4bef452c6d1575f5a0ab47a4b01241ed3989c123668fc",
+      "after_sha256": "caa6591c5ad495830adfd7fdab4230ea5cd63700f9e99c0727fea86cd523c37a",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": "badd7b1412a736c8f4a0ce798bc6863b309314a439ef655301c03d924b58478a",
+      "after_sha256": "a14014bc52257b04578dc4d8659eed9c881360699a15a968b559ac48aec89662",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "7fb36088be918959465e3fc827eb6bf1b5e03e2d509f2452c26263649817e99f",
+      "after_sha256": "c8d036d28663ef734c2c7a84085aff7b73ce51a054866d3029d60b87a411e441",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "9916bf31c74afe8c58815f9006126f1538aa5ffce6743a9b09d9cdb6989809bd",
+      "after_sha256": "21bd9c88e43efa27a8e462d0fd07f64e5ef5da2836d705fdda338edf6c60a2fe",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "02c4f5268baefac12d88f30a384cf8932273df3918ad8f16dc92ef8be27b3abd",
+      "after_sha256": "54d041981e425fc2bc99296a4dea830b4b69f2572886dd6a5f5beee95c37dd4d",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "before_sha256": "c3ca18abca2d97ad16cd121872ea52cd0985fac3a39b955c970162c42530a01d",
+      "after_sha256": "3a47712837c89be62e1e493737f5fb6d1d65bf51982ebd58a1446f10149b4d6d",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-creature-collision.md",
+      "before_sha256": "1644c453cf170a3ad5106f224ebfa028cb94d1c27dbdd67ef348e7a86fc17d15",
+      "after_sha256": "4bdc19d8c7727f6b7f1c317824d3009c83f7b625187cc5ef79be15a4fb3ef0de",
+      "behaviors": [
+        "TL.effect-creature-collision",
+        "TL.effect-movement-recount"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "e7eea493a6225900ee64a3762dba2b19b7ba36313f2f40131b60ebe8e3995894",
+      "after_sha256": "aa61f719cc78ff1cdde60f547db353c1f79ae10a081da230cebc0290052d0fe0",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-kind34-creator.json",
+      "before_sha256": null,
+      "after_sha256": "e5fa4c69373fdd6d3405cff5e2c4d6a038ca4e05b9cec0291c5b6960d57e3fc0",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-kind34-creator.md",
+      "before_sha256": null,
+      "after_sha256": "0c7ee6a0eed3de59091a0cdaddc9cf47e9a301a74ca10dcfc48f01782313bf52",
+      "behaviors": [
+        "TL.effect-creature-collision",
+        "TL.effect-movement-recount"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-kind34-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "f60087751ef7ef87b661d53953ec3559d33855e0e374706d8475a03a3ebe1e39",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "12488f808c5bd4ddc5ea0a4a9708869c0b86c03813d42130b11f7655d8e3d026",
+      "after_sha256": "10efb7569f0aff5c78275d6f1c3f73399b0a1def30d72f231f4a9a7fcc3e13e2",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "83edd1d354cb5dba85562539c6a73e41a1eee9beb880bc2845f088ab2ca05bea",
+      "after_sha256": "c8501ee3373b9454c83f45c01c76ae8695470f1fddd314725b99e4d5d333e789",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "c95fe0618d6f24c2c50b9a16193f94e740de0edfd6183a4365de0536514f95ab",
+      "after_sha256": "2f6e5367a077e4fef1df1946066fd82553ca925c7dc6e7b5b4e24ba8beddd1f2",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "c35ac4740fb66a2bf3e55ba5a0f4512f90b12ff5885d860c94e16801a77b25fb",
+      "after_sha256": "3c56962b2aa9c7c408377392c29c87a4106538e8e7acda6edc0d44b45c6ba3ad",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "tests/effect-kind34-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "8c2e2a34388ceceaa9600399602b1cab3726b5d5c732db55fca6ca8288e89628",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "tests/effect-kind34-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "c96ad497f3f50fba8cadf137b92d6d70b6f6448be0abc93b04e6ded62afc7a1d",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "tools/test-effect-kind34.py",
+      "before_sha256": null,
+      "after_sha256": "33738e8e05a20069d313d98b3b19b5938b91612d5f2c6c78c313600d8a0685f8",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "id": "TL.effect-creature-collision",
+      "before_sha256": "df2f5564f35eec0378f652ec3fb60ce66537e0de48a7c21d4788bc63898f3a81",
+      "after_sha256": "894812a4b2f341b57986ec4ea8b018a81141f06594561d3001a7f30b86ed72a9",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "0c9c2318202b28624b87e9c5bd1e21ff6f844646a0c08410809eac0eb76f513f",
+      "after_sha256": "ed81b8bed4810bc7ee2917c5889bd668c3c3bb8942a9dcb76f08dee03dcd2439",
+      "reviews": [
+        "effect-kind34-remaining-423df90"
+      ]
+    }
+  ],
+  "unmatched": []
+}

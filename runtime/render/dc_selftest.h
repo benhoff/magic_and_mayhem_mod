@@ -4,17 +4,19 @@ API HANDLE WIN CreateDIBSection(HANDLE,void*,u32,void**,HANDLE,u32);
 API HANDLE WIN SelectObject(HANDLE,HANDLE);
 API i32 WIN DeleteObject(HANDLE);
 API i32 WIN DeleteDC(HANDLE);
-static HANDLE bs_dc,bs_bitmap,bs_old_bitmap;static u8* bs_dc_bits;static u32 bs_dc_calls,bs_dc_fail;
+static HANDLE bs_dc,bs_bitmap,bs_old_bitmap;static u8* bs_dc_bits;static u32 bs_dc_calls,bs_dc_fail,bs_dc_get_fail;
+static int bs_dc_bottom_up(void){return bs_mode("dc-bottom-up") || bs_mode("dcs-bottom-up");}
 static int bs_dc_case(void){return bootstrap_mode[0]=='d' && bootstrap_mode[1]=='c' && (bootstrap_mode[2]==0 || bootstrap_mode[2]=='-');}
 static i32 WIN bs_get_dc(void* object,void** out){
     bs_entry();struct BsSurface* s=bs_state(object);if(s->held)ExitProcess(210);
-    s->held=1;++bs_dc_calls;*out=bs_dc;return 23;
+    ++bs_dc_calls;if(bs_dc_get_fail){bs_dc_get_fail=0;return -1;}
+    s->held=1;*out=bs_dc;return 23;
 }
 static i32 WIN bs_release_dc(void* object,void* dc){
     bs_entry();struct BsSurface* s=bs_state(object);if(!s->held || dc!=bs_dc)ExitProcess(211);
     ++bs_dc_calls;if(bs_dc_fail){bs_dc_fail=0;return -1;}
     u32 row=s->width*(s->bits/8);
-    for(u32 y=0;y<s->height;++y)for(u32 x=0;x<row;++x)s->pixels[y*row+x]=bs_dc_bits[(bs_mode("dc-bottom-up")?s->height-1-y:y)*row+x];
+    for(u32 y=0;y<s->height;++y)for(u32 x=0;x<row;++x)s->pixels[y*row+x]=bs_dc_bits[(bs_dc_bottom_up()?s->height-1-y:y)*row+x];
     /* Capturing after original ReleaseDC would copy poison instead. */
     for(u32 i=0;i<row*s->height;++i)bs_dc_bits[i]=0xcc;s->held=0;return 19;
 }

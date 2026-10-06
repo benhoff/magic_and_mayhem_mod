@@ -1,0 +1,990 @@
+{
+  "range": "e0b80d1..f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+  "scope": "Read-only parent/current committed file and behavior fingerprints against append-only exact receipts. No retrospective gate pass or new execution/equivalence claim.",
+  "files": [
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "24cc22df3663dd522de92011a42dfc2f9ec4184e5db7b3d86b21dbc9947c0b39",
+      "after_sha256": "0c118dd8b5f1e12d7768fee363a5d6b9012e47165406523a66c513aa568216ba",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.region-entry-fresh-policy",
+        "NR.gpu-presentation"
+      ],
+      "role": "build",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/battle_result_widget.cpp",
+      "before_sha256": "cccfdad4a1c94498955676ea116ab8eea34605cc35c466957c87156330c8f894",
+      "after_sha256": "27b236149b933ef3dcd679fdd65f9a910cba95e1880e28866a67aac6807e5445",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy",
+        "UI.battle_result"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/battle_result_widget.hpp",
+      "before_sha256": "149e118aa1368c4f15500e949c1b8b94337a75ea4499bae86cb38f371ff61ec2",
+      "after_sha256": "0453bbe2415bf4d97c87b1084e7d0899ab3a5fc5e319626845e087f5f431baa6",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy",
+        "UI.battle_result"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_campaign_defeat_controller.cpp",
+      "before_sha256": null,
+      "after_sha256": "778a953e09150345daffb024f2541d54555cbf4c18eba68e7780c3b9307338ce",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_campaign_defeat_controller.hpp",
+      "before_sha256": null,
+      "after_sha256": "56c84313b123ae82a6829925ceb79c63644e641feb84ac74f328b0532fc9fced",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_campaign_defeat_test.cpp",
+      "before_sha256": null,
+      "after_sha256": "2d61c09ffb6606f5c654db86c260bf605b026da04afadc999d58c94b88a1faff",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_campaign_quit_test.cpp",
+      "before_sha256": "6d523a23947fd39bd30c94b9a26a94ce78a135ba996d3839cc7f84d5c7a91ec6",
+      "after_sha256": "09f6f11165d98b471ea336676537e1614eb32f544fb2faa86fb033f3f5737ca8",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-quit-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "0946c10d676fc18a4e57bfffc9560abecc9c113787120644e889fb93aaf5b12e",
+      "after_sha256": "60c12021e58abce146389da4afdc424756c697ad239639a1999a485adff3b9f0",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.preferences-draft",
+        "NP.preferences-persistence",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "2c60e19e3b9ed91f91acd238b3a6e9a51d1409b525cd5263d57fe56c13e3531b",
+      "after_sha256": "6b53e83a42a7b79da9a604487614c98e0a358d6a4ccc306420b03a277fea4a96",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.preferences-persistence",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_menu_test.cpp",
+      "before_sha256": "6525f3ea6dcdee6ce9b32e36c3a264c10d6de23a19bc2b51cca377a7421603eb",
+      "after_sha256": "89cc91453e19f5e40b9a89cdde77fd2db08c7d056f86c50febfb9d61dbc1acd1",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/live_menu_test.hpp",
+      "before_sha256": "6fb8f9aaf64f2cdfe7e733b1d8db5b74b1fbc5891c9544a5f3d4638d0a698d1b",
+      "after_sha256": "bead6b6a176fe7367bb1cb675c8dd7d19b4cbcdf18c4181dcc1a03a496d71521",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "225825cd69a93ca3dcf5bb08218aba01c057ec918129d40788fa70aaa6a888a2",
+      "after_sha256": "71765dc86403a82fd2732c4200993327e2cddce6518a5654c0320cb5017d0e0e",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "HOST.session",
+        "NP.campaign-defeat-policy",
+        "NP.region-entry-fresh-policy",
+        "NR.gpu-presentation"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "b8b5ef8f2edf0c535e49a234dcd2071afdfaba5f794479d9c958759e4fb6b7ca",
+      "after_sha256": "0016c5268605dcd4db95491abd48befd28a488d0385bbe622036d6d63734cb41",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.preferences-draft",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "1a2de46e95a1cab30d877d0086218aee97941a615fcfe05b645216e8820026e7",
+      "after_sha256": "0c9e85fd7dcb51a828816310becfd93b1178bf4fd2e124954eaae7d13beab361",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "protocols/include/mnm/menu_v11.h",
+      "before_sha256": null,
+      "after_sha256": "cd9a8e80df702ea904dbe15404d392896035b7ab784ceef62dee35559f27c324",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "role": "protocol",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/README.md",
+      "before_sha256": "0a67c7998fcc7ad924555a656ed7167ed96f8ed09eb400e802c62f04d8150323",
+      "after_sha256": "3b68ea7bed534eee137277066f1e5db5967486f18705b9e5552cceef9f835c3c",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/campaign-defeat-engine-bridge.json",
+      "before_sha256": null,
+      "after_sha256": "04bc9c765cfc1220738b7f565a68ababeb73482ec97ca468b403b3c241994872",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/campaign-defeat-engine-bridge.md",
+      "before_sha256": null,
+      "after_sha256": "fb01bdfb26901df275a28b07d6022504103cdba7a74f56c7174248dfbe12e7ba",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/campaign-defeat-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "23f25fc42f6fe29df6a5352c5de3c4af1c648e724c7fd1af059d91fd214e06a5",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": "cb46f3e5f91a460e1148776f1e3b208354ac7e735cadcfadbb33e476879ed024",
+      "after_sha256": "35d8b255a3116cef30d5eedaf1d10a0078abcaa952c5e22a7d8564a69bf47104",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/campaign-mini-quit-engine-bridge.md",
+      "before_sha256": "448881bd7ca33f916c8041b8a79e0ab1da657809874af29589a07db2f7a8b311",
+      "after_sha256": "5f680cb0cd8db909c526f1f9ddfa67ac8264f923aff42710c7968740e66c8018",
+      "behaviors": [
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "NP.campaign-mini-quit-policy"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "80d8cd43654a1e26955ed8fbf762d81a2dcd5b8f16db2924bf85327b3a45aefc",
+      "after_sha256": "51c752f8429fbedc1b51d6ce87895edac4ccf71a6d09e143b0b9b85a9c7dd5f3",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "38202543d380220c6f89a04d7ff5d8bb04c4e3fa9902b376593f326323be1138",
+      "after_sha256": "c14efe01f79b103d0b6b33c07d792128e400f2fa0078abe621e6c6705e377e60",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/coverage/source-index-campaign-defeat.json",
+      "before_sha256": null,
+      "after_sha256": "defb7d4c3a762338755a53aea700ebd94b9b9360e4bd5a4c5a752cb40a3093cc",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "cd7d7aa116dbbf68b18b6b03b7a89080a1963a0fef058674e4ad8e81b6f79b6f",
+      "after_sha256": "eb3b1c8079be8c92cf6ded41035b50c6eff03df8db34f3f1b0d05fa66805613c",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "runtime/menu/campaign_defeat.h",
+      "before_sha256": null,
+      "after_sha256": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "runtime/menu/campaign_quit_observe.h",
+      "before_sha256": "8a279e9111adb5c9ac326d0780e715ba56d3bb9fb84815519334c11c9f2e0070",
+      "after_sha256": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-quit-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "runtime/menu/channel.h",
+      "before_sha256": "6b1b9970b72e60604cd217f0b802144a3ca2d271216d2a22d5bcfae3d9a3da6a",
+      "after_sha256": "c84271d4a7f16d748904b207d073823729737ff8a429c89b6f3c2dc0bde6d937",
+      "behaviors": [
+        "BR.battle",
+        "BR.main",
+        "BR.mini",
+        "BR.result",
+        "BR.spell",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "runtime/menu/observer.c",
+      "before_sha256": "814448f600be8b8202b75f762c93cb451538642fd062c59a51ba8cbc175551af",
+      "after_sha256": "04137d835048e078c65fffd46cf532bc273b323c05d8dcabd566ae78cebd39e1",
+      "behaviors": [
+        "BR.battle",
+        "BR.main",
+        "BR.mini",
+        "BR.result",
+        "BR.spell",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.realm-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "CP.region-entry-observation",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.display-rebuild",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tests/README.md",
+      "before_sha256": "edd1eeea5b3e40052efbb41ae709461009ebd4cb297724e95fcefd2ecfd47b61",
+      "after_sha256": "a8c08144c376985a47ec8d89f25953ce660fea2686b810e8873dd45437a8ddf6",
+      "behaviors": [
+        "TOOL.coverage-gate"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tests/campaign-defeat-reference.c",
+      "before_sha256": null,
+      "after_sha256": "25a8ea0ab6a5bd212bd2afef128069b9ef9d4dc9e9d32973ecfebb20637488c6",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tests/menu-campaign-defeat-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "c4f88a0aba1317fca989b676c83dea90f43a96acd59efb9b4ff9323027543dc4",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/build-menu-observer.py",
+      "before_sha256": "f831783fcb547814355fd10056344d8865d22877e7b15f0c14d8305797efba5e",
+      "after_sha256": "dad8006211c093cc78cf97182fb3a604f752720879abe81be53ebac92c540322",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.realm-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "CP.region-entry-observation",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/export-campaign-defeat-support.py",
+      "before_sha256": null,
+      "after_sha256": "9a805c8aa9f6d7f8071ebc487721d0f8e2147f1fa6a90e948f48d6cfe45603f0",
+      "behaviors": [],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "11ad1b5263aa09633160bd890049f3cbf48cf0b9340f1434adeec589fe3c0f0a",
+      "after_sha256": "e100b6f586a026d2845492e304b8cf627ed56b10e7b266f93401d68e3fd13ab0",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/test-campaign-defeat-bridge.py",
+      "before_sha256": null,
+      "after_sha256": "4e0e39b392792f7c296c651af7147ab17c20797f7fad80e08b93716171560496",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/test-campaign-mini-quit-bridge.py",
+      "before_sha256": "54210807e7c4655a0c6156293546585bee8dc0bfaf2bfad27c8c622b4ec251f6",
+      "after_sha256": "54210807e7c4655a0c6156293546585bee8dc0bfaf2bfad27c8c622b4ec251f6",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-quit-policy"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "path": "tools/test-live-qt-campaign-defeat.py",
+      "before_sha256": null,
+      "after_sha256": "e98cf2450ddae9db4ac8f1523c3dbd65f8bf09d4d29958bddb9f7ef3369b55ea",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "NP.campaign-defeat-policy"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "BR.battle",
+      "before_sha256": "9f1b32411589b87e3ee09526824bede75706f2563b4e0aad4603467a8a3ffb65",
+      "after_sha256": "78bb7e14c2730c1fddb2a58aa11fc3656b769523bddaae67a6f18f01f7d5c1db",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "BR.main",
+      "before_sha256": "3d6e42e93329730c16efc3eea73b6eedf568db53e81456feb9c5c0613e226926",
+      "after_sha256": "4ff742e853abb882f381d9f297e2b08fa98811a6e623ff17647d3089a1ed527e",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "BR.mini",
+      "before_sha256": "c2171ea39f3241307a8bec202b1c6e5cb25267745556af76d515ad35814aa2b8",
+      "after_sha256": "98b4e645572687839d233557ad8d35b7fa70010ad3d4140b39ec9c8a085174a0",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "BR.result",
+      "before_sha256": "ab62304fd167925b4854e97db878b07f6cfa0e9374ca81652fc8d16a80c92579",
+      "after_sha256": "fb1f77c289c6ac42bfb91c348fc1f6a4af60817e9ea0d206aa4ed72d5aa00675",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "BR.spell",
+      "before_sha256": "547c19ca366d854b67d7dfa5ce9333e7bf01a52c66b1d573c5108ba05eadb2f7",
+      "after_sha256": "95226043da40037bbae10e7885178f68d6ff7a7fcab355cf65962cd912357b29",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-defeat-report",
+      "before_sha256": null,
+      "after_sha256": "67fcf3270e173d0d633df2b21171b0bce47c5988c0e80bd78f469df055909fa2",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk",
+        "campaign-defeat-ui33-execution-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-mini-cancel",
+      "before_sha256": "96d39ab0bdf637651fc0c2cfe9be981353712a6fd5d5a50a52bf712384d4b257",
+      "after_sha256": "8411df886ff61587658278729aa4f474b112611b99c6d09298a830da21dc9cd5",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-mini-lifecycle",
+      "before_sha256": "518c43f8bdc6d33c3fdf84e92f22dd4619455cb997454afbf1adcc339b83a945",
+      "after_sha256": "2dbf477753699ad04d66fa326cad6d9c701b6e6e54aed4463f916aeacd3979bb",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-mini-quit",
+      "before_sha256": "e8362f346ef03fc648cf03f406a4c6f55df3b611ca78790c02f2e9ab8c102f52",
+      "after_sha256": "51bced3ffccb76d504f4b91840fd03c6dea276e29cf4be5610dde8fa785d68c0",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-mini-quit-lifecycle",
+      "before_sha256": "2971db91e945d2f80e6065847ecb595c871ac5149aaa5be45474c5dae5b1af8f",
+      "after_sha256": "b4127933579e58c2fe7eefb0449e97b16b528dc4ea55335221b308e33e562653",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.campaign-world-handoff-observation",
+      "before_sha256": "11510d5f5586fe17481dea4bb7e71b10ceff37224b43fd90cb484064850f36e1",
+      "after_sha256": "25411e448858c2c8da3feb864b51bcd497771b4a35cf65c566d4ef01734682ae",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.realm-observation",
+      "before_sha256": "2007576987e1b53bd26271c18d2c3aa806e55fdce476f5d11e32ca87fdc8685d",
+      "after_sha256": "f1a4edf6008c306a90ef8d00543443165be4f9f49dfd59c8cc80a52fcfcfe241",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.region-entry-bridge",
+      "before_sha256": "f8e002e2ce7c6b6cb6825ac96ce87a40552679b70fcb5f9885b027e9402fc2dc",
+      "after_sha256": "4f94d8f0ac47721c9059f363aeedc8cbec6d2001f49d8d156881f58c3a3c2ee4",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.region-entry-enter",
+      "before_sha256": "ab32156d8643cf27ffdf3c5d7e4239707edecb2a7b46c22aa6605bfa4de8a378",
+      "after_sha256": "1242f62d27553c0c1721babadd971c499051d5d781e11e30355859c81ee3b823",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "CP.region-entry-observation",
+      "before_sha256": "365efa07f149fc79fcebf8d87955f365af6eaae43849ece8d66144bd62957666",
+      "after_sha256": "140ef00c4e41d4b2477302f2bfe48dde3a88aeb2fd913e3e88e95c1bcddb00e4",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "HOST.session",
+      "before_sha256": "a7a3f1824a4061a49eb7c89d2ce282fc9e6009a2b1cef3bad7169e70ca11dab0",
+      "after_sha256": "54ddeab0985a7921ad06fccef4ae6afd27a8a5f10f0b3396c7cfb867d8a01df3",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.campaign-defeat-policy",
+      "before_sha256": null,
+      "after_sha256": "1efd161326ecbd2cd2a3e522a422dc1adf73bb8ba47d846148453a7e1aac6086",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk",
+        "campaign-defeat-ui33-execution-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.campaign-mini-cancel-policy",
+      "before_sha256": "c304208da7a609f1cbff082421d82195511dae0af210178acc966b2360d7ed5a",
+      "after_sha256": "8d707fb456b2849fae87194ab1da1fb12443f8c6a76ced31af9c86f862527b48",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.campaign-mini-quit-policy",
+      "before_sha256": "69941cf7a6b792f995116d2e93926bbb9e71e2586627ec8caeded36e951a230e",
+      "after_sha256": "4afcb3b2200e40a4be971c0612b8901a33dda7bb1c2a4b7e17b9fc9f2e7499e4",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.preferences-draft",
+      "before_sha256": "3a96ef7d30abacc8be8197c87ccee3c3172351d9ac63dfc49b5a8cb2981f26f5",
+      "after_sha256": "93688171490e14591a3886267175ef8abc84b40c9e398d83fc1efbd2c603dfe8",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.preferences-persistence",
+      "before_sha256": "482bfa217fa2367d1439027a6d107cf607c7a1c3be766dea27d5d9c9b2f78a02",
+      "after_sha256": "4ad663076b5f1c16748095405184ec6b4e6ce6a1615d52d4b34f4c035e8eca7d",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NP.region-entry-fresh-policy",
+      "before_sha256": "e3def8ab6ad9a58c11dae65d61463d93c879ef9f4afc5901393b77fce5c9c8b3",
+      "after_sha256": "98200f7c9e535cd485357976b1756ab6de718bc46b6af1fef1d908ae25e1acd8",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "NR.gpu-presentation",
+      "before_sha256": "15bd6ab7c70630dc540e18367708444c43ff781a2e8fe801f201b647871ef5b9",
+      "after_sha256": "51e17340deedf84d767decdeace44768607cde793ffe9628f296ac62028e2ad5",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "PR.apply",
+      "before_sha256": "38fb0d595d67f0c3d755aa3cd09be1b178622f40ec88d741594d646677ad2ece",
+      "after_sha256": "8c04f971ff220e51bb58076a4376aef00827d846300d376a56daec93bedbcc1d",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "PR.audio-preview-cancel",
+      "before_sha256": "07a5e787c8e4cc4638d8ac90d806c1461d9327e49891856a36bb638587dbd7b8",
+      "after_sha256": "790f2cf13767603c6d2b6f48254d586b54fa029ddc52bc471a6a2b9a9febc8ed",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "PR.control-admission",
+      "before_sha256": "e134af89a4d4bb44b71acca44fb16dea0522913cc7c1bd56312532f2c7662c5a",
+      "after_sha256": "d72e6628fadfbad0364ae0b2471ea4b462299eb6d77915f97e38dae23f0014cf",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "PR.display-rebuild",
+      "before_sha256": "b30bb333a072d0deaff129a43ee1096c47ddbd38de43836d75e45db7882de403",
+      "after_sha256": "e6dbcbe896bf4b9d7596083c78113b9cf40a7eae00b146f79c9e8cabedd9c1b4",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "PR.main-entry",
+      "before_sha256": "7ad7c3b7fea34eb4f3b73f34ea7ecdff0de36ea3985a0401d04246d34934aebc",
+      "after_sha256": "4245a0a5766389a783f4dcc05613fd8b73841b591b5611a50c9a541ac62f34ac",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "40d74822a4e6d60cb6c0806a72e3c8fcd75718ef395deb0d1e3e4209390989f6",
+      "after_sha256": "2e6ce3978426cd55104564a7a35a4ae3d9dffa7b4f4382be539a864bd019b873",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    },
+    {
+      "commit": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "id": "UI.battle_result",
+      "before_sha256": "696f016f209b7b443cbb2607e43763571b281dc4998f926a681ddc9a6a6bf8f5",
+      "after_sha256": "9bb6061667d602c40d657167eb3ade89966690a1d3c15018b383485ee5c89258",
+      "reviews": [
+        "campaign-defeat-ui33-campaign-defeat-commit-99flgmsk"
+      ]
+    }
+  ],
+  "unmatched": []
+}

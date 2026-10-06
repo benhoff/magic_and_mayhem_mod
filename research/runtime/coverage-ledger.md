@@ -813,3 +813,69 @@ The stopped actor remains in simulation/selection but has no displayed ANI body
 after cursors are cleared; idle/stopped body retention and original action mapping
 are newly confirmed outstanding display work. Historical evidence and hashes remain
 retained, including source staleness. [Proof and reproduction](native-scene-window.md).
+
+## Ordered application DC checkpoints (2026-10-05)
+
+`NR.owned-session-dc` now suspends recorded native identities while the
+application holds its DC. A validated pre-ReleaseDC bitmap becomes a full v1
+UPDATE only after original success; failed release remains retryable. Acquisition
+generation, bitmap/thread identity, epoch and incomplete-ownership checks remain
+explicit. No individual GDI drawing or font replay is implemented.
+
+[Ordered DC evidence](opengl-owned-session-dc.md) records 18 synthetic sessions:
+12 complete and six refused, with 38 independent full GPU frame comparisons,
+explicit native-byte replay and terminal resource cleanup. Eight legacy DC
+bootstrap cases and eight fill regressions (17 GPU comparisons) pass, as do the
+incremental/native-channel CTests. These are scoped native integration results,
+separate from original pixel equivalence and rendering replacement.
+
+The fresh original startup observation publishes the 400×280 RGB565 DC
+checkpoint as UPDATE sequence 16 for existing identity 5. It then exhausts the
+4,062-record limit: per-row unlock uploads account for most of 4,039 UPDATEs.
+The channel contains 21,576,532 bytes but no PRESENT. Original drawing/menu
+continues, and all 2,927 original inputs verify unchanged before and after.
+Next: pack admitted unlock rectangles into a single UPDATE while retaining
+ownership and bounds, then repeat startup. Complete native original-game frames,
+independent driver-pixel comparison, continuous sessions and replacement remain
+pending. Historical evidence retains its hashes; older shared-source evidence
+may be stale.
+
+
+## Packed ordered unlock updates (2026-10-05)
+
+`NR.owned-session-unlock-packed` serializes each admitted later full or partial
+unlock as one existing v1 UPDATE. Full-width data is already contiguous; narrow
+regions use temporary tight storage counted with the pending after-snapshot,
+partial base and existing ownership reservations. Partial base CHECK,
+pre-original-Unlock capture, failure retry and epoch/generation checks remain.
+No record/byte/operation limits are raised, and no wire version changes.
+
+[Packed unlock evidence](opengl-owned-session-unlock-packed.md) records 26
+fixtures: 17 complete sessions and nine refusals, with 55 independent complete GPU
+frame comparisons and per-rectangle native input comparisons. Current DC/fill
+regressions pass (18 and eight cases; 38 and 17 GPU comparisons), as do the native
+incremental/channel CTests and seven live-transport sessions. Explicit byte-limit
+refusals remain; forced scratch allocation/admission failure is untested.
+
+Original startup now publishes 39 records rather than exhausting 4062 records:
+six CREATE, 14 UPDATE, 18 CHECK and one BLIT, totaling 24,594,964 bytes. It next
+reaches the existing 16-operation cutoff before primary PRESENT; mirror GAP 6 and
+mapped GAP 2 retain that incomplete boundary. All 2927 immutable inputs verify
+unchanged before/after, and original drawing continues. No first native
+original-game frame, independent driver-pixel equivalence, continuous session or
+rendering replacement is established. Next: a separately bounded startup
+completion policy that admits the first eligible primary presentation while
+retaining resource and ownership limits. Historical evidence hashes stay intact.
+
+### NS18 — owned static display after native Stop
+
+The native scene retains its last displayed movement bitmap after Stop clears
+movement continuation, at the existing committed-cell Stop position. Snapshot v8
+preserves the compact pose; resource rebound validates the directional ANI bitmap
+and rejects malformed references transactionally. Reorders use the pose until
+an active display takes priority; cleanup/release/reuse clear ownership.
+Evidence and pending boundaries are in
+[native-idle-display.md](native-idle-display.md) and its JSON record. Original
+idle/action sequence selection and initially spawned idle bodies remain pending,
+with no original comparison or live replacement promotion. Historical NS17
+records remain unchanged and can be source-stale.
