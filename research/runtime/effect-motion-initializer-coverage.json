@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "dispatch_tables": [],
+  "recovered_ranges": [],
+  "classifications": [],
+  "api_bindings": [],
+  "behaviors": [
+    {
+      "id": "TL.effect-motion-initializer",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Whole effect motion record initialization helper",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4761936,
+          "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5108272,
+          "scope": "Whole zero reset helper composed with trajectory initialization by 0048a950; no separate standalone reset API claim"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-motion-initializer.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_motion_initializer.cpp",
+        "reconstruction/rendering/effect_motion_initializer.hpp",
+        "reconstruction/rendering/effect-motion-initializer/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-motion-initializer-reference.cpp",
+        "tests/effect-motion-initializer-test.cpp",
+        "tools/test-effect-motion-initializer.py"
+      ],
+      "evidence": [
+        "TL20.motion-initializer-original",
+        "TL20.motion-initializer-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-movement-recount",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Remaining effect movement and lifecycle contracts",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs."
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory.md",
+        "research/runtime/effect-same-cell-projection.md",
+        "research/runtime/effect-cell-transitions.md",
+        "research/runtime/effect-cell-cleanup.md",
+        "research/runtime/effect-blocked-destinations.md",
+        "research/runtime/effect-height-exits.md",
+        "research/runtime/effect-membership-disabled.md",
+        "research/runtime/effect-terrain-occupancy.md",
+        "research/runtime/creature-occupancy-lookup.md",
+        "research/runtime/creature-footprint-initializer.md",
+        "research/runtime/effect-creature-collision.md",
+        "research/runtime/effect-kind34-creator.md",
+        "research/runtime/effect-trajectory-initializer.md",
+        "research/runtime/effect-motion-initializer.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "TL20.motion-initializer-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "record": "research/runtime/effect-motion-initializer.json",
+      "sha256": "81727b5c421ba42373edd033f88800b6562fab4c9ff51d83a43ce168f287c6f7",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 1280
+        },
+        {
+          "pointer": "/steps",
+          "equals": 20480
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL20.motion-initializer-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "record": "research/runtime/effect-motion-initializer.json",
+      "sha256": "81727b5c421ba42373edd033f88800b6562fab4c9ff51d83a43ce168f287c6f7",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 1280
+        },
+        {
+          "pointer": "/steps",
+          "equals": 20480
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "terrain-lighting.effect-motion-initializer",
+      "level": "headless",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "behaviors": [
+        "TL.effect-motion-initializer"
+      ],
+      "evidence": [
+        "TL20.motion-initializer-original",
+        "TL20.motion-initializer-native"
+      ],
+      "tests": [
+        "tests/effect-motion-initializer-reference.cpp",
+        "tests/effect-motion-initializer-test.cpp",
+        "tools/test-effect-motion-initializer.py"
+      ]
+    }
+  ]
+}

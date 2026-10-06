@@ -58,11 +58,14 @@ python3 tools/test-effect-trajectory-initializer.py
 ```
 
 Confidence: high within this disjoint owned initializer and chained-step contract.
-Period/coordinate provenance remains authored. Static caller `004891e0` uses
+Period/coordinate provenance remains authored. Static ballistic-update caller
+`004891e0`, within `00489080`, uses
 receiver effect+128, source parameters +2c/+30/+34, destination +38/+3c/+40,
 counter +1ce, multiplier 32. It first calls `004df230` to zero the whole state
 at `004891b8`, then invokes movement `004883f0` at `004891e9`. This caller mapping
-is static evidence, not execution of the creation parent or an installed-input
-capture. Other callers, creation policy/ownership, live scheduling and replacement
+is static evidence, not execution of the ballistic parent or an installed-input
+capture. The whole motion creation helper `0048a950` is now recovered separately in
+[effect motion initialization](effect-motion-initializer.md). Other callers,
+creation policy/ownership, live scheduling and replacement
 remain separate. Historical stepping evidence remains unchanged; the initializer
 is an additional source module and does not rewrite the stepping implementation.

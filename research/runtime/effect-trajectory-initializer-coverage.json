@@ -62,13 +62,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, effect creation parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs.",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, effect creation parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs."
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs."
         }
       ],
       "documents": [
@@ -84,7 +84,8 @@
         "research/runtime/creature-footprint-initializer.md",
         "research/runtime/effect-creature-collision.md",
         "research/runtime/effect-kind34-creator.md",
-        "research/runtime/effect-trajectory-initializer.md"
+        "research/runtime/effect-trajectory-initializer.md",
+        "research/runtime/effect-motion-initializer.md"
       ],
       "implementation": [],
       "tests": [],
