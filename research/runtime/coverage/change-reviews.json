@@ -29930,6 +29930,261 @@
         "reason": "Account explicitly for newly stale historical fingerprints caused by shared producer/test changes and absent original comparison of the new native policy. Fresh bounded residency, checkpoint, recovery, continuity, lifetime and campaign results are separately recorded; they do not refresh prior evidence or establish full World pixel, sustained gameplay, movie, unsupported branch, driver or live replacement equivalence. Broader shared contracts retain historical statuses and these current validation limits.",
         "status": "pending"
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "921d6970b400f821f7ed2a1ddd1b6830a13627dc68d5c4729f75225eb72d29e7",
+          "before_sha256": null,
+          "id": "RE.surface-copy.rgb565-overlap"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "abb7a008d9d236638a7091bd15218ca7dedbb75b422be424c2667383c56cf28d",
+          "before_sha256": "477a9ea33f2b36e529d0501427db46cfcbc81d823655e54e2324db48601e2bf7",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "14dddaa46fa1ef086e072adb110548e8c9604fb6765d18b47d315a105f864579",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-original-overlap-20261006.json"
+        },
+        {
+          "after_sha256": "9f14205eaa4cadd3f0bd39a864f4830f2b3873e7b304989ce34ab16fb1b6330c",
+          "before_sha256": "54a9c5db9f65de71618257ded8ec183da484021d10a08453e11fff8b6d91fbdb",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "75823176fdda8c92fe4b10d259e2e94461c8004d40bb03ab84da08dc1036fb61",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-original-overlap-20261006.json"
+        },
+        {
+          "after_sha256": "2470fdab401ff35e28c9da1548f8f1f9528917ec111037e8d39bfec24918974c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-original-overlap-20261006.md"
+        },
+        {
+          "after_sha256": "8eabaf3a1dc45967c574019c439c04bc860d90e054b87fe3bad5e2e74b45fb26",
+          "before_sha256": "220c09dc1fcabc9a9159960876b2efef456dad89a5c4ea983ec5af686784f5e7",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "98aadf6348ef1bd5fed6be963a3b0bf712538ef889c00556a2db353c64034138",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-overlap-capture-20261006.json"
+        },
+        {
+          "after_sha256": "71f20011f58fb4e3e69cbb636ce9249e02be7695efbe4372233bbee91ef6ed36",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-overlap-cpu-20261006.json"
+        },
+        {
+          "after_sha256": "adc2c3c94560de509b57d535b7963e7a2035bfd777a4df1e6cd943b6c1eea5cc",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-overlap.md"
+        },
+        {
+          "after_sha256": "dbb088e45a19a3d354c8cb530f92046ade325c0dddaeb38b4d9e35958ab88fe2",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/original-rgb565-overlap-corpus.json"
+        },
+        {
+          "after_sha256": "afbde88e95a563438cfce6cb477e1570451fceb0eac7041b508d307f01d5ff17",
+          "before_sha256": "afbde88e95a563438cfce6cb477e1570451fceb0eac7041b508d307f01d5ff17",
+          "path": "tests/surface-key-reference.c"
+        },
+        {
+          "after_sha256": "d205006e23a776d10d3e3d19106d54008ed57508d3681f4c76e5b8dfc5d53f37",
+          "before_sha256": null,
+          "path": "tests/surface-overlap-reference.c"
+        },
+        {
+          "after_sha256": "e68b82192f803ce6b1a0ecddef17ec25c5c4c237034d7d9885d54e596a382bd4",
+          "before_sha256": null,
+          "path": "tests/test-original-surface-overlap.py"
+        },
+        {
+          "after_sha256": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+          "before_sha256": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+          "path": "tools/capture-original-surface-keys.py"
+        },
+        {
+          "after_sha256": "4b6556737124800d3f583013adb95f3400c9c5dcb6f5b42bde2107e49168d28c",
+          "before_sha256": null,
+          "path": "tools/capture-original-surface-overlap.py"
+        },
+        {
+          "after_sha256": "542f2bc1feddd4b33ca16e3ba1cb75a2ae629de8183d27a95fe08f42edae5908",
+          "before_sha256": "542f2bc1feddd4b33ca16e3ba1cb75a2ae629de8183d27a95fe08f42edae5908",
+          "path": "tools/check-original-surface-keys.py"
+        },
+        {
+          "after_sha256": "a9475f944a4c5351452ecb1230ad2ba50f6a77a581381b9c8d3f72812fc71709",
+          "before_sha256": null,
+          "path": "tools/check-original-surface-overlap.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-rgb565-overlap.json.gz",
+          "before_sha256": null,
+          "after_sha256": "a1750be482070deea5bb4ab100bc3b2887db9e1e63d5f0aed4ca0761bc124f37"
+        }
+      ],
+      "id": "original-overlap-capture-cpu-20261006",
+      "pending_gaps": [
+        "behaviors_without_scenarios:27ddc013f053c18f21d86a8550298448b16dd44d7ba56b82b245767c9c3486f1"
+      ],
+      "reason": "Reviewed unchanged original opaque wrapper capture, complete shared backing/COM identity/clip states and independent input-derived CPU per-piece snapshot/result model; poisoned metadata/output/result rejection tests pass. Source census reviewed with explicit links and historical hashes retained.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh original capture and offline CPU comparison, complete result/pixel checks and refusal tests; only scoped CPU behavior promoted.",
+        "evidence": [
+          "ORIGINAL.surface-copy.rgb565-overlap.capture-20261006",
+          "ORIGINAL.surface-copy.rgb565-overlap.cpu-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "63a26be9b07095e48c01a644f00efd29273bf68e11e0c2e688fe1e7ca743e34d",
+          "before_sha256": "2c5690659ae0bc07040874dff90f84d21cdd10ab82f6a1f08075619aab0f112a",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "220d0d4037840a96eb1ba7a4e9476229407da9bfdb0b882adffb33f49f331392",
+          "before_sha256": "f38721c348a18f559853d1c18e18e865ab393401c988a7a65756b7a6b6c27397",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "b7ce6d2adebaa229194358e4bc7e051752603b4625f8c24968838c1fac413097",
+          "before_sha256": "6aa59e88062f0074110870710647a5eafb4af63482c2b5cffe83cdc6f092a60e",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "0ae2594b731b354e035dd7f0aff79fc48bf0594621165804279352e6fe2d5a58",
+          "before_sha256": "7f00c211f64aeba1b563bdc5e4167b28f5b67e3ea259910d7876a17a8dd34961",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "f9ddde962af73d775b5086310470800ef078649b59ff895671ae392b1efb9e96",
+          "before_sha256": "eba0ec0b6b7caf49dbdf8d4cda8113d74d7f79777dc942b2d688336e6843de87",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "088a2c486fd6a0c1fd1077d1a1b45f843abda72e8e85a91806b90ee5c0971ed0",
+          "before_sha256": "e61be205a05caec731c1f2304bb26841d8851620ad210ee5f7e56eea6a6ede74",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "766add71f1489ca7011aceb010d6aed68f1478034891e61d93db5d6a6ce5ce6e",
+          "before_sha256": "3a4f7b521d21a0f70fd871f77e3bfc34b2b471f9d625b8461044ee1be216e0cf",
+          "id": "RE.surface-fill.rgb565"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "abb7a008d9d236638a7091bd15218ca7dedbb75b422be424c2667383c56cf28d",
+          "before_sha256": "477a9ea33f2b36e529d0501427db46cfcbc81d823655e54e2324db48601e2bf7",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "14dddaa46fa1ef086e072adb110548e8c9604fb6765d18b47d315a105f864579",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-original-overlap-20261006.json"
+        },
+        {
+          "after_sha256": "9f14205eaa4cadd3f0bd39a864f4830f2b3873e7b304989ce34ab16fb1b6330c",
+          "before_sha256": "54a9c5db9f65de71618257ded8ec183da484021d10a08453e11fff8b6d91fbdb",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "75823176fdda8c92fe4b10d259e2e94461c8004d40bb03ab84da08dc1036fb61",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-original-overlap-20261006.json"
+        },
+        {
+          "after_sha256": "2470fdab401ff35e28c9da1548f8f1f9528917ec111037e8d39bfec24918974c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-original-overlap-20261006.md"
+        },
+        {
+          "after_sha256": "8eabaf3a1dc45967c574019c439c04bc860d90e054b87fe3bad5e2e74b45fb26",
+          "before_sha256": "220c09dc1fcabc9a9159960876b2efef456dad89a5c4ea983ec5af686784f5e7",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "98aadf6348ef1bd5fed6be963a3b0bf712538ef889c00556a2db353c64034138",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-overlap-capture-20261006.json"
+        },
+        {
+          "after_sha256": "71f20011f58fb4e3e69cbb636ce9249e02be7695efbe4372233bbee91ef6ed36",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-overlap-cpu-20261006.json"
+        },
+        {
+          "after_sha256": "adc2c3c94560de509b57d535b7963e7a2035bfd777a4df1e6cd943b6c1eea5cc",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-overlap.md"
+        },
+        {
+          "after_sha256": "dbb088e45a19a3d354c8cb530f92046ade325c0dddaeb38b4d9e35958ab88fe2",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/original-rgb565-overlap-corpus.json"
+        },
+        {
+          "after_sha256": "afbde88e95a563438cfce6cb477e1570451fceb0eac7041b508d307f01d5ff17",
+          "before_sha256": "afbde88e95a563438cfce6cb477e1570451fceb0eac7041b508d307f01d5ff17",
+          "path": "tests/surface-key-reference.c"
+        },
+        {
+          "after_sha256": "d205006e23a776d10d3e3d19106d54008ed57508d3681f4c76e5b8dfc5d53f37",
+          "before_sha256": null,
+          "path": "tests/surface-overlap-reference.c"
+        },
+        {
+          "after_sha256": "e68b82192f803ce6b1a0ecddef17ec25c5c4c237034d7d9885d54e596a382bd4",
+          "before_sha256": null,
+          "path": "tests/test-original-surface-overlap.py"
+        },
+        {
+          "after_sha256": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+          "before_sha256": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+          "path": "tools/capture-original-surface-keys.py"
+        },
+        {
+          "after_sha256": "4b6556737124800d3f583013adb95f3400c9c5dcb6f5b42bde2107e49168d28c",
+          "before_sha256": null,
+          "path": "tools/capture-original-surface-overlap.py"
+        },
+        {
+          "after_sha256": "542f2bc1feddd4b33ca16e3ba1cb75a2ae629de8183d27a95fe08f42edae5908",
+          "before_sha256": "542f2bc1feddd4b33ca16e3ba1cb75a2ae629de8183d27a95fe08f42edae5908",
+          "path": "tools/check-original-surface-keys.py"
+        },
+        {
+          "after_sha256": "a9475f944a4c5351452ecb1230ad2ba50f6a77a581381b9c8d3f72812fc71709",
+          "before_sha256": null,
+          "path": "tools/check-original-surface-overlap.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-rgb565-overlap.json.gz",
+          "before_sha256": null,
+          "after_sha256": "a1750be482070deea5bb4ab100bc3b2887db9e1e63d5f0aed4ca0761bc124f37"
+        }
+      ],
+      "id": "original-overlap-shared-accounting-20261006",
+      "pending_gaps": [
+        "behaviors_without_scenarios:27ddc013f053c18f21d86a8550298448b16dd44d7ba56b82b245767c9c3486f1"
+      ],
+      "reason": "Reviewed unchanged original opaque wrapper capture, complete shared backing/COM identity/clip states and independent input-derived CPU per-piece snapshot/result model; poisoned metadata/output/result rejection tests pass. Source census reviewed with explicit links and historical hashes retained.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared operation matrix/ledger and helper test links reviewed; other subsystem historical source fingerprints remain unchanged. No new validation/status promotion for those contracts.",
+        "evidence": []
+      }
     }
   ]
 }

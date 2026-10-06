@@ -14777,6 +14777,49 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RE.surface-copy.rgb565-overlap",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Original opaque RGB565 same-surface overlap and alias outputs",
+      "scope": "Unchanged original0x58c360 Wine Surface2 opaque RGB565 same backing, direct interface and verified Surface1 COM aliases, Blt/BltFast WAIT/no-WAIT, direction/identity/ordered clipping/errors. CPU input-derived per-piece source snapshots independently compare all retained results/pixels. Native GPU implementation, keyed/masked/other formats, loss/Restore/retry, live and Windows equivalence pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Selected unchanged opaque rectangle wrapper, controlled globals and real Wine backing/interface aliases; no retry wrapper."
+        }
+      ],
+      "documents": [
+        "research/runtime/original-surface-overlap.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "tools/check-original-surface-overlap.py"
+      ],
+      "tests": [
+        "tests/surface-overlap-reference.c",
+        "tests/test-original-surface-overlap.py",
+        "tools/capture-original-surface-overlap.py",
+        "tests/fixtures/surfaces/original-rgb565-overlap.json.gz",
+        "tests/fixtures/surfaces/original-rgb565-overlap-corpus.json",
+        "tests/surface-key-reference.c",
+        "tools/capture-original-surface-keys.py",
+        "tools/check-original-surface-keys.py"
+      ],
+      "evidence": [
+        "ORIGINAL.surface-copy.rgb565-overlap.capture-20261006",
+        "ORIGINAL.surface-copy.rgb565-overlap.cpu-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -26419,6 +26462,38 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-overlap.capture-20261006",
+      "kind": "isolated_original",
+      "scope": "Unchanged original opaque wrapper through Wine RGB565 shared backing; capture provenance and input-derived CPU overlap comparison only. Native implementation/Restore/live/Windows equivalence pending.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-overlap-capture-20261006.json",
+      "sha256": "98aadf6348ef1bd5fed6be963a3b0bf712538ef889c00556a2db353c64034138",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-overlap.cpu-20261006",
+      "kind": "isolated_original",
+      "scope": "Unchanged original opaque wrapper through Wine RGB565 shared backing; capture provenance and input-derived CPU overlap comparison only. Native implementation/Restore/live/Windows equivalence pending.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-overlap-cpu-20261006.json",
+      "sha256": "71f20011f58fb4e3e69cbb636ce9249e02be7695efbe4372233bbee91ef6ed36",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -30976,7 +31051,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-render-working-set-20261006.json",
-    "sha256": "a58c7d8c9434797475bedfd5bc3a51b74442f3bcd4058368fba5f21a7cd79075"
+    "path": "research/runtime/coverage/source-index-original-overlap-20261006.json",
+    "sha256": "75823176fdda8c92fe4b10d259e2e94461c8004d40bb03ab84da08dc1036fb61"
   }
 }
