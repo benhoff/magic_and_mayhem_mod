@@ -1605,3 +1605,7 @@ cover nested metadata, uncertain source copies, mixed mutations and palette/DC
 regressions. Active gameplay can still expose successful original copy interleaving
 and conservative native refusal. Ordering and animated/full-frame equivalence remain
 pending; see [the scoped report](opengl-world-summon-observation.md).
+
+## Standalone real surface driver recovery — 2026-10-06
+
+Two serialized Wine11.16 Surface2 API captures cover16/32 display modes and four requested cap classes: actual IsLost/Lock loss, offscreen Restore success, primary wrong-dimension refusal followed by successful Restore, repeated Restore and source-key retention.2458 ordered rows verify offline;8 provenance/refusal tests pass. No game image/native renderer is executed. Lost COLORFILL returns success, so original-wrapper actual-lost-draw composition remains pending; undefined restored bytes are observations, not portable output. Palette/clipper/flip chains, Windows drivers, reloaders and live recovery remain pending. See [driver findings](surface-driver-restore.md).
