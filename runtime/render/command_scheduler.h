@@ -21,6 +21,13 @@ static u32 WIN command_worker_run(void* unused){
     }
     command_channel_pump();return 0;
 }
+/* Caller owns lifecycle serialization; no tracker/original pointers here. */
+static int command_scheduler_launch(void){
+    command_worker_started=1;command_worker=CreateThread(0,0,command_worker_run,0,0,0);
+    if(!command_worker){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);command_channel_pump();}
+    int ready=command_worker && !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE);
+    return ready;
+}
 static int command_scheduler_start(void){
     if(!__sync_bool_compare_and_swap(&command_shutdown_busy,0,1))return 0;
     /* Serialize startup with explicit shutdown, including handle publication. */
@@ -29,9 +36,7 @@ static int command_scheduler_start(void){
         int ready=!command_queue || (command_worker && !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE));
         __sync_lock_release(&command_shutdown_busy);return ready;
     }
-    command_worker_started=1;command_worker=CreateThread(0,0,command_worker_run,0,0,0);
-    if(!command_worker){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);command_channel_pump();}
-    int ready=command_worker && !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE);
+    int ready=command_scheduler_launch();
     __sync_lock_release(&command_shutdown_busy);return ready;
 }
 /* Producers must already be stopped under the tracker. ACK is owned-copy

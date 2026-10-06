@@ -61,6 +61,7 @@ static i32 WIN input_cooperative(void* object,void* window,u32 flags){
 #include "lock_dc.h"
 #include "command_scheduler.h"
 #include "command_lifecycle.h"
+#include "command_recovery.h"
 static u32 guid_kind(const u8* guid){
     static const u8 ids[8][16]={
       {0x80,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},

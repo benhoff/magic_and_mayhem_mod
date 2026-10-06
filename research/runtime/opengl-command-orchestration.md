@@ -97,3 +97,8 @@ pass. Production and selftest PE32 builds pass. The earlier pressure/idle/GPU
 historical; the v2 records above bind final sources. The first unbound-channel
 harness waited for a consumer on an untouched unrelated channel; final unbound
 cases correctly check startup without launching that consumer.
+
+A subsequent [explicit fresh-session recovery increment](opengl-command-recovery.md)
+adds a separate export after shutdown/join. `RenderStartup` itself still cannot
+reopen a retired stream. Automatic host negotiation and original-game recovery
+remain pending.

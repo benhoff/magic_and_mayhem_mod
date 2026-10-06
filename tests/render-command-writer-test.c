@@ -7,6 +7,7 @@ typedef uint32_t u32;typedef uint8_t u8;typedef int32_t i32;typedef void* HANDLE
 #define WIN
 static u32 storage[16+67108864/4];
 static const char *continuous_env,*stall_env;
+static u32 identity_mode;
 static u32 env=1,unmaps,mapped_size=sizeof(storage),last_error,fail_alloc;
 static HANDLE GetProcessHeap(void){return storage;}
 static void* HeapAlloc(HANDLE h,u32 flags,u32 size){(void)h;(void)flags;return fail_alloc?0:malloc(size);}
@@ -24,6 +25,7 @@ static u32 GetEnvironmentVariableA(const char* key,char* path,u32 n){
 }
 static HANDLE CreateFileA(const char* p,u32 a,u32 b,void* c,u32 d,u32 e,void* f){(void)p;(void)a;(void)b;(void)c;(void)d;(void)e;(void)f;return storage;}
 static u32 GetFileSize(HANDLE h,u32* high){(void)h;(void)high;return mapped_size;}
+i32 GetFileInformationByHandle(HANDLE h,void* data){(void)h;memset(data,0,52);((u32*)data)[8]=identity_mode==3;((u32*)data)[9]=mapped_size+(identity_mode==4);((u32*)data)[12]=identity_mode==2?0:1;return identity_mode!=1;}
 static i32 CloseHandle(HANDLE h){(void)h;return 1;}
 static HANDLE CreateFileMappingA(HANDLE h,void* p,u32 a,u32 b,u32 c,const char* d){(void)h;(void)p;(void)a;(void)b;(void)c;(void)d;return storage;}
 static void* MapViewOfFile(HANDLE h,u32 a,u32 b,u32 c,u32 d){(void)h;(void)a;(void)b;(void)c;(void)d;return storage;}
@@ -32,7 +34,7 @@ static void copy(void* to,const void* from,u32 n){memcpy(to,from,n);}
 static int same(const void* a,const void* b,u32 n){return !memcmp(a,b,n);}
 #include "../runtime/render/command_channel.h"
 static void check(int ok){if(!ok)exit(1);}
-static void reset(void){memset(storage,0,64);memcpy(storage,"MNMRDC01",8);storage[2]=1;storage[3]=sizeof(storage);storage[4]=123;command_channel=0;command_channel_bytes=0;command_channel_session=0;}
+static void reset(void){memset(storage,0,64);memcpy(storage,"MNMRDC01",8);storage[2]=1;storage[3]=sizeof(storage);storage[4]=123;command_channel=0;command_channel_bytes=0;command_channel_session=0;command_file_count=0;}
 int main(void){
     reset();command_channel_init();check(command_channel==storage && storage[6]==1);
     u32 fields[2]={1,2};check(command_channel_record(1,11,fields,8,0,0));
