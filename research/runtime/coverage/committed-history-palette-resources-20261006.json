@@ -1,0 +1,565 @@
+{
+  "schema": 1,
+  "scope": "Read-only committed parent/current SHA256 and behavior contract receipt review; separate from working changes, new validation or historical gate claims.",
+  "base": "529019faec97ed4d34b0e2d3bfbe3a1dbbe35a2e",
+  "head": "4428c272233eb909fc9cec2b52b51a56c81947d9",
+  "files": [
+    {
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "5ca5edd9598277072402c395576cca95cfbbc3a43fc96d327144a0feda130c10",
+      "after_sha256": "a996eb3d3fa80ec5cd36f4e215d2617c287f120d7fb40f72afbf3629c69baad1",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/README.md",
+      "before_sha256": "30085b5067bec2a25b8dbf578014aecb06b18b89ef3d63c9cc3fb99e8b82ea73",
+      "after_sha256": "9e1eff880ea3ce05761fb0fa39823718c84363e93a534350fe595c46d240d4bb",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/live_command_session.cpp",
+      "before_sha256": null,
+      "after_sha256": "293b71d008f11b2cad76d8aa921c7602d778dedcf4686bfb90d6f5bdd74bf8a1",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/live_command_session.hpp",
+      "before_sha256": null,
+      "after_sha256": "d184d019e990eb69370459dd76d561b1a6b6d4489ecd2952dce31e18916ca36e",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "09ed0619a51c530193e9639a391c8d5b5e13a13e147d0212d45183da6347d300",
+      "after_sha256": "30f1e8991dcd8048dd171418c78ee85ac3bdf13734d3f77202b213fbd982b35a",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/render_control.cpp",
+      "before_sha256": null,
+      "after_sha256": "39a5faed02fffb7937783f7f082bbd56d0f09fd28a852727083d4bdbf33476fc",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/render_control.hpp",
+      "before_sha256": null,
+      "after_sha256": "dd7e491127b3b33099cb9104292a9338280808169e4957775323abcfb8c5cf84",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "protocols/CONTRACTS.md",
+      "before_sha256": "ecbbabbbef906dd5366e26cb177f9dbf4550c65801b3d6e35268c0c6cb094697",
+      "after_sha256": "be8f61fc6124e229a5efcb9383646c3a0df6bda35afe808a7769dda3686087ca",
+      "receipts": [
+        "NR.command-host-recovery-retrospective-contracts-20261006"
+      ]
+    },
+    {
+      "path": "protocols/include/mnm/render_control_v1.h",
+      "before_sha256": null,
+      "after_sha256": "62c54b1a04a5e2e217e1742adc1d260ae222738ae85412cd2754d49752c8ebb7",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "protocols/python/mnm_protocols/render_control_v1.py",
+      "before_sha256": null,
+      "after_sha256": "0875ccb4796f455f417480cb54929d647b287de621546ff622f7e83d1c9a8bb3",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "protocols/schemas/render_control-v1.json",
+      "before_sha256": null,
+      "after_sha256": "29196373c00c344e0c5f9ddb523945930d6cd0a71272e084d29896d184b273c0",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "protocols/tests/test_contracts.py",
+      "before_sha256": "281211b86ad010aa747095aa8b1da785f31078bf2d04d60312b7b465f340216b",
+      "after_sha256": "724aee61e91111120fc358e5b922a8bffa3a3a1d8bc0de4c2cc0676487e8f7a2",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "renderer/CMakeLists.txt",
+      "before_sha256": "63e9ce380a90963d83f8576677430e46a2af0bd65261ff1969c3d7edeac5e97a",
+      "after_sha256": "148cbd9a3f9e32710908499ad7e3da593c45a353d87fcd5d8f2fbbabcd8eeb2f",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/formats/render-control-v1.md",
+      "before_sha256": null,
+      "after_sha256": "206bd7674415b4581d2cf457066dc64f98675716924dc129a2fe546398d08a44",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "4bf61612cb666c893ad1d799579529d235c5545d33152e81a92ecb94d66155e5",
+      "after_sha256": "0a96117041a4fa01203a9f411bc7b72833b00a0c9bc5cddae928c54db08ae06a",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "d5ff19751a34d5f1afee45196da4c7299e1e62a23fbf5c28423884b810f5228d",
+      "after_sha256": "79d8115081ee9b74fa05653a3c11c7ca0c73a94d1dc95396cca9229a51165e00",
+      "receipts": [
+        "append-only journal verified separately (self hash excluded)"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-host-recovery-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "410eb1d6607a63f2a07c56dce37bf48431733e5b1afd1a67b9b6f6fec46b0d08",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "b853107732f997e591bd9f7ca818594cc20f6387e2972738d872550e525cf272",
+      "after_sha256": "2d1152b2493510bc70e0d6d6c02869ca3652b68e95e6e157b9aeceb9da9c4a7f",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-command-host-recovery-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "4164654b01f2dd410f96d58c4eb3ebe423e8400a69e4fa53fd42d19f0003cc42",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-command-host-recovery-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "989b3f5a472a7581089731aee0da733bc9c39e236c6db7012c1776bad49cb0ca",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-host-recovery-explicit.json",
+      "before_sha256": null,
+      "after_sha256": "f17aa908a2c7fa172e519f41c4a6080dc9ab9a8b7cf35b58b8c15985aa01586b",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-host-recovery-launcher.json",
+      "before_sha256": null,
+      "after_sha256": "089fb5189f88d1a2d61db01a2795cc1ddc58fed3bb711e2863dbc4cde28a6fb3",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-host-recovery-pe32.json",
+      "before_sha256": null,
+      "after_sha256": "93cecb1c1239c94b9449f5fb3e75851050271c42451b6a57bcc450c2c9f826f4",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-host-recovery-queue.json",
+      "before_sha256": null,
+      "after_sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-host-recovery.md",
+      "before_sha256": null,
+      "after_sha256": "79c7bca2f01bdca7899fe92143363acf3d4a290f23c3ab4ac93b71ec9a550507",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/bridge.c",
+      "before_sha256": "1014a94ca351417c64336286434747809d6511f9394f434b56758a531bebeaa5",
+      "after_sha256": "11616106aecb25e7044468514f994da2e968f9f83b44699699db161143e803fe",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_control.h",
+      "before_sha256": null,
+      "after_sha256": "fd0ee80f942c9a119bf10fa6b7970b21f1612f6a995cb7685fa0bd251b41e38d",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_gate.h",
+      "before_sha256": null,
+      "after_sha256": "c9810ef6ad365daeb255e34123d547992fc72784e0e84bc74337b3776007edc2",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_lifecycle.h",
+      "before_sha256": "9f52792785cb1695b30238b353e8fe534f0852838df26f32f136aaf99a7e5a1a",
+      "after_sha256": "7a6a04d37998ad9685c7199d415b9a5b87dd7033cf10e2aae5040e53f63f462c",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_recovery.h",
+      "before_sha256": "d63fd6b0f925989d945e40229348d8e3e4b84d0819c52a186fc584e9bf30e8f0",
+      "after_sha256": "dea804da7fd4021a475c08ca20d1e7f3379a50cc13fa253c387d7e64fff8c5f4",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/continuous_selftest.h",
+      "before_sha256": "548c1aff09da3c833b40fffee32b114e46589ca538e5c3599633db16b645b245",
+      "after_sha256": "53bb2834d3075236afa16972899b3e7ab18f7f55135b7bf56b51ff5d9a7eb39d",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/host_recovery_selftest.h",
+      "before_sha256": null,
+      "after_sha256": "2cbc36afcb620a64e5f4ffbc12ef8972e934514fbe464fc861863244a0e583bf",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/selftest.c",
+      "before_sha256": "89c189d6af4ecfbd4fa82353aa5732b6dd33de702b50651116aa75d3a1367a2d",
+      "after_sha256": "a1215dc3c64ad79fb95869b1f9772e5ff42bfde3f394a6fd855de9ef5751ee0e",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tests/live-command-recovery-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "32c6e43aec503ab3fb33606abe86c7a0ce89ce31dfe48e66a516931711f1cbbe",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tests/render-control-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "c7793c44322ceb620c661bff8cbfe21cff2b439626cdf3ab3f493abcd56950f0",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/run-opengl-game.py",
+      "before_sha256": "f48be7bfdbe0aadfd424e8fc44a38eedaa758e62ec460d9aa37f85e37b606dbc",
+      "after_sha256": "4d0d4389cea04f97568ec6bfe325efdc86fc516319981feca9f6455ff8708ee9",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-render-control-launcher.py",
+      "before_sha256": null,
+      "after_sha256": "028ec45d017a30afe02210f5f047679f161ab4a990d2561ec8550b861f396d4d",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-render-host-recovery.py",
+      "before_sha256": null,
+      "after_sha256": "8c12c65f47f1e4ded500a233c8e8598d8d335dab766f4bfb39ac8e84d8e8efe4",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "CP.campaign-defeat-report",
+      "before_sha256": "09705cba29ec6625782ff2a4b85b1b4a14aa989404044987afee71d6497b27c0",
+      "after_sha256": "4b9254240346bef65b0b0ec2c870f876404fda140c7d750019004166fa22c74d",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "CP.campaign-mini-cancel",
+      "before_sha256": "9964b0ce0b72933e8fd17416b9a7d459f19b904f8793b4ed4a0820e6928054e7",
+      "after_sha256": "809cbb307ba19d9e56f71a47fb293c0b6b737d09b5c6f93e8d490375c5e07458",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "CP.campaign-mini-lifecycle",
+      "before_sha256": "20ee8a82b1e9161dbad2e89b6af1dd07aa2cb60cd74f3b0e0a47f98f35836d37",
+      "after_sha256": "2ea221c8dc1cf856a96307927d979fc5e45be4a4a021a99a16d239be2d403d76",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "CP.campaign-mini-preferences",
+      "before_sha256": "874c2b0c5251d63cf21385a6237aba81aba08529f9607ad6eda8a9b01c4ee1ed",
+      "after_sha256": "f182f4a072eeec22b2d3639296d81bec6306b957bcfb8f109d3aa275939a08d4",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "CP.campaign-mini-quit",
+      "before_sha256": "779b217559c43184c6b36bc10d47870ec93dd1367c08bc0efa1e82f31feaf3f2",
+      "after_sha256": "bc6395197c27a3b1e794b3fc940260898e655a6c64aa6cf749b6a8b205e6bda4",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "CP.campaign-mini-quit-lifecycle",
+      "before_sha256": "4b5f081def11b24eb840772ed76572e9c51b18d476276b899fa1c88af69d1fb8",
+      "after_sha256": "63d7c017dad0eff07756eb24a870d823e89c25763488b2c7d3b3e0394285311e",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "CP.campaign-world-handoff-observation",
+      "before_sha256": "b38319b0890f2ba08c760ecb2fffd796bfa7afbba6c6f6e49b6a1be0b0a163a1",
+      "after_sha256": "5dd39d8d06f27a58053e295e0ec08b28f45f7b97bb6a3b888860d459e192d702",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "CP.region-entry-bridge",
+      "before_sha256": "a6dc6d6fbe8d5083f8bbf3de7266f95c47c4f0cdadf0e273053c1b291dbed3d6",
+      "after_sha256": "48f2c49df189a0156a8ff2c91c8ceaf51ac0c59d81658bad4bd62756d250b08a",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "CP.region-entry-enter",
+      "before_sha256": "076cec1d1051833375ec4fedf2c875d0a39b9d664017bfd4bb401a41a81519d8",
+      "after_sha256": "4f306e96d2cd24678588a62d86f4f0f3706e70a9328ae7d2cecc64ce17033617",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "HOST.session",
+      "before_sha256": "d29b17a57e2c14c7a0f98d19097e019bec68eb5b2b8624f29ba025160dbba17c",
+      "after_sha256": "ffdff2fda33caf89c8f314aa13a5506a393924deb26ae2e17b812ca169598e33",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NP.campaign-defeat-policy",
+      "before_sha256": "d144c8ab5b41f1379189cba926ab1ed039fe186eb9575a887b711d3b69d84219",
+      "after_sha256": "943381f784591141d56034dfa2198b342057d2a17d75ef421db9abdada19cbfd",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NP.campaign-mini-cancel-policy",
+      "before_sha256": "3b4fc6f6b84a216c61cbb6a11f979a08256c77b2a8af9480c2970f65f8cc649a",
+      "after_sha256": "b88fda9707cdb6e3578bed2088b15101bafbb9adaa2708019f115606e5e080f5",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NP.campaign-mini-quit-policy",
+      "before_sha256": "c2fcaf64f390fd216b0b9879dba65919f6f1ce161fb679b57c3689824a63e2c6",
+      "after_sha256": "07cf2a7e8d7126d37e5b6d1ea19874fd681e616ddb1a617f8d87925725f2a01f",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NP.campaign-preferences-policy",
+      "before_sha256": "0fed722d89ea4fa1f1022e2366351630ae9033b08c4d08faa22e0eafcdbc7e43",
+      "after_sha256": "9e905c7cb69e0e8e50dbdffa154c7bb9a68cdc701f9073fc29d7aca49b084302",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NP.region-entry-fresh-policy",
+      "before_sha256": "c84f1eda3d4e644e65123bb9b166ff9984e0e7f423480629717bd1a4a6c0d47f",
+      "after_sha256": "3c2e0625ce8bc380bac41106674a0c9d8357ce4440b2be596d0a0f527878ef95",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-backpressure",
+      "before_sha256": "ae31f1c11d7bea151fe562c22a7f874f1f555f987e0dd1ac1c8a4c24c19c7b75",
+      "after_sha256": "a2f8caad45ec1b34ea690a7539cca63987b700e62056efc9a889fc078daeed88",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-host-recovery",
+      "before_sha256": null,
+      "after_sha256": "87a632c8dffc4c99b2c08c471ad7bf7e7ecb488c7142010e6f3d4bb2bc8e7bb2",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006",
+        "NR.command-host-recovery-recorded-validation-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-idle-lifecycle",
+      "before_sha256": "4d1ef00e09f5f9ae3e3840c019a8cba92834ff027786381826d218369df2d535",
+      "after_sha256": "72f61768f4c0505c15005c2f775c36c9a23254ac8305003a5389920c5eea8b42",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-orchestration",
+      "before_sha256": "cacfa38dff1eb24de6470dbdd8e310fd5798f29515cb515891e50016e012aaef",
+      "after_sha256": "d5c8553c902ba364ffdcb963e49f6adf6391ea35571f1774584451fe50493661",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-recovery",
+      "before_sha256": "8c1dc77e3af48933b8184f68bbe79688c6a67edc51a4642977a8bde3c0a4242f",
+      "after_sha256": "3a30db314e2fd8b7ebfa8fdb655a7e8d8f47a0f4f976c29f57453f89739ed4c8",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-ring",
+      "before_sha256": "625cd96f7654d3bec028260b2fdbc659e6885a32203f803883ec58e2880a69ee",
+      "after_sha256": "378f39092ebe8f729aa74209f0bc386113bcd4cde9033faa59b8cd82fae568c8",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-ring-adapter",
+      "before_sha256": "6f37986b5e6cd217693bb3ba1669cd87d461821a11862f803d02373fa22e2f83",
+      "after_sha256": "a29f9e4fedabdcc538c68e7edcfc5217b2a89516301275144b770b129a65dae7",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-mutations",
+      "before_sha256": "863b0b69132915b67a56a7d55ff55b96f60a4b0b5dd99a9a9c526e6301875f5b",
+      "after_sha256": "4c383f9d367530704f05abd87b37a5a0fc5d2a7709c4d6ad19dc90c6262c5b77",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-producer",
+      "before_sha256": "163a18e589224746a2f1409380bd9eb625e82f50115263401b43de9dc5797214",
+      "after_sha256": "df2412c7bed2c233152fe99c42ae547478143c478721f89ed8ee19ba2841c425",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-lifetime",
+      "before_sha256": "e282dacaf671e172d1cec3f87ace8ffe344ad8ea5fe1683054e4b342bf4d3cdb",
+      "after_sha256": "588095086a9b2458c0046e8c57f0863236ac7642849d31049a377aec43b91cde",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.gpu-presentation",
+      "before_sha256": "0f0d098ca5144132846891246481a8aa8074e8cad3b6f59d7a176b4e48f3028f",
+      "after_sha256": "860df9aab6fe37def8224cdf17d02617af5df8b9a42f112960f092eb5bf96c45",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.incremental-command-consumer",
+      "before_sha256": "9626b020518f67d6af970de0c9fdead012f4cd64b0a63ebc432e051faf578914",
+      "after_sha256": "f7b35ef356623eeca27dcfee598db1333e0e18b576fd7f70dcf22231aaa7f442",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.live-command-transport",
+      "before_sha256": "7fa6f6f31f3182f0cc010e65e757ddc00553da65f5273e12f5968cfeb69c272e",
+      "after_sha256": "f1381c00ebf05fbd61f5cb1c3fdf3034345fee657dd977a69fe526d819068e14",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "RT.render",
+      "before_sha256": "5a4cd94c597f85485ad001a30657a91ef476a8725234535778f79e0a49993e13",
+      "after_sha256": "eb9ecee3a517d9ebe059f7622fe563d53ff2b7e1bb014d2af725d4e6552a0e63",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "UI.preview",
+      "before_sha256": "1d83e71a4ba8b01dc2ec4ae8158b98a82711580a717185de2a3dff3e1e0a86bb",
+      "after_sha256": "cab0eb240235f3065903f4186773946ebebc972744b8be73afc5effc1042dbe7",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "WIRE.contracts",
+      "before_sha256": "0dfcb96990b534b46984b0ff5be11e2f3c82e22ef3866fc21ba959fcf4d77216",
+      "after_sha256": "2a148ae6199515dc04f389de1e873753b75cba0ff8bc2b84c6c63d17ebad2d8f",
+      "receipts": [
+        "NR.command-host-recovery-exact-review-20261006"
+      ]
+    }
+  ],
+  "journal_append_only": true,
+  "unresolved_gaps": []
+}

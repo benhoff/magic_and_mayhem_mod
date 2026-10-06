@@ -308,7 +308,7 @@ static u32 WIN palette_release(void* object){
     u32 entry=GetLastError();int token=history_enter();struct HistoryPalette* p=token?history_palette_resolve(object):0;
     struct Table* t=lookup(object);SetLastError(entry);
     u32 remaining=((ReleaseObject)t->original[2])(object),error=GetLastError();
-    if(!remaining && lock_capture_path_length)game_metadata_invalidate();
+    if(!remaining && lock_capture_path_length){if(game_session_palette_resources)game_palette_retired(object);else game_metadata_invalidate();}
     if(token)history_palette_release(p,remaining);history_leave(token);SetLastError(error);return remaining;
 }
 static i32 WIN palette_entries(void* object,u32 flags,u32 first,u32 count,void* entries){

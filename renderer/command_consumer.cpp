@@ -28,7 +28,11 @@ void validateCommandFormat(PixelFormat f){
 const CommandDescription& CommandState::get(unsigned id) const{
     const auto at=live.find(id);require(at!=live.end(),"Unknown or destroyed surface ID");return at->second;
 }
+const PaletteDescription& CommandState::palette(unsigned id,unsigned generation) const{
+    const auto at=palettes.find(id);require(at!=palettes.end() && at->second.generation==generation,"Unknown or stale palette identity");return at->second;
+}
 void CommandState::accept(const SurfaceCommand& c){
+    require((c.version==1 || c.version==2) && (!version || version==c.version),"Changed or unknown command version");
     require(!ended && commands<(mode==CommandStreamMode::Streaming?UINT32_MAX:4096u),"Closed or oversized command session");
     require(c.sequence==commands+1,"Command sequence gap");
     const auto& w=c.words;std::size_t payload=0;
@@ -53,23 +57,41 @@ void CommandState::accept(const SurfaceCommand& c){
         require(w[8]<=1 && (w[8] || !w[9]) && (s.format.bits==32 || w[9]<(1u<<s.format.bits)),"Invalid copy key");
         payload=40;break;}
     case 4:{
-        const auto& s=get(w[0]);require(s.format.bits==8 && w[2] && w[1]<256 && w[2]<=256-w[1] && c.colors.size()==w[2],"Invalid palette command");
+        const auto& s=get(w[0]);require(c.version==1 && s.format.bits==8 && w[2] && w[1]<256 && w[2]<=256-w[1] && c.colors.size()==w[2],"Invalid palette command");
         payload=12+c.colors.size()*3;break;}
     case 5:case 10:{
         const auto& s=get(w[0]);const auto length=std::size_t(s.width)*s.height*(c.operation==5?s.format.bits/8:4);
         require(std::size_t(c.expected.size())==length,"Invalid check length");payload=4+length;break;}
-    case 6:case 7:get(w[0]);payload=4;break;
-    case 8:require(live.empty() && presented,"Incomplete command session");break;
+    case 6:case 7:
+        get(w[0]);if(c.operation==6 && c.version==2 && get(w[0]).format.bits==8)require(bindings.count(w[0]) && bindings.at(w[0]),"Presentation lacks palette binding");payload=4;break;
+    case 8:require(live.empty() && palettes.empty() && presented,"Incomplete command session");break;
     case 9:throw std::runtime_error("Capture history contains a gap (reason "+std::to_string(w[0])+")");
     case 11:{
         const auto& a=get(w[0]);const auto& b=get(w[1]);
         require(w[0]!=w[1] && a.width==b.width && a.height==b.height && a.format.bits==b.format.bits && a.format.masks==b.format.masks,"Aliased or incompatible surface swap");payload=8;break;}
+    case 12:
+        require(c.version==2 && w[0] && w[0]>lastPaletteCreated && w[1] && palettes.size()<32 && c.colors.size()==256,"Reused, zero or excessive palette identity");payload=8+768;break;
+    case 13:
+        require(c.version==2,"Palette resources require stream v2");palette(w[0],w[1]);
+        require(w[3] && w[2]<256 && w[3]<=256-w[2] && c.colors.size()==w[3],"Invalid palette resource range");payload=16+c.colors.size()*3;break;
+    case 14:
+        require(c.version==2 && get(w[0]).format.bits==8,"Palette binding requires indexed surface and v2");
+        if(w[1])palette(w[1],w[2]);else require(!w[2],"Null palette generation");payload=12;break;
+    case 15:
+        require(c.version==2,"Palette resources require stream v2");palette(w[0],w[1]);
+        for(const auto& binding:bindings){require(binding.second!=w[0],"Retiring attached palette");}
+        payload=8;break;
     default:throw std::runtime_error("Unsupported command opcode");
     }
     if(mode==CommandStreamMode::Bounded)require(payload+12<=std::size_t(maxCommandBytes)-bytes,"Command byte budget exceeded");
     else require(payload+12<=std::size_t(maxStreamingRecordBytes),"Command record budget exceeded");
+    version=c.version;
     if(c.operation==1){if(mode==CommandStreamMode::Bounded)used.insert(w[0]);else lastCreated=w[0];live.emplace(w[0],CommandDescription{c.image.width,c.image.height,c.format});pixels+=c.image.pixels.size();}
-    else if(c.operation==7){const auto& s=get(w[0]);pixels-=std::size_t(s.width)*s.height;live.erase(w[0]);}
+    else if(c.operation==7){const auto& s=get(w[0]);pixels-=std::size_t(s.width)*s.height;live.erase(w[0]);bindings.erase(w[0]);}
+    else if(c.operation==12){lastPaletteCreated=w[0];palettes.emplace(w[0],PaletteDescription{w[1],c.colors});}
+    else if(c.operation==13){auto& colors=palettes.at(w[0]).colors;std::copy(c.colors.begin(),c.colors.end(),colors.begin()+w[2]);}
+    else if(c.operation==14)bindings[w[0]]=w[1];
+    else if(c.operation==15)palettes.erase(w[0]);
     else if(c.operation==6)presented=true;
     else if(c.operation==8)ended=true;
     if(mode==CommandStreamMode::Bounded)bytes+=payload+12;
@@ -93,7 +115,7 @@ struct CommandConsumer::Impl {
         require(options.diagnostics==CommandDiagnostics::Skip || options.diagnostics==CommandDiagnostics::Verify,"Invalid diagnostic mode");
         output.driver=renderer.driver();refresh();
     }
-    void refresh(){output.stats=renderer.stats();output.liveSurfaces=handles.size();output.livePixels=admission.pixels;}
+    void refresh(){output.stats=renderer.stats();output.liveSurfaces=handles.size();output.livePixels=admission.pixels;output.livePalettes=admission.palettes.size();}
     void cleanup(){for(const auto& pair:handles)renderer.destroy(pair.second);handles.clear();bits.clear();admission.discardSurfaces();refresh();}
     void active(){renderer.stats();require(state==CommandConsumerState::Active,"Command consumer is closed");require(!executing,"Recursive command execution is unsupported");}
     void execute(const SurfaceCommand& c){
@@ -118,6 +140,13 @@ struct CommandConsumer::Impl {
             if(options.diagnostics==CommandDiagnostics::Verify){const auto image=renderer.present(handles.at(w[0]));
                 require(QByteArray(reinterpret_cast<const char*>(image.constBits()),image.sizeInBytes())==c.expected,"Original RGBA colors disagree with command replay");++output.colorChecks;}
             else ++output.skippedColorChecks;
+            break;
+        case 12:case 15:break;
+        case 13:
+            for(const auto& binding:admission.bindings)if(binding.second==w[0])renderer.setPalette(handles.at(binding.first),w[2],c.colors);
+            break;
+        case 14:
+            if(w[1])renderer.setPalette(handles.at(w[0]),0,admission.palette(w[1],w[2]).colors);
             break;
         case 11:renderer.swapContents(handles.at(w[0]),handles.at(w[1]));break;
         default:throw std::runtime_error("Unsupported replay command");

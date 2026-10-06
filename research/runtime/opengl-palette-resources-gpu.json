@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "renderer/CMakeLists.txt": "df14005bd43e96035fd0524b98ad202f83200a203ac9c7c345b5b23f472dcdef",
+    "renderer/commands.cpp": "77ce3018dfd245c7e69eb0cc938949734b88cb4f6efa29efafd243621b1c349d",
+    "renderer/commands.hpp": "3c730d314f3430c10e1f17a3eea14d0c10b85499df964d10e7e789b7d64bab9d",
+    "renderer/command_consumer.cpp": "39f9c48ebaef77164f59f1b8a3aa2c5203e69fe799fc56ef12a54ba33e9ec2c6",
+    "renderer/command_state.hpp": "534e6d935993abf0252618598728f8f6aee8c57d7d54c9c14355e52aece6185c",
+    "renderer/blit.cpp": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+    "renderer/blit.hpp": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+    "tests/render-palette-resources-test.cpp": "4e4c3e10074b318507682bf7a9f27f13d065b04e2e821b0f7684c6e784e9db38",
+    "apps/qt-shell/gl_viewport.cpp": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+    "apps/qt-shell/gl_viewport.hpp": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+    "protocols/schemas/render_stream-v2.json": "a0097ef2596bc7bc277fc9c87d828dad4a40d74756dea99248346bb9d0fab475",
+    "protocols/include/mnm/render_stream_v2.h": "4f8416f6dcdb5031b2f95f209e21e43dce0c0cad176c11ec8f2293c6c89c4101",
+    "tools/test-render-palette-resources.py": "34d2acde84229539beee24aba70d9ef18f8110c51db580901b19865687e2316d"
+  },
+  "cases": [
+    {
+      "mode": "native",
+      "success": true,
+      "full_frames": 21,
+      "rejections": 15,
+      "ordinary_readbacks": 0
+    },
+    {
+      "mode": "asan-ubsan",
+      "success": true,
+      "full_frames": 21,
+      "rejections": 15,
+      "ordinary_readbacks": 0
+    }
+  ],
+  "scope": "Independent synthetic indexed pixels and palette expectations; shared update fanout, rebinding, retirement/recreation, fragmented stream v2 and stale/version/capacity refusal. No original-game or driver equivalence."
+}

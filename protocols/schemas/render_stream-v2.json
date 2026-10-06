@@ -1,0 +1,44 @@
+{
+  "name": "render_stream",
+  "version": 2,
+  "magic": "MNMCMD02",
+  "size": 16,
+  "header_size": 16,
+  "declared_size_kind": "size",
+  "byte_order": "little",
+  "fields": [
+    {
+      "name": "magic",
+      "offset": 0,
+      "size": 8,
+      "type": "bytes",
+      "owner": "creator"
+    },
+    {
+      "name": "version",
+      "offset": 8,
+      "size": 4,
+      "type": "u32le",
+      "owner": "creator"
+    },
+    {
+      "name": "declared_size",
+      "offset": 12,
+      "size": 4,
+      "type": "u32le",
+      "owner": "creator"
+    }
+  ],
+  "constants": {
+    "palette_capacity": 32,
+    "palette_entries": 256
+  },
+  "enums": {
+    "operation": {
+      "palette_create": 12,
+      "palette_update": 13,
+      "palette_bind": 14,
+      "palette_delete": 15
+    }
+  }
+}

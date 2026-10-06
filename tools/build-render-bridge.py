@@ -29,8 +29,8 @@ def build(selftest=False):
     if selftest:exports+=['/export:RenderExitInstallForTest=_RenderExitInstallForTest@4','/export:RenderRecoveryStateForTest=_RenderRecoveryStateForTest@4']
     dll=root/'MnmRender.dll'
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib'),str(root/'gdi32.lib')],check=True)
-    protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))+[REPO/'protocols/include/mnm/render_commands_v2.h',REPO/'protocols/include/mnm/render_command_ring.h']
-    protocol_sources=protocol_headers+sorted((REPO/'protocols/schemas').glob('*-v1.json'))+[REPO/'protocols/schemas/render_commands-v2.json',REPO/'protocols/generate.py']
+    protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))+sorted((REPO/'protocols/include/mnm').glob('*_v2.h'))+[REPO/'protocols/include/mnm/render_command_ring.h']
+    protocol_sources=protocol_headers+sorted((REPO/'protocols/schemas').glob('*-v1.json'))+sorted((REPO/'protocols/schemas').glob('*-v2.json'))+[REPO/'protocols/generate.py']
     (root/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()},
         'protocol_sources':{str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest() for p in protocol_sources}},indent=2)+'\n')

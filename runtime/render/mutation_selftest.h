@@ -61,6 +61,31 @@ static i32 WIN mu_write(void* object,u32 flags,u32 first,u32 count,u8* colors){
     copy_bytes(mu_colors+first*4,colors,count*4);for(u32 i=0;i<count*4;++i)colors[i]=0xcc;return 23;
 }
 static i32 WIN mu_assign(void* object,void* palette){(void)object;mu_entry();if(palette!=&mu_palette)ExitProcess(349);return 23;}
+static void** mu_palette_alias;
+static u32 mu_palette_refs;
+static i32 WIN mu_palette_query(void* object,const u8* iid,void** out){(void)object;(void)iid;mu_entry();++mu_palette_refs;*out=&mu_palette_alias;return 23;}
+static u32 WIN mu_palette_release(void* object){(void)object;mu_entry();if(!mu_palette_refs)ExitProcess(377);return --mu_palette_refs;}
+static u32 WIN mu_surface_release(void* object){(void)object;mu_entry();if(!mu_palette_refs)ExitProcess(378);--mu_palette_refs;return 0;}
+static i32 WIN mu_palette_factory(void* object,u32 flags,u8* entries,void** out,void* outer){(void)object;(void)outer;mu_entry();if(flags!=0x44 || mu_palette_refs)ExitProcess(379);copy_bytes(mu_colors,entries,1024);for(u32 i=0;i<1024;++i)entries[i]=0xcc;mu_palette_refs=1;*out=&mu_palette;return 23;}
+static void mu_cycle(struct MuSurface*,u32,u32,u32);
+static void mu_palette_lifetimes(void){
+    static const u8 iid[16]={0x84,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
+    void* alias=0;SetLastError(0x77);if(((i32 (WIN *)(void*,const u8*,void**))mu_palette[0])(&mu_palette,iid,&alias)!=23 || alias!=&mu_palette_alias || GetLastError()!=0x88)ExitProcess(380);
+    SetLastError(0x77);if(((u32 (WIN *)(void*))mu_palette[2])(&mu_palette)!=3 || GetLastError()!=0x88)ExitProcess(381);
+    static void* draw_table[7];draw_table[5]=(void*)&mu_palette_factory;static void** draw;draw=draw_table;RenderInstallForTest(&draw,4);
+    for(u32 pass=0;pass<40;++pass){
+        SetLastError(0x77);if(((u32 (WIN *)(void*))mu_front.table[2])(&mu_front) || GetLastError()!=0x88)ExitProcess(382);
+        SetLastError(0x77);if(((u32 (WIN *)(void*))mu_back.table[2])(&mu_back) || GetLastError()!=0x88)ExitProcess(383);
+        SetLastError(0x77);if(((u32 (WIN *)(void*))mu_palette_alias[2])(&mu_palette_alias) || GetLastError()!=0x88)ExitProcess(384);
+        u8 colors[1024];for(u32 i=0;i<256;++i){colors[i*4]=(u8)(i+pass);colors[i*4+1]=(u8)(i*3+pass);colors[i*4+2]=(u8)(255-i);colors[i*4+3]=0xa5;}
+        void* created=0;SetLastError(0x77);if(((i32 (WIN *)(void*,u32,u8*,void**,void*))draw_table[5])(&draw,0x44,colors,&created,0)!=23 || created!=&mu_palette || GetLastError()!=0x88 || colors[0]!=0xcc)ExitProcess(385);
+        SetLastError(0x77);if(((i32 (WIN *)(void*,void*))mu_front.table[31])(&mu_front,&mu_palette)!=23 || GetLastError()!=0x88)ExitProcess(386);
+        SetLastError(0x77);if(((i32 (WIN *)(void*,void*))mu_back.table[31])(&mu_back,&mu_palette)!=23 || GetLastError()!=0x88)ExitProcess(387);
+        mu_palette_refs+=2;mu_cycle(&mu_front,0,5+pass,0);mu_cycle(&mu_back,0,9+pass,0);
+        SetLastError(0x77);if(((i32 (WIN *)(void*,const u8*,void**))mu_palette[0])(&mu_palette,iid,&alias)!=23 || GetLastError()!=0x88)ExitProcess(388);
+        SetLastError(0x77);if(((u32 (WIN *)(void*))mu_palette[2])(&mu_palette)!=3 || GetLastError()!=0x88)ExitProcess(389);
+    }
+}
 static i32 WIN mu_get_dc(void* object,void** out){mu_entry();++mu_calls[9];struct MuSurface* s=object;if(s->held)ExitProcess(350);s->held=1;*out=mu_dc;return 23;}
 static i32 WIN mu_release_dc(void* object,void* dc){
     mu_entry();++mu_calls[9];if(mu_failed==6){mu_failed=0;return -1;}
@@ -109,15 +134,17 @@ static void test_mutations(const char* mode){
     u32 unsupported=rs_mode(mode,"unsupported"),palette_flags=rs_mode(mode,"palette-flags");
     u32 valid=!(bounded || partial || unsupported || palette_flags);
     if(partial)bits=32;
-    static void* table[33];table[5]=(void*)&mu_blt;table[11]=(void*)&mu_flip;table[12]=(void*)&mu_attached;table[17]=(void*)&mu_get_dc;
+    static void* table[33];table[2]=(void*)&mu_surface_release;table[5]=(void*)&mu_blt;table[11]=(void*)&mu_flip;table[12]=(void*)&mu_attached;table[17]=(void*)&mu_get_dc;
     table[22]=(void*)&mu_desc;table[25]=(void*)&mu_lock;table[26]=(void*)&mu_release_dc;table[28]=(void*)&mu_clipper;table[29]=(void*)&mu_key;table[31]=(void*)&mu_assign;table[32]=(void*)&mu_unlock;
     mu_front.table=mu_back.table=table;mu_front.width=mu_back.width=6;mu_front.height=mu_back.height=4;mu_front.bits=mu_back.bits=bits;mu_front.primary=1;
     RenderInstallForTest(&mu_front,14);RenderInstallForTest(&mu_back,14);
-    static void* pal[7];pal[3]=(void*)&mu_caps;pal[4]=(void*)&mu_read;pal[6]=(void*)&mu_write;mu_palette=pal;
+    static void* pal[7];pal[0]=(void*)&mu_palette_query;pal[2]=(void*)&mu_palette_release;pal[3]=(void*)&mu_caps;pal[4]=(void*)&mu_read;pal[6]=(void*)&mu_write;mu_palette=pal;
     for(u32 i=0;i<256;++i){mu_colors[i*4]=(u8)(i*3);mu_colors[i*4+1]=(u8)(i*7);mu_colors[i*4+2]=(u8)(255-i);mu_colors[i*4+3]=0xa5;}
     RenderInstallForTest(&mu_palette,20);u32 caps;u8 colors[1024];SetLastError(0x77);if(((i32 (WIN *)(void*,u32*))pal[3])(&mu_palette,&caps)!=23 || GetLastError()!=0x88)ExitProcess(363);
     SetLastError(0x77);if(((i32 (WIN *)(void*,u32,u32,u32,void*))pal[4])(&mu_palette,0,0,256,colors)!=23 || GetLastError()!=0x88)ExitProcess(364);
     SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[31])(&mu_front,&mu_palette)!=23 || GetLastError()!=0x88)ExitProcess(365);
+    char palette_profile[2];u32 palette_resources=GetEnvironmentVariableA("MNM_RENDER_PALETTE_RESOURCES",palette_profile,2)==1 && palette_profile[0]=='1';
+    if(palette_resources && bits==8){mu_palette_alias=pal;mu_palette_refs=3;SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[31])(&mu_back,&mu_palette)!=23 || GetLastError()!=0x88)ExitProcess(376);}
     mu_output=CreateFileA("mutation-frames.bin",0x40000000,1,0,1,0x80,0);if(mu_output==(HANDLE)-1)ExitProcess(366);
     mu_cycle(&mu_front,0,5,0);
     if(reshape || bounded || partial){
@@ -147,6 +174,7 @@ static void test_mutations(const char* mode){
             if(bits==8){mu_palette_change(0,pass==3,0);mu_palette_change(1,0,0);}
         }
     }
-    CloseHandle(mu_output);pl_file("mutation-counts.bin",mu_calls,sizeof(mu_calls));
+    if(palette_resources && rs_mode(mode,"indexed"))mu_palette_lifetimes();
+    Sleep(100);CloseHandle(mu_output);pl_file("mutation-counts.bin",mu_calls,sizeof(mu_calls));
     SetLastError(0x77);u32 completed=RenderShutdown(3000);if(completed!=valid || GetLastError()!=0x77 || RenderShutdown(0)!=completed || GetLastError()!=0x77)ExitProcess(375);ExitProcess(0);
 }

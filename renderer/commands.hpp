@@ -10,7 +10,7 @@ enum class CommandStreamMode {Bounded,Streaming};
 constexpr qint64 maxStreamingRecordBytes=12+28+2048*2048*4;
 constexpr qint64 maxStreamingAppendBytes=65536;
 struct SurfaceCommand {
-    unsigned operation=0,sequence=0;
+    unsigned operation=0,sequence=0,version=1;
     std::array<std::uint32_t,10> words{};
     Image image;
     PixelFormat format;
@@ -37,7 +37,7 @@ struct CommandResult {
     QByteArray native;
     QImage presentation;
     unsigned commands=0,checks=0,presents=0,colorChecks=0,skippedChecks=0,skippedColorChecks=0;
-    std::size_t liveSurfaces=0,livePixels=0;
+    std::size_t liveSurfaces=0,livePixels=0,livePalettes=0;
     RenderStats stats;
     Driver driver;
 };

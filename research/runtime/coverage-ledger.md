@@ -1285,3 +1285,27 @@ configurations, and nine explicit producer API regressions /33 sessions /66
 frames. Native/sanitized queue and four Qt/OpenGL regressions pass, along with
 production/selftest PE32 and Qt shell builds. New immutable evidence records
 retain those bounds; original comparison and live replacement remain none.
+
+### Explicit palette resource identities (2026-10-06)
+
+`NR.palette-resources` adds inner command stream v2 with independent palette IDs,
+immutable lifetime generations, shared ordered RGB updates, surface bindings and
+verified final-Release retirement. Continuous launch defaults to this profile;
+explicit legacy and bounded profiles retain stream v1. Palette and surface
+namespaces are qualified by the fresh transport session. Capacity and ambiguity
+refuse the stream; shutdown retires surfaces before palettes.
+[Contract, evidence scope and gaps](opengl-palette-identities.md).
+
+Final-source synthetic PE32 validation covers 321 independent indexed GPU frames,
+40 same-pointer recreations with aliases/nonfinal/final Release, six layout
+replacement frames and one unsupported palette-flags refusal frame. Native and
+ASan/UBSan consumer runs each pass 21 independent frames and 15 identity/version/
+capacity/refusal checks, with zero ordinary readbacks and terminal resources.
+Actual-game equivalence, producer counter-exhaustion/conflicting-alias fault
+injection, implicit destruction, late attachment and retained checkpoint
+recovery remain pending. Historical shared-source evidence stays pinned.
+
+The committed range `529019f..4428c27` was reviewed against exact parent/current
+receipts in `coverage/committed-history-palette-resources-20261006.json`. A missing
+`protocols/CONTRACTS.md` file receipt was appended retrospectively, independently
+of working changes or claims about the prior gate.

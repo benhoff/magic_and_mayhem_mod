@@ -109,3 +109,12 @@ resumes input only after a complete new PRESENT. Cancellation is permanent and
 reply/frame deadlines and request budgets are finite. The separate native
 callback admission gate establishes observed drawing quiescence; the wire
 itself carries no application leases or pointers.
+
+## Render stream v2: explicit palettes
+
+The inner [native command stream v2](../research/formats/render-stream-v2.md)
+adds independent session-qualified palette identities, exact lifetime generations,
+ordered create/update/bind/delete and a 32-palette limit. Indexed presentation
+requires a binding; attached palettes cannot be deleted. Continuous launch uses
+this profile by default. Explicit legacy profile and bounded stream v1 remain
+supported. This version is independent of the mapped ring transport version.

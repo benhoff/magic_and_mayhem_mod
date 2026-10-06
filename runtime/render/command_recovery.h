@@ -41,7 +41,7 @@ static void command_recovery_checkpoints(void){
     zero(game_alias_index,sizeof(game_alias_index));game_alias_index_valid=0;game_alias_reset_pending=0;
     zero(game_pixel_misses,sizeof(game_pixel_misses));game_pixel_misses_pending=0;
     game_metadata_invalidate();game_presented_object=0;game_presented_generation=game_presented_frame=0;
-    zero(session_surfaces,sizeof(session_surfaces));
+    zero(session_surfaces,sizeof(session_surfaces));zero(session_palettes,sizeof(session_palettes));session_last_palette_id=0;
     session_started=session_epoch=session_sequence=session_bytes=session_operations=session_presented=session_pixels=0;
     session_archive_sequence=session_archive_bytes=session_last_id=0;++session_archive_id;
 }
