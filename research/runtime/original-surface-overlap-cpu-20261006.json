@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "success": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "cases": 1536,
+  "cpu_hresult_checks": 1536,
+  "cpu_shared_pixel_checks": 1536,
+  "alias_cases": 768,
+  "partial_error_cases": 16,
+  "native_hresult_validation": false,
+  "backend": "cpu",
+  "scope": "Opaque RGB565 self-copy through unchanged original wrapper0x58c360 and Wine Surface2; per-clip-piece source snapshot model, same-pointer and Surface1 aliases. No keyed/masked/other formats, original Restore/retry, Windows-driver or live replacement equivalence.",
+  "sources": {
+    "tools/check-original-surface-overlap.py": "a9475f944a4c5351452ecb1230ad2ba50f6a77a581381b9c8d3f72812fc71709",
+    "tools/check-original-surface-keys.py": "542f2bc1feddd4b33ca16e3ba1cb75a2ae629de8183d27a95fe08f42edae5908",
+    "tests/test-original-surface-overlap.py": "e68b82192f803ce6b1a0ecddef17ec25c5c4c237034d7d9885d54e596a382bd4",
+    "tests/fixtures/surfaces/original-rgb565-overlap-corpus.json": "dbb088e45a19a3d354c8cb530f92046ade325c0dddaeb38b4d9e35958ab88fe2",
+    "tests/fixtures/surfaces/original-rgb565-overlap.json.gz": "a1750be482070deea5bb4ab100bc3b2887db9e1e63d5f0aed4ca0761bc124f37"
+  }
+}

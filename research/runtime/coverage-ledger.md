@@ -1565,3 +1565,7 @@ match independently captured X11 pixels within one channel value; original World
 and cleanup/manifests remain intact. Whole-World pixels, long action/effect/HUD
 scenes, movies, hardware drivers and replacement remain pending. See the
 [policy, evidence and finite boundaries](opengl-resource-working-set.md).
+
+## Original opaque RGB565 overlap — 2026-10-06
+
+Unchanged wrapper0x58c360 capture and input-derived CPU comparison now cover same-surface copies, four directions/diagonals, identical/nonoverlapping rectangles and verified Surface1 aliases with ordered clipping and selected errors. See [overlap evidence](original-surface-overlap.md). Native GPU replay, keyed/masked and other formats, original loss/Restore/retry, live replacement and Windows driver equivalence remain pending.
