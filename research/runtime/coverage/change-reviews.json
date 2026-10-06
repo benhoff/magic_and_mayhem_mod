@@ -9306,6 +9306,192 @@
           "NR.owned-session-fill.startup"
         ]
       }
+    },
+    {
+      "id": "effect-kind34-recorded-423df90",
+      "reason": "Extend TL.effect-creature-collision to kind34 creator admission in initial and cell-transition-refreshed candidates for selected effect types and zero metadata threshold. Preserve raw creator/kind/count fields and atomic native admission, with public empty-world admission unchanged. Reconcile focused imports/census/ledger and committed bfe8b38..423df90406ee28c62d8190bedb64666d087f1d4e via exact receipts/evidence bindings in working/tests/effect-kind34-history-review.json. Keep old TL16/TL17 evidence and source fingerprints immutable, acknowledge their new staleness, and register fresh baseline reruns under TL18.",
+      "files": [
+        {
+          "after_sha256": "05cfe6668f59a6897e5f6b2f79e7735167d4f5d62fb4bc9df901f106a6d8986f",
+          "before_sha256": "9bedfd9775acb3090259d3e18e36b4b12949a62266809a1ca789df12e971d568",
+          "path": "reconstruction/rendering/effect-creature/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "4e7d28780ed5e7c3b12943bec4a25a701b5e3943b084e3d3cd4e11a7fee1a523",
+          "before_sha256": "10c4a2dd7c8f431d2b79c8f763b14c87f86dbf95699365027ff5ba8a4176233d",
+          "path": "reconstruction/rendering/effect_creature_collision.cpp"
+        },
+        {
+          "after_sha256": "7e6fd634ac464b6a19fb2d750953e41f8ad7ce4995d3a714e2c6560391715839",
+          "before_sha256": "81f7d672068522f762379d92244ebd20d81004ad0d5f971cdf40a4d15899eefb",
+          "path": "reconstruction/rendering/effect_creature_collision.hpp"
+        },
+        {
+          "after_sha256": "d47836aabd7365b72363e64b62853b937c5912c0e36a614ee9c17e0941fc878c",
+          "before_sha256": "05fa18d17089045c606dec087d1021a02479677f7516a53602b8e268b15bf78b",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "22731ff6ec0207e42d4e3197d7ec6c8bf62966964f1cd5a025ed608c03bcafb2",
+          "before_sha256": "dab6643ded29e105249deb35f925b9d4b1455f4aed88b1caa2c2c9947020ed9e",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "caa6591c5ad495830adfd7fdab4230ea5cd63700f9e99c0727fea86cd523c37a",
+          "before_sha256": "0415278769923b9327e4bef452c6d1575f5a0ab47a4b01241ed3989c123668fc",
+          "path": "research/runtime/creature-footprint-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "a14014bc52257b04578dc4d8659eed9c881360699a15a968b559ac48aec89662",
+          "before_sha256": "badd7b1412a736c8f4a0ce798bc6863b309314a439ef655301c03d924b58478a",
+          "path": "research/runtime/creature-occupancy-lookup-coverage.json"
+        },
+        {
+          "after_sha256": "c8d036d28663ef734c2c7a84085aff7b73ce51a054866d3029d60b87a411e441",
+          "before_sha256": "7fb36088be918959465e3fc827eb6bf1b5e03e2d509f2452c26263649817e99f",
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "21bd9c88e43efa27a8e462d0fd07f64e5ef5da2836d705fdda338edf6c60a2fe",
+          "before_sha256": "9916bf31c74afe8c58815f9006126f1538aa5ffce6743a9b09d9cdb6989809bd",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "54d041981e425fc2bc99296a4dea830b4b69f2572886dd6a5f5beee95c37dd4d",
+          "before_sha256": "02c4f5268baefac12d88f30a384cf8932273df3918ad8f16dc92ef8be27b3abd",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "3a47712837c89be62e1e493737f5fb6d1d65bf51982ebd58a1446f10149b4d6d",
+          "before_sha256": "c3ca18abca2d97ad16cd121872ea52cd0985fac3a39b955c970162c42530a01d",
+          "path": "research/runtime/effect-creature-collision-coverage.json"
+        },
+        {
+          "after_sha256": "4bdc19d8c7727f6b7f1c317824d3009c83f7b625187cc5ef79be15a4fb3ef0de",
+          "before_sha256": "1644c453cf170a3ad5106f224ebfa028cb94d1c27dbdd67ef348e7a86fc17d15",
+          "path": "research/runtime/effect-creature-collision.md"
+        },
+        {
+          "after_sha256": "aa61f719cc78ff1cdde60f547db353c1f79ae10a081da230cebc0290052d0fe0",
+          "before_sha256": "e7eea493a6225900ee64a3762dba2b19b7ba36313f2f40131b60ebe8e3995894",
+          "path": "research/runtime/effect-height-exits-coverage.json"
+        },
+        {
+          "after_sha256": "e5fa4c69373fdd6d3405cff5e2c4d6a038ca4e05b9cec0291c5b6960d57e3fc0",
+          "before_sha256": null,
+          "path": "research/runtime/effect-kind34-creator.json"
+        },
+        {
+          "after_sha256": "0c7ee6a0eed3de59091a0cdaddc9cf47e9a301a74ca10dcfc48f01782313bf52",
+          "before_sha256": null,
+          "path": "research/runtime/effect-kind34-creator.md"
+        },
+        {
+          "after_sha256": "f60087751ef7ef87b661d53953ec3559d33855e0e374706d8475a03a3ebe1e39",
+          "before_sha256": null,
+          "path": "research/runtime/effect-kind34-source-index.json"
+        },
+        {
+          "after_sha256": "10efb7569f0aff5c78275d6f1c3f73399b0a1def30d72f231f4a9a7fcc3e13e2",
+          "before_sha256": "12488f808c5bd4ddc5ea0a4a9708869c0b86c03813d42130b11f7655d8e3d026",
+          "path": "research/runtime/effect-membership-disabled-coverage.json"
+        },
+        {
+          "after_sha256": "c8501ee3373b9454c83f45c01c76ae8695470f1fddd314725b99e4d5d333e789",
+          "before_sha256": "83edd1d354cb5dba85562539c6a73e41a1eee9beb880bc2845f088ab2ca05bea",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "2f6e5367a077e4fef1df1946066fd82553ca925c7dc6e7b5b4e24ba8beddd1f2",
+          "before_sha256": "c95fe0618d6f24c2c50b9a16193f94e740de0edfd6183a4365de0536514f95ab",
+          "path": "research/runtime/effect-terrain-occupancy-coverage.json"
+        },
+        {
+          "after_sha256": "3c56962b2aa9c7c408377392c29c87a4106538e8e7acda6edc0d44b45c6ba3ad",
+          "before_sha256": "c35ac4740fb66a2bf3e55ba5a0f4512f90b12ff5885d860c94e16801a77b25fb",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "8c2e2a34388ceceaa9600399602b1cab3726b5d5c732db55fca6ca8288e89628",
+          "before_sha256": null,
+          "path": "tests/effect-kind34-reference.cpp"
+        },
+        {
+          "after_sha256": "c96ad497f3f50fba8cadf137b92d6d70b6f6448be0abc93b04e6ded62afc7a1d",
+          "before_sha256": null,
+          "path": "tests/effect-kind34-test.cpp"
+        },
+        {
+          "after_sha256": "33738e8e05a20069d313d98b3b19b5938b91612d5f2c6c78c313600d8a0685f8",
+          "before_sha256": null,
+          "path": "tools/test-effect-kind34.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "894812a4b2f341b57986ec4ea8b018a81141f06594561d3001a7f30b86ed72a9",
+          "before_sha256": "df2f5564f35eec0378f652ec3fb60ce66537e0de48a7c21d4788bc63898f3a81",
+          "id": "TL.effect-creature-collision"
+        }
+      ],
+      "pending_gaps": [
+        "stale_evidence:065277aca4decdad9b9f613f446ab3d80f8ae456788bdb08d3da1cfe533c075a",
+        "stale_evidence:17183d63ce5ec5a554605e508f964d22f4fdb7323691854f4f548fb869444e81",
+        "stale_evidence:2b2c6ba1fce89238782d1f06cdcd5b3f6a1e68d25c32bfe4006cc42bc2c62870",
+        "stale_evidence:3e0cb09ef2f9e2729689640248bfd7c950bfe9533d3b44d223ee7940aa88c5f4",
+        "stale_evidence:6fe6b98d3d752054774d983028d89f5776c342d0497ec4cf02d82a6aec486301",
+        "stale_evidence:825e93385a05401b7fbf2ebba287c4784c6216f356195f14a778e334b1a229df",
+        "stale_evidence:840d18a7eea6869c20c1bf7fde0b0901b09adaa44f91d4f86c2a08d47e9d38d3",
+        "stale_evidence:91809bef5260f797135a88bf6ab3de0e6e4eb415cae7f12fd37d30b989801922",
+        "stale_evidence:933cc2ff96549db2b4b23038e5f7481333d091b1daaaf1fbed1a3603a97303ad",
+        "stale_evidence:a045cb28b1a9aa63d7249922792a7e757612153cd472e82958164f36bf83f85a",
+        "stale_evidence:cbf59b5e7ab060221b8c8f1047eb7b8155c8cacd6cf24d27a003b2028ee2c4f0",
+        "stale_evidence:edc079839b8221073265f450431260a45bf2d0cc8e5d35fc4daa38ad27483458"
+      ],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL18.kind34-original",
+          "TL18.kind34-native"
+        ],
+        "reason": "33,756 full original-parent calls match native64 and ASan/UBSan, comprising 1,120 ordinary and 8,144 boundary/mutation baseline reruns plus 24,492 new calls across kinds0/34/68. New matrix checks 27 ordered candidate slots, six grids, five filter/competition configurations, selected types and both membership modes, mixed exits/mutations, and 60 dedicated creator refresh calls outside initial range. Strict normal/sanitized old and new native units and two CTests pass; pre/post manifests verify. Current source fingerprints pinned in TL18; old four TL16/TL17 evidence records remain historical and stale after shared cpp/hpp/CMake edits. Other metadata/types, creator ownership setup, installed inputs and live scheduling remain separate."
+      }
+    },
+    {
+      "id": "effect-kind34-remaining-423df90",
+      "reason": "Narrow the existing movement gap by recovering selected kind34 creator selection only; retain other metadata/types and input/lifecycle boundaries.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "ed81b8bed4810bc7ee2917c5889bd668c3c3bb8942a9dcb76f08dee03dcd2439",
+          "before_sha256": "0c9c2318202b28624b87e9c5bd1e21ff6f844646a0c08410809eac0eb76f513f",
+          "id": "TL.effect-movement-recount"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Other effect types/nonzero metadata/termination/type35 mutation, original trajectory setup, creator ownership, installed descriptors/creature/cell/column construction, lifecycle/removal/recycling and live scheduling/replacement remain unimplemented/unverified. Fresh scoped TL18 execution does not promote this remaining-parent contract."
+      }
+    },
+    {
+      "id": "effect-creature-summary-423df90",
+      "reason": "Refresh generated summary for the isolated reviewed register, retaining discovery gaps and historical staleness.",
+      "files": [
+        {
+          "after_sha256": "6544f8a9f5f7c378479a412a143d20910f5170c26618498fe8f00b8028df321d",
+          "before_sha256": "605837f449df07777e1ad2f71124243db20b9c81c5acbd6f86de2ab911d22217",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated metadata only; no implementation or status promotion."
+      }
     }
   ]
 }

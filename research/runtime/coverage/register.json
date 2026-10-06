@@ -10075,13 +10075,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Initial kind34 creator exception, other types/metadata and termination, type35 terrain mutation, original trajectory setup, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures.",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, original trajectory setup, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Initial kind34 creator exception, other types/metadata and termination, type35 terrain mutation, original trajectory setup, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures."
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, original trajectory setup, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures."
         }
       ],
       "documents": [
@@ -10095,7 +10095,8 @@
         "research/runtime/effect-terrain-occupancy.md",
         "research/runtime/creature-occupancy-lookup.md",
         "research/runtime/creature-footprint-initializer.md",
-        "research/runtime/effect-creature-collision.md"
+        "research/runtime/effect-creature-collision.md",
+        "research/runtime/effect-kind34-creator.md"
       ],
       "implementation": [],
       "tests": [],
@@ -11848,18 +11849,19 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Effect creature candidate snapshot and collision scanning",
-      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement",
+      "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/34/68, kind34 creator admission and other-kind creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, metadata threshold authored zero, installed capture/construction/live replacement",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/68, creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, no kind34 creator exception, installed capture/construction/live replacement"
+          "scope": "Selected whole 004883f0 creature-aware movement with initial and cell-transition-refreshed 27-cell ordered snapshot, kind0/34/68, kind34 creator admission and other-kind creator exclusion, null/invalid ordinals, status27 filter, signed raw coordinate differences, first footprint hit, type3 continuation and selected other types return0; immutable owned creature world, metadata threshold authored zero, installed capture/construction/live replacement"
         }
       ],
       "documents": [
         "research/runtime/effect-creature-collision.md",
-        "research/runtime/effect-creature-boundaries.md"
+        "research/runtime/effect-creature-boundaries.md",
+        "research/runtime/effect-kind34-creator.md"
       ],
       "implementation": [
         "reconstruction/rendering/effect_creature_collision.cpp",
@@ -11871,13 +11873,18 @@
         "tests/effect-creature-test.cpp",
         "tools/test-effect-creature.py",
         "tests/effect-creature-boundaries-reference.cpp",
-        "tools/test-effect-creature-boundaries.py"
+        "tools/test-effect-creature-boundaries.py",
+        "tests/effect-kind34-reference.cpp",
+        "tests/effect-kind34-test.cpp",
+        "tools/test-effect-kind34.py"
       ],
       "evidence": [
         "TL16.collision-original",
         "TL16.collision-native",
         "TL17.boundaries-final-original",
-        "TL17.boundaries-final-native"
+        "TL17.boundaries-final-native",
+        "TL18.kind34-original",
+        "TL18.kind34-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -19855,6 +19862,222 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "TL18.kind34-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 004883f0 selected types3/13/22/24/36, kind0/34/68 and zero metadata threshold: kind34 admits creator in initial and refreshed candidates, with status/occupancy/ordering gates, immutable guarded owned inputs, raw field preservation and atomic native admission; dedicated out-of-initial-range refreshed creator cases and fresh ordinary/boundary/mixed-exit/mutation suites; no creator ownership setup, other metadata/types, installed inputs or live replacement",
+      "record": "research/runtime/effect-kind34-creator.json",
+      "sha256": "e5fa4c69373fdd6d3405cff5e2c4d6a038ca4e05b9cec0291c5b6960d57e3fc0",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 33756
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 2
+        },
+        {
+          "pointer": "/suites/baseline/fixtures",
+          "equals": 560
+        },
+        {
+          "pointer": "/suites/baseline/calls",
+          "equals": 1120
+        },
+        {
+          "pointer": "/suites/baseline/creature_hits",
+          "equals": 48
+        },
+        {
+          "pointer": "/suites/baseline/cell_bytes",
+          "equals": 27008000
+        },
+        {
+          "pointer": "/suites/boundaries/fixtures",
+          "equals": 8132
+        },
+        {
+          "pointer": "/suites/boundaries/calls",
+          "equals": 8144
+        },
+        {
+          "pointer": "/suites/boundaries/ordered_calls",
+          "equals": 8100
+        },
+        {
+          "pointer": "/suites/boundaries/mixed_exit_calls",
+          "equals": 20
+        },
+        {
+          "pointer": "/suites/boundaries/mutation_calls",
+          "equals": 24
+        },
+        {
+          "pointer": "/suites/boundaries/creature_hits",
+          "equals": 2814
+        },
+        {
+          "pointer": "/suites/boundaries/cell_bytes",
+          "equals": 9968584
+        },
+        {
+          "pointer": "/suites/kind34/fixtures",
+          "equals": 24456
+        },
+        {
+          "pointer": "/suites/kind34/calls",
+          "equals": 24492
+        },
+        {
+          "pointer": "/suites/kind34/ordered_calls",
+          "equals": 24300
+        },
+        {
+          "pointer": "/suites/kind34/mixed_exit_calls",
+          "equals": 60
+        },
+        {
+          "pointer": "/suites/kind34/mutation_calls",
+          "equals": 72
+        },
+        {
+          "pointer": "/suites/kind34/refresh_calls",
+          "equals": 60
+        },
+        {
+          "pointer": "/suites/kind34/creature_hits",
+          "equals": 6808
+        },
+        {
+          "pointer": "/suites/kind34/cell_bytes",
+          "equals": 30045912
+        }
+      ]
+    },
+    {
+      "id": "TL18.kind34-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 004883f0 selected types3/13/22/24/36, kind0/34/68 and zero metadata threshold: kind34 admits creator in initial and refreshed candidates, with status/occupancy/ordering gates, immutable guarded owned inputs, raw field preservation and atomic native admission; dedicated out-of-initial-range refreshed creator cases and fresh ordinary/boundary/mixed-exit/mutation suites; no creator ownership setup, other metadata/types, installed inputs or live replacement",
+      "record": "research/runtime/effect-kind34-creator.json",
+      "sha256": "e5fa4c69373fdd6d3405cff5e2c4d6a038ca4e05b9cec0291c5b6960d57e3fc0",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 33756
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 2
+        },
+        {
+          "pointer": "/suites/baseline/fixtures",
+          "equals": 560
+        },
+        {
+          "pointer": "/suites/baseline/calls",
+          "equals": 1120
+        },
+        {
+          "pointer": "/suites/baseline/creature_hits",
+          "equals": 48
+        },
+        {
+          "pointer": "/suites/baseline/cell_bytes",
+          "equals": 27008000
+        },
+        {
+          "pointer": "/suites/boundaries/fixtures",
+          "equals": 8132
+        },
+        {
+          "pointer": "/suites/boundaries/calls",
+          "equals": 8144
+        },
+        {
+          "pointer": "/suites/boundaries/ordered_calls",
+          "equals": 8100
+        },
+        {
+          "pointer": "/suites/boundaries/mixed_exit_calls",
+          "equals": 20
+        },
+        {
+          "pointer": "/suites/boundaries/mutation_calls",
+          "equals": 24
+        },
+        {
+          "pointer": "/suites/boundaries/creature_hits",
+          "equals": 2814
+        },
+        {
+          "pointer": "/suites/boundaries/cell_bytes",
+          "equals": 9968584
+        },
+        {
+          "pointer": "/suites/kind34/fixtures",
+          "equals": 24456
+        },
+        {
+          "pointer": "/suites/kind34/calls",
+          "equals": 24492
+        },
+        {
+          "pointer": "/suites/kind34/ordered_calls",
+          "equals": 24300
+        },
+        {
+          "pointer": "/suites/kind34/mixed_exit_calls",
+          "equals": 60
+        },
+        {
+          "pointer": "/suites/kind34/mutation_calls",
+          "equals": 72
+        },
+        {
+          "pointer": "/suites/kind34/refresh_calls",
+          "equals": 60
+        },
+        {
+          "pointer": "/suites/kind34/creature_hits",
+          "equals": 6808
+        },
+        {
+          "pointer": "/suites/kind34/cell_bytes",
+          "equals": 30045912
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -22124,6 +22347,23 @@
       "tests": [
         "tools/test-live-render-game.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-kind34-creator",
+      "level": "headless",
+      "scope": "Whole 004883f0 selected types3/13/22/24/36, kind0/34/68 and zero metadata threshold: kind34 admits creator in initial and refreshed candidates, with status/occupancy/ordering gates, immutable guarded owned inputs, raw field preservation and atomic native admission; dedicated out-of-initial-range refreshed creator cases and fresh ordinary/boundary/mixed-exit/mutation suites; no creator ownership setup, other metadata/types, installed inputs or live replacement",
+      "behaviors": [
+        "TL.effect-creature-collision"
+      ],
+      "evidence": [
+        "TL18.kind34-original",
+        "TL18.kind34-native"
+      ],
+      "tests": [
+        "tests/effect-kind34-reference.cpp",
+        "tests/effect-kind34-test.cpp",
+        "tools/test-effect-kind34.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -22254,7 +22494,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "c35ac4740fb66a2bf3e55ba5a0f4512f90b12ff5885d860c94e16801a77b25fb",
+      "sha256": "3c56962b2aa9c7c408377392c29c87a4106538e8e7acda6edc0d44b45c6ba3ad",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -22264,57 +22504,57 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "83edd1d354cb5dba85562539c6a73e41a1eee9beb880bc2845f088ab2ca05bea",
+      "sha256": "c8501ee3373b9454c83f45c01c76ae8695470f1fddd314725b99e4d5d333e789",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "02c4f5268baefac12d88f30a384cf8932273df3918ad8f16dc92ef8be27b3abd",
+      "sha256": "54d041981e425fc2bc99296a4dea830b4b69f2572886dd6a5f5beee95c37dd4d",
       "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-cleanup-coverage.json",
-      "sha256": "9916bf31c74afe8c58815f9006126f1538aa5ffce6743a9b09d9cdb6989809bd",
+      "sha256": "21bd9c88e43efa27a8e462d0fd07f64e5ef5da2836d705fdda338edf6c60a2fe",
       "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-blocked-destinations-coverage.json",
-      "sha256": "7fb36088be918959465e3fc827eb6bf1b5e03e2d509f2452c26263649817e99f",
+      "sha256": "c8d036d28663ef734c2c7a84085aff7b73ce51a054866d3029d60b87a411e441",
       "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-height-exits-coverage.json",
-      "sha256": "e7eea493a6225900ee64a3762dba2b19b7ba36313f2f40131b60ebe8e3995894",
+      "sha256": "aa61f719cc78ff1cdde60f547db353c1f79ae10a081da230cebc0290052d0fe0",
       "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-membership-disabled-coverage.json",
-      "sha256": "12488f808c5bd4ddc5ea0a4a9708869c0b86c03813d42130b11f7655d8e3d026",
+      "sha256": "10efb7569f0aff5c78275d6f1c3f73399b0a1def30d72f231f4a9a7fcc3e13e2",
       "scope": "Reviewed complete-parent disabled-membership movement and preserved graph/flags, ordinary/blocked/height/cleanup reruns and native reconciliation admission; remaining occupied collision/setup/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-terrain-occupancy-coverage.json",
-      "sha256": "c95fe0618d6f24c2c50b9a16193f94e740de0edfd6183a4365de0536514f95ab",
+      "sha256": "2f6e5367a077e4fef1df1946066fd82553ca925c7dc6e7b5b4e24ba8beddd1f2",
       "scope": "Reviewed complete-parent terrain occupancy bitmap/cache-gated sampling, hit ordering and both membership modes with fresh prior-contract reruns; remaining creature/special-type/catalog/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/creature-occupancy-lookup-coverage.json",
-      "sha256": "badd7b1412a736c8f4a0ce798bc6863b309314a439ef655301c03d924b58478a",
+      "sha256": "a14014bc52257b04578dc4d8659eed9c881360699a15a968b559ac48aec89662",
       "scope": "Reviewed complete 004e1200 creature footprint lookup and owned read-only storage, independent rectangle tests and raw-height wrapping; original candidate/parent/initializer/capture/live work remains separate and historical effect proofs are preserved"
     },
     {
       "path": "research/runtime/creature-footprint-initializer-coverage.json",
-      "sha256": "0415278769923b9327e4bef452c6d1575f5a0ab47a4b01241ed3989c123668fc",
+      "sha256": "caa6591c5ad495830adfd7fdab4230ea5cd63700f9e99c0727fea86cd523c37a",
       "scope": "Reviewed complete 004e1260 footprint initializer, original/native guarded overwrite and query composition; creature construction parent/capture/live remain separate"
     },
     {
       "path": "research/runtime/effect-creature-collision-coverage.json",
-      "sha256": "c3ca18abca2d97ad16cd121872ea52cd0985fac3a39b955c970162c42530a01d",
+      "sha256": "3a47712837c89be62e1e493737f5fb6d1d65bf51982ebd58a1446f10149b4d6d",
       "scope": "Reviewed selected whole 004883f0 creature candidates and collision integration, refreshed ordered snapshots, raw coordinate/query composition, creator and status filters, first-hit and type3 continuation; installed capture/live remain separate"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-owned-session-fills-isolated-v3.json",
-    "sha256": "303c2a84cfcc14f98b964ff65ec0c0719c13854b03b9b068bcc18302b5039ceb"
+    "path": "research/runtime/effect-kind34-source-index.json",
+    "sha256": "f60087751ef7ef87b661d53953ec3559d33855e0e374706d8475a03a3ebe1e39"
   }
 }

@@ -18,6 +18,8 @@ struct EffectCreatureTransitionState {
     // Owned ordinal replacing original +198 pointer. Retained when kind 68 skips scanning.
     unsigned candidate=NoCreature;
 };
+// Selected effect types admit kinds 0/34/68; kind 34 admits the creator.
+// This does not initialize creator ownership or broaden empty-world admission.
 unsigned transitionEffectCreatureWorld(EffectPlacementPool&,unsigned slot,
     EffectCreatureTransitionState&,unsigned width,unsigned height,unsigned layers,
     const EffectCreatureWorld&,const std::vector<EffectCleanupColumn>& columns={},

@@ -14,13 +14,12 @@ Positive Y defines the south direction here, without asserting camera orientatio
 
 Cell+4 supplies one WORD creature ordinal, not a creature chain. `ffff`, ordinals
 outside the catalog count at `006def5c`, and the creator ordinal (effect+44)
-produce null entries. Kind (effect+4c) 68 skips gathering and scanning. Kind 34's
-exception allowing the creator is visible statically but outside this native
-movement contract. Valid ordinals address catalog base `006def58` + ordinal*e4b.
+produce null entries. Kind (effect+4c) 68 skips gathering and scanning. TL16 originally excluded kind 34's creator exception; TL18 separately adds it
+for the selected effect types. See [kind34 proof and limits](effect-kind34-creator.md). Valid ordinals address catalog base `006def58` + ordinal*e4b.
 Candidate pointers are refreshed on an unblocked cell transition by the second
 gather loop `00488843..00488934`; same-cell steps retain the previous snapshot.
-Wrapped-cell aliases are not deduplicated. Both gather loops preserve the kind34
-creator exception; this kind remains outside the bounded native movement API.
+Wrapped-cell aliases are not deduplicated. Both gather loops preserve the kind34 creator exception. TL18 implements this
+exception within the same bounded movement contract.
 
 After terrain sampling/cache publication, `004889fc..00488a6f` scans all 27
 entries in order. Every visited entry writes effect+198, including null and
@@ -62,7 +61,7 @@ exercise hit/no-hit outcomes, kind/status bypass and atomic invalid-world reject
 
 The record `effect-creature-collision.json` is the execution evidence. It does not
 prove every combined movement/collision branch or installed world production.
-Remaining scope: kind34 creator exception, other effect types/metadata, type35
+Remaining scope: other effect types/nonzero metadata, type35
 terrain mutation, installed descriptors and creature construction/lifecycle,
 installed cell/catalog capture, real caller scheduling/removal/recycling and live
 replacement. TL17 separately extends the authored comparison to all candidate positions,
