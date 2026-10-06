@@ -17,7 +17,7 @@ SHA-256 `40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`.
 | `palette` | Entries, shared ownership, binding and lifetime | Pending; v2 native resource policy exists |
 | `clip.rectangles` | Boundary/empty handling and coordinate adjustment | Pending; already bounded rectangles are not clipping evidence |
 | `clip.regions` | Required attached clipper regions and changes | Pending; reachable region shapes remain unresolved |
-| `fill` | Argument color, wrapper truncation, rectangle and retries | Pending; native constant UPDATE route exists |
+| `fill` | Argument color, wrapper truncation, rectangle and retries | 250 isolated original calls;145 successful RGB565 outputs compared; retry/Restore pending |
 | `copy.self_overlap` | Same-surface copies, aliases and overlap directions | Pending |
 | `restore` | Loss, Restore, retry, content validity and state reload | Pending; transport recovery/checkpoint policies are separate |
 | `lifetime_updates` | Complete initial state, CPU writes and retirement | Pending original-driver sequence; native foundation exists |
@@ -141,3 +141,12 @@ strict checker and provenance contract; the five historical game captures and
 MNMBLT01 admission remain unchanged. It compares434 successful native outputs,
 retains two missing-key Blt errors and144 second calls after key mutation. Native
 keyed HRESULT/retry/Restore, indexed and clipped keys remain pending.
+
+## Original fill wrapper extension
+
+[Fill evidence](original-surface-fills.md) adds250 unchanged `0x58bac0` calls
+against real Wine Surface2, with full destination state and observed effects,
+clipper lists and errors. CPU comparison covers every result/output; native
+constant UPDATE regions reproduce145 successful outputs from argument-derived
+bytes. Native API failure HRESULTs, lost/Restore/retry and the other fill wrapper
+remain pending. Original error-reporting UI imports are bounded observers.

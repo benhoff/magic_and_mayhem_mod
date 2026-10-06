@@ -23,6 +23,10 @@ class Keys(unittest.TestCase):
     def test_build(self):self.rejected(lambda m:m.update(original_sha256='0'*64))
     def test_path(self):self.rejected(lambda m:m.update(path='../escape.json.gz'))
     def test_poisoned_output(self):self.rejected(lambda m:None,lambda r:r[0]['destination_after'].__setitem__(0,r[0]['destination_after'][0]^1))
+    def test_missing_key_hresult(self):
+        def poison(rows):
+            r=next(x for x in rows if x['input']['mode']==1 and not x['input']['fast']);r['hresult']=0;r['trace'][3]=0
+        self.rejected(lambda m:None,poison)
     def test_key_state(self):self.rejected(lambda m:None,lambda r:r[0]['key_before'].__setitem__(1,7))
     def test_mutation_continuity(self):self.rejected(lambda m:None,lambda r:next(x for x in r if x['input']['phase'])['destination_before'].__setitem__(0,0))
 if __name__=='__main__':unittest.main()

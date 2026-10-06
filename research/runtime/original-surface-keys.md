@@ -64,3 +64,11 @@ padding and places its code after that padding, preventing Wine heaps/stacks
 from occupying the original image range. The private mapping writes only that
 reservation. Source files and executable hashes must remain stable
 during the run. Evidence/output paths refuse overwrite.
+
+## Input-derived error admission follow-up
+
+[Fresh replay after the fill extension](original-surface-keys-replay-after-fills-20261006.json)
+compares436 CPU HRESULTs and outputs plus434 successful native copies. Missing-key
+Blt admission is derived from the input key/API state, rather than the captured
+HRESULT. Eight refusal tests now include a falsified missing-key result. Historical
+reports and fingerprints remain unchanged; native keyed HRESULTs remain pending.

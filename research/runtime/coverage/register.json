@@ -14606,7 +14606,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original RGB565 exact source-key rectangle pixels",
-      "scope": "Unchanged original wrapper0x58ca90 through Wine Surface2:436 controlled RGB565 keyed calls;434 successful native/CPU full-pixel comparisons,144 second calls after actual key mutation. Two missing-key Blt E_INVALIDARG calls retained without native HRESULT equivalence. Not live gameplay, other wrappers/formats, clipped keys, original retry/Restore or Windows-driver equivalence.",
+      "scope": "Unchanged original wrapper0x58ca90 through Wine Surface2:436 controlled RGB565 keyed calls;434 successful native/CPU full-pixel comparisons,144 second calls after actual key mutation. Two missing-key Blt E_INVALIDARG calls retained without native HRESULT equivalence. Not live gameplay, other wrappers/formats, clipped keys, original retry/Restore or Windows-driver equivalence. CPU missing-key admission now derives from input key/API state and independently compares actual HRESULT; native keyed HRESULT equivalence remains pending.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -14639,7 +14639,64 @@
       ],
       "evidence": [
         "ORIGINAL.surface-copy.rgb565-keyed.capture-20261006",
-        "ORIGINAL.surface-copy.rgb565-keyed.replay-20261006"
+        "ORIGINAL.surface-copy.rgb565-keyed.replay-20261006",
+        "ORIGINAL.surface-copy.rgb565-keyed.after-fills-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-fill.rgb565",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Original RGB565 constant-fill input/result and output pixels",
+      "scope": "Unchanged original wrapper0x58bac0 through Wine Surface2:250 RGB565 fill input/result/full-destination cases, low16-bit color construction, five clipper states and selected error UI call counts. CPU model matches145 successes/65 invalid rectangles/40 missing lists; native argument-derived constant UPDATE pieces match145 successful full outputs. UI imports are bounded observers. Native fill HRESULTs, original loss/Restore/retry and0x58bc10, unknown initial storage, indexed/masked formats, live gameplay and Windows-driver equivalence pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814976,
+          "scope": "Unchanged selected fill wrapper and observed effects/result, controlled real-driver surfaces; no lost/retry execution."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4738048,
+          "scope": "Only error dispatch reached from selected invalid-rectangle/missing-list fill calls; bounded UI import observers, no real window/dialog or complete dispatcher equivalence."
+        }
+      ],
+      "documents": [
+        "research/runtime/original-surface-fills.md",
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/native-surface-fixtures.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands_main.cpp",
+        "tools/check-original-surface-fills.py"
+      ],
+      "tests": [
+        "tests/surface-fill-reference.c",
+        "tests/surface-key-reference.c",
+        "tools/capture-original-surface-fills.py",
+        "tools/capture-original-surface-keys.py",
+        "tools/check-original-surface-keys.py",
+        "tests/test-original-surface-fills.py",
+        "tests/fixtures/surfaces/original-rgb565-fills-corpus.json",
+        "tests/fixtures/surfaces/original-rgb565-fills.json.gz"
+      ],
+      "evidence": [
+        "ORIGINAL.surface-fill.rgb565.capture-20261006",
+        "ORIGINAL.surface-fill.rgb565.replay-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -26118,6 +26175,58 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "ORIGINAL.surface-fill.rgb565.capture-20261006",
+      "kind": "isolated_original",
+      "scope": "Unchanged original wrapper0x58bac0 through Wine Surface2:250 RGB565 fill input/result/full-destination cases, low16-bit color construction, five clipper states and selected error UI call counts. CPU model matches145 successes/65 invalid rectangles/40 missing lists; native argument-derived constant UPDATE pieces match145 successful full outputs. UI imports are bounded observers. Native fill HRESULTs, original loss/Restore/retry and0x58bc10, unknown initial storage, indexed/masked formats, live gameplay and Windows-driver equivalence pending.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-fills-capture-20261006.json",
+      "sha256": "8dc9c86f95f515acaf35379a5f4e3765fb23b5a97af7554a4ac74981d03d2d58",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-fill.rgb565.replay-20261006",
+      "kind": "isolated_original",
+      "scope": "Unchanged original wrapper0x58bac0 through Wine Surface2:250 RGB565 fill input/result/full-destination cases, low16-bit color construction, five clipper states and selected error UI call counts. CPU model matches145 successes/65 invalid rectangles/40 missing lists; native argument-derived constant UPDATE pieces match145 successful full outputs. UI imports are bounded observers. Native fill HRESULTs, original loss/Restore/retry and0x58bc10, unknown initial storage, indexed/masked formats, live gameplay and Windows-driver equivalence pending.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-fills-replay-final-20261006.json",
+      "sha256": "823948b7010dca8a427e5878f14490169beb791921b6a9dbd3e64e2f66899caf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-keyed.after-fills-20261006",
+      "kind": "isolated_original",
+      "scope": "Fresh input-derived CPU missing-key/API HRESULT admission436 comparisons and successful434 native/868 full-pixel replay; eight refusal tests. Native keyed HRESULTs/loss/Restore and indexed/clipped keys remain pending.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-keys-replay-after-fills-20261006.json",
+      "sha256": "bb1168eb5f70455364f26497475a263e1aa3816540feeb7f8359e51062b35ef5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_hresult_checks",
+          "equals": 436
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -30623,7 +30732,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-keys-20261006.json",
-    "sha256": "a81759ae0c870f7d23d65b453b5edbacce44108a9cea5aea0b21576149e28057"
+    "path": "research/runtime/coverage/source-index-original-fills-20261006.json",
+    "sha256": "aa68290a44dffb77297dd31f0a03751b9a6686a58e9e691bd5b3963af31b3cf1"
   }
 }

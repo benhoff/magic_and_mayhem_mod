@@ -39,7 +39,7 @@ def load(path):
         sr,dr=c['source'],c['destination'];require(0<=sr[0]<sr[2]<=8 and 0<=sr[1]<sr[3]<=6 and 0<=dr[0]<dr[2]<=8 and 0<=dr[1]<dr[3]<=6 and sr[2]-sr[0]==dr[2]-dr[0] and sr[3]-sr[1]==dr[3]-dr[1],'Out-of-scope rectangles')
         k=r['key_before'];require(len(k)==3 and r['key_after']==k,'Key changed during draw')
         if c['mode']!=1:require(k==[0,c['key']^(0xffff if c['phase'] else 0),c['key']^(0xffff if c['phase'] else 0)] and r['hresult']==0,'Exact-key state/result mismatch')
-        else:require(k[0]!=0,'Missing key unexpectedly present')
+        else:require(k==[0x887600d7,0,0],'Missing key state mismatch')
     # Mutation second calls share complete state with the immediately prior output.
     for i,r in enumerate(rows):
         if r['input']['phase']:
@@ -47,9 +47,12 @@ def load(path):
             require(r['source_before']==rows[i-1]['source_after'] and r['destination_before']==rows[i-1]['destination_after'],'Mutation state continuity mismatch')
     return rows,m
 
+def status(r):
+    c=r['input'];return 0x80070057 if c['mode']==1 and not c['fast'] else 0
+
 def cpu(r):
     c=r['input'];out=r['destination_before'].copy()
-    if r['hresult']:return out
+    if status(r):return out
     key=None if c['mode']==1 else r['key_before'][1]
     l,t,right,bottom=c['source'];dx,dy=c['destination'][:2]
     for y in range(t,bottom):
@@ -61,7 +64,7 @@ def cpu(r):
 def stream(rows):
     records=[]
     def add(op,payload=b''):records.append(words(op,len(records)+1,len(payload))+payload)
-    admitted=[r for r in rows if not r['hresult']]
+    admitted=[r for r in rows if not status(r)]
     for i,r in enumerate(admitted):
         s,d=2*i+1,2*i+2;c=r['input'];keyed=c['mode']!=1
         add(1,words(s,8,6,16,0xf800,0x7e0,31)+pixels(r['source_before']));add(1,words(d,8,6,16,0xf800,0x7e0,31)+pixels(r['destination_before']))
@@ -73,14 +76,14 @@ def stream(rows):
 
 def check(path=DEFAULT,build=None):
     rows,m=load(path)
-    require(all(r['source_before']==r['source_after'] and cpu(r)==r['destination_after'] for r in rows),'Independent CPU pixels disagree')
-    report=dict(schema=1,success=True,original_sha256=BUILD_HASH,cases=len(rows),cpu_destination_checks=len(rows),source_checks=len(rows),native_success_cases=sum(not r['hresult'] for r in rows),native_hresult_validation=False,pending_native_failure_cases=sum(bool(r['hresult']) for r in rows),mutation_second_calls=sum(r['input']['phase'] for r in rows),hresults={f'0x{h:08x}':sum(r['hresult']==h for r in rows) for h in sorted({r['hresult'] for r in rows})},scope='Offline RGB565 pixel comparison with unchanged original keyed wrapper0x58ca90 through Wine Surface2; native COPY primitive compares successful pixels only. Failed HRESULTs retained, no native keyed API HRESULT/retry/Restore equivalence. Missing-key successful BltFast is opaque driver behavior.')
+    require(all(status(r)==r['hresult'] and r['source_before']==r['source_after'] and cpu(r)==r['destination_after'] for r in rows),'Independent CPU result/pixels disagree')
+    report=dict(schema=1,success=True,original_sha256=BUILD_HASH,cases=len(rows),cpu_hresult_checks=len(rows),cpu_destination_checks=len(rows),source_checks=len(rows),native_success_cases=sum(not r['hresult'] for r in rows),native_hresult_validation=False,pending_native_failure_cases=sum(bool(r['hresult']) for r in rows),mutation_second_calls=sum(r['input']['phase'] for r in rows),hresults={f'0x{h:08x}':sum(r['hresult']==h for r in rows) for h in sorted({r['hresult'] for r in rows})},scope='Offline RGB565 pixel comparison with unchanged original keyed wrapper0x58ca90 through Wine Surface2; native COPY primitive compares successful pixels only. Failed HRESULTs retained, no native keyed API HRESULT/retry/Restore equivalence. Missing-key successful BltFast is opaque driver behavior.')
     paths=['tools/check-original-surface-keys.py','tests/test-original-surface-keys.py','renderer/blit.cpp','renderer/blit.hpp','renderer/commands.cpp','renderer/commands.hpp','renderer/command_consumer.cpp','renderer/command_state.hpp','renderer/commands_main.cpp']
     if build:
         parent=ROOT/'working/tests/original-surface-key-replay';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));file=run/'keys.cmd';file.write_bytes(stream(rows));output=run/'native.pixels'
         env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1');binary=build.resolve()/'mnm-render-commands';result=subprocess.run([str(binary),str(file),'--output',str(output)],env=env,capture_output=True,text=True,timeout=60);(run/'replay.log').write_text(result.stdout+result.stderr)
         require(result.returncode==0,result.stdout+result.stderr);gl=json.loads(result.stdout);require(gl['checks']==2*report['native_success_cases'] and gl['rendered'],'Missing native pixel checks')
-        require(output.read_bytes()==pixels(next(r for r in reversed(rows) if not r['hresult'])['destination_after']),'Native final pixels disagree')
+        require(output.read_bytes()==pixels(next(r for r in reversed(rows) if not status(r))['destination_after']),'Native final pixels disagree')
         report.update(backend='opengl_native_integer',native=gl,binary_sha256=sha(binary),stream_sha256=sha(file),artifacts=str(run.relative_to(ROOT)))
     else:report['backend']='cpu'
     paths += [str(path.resolve().relative_to(ROOT)),str((path.parent/m['path']).resolve().relative_to(ROOT))]
