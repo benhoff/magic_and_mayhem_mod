@@ -1493,3 +1493,33 @@ The final original-game checkpoint and automatic-recovery observations presented
 208 and 235 native frames respectively, each in one healthy session for 12 seconds,
 with zero ordinary readbacks/uploads and complete consumer cleanup. These exceed
 the earlier three-frame/retry-exhaustion boundary without enlarging any queue.
+
+## Original campaign routes and independent menu regions (2026-10-06)
+
+The new bounded route harness pairs continuous native rendering with forwarded
+original campaign observation and independent X11 client snapshots. Five stable
+menu regions match within one RGB channel value, including Region Entry after a
+second failed-reader recovery. Campaign entry reaches three original World ticks
+and 238 native presentations, then the 33rd tracked surface exceeds the existing
+32-surface budget. Complete checkpoint admission refuses, fresh observations hit
+untracked copies, and native rendering falls back with zero retained resources
+while original World drawing continues.
+
+Movie-enabled startup reaches Main and presents 217 native frames in a healthy
+recovered session; actual movie playback has no sample hits in the bounded archive
+and remains unverified. Whole-frame/gameplay/movie/driver equivalence and replacement
+remain pending. No budgets or production admission rules changed. See the
+[route evidence and remaining boundaries](opengl-render-routes.md).
+
+## Original RGB565 keyed wrapper outputs — 2026-10-06
+
+Unchanged no-CD wrapper0x58ca90 ran in a private PE mapping against real Wine
+Surface2, retaining436 complete before/after cases, both APIs/WAIT branches,
+exact high-bit keys and144 second calls after key mutation. CPU checks compare
+all436 outputs; native COPY compares434 successful outputs with868 complete
+source/destination checks. Two E_INVALIDARG missing-key Blt calls remain captured
+without native HRESULT equivalence. Seven provenance/state/output refusal tests
+pass. No live gameplay, Windows-driver, indexed/clipped key, retry/Restore or
+replacement claim. Wine experiments are serialized. See
+[findings](original-surface-keys.md). The reviewed454c5d5..63863bc history range
+has no missing exact file receipts; current uncommitted route work is separate.
