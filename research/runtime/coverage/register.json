@@ -2518,7 +2518,8 @@
         "tests/audio-voice-bridge-test.cpp"
       ],
       "evidence": [
-        "REVIEW.NA.voice_bridge"
+        "REVIEW.NA.voice_bridge",
+        "AU06.user-live-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -5568,7 +5569,8 @@
         "tests/test-audio-asset-input.py"
       ],
       "evidence": [
-        "REVIEW.RT.audio"
+        "REVIEW.RT.audio",
+        "AU06.user-live-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -23017,6 +23019,28 @@
         {
           "pointer": "/gpu/frames",
           "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "AU06.user-live-20261006",
+      "kind": "live_observation",
+      "scope": "Native device selection for inferred matching local run plus user-reported working audible playback; duration/sound coverage, original comparison and complete replacement unverified. No status promotion.",
+      "record": "research/runtime/native-audio-live-observation-20261006.json",
+      "sha256": "969f7a1c11ac5f063bd3ca8a4903520e79f320d71b7f724e695bc7cfd4997fbe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/channel_snapshot/native_selections",
+          "equals": 1
+        },
+        {
+          "pointer": "/channel_snapshot/fallback_attempts",
+          "equals": 0
+        },
+        {
+          "pointer": "/channel_snapshot/failed_submitted_requests",
+          "equals": 0
         }
       ]
     }

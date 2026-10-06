@@ -3,7 +3,8 @@
 Reviewed 2026-10-04. This optional adapter routes selected game-facing audio
 contracts into the native Device mixer and Qt output. Offline COM/PCM tests and
 disposable import staging pass. No live game session, speaker audibility or
-original timing equivalence is established by this chunk.
+original timing equivalence is established by this chunk. Later live user evidence
+is recorded below, separately from those historical tests.
 
 ## Implementation and selection
 
@@ -131,3 +132,31 @@ versus fallback and audible/temporal comparison against Wine.
 The evidence above describes the initial adapter milestone. Current primary
 controls, protocol version 2 and refreshed fixture/staging evidence are recorded
 in [primary audio manager](primary-audio-manager.md).
+
+## 2026-10-06 user live observation
+
+The user reports: “native audio seems to be working just fine” after the
+readback-disabled native-voice test. The latest matching local experiment is
+`working/experiments/opengl-render/run-f2336iox`: its manifest enables the audio
+channel and disables render readback. Association with the report is inferred
+from the latest matching run; the user did not explicitly supply its ID.
+
+Inspection of the version-2 audio channel found one native device selection,
+zero pre-selection fallback attempts, zero failed submitted requests, and
+matching request/response IDs 9894. Readiness was withdrawn (ready=0) at
+inspection. This confirms native selection in that run and supports the user's
+audible-playback observation. Unsupported local COM methods do not increment
+submitted-request failures; these counters are not whole-program coverage.
+
+Evidence and the header snapshot are retained in
+[native-audio-live-observation-20261006.json](native-audio-live-observation-20261006.json)
+as `AU06.user-live-20261006`, with executed binary hashes, manifest hash and
+inspection-time source fingerprints. The test used the previously built shell
+after the launcher rebuild was blocked by a missing campaign preferences test
+source. Fingerprints do not assert that executed binaries were freshly rebuilt.
+
+Level, duration and exercised sounds were not specified. This is live native
+selection plus user-reported audible playback, not an original/native timing or
+waveform comparison, full-level audio validation, or complete audio replacement.
+Movies and WinMM file sounds remain separate. No engine code changed for this
+record; historical evidence hashes and coverage statuses are retained.
