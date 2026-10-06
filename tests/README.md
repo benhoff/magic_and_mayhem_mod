@@ -933,3 +933,7 @@ The actual-window runner starts from `spawn-terrain-ani` and verifies immediate
 body/picking, idle ticks, modal Save and fresh-window first-move continuation
 alongside the movement and Stop checks in four views. See
 [native spawn display](../research/runtime/native-spawn-display.md).
+
+### Campaign Mini Preferences
+
+Run `python3 tools/test-campaign-preferences-bridge.py` and Qt `qt-menu-campaign-preferences`, `qt-menu-preferences-bridge`, `qt-menu-preferences-controller`, `qt-engine-preferences-store`, `qt-menu-campaign-mini-quit` and `qt-menu-campaign-defeat`. These isolated original-bytecode and synthetic Qt checks require no manual input. The full campaign gameplay return remains pending; see [UI34 evidence](../research/runtime/campaign-preferences-engine-bridge.md).

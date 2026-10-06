@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+    "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/run-menu-observer.py": "42b40bbd9db95fe2cf096ec76f3b7d7102a0f2eb9a36b9b17e64a795e2a6bd56",
+    "apps/qt-shell/menu_bridge.cpp": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+    "apps/qt-shell/menu_bridge.hpp": "631087eda5168c3ddaaaa590c22c19e7958a49c7d9026f71bbde0702a1ec62fa",
+    "apps/qt-shell/live_menu_session.cpp": "25ccbbd8f260523a060dc04455e82421ea439528ef6f64e0e894a02d5cbe2a2c",
+    "apps/qt-shell/live_menu_session.hpp": "9253ed4ecaa4bd341a0423d33d42504c1e0c0700cb3ce842c9348286dcfdd3b8",
+    "apps/qt-shell/live_menu_test.cpp": "91caf6b1b45dd080d0c143ea27b74a8e3d218727430b15502c512a8475573ae8",
+    "apps/qt-shell/live_mini_menu_controller.cpp": "e3fc55a11796a2f4ca9b930b1bcbd1e5e47b66f20917eaabc10d5f3665cc4f15",
+    "apps/qt-shell/live_preferences_menu_controller.cpp": "1bc94f804ecceb7213ba387f80679b11791e2dc135dadd3cd54ae367cacb4c38",
+    "apps/qt-shell/CMakeLists.txt": "1f928df7ee7d5419d9e55d376a3ae0e665b0bd67eca88514c181b5455338a2f2",
+    "tests/campaign-preferences-reference.c": "5f8160a3fc4990d623002f1c6d95f61daaf02deae4a9106dc448f4b08f7f342e",
+    "tests/campaign-preferences-selftest.h": "b5252395a1546326687908911c36861deefc8042020ddc166f99b9dd6a878012",
+    "tests/menu-campaign-preferences-test.cpp": "3e865cd32baa24a07954118b11df78cb97aaaeb37527f392bb6b5c14eb751f01",
+    "tools/test-campaign-preferences-bridge.py": "5a7e07c96444ca0258fba24e0fe3c1e39e93aa6c46d6e0e2c077e620de0ef1dc"
+  },
+  "fixture": {
+    "success": true,
+    "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "anchors": {
+      "0x4b23f0": "64a1000000006aff",
+      "0x4cdf40": "8b44240483ec1056",
+      "0x4a9840": "8b4424045683e800",
+      "0x4a9700": "8b44240483e80074",
+      "0x4ce730": "55578bf933ed8b47"
+    },
+    "input_unchanged": true,
+    "real_game_launched": false,
+    "original_callbacks_executed": true,
+    "scope": "V12 original Mini local-2 entry and Preferences preview/Cancel/OK, exact parent/depth/stack/context guards, audio rollback and synthetic writer counts, Main caller and stale/invalid regression; original slider setter/group bytecode, audio/display/fade/writer dependencies synthetic; outer engine lifecycle and full installation not executed",
+    "sources": {
+      "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+      "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+      "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+      "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+      "runtime/menu/observer.c": "04137d835048e078c65fffd46cf532bc273b323c05d8dcabd566ae78cebd39e1",
+      "tests/campaign-preferences-reference.c": "5f8160a3fc4990d623002f1c6d95f61daaf02deae4a9106dc448f4b08f7f342e",
+      "tests/campaign-preferences-selftest.h": "b5252395a1546326687908911c36861deefc8042020ddc166f99b9dd6a878012",
+      "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+      "tools/test-campaign-preferences-bridge.py": "5a7e07c96444ca0258fba24e0fe3c1e39e93aa6c46d6e0e2c077e620de0ef1dc"
+    }
+  },
+  "qt": {
+    "success": true,
+    "tests": 6,
+    "scope": "Synthetic V12 campaign Mini/Preferences wire/controller/session admission, same-thread/generation guards, preview acknowledgement, Cancel/OK return ownership and OK persistence after acknowledgement; legacy Preferences store/V6 bridge/controller and V10 Mini/V11 defeat regression; no live lifecycle/pause/display equivalence",
+    "log_sha256": "f36c82db2378ad65e52072cf7f17dc3b7b4fca26099d9e20444f48477fcf97c2"
+  },
+  "pending": [
+    "Full V12 original gameplay/Preferences/World lifecycle execution",
+    "Resolution rebuild and timer cadence equivalence",
+    "Realm/loaded/Quick Battle Preferences callers",
+    "Native simulation replacement"
+  ],
+  "experiment_directory": "working/tests/campaign-preferences-bridge/run-y13zu1b7"
+}

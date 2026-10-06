@@ -22,7 +22,7 @@ static int mini_snapshot(void* object,u8* out,int campaign){
     for(u32 i=0;i<MNM_MENU_V4_MINI_SIZE;++i)out[i]=0;
     u32 modal=get(p+0x3b)!=0;
     put(out,campaign?0:1);put(out+4,modal);put(out+8,depth);put(out+12,get(parent+4));
-    put(out+16,modal?0:campaign?(MNM_MENU_MINI_CAN_CANCEL|(campaign>=2?MNM_MENU_MINI_CAN_QUIT:0)):MNM_MENU_MINI_CAN_CANCEL|MNM_MENU_MINI_CAN_PREFERENCES|MNM_MENU_MINI_CAN_QUIT);
+    put(out+16,modal?0:campaign?(MNM_MENU_MINI_CAN_CANCEL|(campaign>=2?MNM_MENU_MINI_CAN_QUIT:0)|(campaign>=3?MNM_MENU_MINI_CAN_PREFERENCES:0)):MNM_MENU_MINI_CAN_CANCEL|MNM_MENU_MINI_CAN_PREFERENCES|MNM_MENU_MINI_CAN_QUIT);
     put(out+20,get((void*)0x689920));if(campaign)put(out+24,2);return 1;
 }
 static u32 mini_dispatch(void* object,u32 action,int campaign){
@@ -30,7 +30,7 @@ static u32 mini_dispatch(void* object,u32 action,int campaign){
     if(!campaign&&!MNM_MENU_MINI_EXPERIMENTAL)return MNM_MENU_UNSUPPORTED;
     u8 current[MNM_MENU_V4_MINI_SIZE];if(!mini_snapshot(object,current,campaign)||get(current+4))return MNM_MENU_UNAVAILABLE;
     u32 index;
-    if(campaign){if(action==MNM_MENU_MINI_CANCEL)index=4;else if(campaign>=2&&action==MNM_MENU_MINI_QUIT)index=3;else return MNM_MENU_UNSUPPORTED;}
+    if(campaign){if(action==MNM_MENU_MINI_CANCEL)index=4;else if(campaign>=2&&action==MNM_MENU_MINI_QUIT)index=3;else if(campaign>=3&&action==MNM_MENU_MINI_PREFERENCES)index=2;else return MNM_MENU_UNSUPPORTED;}
     else if(action==MNM_MENU_MINI_CANCEL)index=2;
     else if(action==MNM_MENU_MINI_PREFERENCES)index=0;
     else if(action==MNM_MENU_MINI_QUIT)index=1;

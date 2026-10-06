@@ -1,0 +1,928 @@
+{
+  "schema": 1,
+  "range": "f8262b3..fd615d9a358dd6af05907c8a800fd79fedef7594",
+  "scope": "Exact committed parent/current file receipts only; no retrospective gate pass or new execution validation",
+  "commits": [
+    {
+      "commit": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "parent": "f8262b3e8539c62fc7c97fe1c9d36a3e71f8c2ce",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "51c752f8429fbedc1b51d6ce87895edac4ccf71a6d09e143b0b9b85a9c7dd5f3",
+          "after_sha256": "c2f8597d405a1891bbd68fdc903d50abf09abc543da3b6fd89dbf6cb0a6feeeb",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "c14efe01f79b103d0b6b33c07d792128e400f2fa0078abe621e6c6705e377e60",
+          "after_sha256": "7e97282c3a1298c322dcd2c9762d974223e217a0e66c34a6656fa5c6326f9c07",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-owned-session-dc-current.json",
+          "before_sha256": null,
+          "after_sha256": "83e64788deae9d8504d5394c7994f572cd90c74a091df986878430ebf407893b",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-owned-session-unlock-commit-v4.json",
+          "before_sha256": null,
+          "after_sha256": "ef5d095d2053924f45f0474184bee1efc896a3ff153e14c5d82166c96945e65d",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-owned-session-unlock-current.json",
+          "before_sha256": null,
+          "after_sha256": "7bd9b1ca644111c97f08726ce83c7d42d0911cf4dc667d7224a7c21d2569f977",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-owned-session-dc-current.md",
+          "before_sha256": null,
+          "after_sha256": "0714d067a15dfb0bb702065f276f8961bea08ab34e44be31d5f4fa161e91e588",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-owned-session-unlock-commit-v4.md",
+          "before_sha256": null,
+          "after_sha256": "27799d5da84473774978497c0d88e8d953ef3aa2cf1b9b8457bc73686ae6ce2d",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-live-command-unlock-regression.json",
+          "before_sha256": null,
+          "after_sha256": "84b25a9e61be22b25c856fc9089f38e430dbfbafd18c75a892e9204e9560c91e",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-dc-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "7eac2966d7c59d2038c8d4e659e2b1a5371612d7476992d99b449179a3face4e",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-dc-unlock-regression.json",
+          "before_sha256": null,
+          "after_sha256": "8e09a76c23d82e12b763d614afbb2557d5f4b8a5c85fe50bc49372aeb61c3679",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-dc.json",
+          "before_sha256": null,
+          "after_sha256": "d72ac8c0cda2798e72607315862d5c19cd2ba5a7cd8e2c25205f97c7819a88ff",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-dc.md",
+          "before_sha256": null,
+          "after_sha256": "46426ae6f6a5fa733a898470dd20003e9b2fc41cb5c5d9851e3c54659c9078c4",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-fills-dc-regression.json",
+          "before_sha256": null,
+          "after_sha256": "92a3df6ac3ee667049b91eb60e711850e836a235383684f5234ac2a4599b892b",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-fills-unlock-regression.json",
+          "before_sha256": null,
+          "after_sha256": "b4558ad018ded63b07913b1b049bc71e832b1e35038366baa0e12d5eca1bd4e4",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlock-history-review-v2.json",
+          "before_sha256": null,
+          "after_sha256": "377bdff2e270e9de3663667313763b1b012552c703a7c540a499a7849ad996e9",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlock-history-review-v3.json",
+          "before_sha256": null,
+          "after_sha256": "2d0a31a49757877794993e3bba9b39c81bea13b0e62a3152d3f888befec16dc2",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlock-history-review-v4.json",
+          "before_sha256": null,
+          "after_sha256": "983f8f7afd9f683de16d7ba329e76b70974930a2cd8760bbde816612e7fa2e52",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlock-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "377bdff2e270e9de3663667313763b1b012552c703a7c540a499a7849ad996e9",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlock-legacy-regression.json",
+          "before_sha256": null,
+          "after_sha256": "7ce443cb693a1bb7e2408e80f3e4b76a4726bad1bbb16862a61c6e53d41341be",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlock-packed.md",
+          "before_sha256": null,
+          "after_sha256": "5b1747fe2960d58c821066e50559af7c5b64f84e9c1cd59bbbf1662d22c9a9a0",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlocks-verified.json",
+          "before_sha256": null,
+          "after_sha256": "ea981a669d639fddd1654a1e12320c7fc7781d7f68f8f3db9bed86583cb77be8",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlocks.json",
+          "before_sha256": null,
+          "after_sha256": "7d20d0da5bc7814d5802fc7808d9db6a43b30a96b0cbc3026e42626a0dcf835b",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-real-game-shadow-dc.json",
+          "before_sha256": null,
+          "after_sha256": "056e2f5a4ec06b84d10140eb00167fcfa470891307710ffaef753857268ac815",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-real-game-shadow-unlocks.json",
+          "before_sha256": null,
+          "after_sha256": "a6ea28cf8183a8a7d4e70ab24cead1e414809d74344d4829f94483cb219b0ea4",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "runtime/render/bootstrap_selftest.h",
+          "before_sha256": "dcd7e92c8af2fb1b4868db11aa6edaed1a71561f617d5aaa7fd4ab6134bd250e",
+          "after_sha256": "3fca231aeeb189832182d36fe85a8ed58adab8f6a133499c48a5f5b1311215c7",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "runtime/render/dc_selftest.h",
+          "before_sha256": "07af25dc8f599c624318a6af9bcdd01e79d65bd6c81e23ee07081b71d3a5e3b2",
+          "after_sha256": "123bf310df0197f17a63df26349e14a5e5757b9a903c8924ef9ac711ee7ef13c",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "runtime/render/lock_dc.h",
+          "before_sha256": "5717970196c172b56e0165aa77b33bda3b84a81d4c7630db7068bda0fb7cc39e",
+          "after_sha256": "c4c86958dffa67829bc60553c783d472b8f22a1e5cf1be6ec009aaa08a457b26",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "runtime/render/lock_surfaces.h",
+          "before_sha256": "868f26cd0a736f1d5c70d0e13a14167347563ec3a3f6cde58861d3bd35982342",
+          "after_sha256": "91fa1e4957efd6f7f0d5c8a2a55ead7fd952f253531dbbf2ea4dfa75f40f8cd9",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "runtime/render/owned_dc_selftest.h",
+          "before_sha256": null,
+          "after_sha256": "69ea01ac97f58887f9fd63614418974c9d8c925cbdde26c71117b2738fe34407",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "runtime/render/owned_session.h",
+          "before_sha256": "09560df9079a32c2894a91a6793db3bb07228bc9803db9415ed38448a0ea3afe",
+          "after_sha256": "5408d1ff62936532e6947c00f5060c5ef8f2cc253555eb86615e620650a21199",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "runtime/render/partial_lock_selftest.h",
+          "before_sha256": "ddb5c59ec8065d326171a3be974917ff1e1f8414f3c6302aeb3ad165179d9356",
+          "after_sha256": "6b9df18d4b435e6adcce961abcb060b344a1a3bbc5f19b0266786775f08c3c7f",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "tools/test-render-owned-session.py",
+          "before_sha256": "c746aa203194e4c0dc641c05fdb77635396b58fc7382b2db847cc0fb4171a142",
+          "after_sha256": "8e50eeec76e694dace7a31b43b558ab8034b28456b715a3feccc9cb5440fa7fa",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "tools/test-render-session-dc.py",
+          "before_sha256": null,
+          "after_sha256": "5ecd67ce9ac82cdf4eedfdf272819a3861466ddd585b1b3ba147f8570ed36633",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        },
+        {
+          "path": "tools/test-render-session-unlocks.py",
+          "before_sha256": null,
+          "after_sha256": "893f6d6a06ed2bdeb7f24df7add3fa55018c49cd80c391533ee95a0d86e23f73",
+          "receipts": [
+            "NR.owned-session-unlock-packed.exact-commit-v4"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "b186cf03352cf04f3f79c2f84aa8ddb91e4c0c76",
+      "parent": "8b8b01cc8e91cc868902112c41944b020577f4de",
+      "files": [
+        {
+          "path": "apps/world-sandbox/frozen_navigation.cpp",
+          "before_sha256": "50d0e1c2b2d5fb9a6bbc54b429db4a575b9a18b7cd90875c7fd32c4329e180b2",
+          "after_sha256": "dce9888c436d092255579f97ffef8b897f7a9be6606fef892d07a965cbcc2e0a",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "apps/world-scene/README.md",
+          "before_sha256": "fad61e20c7d5f33ed296554f54008e7d68f758329aed8d8b445f5b9ab3bd8be7",
+          "after_sha256": "575c6caf34642b360988694923c99c87f45acc7a3ae6159e2d1d428cdb003d3a",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "apps/world-scene/scene.cpp",
+          "before_sha256": "7f5591f3b135d005c480e867e7872e9610c7354052f0126ba8b84f15e38f7c3f",
+          "after_sha256": "79b68d892e86f5666842cb504c215c2e1a598de9ca0bf85db4cf6dfa3d98d93f",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "game/CMakeLists.txt",
+          "before_sha256": "44b579b593efc98663eb3c1ca4fe169af88ddb2ef4eb6248dea29cd1b8fee326",
+          "after_sha256": "1f3641bc45b2f0409cc2b2d1aebcd7683b0f2d3ea73fd2439a0159bdd6517a1e",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "game/README.md",
+          "before_sha256": "6ff7a6574a06724e2c2258f6a4ba32b200cec77a8c4a1436a56d91fdf20776ec",
+          "after_sha256": "b4733ffbad53c90048a6ae9ab7035d6c3f9a834b318a5a7c3916287cfb54ca06",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "game/persistence/snapshot.cpp",
+          "before_sha256": "63a5da14c55d1255fe53ad35d04999e9ca68dda2d597bd559f4415212594f9cb",
+          "after_sha256": "140d97d013d46b73e2dd32e4837097811f77bde3b036775d882c9662959e4128",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "game/simulation/movement.cpp",
+          "before_sha256": "e85f5c509b4b132eb4019188b73a0d11301957731c981dcd9b035e13b6dcfd78",
+          "after_sha256": "4ba51faeafe133503422c917abef1f5d2aeeadaf0c56388a77833c27efc05fb9",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "game/simulation/movement.hpp",
+          "before_sha256": "d99af9c7f7acfdf52f6b09ee10a717479475af962768ec4a7d8458bf1fe82cc4",
+          "after_sha256": "8c6d2bfaaeb60bb2c1cd07bc40596ae125b6efe7a80e8fb6e8caa91bc44e991c",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "game/simulation/world.cpp",
+          "before_sha256": "019458d31ce835a1ef7b17d2bd0b6431f95beb7cbbeff16b9d7f0e1f35037251",
+          "after_sha256": "acb3724b47ee0b78352359a6fcb0b0dd01db59da7ce02414be3d2816437229a2",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "game/simulation/world.hpp",
+          "before_sha256": "51564429ada9da7aca99076e58bf4cd41c5ab300ff202e3e6a8f5f31c62c77f3",
+          "after_sha256": "1ff39b0752a44648ec044cde9e7019ea6360f64859d3d521ecb4b0c0bd06a9e9",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/formats/native-world-snapshot.md",
+          "before_sha256": "95661a33a19b06e6dc66500c856165cabdb33d2b4c876e27464f2df3661a83a4",
+          "after_sha256": "ab1f5554b1ce033942084265fd0d3a8c102c95f525561717d2159a0b8a894df4",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "c2f8597d405a1891bbd68fdc903d50abf09abc543da3b6fd89dbf6cb0a6feeeb",
+          "after_sha256": "49f6d27d637ea1e61301565575955203cb7ca1b0a0d76b482ba1836b342de593",
+          "receipts": [
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "7e97282c3a1298c322dcd2c9762d974223e217a0e66c34a6656fa5c6326f9c07",
+          "after_sha256": "25bbbc8c6b33083f321118ef9ba08392d4fd36550a9634db4f7936d6ccbc15d9",
+          "receipts": [
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-idle-display.json",
+          "before_sha256": null,
+          "after_sha256": "5f0cac933150f3360ca03d420cd1efbb7ee2934fa0971855408397d4a1be297e",
+          "receipts": [
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "eb3b1c8079be8c92cf6ded41035b50c6eff03df8db34f3f1b0d05fa66805613c",
+          "after_sha256": "9dbf8a937ebf587342bdfef9b59f327e7a584294c142f0223ceb2d3c297bfd6e",
+          "receipts": [
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/runtime/native-idle-display-history-extension-2.json",
+          "before_sha256": null,
+          "after_sha256": "233eeed4e68658be5c19bf095e55d3ae8f3311812c2092f81349d8db7169dd25",
+          "receipts": [
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/runtime/native-idle-display-history-extension-3.json",
+          "before_sha256": null,
+          "after_sha256": "6e6c9d4974e09c5497d31deea72d15506c3b952296a948f6610433853815f56c",
+          "receipts": [
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/runtime/native-idle-display-history-extension.json",
+          "before_sha256": null,
+          "after_sha256": "efd21912fc6ed2a8b7b2b0816f58bb5dd1b0856627a4ee2e4c32c4fca495944a",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/runtime/native-idle-display-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "6a152ed9224e8480270ed139ffc0e0e8e9c0d62589a95d32b7c685daf8529491",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/runtime/native-idle-display.json",
+          "before_sha256": null,
+          "after_sha256": "5a9e56b1cc479b3fb96243f898b15fb920797f4d4d9ad833c04590a1fc4c858b",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "research/runtime/native-idle-display.md",
+          "before_sha256": null,
+          "after_sha256": "13eff25fb70b675bd3e7e94d27f0bdfd600727f3f2d0d0d71739fe3169e0e9f8",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "tests/README.md",
+          "before_sha256": "a8c08144c376985a47ec8d89f25953ce660fea2686b810e8873dd45437a8ddf6",
+          "after_sha256": "c9e04b15a1cbe0f10f47dabf71a531347afb0eef3f938b47b813352ee9f42469",
+          "receipts": [
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "tests/native-idle-display-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "tests/test-native-idle-display.py",
+          "before_sha256": null,
+          "after_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "tests/world-scene-test.cpp",
+          "before_sha256": "0ca92707df72ca8029d8a201220901630011f2f6589fbf474d2fc81e58abdd44",
+          "after_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        },
+        {
+          "path": "tools/test-native-scene-window.py",
+          "before_sha256": "3fd903a91a1e3e17e52fb6ea9c24926ac91b39246097e9ab65e652666bfbbd33",
+          "after_sha256": "0319669d65ff96569f0441bff4ef31b3d6c1e69b8ce4d8c69f10c13faf8cb96d",
+          "receipts": [
+            "NS18.idle-display-exact-staged",
+            "NS18.idle-display-exact-staged-v2",
+            "NS18.idle-display-exact-staged-v3"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "fea5d9fb88294459e2f6033facb4f15fc9bb55a6",
+      "parent": "b186cf03352cf04f3f79c2f84aa8ddb91e4c0c76",
+      "files": [
+        {
+          "path": "reconstruction/rendering/effect-animation-binding/CMakeLists.txt",
+          "before_sha256": null,
+          "after_sha256": "76ab696527824abb11084b0d0e2414afaa560ebba95edd26ecd87ded14f6dfaa",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_animation_binding.cpp",
+          "before_sha256": null,
+          "after_sha256": "0e0d046ce98d4ffc1b9c33cc43e121f2f77d3caf66ebaf18f9669dbb414efcbb",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "reconstruction/rendering/effect_animation_binding.hpp",
+          "before_sha256": null,
+          "after_sha256": "1c01d3b074cf46aa3d7c1b9705c1f6a7866639de3eb427b3b0ce33791240f87b",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "49f6d27d637ea1e61301565575955203cb7ca1b0a0d76b482ba1836b342de593",
+          "after_sha256": "38fd225fc8b031990298a01b0fd2ac5455d1a002eb0fe1f5bd46d0bbe9babe97",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "25bbbc8c6b33083f321118ef9ba08392d4fd36550a9634db4f7936d6ccbc15d9",
+          "after_sha256": "cc597892c769df78b765b53330d2b725a64485cd46710faa7d0d77051f19e74c",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "9dbf8a937ebf587342bdfef9b59f327e7a584294c142f0223ceb2d3c297bfd6e",
+          "after_sha256": "d0c0c4a543b5f91361eabd11d6a98289556484095374bc6647547a5ce87cd84b",
+          "receipts": [
+            "animation-binding-summary-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/creature-footprint-initializer-coverage.json",
+          "before_sha256": "d84281951587b1946de2a4a41e1c749e1d00b6d8a7dc72eeedfb4922bd80524c",
+          "after_sha256": "e500c39765223741813bee96df96d80d49273c23da7b056e976a51828cc28ca7",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+          "before_sha256": "cf3911105ff824c9c57d8a3e6a212165221e76d525f7e2cae6de145a0ea84738",
+          "after_sha256": "e9c427bb22f170875744494daa70bd6cd3f1928df3eabe32bf881f90f8a1c833",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-animation-binding-coverage.json",
+          "before_sha256": null,
+          "after_sha256": "99f614bbd6e8917b5c9e557f0278f413785d6c9fbc67eb97776f8b270b29b498",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-animation-binding-source-index.json",
+          "before_sha256": null,
+          "after_sha256": "247a9a7562837f79a8141991140a2d8e7d5594e0a65a176d04db765405c7be76",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-animation-binding.json",
+          "before_sha256": null,
+          "after_sha256": "0c4d09e09bf77651bad5cdbea2367c02c14a264d874fe8a03b733fe352106d8a",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-animation-binding.md",
+          "before_sha256": null,
+          "after_sha256": "13a56ab2bfe90292252acbd161a0e4fef214849d3ae1b8b3e71d91ecec7d1991",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-animation-selection-coverage.json",
+          "before_sha256": "f04fed76f997deff089b2f40045de525700e01c4508f59def5ae5056d84542bd",
+          "after_sha256": "a46ca53cc72823f32cedec801d3c4578df0843d083f50c0b638b46c3ac184541",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-blocked-destinations-coverage.json",
+          "before_sha256": "3f6550f68de8a51d4dfe4ad5c49fcf35bb67c8aff6165dd00eb53476eadf09ad",
+          "after_sha256": "bf95a677967d6bce37d50f563d1d1e8a935d3dfe3f49337b6b4f7b06562bd656",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-cleanup-coverage.json",
+          "before_sha256": "67651e119674af3026b6e2b3031c70d3547bb4e3c9f03090b45f3ebaeec6c093",
+          "after_sha256": "d4825f6cdc18bc0fedc61e746a1eb9ee9923301a89090b68bab200d888176be7",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-cell-transitions-coverage.json",
+          "before_sha256": "cf49d0045c3ffcecf4162648e3fa4a5e6b502d1fa10bccca3f4c1d5d3ad39661",
+          "after_sha256": "4921abc5968022614acb9a24a46709c70fb09296f73d8847d4574f821b881822",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-creature-collision-coverage.json",
+          "before_sha256": "10b43aac95d5a1f0d4c8cdb5c7ba48b69c8b57b31123212eccd02b2219bdeaaf",
+          "after_sha256": "08c8aa5dd85f8431127959684fb5aacaf5d07296fa9583ed2779228396a50fcb",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-height-exits-coverage.json",
+          "before_sha256": "ad9dec783d20bcc0170bb8ef1bbbcdd749d9f18822030afbc490bdfb707343ab",
+          "after_sha256": "6918e2cf611a5cdb35103ac2b2d2798db1db24dbd12c423ecbb9ad48e3e22f69",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-membership-disabled-coverage.json",
+          "before_sha256": "4d233a14ff08b98a74990ed8716fa02c62718cd74516af9f076227909b929b02",
+          "after_sha256": "1d1684a84bbce67b2515cd22e16bbbaeac402e656f3e268ee848403880c1319f",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-motion-initializer-coverage.json",
+          "before_sha256": "442de83d797f2ba35c9f77a966de29f416dd669007f285bb8c51f3bce4ce9cb2",
+          "after_sha256": "2c74f1ab4e481397d08d7add8909b25c81b654bf72b3011708c9cd0dcd5b516f",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-record-placement-coverage.json",
+          "before_sha256": "e72378a2e65ccd5bf94abd9e5c270a004e261089ab42b948a4bccabcb4994522",
+          "after_sha256": "9f495ef6a9bd168a4b5a59b8b867349aa475ed1bdde61aba51e96e9b25d16871",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-same-cell-projection-coverage.json",
+          "before_sha256": "5ddaa662669c788ff0e0b5354203b8e8e1779a5899943739bd14b7ee4ef161fe",
+          "after_sha256": "64694435ebfb5d2b576eaa9ff043420da69de59da06acf4dff42e0a9b236c033",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+          "before_sha256": "4aea24fa72ddea92d65937ae0394cf255b833de8dba0061e6a71ccb47738deb7",
+          "after_sha256": "a290228403518685a5ae42969761f7db1876c1e146f097e966a9ebe0d5f5283c",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-trajectory-coverage.json",
+          "before_sha256": "4d102fe8078aff6e20ef307882f0ee5b70d7c241aaf583e5fe612554e048c280",
+          "after_sha256": "4e1aa1acb05e98f3248ebb77f3ce340d70698df43818262a85a8037a6323f838",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "research/runtime/effect-trajectory-initializer-coverage.json",
+          "before_sha256": "a5f31d5f85c87c0abd632b14b88616f59c3aac255b433038520fdb1e89863dc3",
+          "after_sha256": "5c77e03b6ed044cc030227241881ff4b090b0526b0c313a467432cfd93630a45",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "tests/effect-animation-binding-reference.cpp",
+          "before_sha256": null,
+          "after_sha256": "6699470993a59769ff3fc8eeb93f217fd49e8c7442eaa209d529160b481e544f",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "tests/effect-animation-binding-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "b0cdde403b02d7d1522c933ca56bfd77f15fa3b2ef736e96ce6552c46ea8559b",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        },
+        {
+          "path": "tools/test-effect-animation-binding.py",
+          "before_sha256": null,
+          "after_sha256": "b718c361a76258a2ae160114b711a02b4fd656ca4c7f0b72f1f3127d40fd4717",
+          "receipts": [
+            "animation-binding-recorded-b186cf0"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "parent": "fea5d9fb88294459e2f6033facb4f15fc9bb55a6",
+      "files": [
+        {
+          "path": "apps/world-sandbox/frozen_navigation.cpp",
+          "before_sha256": "dce9888c436d092255579f97ffef8b897f7a9be6606fef892d07a965cbcc2e0a",
+          "after_sha256": "7fb260fa50adbe41f222f6455fa54a60319e3681f1a1ce008419cca70646fb2e",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "apps/world-sandbox/main.cpp",
+          "before_sha256": "d1e3b0fc4841f0c13b1281dfdc5fcda0d97f1e0f45aca1bb5c040346ed600e43",
+          "after_sha256": "a6cb574c56da197da672578a19e8de40e37c9bc719063c3f7fccde47fc117043",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "apps/world-scene/README.md",
+          "before_sha256": "575c6caf34642b360988694923c99c87f45acc7a3ae6159e2d1d428cdb003d3a",
+          "after_sha256": "6c2446531a0d597e2b9981b5972c4268164590633b5cbe3ed05cefb3a4600bb5",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "game/CMakeLists.txt",
+          "before_sha256": "1f3641bc45b2f0409cc2b2d1aebcd7683b0f2d3ea73fd2439a0159bdd6517a1e",
+          "after_sha256": "0ff7d1b41d7b9f8abfb3c655f2568be406b85d8003473e27dda9be117d10111b",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "game/README.md",
+          "before_sha256": "b4733ffbad53c90048a6ae9ab7035d6c3f9a834b318a5a7c3916287cfb54ca06",
+          "after_sha256": "6838c413e498328fd8d1a451f9d00e5d7414f4cc6c434858dd7918783000a1a8",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "game/simulation/movement.cpp",
+          "before_sha256": "4ba51faeafe133503422c917abef1f5d2aeeadaf0c56388a77833c27efc05fb9",
+          "after_sha256": "891f8d003ec525219107dbc53e2f0ff5c680c9bd82b2abc775401364d2111eb1",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "game/simulation/movement.hpp",
+          "before_sha256": "8c6d2bfaaeb60bb2c1cd07bc40596ae125b6efe7a80e8fb6e8caa91bc44e991c",
+          "after_sha256": "c50724e2ab995e169c4eaf324c57a196111b04a408dabab2cf6b203ea413be8c",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "38fd225fc8b031990298a01b0fd2ac5455d1a002eb0fe1f5bd46d0bbe9babe97",
+          "after_sha256": "a5070b07dd3f436d022ffbc231131a5e3af17b702cbda0341dfb8fcff9b606b6",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "cc597892c769df78b765b53330d2b725a64485cd46710faa7d0d77051f19e74c",
+          "after_sha256": "40768441b15059d2c8980254d3d7057be4449fd8df584584f2b2c044d58a1e4e",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-spawn-display-1.json",
+          "before_sha256": null,
+          "after_sha256": "decd4439403f92715fd924d96a48a8dd269912bd6ac07fe55c5a61e8060df2bf",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "d0c0c4a543b5f91361eabd11d6a98289556484095374bc6647547a5ce87cd84b",
+          "after_sha256": "3595535b84c63c5ec3f775b0f591d5188b6bcbedeab1fbfc675062da97928296",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "research/runtime/native-spawn-display-history-pipeline-1.json",
+          "before_sha256": null,
+          "after_sha256": "1d8b52e52c4badee6bcbb8facb150da6dcd205aff13f1f7a3eeff184cca32488",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "research/runtime/native-spawn-display-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "d1e99a14c0e38e9617243f0cde1d35eab607934fb5b40192544596389000991f",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "research/runtime/native-spawn-display.json",
+          "before_sha256": null,
+          "after_sha256": "2d9fc6d91549439f79033dfc1347a3badb3b8f6721e300e9e3e94d617df21b9f",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "research/runtime/native-spawn-display.md",
+          "before_sha256": null,
+          "after_sha256": "e2ce709dd2ac68ca1f36c4186e09432a9191f47970d9282f28920ee9d26f9f95",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "tests/README.md",
+          "before_sha256": "c9e04b15a1cbe0f10f47dabf71a531347afb0eef3f938b47b813352ee9f42469",
+          "after_sha256": "d6de99098ec496c9665a28a41de4e09aec4e89658b324d02760ee58ff7943afb",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "tests/native-spawn-display-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "tests/test-native-spawn-display.py",
+          "before_sha256": null,
+          "after_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        },
+        {
+          "path": "tools/test-native-scene-window.py",
+          "before_sha256": "0319669d65ff96569f0441bff4ef31b3d6c1e69b8ce4d8c69f10c13faf8cb96d",
+          "after_sha256": "7760994630611ebc3f2a409b9f3718f3f358ba561e1921635407874705480d61",
+          "receipts": [
+            "NS19.spawn-display-exact-1"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved": []
+}

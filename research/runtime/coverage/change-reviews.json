@@ -14440,6 +14440,395 @@
           "NS19.spawn-display"
         ]
       }
+    },
+    {
+      "id": "campaign-preferences-ui33-campaign-preferences-commit-weha9suc",
+      "reason": "Review V12 campaign Preferences wire and exact fresh Mini/World/Realm/Main parent/stack/context guards, original local2 entry and preview/Cancel/OK dispatch, per-control availability, Qt fresh same-thread admission and callback-ACK viewport return, accepted original-written profile persistence, synthetic transition tests and pinned bytecode. Reconcile focused register, census and committed-history receipts while retaining full live lifecycle, resolution rebuild, timer cadence and other caller gaps.",
+      "files": [
+        {
+          "path": "apps/qt-shell/CMakeLists.txt",
+          "before_sha256": "0c118dd8b5f1e12d7768fee363a5d6b9012e47165406523a66c513aa568216ba",
+          "after_sha256": "1f928df7ee7d5419d9e55d376a3ae0e665b0bd67eca88514c181b5455338a2f2"
+        },
+        {
+          "path": "apps/qt-shell/live_menu_session.cpp",
+          "before_sha256": "60c12021e58abce146389da4afdc424756c697ad239639a1999a485adff3b9f0",
+          "after_sha256": "25ccbbd8f260523a060dc04455e82421ea439528ef6f64e0e894a02d5cbe2a2c"
+        },
+        {
+          "path": "apps/qt-shell/live_menu_session.hpp",
+          "before_sha256": "6b53e83a42a7b79da9a604487614c98e0a358d6a4ccc306420b03a277fea4a96",
+          "after_sha256": "9253ed4ecaa4bd341a0423d33d42504c1e0c0700cb3ce842c9348286dcfdd3b8"
+        },
+        {
+          "path": "apps/qt-shell/live_menu_test.cpp",
+          "before_sha256": "89cc91453e19f5e40b9a89cdde77fd2db08c7d056f86c50febfb9d61dbc1acd1",
+          "after_sha256": "91caf6b1b45dd080d0c143ea27b74a8e3d218727430b15502c512a8475573ae8"
+        },
+        {
+          "path": "apps/qt-shell/live_mini_menu_controller.cpp",
+          "before_sha256": "25341c7408c940ed8b65087ff6e74476d86f9c500d37db18efc1a2535883fd64",
+          "after_sha256": "e3fc55a11796a2f4ca9b930b1bcbd1e5e47b66f20917eaabc10d5f3665cc4f15"
+        },
+        {
+          "path": "apps/qt-shell/live_preferences_menu_controller.cpp",
+          "before_sha256": "5048c816460f8223f5d426d47f6554973e4a6dcd4bea3d44aec0d7530ed577c3",
+          "after_sha256": "1bc94f804ecceb7213ba387f80679b11791e2dc135dadd3cd54ae367cacb4c38"
+        },
+        {
+          "path": "apps/qt-shell/menu_bridge.cpp",
+          "before_sha256": "0016c5268605dcd4db95491abd48befd28a488d0385bbe622036d6d63734cb41",
+          "after_sha256": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea"
+        },
+        {
+          "path": "apps/qt-shell/menu_bridge.hpp",
+          "before_sha256": "0c9e85fd7dcb51a828816310becfd93b1178bf4fd2e124954eaae7d13beab361",
+          "after_sha256": "631087eda5168c3ddaaaa590c22c19e7958a49c7d9026f71bbde0702a1ec62fa"
+        },
+        {
+          "path": "protocols/include/mnm/menu_v12.h",
+          "before_sha256": null,
+          "after_sha256": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5"
+        },
+        {
+          "path": "research/runtime/README.md",
+          "before_sha256": "3b68ea7bed534eee137277066f1e5db5967486f18705b9e5552cceef9f835c3c",
+          "after_sha256": "426baa67a67e7cbd62a1e2983be76c10f5a9f3cb7fef56d66b255eb28bdead75"
+        },
+        {
+          "path": "research/runtime/campaign-menu-coverage-register.json",
+          "before_sha256": "35d8b255a3116cef30d5eedaf1d10a0078abcaa952c5e22a7d8564a69bf47104",
+          "after_sha256": "b9d7ee8a1db40c1814f063cd4f8e031b374074b7f5dbac1ee17be49ed8abe691"
+        },
+        {
+          "path": "research/runtime/campaign-preferences-engine-bridge.json",
+          "before_sha256": null,
+          "after_sha256": "712aa64590ec9c3bea70f08e9fff3d8c9e4ea7f47a92ca14c3d6c33e38dd6c7f"
+        },
+        {
+          "path": "research/runtime/campaign-preferences-engine-bridge.md",
+          "before_sha256": null,
+          "after_sha256": "707cac78ec092409c33596d9548dd139838adcca6ef6da854039986eb849f7af"
+        },
+        {
+          "path": "research/runtime/campaign-preferences-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "d6edae08eaf2705d500ebddef6986271be7b90706359da35865f825a68368935"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "a5070b07dd3f436d022ffbc231131a5e3af17b702cbda0341dfb8fcff9b606b6",
+          "after_sha256": "592e9f6e37c3282afd668c223d4e6ebc27feb79d5bc42661a12da7a5a7804350"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "40768441b15059d2c8980254d3d7057be4449fd8df584584f2b2c044d58a1e4e",
+          "after_sha256": "28072201ddddb88d3f74d2c52aceb5a9884073704578798b6219388f58df79b9"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-campaign-preferences.json",
+          "before_sha256": null,
+          "after_sha256": "237872895e0a6cd07bb31a5b0c6752e3bc5aca4b97f6ed18a3fc64a0c1b5c788"
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "3595535b84c63c5ec3f775b0f591d5188b6bcbedeab1fbfc675062da97928296",
+          "after_sha256": "8b30355324f630ffd5c8174473a03a4af2bab4a713721ee6a1d8ed82d306b53a"
+        },
+        {
+          "path": "runtime/menu/channel.h",
+          "before_sha256": "c84271d4a7f16d748904b207d073823729737ff8a429c89b6f3c2dc0bde6d937",
+          "after_sha256": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5"
+        },
+        {
+          "path": "runtime/menu/mini.h",
+          "before_sha256": "1285395e6123b1e81827a540680288f0eb8b2c7b0a2af6bffa72f788ddb266a2",
+          "after_sha256": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41"
+        },
+        {
+          "path": "runtime/menu/preferences.h",
+          "before_sha256": "e095dbc84cfe853dcb5b1478ac29e47e68d1ed73804b95baad9d775f57859251",
+          "after_sha256": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30"
+        },
+        {
+          "path": "tests/README.md",
+          "before_sha256": "d6de99098ec496c9665a28a41de4e09aec4e89658b324d02760ee58ff7943afb",
+          "after_sha256": "62f9f7e1cda1e539b3d3de682f1af0b1023d66c7aca7e00cb810f6f456ec9a90"
+        },
+        {
+          "path": "tests/campaign-preferences-reference.c",
+          "before_sha256": null,
+          "after_sha256": "5f8160a3fc4990d623002f1c6d95f61daaf02deae4a9106dc448f4b08f7f342e"
+        },
+        {
+          "path": "tests/campaign-preferences-selftest.h",
+          "before_sha256": null,
+          "after_sha256": "b5252395a1546326687908911c36861deefc8042020ddc166f99b9dd6a878012"
+        },
+        {
+          "path": "tests/menu-campaign-preferences-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "3e865cd32baa24a07954118b11df78cb97aaaeb37527f392bb6b5c14eb751f01"
+        },
+        {
+          "path": "tools/build-menu-observer.py",
+          "before_sha256": "dad8006211c093cc78cf97182fb3a604f752720879abe81be53ebac92c540322",
+          "after_sha256": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f"
+        },
+        {
+          "path": "tools/run-menu-observer.py",
+          "before_sha256": "e100b6f586a026d2845492e304b8cf627ed56b10e7b266f93401d68e3fd13ab0",
+          "after_sha256": "42b40bbd9db95fe2cf096ec76f3b7d7102a0f2eb9a36b9b17e64a795e2a6bd56"
+        },
+        {
+          "path": "tools/test-campaign-preferences-bridge.py",
+          "before_sha256": null,
+          "after_sha256": "5a7e07c96444ca0258fba24e0fe3c1e39e93aa6c46d6e0e2c077e620de0ef1dc"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "BR.battle",
+          "before_sha256": "78bb7e14c2730c1fddb2a58aa11fc3656b769523bddaae67a6f18f01f7d5c1db",
+          "after_sha256": "baad7698a89f23cc9c5074d93ea140654f62b0c5dc1ff74016f5510b3791c763"
+        },
+        {
+          "id": "BR.main",
+          "before_sha256": "4ff742e853abb882f381d9f297e2b08fa98811a6e623ff17647d3089a1ed527e",
+          "after_sha256": "8a1ee038c62a75fea9056479f88eca5728490d85b199a087090597d8f6bb3fd5"
+        },
+        {
+          "id": "BR.mini",
+          "before_sha256": "98b4e645572687839d233557ad8d35b7fa70010ad3d4140b39ec9c8a085174a0",
+          "after_sha256": "2108aeb5b5b0afe9fef3b19d4ecb0490ca6e821f0b6c8db8231875fdb87b3239"
+        },
+        {
+          "id": "BR.result",
+          "before_sha256": "fb1f77c289c6ac42bfb91c348fc1f6a4af60817e9ea0d206aa4ed72d5aa00675",
+          "after_sha256": "c6903de907fda7cd54be30cb94905c5aeb2d03c7f59c3af57c8a5231d318e2a6"
+        },
+        {
+          "id": "BR.spell",
+          "before_sha256": "95226043da40037bbae10e7885178f68d6ff7a7fcab355cf65962cd912357b29",
+          "after_sha256": "5f1238ce3016dea9323d3e51cf23342a130440acf76584d439f26672b405bfeb"
+        },
+        {
+          "id": "CP.campaign-defeat-report",
+          "before_sha256": "67fcf3270e173d0d633df2b21171b0bce47c5988c0e80bd78f469df055909fa2",
+          "after_sha256": "ecf92f91c0cb35e49996e80786aec7a1f8b4ceeeea0862ebd3f133097b618632"
+        },
+        {
+          "id": "CP.campaign-mini-cancel",
+          "before_sha256": "8411df886ff61587658278729aa4f474b112611b99c6d09298a830da21dc9cd5",
+          "after_sha256": "d075c26b72d4daaff4d9581b66b89045c579b67bcce701f86726c3510a8794bb"
+        },
+        {
+          "id": "CP.campaign-mini-lifecycle",
+          "before_sha256": "2dbf477753699ad04d66fa326cad6d9c701b6e6e54aed4463f916aeacd3979bb",
+          "after_sha256": "245b9832ccaa046da90713ad782e84a59b2eab8a82c32b45ef382bad1f5000e2"
+        },
+        {
+          "id": "CP.campaign-mini-preferences",
+          "before_sha256": null,
+          "after_sha256": "2bfb84b71fd306e7f45172fef806d9e23f42005248f371c3af6d14636b86efc9"
+        },
+        {
+          "id": "CP.campaign-mini-quit",
+          "before_sha256": "51bced3ffccb76d504f4b91840fd03c6dea276e29cf4be5610dde8fa785d68c0",
+          "after_sha256": "4a4c0f70ec8f04d73732061f96406cdcc272b52b3e08b1eb8720a248d4225a5b"
+        },
+        {
+          "id": "CP.campaign-mini-quit-lifecycle",
+          "before_sha256": "b4127933579e58c2fe7eefb0449e97b16b528dc4ea55335221b308e33e562653",
+          "after_sha256": "45adab4d390cded58db399cde7ed0cc064231b136412603e67bad7e386079ebf"
+        },
+        {
+          "id": "CP.campaign-world-handoff-observation",
+          "before_sha256": "25411e448858c2c8da3feb864b51bcd497771b4a35cf65c566d4ef01734682ae",
+          "after_sha256": "8e2fb37afe41bf772a891620b6ad150e59fe5e58f75a0049d6a66b15b9d7a36b"
+        },
+        {
+          "id": "CP.realm-observation",
+          "before_sha256": "f1a4edf6008c306a90ef8d00543443165be4f9f49dfd59c8cc80a52fcfcfe241",
+          "after_sha256": "f19a4a443816e27783f2d671b790f619a2cadd2fb2415310ae8ce914eca4d8ee"
+        },
+        {
+          "id": "CP.region-entry-bridge",
+          "before_sha256": "4f94d8f0ac47721c9059f363aeedc8cbec6d2001f49d8d156881f58c3a3c2ee4",
+          "after_sha256": "ca998f79c36ef4f0310b7447f4f2719e71dff4f330bc250b561f216446bf0fda"
+        },
+        {
+          "id": "CP.region-entry-enter",
+          "before_sha256": "1242f62d27553c0c1721babadd971c499051d5d781e11e30355859c81ee3b823",
+          "after_sha256": "e5d544412fd81fc9e3a4b6d68194391418e94f28ebaa922111b029806b37f0e1"
+        },
+        {
+          "id": "CP.region-entry-observation",
+          "before_sha256": "140ef00c4e41d4b2477302f2bfe48dde3a88aeb2fd913e3e88e95c1bcddb00e4",
+          "after_sha256": "dd0051fdfe0995aa7b9b8e5961d733b98c477a6c19708e5400fc620e72699a0d"
+        },
+        {
+          "id": "NP.campaign-defeat-policy",
+          "before_sha256": "1efd161326ecbd2cd2a3e522a422dc1adf73bb8ba47d846148453a7e1aac6086",
+          "after_sha256": "b10249377bf769fbf8c01e1344de2a2020ae6bf3c4ae60f486b23ffcccb8bee3"
+        },
+        {
+          "id": "NP.campaign-mini-cancel-policy",
+          "before_sha256": "8d707fb456b2849fae87194ab1da1fb12443f8c6a76ced31af9c86f862527b48",
+          "after_sha256": "c522b5d02f86f0885e606d6a0e1939004012977c119d4582d7983351253358aa"
+        },
+        {
+          "id": "NP.campaign-mini-quit-policy",
+          "before_sha256": "4afcb3b2200e40a4be971c0612b8901a33dda7bb1c2a4b7e17b9fc9f2e7499e4",
+          "after_sha256": "abf8eec34866226ef04a0302c889968413561680b52b69bdd9ae465538bbce9f"
+        },
+        {
+          "id": "NP.campaign-preferences-policy",
+          "before_sha256": null,
+          "after_sha256": "042d2dd2bd51ae85c1dd119cd5e0b1e42fbdb4b7e82cbf349afc20bd3d525afa"
+        },
+        {
+          "id": "NP.preferences-draft",
+          "before_sha256": "93688171490e14591a3886267175ef8abc84b40c9e398d83fc1efbd2c603dfe8",
+          "after_sha256": "1918f56062b2ba7c7d81c7878b6004965a50544c307cea47d9506f0b7851f4f9"
+        },
+        {
+          "id": "NP.preferences-persistence",
+          "before_sha256": "4ad663076b5f1c16748095405184ec6b4e6ce6a1615d52d4b34f4c035e8eca7d",
+          "after_sha256": "6a723967991571d09af2486af99b4ad9c71fdeb5db3f8ca7fbbdc238826016bf"
+        },
+        {
+          "id": "NP.region-entry-fresh-policy",
+          "before_sha256": "98200f7c9e535cd485357976b1756ab6de718bc46b6af1fef1d908ae25e1acd8",
+          "after_sha256": "0a6c74f4e5a96b456da2ac8ca5a9969e3ecf66006dc98aa900448a06b466f346"
+        },
+        {
+          "id": "NR.gpu-presentation",
+          "before_sha256": "51e17340deedf84d767decdeace44768607cde793ffe9628f296ac62028e2ad5",
+          "after_sha256": "8580c217a68dcbd8ba94ef8eee1fd4ceba7785e5625c66b4bbbe8c5af631e066"
+        },
+        {
+          "id": "PR.apply",
+          "before_sha256": "8c04f971ff220e51bb58076a4376aef00827d846300d376a56daec93bedbcc1d",
+          "after_sha256": "a22c5e90f2e899807df648bbb7ce4e7cb812f0f0744bd5105595337a3b0a3b04"
+        },
+        {
+          "id": "PR.audio-preview-cancel",
+          "before_sha256": "790f2cf13767603c6d2b6f48254d586b54fa029ddc52bc471a6a2b9a9febc8ed",
+          "after_sha256": "c7da4283346ad7d58e538e1702ec15065ccdb38d5b97af17b0506f84886bc410"
+        },
+        {
+          "id": "PR.control-admission",
+          "before_sha256": "d72e6628fadfbad0364ae0b2471ea4b462299eb6d77915f97e38dae23f0014cf",
+          "after_sha256": "a14e6089c022006fb032ffe3fc3739992c844378b47f93d92408218a5e8c88df"
+        },
+        {
+          "id": "PR.main-entry",
+          "before_sha256": "4245a0a5766389a783f4dcc05613fd8b73841b591b5611a50c9a541ac62f34ac",
+          "after_sha256": "c7854aa8144b177b39b55222921320c34088ca95b72f47f86088a0824271d81b"
+        },
+        {
+          "id": "TOOL.coverage-gate",
+          "before_sha256": "13f02341909d61127aedf1ebc6b5f699a9caf9adb18af638ef21bc1d64a21940",
+          "after_sha256": "71213b3adbde86173146f971a92db61238c7a8687007fac74db8fb071fe4fa41"
+        }
+      ],
+      "pending_gaps": [
+        "behavior_anchors_outside_discovered_functions:103bb11899a214b11fbe27686ad59c7da13938b89066e76f7dae90c405b9367d",
+        "behavior_anchors_outside_discovered_functions:121626ecbccdbb397ece9edd111cbb6a86e90932704a9dea17fe3625ff79d1f9",
+        "behavior_anchors_outside_discovered_functions:35bf1242c19e923af53d769477f3d0396b9072fc99f3dccd9d159b5e6a1bbd04",
+        "behavior_anchors_outside_discovered_functions:3e578cf32f5e044efeae027d0044fe5b5f39dfdfe7ddd890ba70af33e49b1092",
+        "behavior_anchors_outside_discovered_functions:6b8b532cfb70c406d48209ec7cc9730f8490a26286c97ae24bd92b6088d694dc",
+        "behaviors_without_comparison:897ec7c2d8e051377cb21a633795d56e9a67224bbb074444f45972bee3a10602",
+        "behaviors_without_comparison:c5812a41b76782a6933cce592dfe0b4d671c5a7fc07e6cc4cd65420eff62ca59",
+        "stale_evidence:0543fb4afb56b30fcd1b642c01ca8476b24a0d0ea6911746c71944d2537cd2b2",
+        "stale_evidence:0c9cce57c05d4a7e7846e2ed02a67c70c2eaeabcc464d79847c905575bdcb255",
+        "stale_evidence:0cfe244c8e32ac5637e05f767a15fa958bbfa6c1328b416f762533987598c45c",
+        "stale_evidence:0d2806f7e1dce69e686cffa4e7555965c7bd417e43b6cd48a52fd8fbdb70e98e",
+        "stale_evidence:10ab7c1783e3f15fbc805889d7d456dc5a95e8d92762018fa114885f63a6642d",
+        "stale_evidence:12c46cc45301a682a3cb60bf225a6b3f1d39f9a250c9b93b07bf0ee8fa367327",
+        "stale_evidence:12c9f8d3d85a2c57e9b3d624caef52e6a32d6ec8e17d5823866ee56a8d19e03d",
+        "stale_evidence:148d9f360761f3b957c76b94c1036c57ab92616f822ee9341efa0488eab233d5",
+        "stale_evidence:166665097adfba21823f2e299fa513e1deb06026888e35f21f450f2c2b362c92",
+        "stale_evidence:2321a86079c864a334027498cf8d10a98526cbdd0034d70edf15a56a82ca2bcb",
+        "stale_evidence:2f7c3081bf4ff7a523b65a7e3bab0fedd694865e12f2f85f38f872c1c9e95363",
+        "stale_evidence:36c0097466055a12f5f473ed2065f6738e1ece8d4df463f2601e0ad6ac92a7ae",
+        "stale_evidence:3b9e4c2a9bad1dc5d90e69d272c9f4921cfc28b3e9291b568fc6879092be33d9",
+        "stale_evidence:3be90d79171428c27128d82b8deec6b845369264060d223f1285bf632085bcf7",
+        "stale_evidence:3d9e3bda5f649312ee6e4939dfb2fb143f66b2c3ee3238bdba9bf020ed0464cd",
+        "stale_evidence:44a82a5df370512485b9a029f0d981c69071ac4f285efcae0220f6c45092ef2f",
+        "stale_evidence:4593e5e4e7bb1c450c280892e5d0b4823016b997356528c39f070720d8e9bd45",
+        "stale_evidence:4fa2c3585209a707d63146793ca38d963f501b2625f655a0acfc93999776db30",
+        "stale_evidence:540f73bdb3de27516f339c8fd4f3d474b9ef9a6cf7d93228edef583b4cc15221",
+        "stale_evidence:59f52f7480fcb5c8b9501016040dcb0de957c637fb4737411f5e56f1cbfdc0c2",
+        "stale_evidence:5a8f0fa3d1987b4b0efe08dfd239b3a693c545c2e4e1ec564dfb2b78486ad16d",
+        "stale_evidence:728814ac9fcf00c3b58c193e31596d1bcbe4b8018bfb848bb01d9e6423df90e6",
+        "stale_evidence:7317b5dca41cd01b946c84c667350a9300584a7443049d83ac4a97fe0dd2e8f8",
+        "stale_evidence:79368a86f8dfd6999bd1794425c9e2c1597456afd332ec42bb9e447678c3f262",
+        "stale_evidence:7949019e1b79da8b52c8d345fab3177e012d96f07c761088b4a3f67b390d38da",
+        "stale_evidence:805b0e2e4f255829b7a1e80315798860cdd782eabf7dfa65a5cc03af751b11a3",
+        "stale_evidence:81a9fd36908559e516163d50bae91967a2171eaa53f2736b872f275d857753fd",
+        "stale_evidence:86da60b1f12e32c6b6f5f48ab66573fcc4afbb5504564c8e181e9509bd59dfec",
+        "stale_evidence:8cb64aa2f159fcf36e215f441aaa18e5af8cb355e993e11242020f9e5b97a968",
+        "stale_evidence:91addb698a5206c5d4d84ab8e816f24822cccc9bcc77e3a9b4fa200421c915e0",
+        "stale_evidence:95119049791d19c86f5648d01c3b0577b3504dcb863511d98a9febded0392532",
+        "stale_evidence:974c522644772c7818e2fc0c613a10b93dac53d114a4e8c7eb0b60c254f8f8c4",
+        "stale_evidence:9d5d35325a116af26d5c94f6c0ae506af5199730dc086d4348dbf242c7e7dcb8",
+        "stale_evidence:9f6cb34dd2c96d5d4cdd45a50dea7614a4442361497da1bd7465098ade8bfe9f",
+        "stale_evidence:a2b6bd6cc0468423f0c0f99f97638fa6e5b56c2483f10bdb52585014db98bd68",
+        "stale_evidence:a4569103f9032b2706be3057bd0edd4e49c338c3d7e3637cc705e2efaeef9223",
+        "stale_evidence:a8ba640d13ee3ad1a4a8b879518f8b28d91cf128dc4fa9aae2b0a99845fd80c5",
+        "stale_evidence:a98c09bb226a88f438d7c4d3eff5793cfdefa8fbe21658cdfbc959d8de64ad6a",
+        "stale_evidence:a9a9b26e955277e89902910b69d3934d5d7a119c73faf2f54213de8ca121a4b4",
+        "stale_evidence:b77ff12662df25a48e95b1c46e717f0ff707ddc20491b660e87b4528ee651703",
+        "stale_evidence:c0e12e620da2ae82d1c6b1f33f6b71c0319110952870079995abac1cc477aff6",
+        "stale_evidence:cf88443ee8ead31fd69bc2929fe9de542c9967a1bd1fd77fc72bbb8f54f2b7fb",
+        "stale_evidence:cf9a2c32470a5c7c78e22ff8236def2ed88171fab7dc0f9617677f7bc7ddd502",
+        "stale_evidence:d327e2cfd3e3754bacb555bfe050a24a6ea32d31ba02e76babd3301c6d9e7779",
+        "stale_evidence:d61a92ae8462fb67cd5f72fb435c982a7da7acacfcb34882b0c52ea92a560810",
+        "stale_evidence:d7ff2e8c65896eb59dc0d8bb5068aa42b86962f4e466a571bb6b42217c54c25d",
+        "stale_evidence:da12d331f8a7da059509c3a7ac7d47871113c430b92d1b902f9606cadf9f92b5",
+        "stale_evidence:da76b79b5b717982631601dda37ef6c566ad0f2941859d7d88b053d67c36b6fb",
+        "stale_evidence:e18a4d0d482478a67436eba8c5c29219d7c9e6b86c2cb680745d48b062102bb9",
+        "stale_evidence:e385bca826231456aa1be57d1c2e4e0d9897daa546613a5256d90fef9e70aa69",
+        "stale_evidence:e7ca151c6d4383a86fb378d538e01073a9d74825f4fc0c5b08707da00ea71886",
+        "stale_evidence:eaaaa7eae5f9abcfaf08de8bf1995f1d9c1937cd97df6a8a21772c8ddf937884",
+        "stale_evidence:eca5751ac27d58b9c6c0c5331909afa1f95f421384031c49407fa913b9cfb34c",
+        "stale_evidence:f2806db9dec3a43a5837d316f95da999421ae009a13b748f2008f04bae7564a9",
+        "stale_evidence:f4a2bb56e15da3b58a57ce1839aad05e18fd1b93bd5842c00f1621d892b35e22",
+        "stale_evidence:fbb961ab117503ffd7cf4c26351e151044020b0dfec5703e7f26cc6dae7defec",
+        "stale_evidence:ffcedfb36bb38c9494ce88cf3bae9529d967b14f98fbb0731f0ded0303f623d0"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Shared historical menu and Qt behavior fingerprints retain their original evidence/statuses. New scope has isolated/headless validation; full campaign live lifecycle, timer/display dependencies and original comparison remain pending."
+      }
+    },
+    {
+      "id": "campaign-preferences-ui34-execution-campaign-preferences-commit-weha9suc",
+      "reason": "Selected campaign Preferences original bytecode and native synthetic wire/controller/session integration validated; full original lifecycle pending.",
+      "files": [],
+      "behaviors": [
+        {
+          "id": "CP.campaign-mini-preferences",
+          "before_sha256": null,
+          "after_sha256": "2bfb84b71fd306e7f45172fef806d9e23f42005248f371c3af6d14636b86efc9"
+        },
+        {
+          "id": "NP.campaign-preferences-policy",
+          "before_sha256": null,
+          "after_sha256": "042d2dd2bd51ae85c1dd119cd5e0b1e42fbdb4b7e82cbf349afc20bd3d525afa"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "UI34.fixture",
+          "UI34.qt"
+        ],
+        "reason": "Fresh fingerprints match pinned Mini entry and Preferences preview/Cancel/OK bytecode with synthetic services and six targeted Qt checks covering caller/availability/ACK/ownership/persistence; no live lifecycle, pause/display equivalence or engine replacement claim."
+      }
     }
   ]
 }

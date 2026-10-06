@@ -11,6 +11,7 @@
 class LiveMenuSession final : public QObject {
 public:
     explicit LiveMenuSession(QString repository,QObject* parent=nullptr);
+    bool campaignPreferencesEnabled=true;
     bool campaignDefeatEnabled=true;
     bool resultMenusEnabled=true; // Compatibility harnesses may explicitly retain V3.
     bool preferencesMenusEnabled=true;
@@ -41,6 +42,8 @@ public:
     std::function<void(quint32)> battleStarted;
     std::function<void()> originalViewportRequested;
 private:
+    friend struct LiveMenuSessionTestAccess; // Synthetic wire/lifecycle validation without a game process.
+    void saveAcceptedPreferences();
     void poll();
     QString repo_,root_,channel_;
     EnginePreferencesStore preferencesStore_;

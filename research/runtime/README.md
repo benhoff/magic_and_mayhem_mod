@@ -178,3 +178,5 @@ confidence, and whether it remains stable across launches.
 - [Campaign gameplay Mini Quit bridge](campaign-mini-quit-engine-bridge.md): native Quit hands confirmation to the original game; No resumes World, Yes opens the original defeat report; original report OK and World/Realm return restore Main.
 
 - [Campaign Quit defeat report bridge](campaign-defeat-engine-bridge.md): V11 native original-text report and original OK, World/Realm return to Main; other outcomes remain original.
+
+- [Campaign Mini Preferences bridge](campaign-preferences-engine-bridge.md): V12 guarded original entry/preview/Cancel/OK and native caller/lifecycle policy; isolated and headless checks, full live lifecycle pending.

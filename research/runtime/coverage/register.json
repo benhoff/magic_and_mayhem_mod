@@ -12747,6 +12747,125 @@
         "replacement": "none"
       },
       "confidence": "high_within_scope"
+    },
+    {
+      "id": "CP.campaign-mini-preferences",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Campaign Mini Preferences entry, preview and exit",
+      "scope": "Selected fresh campaign mode2/context5 Mini local2 push, Preferences parent17/depth6, original preview/Cancel/OK bytecode with original setter/group bytecode and synthetic writer/audio/display/fade services; static common push/pop and leave recovery, full original outer lifecycle not executed",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4924400,
+          "scope": "Selected local2 Preferences push and Mini return flag only",
+          "recovered_range": "campaign-mini-entry-4b23f0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4888320,
+          "scope": "Selected original effects preview callback only",
+          "recovered_range": "campaign-preferences-entry-4a9700"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4888640,
+          "scope": "Selected Preferences Cancel rollback and OK callback with synthetic writer services only",
+          "recovered_range": "campaign-preferences-entry-4a9840"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4885344,
+          "scope": "Static Preferences leave dependency order only; helper bodies opaque"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5608912,
+          "scope": "Static pending push-before-return and common pop lifecycle only",
+          "recovered_range": "campaign-mini-entry-5595d0"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-preferences-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v12.h",
+        "runtime/menu/preferences.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/channel.h",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "tests": [
+        "apps/qt-shell/live_menu_test.cpp",
+        "tests/campaign-preferences-reference.c",
+        "tests/campaign-preferences-selftest.h",
+        "tests/menu-campaign-preferences-test.cpp",
+        "tools/test-campaign-preferences-bridge.py"
+      ],
+      "evidence": [
+        "UI34.fixture",
+        "UI34.qt"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NP.campaign-preferences-policy",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Native campaign Preferences admission and return policy",
+      "scope": "Separate V12 exact campaign parent/stack/context guard and Mini capability, Qt native presentation uses original availability; original callback acknowledgement restores viewport ownership on Cancel/OK, fresh generation/thread required for readmission; accepted original-written config persisted; full original live lifecycle pending",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-preferences-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v12.h",
+        "runtime/menu/preferences.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/channel.h",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/CMakeLists.txt"
+      ],
+      "tests": [
+        "apps/qt-shell/live_menu_test.cpp",
+        "tests/campaign-preferences-reference.c",
+        "tests/campaign-preferences-selftest.h",
+        "tests/menu-campaign-preferences-test.cpp",
+        "tools/test-campaign-preferences-bridge.py"
+      ],
+      "evidence": [
+        "UI34.qt"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -21947,6 +22066,36 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "UI34.fixture",
+      "kind": "isolated_original",
+      "scope": "V12 original Mini local-2 entry and Preferences preview/Cancel/OK, exact parent/depth/stack/context guards, audio rollback and synthetic writer counts, Main caller and stale/invalid regression; original slider setter/group bytecode, audio/display/fade/writer dependencies synthetic; outer engine lifecycle and full installation not executed",
+      "record": "research/runtime/campaign-preferences-engine-bridge.json",
+      "sha256": "712aa64590ec9c3bea70f08e9fff3d8c9e4ea7f47a92ca14c3d6c33e38dd6c7f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI34.qt",
+      "kind": "native_integration",
+      "scope": "Synthetic V12 campaign Mini/Preferences wire/controller/session admission, same-thread/generation guards, preview acknowledgement, Cancel/OK return ownership and OK persistence after acknowledgement; legacy Preferences store/V6 bridge/controller and V10 Mini/V11 defeat regression; no live lifecycle/pause/display equivalence",
+      "record": "research/runtime/campaign-preferences-engine-bridge.json",
+      "sha256": "712aa64590ec9c3bea70f08e9fff3d8c9e4ea7f47a92ca14c3d6c33e38dd6c7f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/qt/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -24019,6 +24168,32 @@
           ]
         }
       ]
+    },
+    {
+      "id": "campaign.preferences-buttons",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4888640,
+        "scope": "Selected Preferences button receiver and local0 OK/local1 Cancel",
+        "recovered_range": "campaign-preferences-entry-4a9840"
+      },
+      "document": "research/runtime/campaign-preferences-engine-bridge.md",
+      "complete": false,
+      "scope": "Selected fresh campaign caller only; all other callers and noncanonical callback values pending",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CP.campaign-mini-preferences"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "CP.campaign-mini-preferences"
+          ]
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -25281,6 +25456,26 @@
         "tests/test-native-idle-display.py",
         "tools/test-native-scene-window.py"
       ]
+    },
+    {
+      "id": "campaign.qt-mini-preferences-headless",
+      "level": "headless",
+      "scope": "Separate V12 exact campaign parent/stack/context guard and Mini capability, Qt native presentation uses original availability; original callback acknowledgement restores viewport ownership on Cancel/OK, fresh generation/thread required for readmission; accepted original-written config persisted; full original live lifecycle pending",
+      "behaviors": [
+        "CP.campaign-mini-preferences",
+        "NP.campaign-preferences-policy"
+      ],
+      "evidence": [
+        "UI34.fixture",
+        "UI34.qt"
+      ],
+      "tests": [
+        "apps/qt-shell/live_menu_test.cpp",
+        "tests/campaign-preferences-reference.c",
+        "tests/campaign-preferences-selftest.h",
+        "tests/menu-campaign-preferences-test.cpp",
+        "tools/test-campaign-preferences-bridge.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -25400,6 +25595,24 @@
       "document": "research/runtime/campaign-mini-quit-engine-bridge.md",
       "evidence": "UI32.fixture",
       "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-preferences-entry-4a9700",
+      "build": "nocd-40209ca7",
+      "start": 4888320,
+      "end": 4888328,
+      "document": "research/runtime/campaign-preferences-engine-bridge.md",
+      "evidence": "UI34.fixture",
+      "anchors_pointer": "/fixture/anchors"
+    },
+    {
+      "id": "campaign-preferences-entry-4a9840",
+      "build": "nocd-40209ca7",
+      "start": 4888640,
+      "end": 4888648,
+      "document": "research/runtime/campaign-preferences-engine-bridge.md",
+      "evidence": "UI34.fixture",
+      "anchors_pointer": "/fixture/anchors"
     }
   ],
   "register_imports": [
@@ -25425,7 +25638,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "35d8b255a3116cef30d5eedaf1d10a0078abcaa952c5e22a7d8564a69bf47104",
+      "sha256": "b9d7ee8a1db40c1814f063cd4f8e031b374074b7f5dbac1ee17be49ed8abe691",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
     },
     {
@@ -25500,7 +25713,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-spawn-display-1.json",
-    "sha256": "decd4439403f92715fd924d96a48a8dd269912bd6ac07fe55c5a61e8060df2bf"
+    "path": "research/runtime/coverage/source-index-campaign-preferences.json",
+    "sha256": "237872895e0a6cd07bb31a5b0c6752e3bc5aca4b97f6ed18a3fc64a0c1b5c788"
   }
 }
