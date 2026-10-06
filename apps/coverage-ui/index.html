@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Magic & Mayhem binary mappings, scoped engine implementation, validation and remaining work.">
+  <title>Magic & Mayhem · Coverage atlas</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <aside class="sidebar">
+    <a class="brand" href="#view=tracks"><span class="sigil" aria-hidden="true">M</span><span>MAGIC & MAYHEM<small>Rebuild progress</small></span></a>
+    <p class="side-label">EXPLORE THE REBUILD</p>
+    <nav aria-label="Dashboard views">
+      <button data-view="tracks"><span aria-hidden="true">◫</span> Major tracks</button>
+      <button data-view="overview"><span aria-hidden="true">◉</span> Detailed coverage</button>
+      <button data-view="work"><span aria-hidden="true">◷</span> Work remaining</button>
+      <button data-view="behaviors"><span aria-hidden="true">≡</span> Behavior register</button>
+      <button data-view="binary"><span aria-hidden="true">⌘</span> Binary explorer</button>
+    </nav>
+    <div class="side-divider"></div>
+    <div id="detail-filters"><label class="side-label" for="track-filter">MAJOR TRACK</label>
+    <select id="track-filter"><option value="all">All tracks</option></select>
+    <label class="side-label" for="subsystem">SUBSYSTEM</label>
+    <select id="subsystem"><option value="all">All subsystems</option></select></div>
+    <div class="side-note"><span class="dot"></span> LOCAL · READ ONLY<p>Original binary → documented behavior → native code → evidence.</p></div>
+    <div class="side-footer">A map of the work.<br>A record of its boundaries.</div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">REVERSE ENGINEERING <span>/</span> <span id="crumb">Overview</span></div><div class="top-actions"><span id="snapshot-time">Loading snapshot…</span><button id="refresh" class="button">↻ Refresh audit</button></div></header>
+    <main id="content" tabindex="-1">
+      <div class="page-heading"><div><p class="eyebrow">MAGIC & MAYHEM / 1998</p><h1 id="page-title">The rebuild, at a glance.</h1><p id="page-description" class="lede">Follow the original engine into its native implementation.</p></div><div class="scope-control"><label for="kind">CHECKLIST SCOPE</label><select id="kind"><option value="recovered">Recovered baseline</option><option value="native_policy">Native policies & tooling</option><option value="all">All registered behaviors</option></select></div></div>
+      <div id="notice" role="status"></div>
+      <section id="view-content" aria-live="polite"><div class="loading">Reading the register and auditing evidence…</div></section>
+      <footer class="main-footer"><span id="provenance"></span><span>Percentages describe explicit links and registered scope.</span></footer>
+    </main>
+  </div>
+  <dialog id="detail" aria-labelledby="detail-title"><div class="detail-header"><span id="detail-label" class="eyebrow">BEHAVIOR DETAIL</span><button id="close-detail" class="icon-button" aria-label="Close details">×</button></div><div id="detail-body"></div></dialog>
+</body>
+</html>

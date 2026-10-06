@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOTS = ('assets', 'audio', 'renderer', 'reconstruction', 'runtime', 'apps', 'game', 'protocols', 'tools', 'tests')
-SUFFIXES = {'.cpp', '.hpp', '.c', '.h', '.inc', '.S', '.py', '.java', '.sh', '.json'}
+SUFFIXES = {'.cpp', '.hpp', '.c', '.h', '.inc', '.S', '.py', '.java', '.sh', '.json', '.html', '.css', '.js'}
 
 
 def source_paths(root):

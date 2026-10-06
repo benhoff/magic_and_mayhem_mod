@@ -1,0 +1,1068 @@
+{
+  "schema": 1,
+  "description": "Curated, equally counted capability milestones. Status comes from current registered contracts; no effort or whole-game completion estimate. Shared contracts may contribute to different scoped outcomes.",
+  "tracks": [
+    {
+      "id": "movement",
+      "title": "Movement & navigation",
+      "goal": "Move creatures through a native world with the original route and motion rules.",
+      "subsystems": [
+        "movement",
+        "pathfinding"
+      ],
+      "planned": false,
+      "milestones": [
+        {
+          "id": "cell-rules",
+          "title": "Cell & occupancy rules compared",
+          "scope": "Selected cell and occupancy predicates match controlled original inputs.",
+          "remaining": "Finish unresolved pathfinding predicates, clearance and frozen-world boundaries.",
+          "requirements": [
+            {
+              "behaviors": [
+                "PF.cell",
+                "PF.occupancy"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "motion",
+          "title": "Ordinary motion reconstructed",
+          "scope": "Selected planar, vertical and route-consumption behavior; controlled comparisons and native headless execution.",
+          "remaining": "Extend motion to the missing events, special profiles and environment-dependent cases.",
+          "requirements": [
+            {
+              "behaviors": [
+                "MV.planar-setup",
+                "MV.fine-motion",
+                "MV.route-consumption",
+                "MV.vertical-setup"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "multi-creature",
+          "title": "Bounded multi-creature movement",
+          "scope": "Native stationary occupancy and bounded multiple movers, tested headlessly.",
+          "remaining": "Connect these policies to original dynamic occupancy and broader creature interactions.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.stationary-occupancy",
+                "NP.multi-movement"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "pathfinding-boundaries",
+          "title": "Complete pathfinding predicates",
+          "scope": "Scoped route validity, clearance and frozen-world input behavior.",
+          "remaining": "Finish acceptance, validity, support and clearance branches, then compare the bounded world inputs.",
+          "requirements": [
+            {
+              "behaviors": [
+                "PF.creature_acceptance",
+                "PF.validity",
+                "PF.cell_validity",
+                "PF.clearance",
+                "PF.frozen_world"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "motion-boundaries",
+          "title": "Complete remaining motion events & profiles",
+          "scope": "Recovered event handlers, reverse motion and special profile behavior.",
+          "remaining": "Recover and implement events 1 and 3\u20136, reverse motion, special profiles and environment handling.",
+          "requirements": [
+            {
+              "behaviors": [
+                "MV.event-1",
+                "MV.event-3",
+                "MV.event-4",
+                "MV.event-5",
+                "MV.event-6",
+                "MV.reverse",
+                "MV.special-profile",
+                "MV.environment"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "orders",
+          "title": "Original orders & scheduling",
+          "scope": "Recover and implement original order, follow-target and scheduling behavior.",
+          "remaining": "Recover the order pipeline, scheduler, moving occupancy and follow targets, then compare them against the original.",
+          "requirements": [
+            {
+              "behaviors": [
+                "MV.original-orders",
+                "MV.scheduler",
+                "MV.dynamic-occupancy",
+                "MV.follow-target"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scene",
+      "title": "Native scene & controls",
+      "goal": "Interact with a native scene and advance its owned simulation.",
+      "subsystems": [
+        "native_world",
+        "runtime_and_hosting",
+        "protocols"
+      ],
+      "planned": false,
+      "milestones": [
+        {
+          "id": "viewport",
+          "title": "Navigate a native map",
+          "scope": "Native map navigation and world presentation in a bounded Qt preview.",
+          "remaining": "Expand the preview beyond the recorded map and presentation limits.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.map-navigation",
+                "NP.presentation"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "mouse-orders",
+          "title": "Select & send creatures to a destination",
+          "scope": "Mouse selection and terrain click-to-move apply queued native orders in synthetic scene tests.",
+          "remaining": "Recover original input and coordinate rules and cover mixed creature profiles.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.scene-orders",
+                "NP.scene-picking"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "stop",
+          "title": "Stop & cancel queued movement",
+          "scope": "Native queued stop/cancel controls in a synthetic scene preview.",
+          "remaining": "Validate behavior beyond the native order policy and current synthetic inputs.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.stop-orders"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "playback",
+          "title": "Play & pause simulation",
+          "scope": "Bounded native scene playback with an owned tick clock; synthetic preview.",
+          "remaining": "Extend playback to a complete owned world and validate original timing separately.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NP.scene-playback"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "owned-world",
+          "title": "Own a complete scene lifecycle",
+          "scope": "Native world ownership and sandbox lifecycle beyond the current bounded preview.",
+          "remaining": "Complete world construction, lifecycle and simulation handoff within an explicit native scene contract.",
+          "requirements": [
+            {
+              "behaviors": [
+                "WORLD.owned",
+                "WORLD.sandbox"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rendering",
+      "title": "Rendering & animation",
+      "goal": "Draw native game scenes and establish visual equivalence before replacement.",
+      "subsystems": [
+        "native_rendering",
+        "rendering_reconstruction",
+        "animation"
+      ],
+      "planned": false,
+      "milestones": [
+        {
+          "id": "gpu",
+          "title": "Present through native OpenGL",
+          "scope": "Scoped GPU presentation in the recorded Qt/OpenGL preview.",
+          "remaining": "Broaden platform and context coverage beyond the recorded preview.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NR.gpu-presentation"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "commands",
+          "title": "Consume streamed drawing commands",
+          "scope": "Bounded incremental native command consumption and live command transport.",
+          "remaining": "Recover lost-command resynchronization and broader drawing command coverage.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NR.incremental-command-consumer",
+                "NR.live-command-transport"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "startup",
+          "title": "Observe original startup drawing",
+          "scope": "Selected original-game startup commands feed the native shadow renderer. The original still draws.",
+          "remaining": "Compare original pixels, then extend observation into gameplay and missing command families.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NR.real-game-command-shadow"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "scene-drawing",
+          "title": "Complete scene & animation drawing",
+          "scope": "Scoped native sprite/terrain scenes and original animation placement contracts.",
+          "remaining": "Finish surface, sprite, terrain and animation branches and compare complete scenes.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NR.surfaces",
+                "NR.sprites",
+                "NR.terrain_scene",
+                "NR.world_scene"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            },
+            {
+              "behaviors": [
+                "AN.forward",
+                "AN.placement",
+                "AN.attachment"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "replacement",
+          "title": "Replace original drawing in live play",
+          "scope": "Verified live replacement of the selected original sprite and terrain submissions.",
+          "remaining": "Establish live visual equivalence and evidence that original rendering work is bypassed.",
+          "requirements": [
+            {
+              "behaviors": [
+                "RE.sprite_queue",
+                "RE.terrain_submission"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "replacement": "scoped_live"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "effects",
+      "title": "Effects & lighting",
+      "goal": "Reproduce effect movement, creature collisions and terrain lighting.",
+      "subsystems": [
+        "terrain_lighting"
+      ],
+      "planned": false,
+      "milestones": [
+        {
+          "id": "static-light",
+          "title": "Static lighting composition",
+          "scope": "Scoped static admission/refresh and owned composition, compared against controlled original inputs and previewed.",
+          "remaining": "Expand input production and unsupported lighting sources beyond the bounded static path.",
+          "requirements": [
+            {
+              "behaviors": [
+                "TL.static-admission",
+                "TL.static-refresh",
+                "TL.owned-composition"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "effect-motion",
+          "title": "Bounded effect motion & terrain exits",
+          "scope": "Selected effect trajectories, cell transitions, blocked destinations and height exits, compared and exercised headlessly.",
+          "remaining": "Cover unimplemented effect setup, creation variants and movement recount.",
+          "requirements": [
+            {
+              "behaviors": [
+                "TL.effect-trajectory-step",
+                "TL.effect-cell-transitions",
+                "TL.effect-blocked-destinations",
+                "TL.effect-height-exits"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "collision",
+          "title": "Effect / creature collision",
+          "scope": "Scoped candidate occupancy and collision behavior under controlled comparisons and native headless scenarios.",
+          "remaining": "Extend beyond the recorded candidate, ordering, footprint and mixed-exit limits.",
+          "requirements": [
+            {
+              "behaviors": [
+                "TL.creature-occupancy-lookup",
+                "TL.creature-footprint-initializer",
+                "TL.effect-creature-collision"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "all-inputs",
+          "title": "Complete effect creation & light inputs",
+          "scope": "Recovered input production, effect setup and creation variants.",
+          "remaining": "Recover static input production, special size-one handling, creation variants and movement recount.",
+          "requirements": [
+            {
+              "behaviors": [
+                "TL.static-input-production",
+                "TL.special-size-one",
+                "TL.effect-type-setup",
+                "TL.effect-creation-variants",
+                "TL.effect-movement-recount"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audio",
+      "title": "Audio",
+      "goal": "Load, schedule, position and play audio with recovered engine semantics.",
+      "subsystems": [
+        "audio_reconstruction",
+        "native_audio"
+      ],
+      "planned": false,
+      "milestones": [
+        {
+          "id": "samples",
+          "title": "Scoped PCM loading & storage",
+          "scope": "Native wave loading and sample buffer storage with bounded execution evidence.",
+          "remaining": "Finish supported formats, lifetime and failure boundaries and record scoped execution.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NA.wave",
+                "NA.buffers"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "output",
+          "title": "Scoped mixing & playback",
+          "scope": "Native voice state, mixer and output backend exercised together.",
+          "remaining": "Finish voice/mixer/output behavior and validate the integrated playback path.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NA.voices",
+                "NA.mixer",
+                "NA.output"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "semantics",
+          "title": "Original voice & positional rules",
+          "scope": "Original scheduling, admission, lifetime and positioning independently compared.",
+          "remaining": "Recover remaining voice scheduling, admission, attenuation and lifetime branches and compare them.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AU.voice_scheduler",
+                "AU.voice_admission",
+                "AU.voice_lifetime",
+                "AU.positional_audio"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "manager",
+          "title": "Integrated audio manager",
+          "scope": "Recovered manager lifecycle connected to the native backend.",
+          "remaining": "Finish manager lifecycle/configuration and bridge behavior, then exercise the combined manager.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AU.manager_lifecycle",
+                "AU.manager_configuration"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            },
+            {
+              "behaviors": [
+                "NA.voice_bridge",
+                "NA.native_manager_backend"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "assets",
+      "title": "Assets & persistence",
+      "goal": "Load game data natively and preserve saved state.",
+      "subsystems": [
+        "assets"
+      ],
+      "planned": false,
+      "milestones": [
+        {
+          "id": "files",
+          "title": "Scoped file access & profiles",
+          "scope": "Bounded native file access, profile loading and persistence.",
+          "remaining": "Finish path, missing-file, profile and persistence boundaries and record scoped tests.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AS.access",
+                "AS.profile",
+                "AS.persistence"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "maps",
+          "title": "Scoped map & region loading",
+          "scope": "Native maps, terrain catalogs and region recipes.",
+          "remaining": "Finish map/catalog/recipe formats and unsupported cases, then validate the complete loading path.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AS.map",
+                "AS.terrain_catalog",
+                "AS.region_recipe"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "graphics",
+          "title": "Scoped graphics asset loading",
+          "scope": "Native sprite, animation, cursor and PCX readers.",
+          "remaining": "Complete the supported graphics formats and failure handling, then record integrated loading.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AS.sprite",
+                "AS.animation",
+                "AS.cursor",
+                "AS.pcx"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "save-world",
+          "title": "Restore a complete saved world",
+          "scope": "Saved world data reconstructed into owned native state.",
+          "remaining": "Recover missing world state and complete save/load behavior beyond current readers.",
+          "requirements": [
+            {
+              "behaviors": [
+                "AS.save_world"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menus",
+      "title": "Menus & campaign",
+      "goal": "Navigate menus into a playable campaign and back.",
+      "subsystems": [
+        "qt_menus",
+        "qt_services",
+        "menu_adapters",
+        "preferences",
+        "campaign"
+      ],
+      "planned": false,
+      "milestones": [
+        {
+          "id": "preferences",
+          "title": "Observe preference apply & persistence",
+          "scope": "Scoped original preference apply/rebuild observation plus bounded native draft/persistence policies.",
+          "remaining": "Complete other preference callers and unsupported display/control transitions.",
+          "requirements": [
+            {
+              "behaviors": [
+                "PR.apply",
+                "PR.display-rebuild"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            },
+            {
+              "behaviors": [
+                "NP.preferences-draft",
+                "NP.preferences-persistence"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "region-entry",
+          "title": "Bridge region entry & world handoff",
+          "scope": "Selected region-entry and campaign handoff paths observed live; original engine owns gameplay.",
+          "remaining": "Broaden regions, initialization and transition coverage; establish native world ownership independently.",
+          "requirements": [
+            {
+              "behaviors": [
+                "CP.region-entry-bridge",
+                "CP.region-entry-enter",
+                "CP.campaign-world-handoff-observation"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "mini-menu",
+          "title": "Return from a campaign mini-menu",
+          "scope": "Scoped Cancel path and lifecycle observed in the original campaign hierarchy.",
+          "remaining": "Complete remaining mini-menu actions beyond the registered Cancel scope.",
+          "requirements": [
+            {
+              "behaviors": [
+                "CP.campaign-mini-cancel",
+                "CP.campaign-mini-lifecycle"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "native-menus",
+          "title": "Complete native menu flows",
+          "scope": "Native main, quick battle, preferences and save/load interfaces with integrated scenarios.",
+          "remaining": "Finish native screen behavior, services, save/load and cross-screen transitions.",
+          "requirements": [
+            {
+              "behaviors": [
+                "UI.main_menu",
+                "UI.quick_battle_menu",
+                "UI.preferences",
+                "UI.load_game",
+                "UI.save_game"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "campaign-rules",
+          "title": "Own campaign navigation & admission",
+          "scope": "Native campaign initialization, realm navigation and region admission.",
+          "remaining": "Implement recovered campaign state transitions and realm initialization beyond observation/adapters.",
+          "requirements": [
+            {
+              "behaviors": [
+                "CP.main-new-game",
+                "CP.realm-navigation",
+                "CP.region-admission",
+                "CP.realm-initialization-gap"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gameplay",
+      "title": "Core gameplay & spells",
+      "goal": "Run original simulation, AI, combat, spells and progression natively.",
+      "subsystems": [
+        "gameplay_gaps",
+        "spell_dispatch",
+        "remaining_engine_boundaries"
+      ],
+      "planned": false,
+      "milestones": [
+        {
+          "id": "simulation",
+          "title": "Original simulation tick & lifetime",
+          "scope": "Recovered simulation tick and entity lifetime rules.",
+          "remaining": "Recover and implement the original scheduler, ticking and entity lifecycle contracts.",
+          "requirements": [
+            {
+              "behaviors": [
+                "GP.tick",
+                "GP.lifetime"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "combat",
+          "title": "AI & combat",
+          "scope": "Recovered creature decisions and combat resolution.",
+          "remaining": "Recover and implement AI and combat, keeping balance changes separate.",
+          "requirements": [
+            {
+              "behaviors": [
+                "GP.ai",
+                "GP.combat"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "spells",
+          "title": "Spell casting & dispatched effects",
+          "scope": "Recover casting and all explicitly registered spell dispatch cases. The dispatch checklist contributes one milestone.",
+          "remaining": "Implement casting and the currently unimplemented spell effects; mapping a case is not executing it.",
+          "requirements": [
+            {
+              "behaviors": [
+                "GP.cast"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            },
+            {
+              "subsystem": "spell_dispatch",
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded"
+              }
+            }
+          ]
+        },
+        {
+          "id": "progression",
+          "title": "Original progression",
+          "scope": "Recovered progression and persistent gameplay rules.",
+          "remaining": "Recover and implement progression before introducing intentional gameplay changes.",
+          "requirements": [
+            {
+              "behaviors": [
+                "GP.progression"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "future-gameplay",
+      "title": "Future gameplay changes",
+      "goal": "Add the planned gameplay changes after baseline engine validation.",
+      "subsystems": [
+        "intentional_gameplay_changes"
+      ],
+      "planned": true,
+      "milestones": [
+        {
+          "id": "commander",
+          "title": "Commander orders for summoned creatures",
+          "scope": "Intentional new gameplay policy, separate from the original baseline.",
+          "remaining": "Design and implement commander orders after validating the baseline order and simulation contracts.",
+          "requirements": [
+            {
+              "behaviors": [
+                "GP.commander"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "veterancy",
+          "title": "Per-creature veterancy",
+          "scope": "Intentional new progression policy.",
+          "remaining": "Design and implement per-creature veterancy after baseline progression is understood.",
+          "requirements": [
+            {
+              "behaviors": [
+                "GP.veterancy"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "mana",
+          "title": "More active mana economy",
+          "scope": "Intentional new economy/balance policy.",
+          "remaining": "Design and implement the mana tempo/economy change after baseline gameplay validation.",
+          "requirements": [
+            {
+              "behaviors": [
+                "GP.mana"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "scoped_live"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -736,3 +736,62 @@ boundary. Original Main drawing continues and 2,927 originals verify unchanged.
 No real-game native PRESENT or driver-pixel equivalence is established. Shared
 hook/fixture edits leave historical evidence stale; old records/hashes are retained.
 
+## Interactive coverage atlas (UI02; reviewed 2026-10-05)
+
+`TOOL.coverage-ui` presents a local read-only register/audit snapshot with
+percentage summaries, subsystem drilldowns, partial/missing feature filters,
+verbatim scope boundaries, source/test/evidence links, and binary function
+search with recovered-range exceptions and direct-entry calls.
+[Launch and metric definitions](../../apps/coverage-ui/README.md).
+
+Function-link and associated-body byte percentages measure mapping footprints;
+scoped/partial/missing implementation counts use equally weighted behaviors.
+Original comparison and live replacement use recovered behaviors only. Native
+policies remain distinct. Current, mixed and stale comparison fingerprints do
+not extend historical comparison scope; generic next milestones do not infer
+unrecorded branch semantics or whole-game completion.
+
+Seven focused semantic/HTTP regressions and fifteen real browser checks cover
+percentage denominators, overlaps/interior anchors, data/classification/range
+exclusions, evidence freshness, source-access boundaries, filters, detail links,
+refresh, pagination and responsive layout. The final record additionally runs
+coverage guard suites for web-source census compatibility.
+[UI validation only](coverage-ui-validation-final.json). No engine contract,
+original execution/comparison, gameplay policy or live replacement is promoted.
+Historical UI01 and existing engine evidence retain their original hashes.
+The source census now includes HTML/CSS/JS; exact prior non-web censuses remain
+readable for Git comparisons while new/changed web files remain gate findings.
+
+### Coverage atlas direct call boundary (UI03; 2026-10-05)
+
+Inferred/computed call targets remain in the audit; the function detail graph
+now lists only direct discovered entry-to-entry calls. A focused inferred-target
+fixture would fail if those edges were counted as direct. The seven semantic/HTTP
+and fifteen real browser checks pass again against a freshly started server.
+[Current UI-only validation](coverage-ui-direct-call-validation.json). UI01/UI02
+retain their source hashes and may be stale after the backend/test change; no
+engine evidence or stage is refreshed.
+
+The append-only gate now gives an obsolete recorded receipt no coverage credit
+when none of its exact behavior contracts matches the current delta; unchanged
+files cannot reactivate its stale execution result. The old receipt and hashes
+remain intact, and every current file/contract still needs a matching new review.
+A focused regression rejects both old-only approval and stale current execution
+claims while accepting a new explicit pending review. All 44 gate and 45 discovery
+guard tests pass. This supports UI history upkeep without refreshing engine evidence.
+
+## Major engine track dashboard (UI04)
+
+The local coverage atlas now opens on major engine tracks rather than binary
+association breadth (`UI04.dashboard`). The curated capability checklist in
+`apps/coverage-ui/tracks.json` groups movement/navigation, native scene controls,
+rendering/animation, effects/lighting, audio, assets/persistence, menus/campaign,
+and core gameplay/spells; planned commander, veterancy and mana changes remain
+separate. All required registered stages and applicable execution evidence must
+exist before a milestone counts demonstrated. Partial implementations, missing
+mappings, explicit next tasks and historical/current evidence boundaries remain
+visible. The 104 spell entries contribute one spell goal. These percentages are
+named-roadmap milestones, not estimates of effort or whole-game completion.
+Twelve semantic/HTTP tests and twenty desktop/mobile Chromium checks passed for
+this UI-only change. No engine implementation/comparison/integration/replacement
+status is promoted and earlier evidence fingerprints remain unchanged.

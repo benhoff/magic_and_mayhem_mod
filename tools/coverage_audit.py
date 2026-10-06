@@ -211,7 +211,7 @@ def audit(root, register):
             recorded_inputs = ev.get('recorded_inputs', [])
             require(isinstance(recorded_inputs, list) and len(recorded_inputs) == len(set(recorded_inputs)),
                     f'{eid}: malformed/duplicate recorded input keys')
-            code_suffixes = {'.cpp', '.hpp', '.c', '.h', '.inc', '.S', '.py', '.java', '.sh', '.json'}
+            code_suffixes = {'.cpp', '.hpp', '.c', '.h', '.inc', '.S', '.py', '.java', '.sh', '.json', '.html', '.css', '.js'}
             for key in recorded_inputs:
                 require(key in sources, f'{eid}: recorded input lacks fingerprint')
                 require(Path(key).suffix not in code_suffixes and Path(key).name != 'CMakeLists.txt',
@@ -392,7 +392,15 @@ def audit(root, register):
             catalog = json.loads(index_file.read_text())
             require(catalog['schema'] == 1, 'Unsupported source index schema')
             require(catalog['roots'] == list(source_tool.SOURCE_ROOTS), 'Source index roots differ from census scope')
-            require(catalog['suffixes'] == sorted(source_tool.SUFFIXES), 'Source index suffixes differ from census scope')
+            # Retained Git bases predate the web-source extension. Accept that
+            # exact older declaration only for catalogs without web rows. New
+            # web files still enter current_paths and fail the gate as drift;
+            # this does not permit an old census to hide frontend changes.
+            web_suffixes = {'.html', '.css', '.js'}
+            legacy_catalog = (catalog['suffixes'] == sorted(source_tool.SUFFIXES - web_suffixes)
+                              and not any(Path(row['path']).suffix in web_suffixes for row in catalog['files']))
+            require(catalog['suffixes'] == sorted(source_tool.SUFFIXES) or legacy_catalog,
+                    'Source index suffixes differ from census scope')
             current_paths = set(source_tool.source_paths(root))
             indexed_paths = {item['path'] for item in catalog['files']}
             require(len(indexed_paths) == len(catalog['files']), 'Duplicate source index path')

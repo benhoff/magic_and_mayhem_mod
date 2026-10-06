@@ -212,6 +212,13 @@ def review_errors(review, delta, before, after, audit_report):
                      if f['path'] in current_files and all(f[k] == current_files[f['path']][k] for k in ('before_sha256', 'after_sha256'))]
     matched_behaviors = [b['id'] for b in review.get('behaviors', [])
                          if b['id'] in current_behaviors and b == current_behaviors[b['id']]]
+    # A recorded execution receipt is bound to its behavior contracts. When
+    # every named contract has moved on, unchanged files from that old receipt
+    # must not reactivate its now-historical evidence against a later version.
+    # Leave the receipt intact, but give it no coverage credit in this delta;
+    # current files/contracts still need a matching new receipt and validation.
+    if status == 'recorded' and review.get('behaviors') and not matched_behaviors:
+        return errors, [], []
     if status == 'not_required':
         if any(f['role'] not in {'tool', 'test', 'build', 'control', 'research'} for f in matched_files):
             errors.append(f'{label}: engine/protocol code requires pending or recorded validation')

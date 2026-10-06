@@ -264,6 +264,35 @@ class CoverageTests(unittest.TestCase):
         self.register['behaviors'][0]['implementation'].append('assets/unlinked.cpp')
         self.assert_invalid('source index/register link drift')
 
+    def test_legacy_source_census_remains_readable_but_cannot_hide_web_sources(self):
+        catalog = source_tool.index(self.root, self.register)
+        catalog['suffixes'] = sorted(source_tool.SUFFIXES - {'.html', '.css', '.js'})
+        self.write_json('source-index.json', catalog)
+        self.register['code_index'] = {'path':'source-index.json', 'sha256':self.digest('source-index.json')}
+        self.assertEqual(self.report()['errors'], [])
+        for path in ('apps/coverage-ui/index.html', 'apps/coverage-ui/app.js', 'apps/coverage-ui/style.css'):
+            target = self.root/path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text('fixture')
+        self.assertEqual(self.report()['findings']['new_sources_without_index'],
+                         ['apps/coverage-ui/app.js','apps/coverage-ui/index.html','apps/coverage-ui/style.css'])
+        self.pin_source_index()
+        self.assertEqual(self.report()['findings']['new_sources_without_index'], [])
+        for path in ('apps/coverage-ui/index.html', 'apps/coverage-ui/app.js', 'apps/coverage-ui/style.css'):
+            (self.root/path).write_text('edited')
+        self.assertEqual(len(self.report()['findings']['changed_indexed_sources']), 3)
+
+    def test_frontend_source_cannot_be_reclassified_as_recorded_input(self):
+        for path in ('apps/example/app.js', 'apps/example/style.css', 'apps/example/index.html'):
+            with self.subTest(path=path):
+                target = self.root/path
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text('frontend')
+                self.record['sources'][path] = self.digest(path)
+                self.refresh_record()
+                self.register['evidence'][0]['recorded_inputs'] = [path]
+                self.assert_invalid('code provenance cannot be declared an input')
+
     def test_source_census_retains_generated_protocols_builds_and_tests(self):
         for path in ('assets/CMakeLists.txt', 'protocols/include/mnm/frame.h', 'tests/fixture.py',
                      'protocols/schemas/frame.json', 'runtime/render/fixture.inc',
