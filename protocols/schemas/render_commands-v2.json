@@ -1,0 +1,108 @@
+{
+  "name": "render_commands",
+  "version": 2,
+  "magic": "MNMRDC02",
+  "size": 1048640,
+  "header_size": 64,
+  "byte_order": "little",
+  "fields": [
+    {
+      "name": "magic",
+      "offset": 0,
+      "size": 8,
+      "type": "bytes",
+      "owner": "creator"
+    },
+    {
+      "name": "version",
+      "offset": 8,
+      "size": 4,
+      "type": "u32le",
+      "owner": "creator"
+    },
+    {
+      "name": "declared_size",
+      "offset": 12,
+      "size": 4,
+      "type": "u32le",
+      "owner": "creator"
+    },
+    {
+      "name": "session",
+      "offset": 16,
+      "size": 4,
+      "type": "u32le",
+      "owner": "creator"
+    },
+    {
+      "name": "published",
+      "offset": 20,
+      "size": 4,
+      "type": "u32le",
+      "owner": "producer"
+    },
+    {
+      "name": "state",
+      "offset": 24,
+      "size": 4,
+      "type": "u32le",
+      "owner": "producer"
+    },
+    {
+      "name": "reason",
+      "offset": 28,
+      "size": 4,
+      "type": "u32le",
+      "owner": "producer"
+    },
+    {
+      "name": "cancel",
+      "offset": 32,
+      "size": 4,
+      "type": "u32le",
+      "owner": "consumer"
+    },
+    {
+      "name": "acknowledged",
+      "offset": 36,
+      "size": 4,
+      "type": "u32le",
+      "owner": "consumer"
+    },
+    {
+      "name": "reserved",
+      "offset": 40,
+      "size": 24,
+      "type": "bytes",
+      "owner": "creator"
+    },
+    {
+      "name": "commands",
+      "offset": 64,
+      "size": 1048576,
+      "type": "bytes",
+      "owner": "producer"
+    }
+  ],
+  "constants": {
+    "capacity": 1048576,
+    "poll_bytes": 65536
+  },
+  "enums": {
+    "state": {
+      "ready": 0,
+      "writing": 1,
+      "ended": 2,
+      "failed": 3
+    },
+    "reason": {
+      "none": 0,
+      "overflow": 1,
+      "gap": 2,
+      "cancelled": 3,
+      "interrupted": 4,
+      "invalid": 5
+    }
+  },
+  "declared_size_kind": "size"
+}

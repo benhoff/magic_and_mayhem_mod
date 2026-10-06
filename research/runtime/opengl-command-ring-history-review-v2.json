@@ -1,0 +1,441 @@
+{
+  "range": "6fb4b31..19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+  "scope": "Read-only committed parent/current hashes against exact receipts; no retrospective gate pass or execution claim.",
+  "files": [
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "reconstruction/rendering/effect-animation-metadata/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "3ca994cdc0b873fa2b6a786c898d3d445fbf39cd43e3ca773f0ade120e87bc16",
+      "behaviors": [
+        "TL.effect-animation-metadata"
+      ],
+      "role": "build",
+      "change": "added",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "reconstruction/rendering/effect_animation_metadata.cpp",
+      "before_sha256": null,
+      "after_sha256": "beb0c5bfb909b7312d84b7a9a308cf6008f2254e35099a1615752d79ab73526c",
+      "behaviors": [
+        "TL.effect-animation-metadata"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "reconstruction/rendering/effect_animation_metadata.hpp",
+      "before_sha256": null,
+      "after_sha256": "6cad38ecd64cf027cbc4cc37cdcf15cdf6b1a40d922bf3846919dc7597473f83",
+      "behaviors": [
+        "TL.effect-animation-metadata"
+      ],
+      "role": "code",
+      "change": "added",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "89ab265ad83f6dd860f3b0561cfd3e1f07a837f9775548300af9269ca89b3962",
+      "after_sha256": "4254df569f4882e5fd3624e646383a4251dfe6f76baf108891740654fe6aeb81",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "2217ef3145510a26793ab553ef3b89bccb39b5a9e6211f41efefe7ba85671d89",
+      "after_sha256": "56ccef804197ca483bdca9c32943bfd239bd7e8814844c9d218ab19b68e36b28",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "fde97793638ad9b2d74bf3e20ae5fe40bb0aa7b9ae4f4f34151732306a141457",
+      "after_sha256": "d445bbcd08633c20ee9d9260a6424c911468c02da280b694fb789e20d964c6d4",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-summary-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "before_sha256": "73fdd657e4a85e4cfc9584160cbc383a294955181ff65386231436714f678663",
+      "after_sha256": "b1908fecaf49e67979fec70ccee379e106532a2219f3be300929d47b1b2480e6",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": "6093d6b8c327e90d14d8207e46e4f0db9658f47c119c7b5b987b587518d7a394",
+      "after_sha256": "3d3efd29790bc4bff4dd0f5e46f2392cb8f1c9209240bfc2129d3b473d7bfc72",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-animation-binding-coverage.json",
+      "before_sha256": "abf87f660124b1225972d6f91e94c7a0c49ea5ca264148482f1a3118bc85a55e",
+      "after_sha256": "857bf312a2fc1593a52d88d5b5f0b0f8b5d1321590cd12e944d65b96f9664f46",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-animation-catalog-coverage.json",
+      "before_sha256": "e43ac3c5a940493464d52dbba1bc8c39886828125bd7af9512495f2866dab805",
+      "after_sha256": "0da1fa845b8058b81833537c6ea9bcaefcf0b379db61daf2e8b1019356507139",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-animation-catalog.md",
+      "before_sha256": "f17dff05b59b7911c1eabd787d4a0cb31c27a796fa1f4f2c3d32d584790337eb",
+      "after_sha256": "44beade6f601b23a68d45ca9575ef4e5c5b541f981f0e279829129ffa8510563",
+      "behaviors": [
+        "AS.effect-animation-catalog",
+        "TL.effect-movement-recount",
+        "TL.effect-type-setup"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-animation-metadata-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "9920106740c0e397b8ebf37abf2259608b28a43db0b5d53c56022cfb296e5689",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-animation-metadata-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "e3eddc7b6d61096c1026f397d31eb62dffb0a1de183735b906cfbe21aaf9c036",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-animation-metadata.json",
+      "before_sha256": null,
+      "after_sha256": "cc59e33c5ca1b5e3d2dbd8db3cc49326c01a0390a4fd2339da005b1d8961262a",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-animation-metadata.md",
+      "before_sha256": null,
+      "after_sha256": "36b3e4be7e09c5a481b2cd161b5be442d2c15a6174f1a4f157972fe04ae6c8e9",
+      "behaviors": [
+        "AS.effect-animation-catalog",
+        "TL.effect-animation-metadata",
+        "TL.effect-movement-recount",
+        "TL.effect-type-setup"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-animation-selection-coverage.json",
+      "before_sha256": "b95313a037c6b8b47be543db2a30e2187c3c5156f3e2a6037088efa6a60fe86c",
+      "after_sha256": "c18407f8b91efc1d200f11bac09f21983c775e8e027c5c94a2a9f7c9b704a188",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "3d1e3cbc76c5d74b35d0c3aad4cef43b69f39d4a80da54dbbd34ba7bc3975762",
+      "after_sha256": "86c4c6a3b0b1fda5acd6fbf8a2fb2d5781a684df5d982d3d492f220f151c890a",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "21003b7b99cc5e87dfff9c4362bb26d044c6049d638580739ed77d5f3e9b5fc3",
+      "after_sha256": "059d54851a1ee23c5347e0fc67395eb7a7add0e1250503c6f839479e5a253690",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "557448d893262f0bf337d45fdc60f769e4af78dcab887c4263cf555a5859e62a",
+      "after_sha256": "55345e80f9a2514f28469de54f6fd21d49ce9b9a20ec455cb61521c3519316a3",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "before_sha256": "da587d8039bdd755b48ff55c5bb465e49e7d1dabc4b99dd6cc083566f45a9c8f",
+      "after_sha256": "2ed5c68f8ac19e506e2f5fa2c74aa4e8edce7060bd29148785e364763e049c05",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "34dcd4175c8d78b0047a4a5f81783e3463c77ea9e915de96024d783b94c1ea9a",
+      "after_sha256": "a8a52c7fa8c1c4a811d7707f0282279dc63fd03085b493b519a2c3bdbf3ea133",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "6d7ca36cf4d81e5d4f7d605ff87376ea177bff1abff3c796a86a244c5d879c67",
+      "after_sha256": "67109882b83e0b967c58ebbf65719a0b3c4c56fcd03ed968f4266def341398ee",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-motion-initializer-coverage.json",
+      "before_sha256": "da371d29e7a70197166af4bcff2954ecccda57ab2816c600c27c66b48dc7260c",
+      "after_sha256": "436113d174fe2d9759b1ba3b6071940d35c5b617f284bf1d7010c3be49c7beaf",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-record-placement-coverage.json",
+      "before_sha256": "ca36d96e533e2cee6be4aa9e930d613c0579eca689287b4deb29e304847fce46",
+      "after_sha256": "d4f34c9cd976c249ac50a36a55662b03dfbb30417e0c36c329cda18a892a2922",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "a2b4e15d79500c21b9a4d87e231f0c1c945efe1c5878bbf995f63d98dd3b07fc",
+      "after_sha256": "e033a4f20f1d149a0c355a085affe9296fdc0a5aa439bfa6f50bad7700aed580",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "ed8923ec9551a11db104cc422f22f5103952e31f9824e380130765589bc71547",
+      "after_sha256": "2577978905a6f5461ded12d552a8e98baf563bd32bae07780bf0b5143929bcfb",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "6f7775e1957300c24a9eee89d367f7ce2f9f15729589473c9aa1f2fe37798b15",
+      "after_sha256": "d4a2977762505b62c7f8593e65af81fa9d59b5535402124aacf55ecb2f5ee200",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "research/runtime/effect-trajectory-initializer-coverage.json",
+      "before_sha256": "0bd682b65edbfccd4d4bfd105bd9979f8869b211897cfd53d30992245560e7f6",
+      "after_sha256": "f001c99ad1115f78457b1385c1288afb2f5b8ac8482bea7eec9fe8c13de2505e",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "tests/effect-animation-metadata-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "8957a24c11299280f906f506e9e54cab2dbbc9425fc5b971a9e7c6e3635ca45c",
+      "behaviors": [
+        "AS.effect-animation-catalog",
+        "TL.effect-animation-metadata"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "tests/effect-animation-metadata-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "135e49e2b558884bd94649bf9a5aad0fee4c07c3b29f5a1ad3f85f924e498356",
+      "behaviors": [
+        "AS.effect-animation-catalog",
+        "TL.effect-animation-metadata"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "path": "tools/test-effect-animation-metadata.py",
+      "before_sha256": null,
+      "after_sha256": "00a7b58a976a21ff66c491d73212de7fb176d05d0969de1021acf63a89107e25",
+      "behaviors": [
+        "AS.effect-animation-catalog",
+        "TL.effect-animation-metadata"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "id": "AS.effect-animation-catalog",
+      "before_sha256": "6ed26ab64adad3fa6c7914dd1a0cf0f87758b13758834e85d13a0f21064ec127",
+      "after_sha256": "f7606eb69afb8103641bbbeb93157530031689e0295414d87e83194390820ab1",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "id": "TL.effect-animation-metadata",
+      "before_sha256": null,
+      "after_sha256": "24304a7ad3e92774b2bdcf640488217be2cdf29e7b371d80833325a2d8f8f922",
+      "reviews": [
+        "effect-metadata-recorded-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "c8278abb9d7bf1ea38bd0625a9c04a8be7f52a732e58c6644330fba47e2b4551",
+      "after_sha256": "bffc5efe568a6881eaeb57044b0f8642491632c428784ed5980ffc7ee637ecb2",
+      "reviews": [
+        "effect-metadata-remaining-6fb4b31"
+      ]
+    },
+    {
+      "commit": "19fb61bb0e91d51e0f3230a3d133e6f89b2d1af6",
+      "id": "TL.effect-type-setup",
+      "before_sha256": "d7bde1fb82054b10a2221cddee9d190c9dc9e27e38c484a295ea790964f29378",
+      "after_sha256": "3d1e1c55eaa79c595060b2ffca82a62ac2a0c232b6e8d9fb44dbcfa7151d96b1",
+      "reviews": [
+        "effect-metadata-remaining-6fb4b31"
+      ]
+    }
+  ],
+  "unmatched": []
+}
