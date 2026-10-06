@@ -68,6 +68,15 @@ behavior validation. See [NS07 evidence](../../research/runtime/native-world-sce
 
 ## Installed-map crops
 
+For a complete reproducible bounded Forest/Redcap load, use the strict
+[scene specification](../../research/formats/bounded-scene-specification.md).
+`tools/load-bounded-scene.py` admits six pinned installed resources and stages
+the same validated bytes for navigation and presentation. Its schema explicitly
+selects ordinary terrain projection and refuses unsupported fields/bindings.
+The document lists retained terrain/configuration fields and omitted runtime
+world content. A successful load retains frames, checkpoints and `result.json`;
+partial output without that marker is not an admitted scene.
+
 `mnm-map-navigation-export` creates ordinary terrain geometry and matching frozen
 navigation from an installed MAP/TTD pair. It derives geometry on the full source,
 then crops all layers and seals the outer XY ring. Its creature profile is an

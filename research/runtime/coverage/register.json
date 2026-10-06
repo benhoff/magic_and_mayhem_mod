@@ -13312,6 +13312,36 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.bounded-scene",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Strict reproducible Forest/Redcap scene construction and resource admission",
+      "scope": "Schema-1 ordinary-terrain-only specification, six hash-pinned installed resources shared through owned staging, one configured ground Redcap, explicit native exporter/preview validation and success marker. Full-world entities/scripts/resource economy, other maps/profiles, original scene equivalence, portable checkpoint relocation, adversarial concurrent staging writers and live replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/formats/bounded-scene-specification.md",
+        "research/runtime/bounded-scene-history-review.json"
+      ],
+      "implementation": [
+        "tools/load-bounded-scene.py"
+      ],
+      "tests": [
+        "tests/test-bounded-scene.py",
+        "tests/fixtures/forest-redcap-scene.json"
+      ],
+      "evidence": [
+        "WS01.native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -23184,6 +23214,40 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "WS01.native",
+      "kind": "native_integration",
+      "scope": "Strict specification admission and installed Forest/Redcap ordinary scene; independent SPR composition, repeated native outputs and arrival. No original world equivalence.",
+      "record": "research/runtime/bounded-scene-native-20261005.json",
+      "sha256": "81c59a109c87e508af1d016a92dfa09fbfb1f212072b762be440722c16344852",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_comparisons",
+          "equals": 4
+        },
+        {
+          "pointer": "/repeat_pixels_and_geometry",
+          "equals": true
+        },
+        {
+          "pointer": "/arrival",
+          "equals": true
+        },
+        {
+          "pointer": "/hash_mismatch_refused_before_output",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -26782,6 +26846,21 @@
         "tools/test-live-render-game.py",
         "tests/live-render-channel-test.cpp"
       ]
+    },
+    {
+      "id": "world.bounded-forest-redcap",
+      "level": "preview",
+      "scope": "Strict specification admission and installed Forest/Redcap ordinary scene; independent SPR composition, repeated native outputs and arrival. No original world equivalence.",
+      "behaviors": [
+        "NP.bounded-scene"
+      ],
+      "evidence": [
+        "WS01.native"
+      ],
+      "tests": [
+        "tests/test-bounded-scene.py",
+        "tests/fixtures/forest-redcap-scene.json"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -27029,7 +27108,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-command-ring-adapter.json",
-    "sha256": "2dd789995f51023606825f4fccb3db3d9d9f7901f3917dcb9023808311a1eba5"
+    "path": "research/runtime/coverage/source-index-bounded-scene-commit-head.json",
+    "sha256": "9768fc83880d5cbd5b66b8642a78db825c80aa1dda919be546bdb7c3808742d2"
   }
 }

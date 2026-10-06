@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "policy": "ordinary-terrain-only",
+  "resources": {
+    "Realms/Celtic/Forest/CFsec01.map": "69fa6e62aaf678d97cf0d8519bcbbaa783daaba75eb1e378c3ebb0f5ec369ee5",
+    "Realms/Celtic/Forest/Terrain.ttd": "f644af06f634264786443b3fb30016d5cb4af0757aba760dde16ff2992463c85",
+    "Realms/Celtic/Forest/Terrain.spr": "bbff01037b19eaf97c067dc742c2b93bb29f69d4862f0c811a9e2a33fff7b65b",
+    "CFG/Encrypted/creature.cfg": "05be54554522af9645d1fa22e7711fdbd23d44756973f68a3b902edf79f3108a",
+    "Creatures/redcap.ani": "6af0d77f2a8a95f44ccc6d09f4330191757a584e4deb8b9417a98f8cd402902e",
+    "Creatures/redcap.spr": "9e62b75682a41d15c1419010e580f3ca4e8087673f7650bfd0b0f64dec97d1e1"
+  },
+  "crop": [
+    0,
+    0,
+    8,
+    8
+  ],
+  "creature": {
+    "type": 10,
+    "start": [
+      1,
+      1,
+      4
+    ],
+    "goal": [
+      2,
+      6,
+      4
+    ]
+  },
+  "presentation": {
+    "view": 0,
+    "ticks": 150,
+    "frames": 4
+  }
+}

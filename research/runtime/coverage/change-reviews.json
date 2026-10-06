@@ -21097,6 +21097,354 @@
           "NR.command-ring-adapter.live"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "bae2843560c5f7d56fe855f5dd64535d8e49e3ac585bdc798911af930f0ad3b6",
+          "before_sha256": "0b21c24d135d91eb6c7f8b57455a108df211a8dd2090492f01aebb8de0ee2fe2",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "92008718bc9863af33fd24780f401b7dbd934f1cf39abea126f943c32f2394ea",
+          "before_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "d2ac58a478065cf38e648b3edde573b96009353984707df62f34360c21d4ce5c",
+          "before_sha256": "a54b5e3748db37c5529c9eac551cc41d5821fb1833ccdcc329739d05339d9b92",
+          "id": "NR.world_scene"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7009f987159c6a30f401c0d0413134e76df7be850ea5acd808c5a455439ca0d6",
+          "before_sha256": "4d4911491b99c23c4c0f31dc118405a58d28f2ddd81bb3280e41cd18f4cb2655",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "481b123346aeaee1ccb0e35a71b2941007222fc8890a2b53e25cfc3db6195993",
+          "before_sha256": null,
+          "path": "research/formats/bounded-scene-specification.md"
+        },
+        {
+          "after_sha256": "47a572055b6bccfd1e6b18505868459597c0c94cee14ce1f79f81efd9297baac",
+          "before_sha256": null,
+          "path": "research/runtime/bounded-scene-history-review.json"
+        },
+        {
+          "after_sha256": "81c59a109c87e508af1d016a92dfa09fbfb1f212072b762be440722c16344852",
+          "before_sha256": null,
+          "path": "research/runtime/bounded-scene-native-20261005.json"
+        },
+        {
+          "after_sha256": "7191cd32a54c607a6614cfb93b2d32704de1a67b4f392641b6ae161f78969837",
+          "before_sha256": "ae5d018a831ea012c00ac8c856a2a7f8b4f7af79a14914cd686827bd9b8f7826",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "01eb1ea338675038c9f6c5640d504cefd49fcc37227e1f22d5a7bbfb8fb797f5",
+          "before_sha256": "3a2ab3494737cff31ba05f0c43da681d5a9a93f5cc25463188c372fdb366e91b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "e543c63fca1e3eafaa181e00df1d6606a07e906ee5d380b6ea80cb83c0472897",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-bounded-scene-20261005-final.json"
+        },
+        {
+          "after_sha256": "f2179fd51ed3d70a9ef456f7b115fb7bb7beacf1a83ddd4bec0da38c82719866",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-bounded-scene-20261005.json"
+        },
+        {
+          "after_sha256": "36452f909a6708c2a3e6cb1638dfb0619e7efff031e8ab8076fc58619f0b5662",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-bounded-scene-20261005.md"
+        },
+        {
+          "after_sha256": "757b79e4479836224797d4503d77f2ab53152e7dc91c68d26f6fe3bf22fb8272",
+          "before_sha256": null,
+          "path": "tests/fixtures/forest-redcap-scene.json"
+        },
+        {
+          "after_sha256": "e19a5a1d43b09924432ab320046773a8b8fcbd88025fafe900679a601da6ada4",
+          "before_sha256": null,
+          "path": "tests/test-bounded-scene.py"
+        },
+        {
+          "after_sha256": "d16242b5ae1c3d0dfb17976b0a4e1980da01b2ee14ca8985b2ba18b338f658d1",
+          "before_sha256": null,
+          "path": "tools/load-bounded-scene.py"
+        }
+      ],
+      "id": "WS01.scene-construction-accounting-20261005",
+      "pending_gaps": [
+        "behaviors_without_comparison:34ac8cd3736f9bc318590ac467bd2d52164a6114099672cfb7e7d588ce4c52d7"
+      ],
+      "reason": "Review strict schema-1 Forest/Redcap construction and six resource bindings, shared verified staging, refusal/success publication and reproducible example. Document selected terrain/configuration preservation and explicit omissions. Retain exact committed-history receipts for 7733743..62d8ac9, refresh the linked source census and generated summary, and append the WS01 ledger milestone without discarding pre-existing ledger edits. Central metadata retains concurrent render entries; this receipt does not review their source semantics or behavior changes.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Existing map-navigation/presentation/world-scene statuses and historical fingerprints are retained. This change adds documentation and a native construction policy, not a rerun of original scene/world equivalence. Full-world entities/scripts/resource economy, additional maps/profiles, portable checkpoint relocation and live replacement remain pending. The new native policy intentionally claims no original comparison; fresh construction execution is separately registered as WS01.native."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "5af7d2b9cdd96012497b00f3adf30e81d55bdcf66ff7874f014a8420fdab7917",
+          "before_sha256": null,
+          "id": "NP.bounded-scene"
+        }
+      ],
+      "files": [],
+      "id": "WS01.scene-construction-native-20261005",
+      "pending_gaps": [],
+      "reason": "Register scoped native scene construction and preview after executing the final loader/test bytes against freshly built Debug adapters: two pinned installed Forest/Redcap loads, exact repeated geometry/PNG/RGB565/queues, independent complete pixel composition and terrain-aware arrival; changed terrain sprite hash refuses before output.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "WS01.native"
+        ],
+        "reason": "WS01.native pins final loader/test/spec SHA-256 values, four independent full-frame pixel comparisons, repeat-output and arrival checks, hash-mismatch refusal and before/after immutable-input manifest verification. Four synthetic admission suites and the map-navigation/creature-profile CTests pass. This establishes native preview integration only; no original world comparison or live replacement is promoted."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "bae2843560c5f7d56fe855f5dd64535d8e49e3ac585bdc798911af930f0ad3b6",
+          "before_sha256": "0b21c24d135d91eb6c7f8b57455a108df211a8dd2090492f01aebb8de0ee2fe2",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "92008718bc9863af33fd24780f401b7dbd934f1cf39abea126f943c32f2394ea",
+          "before_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "d2ac58a478065cf38e648b3edde573b96009353984707df62f34360c21d4ce5c",
+          "before_sha256": "a54b5e3748db37c5529c9eac551cc41d5821fb1833ccdcc329739d05339d9b92",
+          "id": "NR.world_scene"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7009f987159c6a30f401c0d0413134e76df7be850ea5acd808c5a455439ca0d6",
+          "before_sha256": "4d4911491b99c23c4c0f31dc118405a58d28f2ddd81bb3280e41cd18f4cb2655",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "481b123346aeaee1ccb0e35a71b2941007222fc8890a2b53e25cfc3db6195993",
+          "before_sha256": null,
+          "path": "research/formats/bounded-scene-specification.md"
+        },
+        {
+          "after_sha256": "47a572055b6bccfd1e6b18505868459597c0c94cee14ce1f79f81efd9297baac",
+          "before_sha256": null,
+          "path": "research/runtime/bounded-scene-history-review.json"
+        },
+        {
+          "after_sha256": "81c59a109c87e508af1d016a92dfa09fbfb1f212072b762be440722c16344852",
+          "before_sha256": null,
+          "path": "research/runtime/bounded-scene-native-20261005.json"
+        },
+        {
+          "after_sha256": "954978f3c23d8715acdb29d2662d0e2129984d915aee0f50f884ac9174e248e4",
+          "before_sha256": "ae5d018a831ea012c00ac8c856a2a7f8b4f7af79a14914cd686827bd9b8f7826",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "1d58803e8f53cc59a0c75b5d0b49563354d5f0f8c830a21666ba49574c1b64e8",
+          "before_sha256": "3a2ab3494737cff31ba05f0c43da681d5a9a93f5cc25463188c372fdb366e91b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "e543c63fca1e3eafaa181e00df1d6606a07e906ee5d380b6ea80cb83c0472897",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-bounded-scene-20261005-final.json"
+        },
+        {
+          "after_sha256": "f2179fd51ed3d70a9ef456f7b115fb7bb7beacf1a83ddd4bec0da38c82719866",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-bounded-scene-20261005.json"
+        },
+        {
+          "after_sha256": "61b644cba5e385f85a3bca48a7bcd77ea4147e5e8fb03bbd0441e7b546cc8749",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-bounded-scene-commit.json"
+        },
+        {
+          "after_sha256": "36452f909a6708c2a3e6cb1638dfb0619e7efff031e8ab8076fc58619f0b5662",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-bounded-scene-20261005.md"
+        },
+        {
+          "after_sha256": "36963cd1124d11c532c3b2ca965e9801bdc57cad22ee939e9596988ed3051f48",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-bounded-scene-commit.md"
+        },
+        {
+          "after_sha256": "757b79e4479836224797d4503d77f2ab53152e7dc91c68d26f6fe3bf22fb8272",
+          "before_sha256": null,
+          "path": "tests/fixtures/forest-redcap-scene.json"
+        },
+        {
+          "after_sha256": "e19a5a1d43b09924432ab320046773a8b8fcbd88025fafe900679a601da6ada4",
+          "before_sha256": null,
+          "path": "tests/test-bounded-scene.py"
+        },
+        {
+          "after_sha256": "d16242b5ae1c3d0dfb17976b0a4e1980da01b2ee14ca8985b2ba18b338f658d1",
+          "before_sha256": null,
+          "path": "tools/load-bounded-scene.py"
+        }
+      ],
+      "id": "WS01.scene-construction-commit-accounting",
+      "pending_gaps": [
+        "behaviors_without_comparison:34ac8cd3736f9bc318590ac467bd2d52164a6114099672cfb7e7d588ce4c52d7"
+      ],
+      "reason": "Review the bounded Forest/Redcap workstream as an isolated commit: strict pinned resource construction, shared validated staging, refusal/success publication, preservation/omission research, tests and fresh execution record. Stage only its central-register entries and ledger section, retain prior WS01 receipts and historical snapshots, and regenerate the census/summary from the commit tree so unrelated command-ring and ledger edits remain outside this commit.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Existing recovered/native map-navigation and presentation statuses stay historical; documentation does not rerun original comparisons. Full-world entities/scripts/resource economy, other maps/profiles, portable checkpoint relocation and live replacement remain pending. Native policy intentionally has no original comparison; WS01.native separately validates the new construction preview."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "5af7d2b9cdd96012497b00f3adf30e81d55bdcf66ff7874f014a8420fdab7917",
+          "before_sha256": null,
+          "id": "NP.bounded-scene"
+        }
+      ],
+      "files": [],
+      "id": "WS01.scene-construction-commit-native",
+      "pending_gaps": [],
+      "reason": "Record scoped native construction and preview using the unchanged final loader/test/spec bytes and the preserved fresh WS01 execution result.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "WS01.native"
+        ],
+        "reason": "Fresh WS01.native fingerprints exactly these staged loader/test/spec bytes: two installed loads, identical geometry/PNG/RGB565/queues, four independent full-frame compositions, terrain-aware arrival and changed-sprite refusal before output. Before/after manifests preserve 2927 original files. Four admission suites and two native CTests pass; no original-world or live-replacement promotion."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "bae2843560c5f7d56fe855f5dd64535d8e49e3ac585bdc798911af930f0ad3b6",
+          "before_sha256": "0b21c24d135d91eb6c7f8b57455a108df211a8dd2090492f01aebb8de0ee2fe2",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "92008718bc9863af33fd24780f401b7dbd934f1cf39abea126f943c32f2394ea",
+          "before_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "d2ac58a478065cf38e648b3edde573b96009353984707df62f34360c21d4ce5c",
+          "before_sha256": "a54b5e3748db37c5529c9eac551cc41d5821fb1833ccdcc329739d05339d9b92",
+          "id": "NR.world_scene"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7009f987159c6a30f401c0d0413134e76df7be850ea5acd808c5a455439ca0d6",
+          "before_sha256": "4d4911491b99c23c4c0f31dc118405a58d28f2ddd81bb3280e41cd18f4cb2655",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "481b123346aeaee1ccb0e35a71b2941007222fc8890a2b53e25cfc3db6195993",
+          "before_sha256": null,
+          "path": "research/formats/bounded-scene-specification.md"
+        },
+        {
+          "after_sha256": "c1240366170e4e656d18f77610123fa9b6285672dc8e0de5115d9d5afc55b16f",
+          "before_sha256": null,
+          "path": "research/runtime/bounded-scene-commit-history-review.json"
+        },
+        {
+          "after_sha256": "47a572055b6bccfd1e6b18505868459597c0c94cee14ce1f79f81efd9297baac",
+          "before_sha256": null,
+          "path": "research/runtime/bounded-scene-history-review.json"
+        },
+        {
+          "after_sha256": "81c59a109c87e508af1d016a92dfa09fbfb1f212072b762be440722c16344852",
+          "before_sha256": null,
+          "path": "research/runtime/bounded-scene-native-20261005.json"
+        },
+        {
+          "after_sha256": "b9397d32f8cfd4d5a958b4d1ad1cc597b9ad683eafafbae2eb892d5f15051e40",
+          "before_sha256": "f273c8b678d1ae9fbe0231caf1c53814ea39e8e2bafb60aed8a3a09a3a7cd58d",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "7bfde4269f018d100e463200585280b62a4144d659e1b5a3545c96f7606cff7b",
+          "before_sha256": "3bdaa3d2ad5185d75033c48e933a9ea59d761321b66c4cf18c6565d9351e090a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "e543c63fca1e3eafaa181e00df1d6606a07e906ee5d380b6ea80cb83c0472897",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-bounded-scene-20261005-final.json"
+        },
+        {
+          "after_sha256": "f2179fd51ed3d70a9ef456f7b115fb7bb7beacf1a83ddd4bec0da38c82719866",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-bounded-scene-20261005.json"
+        },
+        {
+          "after_sha256": "9768fc83880d5cbd5b66b8642a78db825c80aa1dda919be546bdb7c3808742d2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-bounded-scene-commit-head.json"
+        },
+        {
+          "after_sha256": "61b644cba5e385f85a3bca48a7bcd77ea4147e5e8fb03bbd0441e7b546cc8749",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-bounded-scene-commit.json"
+        },
+        {
+          "after_sha256": "36452f909a6708c2a3e6cb1638dfb0619e7efff031e8ab8076fc58619f0b5662",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-bounded-scene-20261005.md"
+        },
+        {
+          "after_sha256": "13b43cd0933a79a18f2dd6c2eae9348cd1f9c218e5a6f804840ffa15c39205a3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-bounded-scene-commit-head.md"
+        },
+        {
+          "after_sha256": "36963cd1124d11c532c3b2ca965e9801bdc57cad22ee939e9596988ed3051f48",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-bounded-scene-commit.md"
+        },
+        {
+          "after_sha256": "757b79e4479836224797d4503d77f2ab53152e7dc91c68d26f6fe3bf22fb8272",
+          "before_sha256": null,
+          "path": "tests/fixtures/forest-redcap-scene.json"
+        },
+        {
+          "after_sha256": "e19a5a1d43b09924432ab320046773a8b8fcbd88025fafe900679a601da6ada4",
+          "before_sha256": null,
+          "path": "tests/test-bounded-scene.py"
+        },
+        {
+          "after_sha256": "d16242b5ae1c3d0dfb17976b0a4e1980da01b2ee14ca8985b2ba18b338f658d1",
+          "before_sha256": null,
+          "path": "tools/load-bounded-scene.py"
+        }
+      ],
+      "id": "WS01.scene-construction-commit-head-d955595",
+      "pending_gaps": [
+        "behaviors_without_comparison:34ac8cd3736f9bc318590ac467bd2d52164a6114099672cfb7e7d588ce4c52d7"
+      ],
+      "reason": "Rebase only the bounded-scene workstream onto reviewed command-ring commit d955595. Its 27 parent/current committed file versions have exact preserved receipts; committed source/evidence/status links are retained. Stage the WS01 register entries and ledger addition separately from remaining ledger reorganization, preserve all prior WS01 receipts/snapshots, and generate the active source census and coverage summary from this exact commit tree.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Shared documentation and accounting do not rerun original map/scene comparisons or promote unrelated engine contracts. WS01.native separately supplies unchanged fresh loader/test/spec execution evidence; existing full-world and live-replacement limitations remain explicit."
+      }
     }
   ]
 }
