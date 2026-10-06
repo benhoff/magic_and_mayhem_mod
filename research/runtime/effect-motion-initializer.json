@@ -1,0 +1,36 @@
+{
+  "all_match": true,
+  "live_validated": false,
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "fixtures": 1280,
+  "steps": 20480,
+  "guarded_cell_bytes": 25541632,
+  "output_sha256": "8dc111ab702686134af20fdd88df20397ae10a16a16f217bf1ce8757a960b1c7",
+  "helper_sha256": {
+    "original": "3d4e48883654712e1b8c389f19fd3a0015b630a725106c24261ce2b47f8bef3c",
+    "native": "9029b8b35eac0620874948c3fdeed530a10f257fa7f8cbd1a1e670e709c1611b",
+    "sanitized": "d4e22d0c88c1225706948c57293dc0be121fa736e7459b95aa59ffcc4d7a7962"
+  },
+  "registered_source_sha256": {
+    "reconstruction/rendering/effect_trajectory.cpp": "9a271f05ef153cf3032da71f8ada0e1c33562a92cf1c7804d050ccb884611024",
+    "reconstruction/rendering/effect_trajectory.hpp": "1a668bd363315bda2f957ba8ce5c98c1aa9d75535d9b93005456aa5764a3b839",
+    "reconstruction/rendering/effect_trajectory_initializer.cpp": "cd301e5bacf34c31457ba9e974ce34990cbe8c287fb3646b0bb69922c2017043",
+    "reconstruction/rendering/effect_trajectory_initializer.hpp": "9b1b43a22e10a227b5e10ddf29de7d610faf329c53b4d016b4e931685aa4fb6f",
+    "reconstruction/rendering/effect_motion_initializer.cpp": "e1e8df0b2727eb18e4b9d58a45f97e645482290761ab3bd8dc2700a79f8044de",
+    "reconstruction/rendering/effect_motion_initializer.hpp": "8055444144b977a2ecf1f656c4b6c9d1dbc4788b0f0a9c5ac42d1541fd353540",
+    "reconstruction/rendering/effect_transition.hpp": "712a7d70c06c6f61cb55d76875518a0559b2e29d006f7458c5908c0afc083961",
+    "reconstruction/rendering/effect_projection.hpp": "50bfaa5daedfaf33a61731ac8c3dfd27f8e6236fe9ec5cb6b533d058f29671e8",
+    "reconstruction/rendering/effect_placement.hpp": "60de7c29e51aa4e66144946522f88c3a6613a293e8221fefa4d224f77ae03681",
+    "reconstruction/rendering/effect_lighting.hpp": "428cd7d9804208747d9317fb6a9a5429e18e0d052778634fcd77e1fe4373e557",
+    "reconstruction/rendering/effect_cleanup.hpp": "a09d0ee210e839a3e2b986b781ea21e21327be6079788d5267683c557008c25a",
+    "reconstruction/rendering/effect-motion-initializer/CMakeLists.txt": "0cd959b4ab61b4229348079278ad9f2543f3483d7c95b8c0d12643c8a0a1528e",
+    "tests/effect-motion-initializer-test.cpp": "a19107e901264ca2a299c553da0ab2cbb67029a8f1a82317a9be3e6b6cd2d6b6",
+    "tests/effect-motion-initializer-reference.cpp": "59c55cd105fee0d23ef44ee6a2123f386b27f8728a3138c686fb707e2a455662",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-effect-motion-initializer.py": "26166d95ab959ee6e98f81ff0a7fada62410e88b53d2edf28b6ac57417d6b115"
+  },
+  "unit_passed": true,
+  "sanitized_unit_passed": true,
+  "cmake_tests_passed": 1,
+  "boundary": "Whole unmodified 0048a950 with original reset/trajectory/XY helpers, valid authored start and raw destination words, guarded full effect record, read-only cells/catalog, owned pointer ordinals and 16 chained original/native steps; no type dispatch animation, ownership, installed input provenance, membership or live replacement"
+}

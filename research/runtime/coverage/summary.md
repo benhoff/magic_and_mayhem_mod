@@ -6,14 +6,14 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | Accounting boundary | Count |
 | --- | ---: |
 | builds | 1 |
-| behaviors | 346 |
-| evidence | 249 |
-| scenarios | 55 |
+| behaviors | 347 |
+| evidence | 251 |
+| scenarios | 56 |
 | functions | 6675 |
 | registered recovered ranges | 13 |
 | incomplete dispatch tables | 8 |
-| indexed sources | 1030 |
-| unclassified functions | 6489 |
+| indexed sources | 1036 |
+| unclassified functions | 6487 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
 | unmapped imports | 190 |
@@ -36,11 +36,11 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Independent status | Counts |
 | --- | --- |
-| understanding | partial: 229; scoped: 84; unknown: 33 |
-| implementation | none: 142; partial: 125; scoped: 79 |
-| comparison | none: 286; recorded: 60 |
-| integration | headless: 42; live_equivalence: 0; live_observation: 20; none: 265; preview: 19 |
-| replacement | none: 346; scoped_live: 0 |
+| understanding | partial: 229; scoped: 85; unknown: 33 |
+| implementation | none: 142; partial: 125; scoped: 80 |
+| comparison | none: 286; recorded: 61 |
+| integration | headless: 43; live_equivalence: 0; live_observation: 20; none: 265; preview: 19 |
+| replacement | none: 347; scoped_live: 0 |
 
 ## Animation checklist
 
@@ -488,6 +488,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | TL.creature-footprint-initializer | Creature footprint initialization templates | `0x4e1260` | scoped | scoped | recorded | headless | none | current_fingerprints |
 | TL.effect-creature-collision | Effect creature candidate snapshot and collision scanning | `0x4883f0` | scoped | scoped | recorded | headless | none | stale |
 | TL.effect-trajectory-initializer | Effect trajectory initialization with horizontal wrap selection | `0x4df3a0`, `0x4df260` | scoped | scoped | recorded | headless | none | current_fingerprints |
+| TL.effect-motion-initializer | Whole effect motion record initialization helper | `0x48a950`, `0x4df230` | scoped | scoped | recorded | headless | none | current_fingerprints |
 
 ## Tooling checklist
 

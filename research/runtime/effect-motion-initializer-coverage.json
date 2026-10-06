@@ -14,35 +14,40 @@
   "api_bindings": [],
   "behaviors": [
     {
-      "id": "TL.creature-occupancy-lookup",
+      "id": "TL.effect-motion-initializer",
       "subsystem": "terrain_lighting",
       "kind": "recovered",
-      "title": "Creature footprint occupancy and raw height gating",
-      "scope": "Whole 004e1200 read-only query on valid owned receiver: sixteen WORD MSB-first footprint rows plus raw height DWORD, all signed32 XYZ and raw uint32 heights, negative/64 XY and negative/wrapped height-limit Z rejection, four-fine-unit XY blocks and normalized result; exhaustive authored fine XY, height/sign/boundary fixtures, immutable guarded original inputs and independent rectangle tests; no 004e1260 construction, candidate/transform/parent/live collision integration",
+      "title": "Whole effect motion record initialization helper",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
-          "address": 5116416,
-          "scope": "Whole 004e1200 read-only query on valid owned receiver: sixteen WORD MSB-first footprint rows plus raw height DWORD, all signed32 XYZ and raw uint32 heights, negative/64 XY and negative/wrapped height-limit Z rejection, four-fine-unit XY blocks and normalized result; exhaustive authored fine XY, height/sign/boundary fixtures, immutable guarded original inputs and independent rectangle tests; no 004e1260 construction, candidate/transform/parent/live collision integration"
+          "address": 4761936,
+          "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5108272,
+          "scope": "Whole zero reset helper composed with trajectory initialization by 0048a950; no separate standalone reset API claim"
         }
       ],
       "documents": [
-        "research/runtime/creature-occupancy-lookup.md"
+        "research/runtime/effect-motion-initializer.md"
       ],
       "implementation": [
-        "reconstruction/rendering/creature_occupancy.cpp",
-        "reconstruction/rendering/creature_occupancy.hpp",
-        "reconstruction/rendering/creature-occupancy/CMakeLists.txt"
+        "reconstruction/rendering/effect_motion_initializer.cpp",
+        "reconstruction/rendering/effect_motion_initializer.hpp",
+        "reconstruction/rendering/effect-motion-initializer/CMakeLists.txt"
       ],
       "tests": [
-        "tests/creature-occupancy-reference.cpp",
-        "tests/creature-occupancy-test.cpp",
-        "tools/test-creature-occupancy.py"
+        "tests/effect-motion-initializer-reference.cpp",
+        "tests/effect-motion-initializer-test.cpp",
+        "tools/test-effect-motion-initializer.py"
       ],
       "evidence": [
-        "TL14.creature-original",
-        "TL14.creature-native"
+        "TL20.motion-initializer-original",
+        "TL20.motion-initializer-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -96,12 +101,12 @@
   ],
   "evidence": [
     {
-      "id": "TL14.creature-original",
+      "id": "TL20.motion-initializer-original",
       "kind": "isolated_original",
       "build": "nocd-40209ca7",
-      "scope": "Whole 004e1200 read-only query on valid owned receiver: sixteen WORD MSB-first footprint rows plus raw height DWORD, all signed32 XYZ and raw uint32 heights, negative/64 XY and negative/wrapped height-limit Z rejection, four-fine-unit XY blocks and normalized result; exhaustive authored fine XY, height/sign/boundary fixtures, immutable guarded original inputs and independent rectangle tests; no 004e1260 construction, candidate/transform/parent/live collision integration",
-      "record": "research/runtime/creature-occupancy-lookup.json",
-      "sha256": "8e27ceaddb0b9729e191aec7f9f8aaca74cc6dbea73a2e65e9caf44108b6be49",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "record": "research/runtime/effect-motion-initializer.json",
+      "sha256": "81727b5c421ba42373edd033f88800b6562fab4c9ff51d83a43ce168f287c6f7",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -111,19 +116,11 @@
         },
         {
           "pointer": "/fixtures",
-          "equals": 52
+          "equals": 1280
         },
         {
-          "pointer": "/calls",
-          "equals": 1984320
-        },
-        {
-          "pointer": "/hits",
-          "equals": 340684
-        },
-        {
-          "pointer": "/guard_bytes",
-          "equals": 134933760
+          "pointer": "/steps",
+          "equals": 20480
         },
         {
           "pointer": "/unit_passed",
@@ -140,12 +137,12 @@
       ]
     },
     {
-      "id": "TL14.creature-native",
+      "id": "TL20.motion-initializer-native",
       "kind": "native_integration",
       "build": "nocd-40209ca7",
-      "scope": "Whole 004e1200 read-only query on valid owned receiver: sixteen WORD MSB-first footprint rows plus raw height DWORD, all signed32 XYZ and raw uint32 heights, negative/64 XY and negative/wrapped height-limit Z rejection, four-fine-unit XY blocks and normalized result; exhaustive authored fine XY, height/sign/boundary fixtures, immutable guarded original inputs and independent rectangle tests; no 004e1260 construction, candidate/transform/parent/live collision integration",
-      "record": "research/runtime/creature-occupancy-lookup.json",
-      "sha256": "8e27ceaddb0b9729e191aec7f9f8aaca74cc6dbea73a2e65e9caf44108b6be49",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "record": "research/runtime/effect-motion-initializer.json",
+      "sha256": "81727b5c421ba42373edd033f88800b6562fab4c9ff51d83a43ce168f287c6f7",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -155,19 +152,11 @@
         },
         {
           "pointer": "/fixtures",
-          "equals": 52
+          "equals": 1280
         },
         {
-          "pointer": "/calls",
-          "equals": 1984320
-        },
-        {
-          "pointer": "/hits",
-          "equals": 340684
-        },
-        {
-          "pointer": "/guard_bytes",
-          "equals": 134933760
+          "pointer": "/steps",
+          "equals": 20480
         },
         {
           "pointer": "/unit_passed",
@@ -186,20 +175,20 @@
   ],
   "scenarios": [
     {
-      "id": "terrain-lighting.creature-occupancy-lookup",
+      "id": "terrain-lighting.effect-motion-initializer",
       "level": "headless",
-      "scope": "Whole 004e1200 read-only query on valid owned receiver: sixteen WORD MSB-first footprint rows plus raw height DWORD, all signed32 XYZ and raw uint32 heights, negative/64 XY and negative/wrapped height-limit Z rejection, four-fine-unit XY blocks and normalized result; exhaustive authored fine XY, height/sign/boundary fixtures, immutable guarded original inputs and independent rectangle tests; no 004e1260 construction, candidate/transform/parent/live collision integration",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
       "behaviors": [
-        "TL.creature-occupancy-lookup"
+        "TL.effect-motion-initializer"
       ],
       "evidence": [
-        "TL14.creature-original",
-        "TL14.creature-native"
+        "TL20.motion-initializer-original",
+        "TL20.motion-initializer-native"
       ],
       "tests": [
-        "tests/creature-occupancy-reference.cpp",
-        "tests/creature-occupancy-test.cpp",
-        "tools/test-creature-occupancy.py"
+        "tests/effect-motion-initializer-reference.cpp",
+        "tests/effect-motion-initializer-test.cpp",
+        "tools/test-effect-motion-initializer.py"
       ]
     }
   ]

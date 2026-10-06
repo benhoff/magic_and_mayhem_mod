@@ -10080,13 +10080,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, effect creation parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs.",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, effect creation parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs."
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs."
         }
       ],
       "documents": [
@@ -10102,7 +10102,8 @@
         "research/runtime/creature-footprint-initializer.md",
         "research/runtime/effect-creature-collision.md",
         "research/runtime/effect-kind34-creator.md",
-        "research/runtime/effect-trajectory-initializer.md"
+        "research/runtime/effect-trajectory-initializer.md",
+        "research/runtime/effect-motion-initializer.md"
       ],
       "implementation": [],
       "tests": [],
@@ -12278,6 +12279,50 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-motion-initializer",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Whole effect motion record initialization helper",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4761936,
+          "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5108272,
+          "scope": "Whole zero reset helper composed with trajectory initialization by 0048a950; no separate standalone reset API claim"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-motion-initializer.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_motion_initializer.cpp",
+        "reconstruction/rendering/effect_motion_initializer.hpp",
+        "reconstruction/rendering/effect-motion-initializer/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-motion-initializer-reference.cpp",
+        "tests/effect-motion-initializer-test.cpp",
+        "tools/test-effect-motion-initializer.py"
+      ],
+      "evidence": [
+        "TL20.motion-initializer-original",
+        "TL20.motion-initializer-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -20704,6 +20749,78 @@
           "equals": "unimplemented"
         }
       ]
+    },
+    {
+      "id": "TL20.motion-initializer-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "record": "research/runtime/effect-motion-initializer.json",
+      "sha256": "81727b5c421ba42373edd033f88800b6562fab4c9ff51d83a43ce168f287c6f7",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 1280
+        },
+        {
+          "pointer": "/steps",
+          "equals": 20480
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL20.motion-initializer-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "record": "research/runtime/effect-motion-initializer.json",
+      "sha256": "81727b5c421ba42373edd033f88800b6562fab4c9ff51d83a43ce168f287c6f7",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/fixtures",
+          "equals": 1280
+        },
+        {
+          "pointer": "/steps",
+          "equals": 20480
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -23126,6 +23243,23 @@
         "tests/scene-window-driver.hpp",
         "tools/test-native-scene-window.py"
       ]
+    },
+    {
+      "id": "terrain-lighting.effect-motion-initializer",
+      "level": "headless",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "behaviors": [
+        "TL.effect-motion-initializer"
+      ],
+      "evidence": [
+        "TL20.motion-initializer-original",
+        "TL20.motion-initializer-native"
+      ],
+      "tests": [
+        "tests/effect-motion-initializer-reference.cpp",
+        "tests/effect-motion-initializer-test.cpp",
+        "tools/test-effect-motion-initializer.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -23265,7 +23399,7 @@
     },
     {
       "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "038580b272d662995fd2969c412a505370115ca71352e3619e5a84501240b5a8",
+      "sha256": "9efb1c996b2e96b206b3104a5f78927765e8019a1422d1ae762c777135d809dc",
       "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
@@ -23275,62 +23409,67 @@
     },
     {
       "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "8a65b3cfef111bfe5a36b1a94d7eb19c0e759ede647789d2bd7bf222c8f53e35",
+      "sha256": "e6933748492b39d3d4c7de6a6d587ecf1acfb14e12fa11ea8cbefb3acd218537",
       "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "3ad99b9776ace75bc656e2e15c3fb35ee2dd391ef0069e4abcd5cb0211833a87",
+      "sha256": "5b22a54824a5a4c81fa4ef6fb67b323cf16b3cd53885efa434f5e25e7b426718",
       "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-cell-cleanup-coverage.json",
-      "sha256": "0ceb12e9bdcf2649b6806836f460035fe491d33af0da4d1ac158a9c6306b0bed",
+      "sha256": "57366eb3fe5a5a4a28c78d35a022c3adf9ca416bb8d958d9ecca36c5ea727bd3",
       "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-blocked-destinations-coverage.json",
-      "sha256": "d33ed221b1cf7c7ae4190bf592fcf0fcb432014ce322ae6b4850c4d2f113876f",
+      "sha256": "62d7f994305877ff04ed67a74b27728a8131f0c4fbf45a15b0407d191b3a9441",
       "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-height-exits-coverage.json",
-      "sha256": "77e1e72bbcdf71b9ac247aa86c9ffd95d3d7df1fc6bcc2628456951cb4d62063",
+      "sha256": "7e5bb4786c774296895c0e99dc6e28e63e1ee6c3e1ceca781981e938d1aeed05",
       "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-membership-disabled-coverage.json",
-      "sha256": "ab301a69259468d31958cef2462f35c5decc5536fb3727ff82f691d43ac09a61",
+      "sha256": "f25e69ec754fec14e0aac3e0bb3003252b78d06e7c4231e6d6486376817e83db",
       "scope": "Reviewed complete-parent disabled-membership movement and preserved graph/flags, ordinary/blocked/height/cleanup reruns and native reconciliation admission; remaining occupied collision/setup/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/effect-terrain-occupancy-coverage.json",
-      "sha256": "3647ba063072f2389072590fbec1376ca3bb1486f582a3112a368502e377900b",
+      "sha256": "9b23453ac431fbddd80710f56ae179ff710d1729d2ec01789731972ba473b33e",
       "scope": "Reviewed complete-parent terrain occupancy bitmap/cache-gated sampling, hit ordering and both membership modes with fresh prior-contract reruns; remaining creature/special-type/catalog/lifecycle gaps and historical fingerprints preserved"
     },
     {
       "path": "research/runtime/creature-occupancy-lookup-coverage.json",
-      "sha256": "1603d114578a451e555fecee6c3de6cd4b1ab9cf47e37a2683913bed0a5893a4",
+      "sha256": "f4b1263081806cf396c0063888158cb5aff31f624f76dbe8e9bd55818fb5e029",
       "scope": "Reviewed complete 004e1200 creature footprint lookup and owned read-only storage, independent rectangle tests and raw-height wrapping; original candidate/parent/initializer/capture/live work remains separate and historical effect proofs are preserved"
     },
     {
       "path": "research/runtime/creature-footprint-initializer-coverage.json",
-      "sha256": "b38487f741985d49cdfd493a8840be75f440d092f48a37f1e8a23976d479d3b3",
+      "sha256": "1e3bf1f56ffa9d05229c30f2c07cb4314e49e7c8e7027841e1d67bab51740429",
       "scope": "Reviewed complete 004e1260 footprint initializer, original/native guarded overwrite and query composition; creature construction parent/capture/live remain separate"
     },
     {
       "path": "research/runtime/effect-creature-collision-coverage.json",
-      "sha256": "f33649c08aeb0005f22f13c865e41e591bd8721965a7523582bcf69802e69817",
+      "sha256": "54cc1b713825ac99b78eb6a202a344d5a71871aee47a02cd776c3f08f1f6027e",
       "scope": "Reviewed selected whole 004883f0 creature candidates and collision integration, refreshed ordered snapshots, raw coordinate/query composition, creator and status filters, first-hit and type3 continuation; installed capture/live remain separate"
     },
     {
       "path": "research/runtime/effect-trajectory-initializer-coverage.json",
       "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
-      "sha256": "4961a888dcb779cb88f37716858fb242e3341169407d1881a7e5f43d1f32f78d"
+      "sha256": "e3f3c0c1fc53739e7e33d80cd85007100147465234adf7589c4373eb13568146"
+    },
+    {
+      "path": "research/runtime/effect-motion-initializer-coverage.json",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "sha256": "5d696ea56c186188a013069a4ee2b35db385f0ceb7792fe1a3d75ed9ac12c98e"
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-window.json",
-    "sha256": "12d96472620fb2f0ccca6ced7d06470b0bea9371611a74a84f53e66af170c05b"
+    "path": "research/runtime/effect-motion-initializer-source-index.json",
+    "sha256": "6ac0f68ce67c6cb6df3b74d6244200f6cca0885132fdaafd0fde9fe15cc9f602"
   }
 }

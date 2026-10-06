@@ -11770,6 +11770,195 @@
           "NS17.scene-window"
         ]
       }
+    },
+    {
+      "id": "motion-initializer-recorded-a2c9ea2",
+      "reason": "Recover whole 0048a950 using the real original reset/trajectory/XY children and owned record/movement/startup storage. Publish raw source units, nine sentinel resets, completely initialized trajectory and row-major cell/terrain ordinals while preserving unrelated fields/storage. Add TL20 comparison and native policy tests, reconcile focused registers/census/ledger and retain historical source fingerprints. Inspect committed 6cb9412..a2c9ea234f872f41ed7902939048457aeedb45c1 range through working/tests/motion-init-history-review.json with exact receipts and evidence record bindings; history review asserts no new execution.",
+      "files": [
+        {
+          "after_sha256": "0cd959b4ab61b4229348079278ad9f2543f3483d7c95b8c0d12643c8a0a1528e",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect-motion-initializer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "e1e8df0b2727eb18e4b9d58a45f97e645482290761ab3bd8dc2700a79f8044de",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_motion_initializer.cpp"
+        },
+        {
+          "after_sha256": "8055444144b977a2ecf1f656c4b6c9d1dbc4788b0f0a9c5ac42d1541fd353540",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_motion_initializer.hpp"
+        },
+        {
+          "after_sha256": "b8be45291a572829a874a81ba4b191e3b15c66b38f7082af4dafc89570f785d2",
+          "before_sha256": "6314c62888c1da59cbafd11a6c81780a3962cbb8d803dcaf15db26748cb453ad",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "19ae41f0a50fce594f80979047a1f39c368d4396499ce0fa314a2ee5387bdb7c",
+          "before_sha256": "96feb7c22446a098f9cc68b1f80bc5adc9200e9aae92142589e61b0cdc23f170",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "1e3bf1f56ffa9d05229c30f2c07cb4314e49e7c8e7027841e1d67bab51740429",
+          "before_sha256": "b38487f741985d49cdfd493a8840be75f440d092f48a37f1e8a23976d479d3b3",
+          "path": "research/runtime/creature-footprint-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "f4b1263081806cf396c0063888158cb5aff31f624f76dbe8e9bd55818fb5e029",
+          "before_sha256": "1603d114578a451e555fecee6c3de6cd4b1ab9cf47e37a2683913bed0a5893a4",
+          "path": "research/runtime/creature-occupancy-lookup-coverage.json"
+        },
+        {
+          "after_sha256": "62d7f994305877ff04ed67a74b27728a8131f0c4fbf45a15b0407d191b3a9441",
+          "before_sha256": "d33ed221b1cf7c7ae4190bf592fcf0fcb432014ce322ae6b4850c4d2f113876f",
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "57366eb3fe5a5a4a28c78d35a022c3adf9ca416bb8d958d9ecca36c5ea727bd3",
+          "before_sha256": "0ceb12e9bdcf2649b6806836f460035fe491d33af0da4d1ac158a9c6306b0bed",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "5b22a54824a5a4c81fa4ef6fb67b323cf16b3cd53885efa434f5e25e7b426718",
+          "before_sha256": "3ad99b9776ace75bc656e2e15c3fb35ee2dd391ef0069e4abcd5cb0211833a87",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "54cc1b713825ac99b78eb6a202a344d5a71871aee47a02cd776c3f08f1f6027e",
+          "before_sha256": "f33649c08aeb0005f22f13c865e41e591bd8721965a7523582bcf69802e69817",
+          "path": "research/runtime/effect-creature-collision-coverage.json"
+        },
+        {
+          "after_sha256": "7e5bb4786c774296895c0e99dc6e28e63e1ee6c3e1ceca781981e938d1aeed05",
+          "before_sha256": "77e1e72bbcdf71b9ac247aa86c9ffd95d3d7df1fc6bcc2628456951cb4d62063",
+          "path": "research/runtime/effect-height-exits-coverage.json"
+        },
+        {
+          "after_sha256": "f25e69ec754fec14e0aac3e0bb3003252b78d06e7c4231e6d6486376817e83db",
+          "before_sha256": "ab301a69259468d31958cef2462f35c5decc5536fb3727ff82f691d43ac09a61",
+          "path": "research/runtime/effect-membership-disabled-coverage.json"
+        },
+        {
+          "after_sha256": "5d696ea56c186188a013069a4ee2b35db385f0ceb7792fe1a3d75ed9ac12c98e",
+          "before_sha256": null,
+          "path": "research/runtime/effect-motion-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "6ac0f68ce67c6cb6df3b74d6244200f6cca0885132fdaafd0fde9fe15cc9f602",
+          "before_sha256": null,
+          "path": "research/runtime/effect-motion-initializer-source-index.json"
+        },
+        {
+          "after_sha256": "81727b5c421ba42373edd033f88800b6562fab4c9ff51d83a43ce168f287c6f7",
+          "before_sha256": null,
+          "path": "research/runtime/effect-motion-initializer.json"
+        },
+        {
+          "after_sha256": "571bba0c1c32fe9a9720145eb59515d3c265b4dec9c71ebf4b7f67ba8727b6aa",
+          "before_sha256": null,
+          "path": "research/runtime/effect-motion-initializer.md"
+        },
+        {
+          "after_sha256": "e6933748492b39d3d4c7de6a6d587ecf1acfb14e12fa11ea8cbefb3acd218537",
+          "before_sha256": "8a65b3cfef111bfe5a36b1a94d7eb19c0e759ede647789d2bd7bf222c8f53e35",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "9b23453ac431fbddd80710f56ae179ff710d1729d2ec01789731972ba473b33e",
+          "before_sha256": "3647ba063072f2389072590fbec1376ca3bb1486f582a3112a368502e377900b",
+          "path": "research/runtime/effect-terrain-occupancy-coverage.json"
+        },
+        {
+          "after_sha256": "9efb1c996b2e96b206b3104a5f78927765e8019a1422d1ae762c777135d809dc",
+          "before_sha256": "038580b272d662995fd2969c412a505370115ca71352e3619e5a84501240b5a8",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "e3f3c0c1fc53739e7e33d80cd85007100147465234adf7589c4373eb13568146",
+          "before_sha256": "4961a888dcb779cb88f37716858fb242e3341169407d1881a7e5f43d1f32f78d",
+          "path": "research/runtime/effect-trajectory-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "59c55cd105fee0d23ef44ee6a2123f386b27f8728a3138c686fb707e2a455662",
+          "before_sha256": null,
+          "path": "tests/effect-motion-initializer-reference.cpp"
+        },
+        {
+          "after_sha256": "a19107e901264ca2a299c553da0ab2cbb67029a8f1a82317a9be3e6b6cd2d6b6",
+          "before_sha256": null,
+          "path": "tests/effect-motion-initializer-test.cpp"
+        },
+        {
+          "after_sha256": "26166d95ab959ee6e98f81ff0a7fada62410e88b53d2edf28b6ac57417d6b115",
+          "before_sha256": null,
+          "path": "tools/test-effect-motion-initializer.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "5b55a0755a2433178c23138f30bf4512a5b887e9e1d821972edc5b50c28038ea",
+          "before_sha256": null,
+          "id": "TL.effect-motion-initializer"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL20.motion-initializer-original",
+          "TL20.motion-initializer-native"
+        ],
+        "reason": "1,280 whole guarded original 0048a950 calls and 20,480 chained original trajectory steps match native64 and ASan/UBSan. Compare all 558 receiver bytes plus external guards, normalize checked host pointers to owned cell/terrain ordinals, preserve every cell byte and the guarded 65,536-entry catalog. Five grids cover single/asymmetric/maximum dimensions; authored source bounds and equal/opposite/random destination words expose reset and wrap behavior. Strict units, sanitized units and CTest pass; stable executable/source hashes and pre/post immutable manifests verify. Full type dispatch/animation, installed provenance and live replacement are excluded."
+      }
+    },
+    {
+      "id": "motion-initializer-remaining-a2c9ea2",
+      "reason": "Narrow the remaining movement gap by separately accounting for whole 0048a950 motion creation setup; preserve remaining type-dispatch parents, installed inputs, ownership, membership/lifecycle and ballistic updater. Correct the prior initializer document: 004891e0 belongs to ballistic update 00489080, not initial creation, and link the newly recovered setup helper.",
+      "files": [
+        {
+          "after_sha256": "a7aa88e28bcb49d883634b62070666ff027bbad8a5bed65bc252796f827774a7",
+          "before_sha256": "d7f9c3a9ed32c9799d61b95eae2736e94285add987827925e97737d1ef5345b7",
+          "path": "research/runtime/effect-trajectory-initializer.md"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "10b638d7404ee75267309870df3502d9b2bf37e4a6edb63b8572be9e220c3773",
+          "before_sha256": "db96e8faff47efd3bf7767f950197d9505ca09243c86c95d6131c930a9965c3d",
+          "id": "TL.effect-movement-recount"
+        },
+        {
+          "after_sha256": "e73cfd2f53d112a4f901aacbb938ecfeb7539d844817f08739dc124c5d110e94",
+          "before_sha256": "dd46eea5fb1b68175e75cb04d0de4a153167386b530575e39a631ec1cd68f9a3",
+          "id": "TL.effect-trajectory-initializer"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Prior TL19 original/native source fingerprints are retained without alteration; its implementation/test inputs are unchanged by this research correction. Caller classification and helper-to-dispatch links are static disassembly evidence, not full caller execution. Remaining type dispatch/animation, ballistic destination/angle production, installed coordinates/periods/offset tables and creator/membership/lifecycle/live contracts remain pending."
+      }
+    },
+    {
+      "id": "motion-initializer-summary-a2c9ea2",
+      "reason": "Refresh isolated coverage summary for the added scoped motion creation helper, preserving historical staleness and discovery gaps.",
+      "files": [
+        {
+          "after_sha256": "195ed6922dd1d5bd3bbf25450fdb560082e5c051550a47ac4004d4fec8f58240",
+          "before_sha256": "de899275251a20e8ede13e003fd5179cbd753f7f2d761df1ece2dd2caeac8634",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated research metadata only; no engine change or independent status promotion."
+      }
     }
   ]
 }
