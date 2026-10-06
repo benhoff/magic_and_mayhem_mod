@@ -32379,6 +32379,328 @@
         "reason": "Shared operation matrix and ledger links reviewed. Other original/renderer contracts retain historical evidence/status; the palette probe does not assert fresh original comparison, shared COM/wire semantics, reloaders or live recovery.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "9db4434e313a5e78f04b52364ec60ac1320ef3b6a7f19f64bb957df9bfa67494",
+          "before_sha256": null,
+          "id": "NR.bounded-copy-order"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "3bec3cb4b9c0be5bfe3c60fa844c60a8e3e592226164156c6e7cbe8c07b0ea48",
+          "before_sha256": "7f65a88fe2a6a09f6fe95c02895c7ebf8ae44ba768343aa269396ed013794438",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "29b7d9cbc29df395f7a7f30ce47f81746b72db15a632907f810fc3a5b1219b73",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-copy-order-20261006.json"
+        },
+        {
+          "after_sha256": "ed9764bdfeac3a86b8104b419eba7ff59326adff30dc660ce9b827a94dc90933",
+          "before_sha256": "c4e0c253932d39539ff1b7afc762b076439d80cef2019c294a9c8a135a58793b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "19ba1f863a92150dd283cc1f0c569f4bff2b9ce2fde32ef7c298d9aacc466a74",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-copy-order-20261006.json"
+        },
+        {
+          "after_sha256": "f8790de964682dfa22ce305ccd80a8e4b6d64262df17ea8bf97f9fb532a7fd63",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-copy-order-20261006.md"
+        },
+        {
+          "after_sha256": "a54453834ffa17244b9378a5bc494f884d58c3129ea615ff24dca5de1f1ed2a7",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order-live-20261006.json"
+        },
+        {
+          "after_sha256": "dd5435d23da9c567b0b6fd83f438b9e25c5a7b6bb24737111608d1df8b4c7c14",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order-live-refusal-20261006.json"
+        },
+        {
+          "after_sha256": "a0fe0f45da134e83748cd6dc4738a2239554e7acf2fc231eacc5cd674b1d8276",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order-live-verified-20261006.json"
+        },
+        {
+          "after_sha256": "e8772b5fa27977246615ba405c965dac1c6b123c4493ff41def24d856c773016",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order-native-20261006.json"
+        },
+        {
+          "after_sha256": "aa562ef2e7b0094975637c1b6063ba5fe69348383e5145d471629306c9b7e852",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order-native-verified-20261006.json"
+        },
+        {
+          "after_sha256": "cb1a2f0bd7f69efe62c9d2daf97b35ba035d005b5983c122893e8dbfcf0770f8",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order.md"
+        },
+        {
+          "after_sha256": "91f1ef9e5877778d8065257fdedc68e227855e06a1243c8b9c76b9e97ae3f41d",
+          "before_sha256": "77e4bd93a49238f915eb2e05cd36799758ebbfa9e85f6b53adab95cce038a136",
+          "path": "runtime/render/bridge.c"
+        },
+        {
+          "after_sha256": "8ad9c8737d31fab7409fb4a2afb46e44aa34ed4224764fd901bb09b9c7735463",
+          "before_sha256": null,
+          "path": "runtime/render/copy_order.h"
+        },
+        {
+          "after_sha256": "0b8cde294ee5c279c4f5a43a1140d8d70aa932fe27fc63168be8276f0251a768",
+          "before_sha256": "8a97eee31234a891933988eb446f856600a1562e75c747fa7f485a765cf176db",
+          "path": "runtime/render/lock_lifecycle.h"
+        },
+        {
+          "after_sha256": "aa7b8de3b0fdee52a77e38ce8b4ddb59f51730f1e4a5b47972f58b429701f053",
+          "before_sha256": "af0b9c515ef0244627008ff313a1d529e431862b6f6093bd25fbf098952d9bb1",
+          "path": "runtime/render/mutation_selftest.h"
+        },
+        {
+          "after_sha256": "9443b086d162108f30aa4542a8493624f7576ca13075705040b67d9ba4333644",
+          "before_sha256": "8089ab6a2c365acec9637d67a39e34c09aae7267daff85ec203e81aaa6aa0f8b",
+          "path": "tools/test-live-render-routes.py"
+        },
+        {
+          "after_sha256": "37028f4d82a782c17de7e47156c2300eefd24b3bccebc80329006213aaba8b4b",
+          "before_sha256": "ed726ba1abbb50054372f25a3d8e697e59d019ba5422e13e55bb3f45f00f282f",
+          "path": "tools/test-render-mutations.py"
+        }
+      ],
+      "id": "copy-order-scoped-native-execution-20261006",
+      "pending_gaps": [],
+      "reason": "Reviewed opt-in50ms tick-budget lease shared by Blt/BltFast across admission, original call and commit. Tracker guard is never held during wait/original. Timeout forwards exactly once with before/after epoch/target invalidation and legacy-history invalid flag; same-thread reentry retains generation refusal. Default behavior and wire contract unchanged.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.copy-order.native-verified-20261006",
+          "NR.copy-order.live-verified-20261006"
+        ],
+        "reason": "Final strict producer build and six actual Wine fixture cases compare408 complete independent frames, checking worker ordering forBlt/BltFast, timeout forwarding, reentrant source write and regression pixels. Final-source original tutorial confirms summon/native control pixels then conservatively fails strict continuation through tracker contention. Records demonstrate scoped native implementation and refusal, not reliable active-gameplay equivalence."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "e89376fb4ef02a80fc5b90c6597b22e6939e8e055fcde205e4cc3d20739f33a8",
+          "before_sha256": "56f4bd0a46fbfbfd052a98d64ce6dbb24b560202930ff3e940fee226cdb25e03",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "34fa65571789efce827f27ecf81cf1af649b4e59b86312ae5a4f1c00a5b25f1b",
+          "before_sha256": "92d31f175c43a7400da63092ca9d03c1d87ca9f27dea1a16cd362e6bb78788b9",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "82036ce46f7a5be9e171be4575cd359ef6fc2308c04ed22f8a272f7a616e3bb9",
+          "before_sha256": "d149e9c1371024e1a19c879aa4e2a6d34736fbac84cc48abfe24fb48607ca1fd",
+          "id": "NR.command-idle-lifecycle"
+        },
+        {
+          "after_sha256": "0963a645b75a72af9b51f26383534850962ada7fa6961771a480184fdedc7a53",
+          "before_sha256": "f602f2c9f88aafb6f541532c7271e1875493f251cdfbba6a0a9925539bd97205",
+          "id": "NR.command-orchestration"
+        },
+        {
+          "after_sha256": "311a65b4b3cb434efcc0c3281b8edfd71cf24296bc5810225a13e428b4b7830b",
+          "before_sha256": "505d2c90172bf76deb0580d863247c60be7751dae03dc802133a1fc06d623623",
+          "id": "NR.command-recovery"
+        },
+        {
+          "after_sha256": "aa8cde5e416eddda8ac32c722a6becd9ebaad4a445fddee8d323f54cb64c50bb",
+          "before_sha256": "5882347a602f106ce65423485b20fbb8a0e01f8ad6c2e6053af99c954836db2c",
+          "id": "NR.command-ring-adapter"
+        },
+        {
+          "after_sha256": "388e5be6b8379fd8e3bb711742f6a1232e999f28c290f47db8eac961f87f29b6",
+          "before_sha256": "765fa9bbf3830cf79ac0bcec171d313152db731677e286ae8b78136dfedbb374",
+          "id": "NR.continuous-mutations"
+        },
+        {
+          "after_sha256": "b8685f055e8c9417624ef336f340b41f977b004a10b4dce84a7687d45681c610",
+          "before_sha256": "20f4b31c77beac8bf0c59805b81e3a056c1189ddf2c6e0f6d3c73f3e838fa4bd",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "68358929ba4c5aacae99b1f5aa63ad70e96203ab0b3bf3a8635f06a96066e67e",
+          "before_sha256": "a40cff4e085d6f45fc17decd1283476a7012f57a28b99491789d06c0e1205180",
+          "id": "NR.continuous-resource-lifetime"
+        },
+        {
+          "after_sha256": "ed4f3cf36bf069c135b4dd51d76211e1f8c7b77a0541c5ea43c34f337813111f",
+          "before_sha256": "968a677cc1f13d155f29ce0fea43467566bf82a7b0cf95c27e6268c20203a5c4",
+          "id": "NR.continuous-resource-working-set"
+        },
+        {
+          "after_sha256": "10d79c6d952f9f6e283844d5e0eb93ee63100acf72dc2767ec121d9d2b966389",
+          "before_sha256": "4301537767ccdf604c64fbc847dbfc02bde02e272af517aa0257e6dadc78f486",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "6390118ebabea3ca56ee5c26e7c4ff7bbe799d2d2b42fe9fc998a4e5ee123efe",
+          "before_sha256": "4fe83fd593fcbcdd6b303a2ac9ec70bd0a0b91b6b28874911108dbd8fd3a6a04",
+          "id": "NR.observed-metadata-idempotence"
+        },
+        {
+          "after_sha256": "267cdfc42af206f7426005ca0c2fa50dbc5368cda678243bb59ebf228f48b04b",
+          "before_sha256": "eeb7d80c6401689dd6ce0944366e71bf3ca35206505f6357d40754ea88add7b4",
+          "id": "NR.owned-session-sequence"
+        },
+        {
+          "after_sha256": "ed7c0eea5b8ac6d6e3cc8dd5894fbeab92737eeea61126dd60b575cac21cd671",
+          "before_sha256": "c2058ad92a2dc4fd908248b374b73bcdfa338ab79b948a3ac8561ce4a8f0d55b",
+          "id": "NR.owned-session-unlock-packed"
+        },
+        {
+          "after_sha256": "8351ef257f438b2176c6c843250078c827dded6ef346bf458ed845fc5a3eb6df",
+          "before_sha256": "aa0abaf58e4b457082eda849ca62db98b79de36810434cf7fde0dbef599ec7ac",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "77a02f0adb667c8efc4bbec74088f0e084d447ba2efd2da110b44469e090ee27",
+          "before_sha256": "3118f20b98f349172fe4a23183fc9702dd9324bee09a32f32b85a1e6cb049afc",
+          "id": "NR.real-game-command-shadow"
+        },
+        {
+          "after_sha256": "f5b1cb8b5f9ac10d0c22f31f9c0bec68b838edf85e97847c41d1ab95fba956ef",
+          "before_sha256": "196e35c2d345ea7b0270c9642cb88a024bb3b2d2b8d910ff387f213051e65ef5",
+          "id": "RI.copies"
+        },
+        {
+          "after_sha256": "b50559bc76cfae4d87863c9778d382afa8d4ee9df9eeaf80d93cb380e4b21856",
+          "before_sha256": "938af48095b0efe498ac6439e358452c9eded4feb8fe081810eaa7b457755b3b",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "6a7626b515ca03c1472a5a8cfdf334d8a26220180bc27e6c7e80f1a8fd99cc99",
+          "before_sha256": "e294f4ed94a1b22ce9399dfc30886364a4c5571470a4d270d70b303df82933f2",
+          "id": "RI.ui"
+        },
+        {
+          "after_sha256": "95f62f33fef35a716fbea75efe1012689a8eb12377b1ee45ad269fb480180cd9",
+          "before_sha256": "ecaa8aac187a7b6685cf191af0e1ca8c3c19b7f5dc3966228fd376822d72360d",
+          "id": "RT.render"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "3bec3cb4b9c0be5bfe3c60fa844c60a8e3e592226164156c6e7cbe8c07b0ea48",
+          "before_sha256": "7f65a88fe2a6a09f6fe95c02895c7ebf8ae44ba768343aa269396ed013794438",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "29b7d9cbc29df395f7a7f30ce47f81746b72db15a632907f810fc3a5b1219b73",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-copy-order-20261006.json"
+        },
+        {
+          "after_sha256": "ed9764bdfeac3a86b8104b419eba7ff59326adff30dc660ce9b827a94dc90933",
+          "before_sha256": "c4e0c253932d39539ff1b7afc762b076439d80cef2019c294a9c8a135a58793b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "19ba1f863a92150dd283cc1f0c569f4bff2b9ce2fde32ef7c298d9aacc466a74",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-copy-order-20261006.json"
+        },
+        {
+          "after_sha256": "f8790de964682dfa22ce305ccd80a8e4b6d64262df17ea8bf97f9fb532a7fd63",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-copy-order-20261006.md"
+        },
+        {
+          "after_sha256": "a54453834ffa17244b9378a5bc494f884d58c3129ea615ff24dca5de1f1ed2a7",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order-live-20261006.json"
+        },
+        {
+          "after_sha256": "dd5435d23da9c567b0b6fd83f438b9e25c5a7b6bb24737111608d1df8b4c7c14",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order-live-refusal-20261006.json"
+        },
+        {
+          "after_sha256": "a0fe0f45da134e83748cd6dc4738a2239554e7acf2fc231eacc5cd674b1d8276",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order-live-verified-20261006.json"
+        },
+        {
+          "after_sha256": "e8772b5fa27977246615ba405c965dac1c6b123c4493ff41def24d856c773016",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order-native-20261006.json"
+        },
+        {
+          "after_sha256": "aa562ef2e7b0094975637c1b6063ba5fe69348383e5145d471629306c9b7e852",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order-native-verified-20261006.json"
+        },
+        {
+          "after_sha256": "cb1a2f0bd7f69efe62c9d2daf97b35ba035d005b5983c122893e8dbfcf0770f8",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-copy-order.md"
+        },
+        {
+          "after_sha256": "91f1ef9e5877778d8065257fdedc68e227855e06a1243c8b9c76b9e97ae3f41d",
+          "before_sha256": "77e4bd93a49238f915eb2e05cd36799758ebbfa9e85f6b53adab95cce038a136",
+          "path": "runtime/render/bridge.c"
+        },
+        {
+          "after_sha256": "8ad9c8737d31fab7409fb4a2afb46e44aa34ed4224764fd901bb09b9c7735463",
+          "before_sha256": null,
+          "path": "runtime/render/copy_order.h"
+        },
+        {
+          "after_sha256": "0b8cde294ee5c279c4f5a43a1140d8d70aa932fe27fc63168be8276f0251a768",
+          "before_sha256": "8a97eee31234a891933988eb446f856600a1562e75c747fa7f485a765cf176db",
+          "path": "runtime/render/lock_lifecycle.h"
+        },
+        {
+          "after_sha256": "aa7b8de3b0fdee52a77e38ce8b4ddb59f51730f1e4a5b47972f58b429701f053",
+          "before_sha256": "af0b9c515ef0244627008ff313a1d529e431862b6f6093bd25fbf098952d9bb1",
+          "path": "runtime/render/mutation_selftest.h"
+        },
+        {
+          "after_sha256": "9443b086d162108f30aa4542a8493624f7576ca13075705040b67d9ba4333644",
+          "before_sha256": "8089ab6a2c365acec9637d67a39e34c09aae7267daff85ec203e81aaa6aa0f8b",
+          "path": "tools/test-live-render-routes.py"
+        },
+        {
+          "after_sha256": "37028f4d82a782c17de7e47156c2300eefd24b3bccebc80329006213aaba8b4b",
+          "before_sha256": "ed726ba1abbb50054372f25a3d8e697e59d019ba5422e13e55bb3f45f00f282f",
+          "path": "tools/test-render-mutations.py"
+        }
+      ],
+      "id": "copy-order-shared-contracts-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:137d0791343859bbd5b9f1af9f8f8b60452c768cdd45ac65b1e88a0b79c9792d",
+        "stale_evidence:28943979243cc9d7d501519f3d706d92cf5c5fa4255229bb2761546cb5170349",
+        "stale_evidence:2b82dfa450adc759ccc1def29da1f93be0903871ab86c4332ec405fde5b5e028",
+        "stale_evidence:3c5f2ee41f202c9e9d3e01b79f1e423ef779e4839d8abd8812cd15a2dc5506f8",
+        "stale_evidence:446cdea9ae2ab913446fa395efc43e122b820db6faed5e26355664c3bf08b95c",
+        "stale_evidence:4f11a3c88a4d0ce40c902ca45a4d3a718be74a531b3ff804d70d0729876f8fe0",
+        "stale_evidence:558c2f71fca18c9537c55d504152206d82c88738a20d26ba5f7e93d1dbcdc7d4",
+        "stale_evidence:663b3f1a91cc691bf885330f7cd42f28b2ef5a594c94f61cf2431fb906457d96",
+        "stale_evidence:694c1349c6ad86a269e751b1ca4ba10431a46be7cb35e37ab1e055d8e950ca31",
+        "stale_evidence:8f69a8f3367bc071d9024614273759757cee1cf8b5ad1d6339b232bfe9aa2846",
+        "stale_evidence:b20d15b95bad090f30d25182382522debec7302cef46ea21e99a0e45990c5f5b",
+        "stale_evidence:c586e32bb0c256f3ceef79d2ae630d462d3bc8ffe62ef948eed80111266c9249",
+        "stale_evidence:c85d30c8a72d4e958815def18c37b987932dfad56975136f63d7668096261844",
+        "stale_evidence:d21dbd1659d78e5723035494b549d7d17e2f75676d8df95a6f63c19fd27a0b7c",
+        "stale_evidence:f73abffdf7d58620e17fc164b67194b14a7fc53cb992aac31dad0b7dd17bca39"
+      ],
+      "reason": "Reviewed source/header/test changes, census and original tutorial outcomes. Preserve original copy return-PC mapping and all historical evidence hashes. Exact committed range01a66c2..89ab1db file/behavior receipts reviewed separately without unresolved gaps. Opt-in scheduling changes baseline timing intentionally; source-stable negative repetition is retained alongside the earlier passing strict attempt.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Final fixture matrix passes408 frames; strict original repetition confirms summon then refuses through pixel-tracker contention. Earlier passing strict attempt predates final legacy-history timeout flag and remains historical. Existing shared-header evidence becomes stale without asserting current equivalence. Reliable active-gameplay continuation, classification of tracker hold/missed operation, other mutation-family concurrency, timeout with legacy archive replay, abnormal owner-thread termination, animated/full-frame/driver comparisons and default enablement remain pending."
+      }
     }
   ]
 }

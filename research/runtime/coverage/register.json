@@ -11896,7 +11896,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original-game command shadow observation",
-      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim.",
+      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -11911,7 +11911,8 @@
         "research/runtime/opengl-render-routes.md",
         "research/runtime/opengl-resource-working-set.md",
         "research/runtime/opengl-world-observation.md",
-        "research/runtime/opengl-world-summon-observation.md"
+        "research/runtime/opengl-world-summon-observation.md",
+        "research/runtime/opengl-copy-order.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py",
@@ -11936,7 +11937,9 @@
         "NR.command-route-observation.live-20261006",
         "NR.continuous-resource-working-set.game-20261006",
         "NR.command-world-observation.live-20261006",
-        "NR.world-summon.observation-20261006"
+        "NR.world-summon.observation-20261006",
+        "NR.copy-order.live-20261006",
+        "NR.copy-order.live-verified-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13484,7 +13487,7 @@
       "subsystem": "rendering_inventory",
       "kind": "recovered",
       "title": "Surface copy and rectangle-copy routes",
-      "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking. Inventory review only; no new implementation, execution comparison, integration or replacement claim. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim.",
+      "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking. Inventory review only; no new implementation, execution comparison, integration or replacement claim. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -13526,13 +13529,16 @@
       "documents": [
         "research/runtime/render-drawing-inventory.md",
         "research/runtime/surface-rectangle-forwarding.md",
-        "research/runtime/opengl-world-summon-observation.md"
+        "research/runtime/opengl-world-summon-observation.md",
+        "research/runtime/opengl-copy-order.md"
       ],
       "implementation": [],
       "tests": [],
       "evidence": [
         "RI.static-callers-final-20261006",
-        "NR.world-summon.observation-20261006"
+        "NR.world-summon.observation-20261006",
+        "NR.copy-order.live-20261006",
+        "NR.copy-order.live-verified-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -13979,14 +13985,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous mixed resource mutations and committed full-layout replacement",
-      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim.",
+      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-continuous-mutations.md",
         "research/runtime/opengl-owned-unlock-deltas.md",
         "research/runtime/opengl-resource-working-set.md",
-        "research/runtime/opengl-world-summon-observation.md"
+        "research/runtime/opengl-world-summon-observation.md",
+        "research/runtime/opengl-copy-order.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -14017,7 +14024,9 @@
         "NR.continuous-resource-working-set.checkpoint-20261006",
         "NR.continuous-resource-working-set.continuous-20261006",
         "NR.world-summon.mutations-20261006",
-        "NR.world-summon.palette-dc-20261006"
+        "NR.world-summon.palette-dc-20261006",
+        "NR.copy-order.native-20261006",
+        "NR.copy-order.native-verified-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14916,6 +14925,81 @@
       }
     },
     {
+      "id": "NR.observed-metadata-idempotence",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Identical metadata observations preserve native mutation generations",
+      "scope": "Validated identical surface descriptors and descriptor source-key observations preserve the current generation. Real metadata changes and nested successful source writes still refuse uncertain pending copies. Bounded origin/caller diagnostics describe successful-copy provenance without changing original calls or v2 transport. Synthetic fixtures and scoped original tutorial observation only; reentrant primary-copy ordering, original driver equivalence and replacement remain pending. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-world-summon-observation.md",
+        "research/runtime/opengl-copy-order.md"
+      ],
+      "implementation": [
+        "runtime/render/bridge.c",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_palette.h"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py",
+        "tools/test-live-render-routes.py"
+      ],
+      "evidence": [
+        "NR.world-summon.mutations-20261006",
+        "NR.world-summon.palette-dc-20261006",
+        "NR.world-summon.observation-20261006",
+        "NR.copy-order.native-20261006",
+        "NR.copy-order.native-verified-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.bounded-copy-order",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Opt-in bounded scheduling across hooked original copies",
+      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-copy-order.md"
+      ],
+      "implementation": [
+        "runtime/render/copy_order.h",
+        "runtime/render/bridge.c",
+        "runtime/render/lock_lifecycle.h"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py",
+        "tools/test-live-render-routes.py"
+      ],
+      "evidence": [
+        "NR.copy-order.native-20261006",
+        "NR.copy-order.live-20261006",
+        "NR.copy-order.native-verified-20261006",
+        "NR.copy-order.live-verified-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "NR.surface-contents.validity",
       "subsystem": "native_rendering",
       "kind": "native_policy",
@@ -14948,43 +15032,6 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
-        "replacement": "none"
-      }
-    },
-    {
-      "id": "NR.observed-metadata-idempotence",
-      "subsystem": "native_rendering",
-      "kind": "native_policy",
-      "title": "Identical metadata observations preserve native mutation generations",
-      "scope": "Validated identical surface descriptors and descriptor source-key observations preserve the current generation. Real metadata changes and nested successful source writes still refuse uncertain pending copies. Bounded origin/caller diagnostics describe successful-copy provenance without changing original calls or v2 transport. Synthetic fixtures and scoped original tutorial observation only; reentrant primary-copy ordering, original driver equivalence and replacement remain pending.",
-      "confidence": "high_within_scope",
-      "original": [],
-      "documents": [
-        "research/runtime/opengl-world-summon-observation.md"
-      ],
-      "implementation": [
-        "runtime/render/bridge.c",
-        "runtime/render/lock_surfaces.h",
-        "runtime/render/lock_dc.h",
-        "runtime/render/lock_flip.h",
-        "runtime/render/lock_lifecycle.h",
-        "runtime/render/lock_palette.h"
-      ],
-      "tests": [
-        "runtime/render/mutation_selftest.h",
-        "tools/test-render-mutations.py",
-        "tools/test-live-render-routes.py"
-      ],
-      "evidence": [
-        "NR.world-summon.mutations-20261006",
-        "NR.world-summon.palette-dc-20261006",
-        "NR.world-summon.observation-20261006"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "none",
-        "integration": "preview",
         "replacement": "none"
       }
     },
@@ -27029,6 +27076,64 @@
       ]
     },
     {
+      "id": "NR.copy-order.native-20261006",
+      "kind": "native_integration",
+      "scope": "Six synthetic cases;408 independently compared complete native frames. Real second-thread Blt/BltFast ordering, bounded cross-thread timeout, same-thread source-write refusal, identical metadata and mixed RGB16 regression.",
+      "record": "research/runtime/opengl-copy-order-native-20261006.json",
+      "sha256": "e8772b5fa27977246615ba405c965dac1c6b123c4493ff41def24d856c773016",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 408
+        }
+      ]
+    },
+    {
+      "id": "NR.copy-order.live-20261006",
+      "kind": "live_observation",
+      "scope": "Finite original tutorial summon with opt-in copy scheduling, original prompts/count and independent stable unsynchronized native regions; strict result recorded, no animated/full-frame/driver equivalence.",
+      "record": "research/runtime/opengl-copy-order-live-20261006.json",
+      "sha256": "a54453834ffa17244b9378a5bc494f884d58c3129ea615ff24dca5de1f1ed2a7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordered_copies",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.copy-order.native-verified-20261006",
+      "kind": "native_integration",
+      "scope": "Final source after timeout also marks legacy history invalid: six cases408 independent complete native frames; legacy-history archive replay under timeout itself remains pending.",
+      "record": "research/runtime/opengl-copy-order-native-verified-20261006.json",
+      "sha256": "aa562ef2e7b0094975637c1b6063ba5fe69348383e5145d471629306c9b7e852",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 408
+        }
+      ]
+    },
+    {
       "id": "DRIVER.surface-palette.restore.capture-20261006",
       "kind": "native_integration",
       "scope": "Standalone real Wine11.16 indexed Surface2 palette/loss/Restore and explicit index writes,8233 ordered observations/6656 entries checked offline. Native record covers nine API compositions,45 undefined refusals,18 index comparisons and864 input-derived RGB pixels; no captured driver RGB, original game/reloader or live equivalence.",
@@ -27067,6 +27172,36 @@
         {
           "pointer": "/success",
           "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.copy-order.live-verified-20261006",
+      "kind": "live_observation",
+      "scope": "Strict final-source tutorial summon confirms original count transition and native stable regions through first sustained sample; second sustained sample conservatively refuses with pixel tracker contention. No prepared-copy generation conflict or copy-gate timeout appears in bounded trace; unrestricted continuation remains pending.",
+      "record": "research/runtime/opengl-copy-order-live-verified-20261006.json",
+      "sha256": "a0fe0f45da134e83748cd6dc4738a2239554e7acf2fc231eacc5cd674b1d8276",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/ordered_copies",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/original_summon_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/world_summon_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/phases/14/state",
+          "equals": 3
         }
       ]
     }
@@ -31447,6 +31582,41 @@
       ]
     },
     {
+      "id": "NR.copy-order.native",
+      "level": "preview",
+      "scope": "Finite independent copy scheduling fixtures including timeout and reentrant refusal;408 frames.",
+      "behaviors": [
+        "NR.bounded-copy-order",
+        "NR.continuous-mutations"
+      ],
+      "evidence": [
+        "NR.copy-order.native-20261006",
+        "NR.copy-order.native-verified-20261006"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py"
+      ]
+    },
+    {
+      "id": "NR.copy-order.original-tutorial",
+      "level": "live_observation",
+      "scope": "Strict original tutorial observation with scheduling opt-in; outcome scoped to this run.",
+      "behaviors": [
+        "NR.bounded-copy-order",
+        "NR.real-game-command-shadow",
+        "RI.copies"
+      ],
+      "evidence": [
+        "NR.copy-order.live-20261006",
+        "NR.copy-order.live-verified-20261006"
+      ],
+      "tests": [
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
+      ]
+    },
+    {
       "id": "NR.surface-contents.validity.palette-reload.headless",
       "level": "headless",
       "scope": "Nine indexed8 cropped native API cases from captured explicitly defined index and palette inputs. Unknown-index refusal, full reload and input-derived RGB presentation with palette update/rebind; no driver display RGB, shared COM identity, game asset reload or live equivalence.",
@@ -31707,7 +31877,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-palette-restore-20261006.json",
-    "sha256": "ab6b9354d8a4000d986557aff86c90b49e95ac88182705697eb6ba2671e4c6c0"
+    "path": "research/runtime/coverage/source-index-copy-order-20261006.json",
+    "sha256": "19ba1f863a92150dd283cc1f0c569f4bff2b9ce2fde32ef7c298d9aacc466a74"
   }
 }
