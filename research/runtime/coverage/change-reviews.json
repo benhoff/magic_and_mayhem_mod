@@ -32099,6 +32099,286 @@
         "reason": "Shared research/matrix/ledger and driver links reviewed. Original wrapper scheduling and native validity historical evidence/status retained; no new original execution, native implementation or live status promotion. API-only Wine findings cannot replace original comparison evidence.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "7d8399516afbc09f67d4e07c607469471391428072e05ae98012bd4104330ec7",
+          "before_sha256": "f54c81534c58718dd31bd8ab955e035cd9e71d47b115504b320de0814934cba5",
+          "id": "NR.surface-contents.validity"
+        },
+        {
+          "after_sha256": "738322e5d880bb4e36d81cec7a832a3b503b150c80822d3b8814d37bb7f11a8f",
+          "before_sha256": null,
+          "id": "RE.surface-driver.indexed-restore"
+        },
+        {
+          "after_sha256": "cf323a1e26afe4dd79c19d7f44502db2afa39502792645ef7b15881921c7722b",
+          "before_sha256": "d06b4d37434c5dd071dd07e3a9c72d4d3bc5d807c11a9a171891262c6eb99324",
+          "id": "RE.surface-driver.loss-restore"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7f65a88fe2a6a09f6fe95c02895c7ebf8ae44ba768343aa269396ed013794438",
+          "before_sha256": "40ca7581da7ae4d194c57e66ad5bd0db7e3cd18ddcdf6c45397387e0198f83f3",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8aed4578a762deb0a6e136a68dcabcc8c247e3cb2ada71472dfba56683516e8a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-palette-restore-20261006.json"
+        },
+        {
+          "after_sha256": "c4e0c253932d39539ff1b7afc762b076439d80cef2019c294a9c8a135a58793b",
+          "before_sha256": "26d2b3cd8a025c7d65143819371c94e90ccea9fd377d9cf68febdccd6486ba0f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "ab6b9354d8a4000d986557aff86c90b49e95ac88182705697eb6ba2671e4c6c0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-palette-restore-20261006.json"
+        },
+        {
+          "after_sha256": "05dc83e3a341cd5b40105e46408185f28214533c7a92a500fb15ce0295d6e0f8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-palette-restore-20261006.md"
+        },
+        {
+          "after_sha256": "e79c5c3c5d768c5994bfdcf5cd26d48469454ef9a8d0054f11a0fd901ac1a756",
+          "before_sha256": "7f2857d58fcef2ca030ddba786fa26ae7fd0b41051cf5f436169a1fa4026bb69",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "9d628fa7023d3ecb18c3aa589aaa0ede5da41044cc6508dd4e6fe75cd99c00d8",
+          "before_sha256": "e489f54bc7cb88d93cbb71d01d621f4daf1059a32802f33b0b050e48affa8446",
+          "path": "research/runtime/surface-driver-restore.md"
+        },
+        {
+          "after_sha256": "c4a71a0033b934217905484473234161b0b9c82aa078d7effbea7a597154202b",
+          "before_sha256": null,
+          "path": "research/runtime/surface-palette-restore-capture-20261006.json"
+        },
+        {
+          "after_sha256": "4e0b2ba9421dedd2c01b52ff728364381d87fae3a4ffe5ef61c117dd59ed793f",
+          "before_sha256": null,
+          "path": "research/runtime/surface-palette-restore-native-20261006.json"
+        },
+        {
+          "after_sha256": "827d46d2ab1f8f77b109672cc8bb0b13f1247c6d2092661cd0d205012ea71a5d",
+          "before_sha256": null,
+          "path": "research/runtime/surface-palette-restore-offline-20261006.json"
+        },
+        {
+          "after_sha256": "909e93023bfe8e2e8993e8b9b3cb40ec58ae60a88d485a90c5154e3dea509ce0",
+          "before_sha256": null,
+          "path": "research/runtime/surface-palette-restore.md"
+        },
+        {
+          "after_sha256": "2aa3fe0f6b5415645ed60c5dcff79e76825d4004b56062df4b25cf08bf07d064",
+          "before_sha256": null,
+          "path": "tests/render-palette-restore-test.cpp"
+        },
+        {
+          "after_sha256": "3b9c55ff7856bde2d3313df6f0b62343ba367395238f45bf156479292727ff12",
+          "before_sha256": null,
+          "path": "tests/surface-palette-restore-reference.c"
+        },
+        {
+          "after_sha256": "07b7e7a85ac22b1febc937420f49e012575ae364d0e2224bc35c387ea51cc41f",
+          "before_sha256": null,
+          "path": "tests/test-surface-palette-restore.py"
+        },
+        {
+          "after_sha256": "611e2925d01c632a21705100d3f99003b0105cf1a7042279839a42fd97540b12",
+          "before_sha256": null,
+          "path": "tools/capture-surface-palette-restore.py"
+        },
+        {
+          "after_sha256": "758b1e76e6a8ebbda3d65b6b72ae1bbae25f274dc063d1b754e277b800e77eab",
+          "before_sha256": null,
+          "path": "tools/check-native-palette-restore.py"
+        },
+        {
+          "after_sha256": "40b525e732be91b5a27cc28214968f0149c67fd40418752da0ea03901e7b4ab8",
+          "before_sha256": null,
+          "path": "tools/check-surface-palette-restore.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-palette-restore.json.gz",
+          "before_sha256": null,
+          "after_sha256": "9e6d00cb9c360702cd00b9cc43930985887131bfe741bf87c262b88d537fa52b"
+        }
+      ],
+      "id": "indexed-palette-restore-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:5647e9774a1b51a4618732e3a18c91732b7f64f209cd172e5cf096c717509dc2",
+        "behaviors_without_implementation:5647e9774a1b51a4618732e3a18c91732b7f64f209cd172e5cf096c717509dc2",
+        "behaviors_without_scenarios:5647e9774a1b51a4618732e3a18c91732b7f64f209cd172e5cf096c717509dc2"
+      ],
+      "reason": "Reviewed bounded foreground/descriptor/completion controls, serialized driver palette probe, GetPalette loss refusal, post-Restore identity/entry retention and explicit index writes/update/rebind. Portable corpus publication preserves captured bytes and all source digest values and retains original report provenance.8233 rows/6656 entries and9 refusal tests pass;9 native input-derived indexed validity/presentation cases cover explicit reload while original asset/shared COM/driver RGB/live equivalence remains pending.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh successful serialized real indexed8 API run;8233 ordered observations checked offline,9 refusal/provenance tests and9 native GL cases pass45 guards/18 index checks/864 input-derived RGB pixels. No new original-wrapper, actual asset reloader, independently captured driver RGB or live claim.",
+        "evidence": [
+          "DRIVER.surface-palette.restore.capture-20261006",
+          "DRIVER.surface-palette.restore.offline-20261006",
+          "DRIVER.surface-palette.restore.native-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "c0c703f76baa52323ea795adc93db19f64b4a36636c8001508a9f2d382afaf98",
+          "before_sha256": "ab00cf42f48b8dc2dd0511b7e7b2636d37fc6bd5f8b82fbdc3caaf722cd58e98",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "0006e896ec5542877012e1d4026be8addf36f9260703781d8d98fc7b3da1e3b5",
+          "before_sha256": "3aeb18eea2f72ba70da1f9b9972430bb2f008500323e2a6d4eca4d6712b589fb",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "e580c89f6c5db8368b068c51f82a6b9e42061e7659085dcff2e8123d2bff2f81",
+          "before_sha256": "b2ca608c403e2ed7399d358170c1233a13431087c1b821a4e3e55f433758ae84",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "2b9840436b3ba6272507caffdc4bbede776463fcd6dce6db077bbbc2405d4814",
+          "before_sha256": "84e61d46db856ba2b5a87ddc1b6bfe3d505b36e8e8bc527d2bb346b014467b63",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "22ecce13d033592200df5795ac863b9bb49eb4f01255b5c654a6e3ef89a68b66",
+          "before_sha256": "a5b0e60ebc15d90d4378583bee4638a56efbc7cbed1b16dc9b8e8c3b7f967c08",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "1a568c8c33aa2972fe9dea5502d938bf58e343e9e9e03c64b96a38c565c49ac0",
+          "before_sha256": "d5f25f7b9244723bee578ce0bcf5017d84b6c80a23adcc6a36f6aaab3e4f4cb7",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "c5cf4f0d0ea25c5e5f0485456346ff02ed72eb07dcbb3a3ab00ba27904a065d5",
+          "before_sha256": "a1e0ca632582740d5c40f103086fdcba2571161c5ad118045dfa13f73e183acf",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "29a2281b2158d0e6e8f93fef08cd58779d3a14a7ae20b7920a3102f7636b3f98",
+          "before_sha256": "51f102e0344bd28fa8fb850bd981653e73dedacf0eb41c183d93176d66541cf5",
+          "id": "RE.surface-copy.rgb565-overlap"
+        },
+        {
+          "after_sha256": "8ea2e1c1493b15702d89de1a309f0e6db1fefa8f42af28ef27f9f82d41bc9556",
+          "before_sha256": "dc07742a19de1bb837df816c54d58bac756f7cdfa5d8451651a7ac42bb19b3c6",
+          "id": "RE.surface-fill.rgb565"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7f65a88fe2a6a09f6fe95c02895c7ebf8ae44ba768343aa269396ed013794438",
+          "before_sha256": "40ca7581da7ae4d194c57e66ad5bd0db7e3cd18ddcdf6c45397387e0198f83f3",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8aed4578a762deb0a6e136a68dcabcc8c247e3cb2ada71472dfba56683516e8a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-palette-restore-20261006.json"
+        },
+        {
+          "after_sha256": "c4e0c253932d39539ff1b7afc762b076439d80cef2019c294a9c8a135a58793b",
+          "before_sha256": "26d2b3cd8a025c7d65143819371c94e90ccea9fd377d9cf68febdccd6486ba0f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "ab6b9354d8a4000d986557aff86c90b49e95ac88182705697eb6ba2671e4c6c0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-palette-restore-20261006.json"
+        },
+        {
+          "after_sha256": "05dc83e3a341cd5b40105e46408185f28214533c7a92a500fb15ce0295d6e0f8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-palette-restore-20261006.md"
+        },
+        {
+          "after_sha256": "e79c5c3c5d768c5994bfdcf5cd26d48469454ef9a8d0054f11a0fd901ac1a756",
+          "before_sha256": "7f2857d58fcef2ca030ddba786fa26ae7fd0b41051cf5f436169a1fa4026bb69",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "9d628fa7023d3ecb18c3aa589aaa0ede5da41044cc6508dd4e6fe75cd99c00d8",
+          "before_sha256": "e489f54bc7cb88d93cbb71d01d621f4daf1059a32802f33b0b050e48affa8446",
+          "path": "research/runtime/surface-driver-restore.md"
+        },
+        {
+          "after_sha256": "c4a71a0033b934217905484473234161b0b9c82aa078d7effbea7a597154202b",
+          "before_sha256": null,
+          "path": "research/runtime/surface-palette-restore-capture-20261006.json"
+        },
+        {
+          "after_sha256": "4e0b2ba9421dedd2c01b52ff728364381d87fae3a4ffe5ef61c117dd59ed793f",
+          "before_sha256": null,
+          "path": "research/runtime/surface-palette-restore-native-20261006.json"
+        },
+        {
+          "after_sha256": "827d46d2ab1f8f77b109672cc8bb0b13f1247c6d2092661cd0d205012ea71a5d",
+          "before_sha256": null,
+          "path": "research/runtime/surface-palette-restore-offline-20261006.json"
+        },
+        {
+          "after_sha256": "909e93023bfe8e2e8993e8b9b3cb40ec58ae60a88d485a90c5154e3dea509ce0",
+          "before_sha256": null,
+          "path": "research/runtime/surface-palette-restore.md"
+        },
+        {
+          "after_sha256": "2aa3fe0f6b5415645ed60c5dcff79e76825d4004b56062df4b25cf08bf07d064",
+          "before_sha256": null,
+          "path": "tests/render-palette-restore-test.cpp"
+        },
+        {
+          "after_sha256": "3b9c55ff7856bde2d3313df6f0b62343ba367395238f45bf156479292727ff12",
+          "before_sha256": null,
+          "path": "tests/surface-palette-restore-reference.c"
+        },
+        {
+          "after_sha256": "07b7e7a85ac22b1febc937420f49e012575ae364d0e2224bc35c387ea51cc41f",
+          "before_sha256": null,
+          "path": "tests/test-surface-palette-restore.py"
+        },
+        {
+          "after_sha256": "611e2925d01c632a21705100d3f99003b0105cf1a7042279839a42fd97540b12",
+          "before_sha256": null,
+          "path": "tools/capture-surface-palette-restore.py"
+        },
+        {
+          "after_sha256": "758b1e76e6a8ebbda3d65b6b72ae1bbae25f274dc063d1b754e277b800e77eab",
+          "before_sha256": null,
+          "path": "tools/check-native-palette-restore.py"
+        },
+        {
+          "after_sha256": "40b525e732be91b5a27cc28214968f0149c67fd40418752da0ea03901e7b4ab8",
+          "before_sha256": null,
+          "path": "tools/check-surface-palette-restore.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-palette-restore.json.gz",
+          "before_sha256": null,
+          "after_sha256": "9e6d00cb9c360702cd00b9cc43930985887131bfe741bf87c262b88d537fa52b"
+        }
+      ],
+      "id": "indexed-palette-restore-shared-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:5647e9774a1b51a4618732e3a18c91732b7f64f209cd172e5cf096c717509dc2",
+        "behaviors_without_implementation:5647e9774a1b51a4618732e3a18c91732b7f64f209cd172e5cf096c717509dc2",
+        "behaviors_without_scenarios:5647e9774a1b51a4618732e3a18c91732b7f64f209cd172e5cf096c717509dc2"
+      ],
+      "reason": "Reviewed bounded foreground/descriptor/completion controls, serialized driver palette probe, GetPalette loss refusal, post-Restore identity/entry retention and explicit index writes/update/rebind. Portable corpus publication preserves captured bytes and all source digest values and retains original report provenance.8233 rows/6656 entries and9 refusal tests pass;9 native input-derived indexed validity/presentation cases cover explicit reload while original asset/shared COM/driver RGB/live equivalence remains pending.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared operation matrix and ledger links reviewed. Other original/renderer contracts retain historical evidence/status; the palette probe does not assert fresh original comparison, shared COM/wire semantics, reloaders or live recovery.",
+        "evidence": []
+      }
     }
   ]
 }

@@ -101,3 +101,13 @@ delegates to its common Restore routine, which checks primary dimensions/format.
 Its [device loss handling](https://raw.githubusercontent.com/wine-mirror/wine/wine-11.16/dlls/ddraw/ddraw.c)
 tracks activation and mode changes. These sources guided controls; captured
 HRESULTs and bytes support the findings above.
+
+## Subsequent indexed palette evidence
+
+[Indexed palette recovery](surface-palette-restore.md) now records real indexed8
+mode-change loss and GetPalette refusal, binding/entry retention after successful
+Restore, shared partial palette updates, explicit full index reloads and rebind
+without index mutation. Nine native API composition cases validate conservative
+undefined-index guards and input-derived RGB presentation. Original asset
+reloaders, original-wrapper actual-lost-draw composition and live recovery remain
+pending; historical RGB565 captures and their source hashes are unchanged.

@@ -14920,12 +14920,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Explicit native undefined-content validity after restoration",
-      "scope": "GlBlitter invalidateContents declares all native bytes undefined without inventing/clearing pixels or changing uploads. Written update/opaque copy regions become known; source/mask sampling, keyed/masked destinations, full read and CPU/GPU presentation refuse unknown pixels. Validity follows swapped storage; clipper/palette metadata remains native policy.30 GL tests include explicit recovered fill adapters. No real driver Restore/palette retention, live hook or new wire integration.",
+      "scope": "GlBlitter invalidateContents declares all native bytes undefined without inventing/clearing pixels or changing uploads. Written update/opaque copy regions become known; source/mask sampling, keyed/masked destinations, full read and CPU/GPU presentation refuse unknown pixels. Validity follows swapped storage; clipper/palette metadata remains native policy.30 GL tests include explicit recovered fill adapters. No real driver Restore/palette retention, live hook or new wire integration. Nine indexed8 palette/reload cases add45 unknown-content refusals,18 captured index-input comparisons and864 input-derived RGB pixels. Verified palette installation does not define unknown indices; partial reload remains unreadable, full reload establishes pixels and subsequent palette/rebind inputs retain indices. No independently captured driver RGB/COM shared identity or original asset reload equivalence.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/original-surface-retry.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/surface-palette-restore.md"
       ],
       "implementation": [
         "renderer/known_pixels.hpp",
@@ -14934,10 +14935,13 @@
       ],
       "tests": [
         "tests/render-restoration-test.cpp",
-        "tools/check-native-surface-retry.py"
+        "tools/check-native-surface-retry.py",
+        "tests/render-palette-restore-test.cpp",
+        "tools/check-native-palette-restore.py"
       ],
       "evidence": [
-        "NR.surface-contents.validity.native-20261006"
+        "NR.surface-contents.validity.native-20261006",
+        "DRIVER.surface-palette.restore.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14989,7 +14993,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Wine Surface2 loss/Restore observations at the original driver boundary",
-      "scope": "Two standalone API probes, four requested cap classes and16/32 display formats: system-memory unaffected by mode changes; other surfaces IsLost/Lock lost; offscreen Restore succeeds in changed dimensions, primary wrong dimensions refused then succeeds in original mode; repeated Restore and source-key retention. Lost COLORFILL still returns success. Original anchors identify the external Restore caller boundary only; original functions are not executed here. Unknown restored bytes/XRGB padding are excluded from portable equivalence. Original-wrapper composition, palette/clipper/flip-chain and Windows driver/asset/live recovery remain pending.",
+      "scope": "Two standalone API probes, four requested cap classes and16/32 display formats: system-memory unaffected by mode changes; other surfaces IsLost/Lock lost; offscreen Restore succeeds in changed dimensions, primary wrong dimensions refused then succeeds in original mode; repeated Restore and source-key retention. Lost COLORFILL still returns success. Original anchors identify the external Restore caller boundary only; original functions are not executed here. Unknown restored bytes/XRGB padding are excluded from portable equivalence. Original-wrapper composition, palette/clipper/flip-chain and Windows driver/asset/live recovery remain pending. Indexed8 driver palette and explicit index reload findings are registered separately as RE.surface-driver.indexed-restore; standalone APIs do not close original asset/wrapper/live recovery gaps.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -15001,7 +15005,8 @@
       "documents": [
         "research/runtime/surface-driver-restore.md",
         "research/runtime/original-surface-retry.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/surface-palette-restore.md"
       ],
       "implementation": [],
       "tests": [
@@ -15014,7 +15019,48 @@
       "evidence": [
         "DRIVER.surface-loss.restore.16-capture-20261006",
         "DRIVER.surface-loss.restore.32-capture-20261006",
-        "DRIVER.surface-loss.restore.offline-20261006"
+        "DRIVER.surface-loss.restore.offline-20261006",
+        "DRIVER.surface-palette.restore.capture-20261006",
+        "DRIVER.surface-palette.restore.offline-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-driver.indexed-restore",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Indexed driver palette retention and explicit reload across Restore",
+      "scope": "Standalone Wine11.16 indexed8 Surface2 API probe with two palettes/four requested cap classes. GetPalette refuses lost surfaces; Restore retains within-run palette interface identity and all RGB entries including partial shared palette-object updates made during loss. Independent palette remains unchanged; full explicit index writes and later full palette update/rebind preserve index bytes.8233 ordered rows/6656 entries, nine defined reload/update/rebind states. Original Restore anchor identifies external caller boundary only; no original function executed. Unknown restored bytes, driver RGB presentation, flags/detach/release, asset/sentinel reload and live/Windows equivalence remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Original full-fill wrapper external Restore boundary only; standalone indexed API probe does not execute this function or its asset reloader."
+        }
+      ],
+      "documents": [
+        "research/runtime/surface-palette-restore.md",
+        "research/runtime/surface-driver-restore.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/surface-palette-restore-reference.c",
+        "tests/test-surface-palette-restore.py",
+        "tools/capture-surface-palette-restore.py",
+        "tools/check-surface-palette-restore.py",
+        "tests/fixtures/surfaces/surface-palette-restore.json.gz"
+      ],
+      "evidence": [
+        "DRIVER.surface-palette.restore.capture-20261006",
+        "DRIVER.surface-palette.restore.offline-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -26981,6 +27027,48 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRIVER.surface-palette.restore.capture-20261006",
+      "kind": "native_integration",
+      "scope": "Standalone real Wine11.16 indexed Surface2 palette/loss/Restore and explicit index writes,8233 ordered observations/6656 entries checked offline. Native record covers nine API compositions,45 undefined refusals,18 index comparisons and864 input-derived RGB pixels; no captured driver RGB, original game/reloader or live equivalence.",
+      "record": "research/runtime/surface-palette-restore-capture-20261006.json",
+      "sha256": "c4a71a0033b934217905484473234161b0b9c82aa078d7effbea7a597154202b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-palette.restore.offline-20261006",
+      "kind": "native_integration",
+      "scope": "Standalone real Wine11.16 indexed Surface2 palette/loss/Restore and explicit index writes,8233 ordered observations/6656 entries checked offline. Native record covers nine API compositions,45 undefined refusals,18 index comparisons and864 input-derived RGB pixels; no captured driver RGB, original game/reloader or live equivalence.",
+      "record": "research/runtime/surface-palette-restore-offline-20261006.json",
+      "sha256": "827d46d2ab1f8f77b109672cc8bb0b13f1247c6d2092661cd0d205012ea71a5d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-palette.restore.native-20261006",
+      "kind": "native_integration",
+      "scope": "Standalone real Wine11.16 indexed Surface2 palette/loss/Restore and explicit index writes,8233 ordered observations/6656 entries checked offline. Native record covers nine API compositions,45 undefined refusals,18 index comparisons and864 input-derived RGB pixels; no captured driver RGB, original game/reloader or live equivalence.",
+      "record": "research/runtime/surface-palette-restore-native-20261006.json",
+      "sha256": "4e0b2ba9421dedd2c01b52ff728364381d87fae3a4ffe5ef61c117dd59ed793f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -31357,6 +31445,21 @@
         "tools/test-live-render-routes.py",
         "tests/live-render-route-probe.cpp"
       ]
+    },
+    {
+      "id": "NR.surface-contents.validity.palette-reload.headless",
+      "level": "headless",
+      "scope": "Nine indexed8 cropped native API cases from captured explicitly defined index and palette inputs. Unknown-index refusal, full reload and input-derived RGB presentation with palette update/rebind; no driver display RGB, shared COM identity, game asset reload or live equivalence.",
+      "behaviors": [
+        "NR.surface-contents.validity"
+      ],
+      "evidence": [
+        "DRIVER.surface-palette.restore.native-20261006"
+      ],
+      "tests": [
+        "tests/render-palette-restore-test.cpp",
+        "tools/check-native-palette-restore.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -31604,7 +31707,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-driver-restore-20261006.json",
-    "sha256": "85a0b5463b880a1254f06770bd69bcde5861d10bb97d994f320c24f1cb6b8cfc"
+    "path": "research/runtime/coverage/source-index-palette-restore-20261006.json",
+    "sha256": "ab6b9354d8a4000d986557aff86c90b49e95ac88182705697eb6ba2671e4c6c0"
   }
 }
