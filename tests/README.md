@@ -893,3 +893,7 @@ tick batches, pending-order retention, exception/reentrancy handling and exact
 checkpoint continuation. `python3 tools/test-scene-playback.py BUILD/world-playback-test
 NEW_OUTPUT` retains normal/sanitizer reports and a fresh-process continuation.
 Original cadence/pause and installed whole-window equivalence remain open.
+
+### Campaign gameplay Mini Quit
+
+Run `python3 tools/test-campaign-mini-quit-bridge.py` and the V9 Cancel regression `python3 tools/test-campaign-mini-bridge.py`. Run focused Qt campaign Quit/Cancel, Mini/V4, Region Entry and V1/V6 CTests. `python3 tools/test-live-campaign-quit.py --mini-quit` observes original No/Yes; `python3 tools/test-live-qt-campaign-quit.py --shell <built-shell> --source-root <compiled-tree>` checks native Quit, original No/Yes, Main restoration and normal Main Quit without manual input. Runs are isolated and bounded. See [UI32 evidence](../research/runtime/campaign-mini-quit-engine-bridge.md).

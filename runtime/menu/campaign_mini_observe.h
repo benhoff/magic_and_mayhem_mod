@@ -1,3 +1,4 @@
+#include "campaign_quit_observe.h"
 /* Campaign Mini lifecycle observation; no pause, exit or state writes. */
 static u32 campaign_mini_last[2][10];
 static int campaign_mini_have[2];
@@ -11,7 +12,7 @@ static void campaign_mini_record(void* object,u32 phase){
     record(15+phase*3,object,key[5],((u32)*(u8*)0x6dbc18)|((u32)*(u8*)0x6dbc19<<8));
 }
 static u32 THIS campaign_mini_tick(void* object){
-    u32 error=GetLastError();if(menu_version>=9)menu_poll(object,1);campaign_mini_record(object,0);SetLastError(error);
+    u32 error=GetLastError();if(campaign_log||menu_version>=10)campaign_quit_observe(object);if(menu_version>=9)menu_poll(object,1);campaign_mini_record(object,0);SetLastError(error);
     u32 result=((TickFn)0x5595d0)(object);error=GetLastError();if(menu_version>=9)menu_poll(object,0);campaign_mini_record(object,1);SetLastError(error);return result;
 }
 static u32 THIS campaign_world_resume(void* object){
@@ -19,6 +20,8 @@ static u32 THIS campaign_world_resume(void* object){
     u32 result=((TickFn)0x46aef0)(object);error=GetLastError();record(20,object,0,result);SetLastError(error);return result;
 }
 static int install_campaign_mini_observe(void){
+    const u8 answer[]={0x56,0x8b,0xf1,0x8b,0x4e,0x3b,0xc7,0x46};
+    if((campaign_log||menu_version>=10)&&(!readable((void*)0x4b24f0,8)||!equal((void*)0x4b24f0,answer,8)))return 0;
     const u8 action[]={0x64,0xa1,0,0,0,0};
     const u8 common[]={0x83,0xec,0x1c,0x56,0x8b,0xf1,0x57,0x8b};
     const u8 resume[]={0x56,0x8b,0xf1,0xb9,0xd0,0x2d,0x6a,0};u32 old,restore;

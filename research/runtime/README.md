@@ -174,3 +174,5 @@ confidence, and whether it remains stable across launches.
 - [Fresh Region Entry Enter bridge](region-entry-enter-engine-bridge.md): Qt Enter to original gameplay, bounded automated evidence; campaign return pending.
 
 - [Campaign gameplay Mini Cancel bridge](campaign-mini-cancel-engine-bridge.md): original Escape opens native Mini; Cancel/Escape return to original gameplay.
+
+- [Campaign gameplay Mini Quit bridge](campaign-mini-quit-engine-bridge.md): native Quit hands confirmation to the original game; No resumes World, Yes opens the original defeat report; original report OK and World/Realm return restore Main.

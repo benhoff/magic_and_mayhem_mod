@@ -17,7 +17,7 @@ static int menu_retired;
 static u32 menu_handoff;
 static u32 menu_load(u32* p){return __atomic_load_n(p,__ATOMIC_ACQUIRE);}
 static void menu_store(u32* p,u32 v){__atomic_store_n(p,v,__ATOMIC_RELEASE);}
-static int menu_header(void){return equal(menu_words,menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
+static int menu_header(void){return equal(menu_words,menu_version==10?MNM_MENU_V10_MAGIC:menu_version==9?MNM_MENU_V9_MAGIC:menu_version==8?MNM_MENU_V8_MAGIC:menu_version==7?MNM_MENU_V7_MAGIC:menu_version==6?MNM_MENU_V6_MAGIC:menu_version==5?MNM_MENU_V5_MAGIC:menu_version==4?MNM_MENU_V4_MAGIC:menu_version==3?MNM_MENU_V3_MAGIC:menu_version==2?MNM_MENU_V2_MAGIC:MNM_MENU_V1_MAGIC,8)&&menu_load(menu_words+2)==menu_version&&menu_load(menu_words+3)==menu_size;}
 static int menu_host(u32* out){
     u32* p=menu_words+MNM_MENU_V1_HOST_WORD;u32 seq=menu_load(p);if(seq&1)return 0;
     for(u32 i=0;i<(menu_version>=2?23u:5u);++i)out[i]=menu_load(p+1+i);
@@ -43,8 +43,8 @@ static void menu_init(void){
     char path[1024];u32 length=GetEnvironmentVariableA("MNM_MENU_CHANNEL",path,sizeof(path));if(!length||length>=sizeof(path))return;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);if(file==(HANDLE)-1)return;
     menu_size=GetFileSize(file,0);
-    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE){CloseHandle(file);return;}
-    menu_version=menu_size==MNM_MENU_V9_SIZE?9:menu_size==MNM_MENU_V8_SIZE?8:menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
+    if(menu_size!=MNM_MENU_V1_SIZE&&menu_size!=MNM_MENU_V2_SIZE&&menu_size!=MNM_MENU_V3_SIZE&&menu_size!=MNM_MENU_V4_SIZE&&menu_size!=MNM_MENU_V5_SIZE&&menu_size!=MNM_MENU_V6_SIZE&&menu_size!=MNM_MENU_V7_SIZE&&menu_size!=MNM_MENU_V8_SIZE&&menu_size!=MNM_MENU_V9_SIZE&&menu_size!=MNM_MENU_V10_SIZE){CloseHandle(file);return;}
+    menu_version=menu_size==MNM_MENU_V10_SIZE?10:menu_size==MNM_MENU_V9_SIZE?9:menu_size==MNM_MENU_V8_SIZE?8:menu_size==MNM_MENU_V7_SIZE?7:menu_size==MNM_MENU_V6_SIZE?6:menu_size==MNM_MENU_V5_SIZE?5:menu_size==MNM_MENU_V4_SIZE?4:menu_size==MNM_MENU_V3_SIZE?3:menu_size==MNM_MENU_V2_SIZE?2:1;
     HANDLE mapping=CreateFileMappingA(file,0,4,0,0,0);CloseHandle(file);if(!mapping)return;
     menu_words=MapViewOfFile(mapping,2,0,0,menu_size);CloseHandle(mapping);if(!menu_words)return;
     u32 host[93];
@@ -70,7 +70,7 @@ static void menu_state(void* object){
     }
     if((menu_version>=9||(menu_version>=4&&MNM_MENU_MINI_EXPERIMENTAL))&&owner==(u32)object&&readable(object,0x5b)&&get(object)==0x5c6644&&get((u8*)object+4)==MNM_MENU_MINI_SCREEN){
         u8 next[MNM_MENU_V4_MINI_SIZE];
-        if(mini_snapshot(object,next,menu_version>=9)){
+        if(mini_snapshot(object,next,menu_version>=10?2:menu_version>=9)){
             screen=MNM_MENU_MINI_SCREEN;
             if(!equal(next,mini_payload,sizeof(next)))++menu_generation;
             copy(mini_payload,next,sizeof(next));u8* p=object;
@@ -135,7 +135,7 @@ static void menu_poll(void* object,int execute){
             else if(host[3]==MNM_MENU_QUIT&&menu_screen==3)main_action(object,4);
             else if(menu_version>=3&&menu_screen==7&&host[3]==MNM_MENU_SPELL_FINISH)menu_status=spell_finish(object,host+23);
             else if(menu_version>=5&&menu_screen==26)menu_status=result_dispatch(object,host[3]);
-            else if((menu_version>=9||(menu_version>=4&&MNM_MENU_MINI_EXPERIMENTAL))&&menu_screen==MNM_MENU_MINI_SCREEN)menu_status=mini_dispatch(object,host[3],menu_version>=9);
+            else if((menu_version>=9||(menu_version>=4&&MNM_MENU_MINI_EXPERIMENTAL))&&menu_screen==MNM_MENU_MINI_SCREEN)menu_status=mini_dispatch(object,host[3],menu_version>=10?2:menu_version>=9);
             else if(menu_version>=2)menu_status=battle_dispatch(object,host,menu_screen);
             else menu_status=MNM_MENU_UNSUPPORTED;
             if(menu_version>=8&&host[3]==MNM_MENU_REGION_ENTER&&menu_status==MNM_MENU_OK)

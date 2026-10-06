@@ -12080,6 +12080,191 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "CP.campaign-mini-quit",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Campaign Mini original Quit and confirmation No/Yes",
+      "scope": "Mode 2/layout 0/context 5, original local-3 Quit; original modal No (1) resumes World, Yes (0) sets World +0x100a0/0x6dbc18, original defeat report OK and World/Realm return restore Main; allocation/cleanup/context helpers not reconstructed",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4924400,
+          "scope": "Campaign Quit index 3 only",
+          "recovered_range": "campaign-mini-entry-4b23f0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4924656,
+          "scope": "Observed confirmation No/Yes in mode 2/context 5 only",
+          "recovered_range": "campaign-mini-quit-entry-4b24f0"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-mini-quit-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v10.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/region_entry.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tools/test-campaign-mini-quit-bridge.py",
+        "tools/test-live-campaign-quit.py",
+        "tools/test-live-qt-campaign-quit.py",
+        "tests/campaign-mini-quit-reference.c",
+        "tests/menu-campaign-mini-quit-test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_quit_test.cpp",
+        "tools/test-live-campaign-mini.py",
+        "tools/test-campaign-mini-bridge.py"
+      ],
+      "evidence": [
+        "UI32.fixture",
+        "UI32.qt",
+        "UI32.original-live",
+        "UI32.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "CP.campaign-mini-quit-lifecycle",
+      "subsystem": "campaign",
+      "kind": "recovered",
+      "title": "Original campaign Quit exit consumer and report/Realm lifecycle",
+      "scope": "Selected World +0x100a0/+0x100a1 consumer, observed campaign defeat owner and original report OK and World/Realm return; helper/scoring bodies opaque",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4632512,
+          "scope": "Selected exit flags and outcome owner observation only"
+        }
+      ],
+      "documents": [
+        "research/runtime/campaign-mini-quit-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v10.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/region_entry.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tools/test-campaign-mini-quit-bridge.py",
+        "tools/test-live-campaign-quit.py",
+        "tools/test-live-qt-campaign-quit.py",
+        "tests/campaign-mini-quit-reference.c",
+        "tests/menu-campaign-mini-quit-test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_quit_test.cpp",
+        "tools/test-live-campaign-mini.py",
+        "tools/test-campaign-mini-bridge.py"
+      ],
+      "evidence": [
+        "UI32.fixture",
+        "UI32.qt",
+        "UI32.original-live",
+        "UI32.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "original_candidates": [
+        "0x46a150",
+        "0x4757c0"
+      ]
+    },
+    {
+      "id": "NP.campaign-mini-quit-policy",
+      "subsystem": "campaign",
+      "kind": "native_policy",
+      "title": "Native campaign Quit handoff and fresh Main ownership",
+      "scope": "V10 Cancel|Quit projection, original confirmation/report/Realm viewport ownership and fresh Main recovery after original World/Realm return; no native confirmation command or pause policy",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/campaign-mini-quit-engine-bridge.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/menu_v10.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/region_entry.h",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/menu/campaign_world_observe.h",
+        "tools/build-menu-observer.py",
+        "tools/run-menu-observer.py"
+      ],
+      "tests": [
+        "tools/test-campaign-mini-quit-bridge.py",
+        "tools/test-live-campaign-quit.py",
+        "tools/test-live-qt-campaign-quit.py",
+        "tests/campaign-mini-quit-reference.c",
+        "tests/menu-campaign-mini-quit-test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_quit_test.cpp",
+        "tools/test-live-campaign-mini.py",
+        "tools/test-campaign-mini-bridge.py"
+      ],
+      "evidence": [
+        "UI32.fixture",
+        "UI32.qt",
+        "UI32.original-live",
+        "UI32.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -20360,6 +20545,100 @@
           "equals": 1
         }
       ]
+    },
+    {
+      "id": "UI32.fixture",
+      "kind": "isolated_original",
+      "scope": "Original campaign Mini Quit/Cancel and confirmation No/Yes bytecode behind V10 mode/caller/stack/callback guards, stale/modal/retired/one-shot rejection, unsupported Preferences; allocation/audio/cleanup/context helper dependencies synthetic; synthetic guarded Mini tick/World resume forwards return and LastError; no full pause or original parent execution",
+      "record": "research/runtime/campaign-mini-quit-engine-bridge.json",
+      "sha256": "2d931b1bc7be1863d06fbb69b308675fa086abd2cbe64c13cf3ff9b7697ba75b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/fixture/success",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/campaign_mini_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/fixture/real_game_launched",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI32.qt",
+      "kind": "native_integration",
+      "scope": "Eight focused Qt V10 Quit/wire/controller, V9 Cancel, V4 Mini, widget, Region Entry and V1/V6 checks; no engine equivalence",
+      "record": "research/runtime/campaign-mini-quit-engine-bridge.json",
+      "sha256": "2d931b1bc7be1863d06fbb69b308675fa086abd2cbe64c13cf3ff9b7697ba75b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/qt/success",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_cancel/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "UI32.original-live",
+      "kind": "live_observation",
+      "scope": "Original fresh campaign Escape -> five-button Mini -> Quit/No -> World; Quit/Yes -> original defeat report -> original World/Realm return -> Main; no native confirmation or timer pause equivalence",
+      "record": "research/runtime/campaign-mini-quit-engine-bridge.json",
+      "sha256": "2d931b1bc7be1863d06fbb69b308675fa086abd2cbe64c13cf3ff9b7697ba75b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/original_live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_live/campaign_mini_quit",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "UI32.live",
+      "kind": "live_observation",
+      "scope": "Qt New Game/Adept/Enter, original gameplay Escape, native campaign Quit to original confirmation No and World resume, repeat Quit/Yes to original defeat report, original report OK and World/Realm return, native Main and normal Main Quit; save/load/preferences and timer pause equivalence pending",
+      "record": "research/runtime/campaign-mini-quit-engine-bridge.json",
+      "sha256": "2d931b1bc7be1863d06fbb69b308675fa086abd2cbe64c13cf3ff9b7697ba75b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/live/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live/viewport_returns",
+          "equals": 2
+        },
+        {
+          "pointer": "/live/main_return",
+          "equals": true
+        },
+        {
+          "pointer": "/live/normal_exit",
+          "equals": true
+        },
+        {
+          "pointer": "/live/live_validated",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "classifications": [],
@@ -21723,12 +22002,12 @@
       "original": {
         "build": "nocd-40209ca7",
         "address": 4924400,
-        "scope": "Callback entry only; only local action 4 admitted",
+        "scope": "Callback entry only; local actions 3 and 4 admitted",
         "recovered_range": "campaign-mini-entry-4b23f0"
       },
-      "document": "research/runtime/campaign-mini-cancel-engine-bridge.md",
+      "document": "research/runtime/campaign-mini-quit-engine-bridge.md",
       "complete": false,
-      "scope": "Five original campaign cases; Cancel index 4 linked, Load/Save/Preferences/Quit indexes 0..3 retained as pending",
+      "scope": "Five campaign cases; Cancel 4 and Quit 3 linked; Load/Save/Preferences 0..2 pending",
       "entries": [
         {
           "value": 0,
@@ -21744,12 +22023,40 @@
         },
         {
           "value": 3,
-          "behaviors": []
+          "behaviors": [
+            "CP.campaign-mini-quit"
+          ]
         },
         {
           "value": 4,
           "behaviors": [
             "CP.campaign-mini-cancel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campaign.gameplay-mini-confirmation",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4924656,
+        "scope": "Entry prefix only; UI answers 0 and 1 in campaign mode 2/context 5",
+        "recovered_range": "campaign-mini-quit-entry-4b24f0"
+      },
+      "document": "research/runtime/campaign-mini-quit-engine-bridge.md",
+      "complete": false,
+      "scope": "Yes 0 and No 1 observed; noncanonical nonzero answers, mode 4, other contexts and helper internals pending",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CP.campaign-mini-quit"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "CP.campaign-mini-quit"
           ]
         }
       ]
@@ -22708,6 +23015,34 @@
         "tests/effect-trajectory-initializer-test.cpp",
         "tools/test-effect-trajectory-initializer.py"
       ]
+    },
+    {
+      "id": "campaign.qt-mini-quit-no-yes",
+      "level": "live_observation",
+      "scope": "Fresh campaign original Escape, native Quit/original No to World; repeat Quit/Yes through original defeat report OK and World/Realm return to native Main and normal Main Quit; no native confirmation or pause equivalence",
+      "behaviors": [
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "NP.campaign-mini-quit-policy"
+      ],
+      "evidence": [
+        "UI32.fixture",
+        "UI32.qt",
+        "UI32.original-live",
+        "UI32.live"
+      ],
+      "tests": [
+        "tools/test-campaign-mini-quit-bridge.py",
+        "tools/test-live-campaign-quit.py",
+        "tools/test-live-qt-campaign-quit.py",
+        "tests/campaign-mini-quit-reference.c",
+        "tests/menu-campaign-mini-quit-test.cpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_campaign_quit_test.cpp",
+        "tools/test-live-campaign-mini.py",
+        "tools/test-campaign-mini-bridge.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -22818,6 +23153,15 @@
       "document": "research/runtime/campaign-mini-cancel-engine-bridge.md",
       "evidence": "UI31.fixture",
       "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-mini-quit-entry-4b24f0",
+      "build": "nocd-40209ca7",
+      "start": 4924656,
+      "end": 4924664,
+      "document": "research/runtime/campaign-mini-quit-engine-bridge.md",
+      "evidence": "UI32.fixture",
+      "anchors_pointer": "/anchors"
     }
   ],
   "register_imports": [
@@ -22843,7 +23187,7 @@
     },
     {
       "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "46e7e9792bff0e370f7828fbb39b36f75c3f8292086e1fa599a10c2161c12460",
+      "sha256": "cb46f3e5f91a460e1148776f1e3b208354ac7e735cadcfadbb33e476879ed024",
       "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
     },
     {
@@ -22903,7 +23247,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-trajectory-initializer-source-index.json",
-    "sha256": "a93d87a067345959fc524ec19d44540bc78224ffe03bf02b91f093853edd943a"
+    "path": "research/runtime/coverage/source-index-campaign-mini-quit.json",
+    "sha256": "ac010da5556c9abefd3eb6c55b837ff385964ab4541c363998b0fa519f73dce0"
   }
 }

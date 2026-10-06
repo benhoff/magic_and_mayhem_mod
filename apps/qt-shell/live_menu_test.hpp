@@ -18,3 +18,5 @@ void installLiveRegionEntryTest(QApplication&,QMainWindow&,LiveMenuSession&,cons
 void installLiveRegionEnterTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 
 void installLiveCampaignMiniTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveCampaignQuitTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);

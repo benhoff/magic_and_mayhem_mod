@@ -242,3 +242,7 @@ this document describe the initial preparation milestone.
 ## Campaign gameplay activation (UI31)
 
 [Separate V9 Cancel integration](campaign-mini-cancel-engine-bridge.md) now admits the observed campaign gameplay Mini (mode 2, layout 0, context 5, World parent). Context 5 is confirmed for campaign and cannot be labeled network-only. Original Escape ingress and native Cancel/Escape World returns are tested automatically. V4 remains experimental; Realm mode 4, other actions, confirmation/quit and timer pause remain pending. Earlier evidence and failed Quick Battle ingress attempts are retained.
+
+## Campaign gameplay Quit activation (UI32)
+
+[Separate V10 Quit integration](campaign-mini-quit-engine-bridge.md) offers original local-3 Quit in the scoped fresh gameplay campaign Mini. The original confirmation remains in the original viewport; observed No resumes World, Yes sets context-5 World exit and opens the original defeat report. Original report OK and World/Realm return restore fresh Main. Native Main Quit ends normally. Other contexts, mode 4, native confirmation, auxiliary actions and pause equivalence remain pending. V9 stays Cancel-only and V4 experimental.

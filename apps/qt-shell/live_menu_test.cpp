@@ -14,6 +14,8 @@
 #include <memory>
 #include <cstdio>
 void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path){
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_CAMPAIGN_QUIT")){installLiveCampaignQuitTest(app,window,session,path);return;}
+    session.campaignQuitEnabled=false;
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_CAMPAIGN_MINI")){installLiveCampaignMiniTest(app,window,session,path);return;}
     session.campaignMiniEnabled=false;
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_REGION_ENTER")){installLiveRegionEnterTest(app,window,session,path);return;}
