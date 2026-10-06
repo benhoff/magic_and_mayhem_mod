@@ -44,6 +44,7 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "command_idle_selftest.h"
 #include "continuous_selftest.h"
 #include "resource_selftest.h"
+#include "draw_startup_selftest.h"
 #include "mutation_selftest.h"
 #include "backpressure_selftest.h"
 #include "lifecycle_selftest.h"
@@ -52,6 +53,7 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "checkpoint_selftest.h"
 #include "working_set_selftest.h"
 void start(void){
+    char draw_startup[24];if(GetEnvironmentVariableA("MNM_DRAW_STARTUP_SELFTEST",draw_startup,sizeof(draw_startup)))test_draw_startup(draw_startup);
     char working_set[24];if(GetEnvironmentVariableA("MNM_WORKING_SET_SELFTEST",working_set,sizeof(working_set)))test_working_set(working_set);
     char checkpoint[24];if(GetEnvironmentVariableA("MNM_CHECKPOINT_SELFTEST",checkpoint,sizeof(checkpoint)))test_checkpoint(checkpoint);
     char host[24];if(GetEnvironmentVariableA("MNM_HOST_RECOVERY_SELFTEST",host,sizeof(host)))test_host_recovery(host);
