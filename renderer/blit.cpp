@@ -1,3 +1,4 @@
+#include "dib.hpp"
 #include "blit.hpp"
 #include "surface_copy.hpp"
 #include "known_pixels.hpp"
@@ -270,6 +271,17 @@ void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
     Current current(p.context,&p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
     g.glPixelStorei(GL_UNPACK_ALIGNMENT,4);g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.pixels.data());
     p.check();s.validity.define({x,y,x+patch.width,y+patch.height});++p.counters.uploads;
+}
+void GlBlitter::reloadDib(SurfaceId id,const DibInput& dib){
+    auto& p=*impl_;p.thread();auto& s=p.get(id);
+    if((s.format.bits!=24 && s.format.bits!=32) || s.format.masks!=std::array<std::uint32_t,3>{0xff0000,0xff00,0xff})
+        throw std::runtime_error("DIB reload requires canonical RGB24/32 target");
+    if(s.clipper.attached)throw std::runtime_error("DIB reload with DC clipping is not validated");
+    auto image=decodeDibRgb(dib);
+    const int w=std::min(image.width,s.width),h=std::min(image.height,s.height);
+    Image patch{w,h,std::vector<std::uint32_t>(std::size_t(w)*h)};
+    for(int y=0;y<h;++y)std::copy_n(image.pixels.begin()+std::size_t(y)*image.width,w,patch.pixels.begin()+std::size_t(y)*w);
+    update(id,0,0,patch);
 }
 void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key,
                      std::optional<SurfaceId> mask){
