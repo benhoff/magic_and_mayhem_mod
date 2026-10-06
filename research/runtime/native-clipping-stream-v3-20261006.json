@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "renderer/blit.cpp": "e21ff91483d417a4e0bc407761c2f476c414ee39064e47e7d0397632e898753a",
+    "renderer/blit.hpp": "b348f7ad14ec06e79dfa07ec1c699388d13639cd74f65b251c79354ae33b3c27",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/commands.hpp": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+    "renderer/command_state.hpp": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+    "renderer/command_consumer.cpp": "be2ac2c2c86ec1f2e00cfaca8a5e66f574d3df4e9159b1c4a1be2c4fa377da38",
+    "renderer/commands_main.cpp": "91a5119315d2435ae3028da6393f104763f9da55c3862de56b8687bc57a3aacd",
+    "renderer/CMakeLists.txt": "3df6da095e1fe6e13652d14a4336745641128fa26d1e91632fdae19b0c2b2853",
+    "tests/render-clipping-stream-test.cpp": "d7382c80f30ee50128f8b792afa60cbfb128ab04d7496bc5bf8f319a51773360",
+    "tools/check-native-clipping-stream.py": "95bbb4a2c11c1e7fc6d3322f2e39e0c8a158816d5879095c0fc2ba66a8090621",
+    "protocols/schemas/render_stream-v3.json": "0e2f6df940c293dea8b40ea6a553234479c10400ecf851d8e1b311c12c748a07",
+    "protocols/include/mnm/render_stream_v3.h": "5dcb2dcb44b2ab94c8800babe8cbddeec66fccf18ab2dcc9c7153d57d63bb152",
+    "protocols/python/mnm_protocols/render_stream_v3.py": "b6394c3928b5b52ec135c066c71718aed55018611e101fb42fd890701f63df8a",
+    "protocols/generate.py": "f8b49cea292748d0b7d1a49b3e8512ac4d01878e0b267da26aa3e99ed9705bb0",
+    "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json": "f903c01cae3d08486bd24d4f619af4ad96d6ee21dd55394420fe1d7bf6633cbe",
+    "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz": "c6ae4c39de508610c2fc765c3acc4eff65e0f253e89a8457ea153b3f21522e7c"
+  },
+  "driver_cases": 408,
+  "hresult_checks": 408,
+  "pixel_checks": 816,
+  "partial_failure_cases": 2,
+  "malformed_cases": 16,
+  "complete": {
+    "backend": "opengl_native_integer",
+    "checks": 816,
+    "color_checks": 0,
+    "command_sha256": "638e16d6cd65fae62eb3a772aa90d8daf5107cea8649a764767a491aaf33e627",
+    "commands": 3674,
+    "output_sha256": "c022802d2e33d0a89991893d8529daebf475f9abb0a6dbc6937854d53c26afc0",
+    "presentation_rgba_sha256": "8f14872835f1b93977d98b8fae776dfe1cd089e08554e967a2fc61cae48770b2",
+    "presentations": 1,
+    "rendered": true,
+    "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+    "result_checks": 408,
+    "surface_copies": 408,
+    "surface_copy_failures": 312,
+    "surface_stats": {
+      "copies": 38,
+      "palette_updates": 0,
+      "surfaces": 0,
+      "uploads": 816
+    },
+    "vendor": "Mesa",
+    "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+  },
+  "fragmented": {
+    "fragments": 28,
+    "frames": 1,
+    "live_surfaces": 0,
+    "ordinary_readbacks": 0,
+    "policy_checks": 21,
+    "skipped_result_checks": 408,
+    "success": true,
+    "surface_copies": 408,
+    "surface_failures": 312
+  },
+  "palette_v3": {
+    "backend": "opengl_native_integer",
+    "checks": 0,
+    "color_checks": 1,
+    "command_sha256": "8408c13d8ff7411c1589eec9013c0c66969e338ada0de978b4a3d8bd515838b1",
+    "commands": 9,
+    "output_sha256": "a12871fee210fb8619291eaea194581cbd2531e4b23759d225f6806923f63222",
+    "presentation_rgba_sha256": "8e56467a23ff16f4059b738417081abf48600e4d0d9958217178f2d5d4ca93f8",
+    "presentations": 1,
+    "rendered": true,
+    "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+    "result_checks": 0,
+    "surface_copies": 0,
+    "surface_copy_failures": 0,
+    "surface_stats": {
+      "copies": 0,
+      "palette_updates": 1,
+      "surfaces": 0,
+      "uploads": 1
+    },
+    "vendor": "Mesa",
+    "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+  },
+  "binaries": {
+    "mnm-render-commands": "c5fac6b5bae0ecdfebc53d8462a2922741ab1606c323de734a850f7384413207",
+    "render-clipping-stream-test": "fcee448b75a203def6490be489b005bdd7452ec65ffa1a95fc13c705b909e622"
+  },
+  "artifacts": "working/tests/native-clipping-stream/run-hiltcnwm",
+  "stream_sha256": "638e16d6cd65fae62eb3a772aa90d8daf5107cea8649a764767a491aaf33e627",
+  "scope": "Native v3 bounded/fragmented offline replay against retained Wine Surface2 outputs, explicit clip/busy observations, diagnostic HRESULT/native checks and owned cleanup. No original executable, native locks/loss/Restore, Windows driver or live v3 producer/replacement."
+}

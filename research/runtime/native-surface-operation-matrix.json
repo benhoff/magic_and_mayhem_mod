@@ -7,7 +7,8 @@
     "research/runtime/native-surface-fixtures.md",
     "research/runtime/render-drawing-inventory.md",
     "research/runtime/surface-driver-clipping.md",
-    "research/runtime/native-surface-clipping.md"
+    "research/runtime/native-surface-clipping.md",
+    "research/formats/render-surface-commands-v3.md"
   ],
   "operations": [
     {
@@ -185,12 +186,13 @@
       "requirement": "required",
       "requirement_evidence": "Milestone explicitly requires clipping; selected rectangle wrappers exist. Exact baseline boundary handling remains open.",
       "native_backend": "partial_rgb565_surface2_policy",
-      "wire_support": "v1/v2 COPY requires in-bounds rectangles",
+      "wire_support": "v3 SET_CLIPPER/SURFACE_COPY; v1/v2 COPY remains in-bounds",
       "behavior_ids": [
         "RI.copies",
         "RE.surface-rectangle-forwarding",
         "NR.surface-driver-fixtures",
-        "NR.surface-copy.clipping"
+        "NR.surface-copy.clipping",
+        "NR.surface-copy.clipping-stream"
       ],
       "original": [
         {
@@ -226,7 +228,7 @@
         "Blt versus BltFast error/result"
       ],
       "original_fixture_ids": [],
-      "remaining_gap": "RGB565 native backend matches the bounded Wine Surface2 corpus. Command clipper representation/replay, actual game region use, original wrapper error handling, other formats/keys/fills and Windows-driver equivalence remain pending.",
+      "remaining_gap": "RGB565 backend and v3 offline command replay match the bounded Wine Surface2 corpus. Live producer clipper/region observation and negotiation, original wrapper error/retry/Restore, other formats/keys/fills and Windows-driver equivalence remain pending.",
       "driver_fixture": {
         "record": "research/runtime/surface-driver-clipping-surface2-20261006.json",
         "corpus": "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
@@ -237,6 +239,11 @@
         "record": "research/runtime/native-surface-clipping-backend-final-20261006.json",
         "cases": 408,
         "scope": "Native RGB565 backend reproduces retained Wine Surface2 outputs; explicit busy observations only. Command protocol and original game clipping remain pending."
+      },
+      "native_stream_fixture": {
+        "record": "research/runtime/native-clipping-stream-v3-final-20261006.json",
+        "cases": 408,
+        "scope": "V3 native offline replay of retained external Wine Surface2 RGB565 outputs; no live original producer or Windows-driver equivalence."
       }
     },
     {
@@ -244,12 +251,13 @@
       "requirement": "required",
       "requirement_evidence": "Milestone clipper requirement; tracker observes SetClipper but refuses attached clippers. Reachable game region shapes remain unknown.",
       "native_backend": "partial_rgb565_surface2_policy",
-      "wire_support": "not represented",
+      "wire_support": "v3 SET_CLIPPER/SURFACE_COPY; v1/v2 COPY remains in-bounds",
       "behavior_ids": [
         "RI.copies",
         "RE.surface-rectangle-forwarding",
         "NR.surface-driver-fixtures",
-        "NR.surface-copy.clipping"
+        "NR.surface-copy.clipping",
+        "NR.surface-copy.clipping-stream"
       ],
       "original": [
         {
@@ -265,7 +273,7 @@
         "key/fill interactions"
       ],
       "original_fixture_ids": [],
-      "remaining_gap": "RGB565 native backend matches the bounded Wine Surface2 corpus. Command clipper representation/replay, actual game region use, original wrapper error handling, other formats/keys/fills and Windows-driver equivalence remain pending.",
+      "remaining_gap": "RGB565 backend and v3 offline command replay match the bounded Wine Surface2 corpus. Live producer clipper/region observation and negotiation, original wrapper error/retry/Restore, other formats/keys/fills and Windows-driver equivalence remain pending.",
       "driver_fixture": {
         "record": "research/runtime/surface-driver-clipping-surface2-20261006.json",
         "corpus": "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
@@ -276,6 +284,11 @@
         "record": "research/runtime/native-surface-clipping-backend-final-20261006.json",
         "cases": 408,
         "scope": "Native RGB565 backend reproduces retained Wine Surface2 outputs; explicit busy observations only. Command protocol and original game clipping remain pending."
+      },
+      "native_stream_fixture": {
+        "record": "research/runtime/native-clipping-stream-v3-final-20261006.json",
+        "cases": 408,
+        "scope": "V3 native offline replay of retained external Wine Surface2 RGB565 outputs; no live original producer or Windows-driver equivalence."
       }
     },
     {

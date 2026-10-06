@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "renderer/blit.hpp": "b348f7ad14ec06e79dfa07ec1c699388d13639cd74f65b251c79354ae33b3c27",
+    "renderer/blit.cpp": "e21ff91483d417a4e0bc407761c2f476c414ee39064e47e7d0397632e898753a",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/CMakeLists.txt": "3df6da095e1fe6e13652d14a4336745641128fa26d1e91632fdae19b0c2b2853",
+    "tests/render-surface-copy-fixtures.cpp": "09c1b999b9476b17b2596f7e7d2d104cce1060ab8eb596747fe681e485893742",
+    "tools/check-native-surface-clipping.py": "829a24329a978fe3a719300e74f08c0eca16defc547f56f5ee4247e38d6fcab6",
+    "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json": "f903c01cae3d08486bd24d4f619af4ad96d6ee21dd55394420fe1d7bf6633cbe",
+    "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz": "c6ae4c39de508610c2fc765c3acc4eff65e0f253e89a8457ea153b3f21522e7c"
+  },
+  "cases": 408,
+  "matched": 408,
+  "destination_pixels": 19584,
+  "partial_failure_cases": 2,
+  "native": {
+    "operations": 408,
+    "ordinary_readbacks": 0,
+    "ordinary_uploads": 0,
+    "policy_tests": 18,
+    "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+    "success": true,
+    "vendor": "Mesa"
+  },
+  "binary_sha256": "0f0c311d9c328bee90e2e1f2425d0fdf7f8fc05ff6c6a8bb3f48b5c0d8bc3af4",
+  "artifacts": "working/tests/native-surface-clipping/run-5cvgad3v",
+  "scope": "Native RGB565 GL Surface2-policy API versus408 independent retained Wine driver HRESULT/full native output pairs. Busy cases use explicit admission observations; no native lock/loss lifecycle, original game execution, Windows-driver equivalence, command protocol or live replacement."
+}

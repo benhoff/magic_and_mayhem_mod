@@ -56,7 +56,8 @@ Regression requires only the retained fixture corpus, Qt/Mesa and Python; it doe
 not launch Wine, the game or consume source media. Reports use new per-run paths,
 or an explicit new `--report`. `opengl-surface-clipping` is registered with CTest.
 
-The command protocol/replay is the next integration step. Actual game clip regions,
+[Version3 clip state and offline replay](../formats/render-surface-commands-v3.md)
+now integrate this backend with explicit HRESULT diagnostics. Actual game clip regions,
 original error/retry/Restore paths, other formats, keys/fills with clipping,
 region permutations/normalization, overlap, primary/video surfaces and Windows-driver
 comparison remain separate. Renderer integration here is headless and synthetic;

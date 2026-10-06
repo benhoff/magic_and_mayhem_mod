@@ -1,5 +1,6 @@
 #include "commands.hpp"
 #include "command_state.hpp"
+#include "../protocols/include/mnm/render_stream_v3.h"
 #include <QtEndian>
 #include <stdexcept>
 
@@ -24,7 +25,7 @@ SurfaceCommand decodeRecord(const QByteArray& record,detail::CommandState& state
         SurfaceCommand c;c.version=version;c.operation=word(record,0);c.sequence=word(record,4);const auto length=word(record,8);
         require(c.sequence==state.commands+1 && length==unsigned(record.size()-12),"Command sequence gap or truncated payload");
         const auto p=record.mid(12);
-        const auto fields=[&](unsigned n){require(length>=n*4,"Short command fields");for(unsigned i=0;i<n;++i)c.words[i]=word(p,i*4);};
+        const auto fields=[&](unsigned n){require(n<=c.words.size() && length>=n*4,"Short command fields");for(unsigned i=0;i<n;++i)c.words[i]=word(p,i*4);};
         if(c.operation==1){
             fields(7);c.format={c.words[3],{c.words[4],c.words[5],c.words[6]}};detail::validateCommandFormat(c.format);
             c.image=pixels(p,28,c.words[1],c.words[2],c.format.bits);
@@ -36,13 +37,22 @@ SurfaceCommand decodeRecord(const QByteArray& record,detail::CommandState& state
             fields(3);const auto count=c.words[2];require(count && count<=256 && length==12+count*3,"Invalid palette command");
             for(unsigned i=0;i<count;++i)c.colors.push_back({static_cast<std::uint8_t>(p[12+i*3]),
                 static_cast<std::uint8_t>(p[13+i*3]),static_cast<std::uint8_t>(p[14+i*3])});
-        }else if(version==2 && (c.operation==12 || c.operation==13)){
+        }else if(version>=2 && (c.operation==12 || c.operation==13)){
             const unsigned n=c.operation==12?2:4;fields(n);
             const unsigned count=c.operation==12?256:c.words[3];
             require(count && count<=256 && length==n*4+count*3,"Invalid palette resource length");
             for(unsigned i=0;i<count;++i)c.colors.push_back({static_cast<std::uint8_t>(p[n*4+i*3]),static_cast<std::uint8_t>(p[n*4+i*3+1]),static_cast<std::uint8_t>(p[n*4+i*3+2])});
-        }else if(version==2 && (c.operation==14 || c.operation==15)){
+        }else if(version>=2 && (c.operation==14 || c.operation==15)){
             const unsigned n=c.operation==14?3:2;fields(n);require(length==n*4,"Invalid palette identity length");
+        }else if(version==3 && c.operation==MNM_RENDER_STREAM_V3_OPERATION_CLIPPER_SET){
+            fields(3);require(c.words[2]<=MNM_RENDER_STREAM_V3_CLIP_REGION_CAPACITY && length==12+c.words[2]*16,"Invalid clip region length");
+            for(unsigned i=0;i<c.words[2];++i){const auto at=12+i*16;
+                c.regions.push_back({detail::signedCommandCoordinate(word(p,at)),detail::signedCommandCoordinate(word(p,at+4)),
+                    detail::signedCommandCoordinate(word(p,at+8)),detail::signedCommandCoordinate(word(p,at+12))});}
+        }else if(version==3 && c.operation==MNM_RENDER_STREAM_V3_OPERATION_SURFACE_COPY){
+            fields(MNM_RENDER_STREAM_V3_SURFACE_COPY_WORDS);require(length==52,"Invalid surface copy length");
+        }else if(version==3 && c.operation==MNM_RENDER_STREAM_V3_OPERATION_SURFACE_RESULT_CHECK){
+            fields(2);require(length==8,"Invalid result check length");
         }else if(c.operation==5 || c.operation==10){fields(1);c.expected=p.mid(4);
         }else if(c.operation==6 || c.operation==7 || c.operation==9){fields(1);require(length==4,"Invalid surface command length");
         }else if(c.operation==8){require(!length,"Invalid END length");
@@ -76,7 +86,8 @@ std::vector<SurfaceCommand> CommandDecoder::append(const QByteArray& bytes){
         if(!p.header){
             if(p.pending.size()<16)return out;
             p.version=qFromLittleEndian<quint32>(p.pending.constData()+8);
-            require(((p.pending.first(8)=="MNMCMD01" && p.version==1) || (p.pending.first(8)=="MNMCMD02" && p.version==2)) &&
+            require(((p.pending.first(8)=="MNMCMD01" && p.version==1) || (p.pending.first(8)=="MNMCMD02" && p.version==2) ||
+                    (p.pending.first(8)==MNM_RENDER_STREAM_V3_MAGIC && p.version==MNM_RENDER_STREAM_V3_VERSION)) &&
                     qFromLittleEndian<quint32>(p.pending.constData()+12)==16,"Invalid command stream header");
             p.pending.remove(0,16);p.header=true;
         }
