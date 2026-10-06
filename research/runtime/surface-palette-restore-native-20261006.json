@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/render-palette-restore-test.cpp": "2aa3fe0f6b5415645ed60c5dcff79e76825d4004b56062df4b25cf08bf07d064",
+    "tools/check-native-palette-restore.py": "758b1e76e6a8ebbda3d65b6b72ae1bbae25f274dc063d1b754e277b800e77eab",
+    "tools/check-surface-palette-restore.py": "40b525e732be91b5a27cc28214968f0149c67fd40418752da0ea03901e7b4ab8",
+    "renderer/blit.cpp": "afb45c46fe408ab48d4750e7f4e289fde5236dc4d90a8ea6d336c7ebf9852045",
+    "renderer/blit.hpp": "2a32b6387f97b69c1b725029b7985dd99b68858cfe2fe5c62e131f4ce241dbdb",
+    "renderer/known_pixels.hpp": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+    "renderer/CMakeLists.txt": "fe9f4119ffeb11dae11264fd63197be20cbb6c9331477a3b74aa6cb0788ea3a5",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "research/runtime/surface-palette-restore-capture-20261006.json": "c4a71a0033b934217905484473234161b0b9c82aa078d7effbea7a597154202b",
+    "tests/fixtures/surfaces/surface-palette-restore.json.gz": "9e6d00cb9c360702cd00b9cc43930985887131bfe741bf87c262b88d537fa52b"
+  },
+  "native": {
+    "success": true,
+    "cases": 9,
+    "unknown_refusals": 45,
+    "index_checks": 18,
+    "rgb_pixel_checks": 864
+  },
+  "binary_sha256": "4520d8122b3f115834648a10087ebe8b344b209d256b5cefb84700e11bbbed94",
+  "library_sha256": "3385d4fc618b08779a9f1c2c72202705ffea548ec36de69711f0925b8bac8f07",
+  "inputs_sha256": "5ab384b90fdd28c9a2035acfed2ae9a1b637c78899cdbb028143238bff6632c1",
+  "artifacts": "working/tests/native-palette-restore/run-fdxxbgm_",
+  "original_wrapper_executed": false,
+  "scope": "Native GL indexed8 validity and explicit reload/palette policy using captured API entries/index inputs from nine defined states.45 unknown-content refusals,18 index checks and864 input-derived RGB pixel comparisons. Captured palette/indices are inputs; RGB presentation is not independently captured original/driver display output. No native shared COM identity, asset reload or live recovery equivalence."
+}

@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-palette-restore-reference.c": "3b9c55ff7856bde2d3313df6f0b62343ba367395238f45bf156479292727ff12",
+    "tools/capture-surface-palette-restore.py": "611e2925d01c632a21705100d3f99003b0105cf1a7042279839a42fd97540b12",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/fixtures/surfaces/surface-palette-restore.json.gz": "9e6d00cb9c360702cd00b9cc43930985887131bfe741bf87c262b88d537fa52b"
+  },
+  "scope": "Real Wine indexed8 Surface2 mode-change palette binding/entry retention and explicitly written index reload observations. No original game image/wrapper, native renderer or Windows-driver equivalence. Restored bytes are observed only; they are not a portable deterministic contract.",
+  "environment": {
+    "wine": "wine-11.16",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b",
+    "display": ":105",
+    "virtual_desktop": "restore-probe,1024x768",
+    "display_bpp": 8,
+    "cooperative_level": "EXCLUSIVE|FULLSCREEN"
+  },
+  "artifacts": "working/tests/surface-palette-restore/run-sbb6mn32",
+  "probe_sha256": "d04f0262574919429cf4d50a1984e1e9f8f64b2e80b886f150a31fd06bc0d03c",
+  "outputs_sha256": "3dc8c5845689717da81847fc34ff10a1e728b730137fe80da1155664d04492c9",
+  "row_fields": [
+    "kind",
+    "phase",
+    "surface",
+    "result",
+    "a",
+    "b"
+  ],
+  "kinds": {
+    "1": "CreateSurface",
+    "2": "IsLost",
+    "3": "GetColorKey",
+    "4": "Lock",
+    "5": "pixel",
+    "6": "pixel_hash",
+    "7": "Unlock",
+    "8": "BltFill",
+    "9": "SetCooperativeLevel",
+    "10": "SetDisplayMode",
+    "11": "SetColorKey",
+    "12": "Restore",
+    "13": "RestoreDisplayMode",
+    "14": "SetForegroundWindow",
+    "15": "format_dimensions",
+    "16": "RGB_masks",
+    "17": "complete",
+    "18": "GetDisplayMode",
+    "19": "display_dimensions",
+    "20": "CreatePalette",
+    "21": "GetPalette_identity",
+    "22": "palette_entry",
+    "23": "SetEntries",
+    "24": "SetPalette",
+    "25": "GetEntries",
+    "26": "reload_Lock",
+    "27": "reload_Unlock"
+  },
+  "surface_caps": [
+    2112,
+    16448,
+    64,
+    512
+  ],
+  "row_count": 8233,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-palette-restore.json.gz",
+    "sha256": "9e6d00cb9c360702cd00b9cc43930985887131bfe741bf87c262b88d537fa52b",
+    "raw_sha256": "3dc8c5845689717da81847fc34ff10a1e728b730137fe80da1155664d04492c9",
+    "raw_bytes": 197592
+  },
+  "publication": {
+    "captured_report_sha256": "cc55c79966c8abde8350f8222d4ccb937616b2258e3372909c8a9ca36369c3d7",
+    "captured_report_path": "working/tests/surface-palette-restore-discovery2.json",
+    "captured_corpus_path": "working/tests/surface-palette-restore-discovery2.bin.gz",
+    "scope": "Relocated identical captured bytes into the portable repository fixture; all recorded source digests preserved. No new execution or refreshed historical source hashes."
+  }
+}

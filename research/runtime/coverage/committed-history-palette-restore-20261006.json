@@ -1,0 +1,259 @@
+{
+  "schema": 1,
+  "base": "94d217f",
+  "head": "89ab1db9f48b4662601f10bccf9562623fac1b4e",
+  "scope": "Exact committed file and behavior receipts; retrospective accounting does not assert a past gate pass or fresh execution.",
+  "commits": [
+    {
+      "commit": "89ab1db9f48b4662601f10bccf9562623fac1b4e",
+      "parent": "94d217f3f765b17edebba2c6dd9ee8cf3107743b",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "9f27499eec573440693f6e63294eebd4868426bd3278c5f40caef3c5a3c9bdff",
+          "after_sha256": "40ca7581da7ae4d194c57e66ad5bd0db7e3cd18ddcdf6c45397387e0198f83f3",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "1cdf5d9ada9ba082d1f816d4cdfcad38d84e94d8affb8e3e8bbae6a97e45695e",
+          "after_sha256": "5686b4c01f57332b28195ba641239e7e1b02b5ab2db51f2300769fea4de5bc83",
+          "receipts": [
+            "append-only journal self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-driver-restore-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "09163094bcda079ffccd403b4309d19eab4fddfd83ca09074905ed8afdda6011",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "22a85a7d2028f9fcf4d38ee4b35c6339a09ae110dc2f1b6534f7b66b6da5db7d",
+          "after_sha256": "26d2b3cd8a025c7d65143819371c94e90ccea9fd377d9cf68febdccd6486ba0f",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-driver-restore-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "85a0b5463b880a1254f06770bd69bcde5861d10bb97d994f320c24f1cb6b8cfc",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-driver-restore-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "e16c61f75023e9b21cf407d75a50c5bc9e89317b5fd92d8baef269adf96d12e3",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "0dd81705be11723bf663a843c943008c23431a6ea49e8782f4df0141653da824",
+          "after_sha256": "7f2857d58fcef2ca030ddba786fa26ae7fd0b41051cf5f436169a1fa4026bb69",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-retry.md",
+          "before_sha256": "a70f4e232c6ecdd0efebb951f7b752e3571e916f4aabf05ed313d2f0f83232d1",
+          "after_sha256": "c286f64071f210faed23a96d6ba7e3177b09478625b2c15fa51ebe7d4608585e",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-driver-restore-16-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "fcb341b0ef2a2dc150c4493467d1b459eef8a6b0bca036af4513272cb2398f04",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-driver-restore-32-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "47b323166d156758849095034bdf94980365c6cfecae57e86102ea7e27fc3a74",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-driver-restore-offline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "121481ebb3dddff3bd3cb21e1b072f9721cb7cea3ff55c9a0639418c6db4561b",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-driver-restore.md",
+          "before_sha256": null,
+          "after_sha256": "e489f54bc7cb88d93cbb71d01d621f4daf1059a32802f33b0b050e48affa8446",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-driver-restore-corpus.json",
+          "before_sha256": null,
+          "after_sha256": "27ef543f12031ae2446b4cfb619d5b27bc96491eaa8510742f4657f46a50f1ae",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-driver-restore-reference.c",
+          "before_sha256": null,
+          "after_sha256": "0b39460afb524e40d58c1ffa49b3db28316889c7ec58329ad18cc8ff2eac2b12",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-surface-driver-restore.py",
+          "before_sha256": null,
+          "after_sha256": "8d5ae28d56eb7edf923964ef2659e20b46c23d6f21dfb53d31f6ccf7c12c35a5",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-surface-driver-restore.py",
+          "before_sha256": null,
+          "after_sha256": "4721e1494823f6400249340e44a4670d4d2db96daa94fe85139dac848a39ce1c",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-surface-driver-restore.py",
+          "before_sha256": null,
+          "after_sha256": "073182ce03ee3cf68af90aa05b2ccf851b459558af92adfe327239810e622fbd",
+          "receipts": [
+            "driver-restore-api-20261006",
+            "driver-restore-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.surface-contents.validity",
+          "before_sha256": "b3c437852fd7299ec7ad4fbb2218277b41319dbc074aa12065f6bd4e985d94e7",
+          "after_sha256": "f54c81534c58718dd31bd8ab955e035cd9e71d47b115504b320de0814934cba5",
+          "receipts": [
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "07dd0a785c19003d443bcde38d5dd91b4b24f4c1646d151978aa9ae07f6fd206",
+          "after_sha256": "ab00cf42f48b8dc2dd0511b7e7b2636d37fc6bd5f8b82fbdc3caaf722cd58e98",
+          "receipts": [
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "c80cac54cb28f99ddbcdb4004ab809e4416c9c58cd848d0fe4f6779b813c552e",
+          "after_sha256": "3aeb18eea2f72ba70da1f9b9972430bb2f008500323e2a6d4eca4d6712b589fb",
+          "receipts": [
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "f8b6614246c01b50e187a44282cac69c38493ec1c6dab3b9f175a90bfb41a51e",
+          "after_sha256": "b2ca608c403e2ed7399d358170c1233a13431087c1b821a4e3e55f433758ae84",
+          "receipts": [
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "8a97cd50f7d2a59cab66a6ad9ec356fec87c0a91c2c6816cbef5754e80ee1449",
+          "after_sha256": "84e61d46db856ba2b5a87ddc1b6bfe3d505b36e8e8bc527d2bb346b014467b63",
+          "receipts": [
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.restore-retry",
+          "before_sha256": "8d60c514de0808acddf482896e4b129ecea97bbfd0faeb35b6ddd2d7ecde8213",
+          "after_sha256": "a5b0e60ebc15d90d4378583bee4638a56efbc7cbed1b16dc9b8e8c3b7f967c08",
+          "receipts": [
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "b3aa42553eed59555247a6b844c89f127c9325cc20061ab39fe14632570c827c",
+          "after_sha256": "d5f25f7b9244723bee578ce0bcf5017d84b6c80a23adcc6a36f6aaab3e4f4cb7",
+          "receipts": [
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "f8ecb1ab60872d677d6d6b65bfa6fb5a025079f69d61a9baeef6c914deaecd51",
+          "after_sha256": "a1e0ca632582740d5c40f103086fdcba2571161c5ad118045dfa13f73e183acf",
+          "receipts": [
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "f69ebf5fef51e0068f78b12a365854ad8e74d668068eef50dcf5ca622407f242",
+          "after_sha256": "51f102e0344bd28fa8fb850bd981653e73dedacf0eb41c183d93176d66541cf5",
+          "receipts": [
+            "driver-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.loss-restore",
+          "before_sha256": null,
+          "after_sha256": "d06b4d37434c5dd071dd07e3a9c72d4d3bc5d807c11a9a171891262c6eb99324",
+          "receipts": [
+            "driver-restore-api-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "e9656560e40f8936f8a65cd3bdc48d9711c0bc7abda3d5095c4f53bee81678aa",
+          "after_sha256": "dc07742a19de1bb837df816c54d58bac756f7cdfa5d8451651a7ac42bb19b3c6",
+          "receipts": [
+            "driver-restore-shared-pending-20261006"
+          ]
+        }
+      ],
+      "unresolved_exact_receipts": []
+    }
+  ],
+  "unresolved_gaps": [],
+  "retrospective_receipts": []
+}

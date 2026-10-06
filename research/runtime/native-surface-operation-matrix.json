@@ -400,7 +400,8 @@
         "NR.command-checkpoint-attachment",
         "RE.surface-copy.restore-retry",
         "NR.surface-contents.validity",
-        "RE.surface-driver.loss-restore"
+        "RE.surface-driver.loss-restore",
+        "RE.surface-driver.indexed-restore"
       ],
       "original": [
         {
@@ -428,9 +429,10 @@
       ],
       "original_fixture_ids": [
         "original-retry-corpus.json",
-        "surface-driver-restore-corpus.json"
+        "surface-driver-restore-corpus.json",
+        "surface-palette-restore.json.gz"
       ],
-      "remaining_gap": "4480 original scripted traces match recovered callback scheduling; native validity has30 GL checks. Two standalone real Wine driver captures cover mode-change loss/Restore/wrong dimensions/repeated Restore/source-key retention, with2458 ordered rows verified offline. These do not execute original wrappers: lost COLORFILL returns success. Original-wrapper actual-lost-draw composition, palette/clipper/flip chains, wrong format, Windows drivers, asset/sentinel reload and live/wire integration remain pending. Unknown restored bytes are not portable expected output."
+      "remaining_gap": "Original scripted scheduling and native conservative validity remain independently validated. Indexed8 real Wine API capture adds GetPalette loss refusal, post-Restore identity/entry retention, shared palette updates and explicit index reload/rebind;8233 rows verified offline. Nine native API compositions pass45 guards/18 index checks/864 input-derived RGB pixels. Original asset/sentinel reloaders, actual-lost-draw wrapper composition, independently captured driver RGB, palette flags/detach/release, clippers/flip chains, Windows driver and live/wire recovery remain pending."
     },
     {
       "id": "SURF.lifetime_updates",

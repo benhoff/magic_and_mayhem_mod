@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "research/runtime/surface-palette-restore-capture-20261006.json": "c4a71a0033b934217905484473234161b0b9c82aa078d7effbea7a597154202b",
+    "tests/surface-palette-restore-reference.c": "3b9c55ff7856bde2d3313df6f0b62343ba367395238f45bf156479292727ff12",
+    "tools/capture-surface-palette-restore.py": "611e2925d01c632a21705100d3f99003b0105cf1a7042279839a42fd97540b12",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/fixtures/surfaces/surface-palette-restore.json.gz": "9e6d00cb9c360702cd00b9cc43930985887131bfe741bf87c262b88d537fa52b",
+    "tools/check-surface-palette-restore.py": "40b525e732be91b5a27cc28214968f0149c67fd40418752da0ea03901e7b4ab8",
+    "tests/test-surface-palette-restore.py": "07b7e7a85ac22b1febc937420f49e012575ae364d0e2224bc35c387ea51cc41f"
+  },
+  "checked_rows": 8233,
+  "known_states": 26,
+  "palette_entries": 6656,
+  "reload_states": 9,
+  "original_wrapper_executed": false,
+  "native_renderer_executed": false,
+  "scope": "Offline ordered real indexed Wine API observation/provenance verification. Palette identities/entries, lost GetPalette results, explicit reload indices, post-reload palette updates and rebind checked. Unspecified post-Restore pixels have only internal hash validation; no original asset reloader, Windows driver or live equivalence."
+}
