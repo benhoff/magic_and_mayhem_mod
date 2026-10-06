@@ -5,11 +5,13 @@
 namespace mnm::reconstruction {
 enum class SurfaceWrapper {PartialFill,FullFill,OpaqueCopy,KeyedCopy};
 enum class RecoverySurface {Source=1,Destination=2};
+enum class SurfaceReloadRoute {None,Callback,CursorBitmap};
 struct SurfaceRetryInput {
     SurfaceWrapper wrapper=SurfaceWrapper::OpaqueCopy;
     bool fast=false,noWait=false,keyEnabled=false,sourceReload=false,destinationReload=false;
     std::uint16_t sourceKey=0,destinationKey=0;
     std::uint32_t color=0;
+    SurfaceReloadRoute sourceRoute=SurfaceReloadRoute::None,destinationRoute=SurfaceReloadRoute::None;
 };
 struct SurfaceRetryAdapter {
     virtual ~SurfaceRetryAdapter()=default;
@@ -18,12 +20,21 @@ struct SurfaceRetryAdapter {
     virtual std::uint32_t setSourceKey(RecoverySurface,std::uint16_t)=0;
     virtual void reload(RecoverySurface)=0;
     virtual void report(std::uint32_t)=0;
+    // The -1 route names a global resource, independent of the triggering surface.
+    virtual void reloadCursorBitmap(){throw std::runtime_error("Cursor bitmap binding is not installed");}
 };
 struct SurfaceRetryResult {unsigned draws=0;bool returned=false,budgetExhausted=false;};
 // Original rectangle wrappers can loop forever. Budget exhaustion is an explicit
 // native stop, never a synthetic successful original return or HRESULT.
 inline SurfaceRetryResult runSurfaceRetry(const SurfaceRetryInput& in,SurfaceRetryAdapter& adapter,unsigned budget){
     if(!budget || budget>65536)throw std::runtime_error("Invalid recovery draw budget");
+    const auto route=[](SurfaceReloadRoute explicitRoute,bool callback){
+        if(explicitRoute!=SurfaceReloadRoute::None && explicitRoute!=SurfaceReloadRoute::Callback &&
+           explicitRoute!=SurfaceReloadRoute::CursorBitmap)throw std::runtime_error("Unknown surface reload route");
+        if(callback && explicitRoute!=SurfaceReloadRoute::None)throw std::runtime_error("Ambiguous surface reload route");
+        return callback?SurfaceReloadRoute::Callback:explicitRoute;
+    };
+    const auto sourceRoute=route(in.sourceRoute,in.sourceReload),destinationRoute=route(in.destinationRoute,in.destinationReload);
     const bool fill=in.wrapper==SurfaceWrapper::PartialFill || in.wrapper==SurfaceWrapper::FullFill;
     if(in.wrapper!=SurfaceWrapper::PartialFill && in.wrapper!=SurfaceWrapper::FullFill &&
        in.wrapper!=SurfaceWrapper::OpaqueCopy && in.wrapper!=SurfaceWrapper::KeyedCopy)
@@ -34,7 +45,9 @@ inline SurfaceRetryResult runSurfaceRetry(const SurfaceRetryInput& in,SurfaceRet
         const auto h=adapter.restore(s);
         if(!h){
             if(in.keyEnabled)(void)adapter.setSourceKey(s,s==RecoverySurface::Source?in.sourceKey:in.destinationKey);
-            if(s==RecoverySurface::Source?in.sourceReload:in.destinationReload)adapter.reload(s);
+            const auto selected=s==RecoverySurface::Source?sourceRoute:destinationRoute;
+            if(selected==SurfaceReloadRoute::Callback)adapter.reload(s);
+            else if(selected==SurfaceReloadRoute::CursorBitmap)adapter.reloadCursorBitmap();
         }
         return h;
     };

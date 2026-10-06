@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "renderer/blit.cpp": "860655b3fc507e6ef2d0c65837c286b23cc582a092f82095726d66bf0654306c",
+    "renderer/blit.hpp": "2a979f6ea5ab6ed16713053deea2d92338eb33accb3322ab83f63c43b67c0ffc",
+    "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "renderer/CMakeLists.txt": "05b10d3caa4ae23a94491c94394596b47615f79cdfff99e118b2cd78d394b021",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "renderer/known_pixels.hpp": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+    "tests/render-blit-test.cpp": "1cbd3b85a3270f8ef52d8a5cb086d53531a8973853d8ca931ebb0bfdcc887f35",
+    "tests/render-surfaces-test.cpp": "b3c253fbad4c3703dff87fa44ac501e2ab8c27cd7cda00b3da4218f6f55adbd8",
+    "tests/render-surface-copy-fixtures.cpp": "e676443e82f419e77f200295424fdd4ae606c703a241db9abb7be200f18ec5d7",
+    "tests/render-clipping-stream-test.cpp": "d7382c80f30ee50128f8b792afa60cbfb128ab04d7496bc5bf8f319a51773360",
+    "tests/test-render-capture.py": "135aa5d0f3fc9f6e79b495f5052c872fd35aa4868d64670d462c2b047b52ea31",
+    "tests/test-opengl-replay.py": "421089756f14da1a622dadce43f93fca14c2d7b5f130cd0a0dd105b6ef02a902",
+    "tests/test-render-commands.py": "16538af75ff9890afe5dad6591275516c4acbdc35878ca7de37160605e189c65"
+  },
+  "tests": 8,
+  "command": [
+    "ctest",
+    "--test-dir",
+    "working/build/cursor-reload",
+    "--output-on-failure",
+    "-R",
+    "^(renderer-help|native-capture-reference|opengl-native-blits|opengl-persistent-surfaces|opengl-capture-replay|opengl-command-stream|opengl-surface-clipping|opengl-clipping-stream)$"
+  ],
+  "library_sha256": "7447af346055078c2097ae8e9a8d6c13e444c33b73b06b6184f23fce2c48fedb",
+  "log_sha256": "965813f4c9141fe6fb0f95d752659220e41b5022dd5c1658dc48964c72516ebc",
+  "scope": "Eight focused existing renderer CLI/capture/blit/persistent surface/clipping/command regressions after adding bounded DIB reload. Initial report publisher rejected the passing CTest summary format; report assembled from retained completed log, matching current native renderer fingerprints and exact unchanged baseline test hashes. No new original equivalence for other contracts."
+}

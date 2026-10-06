@@ -33280,6 +33280,543 @@
         "reason": "Shared matrix/ledger and recovered wrapper scope links reviewed. Existing portable callback-only scheduling, renderer/driver and other linked contracts retain historical evidence/status; new original nested traces do not assert native cursor/GDI/live equivalence.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1e524f41b16f095f2d1ff1fd96e7a60e5df0aecf9bcaab83470c121fa179cdce",
+          "before_sha256": "7c26f9817fc2d97527e21b6b4956d335eca9052e41ce13b3d309ad40e0d9f42d",
+          "id": "NR.surface-contents.validity"
+        },
+        {
+          "after_sha256": "ec3883e260d932e081f6e53b9a0464eb3f66bfe643be9691b99f9eef8ac20818",
+          "before_sha256": null,
+          "id": "NR.surface-reload.dib-rgb"
+        },
+        {
+          "after_sha256": "2dcdb681ef716d101e98245f23b6e2634dc71f12c6fb178d639c63e92a4187d6",
+          "before_sha256": "a110dd6c6a3091d72a64586fe08ffaf14053f63b790c8c8166839613217a0993",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "ab3b357be423ed8df9be07d4a051efd3dc3e47d290aab65a3be71cf173ffdb23",
+          "before_sha256": null,
+          "id": "RE.surface-driver.dib-raster"
+        },
+        {
+          "after_sha256": "386f354fdb9c673498ea668de5b012aa5fe008d710159b86984afc1bea0c2f5b",
+          "before_sha256": "3abaf792f6ca06382cf3ec1bc91c77a0d6f12b913208f0aacd8c42e970ff7efa",
+          "id": "RE.surface-reload.cursor-sentinel"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d115f4908653fdc05b745a1067a24a549e2c7dfc4fe969c15a5f9bc6db0c8334",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/surface_bitmap.hpp"
+        },
+        {
+          "after_sha256": "e3683f0aa2aecbe7b7f83df4db02c9240028e28c15e588e780ee04e365e89428",
+          "before_sha256": "f0fe2d25cc5c3233adaf1e6024c317c90592a833130482402029e68013f2303c",
+          "path": "reconstruction/rendering/surface_retry.hpp"
+        },
+        {
+          "after_sha256": "05b10d3caa4ae23a94491c94394596b47615f79cdfff99e118b2cd78d394b021",
+          "before_sha256": "fe9f4119ffeb11dae11264fd63197be20cbb6c9331477a3b74aa6cb0788ea3a5",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "860655b3fc507e6ef2d0c65837c286b23cc582a092f82095726d66bf0654306c",
+          "before_sha256": "afb45c46fe408ab48d4750e7f4e289fde5236dc4d90a8ea6d336c7ebf9852045",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "2a979f6ea5ab6ed16713053deea2d92338eb33accb3322ab83f63c43b67c0ffc",
+          "before_sha256": "2a32b6387f97b69c1b725029b7985dd99b68858cfe2fe5c62e131f4ce241dbdb",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+          "before_sha256": null,
+          "path": "renderer/dib.cpp"
+        },
+        {
+          "after_sha256": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+          "before_sha256": null,
+          "path": "renderer/dib.hpp"
+        },
+        {
+          "after_sha256": "6a9d06b682cdb544106c0c70a33fbbf25b7dc8f88ef433a99819e7f76cbc64d9",
+          "before_sha256": "990b9a2b9e4a01bca07a32ae9ba99ab692115f409c9635f65f0026bb7a98fe0b",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "68537b817c1b9052408470300ff95b83745b10227751463c1b640c3638e6cd31",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-native-cursor-20261006.json"
+        },
+        {
+          "after_sha256": "cb73d2d94bf674f5c6cfd3a8b1de99f6acb48d82f9aa62254cee7eb4dcccea71",
+          "before_sha256": "7b192fa46cf5980597d147e0cf51041f32223826694a6b44373cd0f4be94346e",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "fdf6ae5438863744a233208af77ab4b147216fc9f6c9b7b52670b352f25bcae7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-cursor-20261006.json"
+        },
+        {
+          "after_sha256": "4f6bc780dbcdfeca197fdb3fbc261039b50d8af02bf023fa0d745e6b2ac414e7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-cursor-20261006.md"
+        },
+        {
+          "after_sha256": "41eafae3e387764beff84e30f998e756bc59c5744db7d22bab972f8e6d5fe7c1",
+          "before_sha256": null,
+          "path": "research/runtime/cursor-reload-renderer-regressions-20261006.json"
+        },
+        {
+          "after_sha256": "97ac379e112c8a04e5aebb685e57ef12cb660a61ad78adcb651933a55e74083e",
+          "before_sha256": null,
+          "path": "research/runtime/native-cursor-reload-20261006.json"
+        },
+        {
+          "after_sha256": "da2fe326109e5578d6b749aa39c8a419811a8e77f62119d49bda8b658ddeb679",
+          "before_sha256": null,
+          "path": "research/runtime/native-cursor-reload-rgb24-32-20261006.json"
+        },
+        {
+          "after_sha256": "bcab8e7f7cab0306959c4870f9550f77882df6bbae2de79252add245b3cb6b39",
+          "before_sha256": null,
+          "path": "research/runtime/native-cursor-reload.md"
+        },
+        {
+          "after_sha256": "2a890548fe881d502579678de6fb475c3665516e14a761bc0775e8d8ceb8c0b9",
+          "before_sha256": "409840b577ad051112c6c1e7fbf9155603bdc79a37d6edfdb353b37942d86585",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "90e73ce590c490722c2e13a94cca79363cf422b6b0b5f870c8cfafbb7e0ee1bc",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-retry-cursor-regression-20261006.json"
+        },
+        {
+          "after_sha256": "6880dbb12a014635aa07033757934ea0cfcc304b67c8d931a903183731503916",
+          "before_sha256": "ef6021f2a28062e0c8d02c2f7e3b67d9ceef990fba72b797192640513a9f2467",
+          "path": "research/runtime/original-surface-sentinel.md"
+        },
+        {
+          "after_sha256": "d766b38279d2a855aefe1a0a7ee358e1266a36379c72ed932d9f77fd7b631b51",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dib-gdi-capture-20261006.json"
+        },
+        {
+          "after_sha256": "3dd60ab75b12a2c4489c0d0c2e9bceabf89e936ef5c775a4128f6c22c13f6294",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dib-gdi-offline-20261006.json"
+        },
+        {
+          "after_sha256": "b73e298c34aa04b7e4145614acf23d0ac3a58d1c73e66fb21ce03b94e689bce6",
+          "before_sha256": null,
+          "path": "tests/render-cursor-reload-test.cpp"
+        },
+        {
+          "after_sha256": "b1cce048b0f06ccd779b04ebc3417c3eea0fa15de8ac03e9c17b6ba52fcd6d59",
+          "before_sha256": null,
+          "path": "tests/surface-cursor-retry-model.cpp"
+        },
+        {
+          "after_sha256": "8b696c14f7cb0fa8f5d95a44595769fc9a266782af42a841a791e83960fbdce0",
+          "before_sha256": null,
+          "path": "tests/surface-dib-gdi-reference.c"
+        },
+        {
+          "after_sha256": "e06323b178af51a692c1f64a4115d9dcafd40ac1b659f704421774209c4e2451",
+          "before_sha256": null,
+          "path": "tests/test-surface-dib-gdi.py"
+        },
+        {
+          "after_sha256": "59455371f7608fdaa27e94bf2180c41c76e26cc22d25e9185783e9f471b3cc3a",
+          "before_sha256": null,
+          "path": "tools/capture-surface-dib-gdi.py"
+        },
+        {
+          "after_sha256": "15e49d2778277180544f2caf4f5362ea2bec54b3252641b478da6f72e79266d1",
+          "before_sha256": null,
+          "path": "tools/check-native-cursor-reload.py"
+        },
+        {
+          "after_sha256": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+          "before_sha256": null,
+          "path": "tools/check-surface-dib-gdi.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-dib-gdi.json.gz",
+          "before_sha256": null,
+          "after_sha256": "2284a4a9b7848ae40cfdbe20995a346c1e566b7f4a5c79ca1c44ccfce33dc5d0"
+        }
+      ],
+      "id": "native-cursor-reload-gdi-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:6b530fda920c8ab3a800157e3a2dd50d3b3616db584927b0ed74aad30048a0f3",
+        "behaviors_without_comparison:b179c167e30de88d6bb0d315f3f73c4ad19ed115d20a4000a0086a4db6841393",
+        "behaviors_without_implementation:b179c167e30de88d6bb0d315f3f73c4ad19ed115d20a4000a0086a4db6841393",
+        "behaviors_without_scenarios:b179c167e30de88d6bb0d315f3f73c4ad19ed115d20a4000a0086a4db6841393",
+        "stale_evidence:01e46e54fc4944b29b6c4f9b0dede07110a14bfde0e230e01daa3ade1c09079f",
+        "stale_evidence:03ccdb4611f4f5c9977a7f77ce2f3d97bde21ea1b0372c2441ff786fc2026b5b",
+        "stale_evidence:04df6c7d848ee13b74d75c1570a2c828b7047b2f27db0e3fd58e2cb9b975a553",
+        "stale_evidence:05572fa763f27ba4f1336ab6625e16666ac059001a7219c68d6d92916f800323",
+        "stale_evidence:058914411c22073e78173266fa1e259bf3bfa73b0304fa72357f19f42767a726",
+        "stale_evidence:1335a83337b920244db5f8420c367e69738efaae4c362f6a9f7cc11b4906db3c",
+        "stale_evidence:15b98542dc7d480b97cc7087bfd7dd7bdf185ecb430810ccafcfe926c6cefdf0",
+        "stale_evidence:17f7b32f2be596431d60968bdffec76d833be89895f4ca5f2b9f11a26a176bd2",
+        "stale_evidence:1946d312eff3e9b00c6b385b0afeb86096ee23870ffeedd08521a42487c607cb",
+        "stale_evidence:19c1e3749819abef6f75abe695718447c7744a9098ef3aec93e4345739da9bd6",
+        "stale_evidence:2b643c91927cf9640aecbabc74a140cd694e323e694c9f8d62674f63ee4a4d15",
+        "stale_evidence:2b8442c5b9faa5dd14b8a166eea67d28726f5e97b0af71458a65becefe365270",
+        "stale_evidence:320b9447a6c01c9355c5de6057505b33c751c2e11d3bf67b6b10d300f9de019c",
+        "stale_evidence:37738677c40d42fce51cb9a5166af3d7b3c7ca75adf14de412b72af635d471fe",
+        "stale_evidence:39cc524af3932ad25306aa39c6231244963630643f471ead4fa344f1421d7615",
+        "stale_evidence:3af7ddd7a76773882f178b597bdb823f5d07ce222db143756e38e1ffa8d92f55",
+        "stale_evidence:3c211f6757b8eb7e4f362cb5f8b09e00586a357179035f205f097b8c9e0c8ac7",
+        "stale_evidence:44d1b8b291aba1f964026d08a9789ad2279a6eaa8c026b08039c1d4eb520b0b1",
+        "stale_evidence:4ae8e0a904801514357296505b9bed1edb3da6a578d86d13e9c0fdc511148516",
+        "stale_evidence:4bc4e0de3c3006c65a07d616b2515647e5c866fd327a6676c93ebb696edfb1c2",
+        "stale_evidence:5b307c054f6edb1d4dc7738680dbf98d7213521ae2c504caa60bd9ee4b6390fb",
+        "stale_evidence:6866cb74d10c25a10f80959610e616173296d1a3d7d67c6752dbb5428a8a48ae",
+        "stale_evidence:709f08bf583960fb9261705c16252688f315ee843ae992dcf56963c1e3ef012c",
+        "stale_evidence:7145d643d8ac4bc2db9dab4c45d298c3b90a0cb0508b247e04a4bf6dff44db09",
+        "stale_evidence:797b1b79944d751d3b1b5df11f1387d21388b7ff1fee0eccdbc5141db22dd5a1",
+        "stale_evidence:825f31127741ca940e7eab64f3dc5092de2e06524abf24ac3ef7e68284c452f0",
+        "stale_evidence:8be5e2e24965deab48c0877ba7a82372210b85ba043537faa5168546b53474c4",
+        "stale_evidence:8d6aa59f5645855059bd1e059c7f479bf223fdbf83ac5086d535d200b77b6a9f",
+        "stale_evidence:93c860d5c35c64590446f9b09ada96845a7bc10680c32b54475e0806864e6737",
+        "stale_evidence:967ef0a1ead47a2f4d41b83f99c3737b3ec476afc9b7ac43f25edca7a9bd1a34",
+        "stale_evidence:99496b69b624492447ef51b33e070f29ea79ff982da8221e1868a3e195fe950d",
+        "stale_evidence:9fbac53f51d7c400ba7ff271229bd877699128843f4ecd327b8bedce7301227b",
+        "stale_evidence:a7a0845c768d21dab6c057ce9710f1d6a581bd814d53d66230e05576b6d1be6a",
+        "stale_evidence:a85e358d277cd87b0e0896f1b517b6bf733a70060f5148caad041b3d2ad0b7b2",
+        "stale_evidence:b910329207b3a53084c2f32ad2bf3d5be831087ba12dfb620bfa7401c8d0f161",
+        "stale_evidence:c51395bde4075a404b9c85a354b5e1e8fb549b1169c3f69c737045e2cc494dea",
+        "stale_evidence:d1bedf7d766cf17dd02d08d6e8f478d4893232d689c3e4276e140d5490cc4b98",
+        "stale_evidence:d48d4e4d5ac2aa9e135b243f518d25df42534437014cb13c39f745c8d0e3aae2",
+        "stale_evidence:d5a619538f13130e1acf6d89cdbca84dbc13a2a7041c4a5d029afead83df52bf",
+        "stale_evidence:d63dd445af3d6ea1724895f188028f65c414f626f709290f3df1943d97e3e63b",
+        "stale_evidence:da2786ac35f864c41ca42abd54be765e828d873a17864ef021c1523dca75c847",
+        "stale_evidence:f2a3bceb9eedc4b2f33f74073c4bbe89dcc4d70e90dc48d8dd6b86fd4a6c7893",
+        "stale_evidence:f4df85b5205f53de4551194fd7c380386b770ed21fb1a41df6d6341254904e59"
+      ],
+      "reason": "Reviewed recovered global cursor/none/callback routes, compatible legacy callback booleans and finite-budget prefixes; bounded original sequential BMP parsing and native owned DIB RGB conversion/cropped validity. Independent one-session GDI capture and18 offline cases/6 refusal tests,1456 C++ dispatch projections/12 original submitted buffers,36 nativeRGB24/32 cases/1346928 GDI RGB comparisons/12 recovery compositions/137 refusals pass.4480 prior schedules,30 validity checks and8 renderer regressions pass. Source census and explicit unsupported DirectDraw/DC/loss/live boundaries reviewed; initialRGB32 hashes remain historical.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh recovered C++ comparisons against independent retained original execution and standalone real GDI capture plus native headless compositions justify only the declared cursor scenario. Original CRT/DirectDraw DC/actual loss/other formats/live remain pending. Current full native result is fresh; initialRGB32 record retains stale test fingerprints.",
+        "evidence": [
+          "DRIVER.surface-dib.gdi.capture-20261006",
+          "DRIVER.surface-dib.gdi.offline-20261006",
+          "ORIGINAL.surface-reload.cursor-sentinel.native-20261006",
+          "NR.surface-reload.dib-rgb.native-20261006",
+          "ORIGINAL.surface-copy.restore-retry.cursor-regression-20261006",
+          "NR.surface-contents.validity.cursor-regression-20261006",
+          "NR.surface-reload.dib-rgb.renderer-regressions-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "377c9946052414878674fbac3c6e9544c37e3c0ea2cb9a24641aa53924faff18",
+          "before_sha256": "27652d7c59850d544b7cd680baba38f7b6bf7e867ec35ddae8cc19f74b4db89d",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "a3ab9043520b9b46d40602f58dcd30a2b716668966ec2ea45de01c9179f621d3",
+          "before_sha256": "32dd88def8dad278a4f841d301da607a22ac76c3300e93988f3cab15d4adbe9b",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "feac5934c42256c550ba017b8ff6fbe199f42068841668560bf074430f45b354",
+          "before_sha256": "e195012972e56a0daa0831104ac29fae173dd18ec5626e163aed3fe12ba81cb2",
+          "id": "NR.command-ring"
+        },
+        {
+          "after_sha256": "00a3c8b7662dfbe2576ea71d04cb8fffaccaafb0f1b7bb13a96700bf0588713a",
+          "before_sha256": "74edac77cc8ed1bcc034079c501376bb4e93335130570a8f7476e7193305e833",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "139d1852fada104ff59fb215e9dbc140a84e528964b309d2ce80600e4888ff1e",
+          "before_sha256": "b94ca1d0ab977032bb998d77c57528783eefdf53a15ba06545dede5070fcaa38",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "ca5b0d3bcbadabd3cedd07587b9125b2dc66ef7f7bbfa1a9b75f42d96fa0147b",
+          "before_sha256": "60a406e35bb7f00238e9184f4fd80140edb80faaac6a4fe8d48c1d9d2ecd7dfa",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "e0d4ac0b39f417b8b87b6ade0812d874d78d297ed80a4ce2ed11ad19fac25b9a",
+          "before_sha256": "479ad5c4ce656af834585c866428f39683a8bc2c61cbb03501b69c59076dd1fb",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "8e14c1fb36e8af9cd3c500e0f63a1ebf97a2e27d238ef8ba9a8773c99344e77c",
+          "before_sha256": "4a296bf426a54e1b2a4a51ebd23c7d25f07be44b982035c16744f7cb923b878d",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "0cec16a7ef89b6091d2b2136fdfd1692e465b2fd466eb7cad54f84768ea794b2",
+          "before_sha256": "f33681855d49d3684b23794fdacd214aa36d112c1cbc7d86a728a8478b6bb522",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "f942b905084c785918f80a45370427683ed55fbc0954462a5e88ee98c5e9b37b",
+          "before_sha256": "3b511ecdc9465bd05f65f5f9eaff7c2a83ca52bbbc7ebabc51162ffb98484a13",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "d34c7d55f26aff62af7f23215cee0abe0da2b656ded7f4eb209cab88999133fe",
+          "before_sha256": "58749a39274d72b8e7c78a72aad516b256735fe18720bf4ebd44ac76fc6b7953",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "83bc0a2f297335617734cb4e4e616d27affb0bd6c319be9b335da72647ba7a68",
+          "before_sha256": "b38da8c9c0d203864d136e792295dde9f4c5fe1de376531504364068d0c4eb43",
+          "id": "NR.surfaces"
+        },
+        {
+          "after_sha256": "910badd8377c302ef5403d73054ad1f13c8e7d9dd003bf04cddcb82fc1594aa3",
+          "before_sha256": "097101e3f7c3d43a2961b99f43e1ffba26997e842ede8bc6a8129768b0ecc869",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "3721bb7cf53d9bf351181b6113c767cb4853760b888e823460aaec6b54875b44",
+          "before_sha256": "6fef2346e300c1f6f2d294cf549dac6b41cf370e15fc3b1f1b24443e391ce956",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "92478005cd0b6ce3a29efc1a6841a284e31f01a7a56c237a677e5786ed1fedb4",
+          "before_sha256": "3135f7d44d88907b4704ba1977fe8375fd123c7e9637dcc8141a15bf695f4512",
+          "id": "RE.surface-copy.rgb565-overlap"
+        },
+        {
+          "after_sha256": "04fa256a6dbfaf64b17b060e22264926a317cca174a4f40e5f47a1b0d5a417d6",
+          "before_sha256": "0d672baac4c3dcb6d1fa4a563608983fc8422bcfda1f52abb89eda9ae0a6cf3f",
+          "id": "RE.surface-driver.indexed-restore"
+        },
+        {
+          "after_sha256": "60f8b6bfcb2b88382e927f4a8fd91e5573a43366cf1002c155f016098006c563",
+          "before_sha256": "432a3d80c51dfca09794ba090cafd512fa09caaca9922aeb8968b28016490650",
+          "id": "RE.surface-driver.loss-restore"
+        },
+        {
+          "after_sha256": "e9de7620434a86e58d4994240482f0752a6b2a71c426bee9949f49989e16df6f",
+          "before_sha256": "d9ac6588817ae0968d570ef16de04b05fdb5646b053a614318082a4ef35179a8",
+          "id": "RE.surface-fill.rgb565"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d115f4908653fdc05b745a1067a24a549e2c7dfc4fe969c15a5f9bc6db0c8334",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/surface_bitmap.hpp"
+        },
+        {
+          "after_sha256": "e3683f0aa2aecbe7b7f83df4db02c9240028e28c15e588e780ee04e365e89428",
+          "before_sha256": "f0fe2d25cc5c3233adaf1e6024c317c90592a833130482402029e68013f2303c",
+          "path": "reconstruction/rendering/surface_retry.hpp"
+        },
+        {
+          "after_sha256": "05b10d3caa4ae23a94491c94394596b47615f79cdfff99e118b2cd78d394b021",
+          "before_sha256": "fe9f4119ffeb11dae11264fd63197be20cbb6c9331477a3b74aa6cb0788ea3a5",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "860655b3fc507e6ef2d0c65837c286b23cc582a092f82095726d66bf0654306c",
+          "before_sha256": "afb45c46fe408ab48d4750e7f4e289fde5236dc4d90a8ea6d336c7ebf9852045",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "2a979f6ea5ab6ed16713053deea2d92338eb33accb3322ab83f63c43b67c0ffc",
+          "before_sha256": "2a32b6387f97b69c1b725029b7985dd99b68858cfe2fe5c62e131f4ce241dbdb",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+          "before_sha256": null,
+          "path": "renderer/dib.cpp"
+        },
+        {
+          "after_sha256": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+          "before_sha256": null,
+          "path": "renderer/dib.hpp"
+        },
+        {
+          "after_sha256": "6a9d06b682cdb544106c0c70a33fbbf25b7dc8f88ef433a99819e7f76cbc64d9",
+          "before_sha256": "990b9a2b9e4a01bca07a32ae9ba99ab692115f409c9635f65f0026bb7a98fe0b",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "68537b817c1b9052408470300ff95b83745b10227751463c1b640c3638e6cd31",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-native-cursor-20261006.json"
+        },
+        {
+          "after_sha256": "cb73d2d94bf674f5c6cfd3a8b1de99f6acb48d82f9aa62254cee7eb4dcccea71",
+          "before_sha256": "7b192fa46cf5980597d147e0cf51041f32223826694a6b44373cd0f4be94346e",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "fdf6ae5438863744a233208af77ab4b147216fc9f6c9b7b52670b352f25bcae7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-cursor-20261006.json"
+        },
+        {
+          "after_sha256": "4f6bc780dbcdfeca197fdb3fbc261039b50d8af02bf023fa0d745e6b2ac414e7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-cursor-20261006.md"
+        },
+        {
+          "after_sha256": "41eafae3e387764beff84e30f998e756bc59c5744db7d22bab972f8e6d5fe7c1",
+          "before_sha256": null,
+          "path": "research/runtime/cursor-reload-renderer-regressions-20261006.json"
+        },
+        {
+          "after_sha256": "97ac379e112c8a04e5aebb685e57ef12cb660a61ad78adcb651933a55e74083e",
+          "before_sha256": null,
+          "path": "research/runtime/native-cursor-reload-20261006.json"
+        },
+        {
+          "after_sha256": "da2fe326109e5578d6b749aa39c8a419811a8e77f62119d49bda8b658ddeb679",
+          "before_sha256": null,
+          "path": "research/runtime/native-cursor-reload-rgb24-32-20261006.json"
+        },
+        {
+          "after_sha256": "bcab8e7f7cab0306959c4870f9550f77882df6bbae2de79252add245b3cb6b39",
+          "before_sha256": null,
+          "path": "research/runtime/native-cursor-reload.md"
+        },
+        {
+          "after_sha256": "2a890548fe881d502579678de6fb475c3665516e14a761bc0775e8d8ceb8c0b9",
+          "before_sha256": "409840b577ad051112c6c1e7fbf9155603bdc79a37d6edfdb353b37942d86585",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "90e73ce590c490722c2e13a94cca79363cf422b6b0b5f870c8cfafbb7e0ee1bc",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-retry-cursor-regression-20261006.json"
+        },
+        {
+          "after_sha256": "6880dbb12a014635aa07033757934ea0cfcc304b67c8d931a903183731503916",
+          "before_sha256": "ef6021f2a28062e0c8d02c2f7e3b67d9ceef990fba72b797192640513a9f2467",
+          "path": "research/runtime/original-surface-sentinel.md"
+        },
+        {
+          "after_sha256": "d766b38279d2a855aefe1a0a7ee358e1266a36379c72ed932d9f77fd7b631b51",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dib-gdi-capture-20261006.json"
+        },
+        {
+          "after_sha256": "3dd60ab75b12a2c4489c0d0c2e9bceabf89e936ef5c775a4128f6c22c13f6294",
+          "before_sha256": null,
+          "path": "research/runtime/surface-dib-gdi-offline-20261006.json"
+        },
+        {
+          "after_sha256": "b73e298c34aa04b7e4145614acf23d0ac3a58d1c73e66fb21ce03b94e689bce6",
+          "before_sha256": null,
+          "path": "tests/render-cursor-reload-test.cpp"
+        },
+        {
+          "after_sha256": "b1cce048b0f06ccd779b04ebc3417c3eea0fa15de8ac03e9c17b6ba52fcd6d59",
+          "before_sha256": null,
+          "path": "tests/surface-cursor-retry-model.cpp"
+        },
+        {
+          "after_sha256": "8b696c14f7cb0fa8f5d95a44595769fc9a266782af42a841a791e83960fbdce0",
+          "before_sha256": null,
+          "path": "tests/surface-dib-gdi-reference.c"
+        },
+        {
+          "after_sha256": "e06323b178af51a692c1f64a4115d9dcafd40ac1b659f704421774209c4e2451",
+          "before_sha256": null,
+          "path": "tests/test-surface-dib-gdi.py"
+        },
+        {
+          "after_sha256": "59455371f7608fdaa27e94bf2180c41c76e26cc22d25e9185783e9f471b3cc3a",
+          "before_sha256": null,
+          "path": "tools/capture-surface-dib-gdi.py"
+        },
+        {
+          "after_sha256": "15e49d2778277180544f2caf4f5362ea2bec54b3252641b478da6f72e79266d1",
+          "before_sha256": null,
+          "path": "tools/check-native-cursor-reload.py"
+        },
+        {
+          "after_sha256": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+          "before_sha256": null,
+          "path": "tools/check-surface-dib-gdi.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-dib-gdi.json.gz",
+          "before_sha256": null,
+          "after_sha256": "2284a4a9b7848ae40cfdbe20995a346c1e566b7f4a5c79ca1c44ccfce33dc5d0"
+        }
+      ],
+      "id": "native-cursor-reload-shared-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:6b530fda920c8ab3a800157e3a2dd50d3b3616db584927b0ed74aad30048a0f3",
+        "behaviors_without_comparison:b179c167e30de88d6bb0d315f3f73c4ad19ed115d20a4000a0086a4db6841393",
+        "behaviors_without_implementation:b179c167e30de88d6bb0d315f3f73c4ad19ed115d20a4000a0086a4db6841393",
+        "behaviors_without_scenarios:b179c167e30de88d6bb0d315f3f73c4ad19ed115d20a4000a0086a4db6841393",
+        "stale_evidence:01e46e54fc4944b29b6c4f9b0dede07110a14bfde0e230e01daa3ade1c09079f",
+        "stale_evidence:03ccdb4611f4f5c9977a7f77ce2f3d97bde21ea1b0372c2441ff786fc2026b5b",
+        "stale_evidence:04df6c7d848ee13b74d75c1570a2c828b7047b2f27db0e3fd58e2cb9b975a553",
+        "stale_evidence:05572fa763f27ba4f1336ab6625e16666ac059001a7219c68d6d92916f800323",
+        "stale_evidence:058914411c22073e78173266fa1e259bf3bfa73b0304fa72357f19f42767a726",
+        "stale_evidence:1335a83337b920244db5f8420c367e69738efaae4c362f6a9f7cc11b4906db3c",
+        "stale_evidence:15b98542dc7d480b97cc7087bfd7dd7bdf185ecb430810ccafcfe926c6cefdf0",
+        "stale_evidence:17f7b32f2be596431d60968bdffec76d833be89895f4ca5f2b9f11a26a176bd2",
+        "stale_evidence:1946d312eff3e9b00c6b385b0afeb86096ee23870ffeedd08521a42487c607cb",
+        "stale_evidence:19c1e3749819abef6f75abe695718447c7744a9098ef3aec93e4345739da9bd6",
+        "stale_evidence:2b643c91927cf9640aecbabc74a140cd694e323e694c9f8d62674f63ee4a4d15",
+        "stale_evidence:2b8442c5b9faa5dd14b8a166eea67d28726f5e97b0af71458a65becefe365270",
+        "stale_evidence:320b9447a6c01c9355c5de6057505b33c751c2e11d3bf67b6b10d300f9de019c",
+        "stale_evidence:37738677c40d42fce51cb9a5166af3d7b3c7ca75adf14de412b72af635d471fe",
+        "stale_evidence:39cc524af3932ad25306aa39c6231244963630643f471ead4fa344f1421d7615",
+        "stale_evidence:3af7ddd7a76773882f178b597bdb823f5d07ce222db143756e38e1ffa8d92f55",
+        "stale_evidence:3c211f6757b8eb7e4f362cb5f8b09e00586a357179035f205f097b8c9e0c8ac7",
+        "stale_evidence:44d1b8b291aba1f964026d08a9789ad2279a6eaa8c026b08039c1d4eb520b0b1",
+        "stale_evidence:4ae8e0a904801514357296505b9bed1edb3da6a578d86d13e9c0fdc511148516",
+        "stale_evidence:4bc4e0de3c3006c65a07d616b2515647e5c866fd327a6676c93ebb696edfb1c2",
+        "stale_evidence:5b307c054f6edb1d4dc7738680dbf98d7213521ae2c504caa60bd9ee4b6390fb",
+        "stale_evidence:6866cb74d10c25a10f80959610e616173296d1a3d7d67c6752dbb5428a8a48ae",
+        "stale_evidence:709f08bf583960fb9261705c16252688f315ee843ae992dcf56963c1e3ef012c",
+        "stale_evidence:7145d643d8ac4bc2db9dab4c45d298c3b90a0cb0508b247e04a4bf6dff44db09",
+        "stale_evidence:797b1b79944d751d3b1b5df11f1387d21388b7ff1fee0eccdbc5141db22dd5a1",
+        "stale_evidence:825f31127741ca940e7eab64f3dc5092de2e06524abf24ac3ef7e68284c452f0",
+        "stale_evidence:8be5e2e24965deab48c0877ba7a82372210b85ba043537faa5168546b53474c4",
+        "stale_evidence:8d6aa59f5645855059bd1e059c7f479bf223fdbf83ac5086d535d200b77b6a9f",
+        "stale_evidence:93c860d5c35c64590446f9b09ada96845a7bc10680c32b54475e0806864e6737",
+        "stale_evidence:967ef0a1ead47a2f4d41b83f99c3737b3ec476afc9b7ac43f25edca7a9bd1a34",
+        "stale_evidence:99496b69b624492447ef51b33e070f29ea79ff982da8221e1868a3e195fe950d",
+        "stale_evidence:9fbac53f51d7c400ba7ff271229bd877699128843f4ecd327b8bedce7301227b",
+        "stale_evidence:a7a0845c768d21dab6c057ce9710f1d6a581bd814d53d66230e05576b6d1be6a",
+        "stale_evidence:a85e358d277cd87b0e0896f1b517b6bf733a70060f5148caad041b3d2ad0b7b2",
+        "stale_evidence:b910329207b3a53084c2f32ad2bf3d5be831087ba12dfb620bfa7401c8d0f161",
+        "stale_evidence:c51395bde4075a404b9c85a354b5e1e8fb549b1169c3f69c737045e2cc494dea",
+        "stale_evidence:d1bedf7d766cf17dd02d08d6e8f478d4893232d689c3e4276e140d5490cc4b98",
+        "stale_evidence:d48d4e4d5ac2aa9e135b243f518d25df42534437014cb13c39f745c8d0e3aae2",
+        "stale_evidence:d5a619538f13130e1acf6d89cdbca84dbc13a2a7041c4a5d029afead83df52bf",
+        "stale_evidence:d63dd445af3d6ea1724895f188028f65c414f626f709290f3df1943d97e3e63b",
+        "stale_evidence:da2786ac35f864c41ca42abd54be765e828d873a17864ef021c1523dca75c847",
+        "stale_evidence:f2a3bceb9eedc4b2f33f74073c4bbe89dcc4d70e90dc48d8dd6b86fd4a6c7893",
+        "stale_evidence:f4df85b5205f53de4551194fd7c380386b770ed21fb1a41df6d6341254904e59"
+      ],
+      "reason": "Reviewed recovered global cursor/none/callback routes, compatible legacy callback booleans and finite-budget prefixes; bounded original sequential BMP parsing and native owned DIB RGB conversion/cropped validity. Independent one-session GDI capture and18 offline cases/6 refusal tests,1456 C++ dispatch projections/12 original submitted buffers,36 nativeRGB24/32 cases/1346928 GDI RGB comparisons/12 recovery compositions/137 refusals pass.4480 prior schedules,30 validity checks and8 renderer regressions pass. Source census and explicit unsupported DirectDraw/DC/loss/live boundaries reviewed; initialRGB32 hashes remain historical.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared renderer source/build/document/matrix fingerprints reviewed and8 focused renderer regressions pass. Other linked original/asset/presentation/protocol contracts retain their historical source hashes/status; this cursor/GDI scope does not assert current original equivalence or live validation for them.",
+        "evidence": []
+      }
     }
   ]
 }

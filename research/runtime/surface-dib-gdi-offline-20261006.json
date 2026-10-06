@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/check-surface-dib-gdi.py": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+    "tests/test-surface-dib-gdi.py": "e06323b178af51a692c1f64a4115d9dcafd40ac1b659f704421774209c4e2451",
+    "tools/check-original-surface-sentinel.py": "6021b11bd95cc14ba957e2b86f4558c07060aa8fb73e320c23b9720008aa1082",
+    "research/runtime/surface-dib-gdi-capture-20261006.json": "d766b38279d2a855aefe1a0a7ee358e1266a36379c72ed932d9f77fd7b631b51",
+    "tests/fixtures/surfaces/surface-dib-gdi.json.gz": "2284a4a9b7848ae40cfdbe20995a346c1e566b7f4a5c79ca1c44ccfce33dc5d0",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52"
+  },
+  "cases": 18,
+  "rgb_pixels": 336732,
+  "scope": "Input-derived RGB model matches independent standalone Wine GDI StretchDIBits outputs from original submitted DIB inputs,18 equal/cropped/larger cases. High byte excluded; no DirectDraw DC/format, real loss or live equivalence."
+}

@@ -391,7 +391,7 @@
       "id": "SURF.restore",
       "requirement": "required",
       "requirement_evidence": "Milestone restoration requirement; unchanged original wrapper Restore/retry scheduling captured using explicit fault inputs.",
-      "native_backend": "partial: bounded recovered callback scheduling and explicit undefined native contents",
+      "native_backend": "partial: bounded recovered retry/global cursor input reload and native RGB24/32 DIB writes with explicit content validity",
       "wire_support": "Offline callback replay and native API only; v3/lifecycle recovery wire unchanged",
       "behavior_ids": [
         "RI.fills",
@@ -402,7 +402,9 @@
         "NR.surface-contents.validity",
         "RE.surface-driver.loss-restore",
         "RE.surface-driver.indexed-restore",
-        "RE.surface-reload.cursor-sentinel"
+        "RE.surface-reload.cursor-sentinel",
+        "RE.surface-driver.dib-raster",
+        "NR.surface-reload.dib-rgb"
       ],
       "original": [
         {
@@ -432,9 +434,10 @@
         "original-retry-corpus.json",
         "surface-driver-restore-corpus.json",
         "surface-palette-restore.json.gz",
-        "original-sentinel-corpus.json"
+        "original-sentinel-corpus.json",
+        "surface-dib-gdi.json.gz"
       ],
-      "remaining_gap": "Original scheduling/native validity and real Wine indexed metadata remain independently validated.1698 unchanged original x86 sentinel/bitmap loader/wrapper captures match20060 scripted CRT/COM/GDI endpoint events offline. -1 selects the fixed global cursor and ignores nested loader failure; submitted DIB buffers are captured, not GDI output pixels. Native global cursor routing/BMP conversion, other callback bodies, second-allocation/malformed inputs, real GDI and lost-draw wrapper composition, Windows/live/wire recovery remain pending."
+      "remaining_gap": "1456 explicit cursor/callback/none route traces and12 exact submitted-buffer cases compare original captures;36 nativeRGB24/32 cases compare1346928 independent real GDI RGB pixels,12 scripted recovery compositions preserve triggering-surface invalidity.4480 legacy callback schedules and30 validity checks freshly pass. DirectDraw GetDC formats/RGB565/indexed conversion/clipping/palettes, other reload callback bodies, malformed/second allocation failures, actual-lost-draw composition, Windows/live/wire recovery remain pending."
     },
     {
       "id": "SURF.lifetime_updates",

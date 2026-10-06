@@ -1,0 +1,275 @@
+{
+  "schema": 1,
+  "base": "de55918",
+  "head": "4273de17f93f15b9e4b30fe5f9bcaae75e8a5381",
+  "scope": "Exact committed file and behavior receipts; retrospective accounting does not assert a past gate pass or fresh execution.",
+  "commits": [
+    {
+      "commit": "4273de17f93f15b9e4b30fe5f9bcaae75e8a5381",
+      "parent": "de55918ca4bf3f172812b9c34fed83eb68936cd4",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "a16ce7fe0210e609d0cb406f08994604afcddda071c6ba6c460959f91e20c818",
+          "after_sha256": "990b9a2b9e4a01bca07a32ae9ba99ab692115f409c9635f65f0026bb7a98fe0b",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "c3d06e38541a3196828cb88a1e3e1d8db969bc35681fd82f9476e701611f3dc8",
+          "after_sha256": "36be8daf29cb73fb2b8b7d969741d70cca4414ed81884d719116c383294f0062",
+          "receipts": [
+            "append-only journal self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-sentinel-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "c6b5b8a5bc1f530cedbb848bfa9e34749b189bd72480a463b4a9460eadaeed3c",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "4d7f65a2d84d389f3244a282c1fd3a57883ca6c4ad0113297d05a7101ea765be",
+          "after_sha256": "7b192fa46cf5980597d147e0cf51041f32223826694a6b44373cd0f4be94346e",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-sentinel-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d9d6260983d946c6e54b85c81b89baefc5e33fa3ce444cdd912939584680d4bf",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-sentinel-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "3d219207f8b92bba33ee481ad9b24dcc1bb654fd51903a1782deb9eb2dc5190d",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "e79c5c3c5d768c5994bfdcf5cd26d48469454ef9a8d0054f11a0fd901ac1a756",
+          "after_sha256": "409840b577ad051112c6c1e7fbf9155603bdc79a37d6edfdb353b37942d86585",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-sentinel-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "296932ad4539d4619630f0d1aa818449871d98126765a86710f032a1cdf6da05",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-sentinel-cpu-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "6fd9a8b5be84e154dcc788973d0ac47c4d26778d5e299a7dcb987c59163b03af",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-sentinel.md",
+          "before_sha256": null,
+          "after_sha256": "ef6021f2a28062e0c8d02c2f7e3b67d9ceef990fba72b797192640513a9f2467",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-sentinel-corpus.json",
+          "before_sha256": null,
+          "after_sha256": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-sentinel.json.gz",
+          "before_sha256": null,
+          "after_sha256": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-sentinel-reference.py",
+          "before_sha256": null,
+          "after_sha256": "edfe88e1729bbe560423b49800b275271564f1514469755699228ff01b301af1",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-sentinel-requirements.txt",
+          "before_sha256": null,
+          "after_sha256": "eed0daa605a2bb7918221c25d2578d621722db198c0d292d5e83bfde9975215c",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-original-surface-sentinel.py",
+          "before_sha256": null,
+          "after_sha256": "003bd098dc2040d0eb4b836f9f3aa22bd111aea2a5e33d7aa03b0ac9bf861849",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-original-surface-sentinel.py",
+          "before_sha256": null,
+          "after_sha256": "e493ec65a2e7abced07f554c92e5723fe03ccf19e330f32113ff4ef41f2abc7d",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-original-surface-sentinel.py",
+          "before_sha256": null,
+          "after_sha256": "6021b11bd95cc14ba957e2b86f4558c07060aa8fb73e320c23b9720008aa1082",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006",
+            "original-sentinel-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.surface-contents.validity",
+          "before_sha256": "7d8399516afbc09f67d4e07c607469471391428072e05ae98012bd4104330ec7",
+          "after_sha256": "7c26f9817fc2d97527e21b6b4956d335eca9052e41ce13b3d309ad40e0d9f42d",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "c0c703f76baa52323ea795adc93db19f64b4a36636c8001508a9f2d382afaf98",
+          "after_sha256": "4a296bf426a54e1b2a4a51ebd23c7d25f07be44b982035c16744f7cb923b878d",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "0006e896ec5542877012e1d4026be8addf36f9260703781d8d98fc7b3da1e3b5",
+          "after_sha256": "f33681855d49d3684b23794fdacd214aa36d112c1cbc7d86a728a8478b6bb522",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "e580c89f6c5db8368b068c51f82a6b9e42061e7659085dcff2e8123d2bff2f81",
+          "after_sha256": "3b511ecdc9465bd05f65f5f9eaff7c2a83ca52bbbc7ebabc51162ffb98484a13",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "2b9840436b3ba6272507caffdc4bbede776463fcd6dce6db077bbbc2405d4814",
+          "after_sha256": "58749a39274d72b8e7c78a72aad516b256735fe18720bf4ebd44ac76fc6b7953",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.restore-retry",
+          "before_sha256": "22ecce13d033592200df5795ac863b9bb49eb4f01255b5c654a6e3ef89a68b66",
+          "after_sha256": "a110dd6c6a3091d72a64586fe08ffaf14053f63b790c8c8166839613217a0993",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "1a568c8c33aa2972fe9dea5502d938bf58e343e9e9e03c64b96a38c565c49ac0",
+          "after_sha256": "097101e3f7c3d43a2961b99f43e1ffba26997e842ede8bc6a8129768b0ecc869",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "c5cf4f0d0ea25c5e5f0485456346ff02ed72eb07dcbb3a3ab00ba27904a065d5",
+          "after_sha256": "6fef2346e300c1f6f2d294cf549dac6b41cf370e15fc3b1f1b24443e391ce956",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "29a2281b2158d0e6e8f93fef08cd58779d3a14a7ae20b7920a3102f7636b3f98",
+          "after_sha256": "3135f7d44d88907b4704ba1977fe8375fd123c7e9637dcc8141a15bf695f4512",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.indexed-restore",
+          "before_sha256": "738322e5d880bb4e36d81cec7a832a3b503b150c80822d3b8814d37bb7f11a8f",
+          "after_sha256": "0d672baac4c3dcb6d1fa4a563608983fc8422bcfda1f52abb89eda9ae0a6cf3f",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.loss-restore",
+          "before_sha256": "cf323a1e26afe4dd79c19d7f44502db2afa39502792645ef7b15881921c7722b",
+          "after_sha256": "432a3d80c51dfca09794ba090cafd512fa09caaca9922aeb8968b28016490650",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "8ea2e1c1493b15702d89de1a309f0e6db1fefa8f42af28ef27f9f82d41bc9556",
+          "after_sha256": "d9ac6588817ae0968d570ef16de04b05fdb5646b053a614318082a4ef35179a8",
+          "receipts": [
+            "original-sentinel-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-reload.cursor-sentinel",
+          "before_sha256": null,
+          "after_sha256": "3abaf792f6ca06382cf3ec1bc91c77a0d6f12b913208f0aacd8c42e970ff7efa",
+          "receipts": [
+            "original-sentinel-capture-cpu-20261006"
+          ]
+        }
+      ],
+      "unresolved_exact_receipts": []
+    }
+  ],
+  "unresolved_gaps": [],
+  "retrospective_receipts": []
+}

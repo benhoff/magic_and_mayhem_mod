@@ -18,6 +18,7 @@ struct Image {
 };
 struct Rect {int left=0, top=0, right=0, bottom=0;};
 struct ClipperState;
+struct DibInput;
 struct SurfaceCopyRequest;
 struct SurfaceCopyResult;
 struct Blit {
@@ -70,6 +71,9 @@ public:
     SurfaceId create(const Image& image,PixelFormat format);
     void destroy(SurfaceId surface);
     void update(SurfaceId surface,int x,int y,const Image& patch);
+    // SRCCOPY at origin to canonical RGB24/32, no scaling or DC clip region.
+    // Only the cropped written rectangle becomes valid.
+    void reloadDib(SurfaceId surface,const DibInput& dib);
     void copy(SurfaceId source,SurfaceId destination,Rect rect,int x,int y,
               std::optional<std::uint32_t> key=std::nullopt,
               std::optional<SurfaceId> mask=std::nullopt);

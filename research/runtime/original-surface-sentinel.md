@@ -113,3 +113,12 @@ bodies, CRT/GDI failure out-parameters and live recovery remain pending. A
 successful sentinel/loader return does not establish that the triggering surface
 has regained valid contents. The native backend must continue to track explicit
 pixel validity until an actual reload defines those pixels.
+
+## Subsequent bounded native step
+
+[Native cursor reload](native-cursor-reload.md) now adds explicit global routing,
+original sequential file-input parsing and native RGB24/32 DIB conversion.
+Independent standalone Wine GDI raster capture validates the supported owned
+inputs offline, including the installed cursor. The original reports above retain
+all source hashes; native/headless and GDI endpoint evidence are registered
+separately. DirectDraw DC formats, other reloaders and live recovery remain pending.

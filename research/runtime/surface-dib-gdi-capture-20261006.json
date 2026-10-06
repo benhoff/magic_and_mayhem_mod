@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-dib-gdi-reference.c": "8b696c14f7cb0fa8f5d95a44595769fc9a266782af42a841a791e83960fbdce0",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-dib-gdi.py": "59455371f7608fdaa27e94bf2180c41c76e26cc22d25e9185783e9f471b3cc3a",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/check-original-surface-sentinel.py": "6021b11bd95cc14ba957e2b86f4558c07060aa8fb73e320c23b9720008aa1082",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+    "tests/fixtures/surfaces/surface-dib-gdi.json.gz": "2284a4a9b7848ae40cfdbe20995a346c1e566b7f4a5c79ca1c44ccfce33dc5d0"
+  },
+  "cases": 18,
+  "pixels": 336732,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-dib-gdi.json.gz",
+    "sha256": "2284a4a9b7848ae40cfdbe20995a346c1e566b7f4a5c79ca1c44ccfce33dc5d0"
+  },
+  "inputs_sha256": "b63bd1ce1663244e5995b74084e685d43654c08973e467369a63b42207f40e81",
+  "outputs_sha256": "b9c53e420e2664ee7f1c3fea5a671329d21aadfa38ba6fcb2c2f4a994061c013",
+  "probe_sha256": "fdeda23191bcce4e7791f6ff35c1ad565b322b8ed4be6610610954d58efa8069",
+  "artifacts": "working/tests/surface-dib-gdi/run-yiqt44ui",
+  "environment": {
+    "wine": "wine-11.16",
+    "gdi32_sha256": "089d8e8e7e5d7b26c72f6d0b90b89531fe43e915c900d4dd485f2924ab584b0c"
+  },
+  "original_game_executed": false,
+  "scope": "Standalone real Wine GDI StretchDIBits to32-bit BI_RGB DIBSection from independently retained original loader submitted inputs;18 equal/cropped/larger cases. Raw pixels retained; unused high byte is not an alpha contract. No DirectDraw DC/device format, actual loss, original wrapper or live equivalence.",
+  "original_manifest_verified_before_after": true
+}
