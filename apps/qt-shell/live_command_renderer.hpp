@@ -21,7 +21,7 @@ public:
 private:
     void fail(const QString& reason);
     GlViewport& viewport_;bool verify_,ended_=false,closed_=false;
-    CommandChannel channel_;mnm::render::CommandDecoder decoder_;
+    CommandChannel channel_;std::unique_ptr<mnm::render::CommandDecoder> decoder_;
     std::unique_ptr<mnm::render::GlBlitter> renderer_;
     std::unique_ptr<mnm::render::CommandConsumer> consumer_;
     std::vector<mnm::render::SurfaceCommand> pending_;std::size_t cursor_=0;

@@ -6,6 +6,7 @@
 // One native reader per launch; mapping survives until producer has exited.
 class CommandChannel final {
 public:
+    quint32 version() const{return version_;}
     ~CommandChannel();
     bool create(const QString& path,quint32 session,quint32 version=1);
     bool open(const QString& path);

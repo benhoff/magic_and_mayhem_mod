@@ -45,17 +45,24 @@ SurfaceCommand decodeRecord(const QByteArray& record,detail::CommandState& state
 }
 struct CommandDecoder::Impl {
     detail::CommandState state;
+    CommandStreamMode mode;
+    explicit Impl(CommandStreamMode mode):state(mode),mode(mode){}
     QByteArray pending;
     qint64 total=0;
     bool header=false,failed=false,finished=false;
 };
-CommandDecoder::CommandDecoder():impl_(std::make_unique<Impl>()){}
+CommandDecoder::CommandDecoder(CommandStreamMode mode):impl_(std::make_unique<Impl>(mode)){}
 CommandDecoder::~CommandDecoder()=default;
 std::vector<SurfaceCommand> CommandDecoder::append(const QByteArray& bytes){
     auto& p=*impl_;
     require(!p.failed && !p.finished,"Closed command decoder");
     try {
-        require(bytes.size()<=maxCommandBytes-p.total,"Oversized command stream");
+        if(p.mode==CommandStreamMode::Bounded)require(bytes.size()<=maxCommandBytes-p.total,"Oversized command stream");
+        else {
+            require(bytes.size()<=maxStreamingAppendBytes,"Oversized streaming fragment");
+            require(bytes.size()<=UINT32_MAX-p.total,"Streaming byte lifetime exhausted");
+            require(p.pending.size()+bytes.size()<=maxStreamingRecordBytes+maxStreamingAppendBytes+16,"Streaming retained-byte budget exceeded");
+        }
         p.total+=bytes.size();p.pending.append(bytes);
         std::vector<SurfaceCommand> out;
         if(!p.header){
@@ -69,7 +76,7 @@ std::vector<SurfaceCommand> CommandDecoder::append(const QByteArray& bytes){
             require(!p.state.ended,"Trailing command stream");
             if(p.pending.size()-consumed<12)break;
             const auto length=qFromLittleEndian<quint32>(p.pending.constData()+consumed+8);
-            require(length<=maxCommandBytes-28,"Oversized command payload");
+            require(length<=(p.mode==CommandStreamMode::Streaming?maxStreamingRecordBytes-12:maxCommandBytes-28),"Oversized command payload");
             if(p.pending.size()-consumed-12<length)break;
             out.push_back(decodeRecord(p.pending.mid(consumed,12+length),p.state));consumed+=12+length;
         }

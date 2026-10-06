@@ -6,6 +6,9 @@
 
 namespace mnm::render {
 constexpr qint64 maxCommandBytes=64*1024*1024;
+enum class CommandStreamMode {Bounded,Streaming};
+constexpr qint64 maxStreamingRecordBytes=12+28+2048*2048*4;
+constexpr qint64 maxStreamingAppendBytes=65536;
 struct SurfaceCommand {
     unsigned operation=0,sequence=0;
     std::array<std::uint32_t,10> words{};
@@ -16,10 +19,10 @@ struct SurfaceCommand {
 };
 // Complete bounded streams only. Validate ordering, handles and geometry before GL.
 std::vector<SurfaceCommand> decodeCommands(const QByteArray& data);
-// Stateful byte framing for an append-only bounded session; no GL work.
+// Stateful framing; streaming bounds retained data rather than session totals.
 class CommandDecoder final {
 public:
-    CommandDecoder();
+    explicit CommandDecoder(CommandStreamMode mode=CommandStreamMode::Bounded);
     ~CommandDecoder();
     CommandDecoder(const CommandDecoder&)=delete;
     CommandDecoder& operator=(const CommandDecoder&)=delete;
@@ -44,6 +47,7 @@ struct CommandConsumerOptions {
     CommandDiagnostics diagnostics=CommandDiagnostics::Skip;
     // Explicit offline export mode; ordinary GPU execution never reads PRESENT.
     bool exportImages=false;
+    CommandStreamMode stream=CommandStreamMode::Bounded;
 };
 // GUI-thread session. Renderer must outlive consumer; GPU leases may outlive both.
 // Batches commit command by command, never transactionally. An execution or

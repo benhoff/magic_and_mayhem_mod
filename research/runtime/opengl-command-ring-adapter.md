@@ -103,3 +103,10 @@ retains its original fingerprints. These new records validate only their stated
 queue, bounded fixture and startup scope. Dedicated idle progress, explicit
 shutdown outside DllMain, sustained decoding beyond64MiB/4096 records, original
 pixel comparison and live replacement remain pending.
+
+## Subsequent increment
+
+The later [idle lifecycle and streaming increment](opengl-command-streaming-lifecycle.md)
+implements idle retries, explicit bounded shutdown and bounded-memory native v2
+decoding beyond cumulative64MiB/4096 limits. The evidence above remains historical
+for the cooperative implementation; original owned archive/sample limits remain.

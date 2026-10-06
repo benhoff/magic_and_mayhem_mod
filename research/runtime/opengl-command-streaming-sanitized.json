@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "sources": {
+    "renderer/commands.hpp": "5a8816780f40d915b37fafb920909c02daee265976a490802fa58b864fad8090",
+    "renderer/commands.cpp": "04a260a20d4879fe09ece28484ba6ced49cd8ba5e5f80bfd566f8837fa98dbb9",
+    "renderer/command_state.hpp": "3cd8ab5e0a627cb9c90cc89faffa293e77281ed60d1a319e76ec10ffd2e71faa",
+    "renderer/command_consumer.cpp": "a0c083f538d095eb6cf2f0d8f5388e9af201b8f688449c93f1ba385adbc4acbe",
+    "apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "apps/qt-shell/command_channel.cpp": "cef42f0fb6e7d9dc7dafd032d5c52e384de94d97b06a8d6028c8c572ff3d0ba4",
+    "apps/qt-shell/live_command_renderer.hpp": "b1f51a4a3ce767c6a4739e25a5cf4f9c82cc8b00f43e144c09bba82a8091a2ae",
+    "apps/qt-shell/live_command_renderer.cpp": "95ae524071a0ffcf7ae9c75786c56085c74d80bb3089762708e922544cfde299",
+    "tests/live-render-channel-test.cpp": "41c5b07f84c54db019abd65faa7099dfb3e7abcc1a9e1db55e75b583e65f4feb",
+    "tools/test-render-command-streaming.py": "00c6510f692bb9897414c37a2d577f04cb2e077ce09b0afda39eb9c9f4bb11cc",
+    "protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3"
+  },
+  "native": {
+    "success": true,
+    "full_frames": 16,
+    "failures": 14,
+    "ordinary_readbacks": 0,
+    "viewport_uploads": 0,
+    "sustained_bytes": 74631284,
+    "sustained_commands": 5077,
+    "sustained_frames": 4,
+    "full_retries": 71
+  },
+  "regressions_passed": true,
+  "binary_sha256": "edce0b48caebc58a863683ad3bd3e3143785845f7913d74352328982d3952f86",
+  "scope": "Native v2 mapped adapter/decoder/GPU synthetic sustained integration; independent complete displayed uniform colors. Bounded v1/offline regressions. No original-driver comparison or sustained original owned-capture claim."
+}

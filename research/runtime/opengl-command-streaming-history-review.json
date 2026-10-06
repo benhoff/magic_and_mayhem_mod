@@ -1,0 +1,292 @@
+{
+  "range": "d955595..c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+  "scope": "Read-only committed parent/current hashes against exact receipts; no retrospective gate pass or execution claim.",
+  "files": [
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "apps/world-scene/README.md",
+      "before_sha256": "4d4911491b99c23c4c0f31dc118405a58d28f2ddd81bb3280e41cd18f4cb2655",
+      "after_sha256": "7009f987159c6a30f401c0d0413134e76df7be850ea5acd808c5a455439ca0d6",
+      "behaviors": [
+        "NP.map-navigation",
+        "NP.presentation",
+        "NR.world_scene"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/formats/bounded-scene-specification.md",
+      "before_sha256": null,
+      "after_sha256": "481b123346aeaee1ccb0e35a71b2941007222fc8890a2b53e25cfc3db6195993",
+      "behaviors": [
+        "NP.bounded-scene"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/bounded-scene-commit-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "c1240366170e4e656d18f77610123fa9b6285672dc8e0de5115d9d5afc55b16f",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/bounded-scene-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "47a572055b6bccfd1e6b18505868459597c0c94cee14ce1f79f81efd9297baac",
+      "behaviors": [
+        "NP.bounded-scene"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/bounded-scene-native-20261005.json",
+      "before_sha256": null,
+      "after_sha256": "81c59a109c87e508af1d016a92dfa09fbfb1f212072b762be440722c16344852",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f273c8b678d1ae9fbe0231caf1c53814ea39e8e2bafb60aed8a3a09a3a7cd58d",
+      "after_sha256": "b9397d32f8cfd4d5a958b4d1ad1cc597b9ad683eafafbae2eb892d5f15051e40",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "3bdaa3d2ad5185d75033c48e933a9ea59d761321b66c4cf18c6565d9351e090a",
+      "after_sha256": "7bfde4269f018d100e463200585280b62a4144d659e1b5a3545c96f7606cff7b",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/coverage/source-index-bounded-scene-20261005-final.json",
+      "before_sha256": null,
+      "after_sha256": "e543c63fca1e3eafaa181e00df1d6606a07e906ee5d380b6ea80cb83c0472897",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/coverage/source-index-bounded-scene-20261005.json",
+      "before_sha256": null,
+      "after_sha256": "f2179fd51ed3d70a9ef456f7b115fb7bb7beacf1a83ddd4bec0da38c82719866",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/coverage/source-index-bounded-scene-commit-head.json",
+      "before_sha256": null,
+      "after_sha256": "9768fc83880d5cbd5b66b8642a78db825c80aa1dda919be546bdb7c3808742d2",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/coverage/source-index-bounded-scene-commit.json",
+      "before_sha256": null,
+      "after_sha256": "61b644cba5e385f85a3bca48a7bcd77ea4147e5e8fb03bbd0441e7b546cc8749",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/coverage/summary-bounded-scene-20261005.md",
+      "before_sha256": null,
+      "after_sha256": "36452f909a6708c2a3e6cb1638dfb0619e7efff031e8ab8076fc58619f0b5662",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/coverage/summary-bounded-scene-commit-head.md",
+      "before_sha256": null,
+      "after_sha256": "13b43cd0933a79a18f2dd6c2eae9348cd1f9c218e5a6f804840ffa15c39205a3",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "research/runtime/coverage/summary-bounded-scene-commit.md",
+      "before_sha256": null,
+      "after_sha256": "36963cd1124d11c532c3b2ca965e9801bdc57cad22ee939e9596988ed3051f48",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "tests/fixtures/forest-redcap-scene.json",
+      "before_sha256": null,
+      "after_sha256": "757b79e4479836224797d4503d77f2ab53152e7dc91c68d26f6fe3bf22fb8272",
+      "behaviors": [
+        "NP.bounded-scene"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "tests/test-bounded-scene.py",
+      "before_sha256": null,
+      "after_sha256": "e19a5a1d43b09924432ab320046773a8b8fcbd88025fafe900679a601da6ada4",
+      "behaviors": [
+        "NP.bounded-scene"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "path": "tools/load-bounded-scene.py",
+      "before_sha256": null,
+      "after_sha256": "d16242b5ae1c3d0dfb17976b0a4e1980da01b2ee14ca8985b2ba18b338f658d1",
+      "behaviors": [
+        "NP.bounded-scene"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "id": "NP.bounded-scene",
+      "before_sha256": null,
+      "after_sha256": "5af7d2b9cdd96012497b00f3adf30e81d55bdcf66ff7874f014a8420fdab7917",
+      "reviews": [
+        "WS01.scene-construction-native-20261005",
+        "WS01.scene-construction-commit-native"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "id": "NP.map-navigation",
+      "before_sha256": "0b21c24d135d91eb6c7f8b57455a108df211a8dd2090492f01aebb8de0ee2fe2",
+      "after_sha256": "bae2843560c5f7d56fe855f5dd64535d8e49e3ac585bdc798911af930f0ad3b6",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "id": "NP.presentation",
+      "before_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+      "after_sha256": "92008718bc9863af33fd24780f401b7dbd934f1cf39abea126f943c32f2394ea",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    },
+    {
+      "commit": "c06fffa5aeafadcd95a6f0583db95a1d754a2638",
+      "id": "NR.world_scene",
+      "before_sha256": "a54b5e3748db37c5529c9eac551cc41d5821fb1833ccdcc329739d05339d9b92",
+      "after_sha256": "d2ac58a478065cf38e648b3edde573b96009353984707df62f34360c21d4ce5c",
+      "reviews": [
+        "WS01.scene-construction-accounting-20261005",
+        "WS01.scene-construction-commit-accounting",
+        "WS01.scene-construction-commit-head-d955595"
+      ]
+    }
+  ],
+  "unmatched": []
+}

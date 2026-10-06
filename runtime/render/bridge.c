@@ -59,6 +59,7 @@ static i32 WIN input_cooperative(void* object,void* window,u32 flags){
 #include "lock_lifecycle.h"
 #include "lock_flip.h"
 #include "lock_dc.h"
+#include "command_scheduler.h"
 static u32 guid_kind(const u8* guid){
     static const u8 ids[8][16]={
       {0x80,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},
@@ -367,6 +368,7 @@ static void install_table(void* object,u32 kind){
 done:__sync_lock_release(&table_busy);
 }
 static i32 WIN create_draw(void* guid,void** result,void* outer){
+    u32 incoming=GetLastError();command_scheduler_start();SetLastError(incoming);
     __atomic_store_n(stream+MNM_FRAME_V1_STATUS_OFFSET/4,MNM_FRAME_V1_STATUS_INSIDE_CREATE,__ATOMIC_RELEASE); /* Entered DirectDrawCreate. */
     __atomic_add_fetch(stream+MNM_FRAME_V1_CREATE_COUNT_OFFSET/4,1,__ATOMIC_RELAXED);
     i32 status=original_create(guid,result,outer);u32 error=GetLastError();
@@ -378,8 +380,22 @@ static i32 WIN create_draw(void* guid,void** result,void* outer){
 }
 #include "adapter_startup.h"
 __declspec(dllexport) void RenderAnchor(void){}
+/* Application orchestration calls this before process exit, outside DllMain.
+ * It closes capture admission while original drawing remains installed. */
+__declspec(dllexport) u32 WIN RenderShutdown(u32 milliseconds){
+    u32 error=GetLastError();
+    if(!game_tracker_acquire()){SetLastError(error);return 0;}
+    session_finish_owned();game_session_enabled=0;game_tracker_release();
+    int complete=command_scheduler_shutdown(milliseconds);SetLastError(error);return complete;
+}
 #ifdef MNM_RENDER_SELFTEST
-__declspec(dllexport) void WIN RenderInstallForTest(void* surface,u32 kind){install_table(surface,kind);}
+__declspec(dllexport) u32 WIN RenderQueueForTest(const void* bytes,u32 length,u32 end){
+    u32 error=GetLastError();command_scheduler_start();
+    if(!game_tracker_acquire()){SetLastError(error);return 0;}
+    int ok=command_channel_append(bytes,length,0,0,0,0);if(end)command_channel_end();
+    game_tracker_release();SetLastError(error);return ok;
+}
+__declspec(dllexport) void WIN RenderInstallForTest(void* surface,u32 kind){u32 error=GetLastError();command_scheduler_start();install_table(surface,kind);SetLastError(error);}
 /* Deterministically exercise contention without timing-dependent scheduling. */
 __declspec(dllexport) void WIN RenderCaptureGuardForTest(u32 held){
     __atomic_store_n(&game_locks_owner,held?GetCurrentThreadId():0,__ATOMIC_RELEASE);
@@ -392,7 +408,7 @@ __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
-    if(reason==0){game_session_finish();history_finish();command_channel_close();return 1;}
+    if(reason==0){game_session_finish();history_finish();command_scheduler_detach();return 1;}
     if(reason!=1)return 1;
     char path[512];u32 size=GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path));
     if(!size || size>=sizeof(path))return 1;

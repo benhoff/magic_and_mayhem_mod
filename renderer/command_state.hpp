@@ -9,6 +9,7 @@ struct CommandDescription {int width,height;PixelFormat format;};
 // Shared admission for complete-file decoding and progressive execution.
 class CommandState final {
 public:
+    explicit CommandState(CommandStreamMode mode=CommandStreamMode::Bounded):mode(mode){}
     const CommandDescription& get(unsigned id) const;
     void accept(const SurfaceCommand& command);
     void discardSurfaces(){live.clear();pixels=0;}
@@ -17,6 +18,8 @@ public:
     bool ended=false,presented=false;
     std::map<unsigned,CommandDescription> live;
 private:
+    CommandStreamMode mode;
+    unsigned lastCreated=0;
     std::set<unsigned> used;
     std::size_t bytes=16;
 };

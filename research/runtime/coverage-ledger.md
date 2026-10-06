@@ -1063,3 +1063,34 @@ reachability of arbitrary admitted endpoint pairs, scripts/entities/resource
 economy, other profiles/maps, portable checkpoint relocation and live replacement
 remain pending. A partial directory without `result.json` is not a successful
 load. Historical evidence and source hashes are preserved.
+
+## Idle command lifecycle and native sustained decoding
+
+2026-10-06: `NR.command-idle-lifecycle` starts a bounded retry worker from normal
+callbacks outside DllMain. `RenderShutdown` stops owned capture under the tracker,
+then drains or refuses pending bytes and joins outside tracker/loader lock with
+finite deadlines; queue and mapping are released only after join. Startup and
+shutdown serialize handle publication. DllMain retains interrupted worker-visible
+resources for process cleanup. Calling the export before exit remains an explicit
+orchestrator responsibility; it does not uninstall hooks.
+
+`NR.command-streaming` selects bounded-memory decoding for live v2 channels,
+removing cumulative64MiB/4096 caps. It bounds fragments, records, live surfaces,
+pixels and command batches; monotonically increasing CREATE IDs replace an
+unbounded historical ID set.32-bit byte/sequence lifetimes still cannot wrap.
+v1/offline replay keep their original limits. The PE32 owned archive/sample is
+still bounded independently; sustained original capture/archive/session rotation
+and original pixel comparison/replacement remain pending.
+
+Actual PE32 idle, pending-shutdown, cancellation, timeout and detach cases pass
+with independently checked owned bytes. Native/sanitized C queue regressions pass.
+The native GPU fixture sends74,631,284 bytes/5,077 commands through1MiB ring with
+71 FULL retries andfour independently checked complete frames; ASan/UBSan native
+GPU repeat and bounded regressions also pass. Qt/Mesa integration disables leak
+checking; C queue enables it. Cleanup/readback/
+upload counters pass. Regression details are recorded
+in [the lifecycle and streaming evidence](opengl-command-streaming-lifecycle.md):
+eight v2 cases/44 full frames and eight v1 startup cases/four frames. Final original
+startup completes three native PRESENTs/39,363,820 bytes, with original drawing
+retained and both2927-file manifest checks passing. Shared historical evidence
+retains its source fingerprints; these scoped records do not refresh full contracts.

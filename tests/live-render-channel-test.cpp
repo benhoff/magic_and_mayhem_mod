@@ -32,6 +32,41 @@ struct Writer {
     void set(unsigned at,unsigned value){__atomic_store_n(reinterpret_cast<quint32*>(map+at),qToLittleEndian<quint32>(value),__ATOMIC_RELEASE);}
     void append(const QByteArray& data){std::memcpy(map+64+bytes,data.constData(),data.size());bytes+=data.size();set(20,bytes);}
 };
+quint64 sustainedBytes;unsigned sustainedCommands,sustainedRetries;
+unsigned sustained(GlViewport& viewport){
+    QTemporaryDir dir;LiveCommandRenderer live(viewport);auto path=dir.filePath("sustained");
+    check(live.create(path,222,2),"sustained create");Writer mapped(path);mnm_ring_writer writer{};
+    check(mnm_ring_writer_bind(&writer,mapped.map,MNM_RENDER_COMMANDS_V2_SIZE),"sustained claim");
+    quint64 total=0;unsigned full=0,seq=0,shown=0;QRgb expected=qRgb(255,0,0);
+    live.framePresented=[&]{auto image=viewport.grabFramebuffer();for(int y=0;y<64;++y)for(int x=0;x<64;++x)check(image.pixel(x,y)==expected,"sustained independent framebuffer");++shown;};
+    const auto send=[&](const QByteArray& bytes){
+        total+=bytes.size();for(qsizetype at=0;at<bytes.size();){auto part=bytes.mid(at,65536);int status=mnm_ring_write(&writer,part.data(),part.size());
+            check(status>=0,"sustained write");if(!status){++full;check(live.poll(65536),"sustained backpressure");continue;}at+=part.size();}
+        while(live.result() && live.result()->commands<seq)check(live.poll(65536),"sustained record drain");
+    };
+    QByteArray header("MNMCMD01");word(header,1);word(header,16);send(header);
+    QByteArray pixels(512*512*4,0);for(qsizetype i=0;i<pixels.size();i+=4)qToLittleEndian<quint32>(0xff0000,pixels.data()+i);
+    QByteArray create;record(create,++seq,1,{1,512,512,32,0xff0000,0xff00,0xff},pixels);send(create);
+    // Establish consumer before record-drain loop; the first poll may only frame.
+    while(!live.result() || live.result()->commands<seq)check(live.poll(65536),"sustained create drain");
+    for(unsigned frame=1;frame<=70;++frame){
+        const quint32 color=frame%3==0?0xff0000:frame%3==1?0x00ff00:0x0000ff;
+        expected=qRgb((color>>16)&255,(color>>8)&255,color&255);
+        for(qsizetype i=0;i<pixels.size();i+=4)qToLittleEndian(color,pixels.data()+i);
+        QByteArray update;record(update,++seq,2,{1,0,0,512,512},pixels);send(update);
+        if(frame%20==0 || frame==70){QByteArray present;record(present,++seq,6,{1});send(present);}
+    }
+    for(unsigned i=0;i<5000;++i){QByteArray update;record(update,++seq,2,{1,0,0,1,1},pixels.first(4));send(update);}
+    QByteArray end;record(end,++seq,7,{1});record(end,++seq,8,{});send(end);
+    check(mnm_ring_end(&writer) && live.finishProducer(),"sustained END");
+    check(total>quint64(mnm::render::maxCommandBytes) && seq>4096 && full && shown==4,"sustained exceeds old limits");
+    check(live.result()->liveSurfaces==0 && live.result()->stats.nativeReadbacks==0 && live.result()->stats.rgbaReadbacks==0 && viewport.imageUploads()==0,"sustained cleanup and counters");
+    sustainedBytes=total;sustainedCommands=seq;sustainedRetries=full;
+    // Streaming lifetime identity remains bounded: IDs must increase, not reuse.
+    {mnm::render::CommandDecoder decoder(mnm::render::CommandStreamMode::Streaming);QByteArray b=header;record(b,1,1,{2,1,1,16,0xf800,0x7e0,0x1f},QByteArray::fromHex("00f8"));record(b,2,7,{2});record(b,3,1,{1,1,1,16,0xf800,0x7e0,0x1f},QByteArray::fromHex("00f8"));bool refused=false;try{decoder.append(b);}catch(...){refused=true;}check(refused,"streaming monotonic identity");}
+    {mnm::render::CommandDecoder decoder(mnm::render::CommandStreamMode::Streaming);bool refused=false;try{decoder.append(QByteArray(65537,0));}catch(...){refused=true;}check(refused,"streaming fragment budget");}
+    return shown;
+}
 unsigned synthetic(GlViewport& viewport){
     unsigned count=0;const auto bytes=fixture();
     for(unsigned batch:{1u,7u,65536u}){
@@ -91,7 +126,7 @@ int main(int argc,char** argv){
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);QApplication app(argc,argv);
     try {
         GlViewport viewport;viewport.setMinimumSize(1,1);viewport.resize(64,64);viewport.show();app.processEvents();check(viewport.ready(),"viewport ready");
-        if(argc==1){auto frames=synthetic(viewport);std::printf("{\"success\":true,\"full_frames\":%u,\"failures\":12,\"ordinary_readbacks\":0,\"viewport_uploads\":0}\n",frames);return 0;}
+        if(argc==1){auto frames=synthetic(viewport)+sustained(viewport);std::printf("{\"success\":true,\"full_frames\":%u,\"failures\":14,\"ordinary_readbacks\":0,\"viewport_uploads\":0,\"sustained_bytes\":%llu,\"sustained_commands\":%u,\"sustained_frames\":4,\"full_retries\":%u}\n",frames,static_cast<unsigned long long>(sustainedBytes),sustainedCommands,sustainedRetries);return 0;}
         check(argc==4,"live args: channel active-marker report");viewport.resize(800,600);app.processEvents();LiveCommandRenderer live(viewport);check(live.open(QString::fromLocal8Bit(argv[1])),"open live channel");QJsonArray frames;bool beforeExit=false;QElapsedTimer elapsed;elapsed.start();QTimer timer;
         live.framePresented=[&]{
             QFile marker(QString::fromLocal8Bit(argv[2]));if(marker.open(QIODevice::ReadOnly)){
