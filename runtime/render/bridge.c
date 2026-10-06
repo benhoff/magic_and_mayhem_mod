@@ -152,6 +152,8 @@ static i32 WIN surface_get_palette(void* object,void** result){
 }
 static i32 WIN surface_attached(void* object,u32* caps,void** result){
     COMMAND_CALLBACK(((i32 (WIN *)(void*,void*,void**))lookup(object)->original[12])(object,caps,result));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){game_metadata_invalidate();i32 forwarded=((i32 (WIN *)(void*,void*,void**))lookup(object)->original[12])(object,caps,result);game_metadata_invalidate();game_copy_unobserved(object);return forwarded;}
     u32 entry=GetLastError();struct Table* t=lookup(object);u32 requested[4]={0};u32 size=t->kind>=14?16:4;
     int valid=readable(caps,size);if(valid)copy(requested,caps,size);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,void*,void**))t->original[12])(object,caps,result);u32 error=GetLastError();
@@ -160,18 +162,24 @@ static i32 WIN surface_attached(void* object,u32* caps,void** result){
 }
 static i32 WIN surface_add_attached(void* object,void* other){
     COMMAND_CALLBACK(((i32 (WIN *)(void*,void*))lookup(object)->original[3])(object,other));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){game_metadata_invalidate();i32 forwarded=((i32 (WIN *)(void*,void*))lookup(object)->original[3])(object,other);game_metadata_invalidate();game_copy_unobserved(object);return forwarded;}
     u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,void*))t->original[3])(object,other);u32 error=GetLastError();
     if(status>=0)game_metadata_invalidate();SetLastError(error);return status;
 }
 static i32 WIN surface_delete_attached(void* object,u32 flags,void* other){
     COMMAND_CALLBACK(((i32 (WIN *)(void*,u32,void*))lookup(object)->original[8])(object,flags,other));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){game_metadata_invalidate();i32 forwarded=((i32 (WIN *)(void*,u32,void*))lookup(object)->original[8])(object,flags,other);game_metadata_invalidate();game_copy_unobserved(object);return forwarded;}
     u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,u32,void*))t->original[8])(object,flags,other);u32 error=GetLastError();
     if(status>=0)game_metadata_invalidate();SetLastError(error);return status;
 }
 static i32 WIN surface_desc(void* object,u32* desc){
     COMMAND_CALLBACK(((Description)lookup(object)->original[22])(object,desc));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){game_metadata_invalidate();i32 forwarded=((Description)lookup(object)->original[22])(object,desc);game_metadata_invalidate();game_copy_unobserved(object);return forwarded;}
     u32 entry=GetLastError();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((Description)t->original[22])(object,desc);u32 error=GetLastError();
     game_surface_described(object,t->kind,desc,status);SetLastError(error);return status;
@@ -294,6 +302,8 @@ static i32 WIN surface_unlock(void* object,void* rect){
 }
 static i32 WIN surface_restore(void* object){
     COMMAND_CALLBACK(((i32 (WIN *)(void*))lookup(object)->original[27])(object));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){game_metadata_invalidate();i32 forwarded=((i32 (WIN *)(void*))lookup(object)->original[27])(object);game_metadata_invalidate();game_copy_unobserved(object);return forwarded;}
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*))t->original[27])(object);u32 error=GetLastError();
     if(status>=0){game_surface_invalidate(object);game_surface_key(object,8,0,0);}
@@ -380,6 +390,8 @@ static i32 WIN surface_color_key(void* object,u32 flags,u32* key){
 static i32 WIN surface_clipper(void* object,void* clipper){return surface_property(object,clipper,28);}
 static i32 WIN surface_batch(void* object,void* batch,u32 count,u32 flags){
     COMMAND_CALLBACK(((i32 (WIN *)(void*,void*,u32,u32))lookup(object)->original[6])(object,batch,count,flags));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){game_metadata_invalidate();i32 forwarded=((i32 (WIN *)(void*,void*,u32,u32))lookup(object)->original[6])(object,batch,count,flags);game_metadata_invalidate();game_copy_unobserved(object);return forwarded;}
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((i32 (WIN *)(void*,void*,u32,u32))t->original[6])(object,batch,count,flags);u32 error=GetLastError();
     if(status>=0)game_surface_invalidate(object);

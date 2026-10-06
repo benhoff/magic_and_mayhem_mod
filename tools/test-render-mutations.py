@@ -14,7 +14,8 @@ ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('mutation_resource',ROOT/'tools/test-render-resource-lifecycle.py')
 resource=importlib.util.module_from_spec(spec);spec.loader.exec_module(resource)
 live,ring=resource.live,resource.ring
-CASES=['source-key','cross-key', 'key-timeout', 'cross-clipper', 'clipper-timeout', 'cross-palette', 'palette-timeout','cross-dc','dc-timeout','cross-flip','flip-timeout','cross-lock','lock-timeout','cross-fast','cross-copy','copy-timeout','source-write','source-key','meta16','meta-change','mx16','mx24','mx32','indexed','dc16','dc24','dc32','reshape','bounded','partial','unsupported','palette-flags']
+METADATA_CASES=[mode for name in ['desc','attached','add','delete','restore','batch'] for mode in ['cross-'+name,name+'-timeout']]
+CASES=METADATA_CASES+['source-key','cross-key', 'key-timeout', 'cross-clipper', 'clipper-timeout', 'cross-palette', 'palette-timeout','cross-dc','dc-timeout','cross-flip','flip-timeout','cross-lock','lock-timeout','cross-fast','cross-copy','copy-timeout','source-write','source-key','meta16','meta-change','mx16','mx24','mx32','indexed','dc16','dc24','dc32','reshape','bounded','partial','unsupported','palette-flags']
 
 
 def frames(data):
@@ -96,8 +97,8 @@ def main():
         shutil.copyfile(dll,case/dll.name)
         (case/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
         output,active=case/'qt.json',case/'producer.active'
-        child=dict(env,MNM_RENDER_ORDERED_COPIES='1' if mode in ['cross-key', 'key-timeout', 'cross-clipper', 'clipper-timeout', 'cross-palette', 'palette-timeout', 'indexed','cross-dc','dc-timeout','cross-flip','flip-timeout','cross-lock','lock-timeout','cross-fast','cross-copy','copy-timeout','source-write','source-key','dc32','mx16'] else '0',MNM_RENDER_PALETTE_RESOURCES='1' if args.palette_resources else '0',MNM_MUTATION_SELFTEST=mode,MNM_RENDER_CONTINUOUS='0' if mode=='bounded' else '1',MNM_RENDER_OWNED_SESSION='1',MNM_RENDER_SESSION_ARCHIVE='1',MNM_RENDER_COMMAND_CHANNEL='Z:'+str(channel).replace('/', '\\'),MNM_RENDER_STREAM='Z:'+str(frame).replace('/', '\\'),MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/', '\\'))
-        valid=mode not in ['bounded','partial','unsupported','palette-flags','meta-change','source-write','source-key','copy-timeout','lock-timeout','dc-timeout','flip-timeout','key-timeout','clipper-timeout','palette-timeout']
+        child=dict(env,MNM_RENDER_ORDERED_COPIES='1' if mode in METADATA_CASES or mode in ['cross-key', 'key-timeout', 'cross-clipper', 'clipper-timeout', 'cross-palette', 'palette-timeout', 'indexed','cross-dc','dc-timeout','cross-flip','flip-timeout','cross-lock','lock-timeout','cross-fast','cross-copy','copy-timeout','source-write','source-key','dc32','mx16'] else '0',MNM_RENDER_PALETTE_RESOURCES='1' if args.palette_resources else '0',MNM_MUTATION_SELFTEST=mode,MNM_RENDER_CONTINUOUS='0' if mode=='bounded' else '1',MNM_RENDER_OWNED_SESSION='1',MNM_RENDER_SESSION_ARCHIVE='1',MNM_RENDER_COMMAND_CHANNEL='Z:'+str(channel).replace('/', '\\'),MNM_RENDER_STREAM='Z:'+str(frame).replace('/', '\\'),MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/', '\\'))
+        valid=(mode not in METADATA_CASES or mode in ['cross-desc','cross-attached']) and mode not in ['bounded','partial','unsupported','palette-flags','meta-change','source-write','source-key','copy-timeout','lock-timeout','dc-timeout','flip-timeout','key-timeout','clipper-timeout','palette-timeout']
         with (case/'qt.log').open('w') as qlog,(case/'wine.log').open('w') as wlog:
             qt=subprocess.Popen([str(args.build.resolve()/'live-render-channel-test'),str(channel),str(active),str(output)],env=env,stdout=qlog,stderr=qlog);wine=None
             try:
@@ -115,11 +116,14 @@ def main():
         if mode=='indexed' and args.palette_resources:expected_count+=40
         assert len(expected)==expected_count,(mode,len(expected),expected_count)
         if mode in ['cross-palette','palette-timeout']:assert len(set(expected))==3,'Independent palette phases must be distinguishable'
-        displayed=expected if valid else expected[:1]
+        displayed=expected if valid or mode in METADATA_CASES and mode.startswith('cross-') else expected[:1]
         assert observed['frames']==displayed,(mode,observed,displayed)
         assert observed['success']==valid and observed['presentations']==len(displayed) and observed['before_producer_exit']
         assert observed.get('native_readbacks',0)==observed.get('rgba_readbacks',0)==observed['viewport_uploads']==observed.get('live_surfaces',0)==0
-        if (mode.startswith('mx') or mode=='meta16') or mode=='indexed':want=(123,123,1,1,1,1,121,41,81 if mode=='indexed' else 0,0)
+        if mode in METADATA_CASES:
+            want=(2,2,3 if 'desc' in mode else 1,2,1,3 if 'attached' in mode else 1,1,0,0,0)
+            assert struct.unpack('<I',(case/'metadata-counts.bin').read_bytes())==(2,)
+        elif (mode.startswith('mx') or mode=='meta16') or mode=='indexed':want=(123,123,1,1,1,1,121,41,81 if mode=='indexed' else 0,0)
         elif mode=='source-key':want=(2,2,1,2,2,1,1,0,0,0)
         elif mode in ['cross-key','key-timeout']:want=(2,2,1,2,3,1,1,0,0,0)
         elif mode in ['cross-clipper','clipper-timeout']:want=(2,2,1,4,1,1,1,0,0,0)
@@ -158,9 +162,9 @@ def main():
         control=channel.read_bytes()[:64];published,state,reason=struct.unpack_from('<III',control,20)
         assert state==(2 if valid else 3) and reason==(0 if valid else 2)
         if valid:assert struct.unpack_from('<I',control,36)[0]==published
-        if mode in ['cross-key', 'key-timeout', 'cross-clipper', 'clipper-timeout', 'cross-palette', 'palette-timeout','cross-dc','dc-timeout','cross-flip','flip-timeout','cross-lock','lock-timeout','cross-fast','cross-copy','copy-timeout','source-write','source-key']:
+        if mode in METADATA_CASES or mode in ['cross-key', 'key-timeout', 'cross-clipper', 'clipper-timeout', 'cross-palette', 'palette-timeout','cross-dc','dc-timeout','cross-flip','flip-timeout','cross-lock','lock-timeout','cross-fast','cross-copy','copy-timeout','source-write','source-key']:
             diagnostics=(capture/'lifecycle.log').read_text()
-            assert ('copy_order_wait_acquired ' if mode in ['cross-copy','cross-fast','cross-lock','cross-dc','cross-flip','cross-key','cross-clipper','cross-palette'] else 'copy_order_timeout ' if mode in ['copy-timeout','lock-timeout','dc-timeout','flip-timeout','key-timeout','clipper-timeout','palette-timeout'] else 'copy_order_reentrant ') in diagnostics
+            assert ('copy_order_wait_acquired ' if mode in METADATA_CASES and mode.startswith('cross-') or mode in ['cross-copy','cross-fast','cross-lock','cross-dc','cross-flip','cross-key','cross-clipper','cross-palette'] else 'copy_order_timeout ' if mode in METADATA_CASES and mode.endswith('-timeout') or mode in ['copy-timeout','lock-timeout','dc-timeout','flip-timeout','key-timeout','clipper-timeout','palette-timeout'] else 'copy_order_reentrant ') in diagnostics
         if mode in ['source-write','source-key']:
             conflicts=[list(map(lambda x:int(x,16),line.split()[1:])) for line in (capture/'lifecycle.log').read_text().splitlines() if line.startswith('blit_commit_refused ')]
             assert any(c[3] and c[4]==c[5] and c[6]!=c[7] and c[8]==c[9] and c[14]==(6 if mode=='source-key' else 8) for c in conflicts),'Nested source mutation did not invalidate pending copy'

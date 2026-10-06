@@ -1709,3 +1709,18 @@ pending; see [lifetime admission](opengl-lifetime-order.md).
 ## Native indexed bitmap palettes and separate DC clipping — 2026-10-06
 
 Two serialized reserved Wine11.16 runs preserve360 retained-original-input and150 owned identity/duplicate/bin-boundary Surface2 DC cases; manifests pass before/after. Attached DirectDraw clippers do not constrain these GetDC writes, while explicit GDI regions apply their union. Installed palette/index translation, identical full8-bit index preservation and24-bit5-bit-bin-center conversion compare450cases/21600 native words/21600 DC RGB values plus clipped samples offline;60 absent-palette conversions remain observation-only. Native450cases match43200 independent pixels with13995 defined checks/9510 refusals; partial palette updates/storage ownership and9renderer/15offline mutation tests pass. RGB565/32 andRGB24/32 compatibility72/36cases,2693856/1346928 pixels and24/12 scripted cursor compositions freshly pass;1456 original dispatch projections/12 exact buffers/813 bounded stops match. Initial300-case provenance remains historical. Native COM DC/lease reuse/default/flag/shared palette, arbitrary geometry/indexed original cursor/real loss/Windows/live/wire remain pending. See [indexed/DC findings](surface-dc-palette.md).
+
+### Surface metadata and unsupported mutation callback admission (2026-10-06)
+
+Continuous opt-in callback admission now spans surface descriptions and attached
+surface queries, attachment add/delete, Restore and BltBatch. Timeout forwarding
+invalidates metadata/pixels on both sides of original-once execution. Admitted
+failed originals retain state; successful unsupported mutations still invalidate
+rather than invent restored/batch pixels. Twelve failure/retry worker schedules
+pass18 complete frame comparisons with two valid/ten refused sessions. Ordered
+unsupported cases include a consumer drain window before successful invalidation.
+The nine-case shared palette/drawing regression passes745 complete frames.
+Production PE32 build and exact intervening committed-history receipts pass.
+Original live/driver comparison of this extension, startup admission, borrowed
+interval ownership, attachment recreation/stale interfaces and unsupported pixel
+reconstruction remain pending. See [metadata admission](opengl-metadata-order.md).

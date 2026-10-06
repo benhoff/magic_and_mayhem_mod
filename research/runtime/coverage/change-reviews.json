@@ -36099,6 +36099,283 @@
         "reason": "Shared renderer/API/tests/research fingerprints reviewed;9 renderer and fresh format compatibility pass. Broader linked original/asset/runtimeCPU/wire/presentation/sprite scopes retain historical fingerprints/status without new original/live assertions; native full-palette/bin-center/region policy does not claim their equivalence.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "e667e38bda297307a8a39bb88be5675668bdcc5c59e18b455b2b96126653fb8a",
+          "before_sha256": null,
+          "id": "NR.metadata-order"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "42fcfc415ae389365904ee0567760082bb63fca5a6f57861afbf44dd58ee62d3",
+          "before_sha256": "5cfd57f8368c5db113534381ce8dc5f99ef69f05c615ed55599f22967a965967",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "834bb2a278e1bee918b54a75ce15dfd0fe645e83252c055beded6efe644e6ee2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-metadata-order-20261006.json"
+        },
+        {
+          "after_sha256": "d8c9faa7a8b417bbc6dfbf03067775108ce25fb1918c501f2316c9be278297d5",
+          "before_sha256": "1aaa2e1b4b3f8547ccad8f277ad8a22009195d0f78aa8e69b60957229ab244be",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "981dc45721dc9361638845e224cd0fafef830787c04e86f447e7e1a65779d301",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-metadata-order-20261006.json"
+        },
+        {
+          "after_sha256": "f670caab0a5cc977b967efde27b49b54b140db85b2a6f08413ee3869c6015e9c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-metadata-order-20261006.md"
+        },
+        {
+          "after_sha256": "4dd51887dc6419c24145571436b2835ffba1aced7e1fd2d267257ac9f40bb843",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-metadata-order-native-20261006.json"
+        },
+        {
+          "after_sha256": "85f2f8e1e64c4771c251e9010fad7b9a2af35a659fa3b09b6e2f19790da2cb3f",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-metadata-order-regression-20261006.json"
+        },
+        {
+          "after_sha256": "403c732185d83c395102f2ba6aaaffb4720f115a8283c6da37e0d67ab97412f7",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-metadata-order.md"
+        },
+        {
+          "after_sha256": "9b385eee68e1b32f3de0402b0cf03314967254332749c21911489704e6df7041",
+          "before_sha256": "72a7a74bf519f3e56a0eacac2936f6ce5718d42314a17f63dcd85dbe01145e53",
+          "path": "runtime/render/bridge.c"
+        },
+        {
+          "after_sha256": "b7be6edc0647fdf3c5da8b6cf4c04fa54a9b9d8781f89c93edd5d245a28dfffa",
+          "before_sha256": "b7be6edc0647fdf3c5da8b6cf4c04fa54a9b9d8781f89c93edd5d245a28dfffa",
+          "path": "runtime/render/copy_order.h"
+        },
+        {
+          "after_sha256": "112c1a33cf20c0318d0b19289aba5dd2d9d0903013151d5c5759a86144cf8bf5",
+          "before_sha256": "112c1a33cf20c0318d0b19289aba5dd2d9d0903013151d5c5759a86144cf8bf5",
+          "path": "runtime/render/lock_flip.h"
+        },
+        {
+          "after_sha256": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+          "before_sha256": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+          "path": "runtime/render/lock_surfaces.h"
+        },
+        {
+          "after_sha256": "e22304bbcd997c8423abf4d04baf720280999f0ed9514c60bed66f81319dceea",
+          "before_sha256": "006feb5d21b9613f500ff8ab2b220519079129cbe3e5f952b14fa618a9a74e49",
+          "path": "runtime/render/mutation_selftest.h"
+        },
+        {
+          "after_sha256": "7bcbf9e3958de9cb473b808c1b7061fd824d88e76402a6ffbacf218c10f12024",
+          "before_sha256": "837dba0197d7c8fd8a4d838301cabb88047c730b329184032b0e296f6b4afcd5",
+          "path": "tools/test-render-mutations.py"
+        }
+      ],
+      "id": "metadata-order-recorded-20261006",
+      "pending_gaps": [],
+      "reason": "Reviewed six surface callback lease placements, original-once forwarding, output parameter preservation and signed results/LastError, scoped failure cleanup and metadata/pixel invalidation on both sides of admission timeout. Successful Restore/BltBatch/attachment mutation retains unsupported-state invalidation; descriptions and observed attachment chains retain existing processing. Reviewed independent fixture native pixels, worker failure+retry schedules, exact original arguments/counts, deliberate timeout and consumer drain windows. Existing50ms gate/8ms tracker and budgets/defaults remain unchanged.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh twelve-case PE32/Wine-to-native GPU matrix passes18 independent complete frames,2 valid/10 refused sessions, plus nine-case shared palette/drawing regression745 complete frames. Exact originals/results/LastError, zero native storage/readbacks/uploads and END/GAP checked. Production DLL builds. Original live/driver equivalence and unsupported pixel reconstruction remain pending.",
+        "evidence": [
+          "NR.metadata-order.native-20261006",
+          "NR.metadata-order.regression-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "b790054e4a2fc9564824151ee16e22267302b25e65a6950a4fd6ad0db4e7d897",
+          "before_sha256": "279dc59733a5d695cae8867ce1182a76b57da33c83331384d03f9f074caaf135",
+          "id": "NR.bounded-copy-order"
+        },
+        {
+          "after_sha256": "52897b2ac98fb98a3efd6ccd35700b6ec39d6359f456d22a787e1481fb2da9da",
+          "before_sha256": "42653f04456bff87942807c6e3d2861a5aad4bc2b61af4504ec86de0d40741ee",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "e807b669ec93dfe60b3afeeb88b5acb612ed079a0f6818f51ce8b830142b519e",
+          "before_sha256": "dce2c0898a7ea59bfefa8d175d6433b045007bd403c7d3ae61c894eb0ce90f7c",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "8aa631f7e4ace98fc377a2f88b87e4a85990cbc5bd585339d5d093adbe4f3fe4",
+          "before_sha256": "dd92c4468329c47834aa81dab8359d0edb3bf10d15cea0043663520c7809d465",
+          "id": "NR.command-idle-lifecycle"
+        },
+        {
+          "after_sha256": "8eb8981d93b209df8d7e7385a9b2a772f7da62a2af9701cc694012df2d2cf049",
+          "before_sha256": "0a886f8751d1ad358d1cdf0441d286e2f7e6192eedbfcb1f8ec255eca527a972",
+          "id": "NR.command-orchestration"
+        },
+        {
+          "after_sha256": "7d919a65c9460e9973efafc045d5623194ca44059560367851a0077696914888",
+          "before_sha256": "81a3e6ad751573cfcaa703926a4bfbd8a4ff29ba2d2b3be141298e1bf3c4f291",
+          "id": "NR.command-recovery"
+        },
+        {
+          "after_sha256": "e5a7bddbed46fbe28086bdcbbc51d8e5b1098de4792bac44653da871ee40571e",
+          "before_sha256": "8157499f8768d3a66566d5e3d42daf2dbf30277d76e36eef6ce750bbd77afc6d",
+          "id": "NR.continuous-mutations"
+        },
+        {
+          "after_sha256": "901ef3743328e4c6e3308f95786a15072243fb2cea49d793d0a44b746be2c81f",
+          "before_sha256": "04e7e6080a0aa0aad3abcbcc3f80cb42dc34e1a94863c2e8429ed7b4ef25041b",
+          "id": "NR.continuous-resource-lifetime"
+        },
+        {
+          "after_sha256": "8565a8e7c762e62877c07714be9ee846554b5c029b8d84d81d26f74053b294d0",
+          "before_sha256": "557fcdaf13726470d973e0e5b1afb9450cd996bf855cdfb080511f54fd12a2ef",
+          "id": "NR.cpu-handoff-order"
+        },
+        {
+          "after_sha256": "c082a25f12717429c39545c3eb83d689801ca7acbd68097b2f876e9d1b053409",
+          "before_sha256": "d130defd1c08ddc05e4d9ae23423bdc9e7528d585901ce0dd2b6ac839fc10e26",
+          "id": "NR.dc-flip-order"
+        },
+        {
+          "after_sha256": "25430099f3c6a16812e9cf6270481013c078faaa6b52d825ee95805e97f8e5ac",
+          "before_sha256": "58e3d12fde0dd3d78198bb8b1a55ee023ad08eee4cb75f12c19e3e9ef6a14497",
+          "id": "NR.lifetime-order"
+        },
+        {
+          "after_sha256": "30c66451c98ea5de269fadf7e20db6029a20007aa1d2b8f4962599bef6e2f08b",
+          "before_sha256": "869bb1cbc0863ab3f95e3c4e580e41d2c9fa47c3e58e8fd3ff30a7fc551a371a",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "ffaa04a3ef9cdd1f0ddf77f9c8c1b9bfdc2877fe20928d66bce47b6840cf6a4f",
+          "before_sha256": "49e94cd02dd188fb45824fb4c8053ea57487f53d2f4a16856d2a2019b9393d39",
+          "id": "NR.observed-metadata-idempotence"
+        },
+        {
+          "after_sha256": "6c5a71d1fb8fc8d29a8b706380b5b943389b4879fff21cc594c68f16f73f379c",
+          "before_sha256": "6c5a71d1fb8fc8d29a8b706380b5b943389b4879fff21cc594c68f16f73f379c",
+          "id": "NR.owned-session-dc"
+        },
+        {
+          "after_sha256": "f29aecb7f4b9e0e5370f9aa86b800c1b1d976009c1f22614c6aa94c33ecc4dc5",
+          "before_sha256": "d8ee61844c0884627feb00dd29bdf24db737b66e3e71691e60755e89e8d45964",
+          "id": "NR.palette-property-order"
+        },
+        {
+          "after_sha256": "640e6b82ed02680072072feddc00f1d4b824e9d7c4c749752b19e54041e597a4",
+          "before_sha256": "76698d06837b20657998dffb8c410ac09828f01e2accc3dde4eabc8edd17c26f",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "3d8d727368371d764001d09049727e7485ac2a4bcc243f5cf49041309669c10c",
+          "before_sha256": "b14e365d0ee336a94831a3f59384041905e0ded72a54edf4562717c51c8dd0f4",
+          "id": "RT.render"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "42fcfc415ae389365904ee0567760082bb63fca5a6f57861afbf44dd58ee62d3",
+          "before_sha256": "5cfd57f8368c5db113534381ce8dc5f99ef69f05c615ed55599f22967a965967",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "834bb2a278e1bee918b54a75ce15dfd0fe645e83252c055beded6efe644e6ee2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-metadata-order-20261006.json"
+        },
+        {
+          "after_sha256": "d8c9faa7a8b417bbc6dfbf03067775108ce25fb1918c501f2316c9be278297d5",
+          "before_sha256": "1aaa2e1b4b3f8547ccad8f277ad8a22009195d0f78aa8e69b60957229ab244be",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "981dc45721dc9361638845e224cd0fafef830787c04e86f447e7e1a65779d301",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-metadata-order-20261006.json"
+        },
+        {
+          "after_sha256": "f670caab0a5cc977b967efde27b49b54b140db85b2a6f08413ee3869c6015e9c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-metadata-order-20261006.md"
+        },
+        {
+          "after_sha256": "4dd51887dc6419c24145571436b2835ffba1aced7e1fd2d267257ac9f40bb843",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-metadata-order-native-20261006.json"
+        },
+        {
+          "after_sha256": "85f2f8e1e64c4771c251e9010fad7b9a2af35a659fa3b09b6e2f19790da2cb3f",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-metadata-order-regression-20261006.json"
+        },
+        {
+          "after_sha256": "403c732185d83c395102f2ba6aaaffb4720f115a8283c6da37e0d67ab97412f7",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-metadata-order.md"
+        },
+        {
+          "after_sha256": "9b385eee68e1b32f3de0402b0cf03314967254332749c21911489704e6df7041",
+          "before_sha256": "72a7a74bf519f3e56a0eacac2936f6ce5718d42314a17f63dcd85dbe01145e53",
+          "path": "runtime/render/bridge.c"
+        },
+        {
+          "after_sha256": "b7be6edc0647fdf3c5da8b6cf4c04fa54a9b9d8781f89c93edd5d245a28dfffa",
+          "before_sha256": "b7be6edc0647fdf3c5da8b6cf4c04fa54a9b9d8781f89c93edd5d245a28dfffa",
+          "path": "runtime/render/copy_order.h"
+        },
+        {
+          "after_sha256": "112c1a33cf20c0318d0b19289aba5dd2d9d0903013151d5c5759a86144cf8bf5",
+          "before_sha256": "112c1a33cf20c0318d0b19289aba5dd2d9d0903013151d5c5759a86144cf8bf5",
+          "path": "runtime/render/lock_flip.h"
+        },
+        {
+          "after_sha256": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+          "before_sha256": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+          "path": "runtime/render/lock_surfaces.h"
+        },
+        {
+          "after_sha256": "e22304bbcd997c8423abf4d04baf720280999f0ed9514c60bed66f81319dceea",
+          "before_sha256": "006feb5d21b9613f500ff8ab2b220519079129cbe3e5f952b14fa618a9a74e49",
+          "path": "runtime/render/mutation_selftest.h"
+        },
+        {
+          "after_sha256": "7bcbf9e3958de9cb473b808c1b7061fd824d88e76402a6ffbacf218c10f12024",
+          "before_sha256": "837dba0197d7c8fd8a4d838301cabb88047c730b329184032b0e296f6b4afcd5",
+          "path": "tools/test-render-mutations.py"
+        }
+      ],
+      "id": "metadata-order-shared-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:3d8dbc48cc078a21af4669e3993399e78240bd42a45b4dd65c65089905de26b6",
+        "stale_evidence:16ba71ae59dba1aba733243f759407fd6bb802cf2c7c48570ee75c81a4ff4283",
+        "stale_evidence:1c72fc043fa2e5d74b48e814b1bbb67d890a63b6ca432e47cc71c8e96f116d65",
+        "stale_evidence:1e5ddc3e6f83670c497ab50c542661a7444f750f1edd01461272ff1057fb5e86",
+        "stale_evidence:2cd78eb78460d5e7125da732a943dc6a28121c2c285a7e84ad25b435132d159b",
+        "stale_evidence:7815b176fdf70de7bedc9ffd3e5bb7030003883b8d19891886c9df606568ac5a",
+        "stale_evidence:a12f5def8fc893ee080f2bcf0bae854cd472d8f291b681bb37c81bc140abb520",
+        "stale_evidence:a65af155b56fecea5e1a72579db6d442daea749d056a9554dfd8bc689d8568a6",
+        "stale_evidence:b059cac72933bb0a82ef619a74759121825bc4b3114092b04b276c09c8a05f4e",
+        "stale_evidence:bafeaa49f530c2aeebe9e296c0c4222f923abd2d541fe27d6aa8e1a8a9b1d0de",
+        "stale_evidence:cf758ec5865e814020cd9615b59b465a461f27be29c0622c2c08d3e26b3a24dd",
+        "stale_evidence:ddb3d6ce8390310e1386f42c4ff2ad02356f411f5e149e8f8bccb8d54d030bf3",
+        "stale_evidence:e41c4c611388d43e37ee573c90f79c2da100bbf137f675dd3b0451e32d18df63",
+        "stale_evidence:ed438f7f9f51b9de48e00f0f1369359392af0fc323c71a13e7f8f356d83508b8",
+        "stale_evidence:f0e1350574c96d97532160c211a4bbe8483c2ed78288107808f65686c5541c03"
+      ],
+      "reason": "Reviewed shared rendering callback and fixture effects, central scope/evidence links, source census, ledger and preserved receipts/evidence. Exact420f919..9e8868e file/behavior parent/current hash receipts and journal preservation were reviewed with no unresolved entries. Concurrent surface DC reuse work is excluded from the isolated staged tree. Source admission extension does not promote every linked contract or assert rerun original evidence.",
+      "validation": {
+        "status": "pending",
+        "reason": "Historical statuses/evidence remain independent. Original live/driver/full-frame comparison of metadata admission is not rerun. Dedicated nested/changed attachment metadata, stale output/recreation, Restore/BltBatch reconstruction, DirectDrawCreate/startup, borrowed CPU/DC intervals/owner termination, unseen-object recovery and palette lifetime races remain pending.",
+        "evidence": []
+      }
     }
   ]
 }
