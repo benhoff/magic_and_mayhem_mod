@@ -140,6 +140,7 @@ def main():
     metadata['media_channel']=str(media_path) if media_path else None
     metadata['render_control']=str(control_path) if control_path else None
     metadata['command_channel']=str(command_path) if command_path else None
+    metadata['palette_resources']=continuous and os.environ.get('MNM_RENDER_PALETTE_RESOURCES','1')=='1'
     metadata['continuous_commands']=continuous
     metadata['command_archive']=not continuous or os.environ.get('MNM_RENDER_SESSION_ARCHIVE')=='1'
     metadata['input_channel']=str(input_path) if input_path else None
@@ -163,6 +164,8 @@ def main():
     env.pop('MNM_RENDER_COMMAND_CHANNEL',None)
     env.pop('MNM_RENDER_CONTROL',None)
     if control_path:env['MNM_RENDER_CONTROL']='Z:'+str(control_path).replace('/','\\')
+    if continuous:env['MNM_RENDER_PALETTE_RESOURCES']=os.environ.get('MNM_RENDER_PALETTE_RESOURCES','1')
+    else:env.pop('MNM_RENDER_PALETTE_RESOURCES',None)
     if command_path:
         env['MNM_RENDER_COMMAND_CHANNEL']='Z:'+str(command_path).replace('/','\\')
         env['MNM_RENDER_OWNED_SESSION']='1'

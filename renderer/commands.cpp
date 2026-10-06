@@ -19,9 +19,9 @@ Image pixels(const QByteArray& payload,qsizetype start,unsigned w,unsigned h,uns
 }
 }
 namespace {
-SurfaceCommand decodeRecord(const QByteArray& record,detail::CommandState& state){
+SurfaceCommand decodeRecord(const QByteArray& record,detail::CommandState& state,unsigned version){
     const auto word=[](const QByteArray& b,qsizetype at){return qFromLittleEndian<quint32>(b.constData()+at);};
-        SurfaceCommand c;c.operation=word(record,0);c.sequence=word(record,4);const auto length=word(record,8);
+        SurfaceCommand c;c.version=version;c.operation=word(record,0);c.sequence=word(record,4);const auto length=word(record,8);
         require(c.sequence==state.commands+1 && length==unsigned(record.size()-12),"Command sequence gap or truncated payload");
         const auto p=record.mid(12);
         const auto fields=[&](unsigned n){require(length>=n*4,"Short command fields");for(unsigned i=0;i<n;++i)c.words[i]=word(p,i*4);};
@@ -36,6 +36,13 @@ SurfaceCommand decodeRecord(const QByteArray& record,detail::CommandState& state
             fields(3);const auto count=c.words[2];require(count && count<=256 && length==12+count*3,"Invalid palette command");
             for(unsigned i=0;i<count;++i)c.colors.push_back({static_cast<std::uint8_t>(p[12+i*3]),
                 static_cast<std::uint8_t>(p[13+i*3]),static_cast<std::uint8_t>(p[14+i*3])});
+        }else if(version==2 && (c.operation==12 || c.operation==13)){
+            const unsigned n=c.operation==12?2:4;fields(n);
+            const unsigned count=c.operation==12?256:c.words[3];
+            require(count && count<=256 && length==n*4+count*3,"Invalid palette resource length");
+            for(unsigned i=0;i<count;++i)c.colors.push_back({static_cast<std::uint8_t>(p[n*4+i*3]),static_cast<std::uint8_t>(p[n*4+i*3+1]),static_cast<std::uint8_t>(p[n*4+i*3+2])});
+        }else if(version==2 && (c.operation==14 || c.operation==15)){
+            const unsigned n=c.operation==14?3:2;fields(n);require(length==n*4,"Invalid palette identity length");
         }else if(c.operation==5 || c.operation==10){fields(1);c.expected=p.mid(4);
         }else if(c.operation==6 || c.operation==7 || c.operation==9){fields(1);require(length==4,"Invalid surface command length");
         }else if(c.operation==8){require(!length,"Invalid END length");
@@ -49,6 +56,7 @@ struct CommandDecoder::Impl {
     explicit Impl(CommandStreamMode mode):state(mode),mode(mode){}
     QByteArray pending;
     qint64 total=0;
+    unsigned version=0;
     bool header=false,failed=false,finished=false;
 };
 CommandDecoder::CommandDecoder(CommandStreamMode mode):impl_(std::make_unique<Impl>(mode)){}
@@ -67,7 +75,8 @@ std::vector<SurfaceCommand> CommandDecoder::append(const QByteArray& bytes){
         std::vector<SurfaceCommand> out;
         if(!p.header){
             if(p.pending.size()<16)return out;
-            require(p.pending.first(8)=="MNMCMD01" && qFromLittleEndian<quint32>(p.pending.constData()+8)==1 &&
+            p.version=qFromLittleEndian<quint32>(p.pending.constData()+8);
+            require(((p.pending.first(8)=="MNMCMD01" && p.version==1) || (p.pending.first(8)=="MNMCMD02" && p.version==2)) &&
                     qFromLittleEndian<quint32>(p.pending.constData()+12)==16,"Invalid command stream header");
             p.pending.remove(0,16);p.header=true;
         }
@@ -78,7 +87,7 @@ std::vector<SurfaceCommand> CommandDecoder::append(const QByteArray& bytes){
             const auto length=qFromLittleEndian<quint32>(p.pending.constData()+consumed+8);
             require(length<=(p.mode==CommandStreamMode::Streaming?maxStreamingRecordBytes-12:maxCommandBytes-28),"Oversized command payload");
             if(p.pending.size()-consumed-12<length)break;
-            out.push_back(decodeRecord(p.pending.mid(consumed,12+length),p.state));consumed+=12+length;
+            out.push_back(decodeRecord(p.pending.mid(consumed,12+length),p.state,p.version));consumed+=12+length;
         }
         p.pending.remove(0,consumed);return out;
     }catch(...){p.failed=true;p.pending.clear();throw;}

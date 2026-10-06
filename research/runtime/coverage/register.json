@@ -14132,6 +14132,54 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.palette-resources",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Explicit session-qualified palette resources and retirement",
+      "scope": "Native bounded session-qualified palette create/update/bind/delete, immutable lifetime and mutation guards, observed aliases, verified original final Release and same-pointer recreation; continuous stream v2 with explicit legacy compatibility.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-palette-identities.md",
+        "research/formats/render-stream-v2.md",
+        "protocols/CONTRACTS.md"
+      ],
+      "implementation": [
+        "runtime/render/lock_palette.h",
+        "runtime/render/owned_session.h",
+        "renderer/commands.cpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.hpp",
+        "runtime/render/bridge.c",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/command_recovery.h",
+        "tools/run-opengl-game.py",
+        "tools/build-render-bridge.py",
+        "protocols/schemas/render_stream-v2.json",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/python/mnm_protocols/render_stream_v2.py"
+      ],
+      "tests": [
+        "tests/render-palette-resources-test.cpp",
+        "tools/test-render-palette-resources.py",
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py",
+        "renderer/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NR.palette-resources.pe32",
+        "NR.palette-resources.gpu"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -24744,6 +24792,34 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.palette-resources.pe32",
+      "kind": "native_integration",
+      "scope": "Synthetic palette identity and independent complete GPU pixels; bounded native policy only, original comparison and replacement remain none.",
+      "record": "research/runtime/opengl-palette-resources-pe32.json",
+      "sha256": "22cb53b8fa674b0b49546513e233e5eac31120bb0a39eab9667e53d9fb7f2d49",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.palette-resources.gpu",
+      "kind": "native_integration",
+      "scope": "Synthetic palette identity and independent complete GPU pixels; bounded native policy only, original comparison and replacement remain none.",
+      "record": "research/runtime/opengl-palette-resources-gpu.json",
+      "sha256": "fe3210123cf17185ace051f0ca4102b81f60ea62eab6c97561c44b70df9a2502",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -28610,6 +28686,25 @@
         "tools/test-render-control-launcher.py",
         "tools/test-render-recovery.py"
       ]
+    },
+    {
+      "id": "NR.palette-resources.preview",
+      "scope": "Synthetic native/ASan/UBSan stream-v2 consumer and PE32 shared indexed mutations, aliases, verified final retirement and forty recreations. No original-game recovery or equivalence.",
+      "behaviors": [
+        "NR.palette-resources"
+      ],
+      "evidence": [
+        "NR.palette-resources.pe32",
+        "NR.palette-resources.gpu"
+      ],
+      "level": "preview",
+      "tests": [
+        "tests/render-palette-resources-test.cpp",
+        "tools/test-render-palette-resources.py",
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py",
+        "renderer/CMakeLists.txt"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -28857,7 +28952,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-command-host-recovery-20261006.json",
-    "sha256": "4164654b01f2dd410f96d58c4eb3ebe423e8400a69e4fa53fd42d19f0003cc42"
+    "path": "research/runtime/coverage/source-index-palette-resources-20261006.json",
+    "sha256": "4a17f99f88b2cde7e27dfb3b3f62a503e433734e2354b98af2069ed28e8565f2"
   }
 }

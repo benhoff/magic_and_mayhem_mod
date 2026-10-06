@@ -1,7 +1,13 @@
+#include "../../protocols/include/mnm/render_stream_v2.h"
 /* Ordered opt-in production, independent of bounded diagnostic archives.
  * Every entry point holds game_locks_busy; pixels are owned snapshots only. */
-struct SessionSurface {void* object;u32 id,width,height,bits,r,g,b,palette_known,dc_pending;u8 palette[1024];};
+struct SessionSurface {void* object;u32 id,width,height,bits,r,g,b,palette_known,dc_pending,palette_id,palette_generation;u8 palette[1024];};
 static struct SessionSurface session_surfaces[32];
+struct SessionPalette {u32 id,generation;u8 colors[1024];};
+static struct SessionPalette session_palettes[32];
+static u32 session_last_palette_id;
+static u32 session_cleanup_bytes(void){return game_session_palette_resources?1180:540;}
+static u32 session_cleanup_records(void){return game_session_palette_resources?66:34;}
 static HANDLE session_file;
 static u32 session_active,session_started,session_epoch,session_sequence,session_bytes,session_operations,session_presented,session_pixels;
 static u32 session_archive_sequence,session_archive_bytes;
@@ -31,8 +37,8 @@ static int session_emit(u32 op,const void* fields,u32 fl,const void* pixels,u32 
     u32 bytes=12+fl+length;
     /* Archive exhaustion is a diagnostic GAP, never a live transport GAP.
      * Reserve 32 DELETEs, END and GAP in the unchanged bounded archive. */
-    if(session_file && !closing && (session_archive_sequence>=4062 ||
-       bytes>64*1024*1024-540-session_archive_bytes)){
+    if(session_file && !closing && (session_archive_sequence>=4096-session_cleanup_records() ||
+       bytes>64*1024*1024-session_cleanup_bytes()-session_archive_bytes)){
         if(!game_session_continuous){game_session_gap(2);return 0;}
         session_archive_gap(2);
     }
@@ -51,8 +57,8 @@ static int session_record(u32 op,const void* fields,u32 fl,const void* pixels,u3
     if(!session_active)return 0;
     /* Finite live sequence/byte lifetimes still reserve orderly cleanup. */
     u32 limit=game_session_continuous?0xffffffffu:64*1024*1024;
-    if(session_sequence>=(game_session_continuous?0xffffffffu-34:4062) ||
-       fl>limit-540-12 || length>limit-540-12-fl || 12+fl+length>limit-540-session_bytes){
+    if(session_sequence>=(game_session_continuous?0xffffffffu-session_cleanup_records():4096-session_cleanup_records()) ||
+       fl>limit-session_cleanup_bytes()-12 || length>limit-session_cleanup_bytes()-12-fl || 12+fl+length>limit-session_cleanup_bytes()-session_bytes){
         game_session_gap(2);return 0;
     }
     return session_emit(op,fields,fl,pixels,length,0);
@@ -67,7 +73,7 @@ static int session_start(void){
         command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);
         lock_diagnostic("session_continuous_requires_v2",0,0,0,0,0,0,0);return 0;
     }
-    u32 header[4];copy(header,"MNMCMD01",8);header[2]=1;header[3]=16;
+    u32 header[4];copy(header,game_session_palette_resources?MNM_RENDER_STREAM_V2_MAGIC:"MNMCMD01",8);header[2]=game_session_palette_resources?2:1;header[3]=16;
     if(game_session_archive){
         char path[544];copy(path,lock_capture_path,lock_capture_path_length);copy(path+lock_capture_path_length,"\\session-00000001.bin",22);failure_hex(path+lock_capture_path_length+9,session_archive_id);
         session_file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
@@ -133,9 +139,62 @@ static struct SessionSurface* session_surface(void* object,const struct Snapshot
     }
     game_session_gap(2);return 0;
 }
+static struct SessionPalette* session_palette_find(struct GamePalette* p){
+    for(u32 i=0;i<32;++i)if(session_palettes[i].id && session_palettes[i].generation==p->identity_generation)return session_palettes+i;
+    return 0;
+}
+static int game_session_palette_registered(struct GamePalette* p){return game_session_palette_resources && session_palette_find(p)!=0;}
+static struct SessionPalette* session_palette_resource(struct GamePalette* p){
+    if(!game_palette_complete(p)){game_session_gap(5);return 0;}
+    struct SessionPalette* found=session_palette_find(p);u8 rgb[768];
+    if(!found){
+        for(u32 i=0;i<32;++i)if(!session_palettes[i].id){found=session_palettes+i;break;}
+        if(!found || session_last_palette_id==0xffffffffu){game_session_gap(2);return 0;}
+        found->id=++session_last_palette_id;found->generation=p->identity_generation;
+        for(u32 i=0;i<256;++i)copy(rgb+i*3,p->colors+i*4,3);
+        u32 fields[2]={found->id,found->generation};
+        if(!session_record(MNM_RENDER_STREAM_V2_OPERATION_PALETTE_CREATE,fields,8,rgb,768))return 0;
+        copy(found->colors,p->colors,1024);p->session=session_archive_id;return found;
+    }
+    u32 first=0;while(first<256 && same(found->colors+first*4,p->colors+first*4,3))++first;
+    if(first<256){u32 end=256;while(end>first && same(found->colors+(end-1)*4,p->colors+(end-1)*4,3))--end;
+        for(u32 i=first;i<end;++i)copy(rgb+(i-first)*3,p->colors+i*4,3);
+        u32 fields[4]={found->id,found->generation,first,end-first};
+        if(!session_record(MNM_RENDER_STREAM_V2_OPERATION_PALETTE_UPDATE,fields,16,rgb,(end-first)*3))return 0;
+    }
+    copy(found->colors,p->colors,1024);return found;
+}
+static int session_palette_bind(struct SessionSurface* s,struct GamePalette* p){
+    struct SessionPalette* palette=p?session_palette_resource(p):0;
+    if(p && !palette)return 0;
+    u32 id=palette?palette->id:0,generation=palette?palette->generation:0;
+    if(s->palette_id==id && s->palette_generation==generation)return 1;
+    u32 fields[3]={s->id,id,generation};
+    if(!session_record(MNM_RENDER_STREAM_V2_OPERATION_PALETTE_BIND,fields,12,0,0))return 0;
+    s->palette_id=id;s->palette_generation=generation;return 1;
+}
+static void game_session_palette_retire(struct GamePalette* p){
+    if(!session_active || !game_session_palette_resources)return;
+    struct SessionPalette* palette=session_palette_find(p);if(!palette)return;
+    for(u32 i=0;i<32;++i){struct SessionSurface* s=session_surfaces+i;
+        if(!s->id || s->palette_id!=palette->id)continue;
+        if(s->dc_pending){game_session_gap(3);return;}
+        for(u32 j=0;j<32;++j)if(game_locks[j].active && game_alias_same(s->object,game_locks[j].object)){game_session_gap(3);return;}
+    }
+    for(u32 i=0;i<32;++i)if(session_surfaces[i].id && session_surfaces[i].palette_id==palette->id)
+        if(!session_palette_bind(session_surfaces+i,0))return;
+    u32 fields[2]={palette->id,palette->generation};
+    if(session_record(MNM_RENDER_STREAM_V2_OPERATION_PALETTE_DELETE,fields,8,0,0))zero(palette,sizeof(*palette));
+}
 static int session_colors(struct SessionSurface* s){
     if(s->bits!=8)return 1;
     struct GameSurface* surface=game_surface_find(s->object,0);u8 colors[1024],rgb[768];
+    if(game_session_palette_resources){
+        if(!surface){game_session_gap(5);return 0;}
+        struct GamePalette* palette=game_palette_find(surface->palette,0);
+        if(!palette){game_session_gap(5);return 0;}
+        return session_palette_bind(s,palette) && s->palette_id;
+    }
     if(!surface || !game_surface_colors(surface,colors)){game_session_gap(5);return 0;}
     if(s->palette_known && same(colors,s->palette,1024))return 1;
     u32 first=0,count=256;
@@ -172,6 +231,10 @@ static void session_finish_owned(void){
     int ok=1;
     for(u32 i=0;ok && i<32;++i)if(session_surfaces[i].id)
         ok=session_emit(7,&session_surfaces[i].id,4,0,0,1);
+    if(game_session_palette_resources)for(u32 i=0;ok && i<32;++i)if(session_palettes[i].id){
+        u32 fields[2]={session_palettes[i].id,session_palettes[i].generation};
+        ok=session_emit(MNM_RENDER_STREAM_V2_OPERATION_PALETTE_DELETE,fields,8,0,0,1);
+    }
     if(ok)ok=session_emit(8,0,0,0,0,1);
     if(ok)command_channel_end();else command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);
     session_archive_close();session_active=0;
@@ -297,6 +360,9 @@ static void game_session_flip_end(struct GameSurface* front,struct GameSurface* 
 static void game_session_palette(struct GameSurface* surface){
     if(!session_active || !surface->pixels.data)return;
     struct SessionSurface* s=session_find(surface->object);if(!s)return;
+    if(game_session_palette_resources && s->bits==8 && !surface->palette){
+        if(session_palette_bind(s,0) && surface->primary)game_session_gap(5);return;
+    }
     if(!session_check(s,&surface->pixels) || !session_colors(s) || (surface->primary && !session_present(s)))return;session_done();
 }
 

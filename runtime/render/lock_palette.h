@@ -1,6 +1,7 @@
 /* Application-observed 256-entry RGB palettes. All access uses game_locks_busy. */
-struct GamePalette {void* aliases[16];u32 count,epoch,generation,caps,known[8];u8 colors[1024];};
+struct GamePalette {void* aliases[16];u32 count,epoch,generation,identity_generation,session,caps,known[8];u8 colors[1024];};
 static struct GamePalette game_palettes[32];
+static u32 game_palette_identity_next;
 static int game_palette_supported(u32 caps){return (caps&0x44)==0x44 && !(caps&~0x54u);}
 static struct GamePalette* game_palette_find(void* object,int create){
     if(!object)return 0;struct GamePalette* empty=0;
@@ -10,7 +11,10 @@ static struct GamePalette* game_palette_find(void* object,int create){
         if(!p->count){if(!empty)empty=p;continue;}
         for(u32 j=0;j<p->count;++j)if(p->aliases[j]==object)return p;
     }
-    if(create && empty){empty->aliases[0]=object;empty->count=1;empty->epoch=epoch;empty->generation=++game_surface_generation;return empty;}
+    if(create && empty){
+        if(game_palette_identity_next==0xffffffffu){game_session_gap(2);return 0;}
+        empty->identity_generation=++game_palette_identity_next;empty->aliases[0]=object;empty->count=1;empty->epoch=epoch;empty->generation=++game_surface_generation;return empty;}
+    if(create && game_session_palette_resources)game_session_gap(2);
     return 0;
 }
 static int game_palette_complete(const struct GamePalette* p){
@@ -76,6 +80,7 @@ static void game_palette_alias(void* object,void* alias){
     if(!game_surface_enter())return;struct GamePalette* p=game_palette_find(object,1),*other=game_palette_find(alias,0);
     if(p && other!=p){
         if(other){
+            if(game_session_palette_resources && (game_session_palette_registered(p) || game_session_palette_registered(other))){game_session_gap(4);game_tracker_release();return;}
             if(p->count+other->count>16)goto overflow;
             for(u32 i=0;i<other->count;++i)p->aliases[p->count++]=other->aliases[i];
             zero(other,sizeof(*other));zero(p->known,sizeof(p->known));p->caps=0;
@@ -93,11 +98,11 @@ static void game_palette_caps(void* object,u32 caps){
         lock_diagnostic(game_palette_supported(caps)?"palette_caps":"palette_caps_rejected",object,20,0,caps,0,0,0);}
     game_tracker_release();
 }
-struct GamePaletteUpdate {u32 epoch,generation,valid;u8 colors[1024];};
+struct GamePaletteUpdate {u32 epoch,generation,identity_generation,valid;u8 colors[1024];};
 static void game_palette_before(void* object,u32 flags,u32 first,u32 count,void* entries,int input,struct GamePaletteUpdate* pending){
     zero(pending,sizeof(*pending));if(!game_surface_enter())return;
     struct GamePalette* p=game_palette_find(object,1);
-    pending->epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);pending->generation=p?p->generation:0;
+    pending->epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);pending->generation=p?p->generation:0;pending->identity_generation=p?p->identity_generation:0;
     pending->valid=p && game_palette_supported(p->caps) && !flags && count && first<256 && count<=256-first;
     if(input && pending->valid){pending->valid=readable(entries,count*4);if(pending->valid)copy(pending->colors,entries,count*4);}
     game_tracker_release();
@@ -106,7 +111,7 @@ static void game_palette_after(void* object,u32 first,u32 count,void* entries,in
     if(result<0)return;if(!game_surface_enter())return;
     struct GamePalette* p=game_palette_find(object,1);
     if(p){
-        int valid=pending->valid && pending->epoch==__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED) && pending->generation==p->generation;
+        int valid=pending->valid && pending->epoch==__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED) && pending->generation==p->generation && pending->identity_generation==p->identity_generation;
         if(output && valid){valid=readable(entries,count*4);if(valid)copy(pending->colors,entries,count*4);}
         if(valid){copy(p->colors+first*4,pending->colors,count*4);for(u32 i=first;i<first+count;++i)p->known[i/32]|=1u<<(i%32);}
         else zero(p->known,sizeof(p->known));
@@ -118,7 +123,9 @@ static void game_palette_after(void* object,u32 first,u32 count,void* entries,in
     game_tracker_release();
 }
 static void game_palette_created(void* object,u32 caps,const u8* colors){
-    if(!game_surface_enter())return;struct GamePalette* p=game_palette_find(object,1);
+    if(!game_surface_enter())return;
+    if(game_session_palette_resources && game_palette_find(object,0)){game_session_gap(3);game_tracker_release();return;}
+    struct GamePalette* p=game_palette_find(object,1);
     if(p){zero(p->known,sizeof(p->known));p->caps=caps;p->generation=++game_surface_generation;
         if(colors && game_palette_supported(caps)){copy(p->colors,colors,1024);for(u32 i=0;i<8;++i)p->known[i]=0xffffffffu;}}
     game_tracker_release();
@@ -126,5 +133,18 @@ static void game_palette_created(void* object,u32 caps,const u8* colors){
 static void game_palette_invalidated(void* object){
     if(!game_surface_enter())return;struct GamePalette* p=game_palette_find(object,0);
     if(p){zero(p->known,sizeof(p->known));p->caps=0;p->generation=++game_surface_generation;game_session_palette_changed(object);}
+    game_tracker_release();
+}
+
+/* Final original Release has already destroyed the COM object. Tokens only. */
+static void game_palette_retired(void* object){
+    if(!game_surface_enter())return;
+    struct GamePalette* p=game_palette_find(object,0);
+    if(p){
+        game_session_palette_retire(p);
+        for(u32 i=0;i<GAME_SURFACE_COUNT;++i){struct GameSurface* s=game_surfaces+i;
+            if(s->object && s->palette && game_palette_find(s->palette,0)==p){s->palette=0;s->generation=++game_surface_generation;}}
+        zero(p,sizeof(*p));
+    }
     game_tracker_release();
 }
