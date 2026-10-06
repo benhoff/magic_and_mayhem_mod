@@ -60,6 +60,7 @@ static i32 WIN input_cooperative(void* object,void* window,u32 flags){
 #include "lock_flip.h"
 #include "lock_dc.h"
 #include "command_scheduler.h"
+#include "command_lifecycle.h"
 static u32 guid_kind(const u8* guid){
     static const u8 ids[8][16]={
       {0x80,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},
@@ -368,7 +369,7 @@ static void install_table(void* object,u32 kind){
 done:__sync_lock_release(&table_busy);
 }
 static i32 WIN create_draw(void* guid,void** result,void* outer){
-    u32 incoming=GetLastError();command_scheduler_start();SetLastError(incoming);
+    u32 incoming=GetLastError();RenderStartup();SetLastError(incoming);
     __atomic_store_n(stream+MNM_FRAME_V1_STATUS_OFFSET/4,MNM_FRAME_V1_STATUS_INSIDE_CREATE,__ATOMIC_RELEASE); /* Entered DirectDrawCreate. */
     __atomic_add_fetch(stream+MNM_FRAME_V1_CREATE_COUNT_OFFSET/4,1,__ATOMIC_RELAXED);
     i32 status=original_create(guid,result,outer);u32 error=GetLastError();
@@ -385,7 +386,9 @@ __declspec(dllexport) void RenderAnchor(void){}
 __declspec(dllexport) u32 WIN RenderShutdown(u32 milliseconds){
     u32 error=GetLastError();
     if(!game_tracker_acquire()){SetLastError(error);return 0;}
-    session_finish_owned();game_session_enabled=0;game_tracker_release();
+    session_finish_owned();
+    if(game_session_continuous && !session_started && !__atomic_load_n(&command_queue_end,__ATOMIC_ACQUIRE))command_channel_fail(MNM_RENDER_COMMANDS_V2_REASON_GAP);
+    game_session_enabled=0;game_tracker_release();
     int complete=command_scheduler_shutdown(milliseconds);SetLastError(error);return complete;
 }
 #ifdef MNM_RENDER_SELFTEST
@@ -424,6 +427,13 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     init_lock_lifecycle();
     if(lock_capture_path_length)readback_disabled=1;
     init_failure_diagnostics();init_draw_capture();
+    if(game_session_continuous && !command_queue){
+        command_channel_refused=1;command_channel_fail(MNM_RENDER_COMMANDS_V2_REASON_INVALID);
+    }
+    if(command_auto_shutdown() && !command_exit_install(GetModuleHandleA(0))){
+        command_channel_refused=1;command_channel_fail(MNM_RENDER_COMMANDS_V2_REASON_INVALID);
+        lock_diagnostic("command_lifecycle_install_failed",0,0,0,0,0,0,0);
+    }
     stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_DLL_LOADED; /* loaded, waiting for presentation */
     u32 base=(u32)GetModuleHandleA(0),protection;
     /* Staging verifies full image SHA-256. Runtime also guards its import thunk. */

@@ -1216,3 +1216,22 @@ fingerprints/statuses are retained. No original artifacts/gameplay or semantic
 coalescing, dynamic budgets, OS scheduling guarantee, orchestrated shutdown or
 recovery is claimed. The completed inventory/first three producer chunks are
 committed in 422be2a; subsequent chunks are committed after staged accounting.
+
+### 2026-10-06 continuous startup and orderly exit
+
+`NR.command-orchestration` adds explicit startup readiness and a guarded resolved
+main-image ExitProcess import for continuous mode. Shutdown closes capture
+admission, emits resource DELETE/END, drains and joins outside DllMain and forwards
+original exit. Configured channel failure cannot silently become optional. The
+existing Qt consumer owns final drain and cleanup. The
+[contract](opengl-command-orchestration.md) separates synthetic integration from
+original-game exit branch coverage, forced termination, loader-lock exit and
+recovery. Earlier evidence remains historically fingerprinted.
+The prior committed range `422be2a..bc29824` has matching exact file and behavior
+receipts in [its history review](coverage/committed-history-backpressure-20261006.json).
+
+Final-source orchestration evidence passes eleven PE32 cases / eight complete
+GPU frames, eight pressure cases, five idle cases, two continuous GPU cases /72
+frames and native/sanitized queue checks. The register links new immutable
+records; historical statuses and fingerprints are retained. Original-game exit
+coverage and recovery remain pending.
