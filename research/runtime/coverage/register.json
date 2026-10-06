@@ -11896,7 +11896,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original-game command shadow observation",
-      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending.",
+      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -11910,7 +11910,8 @@
         "research/runtime/opengl-command-streaming-lifecycle.md",
         "research/runtime/opengl-render-routes.md",
         "research/runtime/opengl-resource-working-set.md",
-        "research/runtime/opengl-world-observation.md"
+        "research/runtime/opengl-world-observation.md",
+        "research/runtime/opengl-world-summon-observation.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py",
@@ -11934,7 +11935,8 @@
         "NR.command-streaming.live",
         "NR.command-route-observation.live-20261006",
         "NR.continuous-resource-working-set.game-20261006",
-        "NR.command-world-observation.live-20261006"
+        "NR.command-world-observation.live-20261006",
+        "NR.world-summon.observation-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13482,7 +13484,7 @@
       "subsystem": "rendering_inventory",
       "kind": "recovered",
       "title": "Surface copy and rectangle-copy routes",
-      "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking. Inventory review only; no new implementation, execution comparison, integration or replacement claim. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -13523,12 +13525,14 @@
       ],
       "documents": [
         "research/runtime/render-drawing-inventory.md",
-        "research/runtime/surface-rectangle-forwarding.md"
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
       ],
       "implementation": [],
       "tests": [],
       "evidence": [
-        "RI.static-callers-final-20261006"
+        "RI.static-callers-final-20261006",
+        "NR.world-summon.observation-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -13975,13 +13979,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous mixed resource mutations and committed full-layout replacement",
-      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission.",
+      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-continuous-mutations.md",
         "research/runtime/opengl-owned-unlock-deltas.md",
-        "research/runtime/opengl-resource-working-set.md"
+        "research/runtime/opengl-resource-working-set.md",
+        "research/runtime/opengl-world-summon-observation.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -14010,7 +14015,9 @@
         "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006",
         "NR.continuous-resource-working-set.native-20261006",
         "NR.continuous-resource-working-set.checkpoint-20261006",
-        "NR.continuous-resource-working-set.continuous-20261006"
+        "NR.continuous-resource-working-set.continuous-20261006",
+        "NR.world-summon.mutations-20261006",
+        "NR.world-summon.palette-dc-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14164,7 +14171,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Qt fresh-session recovery over a versioned producer control channel",
-      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending.",
+      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14176,7 +14183,8 @@
         "research/runtime/opengl-owned-unlock-deltas.md",
         "research/runtime/opengl-render-routes.md",
         "research/runtime/opengl-resource-working-set.md",
-        "research/runtime/opengl-world-observation.md"
+        "research/runtime/opengl-world-observation.md",
+        "research/runtime/opengl-world-summon-observation.md"
       ],
       "implementation": [
         "apps/qt-shell/render_control.cpp",
@@ -14742,12 +14750,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Finite consumer residency separate from complete owned producer checkpoints",
-      "scope": "Continuous 32-slot/16,777,216-pixel consumer cache with ordered offscreen DELETE and fresh-ID complete re-admission. Retains 128-entry/64MiB independently owned CPU state and aliases; primary, borrowed locks/DCs and both copy/flip operands stay pinned. All-protected pressure refuses. Strict checkpoint admission validates all owned resources under existing aggregate byte/pixel/palette/ownership guards, then materializes complete primary/palettes before READY and dependencies when used. Default bounded policy and original final Release remain separate. Synthetic independent pixels and bounded required original World recovery observed; long scenes, World/movie/driver pixel equivalence, all callers and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending.",
+      "scope": "Continuous 32-slot/16,777,216-pixel consumer cache with ordered offscreen DELETE and fresh-ID complete re-admission. Retains 128-entry/64MiB independently owned CPU state and aliases; primary, borrowed locks/DCs and both copy/flip operands stay pinned. All-protected pressure refuses. Strict checkpoint admission validates all owned resources under existing aggregate byte/pixel/palette/ownership guards, then materializes complete primary/palettes before READY and dependencies when used. Default bounded policy and original final Release remain separate. Synthetic independent pixels and bounded required original World recovery observed; long scenes, World/movie/driver pixel equivalence, all callers and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-resource-working-set.md",
-        "research/runtime/opengl-world-observation.md"
+        "research/runtime/opengl-world-observation.md",
+        "research/runtime/opengl-world-summon-observation.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -14931,6 +14940,43 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.observed-metadata-idempotence",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Identical metadata observations preserve native mutation generations",
+      "scope": "Validated identical surface descriptors and descriptor source-key observations preserve the current generation. Real metadata changes and nested successful source writes still refuse uncertain pending copies. Bounded origin/caller diagnostics describe successful-copy provenance without changing original calls or v2 transport. Synthetic fixtures and scoped original tutorial observation only; reentrant primary-copy ordering, original driver equivalence and replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "implementation": [
+        "runtime/render/bridge.c",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_palette.h"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py",
+        "tools/test-live-render-routes.py"
+      ],
+      "evidence": [
+        "NR.world-summon.mutations-20261006",
+        "NR.world-summon.palette-dc-20261006",
+        "NR.world-summon.observation-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -26775,6 +26821,80 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.world-summon.mutations-20261006",
+      "kind": "native_integration",
+      "scope": "Six synthetic nested-descriptor, nested-source-write, mixed RGB16 and refusal/recreation cases; 411 independently compared complete frames.",
+      "record": "research/runtime/opengl-world-summon-mutations-20261006.json",
+      "sha256": "8a398890621e3f643b8ad6902f842ce4ffac15e9f1796a3a502e9c4d13a0654a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.world-summon.palette-dc-20261006",
+      "kind": "native_integration",
+      "scope": "Indexed palette-resource and RGB32 DC handoff regression; 334 independently compared complete frames.",
+      "record": "research/runtime/opengl-world-summon-palette-dc-20261006.json",
+      "sha256": "e51f71d5765cc5ba91bf36100af491cfe9ddc8085dbbe06b95d31a8601494b6e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.world-summon.observation-20261006",
+      "kind": "live_observation",
+      "scope": "Independent original tutorial Zombie selection and summon count; diagnostic native outcome and conservative copy-conflict refusal, initial forced recovery, bounded cleanup. No reliable active native summon or full-frame/driver equivalence.",
+      "record": "research/runtime/opengl-world-summon-observation-20261006.json",
+      "sha256": "56ba4578771979a7d2b4a38631bcb1d9848fe8d0e410d1930cc96badc951f408",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/world_summon_required",
+          "equals": false
+        },
+        {
+          "pointer": "/world_summon_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/original_summon_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/world_active_validated",
+          "equals": false
+        },
+        {
+          "pointer": "/cases/0/consumer/terminal_resources",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/source_preferences_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -31117,6 +31237,40 @@
         "tests/render-restoration-test.cpp",
         "tools/check-native-surface-retry.py"
       ]
+    },
+    {
+      "id": "NR.world-summon.nested-ownership",
+      "level": "preview",
+      "scope": "Eight native cases and745 independent frames; unchanged observation accepted, changed metadata and nested source copy refused.",
+      "behaviors": [
+        "NR.observed-metadata-idempotence",
+        "NR.continuous-mutations"
+      ],
+      "evidence": [
+        "NR.world-summon.mutations-20261006",
+        "NR.world-summon.palette-dc-20261006"
+      ],
+      "tests": [
+        "tools/test-render-mutations.py",
+        "runtime/render/mutation_selftest.h"
+      ]
+    },
+    {
+      "id": "NR.world-summon.original-observation",
+      "level": "live_observation",
+      "scope": "Original tutorial count transition with diagnostic native outcome; no live replacement.",
+      "behaviors": [
+        "NR.observed-metadata-idempotence",
+        "NR.real-game-command-shadow",
+        "RI.copies"
+      ],
+      "evidence": [
+        "NR.world-summon.observation-20261006"
+      ],
+      "tests": [
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -31364,7 +31518,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-retry-20261006.json",
-    "sha256": "28432ffc2310d588432a28967c3383fd14ac821503d50fa754e960fbe4660fcc"
+    "path": "research/runtime/coverage/source-index-world-summon-20261006.json",
+    "sha256": "f083fbbd184154858436cf56c11e99d8ee540ac769df681811488273ea67a61c"
   }
 }

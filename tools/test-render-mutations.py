@@ -14,7 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('mutation_resource',ROOT/'tools/test-render-resource-lifecycle.py')
 resource=importlib.util.module_from_spec(spec);spec.loader.exec_module(resource)
 live,ring=resource.live,resource.ring
-CASES=['mx16','mx24','mx32','indexed','dc16','dc24','dc32','reshape','bounded','partial','unsupported','palette-flags']
+CASES=['source-write','meta16','meta-change','mx16','mx24','mx32','indexed','dc16','dc24','dc32','reshape','bounded','partial','unsupported','palette-flags']
 
 
 def frames(data):
@@ -90,7 +90,7 @@ def main():
         (case/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
         output,active=case/'qt.json',case/'producer.active'
         child=dict(env,MNM_RENDER_PALETTE_RESOURCES='1' if args.palette_resources else '0',MNM_MUTATION_SELFTEST=mode,MNM_RENDER_CONTINUOUS='0' if mode=='bounded' else '1',MNM_RENDER_OWNED_SESSION='1',MNM_RENDER_SESSION_ARCHIVE='1',MNM_RENDER_COMMAND_CHANNEL='Z:'+str(channel).replace('/', '\\'),MNM_RENDER_STREAM='Z:'+str(frame).replace('/', '\\'),MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/', '\\'))
-        valid=mode not in ['bounded','partial','unsupported','palette-flags']
+        valid=mode not in ['bounded','partial','unsupported','palette-flags','meta-change','source-write']
         with (case/'qt.log').open('w') as qlog,(case/'wine.log').open('w') as wlog:
             qt=subprocess.Popen([str(args.build.resolve()/'live-render-channel-test'),str(channel),str(active),str(output)],env=env,stdout=qlog,stderr=qlog);wine=None
             try:
@@ -103,25 +103,27 @@ def main():
                 for process in [wine,qt]:
                     if process is not None and process.poll() is None:process.terminate();process.wait(timeout=5)
         observed=json.loads(output.read_text());expected=frames((case/'mutation-frames.bin').read_bytes());counts=struct.unpack('<10I',(case/'mutation-counts.bin').read_bytes())
-        expected_count=201 if mode.startswith('mx') else 281 if mode=='indexed' else 13 if mode.startswith('dc') else 6 if mode=='reshape' else 2
+        expected_count=201 if (mode.startswith('mx') or mode=='meta16') else 281 if mode=='indexed' else 13 if mode.startswith('dc') else 6 if mode=='reshape' else 2
         if mode=='indexed' and args.palette_resources:expected_count+=40
         assert len(expected)==expected_count,(mode,len(expected),expected_count)
         displayed=expected if valid else expected[:1]
         assert observed['frames']==displayed,(mode,observed,displayed)
         assert observed['success']==valid and observed['presentations']==len(displayed) and observed['before_producer_exit']
         assert observed.get('native_readbacks',0)==observed.get('rgba_readbacks',0)==observed['viewport_uploads']==observed.get('live_surfaces',0)==0
-        if mode.startswith('mx') or mode=='indexed':want=(123,123,1,1,1,1,121,41,81 if mode=='indexed' else 0,0)
+        if (mode.startswith('mx') or mode=='meta16') or mode=='indexed':want=(123,123,1,1,1,1,121,41,81 if mode=='indexed' else 0,0)
         elif mode.startswith('dc'):want=(1,1,0,0,0,0,0,0,0,25)
         elif mode=='reshape':want=(6,6,0,0,0,0,0,0,1,0)
         elif mode in ['bounded','partial']:want=(3,3,0,0,0,0,0,0,0,0)
-        elif mode=='unsupported':want=(2,2,1,1,1,1,1,0,0,0)
+        elif mode=='source-write':want=(2,2,1,2,1,1,2,0,0,0)
+        elif mode in ['unsupported','meta-change']:want=(2,2,2 if mode=='meta-change' else 1,1,1,1,1,0,0,0)
         else:want=(1,1,0,0,0,0,0,0,1,0)
         if mode=='indexed' and args.palette_resources:want=(203,203,1,1,1,1,121,41,81,0)
+        if mode=='meta16':want=(123,123,201,1,1,1,121,41,0,0)
         assert counts==want,(mode,counts,want)
         records=archive((capture/'session-00000001.bin').read_bytes());ops=[r['op'] for r in records]
         assert ops[-1]==(8 if valid else 9)
         if mode!='bounded':assert not any(op in [5,10] for op in ops)
-        if mode.startswith('mx') or mode=='indexed':
+        if (mode.startswith('mx') or mode=='meta16') or mode=='indexed':
             assert all(op in ops for op in [1,2,3,6,7,8,11]) and ops.count(11)==40 and ops.count(3)==80
             assert ops.count(1)==(82 if mode=='indexed' and args.palette_resources else 2) and ops.count(7)==ops.count(1) and ops.count(2)==159
         if mode=='indexed' and args.palette_resources:
@@ -140,6 +142,9 @@ def main():
         control=channel.read_bytes()[:64];published,state,reason=struct.unpack_from('<III',control,20)
         assert state==(2 if valid else 3) and reason==(0 if valid else 2)
         if valid:assert struct.unpack_from('<I',control,36)[0]==published
+        if mode=='source-write':
+            conflicts=[list(map(lambda x:int(x,16),line.split()[1:])) for line in (capture/'lifecycle.log').read_text().splitlines() if line.startswith('blit_commit_refused ')]
+            assert any(c[3] and c[4]==c[5] and c[6]!=c[7] and c[8]==c[9] and c[14]==8 for c in conflicts),'Nested source write did not invalidate pending copy'
         report['cases'].append(dict(mode=mode,valid_session=valid,original_counts=list(counts),original_frames=len(expected),published_bytes=published,state=state,reason=reason,opcodes={str(op):ops.count(op) for op in set(ops)},**observed))
         print(mode+': passed',flush=True)
     assert all(live.sha(ROOT/p)==h for p,h in fingerprints.items()),'Source changed during execution'

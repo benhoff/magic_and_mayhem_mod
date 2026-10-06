@@ -1,0 +1,894 @@
+{
+  "schema": 1,
+  "scope": "Exact committed parent/current SHA256 and behavior receipt review, separate from pending workspace changes. This audit does not assert historical gate passes or fresh validation.",
+  "base": "057f07d",
+  "head": "01a66c28434c79a1357224d16729dc1ffca3e689",
+  "commits": [
+    {
+      "commit": "f99dd0a4a788d5955428e39a31209f33f5d8e8a7",
+      "parent": "057f07df4091dce30768c7b3cd6bf555dcdd1649",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "abb7a008d9d236638a7091bd15218ca7dedbb75b422be424c2667383c56cf28d",
+          "after_sha256": "5158321c4e2aa254a0d1a8b91200e62278f47e829823210bfbae008112f9c907",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "216f95095c4e1f263a9b18078a30b592743c51e2e4f2040e5624ee6ebec1a07f",
+          "after_sha256": "95f27c543a12b54f96808b892edeb4486e40e690cf923d85c3662ea13a49345a",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-world-observation-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "5ae4005c2a612b26f0184dc249c1e6ac2e01d463bd1e2a9b9e2540323fac60a7",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "9f14205eaa4cadd3f0bd39a864f4830f2b3873e7b304989ce34ab16fb1b6330c",
+          "after_sha256": "89e4dab18d7d90b0bf6cb91ea2c5beeca3f864b0e97266f711ad2eb51fdeb903",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-world-observation-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "4b6eeddda366f88fd17ce41001310846884ecd198a983704772c63ec26d42058",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-observation-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "8b4ca684a7ae8813a3bddc015b3b1c3cb6ff4aa5363267c3027bc3d5eacc8a1b",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-world-observation-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "03e79a13a3edc47b971d94347418565e28e9f18cab1fe52db89a363999a4d106",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-world-observation.md",
+          "before_sha256": null,
+          "after_sha256": "3cd3d5db7af39c63d5649947dc91b641517448fadb6a38cc502f723ebdcc662c",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "tests/live-render-route-probe.cpp",
+          "before_sha256": "16622a7c16456649ddadc4368bcf32b9e95a19c090843eef431c8f12f47a876a",
+          "after_sha256": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-routes.py",
+          "before_sha256": "39453ce9c0fda8c97f7cab2a61b7e4bab7b5b5b28f87d1ce7237e6c7e0456f70",
+          "after_sha256": "a4f093ce423cc7b9661ec70b79de2c7ed0f2dc1e32c636061e3f122413b1cc90",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded",
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "7475c62fd5622e0e080181c2431b576debeae020e80610a84eae835dc9930c16",
+          "after_sha256": "c5a04e4eed58abb6d4ff487cdbe012c4cd14ac230545b7cdabcc9b7699eafb27",
+          "receipts": [
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "256712d6564fe277edeb56952295ac9c8a60f6db4ca2c2aae48833ad57b22b62",
+          "after_sha256": "8a6c16a9c3e776a51ec1094c4c432edbc54d9e397befe6be264e07c5af6e9fbc",
+          "receipts": [
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-working-set",
+          "before_sha256": "f61d808d1526713f31e569f128b65ea58f11da60163e8cb407e41e2af078251f",
+          "after_sha256": "c337f1c2d857c3c9a2eef4076bd6a190c97fbb237546d996fca1cc5474996870",
+          "receipts": [
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "832597cb34984a33b10cf626167f31fab6d5b7df37c134ab4658b8d45075c7dc",
+          "after_sha256": "ee563cc7db6612344e2e28fadb00b52c0f6365fb419e5039bc1b176ea4a3d573",
+          "receipts": [
+            "world-guided-idle-observation-20261006-recorded"
+          ]
+        },
+        {
+          "id": "RI.movies",
+          "before_sha256": "32731dc35034ad92300b98a09e0ab62b65587c844667e40fb620d3ecef6eceaf",
+          "after_sha256": "26dd5610e24579da3c707f0f292cb1468dabad6a401aaea2de03a06f3101600a",
+          "receipts": [
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "RI.ui",
+          "before_sha256": "b4eebeb2545fc9117e803c9eda00c52d23cee06a2961f04b081bf89b7b6fb60e",
+          "after_sha256": "8e144c75e2e71e6a50cccfd586762b9aa82781f74ff32c303a982c09052a58df",
+          "receipts": [
+            "world-guided-idle-observation-20261006-pending-boundaries"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    },
+    {
+      "commit": "70f5e54e3f5300b8a437e06f10b948ce51457023",
+      "parent": "f99dd0a4a788d5955428e39a31209f33f5d8e8a7",
+      "files": [
+        {
+          "path": "renderer/blit.cpp",
+          "before_sha256": "e21ff91483d417a4e0bc407761c2f476c414ee39064e47e7d0397632e898753a",
+          "after_sha256": "7d966c5907fa6c69b8ddb5c15eee5bd6851f1ed0d79febf7b51af158e8298f0c",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "before_sha256": "b348f7ad14ec06e79dfa07ec1c699388d13639cd74f65b251c79354ae33b3c27",
+          "after_sha256": "217c7caeba8f9c6e843ce52329476a61f1fa71b79f8d6fc653d327b8f62960ff",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/command_consumer.cpp",
+          "before_sha256": "be2ac2c2c86ec1f2e00cfaca8a5e66f574d3df4e9159b1c4a1be2c4fa377da38",
+          "after_sha256": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/formats/render-surface-commands-v3.md",
+          "before_sha256": "fd1591541891e8c41d5353f3e2cafa70599f36574dadbbf6696bb080215d8174",
+          "after_sha256": "23a6f9f034c6e2de770dd1e21dbc247539044c5d4a67a4ba2150d9c51701a101",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "5158321c4e2aa254a0d1a8b91200e62278f47e829823210bfbae008112f9c907",
+          "after_sha256": "6d4ee198c64a47a13021ba1cfe20515fa424411d3f29bad2c974e7e9c7617932",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "95f27c543a12b54f96808b892edeb4486e40e690cf923d85c3662ea13a49345a",
+          "after_sha256": "606f6b65c72163fec0e8d9a2846d386db955f165b6ef14688514fc462660b42e",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-native-overlap-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "bf4c8f634bb9a1c5d440fd9a9881558f06daf8d55173e9850cb3c31ff4dc31cf",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "89e4dab18d7d90b0bf6cb91ea2c5beeca3f864b0e97266f711ad2eb51fdeb903",
+          "after_sha256": "2e5f1f06ff4a5524e5db30da7cf2af264865252e30db73f052d4d8d82b350db9",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-overlap-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "fef46d37e8154b02f51a760d69b055290c6e1aefe43bb38a52ddc5cd35cf6a69",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-overlap-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "22de3251c6b64b95caf3ca7d2665d59c498a6d310bf6740367e7ac0264895017",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "8eabaf3a1dc45967c574019c439c04bc860d90e054b87fe3bad5e2e74b45fb26",
+          "after_sha256": "69db90705ece625db5c9c7a159b796e3996dec844e9e4b33b9b4efbdc5eecbd8",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "ee42813cdee8646d58fdbfed7ef4f5e86a4195e1b677897ab2339ef575dd74ff",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap.md",
+          "before_sha256": "adc2c3c94560de509b57d535b7963e7a2035bfd777a4df1e6cd943b6c1eea5cc",
+          "after_sha256": "2a78fe2d0659ad7c6095d2cca3ee01a0b31d3ac90c45af1ea8e4594067e82340",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-surface-copy-fixtures.cpp",
+          "before_sha256": "09c1b999b9476b17b2596f7e7d2d104cce1060ab8eb596747fe681e485893742",
+          "after_sha256": "e676443e82f419e77f200295424fdd4ae606c703a241db9abb7be200f18ec5d7",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-native-surface-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "6b4982c0cddaddb9f059d5d45d2ad478bd3cbece2427005cc294f05020613817",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006",
+            "native-overlap-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-streaming",
+          "before_sha256": "d7ee4b0fc38aac5de36c4bfc8b5ab1be5f9b089fa2cbdea2a02106b448651675",
+          "after_sha256": "45f81e2bb8fe3ef160e0061ee1ef69a7798b3d990ca73e253f8493cd4e116194",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.gpu-presentation",
+          "before_sha256": "b691edfb2dab06c0d31aacab00d676476e8628861b0603348919703f5df54f12",
+          "after_sha256": "d515c442063d8177dc3cd8b2be5ed3e3d1d7455bf15e7abe34b77eb58acb035d",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "0851dba496bbdba43ccd0fa9b21e9dbe0d6040493d40ef14f7daf367b2729b11",
+          "after_sha256": "b94ca1d0ab977032bb998d77c57528783eefdf53a15ba06545dede5070fcaa38",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "1ccf783012286e713069b1e02912acc7a51e8ee6ff9960031d71e18fbcdbda93",
+          "after_sha256": "3d04febfc56e2d55c0cbe6a27043e39ca110704f74a0a94077c9bb3857c30cf7",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "63a26be9b07095e48c01a644f00efd29273bf68e11e0c2e688fe1e7ca743e34d",
+          "after_sha256": "dd648124e5a98e049e57847451be6a19e3b5b418b959596f775d13e95d121384",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "220d0d4037840a96eb1ba7a4e9476229407da9bfdb0b882adffb33f49f331392",
+          "after_sha256": "d586b756789d167601d4bc10dc6e70b0ea6acab35fc4af3a3900a61b18cf16fa",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "b7ce6d2adebaa229194358e4bc7e051752603b4625f8c24968838c1fac413097",
+          "after_sha256": "4bba31c6a0e16719263102b5d1d8a105c235eb29c0987b11421d319f2c57cfbd",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "0ae2594b731b354e035dd7f0aff79fc48bf0594621165804279352e6fe2d5a58",
+          "after_sha256": "a7feff8625b7a14841fd589f99dd76eb9a124eb94390c99d56c314d6ee1a8bd4",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surfaces",
+          "before_sha256": "03abbc4ecca53b2e5688df27a843d019e1a0f14fb4091b0225d2898db9922a59",
+          "after_sha256": "43c21e407bf9e4b5564ebe288ff9b307ef5bc67950f7d8735cb9be4252b6b1fc",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "f9ddde962af73d775b5086310470800ef078649b59ff895671ae392b1efb9e96",
+          "after_sha256": "7bf33fa9afd38d8acc6555455ce475b05dfa665f46be4e2fb351dc1595b42a35",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "088a2c486fd6a0c1fd1077d1a1b45f843abda72e8e85a91806b90ee5c0971ed0",
+          "after_sha256": "91f8cb7d78397bd64e619cdf563eabc7f6659be2fcce17ad308a0c748c9f8161",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "921d6970b400f821f7ed2a1ddd1b6830a13627dc68d5c4729f75225eb72d29e7",
+          "after_sha256": "aa31c076f61dca8f0387c01ffb6eda2d24c914d1aed4fa28b63e812500b18bc3",
+          "receipts": [
+            "native-overlap-gpu-v3-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "766add71f1489ca7011aceb010d6aed68f1478034891e61d93db5d6a6ce5ce6e",
+          "after_sha256": "13c6f2593fd7d1c6f3cf28e88f359a7361add51737d39be03238540fc595ad17",
+          "receipts": [
+            "native-overlap-shared-pending-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    },
+    {
+      "commit": "ccc8169c62e09bd5abbb62fa3a9d744a15673dcb",
+      "parent": "70f5e54e3f5300b8a437e06f10b948ce51457023",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "6d4ee198c64a47a13021ba1cfe20515fa424411d3f29bad2c974e7e9c7617932",
+          "after_sha256": "d9b8056d04106682300abd2b289316b932bbb8e5e12faaa74a0e30eea9965f42",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "606f6b65c72163fec0e8d9a2846d386db955f165b6ef14688514fc462660b42e",
+          "after_sha256": "c73fc92a638909907c38fc7ef88979a2e7011e473ad0e87112a729986f552e02",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-original-retry-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "e976dcd7d30d841a53a31baed7a905d6a126628e4da8f08a2dbf21dcfcb0c6b5",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "2e5f1f06ff4a5524e5db30da7cf2af264865252e30db73f052d4d8d82b350db9",
+          "after_sha256": "20a94331255f7ef3d5ab87bafd097d752469fe47a8461cc63e89ff1f209de051",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-retry-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "ca7eaa73adf9847736baba663b36de0d7ce567899dfea7b520a6689a9b68f0f4",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-retry-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "d3e384d8145a7d8cd8891f168d2c9b8a5855649d158623cc20333715717e9fd7",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "69db90705ece625db5c9c7a159b796e3996dec844e9e4b33b9b4efbdc5eecbd8",
+          "after_sha256": "a4d6291898d2a7e06369302e2a9abbb3d5e605dc37060831f923425759308d01",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-retry-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d0969365386c3896b08800484ea20e8aec67a0cb2be66804950ceaef31e239b3",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-retry-cpu-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "6a65624d498a753a40531bd6a1280228122a7627a7b91397aa1cfc8422da7538",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-retry.md",
+          "before_sha256": null,
+          "after_sha256": "7786df0625312cd59472be1acda2bd1a38fad86bce00ec4e29e5dbb695446cb3",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-retry-corpus.json",
+          "before_sha256": null,
+          "after_sha256": "ad58af4ddb3c5d09a8c1d6a58ebc958fd37711d45d24047abbec81e72f550e9c",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-retry.json.gz",
+          "before_sha256": null,
+          "after_sha256": "c111fde6a0364d564d1c059fc6eed5e406518e7799997d62435a4e93553ebad5",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-retry-reference.cpp",
+          "before_sha256": null,
+          "after_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-original-surface-retry.py",
+          "before_sha256": null,
+          "after_sha256": "cacd54dada93bb9bd41651727464b0790d1837e0c9c91bae411aeca838e7de57",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-original-surface-retry.py",
+          "before_sha256": null,
+          "after_sha256": "d5b0f5c05a361cfd9fd103fc3dd0954eb09bd2734bb4bf6cdb1ad52381aec7b6",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-original-surface-retry.py",
+          "before_sha256": null,
+          "after_sha256": "c8da795ff99a2438d80e8e77fa8e30a8dee643c940a5df252c1336d46961741f",
+          "receipts": [
+            "original-retry-capture-cpu-20261006",
+            "original-retry-shared-accounting-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "dd648124e5a98e049e57847451be6a19e3b5b418b959596f775d13e95d121384",
+          "after_sha256": "a8db8233a3cd3f4522500e82bd7eb86fffdd69492980ab89fbc0204032aef426",
+          "receipts": [
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "d586b756789d167601d4bc10dc6e70b0ea6acab35fc4af3a3900a61b18cf16fa",
+          "after_sha256": "8c1181fb9a0f4c23c3f1fa33275babda27823a1e482151af975f4acd3d6a5597",
+          "receipts": [
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "4bba31c6a0e16719263102b5d1d8a105c235eb29c0987b11421d319f2c57cfbd",
+          "after_sha256": "dee1242bfc9c64102dd631bde33934ab35ad8122337bb233e2d4077bdcf63c33",
+          "receipts": [
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "a7feff8625b7a14841fd589f99dd76eb9a124eb94390c99d56c314d6ee1a8bd4",
+          "after_sha256": "2ee8e5a9edb8761d9736ce0d59f9002620264726ea44b6387178d743c3b0b860",
+          "receipts": [
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.restore-retry",
+          "before_sha256": null,
+          "after_sha256": "b1f247b4304daddb28a3f184eb9e4a66656f820a682dc3cc61794a6fc4bc47d6",
+          "receipts": [
+            "original-retry-capture-cpu-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "7bf33fa9afd38d8acc6555455ce475b05dfa665f46be4e2fb351dc1595b42a35",
+          "after_sha256": "6cf4ec485f1dd4626c08434c5c013568e3250baf3364c965cc1f0db3d4b2d611",
+          "receipts": [
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "91f8cb7d78397bd64e619cdf563eabc7f6659be2fcce17ad308a0c748c9f8161",
+          "after_sha256": "cc194d424648b3a1d2c253fd5935c22db436dc88f68e63c74787778ca286606a",
+          "receipts": [
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "aa31c076f61dca8f0387c01ffb6eda2d24c914d1aed4fa28b63e812500b18bc3",
+          "after_sha256": "f248d066c4be40a1be4113d65df3386fe6eb05d5cbbc63cd4f648f49c2f1e1ab",
+          "receipts": [
+            "original-retry-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "13c6f2593fd7d1c6f3cf28e88f359a7361add51737d39be03238540fc595ad17",
+          "after_sha256": "a1044897bfed992b2c816fd12c207cc5363417b96394ffa31735c19381e83bbf",
+          "receipts": [
+            "original-retry-shared-accounting-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    },
+    {
+      "commit": "01a66c28434c79a1357224d16729dc1ffca3e689",
+      "parent": "ccc8169c62e09bd5abbb62fa3a9d744a15673dcb",
+      "files": [
+        {
+          "path": "reconstruction/rendering/surface_retry.hpp",
+          "before_sha256": null,
+          "after_sha256": "f0fe2d25cc5c3233adaf1e6024c317c90592a833130482402029e68013f2303c",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/blit.cpp",
+          "before_sha256": "7d966c5907fa6c69b8ddb5c15eee5bd6851f1ed0d79febf7b51af158e8298f0c",
+          "after_sha256": "afb45c46fe408ab48d4750e7f4e289fde5236dc4d90a8ea6d336c7ebf9852045",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "before_sha256": "217c7caeba8f9c6e843ce52329476a61f1fa71b79f8d6fc653d327b8f62960ff",
+          "after_sha256": "2a32b6387f97b69c1b725029b7985dd99b68858cfe2fe5c62e131f4ce241dbdb",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/known_pixels.hpp",
+          "before_sha256": null,
+          "after_sha256": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "d9b8056d04106682300abd2b289316b932bbb8e5e12faaa74a0e30eea9965f42",
+          "after_sha256": "4cc3a2db9c238e5a22efee62dd336b5c3cbb7a0da4fcb40dce0b9c90d4278d80",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "c73fc92a638909907c38fc7ef88979a2e7011e473ad0e87112a729986f552e02",
+          "after_sha256": "838eb08da6944d3334659cc6c315ae625ee647e27c187146bf12895f30f01fc5",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-native-retry-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "fbf4bf7b41fe186236b8f0ad83482ea77d09ad11ed25c806a75e4d3d4cbad5f8",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "20a94331255f7ef3d5ab87bafd097d752469fe47a8461cc63e89ff1f209de051",
+          "after_sha256": "c2fca63af9da3d6f9b6b805944fb8ac0d3bd86fed8d256fdf76f0470b8a51a44",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-retry-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "28432ffc2310d588432a28967c3383fd14ac821503d50fa754e960fbe4660fcc",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-native-retry-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "e16cb41853b579db6aaacd683af1b2ce3a072bc4d4c5efe33a36d25c8dde3806",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "a4d6291898d2a7e06369302e2a9abbb3d5e605dc37060831f923425759308d01",
+          "after_sha256": "0dd81705be11723bf663a843c943008c23431a6ea49e8782f4df0141653da824",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap-after-retry-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "2a0ae0b19bfb5c3fd16a636594babb0375046e95f5e710f8379036238c3d1bea",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-retry-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "e83454234408dff1d150376a87157c4433bd7b2614271c42464d2b42158f6d51",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-retry.md",
+          "before_sha256": "7786df0625312cd59472be1acda2bd1a38fad86bce00ec4e29e5dbb695446cb3",
+          "after_sha256": "a70f4e232c6ecdd0efebb951f7b752e3571e916f4aabf05ed313d2f0f83232d1",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-restoration-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "cba5da1d59a7e961cc8f4605bee26c40d691b9f9d4186a6dab560121789aec8d",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-retry-model.cpp",
+          "before_sha256": null,
+          "after_sha256": "a5a991c503c05c464b5440dd17e8edf538eea3aedb8bc4baa9d18fe1684bd76f",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-native-surface-retry.py",
+          "before_sha256": null,
+          "after_sha256": "3bb2468a788228989b53209339dfe7b638b374062355714dbfcb39cbceed3f84",
+          "receipts": [
+            "native-retry-validity-20261006",
+            "native-retry-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.gpu-presentation",
+          "before_sha256": "d515c442063d8177dc3cd8b2be5ed3e3d1d7455bf15e7abe34b77eb58acb035d",
+          "after_sha256": "74edac77cc8ed1bcc034079c501376bb4e93335130570a8f7476e7193305e833",
+          "receipts": [
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-contents.validity",
+          "before_sha256": null,
+          "after_sha256": "b3c437852fd7299ec7ad4fbb2218277b41319dbc074aa12065f6bd4e985d94e7",
+          "receipts": [
+            "native-retry-validity-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "a8db8233a3cd3f4522500e82bd7eb86fffdd69492980ab89fbc0204032aef426",
+          "after_sha256": "07dd0a785c19003d443bcde38d5dd91b4b24f4c1646d151978aa9ae07f6fd206",
+          "receipts": [
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "8c1181fb9a0f4c23c3f1fa33275babda27823a1e482151af975f4acd3d6a5597",
+          "after_sha256": "c80cac54cb28f99ddbcdb4004ab809e4416c9c58cd848d0fe4f6779b813c552e",
+          "receipts": [
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "dee1242bfc9c64102dd631bde33934ab35ad8122337bb233e2d4077bdcf63c33",
+          "after_sha256": "f8b6614246c01b50e187a44282cac69c38493ec1c6dab3b9f175a90bfb41a51e",
+          "receipts": [
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "2ee8e5a9edb8761d9736ce0d59f9002620264726ea44b6387178d743c3b0b860",
+          "after_sha256": "8a97cd50f7d2a59cab66a6ad9ec356fec87c0a91c2c6816cbef5754e80ee1449",
+          "receipts": [
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surfaces",
+          "before_sha256": "43c21e407bf9e4b5564ebe288ff9b307ef5bc67950f7d8735cb9be4252b6b1fc",
+          "after_sha256": "b38da8c9c0d203864d136e792295dde9f4c5fe1de376531504364068d0c4eb43",
+          "receipts": [
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.restore-retry",
+          "before_sha256": "b1f247b4304daddb28a3f184eb9e4a66656f820a682dc3cc61794a6fc4bc47d6",
+          "after_sha256": "8d60c514de0808acddf482896e4b129ecea97bbfd0faeb35b6ddd2d7ecde8213",
+          "receipts": [
+            "native-retry-validity-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "6cf4ec485f1dd4626c08434c5c013568e3250baf3364c965cc1f0db3d4b2d611",
+          "after_sha256": "b3aa42553eed59555247a6b844c89f127c9325cc20061ab39fe14632570c827c",
+          "receipts": [
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "cc194d424648b3a1d2c253fd5935c22db436dc88f68e63c74787778ca286606a",
+          "after_sha256": "f8ecb1ab60872d677d6d6b65bfa6fb5a025079f69d61a9baeef6c914deaecd51",
+          "receipts": [
+            "native-retry-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "f248d066c4be40a1be4113d65df3386fe6eb05d5cbbc63cd4f648f49c2f1e1ab",
+          "after_sha256": "f69ebf5fef51e0068f78b12a365854ad8e74d668068eef50dcf5ca622407f242",
+          "receipts": [
+            "native-retry-validity-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "a1044897bfed992b2c816fd12c207cc5363417b96394ffa31735c19381e83bbf",
+          "after_sha256": "e9656560e40f8936f8a65cd3bdc48d9711c0bc7abda3d5095c4f53bee81678aa",
+          "receipts": [
+            "native-retry-shared-pending-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    }
+  ]
+}

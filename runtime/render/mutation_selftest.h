@@ -4,7 +4,7 @@ struct MuSurface {void** table;u32 width,height,bits,primary,held,variant;u8 nat
 static struct MuSurface mu_front,mu_back;
 static void** mu_palette;
 static u8 mu_colors[1024];
-static u32 mu_calls[10],mu_failed,mu_frames;
+static u32 mu_calls[10],mu_failed,mu_frames,mu_nested_metadata;
 static HANDLE mu_output,mu_dc,mu_bitmap,mu_old;
 static u8* mu_dib;
 static void mu_entry(void){if(GetLastError()!=0x77)ExitProcess(340);SetLastError(0x88);}
@@ -39,6 +39,18 @@ static i32 WIN mu_unlock(void* object,void* region){
 }
 static i32 WIN mu_blt(void* object,void* destination,void* source,void* rectangle,u32 flags,void* effects){
     mu_entry();++mu_calls[6];if(mu_failed==3){mu_failed=0;return -1;}
+    if(mu_nested_metadata==3 && source){
+        mu_nested_metadata=0;struct MuSurface* src=source;SetLastError(0x77);
+        if(((i32 (WIN *)(void*,void*,void*,void*,u32,void*))src->table[5])(src,0,object,0,0x1000000,0)!=17 || GetLastError()!=0x88)ExitProcess(391);
+        mu_nested_metadata=3;
+    }else if(mu_nested_metadata){
+        void* observed[2]={source,object};
+        for(u32 i=0;i<(mu_nested_metadata==1?2u:1u);++i)if(observed[i]){
+            if(mu_nested_metadata==2)((struct MuSurface*)observed[i])->variant^=1;
+            u32 descriptor[31]={124};struct MuSurface* s=observed[i];SetLastError(0x77);
+            if(((i32 (WIN *)(void*,u32*))s->table[22])(s,descriptor)!=23 || GetLastError()!=0x88)ExitProcess(390);
+        }
+    }
     struct MuSurface* dst=object,*src=source;i32 dr[4]={0,0,(i32)dst->width,(i32)dst->height};
     i32 sr[4]={0,0,src?(i32)src->width:0,src?(i32)src->height:0};
     if(destination)copy_bytes(dr,destination,16);if(rectangle)copy_bytes(sr,rectangle,16);
@@ -132,7 +144,9 @@ static void test_mutations(const char* mode){
     u32 bits=mode[0]=='i' || mode[0]=='p'?8:mode[0]=='r' || mode[0]=='b' || mode[0]=='u'?32:(u32)(mode[2]-'0')*10+(u32)(mode[3]-'0');
     u32 dc=mode[0]=='d',reshape=rs_mode(mode,"reshape"),bounded=rs_mode(mode,"bounded"),partial=rs_mode(mode,"partial");
     u32 unsupported=rs_mode(mode,"unsupported"),palette_flags=rs_mode(mode,"palette-flags");
-    u32 valid=!(bounded || partial || unsupported || palette_flags);
+    u32 meta_changed=rs_mode(mode,"meta-change"),source_write=rs_mode(mode,"source-write");mu_nested_metadata=rs_mode(mode,"meta16")?1:meta_changed?2:source_write?3:0;
+    if(mu_nested_metadata)bits=16;
+    u32 valid=!(bounded || partial || unsupported || palette_flags || meta_changed || source_write);
     if(partial)bits=32;
     static void* table[33];table[2]=(void*)&mu_surface_release;table[5]=(void*)&mu_blt;table[11]=(void*)&mu_flip;table[12]=(void*)&mu_attached;table[17]=(void*)&mu_get_dc;
     table[22]=(void*)&mu_desc;table[25]=(void*)&mu_lock;table[26]=(void*)&mu_release_dc;table[28]=(void*)&mu_clipper;table[29]=(void*)&mu_key;table[31]=(void*)&mu_assign;table[32]=(void*)&mu_unlock;
@@ -165,9 +179,10 @@ static void test_mutations(const char* mode){
     }else{
         u32 d[31]={124};SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[22])(&mu_front,d)!=23 || GetLastError()!=0x88)ExitProcess(371);
         SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[28])(&mu_front,0)!=23 || GetLastError()!=0x88)ExitProcess(372);
+        if(source_write){SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[28])(&mu_back,0)!=23 || GetLastError()!=0x88)ExitProcess(392);}
         u32 key[2]={0,0};SetLastError(0x77);if(((i32 (WIN *)(void*,u32,void*))table[29])(&mu_back,8,key)!=23 || GetLastError()!=0x88)ExitProcess(373);
         u32 requested[4]={4};void* out=0;SetLastError(0x77);if(((i32 (WIN *)(void*,void*,void**))table[12])(&mu_front,requested,&out)!=23 || out!=&mu_back || GetLastError()!=0x88)ExitProcess(374);
-        if(unsupported){mu_cycle(&mu_back,0,0x44,0);mu_draw(0,0,0,0,1);}
+        if(unsupported || meta_changed || source_write){mu_cycle(&mu_back,0,0x44,0);mu_draw(0,0,0,0,unsupported);}
         else for(u32 pass=0;pass<40;++pass){
             mu_cycle(&mu_back,0,pass,pass==3);mu_cycle(&mu_back,1,5,0);
             mu_draw(0,0,0,pass==3,0);mu_draw(1,0,17+pass,0,0);mu_draw(0,1,0,0,0);mu_swap(pass==3);mu_cycle(&mu_front,1,9+pass,pass==3);

@@ -71,7 +71,7 @@ static void game_palette_republish(struct GamePalette* palette){
 }
 static void game_surface_palette(void* object,void* palette){
     if(!game_surface_enter())return;struct GameSurface* s=game_surface_find(object,1);
-    if(s){s->palette=palette;s->generation=++game_surface_generation;
+    if(s){s->palette=palette;s->generation=++game_surface_generation;s->generation_origin=12;
         lock_diagnostic("palette_attached",object,0,(u32)palette,0,0,0,0);
         game_session_palette(s);if(s->primary && s->pixels.bits==8)game_surface_publish(s);}
     game_tracker_release();
@@ -143,7 +143,7 @@ static void game_palette_retired(void* object){
     if(p){
         game_session_palette_retire(p);
         for(u32 i=0;i<GAME_SURFACE_COUNT;++i){struct GameSurface* s=game_surfaces+i;
-            if(s->object && s->palette && game_palette_find(s->palette,0)==p){s->palette=0;s->generation=++game_surface_generation;}}
+            if(s->object && s->palette && game_palette_find(s->palette,0)==p){s->palette=0;s->generation=++game_surface_generation;s->generation_origin=12;}}
         zero(p,sizeof(*p));
     }
     game_tracker_release();

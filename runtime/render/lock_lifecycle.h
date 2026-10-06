@@ -115,7 +115,7 @@ static void game_lock_retire(void* object){
         if(surface->object && game_alias_same(surface->object,object)){
             game_surface_drop(surface);zero(surface,sizeof(*surface));
         }else if(surface->back && game_alias_same(surface->back,object)){
-            surface->back=0;surface->generation=++game_surface_generation;
+            surface->back=0;surface->generation=++game_surface_generation;surface->generation_origin=13;
         }
     }
     game_alias_retire(object);
