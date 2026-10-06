@@ -241,6 +241,8 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
 }
 static i32 WIN flip(void* object,void* target,u32 flags){
     COMMAND_CALLBACK(((Flip)lookup(object)->original[11])(object,target,flags));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){game_metadata_invalidate();i32 result=((Flip)lookup(object)->original[11])(object,target,flags);game_metadata_invalidate();game_copy_unobserved(object);return result;}
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);struct HistoryFlip pending;
     struct GameFlip owned;game_flip_before(object,target,flags,&owned);
     if(token)history_flip_before(object,target,flags,&pending);
@@ -285,6 +287,8 @@ static i32 WIN surface_restore(void* object){
 }
 static i32 WIN surface_dc(void* object,void** output){
     COMMAND_CALLBACK(((i32 (WIN *)(void*,void**))lookup(object)->original[17])(object,output));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){i32 result=((GetObject)lookup(object)->original[17])(object,output);game_copy_unobserved(object);return result;}
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((GetObject)t->original[17])(object,output);u32 error=GetLastError();
     if(status>=0)game_dc_acquired(object,readable(output,4)?*output:0);
@@ -292,6 +296,8 @@ static i32 WIN surface_dc(void* object,void** output){
 }
 static i32 WIN surface_release_dc(void* object,void* dc){
     COMMAND_CALLBACK(((i32 (WIN *)(void*,void*))lookup(object)->original[26])(object,dc));
+    struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
+    if(!copy_lease.observe){i32 result=((i32 (WIN *)(void*,void*))lookup(object)->original[26])(object,dc);game_copy_unobserved(object);return result;}
     u32 entry=GetLastError();struct Table* t=lookup(object);
     struct GameDC pending;game_dc_before(object,dc,&pending);
     SetLastError(entry);i32 status=((i32 (WIN *)(void*,void*))t->original[26])(object,dc);u32 error=GetLastError();

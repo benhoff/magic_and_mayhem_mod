@@ -11896,7 +11896,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original-game command shadow observation",
-      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending.",
+      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -11913,7 +11913,8 @@
         "research/runtime/opengl-world-observation.md",
         "research/runtime/opengl-world-summon-observation.md",
         "research/runtime/opengl-copy-order.md",
-        "research/runtime/opengl-cpu-handoff-order.md"
+        "research/runtime/opengl-cpu-handoff-order.md",
+        "research/runtime/opengl-dc-flip-order.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py",
@@ -11941,7 +11942,8 @@
         "NR.world-summon.observation-20261006",
         "NR.copy-order.live-20261006",
         "NR.copy-order.live-verified-20261006",
-        "NR.cpu-handoff.live-20261006"
+        "NR.cpu-handoff.live-20261006",
+        "NR.dc-flip-order.live-isolated-current-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -12677,11 +12679,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Ordered application DC checkpoint handoff",
-      "scope": "Bounded suspension of a registered native identity while the application holds its DC; a validated pre-ReleaseDC RGB16/24/32 DIB checkpoint becomes existing v1 UPDATE input only after original success. New checkpoint identities use CREATE. Preserve failed-release retry and explicit gaps for invalid ownership, metadata/epoch changes and incomplete sessions. No individual native GDI/font replay, original pixel equivalence or replacement.",
+      "scope": "Bounded suspension of a registered native identity while the application holds its DC; a validated pre-ReleaseDC RGB16/24/32 DIB checkpoint becomes existing v1 UPDATE input only after original success. New checkpoint identities use CREATE. Preserve failed-release retry and explicit gaps for invalid ownership, metadata/epoch changes and incomplete sessions. No individual native GDI/font replay, original pixel equivalence or replacement. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-owned-session-dc.md"
+        "research/runtime/opengl-owned-session-dc.md",
+        "research/runtime/opengl-dc-flip-order.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -12698,7 +12701,8 @@
       "evidence": [
         "NR.owned-session-dc.native",
         "NR.owned-session-dc.startup",
-        "NR.owned-session-dc.unlock-regression"
+        "NR.owned-session-dc.unlock-regression",
+        "NR.dc-flip-order.native-isolated-current-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13987,7 +13991,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous mixed resource mutations and committed full-layout replacement",
-      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending.",
+      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -13996,7 +14000,8 @@
         "research/runtime/opengl-resource-working-set.md",
         "research/runtime/opengl-world-summon-observation.md",
         "research/runtime/opengl-copy-order.md",
-        "research/runtime/opengl-cpu-handoff-order.md"
+        "research/runtime/opengl-cpu-handoff-order.md",
+        "research/runtime/opengl-dc-flip-order.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -14030,7 +14035,8 @@
         "NR.world-summon.palette-dc-20261006",
         "NR.copy-order.native-20261006",
         "NR.copy-order.native-verified-20261006",
-        "NR.cpu-handoff.native-20261006"
+        "NR.cpu-handoff.native-20261006",
+        "NR.dc-flip-order.native-isolated-current-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14980,12 +14986,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in bounded scheduling across hooked original copies",
-      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending.",
+      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-copy-order.md",
-        "research/runtime/opengl-cpu-handoff-order.md"
+        "research/runtime/opengl-cpu-handoff-order.md",
+        "research/runtime/opengl-dc-flip-order.md"
       ],
       "implementation": [
         "runtime/render/copy_order.h",
@@ -15002,7 +15009,8 @@
         "NR.copy-order.live-20261006",
         "NR.copy-order.native-verified-20261006",
         "NR.copy-order.live-verified-20261006",
-        "NR.cpu-handoff.native-20261006"
+        "NR.cpu-handoff.native-20261006",
+        "NR.dc-flip-order.native-isolated-current-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15140,11 +15148,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in CPU handoff ordering and bounded tracker provenance",
-      "scope": "Existing continuous opt-in copy owner now spans application Lock/Unlock admission, original call and commit. It does not span application borrowed intervals.50ms gate and8ms tracker budgets, failed-operation guards, same-thread reentry and timeout invalidation remain. Source-bound19-word diagnostic tags map tracker requests/holds; remote samples may race turnover. Exact historical missed requester, other callback families, abnormal owner-thread termination, archive-timeout replay, animated/full-frame/driver equivalence and default enablement remain pending.",
+      "scope": "Existing continuous opt-in copy owner now spans application Lock/Unlock admission, original call and commit. It does not span application borrowed intervals.50ms gate and8ms tracker budgets, failed-operation guards, same-thread reentry and timeout invalidation remain. Source-bound19-word diagnostic tags map tracker requests/holds; remote samples may race turnover. Exact historical missed requester, other callback families, abnormal owner-thread termination, archive-timeout replay, animated/full-frame/driver equivalence and default enablement remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-cpu-handoff-order.md"
+        "research/runtime/opengl-cpu-handoff-order.md",
+        "research/runtime/opengl-dc-flip-order.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -15159,7 +15168,8 @@
       "evidence": [
         "NR.cpu-handoff.native-20261006",
         "NR.cpu-handoff.live-20261006",
-        "NR.tracker-holds.observed-20261006"
+        "NR.tracker-holds.observed-20261006",
+        "NR.dc-flip-order.native-isolated-current-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15344,6 +15354,44 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.dc-flip-order",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Opt-in DC handoff and flip ordering with compound timeout invalidation",
+      "scope": "Existing continuous opt-in gate now spans original GetDC/ReleaseDC and Flip plus admitted native handoff/commit. Borrowed DC painting remains outside the lease.50ms gate,8ms tracker, original-result/LastError guards and same-thread behavior remain. Timed-out Flip invalidates metadata/pixel epochs before/after exactly one original call, preventing stale two-buffer checkpoints. Front flip diagnostic origin corrected to11. Other callback-family concurrency, DC/flip-specific reentrant fixtures, borrowed intervals, prolonged originals, abnormal owner-thread termination, archive-timeout replay, repeated scenes, animation/full-frame/driver equivalence and default enablement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-dc-flip-order.md"
+      ],
+      "implementation": [
+        "runtime/render/bridge.c",
+        "runtime/render/lock_flip.h"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py",
+        "tools/test-live-render-routes.py"
+      ],
+      "evidence": [
+        "NR.dc-flip-order.native-isolated-current-20261006",
+        "NR.dc-flip-order.live-isolated-current-20261006",
+        "NR.dc-flip-order.native-initial-20261006",
+        "NR.dc-flip-order.live-initial-20261006",
+        "NR.dc-flip-order.workspace-native-verified-20261006",
+        "NR.dc-flip-order.workspace-live-verified-20261006",
+        "NR.dc-flip-order.historical-native-isolated-20261006",
+        "NR.dc-flip-order.historical-live-isolated-prefsguard-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -27654,6 +27702,142 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.dc-flip-order.native-isolated-current-20261006",
+      "kind": "native_integration",
+      "scope": "Isolated committed-backend final-source eleven-case matrix228 independent native frames: real Wine DC ownership, distinct partial-copy/flip outputs, compound timeout refusal and gated failures/retries.",
+      "record": "research/runtime/opengl-dc-flip-order-native-isolated-current-20261006.json",
+      "sha256": "adf49b7aa9b8b3492d1c3dfdb65c6dfa58652ba26f8d2ad91da2cf093f9f6792",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 228
+        }
+      ]
+    },
+    {
+      "id": "NR.dc-flip-order.live-isolated-current-20261006",
+      "kind": "live_observation",
+      "scope": "Isolated committed-backend final-source bounded strict original tutorial summon and30-second stable native regions/recovery; no synchronized animated/full-frame/driver equivalence.",
+      "record": "research/runtime/opengl-dc-flip-order-live-isolated-current-20261006.json",
+      "sha256": "9a574b5881c91d19c6db858a9e9c15377e45fccee513e884d0c33c01e4d60a70",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordered_copies",
+          "equals": true
+        },
+        {
+          "pointer": "/world_summon_required",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/world_active_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/consumer/terminal_resources",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.dc-flip-order.native-initial-20261006",
+      "kind": "native_integration",
+      "scope": "Historical initial eleven-case matrix228 frames, before backend rebuild and additional DIB fingerprint dependencies; not current-backend validation.",
+      "record": "research/runtime/opengl-dc-flip-order-native-20261006.json",
+      "sha256": "3c2100e24ff7245eaf032f76cf31a73bdbd0cd6f554c134fc15e28126f4e97f2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.dc-flip-order.live-initial-20261006",
+      "kind": "live_observation",
+      "scope": "Historical first strict original summon run, before backend rebuild and DIB fingerprint expansion; no current-backend claim.",
+      "record": "research/runtime/opengl-dc-flip-order-live-20261006.json",
+      "sha256": "44fdb2721c28569bf0e7ceefcd0f01e45e161c7aeef18e86b6a21671c8fa534c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.dc-flip-order.workspace-native-verified-20261006",
+      "kind": "native_integration",
+      "scope": "Retained passing rebuilt workspace probe against independent uncommitted renderer/DIB changes before optional-dependency fingerprint adjustment; not fresh committed-tree validation.",
+      "record": "research/runtime/opengl-dc-flip-order-native-verified-20261006.json",
+      "sha256": "297f030b20835c9955635c6826ffbb4a437097db9e090cc10a0617b0571930e2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.dc-flip-order.workspace-live-verified-20261006",
+      "kind": "live_observation",
+      "scope": "Retained passing rebuilt workspace probe against independent uncommitted renderer/DIB changes before optional-dependency fingerprint adjustment; not fresh committed-tree validation.",
+      "record": "research/runtime/opengl-dc-flip-order-live-verified-20261006.json",
+      "sha256": "8c5aff5506004f3eb90591b64bea6119e6da231a47cd83635e506d4559585cde",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.dc-flip-order.historical-native-isolated-20261006",
+      "kind": "native_integration",
+      "scope": "Retained passing isolated matrix before renderer dependency commit reconciliation; not current committed-backend validation.",
+      "record": "research/runtime/opengl-dc-flip-order-native-isolated-20261006.json",
+      "sha256": "3f6c44eab43769bf8fd15bc7471abcb307f546c7ab0826820a56e630e09d27cb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.dc-flip-order.historical-live-isolated-prefsguard-20261006",
+      "kind": "live_observation",
+      "scope": "Retained interrupted validation: all17 regions/793 frames and native retirement passed, but the final shared-installation preference guard failed. This is not a passing complete run; final isolation copies the installation.",
+      "record": "research/runtime/opengl-dc-flip-order-live-isolated-prefsguard-20261006.json",
+      "sha256": "203ca5f66716e58c2aef79d34c2e898472e49665b912ec654fcf31b66ac03815",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -32132,6 +32316,40 @@
         "tests/render-cursor-reload-test.cpp",
         "tools/check-native-cursor-reload.py"
       ]
+    },
+    {
+      "id": "NR.dc-flip-order.native",
+      "level": "preview",
+      "scope": "Eleven independently checked cases228 complete frames; DC/flip and CPU/copy concurrency, timeouts and gated original failures/retries.",
+      "behaviors": [
+        "NR.dc-flip-order",
+        "NR.cpu-handoff-order",
+        "NR.continuous-mutations",
+        "NR.owned-session-dc"
+      ],
+      "evidence": [
+        "NR.dc-flip-order.native-isolated-current-20261006"
+      ],
+      "tests": [
+        "tools/test-render-mutations.py",
+        "runtime/render/mutation_selftest.h"
+      ]
+    },
+    {
+      "id": "NR.dc-flip-order.original-tutorial",
+      "level": "live_observation",
+      "scope": "Final rebuilt-backend strict original tutorial with DC/flip scheduling opt-in; no active-driver/full-frame equivalence.",
+      "behaviors": [
+        "NR.dc-flip-order",
+        "NR.real-game-command-shadow"
+      ],
+      "evidence": [
+        "NR.dc-flip-order.live-isolated-current-20261006"
+      ],
+      "tests": [
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -32379,7 +32597,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-cursor-20261006.json",
-    "sha256": "fdf6ae5438863744a233208af77ab4b147216fc9f6c9b7b52670b352f25bcae7"
+    "path": "research/runtime/coverage/source-index-dc-flip-order-20261006.json",
+    "sha256": "1b3f1dfdba08244b622225c6bcaf5e1cf6c05897d87193c3cbc55857a4bf52fc"
   }
 }
