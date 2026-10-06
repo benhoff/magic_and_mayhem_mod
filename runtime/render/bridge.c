@@ -212,7 +212,7 @@ static i32 WIN blt(void* object,void* dest,void* source,void* rect,u32 flags,voi
     struct Table* t=lookup(object);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,dest,source,rect,flags,effects,1,0,0,caller);
     if(token && !c)history_gap(6);
-    struct GameBlit propagated;game_blit_before(object,dest,source,rect,flags,effects,0,0,0,&propagated);
+    struct GameBlit propagated;game_blit_before(object,dest,source,rect,flags,effects,0,0,0,&propagated);propagated.caller=caller;
     SetLastError(error);i32 status=((Blt)t->original[5])(object,dest,source,rect,flags,effects);error=GetLastError();
     game_blit_after(&propagated,status);
     render_failure("application_blt",status,object,t->kind,flags);
@@ -225,7 +225,7 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
     struct Table* t=lookup(object);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,0,source,rect,flags,0,2,x,y,caller);
     if(token && !c)history_gap(6);
-    struct GameBlit propagated;game_blit_before(object,0,source,rect,flags,0,1,x,y,&propagated);
+    struct GameBlit propagated;game_blit_before(object,0,source,rect,flags,0,1,x,y,&propagated);propagated.caller=caller;
     SetLastError(error);i32 status=((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
     game_blit_after(&propagated,status);
     render_failure("application_bltfast",status,object,t->kind,flags);

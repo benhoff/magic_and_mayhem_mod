@@ -59,23 +59,32 @@ class XInput:
         # The named game client takes precedence over its containing Wine desktop.
         chosen=next((v for v in candidates if 'magic' in v['name'].lower() or 'chaos' in v['name'].lower()),candidates[0]);self.origin=(chosen['x'],chosen['y']);return chosen
     def move(self,x,y):self.xt.XTestFakeMotionEvent(self.d,-1,x,y,0);self.x.XFlush(self.d)
-    def click(self,x,y):
+    def click(self,x,y,button=1):
         self.move(x+self.origin[0],y+self.origin[1]);time.sleep(.25)
-        self.xt.XTestFakeButtonEvent(self.d,1,1,0);self.x.XFlush(self.d);time.sleep(.15)
-        self.xt.XTestFakeButtonEvent(self.d,1,0,0);self.x.XFlush(self.d);time.sleep(.15)
+        self.xt.XTestFakeButtonEvent(self.d,button,1,0);self.x.XFlush(self.d);time.sleep(.15)
+        self.xt.XTestFakeButtonEvent(self.d,button,0,0);self.x.XFlush(self.d);time.sleep(.15)
     def close(self):self.x.XCloseDisplay(self.d)
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64');parser.add_argument('--mode',choices=['campaign','movies-enabled','both'],default='both');parser.add_argument('--require-world-active',action='store_true',help='Require native World frames before/after failed-reader recovery and at least20 additional frames over2 seconds');parser.add_argument('--world-seconds',type=int,default=3,help='Bounded post-recovery World observation, 3..60 seconds');parser.add_argument('--require-world-pixels',action='store_true',help='Compare independent stable World terrain and portrait regions, dismissing the initial guidance dialog');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64');parser.add_argument('--mode',choices=['campaign','movies-enabled','both'],default='both');parser.add_argument('--require-world-active',action='store_true',help='Require native World frames before/after failed-reader recovery and at least20 additional frames over2 seconds');parser.add_argument('--world-seconds',type=int,default=3,help='Bounded post-recovery World observation, 3..60 seconds');parser.add_argument('--require-world-pixels',action='store_true',help='Compare independent stable World terrain and portrait regions, dismissing the initial guidance dialog');parser.add_argument('--require-world-summon',action='store_true',help='Select and right-click the original tutorial Zombie summon; require independently read control count and stable pixels');parser.add_argument('--observe-world-summon',action='store_true',help='Require an original tutorial summon and record any native refusal with owned-state diagnostics');args=parser.parse_args()
     if not 3<=args.world_seconds<=60:parser.error('--world-seconds must be 3..60')
+    if args.require_world_summon and args.observe_world_summon:parser.error('Choose strict or diagnostic summon observation')
+    if args.require_world_summon or args.observe_world_summon:args.require_world_pixels=True
     if args.require_world_pixels:args.require_world_active=True
     if args.require_world_active and args.mode=='movies-enabled':parser.error('--require-world-active needs the campaign route')
     assert os.environ.get('DISPLAY'),'Run under xvfb-run -a -s "-screen 0 1800x1000x24"'
     parent=ROOT/'working/tests/live-render-routes';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     paths=[*sorted((ROOT/'runtime/render').glob('*.[ch]')),*sorted((ROOT/'runtime/menu').glob('*.[ch]'))]
-    paths += [ROOT/p for p in ['tools/test-live-render-routes.py','tools/test-live-render-game.py','tools/test-menu-observer.py','tools/build-menu-observer.py','tools/run-opengl-game.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py','tests/live-render-route-probe.cpp','renderer/CMakeLists.txt','renderer/commands.cpp','renderer/commands.hpp','renderer/command_consumer.cpp','renderer/command_state.hpp','renderer/blit.cpp','renderer/blit.hpp','apps/qt-shell/live_command_session.cpp','apps/qt-shell/live_command_session.hpp','apps/qt-shell/render_control.cpp','apps/qt-shell/render_control.hpp','apps/qt-shell/live_command_renderer.cpp','apps/qt-shell/live_command_renderer.hpp','apps/qt-shell/command_channel.cpp','apps/qt-shell/command_channel.hpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp']]
+    paths += [ROOT/p for p in ['tools/test-live-render-routes.py','tools/test-live-render-game.py','tools/test-menu-observer.py','tools/build-menu-observer.py','tools/run-opengl-game.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py','tests/live-render-route-probe.cpp','renderer/CMakeLists.txt','renderer/commands.cpp','renderer/commands.hpp','renderer/command_consumer.cpp','renderer/command_state.hpp','renderer/blit.cpp','renderer/blit.hpp','renderer/surface_copy.cpp','renderer/surface_copy.hpp','apps/qt-shell/live_command_session.cpp','apps/qt-shell/live_command_session.hpp','apps/qt-shell/render_control.cpp','apps/qt-shell/render_control.hpp','apps/qt-shell/live_command_renderer.cpp','apps/qt-shell/live_command_renderer.hpp','apps/qt-shell/command_channel.cpp','apps/qt-shell/command_channel.hpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp']]
     paths += sorted((ROOT/'protocols/include/mnm').glob('render*.h'))
     paths += sorted((ROOT/'protocols/python/mnm_protocols').glob('render*.py'))
-    report=dict(schema=1,success=False,sources={str(p.relative_to(ROOT)):helper.sha(p) for p in paths},cases=[],scope='Original campaign ingress through three forwarded World ticks, bounded idle World observation and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.',live_replacement=False,full_frame_equivalence=False,world_active_required=args.require_world_active,world_pixels_required=args.require_world_pixels,world_seconds=args.world_seconds)
+    report=dict(schema=1,success=False,sources={str(p.relative_to(ROOT)):helper.sha(p) for p in paths},cases=[],scope='Original campaign ingress through three forwarded World ticks, bounded World observation, optional independent tutorial summon/control-count checks and classified native refusal, and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.',live_replacement=False,full_frame_equivalence=False,world_active_required=args.require_world_active and not args.observe_world_summon,world_pixels_required=args.require_world_pixels and not args.observe_world_summon,world_initial_active_required=args.require_world_active,world_seconds=args.world_seconds,world_summon_required=args.require_world_summon,world_summon_observed=args.observe_world_summon)
+    probe=args.build.resolve()/'live-render-route-probe'
+    cache=args.build.resolve()/'CMakeCache.txt'
+    build_type=next((line.split('=',1)[1] for line in cache.read_text().splitlines() if line.startswith('CMAKE_BUILD_TYPE:STRING=')),None)
+    report['native_build']=dict(type=build_type,probe_sha256=helper.sha(probe))
+    if args.require_world_summon or args.observe_world_summon:
+        assert build_type in ['Release','RelWithDebInfo'],'Active World fixture requires an optimized consumer build'
+        report['ocr_version']=subprocess.run(['tesseract','--version'],capture_output=True,text=True,check=True,timeout=5).stdout.splitlines()[0]
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(run/'wineprefix'));env.pop('WAYLAND_DISPLAY',None)
     source_prefs=ROOT/'working/game-nocd/CFG/prefs.cfg';prefs_hash=helper.sha(source_prefs)
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
@@ -155,24 +164,55 @@ def main():
                             compare('world-guidance',(160,225,640,375))
                             assert record['comparisons'][-1].get('matched'),'World guidance pixels differ'
                             inputs.click(400,300);inputs.move(1750,950)
+                        if args.require_world_summon or args.observe_world_summon:
+                            def original_text(name,rect,expected):
+                                observations=[]
+                                for attempt in range(8):
+                                    origin=inputs.origin;image=ImageGrab.grab(xdisplay=env['DISPLAY']).crop((origin[0],origin[1],origin[0]+800,origin[1]+600)).convert('RGB')
+                                    path=case/(name+'-original-'+str(attempt)+'.png');image.save(path)
+                                    crop=case/(name+'-ocr.png');image.crop(rect).resize(((rect[2]-rect[0])*4,(rect[3]-rect[1])*4)).save(crop)
+                                    text=subprocess.run(['tesseract',str(crop),'stdout','--psm','7',*(['-c','tessedit_char_whitelist=0123456789/'] if name.startswith('control-') else [])],capture_output=True,text=True,check=True,timeout=5).stdout.strip()
+                                    observations.append(dict(original=path.name,rect=list(rect),text=text,matched=text==expected))
+                                    if text==expected:break
+                                    time.sleep(.5)
+                                record.setdefault('original_ui_checks',[]).append(dict(name=name,expected=expected,observations=observations))
+                                assert observations[-1]['matched'],name+' original UI did not reach expected state'
+                            original_text('select-zombie',(360,257,590,292),'Select Zombie Spell')
+                            inputs.click(523,575);inputs.move(1750,950)
+                            original_text('summon-zombie',(340,82,560,123),'Summon Zombie')
+                            compare('world-summon-instruction',(340,82,560,123))
+                            if args.require_world_summon:assert record['comparisons'][-1].get('matched')
+                            original_text('control-before',(716,444,759,466),'0/15')
+                            inputs.click(400,280,button=3);inputs.move(1750,950)
+                            original_text('control-after',(716,444,759,466),'1/15')
+                            compare('world-summon-count',(716,444,759,466))
+                            if args.require_world_summon:assert record['comparisons'][-1].get('matched')
+                            record['original_summon_validated']=True
+                            record['world_summon_validated']=bool(record['comparisons'][-1].get('matched'))
+                            record['world_actions']=[dict(name='select-zombie',x=523,y=575,button=1),dict(name='summon-zombie',x=400,y=280,button=3)]
                         started=time.monotonic();sample=0
                         while time.monotonic()-started<args.world_seconds:
                             time.sleep(min(5,args.world_seconds-(time.monotonic()-started)))
                             sample+=1;value=phase('world-sustained-'+str(sample))
+                            if args.observe_world_summon and value['state']==3:break
                             assert value['state']==1 and not value['error'],'Sustained World publication refused'
                             if args.require_world_pixels:
                                 for label,rect in [('terrain',(0,0,160,180)),('portrait',(700,500,778,561))]:
                                     compare('world-'+label+'-'+str(sample),rect)
+                                    comparison=record['comparisons'][-1]
+                                    if args.observe_world_summon and comparison.get('reason')=='Native session inactive' and comparison['consumer']['state']==3:break
                                     assert record['comparisons'][-1].get('matched'),'World '+label+' pixels differ'
                         phase('world-end')
                         if args.require_world_active:
                             phases={p['name']:p for p in record['phases']}
                             before=phases['world-before-forced-failure'];after=phases.get('world-after-forced-failure');final=phases['world-end']
-                            assert after and all(p['state']==1 and not p['error'] and p['width']==800 and p['height']==600 for p in [before,after,final]),'World native publication/recovery refused'
+                            native_active=all(p['state']==1 and not p['error'] and p['width']==800 and p['height']==600 for p in [before,after,final] if p)
+                            assert after and all(p['state']==1 and not p['error'] and p['width']==800 and p['height']==600 for p in [before,after]),'Initial World native publication/recovery refused'
+                            if not args.observe_world_summon:assert native_active,'World native publication/recovery refused'
                             assert after['recoveries']==before['recoveries']+1==final['recoveries'],'Unexpected World recovery session'
                             assert final['frames']-after['frames']>=20 and final['ms']-after['ms']>=2000,'World publication did not continue after recovery'
-                            record['world_active_validated']=True
-                            record['world_pixels_validated']=args.require_world_pixels
+                            record['world_active_validated']=native_active
+                            record['world_pixels_validated']=args.require_world_pixels and native_active
                             record['world_observation_ms']=final['ms']-after['ms']
                             record['world_additional_frames']=final['frames']-after['frames']
                         origin=inputs.origin;ImageGrab.grab(xdisplay=env['DISPLAY']).crop((origin[0],origin[1],origin[0]+800,origin[1]+600)).save(case/'world-original.png')
@@ -182,6 +222,11 @@ def main():
                     record['menu_records']=rows();record['consumer']=request('finish');assert qt.wait(timeout=5)==0
                     diagnostics=experiment/'lock-capture/lifecycle.log';record['lifecycle']=diagnostics.read_text().splitlines() if diagnostics.exists() else []
                     record['ring_headers']={p.name:list(struct.unpack('<16I',p.read_bytes()[:64])) for p in case.glob('commands.bin*') if not p.name.endswith('.control')}
+                    record['copy_conflicts']=[dict(zip(['target','thread','source','prepared','before_epoch','after_epoch','before_source_generation','after_source_generation','before_target_generation','after_target_generation','fill','bootstrap','direct','result','source_origin','target_origin','caller','source_caller','source_owner'],[int(x,16) for x in line.split()[1:]])) for line in record['lifecycle'] if line.startswith('blit_commit_refused ')]
+                    if args.observe_world_summon and not record['world_active_validated']:
+                        assert record['original_summon_validated'] and record['consumer']['state']==3 and record['consumer']['terminal_resources']==0
+                        assert any(c['prepared'] and c['before_source_generation']!=c['after_source_generation'] and c['source_origin']==8 for c in record['copy_conflicts']),'Native refusal lacked successful source-copy conflict'
+                        record['native_summon_refusal_classified']=True
                     record['refusals']=[line for line in record['lifecycle'] if line.startswith(('session_gap ','checkpoint_admission_refused ','command_queue_refused ','blit_invalidated ','blit_untracked '))]
                     assert any(c.get('matched') for c in record['comparisons']),'No independent stable region matched'
                     candidates=list((experiment/'draw-capture').glob('*.bin'));record['draw_capture_files']=[str(p.relative_to(ROOT)) for p in candidates]

@@ -60,7 +60,7 @@ static void game_dc_after(struct GameDC* pending,void* dc,i32 result){
         if(s && pending->pixels.data && s->dc==dc && s->dc_owner==GetCurrentThreadId() &&
            s->generation==pending->generation && pending->epoch==__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED)){
             /* Preserve metadata already observed from application descriptors. */
-            game_surface_drop(s);copy(&s->pixels,&pending->pixels,sizeof(s->pixels));pending->pixels.data=0;
+            game_surface_drop(s);s->generation_origin=9;copy(&s->pixels,&pending->pixels,sizeof(s->pixels));pending->pixels.data=0;
             game_surface_bytes+=s->pixels.length;__atomic_sub_fetch(&lock_capture_reserved,s->pixels.length,__ATOMIC_RELAXED);
             game_session_dc_checkpoint(s);
             if(s->primary)game_surface_publish(s);
