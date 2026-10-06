@@ -17824,6 +17824,45 @@
           "NR.command-ring.native"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "d2bd179d731ce007be67428b31ee8f6ab7c0c78f4eee14751d378f253b29c545",
+          "before_sha256": "a441dcf31bf67cfb2ae549ea6586ee8e286dcf0d015b55e39993c63416005815",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9886586a24d3d207adc00c41be1ab93f251fb70f5a90aa54651d160d3c2891e6",
+          "before_sha256": "9a7f7ba435c1129855066a3e5cc6b423a270b16fbb887bf8a0366cc7eb2e8c60",
+          "path": ".githooks/pre-commit"
+        },
+        {
+          "after_sha256": "c1556b89c4168891b73b2554f72ff58f6c7fb400bf93de86448b1ea1c4bb66e5",
+          "before_sha256": "60f9c778d3870104144be967bdc66a9c29ff17693844826fb1fb2c156a62d1eb",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "50135e0a3ab756442df08c47df06283db51fbc772fc76a9e326c682794a045ec",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-nonrender-hook-final-20261005.json"
+        },
+        {
+          "after_sha256": "cca0ffd65cccd2013cba1b34172c087202c05153c4ce36468df8305cb892c65f",
+          "before_sha256": "8ef78d1e12e70fe6c7252f5df46476136eb88e60197575323ea490be76e05516",
+          "path": "tests/test-coverage-gate.py"
+        }
+      ],
+      "id": "nonrender-final-hook-20261005",
+      "pending_gaps": [],
+      "reason": "Review actionable coverage-hook diagnostics and assertions for preserved staging, exact draft instructions and HEAD-based staged checks. Refresh census including both concurrent render commits without altering their implementation.",
+      "validation": {
+        "status": "pending",
+        "reason": "44 gate and 45 discovery regression tests passed; Git auto maintenance was disabled in disposable fixtures after observing a background-pack cleanup race. Existing evidence stays historical; no engine status or execution evidence is promoted.",
+        "evidence": []
+      }
     }
   ]
 }
