@@ -1,0 +1,237 @@
+{
+  "schema": 1,
+  "scope": "Read-only committed parent/current SHA256 and behavior contract receipt review; separate from working changes, new validation or historical gate claims.",
+  "base": "3dd6e276ad736c0ee6121c8a03fe91d01a491d0d",
+  "head": "917b509def0f62d27a399685615bcd76b902cecc",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "bb41fdccaf07f3b3f118fa66cdff56cef70d5e061774d6e544d4c6c9711c48d7",
+      "after_sha256": "f8edc212f9d3c1ae07603d7ebf6fde83a4ba716a1902195ce24ec029dc8571c3",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "13efd3d2aa94264f846be55899e710ef18e991380c87e623d765f7560531c5a1",
+      "after_sha256": "d1357cfa79ede86670da085b2754d8a5a164bb9c09f22fbd1e459a7869447b81",
+      "receipts": [
+        "append-only journal verified separately (self hash excluded)"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-surface-fixtures-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "1b03f445f4ba9c06966f0377cac15e2ff08c140c6a793b04276823e55355a75a",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "a0af9798dca824d7a334a9252d74d66a28cc09768f79264db2c124ef5412b6b6",
+      "after_sha256": "d3858e2b37676f3b60b159626edd1636087862fc07f14e56647422efa897b36d",
+      "receipts": [
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-surface-fixtures-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "4b5c59e7ed5b7f34e479f2c8f29292e5f38469f4386075805f51f0e912813ff9",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-surface-fixtures-commit-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "c20219172452ffadb2be7d82b8bc9c44f06d20fc721718e140086e1e09a4702b",
+      "receipts": [
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-surface-fixtures-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "8b5b38a3f053f07681874cc3d00e5819e7057283759de85221b768104e933bc2",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-surface-fixtures-commit-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "0322d5b68ad12e38de30c70c4deeb1fe76c48fc1c2f32d3996a281e2aae00817",
+      "receipts": [
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-fixtures-opengl-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "fe0128258ac15750312851cd47c542bc45fe30e8f4400511f30bc217b5f61fab",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-fixtures.md",
+      "before_sha256": null,
+      "after_sha256": "9c0d276c8cb151e3875870d1d8199deadf95f6406d8b7169095fa16f369828ba",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-operation-matrix.json",
+      "before_sha256": null,
+      "after_sha256": "b52b1b513b212dda875288b02a567088811877d58fd12aa2201ce0328baa39d5",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/corpus.json",
+      "before_sha256": null,
+      "after_sha256": "e3d97844617a3f3ecdf2ca15787cbc442ce0f5e375fd783caf3e90ed5496cdb6",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/g34xhs0b.bin.gz",
+      "before_sha256": null,
+      "after_sha256": "f39c6c8de24ded931d1a60cc8e2913fd16d501b27dbd6f812caf7f4a2b574434",
+      "receipts": [
+        "surface-fixture-binary-retrospective-receipts-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/g34xhs0b.manifest.json",
+      "before_sha256": null,
+      "after_sha256": "6d86cfbdd6e4a6a05b993aafd6d6cc338b2745da3c868432d0f693eae403c648",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/p66k189j.bin.gz",
+      "before_sha256": null,
+      "after_sha256": "ae5cafbf5ee32504bf0601f0538ff300faee1af31a9dbe1644bba6aee244e14b",
+      "receipts": [
+        "surface-fixture-binary-retrospective-receipts-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/p66k189j.manifest.json",
+      "before_sha256": null,
+      "after_sha256": "51165958fbfdf56a26912efb2dd0dd152ff3dc08779e3ca83b6e26473cf13b22",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/ugdn7zhm.bin.gz",
+      "before_sha256": null,
+      "after_sha256": "dd43729020bb0864a2c22a45aa709039b6211859f8959b034817834f62bffa10",
+      "receipts": [
+        "surface-fixture-binary-retrospective-receipts-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/ugdn7zhm.manifest.json",
+      "before_sha256": null,
+      "after_sha256": "d0b351908c11390f2812a689f7a4b11a426a3e55d518c6e7b2966a1bd6f2d102",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/yu55vq8i.bin.gz",
+      "before_sha256": null,
+      "after_sha256": "4a6a8b3aa699e5f48db8764704e5431841c56bc5644b51193483436f01d0e672",
+      "receipts": [
+        "surface-fixture-binary-retrospective-receipts-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/yu55vq8i.manifest.json",
+      "before_sha256": null,
+      "after_sha256": "14ffd0bdc20f1340e8fd055f4fb082c2468551c492c71612af7bb195393af9f5",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/zpfft1bo.bin.gz",
+      "before_sha256": null,
+      "after_sha256": "4bc3c1a77ef9d166b27b3a4d4e3dcf1624052e6edbf9eff8b07ee572b961065b",
+      "receipts": [
+        "surface-fixture-binary-retrospective-receipts-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/zpfft1bo.manifest.json",
+      "before_sha256": null,
+      "after_sha256": "4c955008fdfd7b1f60b1b7de8e13fbd65e0ba4d5c2b27e2358e7022c6f3f6090",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "tests/test-surface-fixtures.py",
+      "before_sha256": null,
+      "after_sha256": "e833ad80cdfdcf430b67668683f0f849b695fd2d0965fff435072b4e260da015",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "path": "tools/check-surface-fixtures.py",
+      "before_sha256": null,
+      "after_sha256": "039819f747816e52ff0e7053e04686794ba3c4e4264742081999f29471cbca10",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "NR.surface-fixture-corpus",
+      "before_sha256": null,
+      "after_sha256": "11ed7ed881d09555877f85014af5fa8dc3e5d744a7b16c50821c7f489c976181",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    },
+    {
+      "id": "RE.surface-copy.rgb565-bltfast",
+      "before_sha256": null,
+      "after_sha256": "2029f84e04af8dd257af10d5aa96e2f619259e71df87d3d6cff5ace0a116251b",
+      "receipts": [
+        "surface-fixture-corpus-reviewed-20261006",
+        "surface-fixture-corpus-isolated-commit-20261006"
+      ]
+    }
+  ],
+  "journal_append_only": true,
+  "unresolved_gaps": []
+}

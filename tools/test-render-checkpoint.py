@@ -29,7 +29,7 @@ def mark(case,prefix,phase):
     (case/(prefix+f'{phase:08x}.bin')).write_bytes(b'go')
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--case',action='append',choices=['rgb','indexed','incomplete','partial','palette-incomplete','held','dc','capacity','budget','uncertain']);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--case',action='append',choices=['rgb','indexed','incomplete','partial','palette-incomplete','held','dc','capacity','budget','uncertain','rgb16','rgb24','mixed','recreate','overflow','stall','stale-ack','allocation','mapping','worker']);args=parser.parse_args()
     assert os.environ.get('DISPLAY'),'Use xvfb-run -a'
     paths=list((ROOT/'runtime/render').glob('*.[ch]'))+[ROOT/p for p in ['apps/qt-shell/render_control.cpp','apps/qt-shell/render_control.hpp','apps/qt-shell/live_command_session.cpp','apps/qt-shell/live_command_session.hpp','apps/qt-shell/live_command_renderer.cpp','apps/qt-shell/live_command_renderer.hpp','apps/qt-shell/command_channel.cpp','apps/qt-shell/command_channel.hpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp','renderer/CMakeLists.txt','renderer/commands.cpp','renderer/commands.hpp','renderer/command_consumer.cpp','renderer/command_state.hpp','renderer/blit.cpp','renderer/blit.hpp','tests/live-command-checkpoint-test.cpp','tools/test-render-checkpoint.py','tools/test-render-mutations.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py','protocols/schemas/render_control-v1.json','protocols/include/mnm/render_control_v1.h','protocols/python/mnm_protocols/render_control_v1.py','protocols/include/mnm/render_stream_v2.h']]
     sources={str(p.relative_to(ROOT)):live.sha(p) for p in paths}
@@ -37,11 +37,13 @@ def main():
     dll=live.load('checkpoint_build','tools/build-render-bridge.py').build(True);stage=live.load('checkpoint_stage','tools/prepare-shadow-experiment.py')
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(ROOT/'working/tests/render-wine'))
     report=dict(schema=1,sources=sources,cases=[],scope='Actual PE32 administrative checkpoint worker and deliberately delayed Qt consumer in one viewport/context. Complete independently owned original-fixture pixels/palettes, preserved metadata, partial/fill/copy/flip/shared palette continuation and three fresh sessions; strict incomplete/borrowed-state refusal. No original artifacts/game or driver equivalence.')
-    for mode in args.case or ['rgb','indexed','incomplete','partial','palette-incomplete','held','dc','capacity','budget','uncertain']:
+    for mode in args.case or ['rgb','indexed','incomplete','partial','palette-incomplete','held','dc','capacity','budget','uncertain','rgb16','rgb24','mixed','recreate','overflow','stall','stale-ack','allocation','mapping','worker']:
         case=run/mode;case.mkdir();capture=case/'capture';capture.mkdir();frame=case/'frame.bin';live.create(frame,live.frame_v1.initial_header(),live.frame_v1.SIZE)
         shutil.copyfile(dll,case/dll.name);(case/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
         child=dict(env,MNM_CHECKPOINT_SELFTEST=mode,MNM_RENDER_PALETTE_RESOURCES='1',MNM_RENDER_CONTINUOUS='1',MNM_RENDER_NO_READBACK='1',MNM_RENDER_SESSION_ARCHIVE='1',MNM_RENDER_COMMAND_CHANNEL='Z:'+str(case/'commands.bin').replace('/','\\'),MNM_RENDER_CONTROL='Z:'+str(case/'commands.bin.control').replace('/','\\'),MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'),MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/','\\'))
-        valid=mode in ['rgb','indexed'];wine=qt=None;frozen=[]
+        if mode in ['allocation','mapping','worker']:child['MNM_RENDER_RECOVERY_FAULT_FOR_TEST']=mode
+        if mode=='stall':child['MNM_RENDER_STALL_TIMEOUT_MS']='500'
+        valid=mode in ['rgb','indexed','rgb16','rgb24','mixed','recreate','overflow','stall','stale-ack'];wine=qt=None;frozen=[];failures=[]
         with (case/'qt.log').open('w') as qlog,(case/'wine.log').open('w') as wlog:
             try:
                 qt=subprocess.Popen([str(args.build.resolve()/'live-command-checkpoint-test'),str(case)],env=env,stdout=qlog,stderr=qlog);wait(lambda:(case/'ready.json').exists(),qt)
@@ -49,19 +51,28 @@ def main():
                 for phase in range(3 if valid else 1):
                     wait(lambda:(case/f'checkpoint-ready-{phase:08x}.bin').exists(),wine)
                     time.sleep(.15)
+                    current=case/('commands.bin' if not phase else f'commands.bin.retry-{phase}')
+                    if mode in ['overflow','stall','stale-ack']:
+                        if mode=='stale-ack':
+                            with current.open('r+b') as file,mmap.mmap(file.fileno(),mutation.ring.SIZE) as mapped:struct.pack_into('<I',mapped,36,0x100000)
+                        wait(lambda:struct.unpack_from('<I',current.read_bytes(),24)[0]==3,wine)
+                        reason=struct.unpack_from('<I',current.read_bytes(),28)[0];assert reason==({'overflow':1,'stall':4,'stale-ack':5}[mode]),(mode,reason)
+                        failures.append(reason)
                     if not phase:assert not progress(case),'initial consumer consumed stale incremental history'
                     (case/f'attach-{phase}').write_bytes(b'go')
                     if valid:
                         wait(lambda:sum(x['session']==phase+1 for x in progress(case))>=1,qt)
                         mark(case,'resume-',phase)
                         wait(lambda:(case/f'checkpoint-drawn-{phase:08x}.bin').exists(),wine)
-                        wait(lambda:sum(x['session']==phase+1 for x in progress(case))==(8 if mode=='indexed' else 6),qt)
+                        wait(lambda:sum(x['session']==phase+1 for x in progress(case))==(48 if mode=='recreate' else 8 if mode=='indexed' else 6),qt)
                     else:
                         assert qt.wait(timeout=10)==0,(mode,(case/'qt.log').read_text());mark(case,'resume-',phase)
                         wait(lambda:(case/f'checkpoint-drawn-{phase:08x}.bin').exists(),wine)
                     old=case/('commands.bin' if not phase else f'commands.bin.retry-{phase}')
                     old_header=old.read_bytes()[:64];assert struct.unpack_from('<I',old_header,24)[0]==3
-                    frozen.append((old,live.sha(old)));mark(case,'advance-',phase)
+                    frozen.append((old,live.sha(old)));
+                    if valid and phase<2:(case/'pause').write_bytes(b'pause')
+                    mark(case,'advance-',phase)
                 wait(lambda:(case/'checkpoint-done-00000000.bin').exists(),wine);mark(case,'exit-',0);assert wine.wait(timeout=10)==0,(mode,(case/'wine.log').read_text());assert qt.wait(timeout=10)==0,(mode,(case/'qt.log').read_text())
                 observed=json.loads((case/'qt.json').read_text());expected=mutation.frames((case/'mutation-frames.bin').read_bytes())
                 assert observed['ended']==valid and observed['same_context'] and observed['requests']==(3 if valid else 1),(mode,observed)
@@ -74,14 +85,16 @@ def main():
                 if valid:
                     for phase in range(1,4):
                         rec=mutation.archive((capture/f'session-{phase+1:08x}.bin').read_bytes());ops=[x['op'] for x in rec];first_present=ops.index(6)
-                        assert (phase!=3 or ops[-1]==8) and ops[:first_present].count(1)==2 and not any(op in [2,3,11] for op in ops[:first_present])
+                        assert (phase!=3 or ops[-1]==8) and ops[:first_present].count(1)==(4 if mode=='mixed' else 3 if mode in ['overflow','stall'] else 2) and not any(op in [2,3,11] for op in ops[:first_present])
                         assert all(op in ops[first_present+1:] for op in [2,3,11])
-                        if mode=='indexed':assert ops[:first_present].count(12)==1 and ops[:first_present].count(14)==2 and ops.count(13)==1
+                        if mode in ['indexed','recreate']:assert ops[:first_present].count(12)==1 and ops[:first_present].count(14)==2 and ops.count(13)==1
                         records.append(dict(session=123+phase,complete_resources_before_present=True,archive_complete=ops[-1]==8,opcodes={str(op):ops.count(op) for op in set(ops)}))
-                counts=struct.unpack('<10I',(case/'engine-counts.bin').read_bytes());assert counts[0]==counts[1] and counts[2:6]==(2 if mode=='uncertain' else 1,1,1,1),(mode,counts)
-                if valid:assert counts==(14,14,1,1,1,1,12,6,9 if mode=='indexed' else 0,0),(mode,counts)
-                cs_counts=struct.unpack('<II',(case/'checkpoint-cs-counts.bin').read_bytes());assert cs_counts==((31,31) if mode=='capacity' else (2,2) if mode=='budget' else (0,0))
-                report['cases'].append(dict(mode=mode,success=True,valid=valid,original_counts=list(counts),consumer=observed,checkpoints=records,immutable_old_rings=len(frozen)))
+                counts=struct.unpack('<10I',(case/'engine-counts.bin').read_bytes());assert counts[0]==counts[1] and counts[2:6]==(2 if mode=='uncertain' else 1,4 if mode=='recreate' else 1,4 if mode=='recreate' else 1,4 if mode=='recreate' else 1),(mode,counts)
+                if valid:assert counts==((254,254,1,4,4,4,12,6,9,0) if mode=='recreate' else (14,14,1,1,1,1,12,6,9 if mode=='indexed' else 0,0)),(mode,counts)
+                cs_counts=struct.unpack('<II',(case/'checkpoint-cs-counts.bin').read_bytes());assert cs_counts==((31,31) if mode=='capacity' else (2,2) if mode=='budget' else (451,451) if mode=='overflow' else (31,31) if mode=='stall' else (2,2) if mode=='mixed' else (0,0))
+                storage=struct.unpack('<6I',(case/'checkpoint-storage.bin').read_bytes());assert storage[-1]==0
+                if mode in ['allocation','mapping','worker']:assert storage[:4]==(0,0,0,1),(mode,storage)
+                report['cases'].append(dict(failure_reasons=failures,storage=list(storage),mode=mode,success=True,valid=valid,original_counts=list(counts),consumer=observed,checkpoints=records,immutable_old_rings=len(frozen)))
                 print(mode+': passed',flush=True)
             finally:
                 for process in [wine,qt]:

@@ -23,9 +23,9 @@ int main(int argc,char** argv){QSurfaceFormat f;f.setVersion(3,3);f.setProfile(Q
         };
         QTimer timer;QObject::connect(&timer,&QTimer::timeout,[&]{try{
             check(elapsed.elapsed()<20000,"test deadline");
-            if(QFile::exists(dir.filePath(QString("attach-%1").arg(requested)))){++requested;check(session.attachCheckpoint(),"attach request");}
+            if(QFile::exists(dir.filePath(QString("attach-%1").arg(requested)))){++requested;check(session.attachCheckpoint(),"attach request");QFile::remove(dir.filePath("pause"));}
             // The initial consumer deliberately never reads incremental history.
-            const bool healthy=!requested || session.poll();
+            const bool healthy=!requested || QFile::exists(dir.filePath("pause")) || session.poll();
             if(!healthy || session.ended()){timer.stop();check(!session.result() || (!session.result()->liveSurfaces && !session.result()->livePalettes),"terminal resources");save(dir.filePath("qt.json"),{{"ended",session.ended()},{"error",session.error()},{"frames",frames},{"states",states},{"requests",int(requested)},{"same_context",context==viewport.context()}});app.exit(0);}
         }catch(const std::exception& e){std::fprintf(stderr,"%s\n",e.what());app.exit(8);}});save(dir.filePath("ready.json"),{{"ready",true}});timer.start(1);return app.exec();
     }catch(const std::exception& e){std::fprintf(stderr,"%s\n",e.what());return 8;}}

@@ -1,0 +1,341 @@
+{
+  "schema": 1,
+  "scope": "Read-only committed parent/current SHA256 and behavior contract receipt review; separate from working changes, new validation or historical gate claims.",
+  "base": "ade3e60499f59c0cba2c3b55b118a06c0350a482",
+  "head": "3dd6e276ad736c0ee6121c8a03fe91d01a491d0d",
+  "files": [
+    {
+      "path": "apps/qt-shell/live_command_session.cpp",
+      "before_sha256": "293b71d008f11b2cad76d8aa921c7602d778dedcf4686bfb90d6f5bdd74bf8a1",
+      "after_sha256": "58cb29456d127106830ee6de114f8f49c88e4265f4908ba4ff9aa61a9f33b40c",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/live_command_session.hpp",
+      "before_sha256": "d184d019e990eb69370459dd76d561b1a6b6d4489ecd2952dce31e18916ca36e",
+      "after_sha256": "a8fbf9010e4721463215b6621a7ea7baeadf48633064c8bb8a38e5b0e5f8dfa0",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/render_control.cpp",
+      "before_sha256": "39a5faed02fffb7937783f7f082bbd56d0f09fd28a852727083d4bdbf33476fc",
+      "after_sha256": "bdd72b25ca107f324faa737aa3abbd98cd566a77a3f7ecae289b73d4d5469a8b",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/render_control.hpp",
+      "before_sha256": "dd7e491127b3b33099cb9104292a9338280808169e4957775323abcfb8c5cf84",
+      "after_sha256": "1229d563b0e0fa27c325f4a8c1ed6698c0820ed43931a4b8b824408475c2c1e9",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "protocols/CONTRACTS.md",
+      "before_sha256": "16a3adba0ee37b5f05a8342cf5b63c1790dcffce140bd5ac8ac8991360158c25",
+      "after_sha256": "fd22c206fa3833255048ffc9dc2b9e32e551130c4571c88851628545c023faa1",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "protocols/include/mnm/render_control_v1.h",
+      "before_sha256": "62c54b1a04a5e2e217e1742adc1d260ae222738ae85412cd2754d49752c8ebb7",
+      "after_sha256": "ab15450b9347c312062719bdc35f62adf6bff9f4298f88de250513a5651ffb8b",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "protocols/python/mnm_protocols/render_control_v1.py",
+      "before_sha256": "0875ccb4796f455f417480cb54929d647b287de621546ff622f7e83d1c9a8bb3",
+      "after_sha256": "170f1be0cd49c21942fa547d48bb6bf4ed6741836128d8929ed1da9600377e7d",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "protocols/schemas/render_control-v1.json",
+      "before_sha256": "29196373c00c344e0c5f9ddb523945930d6cd0a71272e084d29896d184b273c0",
+      "after_sha256": "4b045e0c914a952fd5c9389d062ff7688646dafd2abc9fa2b5d52decc81783dc",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "renderer/CMakeLists.txt",
+      "before_sha256": "df14005bd43e96035fd0524b98ad202f83200a203ac9c7c345b5b23f472dcdef",
+      "after_sha256": "47135cf8c3e304eb252bf1693e074412c360725924c1d64c7f1b922cdef5c5fe",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/formats/render-control-v1.md",
+      "before_sha256": "206bd7674415b4581d2cf457066dc64f98675716924dc129a2fe546398d08a44",
+      "after_sha256": "b3ba7b39862edff17e012c552ebbe4eb4ecce663ce06dc6c9166e48975913f08",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "694ad346d20cd919a6f08ad6f6b81ca4310a6f118da484ab67fdac0ca9f1fb73",
+      "after_sha256": "bb41fdccaf07f3b3f118fa66cdff56cef70d5e061774d6e544d4c6c9711c48d7",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "7e67b8e1885d82218c9b8f275cc4d083a1bb50e04baa0fd973faf71cb19efc3f",
+      "after_sha256": "13efd3d2aa94264f846be55899e710ef18e991380c87e623d765f7560531c5a1",
+      "receipts": [
+        "append-only journal verified separately (self hash excluded)"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/checkpoint-summary-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "48a8d8b8a0dcbf31be11224ca4b16d361e97bcbfc2a274feceda58ed3f1ac136",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-checkpoint-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "f7dbfb89be0ac1a7e90752a7a264cb478deeb1bc84d1282ac93060b88502ed63",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "c2408113fac4e3f950fcf67a1bb696ad4ed1b570ac4fcbc36698508ec7e4079b",
+      "after_sha256": "a0af9798dca824d7a334a9252d74d66a28cc09768f79264db2c124ef5412b6b6",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-checkpoint-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "eb682050518084e111c0f85bdc8f1c4617181330ebcffe9d25d8b8c00580bbc0",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-checkpoint-api-regressions.json",
+      "before_sha256": null,
+      "after_sha256": "151c2b313f205099c701a0d3eae825214fc3cf12a72b8d4c1a7877d022a89238",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-checkpoint-host-regressions.json",
+      "before_sha256": null,
+      "after_sha256": "718724abf0a31d68f95b9d58e635ef2e6dab2e0ddfc1a53a9ad6eb37de29d89d",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-checkpoint-pe32.json",
+      "before_sha256": null,
+      "after_sha256": "be07389bcd31542a2fc1752f9efbca11cd4fc2e44eee77787bbf6baf4520e66c",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-checkpoint.md",
+      "before_sha256": null,
+      "after_sha256": "f8a6b3fe95f95e94dc8271cfa65a2d3017966e63203a8d5dc961c846ab6c17e3",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/checkpoint_selftest.h",
+      "before_sha256": null,
+      "after_sha256": "f1bbbc7a51ca943fff2b9662621c25eb1b734c804f30cbaa36e9ccba51eadf79",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_control.h",
+      "before_sha256": "fd0ee80f942c9a119bf10fa6b7970b21f1612f6a995cb7685fa0bd251b41e38d",
+      "after_sha256": "1bbe16d98dba2f78365e027b23d6eed7470e9ca5e815a08068d05a250bc459eb",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_recovery.h",
+      "before_sha256": "d3e17b0a49be0a2e6635be9a7ec4af4e2c99ada113187d267c7777f03d187176",
+      "after_sha256": "8d4dc5ec30925f3352de6d1c66501d0494968bbb613e0f00f889b395ac724d2b",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/selftest.c",
+      "before_sha256": "a1215dc3c64ad79fb95869b1f9772e5ff42bfde3f394a6fd855de9ef5751ee0e",
+      "after_sha256": "868633bcbbe0c8e505300d9eace63bf59a2450e4bbf05cb3bc0fc9af040df358",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "tests/live-command-checkpoint-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "6c433c99f1ed70758612e23b58e8d40ec11f4768ebad394a64d1854f518044e4",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "tests/render-control-test.cpp",
+      "before_sha256": "c7793c44322ceb620c661bff8cbfe21cff2b439626cdf3ab3f493abcd56950f0",
+      "after_sha256": "46168e28c75d57a8139642a1b77f7f3e621dc77a3013da3e9e6ae60bf243e84a",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-render-checkpoint.py",
+      "before_sha256": null,
+      "after_sha256": "fbdb37f7ed35d3c5a3f93375b1889b2b6cbe191fdae53a8debdfc8b49b40e718",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "NR.command-backpressure",
+      "before_sha256": "a2f8caad45ec1b34ea690a7539cca63987b700e62056efc9a889fc078daeed88",
+      "after_sha256": "eeec5ba1360ae87ccd523917af05b6fd62142ae0721feef4c56c498ce15a1b4c",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment",
+      "before_sha256": null,
+      "after_sha256": "7fc7b0674b4aecc91572d1285981bb17e4fc2609e7b869dfde164d1317597964",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006",
+        "NR.command-checkpoint-attachment-recorded-validation-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-host-recovery",
+      "before_sha256": "fdefbcc264dc1655db78c11c9143ed7c81cc8f735439416cee2f0493e10bf9e7",
+      "after_sha256": "0a71b9cba2aae905455c1956c2f74d8c08ffa4513e2c9aff68a9acaa41f2e0df",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-idle-lifecycle",
+      "before_sha256": "116f6bbe79f89b718d717485a486107d090a25e28911dd635606e10eac34c13c",
+      "after_sha256": "adf64c81a2671b06e19a3095ecc38c4761d3df3ccfa38aa160691ec9ff483ea5",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-orchestration",
+      "before_sha256": "43738ff9cb6c75440626b00a2b64b0e193922c6086b3454a667ede450e43bc5d",
+      "after_sha256": "0b9e09f9f4348f530dc11fb0b9c34d2b797df059aa3253e504cbb024f69a77c7",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-recovery",
+      "before_sha256": "db848797e6adea3d5710dbd3476d567fe76ec739eb028020a86ad603a428c72d",
+      "after_sha256": "b90515f0cd6841da942713ce282948f1481719de4ad6de126875e1f370d16255",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-ring",
+      "before_sha256": "bbf15e8efb70e169411408183bc24730c8b1187f79e26f47b4594608466eb2a3",
+      "after_sha256": "bfd9ea55b69492a66af513df101cf95862992b405e14437ac6fe218b25c7bfd3",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-mutations",
+      "before_sha256": "8e4b8a21f124b0925e524d5ecca4f636cb29fe9a3319a091bee1de36c0f95ece",
+      "after_sha256": "7e984b8e9818c573108109139975e2f56af3b72e9d6dd7f6ee7cf72b6335f6ec",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-producer",
+      "before_sha256": "d87aef4ad7a7156a78a33d5d25480291730501a351c8a369598bb6690493b3a2",
+      "after_sha256": "4f547b97e37200e771d4c84127fabaf10b77684ca84f4492821c4f4e6bdcc5b9",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-lifetime",
+      "before_sha256": "ba341794af60953d3c192ac93fa10a2184bebbd780c52a1858a71539b4ec3ff8",
+      "after_sha256": "206272c3f2ba5ea8b8c6ff194c21cbff4309f1f2dd55e5dc787f574935947176",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.incremental-command-consumer",
+      "before_sha256": "06ff433336ca6c62079756f0198333b680f0ccf1537946a3d9e798f0553bc819",
+      "after_sha256": "bc8a327046e05538788ee1c97f5b5d0455fec928bb69f750fc85a3894ea97974",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.live-command-transport",
+      "before_sha256": "c48caeba1d62d8384af6a212caba50fccaca69fa1f661619af568ade9e9f026b",
+      "after_sha256": "50976a8758f7c323463d42ca69666905519b5204404d9f87385c092a7790a67b",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.palette-resources",
+      "before_sha256": "433c7b2ecefc4f86ea25578caea7820d7b9c70f350bbecfc2fd65f98400f0e9d",
+      "after_sha256": "7d230149e88bfcd999bb35a7b8e4648bc21caf2724eb23721a07e43d8d0ff40d",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    },
+    {
+      "id": "RT.render",
+      "before_sha256": "0550bd3a0a124fa6b926b52d17436b18ad443cb623fdb4c811d7757bc16d547e",
+      "after_sha256": "6095bcdc0c76b0a1b21d82a4c02312d07f386f11f7f1f08b96c617ec82da7c52",
+      "receipts": [
+        "NR.command-checkpoint-attachment-accounting-20261006"
+      ]
+    }
+  ],
+  "journal_append_only": true,
+  "unresolved_gaps": []
+}
