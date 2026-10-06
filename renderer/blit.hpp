@@ -17,6 +17,9 @@ struct Image {
     std::vector<std::uint32_t> pixels;
 };
 struct Rect {int left=0, top=0, right=0, bottom=0;};
+struct ClipperState;
+struct SurfaceCopyRequest;
+struct SurfaceCopyResult;
 struct Blit {
     Image source, destination;
     unsigned bits=0;
@@ -70,6 +73,11 @@ public:
     void copy(SurfaceId source,SurfaceId destination,Rect rect,int x,int y,
               std::optional<std::uint32_t> key=std::nullopt,
               std::optional<SurfaceId> mask=std::nullopt);
+    // Surface2-style RGB565 operation; see surface_copy.hpp for the bounded policy.
+    // copy() remains the in-bounds primitive used for already resolved pieces.
+    void setClipper(SurfaceId destination,const ClipperState& clipper);
+    SurfaceCopyResult surfaceCopy(SurfaceId source,SurfaceId destination,
+                                 const SurfaceCopyRequest& request);
     // Optional indexed8 mask has source dimensions; zero discards the pixel.
     // Masks use source coordinates, retain destination pixels and do not read back.
     // Exchange native storage only; palettes and handles retain their identity.

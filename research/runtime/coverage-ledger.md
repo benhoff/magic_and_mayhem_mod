@@ -1,5 +1,19 @@
 # Engine modernization coverage ledger
 
+## Native RGB565 clipping backend — 2026-10-06
+
+[Backend policy and evidence](native-surface-clipping.md):408 independent retained
+Wine Surface2 HRESULT/full native-output pairs match real native GL operations,
+including the two six-pixel partial-write errors. Owned clip state distinguishes
+detachment, missing/empty lists and ordered disjoint regions;18 native admission
+and update/swap/destruction checks pass. No ordinary pixel uploads/readbacks.
+Existing native surface/blit suites and five original opaque fixtures pass afresh.
+Native policy is headless; wire clip state, other formats/key/fill interactions,
+original error/retry/Restore and Windows-driver/game equivalence remain pending.
+Historical shared renderer evidence retains its old fingerprints; these scoped
+new comparisons do not refresh unrelated preview/live validations.
+
+
 ## Surface2 driver clipping and errors — 2026-10-06
 
 [Independent external-driver evidence](surface-driver-clipping.md) now retains
