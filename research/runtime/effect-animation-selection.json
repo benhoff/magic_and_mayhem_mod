@@ -1,0 +1,30 @@
+{
+  "all_match": true,
+  "live_validated": false,
+  "executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "calls": 1522626,
+  "no_animation": 962514,
+  "override_calls": 29988,
+  "creature_calls": 13818,
+  "distinct_animations": 36,
+  "tables_verified": true,
+  "output_sha256": "9ebce94b961c62ec703cdd31c01b38dda54ffb3208f749a2b4cac033d192b6b4",
+  "helper_sha256": {
+    "original": "a114ce6b5adb81cf9a939e22525bdb2ab6975eecfac387f35f0f4fd5e3d1c986",
+    "native": "4cb7d0745968e81bc4ea5d3dca284965abf2f5ee4d1749031ced7266a74edebc",
+    "sanitized": "a63d44b774fc78129d3a46aeada007f032f10262a1efc6b339e3ddd68c87a4ba"
+  },
+  "registered_source_sha256": {
+    "reconstruction/rendering/effect_animation_selection.cpp": "12e9729f797bd32f817a9704de20d47b7792f06ac8279871a0105314a5066dc0",
+    "reconstruction/rendering/effect_animation_selection.hpp": "fe952a38918089e29e339346890e82f8923b5070ab97aeea1edcd359106f41a7",
+    "reconstruction/rendering/effect-animation-selection/CMakeLists.txt": "570279540247405835d559bea4020e7a61fa86c10039373ed72151ad277f5317",
+    "tests/effect-animation-selection-test.cpp": "b25114fab8bc41f26f203c5acab492521f0286cce5857fd4d459593821f463aa",
+    "tests/effect-animation-selection-reference.cpp": "a37c2e59b2c784386b9cce523d379c10cb81f34417dfeab931dc7af06834ba1c",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-effect-animation-selection.py": "584ca9cb63e54b997c5a1061778fbcc72e095e61ea3b873047a223916ffbd7c9"
+  },
+  "unit_passed": true,
+  "sanitized_unit_passed": true,
+  "cmake_tests_passed": 1,
+  "boundary": "Whole unmodified 00489200, exact 30-target/103-kind dispatch tables, owned 103-kind metadata and valid creature/descriptor allocations; all type/kind/class/descriptor branches and unchanged guards/storage; invalid required references are native refusals, installed metadata provenance/full type setup/live replacement remain separate"
+}

@@ -6,14 +6,14 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | Accounting boundary | Count |
 | --- | ---: |
 | builds | 1 |
-| behaviors | 347 |
-| evidence | 251 |
-| scenarios | 56 |
+| behaviors | 348 |
+| evidence | 253 |
+| scenarios | 57 |
 | functions | 6675 |
 | registered recovered ranges | 13 |
 | incomplete dispatch tables | 8 |
-| indexed sources | 1036 |
-| unclassified functions | 6487 |
+| indexed sources | 1042 |
+| unclassified functions | 6486 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
 | unmapped imports | 190 |
@@ -36,11 +36,11 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Independent status | Counts |
 | --- | --- |
-| understanding | partial: 229; scoped: 85; unknown: 33 |
-| implementation | none: 142; partial: 125; scoped: 80 |
-| comparison | none: 286; recorded: 61 |
-| integration | headless: 43; live_equivalence: 0; live_observation: 20; none: 265; preview: 19 |
-| replacement | none: 347; scoped_live: 0 |
+| understanding | partial: 229; scoped: 86; unknown: 33 |
+| implementation | none: 142; partial: 125; scoped: 81 |
+| comparison | none: 286; recorded: 62 |
+| integration | headless: 44; live_equivalence: 0; live_observation: 20; none: 265; preview: 19 |
+| replacement | none: 348; scoped_live: 0 |
 
 ## Animation checklist
 
@@ -489,6 +489,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | TL.effect-creature-collision | Effect creature candidate snapshot and collision scanning | `0x4883f0` | scoped | scoped | recorded | headless | none | stale |
 | TL.effect-trajectory-initializer | Effect trajectory initialization with horizontal wrap selection | `0x4df3a0`, `0x4df260` | scoped | scoped | recorded | headless | none | current_fingerprints |
 | TL.effect-motion-initializer | Whole effect motion record initialization helper | `0x48a950`, `0x4df230` | scoped | scoped | recorded | headless | none | current_fingerprints |
+| TL.effect-animation-selection | Whole effect animation selection from owned kind and creature metadata | `0x489200` | scoped | scoped | recorded | headless | none | current_fingerprints |
 
 ## Tooling checklist
 

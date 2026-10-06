@@ -636,17 +636,19 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Effect type-specific animation and trajectory setup remains open",
-      "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment; no type-specific behavior implementation",
+      "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, metadata/animation asset binding, direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4803248,
-          "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment; no type-specific behavior implementation"
+          "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, metadata/animation asset binding, direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified."
         }
       ],
       "documents": [
-        "research/runtime/effect-record-placement.md"
+        "research/runtime/effect-record-placement.md",
+        "research/runtime/effect-motion-initializer.md",
+        "research/runtime/effect-animation-selection.md"
       ],
       "implementation": [],
       "tests": [],

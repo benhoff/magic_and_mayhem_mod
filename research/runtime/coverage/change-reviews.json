@@ -11959,6 +11959,209 @@
         "evidence": [],
         "reason": "Generated research metadata only; no engine change or independent status promotion."
       }
+    },
+    {
+      "id": "animation-selection-recorded-1b93172",
+      "reason": "Recover whole read-only 00489200 with special type6/7 override precedence, metadata classes, 103-kind compressed dispatch, conditional type results, creature descriptor dereference and raw -1 fallback. Replace original pointer dependencies with lazily consulted owned metadata/descriptor entries. Map all 103 scoped kind dispatch entries without completing the separate 89-entry creation dispatcher. Preserve historical evidence, reconcile focused imports/census/ledger and review committed 1b93172..1b931729f50bdf4b0bc8cc0946bea6a15f9c1301 exact source receipts and evidence record bindings in working/tests/animation-selection-history-review.json; history review asserts no new execution.",
+      "files": [
+        {
+          "after_sha256": "570279540247405835d559bea4020e7a61fa86c10039373ed72151ad277f5317",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect-animation-selection/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "12e9729f797bd32f817a9704de20d47b7792f06ac8279871a0105314a5066dc0",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_animation_selection.cpp"
+        },
+        {
+          "after_sha256": "fe952a38918089e29e339346890e82f8923b5070ab97aeea1edcd359106f41a7",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_animation_selection.hpp"
+        },
+        {
+          "after_sha256": "80d8cd43654a1e26955ed8fbf762d81a2dcd5b8f16db2924bf85327b3a45aefc",
+          "before_sha256": "b8be45291a572829a874a81ba4b191e3b15c66b38f7082af4dafc89570f785d2",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "38202543d380220c6f89a04d7ff5d8bb04c4e3fa9902b376593f326323be1138",
+          "before_sha256": "19ae41f0a50fce594f80979047a1f39c368d4396499ce0fa314a2ee5387bdb7c",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "d84281951587b1946de2a4a41e1c749e1d00b6d8a7dc72eeedfb4922bd80524c",
+          "before_sha256": "1e3bf1f56ffa9d05229c30f2c07cb4314e49e7c8e7027841e1d67bab51740429",
+          "path": "research/runtime/creature-footprint-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "cf3911105ff824c9c57d8a3e6a212165221e76d525f7e2cae6de145a0ea84738",
+          "before_sha256": "f4b1263081806cf396c0063888158cb5aff31f624f76dbe8e9bd55818fb5e029",
+          "path": "research/runtime/creature-occupancy-lookup-coverage.json"
+        },
+        {
+          "after_sha256": "f04fed76f997deff089b2f40045de525700e01c4508f59def5ae5056d84542bd",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-selection-coverage.json"
+        },
+        {
+          "after_sha256": "28e9d3746169e6dc97383592d35c0e03540b961513f546fc6a10fcb620ec7d44",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-selection-source-index.json"
+        },
+        {
+          "after_sha256": "cba2e45d130126c747ba49be6a9f8957854054291f98c1efcbf98d9b93de275e",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-selection.json"
+        },
+        {
+          "after_sha256": "3e88dcb2955af6578692361b124bdb78fa94eaed8ccec3e28c1d7db1f828bff7",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-selection.md"
+        },
+        {
+          "after_sha256": "3f6550f68de8a51d4dfe4ad5c49fcf35bb67c8aff6165dd00eb53476eadf09ad",
+          "before_sha256": "62d7f994305877ff04ed67a74b27728a8131f0c4fbf45a15b0407d191b3a9441",
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "67651e119674af3026b6e2b3031c70d3547bb4e3c9f03090b45f3ebaeec6c093",
+          "before_sha256": "57366eb3fe5a5a4a28c78d35a022c3adf9ca416bb8d958d9ecca36c5ea727bd3",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "cf49d0045c3ffcecf4162648e3fa4a5e6b502d1fa10bccca3f4c1d5d3ad39661",
+          "before_sha256": "5b22a54824a5a4c81fa4ef6fb67b323cf16b3cd53885efa434f5e25e7b426718",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "10b43aac95d5a1f0d4c8cdb5c7ba48b69c8b57b31123212eccd02b2219bdeaaf",
+          "before_sha256": "54cc1b713825ac99b78eb6a202a344d5a71871aee47a02cd776c3f08f1f6027e",
+          "path": "research/runtime/effect-creature-collision-coverage.json"
+        },
+        {
+          "after_sha256": "ad9dec783d20bcc0170bb8ef1bbbcdd749d9f18822030afbc490bdfb707343ab",
+          "before_sha256": "7e5bb4786c774296895c0e99dc6e28e63e1ee6c3e1ceca781981e938d1aeed05",
+          "path": "research/runtime/effect-height-exits-coverage.json"
+        },
+        {
+          "after_sha256": "4d233a14ff08b98a74990ed8716fa02c62718cd74516af9f076227909b929b02",
+          "before_sha256": "f25e69ec754fec14e0aac3e0bb3003252b78d06e7c4231e6d6486376817e83db",
+          "path": "research/runtime/effect-membership-disabled-coverage.json"
+        },
+        {
+          "after_sha256": "442de83d797f2ba35c9f77a966de29f416dd669007f285bb8c51f3bce4ce9cb2",
+          "before_sha256": "5d696ea56c186188a013069a4ee2b35db385f0ceb7792fe1a3d75ed9ac12c98e",
+          "path": "research/runtime/effect-motion-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "571bba0c1c32fe9a9720145eb59515d3c265b4dec9c71ebf4b7f67ba8727b6aa",
+          "before_sha256": "571bba0c1c32fe9a9720145eb59515d3c265b4dec9c71ebf4b7f67ba8727b6aa",
+          "path": "research/runtime/effect-motion-initializer.md"
+        },
+        {
+          "after_sha256": "e72378a2e65ccd5bf94abd9e5c270a004e261089ab42b948a4bccabcb4994522",
+          "before_sha256": "cdc1f8c941a99530c19449b78d0cf030017d8d85f202f9d28aed64bee117ac05",
+          "path": "research/runtime/effect-record-placement-coverage.json"
+        },
+        {
+          "after_sha256": "5ddaa662669c788ff0e0b5354203b8e8e1779a5899943739bd14b7ee4ef161fe",
+          "before_sha256": "e6933748492b39d3d4c7de6a6d587ecf1acfb14e12fa11ea8cbefb3acd218537",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "4aea24fa72ddea92d65937ae0394cf255b833de8dba0061e6a71ccb47738deb7",
+          "before_sha256": "9b23453ac431fbddd80710f56ae179ff710d1729d2ec01789731972ba473b33e",
+          "path": "research/runtime/effect-terrain-occupancy-coverage.json"
+        },
+        {
+          "after_sha256": "4d102fe8078aff6e20ef307882f0ee5b70d7c241aaf583e5fe612554e048c280",
+          "before_sha256": "9efb1c996b2e96b206b3104a5f78927765e8019a1422d1ae762c777135d809dc",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "a5f31d5f85c87c0abd632b14b88616f59c3aac255b433038520fdb1e89863dc3",
+          "before_sha256": "e3f3c0c1fc53739e7e33d80cd85007100147465234adf7589c4373eb13568146",
+          "path": "research/runtime/effect-trajectory-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "a37c2e59b2c784386b9cce523d379c10cb81f34417dfeab931dc7af06834ba1c",
+          "before_sha256": null,
+          "path": "tests/effect-animation-selection-reference.cpp"
+        },
+        {
+          "after_sha256": "b25114fab8bc41f26f203c5acab492521f0286cce5857fd4d459593821f463aa",
+          "before_sha256": null,
+          "path": "tests/effect-animation-selection-test.cpp"
+        },
+        {
+          "after_sha256": "584ca9cb63e54b997c5a1061778fbcc72e095e61ea3b873047a223916ffbd7c9",
+          "before_sha256": null,
+          "path": "tools/test-effect-animation-selection.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "ebad1f05ad4f2935d81d2134d3100b60453314fd70344f94c72e4b7d28ec89d6",
+          "before_sha256": null,
+          "id": "TL.effect-animation-selection"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL21.animation-selection-original",
+          "TL21.animation-selection-native"
+        ],
+        "reason": "1,522,626 whole unmodified original calls match native64 and ASan/UBSan across 96 raw types, 108 raw kinds, seven kind metadata classes, seven descriptor classes and three valid creature ordinals; unsafe out-of-table overrides excluded from original execution and tested as native refusals. Exact original 30-pointer/103-byte tables verified, including disassembly-elided zeros. Every guarded receiver remains unchanged; creature/descriptor allocations and each metadata word unchanged. Covers 29,988 overrides, 13,818 descriptor reads, 962,514 -1 results and 36 animations. Explicit strict/sanitized units and CTest pass; original/source fingerprints stable and all 2,927 immutable inputs verify before/after. Installed metadata provenance, animation binding, full creation type dispatch and live replacement remain excluded."
+      }
+    },
+    {
+      "id": "animation-selection-remaining-1b93172",
+      "reason": "Separate recovered selector and existing motion initializer from remaining effect movement/lifecycle and full 89-entry creation/type setup composition. Retain metadata loading, animation asset/frame/direction/start-state binding, child effects and ownership/lifecycle/live gaps; do not promote the creation dispatcher or rewrite old evidence.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "5b55a0755a2433178c23138f30bf4512a5b887e9e1d821972edc5b50c28038ea",
+          "before_sha256": "5b55a0755a2433178c23138f30bf4512a5b887e9e1d821972edc5b50c28038ea",
+          "id": "TL.effect-motion-initializer"
+        },
+        {
+          "after_sha256": "b76f13ac583a168c05318610f5e666d7f2fac8b4048c0844f38a1b74e8e2be6f",
+          "before_sha256": "10b638d7404ee75267309870df3502d9b2bf37e4a6edb63b8572be9e220c3773",
+          "id": "TL.effect-movement-recount"
+        },
+        {
+          "after_sha256": "553b61761733adb1a9d7387b2c9918d2afd4cc714ebed07998d6cd9b350a2be8",
+          "before_sha256": "72e14819776449849577bc93e02d44c2dcf4412fad3e0724f6ab49f970a59563",
+          "id": "TL.effect-type-setup"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "The type setup dispatcher still remains deferred in the historical common-placement proof; no complete type branch, animation attachment or installed metadata loading is compared by TL21. Remaining creation/ownership/membership, ballistic update and lifecycle/scheduling/live contracts remain unverified. Historical source hashes and status dimensions are preserved. The existing motion initializer acquires a shared-document census relationship through the pending setup behavior; its implementation, test inputs and source fingerprints are unchanged, and no new parent integration or execution is asserted."
+      }
+    },
+    {
+      "id": "animation-selection-summary-1b93172",
+      "reason": "Refresh generated coverage summary for scoped whole selector and complete kind mapping while preserving the separate incomplete creation dispatcher and historical staleness.",
+      "files": [
+        {
+          "after_sha256": "cd7d7aa116dbbf68b18b6b03b7a89080a1963a0fef058674e4ad8e81b6f79b6f",
+          "before_sha256": "195ed6922dd1d5bd3bbf25450fdb560082e5c051550a47ac4004d4fec8f58240",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated research metadata only; no independent engine change or validation/status promotion."
+      }
     }
   ]
 }
