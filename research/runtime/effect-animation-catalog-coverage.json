@@ -13,7 +13,7 @@
       "subsystem": "assets",
       "kind": "native_policy",
       "title": "Installed owned effect animation catalog and forward binding",
-      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement.",
+      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement. Original metadata regions and native policy differences are now compared separately in TL24; this native policy does not claim whole-loader or malformed-input equivalence.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -23,7 +23,8 @@
         }
       ],
       "documents": [
-        "research/runtime/effect-animation-catalog.md"
+        "research/runtime/effect-animation-catalog.md",
+        "research/runtime/effect-animation-metadata.md"
       ],
       "implementation": [
         "assets/effect_animation_catalog.cpp",
@@ -35,10 +36,14 @@
       ],
       "tests": [
         "tests/effect-animation-catalog-test.cpp",
-        "tools/test-effect-animation-catalog.py"
+        "tools/test-effect-animation-catalog.py",
+        "tests/effect-animation-metadata-reference.cpp",
+        "tests/effect-animation-metadata-test.cpp",
+        "tools/test-effect-animation-metadata.py"
       ],
       "evidence": [
-        "AS23.effect-animation-catalog-native"
+        "AS23.effect-animation-catalog-native",
+        "TL24.animation-metadata-native"
       ],
       "status": {
         "understanding": "scoped",
@@ -53,13 +58,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Effect type-specific animation and trajectory setup remains open",
-      "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, dispatcher asset admission and remaining direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified. The native owned-entry/ANI binding adapter and composed original forward controller start/tick are recovered separately; inline caller resolution and full dispatcher remain unexecuted. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending.",
+      "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, dispatcher asset admission and remaining direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified. The native owned-entry/ANI binding adapter and composed original forward controller start/tick are recovered separately; inline caller resolution and full dispatcher remain unexecuted. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; whole original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending. Original file-count/metadata regions are separately compared under authored context and seeded words; surrounding allocation/file/cache/lifecycle and dispatcher admission remain pending.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4803248,
-          "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, dispatcher asset admission and remaining direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified. The native owned-entry/ANI binding adapter and composed original forward controller start/tick are recovered separately; inline caller resolution and full dispatcher remain unexecuted. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending."
+          "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, dispatcher asset admission and remaining direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified. The native owned-entry/ANI binding adapter and composed original forward controller start/tick are recovered separately; inline caller resolution and full dispatcher remain unexecuted. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; whole original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending. Original file-count/metadata regions are separately compared under authored context and seeded words; surrounding allocation/file/cache/lifecycle and dispatcher admission remain pending."
         }
       ],
       "documents": [
@@ -67,7 +72,8 @@
         "research/runtime/effect-motion-initializer.md",
         "research/runtime/effect-animation-selection.md",
         "research/runtime/effect-animation-binding.md",
-        "research/runtime/effect-animation-catalog.md"
+        "research/runtime/effect-animation-catalog.md",
+        "research/runtime/effect-animation-metadata.md"
       ],
       "implementation": [],
       "tests": [],
@@ -85,13 +91,13 @@
       "subsystem": "terrain_lighting",
       "kind": "recovered",
       "title": "Remaining effect movement and lifecycle contracts",
-      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors. Owned effect ANI binding and forward controller state are recovered separately from static caller resolution and authored inputs; full caller integration remains pending. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending.",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors. Owned effect ANI binding and forward controller state are recovered separately from static caller resolution and authored inputs; full caller integration remains pending. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; whole original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending. Original file-count/metadata regions are separately compared under authored context and seeded words; surrounding allocation/file/cache/lifecycle and dispatcher admission remain pending.",
       "confidence": "provisional",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4752368,
-          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors. Owned effect ANI binding and forward controller state are recovered separately from static caller resolution and authored inputs; full caller integration remains pending. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending."
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors. Owned effect ANI binding and forward controller state are recovered separately from static caller resolution and authored inputs; full caller integration remains pending. Installed effect animation catalog loading and owned binding are separately validated by native offline evidence; whole original collection loader execution, caller/dispatcher asset admission, direction variants, Data1/property consumers, drawing and lifecycle/live integration remain pending. Original file-count/metadata regions are separately compared under authored context and seeded words; surrounding allocation/file/cache/lifecycle and dispatcher admission remain pending."
         }
       ],
       "documents": [
@@ -111,7 +117,8 @@
         "research/runtime/effect-motion-initializer.md",
         "research/runtime/effect-animation-selection.md",
         "research/runtime/effect-animation-binding.md",
-        "research/runtime/effect-animation-catalog.md"
+        "research/runtime/effect-animation-catalog.md",
+        "research/runtime/effect-animation-metadata.md"
       ],
       "implementation": [],
       "tests": [],
@@ -121,6 +128,45 @@
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-animation-metadata",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect animation file-count and metadata producer regions",
+      "scope": "Executed original 0049c6e2..0049c735 file-count parse/clamp and 0049c836..0049caae metadata loop with authored stack/register/allocation preconditions, checked ASCII profile-output callback and unchanged CRT calls; explicit seeded word retention, prefix atoi, exact case-insensitive references/printer codes and Data1. All 222 installed entries and bounded malformed fixtures compare against owned reconstructed model. Native complete-entry catalog differences remain deliberate policy; no whole loader, Windows profile/file API, allocation/SEH/cache/lifecycle, dispatcher/render/live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4834736,
+          "scope": "Executed regions 0049c6e2..0049c735 and0049c836..0049caae only; authored preexisting allocation/context, original CRT and checked profile-output callback, hardware breakpoint endpoints; whole collection loader remains unexecuted"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-animation-metadata.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_animation_metadata.cpp",
+        "reconstruction/rendering/effect_animation_metadata.hpp",
+        "reconstruction/rendering/effect-animation-metadata/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-animation-metadata-reference.cpp",
+        "tests/effect-animation-metadata-test.cpp",
+        "tools/test-effect-animation-metadata.py"
+      ],
+      "evidence": [
+        "TL24.animation-metadata-original",
+        "TL24.animation-metadata-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -165,6 +211,102 @@
           "equals": 3
         }
       ]
+    },
+    {
+      "id": "TL24.animation-metadata-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Executed original 0049c6e2..0049c735 file-count parse/clamp and 0049c836..0049caae metadata loop with authored stack/register/allocation preconditions, checked ASCII profile-output callback and unchanged CRT calls; explicit seeded word retention, prefix atoi, exact case-insensitive references/printer codes and Data1. All 222 installed entries and bounded malformed fixtures compare against owned reconstructed model. Native complete-entry catalog differences remain deliberate policy; no whole loader, Windows profile/file API, allocation/SEH/cache/lifecycle, dispatcher/render/live equivalence.",
+      "record": "research/runtime/effect-animation-metadata.json",
+      "sha256": "cc59e33c5ca1b5e3d2dbd8db3cc49326c01a0390a4fd2339da005b1d8961262a",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_regions_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_whole_loader_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/count_windows",
+          "equals": 131
+        },
+        {
+          "pointer": "/metadata_windows",
+          "equals": 393
+        },
+        {
+          "pointer": "/metadata_rows",
+          "equals": 2076
+        },
+        {
+          "pointer": "/installed_entries",
+          "equals": 222
+        },
+        {
+          "pointer": "/native_policy/native_accepted",
+          "equals": 34
+        },
+        {
+          "pointer": "/native_policy/native_refused",
+          "equals": 97
+        }
+      ]
+    },
+    {
+      "id": "TL24.animation-metadata-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Executed original 0049c6e2..0049c735 file-count parse/clamp and 0049c836..0049caae metadata loop with authored stack/register/allocation preconditions, checked ASCII profile-output callback and unchanged CRT calls; explicit seeded word retention, prefix atoi, exact case-insensitive references/printer codes and Data1. All 222 installed entries and bounded malformed fixtures compare against owned reconstructed model. Native complete-entry catalog differences remain deliberate policy; no whole loader, Windows profile/file API, allocation/SEH/cache/lifecycle, dispatcher/render/live equivalence.",
+      "record": "research/runtime/effect-animation-metadata.json",
+      "sha256": "cc59e33c5ca1b5e3d2dbd8db3cc49326c01a0390a4fd2339da005b1d8961262a",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_regions_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_whole_loader_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/count_windows",
+          "equals": 131
+        },
+        {
+          "pointer": "/metadata_windows",
+          "equals": 393
+        },
+        {
+          "pointer": "/metadata_rows",
+          "equals": 2076
+        },
+        {
+          "pointer": "/installed_entries",
+          "equals": 222
+        },
+        {
+          "pointer": "/native_policy/native_accepted",
+          "equals": 34
+        },
+        {
+          "pointer": "/native_policy/native_refused",
+          "equals": 97
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -181,6 +323,24 @@
       "tests": [
         "tests/effect-animation-catalog-test.cpp",
         "tools/test-effect-animation-catalog.py"
+      ]
+    },
+    {
+      "id": "terrain-lighting.effect-animation-metadata",
+      "level": "headless",
+      "scope": "Executed original 0049c6e2..0049c735 file-count parse/clamp and 0049c836..0049caae metadata loop with authored stack/register/allocation preconditions, checked ASCII profile-output callback and unchanged CRT calls; explicit seeded word retention, prefix atoi, exact case-insensitive references/printer codes and Data1. All 222 installed entries and bounded malformed fixtures compare against owned reconstructed model. Native complete-entry catalog differences remain deliberate policy; no whole loader, Windows profile/file API, allocation/SEH/cache/lifecycle, dispatcher/render/live equivalence.",
+      "behaviors": [
+        "TL.effect-animation-metadata",
+        "AS.effect-animation-catalog"
+      ],
+      "evidence": [
+        "TL24.animation-metadata-original",
+        "TL24.animation-metadata-native"
+      ],
+      "tests": [
+        "tests/effect-animation-metadata-reference.cpp",
+        "tests/effect-animation-metadata-test.cpp",
+        "tools/test-effect-animation-metadata.py"
       ]
     }
   ],

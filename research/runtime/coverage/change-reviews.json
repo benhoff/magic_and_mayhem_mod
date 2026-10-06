@@ -17447,6 +17447,248 @@
           "NR.owned-session-startup.sequence-regression-v2"
         ]
       }
+    },
+    {
+      "id": "effect-metadata-recorded-6fb4b31",
+      "reason": "Add owned raw-profile reconstruction for effect animation file-count clamp and conditional metadata writes, keeping it separate from unchanged native complete-entry policy. Execute bounded original regions with authored register/stack/allocation context and checked profile callback; hardware breakpoints stop before surrounding allocation/file/lifecycle work without patching instruction bytes. Preserve seeded memory and classify native refusals/trim/annotation differences. Reconcile focused/central registers, exact links, import hashes, isolated staged census and ledger. Review committed 1016274..6fb4b31de298c168018ddb23efa86f99a3774222 file versions/evidence bindings, retaining pre-receipt finding in working/tests/effect-metadata-history-before-receipt.json and appending retrospective documentation receipt for the sole missing intermediate README version.",
+      "files": [
+        {
+          "after_sha256": "3ca994cdc0b873fa2b6a786c898d3d445fbf39cd43e3ca773f0ade120e87bc16",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect-animation-metadata/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "beb0c5bfb909b7312d84b7a9a308cf6008f2254e35099a1615752d79ab73526c",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_animation_metadata.cpp"
+        },
+        {
+          "after_sha256": "6cad38ecd64cf027cbc4cc37cdcf15cdf6b1a40d922bf3846919dc7597473f83",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/effect_animation_metadata.hpp"
+        },
+        {
+          "after_sha256": "4254df569f4882e5fd3624e646383a4251dfe6f76baf108891740654fe6aeb81",
+          "before_sha256": "89ab265ad83f6dd860f3b0561cfd3e1f07a837f9775548300af9269ca89b3962",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "56ccef804197ca483bdca9c32943bfd239bd7e8814844c9d218ab19b68e36b28",
+          "before_sha256": "2217ef3145510a26793ab553ef3b89bccb39b5a9e6211f41efefe7ba85671d89",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b1908fecaf49e67979fec70ccee379e106532a2219f3be300929d47b1b2480e6",
+          "before_sha256": "73fdd657e4a85e4cfc9584160cbc383a294955181ff65386231436714f678663",
+          "path": "research/runtime/creature-footprint-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "3d3efd29790bc4bff4dd0f5e46f2392cb8f1c9209240bfc2129d3b473d7bfc72",
+          "before_sha256": "6093d6b8c327e90d14d8207e46e4f0db9658f47c119c7b5b987b587518d7a394",
+          "path": "research/runtime/creature-occupancy-lookup-coverage.json"
+        },
+        {
+          "after_sha256": "857bf312a2fc1593a52d88d5b5f0b0f8b5d1321590cd12e944d65b96f9664f46",
+          "before_sha256": "abf87f660124b1225972d6f91e94c7a0c49ea5ca264148482f1a3118bc85a55e",
+          "path": "research/runtime/effect-animation-binding-coverage.json"
+        },
+        {
+          "after_sha256": "0da1fa845b8058b81833537c6ea9bcaefcf0b379db61daf2e8b1019356507139",
+          "before_sha256": "e43ac3c5a940493464d52dbba1bc8c39886828125bd7af9512495f2866dab805",
+          "path": "research/runtime/effect-animation-catalog-coverage.json"
+        },
+        {
+          "after_sha256": "44beade6f601b23a68d45ca9575ef4e5c5b541f981f0e279829129ffa8510563",
+          "before_sha256": "f17dff05b59b7911c1eabd787d4a0cb31c27a796fa1f4f2c3d32d584790337eb",
+          "path": "research/runtime/effect-animation-catalog.md"
+        },
+        {
+          "after_sha256": "9920106740c0e397b8ebf37abf2259608b28a43db0b5d53c56022cfb296e5689",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-metadata-coverage.json"
+        },
+        {
+          "after_sha256": "e3eddc7b6d61096c1026f397d31eb62dffb0a1de183735b906cfbe21aaf9c036",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-metadata-source-index.json"
+        },
+        {
+          "after_sha256": "cc59e33c5ca1b5e3d2dbd8db3cc49326c01a0390a4fd2339da005b1d8961262a",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-metadata.json"
+        },
+        {
+          "after_sha256": "36b3e4be7e09c5a481b2cd161b5be442d2c15a6174f1a4f157972fe04ae6c8e9",
+          "before_sha256": null,
+          "path": "research/runtime/effect-animation-metadata.md"
+        },
+        {
+          "after_sha256": "c18407f8b91efc1d200f11bac09f21983c775e8e027c5c94a2a9f7c9b704a188",
+          "before_sha256": "b95313a037c6b8b47be543db2a30e2187c3c5156f3e2a6037088efa6a60fe86c",
+          "path": "research/runtime/effect-animation-selection-coverage.json"
+        },
+        {
+          "after_sha256": "86c4c6a3b0b1fda5acd6fbf8a2fb2d5781a684df5d982d3d492f220f151c890a",
+          "before_sha256": "3d1e3cbc76c5d74b35d0c3aad4cef43b69f39d4a80da54dbbd34ba7bc3975762",
+          "path": "research/runtime/effect-blocked-destinations-coverage.json"
+        },
+        {
+          "after_sha256": "059d54851a1ee23c5347e0fc67395eb7a7add0e1250503c6f839479e5a253690",
+          "before_sha256": "21003b7b99cc5e87dfff9c4362bb26d044c6049d638580739ed77d5f3e9b5fc3",
+          "path": "research/runtime/effect-cell-cleanup-coverage.json"
+        },
+        {
+          "after_sha256": "55345e80f9a2514f28469de54f6fd21d49ce9b9a20ec455cb61521c3519316a3",
+          "before_sha256": "557448d893262f0bf337d45fdc60f769e4af78dcab887c4263cf555a5859e62a",
+          "path": "research/runtime/effect-cell-transitions-coverage.json"
+        },
+        {
+          "after_sha256": "2ed5c68f8ac19e506e2f5fa2c74aa4e8edce7060bd29148785e364763e049c05",
+          "before_sha256": "da587d8039bdd755b48ff55c5bb465e49e7d1dabc4b99dd6cc083566f45a9c8f",
+          "path": "research/runtime/effect-creature-collision-coverage.json"
+        },
+        {
+          "after_sha256": "a8a52c7fa8c1c4a811d7707f0282279dc63fd03085b493b519a2c3bdbf3ea133",
+          "before_sha256": "34dcd4175c8d78b0047a4a5f81783e3463c77ea9e915de96024d783b94c1ea9a",
+          "path": "research/runtime/effect-height-exits-coverage.json"
+        },
+        {
+          "after_sha256": "67109882b83e0b967c58ebbf65719a0b3c4c56fcd03ed968f4266def341398ee",
+          "before_sha256": "6d7ca36cf4d81e5d4f7d605ff87376ea177bff1abff3c796a86a244c5d879c67",
+          "path": "research/runtime/effect-membership-disabled-coverage.json"
+        },
+        {
+          "after_sha256": "436113d174fe2d9759b1ba3b6071940d35c5b617f284bf1d7010c3be49c7beaf",
+          "before_sha256": "da371d29e7a70197166af4bcff2954ecccda57ab2816c600c27c66b48dc7260c",
+          "path": "research/runtime/effect-motion-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "d4f34c9cd976c249ac50a36a55662b03dfbb30417e0c36c329cda18a892a2922",
+          "before_sha256": "ca36d96e533e2cee6be4aa9e930d613c0579eca689287b4deb29e304847fce46",
+          "path": "research/runtime/effect-record-placement-coverage.json"
+        },
+        {
+          "after_sha256": "e033a4f20f1d149a0c355a085affe9296fdc0a5aa439bfa6f50bad7700aed580",
+          "before_sha256": "a2b4e15d79500c21b9a4d87e231f0c1c945efe1c5878bbf995f63d98dd3b07fc",
+          "path": "research/runtime/effect-same-cell-projection-coverage.json"
+        },
+        {
+          "after_sha256": "2577978905a6f5461ded12d552a8e98baf563bd32bae07780bf0b5143929bcfb",
+          "before_sha256": "ed8923ec9551a11db104cc422f22f5103952e31f9824e380130765589bc71547",
+          "path": "research/runtime/effect-terrain-occupancy-coverage.json"
+        },
+        {
+          "after_sha256": "d4a2977762505b62c7f8593e65af81fa9d59b5535402124aacf55ecb2f5ee200",
+          "before_sha256": "6f7775e1957300c24a9eee89d367f7ce2f9f15729589473c9aa1f2fe37798b15",
+          "path": "research/runtime/effect-trajectory-coverage.json"
+        },
+        {
+          "after_sha256": "f001c99ad1115f78457b1385c1288afb2f5b8ac8482bea7eec9fe8c13de2505e",
+          "before_sha256": "0bd682b65edbfccd4d4bfd105bd9979f8869b211897cfd53d30992245560e7f6",
+          "path": "research/runtime/effect-trajectory-initializer-coverage.json"
+        },
+        {
+          "after_sha256": "8957a24c11299280f906f506e9e54cab2dbbc9425fc5b971a9e7c6e3635ca45c",
+          "before_sha256": null,
+          "path": "tests/effect-animation-metadata-reference.cpp"
+        },
+        {
+          "after_sha256": "135e49e2b558884bd94649bf9a5aad0fee4c07c3b29f5a1ad3f85f924e498356",
+          "before_sha256": null,
+          "path": "tests/effect-animation-metadata-test.cpp"
+        },
+        {
+          "after_sha256": "00a7b58a976a21ff66c491d73212de7fb176d05d0969de1021acf63a89107e25",
+          "before_sha256": null,
+          "path": "tools/test-effect-animation-metadata.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "f7606eb69afb8103641bbbeb93157530031689e0295414d87e83194390820ab1",
+          "before_sha256": "6ed26ab64adad3fa6c7914dd1a0cf0f87758b13758834e85d13a0f21064ec127",
+          "id": "AS.effect-animation-catalog"
+        },
+        {
+          "after_sha256": "24304a7ad3e92774b2bdcf640488217be2cdf29e7b371d80833325a2d8f8f922",
+          "before_sha256": null,
+          "id": "TL.effect-animation-metadata"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TL24.animation-metadata-original",
+          "TL24.animation-metadata-native"
+        ],
+        "reason": "131 unmodified original count regions and 393 metadata regions produce 2076 entry results with real original atoi/itoa/stricmp and 8435 checked profile requests. All 222 installed entries agree under zero/A5/FF initial byte fills. Exact hardware breakpoint PC/restored stack, table guards, final ordinal/cursor and original region bytes are checked. Original output streams match normal and ASan/UBSan owned reconstruction, with strict units in both builds. Unchanged native catalog accepts 34 fixture sets and refuses 97; six accepted reference/printer trim/semicolon differences are explicitly recorded using nonzero seeds to expose retained original words. Source/input hashes stable and 2927 immutable originals verify before/after. No whole-loader prologue/SEH/allocation, animation count allocation, Windows profile/filesystem, cache/file/lifecycle, dispatcher/draw/live claims; earlier installed AS23 evidence stays unchanged and fresh."
+      }
+    },
+    {
+      "id": "effect-metadata-remaining-6fb4b31",
+      "reason": "Narrow effect type setup/movement pending scope around separately executed metadata regions while retaining whole original collection loading, dispatcher asset admission, variants/property/drawing/lifecycle and live gaps.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "bffc5efe568a6881eaeb57044b0f8642491632c428784ed5980ffc7ee637ecb2",
+          "before_sha256": "c8278abb9d7bf1ea38bd0625a9c04a8be7f52a732e58c6644330fba47e2b4551",
+          "id": "TL.effect-movement-recount"
+        },
+        {
+          "after_sha256": "3d1e1c55eaa79c595060b2ffca82a62ac2a0c232b6e8d9fb44dbcfa7151d96b1",
+          "before_sha256": "d7bde1fb82054b10a2221cddee9d190c9dc9e27e38c484a295ea790964f29378",
+          "id": "TL.effect-type-setup"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "TL24 establishes only the count and metadata regions under authored setup. Full loader/caller/dispatcher composition and live lifecycle remain unexecuted; historical evidence/source fingerprints and independent statuses are preserved, without new equivalence for these pending parent contracts."
+      }
+    },
+    {
+      "id": "effect-metadata-summary-6fb4b31",
+      "reason": "Refresh generated coverage summary for bounded metadata comparison and native policy differences with independent whole-loader/live gaps.",
+      "files": [
+        {
+          "after_sha256": "d445bbcd08633c20ee9d9260a6424c911468c02da280b694fb789e20d964c6d4",
+          "before_sha256": "fde97793638ad9b2d74bf3e20ae5fe40bb0aa7b9ae4f4f34151732306a141457",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated metadata only, no engine behavior or validation promotion."
+      }
+    },
+    {
+      "id": "retrospective-render-readme-6fb4b31-effect-metadata",
+      "reason": "Retrospective exact documentation review for committed 6fb4b31 parent/current runtime/render/README.md. The added paragraph documents the opt-in MNM_RENDER_SESSION_PRESENTATIONS value 1..32, first/complete operation ceilings 64/256, unchanged 64MiB/ownership limits, the sequence test command and bounded research link. These are documentation of NR.owned-session-sequence; source/evidence/behavior changes already have their own committed receipts. This receipt repairs the missing exact README file version in reviewed range 1016274..6fb4b31de298c168018ddb23efa86f99a3774222 and does not assert a historical gate pass or any new rendering execution.",
+      "files": [
+        {
+          "path": "runtime/render/README.md",
+          "before_sha256": "474bdd66295b45e8ea5ea1c0773552b47ca8a73cc1a8495de3a723631103bdf5",
+          "after_sha256": "4fb9d61ef6b3c693886c6a6e763640b01c7dc3f0d05a2eec313436914d70b19f"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": null,
+          "after_sha256": "9342837251b1d4893f822bd29a6d1f0a054e37a4f3d8246b1bd78856f4da5f86"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Documentation-only retrospective accounting. Preserve the prior independent rendering evidence/statuses and source hashes; this metadata work does not rerun sequence/startup rendering comparisons or observe a live game."
+      }
     }
   ]
 }
