@@ -9,10 +9,20 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'python'))
-from mnm_protocols import frame_v1 as frame, input_v1 as inputs, media_v1 as media
+from mnm_protocols import frame_v1 as frame, input_v1 as inputs, media_v1 as media, render_control_v1 as control
 
 
 class Contracts(unittest.TestCase):
+    def test_render_control(self):
+        expected=b'MNMRCV01'+struct.pack('<II',1,576)+bytes(48)
+        self.assertEqual(control.initial_header(),expected)
+        self.assertTrue(control.valid_header(expected,576))
+        self.assertFalse(control.valid_header(expected,575))
+        self.assertEqual([control.LAUNCH_ID_OFFSET,control.REQUEST_SEQUENCE_OFFSET,
+                          control.TARGET_SESSION_OFFSET,control.RESPONSE_SEQUENCE_OFFSET,
+                          control.CANCEL_OFFSET,control.PATH_LENGTH_OFFSET,control.ONLINE_OFFSET,
+                          control.PATH_OFFSET,control.PATH_SIZE],[16,20,28,32,40,44,48,64,512])
+
     def test_generated_files_current(self):
         subprocess.run([sys.executable, '-B', str(ROOT/'generate.py'), '--check'], check=True)
 

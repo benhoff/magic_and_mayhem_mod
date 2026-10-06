@@ -1,0 +1,132 @@
+{
+  "name": "render_control",
+  "version": 1,
+  "magic": "MNMRCV01",
+  "size": 576,
+  "header_size": 64,
+  "byte_order": "little",
+  "declared_size_kind": "size",
+  "fields": [
+    {
+      "name": "magic",
+      "offset": 0,
+      "size": 8,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "version",
+      "offset": 8,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "declared_size",
+      "offset": 12,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "launch_id",
+      "offset": 16,
+      "size": 4,
+      "owner": "creator",
+      "type": "u32le"
+    },
+    {
+      "name": "request_sequence",
+      "offset": 20,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "operation",
+      "offset": 24,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "target_session",
+      "offset": 28,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "response_sequence",
+      "offset": 32,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "status",
+      "offset": 36,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "cancel",
+      "offset": 40,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "path_length",
+      "offset": 44,
+      "size": 4,
+      "owner": "consumer",
+      "type": "u32le"
+    },
+    {
+      "name": "online",
+      "offset": 48,
+      "size": 4,
+      "owner": "producer",
+      "type": "u32le"
+    },
+    {
+      "name": "reserved",
+      "offset": 52,
+      "size": 12,
+      "owner": "creator",
+      "type": "bytes"
+    },
+    {
+      "name": "path",
+      "offset": 64,
+      "size": 512,
+      "owner": "consumer",
+      "type": "bytes"
+    }
+  ],
+  "constants": {
+    "max_path_length": 511,
+    "callback_wait_ms": 50,
+    "gate_timeout_ms": 250,
+    "response_timeout_ms": 6000,
+    "frame_timeout_ms": 10000,
+    "max_recoveries": 3
+  },
+  "enums": {
+    "operation": {
+      "recover": 1
+    },
+    "status": {
+      "none": 0,
+      "ready": 1,
+      "refused": 2
+    },
+    "online": {
+      "waiting": 0,
+      "running": 1,
+      "stopped": 2
+    }
+  }
+}

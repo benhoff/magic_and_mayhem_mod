@@ -2,10 +2,11 @@
  * Real PE32 hooks produce commands; expected display pixels are never inputs. */
 struct CsSurface {void** table;u32 width,height,bits,primary,held;u8 *native,*exposed;};
 static struct CsSurface cs_small,cs_big,cs_extra[31];
-static u32 cs_locks,cs_unlocks,cs_color;
+static u32 cs_locks,cs_unlocks,cs_color,cs_delay;
 static i32 WIN cs_lock(void* object,void* rect,u32* d,u32 flags,HANDLE event){
     struct CsSurface* s=object;
     if(s->held || rect || flags!=1 || event || GetLastError()!=0x77)ExitProcess(290);
+    if(cs_delay){u32 delay=cs_delay;cs_delay=0;pl_file("callback-entered.bin",&delay,4);Sleep(delay);}
     ++cs_locks;s->held=1;u32 row=s->width*(s->bits/8),pitch=row+8;
     for(u32 y=0;y<s->height;++y)copy_bytes(s->exposed+y*pitch,s->native+y*row,row);
     d[1]=1;d[2]=s->height;d[3]=s->width;d[4]=pitch;d[9]=(u32)s->exposed;

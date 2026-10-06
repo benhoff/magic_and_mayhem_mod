@@ -24,12 +24,13 @@ static int command_candidate_open(struct CommandCandidate* c,const char* path){
        mnm_ring_load(p+6)!=0 || mnm_ring_load(p+5) || mnm_ring_load(p+7) || mnm_ring_load(p+8) || mnm_ring_load(p+9))return 0;
     c->file.session=p[4];c->queue=HeapAlloc(GetProcessHeap(),0,COMMAND_QUEUE_CAPACITY);return c->queue!=0;
 }
-static int command_recovery_quiet(void){
-    if(game_session_enabled || __atomic_load_n(&lock_capture_reserved,__ATOMIC_ACQUIRE))return 0;
+static int command_recovery_leases_quiet(void){
+    if(__atomic_load_n(&lock_capture_reserved,__ATOMIC_ACQUIRE))return 0;
     for(u32 i=0;i<32;++i)if(game_locks[i].active || session_surfaces[i].dc_pending)return 0;
     for(u32 i=0;i<GAME_SURFACE_COUNT;++i)if(game_surfaces[i].dc)return 0;
     return 1;
 }
+static int command_recovery_quiet(void){return !game_session_enabled && command_recovery_leases_quiet();}
 static void command_recovery_checkpoints(void){
     /* Epochs/generations remain monotonic. No old CPU checkpoint, alias,
      * palette/property or pending primary identity can seed the new stream. */
@@ -44,14 +45,17 @@ static void command_recovery_checkpoints(void){
     session_started=session_epoch=session_sequence=session_bytes=session_operations=session_presented=session_pixels=0;
     session_archive_sequence=session_archive_bytes=session_last_id=0;++session_archive_id;
 }
-__declspec(dllexport) u32 WIN RenderRecover(const char* path){
-    u32 error=GetLastError(),ready=0;struct CommandCandidate next;zero(&next,sizeof(next));
+static u32 command_recover(const char* path,u32 expected_session){
+    u32 error=GetLastError(),ready=0,stage=1;struct CommandCandidate next;zero(&next,sizeof(next));
     if(!__sync_bool_compare_and_swap(&command_shutdown_busy,0,1)){SetLastError(error);return 0;}
     if(!stream || !game_session_continuous || !lock_capture_path_length || !command_worker_joined ||
        command_worker || command_queue || command_channel || command_file_count>=16 ||
        (command_auto_shutdown() && !command_exit_installed))goto done;
-    if(!command_candidate_open(&next,path))goto done;
+    stage=2;
+    if(!command_candidate_open(&next,path) || (expected_session && next.file.session!=expected_session))goto done;
+    stage=3;
     if(!game_tracker_acquire())goto done;
+    stage=4;
     if(!command_recovery_quiet() || game_lock_epoch==0xffffffffu || game_metadata_epoch==0xffffffffu ||
        game_surface_generation>0xffffffffu-GAME_SURFACE_COUNT || session_archive_id==0xffffffffu){game_tracker_release();goto done;}
     /* Join retired the old worker; also exclude callback-side idle pumps while
@@ -59,6 +63,7 @@ __declspec(dllexport) u32 WIN RenderRecover(const char* path){
     if(!__sync_bool_compare_and_swap(&command_queue_draining,0,1)){game_tracker_release();goto done;}
     /* Bind only after all admission checks. If the peer changes the candidate
      * before this CAS, nothing in the old producer is reset. */
+    stage=5;
     struct mnm_ring_writer writer;
     if(!mnm_ring_writer_bind(&writer,next.map,MNM_RENDER_COMMANDS_V2_SIZE)){
         __sync_lock_release(&command_queue_draining);game_tracker_release();goto done;
@@ -87,8 +92,10 @@ __declspec(dllexport) u32 WIN RenderRecover(const char* path){
     if(!ready){command_worker_joined=1;command_channel_close();}
     lock_diagnostic(ready?"command_recovery_started":"command_recovery_failed",0,0,writer.session,session_archive_id,0,0,0);
     game_tracker_release();
- done:command_candidate_close(&next);__sync_lock_release(&command_shutdown_busy);SetLastError(error);return ready;
+ done:if(!ready)lock_diagnostic("command_recovery_refused",0,0,stage,expected_session,command_file_count,command_worker_joined,0);
+    command_candidate_close(&next);__sync_lock_release(&command_shutdown_busy);SetLastError(error);return ready;
 }
+__declspec(dllexport) u32 WIN RenderRecover(const char* path){return command_recover(path,0);}
 #ifdef MNM_RENDER_SELFTEST
 __declspec(dllexport) u32 WIN RenderRecoveryStateForTest(u32* values){
     u32 error=GetLastError();if(!game_tracker_acquire()){SetLastError(error);return 0;}

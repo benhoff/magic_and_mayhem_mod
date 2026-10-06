@@ -61,6 +61,7 @@ __declspec(dllexport) u32 WIN RenderStartup(void){
          (!command_auto_shutdown() || command_exit_installed)));
     game_tracker_release();
     if(ready)ready=command_scheduler_start();
+    if(!command_control_start())ready=0;
     SetLastError(error);return ready;
 }
 #ifdef MNM_RENDER_SELFTEST

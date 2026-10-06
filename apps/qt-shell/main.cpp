@@ -32,6 +32,7 @@
 #include "commands.hpp"
 #include "command_replay.hpp"
 #include "live_command_renderer.hpp"
+#include "live_command_session.hpp"
 #include <QFile>
 #include <QSurfaceFormat>
 #include <QUuid>
@@ -256,7 +257,7 @@ private:
             if(nativeMedia_){
                 media_=std::make_unique<MediaBroker>(*gl_,QDir(repo_).filePath("working/game-nocd"));
                 media_->frame=[this](QImage image){gl_->setFrame(std::move(image));placeholder_->hide();gl_->show();gl_->setFocus();};
-                media_->movieChanged=[this](bool playing){input_->suspend(playing);statusBar()->showMessage(playing?"Playing movie in Qt. Press Escape to skip.":"Movie finished; resuming game frames.");};
+                media_->movieChanged=[this](bool playing){input_->suspend(playing || (commands_ && commands_->state()!=LiveCommandSession::State::Active));statusBar()->showMessage(playing?"Playing movie in Qt. Press Escape to skip.":"Movie finished; resuming game frames.");};
                 if(!media_->create(path+".media")){finished();statusBar()->showMessage("Cannot create native media channel.");return;}
                 arguments.append({"--media-channel",path+".media"});
             }
@@ -266,11 +267,13 @@ private:
             if(noReadback_)arguments.append("--no-readback");
             if(captureLocks_)arguments.append("--capture-locks");
             if(nativeCommands_){
-                commands_=std::make_unique<LiveCommandRenderer>(*gl_);
-                commands_->framePresented=[this]{placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
+                commands_=std::make_unique<LiveCommandSession>(*gl_);
+                commands_->stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
+                commands_->framePresented=[this]{input_->suspend(media_ && media_->movieActive());placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
                 const bool continuous=qEnvironmentVariable("MNM_RENDER_CONTINUOUS")==QStringLiteral("1");
-                if(!commands_->create(path+".commands",QRandomGenerator::global()->generate()|1u,continuous?2:1)){const auto error=commands_->error();finished();statusBar()->showMessage(error);return;}
+                if(!commands_->create(path+".commands",(QRandomGenerator::global()->generate()&0x7fffffffu)|1u,continuous?2:1)){const auto error=commands_->error();finished();statusBar()->showMessage(error);return;}
                 arguments.append({"--command-channel",path+".commands"});
+                if(continuous){input_->suspend(true);arguments.append({"--render-control",path+".commands.control"});}
             }
             if(nativeCommands_)gl_->show();else gl_->hide();placeholder_->show();
             placeholder_->setText((noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":"Waiting for the first DirectDraw frame…");
@@ -309,7 +312,7 @@ private:
     SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;
     std::unique_ptr<LiveBattleMenuController> battleMenus_;
     std::unique_ptr<LiveMenuSession> liveMenus_;QStackedWidget* menuStack_=nullptr;MainMenuWidget* liveMain_=nullptr;QuickBattleMenuWidget* liveQuick_=nullptr;QPushButton* fallback_=nullptr;bool menuAssetsLoaded_=false,closeAfterGame_=false;
-    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false;std::unique_ptr<LiveCommandRenderer> commands_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false;std::unique_ptr<LiveCommandSession> commands_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;

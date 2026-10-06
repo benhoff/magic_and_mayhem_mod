@@ -599,12 +599,16 @@ channel and the continuous owned producer. Its command archive defaults off;
 `MNM_RENDER_SESSION_ARCHIVE=1` retains a bounded diagnostic prefix independently
 of live progress. Default launches retain their bounded sample policy. This
 mode retains original drawing and refuses unsupported ownership/operations;
-resource release and guarded orderly exit are implemented; recovery remains pending. See the
+resource release and guarded orderly exit are implemented. See the
 [producer contract](../../research/runtime/opengl-continuous-producer.md) and
 [startup/exit orchestration](../../research/runtime/opengl-command-orchestration.md).
 
-The PE32 producer now has an explicit fresh-session recovery export for a
-quiescent host. Qt does not yet negotiate or invoke it; a native refusal still
-falls back to the original game window. The controlled recovery fixture uses a
-fresh consumer for each channel. See the
+Qt continuous mode now negotiates recovery through a fresh versioned control
+channel. It cancels the failed consumer, clears presentation, creates a fresh
+higher-session command file, and resumes input only after producer admission
+and a complete new frame. Replies time out after 6 seconds, frames after
+10 seconds, and at most three recoveries are allowed per launch. Refusal or
+exhaustion preserves original-window fallback. Synthetic validation uses the
+same Qt viewport/context; actual-game recovery remains pending. See
+[host recovery](../../research/runtime/opengl-command-host-recovery.md) and the
 [producer recovery contract](../../research/runtime/opengl-command-recovery.md).

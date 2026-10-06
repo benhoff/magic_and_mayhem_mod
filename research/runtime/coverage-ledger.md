@@ -1258,3 +1258,30 @@ eight pressure cases, five idle cases, eleven startup/exit cases /eight frames,
 and two continuous GPU cases /72 frames pass. Production/selftest PE32 builds
 pass. The central register links six new records for this scoped native policy;
 original comparison and live replacement remain none.
+
+### Qt command recovery orchestration (2026-10-06)
+
+`NR.command-host-recovery` extends explicit producer recovery with a versioned
+administrative channel and automatic fresh-file/higher-session handoff in the
+same Qt viewport/context. Failed consumer records/textures are discarded;
+forwarded input resumes only after matching producer READY and a complete new
+PRESENT. Finite reply/frame deadlines, three recoveries, observed callback and
+pixel/DC quiescence, permanent cancellation and original-window fallback are
+native policies. Loader-lock worker creation/join and original process kills
+are excluded. [Contract and boundaries](opengl-command-host-recovery.md).
+
+Synthetic PE32/Qt independent full-frame comparisons, held/concurrent ownership,
+refused/invalid/silent/cancelled negotiation, repeated failures, startup-stream
+failure and fresh-frame timeout are recorded separately from actual gameplay.
+Original game recovery, real-driver equivalence and movie/recovery interaction
+remain pending. Shared-source historical evidence stays pinned and may be stale;
+this milestone neither refreshes those hashes nor claims original comparison or
+live replacement. Committed predecessor receipts are reviewed separately in
+`coverage/committed-history-host-recovery-20261006.json`.
+
+Final-source host validation passes 13 scenarios /143 independent GPU frames,
+10 native and 10 ASan/UBSan control cases with leak checking, nine invalid launch
+configurations, and nine explicit producer API regressions /33 sessions /66
+frames. Native/sanitized queue and four Qt/OpenGL regressions pass, along with
+production/selftest PE32 and Qt shell builds. New immutable evidence records
+retain those bounds; original comparison and live replacement remain none.

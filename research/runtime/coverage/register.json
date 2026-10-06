@@ -14075,6 +14075,63 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.command-host-recovery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Qt fresh-session recovery over a versioned producer control channel",
+      "scope": "Versioned Qt/PE32 administrative channel, finite native callback/observed pixel/DC admission, old retry-worker shutdown/join, fresh-file/higher-session candidate and same-context consumer handoff with complete PRESENT before input resumes. Synthetic integration only; original game recovery, real drivers, unobserved leases, movie interaction and failure injection remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-command-host-recovery.md",
+        "research/formats/render-control-v1.md",
+        "protocols/CONTRACTS.md",
+        "apps/qt-shell/README.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/bridge.c",
+        "tools/run-opengl-game.py",
+        "protocols/schemas/render_control-v1.json",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/python/mnm_protocols/render_control_v1.py"
+      ],
+      "tests": [
+        "tests/live-command-recovery-test.cpp",
+        "tests/render-control-test.cpp",
+        "tools/test-render-host-recovery.py",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/selftest.c",
+        "renderer/CMakeLists.txt",
+        "protocols/tests/test_contracts.py",
+        "tools/test-render-control-launcher.py",
+        "tools/test-render-recovery.py"
+      ],
+      "evidence": [
+        "NR.command-host-recovery.pe32",
+        "NR.command-host-recovery.launcher",
+        "NR.command-host-recovery.queue",
+        "NR.command-host-recovery.explicit"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -24631,6 +24688,62 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.command-host-recovery.pe32",
+      "kind": "native_integration",
+      "scope": "Thirteen actual asynchronous PE32/Qt recovery scenarios in one viewport/context, independent full original-fixture CPU pixels, sticky terminal mappings, bounded refusal/fallback and original call/error/count preservation; includes native and ASan/UBSan control client checks.",
+      "record": "research/runtime/opengl-command-host-recovery-pe32.json",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sha256": "93cecb1c1239c94b9449f5fb3e75851050271c42451b6a57bcc450c2c9f826f4"
+    },
+    {
+      "id": "NR.command-host-recovery.launcher",
+      "kind": "native_integration",
+      "scope": "Nine synthetic invalid control/v2 launch configurations refuse without consuming game artifacts or mutating channel files.",
+      "record": "research/runtime/opengl-command-host-recovery-launcher.json",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sha256": "089fb5189f88d1a2d61db01a2795cc1ddc58fed3bb711e2863dbc4cde28a6fb3"
+    },
+    {
+      "id": "NR.command-host-recovery.queue",
+      "kind": "native_integration",
+      "scope": "Native and ASan/UBSan/leak-checked actual queue/channel API fake regressions; no new original comparison.",
+      "record": "research/runtime/opengl-command-host-recovery-queue.json",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a"
+    },
+    {
+      "id": "NR.command-host-recovery.explicit",
+      "kind": "native_integration",
+      "scope": "Nine explicit quiescent API regression scenarios,33 sessions and66 independent frames; fresh consumer per session, separate from asynchronous host negotiation and original-game recovery.",
+      "record": "research/runtime/opengl-command-host-recovery-explicit.json",
+      "sha256": "f17aa908a2c7fa172e519f41c4a6080dc9ab9a8b7cf35b58b8c15985aa01586b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -28471,6 +28584,32 @@
         "tools/test-render-orchestration.py",
         "tools/test-render-continuous-producer.py"
       ]
+    },
+    {
+      "id": "NR.command-host-recovery.preview",
+      "scope": "Versioned Qt/PE32 administrative channel, finite native callback/observed pixel/DC admission, old retry-worker shutdown/join, fresh-file/higher-session candidate and same-context consumer handoff with complete PRESENT before input resumes. Synthetic integration only; original game recovery, real drivers, unobserved leases, movie interaction and failure injection remain pending.",
+      "level": "preview",
+      "behaviors": [
+        "NR.command-host-recovery"
+      ],
+      "evidence": [
+        "NR.command-host-recovery.pe32",
+        "NR.command-host-recovery.launcher",
+        "NR.command-host-recovery.queue",
+        "NR.command-host-recovery.explicit"
+      ],
+      "tests": [
+        "tests/live-command-recovery-test.cpp",
+        "tests/render-control-test.cpp",
+        "tools/test-render-host-recovery.py",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/selftest.c",
+        "renderer/CMakeLists.txt",
+        "protocols/tests/test_contracts.py",
+        "tools/test-render-control-launcher.py",
+        "tools/test-render-recovery.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -28718,7 +28857,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-command-recovery-20261006.json",
-    "sha256": "d7a33cfba1579942810deae5deca985f94378ef71c9ad7b0aec152863bdf38c2"
+    "path": "research/runtime/coverage/source-index-command-host-recovery-20261006.json",
+    "sha256": "4164654b01f2dd410f96d58c4eb3ebe423e8400a69e4fa53fd42d19f0003cc42"
   }
 }

@@ -8,6 +8,7 @@ import os
 import re
 from pathlib import Path
 import shutil
+import struct
 import subprocess
 import tempfile
 REPO=Path(__file__).resolve().parent.parent
@@ -15,7 +16,7 @@ REPO=Path(__file__).resolve().parent.parent
 # Shared wire definitions are repository-local; no package installation required.
 import sys
 sys.path.insert(0, str(REPO / "protocols/python"))
-from mnm_protocols import frame_v1 as frame_protocol, input_v1 as input_protocol, media_v1 as media_protocol, render_commands_v1 as command_protocol, render_commands_v2 as ring_protocol
+from mnm_protocols import frame_v1 as frame_protocol, input_v1 as input_protocol, media_v1 as media_protocol, render_commands_v1 as command_protocol, render_commands_v2 as ring_protocol, render_control_v1 as control_protocol
 
 
 def load(name,file):
@@ -67,6 +68,7 @@ def disable_cd_music(game):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stream',type=Path,required=True);parser.add_argument('--stage-only',action='store_true')
+    parser.add_argument('--render-control',type=Path,help='Fresh continuous recovery control channel')
     parser.add_argument('--command-channel',type=Path,help='Opt-in bounded mapped native command channel; implies capture-locks')
     parser.add_argument('--voice-channel',type=Path,help='Experimental pre-created native DirectSound voice channel')
     parser.add_argument('--media-channel',type=Path,help='Opt-in pre-created Qt movie/file-sound channel')
@@ -84,6 +86,12 @@ def main():
         if not frame_protocol.valid_header(file.read(frame_protocol.HEADER_SIZE), stream.stat().st_size):raise ValueError('Invalid pre-created frame stream')
     command_path=args.command_channel.resolve() if args.command_channel else None
     continuous=os.environ.get('MNM_RENDER_CONTINUOUS')=='1'
+    control_path=args.render_control.resolve() if args.render_control else None
+    if control_path:
+        if not continuous or not command_path or not control_path.is_relative_to(REPO/'working'):raise ValueError('Recovery requires continuous v2 channels under working/')
+        data=control_path.read_bytes()
+        if not control_protocol.valid_header(data,len(data)) or not struct.unpack_from('<I',data,16)[0] or any(data[20:]):raise ValueError('Invalid fresh rendering control channel')
+        if data[16:20]!=command_path.read_bytes()[16:20]:raise ValueError('Rendering control launch ID mismatch')
     if continuous and not command_path:raise ValueError('Continuous production requires a pre-created v2 command channel')
     if command_path:
         if not command_path.is_relative_to(REPO/'working'):raise ValueError('Command channel must be under working/')
@@ -91,7 +99,6 @@ def main():
             header=file.read(command_protocol.HEADER_SIZE)
             if not (command_protocol.valid_header(header,command_path.stat().st_size) or ring_protocol.valid_header(header,command_path.stat().st_size)):raise ValueError('Invalid command channel')
             if continuous and not ring_protocol.valid_header(header,command_path.stat().st_size):raise ValueError('Continuous production requires a v2 command channel')
-            import struct
             if not struct.unpack_from('<I',header,16)[0] or any(header[20:]):raise ValueError('Command channel is not a fresh session')
     input_path=args.input.resolve() if args.input else None
     if input_path:
@@ -131,6 +138,7 @@ def main():
     metadata['voice_channel']=str(voice_path) if voice_path else None
     metadata['audio_dll_sha256']=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None
     metadata['media_channel']=str(media_path) if media_path else None
+    metadata['render_control']=str(control_path) if control_path else None
     metadata['command_channel']=str(command_path) if command_path else None
     metadata['continuous_commands']=continuous
     metadata['command_archive']=not continuous or os.environ.get('MNM_RENDER_SESSION_ARCHIVE')=='1'
@@ -153,6 +161,8 @@ def main():
     env.pop('MNM_RENDER_INPUT',None)
     if input_path:env['MNM_RENDER_INPUT']='Z:'+str(input_path).replace('/','\\')
     env.pop('MNM_RENDER_COMMAND_CHANNEL',None)
+    env.pop('MNM_RENDER_CONTROL',None)
+    if control_path:env['MNM_RENDER_CONTROL']='Z:'+str(control_path).replace('/','\\')
     if command_path:
         env['MNM_RENDER_COMMAND_CHANNEL']='Z:'+str(command_path).replace('/','\\')
         env['MNM_RENDER_OWNED_SESSION']='1'

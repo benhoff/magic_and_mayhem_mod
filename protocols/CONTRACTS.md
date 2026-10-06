@@ -98,3 +98,14 @@ surface-command v1 stream and a separate terminal state. It uses a fresh file
 per session, writer claim, nonzero session token, monotonic byte count and
 consumer cancellation. It fails on capacity/gaps instead of overwriting or
 resynchronizing. See [exact layout and lifecycle](../research/formats/render-command-channel.md).
+
+## Render control: injected producer, native consumer
+
+[Render control v1](../research/formats/render-control-v1.md) provides one
+administrative request at a time. Qt publishes immutable path/expected-session
+fields before the release request sequence. PE32 publishes status before the
+matching release response sequence. READY permits polling the fresh ring; Qt
+resumes input only after a complete new PRESENT. Cancellation is permanent and
+reply/frame deadlines and request budgets are finite. The separate native
+callback admission gate establishes observed drawing quiescence; the wire
+itself carries no application leases or pointers.
