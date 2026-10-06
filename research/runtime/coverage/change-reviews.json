@@ -30185,6 +30185,160 @@
         "reason": "Shared operation matrix/ledger and helper test links reviewed; other subsystem historical source fingerprints remain unchanged. No new validation/status promotion for those contracts.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "ee563cc7db6612344e2e28fadb00b52c0f6365fb419e5039bc1b176ea4a3d573",
+          "before_sha256": "832597cb34984a33b10cf626167f31fab6d5b7df37c134ab4658b8d45075c7dc",
+          "id": "NR.real-game-command-shadow"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "5158321c4e2aa254a0d1a8b91200e62278f47e829823210bfbae008112f9c907",
+          "before_sha256": "abb7a008d9d236638a7091bd15218ca7dedbb75b422be424c2667383c56cf28d",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "5ae4005c2a612b26f0184dc249c1e6ac2e01d463bd1e2a9b9e2540323fac60a7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-world-observation-20261006.json"
+        },
+        {
+          "after_sha256": "89e4dab18d7d90b0bf6cb91ea2c5beeca3f864b0e97266f711ad2eb51fdeb903",
+          "before_sha256": "9f14205eaa4cadd3f0bd39a864f4830f2b3873e7b304989ce34ab16fb1b6330c",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "4b6eeddda366f88fd17ce41001310846884ecd198a983704772c63ec26d42058",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-world-observation-20261006.json"
+        },
+        {
+          "after_sha256": "8b4ca684a7ae8813a3bddc015b3b1c3cb6ff4aa5363267c3027bc3d5eacc8a1b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-world-observation-20261006.md"
+        },
+        {
+          "after_sha256": "03e79a13a3edc47b971d94347418565e28e9f18cab1fe52db89a363999a4d106",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-world-observation-20261006.json"
+        },
+        {
+          "after_sha256": "3cd3d5db7af39c63d5649947dc91b641517448fadb6a38cc502f723ebdcc662c",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-world-observation.md"
+        },
+        {
+          "after_sha256": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+          "before_sha256": "16622a7c16456649ddadc4368bcf32b9e95a19c090843eef431c8f12f47a876a",
+          "path": "tests/live-render-route-probe.cpp"
+        },
+        {
+          "after_sha256": "a4f093ce423cc7b9661ec70b79de2c7ed0f2dc1e32c636061e3f122413b1cc90",
+          "before_sha256": "39453ce9c0fda8c97f7cab2a61b7e4bab7b5b5b28f87d1ce7237e6c7e0456f70",
+          "path": "tools/test-live-render-routes.py"
+        }
+      ],
+      "id": "world-guided-idle-observation-20261006-recorded",
+      "pending_gaps": [],
+      "reason": "Reviewed finite 3..60-second observation controls, ordered160-request probe bound, required independent original X11 guidance/terrain/portrait comparisons, initial guidance dismissal and repeated Active World samples in the same forced-recovery session. Actual screenshots show Select Zombie Spell after dismissal: scope remains guided idle World. Reviewed exact committed source/evidence receipts across c84f26e..057f07d, preserving the concurrent original-overlap capture and excluding its pending renderer changes from this staged chunk.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.command-world-observation.live-20261006"
+        ],
+        "reason": "Fresh isolated original campaign publishes642 complete native frames,331 after World recovery over32,398 ms. All15 independent stable region comparisons pass first-attempt with maximum channel error1, including11 World guidance/terrain/portrait regions and4 menu regions. Native Active checks, exactlyone World recovery, terminalresource retirement, zero ordinary readbacks/uploads, unchanged source preferences and2,927 original files pass. Probe rebuild and three invalid-bound/route refusals pass. Animated actors, spell/effect actions, synchronized/full-frame pixels, movies, driver equivalence and replacement remain pending."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "c5a04e4eed58abb6d4ff487cdbe012c4cd14ac230545b7cdabcc9b7699eafb27",
+          "before_sha256": "7475c62fd5622e0e080181c2431b576debeae020e80610a84eae835dc9930c16",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "8a6c16a9c3e776a51ec1094c4c432edbc54d9e397befe6be264e07c5af6e9fbc",
+          "before_sha256": "256712d6564fe277edeb56952295ac9c8a60f6db4ca2c2aae48833ad57b22b62",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "c337f1c2d857c3c9a2eef4076bd6a190c97fbb237546d996fca1cc5474996870",
+          "before_sha256": "f61d808d1526713f31e569f128b65ea58f11da60163e8cb407e41e2af078251f",
+          "id": "NR.continuous-resource-working-set"
+        },
+        {
+          "after_sha256": "26dd5610e24579da3c707f0f292cb1468dabad6a401aaea2de03a06f3101600a",
+          "before_sha256": "32731dc35034ad92300b98a09e0ab62b65587c844667e40fb620d3ecef6eceaf",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "8e144c75e2e71e6a50cccfd586762b9aa82781f74ff32c303a982c09052a58df",
+          "before_sha256": "b4eebeb2545fc9117e803c9eda00c52d23cee06a2961f04b081bf89b7b6fb60e",
+          "id": "RI.ui"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "5158321c4e2aa254a0d1a8b91200e62278f47e829823210bfbae008112f9c907",
+          "before_sha256": "abb7a008d9d236638a7091bd15218ca7dedbb75b422be424c2667383c56cf28d",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "5ae4005c2a612b26f0184dc249c1e6ac2e01d463bd1e2a9b9e2540323fac60a7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-world-observation-20261006.json"
+        },
+        {
+          "after_sha256": "89e4dab18d7d90b0bf6cb91ea2c5beeca3f864b0e97266f711ad2eb51fdeb903",
+          "before_sha256": "9f14205eaa4cadd3f0bd39a864f4830f2b3873e7b304989ce34ab16fb1b6330c",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "4b6eeddda366f88fd17ce41001310846884ecd198a983704772c63ec26d42058",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-world-observation-20261006.json"
+        },
+        {
+          "after_sha256": "8b4ca684a7ae8813a3bddc015b3b1c3cb6ff4aa5363267c3027bc3d5eacc8a1b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-world-observation-20261006.md"
+        },
+        {
+          "after_sha256": "03e79a13a3edc47b971d94347418565e28e9f18cab1fe52db89a363999a4d106",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-world-observation-20261006.json"
+        },
+        {
+          "after_sha256": "3cd3d5db7af39c63d5649947dc91b641517448fadb6a38cc502f723ebdcc662c",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-world-observation.md"
+        },
+        {
+          "after_sha256": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+          "before_sha256": "16622a7c16456649ddadc4368bcf32b9e95a19c090843eef431c8f12f47a876a",
+          "path": "tests/live-render-route-probe.cpp"
+        },
+        {
+          "after_sha256": "a4f093ce423cc7b9661ec70b79de2c7ed0f2dc1e32c636061e3f122413b1cc90",
+          "before_sha256": "39453ce9c0fda8c97f7cab2a61b7e4bab7b5b5b28f87d1ce7237e6c7e0456f70",
+          "path": "tools/test-live-render-routes.py"
+        }
+      ],
+      "id": "world-guided-idle-observation-20261006-pending-boundaries",
+      "pending_gaps": [
+        "stale_evidence:2ed78bfb92ed1a7ed88be463e144048807ed47dd2cbbc493677db6c73b182bec",
+        "stale_evidence:33c6692ce3d567865559ebf8f32be1929545f602620abdadbba4cad8ffd5c53a",
+        "stale_evidence:e889f769204cd2979237f9253ed17fab8e37fd79212d5f6f47ff3c785c2b2247"
+      ],
+      "reason": "Reviewed affected host recovery, continuous producer/cache, UI/movie route links, census and immutable evidence identities. Existing producer matrices retain prior source hashes and scoped levels; extending shared observation/probe sources does not revalidate every historical scenario. Native rendering implementations are unchanged in this chunk. Concurrent uncommitted renderer/overlap work is preserved outside the isolated staged tree.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Explicitly account for the three newly stale shared route/probe evidence fingerprints. New live observation establishes only required guided-idle World recovery/publication and stable independent pixel regions; it does not refresh prior route records, synthetic integration matrices, movie coverage or full gameplay equivalence. The Select Zombie tutorial remains awaiting active user actions. Shared contracts keep historical statuses and original comparison/replacement boundaries."
+      }
     }
   ]
 }
