@@ -1649,6 +1649,22 @@ and animated/full-frame/driver equivalence remain pending. See
 
 1698 unchanged original x86 sentinel/bitmap loader/four-wrapper captures compare20060 ordered scripted CRT/COM/GDI endpoint events offline from12 bitmap inputs, including the installed cursor asset.10 regression tests pass. The -1 route always reloads the fixed global cursor, including twice when both copy receivers recover, and sentinel/DC loader ignore nested/DC/GDI failures within the scripted out-parameter scope. See [cursor reload findings](original-surface-sentinel.md). Submitted DIB buffer hashes are captured; real GDI pixels, native resource routing/conversion, other reload bodies, malformed/second allocation branches and live recovery remain pending. No Wine executes in this chunk.
 
+### DC handoff and flip ordering (2026-10-06)
+
+The existing continuous opt-in scheduling gate now spans GetDC, ReleaseDC and
+Flip callbacks alongside copies and CPU handoffs. A timed-out original flip
+invalidates both metadata/pixel epochs before and after forwarding, refusing
+uncertain buffer history. Budgets remain unchanged and borrowed painting remains
+outside callback admission. Eleven isolated committed-renderer fixture cases
+compare228 complete frames, with six valid and five explicitly refused sessions.
+The final private-installation strict original summon remains Active with
+487 more frames over40904ms after forced recovery;17 stable regions
+match and terminal resources are zero. Source/preference guards and immutable
+manifest checks pass. Workspace-probe records against independent renderer changes are retained
+separately. Palette/property/lifetime concurrency, DC/flip-specific reentry and
+borrowed intervals, repeated gameplay and animated/full-frame/driver equivalence
+remain pending. See [DC and flip ordering](opengl-dc-flip-order.md).
+
 ## Native global cursor reload and independent GDI pixels — 2026-10-06
 
 Explicit global cursor routing and bounded original sequential BMP input parsing match1456 original dispatch projections and12 file result/submitted buffer cases, with813 bounded prefix stops. One reserved Wine11.16 GDI run captures18 standalone RGB32 DIBSection raster outputs from original input buffers;336732 RGB pixels compare offline and6 mutation tests pass.36 nativeRGB24/32 reload/read/present cases match1346928 captured RGB pixels,12 scripted recovery compositions preserve triggering-surface unknown contents, and137 refusals pass.4480 legacy callback schedules/1536 budget stops,30 restoration checks and8 renderer regressions freshly pass. Historical evidence hashes, including initialRGB32 test provenance, are retained. Headless native cursor composition is recorded separately from pending DirectDraw DC/other formats/loss/live/wire recovery. See [native reload findings](native-cursor-reload.md).

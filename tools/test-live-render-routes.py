@@ -77,6 +77,7 @@ def main():
     paths += [ROOT/p for p in ['tools/test-live-render-routes.py','tools/test-live-render-game.py','tools/test-menu-observer.py','tools/build-menu-observer.py','tools/run-opengl-game.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py','tests/live-render-route-probe.cpp','renderer/CMakeLists.txt','renderer/commands.cpp','renderer/commands.hpp','renderer/command_consumer.cpp','renderer/command_state.hpp','renderer/blit.cpp','renderer/blit.hpp','renderer/surface_copy.cpp','renderer/surface_copy.hpp','apps/qt-shell/live_command_session.cpp','apps/qt-shell/live_command_session.hpp','apps/qt-shell/render_control.cpp','apps/qt-shell/render_control.hpp','apps/qt-shell/live_command_renderer.cpp','apps/qt-shell/live_command_renderer.hpp','apps/qt-shell/command_channel.cpp','apps/qt-shell/command_channel.hpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp']]
     paths += sorted((ROOT/'protocols/include/mnm').glob('render*.h'))
     paths += sorted((ROOT/'protocols/python/mnm_protocols').glob('render*.py'))
+    paths += [p for p in [ROOT/'renderer/dib.cpp',ROOT/'renderer/dib.hpp'] if p.exists()]
     tracker_sites={}
     for path in sorted((ROOT/'runtime/render').glob('*.[ch]')):
         value=2166136261
