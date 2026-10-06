@@ -151,13 +151,20 @@ MovementSession::MovementSession(World world,std::shared_ptr<const Navigation> n
     if(!navigation_) throw std::invalid_argument("navigation resource required");
     validateBinding(world_.state(),*navigation_);
 }
-Handle MovementSession::spawn(Entity entity,bool sampleMotion,bool continuousMotion,bool terrainMotion) {
+Handle MovementSession::spawn(Entity entity,bool sampleMotion,bool continuousMotion,bool terrainMotion,bool initialDisplay) {
     if(entity.family==Family::creature) {
         entity.motion=CreatureMotion{};entity.motion->sampleMotion=sampleMotion;entity.motion->continuousMotion=continuousMotion;entity.motion->terrainMotion=terrainMotion;entity.motion->origin=entity.motion->destination={entity.x,entity.y,entity.z};
         if(entity.type!=navigation_->creatureType()) throw std::invalid_argument("creature profile mismatch");
         unsigned creatures=0;for(const auto& slot:world_.state().slots) if(slot.entity && slot.entity->motion) ++creatures;
         if(creatures>=navigation_->maxMovingCreatures()) throw std::invalid_argument("moving creature limit reached");
     } else if(entity.motion) throw std::invalid_argument("motion requires creature family");
+    if(initialDisplay) {
+        if(entity.family!=Family::creature || entity.cleaned || !continuousMotion || !world_.state().animation)
+            throw std::invalid_argument("initial display requires ordinary bound ANI creature motion");
+        entity.motion->pose=navigation_->initialDisplayPose();
+        if(!entity.motion->pose) throw std::invalid_argument("initial ANI bitmap unavailable");
+        navigation_->validateDisplayPose(*entity.motion->pose);
+    }
     validateMotion(entity,navigation_->binding());if(terrainMotion) (void)navigation_->finePosition(entity);
     auto candidate=world_;auto h=candidate.spawn(std::move(entity));navigation_->validateOccupants(candidate.state());world_=std::move(candidate);return h;
 }

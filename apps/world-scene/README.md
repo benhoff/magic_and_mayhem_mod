@@ -225,3 +225,12 @@ the committed logical cell. The body remains pickable after Stop and save/reload
 restarted movement displays its active ANI cursor. This is a native fallback,
 not recovered idle animation selection. See
 [the scope and evidence](../../research/runtime/native-idle-display.md).
+
+## Initial native creature body (NS19)
+
+Prepare an idle scene checkpoint without any movement ticks using
+`mnm-world-sandbox spawn-terrain-ani MAP ANI BASE OUTPUT X Y Z`, then open it
+with the scene preview. The new body can be picked and ordered immediately;
+Save/reload preserves its static pose. It uses the first bitmap of movement
+direction zero as an explicit native policy, with original idle selection pending.
+See [initial display evidence](../../research/runtime/native-spawn-display.md).

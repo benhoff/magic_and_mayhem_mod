@@ -892,3 +892,15 @@ Evidence and pending boundaries are in
 idle/action sequence selection and initially spawned idle bodies remain pending,
 with no original comparison or live replacement promotion. Historical NS17
 records remain unchanged and can be source-stale.
+
+### NS19 — explicit initial native creature body
+
+A native spawn initializer owns the first bitmap in movement direction zero
+without executing its ANI player, ticking or issuing orders. The new
+`spawn-terrain-ani` sandbox command produces an idle zero-tick v8 checkpoint
+for immediate native presentation and picking. Static idle ticks, modal Save,
+fresh-window first-order continuation and movement/Stop display priority are
+validated in the bounded Forest/Redcap slice. Scope, evidence and remaining
+original idle/action, animation, initial-facing and full-game admission gaps are
+in [native-spawn-display.md](native-spawn-display.md) and its JSON record.
+No original comparison, live replacement or gameplay balance promotion is made.

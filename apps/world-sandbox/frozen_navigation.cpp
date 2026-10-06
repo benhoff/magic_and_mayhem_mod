@@ -182,6 +182,14 @@ public:
         f.accumulator=s.accumulator;f.progress=s.progress;f.travelX=s.travelX;f.travelY=s.travelY;
         f.fine={s.fineX,s.fineY,s.fineZ};f.residualX=s.residualX;f.residualY=s.residualY;f.frame=s.frame;f.animationFrame=s.animationFrame;f.initialFrame=s.initialFrame;f.initialResidualX=s.initialResidualX;f.initialResidualY=s.initialResidualY;
     }
+    std::optional<g::DisplayPose> initialDisplayPose() const override {
+        if(!animation_) return {};
+        const auto& records=sequences_[0];
+        // Explicit native static pose: no player execution, events or elapsed time.
+        for(std::uint32_t i=0;i<records.size();++i) if(records[i].opcode==0)
+            return g::DisplayPose{animation_->sequenceBase,i};
+        return {};
+    }
     void validateDisplayPose(const g::DisplayPose& pose) const override {
         if(!animation_ || pose.sequence<animation_->sequenceBase || pose.sequence-animation_->sequenceBase>=8)
             throw std::invalid_argument("display pose outside bound movement ANI profile");

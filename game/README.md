@@ -361,3 +361,12 @@ cancellation or a new order clears movement continuation. The pose carries no
 clock or segment state. Snapshot v8 persists it and resource restoration validates
 the bound movement ANI record transactionally. States without a pose retain
 their existing minimum snapshot version. Original idle behavior remains pending.
+
+## Explicit spawn display initializer (NS19)
+
+`MovementSession::spawn(..., initialDisplay=true)` requests a static initial
+pose from the bound navigation adapter. It requires a creature with continuous
+sample motion and an ANI binding; missing bitmaps and invalid policy refuse
+transactionally. No clock, control/event or movement runs during initialization.
+Existing calls retain their default policy, and loading an old checkpoint does
+not invent a pose. The initial display uses the existing v8 checkpoint contract.
