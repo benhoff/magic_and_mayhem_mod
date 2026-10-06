@@ -44,7 +44,10 @@ static void command_channel_end(void){
 }
 static void command_channel_init(void){
     char path[512];u32 length=GetEnvironmentVariableA("MNM_RENDER_COMMAND_CHANNEL",path,sizeof(path));
-    if(!length || length>=sizeof(path))return;
+    if(!length)return;
+    if(length>=sizeof(path)){command_channel_refused=1;return;}
+    /* A configured channel must not silently become optional after failure. */
+    command_channel_refused=1;
     HANDLE file=CreateFileA(path,0xc0000000,3,0,3,0x80,0);
     if(file==(HANDLE)-1)return;
     u32 size=GetFileSize(file,0);
@@ -55,12 +58,12 @@ static void command_channel_init(void){
         if(!mnm_ring_writer_bind(&command_ring,p,size)){command_channel_refused=1;UnmapViewOfFile(p);return;}
         command_queue=HeapAlloc(GetProcessHeap(),0,COMMAND_QUEUE_CAPACITY);
         if(!command_queue){command_channel_refused=1;mnm_ring_fail(&command_ring,MNM_RENDER_COMMANDS_V2_REASON_OVERFLOW);UnmapViewOfFile(p);return;}
-        command_channel=p;command_channel_session=p[4];command_queue_configure();return;
+        command_channel=p;command_channel_session=p[4];command_channel_refused=0;command_queue_configure();return;
     }
     int valid=same(p,MNM_RENDER_COMMANDS_V1_MAGIC,8) && p[2]==1 && p[3]==MNM_RENDER_COMMANDS_V1_SIZE && p[4] && !p[5] && !p[7] && !p[8];
     for(u32 i=9;i<16;++i)if(p[i])valid=0;
     if(!valid || !__sync_bool_compare_and_swap(p+6,MNM_RENDER_COMMANDS_V1_STATE_READY,MNM_RENDER_COMMANDS_V1_STATE_WRITING)){UnmapViewOfFile(p);return;}
-    command_channel=p;command_channel_session=p[4];command_channel_bytes=0;
+    command_channel=p;command_channel_session=p[4];command_channel_bytes=0;command_channel_refused=0;
 }
 static void command_channel_close(void){
     if(command_queue){

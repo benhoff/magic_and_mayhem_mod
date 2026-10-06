@@ -5533,7 +5533,9 @@
         "runtime/render/continuous_selftest.h",
         "runtime/render/resource_selftest.h",
         "runtime/render/mutation_selftest.h",
-        "runtime/render/backpressure_selftest.h"
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/lifecycle_selftest.h"
       ],
       "tests": [
         "runtime/render/selftest.c",
@@ -5543,7 +5545,8 @@
         "tools/test-render-continuous-producer.py",
         "tools/test-render-resource-lifecycle.py",
         "tools/test-render-mutations.py",
-        "tools/test-render-backpressure.py"
+        "tools/test-render-backpressure.py",
+        "tools/test-render-orchestration.py"
       ],
       "evidence": [
         "REVIEW.RT.render"
@@ -13970,6 +13973,50 @@
         "NR.command-backpressure.pe32",
         "NR.command-backpressure.idle",
         "NR.command-backpressure.gpu"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.command-orchestration",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Continuous producer startup and orderly process-exit orchestration",
+      "scope": "Explicit startup readiness and guarded resolved PE32 main-image ExitProcess IAT admission for continuous mode; application callback closes producer admission, emits cleanup and drains/joins outside DllMain. Configured transport failures cannot become optional or report successful shutdown. Native synthetic integration only; original exit branch coverage, forced termination, dynamic unloading, OS scheduling guarantees and recovery excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-command-orchestration.md"
+      ],
+      "implementation": [
+        "runtime/render/bridge.c",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_scheduler.h",
+        "tools/build-render-bridge.py"
+      ],
+      "tests": [
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-orchestration.py",
+        "tools/test-render-backpressure.py",
+        "tools/test-render-command-idle.py",
+        "tools/test-render-command-queue.py",
+        "tools/test-render-continuous-producer.py",
+        "tests/render-command-queue-test.c",
+        "tests/render-command-writer-test.c"
+      ],
+      "evidence": [
+        "NR.command-orchestration.pe32",
+        "NR.command-orchestration.pressure",
+        "NR.command-orchestration.idle",
+        "NR.command-orchestration.gpu",
+        "NR.command-orchestration.queue"
       ],
       "status": {
         "understanding": "scoped",
@@ -24380,6 +24427,76 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.command-orchestration.pe32",
+      "kind": "native_integration",
+      "scope": "Eleven actual PE32 startup and guarded imported ExitProcess cases, eight independent complete GPU frames, cleanup and refusal boundaries. Unbound transport cases test startup only, without a consumer. No original-game or driver equivalence or recovery.",
+      "record": "research/runtime/opengl-command-orchestration-pe32.json",
+      "sha256": "13ca8cb30079a58f27ee6ea05d1d77e049da5a13aced8605698f3feb1bbb1653",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-orchestration.pressure",
+      "kind": "native_integration",
+      "scope": "Eight current-source actual PE32 stalled/paused raw reader regressions with sticky reasons and independent owned byte checks. No original-game or driver equivalence or recovery.",
+      "record": "research/runtime/opengl-command-orchestration-pressure-v2.json",
+      "sha256": "3732c4b323f935524c9aff6169183e3dd9abcceaa2036d6bd4682d1137433be5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-orchestration.idle",
+      "kind": "native_integration",
+      "scope": "Five current-source actual PE32 default idle retry, explicit shutdown, cancellation and detach regressions. No original-game or driver equivalence or recovery.",
+      "record": "research/runtime/opengl-command-orchestration-idle-v2.json",
+      "sha256": "9ac3687801405d9f4af203404474bf959780d725547d951992c70d483a6b32be",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-orchestration.gpu",
+      "kind": "native_integration",
+      "scope": "Two current-source synthetic continuous producer/native GPU regressions, 72 independent frames including a >64MiB stream and short diagnostic archive. No original-game or driver equivalence or recovery.",
+      "record": "research/runtime/opengl-command-orchestration-gpu-v2.json",
+      "sha256": "971dc9c00b2eb91ef57b5d0156764b971f10879dadea0350bd83118e30815825",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-orchestration.queue",
+      "kind": "native_integration",
+      "scope": "Current channel/queue native and ASan/UBSan regression, 21 queue/configuration cases and 11 writer cases each, including leak checks. No original-game or driver equivalence or recovery.",
+      "record": "research/runtime/opengl-command-orchestration-queue-regression.json",
+      "sha256": "edb3cc4ae9ddcfaa9805d0fec62da442e89f9f916effae431e170947b5ddfda2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -28166,6 +28283,32 @@
         "tools/test-render-command-idle.py",
         "tools/test-render-continuous-producer.py"
       ]
+    },
+    {
+      "id": "NR.command-orchestration-fixture",
+      "level": "preview",
+      "scope": "Synthetic actual PE32 imported exit/startup plus independent GPU frames, pressure/idle/queue regressions. No original game, forced termination, hook unloading or recovery.",
+      "behaviors": [
+        "NR.command-orchestration"
+      ],
+      "evidence": [
+        "NR.command-orchestration.pe32",
+        "NR.command-orchestration.pressure",
+        "NR.command-orchestration.idle",
+        "NR.command-orchestration.gpu",
+        "NR.command-orchestration.queue"
+      ],
+      "tests": [
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-orchestration.py",
+        "tools/test-render-backpressure.py",
+        "tools/test-render-command-idle.py",
+        "tools/test-render-command-queue.py",
+        "tools/test-render-continuous-producer.py",
+        "tests/render-command-queue-test.c",
+        "tests/render-command-writer-test.c"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -28413,7 +28556,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-command-backpressure-20261006.json",
-    "sha256": "963f6ff214b6a07270e9b1bcea5ed1e472bebb0d554e0ef80e2c727c18be9a1b"
+    "path": "research/runtime/coverage/source-index-command-orchestration-20261006.json",
+    "sha256": "37747674ff28fbf8c6c54bf97ab92825aee54c6c4d29986a4a04a2050dba4aaf"
   }
 }

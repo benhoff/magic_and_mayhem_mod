@@ -187,3 +187,9 @@ Continuous command transport bounds no-ACK stalls to 5000ms by default;
 remain open, while cancellation/invalid ACK is checked even after the queue drains.
 FULL retains ordered bytes with bounded worker retries; hard queue overflow still
 refuses. See [backpressure policy](../../research/runtime/opengl-command-backpressure.md).
+
+Continuous mode now exposes `RenderStartup()` and guards the main-image
+ExitProcess import so ordinary application exit invokes bounded shutdown outside
+DllMain. Set `MNM_RENDER_AUTO_SHUTDOWN=0` for a host that explicitly owns shutdown.
+Configured channel failures refuse startup. See the
+[startup/exit contract and limits](../../research/runtime/opengl-command-orchestration.md).

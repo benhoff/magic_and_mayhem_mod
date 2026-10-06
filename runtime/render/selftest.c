@@ -46,7 +46,11 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "resource_selftest.h"
 #include "mutation_selftest.h"
 #include "backpressure_selftest.h"
+#include "lifecycle_selftest.h"
 void start(void){
+    char orchestration[24];if(GetEnvironmentVariableA("MNM_ORCHESTRATION_SELFTEST",orchestration,sizeof(orchestration))){
+        if(orchestration[0]=='g')test_exit_guards();else test_orchestration(orchestration);
+    }
     char pressure_mode[24];if(GetEnvironmentVariableA("MNM_BACKPRESSURE_SELFTEST",pressure_mode,sizeof(pressure_mode)))test_backpressure(pressure_mode);
     char mutation_mode[24];if(GetEnvironmentVariableA("MNM_MUTATION_SELFTEST",mutation_mode,sizeof(mutation_mode)))test_mutations(mutation_mode);
     char resource_mode[16];if(GetEnvironmentVariableA("MNM_RESOURCE_SELFTEST",resource_mode,sizeof(resource_mode)))test_resources(resource_mode);

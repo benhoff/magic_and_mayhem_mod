@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "sources": {
+    "runtime/render/command_channel.h": "26400daf495632b9929cbfc0f4d9972d9171fdc6b720989cba9ffd57ca599d96",
+    "runtime/render/command_queue.h": "d96f125aa7a712f96d0745a993b48a19820a10470257a629ef0960e29c736877",
+    "protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3",
+    "protocols/include/mnm/render_commands_v1.h": "da3687442c203a85bbec98810c084346154a860bce2d3b65bb0f96c13dd66a0f",
+    "protocols/include/mnm/render_commands_v2.h": "357e127e0601ae55c30b821403df1be2c714d467d9c185c13e14091c2899d7a3",
+    "tests/render-command-writer-test.c": "47bce9be8c0940a5bd1adfd200edfbd68a28d898ff5aef8178baa7386eb2965b",
+    "tests/render-command-queue-test.c": "63fb33580e0f5eda718a8068c0c9ac6c26e6fbbb9380e67d6848f71f4e74f1a3",
+    "tools/test-render-command-queue.py": "854c3c90b38e11d7e0922f703e97fdb64f88bd2bc562d659f55e72adec78c9d8"
+  },
+  "scope": "Actual C queue/channel under native heap/mapped API fakes; original calls, PE32 and GPU integration require separate execution evidence.",
+  "native": [
+    {
+      "success": true,
+      "cases": 11
+    },
+    {
+      "success": true,
+      "queue_cases": 21,
+      "bytes": 2097275,
+      "queue_wrap_bytes": 35653675
+    }
+  ],
+  "sanitized": [
+    {
+      "success": true,
+      "cases": 11
+    },
+    {
+      "success": true,
+      "queue_cases": 21,
+      "bytes": 2097275,
+      "queue_wrap_bytes": 35653675
+    }
+  ]
+}
