@@ -14186,13 +14186,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Complete owned checkpoint attachment to a fresh rendering session",
-      "scope": "Strict administrative late consumer attachment and repeated fresh sessions from complete independently owned native pixels, current metadata and palettes; finite admission, resource serialization before READY/PRESENT, continued mixed incremental updates and incomplete/borrowed-state refusal. External host takeover and actual-game integration remain pending.",
+      "scope": "Strict administrative late consumer attachment from complete independently owned pixels, metadata and palettes; 27 synthetic fresh sessions across mixed formats, palette recreation and overflow/stall/foreign-ACK failures, plus allocation/mapping/worker refusal cleanup. Bounded actual-game startup observed safe fallback only: checkpoint refused, ordinary recovery READY then invalid before first native frame. External host takeover, sustained game recovery and pixel equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-checkpoint.md",
         "research/formats/render-control-v1.md",
-        "protocols/CONTRACTS.md"
+        "protocols/CONTRACTS.md",
+        "research/runtime/opengl-command-recovery-validation.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -14203,7 +14204,9 @@
         "apps/qt-shell/render_control.hpp",
         "protocols/schemas/render_control-v1.json",
         "protocols/include/mnm/render_control_v1.h",
-        "protocols/python/mnm_protocols/render_control_v1.py"
+        "protocols/python/mnm_protocols/render_control_v1.py",
+        "runtime/render/command_scheduler.h",
+        "tools/build-render-bridge.py"
       ],
       "tests": [
         "runtime/render/checkpoint_selftest.h",
@@ -14215,12 +14218,19 @@
         "tools/test-render-host-recovery.py",
         "tools/test-render-recovery.py",
         "runtime/render/recovery_selftest.h",
-        "runtime/render/host_recovery_selftest.h"
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "tests/live-render-recovery-probe.cpp",
+        "tools/test-live-render-recovery.py"
       ],
       "evidence": [
         "NR.command-checkpoint-attachment.pe32",
         "NR.command-checkpoint-attachment.host-regressions",
-        "NR.command-checkpoint-attachment.api-regressions"
+        "NR.command-checkpoint-attachment.api-regressions",
+        "NR.command-checkpoint-attachment.failure-matrix",
+        "NR.command-checkpoint-attachment.host-regressions-20261006",
+        "NR.command-checkpoint-attachment.queue-regressions-20261006",
+        "NR.command-checkpoint-attachment.game-startup-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -25045,6 +25055,74 @@
           "equals": "opengl"
         }
       ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment.failure-matrix",
+      "kind": "native_integration",
+      "scope": "Twenty checkpoint cases, 27 complete fresh sessions and 294 independent GPU pixel comparisons, including RGB16/24/32, indexed/mixed resources, palette recreation, overflow/stall/foreign ACK and candidate mapping/allocation/worker failures. Synthetic native policy only.",
+      "record": "research/runtime/opengl-command-recovery-failure-matrix.json",
+      "sha256": "beead4fb3a9c3e921f3afd83bae72c359963f1b3578fd9bc2e0f3db078f59b16",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment.host-regressions-20261006",
+      "kind": "native_integration",
+      "scope": "Four Qt/PE32 host recovery regressions, 83 independent GPU comparisons and native/sanitized control-client checks. Synthetic integration only.",
+      "record": "research/runtime/opengl-command-recovery-host-regressions-20261006.json",
+      "sha256": "137d74ab7a853e670e2bc0e2a174b3259fd001c55a170bcbcccfe2c55a9452cf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment.queue-regressions-20261006",
+      "kind": "native_integration",
+      "scope": "Native and ASan/UBSan finite queue, map/heap and publication-worker ownership regression checks.",
+      "record": "research/runtime/opengl-command-recovery-queue-regressions-20261006.json",
+      "sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment.game-startup-20261006",
+      "kind": "live_observation",
+      "scope": "Two bounded original-game startup observations after drawing began: CHECKPOINT refusal and RECOVER readiness followed by invalid stream; original main menu retained, consumer cleanup complete, zero native frames. No pixel equivalence or successful game recovery.",
+      "record": "research/runtime/opengl-command-recovery-game-startup-20261006.json",
+      "sha256": "cd80c40cb968fcb908ca5889515af5b4c0e4bd5188cd797f0c705ad040a14c81",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/pixel_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -28983,6 +29061,49 @@
         "tests/fixtures/surfaces/yu55vq8i.bin.gz",
         "tests/fixtures/surfaces/zpfft1bo.bin.gz"
       ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment.failure-matrix",
+      "level": "preview",
+      "scope": "Twenty checkpoint cases, 27 complete fresh sessions and 294 independent GPU pixel comparisons, including RGB16/24/32, indexed/mixed resources, palette recreation, overflow/stall/foreign ACK and candidate mapping/allocation/worker failures. Synthetic native policy only.",
+      "behaviors": [
+        "NR.command-checkpoint-attachment"
+      ],
+      "evidence": [
+        "NR.command-checkpoint-attachment.failure-matrix",
+        "NR.command-checkpoint-attachment.host-regressions-20261006",
+        "NR.command-checkpoint-attachment.queue-regressions-20261006"
+      ],
+      "tests": [
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/selftest.c",
+        "tests/live-command-checkpoint-test.cpp",
+        "tests/render-control-test.cpp",
+        "tools/test-render-checkpoint.py",
+        "renderer/CMakeLists.txt",
+        "tools/test-render-host-recovery.py",
+        "tools/test-render-recovery.py",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "tests/live-render-recovery-probe.cpp",
+        "tools/test-live-render-recovery.py"
+      ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment.game-fallback",
+      "level": "live_observation",
+      "scope": "Two bounded original-game startup observations after drawing began: CHECKPOINT refusal and RECOVER readiness followed by invalid stream; original main menu retained, consumer cleanup complete, zero native frames. No pixel equivalence or successful game recovery.",
+      "behaviors": [
+        "NR.command-checkpoint-attachment"
+      ],
+      "evidence": [
+        "NR.command-checkpoint-attachment.game-startup-20261006"
+      ],
+      "tests": [
+        "tests/live-render-recovery-probe.cpp",
+        "tools/test-live-render-recovery.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -29230,7 +29351,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-surface-fixtures-commit-20261006.json",
-    "sha256": "c20219172452ffadb2be7d82b8bc9c44f06d20fc721718e140086e1e09a4702b"
+    "path": "research/runtime/coverage/source-index-recovery-validation-final-20261006.json",
+    "sha256": "4b5c59e7ed5b7f34e479f2c8f29292e5f38469f4386075805f51f0e912813ff9"
   }
 }

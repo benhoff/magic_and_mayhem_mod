@@ -6,6 +6,12 @@ static void command_candidate_close(struct CommandCandidate* c){
     if(c->queue)HeapFree(GetProcessHeap(),0,c->queue);
     if(c->map)UnmapViewOfFile(c->map);zero(c,sizeof(*c));
 }
+#ifdef MNM_RENDER_SELFTEST
+static int command_recovery_fault(const char* fault){
+    char value[32];u32 n=GetEnvironmentVariableA("MNM_RENDER_RECOVERY_FAULT_FOR_TEST",value,sizeof(value)),length=0;
+    while(fault[length])++length;return n==length && same(value,fault,length);
+}
+#endif
 static int command_candidate_open(struct CommandCandidate* c,const char* path){
     u32 length=0;
     if(!path)return 0;
@@ -19,10 +25,17 @@ static int command_candidate_open(struct CommandCandidate* c,const char* path){
        command_files[i].high==c->file.high && command_files[i].low==c->file.low){CloseHandle(file);return 0;}
     HANDLE mapping=CreateFileMappingA(file,0,4,0,size,0);CloseHandle(file);if(!mapping)return 0;
     c->map=MapViewOfFile(mapping,2,0,0,size);CloseHandle(mapping);if(!c->map)return 0;
+    #ifdef MNM_RENDER_SELFTEST
+    if(command_recovery_fault("mapping"))return 0;
+#endif
     u32* p=c->map;
     if(!mnm_ring_identity(p,p[4]) || (command_file_count && p[4]<=command_files[command_file_count-1].session) ||
        mnm_ring_load(p+6)!=0 || mnm_ring_load(p+5) || mnm_ring_load(p+7) || mnm_ring_load(p+8) || mnm_ring_load(p+9))return 0;
-    c->file.session=p[4];c->queue=HeapAlloc(GetProcessHeap(),0,COMMAND_QUEUE_CAPACITY);return c->queue!=0;
+    c->file.session=p[4];
+#ifdef MNM_RENDER_SELFTEST
+    if(command_recovery_fault("allocation"))return 0;
+#endif
+    c->queue=HeapAlloc(GetProcessHeap(),0,COMMAND_QUEUE_CAPACITY);return c->queue!=0;
 }
 static int command_recovery_leases_quiet(void){
     if(__atomic_load_n(&lock_capture_reserved,__ATOMIC_ACQUIRE))return 0;
@@ -145,6 +158,11 @@ static u32 command_recover_mode(const char* path,u32 expected_session,int checkp
 static u32 command_recover(const char* path,u32 expected_session){return command_recover_mode(path,expected_session,0);}
 __declspec(dllexport) u32 WIN RenderRecover(const char* path){return command_recover(path,0);}
 #ifdef MNM_RENDER_SELFTEST
+__declspec(dllexport) u32 WIN RenderRecoveryStorageForTest(u32* values){
+    u32 error=GetLastError();if(!game_tracker_acquire()){SetLastError(error);return 0;}
+    u32 state[6]={command_worker!=0,command_queue!=0,command_channel!=0,command_worker_joined,game_surface_bytes,lock_capture_reserved};
+    copy(values,state,sizeof(state));game_tracker_release();SetLastError(error);return 1;
+}
 __declspec(dllexport) u32 WIN RenderRecoveryStateForTest(u32* values){
     u32 error=GetLastError();if(!game_tracker_acquire()){SetLastError(error);return 0;}
     u32 aliases=0,palettes=0;

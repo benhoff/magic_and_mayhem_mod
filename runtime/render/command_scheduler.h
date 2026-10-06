@@ -23,7 +23,12 @@ static u32 WIN command_worker_run(void* unused){
 }
 /* Caller owns lifecycle serialization; no tracker/original pointers here. */
 static int command_scheduler_launch(void){
-    command_worker_started=1;command_worker=CreateThread(0,0,command_worker_run,0,0,0);
+    command_worker_started=1;
+#ifdef MNM_RENDER_SELFTEST
+    char fault[16];u32 n=GetEnvironmentVariableA("MNM_RENDER_RECOVERY_FAULT_FOR_TEST",fault,sizeof(fault));
+    if(command_file_count>1 && n==6 && same(fault,"worker",6)){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);command_channel_pump();return 0;}
+#endif
+    command_worker=CreateThread(0,0,command_worker_run,0,0,0);
     if(!command_worker){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);command_channel_pump();}
     int ready=command_worker && !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE);
     return ready;

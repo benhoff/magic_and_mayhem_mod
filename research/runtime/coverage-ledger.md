@@ -1358,3 +1358,22 @@ allocation/worker/map failures remain pending. Shared historical evidence stays
 pinned; no original comparison or live replacement status is promoted. The
 predecessor `4428c27..ade3e60` was reviewed against exact parent/current receipts
 in `coverage/committed-history-checkpoint-20261006.json`.
+
+
+## Rendering recovery failure validation (2026-10-06)
+
+The broadened administrative checkpoint fixture passed 20 cases, 27 fresh sessions
+and 294 independent GPU frame comparisons. RGB16/24/32 and indexed/mixed state,
+120 same-pointer palette recreations, repeated overflow/stall/foreign ACK recovery,
+and mapping/allocation/worker-start refusal cleanup are covered. Host regressions
+passed 83 frame comparisons; native and ASan/UBSan queue/client checks passed.
+
+Two bounded No-CD startup observations requested recovery after original drawing
+began. CHECKPOINT was refused at complete-state admission. Ordinary RECOVER reached
+READY, then invalidated before any native PRESENT. Both consumers fell back with
+zero remaining resources; the original process and main menu remained available.
+Original manifest verification passed before/after. Game recovery, gameplay routes,
+original pixel equivalence, movies and live replacement remain pending.
+See [the validation record](opengl-command-recovery-validation.md); synthetic
+success and actual-game fallback are separate milestones. Historical evidence
+retains its hashes; shared-source changes do not refresh earlier comparisons.

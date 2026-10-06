@@ -72,7 +72,7 @@ static void mu_palette_lifetimes(void){
     static const u8 iid[16]={0x84,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
     void* alias=0;SetLastError(0x77);if(((i32 (WIN *)(void*,const u8*,void**))mu_palette[0])(&mu_palette,iid,&alias)!=23 || alias!=&mu_palette_alias || GetLastError()!=0x88)ExitProcess(380);
     SetLastError(0x77);if(((u32 (WIN *)(void*))mu_palette[2])(&mu_palette)!=3 || GetLastError()!=0x88)ExitProcess(381);
-    static void* draw_table[7];draw_table[5]=(void*)&mu_palette_factory;static void** draw;draw=draw_table;RenderInstallForTest(&draw,4);
+    static void* draw_table[7];if(!draw_table[5])draw_table[5]=(void*)&mu_palette_factory;static void** draw;draw=draw_table;RenderInstallForTest(&draw,4);
     for(u32 pass=0;pass<40;++pass){
         SetLastError(0x77);if(((u32 (WIN *)(void*))mu_front.table[2])(&mu_front) || GetLastError()!=0x88)ExitProcess(382);
         SetLastError(0x77);if(((u32 (WIN *)(void*))mu_back.table[2])(&mu_back) || GetLastError()!=0x88)ExitProcess(383);
