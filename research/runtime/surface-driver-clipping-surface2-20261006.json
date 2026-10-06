@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "success": true,
+  "cases": 408,
+  "sources": {
+    "tests/surface-driver-reference.c": "6d21e9bf881245893e9baf164418e1efc13dd4021aef5a965f6001caad181051",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-driver.py": "f1ef8f47e225d6de1f0b664e6915ae9cd7316a3a6f7c86081cae116b6ee94f24",
+    "tests/test-surface-driver.py": "b11152d05ec2f30b171757a494d0a0ca9a709c59b7ea5e116c8c5a08e748af99",
+    "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz": "c6ae4c39de508610c2fc765c3acc4eff65e0f253e89a8457ea153b3f21522e7c",
+    "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json": "f903c01cae3d08486bd24d4f619af4ad96d6ee21dd55394420fe1d7bf6633cbe"
+  },
+  "scope": "Real Wine built-in DirectDraw Surface2 system-memory RGB565 API outputs; external driver policy, not Windows 1998 equivalence, wrapper failure handling or native renderer validation.",
+  "environment": {
+    "wine": "wine-11.16",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b",
+    "surface_caps": 2112,
+    "width": 8,
+    "height": 6,
+    "bits": 16,
+    "masks": [
+      63488,
+      2016,
+      31
+    ],
+    "surface_interface": "IDirectDrawSurface2",
+    "cooperative_level": "NORMAL",
+    "software_gl": true
+  },
+  "driver_calls": true,
+  "original_game_executed": false,
+  "original_game_text_patched": false,
+  "native_renderer_executed": false,
+  "artifacts": "working/tests/surface-driver/run-max1u4ic",
+  "probe_sha256": "01f54c3b27f41bbd0a2dc8a45d2f90d578598445d414e3c7b7a4536e4e44c1a2",
+  "inputs_sha256": "86760fc64f84059f6ca44dfc6a0e76a3044fdac6b25387a3098dcac32ff54dcd",
+  "outputs_sha256": "40faace99210e7c69612a061ae79b2f3d04bbdc37d8cfc3cedf4a93f1cf6232a",
+  "summary": {
+    "hresults": {
+      "0x00000000": 96,
+      "0x80004001": 1,
+      "0x80070057": 1,
+      "0x88760096": 210,
+      "0x887600cd": 32,
+      "0x887601ae": 4,
+      "0x8876023e": 64
+    }
+  },
+  "fixture": {
+    "schema": 1,
+    "path": "driver-clipping-surface2-original.json.gz",
+    "sha256": "c6ae4c39de508610c2fc765c3acc4eff65e0f253e89a8457ea153b3f21522e7c",
+    "raw_sha256": "65c6f2e658e09f34f610533b4d9501bea09fc028be3764371f240cdc7ab3844c",
+    "cases": 408,
+    "scope": "Real Wine built-in DirectDraw Surface2 system-memory RGB565 API outputs; external driver policy, not Windows 1998 equivalence, wrapper failure handling or native renderer validation."
+  },
+  "original_manifest_verified_before_after": true
+}

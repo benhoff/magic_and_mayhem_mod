@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "success": true,
+  "backend": "opengl",
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "cases": [
+    {
+      "id": "original-rgb565-bltfast-g34xhs0b",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "capture_sha256": "30b681adc8274b778835c5dba2e86a6dbe00c7691231d1f1e360648bce747876",
+      "expected_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+      "cpu_comparison": {
+        "matching": true,
+        "mismatching_pixels": 0,
+        "first_mismatch": null
+      },
+      "changed_pixels": 0,
+      "artifacts": "working/tests/surface-fixtures/original-rgb565-bltfast-g34xhs0b-q8ptmq2d",
+      "opengl_comparison": {
+        "matching": true,
+        "mismatching_pixels": 0,
+        "first_mismatch": null
+      },
+      "opengl_vs_cpu": {
+        "matching": true
+      },
+      "presentation_comparison": {
+        "matching": true,
+        "reference_rgba_sha256": "9aa8493597d58d6239d453f717e5360e4da02a80c4e61133245c475906d4a0b3"
+      },
+      "opengl": {
+        "backend": "opengl_native_integer",
+        "bits": 16,
+        "capture_sha256": "30b681adc8274b778835c5dba2e86a6dbe00c7691231d1f1e360648bce747876",
+        "height": 600,
+        "output_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+        "presentation_rgba_sha256": "9aa8493597d58d6239d453f717e5360e4da02a80c4e61133245c475906d4a0b3",
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "native_readbacks": 1,
+          "palette_updates": 0,
+          "presentations": 1,
+          "uploads": 2
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1",
+        "width": 800,
+        "binary_sha256": "272a9ada012d3db7ee68f60f0b5590a9a7b0d31d9ca918dc4e0f5f5ce260762c"
+      },
+      "success": true
+    },
+    {
+      "id": "original-rgb565-bltfast-p66k189j",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "capture_sha256": "383d9a6dec1e8cf922c555fe3538a7a8581859ba30ea14e9267cc52627ddf597",
+      "expected_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+      "cpu_comparison": {
+        "matching": true,
+        "mismatching_pixels": 0,
+        "first_mismatch": null
+      },
+      "changed_pixels": 6,
+      "artifacts": "working/tests/surface-fixtures/original-rgb565-bltfast-p66k189j-gov7ou10",
+      "opengl_comparison": {
+        "matching": true,
+        "mismatching_pixels": 0,
+        "first_mismatch": null
+      },
+      "opengl_vs_cpu": {
+        "matching": true
+      },
+      "presentation_comparison": {
+        "matching": true,
+        "reference_rgba_sha256": "9aa8493597d58d6239d453f717e5360e4da02a80c4e61133245c475906d4a0b3"
+      },
+      "opengl": {
+        "backend": "opengl_native_integer",
+        "bits": 16,
+        "capture_sha256": "383d9a6dec1e8cf922c555fe3538a7a8581859ba30ea14e9267cc52627ddf597",
+        "height": 600,
+        "output_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+        "presentation_rgba_sha256": "9aa8493597d58d6239d453f717e5360e4da02a80c4e61133245c475906d4a0b3",
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "native_readbacks": 1,
+          "palette_updates": 0,
+          "presentations": 1,
+          "uploads": 2
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1",
+        "width": 800,
+        "binary_sha256": "272a9ada012d3db7ee68f60f0b5590a9a7b0d31d9ca918dc4e0f5f5ce260762c"
+      },
+      "success": true
+    },
+    {
+      "id": "original-rgb565-bltfast-ugdn7zhm",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "capture_sha256": "ff1859b03c82b7764a1a8c3860d8fd545e24fad820ca2dbebe3d65d5ffecd5d8",
+      "expected_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+      "cpu_comparison": {
+        "matching": true,
+        "mismatching_pixels": 0,
+        "first_mismatch": null
+      },
+      "changed_pixels": 190,
+      "artifacts": "working/tests/surface-fixtures/original-rgb565-bltfast-ugdn7zhm-e9pv_zz1",
+      "opengl_comparison": {
+        "matching": true,
+        "mismatching_pixels": 0,
+        "first_mismatch": null
+      },
+      "opengl_vs_cpu": {
+        "matching": true
+      },
+      "presentation_comparison": {
+        "matching": true,
+        "reference_rgba_sha256": "9aa8493597d58d6239d453f717e5360e4da02a80c4e61133245c475906d4a0b3"
+      },
+      "opengl": {
+        "backend": "opengl_native_integer",
+        "bits": 16,
+        "capture_sha256": "ff1859b03c82b7764a1a8c3860d8fd545e24fad820ca2dbebe3d65d5ffecd5d8",
+        "height": 600,
+        "output_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+        "presentation_rgba_sha256": "9aa8493597d58d6239d453f717e5360e4da02a80c4e61133245c475906d4a0b3",
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "native_readbacks": 1,
+          "palette_updates": 0,
+          "presentations": 1,
+          "uploads": 2
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1",
+        "width": 800,
+        "binary_sha256": "272a9ada012d3db7ee68f60f0b5590a9a7b0d31d9ca918dc4e0f5f5ce260762c"
+      },
+      "success": true
+    },
+    {
+      "id": "original-rgb565-bltfast-yu55vq8i",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "capture_sha256": "f092903fa05dd0610b578195093a415d3c1c2b3d1d6591421ec2184419f1aab8",
+      "expected_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+      "cpu_comparison": {
+        "matching": true,
+        "mismatching_pixels": 0,
+        "first_mismatch": null
+      },
+      "changed_pixels": 190,
+      "artifacts": "working/tests/surface-fixtures/original-rgb565-bltfast-yu55vq8i-6mwi01pr",
+      "opengl_comparison": {
+        "matching": true,
+        "mismatching_pixels": 0,
+        "first_mismatch": null
+      },
+      "opengl_vs_cpu": {
+        "matching": true
+      },
+      "presentation_comparison": {
+        "matching": true,
+        "reference_rgba_sha256": "9aa8493597d58d6239d453f717e5360e4da02a80c4e61133245c475906d4a0b3"
+      },
+      "opengl": {
+        "backend": "opengl_native_integer",
+        "bits": 16,
+        "capture_sha256": "f092903fa05dd0610b578195093a415d3c1c2b3d1d6591421ec2184419f1aab8",
+        "height": 600,
+        "output_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+        "presentation_rgba_sha256": "9aa8493597d58d6239d453f717e5360e4da02a80c4e61133245c475906d4a0b3",
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "native_readbacks": 1,
+          "palette_updates": 0,
+          "presentations": 1,
+          "uploads": 2
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1",
+        "width": 800,
+        "binary_sha256": "272a9ada012d3db7ee68f60f0b5590a9a7b0d31d9ca918dc4e0f5f5ce260762c"
+      },
+      "success": true
+    },
+    {
+      "id": "original-rgb565-bltfast-zpfft1bo",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "capture_sha256": "ac1c7a58ccddca15a3c5c7bf831b090fcea06cb7017018767b5a1a0d11190622",
+      "expected_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+      "cpu_comparison": {
+        "matching": true,
+        "mismatching_pixels": 0,
+        "first_mismatch": null
+      },
+      "changed_pixels": 190,
+      "artifacts": "working/tests/surface-fixtures/original-rgb565-bltfast-zpfft1bo-otqsita1",
+      "opengl_comparison": {
+        "matching": true,
+        "mismatching_pixels": 0,
+        "first_mismatch": null
+      },
+      "opengl_vs_cpu": {
+        "matching": true
+      },
+      "presentation_comparison": {
+        "matching": true,
+        "reference_rgba_sha256": "9aa8493597d58d6239d453f717e5360e4da02a80c4e61133245c475906d4a0b3"
+      },
+      "opengl": {
+        "backend": "opengl_native_integer",
+        "bits": 16,
+        "capture_sha256": "ac1c7a58ccddca15a3c5c7bf831b090fcea06cb7017018767b5a1a0d11190622",
+        "height": 600,
+        "output_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+        "presentation_rgba_sha256": "9aa8493597d58d6239d453f717e5360e4da02a80c4e61133245c475906d4a0b3",
+        "rendered": true,
+        "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+        "surface_stats": {
+          "copies": 1,
+          "native_readbacks": 1,
+          "palette_updates": 0,
+          "presentations": 1,
+          "uploads": 2
+        },
+        "vendor": "Mesa",
+        "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1",
+        "width": 800,
+        "binary_sha256": "272a9ada012d3db7ee68f60f0b5590a9a7b0d31d9ca918dc4e0f5f5ce260762c"
+      },
+      "success": true
+    }
+  ],
+  "scope": "Five retained game-driver RGB565 opaque BltFast captures at return PC 0x0058c5be; offline comparison only.",
+  "covered_matrix_ids": [
+    "SURF.copy.opaque",
+    "SURF.format.rgb565"
+  ],
+  "missing_required_matrix_ids": [
+    "SURF.clip.rectangles",
+    "SURF.clip.regions",
+    "SURF.copy.self_overlap",
+    "SURF.fill",
+    "SURF.flip",
+    "SURF.format.other",
+    "SURF.key.exact_source",
+    "SURF.lifetime_updates",
+    "SURF.palette",
+    "SURF.restore"
+  ],
+  "milestone_complete": false,
+  "sources": {
+    "renderer/blit.cpp": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+    "renderer/blit.hpp": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+    "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+    "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+    "renderer/replay_main.cpp": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+    "research/runtime/native-surface-operation-matrix.json": "1bd47f423630ac1764659c1a40089079f89aeea3ba8251bdcb0b019a853c20a6",
+    "tests/fixtures/surfaces/corpus.json": "e3d97844617a3f3ecdf2ca15787cbc442ce0f5e375fd783caf3e90ed5496cdb6",
+    "tests/fixtures/surfaces/g34xhs0b.bin.gz": "f39c6c8de24ded931d1a60cc8e2913fd16d501b27dbd6f812caf7f4a2b574434",
+    "tests/fixtures/surfaces/g34xhs0b.manifest.json": "6d86cfbdd6e4a6a05b993aafd6d6cc338b2745da3c868432d0f693eae403c648",
+    "tests/fixtures/surfaces/p66k189j.bin.gz": "ae5cafbf5ee32504bf0601f0538ff300faee1af31a9dbe1644bba6aee244e14b",
+    "tests/fixtures/surfaces/p66k189j.manifest.json": "51165958fbfdf56a26912efb2dd0dd152ff3dc08779e3ca83b6e26473cf13b22",
+    "tests/fixtures/surfaces/ugdn7zhm.bin.gz": "dd43729020bb0864a2c22a45aa709039b6211859f8959b034817834f62bffa10",
+    "tests/fixtures/surfaces/ugdn7zhm.manifest.json": "d0b351908c11390f2812a689f7a4b11a426a3e55d518c6e7b2966a1bd6f2d102",
+    "tests/fixtures/surfaces/yu55vq8i.bin.gz": "4a6a8b3aa699e5f48db8764704e5431841c56bc5644b51193483436f01d0e672",
+    "tests/fixtures/surfaces/yu55vq8i.manifest.json": "14ffd0bdc20f1340e8fd055f4fb082c2468551c492c71612af7bb195393af9f5",
+    "tests/fixtures/surfaces/zpfft1bo.bin.gz": "4bc3c1a77ef9d166b27b3a4d4e3dcf1624052e6edbf9eff8b07ee572b961065b",
+    "tests/fixtures/surfaces/zpfft1bo.manifest.json": "4c955008fdfd7b1f60b1b7de8e13fbd65e0ba4d5c2b27e2358e7022c6f3f6090",
+    "tests/test-surface-fixtures.py": "e833ad80cdfdcf430b67668683f0f849b695fd2d0965fff435072b4e260da015",
+    "tools/check-surface-fixtures.py": "039819f747816e52ff0e7053e04686794ba3c4e4264742081999f29471cbca10",
+    "tools/replay-render-capture.py": "cba4d3533b972ed7e2613c4b037e17378d04dcef4b1a706ebb8919de671ff538"
+  }
+}

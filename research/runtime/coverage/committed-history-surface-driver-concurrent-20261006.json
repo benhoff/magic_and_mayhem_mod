@@ -1,0 +1,196 @@
+{
+  "schema": 1,
+  "base": "99be762",
+  "head": "011c5a1c190de49d0a5c2f8e7bebc2f3d6ef9ca5",
+  "scope": "Intervening recovery metadata commit exact parent/current file receipts reviewed before driver commit. Separate from current uncommitted surface work; no new validation or past gate claim.",
+  "files": [
+    {
+      "path": "apps/qt-shell/live_command_renderer.cpp",
+      "before_sha256": "95ae524071a0ffcf7ae9c75786c56085c74d80bb3089762708e922544cfde299",
+      "after_sha256": "d5288ce683e65418a5e791781df33c5efbcb1f85558eda2feced7e2142e21dcc",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "92239ffcceca6e515896d764cad58776b6d48c0706919f06932bebd355402994",
+      "after_sha256": "2a1105b9be630ff6eb18a4c602c1861365adc279f46385efe6bfe97718329ab0",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "f68004c45f6e406e93deb6cf54427ac605846c3af3236e7eabbb36143a0580f0",
+      "after_sha256": "3a001d9dfc4323a1232db14fa097a14455b2cf7e1da83c6d00a144af300f9b04",
+      "receipts": [],
+      "journal": true
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-render-recovery-metadata-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "87f3ca6f9001690c1900d65a33dfb6aaa69ef55ea7f33a4b9d6eb0400a8e0cbc",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "744734564ce16fca35d846f816c960a1d916bdf90af14b88dcc6ae2f4c5bd776",
+      "after_sha256": "45a15fd8b1557689d296a4e852a1394ea22fccc1b2ee6c4746f3c4488dc9dd69",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/source-index-render-recovery-metadata-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "7f884b232bf1a1001dc872cdf2bc83df50482893a93392b789c04fca9d523e14",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/summary-render-recovery-metadata-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "b2170ef651f0b6cec0ff474891385464d5b0b5a5f801832be9fac1c9e4c5660d",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-metadata-channel-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "f85c9846174dbb98ffbd199f33919215550be483108863773147522fc4a9379b",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-metadata-checkpoint-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "7429c27d56160f28fcadf05716efea7fcd54c2e5902c7e2e5b9731c928c7b76c",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-metadata-explicit-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "04b178209787f25dd2ff8da31bc2ed72ae56f1e6c428cbe8f4db0e65bb79ee5e",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-metadata-game-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "d2d58b0587907a809d85f1b59dc26047db4e5de0b4f592ef1f325b71f9b1cf6b",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-metadata-host-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "5ab862387acdb08bbe4d1bb1def7b4b238bcf473b1c0beea1ff3dd00319de973",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-metadata-queue-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-metadata.md",
+      "before_sha256": null,
+      "after_sha256": "b06b6fc7dddf8bb9f3cced0401cfda7904d6a13276bc3d35d74686f36423b9c0",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery.md",
+      "before_sha256": "0f4c95da91513d6c34294deddff80b2ca73742fa5fad22bdfc061aeecbec2e42",
+      "after_sha256": "8c844e6a798482638a0aef8584371c8b5ebe661bd13b34ed7ffe10ad8d11dc4f",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "runtime/render/command_recovery.h",
+      "before_sha256": "4ddf26f00a5f2c43ed64c88266390f02c2cb3ae78957bd112edba11f516ffb9c",
+      "after_sha256": "704835087854a2f2f447c044b9dbbbfa38f75036c87b356ec61aae224518e495",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "runtime/render/recovery_selftest.h",
+      "before_sha256": "d902eb05f98c13560f264bdfda39547217ae99f07cb5a6ce3e34c3c6a0a024c7",
+      "after_sha256": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tests/live-render-channel-test.cpp",
+      "before_sha256": "6d52cce6e5d97fc077d7882f7c99d30c219d62be2ab682d93efe84101f46e60c",
+      "after_sha256": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tests/live-render-recovery-probe.cpp",
+      "before_sha256": "facf6439652117ee403847c758cae377255d4ade22a0a6e569b5aa1fc650794e",
+      "after_sha256": "c1bdd484029809bebc2087ed6cec6eefd7211456b386c61de0a34608d7981371",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tools/test-live-render-recovery.py",
+      "before_sha256": "b0855bfd5d7f59cfd095ce6659ff7182729f8aa69921f69a63a05c121062a3ab",
+      "after_sha256": "69ef82b06df147e2fdc530e36844662234b1bcb44b443ba793b1fd0ffc6b808b",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tools/test-render-recovery.py",
+      "before_sha256": "e7e06e0c4e53e3bf7d654743f296a852eecbcde647501dbf12a6121b93822c66",
+      "after_sha256": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ],
+      "journal": false
+    }
+  ],
+  "unresolved": []
+}

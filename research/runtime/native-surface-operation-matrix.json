@@ -5,7 +5,8 @@
   "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
   "documents": [
     "research/runtime/native-surface-fixtures.md",
-    "research/runtime/render-drawing-inventory.md"
+    "research/runtime/render-drawing-inventory.md",
+    "research/runtime/surface-driver-clipping.md"
   ],
   "operations": [
     {
@@ -103,7 +104,7 @@
         "whole and subrect copies",
         "untouched borders",
         "one pixel/row",
-        "failure leaves destination unchanged"
+        "failure HRESULT plus full before/after state, including partial writes"
       ],
       "original_fixture_ids": [
         "original-rgb565-bltfast-g34xhs0b",
@@ -185,7 +186,9 @@
       "native_backend": "unsupported",
       "wire_support": "v1/v2 COPY requires in-bounds rectangles",
       "behavior_ids": [
-        "RI.copies"
+        "RI.copies",
+        "RE.surface-rectangle-forwarding",
+        "NR.surface-driver-fixtures"
       ],
       "original": [
         {
@@ -221,7 +224,13 @@
         "Blt versus BltFast error/result"
       ],
       "original_fixture_ids": [],
-      "remaining_gap": "The one/three-row fixtures already contain in-bounds rectangles and do not prove driver or wrapper clipping."
+      "remaining_gap": "Wrapper forwarding and Wine Surface2 RGB565 driver outputs are recorded separately. Native clipping/protocol representation, actual game clipper/region use, original error handling, other formats and Windows-driver equivalence remain pending.",
+      "driver_fixture": {
+        "record": "research/runtime/surface-driver-clipping-surface2-20261006.json",
+        "corpus": "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "cases": 408,
+        "scope": "Wine 11.16 Surface2 synthetic RGB565 API outputs only; original game execution and native clipping pending."
+      }
     },
     {
       "id": "SURF.clip.regions",
@@ -230,7 +239,9 @@
       "native_backend": "unsupported",
       "wire_support": "not represented",
       "behavior_ids": [
-        "RI.copies"
+        "RI.copies",
+        "RE.surface-rectangle-forwarding",
+        "NR.surface-driver-fixtures"
       ],
       "original": [
         {
@@ -246,7 +257,13 @@
         "key/fill interactions"
       ],
       "original_fixture_ids": [],
-      "remaining_gap": "Need original clipper identity/region observation and independent driver output; do not infer regions from a scissor box."
+      "remaining_gap": "Wrapper forwarding and Wine Surface2 RGB565 driver outputs are recorded separately. Native clipping/protocol representation, actual game clipper/region use, original error handling, other formats and Windows-driver equivalence remain pending.",
+      "driver_fixture": {
+        "record": "research/runtime/surface-driver-clipping-surface2-20261006.json",
+        "corpus": "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "cases": 408,
+        "scope": "Wine 11.16 Surface2 synthetic RGB565 API outputs only; original game execution and native clipping pending."
+      }
     },
     {
       "id": "SURF.fill",

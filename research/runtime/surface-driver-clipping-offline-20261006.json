@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "success": true,
+  "tests": 4,
+  "driver_cases": 408,
+  "matched": 408,
+  "full_destination_words": 19584,
+  "partial_failure_cases": 2,
+  "sources": {
+    "tests/surface-driver-reference.c": "6d21e9bf881245893e9baf164418e1efc13dd4021aef5a965f6001caad181051",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-driver.py": "f1ef8f47e225d6de1f0b664e6915ae9cd7316a3a6f7c86081cae116b6ee94f24",
+    "tests/test-surface-driver.py": "b11152d05ec2f30b171757a494d0a0ca9a709c59b7ea5e116c8c5a08e748af99",
+    "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz": "c6ae4c39de508610c2fc765c3acc4eff65e0f253e89a8457ea153b3f21522e7c",
+    "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json": "f903c01cae3d08486bd24d4f619af4ad96d6ee21dd55394420fe1d7bf6633cbe",
+    "research/runtime/surface-driver-clipping-surface2-20261006.json": "d906fa624faffebb712c9228a21cb18697defd7e07dd601ffd127850a990759f"
+  },
+  "scope": "Offline admission and independent Python prediction of retained Wine Surface2 driver HRESULT/native pixels; no native renderer or original-game execution, Windows-driver equivalence or live replacement.",
+  "capture_record": "research/runtime/surface-driver-clipping-surface2-20261006.json",
+  "artifacts": "working/tests/surface-driver/offline-surface2-tests.log"
+}

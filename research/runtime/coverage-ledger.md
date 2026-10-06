@@ -1,5 +1,20 @@
 # Engine modernization coverage ledger
 
+## Surface2 driver clipping and errors — 2026-10-06
+
+[Independent external-driver evidence](surface-driver-clipping.md) now retains
+408 real Wine 11.16 Surface2 RGB565 API calls and a portable before/after corpus.
+Four offline tests reproduce all HRESULTs and full destination outputs. Two Blt
+calls partially write a first clip region before a later invalid source piece
+fails; failure atomicity is therefore removed from the acceptance matrix.
+No-clipper bounds rejection, explicit/disjoint/empty/missing lists, BltFast clipper
+rejection, busy surfaces and scoped flag/key results remain driver/environment
+specific. Original wrapper error/retry/Restore handling, real game region use,
+Windows-driver equivalence, native clipping/protocol integration and replacement
+remain pending. Existing original RGB565 opaque fixtures were replayed afresh
+through CPU/OpenGL after the matrix edit, retaining all previous evidence hashes.
+
+
 ## Original rectangle forwarding boundary (2026-10-06)
 
 `RE.surface-rectangle-forwarding` now has 966 isolated original-wrapper argument

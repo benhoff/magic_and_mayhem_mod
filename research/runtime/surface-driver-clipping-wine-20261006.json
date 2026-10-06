@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "success": true,
+  "cases": 280,
+  "sources": {
+    "tests/surface-driver-reference.c": "32b5847c9edadaab5697907b589e80ce5ed5771d199a833443fdc5541ed5484f",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-driver.py": "6c3fca87d465d33ba2770a27aa214d836af9d0e2c2a91bea67b4494594938c66",
+    "tests/test-surface-driver.py": "6ae2a961d3df8cfb614d6514b3cad681a64536d3fcd796e0814677fa7581618e",
+    "tests/fixtures/surfaces/driver-clipping-original.json.gz": "37372a56c680ff368ab25a71a9051a85f7bed0c79fd135000593098af3a68fe1",
+    "tests/fixtures/surfaces/driver-clipping-corpus.json": "3c8a2b844a9eca30115a6eb1a5524c0eb6d2c1c954e42eaab9cf0e51c05b6486"
+  },
+  "scope": "Real Wine built-in DirectDraw v1 system-memory RGB565 API outputs; external driver policy, not Windows 1998 equivalence, wrapper failure handling or native renderer validation.",
+  "environment": {
+    "wine": "wine-11.16",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b",
+    "surface_caps": 2112,
+    "width": 8,
+    "height": 6,
+    "bits": 16,
+    "masks": [
+      63488,
+      2016,
+      31
+    ],
+    "cooperative_level": "NORMAL",
+    "software_gl": true
+  },
+  "driver_calls": true,
+  "original_game_executed": false,
+  "original_game_text_patched": false,
+  "native_renderer_executed": false,
+  "artifacts": "working/tests/surface-driver/run-ejz3m6y6",
+  "probe_sha256": "c56ec3f9e5408af3e5de6a6d73dd0f916dd3975615f8afae5bc57d72adfd4303",
+  "inputs_sha256": "d7875ddec42f43d8a3e733624e169ea9c5fcb8fcc746e9473ed09564fa202f50",
+  "outputs_sha256": "941abde2c9a73d25ad5a951c8a87737dc7f50ac9b8125048c1b5e32204985e7c",
+  "summary": {
+    "hresults": {
+      "0x00000000": 56,
+      "0x80004001": 1,
+      "0x80070057": 1,
+      "0x88760096": 156,
+      "0x887600cd": 26,
+      "0x887601ae": 4,
+      "0x8876023e": 36
+    }
+  },
+  "fixture": {
+    "schema": 1,
+    "path": "driver-clipping-original.json.gz",
+    "sha256": "37372a56c680ff368ab25a71a9051a85f7bed0c79fd135000593098af3a68fe1",
+    "raw_sha256": "04bd78763dadb1ae81089cbbe56868743ebc3a68ec79af44dd6a298dc8d3ee22",
+    "cases": 280,
+    "scope": "Real Wine built-in DirectDraw v1 system-memory RGB565 API outputs; external driver policy, not Windows 1998 equivalence, wrapper failure handling or native renderer validation."
+  },
+  "original_manifest_verified_before_after": true
+}

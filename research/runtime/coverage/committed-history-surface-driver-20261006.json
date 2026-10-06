@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "base": "1f511c6",
+  "head": "99be7626ea6ecad49047e875b64cf5918bba51e0",
+  "scope": "Committed wrapper investigation parent/current file hashes and affected behavior contracts checked against retained exact receipts; journal self-accounting excluded. No historical gate or new execution claim.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "ff5918596f4b31d1afa0298167b35ccded3ca4beac822100429f571f350c05b0",
+      "after_sha256": "92239ffcceca6e515896d764cad58776b6d48c0706919f06932bebd355402994",
+      "receipts": [
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "d662123ba6361223b377a308d2dae4e89fd05f00fc26c4f8b02b0edb8a227ca4",
+      "after_sha256": "f68004c45f6e406e93deb6cf54427ac605846c3af3236e7eabbb36143a0580f0",
+      "receipts": [],
+      "journal": true
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-surface-forwarding-next-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "fa78d8e44f8d48d6263016055f02b551a3ca82588beabb7dfc196c073a79d94d",
+      "receipts": [
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-surface-rectangles-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "a6f8c6138ce850716021fa2bc42564313bc975130a892eef67dbeb8d71bd793d",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006",
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "e81a6d2632f1d49e2f01980e84dac537770e4509bc554aae8c5a69cfb7c11224",
+      "after_sha256": "744734564ce16fca35d846f816c960a1d916bdf90af14b88dcc6ae2f4c5bd776",
+      "receipts": [
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/source-index-surface-forwarding-final-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "fc0a7f50366103a793e134036474e93133ed2a830daedc6e082b3a96e3dbe647",
+      "receipts": [
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/source-index-surface-rectangles-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "fc0a7f50366103a793e134036474e93133ed2a830daedc6e082b3a96e3dbe647",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006",
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/summary-surface-forwarding-final-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "70b48c4095b17eadb6350886f7fba67d80bd52cd464e9fc91807d2f2d0dff45e",
+      "receipts": [
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/summary-surface-rectangles-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "70b48c4095b17eadb6350886f7fba67d80bd52cd464e9fc91807d2f2d0dff45e",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006",
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/surface-rectangle-forwarding-original-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "b1ed1f9bebaee62a5fd8b3ebf757a4e7c4e9edc4ed64179ae4eff3c84dd386a4",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006",
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/surface-rectangle-forwarding.md",
+      "before_sha256": null,
+      "after_sha256": "b42168f3b23ebb31f353db62d9e7cbb36dc30ff791f1fdd9abbac8748566a9f3",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006",
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tests/fixtures/surfaces/rectangle-forwarding-corpus.json",
+      "before_sha256": null,
+      "after_sha256": "4b8428d536705a853e72770e1f70ed017a97f85e59a5cef267bb942c858f494e",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006",
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tests/fixtures/surfaces/rectangle-forwarding-original.json.gz",
+      "before_sha256": null,
+      "after_sha256": "8940a46d4148c4b632f5f8210a6ee46d28bd7c72b0edc7b5d673acda18f1c508",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tests/surface-rectangle-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "3fc57e4312c81d23547069df0a0d22c90b1626b2133a563a27cd8dc990645d6d",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006",
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tests/test-surface-rectangles.py",
+      "before_sha256": null,
+      "after_sha256": "77432fca60e9212105d63be9465fd0f471539eda2b204bec0edd3853c35fcc5c",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006",
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tools/compare-surface-rectangles.py",
+      "before_sha256": null,
+      "after_sha256": "ac33064184e6ac001a0be03a50c4debe7fe63f2f4fa4202339989945de28a1f7",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006",
+        "surface-forwarding-isolated-commit-20261006"
+      ],
+      "journal": false
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "RE.surface-rectangle-forwarding",
+      "before_sha256": null,
+      "after_sha256": "7f008fc64480b199cace90fd86bfb6d481738968e8de446f11a2827ac9b54348",
+      "receipts": [
+        "surface-rectangle-forwarding-recorded-20261006",
+        "surface-forwarding-isolated-commit-20261006"
+      ]
+    },
+    {
+      "id": "RI.copies",
+      "before_sha256": "f41348ae8b27b521b68da179acdc55766a241cc8f59add322f51dec770f0f062",
+      "after_sha256": "7796151b17d8b33badbe901ee89cc61a7b5329d07cf77eb5889e1af07c4ff893",
+      "receipts": [
+        "surface-rectangle-inventory-link-review-20261006",
+        "surface-forwarding-inventory-link-commit-20261006"
+      ]
+    }
+  ],
+  "unresolved": []
+}

@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "base": "99be762",
+  "head": "011c5a1",
+  "scope": "Affected committed recovery behavior contracts checked against retained exact receipts. Complements the separate file/hash range report; no new execution, original equivalence or past gate claim.",
+  "behaviors": [
+    {
+      "id": "NR.command-checkpoint-attachment",
+      "before_sha256": "f2f1f651ad498ebdd225e7b168441811ceb79baba895675f76d21cec5e9079ae",
+      "after_sha256": "7c3bb54862c7bc95b0417d37833748a278138f8ec4618778ba3bd8d71fd04043",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-host-recovery",
+      "before_sha256": "14810b1910163e83437c83935dba2e569cc27f1f3638540a7685b1f3a13f512e",
+      "after_sha256": "f1ce44b5d23b5ba84021ede20058bb9f0926ff0da715b965ab7673db4d687495",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-recovery",
+      "before_sha256": "e472f1bdcc588f00b1252636ea103f7b5c62dabd773cdcbc1f8b6db74642dd2c",
+      "after_sha256": "42c2109dec4434d9e168b7082f4701ef67eb7082999ee7dd3e2f8f44aaf77186",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-ring-adapter",
+      "before_sha256": "71e29a1973964e438de55b590b3bf6a127c2bd43cd001efa15e664ec34518e38",
+      "after_sha256": "a7f9222d05a38c5a7c5acd95499382ce9c3de7bd6d3c68d696f0588bfc78ddec",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-streaming",
+      "before_sha256": "2ce6aa87e272b994faa428ee5157bf9171b2284b3b8542d1f51d09994013ba22",
+      "after_sha256": "c6a3597688e5bf1ac5aa6a9e4f467abd9272e71778219a596c921f8233c29eef",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-mutations",
+      "before_sha256": "137324179314c611a6f6e9a53b7469ef294610a1fd1cf85ed18f343376ae7741",
+      "after_sha256": "4261ece4a2de8fdfc3d90b6f58dc3e423a85dcdf7cd582b0401d2c635bcf8d73",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-producer",
+      "before_sha256": "4f547b97e37200e771d4c84127fabaf10b77684ca84f4492821c4f4e6bdcc5b9",
+      "after_sha256": "b7e33c3a9d14e6c0bc00142cdad30781212def4abff6f29e7c1cdd9537d60776",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-lifetime",
+      "before_sha256": "206272c3f2ba5ea8b8c6ff194c21cbff4309f1f2dd55e5dc787f574935947176",
+      "after_sha256": "06440bdea8c8e01c4a97de381c68ce616fb21c0b45d130f07ec60e4169d089fc",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.incremental-command-consumer",
+      "before_sha256": "bf84c133192c191309de4694e6c6f91b5762d5224f0e288548b4d139d3f6961b",
+      "after_sha256": "e9a42a8724c662e97b1d557efcc91d48d12bacdbb38fa982637a138626612775",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.live-command-transport",
+      "before_sha256": "ccabbac4a5d93cdfae2759e4cf1ea0dd3cf309f38bb4daad7761aa427f7eed25",
+      "after_sha256": "3eb960fda07cb158cdfd2ed800957717007f23c3ad906074d84b064948543c4e",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.palette-resources",
+      "before_sha256": "575de7e40d60e40708c3e6cde4c60397d60ca91664f2a3de5cfd50bfddddaa4a",
+      "after_sha256": "c3d3fef673c923d5bb2d78b1925837ee99851051acb4243c775c583104aefc4d",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "cd5eee1070c547941aa45eeefe5975fa0646ae9bd99c372068ac39b6def90a9a",
+      "after_sha256": "0b7334e0cacf82cdea9aabfef5e056fe4d095332125870f2f19adda481d81703",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    },
+    {
+      "id": "RT.render",
+      "before_sha256": "fefe70dbb8811c16dc800b988566eeb092a447e8188b32b99535ebd3c76196f6",
+      "after_sha256": "f12bc484ce0748e4d683bfd663c97143f74df104e99e341cb4a0841602a14817",
+      "receipts": [
+        "REVIEW.render-recovery-metadata-and-poll-budget-20261006"
+      ]
+    }
+  ],
+  "unresolved": []
+}
