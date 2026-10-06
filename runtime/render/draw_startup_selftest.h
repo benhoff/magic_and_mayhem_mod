@@ -4,8 +4,9 @@
 API u32 WIN RenderStartup(void);
 static void* ds_tables[2][7];
 static void** ds_draws[2];
-static u32 ds_calls,ds_surface_calls,ds_fail,ds_null,ds_depth,ds_nested,ds_worker_original;
+static u32 ds_calls,ds_surface_calls,ds_fail,ds_null,ds_depth,ds_nested,ds_worker_original,ds_reentrant_shutdown,ds_reentrant_expected;
 static i32 WIN ds_unlock(void* object,void* pointer){
+    if(ds_reentrant_shutdown){if(RenderShutdown(0)!=ds_reentrant_expected || GetLastError()!=0x77)ExitProcess(468);ds_reentrant_shutdown=0;}
     if(pointer!=((struct RsSurface*)object)->state->pixels.exposed)ExitProcess(466);return rs_unlock(object,0);
 }
 static i32 WIN ds_surface(void* object,u32* d,void** out,void* outer){

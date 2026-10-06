@@ -13425,11 +13425,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Idle producer retries and explicit transport shutdown",
-      "scope": "Version2 owned queue retry thread started outside DllMain; bounded idle progress and explicit shutdown/cancellation outside loader lock. No dynamic hook uninstall.",
+      "scope": "Version2 owned queue retry thread started outside DllMain; bounded idle progress and explicit shutdown/cancellation outside loader lock. No dynamic hook uninstall. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-command-streaming-lifecycle.md"
+        "research/runtime/opengl-command-streaming-lifecycle.md",
+        "research/runtime/opengl-lifecycle-races.md"
       ],
       "implementation": [
         "runtime/render/command_scheduler.h",
@@ -13451,7 +13452,8 @@
         "NR.command-streaming.queue",
         "NR.command-streaming.sequence",
         "NR.command-streaming.startup",
-        "NR.command-streaming.live"
+        "NR.command-streaming.live",
+        "NR.lifecycle-races.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14113,12 +14115,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous producer startup and orderly process-exit orchestration",
-      "scope": "Explicit startup readiness and guarded resolved PE32 main-image ExitProcess IAT admission for continuous mode; application callback closes producer admission, emits cleanup and drains/joins outside DllMain. Configured transport failures cannot become optional or report successful shutdown. Native synthetic integration only; original exit branch coverage, forced termination, dynamic unloading, OS scheduling guarantees and recovery excluded. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending.",
+      "scope": "Explicit startup readiness and guarded resolved PE32 main-image ExitProcess IAT admission for continuous mode; application callback closes producer admission, emits cleanup and drains/joins outside DllMain. Configured transport failures cannot become optional or report successful shutdown. Native synthetic integration only; original exit branch coverage, forced termination, dynamic unloading, OS scheduling guarantees and recovery excluded. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-orchestration.md",
-        "research/runtime/opengl-draw-startup-order.md"
+        "research/runtime/opengl-draw-startup-order.md",
+        "research/runtime/opengl-lifecycle-races.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -14144,7 +14147,8 @@
         "NR.command-orchestration.idle",
         "NR.command-orchestration.gpu",
         "NR.command-orchestration.queue",
-        "NR.draw-startup-order.native-20261006"
+        "NR.draw-startup-order.native-20261006",
+        "NR.lifecycle-races.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15014,7 +15018,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in bounded scheduling across hooked original copies",
-      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending.",
+      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -15024,7 +15028,8 @@
         "research/runtime/opengl-palette-property-order.md",
         "research/runtime/opengl-lifetime-order.md",
         "research/runtime/opengl-metadata-order.md",
-        "research/runtime/opengl-draw-startup-order.md"
+        "research/runtime/opengl-draw-startup-order.md",
+        "research/runtime/opengl-lifecycle-races.md"
       ],
       "implementation": [
         "runtime/render/copy_order.h",
@@ -15046,7 +15051,8 @@
         "NR.palette-property-order.native-20261006",
         "NR.lifetime-order.native-20261006",
         "NR.metadata-order.native-20261006",
-        "NR.draw-startup-order.native-20261006"
+        "NR.draw-startup-order.native-20261006",
+        "NR.lifecycle-races.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15887,13 +15893,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded DirectDraw startup factory admission and complete initial pixels",
-      "scope": "Continuous opt-in50ms lease spans DirectDrawCreate RenderStartup/original/interface installation, scoped failure/null cleanup and same-thread nesting. Timed-out factory forwards once with alias/metadata reset on both sides and explicit unobserved-interface diagnostic. Producer readiness remains separate from reader readiness; no factory-only incremental packets or reset of an existing session. Seven independent DirectDraw1 fixtures install no test hooks before initial factory, use108-byte descriptors/pointer Unlock, failed creation input poisoning, nested first checkpoint and worker failure/null/success race/timeout. Delayed reader binds after factory and before initial complete pixels. Existing lifecycle and late active checkpoint regressions retain incomplete/borrowed refusal. Original enumeration/load-time order, alternative factory entry points, external startup/shutdown/recovery races, unobserved interface interception recovery, prolonged/terminated owners, borrowed intervals and original game/driver/full-frame/default enablement remain pending.",
+      "scope": "Continuous opt-in50ms lease spans DirectDrawCreate RenderStartup/original/interface installation, scoped failure/null cleanup and same-thread nesting. Timed-out factory forwards once with alias/metadata reset on both sides and explicit unobserved-interface diagnostic. Producer readiness remains separate from reader readiness; no factory-only incremental packets or reset of an existing session. Seven independent DirectDraw1 fixtures install no test hooks before initial factory, use108-byte descriptors/pointer Unlock, failed creation input poisoning, nested first checkpoint and worker failure/null/success race/timeout. Delayed reader binds after factory and before initial complete pixels. Existing lifecycle and late active checkpoint regressions retain incomplete/borrowed refusal. Original enumeration/load-time order, alternative factory entry points, external startup/shutdown/recovery races, unobserved interface interception recovery, prolonged/terminated owners, borrowed intervals and original game/driver/full-frame/default enablement remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-draw-startup-order.md",
         "research/runtime/opengl-command-orchestration.md",
-        "research/runtime/opengl-command-checkpoint.md"
+        "research/runtime/opengl-command-checkpoint.md",
+        "research/runtime/opengl-lifecycle-races.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -15910,7 +15917,49 @@
       "evidence": [
         "NR.draw-startup-order.native-20261006",
         "NR.draw-startup-order.lifecycle-20261006",
-        "NR.draw-startup-order.checkpoint-20261006"
+        "NR.draw-startup-order.checkpoint-20261006",
+        "NR.lifecycle-races.native-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.lifecycle-races",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Full startup/shutdown transition ownership and bounded callback quiescence",
+      "scope": "Existing lifecycle CAS spans startup readiness/worker/control startup and shutdown capture closure/drain/join/storage release, sharing recovery serialization. Contending transitions return false before tracked mutation. Ordered drawing shutdown waits up to existing50ms budget for active callback commit; timeout and same-thread reentry before completion refuse without changing stream state. Completed joined shutdown returns cached status before quiescence; callback admission closes before lease release/drain. Default-off callback policy retained; lifecycle serialization independent. Six independent PE32 worker/reentrant/completed schedules prove native frame continuity, original-only post-END drawing and blocked transition no-op with opt-in on/off; SELFTEST guard is absent in production. External recovery collisions, simultaneous long joins, tracker closure contention, abandoned/prolonged owners, administrative worker shutdown/unloading and original game/driver/full-frame equivalence remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-lifecycle-races.md"
+      ],
+      "implementation": [
+        "runtime/render/bridge.c",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/copy_order.h"
+      ],
+      "tests": [
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-lifecycle-races.py",
+        "tools/build-render-bridge.py",
+        "tools/test-render-orchestration.py",
+        "tools/test-render-draw-startup.py",
+        "tools/test-render-checkpoint.py"
+      ],
+      "evidence": [
+        "NR.lifecycle-races.native-20261006",
+        "NR.lifecycle-races.lifecycle-20261006",
+        "NR.lifecycle-races.startup-20261006",
+        "NR.lifecycle-races.checkpoint-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -28925,6 +28974,78 @@
           "equals": 186
         }
       ]
+    },
+    {
+      "id": "NR.lifecycle-races.native-20261006",
+      "kind": "native_integration",
+      "scope": "Six PE32 full-transition guard/quiescence/reentry/cached shutdown schedules; complete independent pixels and zero terminal storage. No original application/driver.",
+      "record": "research/runtime/opengl-lifecycle-races-native-20261006.json",
+      "sha256": "7de06cf37a26363acf5a21be88f2f4a52798ce20bf37eeac6ca65153e7c5274b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 12
+        }
+      ]
+    },
+    {
+      "id": "NR.lifecycle-races.lifecycle-20261006",
+      "kind": "native_integration",
+      "scope": "Eleven existing lifecycle/transport/readiness/borrowed shutdown regressions, preserving guarded explicit/automatic exit.",
+      "record": "research/runtime/opengl-lifecycle-races-lifecycle-20261006.json",
+      "sha256": "687e358a7601bd40aac629aa865e45fc2cbcd1206110a062e9ef43456f0565c3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "NR.lifecycle-races.startup-20261006",
+      "kind": "native_integration",
+      "scope": "Seven first/delayed/failed/null/nested and worker factory admission/refusal regressions through DirectDraw1.",
+      "record": "research/runtime/opengl-lifecycle-races-startup-20261006.json",
+      "sha256": "0d2501ecbe67cb96baf2774265160e0265eceb01f7097f79f20aabd1f8faaf6d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 13
+        }
+      ]
+    },
+    {
+      "id": "NR.lifecycle-races.checkpoint-20261006",
+      "kind": "native_integration",
+      "scope": "Six administrative late complete/indexed/recreated checkpoint and incomplete/active Lock/DC refusal regressions.",
+      "record": "research/runtime/opengl-lifecycle-races-checkpoint-20261006.json",
+      "sha256": "f60ced485fce2a253510d26b14be0f3d265332b7c29d0fbb4b238eaead420696",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 186
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -33599,6 +33720,29 @@
         "tools/test-render-orchestration.py",
         "tools/test-render-checkpoint.py"
       ]
+    },
+    {
+      "id": "NR.lifecycle-races.native",
+      "level": "preview",
+      "scope": "Native callback drain versus timeout/reentry refusal; contending transitions leave state intact and completed shutdown retains cached result. Existing factory/lifecycle/late checkpoint regression, no original driver or owner termination guarantees.",
+      "behaviors": [
+        "NR.lifecycle-races",
+        "NR.command-orchestration",
+        "NR.draw-startup-order"
+      ],
+      "evidence": [
+        "NR.lifecycle-races.native-20261006",
+        "NR.lifecycle-races.lifecycle-20261006",
+        "NR.lifecycle-races.startup-20261006",
+        "NR.lifecycle-races.checkpoint-20261006"
+      ],
+      "tests": [
+        "tools/test-render-lifecycle-races.py",
+        "runtime/render/lifecycle_race_selftest.h",
+        "tools/test-render-orchestration.py",
+        "tools/test-render-draw-startup.py",
+        "tools/test-render-checkpoint.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -33846,7 +33990,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw-startup-order-20261006.json",
-    "sha256": "466ff648fffd5b9b42e8c9725587ccef90a42869965a8bf99a8ce1a13a8655c5"
+    "path": "research/runtime/coverage/source-index-lifecycle-races-20261006.json",
+    "sha256": "992d315cb8d223c0c9b8af8d0b3d8c2dae551e7254a396edecf7a6c28fcab14d"
   }
 }

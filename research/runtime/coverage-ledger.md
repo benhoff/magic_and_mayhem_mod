@@ -1744,3 +1744,19 @@ including incomplete/active Lock/DC refusal. Production/SELFTEST DLLs build.
 Original driver/startup comparison, alternative factory entry points, external
 startup/shutdown/recovery races, unobserved interface recovery and borrowed
 interval ownership remain pending; see [startup admission](opengl-draw-startup-order.md).
+
+### Startup/shutdown transition ownership (2026-10-06)
+
+Startup/shutdown own lifecycle serialization across complete state transitions,
+so a losing call cannot finish or disable capture before obtaining ownership.
+Ordered-mode shutdown waits for a short admitted callback to commit, while
+50ms admission timeout or pre-completion same-thread reentry refuses without
+invalidating publication. Completed shutdown returns its cached result before
+callback quiescence; original-only later drawing cannot restart the stream.
+Six worker/guard/reentrant/completed fixtures pass12 complete frames, including
+opt-in on/off transition contention. Fresh lifecycle11-case/8-frame, factory
+7-case/13-frame and late checkpoint6-case/186-frame regressions pass. Production/
+SELFTEST DLLs build. External recovery collisions, simultaneous long joins,
+tracker closure contention, abandoned owners, administrative worker shutdown and
+original game/driver/full-frame equivalence remain pending; see
+[lifecycle race findings](opengl-lifecycle-races.md).

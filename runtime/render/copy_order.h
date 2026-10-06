@@ -36,3 +36,17 @@ static void game_lifetime_invalidate(void){
     __atomic_store_n(&game_alias_reset_pending,1,__ATOMIC_RELEASE);
     game_metadata_invalidate();
 }
+
+/* Shutdown refusal must leave an active stream intact for a later retry.
+ * Unlike a missed drawing callback, this does not forward an unobserved write. */
+static struct GameCopyLease game_copy_shutdown_enter(void){
+    u32 error=GetLastError(),thread=GetCurrentThreadId(),start=GetTickCount();struct GameCopyLease lease={0,1};
+    if(!game_copy_order_enabled)goto done;
+    for(;;){
+        if(__sync_bool_compare_and_swap(&game_copy_owner,0,thread)){lease.held=1;break;}
+        if(__atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE)==thread){lease.observe=0;lock_diagnostic("command_shutdown_reentrant",0,0,thread,0,0,0,0);break;}
+        if(GetTickCount()-start>=GAME_COPY_WAIT_MS){lease.observe=0;lock_diagnostic("command_shutdown_admission_timeout",0,0,thread,0,0,0,0);break;}
+        Sleep(0);
+    }
+ done:SetLastError(error);return lease;
+}

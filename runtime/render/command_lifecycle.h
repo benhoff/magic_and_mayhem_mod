@@ -55,12 +55,13 @@ static int command_auto_shutdown(void){
 }
 __declspec(dllexport) u32 WIN RenderStartup(void){
     u32 error=GetLastError();
-    if(!game_tracker_acquire()){SetLastError(error);return 0;}
+    struct CommandLifecycleLease lease __attribute__((cleanup(command_lifecycle_leave)))=command_lifecycle_enter();
+    if(!lease.held || !game_tracker_acquire()){SetLastError(error);return 0;}
     int ready=stream && !command_channel_refused &&
         (!game_session_continuous || (game_session_enabled && lock_capture_path_length &&
          (!command_auto_shutdown() || command_exit_installed)));
     game_tracker_release();
-    if(ready)ready=command_scheduler_start();
+    if(ready)ready=command_scheduler_start_locked();
     if(!command_control_start())ready=0;
     SetLastError(error);return ready;
 }
