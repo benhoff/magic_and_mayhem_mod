@@ -13490,7 +13490,8 @@
         }
       ],
       "documents": [
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md"
       ],
       "implementation": [],
       "tests": [],
@@ -14329,6 +14330,63 @@
         "implementation": "partial",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-rectangle-forwarding",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Selected original surface rectangle forwarding and window translation",
+      "scope": "966 executions of five unchanged original surface wrappers against fake successful COM endpoints and mocked ClientToScreen. Original call arguments, flags, destination mutation, null-interface guards and wrapped geometry only; no driver output, failure/retry/Restore or live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Successful selected rectangle forwarding; driver clipping and failure/retry/restore excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Successful selected rectangle forwarding; driver clipping and failure/retry/restore excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818528,
+          "scope": "Successful selected rectangle forwarding; driver clipping and failure/retry/restore excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819024,
+          "scope": "Successful selected rectangle forwarding; driver clipping and failure/retry/restore excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819328,
+          "scope": "Successful selected rectangle forwarding; driver clipping and failure/retry/restore excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/surface-rectangle-forwarding.md"
+      ],
+      "implementation": [
+        "tools/compare-surface-rectangles.py"
+      ],
+      "tests": [
+        "tests/surface-rectangle-reference.cpp",
+        "tests/test-surface-rectangles.py",
+        "tests/fixtures/surfaces/rectangle-forwarding-corpus.json",
+        "tests/fixtures/surfaces/rectangle-forwarding-original.json.gz"
+      ],
+      "evidence": [
+        "ORIGINAL.surface-rectangle-forwarding-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
         "replacement": "none"
       }
     }
@@ -25123,6 +25181,38 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "ORIGINAL.surface-rectangle-forwarding-20261006",
+      "kind": "isolated_original",
+      "scope": "966 executions of five unchanged original surface wrappers against fake successful COM endpoints and mocked ClientToScreen. Original call arguments, flags, destination mutation, null-interface guards and wrapped geometry only; no driver output, failure/retry/Restore or live equivalence.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/surface-rectangle-forwarding-original-20261006.json",
+      "sha256": "b1ed1f9bebaee62a5fd8b3ebf757a4e7c4e9edc4ed64179ae4eff3c84dd386a4",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/summary/cases",
+          "equals": 966
+        },
+        {
+          "pointer": "/summary/matched",
+          "equals": 966
+        },
+        {
+          "pointer": "/summary/driver_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/summary/original_text_patched",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -29351,7 +29441,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-recovery-validation-final-20261006.json",
-    "sha256": "4b5c59e7ed5b7f34e479f2c8f29292e5f38469f4386075805f51f0e912813ff9"
+    "path": "research/runtime/coverage/source-index-surface-forwarding-final-20261006.json",
+    "sha256": "fc0a7f50366103a793e134036474e93133ed2a830daedc6e082b3a96e3dbe647"
   }
 }

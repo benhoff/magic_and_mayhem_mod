@@ -1,0 +1,223 @@
+{
+  "schema": 1,
+  "base": "917b509",
+  "head": "1f511c6ca59859404a9f2cde5dc85908159e7cd2",
+  "scope": "Review intervening recovery commit parent/current file hashes against retained exact receipts; no past gate or fresh execution claim.",
+  "files": [
+    {
+      "path": "renderer/CMakeLists.txt",
+      "before_sha256": "47135cf8c3e304eb252bf1693e074412c360725924c1d64c7f1b922cdef5c5fe",
+      "after_sha256": "5aa7c972b454e64c76b5a0de476217953f0f89a695bb00f7e1aa01af77f1b780",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f8edc212f9d3c1ae07603d7ebf6fde83a4ba716a1902195ce24ec029dc8571c3",
+      "after_sha256": "ff5918596f4b31d1afa0298167b35ccded3ca4beac822100429f571f350c05b0",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "d1357cfa79ede86670da085b2754d8a5a164bb9c09f22fbd1e459a7869447b81",
+      "after_sha256": "d662123ba6361223b377a308d2dae4e89fd05f00fc26c4f8b02b0edb8a227ca4",
+      "receipts": [],
+      "journal": true
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-recovery-validation-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "41d211574f0dbb7077544c2d52e403e3abb9d1636588ec18310180928366ba9c",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-recovery-validation-concurrent-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "f0777fefd09700f33d08361687418eadd7e8f358981e451f7a57942287e00205",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "d3858e2b37676f3b60b159626edd1636087862fc07f14e56647422efa897b36d",
+      "after_sha256": "e81a6d2632f1d49e2f01980e84dac537770e4509bc554aae8c5a69cfb7c11224",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/source-index-recovery-validation-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "d4f3a1825d328f65f4a2f38d398e8d3b51c02244d4af3f4dc1bbc98f33a80776",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/source-index-recovery-validation-final-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "4b5c59e7ed5b7f34e479f2c8f29292e5f38469f4386075805f51f0e912813ff9",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/summary-recovery-validation-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "1c5aace8cfe14c5b115c75fb6668563c2497349bb49abdaa6f0c19c6369d8ad1",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/coverage/summary-recovery-validation-final-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "0fb94e63167ce5ed8d83e0976b0ad844083572e6618b3ca601bb26069e936eef",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-failure-matrix.json",
+      "before_sha256": null,
+      "after_sha256": "beead4fb3a9c3e921f3afd83bae72c359963f1b3578fd9bc2e0f3db078f59b16",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-game-startup-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "cd80c40cb968fcb908ca5889515af5b4c0e4bd5188cd797f0c705ad040a14c81",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-host-regressions-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "137d74ab7a853e670e2bc0e2a174b3259fd001c55a170bcbcccfe2c55a9452cf",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-queue-regressions-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-validation.md",
+      "before_sha256": null,
+      "after_sha256": "5c476e26c26d83b7c26c9ab2857e30feb4642f64c7e4d2edc001a509a15788e5",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "runtime/render/checkpoint_selftest.h",
+      "before_sha256": "f1bbbc7a51ca943fff2b9662621c25eb1b734c804f30cbaa36e9ccba51eadf79",
+      "after_sha256": "3d88614e72f799680c5519162add9a2f71ff2d54a080c1ebea980f9907abf9d4",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "runtime/render/command_recovery.h",
+      "before_sha256": "8d4dc5ec30925f3352de6d1c66501d0494968bbb613e0f00f889b395ac724d2b",
+      "after_sha256": "4ddf26f00a5f2c43ed64c88266390f02c2cb3ae78957bd112edba11f516ffb9c",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "runtime/render/command_scheduler.h",
+      "before_sha256": "a53069a6196416819b000424ca07213c00f37e3ad7e2e1456e95f15bfc31b350",
+      "after_sha256": "49380205a77db5e876308b302dbec9d95633f1adb3d8381df3056d6bea815535",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "runtime/render/mutation_selftest.h",
+      "before_sha256": "fdf2112b9f7fd5f95f266a7f6b8e85ac93785a9d8b07f5874b7cd103dcb7fa60",
+      "after_sha256": "cab3f9f7b895fb52848a9d83556861ea9876c36785d82d2c9d05aeee92a3ff8c",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tests/live-command-checkpoint-test.cpp",
+      "before_sha256": "6c433c99f1ed70758612e23b58e8d40ec11f4768ebad394a64d1854f518044e4",
+      "after_sha256": "ddd7fe37eadb44fdae01f4ae024ebd57b57256e83c1fcb437791e77d18163445",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tests/live-render-recovery-probe.cpp",
+      "before_sha256": null,
+      "after_sha256": "facf6439652117ee403847c758cae377255d4ade22a0a6e569b5aa1fc650794e",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tools/build-render-bridge.py",
+      "before_sha256": "b4679e204ffc4f9043109a77381f735f363eaa9684484c09d2e141fa2bd83d04",
+      "after_sha256": "fb335374d59ffafc898a6959f280f9a43616ad72d7632e6d2929504373ab6263",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tools/test-live-render-recovery.py",
+      "before_sha256": null,
+      "after_sha256": "b0855bfd5d7f59cfd095ce6659ff7182729f8aa69921f69a63a05c121062a3ab",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    },
+    {
+      "path": "tools/test-render-checkpoint.py",
+      "before_sha256": "fbdb37f7ed35d3c5a3f93375b1889b2b6cbe191fdae53a8debdfc8b49b40e718",
+      "after_sha256": "224ebc4d8c85bad4441d73da3818457e902596d9c8f68f8b557225a9d6bb9ee7",
+      "receipts": [
+        "REVIEW.render-recovery-failure-validation-20261006"
+      ],
+      "journal": false
+    }
+  ],
+  "unresolved": []
+}

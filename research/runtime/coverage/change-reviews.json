@@ -26250,6 +26250,143 @@
       }
     },
     {
+      "id": "surface-fixture-binary-retrospective-receipts-20261006",
+      "reason": "Retrospectively reviewed the five exact gzip capture files introduced by917b509. Their compressed/raw/expected hashes are independently pinned in the committed corpus and original comparison report. This appends exact file receipts omitted from the source-only gate draft; no source/evidence hash is refreshed, no historical gate result is asserted and no new behavior equivalence is claimed.",
+      "files": [
+        {
+          "path": "tests/fixtures/surfaces/g34xhs0b.bin.gz",
+          "before_sha256": null,
+          "after_sha256": "f39c6c8de24ded931d1a60cc8e2913fd16d501b27dbd6f812caf7f4a2b574434"
+        },
+        {
+          "path": "tests/fixtures/surfaces/p66k189j.bin.gz",
+          "before_sha256": null,
+          "after_sha256": "ae5cafbf5ee32504bf0601f0538ff300faee1af31a9dbe1644bba6aee244e14b"
+        },
+        {
+          "path": "tests/fixtures/surfaces/ugdn7zhm.bin.gz",
+          "before_sha256": null,
+          "after_sha256": "dd43729020bb0864a2c22a45aa709039b6211859f8959b034817834f62bffa10"
+        },
+        {
+          "path": "tests/fixtures/surfaces/yu55vq8i.bin.gz",
+          "before_sha256": null,
+          "after_sha256": "4a6a8b3aa699e5f48db8764704e5431841c56bc5644b51193483436f01d0e672"
+        },
+        {
+          "path": "tests/fixtures/surfaces/zpfft1bo.bin.gz",
+          "before_sha256": null,
+          "after_sha256": "4bc3c1a77ef9d166b27b3a4d4e3dcf1624052e6edbf9eff8b07ee572b961065b"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "reason": "Retrospective file accounting only. Existing five original-output comparisons and their source hashes remain immutable; current offline regression passes without supplying new original evidence."
+      }
+    },
+    {
+      "id": "surface-rectangle-forwarding-recorded-20261006",
+      "reason": "Reviewed selected original rectangle wrappers, signed geometry/translation/flags, unchanged-text i386 fixture and portable argument traces. Original execution uses successful fake COM endpoints and a controlled ClientToScreen binding; no driver pixels, clipper/error/retry/Restore or native clipping equivalence is inferred. Captured trace hashes and full build/entry-byte anchors are preserved. Shared registry/census/ledger bytes retain the paused recovery changes; this review accounts only the new original forwarding contract and its documentation, not recovery source or validation. Committed917b509 file/contract receipts reviewed separately, including retrospective exact binary fixture receipts.",
+      "files": [
+        {
+          "after_sha256": "92239ffcceca6e515896d764cad58776b6d48c0706919f06932bebd355402994",
+          "before_sha256": "f8edc212f9d3c1ae07603d7ebf6fde83a4ba716a1902195ce24ec029dc8571c3",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "a6f8c6138ce850716021fa2bc42564313bc975130a892eef67dbeb8d71bd793d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-rectangles-20261006.json"
+        },
+        {
+          "after_sha256": "5a19b65a1923943e0df7f6212126c5163433b7bb193ded65214034275b90e14e",
+          "before_sha256": "d3858e2b37676f3b60b159626edd1636087862fc07f14e56647422efa897b36d",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "fc0a7f50366103a793e134036474e93133ed2a830daedc6e082b3a96e3dbe647",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-rectangles-20261006.json"
+        },
+        {
+          "after_sha256": "70b48c4095b17eadb6350886f7fba67d80bd52cd464e9fc91807d2f2d0dff45e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-rectangles-20261006.md"
+        },
+        {
+          "after_sha256": "b1ed1f9bebaee62a5fd8b3ebf757a4e7c4e9edc4ed64179ae4eff3c84dd386a4",
+          "before_sha256": null,
+          "path": "research/runtime/surface-rectangle-forwarding-original-20261006.json"
+        },
+        {
+          "after_sha256": "b42168f3b23ebb31f353db62d9e7cbb36dc30ff791f1fdd9abbac8748566a9f3",
+          "before_sha256": null,
+          "path": "research/runtime/surface-rectangle-forwarding.md"
+        },
+        {
+          "after_sha256": "4b8428d536705a853e72770e1f70ed017a97f85e59a5cef267bb942c858f494e",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/rectangle-forwarding-corpus.json"
+        },
+        {
+          "after_sha256": "3fc57e4312c81d23547069df0a0d22c90b1626b2133a563a27cd8dc990645d6d",
+          "before_sha256": null,
+          "path": "tests/surface-rectangle-reference.cpp"
+        },
+        {
+          "after_sha256": "77432fca60e9212105d63be9465fd0f471539eda2b204bec0edd3853c35fcc5c",
+          "before_sha256": null,
+          "path": "tests/test-surface-rectangles.py"
+        },
+        {
+          "after_sha256": "ac33064184e6ac001a0be03a50c4debe7fe63f2f4fa4202339989945de28a1f7",
+          "before_sha256": null,
+          "path": "tools/compare-surface-rectangles.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/rectangle-forwarding-original.json.gz",
+          "before_sha256": null,
+          "after_sha256": "8940a46d4148c4b632f5f8210a6ee46d28bd7c72b0edc7b5d673acda18f1c508"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "7f008fc64480b199cace90fd86bfb6d481738968e8de446f11a2827ac9b54348",
+          "before_sha256": null,
+          "id": "RE.surface-rectangle-forwarding"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_scenarios:3c5e2ef287a4d20145add055296adc73a453230b95bd92ce78ec50d57f2ce169"
+      ],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh execution of five unchanged original wrappers matches all966 argument traces, including16 geometry categories, fullscreen/windowed selection, wait toggles, primary/window availability and guarded null interfaces. Four offline oracle regression tests pass; original manifests verify before/after and working executable SHA is unchanged. Existing five pixel-fixture tests pass. No native integration scenario is claimed; driver-output and actual failure/retry validation remain pending.",
+        "evidence": [
+          "ORIGINAL.surface-rectangle-forwarding-20261006"
+        ]
+      }
+    },
+    {
+      "id": "surface-rectangle-inventory-link-review-20261006",
+      "reason": "Reviewed RI.copies addition of a document linking the separate forwarding comparison. Inventory scope/status stays unchanged and does not absorb a complete-wrapper or driver-output claim.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "7796151b17d8b33badbe901ee89cc61a7b5329d07cf77eb5889e1af07c4ff893",
+          "before_sha256": "f41348ae8b27b521b68da179acdc55766a241cc8f59add322f51dec770f0f062",
+          "id": "RI.copies"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "reason": "Documentation linkage only; new argument execution has its own recovered behavior/evidence. No new inventory or broad pixel/retry validation is asserted."
+      }
+    },
+    {
       "behaviors": [
         {
           "after_sha256": "6bc303dc253a53c7bdb0a47f13c7e75a0ce566d29d0e7391a12c8c60d0c9b40f",
@@ -26470,6 +26607,119 @@
       "validation": {
         "status": "pending",
         "reason": "Fresh20-case PE32/Qt matrix passed294 independent GPU comparisons over27 fresh sessions; host regressions passed83 comparisons; native/ASan/UBSan queue/client checks, production PE32/Qt builds and3 CTests passed. Registered separate immutable failure-matrix, host, queue and game-startup evidence. Two actual-game runs observed CHECKPOINT refusal and RECOVER READY then INVALID, zero native frames, retained original main menu and complete consumer cleanup;2927 original files verified before/after. Shared-source edits retain historical evidence hashes/statuses without claiming all affected contracts have current equivalence. Sustained game recovery, exact incomplete-state predicate and invalidation cause, arbitrary stale acknowledgements, physical drivers, movies/gameplay and live replacement remain pending."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "7f008fc64480b199cace90fd86bfb6d481738968e8de446f11a2827ac9b54348",
+          "before_sha256": null,
+          "id": "RE.surface-rectangle-forwarding"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "92239ffcceca6e515896d764cad58776b6d48c0706919f06932bebd355402994",
+          "before_sha256": "ff5918596f4b31d1afa0298167b35ccded3ca4beac822100429f571f350c05b0",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "fa78d8e44f8d48d6263016055f02b551a3ca82588beabb7dfc196c073a79d94d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-forwarding-next-20261006.json"
+        },
+        {
+          "after_sha256": "a6f8c6138ce850716021fa2bc42564313bc975130a892eef67dbeb8d71bd793d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-rectangles-20261006.json"
+        },
+        {
+          "after_sha256": "744734564ce16fca35d846f816c960a1d916bdf90af14b88dcc6ae2f4c5bd776",
+          "before_sha256": "e81a6d2632f1d49e2f01980e84dac537770e4509bc554aae8c5a69cfb7c11224",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "fc0a7f50366103a793e134036474e93133ed2a830daedc6e082b3a96e3dbe647",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-forwarding-final-20261006.json"
+        },
+        {
+          "after_sha256": "fc0a7f50366103a793e134036474e93133ed2a830daedc6e082b3a96e3dbe647",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-rectangles-20261006.json"
+        },
+        {
+          "after_sha256": "70b48c4095b17eadb6350886f7fba67d80bd52cd464e9fc91807d2f2d0dff45e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-forwarding-final-20261006.md"
+        },
+        {
+          "after_sha256": "70b48c4095b17eadb6350886f7fba67d80bd52cd464e9fc91807d2f2d0dff45e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-rectangles-20261006.md"
+        },
+        {
+          "after_sha256": "b1ed1f9bebaee62a5fd8b3ebf757a4e7c4e9edc4ed64179ae4eff3c84dd386a4",
+          "before_sha256": null,
+          "path": "research/runtime/surface-rectangle-forwarding-original-20261006.json"
+        },
+        {
+          "after_sha256": "b42168f3b23ebb31f353db62d9e7cbb36dc30ff791f1fdd9abbac8748566a9f3",
+          "before_sha256": null,
+          "path": "research/runtime/surface-rectangle-forwarding.md"
+        },
+        {
+          "after_sha256": "4b8428d536705a853e72770e1f70ed017a97f85e59a5cef267bb942c858f494e",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/rectangle-forwarding-corpus.json"
+        },
+        {
+          "after_sha256": "3fc57e4312c81d23547069df0a0d22c90b1626b2133a563a27cd8dc990645d6d",
+          "before_sha256": null,
+          "path": "tests/surface-rectangle-reference.cpp"
+        },
+        {
+          "after_sha256": "77432fca60e9212105d63be9465fd0f471539eda2b204bec0edd3853c35fcc5c",
+          "before_sha256": null,
+          "path": "tests/test-surface-rectangles.py"
+        },
+        {
+          "after_sha256": "ac33064184e6ac001a0be03a50c4debe7fe63f2f4fa4202339989945de28a1f7",
+          "before_sha256": null,
+          "path": "tools/compare-surface-rectangles.py"
+        }
+      ],
+      "id": "surface-forwarding-isolated-commit-20261006",
+      "pending_gaps": [
+        "behaviors_without_scenarios:3c5e2ef287a4d20145add055296adc73a453230b95bd92ce78ec50d57f2ce169"
+      ],
+      "reason": "Review wrapper argument corpus, build anchors, successful-call-only scope and isolated census; intervening committed recovery receipts inspected with no gaps. Four offline trace tests pass; native clipping is pending.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "ORIGINAL.surface-rectangle-forwarding-20261006"
+        ],
+        "reason": "Fresh 966 unchanged original wrapper executions match argument model; four portable regression tests pass. Fake endpoints establish forwarding only."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "7796151b17d8b33badbe901ee89cc61a7b5329d07cf77eb5889e1af07c4ff893",
+          "before_sha256": "f41348ae8b27b521b68da179acdc55766a241cc8f59add322f51dec770f0f062",
+          "id": "RI.copies"
+        }
+      ],
+      "files": [],
+      "id": "surface-forwarding-inventory-link-commit-20261006",
+      "pending_gaps": [
+        "behaviors_without_scenarios:3c5e2ef287a4d20145add055296adc73a453230b95bd92ce78ec50d57f2ce169"
+      ],
+      "reason": "Review wrapper argument corpus, build anchors, successful-call-only scope and isolated census; intervening committed recovery receipts inspected with no gaps. Four offline trace tests pass; native clipping is pending.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "RI.copies gains bounded research link only; broad original copy behavior and driver outputs remain pending."
       }
     }
   ]
