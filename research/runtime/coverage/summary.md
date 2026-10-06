@@ -7,12 +7,12 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 346 |
-| evidence | 248 |
-| scenarios | 54 |
+| evidence | 249 |
+| scenarios | 55 |
 | functions | 6675 |
 | registered recovered ranges | 13 |
 | incomplete dispatch tables | 8 |
-| indexed sources | 1027 |
+| indexed sources | 1030 |
 | unclassified functions | 6489 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
@@ -26,7 +26,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 142 |
 | behaviors without comparison | 286 |
 | behaviors without tests | 1 |
-| stale evidence | 106 |
+| stale evidence | 107 |
 | behavior anchors outside discovered functions | 28 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
@@ -224,7 +224,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | NP.scene-orders | Native scene creature selection and queued move controls | native policy | scoped | scoped | none | preview | none | stale |
 | NP.scene-picking | Native presented-pixel selection and terrain click-to-move | native policy | scoped | scoped | none | preview | none | stale |
 | NP.stop-orders | Native queued stop and cancellation of pending moves | native policy | scoped | scoped | none | preview | none | stale |
-| NP.scene-playback | Native fixed-rate scene Play/Pause and paused stepping | native policy | scoped | scoped | none | preview | none | current_fingerprints |
+| NP.scene-playback | Native fixed-rate scene Play/Pause and paused stepping | native policy | scoped | scoped | none | preview | none | stale |
 
 ## Pathfinding checklist
 
@@ -603,6 +603,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **NS15.stop-orders**: `apps/world-scene/CMakeLists.txt`, `apps/world-scene/main.cpp`, `apps/world-scene/movement_controls.cpp`, `apps/world-scene/scene_canvas.cpp`
 - **TL17.boundaries-final-original**: `reconstruction/rendering/effect-creature/CMakeLists.txt`, `reconstruction/rendering/effect_creature_collision.cpp`, `reconstruction/rendering/effect_creature_collision.hpp`
 - **TL17.boundaries-final-native**: `reconstruction/rendering/effect-creature/CMakeLists.txt`, `reconstruction/rendering/effect_creature_collision.cpp`, `reconstruction/rendering/effect_creature_collision.hpp`
+- **NS16.scene-playback**: `apps/world-scene/CMakeLists.txt`, `apps/world-scene/main.cpp`
 - **UI01.dashboard**: `apps/coverage-ui/README.md`, `apps/coverage-ui/app.js`, `apps/coverage-ui/index.html`, `apps/coverage-ui/style.css`, `tests/test-coverage-ui-browser.py`, `tests/test-coverage-ui.py`, `tools/coverage_ui.py`
 - **UI02.dashboard**: `apps/coverage-ui/README.md`, `apps/coverage-ui/app.js`, `apps/coverage-ui/index.html`, `apps/coverage-ui/style.css`, `tests/test-coverage-gate.py`, `tests/test-coverage-ui-browser.py`, `tests/test-coverage-ui.py`, `tools/coverage_gate.py`, `tools/coverage_ui.py`
 - **UI03.dashboard**: `apps/coverage-ui/README.md`, `apps/coverage-ui/app.js`, `apps/coverage-ui/index.html`, `apps/coverage-ui/style.css`, `tests/test-coverage-ui-browser.py`, `tests/test-coverage-ui.py`, `tools/coverage_ui.py`

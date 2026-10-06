@@ -19,9 +19,12 @@ The selection-outline decoration is not part of the hit mask.
 Right-click ignores creature bodies and picks the foremost opaque **terrain** draw.
 All body/overlay records for a tile carry its explicitly declared standing cell.
 Diagnostic tiles retain the caller's standing layer, independently of fine height;
-ordinary MAP tiles declare `(x,y,z+1)` when that layer exists. An opaque terrain
+ordinary MAP tiles declare `(x,y,z)` above layer zero. NS17 corrects the earlier
+`z+1` native annotation: the matched frozen navigation and exporter admit standing
+cells on the tile’s own layer. This remains native art-to-cell policy, not recovered
+original ray picking. An opaque terrain
 draw without a declared cell blocks picking through to hidden terrain. A miss, an
-unsupported top tile or no selection queues nothing. Picking a visible tile's art
+unsupported tile or no selection queues nothing. Picking a visible tile's art
 chooses its parent cell; this is not geometric floor-only or original ray picking.
 Reachability, footprints and occupancy remain decisions of the native planner.
 
@@ -70,8 +73,9 @@ fingerprints and test/manifest logs. [Committed-history review](native-scene-pic
 and its [extension](native-scene-picking-history-extension.json) check exact intermediate receipts separately without asserting a past gate or new
 runtime equivalence. Historical shared-source scene/control evidence retains its
 fingerprints and may remain stale. Main-window callback wiring and ordinary-map
-cell annotation are reviewed/compiled; installed whole-window mouse interaction
-and original ray/selection equivalence are not claimed.
+cell annotation were reviewed/compiled in NS14. NS17 separately executes the actual
+native window on one installed Forest crop with same-layer click targets; other
+installed worlds and original ray/selection equivalence remain open.
 
 ## Remaining boundaries
 

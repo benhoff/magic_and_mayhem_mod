@@ -796,3 +796,19 @@ named-roadmap milestones, not estimates of effort or whole-game completion.
 Twelve semantic/HTTP tests and twenty desktop/mobile Chromium checks passed for
 this UI-only change. No engine implementation/comparison/integration/replacement
 status is promoted and earlier evidence fingerprints remain unchanged.
+
+## NS17 — actual native window playback and checkpoint validation
+
+`NS17.scene-window` extends native playback/picking/presentation preview evidence
+with the production entry-point window, actual Qt mouse/button/modal Save events,
+real timer admission, an installed sealed Forest crop and actual Redcap ANI/SPR.
+Normal and sanitizer runs each cover four orientations, eight windows, 40 complete
+independent CPU/OpenGL frame comparisons and four exact fresh-window checkpoint/
+frame continuations. A test-only observer clicks Pause at committed tick boundaries;
+original pause latency/input/cadence and live equivalence are not asserted. The
+ordinary-map art-to-cell target is corrected from `z+1` to the exported standing
+cell’s own layer above zero. Existing diagnostic explicit layers remain unchanged.
+The stopped actor remains in simulation/selection but has no displayed ANI body
+after cursors are cleared; idle/stopped body retention and original action mapping
+are newly confirmed outstanding display work. Historical evidence and hashes remain
+retained, including source staleness. [Proof and reproduction](native-scene-window.md).

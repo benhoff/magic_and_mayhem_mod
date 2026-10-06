@@ -206,3 +206,14 @@ Catch-up is limited to four ticks per wake, discarding excess elapsed intervals.
 Save pauses before opening the file picker and leaves playback paused. This is
 native diagnostic cadence; original pause/timing equivalence is outstanding.
 See [contract](../../research/runtime/native-scene-playback.md).
+
+## Automated native-window validation (NS17)
+
+Build `world-scene-window-test`, then run `python3 tools/test-native-scene-window.py
+BUILD NEW_OUTPUT`. It compiles the production entry point with a test-only observer
+and drives actual Qt mouse/buttons, real timer playback and the modal Save dialog
+on an installed Forest crop and Redcap ANI/SPR in four views. It retains screenshots
+and checks exact fresh-window native state/frame continuation without manual input.
+Ordinary MAP clicks now declare the tile’s own standing layer, correcting the old
+`z+1` annotation. Stop currently clears the ANI display cursor, so idle/stopped body
+retention remains open. See [proof and limits](../../research/runtime/native-scene-window.md).

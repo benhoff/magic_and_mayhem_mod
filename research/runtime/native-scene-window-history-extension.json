@@ -1,0 +1,2101 @@
+{
+  "range": "bfe8b38..394ff5b22d1baaaac1bbf0325fe679922666f323",
+  "scope": "Read committed Git trees without executing historical code. Compare exact parent/current file hashes and canonical behavior contracts (record, implementation/test/doc hashes, builds, evidence definitions and scenario links) against retained receipts. Historical census-scope migrations are not rerun as old gates; this is separate from current staged validation and asserts neither past gate success nor new runtime equivalence. Journal is append-only and not self-receipted.",
+  "files": [
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "apps/world-scene/CMakeLists.txt",
+      "before_sha256": "49a35666946c95c7d1aa4375055738a3c532fbd06a5d5206bb3d77edbf184e78",
+      "after_sha256": "e1ebff4123f4253fe4ad0be7ee6e04905a69d67d9ecc01596b8219e8c16cec87",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "apps/world-scene/README.md",
+      "before_sha256": "2f6bed3c7cf8b52d3e2badd607208be47fd6f300efe9c8bcaf70a3f86c368282",
+      "after_sha256": "199cdec7ee7490823ba29a2936bdc581f90f3d3188fa90e745069483f4d0cbb4",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "apps/world-scene/main.cpp",
+      "before_sha256": "8f7b0c6cbb06b22a173970a4204eba860b9de0d9e35f874a6a04d3a71f5dd355",
+      "after_sha256": "6ca537fa39a92f738e7da29704dc2176de855a7f556eb916776156293d2f09b2",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "apps/world-scene/movement_controls.cpp",
+      "before_sha256": "fd36bf86195f89f7bf53f7d76b1b8d36b02767c3fa044370bcbe76ea65507402",
+      "after_sha256": "79e50c5326fcd9175a5f2187ea4e2bd3f994dc4dfeb45dfe179ac104524349c8",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "apps/world-scene/playback.cpp",
+      "before_sha256": null,
+      "after_sha256": "a8bf3565f9250b618ae6044ddb9d0d6828d69ca048d07c9f833cb6bd6f40b7e5",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "apps/world-scene/playback.hpp",
+      "before_sha256": null,
+      "after_sha256": "4c7d9b85fdddbe2c95178056cb779084b88759ca6e226741616f15033c4efdd3",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "apps/world-scene/playback_controls.cpp",
+      "before_sha256": null,
+      "after_sha256": "554b9f6442b50174480239daf76909a6400a797d183d0acfdf0bc4b06ed5ec63",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "apps/world-scene/playback_controls.hpp",
+      "before_sha256": null,
+      "after_sha256": "596ae4fb58ba5e1c6b0c78490fa26d65694317f94a10517ef67ed7944f7bc85d",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "apps/world-scene/scene_canvas.cpp",
+      "before_sha256": "03746de8ebd157bcf5f3c9fa9ad91d8c16232a11f35d94e7fb3898e90d8fd756",
+      "after_sha256": "3fb4faaa5f5c749b08d58c80f0d33fcb039c2f27a53cb8684e0bdd6b8e986e4f",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "game/CMakeLists.txt",
+      "before_sha256": "f435b02dba909970d6b94571393437eba838feadaddfa9cf51a35c02989c9fa4",
+      "after_sha256": "44b579b593efc98663eb3c1ca4fe169af88ddb2ef4eb6248dea29cd1b8fee326",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "game/README.md",
+      "before_sha256": "e571201da002cbeaa5190ba690afb9b111aef871dc657218da15022300e6d927",
+      "after_sha256": "9a4bad770c216f4b1c1500bb499cca0cc10aa0ee9e2efbc1be871a9be6da5c84",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "game/simulation/tick_clock.cpp",
+      "before_sha256": null,
+      "after_sha256": "9f7374fffc7a479ee16d43e43edb8f2a9b5837bc4c57912096f7885a1245cbb8",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "game/simulation/tick_clock.hpp",
+      "before_sha256": null,
+      "after_sha256": "74fb27cea09d92bb99b981bbdf279b3a8a48aa565a1d5ce8a40ad96d2a0fac42",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "341e3034c9abd6d46aafbca8e7bc0fa09c0b4911c1175ba3b5df39a1399e87f6",
+      "after_sha256": "be8bda11938204c4083ee0d84f565c76a8def985202b9364d510d2f1b8a97c46",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "466f3a65ca1e2f0785444693c4d8491f457672a10b72be2d7c46b263d875f930",
+      "after_sha256": "aa176e5604722c09370f02bd593de68b48236a4eee575261ed03a8c58fe375b5",
+      "reviews": [
+        "coverage-ui-tracks-retrospective-journal-06463cc"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "1574896a30ed2637e656bf0f7521233a1700f4690f6f543ce668d5e1b8f48f9e",
+      "after_sha256": "9c7266bd2d807222ef233c03cecc67d4c419a4fa2be1f0af77aa3e7bc3ece95f",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "research/runtime/coverage/source-index-scene-playback.json",
+      "before_sha256": null,
+      "after_sha256": "8e8d66df335552f332657ecabe5060d788f9c55f296aba97d3ee27e83ac7af33",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "ddf313aa32a6a41af2a88e289e4c09b6a5023fc286c9ad6c77da100643c91e7a",
+      "after_sha256": "605837f449df07777e1ad2f71124243db20b9c81c5acbd6f86de2ab911d22217",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "research/runtime/native-scene-playback-history-extension.json",
+      "before_sha256": null,
+      "after_sha256": "aa6d00ab76f86f90466c528fe4892f0b9a4063cfae9e67ecb148262de711ed3e",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "research/runtime/native-scene-playback-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "e520c8d5d88ac76bd6c79478e67e65312ea5d8d7d1cde252ce5d87839d2eb9a0",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "research/runtime/native-scene-playback.json",
+      "before_sha256": null,
+      "after_sha256": "c1a4a388bfd5eb77626160dea7ef6a8e049ff274814950fa922c3f694f99a46f",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "research/runtime/native-scene-playback.md",
+      "before_sha256": null,
+      "after_sha256": "529aa15e9f15bdb906160afa45841b0f101c40c42935f57a9c32f906373db3ea",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "tests/README.md",
+      "before_sha256": "a3ea343da41c76a144c987da0b1a965ac2b27875094148fc24591ee37d8b46bc",
+      "after_sha256": "fdfe843ed63fd9b1a298b89c5f7a4da9f17813535f5c2f86f5d967e817c59958",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "tests/world-playback-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "5144e12ad1873801b4b073306608905fe43096b87cb1a987fb4693c969b9e973",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "path": "tools/test-scene-playback.py",
+      "before_sha256": null,
+      "after_sha256": "e4f1290d67afc27f2d258497d5bfc614f463175b66ffcfb2b3d3fd01dce627b6",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "be8bda11938204c4083ee0d84f565c76a8def985202b9364d510d2f1b8a97c46",
+      "after_sha256": "05fa18d17089045c606dec087d1021a02479677f7516a53602b8e268b15bf78b",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "aa176e5604722c09370f02bd593de68b48236a4eee575261ed03a8c58fe375b5",
+      "after_sha256": "2e91f7b01da93b61c648104ddf0bbac9bc362d2398172515edf139a666bbeb2f",
+      "reviews": [
+        "coverage-ui-tracks-retrospective-journal-423df90"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "9c7266bd2d807222ef233c03cecc67d4c419a4fa2be1f0af77aa3e7bc3ece95f",
+      "after_sha256": "dab6643ded29e105249deb35f925b9d4b1455f4aed88b1caa2c2c9947020ed9e",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage/source-index-owned-session-fills-isolated-v3.json",
+      "before_sha256": null,
+      "after_sha256": "303c2a84cfcc14f98b964ff65ec0c0719c13854b03b9b068bcc18302b5039ceb",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/coverage/summary-owned-session-fills-isolated-v3.md",
+      "before_sha256": null,
+      "after_sha256": "ec29e17986dce8e4fd516214a9113fa12ce5c7605882c3ab2894172fba10dad2",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-owned-session-fills-history-review-v2.json",
+      "before_sha256": null,
+      "after_sha256": "98c0a920114037755c091187ad36e6267b838aa75dc1301aa9b44fa7e0581f2f",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-owned-session-fills-history-review-v3.json",
+      "before_sha256": null,
+      "after_sha256": "98c0a920114037755c091187ad36e6267b838aa75dc1301aa9b44fa7e0581f2f",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-owned-session-fills-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "c03f7ee76ba811b3e34f2017b9977a52b2364cee28887c233624817f4341a842",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-owned-session-fills.json",
+      "before_sha256": null,
+      "after_sha256": "4d42a725131839ac7678d08300282c856dba9f3ff568cbc3a330678ecb376e7f",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-owned-session-fills.md",
+      "before_sha256": null,
+      "after_sha256": "4d50a87e9c2a5c157228cd3383270ac745eb67b985d85feea0ea2a44334bf2b8",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "research/runtime/opengl-real-game-shadow-fills.json",
+      "before_sha256": null,
+      "after_sha256": "33a2f1ac8941cb0d3fad0a15a0b2ef995b5102f6f09ef1de088c1b75c2ae66ab",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "runtime/render/bootstrap_selftest.h",
+      "before_sha256": "9ef98a518f0229272fd96e7a02b6dde259dee001870617b07d695607c857aad3",
+      "after_sha256": "dcd7e92c8af2fb1b4868db11aa6edaed1a71561f617d5aaa7fd4ab6134bd250e",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "runtime/render/owned_session.h",
+      "before_sha256": "3fcced2b0f2006ad0ef0954823f369d80485f6e5c31db9c68546a2e171da708f",
+      "after_sha256": "09560df9079a32c2894a91a6793db3bb07228bc9803db9415ed38448a0ea3afe",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "tools/test-render-bootstrap.py",
+      "before_sha256": "bac2146e3723c6b094b68d9f4076ed15c593b97be95a5fa3932d37d746b6ac44",
+      "after_sha256": "e0f582675deac11cc8f6326eaf81ec61e03b57eafb3da6477f0693d299479a90",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "path": "tools/test-render-session-fills.py",
+      "before_sha256": null,
+      "after_sha256": "62ba69ec24b967fa80a71534c232bf3b1fe20f33e196d8a4869f8cf881951a50",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "reconstruction/rendering/effect-creature/CMakeLists.txt",
+      "before_sha256": "9bedfd9775acb3090259d3e18e36b4b12949a62266809a1ca789df12e971d568",
+      "after_sha256": "05cfe6668f59a6897e5f6b2f79e7735167d4f5d62fb4bc9df901f106a6d8986f",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "reconstruction/rendering/effect_creature_collision.cpp",
+      "before_sha256": "10c4a2dd7c8f431d2b79c8f763b14c87f86dbf95699365027ff5ba8a4176233d",
+      "after_sha256": "4e7d28780ed5e7c3b12943bec4a25a701b5e3943b084e3d3cd4e11a7fee1a523",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "reconstruction/rendering/effect_creature_collision.hpp",
+      "before_sha256": "81f7d672068522f762379d92244ebd20d81004ad0d5f971cdf40a4d15899eefb",
+      "after_sha256": "7e6fd634ac464b6a19fb2d750953e41f8ad7ce4995d3a714e2c6560391715839",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "05fa18d17089045c606dec087d1021a02479677f7516a53602b8e268b15bf78b",
+      "after_sha256": "d47836aabd7365b72363e64b62853b937c5912c0e36a614ee9c17e0941fc878c",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "2e91f7b01da93b61c648104ddf0bbac9bc362d2398172515edf139a666bbeb2f",
+      "after_sha256": "ebb8fb94dd380846d81dae99f58b73e2dee5694832c4261013e04367f879d41b",
+      "reviews": [
+        "coverage-ui-tracks-retrospective-journal-930ca14"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "dab6643ded29e105249deb35f925b9d4b1455f4aed88b1caa2c2c9947020ed9e",
+      "after_sha256": "22731ff6ec0207e42d4e3197d7ec6c8bf62966964f1cd5a025ed608c03bcafb2",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "605837f449df07777e1ad2f71124243db20b9c81c5acbd6f86de2ab911d22217",
+      "after_sha256": "6544f8a9f5f7c378479a412a143d20910f5170c26618498fe8f00b8028df321d",
+      "reviews": [
+        "effect-creature-summary-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "before_sha256": "0415278769923b9327e4bef452c6d1575f5a0ab47a4b01241ed3989c123668fc",
+      "after_sha256": "caa6591c5ad495830adfd7fdab4230ea5cd63700f9e99c0727fea86cd523c37a",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": "badd7b1412a736c8f4a0ce798bc6863b309314a439ef655301c03d924b58478a",
+      "after_sha256": "a14014bc52257b04578dc4d8659eed9c881360699a15a968b559ac48aec89662",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "7fb36088be918959465e3fc827eb6bf1b5e03e2d509f2452c26263649817e99f",
+      "after_sha256": "c8d036d28663ef734c2c7a84085aff7b73ce51a054866d3029d60b87a411e441",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "9916bf31c74afe8c58815f9006126f1538aa5ffce6743a9b09d9cdb6989809bd",
+      "after_sha256": "21bd9c88e43efa27a8e462d0fd07f64e5ef5da2836d705fdda338edf6c60a2fe",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "02c4f5268baefac12d88f30a384cf8932273df3918ad8f16dc92ef8be27b3abd",
+      "after_sha256": "54d041981e425fc2bc99296a4dea830b4b69f2572886dd6a5f5beee95c37dd4d",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "before_sha256": "c3ca18abca2d97ad16cd121872ea52cd0985fac3a39b955c970162c42530a01d",
+      "after_sha256": "3a47712837c89be62e1e493737f5fb6d1d65bf51982ebd58a1446f10149b4d6d",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-creature-collision.md",
+      "before_sha256": "1644c453cf170a3ad5106f224ebfa028cb94d1c27dbdd67ef348e7a86fc17d15",
+      "after_sha256": "4bdc19d8c7727f6b7f1c317824d3009c83f7b625187cc5ef79be15a4fb3ef0de",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "e7eea493a6225900ee64a3762dba2b19b7ba36313f2f40131b60ebe8e3995894",
+      "after_sha256": "aa61f719cc78ff1cdde60f547db353c1f79ae10a081da230cebc0290052d0fe0",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-kind34-creator.json",
+      "before_sha256": null,
+      "after_sha256": "e5fa4c69373fdd6d3405cff5e2c4d6a038ca4e05b9cec0291c5b6960d57e3fc0",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-kind34-creator.md",
+      "before_sha256": null,
+      "after_sha256": "0c7ee6a0eed3de59091a0cdaddc9cf47e9a301a74ca10dcfc48f01782313bf52",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-kind34-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "f60087751ef7ef87b661d53953ec3559d33855e0e374706d8475a03a3ebe1e39",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "12488f808c5bd4ddc5ea0a4a9708869c0b86c03813d42130b11f7655d8e3d026",
+      "after_sha256": "10efb7569f0aff5c78275d6f1c3f73399b0a1def30d72f231f4a9a7fcc3e13e2",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "83edd1d354cb5dba85562539c6a73e41a1eee9beb880bc2845f088ab2ca05bea",
+      "after_sha256": "c8501ee3373b9454c83f45c01c76ae8695470f1fddd314725b99e4d5d333e789",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "c95fe0618d6f24c2c50b9a16193f94e740de0edfd6183a4365de0536514f95ab",
+      "after_sha256": "2f6e5367a077e4fef1df1946066fd82553ca925c7dc6e7b5b4e24ba8beddd1f2",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "c35ac4740fb66a2bf3e55ba5a0f4512f90b12ff5885d860c94e16801a77b25fb",
+      "after_sha256": "3c56962b2aa9c7c408377392c29c87a4106538e8e7acda6edc0d44b45c6ba3ad",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "tests/effect-kind34-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "8c2e2a34388ceceaa9600399602b1cab3726b5d5c732db55fca6ca8288e89628",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "tests/effect-kind34-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "c96ad497f3f50fba8cadf137b92d6d70b6f6448be0abc93b04e6ded62afc7a1d",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "path": "tools/test-effect-kind34.py",
+      "before_sha256": null,
+      "after_sha256": "33738e8e05a20069d313d98b3b19b5938b91612d5f2c6c78c313600d8a0685f8",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "apps/coverage-ui/README.md",
+      "before_sha256": null,
+      "after_sha256": "379b578c9a12400bd1ae249a5fccb2f8d0cb5968b45593c2b86ee4ffb130bd64",
+      "reviews": [
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "apps/coverage-ui/app.js",
+      "before_sha256": null,
+      "after_sha256": "84bf8e3ad9ba4f1f872e13bdecfa476cc538e5a89baade1717004dd3f8c4fcec",
+      "reviews": [
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "apps/coverage-ui/index.html",
+      "before_sha256": null,
+      "after_sha256": "95d0e704266497d78719fa35be34a8888826483914e98c8f5c860fdafa4deaa5",
+      "reviews": [
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "apps/coverage-ui/style.css",
+      "before_sha256": null,
+      "after_sha256": "5e61e0146bfe811c09e6947cd0abc41bc08c3f870810c2c1db3cb103e638ad07",
+      "reviews": [
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "apps/coverage-ui/tracks.json",
+      "before_sha256": null,
+      "after_sha256": "1362933ce1061b31699bbc3e77ee690fe4f233992e6420de254dd3fe05c32283",
+      "reviews": [
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d47836aabd7365b72363e64b62853b937c5912c0e36a614ee9c17e0941fc878c",
+      "after_sha256": "9d29ac03a5d25518ab25263c9d068a6e48585efd13fdbfc60dc3e92bcba6814e",
+      "reviews": [
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-accounting.json",
+      "before_sha256": null,
+      "after_sha256": "ffab964c6f412e6c201d06dbf4872ad9615b3d0e3892cad121f61b02ac4c2e48",
+      "reviews": [
+        "coverage-ui-final-accounting-reports",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-direct-call-validation.json",
+      "before_sha256": null,
+      "after_sha256": "97c290dcfcd4d24a95dc4580d2d0610626a024f669375a401e2a10056e984285",
+      "reviews": [
+        "coverage-ui-current-direct-calls-ui03",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-history-extension.json",
+      "before_sha256": null,
+      "after_sha256": "053123de6133fbe3ebefab75259c6983332bf0ee8db741dc518ca8d551835020",
+      "reviews": [
+        "coverage-ui-final-accounting-reports",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-history-resolution.json",
+      "before_sha256": null,
+      "after_sha256": "41658c07a44b6c3bca08994a51dcb90f9b72e4e53c58afc1a877e200b73b771f",
+      "reviews": [
+        "coverage-ui-census-and-accounting-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "d2ed54e13ba6649995909ebfdeb8e3889cb9a8912f17d64edc33ea705aa1d4cc",
+      "reviews": [
+        "coverage-ui-census-and-accounting-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-tracks-history-extension.json",
+      "before_sha256": null,
+      "after_sha256": "0ba8abd28108e9bb0e042545838aaa6b833fd8a3662ee41627bb1d62bb6a1fd2",
+      "reviews": [
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-tracks-history-resolution.json",
+      "before_sha256": null,
+      "after_sha256": "f41698e852eadeec03d8a9546095b465e5b86a37a8d526be365c95a7e7718aad",
+      "reviews": [
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-tracks-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "9a40847483728674cc8c300e222566c79b601baa4a3d5613166fd484cd1f0e1a",
+      "reviews": [
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-tracks-validation.json",
+      "before_sha256": null,
+      "after_sha256": "43424514aa82ef8ae36b4f71773b11b3fff37545293da849f50cf6905caf71b1",
+      "reviews": [
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-validation-final.json",
+      "before_sha256": null,
+      "after_sha256": "7ada5e4f160a7e27a0414a466523f75e6de02e68fca7a6b4f30c017baa81bb91",
+      "reviews": [
+        "coverage-ui-scoped-execution-00b547c",
+        "coverage-ui-current-direct-calls-ui03",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage-ui-validation.json",
+      "before_sha256": null,
+      "after_sha256": "c5971333ea70194bde1e9974e1fc31edad312dba2f4f93ad3f7aecb01b55e88b",
+      "reviews": [
+        "coverage-ui-scoped-execution-00b547c",
+        "coverage-ui-current-direct-calls-ui03",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "ebb8fb94dd380846d81dae99f58b73e2dee5694832c4261013e04367f879d41b",
+      "after_sha256": "b1c75cc4678582501b03aa0702dd3df97e3a367fe5622f6710cd4ea0e7bb1e14",
+      "reviews": []
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "22731ff6ec0207e42d4e3197d7ec6c8bf62966964f1cd5a025ed608c03bcafb2",
+      "after_sha256": "c488a07e9098a4eb78fce88853ef4c2be651512e1758a6828675e1cae2a46918",
+      "reviews": [
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-commit.json",
+      "before_sha256": null,
+      "after_sha256": "5275e84b971439ac65bec9ea50f4163b08319b3d3cd1a9994d326f1cbd327b07",
+      "reviews": [
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-direct-calls.json",
+      "before_sha256": null,
+      "after_sha256": "8454eb042ff8f14a7bc0259ee82220c72b6600ea35908078caf070a0a29891a6",
+      "reviews": [
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-final.json",
+      "before_sha256": null,
+      "after_sha256": "c1b1a9572052c0ce397f77ddff234e7e8039c52c5246f6f95f07de0070cb9db5",
+      "reviews": [
+        "coverage-ui-shared-metadata-pending-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v2.json",
+      "before_sha256": null,
+      "after_sha256": "16bb7d4bd8ffa3a77cd216fee6cead47f4c9edd6866a8aefddcddce9695e1579",
+      "reviews": [
+        "coverage-ui-census-and-accounting-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-isolated-v3.json",
+      "before_sha256": null,
+      "after_sha256": "4557d740fd92a002c155dfd820be8c8cb6a75c9a2d4fb426696bf6ea1e58c80c",
+      "reviews": [
+        "coverage-ui-census-and-accounting-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-isolated.json",
+      "before_sha256": null,
+      "after_sha256": "ca6fa3ba9af3f64660f773ba9fe74031a53c909954892affd090bc73a2dc298b",
+      "reviews": [
+        "coverage-ui-census-and-accounting-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-prevalidation.json",
+      "before_sha256": null,
+      "after_sha256": "5971d6ed4c53e804facdb1e9276c87283e8da5ba8e758bb47edf003e935e918b",
+      "reviews": [
+        "coverage-ui-shared-metadata-pending-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-reviewed.json",
+      "before_sha256": null,
+      "after_sha256": "4cb7fc078573389ec37e615c7fe0e337420f3e1ffcfc21e0a868509eb56a373f",
+      "reviews": [
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-tracks-current.json",
+      "before_sha256": null,
+      "after_sha256": "6dcb6acc248183cc65fefe077cfdf6f0c9054b2855a6d810a32fb8fdedd49474",
+      "reviews": [
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-tracks-final.json",
+      "before_sha256": null,
+      "after_sha256": "6fa1e7ab4de8ff470a90cebdd2beda36660892a93f92d153c073d885e1c40c57",
+      "reviews": [
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-tracks-reconciled.json",
+      "before_sha256": null,
+      "after_sha256": "1121df95a3ccdc6bec840e8549340a968298c154dd2f829f47b50f0afbd543a8",
+      "reviews": [
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/source-index-coverage-ui-tracks.json",
+      "before_sha256": null,
+      "after_sha256": "5b032a6b14b7f5a1594a3842e4c22b24f6e16a6f90b93a73e2164b4cf42ed447",
+      "reviews": [
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/summary-coverage-ui-direct-calls.md",
+      "before_sha256": null,
+      "after_sha256": "1d9951927c4016eec161860b8e946be12fb13759f4895a5671f0bb60f2bb64a9",
+      "reviews": [
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/summary-coverage-ui-reviewed.md",
+      "before_sha256": null,
+      "after_sha256": "343aa3d8b21fa854800efd5adebd5134f41dbad362dbef506c749e3d11db9eaf",
+      "reviews": [
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/summary-coverage-ui-tracks-current.md",
+      "before_sha256": null,
+      "after_sha256": "2937f5a1f394f0d3b4635023e34e0d22f304802233d59b7d5774036b2bd6ab72",
+      "reviews": [
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/summary-coverage-ui-tracks-v2.md",
+      "before_sha256": null,
+      "after_sha256": "2ac3fa7b3849a4ca5e019ad06a0ed09241b3e659fd040f14c362a2f3bb8d5572",
+      "reviews": [
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/summary-coverage-ui-tracks.md",
+      "before_sha256": null,
+      "after_sha256": "8f2e21ae75efebd85e4f7557e1cb8459db4edd7e88a6acea09c47add28e8100b",
+      "reviews": [
+        "coverage-ui-major-tracks-accounting-930ca14",
+        "coverage-ui-major-tracks-current-metadata-930ca14",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "research/runtime/coverage/summary-coverage-ui.md",
+      "before_sha256": null,
+      "after_sha256": "206cb584e96c1c77159dc0b11339c20b223d514f2ab0f400b1b0c0e3b904385c",
+      "reviews": [
+        "coverage-ui-census-and-accounting-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "tests/test-coverage-gate.py",
+      "before_sha256": "9f1345538bbd0506b608c00c2acf5b08e6f0ff6a6dadf2eb5a423fdf7cd43597",
+      "after_sha256": "8ef78d1e12e70fe6c7252f5df46476136eb88e60197575323ea490be76e05516",
+      "reviews": [
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "tests/test-coverage-ui-browser.py",
+      "before_sha256": null,
+      "after_sha256": "04d7b70e2c370afaeff3e9f62d55c7e9194b1909f300678ca02e0cd008989d2e",
+      "reviews": [
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "tests/test-coverage-ui.py",
+      "before_sha256": null,
+      "after_sha256": "1b8406a7b0cce8239ed3de6b3c5367e6d7e613ccb0652937c1f421557968a164",
+      "reviews": [
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "tests/test-re-coverage.py",
+      "before_sha256": "1f86cf86bdfef6c22315a229b5b22c752a3b3f68fd765d48e3fc72309140267d",
+      "after_sha256": "9a836d6fbaf1b3c94d523b7f8c420f0553dae3c94331057b4d685c20f7f4fca6",
+      "reviews": [
+        "coverage-ui-census-and-accounting-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "tools/coverage_audit.py",
+      "before_sha256": "1668a715bd021c891401e4690b9902ea0cba1766a264574a046b81a3caa27f7a",
+      "after_sha256": "e632e389d5ecbdfb20192b2806f17d39840e094b3f7f29df07c905008a639a56",
+      "reviews": [
+        "coverage-ui-census-and-accounting-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "tools/coverage_gate.py",
+      "before_sha256": "41b96a6fc308bcd58ba13f2f3cf9ebbaf549109f2d90f98c29f9899f7720f909",
+      "after_sha256": "1c474eecb267f4368df128fa2abc23d0f02bff6f1a617aeaf5a795fd92d1acd2",
+      "reviews": [
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "tools/coverage_ui.py",
+      "before_sha256": null,
+      "after_sha256": "3c0bc511363eb2fde0a8e075f1b1e9f377a36508fb57b8eb2eefbb49c836f0f2",
+      "reviews": [
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "tools/index-coverage-sources.py",
+      "before_sha256": "6b783efda805feb49d9f959d9ce531895a96014607c257602ad77fc26c07ffca",
+      "after_sha256": "b06f0438360462b7965af998ebcf73ca9f88bcb00befd0d5a46d5e6ae98b56d9",
+      "reviews": [
+        "coverage-ui-census-and-accounting-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "path": "tools/serve-coverage-ui.py",
+      "before_sha256": null,
+      "after_sha256": "35d61abdd323ab944c82c7ff92009344af6a18307f0609224862ea19ab330f7d",
+      "reviews": [
+        "coverage-ui-scoped-execution-00b547c",
+        "coverage-ui-current-direct-calls-ui03",
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "reconstruction/rendering/effect-trajectory-initializer/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "1fa38846f2da2add74d09be615239c91aa1cb4c230cc02bf19c2ddbea56d6023",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "reconstruction/rendering/effect_trajectory_initializer.cpp",
+      "before_sha256": null,
+      "after_sha256": "cd301e5bacf34c31457ba9e974ce34990cbe8c287fb3646b0bb69922c2017043",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "reconstruction/rendering/effect_trajectory_initializer.hpp",
+      "before_sha256": null,
+      "after_sha256": "9b1b43a22e10a227b5e10ddf29de7d610faf329c53b4d016b4e931685aa4fb6f",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "9d29ac03a5d25518ab25263c9d068a6e48585efd13fdbfc60dc3e92bcba6814e",
+      "after_sha256": "aa310a44824bc16a2e36a932ed1cddb220fd8afe257f0864c0fc1b8c0608b439",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "b1c75cc4678582501b03aa0702dd3df97e3a367fe5622f6710cd4ea0e7bb1e14",
+      "after_sha256": "920f6b74654c15c336384354ef5d88c0ca347afe34ba32b46a9c4d95510e85f4",
+      "reviews": []
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "c488a07e9098a4eb78fce88853ef4c2be651512e1758a6828675e1cae2a46918",
+      "after_sha256": "ca62186d538f0dac0858339f8fd11e0ac809138c14842540f89d984192fed857",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "6544f8a9f5f7c378479a412a143d20910f5170c26618498fe8f00b8028df321d",
+      "after_sha256": "860cfae203998c1c122decc489d313bf93bf48aa903fff7e6adabdd7b9a087a5",
+      "reviews": [
+        "trajectory-initializer-summary-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "before_sha256": "caa6591c5ad495830adfd7fdab4230ea5cd63700f9e99c0727fea86cd523c37a",
+      "after_sha256": "b38487f741985d49cdfd493a8840be75f440d092f48a37f1e8a23976d479d3b3",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": "a14014bc52257b04578dc4d8659eed9c881360699a15a968b559ac48aec89662",
+      "after_sha256": "1603d114578a451e555fecee6c3de6cd4b1ab9cf47e37a2683913bed0a5893a4",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "c8d036d28663ef734c2c7a84085aff7b73ce51a054866d3029d60b87a411e441",
+      "after_sha256": "d33ed221b1cf7c7ae4190bf592fcf0fcb432014ce322ae6b4850c4d2f113876f",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "21bd9c88e43efa27a8e462d0fd07f64e5ef5da2836d705fdda338edf6c60a2fe",
+      "after_sha256": "0ceb12e9bdcf2649b6806836f460035fe491d33af0da4d1ac158a9c6306b0bed",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "54d041981e425fc2bc99296a4dea830b4b69f2572886dd6a5f5beee95c37dd4d",
+      "after_sha256": "3ad99b9776ace75bc656e2e15c3fb35ee2dd391ef0069e4abcd5cb0211833a87",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "before_sha256": "3a47712837c89be62e1e493737f5fb6d1d65bf51982ebd58a1446f10149b4d6d",
+      "after_sha256": "f33649c08aeb0005f22f13c865e41e591bd8721965a7523582bcf69802e69817",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "aa61f719cc78ff1cdde60f547db353c1f79ae10a081da230cebc0290052d0fe0",
+      "after_sha256": "77e1e72bbcdf71b9ac247aa86c9ffd95d3d7df1fc6bcc2628456951cb4d62063",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "10efb7569f0aff5c78275d6f1c3f73399b0a1def30d72f231f4a9a7fcc3e13e2",
+      "after_sha256": "ab301a69259468d31958cef2462f35c5decc5536fb3727ff82f691d43ac09a61",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "c8501ee3373b9454c83f45c01c76ae8695470f1fddd314725b99e4d5d333e789",
+      "after_sha256": "8a65b3cfef111bfe5a36b1a94d7eb19c0e759ede647789d2bd7bf222c8f53e35",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "2f6e5367a077e4fef1df1946066fd82553ca925c7dc6e7b5b4e24ba8beddd1f2",
+      "after_sha256": "3647ba063072f2389072590fbec1376ca3bb1486f582a3112a368502e377900b",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "3c56962b2aa9c7c408377392c29c87a4106538e8e7acda6edc0d44b45c6ba3ad",
+      "after_sha256": "038580b272d662995fd2969c412a505370115ca71352e3619e5a84501240b5a8",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-trajectory-initializer-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "4961a888dcb779cb88f37716858fb242e3341169407d1881a7e5f43d1f32f78d",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-trajectory-initializer-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "a93d87a067345959fc524ec19d44540bc78224ffe03bf02b91f093853edd943a",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-trajectory-initializer.json",
+      "before_sha256": null,
+      "after_sha256": "69d2ddf54bfe1afb2531c82203c11361469d346f504fe93366c879f7e3307eab",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "research/runtime/effect-trajectory-initializer.md",
+      "before_sha256": null,
+      "after_sha256": "d7f9c3a9ed32c9799d61b95eae2736e94285add987827925e97737d1ef5345b7",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "tests/effect-trajectory-initializer-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "2cab6c99f2c2def0027af8da57878fd9a341a2e4176b64c673c37687becdb73a",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "tests/effect-trajectory-initializer-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "95446c50ef02e4023269dea40e05cdfe742d85457af266a3724d807c63a37073",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "path": "tools/test-effect-trajectory-initializer.py",
+      "before_sha256": null,
+      "after_sha256": "95c227e6861b337acb5f4678d8b287073445bfe7ee985dbacca6fad1754c8eec",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "1fbbe8e131a6465b840bf9eb1f55b639b1a52edc1ea2c27fad5a3b4603933b1c",
+      "after_sha256": "24cc22df3663dd522de92011a42dfc2f9ec4184e5db7b3d86b21dbc9947c0b39",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "apps/qt-shell/live_campaign_quit_test.cpp",
+      "before_sha256": null,
+      "after_sha256": "6d523a23947fd39bd30c94b9a26a94ce78a135ba996d3839cc7f84d5c7a91ec6",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "4aed8a6d6bb25eae4d5d98fd6c1bf585e98523b0521e2977b0c5f0188b525f9c",
+      "after_sha256": "0946c10d676fc18a4e57bfffc9560abecc9c113787120644e889fb93aaf5b12e",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "441722c20a236a6fef9bc79c48850f8d0d7e8b680178c46f7cca7667f64588c3",
+      "after_sha256": "2c60e19e3b9ed91f91acd238b3a6e9a51d1409b525cd5263d57fe56c13e3531b",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "apps/qt-shell/live_menu_test.cpp",
+      "before_sha256": "8a82029ae85c6c096ff791528c56347da04d649e0bf83e44440640ead433334c",
+      "after_sha256": "6525f3ea6dcdee6ce9b32e36c3a264c10d6de23a19bc2b51cca377a7421603eb",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "apps/qt-shell/live_menu_test.hpp",
+      "before_sha256": "a9b91929f75ef3ef6c59b3ac2e29d15b439cb6dfbf3b0edd4ac66b0b839ea705",
+      "after_sha256": "6fb8f9aaf64f2cdfe7e733b1d8db5b74b1fbc5891c9544a5f3d4638d0a698d1b",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "apps/qt-shell/live_mini_menu_controller.cpp",
+      "before_sha256": "02da65153c9dbddd8264f0dcd45aa84c5f0c394de148879f14974a861f48d2a1",
+      "after_sha256": "25341c7408c940ed8b65087ff6e74476d86f9c500d37db18efc1a2535883fd64",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "160fb8e61e3c1102d8bbaa5f0497deb415b0461dcefecc8d46ce02ae676456c2",
+      "after_sha256": "b8b5ef8f2edf0c535e49a234dcd2071afdfaba5f794479d9c958759e4fb6b7ca",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "7914550ffdc5cedc201b659febf6b9a37a7164ec9adabc7093cd4c162c5615ed",
+      "after_sha256": "1a2de46e95a1cab30d877d0086218aee97941a615fcfe05b645216e8820026e7",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "protocols/include/mnm/menu_v10.h",
+      "before_sha256": null,
+      "after_sha256": "31d7facdd6a0ec95d34f95721bd507e983a4e9ec2c0c56ee23a479196b898b17",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/README.md",
+      "before_sha256": "0a509ce2101967acd3fbaf47cd6db3bf3139044c4c595e80b33d8d340b061cd9",
+      "after_sha256": "0a67c7998fcc7ad924555a656ed7167ed96f8ed09eb400e802c62f04d8150323",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": "46e7e9792bff0e370f7828fbb39b36f75c3f8292086e1fa599a10c2161c12460",
+      "after_sha256": "cb46f3e5f91a460e1148776f1e3b208354ac7e735cadcfadbb33e476879ed024",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/campaign-mini-quit-engine-bridge.json",
+      "before_sha256": null,
+      "after_sha256": "2d931b1bc7be1863d06fbb69b308675fa086abd2cbe64c13cf3ff9b7697ba75b",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/campaign-mini-quit-engine-bridge.md",
+      "before_sha256": null,
+      "after_sha256": "448881bd7ca33f916c8041b8a79e0ab1da657809874af29589a07db2f7a8b311",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/campaign-mini-quit-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "696900c31acda8e986fcde17bd45ef60fdc6aa021a88ed703e8368a774cd25ca",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "aa310a44824bc16a2e36a932ed1cddb220fd8afe257f0864c0fc1b8c0608b439",
+      "after_sha256": "6d2736e7ba49a22c22421dfa3bd0b423c4e3a366683c8588fa77b285e12db29d",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "920f6b74654c15c336384354ef5d88c0ca347afe34ba32b46a9c4d95510e85f4",
+      "after_sha256": "d5b5a5beab98de7e1c1e22c21aab226009f0b884b465a1d0dc165cd3de79b253",
+      "reviews": []
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "ca62186d538f0dac0858339f8fd11e0ac809138c14842540f89d984192fed857",
+      "after_sha256": "06f39017decb79893c919d43bb3762d50a1b875734cb46dd37ddc55beb67e41d",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/coverage/source-index-campaign-mini-quit.json",
+      "before_sha256": null,
+      "after_sha256": "ac010da5556c9abefd3eb6c55b837ff385964ab4541c363998b0fa519f73dce0",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "860cfae203998c1c122decc489d313bf93bf48aa903fff7e6adabdd7b9a087a5",
+      "after_sha256": "cf5077bd43c32bb1beac54104156d4faeea999df90a4fa12855b72949f71e04a",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "research/runtime/mini-menu-engine-bridge.md",
+      "before_sha256": "b18c52f4b5799d8752e1db0422c0d54a4d7f526f5335b550b6235843acf25ff9",
+      "after_sha256": "72b15694d371f6a8eb7c8da4502fe75d179a46086bc8685c7375c70a95a1a2bc",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "runtime/menu/campaign_mini_observe.h",
+      "before_sha256": "d36a70cf2d8b81b0706efafe8fd1dcf21b9cad65ae78c8fe7505126524afcda8",
+      "after_sha256": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "runtime/menu/campaign_quit_observe.h",
+      "before_sha256": null,
+      "after_sha256": "8a279e9111adb5c9ac326d0780e715ba56d3bb9fb84815519334c11c9f2e0070",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "runtime/menu/campaign_world_observe.h",
+      "before_sha256": "9e3caee231a58dccbc8ba84cc64f9d00f443fc95d8b1039b52b2debdbc5cfdce",
+      "after_sha256": "6f2eb6187cb077c5d1bab2e85c3c7301ef0a2e887fc6a89e4bccf57ea1c316f0",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "runtime/menu/channel.h",
+      "before_sha256": "6df7735102b7abec8d6d1239bf4b6b94518bf1687d3c869ab17872aaa362b315",
+      "after_sha256": "6b1b9970b72e60604cd217f0b802144a3ca2d271216d2a22d5bcfae3d9a3da6a",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "runtime/menu/mini.h",
+      "before_sha256": "be5031ef3ab4d162260da7cfd5aaf1d6f347bae1fbc152fba230d16f442d0464",
+      "after_sha256": "1285395e6123b1e81827a540680288f0eb8b2c7b0a2af6bffa72f788ddb266a2",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "runtime/menu/region_entry.h",
+      "before_sha256": "59e78467ab44f019e07ad99cfa4a4a0bcff950d464385db4d7228255747d39b0",
+      "after_sha256": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "tests/README.md",
+      "before_sha256": "fdfe843ed63fd9b1a298b89c5f7a4da9f17813535f5c2f86f5d967e817c59958",
+      "after_sha256": "ad50fc9a4cf41312cb574eba9b3fb66e9d4642825468df2a600108160503ed9d",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "tests/campaign-mini-quit-reference.c",
+      "before_sha256": null,
+      "after_sha256": "a63d1a2dd8b69896c2bdb9b17842172b20470e24c4be4f7af749daf464560c3f",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "tests/menu-campaign-mini-quit-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "fe6e20ac7a11edb66cc3efba1ccc2201c35ea72653dfb72f1fa609132070e799",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "tools/build-menu-observer.py",
+      "before_sha256": "e4dfd131623a5101c1b9dba51edce87959e76ca1f0ab00797b2885ec2a1f0934",
+      "after_sha256": "f831783fcb547814355fd10056344d8865d22877e7b15f0c14d8305797efba5e",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "ffdd9536a521f95642b55d5cdde86d95b586401806765c3d5621bee044d9f9ce",
+      "after_sha256": "11ad1b5263aa09633160bd890049f3cbf48cf0b9340f1434adeec589fe3c0f0a",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "tools/test-campaign-mini-quit-bridge.py",
+      "before_sha256": null,
+      "after_sha256": "54210807e7c4655a0c6156293546585bee8dc0bfaf2bfad27c8c622b4ec251f6",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "tools/test-live-campaign-quit.py",
+      "before_sha256": null,
+      "after_sha256": "ea580e95f3d0b0beeaf2e9414220b0a8a7efed1a37d2db3dc3d7b2ef80bc06d9",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "path": "tools/test-live-qt-campaign-quit.py",
+      "before_sha256": null,
+      "after_sha256": "9223690cc4048fb32bf599e020f3c49e2e34b2484d4f3af25c024273083fcf72",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    }
+  ],
+  "behavior_contracts": [
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "NP.checkpoints",
+      "before_sha256": "d8d2f3365f19bff64d2880e1f2c7fd98d3736de1263982de61b2c988d637bc6f",
+      "after_sha256": "a1fe22a9f944ad9aff20f4902996ba59ea1dd32fde3b5b547c1d2c82c7380abf",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "NP.map-navigation",
+      "before_sha256": "03919c8ddb791e178a6be9e982ce31430de2193447ecbdf57c02b23ef001a440",
+      "after_sha256": "66bdede2611ab46a499c0c99377cecab63d6465ebae43c278495be330b656d30",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "NP.move-orders",
+      "before_sha256": "d3b9d14c572d87ffcd4562c3f073b94b795ea3a73a7a33adad43ab6914d9cd64",
+      "after_sha256": "8aeace91c33421af4660d44af9b8d6694bbfd9b319a6308fcadeba69b05e31da",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "NP.presentation",
+      "before_sha256": "cd9e5650a8be3604b4cb00b8a407f93ac78c0810ea9f522bce6b8b15a14c6195",
+      "after_sha256": "a9080a01432079b9e81ff53056da7c262089e35bd2c1b4a62a7f357f1fd4d629",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "NP.scene-orders",
+      "before_sha256": "9b28e51c7b287e68c320ec37ac343ba08b83b13287e08bfe575ab1bf56332615",
+      "after_sha256": "41be700d175a7a41c0c5c73d0506ba1a35c75f6f73c531f08d2f6e888f81a646",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "NP.scene-picking",
+      "before_sha256": "a65d5c68db89b11356dad40f3342c3bef88c1f0caa65c40fc13505f2bc75669b",
+      "after_sha256": "a1f444b88a862361d35a4391c6f740d3275b5a4e50e5308d64db86e308881037",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "NP.scene-playback",
+      "before_sha256": null,
+      "after_sha256": "ec176e9b562e5d22d3f315a211f760b70fa0712f45e3733766e04fc3c071a80d",
+      "reviews": [
+        "NS16.scene-playback-exact-staged",
+        "NS16.scene-playback-recorded"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "NP.stop-orders",
+      "before_sha256": "471517ae54169b99c407f7409cc05bf6ae9a945f871043ef9d0657403f1a9879",
+      "after_sha256": "51e835661cb6b997f1f506da43186c0eb8f123e32ca35bb3d2138319e3507b70",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "NR.world_scene",
+      "before_sha256": "aa19e1b058bcd992d6e97f3c68288f31705c63ea49adc304ccc3cf76db229ff9",
+      "after_sha256": "82dc4b6a2c33f432b99c96e9d16b4f4b4cc333b497017360995c17e23a3f926e",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "7d9cc25c4dd1e17db919d21c5a583494a90345091c76e0388f2bc47f6a41fd90",
+      "after_sha256": "5f22b6a17111e9a1dfc51f3151c849b694523626c023061b1a31de47e8563e68",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "06463ccf2298e82153cd56f075147ec28f6c78b1",
+      "id": "WORLD.owned",
+      "before_sha256": "1b0998728513b111291a0bc4d96b1ed9f1b010b0e69386b33a7999d2382a8237",
+      "after_sha256": "41844f4be6283f6a78248657327724eec7b52cad0cba93b6dcae87fcd44d3c36",
+      "reviews": [
+        "NS16.scene-playback-exact-staged"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "id": "NR.live-command-transport",
+      "before_sha256": "c9884f72add4694523c79aa5973340be217b50712a06151fd37e9a252f163ca9",
+      "after_sha256": "cf6595c2e2390ee45ff804db2b3f72457f76bb0efe0628a3c8d323eea9c385dd",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "id": "NR.owned-session-fill",
+      "before_sha256": null,
+      "after_sha256": "71b132b32464bfc5f84c4a7271822c32a6c7e754263b8491c09860dfd14b94a1",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.recorded",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.recorded-v2",
+        "NR.owned-session-fill.exact-isolated-v3",
+        "NR.owned-session-fill.recorded-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "c8a453ca7fb8f985fe14e4cb55b07823333ceab0a9e46e9d40eb8db73d1bb3e4",
+      "after_sha256": "c987aee06ac972009f27bc3108a091fc0944a60e632e0ffbfdb07c932bcc74c6",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "423df90406ee28c62d8190bedb64666d087f1d4e",
+      "id": "RT.render",
+      "before_sha256": "137877ed32feda51d2579c15ba61cdeb55b29338932e323fd85766010e9316bd",
+      "after_sha256": "75dac20d4630e8ac8b8962d0c8f1040d17f46b09cf5ddbbb6e87223b124e08c1",
+      "reviews": [
+        "NR.owned-session-fill.exact-isolated",
+        "NR.owned-session-fill.exact-isolated-v2",
+        "NR.owned-session-fill.exact-isolated-v3"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "id": "TL.effect-creature-collision",
+      "before_sha256": "df2f5564f35eec0378f652ec3fb60ce66537e0de48a7c21d4788bc63898f3a81",
+      "after_sha256": "894812a4b2f341b57986ec4ea8b018a81141f06594561d3001a7f30b86ed72a9",
+      "reviews": [
+        "effect-kind34-recorded-423df90"
+      ]
+    },
+    {
+      "commit": "930ca14f13f54be67ff62a6ac849b9abc3aa9794",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "0c9c2318202b28624b87e9c5bd1e21ff6f844646a0c08410809eac0eb76f513f",
+      "after_sha256": "ed81b8bed4810bc7ee2917c5889bd668c3c3bb8942a9dcb76f08dee03dcd2439",
+      "reviews": [
+        "effect-kind34-remaining-423df90"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "5f22b6a17111e9a1dfc51f3151c849b694523626c023061b1a31de47e8563e68",
+      "after_sha256": "a653d08332d2f69466a55b233fbb3baa752ff4ddd4fa7fa34121bcf3dcd8afd7",
+      "reviews": [
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "id": "TOOL.coverage-ui",
+      "before_sha256": null,
+      "after_sha256": "6dd63a4b17d1dc1e8e9ca7556e4e7a695cca1c0ac7f1cc5f40e10fdf48b715e7",
+      "reviews": [
+        "coverage-ui-major-tracks-ui04-930ca14",
+        "coverage-ui-staged-ui04-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "aee4f872209853345c4de5add3291a3b7aeaa940",
+      "id": "TOOL.traceability",
+      "before_sha256": "632aca1e2d0308cbeec3a27a625c0006610219010e2aff9a9e5ca3aa4920186b",
+      "after_sha256": "d19c45a2a67ba886a9adc4cf92c2e13d1172053dd91c4ff9f5dfd2b095874bc1",
+      "reviews": [
+        "coverage-ui-census-and-accounting-00b547c",
+        "coverage-ui-shared-metadata-pending-00b547c",
+        "coverage-ui-current-receipts-and-census",
+        "coverage-ui-staged-accounting-commit-930ca14"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "ed81b8bed4810bc7ee2917c5889bd668c3c3bb8942a9dcb76f08dee03dcd2439",
+      "after_sha256": "db96e8faff47efd3bf7767f950197d9505ca09243c86c95d6131c930a9965c3d",
+      "reviews": [
+        "trajectory-initializer-remaining-aee4f87"
+      ]
+    },
+    {
+      "commit": "6cb94127e76215acff48c867ef90c9fae375955b",
+      "id": "TL.effect-trajectory-initializer",
+      "before_sha256": null,
+      "after_sha256": "dd46eea5fb1b68175e75cb04d0de4a153167386b530575e39a631ec1cd68f9a3",
+      "reviews": [
+        "trajectory-initializer-recorded-aee4f87"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "BR.battle",
+      "before_sha256": "e91aa1f0bc9c3f861c0ff9809ae8395e5e9282450e2d403d4c2c3a7aa25358ed",
+      "after_sha256": "9f1b32411589b87e3ee09526824bede75706f2563b4e0aad4603467a8a3ffb65",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "BR.main",
+      "before_sha256": "e09e662f64a9f071efae8f8872ec140a795fb6666eb77cc1c8b7f6f7a112b65b",
+      "after_sha256": "3d6e42e93329730c16efc3eea73b6eedf568db53e81456feb9c5c0613e226926",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "BR.mini",
+      "before_sha256": "408ac65b41045ce413892b5671d84c49ab634736bf341ababda455c8eca2b617",
+      "after_sha256": "c2171ea39f3241307a8bec202b1c6e5cb25267745556af76d515ad35814aa2b8",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "BR.result",
+      "before_sha256": "1711f3a12b91ac4f694ef1fc138e74eabf63ae453f168b267bb938b345c19ede",
+      "after_sha256": "ab62304fd167925b4854e97db878b07f6cfa0e9374ca81652fc8d16a80c92579",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "BR.spell",
+      "before_sha256": "6888ffbce6f1b05a2868406eb2965c7abbdb0dd0357715c01b464737d88c18eb",
+      "after_sha256": "547c19ca366d854b67d7dfa5ce9333e7bf01a52c66b1d573c5108ba05eadb2f7",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "CP.campaign-mini-cancel",
+      "before_sha256": "6e48884062d658c13062a4410a3b87b5a6cdf5c531b8d586e33cd4104238d5b7",
+      "after_sha256": "96d39ab0bdf637651fc0c2cfe9be981353712a6fd5d5a50a52bf712384d4b257",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "CP.campaign-mini-lifecycle",
+      "before_sha256": "19f5c77a024f2ddfe34628988569471e47eb79a0e37cc46fedbe4944e412c510",
+      "after_sha256": "518c43f8bdc6d33c3fdf84e92f22dd4619455cb997454afbf1adcc339b83a945",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "CP.campaign-mini-quit",
+      "before_sha256": null,
+      "after_sha256": "e8362f346ef03fc648cf03f406a4c6f55df3b611ca78790c02f2e9ab8c102f52",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe",
+        "campaign-mini-quit-ui32-execution-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "CP.campaign-mini-quit-lifecycle",
+      "before_sha256": null,
+      "after_sha256": "2971db91e945d2f80e6065847ecb595c871ac5149aaa5be45474c5dae5b1af8f",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe",
+        "campaign-mini-quit-ui32-execution-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "CP.campaign-world-handoff-observation",
+      "before_sha256": "3bf69cf060db89c41d55ec1b38caf691a48b7cc796154db10f452f6d17799f0a",
+      "after_sha256": "11510d5f5586fe17481dea4bb7e71b10ceff37224b43fd90cb484064850f36e1",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "CP.realm-observation",
+      "before_sha256": "e2e57047d6dc59f7be5cebfb875db813edbe0fb4dfbbf31ff468310a176034d2",
+      "after_sha256": "2007576987e1b53bd26271c18d2c3aa806e55fdce476f5d11e32ca87fdc8685d",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "CP.region-entry-bridge",
+      "before_sha256": "fbf2fe2bb9e87fffb2df91b85969ef3e6beee251b0270f56f7e7e104006aae09",
+      "after_sha256": "f8e002e2ce7c6b6cb6825ac96ce87a40552679b70fcb5f9885b027e9402fc2dc",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "CP.region-entry-enter",
+      "before_sha256": "36b0bf70b1f9a67b720c53b3dfbd0e3aeac69ea954f09f6944f1b8b619400a92",
+      "after_sha256": "ab32156d8643cf27ffdf3c5d7e4239707edecb2a7b46c22aa6605bfa4de8a378",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "CP.region-entry-observation",
+      "before_sha256": "a2dafe06458454d52c141ddc411fb6e636a00ecb58a8abdaf0d497af4aa707cf",
+      "after_sha256": "365efa07f149fc79fcebf8d87955f365af6eaae43849ece8d66144bd62957666",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "NP.campaign-mini-cancel-policy",
+      "before_sha256": "bc9e0f124869530f706edda0321e80031402f61210ffa0c09c3527193e88ef8e",
+      "after_sha256": "c304208da7a609f1cbff082421d82195511dae0af210178acc966b2360d7ed5a",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "NP.campaign-mini-quit-policy",
+      "before_sha256": null,
+      "after_sha256": "69941cf7a6b792f995116d2e93926bbb9e71e2586627ec8caeded36e951a230e",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe",
+        "campaign-mini-quit-ui32-execution-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "NP.preferences-draft",
+      "before_sha256": "00a9d4792d177caa6bf9a783e37a201a042aaf86eb4ff428f2e5b2b49fc04c73",
+      "after_sha256": "3a96ef7d30abacc8be8197c87ccee3c3172351d9ac63dfc49b5a8cb2981f26f5",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "NP.preferences-persistence",
+      "before_sha256": "6175871325888e0db6755af6e76ab3a97945a6b59932bb47ecf35b08a43893b7",
+      "after_sha256": "482bfa217fa2367d1439027a6d107cf607c7a1c3be766dea27d5d9c9b2f78a02",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "NP.region-entry-fresh-policy",
+      "before_sha256": "3eeddce76e94f902d20a025ff6e5dd78fbccbcc590b9df81305567c697d66050",
+      "after_sha256": "e3def8ab6ad9a58c11dae65d61463d93c879ef9f4afc5901393b77fce5c9c8b3",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "NR.gpu-presentation",
+      "before_sha256": "a91b05c8d1465d647a6b52160cdd34668360ceb94efd26da8fd46ebc711230c2",
+      "after_sha256": "15bd6ab7c70630dc540e18367708444c43ff781a2e8fe801f201b647871ef5b9",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "PR.apply",
+      "before_sha256": "10a2a3ac91c104c4dc4400c32e65812c47ac1288b4b16a187656866c92919e16",
+      "after_sha256": "38fb0d595d67f0c3d755aa3cd09be1b178622f40ec88d741594d646677ad2ece",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "PR.audio-preview-cancel",
+      "before_sha256": "e804ac6a91f12746e306b528ae147852e7e9b3f7093e71304ad9bb141511fd79",
+      "after_sha256": "07a5e787c8e4cc4638d8ac90d806c1461d9327e49891856a36bb638587dbd7b8",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "PR.control-admission",
+      "before_sha256": "9b6db521d209bc6ec545952117aeef7f8fde27a69399b73a7653d2ef8de86e62",
+      "after_sha256": "e134af89a4d4bb44b71acca44fb16dea0522913cc7c1bd56312532f2c7662c5a",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "PR.main-entry",
+      "before_sha256": "7f46826736fb82df9e85ea6ae4893677a47de2fd09a00700c0bca41b50ab02bf",
+      "after_sha256": "7ad7c3b7fea34eb4f3b73f34ea7ecdff0de36ea3985a0401d04246d34934aebc",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    },
+    {
+      "commit": "394ff5b22d1baaaac1bbf0325fe679922666f323",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "a653d08332d2f69466a55b233fbb3baa752ff4ddd4fa7fa34121bcf3dcd8afd7",
+      "after_sha256": "bf93ad92a2c86a438f2c7c65cf5093d86b5e2550204c0a8c1aa23a8c51bcd95c",
+      "reviews": [
+        "campaign-mini-quit-ui32-campaign-quit-commit-9njjr6pe"
+      ]
+    }
+  ],
+  "unmatched": []
+}

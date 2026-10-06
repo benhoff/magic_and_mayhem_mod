@@ -11583,6 +11583,193 @@
         ],
         "reason": "Current hashes match original Quit/answer bytecode and guard fixtures, eight Qt tests, V9 Cancel regression and original/Qt No/Yes observations. Native Qt Quit restores original confirmation; No resumes World, Yes reaches the original campaign defeat report; original report OK and World/Realm return reach fresh Main and native Main Quit exits normally. No native confirmation, timer pause, dependency equivalence or live replacement claim."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "dc0360a7aabf942646371ddeb4359f31072f9ba200c13b088033f2facc985eb4",
+          "before_sha256": "a1fe22a9f944ad9aff20f4902996ba59ea1dd32fde3b5b547c1d2c82c7380abf",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "d95c9dc3fc9a704259b522f0324053898a7bf377695a4f1fc766b6e6969de18f",
+          "before_sha256": "66bdede2611ab46a499c0c99377cecab63d6465ebae43c278495be330b656d30",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "7d4b2ab9a73e7fb6efdd96f0828b168677d03d360fbfb32fcffd11d389f6eb9b",
+          "before_sha256": "8aeace91c33421af4660d44af9b8d6694bbfd9b319a6308fcadeba69b05e31da",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "70f8f139744635a215d1d16c91a520ca8a65d30836cf2d57788106c6df6539e8",
+          "before_sha256": "a9080a01432079b9e81ff53056da7c262089e35bd2c1b4a62a7f357f1fd4d629",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "43c0bc0fa987aa4e4753dcda5cba88a5148c621b4a6325ae3de8ab95d0365e17",
+          "before_sha256": "41be700d175a7a41c0c5c73d0506ba1a35c75f6f73c531f08d2f6e888f81a646",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "9bb6c000861315079c47c6aad674a811fcfa4898a2699dba85d047bb9888c738",
+          "before_sha256": "a1f444b88a862361d35a4391c6f740d3275b5a4e50e5308d64db86e308881037",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "38cb07c388b6f514512ac34f01793d3bab65af006ae7db31d85c2acebdc2b379",
+          "before_sha256": "ec176e9b562e5d22d3f315a211f760b70fa0712f45e3733766e04fc3c071a80d",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "c2d93cf69b9ac4f5e43369431ba5704d28800d7e4c3cda5620e68e1a22bfe9f3",
+          "before_sha256": "51e835661cb6b997f1f506da43186c0eb8f123e32ca35bb3d2138319e3507b70",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "c82f93b6ff51e757b0cd96625e6fbc739502e25204a49d5a154ac5b57c6a491f",
+          "before_sha256": "82dc4b6a2c33f432b99c96e9d16b4f4b4cc333b497017360995c17e23a3f926e",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "40d74822a4e6d60cb6c0806a72e3c8fcd75718ef395deb0d1e3e4209390989f6",
+          "before_sha256": "bf93ad92a2c86a438f2c7c65cf5093d86b5e2550204c0a8c1aa23a8c51bcd95c",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "960be623d79e0ed3dfbb8ea1c41d26b18044f7c87a16024485d4b2d425312b1d",
+          "before_sha256": "41844f4be6283f6a78248657327724eec7b52cad0cba93b6dcae87fcd44d3c36",
+          "id": "WORLD.owned"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "e45c451d3134a13a1fbaec215c8e470fda5ab78cd83154e1bd4dcf83c1c190c2",
+          "before_sha256": "e1ebff4123f4253fe4ad0be7ee6e04905a69d67d9ecc01596b8219e8c16cec87",
+          "path": "apps/world-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "fad61e20c7d5f33ed296554f54008e7d68f758329aed8d8b445f5b9ab3bd8be7",
+          "before_sha256": "199cdec7ee7490823ba29a2936bdc581f90f3d3188fa90e745069483f4d0cbb4",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "cff183d59573752e829929e204add22d3e895450da798c3ebd6a6d8e4c7e5b66",
+          "before_sha256": "6ca537fa39a92f738e7da29704dc2176de855a7f556eb916776156293d2f09b2",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "6ff7a6574a06724e2c2258f6a4ba32b200cec77a8c4a1436a56d91fdf20776ec",
+          "before_sha256": "9a4bad770c216f4b1c1500bb499cca0cc10aa0ee9e2efbc1be871a9be6da5c84",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "6314c62888c1da59cbafd11a6c81780a3962cbb8d803dcaf15db26748cb453ad",
+          "before_sha256": "6d2736e7ba49a22c22421dfa3bd0b423c4e3a366683c8588fa77b285e12db29d",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "96feb7c22446a098f9cc68b1f80bc5adc9200e9aae92142589e61b0cdc23f170",
+          "before_sha256": "06f39017decb79893c919d43bb3762d50a1b875734cb46dd37ddc55beb67e41d",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "12d96472620fb2f0ccca6ced7d06470b0bea9371611a74a84f53e66af170c05b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-window.json"
+        },
+        {
+          "after_sha256": "de899275251a20e8ede13e003fd5179cbd753f7f2d761df1ece2dd2caeac8634",
+          "before_sha256": "cf5077bd43c32bb1beac54104156d4faeea999df90a4fa12855b72949f71e04a",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "b2abe19699a1e1e464767357659da59f4b51073d59231a2876250ffa48b9f117",
+          "before_sha256": "0853143dec966566f3471dd04c428f2b61d99b2b3a2764301eb6d76c7b909f8f",
+          "path": "research/runtime/native-scene-picking.md"
+        },
+        {
+          "after_sha256": "63116b2921cc8e9d4b81199145c56b1db8d812d9727b2f344d2485d513a86f13",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-window-history-extension.json"
+        },
+        {
+          "after_sha256": "da011714836b71098bb0efee104e275fc62f76bdd2b922339328b41b9e1247b0",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-window-history-review.json"
+        },
+        {
+          "after_sha256": "5fb7f62b4bd26fc5cbded3aa6e3a59eea6b7628510d4b0be41f5b3feabd79408",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-window.json"
+        },
+        {
+          "after_sha256": "b211943bcb4ef39a95fc0e498615d193e57c4579cfb33a6523dd98ed6da0dd01",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-window.md"
+        },
+        {
+          "after_sha256": "edd1eeea5b3e40052efbb41ae709461009ebd4cb297724e95fcefd2ecfd47b61",
+          "before_sha256": "ad50fc9a4cf41312cb574eba9b3fb66e9d4642825468df2a600108160503ed9d",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "4b81956dcc07c17dd76c50f39ebd3b6925e4bfc7f5172d7b9b0195b9fe2b14bc",
+          "before_sha256": null,
+          "path": "tests/scene-window-driver.cpp"
+        },
+        {
+          "after_sha256": "a13b36f6bd90d4b190728c96090c64c8db7990b93e37c22ef11d0bef5945029b",
+          "before_sha256": null,
+          "path": "tests/scene-window-driver.hpp"
+        },
+        {
+          "after_sha256": "3fd903a91a1e3e17e52fb6ea9c24926ac91b39246097e9ab65e652666bfbbd33",
+          "before_sha256": null,
+          "path": "tools/test-native-scene-window.py"
+        }
+      ],
+      "id": "NS17.scene-window-exact-staged",
+      "pending_gaps": [
+        "stale_evidence:3c53e21cdc7299bd18b9beba94168ca89d29642a0dc6736df8a9c4a62741a444",
+        "stale_evidence:d59775e43c53fbbb4d13b7d76f2d86c549b0f2392503755de82bb518b7c36ac7"
+      ],
+      "reason": "Review same-entry-point test target with compile-time-only bounded script/observer and widget file-dialog configuration; production CLI has no automation options. Review object naming, actual Qt press/release delivery, bounded script/tick/delay/output names, exclusive artifact creation, committed-tick Pause observer without world/time mutation, atomic pre-admission Stop inputs and actual modal Save acceptance. Review ordinary MAP target correction from z+1 to own z above zero against native exporter/frozen standing cells; diagnostic explicit layers and recovered ray gaps remain separate. Review installed Forest crop/Redcap ANI base 0 provenance, native active-cursor/mid-progress pause, saved bytes, fresh-window transient selection, real timer continuation, explicit-step references and independent decoded-SPR complete frames. Review and retain the observed stop branch: cursors clear and no idle/stopped body is displayed. Exact committed range bfe8b38..394ff5b matches every file/behavior receipt; source census, central native policy links, evidence, ledger and summary preserve committed peer work and exclude pending changes.",
+      "validation": {
+        "status": "pending",
+        "reason": "Two new/changed stale-evidence identities retain historical hashes/statuses; NS17 does not refresh older full-viewport/virtual-time oracle or original comparison claims. Only a sealed Forest crop, installed Redcap movement base 0 and four diagnostic views are executed. Original rays/input/clock and human pause latency, other installed worlds/ANI profiles, idle/stopped ANI body retention, groups/factions/commander gameplay and live replacement remain pending. The missing stopped body is an explicitly recorded failure/remaining display boundary, not a passing idle presentation claim. No recovered status is promoted.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS17.scene-window-recorded",
+      "reason": "Record fresh bounded native preview execution for playback, picking and presentation through the actual entry-point window, installed map/ANI pixels, native same-layer clicks, real timer, modal Save and exact restart. Keep test observer boundaries and missing idle/stopped body separate from original input/ray/cadence or broad presentation equivalence.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "70f8f139744635a215d1d16c91a520ca8a65d30836cf2d57788106c6df6539e8",
+          "before_sha256": "a9080a01432079b9e81ff53056da7c262089e35bd2c1b4a62a7f357f1fd4d629",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "9bb6c000861315079c47c6aad674a811fcfa4898a2699dba85d047bb9888c738",
+          "before_sha256": "a1f444b88a862361d35a4391c6f740d3275b5a4e50e5308d64db86e308881037",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "38cb07c388b6f514512ac34f01793d3bab65af006ae7db31d85c2acebdc2b379",
+          "before_sha256": "ec176e9b562e5d22d3f315a211f760b70fa0712f45e3733766e04fc3c071a80d",
+          "id": "NP.scene-playback"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Normal and ASan/UBSan each open eight actual native windows over four views, pass 40 complete independently forward-rasterized CPU/OpenGL RGB565 checks and four exact fresh-process state/canonical JSON/RGB565/PNG continuations. Real Qt mouse/button events queue the expected same-layer move; active partial progress/ANI, 220 ms pause and actual modal Save preserve bytes and canvas pixels. Save while playing pauses before the dialog; stop while playing queues operation 5 and cancels at the next committed tick. Explicit-step processes match continued/stopped windows. Tests assert the currently missing stopped ANI body and report it unimplemented. Full normal 108 CTests and eight focused sanitizer suites pass; all source/input/artifact fingerprints match staged sources and retained reports, with original manifest checks bracketing installed-artifact experiments. No original/live equivalence is asserted.",
+        "evidence": [
+          "NS17.scene-window"
+        ]
+      }
     }
   ]
 }

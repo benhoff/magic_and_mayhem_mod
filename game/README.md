@@ -345,3 +345,11 @@ cap and explicit dropped-overload intervals. It owns no simulation/checkpoint an
 changes no world tick rules. Pause discards timing debt; resume starts fresh.
 Determinism applies to the same ordered commands/admitted ticks, not to arbitrary
 wall-clock inputs. See [scope](../research/runtime/native-scene-playback.md).
+
+## Actual native-window continuation (NS17)
+
+The scene-window runner checks real-timer admitted ticks and modal-save restart
+against exact native checkpoint bytes and explicit-step processes using installed
+Forest terrain and Redcap ANI assets. No simulation scheduling/checkpoint fields
+are introduced. Native stopped body display remains absent after cancellation
+clears its cursors; see [scope](../research/runtime/native-scene-window.md).
