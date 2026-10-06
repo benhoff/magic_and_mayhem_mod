@@ -471,13 +471,22 @@ __declspec(dllexport) void RenderAnchor(void){}
  * It closes capture admission while original drawing remains installed. */
 __declspec(dllexport) u32 WIN RenderShutdown(u32 milliseconds){
     u32 error=GetLastError();
-    if(!game_tracker_acquire()){SetLastError(error);return 0;}
+    struct CommandLifecycleLease lifecycle __attribute__((cleanup(command_lifecycle_leave)))=command_lifecycle_enter();
+    if(!lifecycle.held){SetLastError(error);return 0;}
+    if(command_worker_joined){u32 complete=command_shutdown_complete;SetLastError(error);return complete;}
+    struct GameCopyLease admission __attribute__((cleanup(game_copy_leave)))=game_copy_shutdown_enter();
+    if(!admission.observe || !game_tracker_acquire()){SetLastError(error);return 0;}
     session_finish_owned();
     if(game_session_continuous && !session_started && !__atomic_load_n(&command_queue_end,__ATOMIC_ACQUIRE))command_channel_fail(MNM_RENDER_COMMANDS_V2_REASON_GAP);
     game_session_enabled=0;game_tracker_release();
-    int complete=command_scheduler_shutdown(milliseconds);SetLastError(error);return complete;
+    game_copy_leave(&admission);admission.held=0;
+    int complete=command_scheduler_shutdown_locked(milliseconds);SetLastError(error);return complete;
 }
 #ifdef MNM_RENDER_SELFTEST
+/* Deterministic full-transition contention without production wait controls. */
+__declspec(dllexport) void WIN RenderLifecycleGuardForTest(u32 held){
+    __atomic_store_n(&command_shutdown_busy,held!=0,__ATOMIC_RELEASE);
+}
 __declspec(dllexport) u32 WIN RenderQueueForTest(const void* bytes,u32 length,u32 end){
     u32 error=GetLastError();command_scheduler_start();
     if(!game_tracker_acquire()){SetLastError(error);return 0;}

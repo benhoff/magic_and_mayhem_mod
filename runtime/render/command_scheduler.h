@@ -33,22 +33,29 @@ static int command_scheduler_launch(void){
     int ready=command_worker && !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE);
     return ready;
 }
-static int command_scheduler_start(void){
-    if(!__sync_bool_compare_and_swap(&command_shutdown_busy,0,1))return 0;
-    /* Serialize startup with explicit shutdown, including handle publication. */
-    if(command_worker_joined){__sync_lock_release(&command_shutdown_busy);return 0;}
-    if(command_worker_started || !command_queue){
-        int ready=!command_queue || (command_worker && !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE));
-        __sync_lock_release(&command_shutdown_busy);return ready;
-    }
-    int ready=command_scheduler_launch();
-    __sync_lock_release(&command_shutdown_busy);return ready;
+struct CommandLifecycleLease {u32 held;};
+static struct CommandLifecycleLease command_lifecycle_enter(void){
+    struct CommandLifecycleLease lease={(u32)__sync_bool_compare_and_swap(&command_shutdown_busy,0,1)};return lease;
 }
+static void command_lifecycle_leave(struct CommandLifecycleLease* lease){
+    if(lease->held)__sync_lock_release(&command_shutdown_busy);
+}
+/* Startup, shutdown and recovery serialize their entire state transition. */
+static int command_scheduler_start_locked(void){
+    if(command_worker_joined)return 0;
+    if(command_worker_started || !command_queue)return !command_queue || (command_worker && !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE));
+    return command_scheduler_launch();
+}
+#ifdef MNM_RENDER_SELFTEST
+static int command_scheduler_start(void){
+    struct CommandLifecycleLease lease __attribute__((cleanup(command_lifecycle_leave)))=command_lifecycle_enter();
+    return lease.held?command_scheduler_start_locked():0;
+}
+#endif
 /* Producers must already be stopped under the tracker. ACK is owned-copy
  * completion, not GPU completion. Deadline does not wait under the tracker. */
-static int command_scheduler_shutdown(u32 milliseconds){
-    if(!__sync_bool_compare_and_swap(&command_shutdown_busy,0,1))return 0;
-    if(command_worker_joined){__sync_lock_release(&command_shutdown_busy);return command_shutdown_complete;}
+static int command_scheduler_shutdown_locked(u32 milliseconds){
+    if(command_worker_joined)return command_shutdown_complete;
     if(milliseconds>5000)milliseconds=5000;
     u32 start=GetTickCount();
     if(command_queue){
@@ -62,13 +69,13 @@ static int command_scheduler_shutdown(u32 milliseconds){
     __atomic_store_n(&command_worker_stop,1,__ATOMIC_RELEASE);
     if(command_worker){
         /* Retry work is bounded; a timed-out join retains mapping/queue. */
-        if(WaitForSingleObject(command_worker,1000)!=0){__sync_lock_release(&command_shutdown_busy);return 0;}
+        if(WaitForSingleObject(command_worker,1000)!=0)return 0;
         CloseHandle(command_worker);command_worker=0;
     }
     command_worker_joined=1;
     command_shutdown_complete=!command_channel_refused && (!command_channel || (mnm_ring_load(command_channel+6)==MNM_RENDER_COMMANDS_V2_STATE_ENDED &&
         !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE)));
-    command_channel_close();__sync_lock_release(&command_shutdown_busy);return command_shutdown_complete;
+    command_channel_close();return command_shutdown_complete;
 }
 /* Process teardown cannot join. Retain worker-visible storage until OS cleanup.
  * Manual unloading while installed hook callbacks remain possible is unsupported. */

@@ -1,0 +1,313 @@
+{
+  "schema": 1,
+  "scope": "Exact committed parent/current SHA256 and behavior receipt review, separate from pending workspace changes. This audit does not assert historical gate passes or fresh validation.",
+  "base": "f86d3fd",
+  "head": "e7c56c2a509e098186fa93c2a6bc23a6cf17decd",
+  "commits": [
+    {
+      "commit": "e7c56c2a509e098186fa93c2a6bc23a6cf17decd",
+      "parent": "f86d3fd8bf32d247845c20baad4f16df4830c3ca",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "3353c6124981f40add85bb18000a3e303670503d11f07d36be4fb165ec0691a6",
+          "after_sha256": "2cacf371492751c7604194ed2fb1d6c4c33eebd9e9b94056a545d1f925ead92a",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "d69c5858cf4bb8c742a1dcb050c18d296e2d21b7fd666f7ea2fbb9a91cf9705f",
+          "after_sha256": "a13ff977af965a07399fd9bfc7b4b22b3cdefc3fe0b21a412439c252a9c64dd4",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-draw-startup-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "52982007b86e52e2b2e32bca0ff81368b7f72b1121d843614df877df47ccebb9",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "4ceccf599d6a04256af09f55b26c277ea6657123479bacc0507d694e4788706c",
+          "after_sha256": "396363dd993343962c134db19ab593f45c8f7e1f1737fc7e6f99a971671e135a",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-draw-startup-order-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "466ff648fffd5b9b42e8c9725587ccef90a42869965a8bf99a8ce1a13a8655c5",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-draw-startup-order-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "75f0b3fe0c5aad9d01a06b6b00444a2b9bcd7586b5c19ff72adbd0856f06cd9e",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-draw-startup-order-checkpoint-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "4d4e47715428f5c44b0578e11688236020a957950b155ce7c3ab3c1122158cb3",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-draw-startup-order-lifecycle-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "fa29965e7b866f8045dcaddfc4837c8a84439edb1bff65e61b77d1bf3ec2d99e",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-draw-startup-order-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "b909063c72f6a8c631e783f8ced1142f5284861e72dff9076ac88671f267f87a",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-draw-startup-order.md",
+          "before_sha256": null,
+          "after_sha256": "d79b2de358b1a2e80b7038a4937cb490296657239d46c2cfa06277e4da70b03a",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/bridge.c",
+          "before_sha256": "9b385eee68e1b32f3de0402b0cf03314967254332749c21911489704e6df7041",
+          "after_sha256": "2bb8bafae00d7128c98e864a687ca059cd11f85cd4b9c2d16a4221209918427b",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/draw_startup_selftest.h",
+          "before_sha256": null,
+          "after_sha256": "b6a0bf370d2d95c6bcfe2d5b3c082567fbf97b36b04bcef6c413be709fbfb9aa",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/selftest.c",
+          "before_sha256": "a22d70fbfe33fdeec7885cfe1eeefc5044a113b70b7aff6203289e1f4369f08f",
+          "after_sha256": "7ee48237eda191b98a0839978dfe704795e65dd2adf4ac25dcb447b06bc836b8",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-draw-startup.py",
+          "before_sha256": null,
+          "after_sha256": "91ecc89e0a7924c20328482382cbb4624370c2ebd9bb8fc5e48dba85433dad8b",
+          "receipts": [
+            "draw-startup-order-recorded-20261006",
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.bounded-copy-order",
+          "before_sha256": "b790054e4a2fc9564824151ee16e22267302b25e65a6950a4fd6ad0db4e7d897",
+          "after_sha256": "da75145313caa1faf39303d7f06aaa86984f1eac0e12f6e4942f3d88c7164d03",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-backpressure",
+          "before_sha256": "307ef8a82727e21f0d398e7fc97f02beceec0fdffccd772ceb333ea7bd83f80d",
+          "after_sha256": "ccfe1ac6ada5af1930d661bd16cb56d69f56f852658325f2e4b327f0627b4bd9",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "52897b2ac98fb98a3efd6ccd35700b6ec39d6359f456d22a787e1481fb2da9da",
+          "after_sha256": "38404ebf0f3d4b9c9f5c41a9569c3e4a3aa1f91b384f7b04142a4c1840b92586",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "e807b669ec93dfe60b3afeeb88b5acb612ed079a0f6818f51ce8b830142b519e",
+          "after_sha256": "82454046bf0190cd6e27b7203acf503e04d92aaadd7802dfcf65a8119a7befa3",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-idle-lifecycle",
+          "before_sha256": "8aa631f7e4ace98fc377a2f88b87e4a85990cbc5bd585339d5d093adbe4f3fe4",
+          "after_sha256": "a72e499122f2bdb30370bb0e26a833d3c809b5158277fef88d82d5814d6a5ee6",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "8eb8981d93b209df8d7e7385a9b2a772f7da62a2af9701cc694012df2d2cf049",
+          "after_sha256": "50e779b7feb5b40877f8fa4cb57ff3204cce9fa7f290d7c92d946795a43f9936",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "7d919a65c9460e9973efafc045d5623194ca44059560367851a0077696914888",
+          "after_sha256": "210ab95d488a1015b5772af9edbb3ed86804fac9ccfea3849ab242402ac2f4b7",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "e5a7bddbed46fbe28086bdcbbc51d8e5b1098de4792bac44653da871ee40571e",
+          "after_sha256": "acdbcb47a47eb2d066ab7057e897a052b05bc5d1e4fbc8abc50e3ead1e2ceb68",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "bb72674674c28ddfd7711787cf09d6cc949a07a6f1a72f57c0a003c5d1743f2c",
+          "after_sha256": "d276ec68d588f960cc1a4498c79a4db4dd2bf44f966d4e5824a388b498f4ec77",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "901ef3743328e4c6e3308f95786a15072243fb2cea49d793d0a44b746be2c81f",
+          "after_sha256": "3b9213f95d2523d5608a236cf4e7efdf314fc81aaafcb8defa23a338173f4be7",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-working-set",
+          "before_sha256": "3cf710930fe5fdb4ecf127b31c4d81e1a9cffdf8a16ba00f11884c2a3a382628",
+          "after_sha256": "81fc2fbb16b193b77221328c486f9d9195ac72d58256b5fc08745e7d7d1cbcd4",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.cpu-handoff-order",
+          "before_sha256": "8565a8e7c762e62877c07714be9ee846554b5c029b8d84d81d26f74053b294d0",
+          "after_sha256": "ec8109b9f7652e73e7250e3c95df4afef3a48a44f722721d07366d7bdfcaa2fa",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.dc-flip-order",
+          "before_sha256": "c082a25f12717429c39545c3eb83d689801ca7acbd68097b2f876e9d1b053409",
+          "after_sha256": "13ba6dc0efa4876ba548ba7701d657ce247c93368c0d02cbf22d9f952a8062d2",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.draw-startup-order",
+          "before_sha256": null,
+          "after_sha256": "7293ce97f697bbb6b5c56433d9036e133d42cbc4751983535e148d272a610b54",
+          "receipts": [
+            "draw-startup-order-recorded-20261006"
+          ]
+        },
+        {
+          "id": "NR.lifetime-order",
+          "before_sha256": "25430099f3c6a16812e9cf6270481013c078faaa6b52d825ee95805e97f8e5ac",
+          "after_sha256": "5f3fde38b28398863a9809835c6989640dcab147eec4ee207157bc6466a44736",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "30c66451c98ea5de269fadf7e20db6029a20007aa1d2b8f4962599bef6e2f08b",
+          "after_sha256": "d76356bdd4af49ab155e3ba0ee86ff3eec5d2468868b5eff3691bd71ada94c09",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.metadata-order",
+          "before_sha256": "e667e38bda297307a8a39bb88be5675668bdcc5c59e18b455b2b96126653fb8a",
+          "after_sha256": "fd8516f11d63a68d9475d2a747df8ed59c39e8cdd0264333bc6441c0e336a8a8",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.observed-metadata-idempotence",
+          "before_sha256": "ffaa04a3ef9cdd1f0ddf77f9c8c1b9bfdc2877fe20928d66bce47b6840cf6a4f",
+          "after_sha256": "0e6d28660b1d5ae4eab0870566d9dd863d69d04183bb8d459fe5f0a152943954",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-property-order",
+          "before_sha256": "f29aecb7f4b9e0e5370f9aa86b800c1b1d976009c1f22614c6aa94c33ecc4dc5",
+          "after_sha256": "e1d0d281da3b448746403ecbab2f43e19b4e9879c062128a59d1bd6d0c9fdf06",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "640e6b82ed02680072072feddc00f1d4b824e9d7c4c749752b19e54041e597a4",
+          "after_sha256": "cdd393ba457e049a3f372d7e1a9ba3f0a60d143e1187412f84056a7c095e7e52",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "3d8d727368371d764001d09049727e7485ac2a4bcc243f5cf49041309669c10c",
+          "after_sha256": "fb4c7a46bbdd6e96da9d7a37aee25f1f59eea5a99e09c374d5fb80a6c963912f",
+          "receipts": [
+            "draw-startup-order-shared-pending-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    }
+  ]
+}

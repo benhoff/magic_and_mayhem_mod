@@ -1,0 +1,436 @@
+{
+  "schema": 1,
+  "sources": {
+    "runtime/render/adapter_startup.h": "52457ffc947fbbf242a6949d4a871779a171aaafc8e0ae741868f33a20374192",
+    "runtime/render/backpressure_selftest.h": "c007732548f9791058bdcd1b1778a1674f734f540077a477ea67f1818185380e",
+    "runtime/render/bootstrap_selftest.h": "3fca231aeeb189832182d36fe85a8ed58adab8f6a133499c48a5f5b1311215c7",
+    "runtime/render/bridge.c": "b2b5a6ff7555f81b08989b3d0b7956e62664fa3ef2c2952a0689a4201b0797ca",
+    "runtime/render/checkpoint_selftest.h": "e0320f879bd79b43ca6d563b342fcf02edd5323fcb97c085a650c11351c751a4",
+    "runtime/render/command_channel.h": "3c0a2e177987cc499f4375deb662896bd320bacdaadce7d9d6537511027f0ebb",
+    "runtime/render/command_control.h": "e4bdb2c58052eb9efde6d9082a7f4c850a8bb6531014aa41fe70b131c2f48719",
+    "runtime/render/command_gate.h": "c9810ef6ad365daeb255e34123d547992fc72784e0e84bc74337b3776007edc2",
+    "runtime/render/command_idle_selftest.h": "efc9a0be0823c894a5693f748d7f171866e0d3efdc6bd1bf7888ceb3afb96c0b",
+    "runtime/render/command_lifecycle.h": "705ea201b6e2cb0213fb08693372a3efc0bb37c6497166911b9b1ac705c6bfc7",
+    "runtime/render/command_queue.h": "d96f125aa7a712f96d0745a993b48a19820a10470257a629ef0960e29c736877",
+    "runtime/render/command_recovery.h": "586a9253d5a32f7df12db82edfb5970a69cd0137cf3e1bd07746461360fa43b6",
+    "runtime/render/command_scheduler.h": "0b774d38564189b480bd102c082276551507898cb87191b1c5014e322e9b389a",
+    "runtime/render/continuous_selftest.h": "d19b4b07522d2f4c3a528e8447fda37e6b3e5239bfa4e4041fef85965f5b9021",
+    "runtime/render/copy_order.h": "9d95bc3c009d18c43d02e8d4244c23091a688f831d43fdc89c002cc93c97dddc",
+    "runtime/render/dc_selftest.h": "123bf310df0197f17a63df26349e14a5e5757b9a903c8924ef9ac711ee7ef13c",
+    "runtime/render/dirty_region.h": "e5743b9c82b63debe1b0431269d576672fcfee83ca42817e21d5558ec1ba936b",
+    "runtime/render/draw_capture.h": "7b6e113cc86c0015f855711fdd893fc6efc83d0fa4287f91d829847b9612b868",
+    "runtime/render/draw_selftest.h": "03799a2bd9c3df1ac3b426c85b34b7f1d25b36791947ca95ac2af687d177d24f",
+    "runtime/render/draw_startup_selftest.h": "c9622c9d870884a6179f0835bec379f5add8ebc46835b7ad328eed1b34e07f5f",
+    "runtime/render/failure_diagnostics.h": "97d72ef8174e01c80c4b3eb57f4fa80cedfd8f56f25f7b77904121d0996baf11",
+    "runtime/render/flip_history.h": "4c1910ed299700ba95e9b49923710b54817ab8dd2d2cba823b40ccf4dbc388d8",
+    "runtime/render/flip_selftest.h": "f46d45004a39a82283021903e468730b365825c6efec1cbebe61d2fd875eb03b",
+    "runtime/render/frame_pixels.h": "671110ec34e214010c51d2a13838cd56e08869ecebdf7d38c8aaaae9156109be",
+    "runtime/render/history_selftest.h": "077d923f30ff81d927fa770f6b841e0461a345e4fc4310ab3048fa284ec3bdb5",
+    "runtime/render/host_recovery_selftest.h": "7981baf6069b7caab473461f33e49798d26ad6cc5bcb07731d4916d00f873024",
+    "runtime/render/indexed_copy_selftest.h": "9d3fc4c7a0d8f66a7ba765172c920cb4889301b63dea02556c7eeb3ef5e45fb6",
+    "runtime/render/indexed_owned_selftest.h": "7ab70e041a806281903ec11a5708fa9b3e69fe2e5bd6a54baa131793b19ba723",
+    "runtime/render/input_polling.h": "95d53d43f99b3de9390b07a150db112ae7d280e7bb112ba5957e3ce62dca736c",
+    "runtime/render/input_selftest.h": "78d5c31ec213d5bd06daa667e38320671807a5700903a392fbb78f8cfeb9abab",
+    "runtime/render/lifecycle_race_selftest.h": "7efb30260c04e28444b09acf87b298a76ddbc580862a749516e951ec2c30833d",
+    "runtime/render/lifecycle_selftest.h": "f68113110b83b034ec94e89660df4a3feb3d283f7ae0e9844790c8cf4b785bcb",
+    "runtime/render/lock_aliases.h": "df4a344c6f010b8f8022c99ec1a1ce04cd708564248d18a3362d2ad165745a95",
+    "runtime/render/lock_blit_selftest.h": "e0083a9c20400e058e0a914f80b9bcda79d13f81c070e39aa34f36bec59b64fa",
+    "runtime/render/lock_dc.h": "c039565519593443bd2c00f17c305b59d19aa5c4583d2d1cd7a5dc7918977456",
+    "runtime/render/lock_diagnostics.h": "e21d9134b6f2d0a9d7624a017a2ea0b52ee05aae6a249a1c84ccf8740959b5a0",
+    "runtime/render/lock_flip.h": "112c1a33cf20c0318d0b19289aba5dd2d9d0903013151d5c5759a86144cf8bf5",
+    "runtime/render/lock_lifecycle.h": "0964b68c6d05942212c107a12abea61088e6397104122c9543757a63c67e3214",
+    "runtime/render/lock_lifecycle_selftest.h": "ebdfe7dd2773746496a1b138e6309b0250e2207b67d4e2ba6f05f24843bcb406",
+    "runtime/render/lock_palette.h": "4215170fa390fb87b75877fd2af90b917514075abbc35ef192f75f220850d18d",
+    "runtime/render/lock_surfaces.h": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+    "runtime/render/lock_updates.h": "4fd32d69ac6b2a8f6557e9bb3cc5ddd5540e4f6ea942fbebaf9b43f9725c78a3",
+    "runtime/render/media_bridge.h": "dc7e64883ef491ac42f42a2f10c36dda1ca5a04eda993cdab04e9645df572e6f",
+    "runtime/render/media_selftest.h": "9f9592dc30aeed9b8d0f7fa622c4335fd9fc6357b84d67eb5077ff795143e4b0",
+    "runtime/render/mutation_selftest.h": "e22304bbcd997c8423abf4d04baf720280999f0ed9514c60bed66f81319dceea",
+    "runtime/render/owned_dc_selftest.h": "69ea01ac97f58887f9fd63614418974c9d8c925cbdde26c71117b2738fe34407",
+    "runtime/render/owned_session.h": "8f7218f11f93f5286492c86385978a581b3f66c24d1ed87e0a2ff8493d47453b",
+    "runtime/render/owned_session_selftest.h": "a3ec9a32d9ca45919eb5c04b3362b4f1904b3a0e1b30174588f77eef5ae0e188",
+    "runtime/render/palette_history.h": "d298ee386d6a70c406dd3ec248eb071e79a0688daf5c7da8f91a43bc4a2cad72",
+    "runtime/render/palette_selftest.h": "5d7e6f9c254d9ed634f4656b0256dda811adbc6cfe1f0c768abc8242aa43b73d",
+    "runtime/render/partial_lock_selftest.h": "6b9df18d4b435e6adcce961abcb060b344a1a3bbc5f19b0266786775f08c3c7f",
+    "runtime/render/recovery_selftest.h": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+    "runtime/render/resource_selftest.h": "69f5e270595583ea566bbe3e06a4a6b9a534fa42e255f8e342987b94b0f49942",
+    "runtime/render/selftest.c": "76fdaabb22b7ba6be2f0ed5b13f1ad373ef7d8a15ad9a95d911375f89db7e746",
+    "runtime/render/surface_commands.h": "2353c4a1d704bef43594c0042c97d3f0c65927fb8d14abb60a10ec0b4c4bb8cf",
+    "runtime/render/surface_history.h": "63976b18f13b5db96ca4385c30d6783769a7f25f32656888023171ce111ffa7d",
+    "runtime/render/working_set_selftest.h": "f6bbfcc44991193fa608e54b07cf79ea18d3ea8e34853946608b1bc6dcea733b",
+    "tools/test-render-draw-startup.py": "91ecc89e0a7924c20328482382cbb4624370c2ebd9bb8fc5e48dba85433dad8b",
+    "tools/test-render-resource-lifecycle.py": "e6283aec4643018f046da526e83772d3c3123f0d17f1768e820bd22878f99eab",
+    "tools/test-render-continuous-producer.py": "ee50a622301a12ebf3d99814735494783a57daa92583f939ab34490a60d8d011",
+    "tools/test-live-render-channel.py": "67e53e5580ee45eae7bc5d046917eee6eb1cd03efacf907a698474686a08ba44",
+    "tools/build-render-bridge.py": "3a884b83200da88f630c1d8919706572528d2458c30f90b8a729f7eeba12df2f",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/live-render-channel-test.cpp": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+    "renderer/blit.cpp": "1c0aa177d59eea6116b8f0e733ee0b7d8b36e16b26a739868f229c548318edc8",
+    "renderer/blit.hpp": "d4d7229c0a7ee70a0fd2c6f0c63fb86835b77f6e7282e196cdcb17cb173aa0c3",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/commands.hpp": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+    "renderer/command_state.hpp": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+    "renderer/command_consumer.cpp": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+    "apps/qt-shell/command_channel.cpp": "cef42f0fb6e7d9dc7dafd032d5c52e384de94d97b06a8d6028c8c572ff3d0ba4",
+    "apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "apps/qt-shell/live_command_renderer.cpp": "d5288ce683e65418a5e791781df33c5efbcb1f85558eda2feced7e2142e21dcc",
+    "apps/qt-shell/live_command_renderer.hpp": "b1f51a4a3ce767c6a4739e25a5cf4f9c82cc8b00f43e144c09bba82a8091a2ae",
+    "apps/qt-shell/gl_viewport.cpp": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+    "apps/qt-shell/gl_viewport.hpp": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+    "protocols/include/mnm/render_commands_v1.h": "da3687442c203a85bbec98810c084346154a860bce2d3b65bb0f96c13dd66a0f",
+    "protocols/include/mnm/render_commands_v2.h": "357e127e0601ae55c30b821403df1be2c714d467d9c185c13e14091c2899d7a3",
+    "protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3",
+    "protocols/python/mnm_protocols/render_commands_v1.py": "17d3c1fcea8d55d2d9ae146c50ad8d56d820ffc24f86770b9a3f50be4e17b256",
+    "protocols/python/mnm_protocols/render_commands_v2.py": "101a8efa81e63dc4f0eff660b15aca9b2c924d77ac537b868780f8c3be11e007",
+    "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2"
+  },
+  "cases": [
+    {
+      "mode": "first",
+      "valid_session": true,
+      "original_counts": [
+        2,
+        2,
+        0,
+        1,
+        0,
+        2
+      ],
+      "factory_counts": [
+        1,
+        2,
+        0,
+        0,
+        0
+      ],
+      "frame_status": 1,
+      "published_bytes": 4244,
+      "state": 2,
+      "reason": 0,
+      "archive": {
+        "created": [
+          1
+        ],
+        "deleted": [
+          1
+        ],
+        "peak_surfaces": 1,
+        "peak_pixels": 512,
+        "terminal_opcode": 8,
+        "records": 6,
+        "bytes": 4244
+      },
+      "before_producer_exit": true,
+      "decoded_commands": 6,
+      "error": "",
+      "frames": [
+        "c261d9ef0377b2c1a3d92bf74225648df7d3ad1ad654d305cf20cd964c4736f4",
+        "bad7744be1f89c78fd86176d6ea0fc0aa217f5aced32df91072dc429e193669f"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "delayed",
+      "valid_session": true,
+      "original_counts": [
+        2,
+        2,
+        0,
+        1,
+        0,
+        2
+      ],
+      "factory_counts": [
+        1,
+        2,
+        0,
+        0,
+        0
+      ],
+      "frame_status": 1,
+      "published_bytes": 4244,
+      "state": 2,
+      "reason": 0,
+      "archive": {
+        "created": [
+          1
+        ],
+        "deleted": [
+          1
+        ],
+        "peak_surfaces": 1,
+        "peak_pixels": 512,
+        "terminal_opcode": 8,
+        "records": 6,
+        "bytes": 4244
+      },
+      "before_producer_exit": true,
+      "decoded_commands": 6,
+      "error": "",
+      "frames": [
+        "c261d9ef0377b2c1a3d92bf74225648df7d3ad1ad654d305cf20cd964c4736f4",
+        "bad7744be1f89c78fd86176d6ea0fc0aa217f5aced32df91072dc429e193669f"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "failed",
+      "valid_session": true,
+      "original_counts": [
+        2,
+        2,
+        0,
+        1,
+        0,
+        2
+      ],
+      "factory_counts": [
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "frame_status": 1,
+      "published_bytes": 4244,
+      "state": 2,
+      "reason": 0,
+      "archive": {
+        "created": [
+          1
+        ],
+        "deleted": [
+          1
+        ],
+        "peak_surfaces": 1,
+        "peak_pixels": 512,
+        "terminal_opcode": 8,
+        "records": 6,
+        "bytes": 4244
+      },
+      "before_producer_exit": true,
+      "decoded_commands": 6,
+      "error": "",
+      "frames": [
+        "c261d9ef0377b2c1a3d92bf74225648df7d3ad1ad654d305cf20cd964c4736f4",
+        "bad7744be1f89c78fd86176d6ea0fc0aa217f5aced32df91072dc429e193669f"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "null",
+      "valid_session": true,
+      "original_counts": [
+        2,
+        2,
+        0,
+        1,
+        0,
+        2
+      ],
+      "factory_counts": [
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "frame_status": 1,
+      "published_bytes": 4244,
+      "state": 2,
+      "reason": 0,
+      "archive": {
+        "created": [
+          1
+        ],
+        "deleted": [
+          1
+        ],
+        "peak_surfaces": 1,
+        "peak_pixels": 512,
+        "terminal_opcode": 8,
+        "records": 6,
+        "bytes": 4244
+      },
+      "before_producer_exit": true,
+      "decoded_commands": 6,
+      "error": "",
+      "frames": [
+        "c261d9ef0377b2c1a3d92bf74225648df7d3ad1ad654d305cf20cd964c4736f4",
+        "bad7744be1f89c78fd86176d6ea0fc0aa217f5aced32df91072dc429e193669f"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "nested",
+      "valid_session": true,
+      "original_counts": [
+        2,
+        2,
+        0,
+        1,
+        0,
+        2
+      ],
+      "factory_counts": [
+        2,
+        2,
+        1,
+        0,
+        0
+      ],
+      "frame_status": 1,
+      "published_bytes": 4244,
+      "state": 2,
+      "reason": 0,
+      "archive": {
+        "created": [
+          1
+        ],
+        "deleted": [
+          1
+        ],
+        "peak_surfaces": 1,
+        "peak_pixels": 512,
+        "terminal_opcode": 8,
+        "records": 6,
+        "bytes": 4244
+      },
+      "before_producer_exit": true,
+      "decoded_commands": 6,
+      "error": "",
+      "frames": [
+        "c261d9ef0377b2c1a3d92bf74225648df7d3ad1ad654d305cf20cd964c4736f4",
+        "bad7744be1f89c78fd86176d6ea0fc0aa217f5aced32df91072dc429e193669f"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "cross",
+      "valid_session": true,
+      "original_counts": [
+        2,
+        2,
+        0,
+        1,
+        0,
+        2
+      ],
+      "factory_counts": [
+        4,
+        2,
+        0,
+        1,
+        1
+      ],
+      "frame_status": 7,
+      "published_bytes": 4244,
+      "state": 2,
+      "reason": 0,
+      "archive": {
+        "created": [
+          1
+        ],
+        "deleted": [
+          1
+        ],
+        "peak_surfaces": 1,
+        "peak_pixels": 512,
+        "terminal_opcode": 8,
+        "records": 6,
+        "bytes": 4244
+      },
+      "before_producer_exit": true,
+      "decoded_commands": 6,
+      "error": "",
+      "frames": [
+        "c261d9ef0377b2c1a3d92bf74225648df7d3ad1ad654d305cf20cd964c4736f4",
+        "bad7744be1f89c78fd86176d6ea0fc0aa217f5aced32df91072dc429e193669f"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 2,
+      "rgba_readbacks": 0,
+      "success": true,
+      "viewport_uploads": 0
+    },
+    {
+      "mode": "timeout",
+      "valid_session": false,
+      "original_counts": [
+        2,
+        2,
+        0,
+        1,
+        0,
+        2
+      ],
+      "factory_counts": [
+        4,
+        2,
+        0,
+        1,
+        1
+      ],
+      "frame_status": 10,
+      "published_bytes": 2120,
+      "state": 3,
+      "reason": 2,
+      "archive": {
+        "created": [
+          1
+        ],
+        "deleted": [],
+        "peak_surfaces": 1,
+        "peak_pixels": 512,
+        "terminal_opcode": 9,
+        "records": 3,
+        "bytes": 2136
+      },
+      "before_producer_exit": true,
+      "decoded_commands": 2,
+      "error": "Command ring failed, cancelled or invalid",
+      "frames": [
+        "c261d9ef0377b2c1a3d92bf74225648df7d3ad1ad654d305cf20cd964c4736f4"
+      ],
+      "live_surfaces": 0,
+      "native_readbacks": 0,
+      "presentations": 1,
+      "rgba_readbacks": 0,
+      "success": false,
+      "viewport_uploads": 0
+    }
+  ],
+  "scope": "Actual synthetic PE32 DirectDrawCreate and CreateSurface originals, first creation without preinstalled test hooks, complete native checkpoints, failed/null factory retry, nested factory/pixel publication, worker admission and forced timeout. A delayed reader binds after factory startup and before initial pixels; original application/driver and attachment during active drawing are not claimed.",
+  "success": true,
+  "full_frame_comparisons": 13,
+  "valid_sessions": 6,
+  "refused_sessions": 1
+}
