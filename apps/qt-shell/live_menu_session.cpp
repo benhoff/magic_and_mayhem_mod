@@ -1,5 +1,5 @@
 #include "live_menu_session.hpp"
-#include "../../protocols/include/mnm/menu_v11.h"
+#include "../../protocols/include/mnm/menu_v12.h"
 #include "../../protocols/include/mnm/menu_v9.h"
 #include <QDir>
 #include <QProcessEnvironment>
@@ -32,7 +32,7 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
                 }
             }
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
-            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
+            if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             if(active_)timer_.start();else bridge_->retire();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath("working/tests/menu-live-wine"):winePrefix};
@@ -110,6 +110,12 @@ void LiveMenuSession::fallback(const QString& reason){
     preferencesToSave_=false;active_=false;bypass_=true;timer_.stop();pending_=transition_=inBattle_=false;if(bridge_)bridge_->retire();
     if(failed)failed(reason);
 }
+void LiveMenuSession::saveAcceptedPreferences(){
+    if(!preferencesToSave_)return;
+    preferencesToSave_=false;QString error;
+    const bool saved=preferencesStore_.accept(QDir(root_).filePath("game/CFG/prefs.cfg"),acceptedPreferences_,&error);
+    if(output)output(saved?"Preferences saved for future launches.\n":"Preferences remain available in this session; persistence failed: "+error+"\n");
+}
 void LiveMenuSession::poll(){
     if(!active_||!bridge_)return;
     bridge_->heartbeat();MenuBridge::State next;
@@ -131,6 +137,10 @@ void LiveMenuSession::poll(){
                 return;
             }
             if(action_==MNM_MENU_SPELL_FINISH){inBattle_=true;transition_=false;state_=next;if(battleStarted)battleStarted(2);return;}
+            if(state_.screen==10&&state_.preferences.parentScreen==17&&(action_==MNM_MENU_PREFERENCES_OK||action_==MNM_MENU_PREFERENCES_CANCEL)){
+                if(action_==MNM_MENU_PREFERENCES_OK)saveAcceptedPreferences();
+                inBattle_=true;transition_=false;state_=next;if(originalViewportRequested)originalViewportRequested();return;
+            }
             if(action_==MNM_MENU_DEFEAT_OK||action_==MNM_MENU_RESULT_CONTINUE||action_==MNM_MENU_RESULT_QUIT||action_==MNM_MENU_MINI_CANCEL||action_==MNM_MENU_MINI_PREFERENCES||action_==MNM_MENU_MINI_QUIT){
                 // Original viewport owns gameplay, Preferences and Quit confirmation.
                 // Confirmation Yes/No semantics remain entirely in the original game.
@@ -152,6 +162,9 @@ void LiveMenuSession::poll(){
             if(next.ready&&((campaignDefeatEnabled&&next.screen==MNM_MENU_DEFEAT_SCREEN)||next.screen==MNM_MENU_RESULT_SCREEN)&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
             }
+            if(campaignPreferencesEnabled&&next.ready&&next.screen==10&&next.preferences.parentScreen==17&&next.preferences.depth==6&&next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
+                inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
+            }
             if(miniMenusEnabled()&&next.ready&&next.screen==MNM_MENU_MINI_SCREEN&&(next.mini.battle||(campaignMiniEnabled&&next.mini.context==5&&next.mini.mode==2))&&!next.mini.confirmation&&
                next.thread==state_.thread&&next.generation!=state_.generation&&next.ack==state_.ack&&next.status==MNM_MENU_OK){
                 inBattle_=false;state_=next;if(stateChanged)stateChanged(next);return;
@@ -161,9 +174,7 @@ void LiveMenuSession::poll(){
             if(output)output("Original battle returned; restoring native menus.\n");
         }
         if(preferencesToSave_&&!pending_&&next.ready&&next.screen==3){
-            preferencesToSave_=false;QString error;
-            const bool saved=preferencesStore_.accept(QDir(root_).filePath("game/CFG/prefs.cfg"),acceptedPreferences_,&error);
-            if(output)output(saved?"Preferences saved for future launches.\n":"Preferences remain available in this session; persistence failed: "+error+"\n");
+            saveAcceptedPreferences();
         }
         state_=next;
         if(transition_&&next.screen==target_&&next.ready)transition_=false;

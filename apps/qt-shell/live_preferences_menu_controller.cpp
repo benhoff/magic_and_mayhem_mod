@@ -18,7 +18,7 @@ void LivePreferencesMenuController::pump(){
 bool LivePreferencesMenuController::present(const MenuBridge::State& state,QString* error){
     if(state.screen!=MNM_MENU_PREFERENCES_SCREEN){entered_=closing_=false;dirty_={};button_=0;return true;}
     if(!state.ready)return true;
-    const auto& b=state.preferences;if(b.parentScreen!=3){if(error)*error="Unsupported Preferences caller.";return false;}
+    const auto& b=state.preferences;if(b.parentScreen!=3&&!(session_.campaignPreferencesEnabled&&b.parentScreen==17&&b.depth==6)){if(error)*error="Unsupported Preferences caller.";return false;}
     PreferencesWidget::ControlPolicy policy;
     for(int i=0;i<12;++i)policy.radios[i]=b.available&(1u<<i);
     for(int i=0;i<2;++i)policy.sliders[i]=b.available&(1u<<(12+i));

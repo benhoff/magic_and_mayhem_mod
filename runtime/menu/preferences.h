@@ -1,4 +1,5 @@
 #include "../../protocols/include/mnm/menu_v6.h"
+static int campaign_preferences_enabled;
 static u8 preferences_payload[MNM_MENU_V6_PREFERENCES_SIZE];
 static int preferences_callback(const u8* cb,u32 function,void* receiver){
     return readable(cb,12)&&get(cb)==0x5c64bc&&get(cb+4)==function&&get(cb+8)==(u32)receiver;
@@ -14,7 +15,13 @@ static int preferences_snapshot(void* object,u8* out){
     if(!readable(p,0x70)||get(p)!=0x5c648c||get(p+4)!=10||get(p+8)!=1)return preferences_reject(p,1);
     if(!readable((void*)0x6f349c,0x48))return preferences_reject(p,2);
     u32 depth=get((void*)0x6f349c);if(depth<1||depth>15||get((void*)(0x6f34a0+depth*4))!=(u32)p)return preferences_reject(p,3);
-    u8* parent=(u8*)get((void*)(0x6f34a0+(depth-1)*4));if(!readable(parent,8)||get(parent)!=0x5c63e4||get(parent+4)!=3)return preferences_reject(p,4);
+    u8* parent=(u8*)get((void*)(0x6f34a0+(depth-1)*4));if(!readable(parent,8))return preferences_reject(p,4);
+    u32 caller=get(parent+4);
+    if(caller==3){if(get(parent)!=0x5c63e4)return preferences_reject(p,4);}
+    else if(caller==17){
+        if(!campaign_preferences_enabled||depth!=6||parent!=(u8*)0x6a5088||!readable(parent,0x5b)||get(parent)!=0x5c6644||get(parent+0x53)!=2||get(parent+0x57)!=5||get((void*)0x68991c)||get((void*)0x689920)!=5||
+           get((void*)0x6f34b0)!=0x6cbb78||get((void*)0x6f34ac)!=0x659408||get((void*)0x6f34a8)!=0x657ce0||get((void*)0x6cbb78)!=0x5c5dd8||get((void*)0x6cbb7c)!=2||get((void*)0x659408)!=0x5c6a60||get((void*)0x65940c)!=4)return preferences_reject(p,4);
+    }else return preferences_reject(p,4);
     u8* sliders=(u8*)get(p+0x53),*radios=(u8*)get(p+0x57),*buttons=(u8*)get(p+0x5b),*groups=(u8*)get(p+0x63);
     if(!readable(sliders,2*0x86)||!readable(radios,12*0x7e)||!readable(buttons,2*0x59)||!readable(groups,5*16)||
        !preferences_callback((void*)get(p+0x4b),0x4a9700,p)||!preferences_callback((void*)get(p+0x5f),0x4a9840,p))return preferences_reject(p,5);
@@ -37,7 +44,7 @@ static int preferences_snapshot(void* object,u8* out){
         if(get(b+8)==1&&get(b+0x3d)!=2)actions|=1u<<i;
     }
     for(u32 i=0;i<MNM_MENU_V6_PREFERENCES_SIZE;++i)out[i]=0;
-    put(out,actions);put(out+4,available);put(out+8,3);put(out+12,depth);
+    put(out,actions);put(out+4,available);put(out+8,caller);put(out+12,depth);
     put(out+16,get(sliders+0x61));put(out+20,get(sliders+0xe7)-5000);
     const u32 first[5]={0,2,4,7,10},count[5]={2,2,3,3,2};
     for(u32 i=0;i<5;++i){u8* g=groups+i*16;u32 selected=get(g+4);u8* list=(u8*)get(g);

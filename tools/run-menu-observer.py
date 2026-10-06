@@ -23,7 +23,7 @@ def main():
     if args.menu_channel:
         if metadata['origin']!='menu_action_bridge':raise ValueError('Stage with --actions to enable commands')
         channel=args.menu_channel.resolve()
-        if channel!=root/'channel.bin' or channel.stat().st_size not in (128,32768,65536,69632,73728,77824,81920,86016,90112,94208,102400):raise ValueError('Invalid menu channel')
+        if channel!=root/'channel.bin' or channel.stat().st_size not in (128,32768,65536,69632,73728,77824,81920,86016,90112,94208,102400,106496):raise ValueError('Invalid menu channel')
         if channel.stat().st_size==69632 and not metadata.get('experimental_mini',False):raise ValueError('V4 requires explicitly staged experimental Mini Menu hooks')
     env=dict(os.environ,MNM_MENU_EXPERIMENT=str(root),WINEDEBUG=os.environ.get('WINEDEBUG','fixme-all'))
     env.pop('MNM_MENU_CHANNEL',None)
