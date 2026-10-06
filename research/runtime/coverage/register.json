@@ -11896,7 +11896,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original-game command shadow observation",
-      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open.",
+      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -11908,7 +11908,8 @@
         "research/runtime/opengl-owned-session-sequence.md",
         "research/runtime/opengl-command-ring-adapter.md",
         "research/runtime/opengl-command-streaming-lifecycle.md",
-        "research/runtime/opengl-render-routes.md"
+        "research/runtime/opengl-render-routes.md",
+        "research/runtime/opengl-resource-working-set.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py",
@@ -11930,7 +11931,8 @@
         "NR.owned-session-sequence.live",
         "NR.command-ring-adapter.live",
         "NR.command-streaming.live",
-        "NR.command-route-observation.live-20261006"
+        "NR.command-route-observation.live-20261006",
+        "NR.continuous-resource-working-set.game-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13869,13 +13871,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous owned publication independent of bounded command archives",
-      "scope": "Explicit v2 continuous producer beyond sample operation/presentation/cumulative archive limits, optional independently bounded command archive; retained surface/pixel/snapshot/queue/ring and finite sequence/byte limits. Default bounded policy retained. Synthetic admitted updates only; resource retirement is covered separately by NR.continuous-resource-lifetime; recovery, automatic orchestration shutdown and sustained original-driver/gameplay equivalence remain pending. Compact successful full-unlock updates retain exact native pixels and finite pending ownership budgets. Bounded original startup recovery now publishes over100 frames spanning11 seconds in one healthy session; sustained gameplay/movie/driver equivalence remains pending. Bounded original campaign entry reaches three World ticks but native publication encounters the 32-surface budget at 33 observed resources; finite World working-set admission and sustained gameplay publication remain pending.",
+      "scope": "Explicit v2 continuous producer beyond sample operation/presentation/cumulative archive limits, optional independently bounded command archive; retained surface/pixel/snapshot/queue/ring and finite sequence/byte limits. Default bounded policy retained. Synthetic admitted updates only; resource retirement is covered separately by NR.continuous-resource-lifetime; recovery, automatic orchestration shutdown and sustained original-driver/gameplay equivalence remain pending. Compact successful full-unlock updates retain exact native pixels and finite pending ownership budgets. Bounded original startup recovery now publishes over100 frames spanning11 seconds in one healthy session; sustained gameplay/movie/driver equivalence remains pending. Bounded original campaign entry reaches three World ticks but native publication encounters the 32-surface budget at 33 observed resources; finite World working-set admission and sustained gameplay publication remain pending. Continuous consumer residency now evicts eligible offscreen storage at the 32-slot/pixel budget and recreates complete owned inputs under fresh IDs. Required original World ingress/recovery remains Active; existing producer/transport budgets and default bounded policy remain finite.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-continuous-producer.md",
         "research/runtime/opengl-owned-unlock-deltas.md",
-        "research/runtime/opengl-render-routes.md"
+        "research/runtime/opengl-render-routes.md",
+        "research/runtime/opengl-resource-working-set.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -13897,7 +13900,8 @@
         "tests/render-dirty-region-test.c",
         "tools/test-live-render-recovery.py",
         "tools/test-live-render-routes.py",
-        "tests/live-render-route-probe.cpp"
+        "tests/live-render-route-probe.cpp",
+        "tools/test-render-working-set.py"
       ],
       "evidence": [
         "NR.continuous-producer.synthetic",
@@ -13910,7 +13914,10 @@
         "NR.continuous-mutations.continuity-regression",
         "NR.owned-session-unlock-packed.delta-continuous-verified-20261006",
         "NR.owned-session-unlock-packed.delta-game-verified-20261006",
-        "NR.command-route-observation.live-20261006"
+        "NR.command-route-observation.live-20261006",
+        "NR.continuous-resource-working-set.native-20261006",
+        "NR.continuous-resource-working-set.continuous-20261006",
+        "NR.continuous-resource-working-set.game-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13925,11 +13932,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous resource identity and confirmed final-release retirement",
-      "scope": "Continuous v2 CREATE IDs increase independently of reusable 32-slot storage. Confirmed application final Release retires an observed alias component via ordered DELETE, reclaims session pixels and tracker snapshots/metadata/alias slots, and permits address reuse with a fresh ID. Nonfinal/untracked releases preserve tracked resources. Pending lock/DC, missed retirement, ambiguous aliases, identity exhaustion and unsupported descriptor-only/partial shape, restore/create branches refuse; successful full Unlock replacement is covered separately by NR.continuous-mutations; default bounded release still refuses. Synthetic admitted lifetime validation recorded; original COM/driver equivalence and recovery excluded.",
+      "scope": "Continuous v2 CREATE IDs increase independently of reusable 32-slot storage. Confirmed application final Release retires an observed alias component via ordered DELETE, reclaims session pixels and tracker snapshots/metadata/alias slots, and permits address reuse with a fresh ID. Nonfinal/untracked releases preserve tracked resources. Pending lock/DC, missed retirement, ambiguous aliases, identity exhaustion and unsupported descriptor-only/partial shape, restore/create branches refuse; successful full Unlock replacement is covered separately by NR.continuous-mutations; default bounded release still refuses. Synthetic admitted lifetime validation recorded; original COM/driver equivalence and recovery excluded. Explicit native consumer cache DELETE retires residency while preserving independently owned CPU/alias/application state; re-admission uses fresh IDs. Primary/borrowed/current operands stay pinned and verified final Release remains separate.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-continuous-resource-lifetime.md"
+        "research/runtime/opengl-continuous-resource-lifetime.md",
+        "research/runtime/opengl-resource-working-set.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -13942,12 +13950,15 @@
         "runtime/render/resource_selftest.h",
         "runtime/render/selftest.c",
         "tools/test-render-resource-lifecycle.py",
-        "tests/live-render-channel-test.cpp"
+        "tests/live-render-channel-test.cpp",
+        "tools/test-render-working-set.py"
       ],
       "evidence": [
         "NR.continuous-resource-lifetime.synthetic",
         "NR.continuous-resource-lifetime.continuity-regression",
-        "NR.continuous-mutations.resource-regression"
+        "NR.continuous-mutations.resource-regression",
+        "NR.continuous-resource-working-set.native-20261006",
+        "NR.continuous-resource-working-set.lifetime-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13962,12 +13973,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous mixed resource mutations and committed full-layout replacement",
-      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes.",
+      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-continuous-mutations.md",
-        "research/runtime/opengl-owned-unlock-deltas.md"
+        "research/runtime/opengl-owned-unlock-deltas.md",
+        "research/runtime/opengl-resource-working-set.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -13984,7 +13996,8 @@
         "tools/test-render-mutations.py",
         "tests/live-render-channel-test.cpp",
         "tools/test-render-dirty-region.py",
-        "tests/render-dirty-region-test.c"
+        "tests/render-dirty-region-test.c",
+        "tools/test-render-working-set.py"
       ],
       "evidence": [
         "NR.continuous-mutations.synthetic",
@@ -13992,7 +14005,10 @@
         "NR.continuous-mutations.continuity-regression",
         "NR.owned-session-unlock-packed.delta-native-20261006",
         "NR.owned-session-unlock-packed.delta-continuous-verified-20261006",
-        "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006"
+        "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006",
+        "NR.continuous-resource-working-set.native-20261006",
+        "NR.continuous-resource-working-set.checkpoint-20261006",
+        "NR.continuous-resource-working-set.continuous-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14146,7 +14162,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Qt fresh-session recovery over a versioned producer control channel",
-      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active.",
+      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14156,7 +14172,8 @@
         "apps/qt-shell/README.md",
         "research/runtime/opengl-automatic-checkpoint-recovery.md",
         "research/runtime/opengl-owned-unlock-deltas.md",
-        "research/runtime/opengl-render-routes.md"
+        "research/runtime/opengl-render-routes.md",
+        "research/runtime/opengl-resource-working-set.md"
       ],
       "implementation": [
         "apps/qt-shell/render_control.cpp",
@@ -14190,7 +14207,8 @@
         "tools/test-live-render-recovery.py",
         "tools/test-render-checkpoint.py",
         "tools/test-live-render-routes.py",
-        "tests/live-render-route-probe.cpp"
+        "tests/live-render-route-probe.cpp",
+        "tools/test-render-working-set.py"
       ],
       "evidence": [
         "NR.command-host-recovery.pe32",
@@ -14204,7 +14222,10 @@
         "NR.owned-session-unlock-packed.delta-host-verified-20261006",
         "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006",
         "NR.owned-session-unlock-packed.delta-game-verified-20261006",
-        "NR.command-route-observation.live-20261006"
+        "NR.command-route-observation.live-20261006",
+        "NR.continuous-resource-working-set.host-20261006",
+        "NR.continuous-resource-working-set.checkpoint-20261006",
+        "NR.continuous-resource-working-set.game-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14267,7 +14288,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Complete owned checkpoint attachment to a fresh rendering session",
-      "scope": "Strict complete owned checkpoint attachment with finite state/ownership admission. Broader synthetic failure/format tests retained; bounded admission diagnostic identifies early primary layout without pixels. After an observed complete primary frame, actual-game checkpoint delivered one native frame before overflow and fallback. READY, first frame, sustained recovery and equivalence are separate milestones; sustained game recovery and external host takeover remain pending. Administrative RECOVER now prefers the same complete-state admission before candidate claim; incomplete state falls back to fresh pixels, while claimed checkpoint faults refuse. Bounded automatic game retries preserve initialized source baselines and present three frames before overflow/exhaustion; sustained recovery remains pending.",
+      "scope": "Strict complete owned checkpoint attachment with finite state/ownership admission. Broader synthetic failure/format tests retained; bounded admission diagnostic identifies early primary layout without pixels. After an observed complete primary frame, actual-game checkpoint delivered one native frame before overflow and fallback. READY, first frame, sustained recovery and equivalence are separate milestones; sustained game recovery and external host takeover remain pending. Administrative RECOVER now prefers the same complete-state admission before candidate claim; incomplete state falls back to fresh pixels, while claimed checkpoint faults refuse. Bounded automatic game retries preserve initialized source baselines and present three frames before overflow/exhaustion; sustained recovery remains pending. Complete owned admission now follows the existing 128-entry CPU tracker rather than 32 resident consumer slots. All observed CPU state remains validated under prior aggregate/ownership guards; primary/palettes precede READY and complete dependencies materialize on use. Three 33-owned-surface checkpoints pass.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14276,7 +14297,8 @@
         "protocols/CONTRACTS.md",
         "research/runtime/opengl-command-recovery-validation.md",
         "research/runtime/opengl-command-recovery-metadata.md",
-        "research/runtime/opengl-automatic-checkpoint-recovery.md"
+        "research/runtime/opengl-automatic-checkpoint-recovery.md",
+        "research/runtime/opengl-resource-working-set.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -14304,7 +14326,8 @@
         "runtime/render/host_recovery_selftest.h",
         "runtime/render/mutation_selftest.h",
         "tests/live-render-recovery-probe.cpp",
-        "tools/test-live-render-recovery.py"
+        "tools/test-live-render-recovery.py",
+        "tools/test-render-working-set.py"
       ],
       "evidence": [
         "NR.command-checkpoint-attachment.pe32",
@@ -14320,7 +14343,9 @@
         "NR.command-recovery.metadata-game-20261006",
         "NR.command-host-recovery.auto-checkpoint-host-20261006",
         "NR.command-host-recovery.auto-checkpoint-strict-20261006",
-        "NR.command-host-recovery.auto-checkpoint-game-20261006"
+        "NR.command-host-recovery.auto-checkpoint-game-20261006",
+        "NR.continuous-resource-working-set.checkpoint-20261006",
+        "NR.continuous-resource-working-set.game-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14703,6 +14728,53 @@
         "implementation": "partial",
         "comparison": "recorded",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.continuous-resource-working-set",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Finite consumer residency separate from complete owned producer checkpoints",
+      "scope": "Continuous 32-slot/16,777,216-pixel consumer cache with ordered offscreen DELETE and fresh-ID complete re-admission. Retains 128-entry/64MiB independently owned CPU state and aliases; primary, borrowed locks/DCs and both copy/flip operands stay pinned. All-protected pressure refuses. Strict checkpoint admission validates all owned resources under existing aggregate byte/pixel/palette/ownership guards, then materializes complete primary/palettes before READY and dependencies when used. Default bounded policy and original final Release remain separate. Synthetic independent pixels and bounded required original World recovery observed; long scenes, World/movie/driver pixel equivalence, all callers and replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-resource-working-set.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h",
+        "runtime/render/command_recovery.h"
+      ],
+      "tests": [
+        "runtime/render/working_set_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-working-set.py",
+        "runtime/render/checkpoint_selftest.h",
+        "tools/test-render-checkpoint.py",
+        "runtime/render/continuous_selftest.h",
+        "tools/test-render-continuous-producer.py",
+        "tools/test-render-resource-lifecycle.py",
+        "tools/test-render-host-recovery.py",
+        "tools/test-live-render-routes.py",
+        "tests/live-render-channel-test.cpp",
+        "tests/live-command-checkpoint-test.cpp",
+        "tests/live-command-recovery-test.cpp",
+        "tests/live-render-route-probe.cpp"
+      ],
+      "evidence": [
+        "NR.continuous-resource-working-set.native-20261006",
+        "NR.continuous-resource-working-set.checkpoint-20261006",
+        "NR.continuous-resource-working-set.host-20261006",
+        "NR.continuous-resource-working-set.continuous-20261006",
+        "NR.continuous-resource-working-set.lifetime-20261006",
+        "NR.continuous-resource-working-set.game-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -26227,6 +26299,126 @@
           "equals": 436
         }
       ]
+    },
+    {
+      "id": "NR.continuous-resource-working-set.native-20261006",
+      "kind": "native_integration",
+      "scope": "Six actual PE32 finite residency/borrowed guards/alias lifetime/pixel pressure cases and 142 independent complete GPU frames.",
+      "record": "research/runtime/opengl-working-set-native-20261006.json",
+      "sha256": "3e3a2528885eac7ae0d28e2883da066b8d3ab38e337c0a7ab71e45882cb41ee0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-working-set.checkpoint-20261006",
+      "kind": "native_integration",
+      "scope": "Twenty strict complete retained-state checkpoints and 312 independent GPU frames, including successful 33-owned-surface admission and lazy dependency reconstruction.",
+      "record": "research/runtime/opengl-working-set-checkpoint-20261006.json",
+      "sha256": "0528cb16d806bf680764b80f35fd339a60567e1a7e1727c526806d0771495062",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-working-set.host-20261006",
+      "kind": "native_integration",
+      "scope": "Sixteen asynchronous administrative recovery cases and 189 independent GPU frames, native/sanitized control client, protocol guards and unchanged ownership/failure/refusal paths.",
+      "record": "research/runtime/opengl-working-set-host-20261006.json",
+      "sha256": "127c14a9b6ee5e57545b12f1ed5133781716d21d4db139a58176fb352a79dad5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-working-set.continuous-20261006",
+      "kind": "native_integration",
+      "scope": "Nine continuous producer cases and 422 independent GPU frames; resource pressure now evicts cached offscreen storage while invalid/missing transport and finite archive policies remain enforced.",
+      "record": "research/runtime/opengl-working-set-continuous-20261006.json",
+      "sha256": "2cc793b0f671ce6e2a17d8df66ca0fa0b4be182b85c4dc3336cfe4663c70233f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-working-set.lifetime-20261006",
+      "kind": "native_integration",
+      "scope": "Nine synthetic final Release/alias/address reuse/borrowed retirement cases and 63 independent GPU frames; consumer cache retirement remains separate from verified original lifetime.",
+      "record": "research/runtime/opengl-working-set-lifetime-20261006.json",
+      "sha256": "1009b53802ccb33ac66d65bb3becbd4590996e6d518a5a1074c155ee75a41011",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-working-set.game-20261006",
+      "kind": "live_observation",
+      "scope": "Required bounded original campaign ingress and native World recovery:336 frames, Active before/after a forced World reader failure and29 further frames over 3.02 seconds in the same recovered session. Four unsynchronized independent stable menu regions match within one channel value; original World pixels/movies/driver equivalence and replacement excluded.",
+      "record": "research/runtime/opengl-working-set-game-20261006.json",
+      "sha256": "1e9e6f57bb24befa9f6d7b441bb9c328fa8701bea611e749f7356d34b7cd7729",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/world_active_required",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/world_active_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/consumer/state",
+          "equals": 1
+        },
+        {
+          "pointer": "/cases/0/consumer/recoveries",
+          "equals": 3
+        },
+        {
+          "pointer": "/cases/0/consumer/terminal_resources",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/source_preferences_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -30485,6 +30677,58 @@
         "tools/test-live-render-routes.py",
         "tests/live-render-route-probe.cpp"
       ]
+    },
+    {
+      "id": "NR.continuous-resource-working-set.preview-20261006",
+      "level": "preview",
+      "scope": "Finite resident cache and independent full fixture pixels with pinned operands/borrowed work, explicit all-pinned refusal, aliases/final Release/address reuse and lazy complete checkpoint reconstruction.",
+      "behaviors": [
+        "NR.continuous-resource-working-set",
+        "NR.continuous-producer",
+        "NR.continuous-resource-lifetime",
+        "NR.continuous-mutations",
+        "NR.command-checkpoint-attachment",
+        "NR.command-host-recovery"
+      ],
+      "evidence": [
+        "NR.continuous-resource-working-set.native-20261006",
+        "NR.continuous-resource-working-set.checkpoint-20261006",
+        "NR.continuous-resource-working-set.host-20261006",
+        "NR.continuous-resource-working-set.continuous-20261006",
+        "NR.continuous-resource-working-set.lifetime-20261006"
+      ],
+      "tests": [
+        "runtime/render/working_set_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-working-set.py",
+        "runtime/render/checkpoint_selftest.h",
+        "tools/test-render-checkpoint.py",
+        "runtime/render/continuous_selftest.h",
+        "tools/test-render-continuous-producer.py",
+        "tools/test-render-resource-lifecycle.py",
+        "tools/test-render-host-recovery.py",
+        "tools/test-live-render-routes.py",
+        "tests/live-render-channel-test.cpp",
+        "tests/live-command-checkpoint-test.cpp",
+        "tests/live-command-recovery-test.cpp"
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-working-set.world-live-20261006",
+      "level": "live_observation",
+      "scope": "Required original campaign Enter and three World ticks, native Active before/after failed-reader recovery and at least 20 further frames over 2 seconds, with independent stable menu ROIs. Original World pixels/movies/driver equivalence and replacement excluded.",
+      "behaviors": [
+        "NR.continuous-resource-working-set",
+        "NR.command-host-recovery",
+        "NR.real-game-command-shadow"
+      ],
+      "evidence": [
+        "NR.continuous-resource-working-set.game-20261006"
+      ],
+      "tests": [
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -30732,7 +30976,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-fills-20261006.json",
-    "sha256": "aa68290a44dffb77297dd31f0a03751b9a6686a58e9e691bd5b3963af31b3cf1"
+    "path": "research/runtime/coverage/source-index-render-working-set-20261006.json",
+    "sha256": "a58c7d8c9434797475bedfd5bc3a51b74442f3bcd4058368fba5f21a7cd79075"
   }
 }

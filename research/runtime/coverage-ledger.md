@@ -1545,3 +1545,23 @@ The shared keyed checker now derives its missing-key Blt error admission from
 key/API input state and compares all436 CPU HRESULTs. A fresh native434-copy
 regression and eight keyed refusal tests pass; the historical keyed replay record
 is retained with its original source hashes. Native keyed HRESULTs remain pending.
+
+## Finite continuous consumer residency (2026-10-06)
+
+Continuous publication now reclaims eligible offscreen wire slots with ordered
+DELETE and re-admits complete owned baselines under fresh IDs. The consumer still
+permits32 resident surfaces/16,777,216 pixels; the producer's128-entry/64 MiB CPU
+store and queue/ring/ownership/retry bounds remain finite. Primary, borrowed and
+current copy/flip operands stay pinned. Consumer retirement is separate from
+verified application final Release and CPU/alias lifetime. Strict recovery retains
+complete CPU validation and aggregate guards, materializing a complete primary
+before READY and other verified dependencies when used.
+
+Six cache, 20 checkpoint,16 administrative, nine continuity and nine lifetime cases
+pass 1,128 independent complete-frame comparisons. The required original campaign
+run stays Active across World entry and a forced failed reader, then publishes 29
+more frames over 3.02 seconds in one recovered session. Four stable menu regions
+match independently captured X11 pixels within one channel value; original World
+and cleanup/manifests remain intact. Whole-World pixels, long action/effect/HUD
+scenes, movies, hardware drivers and replacement remain pending. See the
+[policy, evidence and finite boundaries](opengl-resource-working-set.md).

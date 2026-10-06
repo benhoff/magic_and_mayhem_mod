@@ -59,3 +59,13 @@ need additional validation. Existing host recovery collision/refusal tests remai
 separate synthetic regression evidence. Interrupted archive prefixes can end
 without END when their transport has already been cancelled; they are diagnostic
 prefixes and cannot be replayed as complete evidence sessions.
+
+## Continuous working-set policy update — 2026-10-06
+
+[Finite consumer residency](opengl-resource-working-set.md) supersedes the eager
+32-surface checkpoint materialization described above. Strict admission validates
+complete owned state across the existing 128-entry producer tracker, retaining its
+aggregate pixel/serialization and borrowed-state guards. New sessions materialize
+a complete primary/palettes before READY and admit retained complete offscreen
+dependencies when used. The earlier results and source hashes remain historical;
+the new strict matrix includes three successful 33-owned-surface checkpoints.

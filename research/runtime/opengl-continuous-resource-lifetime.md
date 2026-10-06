@@ -26,7 +26,7 @@ locks and aliases, and removes backbuffer links. Unrelated resources remain live
 The next checkpoint at a reused address or slot emits CREATE with a fresh ID and
 fresh layout/palette state. No generation is inferred from stable pointer values.
 A nonfinal Release emits no DELETE; an untracked final Release emits no command.
-The 32 simultaneous surfaces, 16,777,216 simultaneous pixels, 64MiB snapshot
+The 32 simultaneous surfaces, 16,777,216 simultaneous pixels, 64 MiB snapshot
 storage and existing finite queue/ring/sequence/byte budgets remain enforced.
 Lifetime creation count can exceed those simultaneous-storage capacities.
 
@@ -113,3 +113,14 @@ Descriptor-only, partial-base, Restore and missed-operation uncertainty still
 refuse. This does not change the final-Release identity contract above; its
 original execution fingerprints remain historical, with fresh regressions
 registered under new IDs in the mutation increment.
+
+## Explicit consumer cache retirement — 2026-10-06
+
+The subsequent [finite working-set policy](opengl-resource-working-set.md) permits
+ordered consumer DELETE under residency/pixel pressure while retaining verified
+CPU state and application identity. This deletion retires native storage rather
+than proving original final Release. Re-admission uses a complete owned baseline
+and a fresh wire ID. Primary, borrowed and current copy/flip operands stay pinned.
+The original final-Release guards above remain separate and default bounded
+samples keep their resource-capacity refusal policy. Historical results retain
+their exact source fingerprints.

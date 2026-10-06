@@ -59,7 +59,7 @@ static int command_checkpoint_complete(void){
     u32 surfaces=0,pixels=0,bytes=16+12,primary=0;
     for(u32 i=0;i<GAME_SURFACE_COUNT;++i){struct GameSurface* s=game_surfaces+i;if(!s->object)continue;
         struct Snapshot* p=&s->pixels;
-        if(++surfaces>32 || s->epoch!=game_lock_epoch || s->metadata_epoch!=game_metadata_epoch ||
+        if(++surfaces>GAME_SURFACE_COUNT || s->epoch!=game_lock_epoch || s->metadata_epoch!=game_metadata_epoch ||
            !s->layout_known || !p->data || !p->width || p->width>2048 || !p->height || p->height>2048 ||
            (p->bits!=8 && p->bits!=16 && p->bits!=24 && p->bits!=32) ||
            p->length!=p->width*p->height*(p->bits/8))return command_checkpoint_reject(2,s,surfaces,bytes);
@@ -81,11 +81,14 @@ static int command_checkpoint_complete(void){
 static int command_checkpoint_publish(void){
     if(!session_start())return 0;
     if(game_session_palette_resources)for(u32 i=0;i<32;++i)if(game_palettes[i].count && !session_palette_resource(game_palettes+i))return 0;
+    /* All observed CPU resources were validated above and remain independently
+     * owned. Materialize the complete primary before READY; subsequent commands
+     * admit complete dependency baselines lazily into the same finite cache. */
     struct SessionSurface* primary=0;
-    for(u32 i=0;i<GAME_SURFACE_COUNT;++i){struct GameSurface* s=game_surfaces+i;if(!s->object)continue;
-        struct SessionSurface* published=session_surface(s->object,&s->pixels);
-        if(!published || !session_colors(published))return 0;
-        if(s->primary)primary=published;
+    for(u32 i=0;i<GAME_SURFACE_COUNT;++i){struct GameSurface* s=game_surfaces+i;
+        if(!s->object || !s->primary)continue;
+        primary=session_surface(s->object,&s->pixels,0);
+        if(!primary || !session_colors(primary))return 0;
     }
     return session_present(primary);
 }
