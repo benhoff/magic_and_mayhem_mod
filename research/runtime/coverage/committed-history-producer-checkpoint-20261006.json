@@ -1,0 +1,799 @@
+{
+  "range": "5544c6fca3505f5ad0106722819f59d2500f8c74..422be2ae3b04084653e44b241a18575a21d5a829",
+  "scope": "Committed parent/current blob hashes and affected behavior receipts reviewed against the checkpoint journal. Historical evidence and source fingerprints preserved; no retrospective behavior validation or past gate pass inferred.",
+  "files": [
+    {
+      "path": "apps/qt-shell/README.md",
+      "before_sha256": "567547c99f68e49a9ca086c626eba185c09fc2d4cf037071925bddf0e2cb1168",
+      "after_sha256": "b05e6c962b19535666406f97a2d432b2eb776835f1f95212dcfca49b4df6d604",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "71765dc86403a82fd2732c4200993327e2cddce6518a5654c0320cb5017d0e0e",
+      "after_sha256": "09ed0619a51c530193e9639a391c8d5b5e13a13e147d0212d45183da6347d300",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "a46ac6bd2b9b748d51c44924c33dadaf7a667593da6acaf4ffe8ec80c4cb400b",
+      "after_sha256": "fe1a372d3789a1a5a4b900059cdfd2cf13ab51cd1c3692bcec596fdaf35e042b",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "c526ee4f5a2d8897d60f415a5dd424b0315e35ad0442717a11729b6c0758b32c",
+      "after_sha256": "48db0d957a63d03ebc64a2a1042d7d128a4431e9f2918064aa109b3bf6f8e077",
+      "reviews": [],
+      "exception": "Append-only receipt journal verified independently; excluded from self-referential file receipts."
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-render-inventory-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "3fd0f55bae25f5f94e2011b15e52ec87602b620465304133ec3a56c292e26315",
+      "reviews": [
+        "RI.rendering-inventory-exact-20261006",
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "58af80e9e9f8046b56e7f290f3572b9ecb24720b06f13ee571fdfa6cce9d9c49",
+      "after_sha256": "b691a4dadc3c5f145747717695dbfec4d0d5cd07b5cd0b74efee04199dfba67d",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-continuous-mutations-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "675b9c681e5ec57e676500d37776dd3de6d552a755f28627addda43015db013e",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-continuous-producer-reviewed-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "0b90da8f29a442b9e6cc65bb5e99c5782a2b7ae5cc038776bc8f6135c63f5a55",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-continuous-resource-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "0d7a7f6ea06ceff9874eb513268c5f432120d5f027d31e702de9fb61a3e7c9fe",
+      "reviews": [
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-render-inventory-final-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "4df3fe53f2e5b5fb997f88f3f04378caf4b53748569a9522ee1de9eed1fa4ce1",
+      "reviews": [
+        "RI.rendering-inventory-exact-20261006",
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-continuous-mutations-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "ca432d98cd2980e053d4f0b1a7b08fe33b8f5cb8a180306a4d6834a7e959dff6",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-continuous-producer-final-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "b0ef6aec1048933fecf87a97f069e6de39e07722ad3b6f4732fe9f0de9972122",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-continuous-producer-reviewed-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "4906b2c209620bbbfffeca7e490e3cf7727f256d7734989a31a90a4c15baa2b8",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-continuous-resource-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "979168881a5c819a26b47a43edbc7fc9fe3dbb430db92b4e6f431814496e25ce",
+      "reviews": [
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-render-inventory-final-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "14dc5632bfef3b6726afda1c1cf741750f48d23315192efe97f3b5461b99d18d",
+      "reviews": [
+        "RI.rendering-inventory-exact-20261006",
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-streaming-lifecycle.md",
+      "before_sha256": "9f70777cc33cd7a0fabe706bda045ced168cfab912cf87d869066b516b379c73",
+      "after_sha256": "a81b1b28b34830f1da2cc5e24f9453e10373abb8ac0267788f0104908e4c1be6",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-mutations-continuity-regression.json",
+      "before_sha256": null,
+      "after_sha256": "2ea2e71e20a28e095c93ac54e8909c11a6f86bd42bb594106ba8ebf1373cdd96",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-mutations-resource-regression.json",
+      "before_sha256": null,
+      "after_sha256": "a04df9ed9cb464d7819e8a1fc2f39486b5f5c0829ddc76e3b7ff5c128d996682",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-mutations.json",
+      "before_sha256": null,
+      "after_sha256": "f96e6d9ee4d2fadc25d6437a3a19cfd5ba2130bc1cdf7837d8ca36a3c0ad42ea",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-mutations.md",
+      "before_sha256": null,
+      "after_sha256": "81234b32a518732ede12eea7d99e590ab3c0e5c66cbdbb010786cc229fb055c2",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-producer-bounded-v1-regression.json",
+      "before_sha256": null,
+      "after_sha256": "d4f16bc17e708578581458f6e0bfa0517a59893eaadf1b136cbecb0fea80f3c7",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-producer-bounded-v2-regression.json",
+      "before_sha256": null,
+      "after_sha256": "a36b506df45942e4b6aecc020bb6c44f19316d91e9b1289cd01d9336a75b35d7",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-producer-dc-regression.json",
+      "before_sha256": null,
+      "after_sha256": "aa8ca737f448e2234e0466bd959d1b11644eac007cc976f47043cef24fea44bd",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-producer-idle-regression.json",
+      "before_sha256": null,
+      "after_sha256": "61fb65b390637a07bdb9955c4b9cbb474376713685d44612cd92833afece1657",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-producer-queue-regression.json",
+      "before_sha256": null,
+      "after_sha256": "f4ea4ce9a51b658262113505a56f3b7ee21d4ace3d309a5739c812d9a309e725",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-producer.json",
+      "before_sha256": null,
+      "after_sha256": "2b05df57ef61a3778de9cd65261fa141ab9ebf9bf23ca5adfe617a347a984496",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-producer.md",
+      "before_sha256": null,
+      "after_sha256": "c36244020a0dba04c9a4370984de29cfeca6d047ab34aa47dc605ec5d31ede90",
+      "reviews": [
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-resource-continuity-regression.json",
+      "before_sha256": null,
+      "after_sha256": "c17bb438c26395156f5c772735d9f0bf26bba11a153ea49e0b80131efbc6b74c",
+      "reviews": [
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-resource-lifetime.json",
+      "before_sha256": null,
+      "after_sha256": "d5d2e5d50167502f11ab3fae7216ec57dd63da22e45a97530c64ccb8ecae7535",
+      "reviews": [
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-resource-lifetime.md",
+      "before_sha256": null,
+      "after_sha256": "00cd514803f05192d2a0b04ff92d4ca3f302d72db6b487780691cef064deffe5",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/render-drawing-inventory.md",
+      "before_sha256": "2df8f09d173e66930a55161795713b5372ac13226e61779b1bee359edf96b9b6",
+      "after_sha256": "971f13bb59e0416cefda0bc8589e2ddafa010eb5449b4491abadbf9735811c28",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/render-path-inventory-static-final.json",
+      "before_sha256": null,
+      "after_sha256": "01d30a9574fef5a02d0195ae354e6ca1e1f600cff5c33079788f6f778762777a",
+      "reviews": [
+        "RI.rendering-inventory-exact-20261006",
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/render-path-inventory-static-full.json",
+      "before_sha256": null,
+      "after_sha256": "2053fb5fab4b19258dd208edac76f85d62d448e58759ca67d3568400f4c7edd6",
+      "reviews": [
+        "RI.rendering-inventory-exact-20261006",
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/render-path-inventory-static.json",
+      "before_sha256": null,
+      "after_sha256": "2122753f3dc42407b90c3fee91b08c27ee2abe3b35031222587064b90926e51e",
+      "reviews": [
+        "RI.rendering-inventory-exact-20261006",
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/README.md",
+      "before_sha256": "4fb9d61ef6b3c693886c6a6e763640b01c7dc3f0d05a2eec313436914d70b19f",
+      "after_sha256": "cfd26d96fb5e8fb6ff90189a941224d2d7a0c70577dc1acf45370a7556189e63",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/continuous_selftest.h",
+      "before_sha256": null,
+      "after_sha256": "548c1aff09da3c833b40fffee32b114e46589ca538e5c3599633db16b645b245",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/lock_lifecycle.h",
+      "before_sha256": "813e31a3f231df73992a7dd81ddaee21334b59ce0d43c01f5c39180dcfb4008b",
+      "after_sha256": "96c27846e8077d9a87fe2c5cb42698cb304162d3b0e8186908398cc1d3ad8bb3",
+      "reviews": [
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/mutation_selftest.h",
+      "before_sha256": null,
+      "after_sha256": "e1fd466f67637cadbdfe4e79246a5be3035f602f10baab07233158b6c495739f",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/owned_session.h",
+      "before_sha256": "f6fd5f1c483a4945b41c64b07506295e2c60ec047daec6cbddd295800eeb55d8",
+      "after_sha256": "cd3c2f2b55e396265ed7c7bcdfc7353a0788c55250d7a5f6db15c97d43939034",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/resource_selftest.h",
+      "before_sha256": null,
+      "after_sha256": "64c52c7140527fb7236df0bcc6325ab473e429a762eb9af57ee27a866cdfb9de",
+      "reviews": [
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/selftest.c",
+      "before_sha256": "3cc359238c67fbbbdd8acdea4ad46d9f89b03b473c914391c174382ffa577fa7",
+      "after_sha256": "0eb62854e089b8881e55e4ed3840cd976d68b942acc09f948fcabb2e87a6c809",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "tests/live-render-channel-test.cpp",
+      "before_sha256": "41c5b07f84c54db019abd65faa7099dfb3e7abcc1a9e1db55e75b583e65f4feb",
+      "after_sha256": "6d52cce6e5d97fc077d7882f7c99d30c219d62be2ab682d93efe84101f46e60c",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/export-render-support.py",
+      "before_sha256": "d588e2e7c4a90d1dea7e794ed7d618913a4d81dc09ab6329eb2ac514a210ecc2",
+      "after_sha256": "dce6f4e70b64fb8839a295bc170269765b657aa17856fbf62e8d1dfae3e763b2",
+      "reviews": [
+        "RI.rendering-inventory-exact-20261006",
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/run-opengl-game.py",
+      "before_sha256": "f2dd5cc45ecf8c9fc797fb26e30ef67b231cc34ca842bf5d0e1e27489aa31f7d",
+      "after_sha256": "f48be7bfdbe0aadfd424e8fc44a38eedaa758e62ec460d9aa37f85e37b606dbc",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-render-continuous-producer.py",
+      "before_sha256": null,
+      "after_sha256": "b1644032c844f27cbe47635ad864775ca0a5865e3a4edaf00335688ea8f5764b",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-render-mutations.py",
+      "before_sha256": null,
+      "after_sha256": "11ee201ac48199484f3fdc5412c2811baffd75c384c916ce7b7b31a456cecca0",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-render-resource-lifecycle.py",
+      "before_sha256": null,
+      "after_sha256": "51a2f61b2b339d23b8920c126c6b773b3383a0bc5a76c2bb27de9b4058f4c3af",
+      "reviews": [
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "after_sha256": "09705cba29ec6625782ff2a4b85b1b4a14aa989404044987afee71d6497b27c0",
+      "before_sha256": "d405f49cabcfbfb93e0b8241a212a85cb8efca4c7f24834f08fc050b37663a69",
+      "id": "CP.campaign-defeat-report",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "b38319b0890f2ba08c760ecb2fffd796bfa7afbba6c6f6e49b6a1be0b0a163a1",
+      "before_sha256": "59d23e1c51e3a9157ed79f954ec8f0065678fde04733f3d734a1791e47725e38",
+      "id": "CP.campaign-world-handoff-observation",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "a6dc6d6fbe8d5083f8bbf3de7266f95c47c4f0cdadf0e273053c1b291dbed3d6",
+      "before_sha256": "af281e490b8ab8701944877e05420e06c79e33a8a14842bba04e6d617c62c95e",
+      "id": "CP.region-entry-bridge",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "076cec1d1051833375ec4fedf2c875d0a39b9d664017bfd4bb401a41a81519d8",
+      "before_sha256": "6b718509d4eefea4443c35b7e955a38c61fdfdee942460cabcc5a931b503d806",
+      "id": "CP.region-entry-enter",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "18bfcbc359e74fa17684d6d3f167e2b7e093ab8de985a61af5442883743dbcf7",
+      "before_sha256": "1fed9a344f46f834f6ed84cc65ab4f4da79065461855c0458570f39d18e6a153",
+      "id": "EXT.dependencies",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "d29b17a57e2c14c7a0f98d19097e019bec68eb5b2b8624f29ba025160dbba17c",
+      "before_sha256": "54ddeab0985a7921ad06fccef4ae6afd27a8a5f10f0b3396c7cfb867d8a01df3",
+      "id": "HOST.session",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "d144c8ab5b41f1379189cba926ab1ed039fe186eb9575a887b711d3b69d84219",
+      "before_sha256": "964afcf0c6634ae0a97b5cbacf938efe1d74d45a50ec1e0c530b1db8f6d6e27d",
+      "id": "NP.campaign-defeat-policy",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "c84f1eda3d4e644e65123bb9b166ff9984e0e7f423480629717bd1a4a6c0d47f",
+      "before_sha256": "43e6853435e98d9d0ff06479cf10c16860ca687d68d71089a76e64a54ec2e5e9",
+      "id": "NP.region-entry-fresh-policy",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "5e22231be99145aff4a3ec48ebad3e4bb57f6f142bdead6b0f1ad8dfc2c52775",
+      "before_sha256": "7f6f472efcf9f88b872365341616d331f01db66ed9d4a31a99eb838bf6261745",
+      "id": "NR.command-idle-lifecycle",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "474ffff8f11822e6a0dd6a7da11e3dfd35c0ec6b969118b2f185a99e35c1ce88",
+      "before_sha256": "248ff3ed79be2ba632e0703b52b89f9e4acf49842537b005bf810dcb86f7bb6f",
+      "id": "NR.command-ring-adapter",
+      "reviews": [
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "b12d50b5285f5667d83b9b87b9045719a1bf95f859ae11928b11b69c75f24b0c",
+      "before_sha256": "87b1809eb1481a342e15b16efd39a5db78db966bb02d948d387a9465cde57910",
+      "id": "NR.command-streaming",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "99bacf6906316dec3a2d2a0ade53e9edda4b1b3f01ab2bad88e6ed05266fee37",
+      "before_sha256": null,
+      "id": "NR.continuous-mutations",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006",
+        "NR.continuous-mutations-recorded-validation-20261006"
+      ]
+    },
+    {
+      "after_sha256": "ad989ed6e6a7e5f7c79df3536cb9879e61a0f233587b7a834b56b41da08ebd5d",
+      "before_sha256": null,
+      "id": "NR.continuous-producer",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006",
+        "NR.continuous-mutations-recorded-validation-20261006"
+      ]
+    },
+    {
+      "after_sha256": "d39a492e5fc74b67fc181cb89b8f240563eda20055feed5732b97b48e1c915a0",
+      "before_sha256": null,
+      "id": "NR.continuous-resource-lifetime",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006",
+        "NR.continuous-mutations-recorded-validation-20261006"
+      ]
+    },
+    {
+      "after_sha256": "0f0d098ca5144132846891246481a8aa8074e8cad3b6f59d7a176b4e48f3028f",
+      "before_sha256": "699bd22332fa94032fe29f14971ab93546f091815c0efe2fb5cf0456eb77bc9b",
+      "id": "NR.gpu-presentation",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "df94e3657e2fab8f3bf17e70875bd39a83ea15f440d3eeb5ca5189ae039e8931",
+      "before_sha256": "1748668e1f341576c8f64b43a95853baaad80e84549236c353f7d410afee1196",
+      "id": "NR.incremental-command-consumer",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "106f946fcc02f52b82d047accc83f4bfe49641af078efa2108608f7eedb30e6f",
+      "before_sha256": "e2b87ed73a352b9ed83909206df98cff7ab1b16eaefb5267e2935653caf7626c",
+      "id": "NR.live-command-transport",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "2eb3ef6a1e56a6a8c1dec3f563003e0ff92aec83768305baaebc6565991244b4",
+      "before_sha256": "b30a87879383826991d507f9c124bb624f28cbb81b21f92e43cdd6c165fe4422",
+      "id": "NR.owned-session-dc",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "04742685f1fcf4d519842519d2a025bbf4b02b04e906c79138f2dec707c55936",
+      "before_sha256": "25dbf6f389eef1d9dd40ed05a758e06de3c8cdf6d6f19009c15a5be493af59b7",
+      "id": "NR.owned-session-fill",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "9ddea59dd5055f1e97e78ddb5e46e5c8f45f421c8334a3085254c0e2915d56f6",
+      "before_sha256": "ef964339125daba9decd351097d95b5086821ca93ccf3be185d73f619a3b2156",
+      "id": "NR.owned-session-sequence",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "b945138426bd877456ca671a07ae57983185518764cbe7360f073799c1caa086",
+      "before_sha256": "98f2bf37541d3f83e1ff715dd44a3011ee7c4d0fd530d8b6e41e7a2931fe80d9",
+      "id": "NR.owned-session-startup",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "a7e1f34519e93d707a001991bcaa2a6c4acf7e04840416488769d337c605fa94",
+      "before_sha256": "5d68a2c032434c9962bfdedd218172a882ce4a82b1127c82ba0fb1e38c40f967",
+      "id": "NR.owned-session-unlock-packed",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "cd5eee1070c547941aa45eeefe5975fa0646ae9bd99c372068ac39b6def90a9a",
+      "before_sha256": "0f5bebe7eb05b374be3481a3eaa03f542805383f9dfc85952cff8d20367b54b8",
+      "id": "NR.real-game-command-shadow",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "f41348ae8b27b521b68da179acdc55766a241cc8f59add322f51dec770f0f062",
+      "before_sha256": null,
+      "id": "RI.copies",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "c574a74290cd658745dfdad40519b04f951b21b6883533c84a9fd09aa9cdfd2e",
+      "before_sha256": null,
+      "id": "RI.effects",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "4f0fe9ea7d81e41905b18dea9fdf998fe836c91da390e6cdcad0628d561248fa",
+      "before_sha256": null,
+      "id": "RI.fills",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "a07fb14dc2b0e463f78ca35ef8717bc665790550313dfec2f42ad5c31dc6e97d",
+      "before_sha256": null,
+      "id": "RI.gdi-text",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "716dd9ca297c9049bac4f13412ec3ede6de24808caa321e9b2e069b0b6616fa9",
+      "before_sha256": null,
+      "id": "RI.locked-writes",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "8e4a041c73235b753e1e135cf57ba45c472640b1e504777c65a88ef650acfb3e",
+      "before_sha256": null,
+      "id": "RI.movies",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "489355309e72f128886f65f99bedc84083c66a522c1c8e4bd0c8e1f5f968f0f7",
+      "before_sha256": null,
+      "id": "RI.sprites",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "8deb8f5dd2c0d64a404a7e2058d79fc1f6ae1ea14532bca032bcbd4e777edd0a",
+      "before_sha256": null,
+      "id": "RI.terrain",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "27b789ffea9a2a9e83e530dce172011c60745a9f577614ac63d55d5d3fac352a",
+      "before_sha256": null,
+      "id": "RI.ui",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "a07ab108ceeeef4941f9360f0229df5a2c52ba2725ac7d363db7506a75df7f35",
+      "before_sha256": "1ddba609d1a3f3c26abd4f8d141479e0141f621c78aaed91569d2388724bd728",
+      "id": "RT.render",
+      "reviews": [
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "acf6b054dc33e215b1adbed51d1c0b2fc209872caf9f508b588766a9ed424b15",
+      "before_sha256": "d19c45a2a67ba886a9adc4cf92c2e13d1172053dd91c4ff9f5dfd2b095874bc1",
+      "id": "TOOL.traceability",
+      "reviews": [
+        "RI.rendering-inventory-final-format-20261006",
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "fb7680d058237cd563ea4f583b29e84f1431dc17d6ad88d1a52875f1e151be6d",
+      "before_sha256": "7a84d3c483aec0cdeaac6cc840b87f8f1282955048ae8fbcf939e8d7b290eb6b",
+      "id": "UI.preview",
+      "reviews": [
+        "NR.continuous-producer-shared-review-20261006",
+        "NR.continuous-resource-lifetime-shared-review-20261006",
+        "NR.continuous-mutations-shared-review-20261006"
+      ]
+    }
+  ],
+  "journal_append_only": true,
+  "unresolved_file_receipts": [],
+  "unresolved_behavior_receipts": [],
+  "checkpoint_gate": "working/tests/producer-checkpoint-staged-gate-20261006.json"
+}

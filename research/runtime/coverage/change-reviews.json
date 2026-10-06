@@ -23857,6 +23857,259 @@
           "NR.continuous-mutations.continuity-regression"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "5a938defc748559481c432f5f60dae6ba1bd3a93e5d889d23a33338786f46c68",
+          "before_sha256": null,
+          "id": "NR.command-backpressure"
+        },
+        {
+          "after_sha256": "2b6d1e7ba974aee12bd80abb4d841422149ef99823d3bd8e11f11aab88919c8d",
+          "before_sha256": "5e22231be99145aff4a3ec48ebad3e4bb57f6f142bdead6b0f1ad8dfc2c52775",
+          "id": "NR.command-idle-lifecycle"
+        },
+        {
+          "after_sha256": "46973cc42c1f35e44cc84c1b8387425e69290a06fa4a4e3171269e80f0321eb7",
+          "before_sha256": "474ffff8f11822e6a0dd6a7da11e3dfd35c0ec6b969118b2f185a99e35c1ce88",
+          "id": "NR.command-ring-adapter"
+        },
+        {
+          "after_sha256": "5c0da095a36c0b10eb943b21a044bad6c0ab13bfd03365db545dd6d76df98032",
+          "before_sha256": "99bacf6906316dec3a2d2a0ade53e9edda4b1b3f01ab2bad88e6ed05266fee37",
+          "id": "NR.continuous-mutations"
+        },
+        {
+          "after_sha256": "1793b3f5f0f598f61a97d1538f9b0284a2439ebbdf45cdba06425580f1f66b67",
+          "before_sha256": "ad989ed6e6a7e5f7c79df3536cb9879e61a0f233587b7a834b56b41da08ebd5d",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "19bf745353ac16b44d6781877ab33bebebe24f598bac0053e8352515863417d2",
+          "before_sha256": "d39a492e5fc74b67fc181cb89b8f240563eda20055feed5732b97b48e1c915a0",
+          "id": "NR.continuous-resource-lifetime"
+        },
+        {
+          "after_sha256": "f5dd5f318cd9761906d2878d94eec57375ab0af838aa0306514522b1a07981f0",
+          "before_sha256": "106f946fcc02f52b82d047accc83f4bfe49641af078efa2108608f7eedb30e6f",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "b6cc53a0077ce182fff30d58dc7126b24a781ab196c0038893f5eb1cfb7f857f",
+          "before_sha256": "9ddea59dd5055f1e97e78ddb5e46e5c8f45f421c8334a3085254c0e2915d56f6",
+          "id": "NR.owned-session-sequence"
+        },
+        {
+          "after_sha256": "a7347991f687699b6ba55d29bc06cd1847515593e248883753726c38f7aeb340",
+          "before_sha256": "a07ab108ceeeef4941f9360f0229df5a2c52ba2725ac7d363db7506a75df7f35",
+          "id": "RT.render"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "84fd4ce07bb2ce334e5fc38c606f6406290674cfc90107a88794a5e9ef9786ae",
+          "before_sha256": "fe1a372d3789a1a5a4b900059cdfd2cf13ab51cd1c3692bcec596fdaf35e042b",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "73e9d0a3d74faffe55656521c2956430450bb7989241e7722ecc55b9e33f266b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-producer-checkpoint-20261006.json"
+        },
+        {
+          "after_sha256": "a3c7c5c8093c97c31011639dcc3b35619b222e42df2bd6936182ea6ff6c6b8ba",
+          "before_sha256": "b691a4dadc3c5f145747717695dbfec4d0d5cd07b5cd0b74efee04199dfba67d",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "963f6ff214b6a07270e9b1bcea5ed1e472bebb0d554e0ef80e2c727c18be9a1b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-command-backpressure-20261006.json"
+        },
+        {
+          "after_sha256": "e20f13afb535f966161a23348a537246dadbc00ffebbdeddbf1c326f1db55275",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-command-backpressure-20261006.md"
+        },
+        {
+          "after_sha256": "991313db85fcdac92d3519fea2a9098acd5231b97b4e77e1a8dc977fea1c7a04",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-backpressure-gpu-regression.json"
+        },
+        {
+          "after_sha256": "4f94544c183d33a1f33d256531cb2d56513a43d10450e596e07b0768e747ed57",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-backpressure-idle-regression.json"
+        },
+        {
+          "after_sha256": "6f2162de33bb93740bd63aa3af7a8a9e1a340ccdc53e22718a4e88e7a1ee591e",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-backpressure-pe32.json"
+        },
+        {
+          "after_sha256": "581a289343041d0d0d3b723704ee02a8b304ffb6dafcf68ad3ee6d05a4ad5aa8",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-backpressure-queue.json"
+        },
+        {
+          "after_sha256": "08e4447d3f6dc7b2acfe7fc915c177eb0a42c8233db298eeaebac1809f7cba74",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-backpressure.md"
+        },
+        {
+          "after_sha256": "ef1527008f19e67885d7672779f402bf7e98c03107820b692bf7af8ee3ea142f",
+          "before_sha256": "cfd26d96fb5e8fb6ff90189a941224d2d7a0c70577dc1acf45370a7556189e63",
+          "path": "runtime/render/README.md"
+        },
+        {
+          "after_sha256": "c007732548f9791058bdcd1b1778a1674f734f540077a477ea67f1818185380e",
+          "before_sha256": null,
+          "path": "runtime/render/backpressure_selftest.h"
+        },
+        {
+          "after_sha256": "1ebab36130e5f242373db04a93c51210274b424e2f27a6d6858cf4d86969d451",
+          "before_sha256": "355812215e02b911820c547165d1286416ccc470415dcab9ea42accef102ca59",
+          "path": "runtime/render/command_channel.h"
+        },
+        {
+          "after_sha256": "d96f125aa7a712f96d0745a993b48a19820a10470257a629ef0960e29c736877",
+          "before_sha256": "0d857b62acd7da610216ddc9fa09264e91f039c9a97685c03d603e5fa4ba22c7",
+          "path": "runtime/render/command_queue.h"
+        },
+        {
+          "after_sha256": "c12d82882afe97d9cb4f24108886da6257bb4ba6a08d49ac88609d80b2aac97f",
+          "before_sha256": "7a35cd43a0bcc49cf91d9593a66c9ce293bc84c5f6dd77a2b99fcb3e48735cd4",
+          "path": "runtime/render/command_scheduler.h"
+        },
+        {
+          "after_sha256": "3ca975d36c45016e6beb520fac0a747f057873c189ba4254d16e630428c887ec",
+          "before_sha256": "0eb62854e089b8881e55e4ed3840cd976d68b942acc09f948fcabb2e87a6c809",
+          "path": "runtime/render/selftest.c"
+        },
+        {
+          "after_sha256": "63fb33580e0f5eda718a8068c0c9ac6c26e6fbbb9380e67d6848f71f4e74f1a3",
+          "before_sha256": "a796e372dfba6d0a9431abf23900bb6206a9c055b32bc7a93e68e3e52dcd35af",
+          "path": "tests/render-command-queue-test.c"
+        },
+        {
+          "after_sha256": "47bce9be8c0940a5bd1adfd200edfbd68a28d898ff5aef8178baa7386eb2965b",
+          "before_sha256": "b0eb0c1768ea79a01073a6a1c0e642839b40d432fd90803dced90ff28c8e68c1",
+          "path": "tests/render-command-writer-test.c"
+        },
+        {
+          "after_sha256": "fd73e78a39d2d386d8833aefd2186715b43d2f52924076092e683978581c1023",
+          "before_sha256": null,
+          "path": "tools/test-render-backpressure.py"
+        },
+        {
+          "after_sha256": "062f40764a20db44bfea1677371c926bd1948bb35d35b765d188dded0354cf6b",
+          "before_sha256": "062f40764a20db44bfea1677371c926bd1948bb35d35b765d188dded0354cf6b",
+          "path": "tools/test-render-command-idle.py"
+        },
+        {
+          "after_sha256": "854c3c90b38e11d7e0922f703e97fdb64f88bd2bc562d659f55e72adec78c9d8",
+          "before_sha256": "854c3c90b38e11d7e0922f703e97fdb64f88bd2bc562d659f55e72adec78c9d8",
+          "path": "tools/test-render-command-queue.py"
+        },
+        {
+          "after_sha256": "b1644032c844f27cbe47635ad864775ca0a5865e3a4edaf00335688ea8f5764b",
+          "before_sha256": "b1644032c844f27cbe47635ad864775ca0a5865e3a4edaf00335688ea8f5764b",
+          "path": "tools/test-render-continuous-producer.py"
+        }
+      ],
+      "id": "NR.command-backpressure-exact-review-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:12a04c35036c976fc6092f9a627157172bc5f0cd6c6493f930f1ac228a38c6dd",
+        "stale_evidence:0250e1483c76669c09149a04b25cf5489054411e480d68ed4c7df52f90b2b560",
+        "stale_evidence:06c8b9e065c1e661868484c0eea6469ff3a76ee481ff9671ec48cf3ebfcaf669",
+        "stale_evidence:0eea23042adc72fb6c95d4b0240aa5812bb232369759ad9628b3103034e1057e",
+        "stale_evidence:0fe196e791ea4fe3e94fe7f9917da3b6c603075f70aa8989d67cd7f338349a97",
+        "stale_evidence:1189108c83c9aaecb7f8edb5edadfb2c03ff52a2d9371cfb20f90085e92b7286",
+        "stale_evidence:193a9af17be169ba95cedc93a0d2a28986d648238aebe8ef98b295913802ed6d",
+        "stale_evidence:1a762479bd24d719d97929569ff930dbd52e9652f34b87eaa51359c6f0bbc3f5",
+        "stale_evidence:1a8df243514c5fd379d496aa85960495fcc4129228651dd49b5e3643ff90f09b",
+        "stale_evidence:1b139c45593a3040a2575acfd303738c42d4442f855846be5092aff3b755e3af",
+        "stale_evidence:1baf0a701e2ad5dd7fa00b97e850ac47b8c7a7acf04a2323dd3627ec437fdb7e",
+        "stale_evidence:25fa86afd910b250d253e5ce4ea235f182801a0db21b3dbbf43ebc81c5172e19",
+        "stale_evidence:29ce306d79dfecb6cd609740e895891afecc8e61768a4b7876144bd262e5c0a7",
+        "stale_evidence:35f4b7c8173956de30c37cdd30831dddd82a73c36406425ffc716c435673f93e",
+        "stale_evidence:36519de9f9247af4c5978769cca4e0c067bfb9826092dbe12be8d6c9c97ecd90",
+        "stale_evidence:39deaafeeb5f19d22a2795fcb7e742db15d3e1ae3a17345723218593f6dca5f9",
+        "stale_evidence:3d646af2306a626dc21409ce707927dd2bb87e0e5a63f8209063344ca45286fc",
+        "stale_evidence:411b0e6d403264369cd331f31b5aa008533d67a44b4a0e76a2b9753eb5d35c2c",
+        "stale_evidence:41ee60f87227a8cea0ae590e98cbc6b8ccc4211b19ccad98e49d2609614d68c5",
+        "stale_evidence:44831c546bd9e76e6ef855f6d2240bd6afe42b5529d22178d59e0ae0f457ccf3",
+        "stale_evidence:461e1a8233bcc0fdf3040a6f65f9ebd533b2748c84c90460cf3566853b712db8",
+        "stale_evidence:4aa34f71afdee351b01b54e9bbcb3020a1b6fff398aad4f1fe8fe6ab5a522bb9",
+        "stale_evidence:4e2434dd3c56023c3791073c80fb8ff144b5f627ccbb77a1a033e15f8a64da09",
+        "stale_evidence:4e3544e56a3bbf0e31317114bee6ba3984e390c2197791e6cc165690022ac2d5",
+        "stale_evidence:4e44f0a9741960430e08a8b6cf571524e7f47d47a8d5aff0e3700c02044b9302",
+        "stale_evidence:4ec011c446b963e9747d936286e52bcbe8e08ccc45199a5a16b535e6c1d1b544",
+        "stale_evidence:50bd6d453638bab683df8649d889abd8ce41ed12df31b3a43e812e28f32c8bd3",
+        "stale_evidence:5353ecd95c058402835faccad93190553600472ba328d034df140dda1ec0e089",
+        "stale_evidence:55552528260871928a7e04aacbd16ee2188d9003beeeedab20e50951ed2eeb8a",
+        "stale_evidence:5720043a73ae63753a2238f08909bea04784990b32633f5d153d27b0a53d8143",
+        "stale_evidence:57ba2b62ba268bb193af00e93e8d02b60308f66af6bc218704f3c5732475f474",
+        "stale_evidence:5859d1b7ffc91b1df57a2c64920e7d8cd8a917b456ae6499811051e4df970c7e",
+        "stale_evidence:5fd08288d29a2afd921018554e2efcccfe79d82832778bc25f9b42c0c3c31525",
+        "stale_evidence:65d263c9132de139e07d2bf225640b059318ef4c1365aedb591540f27133127d",
+        "stale_evidence:6abe0f2b4b632c11d35a8e525536c49f7378ccf6dc64fdaa0f00d195806899d5",
+        "stale_evidence:6da00e182f6da7f4e2e85056870ae7992dc2ea4f6bddb9265a73f774970a72db",
+        "stale_evidence:72831fd96f69a909b283c855b18010d7885ba6c317ebbe7e28a44176d0887e56",
+        "stale_evidence:7558b355ec119ff7682c634a42c34ceba145b3680adadb7be6a2201afea190d7",
+        "stale_evidence:7ea7dc4082580517aa33bdf14ff7ec0ffc4e9ba554f9c00693409f1e79519101",
+        "stale_evidence:846eab67087ecbe7cbbc8c729245939f1f4cbf7af19fd60a5e4247009ae004b0",
+        "stale_evidence:88e7e4c9031bbfd6e8861597f5102344a160c29be36378f43d7c60142c02749c",
+        "stale_evidence:8b1618f2eb0f1dce0c1d1fcdb2949062130ac30b4f01f53909b5e8a05da407eb",
+        "stale_evidence:8b7ee71cafca1876d49c11d7731daf7ef7a806b3624145939da99cb11fb7f67d",
+        "stale_evidence:948ce6612dd5843e9e1dd27d9548cf7b1a7043d4f2f41197696ce3d9c2fabe2a",
+        "stale_evidence:ad24c70c5f81d27bbe7464a8f823a768aa5f01b822ae115bf47c90a5e3d628c5",
+        "stale_evidence:af48a0b264f6115849ab717d0c0433898a6d61e8bd10b628b67239d46e1fc23a",
+        "stale_evidence:b58b277f92b54bc521da6644e08faef29b36c1ef8522927ac02d2d08bb2fffbb",
+        "stale_evidence:ba32b1088bea209c820f00c7352e6cd212c9d7d94c773cccc242df37995ea91e",
+        "stale_evidence:ba526466996413cc9569ecdd02ad06960306e44905fa892f801fa6ce686b9c44",
+        "stale_evidence:bd955f41b4a2efe56bdb5258025883a685409662338959cff7bbba2400935e76",
+        "stale_evidence:be1736a7631f7a4f47952b4402f54a8e6a6894fac7c6205f93425c0a616044d0",
+        "stale_evidence:c089c25d69f023b0abfab9847e83f311bfd9fa19b782c375d7af9b56deeea270",
+        "stale_evidence:d6b14382d68391dea16ca16c924b25cc1ebb65a6129f5c5d89ee0f9d9a3c95c7",
+        "stale_evidence:d83ed99f8dd85e68541c2f467e9752823d7d12e10d3057d80309de248176615e",
+        "stale_evidence:dce23914151af1bf8e6f1441f4b5a777daf331ce9a0971977463e77a55e3b28c",
+        "stale_evidence:e25acf85958c28fd9ca4ee6942f5a8647be7d2d6b143c84f7f8295d97f4c02a7",
+        "stale_evidence:eb8a864ba1989272a8b78988f04b10818c56209d76763d6a1336aa21519495a9",
+        "stale_evidence:f90797fa9edf5ec5584c092ed8be7544ac054e43cf07d83654bd1017f756eb37",
+        "stale_evidence:f91b9ba3be87cbfe909bca641b1cb3cde2d3804fb1ca00fa35085113a9f06c91",
+        "stale_evidence:fa117366059e01831635bade938d290fbc06dcc7d211799b8bdf6d180225f904"
+      ],
+      "reason": "Reviewed bounded queue admission, guarded idle ACK validation, continuous-only ACK deadline configuration, pressure diagnostics and adaptive worker retry; synthetic fixtures, fresh execution records, source census and ledger match the stated native policy. Reviewed committed range 5544c6f..422be2a with exact parent/current file hashes and behavior receipts; the retained committed-history report records no unresolved gaps. Existing original-build findings and historical evidence retain their hashes and independent milestones.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh synthetic native integration validates the new backpressure policy separately below. Source changes leave older evidence stale for affected historical behaviors; no current original-game equivalence, live replacement, GPU completion heartbeat, OS scheduling guarantee or recovery is asserted. Newly indexed branches and retained gaps require their own execution or original comparison before promotion.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "5a938defc748559481c432f5f60dae6ba1bd3a93e5d889d23a33338786f46c68",
+          "before_sha256": null,
+          "id": "NR.command-backpressure"
+        }
+      ],
+      "files": [],
+      "id": "NR.command-backpressure-recorded-validation-20261006",
+      "pending_gaps": [],
+      "reason": "Reviewed native backpressure policy within admitted synthetic inputs, with independent queue and PE32 transport checks and healthy GPU regressions. Recorded validation applies only to NR.command-backpressure; original comparison and live replacement remain none.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Final-source native and ASan/UBSan queue runs pass 21 queue/configuration cases and 11 writer cases each. Eight actual PE32 pressure cases verify full byte streams through pause/resume and advancing ACKs, safely drained idle streams, timely quiet stalls, cancellation reason 3, invalid ACK reason 5 and hard overflow reason 1. Five idle lifecycle cases and eight healthy continuous GPU cases with 352 independent frames pass. Production and selftest PE32 builds pass.",
+        "evidence": [
+          "NR.command-backpressure.queue",
+          "NR.command-backpressure.pe32",
+          "NR.command-backpressure.idle",
+          "NR.command-backpressure.gpu"
+        ]
+      }
     }
   ]
 }

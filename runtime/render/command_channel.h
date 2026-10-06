@@ -55,7 +55,7 @@ static void command_channel_init(void){
         if(!mnm_ring_writer_bind(&command_ring,p,size)){command_channel_refused=1;UnmapViewOfFile(p);return;}
         command_queue=HeapAlloc(GetProcessHeap(),0,COMMAND_QUEUE_CAPACITY);
         if(!command_queue){command_channel_refused=1;mnm_ring_fail(&command_ring,MNM_RENDER_COMMANDS_V2_REASON_OVERFLOW);UnmapViewOfFile(p);return;}
-        command_channel=p;command_channel_session=p[4];return;
+        command_channel=p;command_channel_session=p[4];command_queue_configure();return;
     }
     int valid=same(p,MNM_RENDER_COMMANDS_V1_MAGIC,8) && p[2]==1 && p[3]==MNM_RENDER_COMMANDS_V1_SIZE && p[4] && !p[5] && !p[7] && !p[8];
     for(u32 i=9;i<16;++i)if(p[i])valid=0;
