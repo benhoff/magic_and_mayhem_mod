@@ -1,5 +1,17 @@
 # Engine modernization coverage ledger
 
+## Original rectangle forwarding boundary (2026-10-06)
+
+`RE.surface-rectangle-forwarding` now has 966 isolated original-wrapper argument
+comparisons and four portable offline regression tests. Five selected opaque/keyed
+and explicit-rectangle entries forward tested outside/empty/reversed inputs;
+windowed primary translations, wait/key flags, wrapped coordinate arithmetic and
+explicit destination-RECT mutation are scoped separately from driver output.
+[Contract and remaining clipping work](surface-rectangle-forwarding.md).
+Driver clipping, API failures/retries, clipper regions, native clipping and live
+replacement remain pending. Existing pixel fixture source fingerprints and
+comparison scopes are unchanged; the new trace corpus contains no driver pixels.
+
 ## Native surface operation matrix and independent offline fixtures (2026-10-06)
 
 Milestone 3.1 now has a [required/conditional operation matrix](native-surface-operation-matrix.json)
