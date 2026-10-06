@@ -25938,6 +25938,316 @@
           "NR.command-checkpoint-attachment.api-regressions"
         ]
       }
+    },
+    {
+      "id": "surface-fixture-corpus-reviewed-20261006",
+      "reason": "Reviewed required versus conditional surface operations against current native/adapter admission and retained No-CD caller inventory. Preserved five independent original-game driver captures and byte-identical manifests, with explicit raw/compressed/expected hashes, unchanged one-row limitation and missing collector source provenance. Added stable scoped baseline/native policy links, complete-destination offline checks and required missing-operation reporting. Existing source files change links only. Exact shared register/census bytes include concurrent recovery entries; this receipt covers only the two surface-fixture contracts, not concurrent engine code or recovery validation. Reviewed ade3e60..3dd6e27 exact committed file/contract receipts separately with no unresolved gaps. Historical hashes/statuses are retained.",
+      "files": [
+        {
+          "after_sha256": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+          "before_sha256": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+          "before_sha256": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+          "before_sha256": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+          "path": "renderer/capture.cpp"
+        },
+        {
+          "after_sha256": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+          "before_sha256": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+          "path": "renderer/capture.hpp"
+        },
+        {
+          "after_sha256": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+          "before_sha256": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+          "path": "renderer/replay_main.cpp"
+        },
+        {
+          "after_sha256": "f8edc212f9d3c1ae07603d7ebf6fde83a4ba716a1902195ce24ec029dc8571c3",
+          "before_sha256": "bb41fdccaf07f3b3f118fa66cdff56cef70d5e061774d6e544d4c6c9711c48d7",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "1b03f445f4ba9c06966f0377cac15e2ff08c140c6a793b04276823e55355a75a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-fixtures-20261006.json"
+        },
+        {
+          "after_sha256": "23132dd30e7a3258f733059d1e03ad5e829a3ec26ed2b990c23686e3a885c77b",
+          "before_sha256": "a0af9798dca824d7a334a9252d74d66a28cc09768f79264db2c124ef5412b6b6",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "4b5c59e7ed5b7f34e479f2c8f29292e5f38469f4386075805f51f0e912813ff9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-fixtures-20261006.json"
+        },
+        {
+          "after_sha256": "8b5b38a3f053f07681874cc3d00e5819e7057283759de85221b768104e933bc2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-fixtures-20261006.md"
+        },
+        {
+          "after_sha256": "fe0128258ac15750312851cd47c542bc45fe30e8f4400511f30bc217b5f61fab",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-fixtures-opengl-20261006.json"
+        },
+        {
+          "after_sha256": "9c0d276c8cb151e3875870d1d8199deadf95f6406d8b7169095fa16f369828ba",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-fixtures.md"
+        },
+        {
+          "after_sha256": "b52b1b513b212dda875288b02a567088811877d58fd12aa2201ce0328baa39d5",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "e3d97844617a3f3ecdf2ca15787cbc442ce0f5e375fd783caf3e90ed5496cdb6",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/corpus.json"
+        },
+        {
+          "after_sha256": "6d86cfbdd6e4a6a05b993aafd6d6cc338b2745da3c868432d0f693eae403c648",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/g34xhs0b.manifest.json"
+        },
+        {
+          "after_sha256": "51165958fbfdf56a26912efb2dd0dd152ff3dc08779e3ca83b6e26473cf13b22",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/p66k189j.manifest.json"
+        },
+        {
+          "after_sha256": "d0b351908c11390f2812a689f7a4b11a426a3e55d518c6e7b2966a1bd6f2d102",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/ugdn7zhm.manifest.json"
+        },
+        {
+          "after_sha256": "14ffd0bdc20f1340e8fd055f4fb082c2468551c492c71612af7bb195393af9f5",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/yu55vq8i.manifest.json"
+        },
+        {
+          "after_sha256": "4c955008fdfd7b1f60b1b7de8e13fbd65e0ba4d5c2b27e2358e7022c6f3f6090",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/zpfft1bo.manifest.json"
+        },
+        {
+          "after_sha256": "e833ad80cdfdcf430b67668683f0f849b695fd2d0965fff435072b4e260da015",
+          "before_sha256": null,
+          "path": "tests/test-surface-fixtures.py"
+        },
+        {
+          "after_sha256": "039819f747816e52ff0e7053e04686794ba3c4e4264742081999f29471cbca10",
+          "before_sha256": null,
+          "path": "tools/check-surface-fixtures.py"
+        },
+        {
+          "after_sha256": "cba4d3533b972ed7e2613c4b037e17378d04dcef4b1a706ebb8919de671ff538",
+          "before_sha256": "cba4d3533b972ed7e2613c4b037e17378d04dcef4b1a706ebb8919de671ff538",
+          "path": "tools/replay-render-capture.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "11ed7ed881d09555877f85014af5fa8dc3e5d744a7b16c50821c7f489c976181",
+          "before_sha256": null,
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "2029f84e04af8dd257af10d5aa96e2f619259e71df87d3d6cff5ace0a116251b",
+          "before_sha256": null,
+          "id": "RE.surface-copy.rgb565-bltfast"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:45ddac3956397d9042c5eaf83379182bbc2a5e1d93be4ee991a2ac0bf7dd1e0f"
+      ],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh offline execution builds the current renderer replay target and compares CPU and Mesa OpenGL with all five historical original-driver destination outputs (2,400,000 native pixels) and independent CPU RGB565 presentation conversion. Five corpus/refusal tests pass for hash/provenance mismatch, path escape, poisoned expected bytes and overstated operation scope. No original routine/game/Wine was launched; immutable original manifest verified before/after. Missing formats, keys, palettes, clipping, fills, overlap, Restore, lifetime and flip fixtures remain pending. This recorded result does not validate current collectors, physical drivers or native live replacement.",
+        "evidence": [
+          "ORIGINAL.surface-copy.rgb565-bltfast-20261006",
+          "NR.surface-fixture-corpus.offline-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "11ed7ed881d09555877f85014af5fa8dc3e5d744a7b16c50821c7f489c976181",
+          "before_sha256": null,
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "2029f84e04af8dd257af10d5aa96e2f619259e71df87d3d6cff5ace0a116251b",
+          "before_sha256": null,
+          "id": "RE.surface-copy.rgb565-bltfast"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+          "before_sha256": "5df3bc61ddee5d848202006a6a6a5d81227c6e0ca57f3534c2d3d4d5f98ccc14",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+          "before_sha256": "7c442840a3629aec59596ca36113c456654c1000100ae7d3105f6f403b80fbf5",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+          "before_sha256": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+          "path": "renderer/capture.cpp"
+        },
+        {
+          "after_sha256": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+          "before_sha256": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+          "path": "renderer/capture.hpp"
+        },
+        {
+          "after_sha256": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+          "before_sha256": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+          "path": "renderer/replay_main.cpp"
+        },
+        {
+          "after_sha256": "f8edc212f9d3c1ae07603d7ebf6fde83a4ba716a1902195ce24ec029dc8571c3",
+          "before_sha256": "bb41fdccaf07f3b3f118fa66cdff56cef70d5e061774d6e544d4c6c9711c48d7",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "1b03f445f4ba9c06966f0377cac15e2ff08c140c6a793b04276823e55355a75a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-fixtures-20261006.json"
+        },
+        {
+          "after_sha256": "d3858e2b37676f3b60b159626edd1636087862fc07f14e56647422efa897b36d",
+          "before_sha256": "a0af9798dca824d7a334a9252d74d66a28cc09768f79264db2c124ef5412b6b6",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "4b5c59e7ed5b7f34e479f2c8f29292e5f38469f4386075805f51f0e912813ff9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-fixtures-20261006.json"
+        },
+        {
+          "after_sha256": "c20219172452ffadb2be7d82b8bc9c44f06d20fc721718e140086e1e09a4702b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-fixtures-commit-20261006.json"
+        },
+        {
+          "after_sha256": "8b5b38a3f053f07681874cc3d00e5819e7057283759de85221b768104e933bc2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-fixtures-20261006.md"
+        },
+        {
+          "after_sha256": "0322d5b68ad12e38de30c70c4deeb1fe76c48fc1c2f32d3996a281e2aae00817",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-fixtures-commit-20261006.md"
+        },
+        {
+          "after_sha256": "fe0128258ac15750312851cd47c542bc45fe30e8f4400511f30bc217b5f61fab",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-fixtures-opengl-20261006.json"
+        },
+        {
+          "after_sha256": "9c0d276c8cb151e3875870d1d8199deadf95f6406d8b7169095fa16f369828ba",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-fixtures.md"
+        },
+        {
+          "after_sha256": "b52b1b513b212dda875288b02a567088811877d58fd12aa2201ce0328baa39d5",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "e3d97844617a3f3ecdf2ca15787cbc442ce0f5e375fd783caf3e90ed5496cdb6",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/corpus.json"
+        },
+        {
+          "after_sha256": "6d86cfbdd6e4a6a05b993aafd6d6cc338b2745da3c868432d0f693eae403c648",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/g34xhs0b.manifest.json"
+        },
+        {
+          "after_sha256": "51165958fbfdf56a26912efb2dd0dd152ff3dc08779e3ca83b6e26473cf13b22",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/p66k189j.manifest.json"
+        },
+        {
+          "after_sha256": "d0b351908c11390f2812a689f7a4b11a426a3e55d518c6e7b2966a1bd6f2d102",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/ugdn7zhm.manifest.json"
+        },
+        {
+          "after_sha256": "14ffd0bdc20f1340e8fd055f4fb082c2468551c492c71612af7bb195393af9f5",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/yu55vq8i.manifest.json"
+        },
+        {
+          "after_sha256": "4c955008fdfd7b1f60b1b7de8e13fbd65e0ba4d5c2b27e2358e7022c6f3f6090",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/zpfft1bo.manifest.json"
+        },
+        {
+          "after_sha256": "e833ad80cdfdcf430b67668683f0f849b695fd2d0965fff435072b4e260da015",
+          "before_sha256": null,
+          "path": "tests/test-surface-fixtures.py"
+        },
+        {
+          "after_sha256": "039819f747816e52ff0e7053e04686794ba3c4e4264742081999f29471cbca10",
+          "before_sha256": null,
+          "path": "tools/check-surface-fixtures.py"
+        },
+        {
+          "after_sha256": "cba4d3533b972ed7e2613c4b037e17378d04dcef4b1a706ebb8919de671ff538",
+          "before_sha256": "cba4d3533b972ed7e2613c4b037e17378d04dcef4b1a706ebb8919de671ff538",
+          "path": "tools/replay-render-capture.py"
+        }
+      ],
+      "id": "surface-fixture-corpus-isolated-commit-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:45ddac3956397d9042c5eaf83379182bbc2a5e1d93be4ee991a2ac0bf7dd1e0f"
+      ],
+      "reason": "Reviewed isolated chunk1 tree against HEAD: only the operation matrix, portable captured pixels/manifests, offline checker/tests and their coverage metadata are committed. Current code-index is generated from HEAD plus chunk1, excluding concurrent recovery source and register edits. Historical mixed-working census/summary are retained separately from the committed baseline. Full destination original-output scope and missing operation gaps remain explicit.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh recorded five-case CPU/OpenGL execution matches all2,400,000 original-driver destination pixels and independent presentation conversion; isolated-tree five fixture/refusal tests pass. Native renderer source is unchanged; captures remain independent comparison data only. No live replacement or unsupported operation equivalence claimed.",
+        "evidence": [
+          "ORIGINAL.surface-copy.rgb565-bltfast-20261006",
+          "NR.surface-fixture-corpus.offline-20261006"
+        ]
+      }
+    },
+    {
+      "id": "surface-fixture-existing-link-accounting-20261006",
+      "reason": "Reviewed existing renderer policies affected only by additional source-census ownership links for the new narrowly scoped original comparison. Their before/after contract hashes are equal; source bytes and historical behavior/status/evidence remain unchanged.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "b4c17b308df20087bf3036629e6688d18988473b6a0a78611d35c350d4c6e237",
+          "before_sha256": "b4c17b308df20087bf3036629e6688d18988473b6a0a78611d35c350d4c6e237",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "3717103b930807ad525f9f458058ba3d210d9918d30f459e6d808b7f0d9c5e51",
+          "before_sha256": "3717103b930807ad525f9f458058ba3d210d9918d30f459e6d808b7f0d9c5e51",
+          "id": "NR.surfaces"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "reason": "No new execution or equivalence claim for the existing renderer policies; the new fixtures have separate scoped records. Historical evidence remains pinned."
+      }
     }
   ]
 }

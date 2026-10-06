@@ -1,5 +1,25 @@
 # Engine modernization coverage ledger
 
+## Native surface operation matrix and independent offline fixtures (2026-10-06)
+
+Milestone 3.1 now has a [required/conditional operation matrix](native-surface-operation-matrix.json)
+and [portable original fixture corpus and procedure](native-surface-fixtures.md).
+`RE.surface-copy.rgb565-bltfast` records only five retained original-game driver
+opaque RGB565 BltFast outputs at return PC `0x0058c5be`; fresh CPU/OpenGL replay
+matches all 2,400,000 destination pixels and independent CPU presentation colors.
+`NR.surface-fixture-corpus` owns offline admission, provenance hashes and missing
+operation reporting. Five meaningful corpus/refusal tests pass. Captured-after
+pixels are comparison inputs only. Historical manifests pin executable/DLL
+identities but lack collector source fingerprints; this is not current-hook,
+physical-driver, live equivalence or replacement evidence.
+
+Other formats, exact keys, palettes, clipping, fills, same-surface overlap,
+Restore/loss/retry, update/lifetime and paired flip output fixtures remain pending.
+Required rows retain their untested branches; ranged/destination keys, conversion,
+stretch, extra effects and longer flip chains remain conditional discovery work.
+Native command recovery and complete checkpoint attachment remain separate from
+original restoration semantics. The fixture milestone reports incomplete.
+
 Ledger reviewed: 2026-10-05 (cross-subsystem register, evidence, links and
 remaining-work reconciliation; initial baseline: 2026-10-03). Dates on individual
 milestones remain the dates recorded in their evidence, including 2026-10-06.

@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "scope": "Retained original-game captures; manifests preserved byte-for-byte. Historical absolute paths are provenance only and are never opened during replay.",
+  "cases": [
+    {
+      "id": "original-rgb565-bltfast-g34xhs0b",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "oracle": "original_driver_post_call_lock",
+      "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "operation": "BltFast",
+      "bits": 16,
+      "caller_return_va": "0x0058c5be",
+      "capture": {
+        "path": "g34xhs0b.bin.gz",
+        "sha256": "f39c6c8de24ded931d1a60cc8e2913fd16d501b27dbd6f812caf7f4a2b574434",
+        "raw_sha256": "30b681adc8274b778835c5dba2e86a6dbe00c7691231d1f1e360648bce747876"
+      },
+      "expected_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+      "provenance": {
+        "path": "g34xhs0b.manifest.json",
+        "sha256": "6d86cfbdd6e4a6a05b993aafd6d6cc338b2745da3c868432d0f693eae403c648"
+      },
+      "historical_capture_path": "working/experiments/opengl-render/run-g34xhs0b/draw-capture/blit-0001.bin",
+      "scope": "Source rectangle (0, 0, 40, 1); destination rectangle (679, 599, 719, 600); full 800x600 original driver destination checked. No claim of implicit API clipping."
+    },
+    {
+      "id": "original-rgb565-bltfast-p66k189j",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "oracle": "original_driver_post_call_lock",
+      "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "operation": "BltFast",
+      "bits": 16,
+      "caller_return_va": "0x0058c5be",
+      "capture": {
+        "path": "p66k189j.bin.gz",
+        "sha256": "ae5cafbf5ee32504bf0601f0538ff300faee1af31a9dbe1644bba6aee244e14b",
+        "raw_sha256": "383d9a6dec1e8cf922c555fe3538a7a8581859ba30ea14e9267cc52627ddf597"
+      },
+      "expected_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+      "provenance": {
+        "path": "p66k189j.manifest.json",
+        "sha256": "51165958fbfdf56a26912efb2dd0dd152ff3dc08779e3ca83b6e26473cf13b22"
+      },
+      "historical_capture_path": "working/experiments/opengl-render/run-p66k189j/draw-capture/blit-0001.bin",
+      "scope": "Source rectangle (0, 0, 40, 3); destination rectangle (0, 597, 40, 600); full 800x600 original driver destination checked. No claim of implicit API clipping."
+    },
+    {
+      "id": "original-rgb565-bltfast-ugdn7zhm",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "oracle": "original_driver_post_call_lock",
+      "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "operation": "BltFast",
+      "bits": 16,
+      "caller_return_va": "0x0058c5be",
+      "capture": {
+        "path": "ugdn7zhm.bin.gz",
+        "sha256": "dd43729020bb0864a2c22a45aa709039b6211859f8959b034817834f62bffa10",
+        "raw_sha256": "ff1859b03c82b7764a1a8c3860d8fd545e24fad820ca2dbebe3d65d5ffecd5d8"
+      },
+      "expected_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+      "provenance": {
+        "path": "ugdn7zhm.manifest.json",
+        "sha256": "d0b351908c11390f2812a689f7a4b11a426a3e55d518c6e7b2966a1bd6f2d102"
+      },
+      "historical_capture_path": "working/experiments/opengl-render/run-ugdn7zhm/draw-capture/blit-0001.bin",
+      "scope": "Source rectangle (0, 0, 40, 40); destination rectangle (362, 229, 402, 269); full 800x600 original driver destination checked. No claim of implicit API clipping."
+    },
+    {
+      "id": "original-rgb565-bltfast-yu55vq8i",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "oracle": "original_driver_post_call_lock",
+      "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "operation": "BltFast",
+      "bits": 16,
+      "caller_return_va": "0x0058c5be",
+      "capture": {
+        "path": "yu55vq8i.bin.gz",
+        "sha256": "4a6a8b3aa699e5f48db8764704e5431841c56bc5644b51193483436f01d0e672",
+        "raw_sha256": "f092903fa05dd0610b578195093a415d3c1c2b3d1d6591421ec2184419f1aab8"
+      },
+      "expected_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+      "provenance": {
+        "path": "yu55vq8i.manifest.json",
+        "sha256": "14ffd0bdc20f1340e8fd055f4fb082c2468551c492c71612af7bb195393af9f5"
+      },
+      "historical_capture_path": "working/experiments/opengl-render/run-yu55vq8i/draw-capture/blit-0001.bin",
+      "scope": "Source rectangle (0, 0, 40, 40); destination rectangle (572, 475, 612, 515); full 800x600 original driver destination checked. No claim of implicit API clipping."
+    },
+    {
+      "id": "original-rgb565-bltfast-zpfft1bo",
+      "matrix_ids": [
+        "SURF.copy.opaque",
+        "SURF.format.rgb565"
+      ],
+      "oracle": "original_driver_post_call_lock",
+      "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "operation": "BltFast",
+      "bits": 16,
+      "caller_return_va": "0x0058c5be",
+      "capture": {
+        "path": "zpfft1bo.bin.gz",
+        "sha256": "4bc3c1a77ef9d166b27b3a4d4e3dcf1624052e6edbf9eff8b07ee572b961065b",
+        "raw_sha256": "ac1c7a58ccddca15a3c5c7bf831b090fcea06cb7017018767b5a1a0d11190622"
+      },
+      "expected_sha256": "94756bdebf070d52c29e483219f3d685bcdc3ff864c559c99f6131019465c2b2",
+      "provenance": {
+        "path": "zpfft1bo.manifest.json",
+        "sha256": "4c955008fdfd7b1f60b1b7de8e13fbd65e0ba4d5c2b27e2358e7022c6f3f6090"
+      },
+      "historical_capture_path": "working/experiments/opengl-render/run-zpfft1bo/draw-capture/blit-0001.bin",
+      "scope": "Source rectangle (0, 0, 40, 40); destination rectangle (363, 150, 403, 190); full 800x600 original driver destination checked. No claim of implicit API clipping."
+    }
+  ]
+}

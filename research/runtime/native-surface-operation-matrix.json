@@ -1,0 +1,489 @@
+{
+  "schema": 1,
+  "scope": "Milestone 3 required-operation planning and original fixture inventory, not an equivalence score or an exhaustive DirectDraw specification.",
+  "build": "nocd-40209ca7",
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "documents": [
+    "research/runtime/native-surface-fixtures.md",
+    "research/runtime/render-drawing-inventory.md"
+  ],
+  "operations": [
+    {
+      "id": "SURF.format.rgb565",
+      "requirement": "required",
+      "requirement_evidence": "Captured game RGB565 surfaces and selected WORD raster routes.",
+      "native_backend": "implemented",
+      "wire_support": "CREATE/UPDATE/COPY",
+      "behavior_ids": [
+        "NR.surfaces",
+        "RE.surface-copy.rgb565-bltfast"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "native words and unused bits",
+        "full destination borders",
+        "RGB565 presentation"
+      ],
+      "original_fixture_ids": [
+        "original-rgb565-bltfast-g34xhs0b",
+        "original-rgb565-bltfast-p66k189j",
+        "original-rgb565-bltfast-ugdn7zhm",
+        "original-rgb565-bltfast-yu55vq8i",
+        "original-rgb565-bltfast-zpfft1bo"
+      ],
+      "remaining_gap": "Only five opaque BltFast captures at one caller; other operations and formats remain separate."
+    },
+    {
+      "id": "SURF.format.other",
+      "requirement": "required",
+      "requirement_evidence": "Milestone format/storage contract; indexed8 and RGB555/24/32 already admitted synthetically.",
+      "native_backend": "partial",
+      "wire_support": "CREATE/UPDATE/COPY",
+      "behavior_ids": [
+        "NR.surfaces",
+        "NR.continuous-mutations"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811600,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "indexed8 distinct indices",
+        "RGB555/24/32 masks",
+        "positive/negative padded pitch",
+        "layout/mask replacement",
+        "invalid masks"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "No independent original-driver fixture here for these formats; required set must follow original descriptors, not a universal conversion promise."
+    },
+    {
+      "id": "SURF.copy.opaque",
+      "requirement": "required",
+      "requirement_evidence": "Whole and rectangle wrappers plus retained live original output.",
+      "native_backend": "implemented_same_format_in_bounds",
+      "wire_support": "COPY",
+      "behavior_ids": [
+        "RI.copies",
+        "RE.surface-copy.rgb565-bltfast"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816128,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819328,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "Blt and BltFast",
+        "whole and subrect copies",
+        "untouched borders",
+        "one pixel/row",
+        "failure leaves destination unchanged"
+      ],
+      "original_fixture_ids": [
+        "original-rgb565-bltfast-g34xhs0b",
+        "original-rgb565-bltfast-p66k189j",
+        "original-rgb565-bltfast-ugdn7zhm",
+        "original-rgb565-bltfast-yu55vq8i",
+        "original-rgb565-bltfast-zpfft1bo"
+      ],
+      "remaining_gap": "Blt, whole-surface and non-RGB565 original outputs still missing; current fixtures only establish selected RGB565 BltFast rectangles."
+    },
+    {
+      "id": "SURF.key.exact_source",
+      "requirement": "required",
+      "requirement_evidence": "Selected keyed wrappers and observed SetColorKey/descriptor paths.",
+      "native_backend": "implemented",
+      "wire_support": "COPY exact source key",
+      "behavior_ids": [
+        "RI.copies",
+        "NR.surfaces"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816640,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818528,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819024,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "key present/absent/all transparent",
+        "duplicate palette RGB distinct indices",
+        "high native key bits",
+        "key mutation",
+        "failed keyed call"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Existing synthetic evidence only in this corpus; capture independent original before/after and key state."
+    },
+    {
+      "id": "SURF.palette",
+      "requirement": "required",
+      "requirement_evidence": "Indexed original surfaces/palette calls; explicit native v2 resource model.",
+      "native_backend": "implemented_scoped",
+      "wire_support": "v1 PALETTE; v2 palette CREATE/UPDATE/BIND/DELETE",
+      "behavior_ids": [
+        "NR.palette-resources"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811600,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "shared update",
+        "partial entry range",
+        "rebind/detach",
+        "flags-only write",
+        "alias/final Release/pointer reuse",
+        "indices unchanged"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "No independently captured original indexed colors/state sequence in this corpus; native lifetime policy is separate from original semantics."
+    },
+    {
+      "id": "SURF.clip.rectangles",
+      "requirement": "required",
+      "requirement_evidence": "Milestone explicitly requires clipping; selected rectangle wrappers exist. Exact baseline boundary handling remains open.",
+      "native_backend": "unsupported",
+      "wire_support": "v1/v2 COPY requires in-bounds rectangles",
+      "behavior_ids": [
+        "RI.copies"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818528,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819024,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819328,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "each edge/corner",
+        "empty/full exclusion",
+        "source/destination adjustment",
+        "Blt versus BltFast error/result"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "The one/three-row fixtures already contain in-bounds rectangles and do not prove driver or wrapper clipping."
+    },
+    {
+      "id": "SURF.clip.regions",
+      "requirement": "required",
+      "requirement_evidence": "Milestone clipper requirement; tracker observes SetClipper but refuses attached clippers. Reachable game region shapes remain unknown.",
+      "native_backend": "unsupported",
+      "wire_support": "not represented",
+      "behavior_ids": [
+        "RI.copies"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819328,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "single/multiple disjoint regions",
+        "clipper changes",
+        "empty region",
+        "key/fill interactions"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Need original clipper identity/region observation and independent driver output; do not infer regions from a scissor box."
+    },
+    {
+      "id": "SURF.fill",
+      "requirement": "required",
+      "requirement_evidence": "Static colour-fill construction and live startup activity at selected wrappers.",
+      "native_backend": "implemented_via_update",
+      "wire_support": "UPDATE of argument-derived constant pixels",
+      "behavior_ids": [
+        "RI.fills",
+        "NR.owned-session-fill"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814976,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "full/partial fill",
+        "wrapper 16-bit truncation versus API native color",
+        "unknown initial partial destination",
+        "failure/retry",
+        "clip interactions"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Current captures exclude NULL-source fills; no independent original fill-output fixture. Dedicated GPU clear is not a completion requirement."
+    },
+    {
+      "id": "SURF.copy.self_overlap",
+      "requirement": "required",
+      "requirement_evidence": "Milestone explicitly includes overlap; all same-surface copies currently refused. Original alias/direction behavior unresolved.",
+      "native_backend": "unsupported",
+      "wire_support": "COPY requires distinct IDs",
+      "behavior_ids": [
+        "RI.copies",
+        "NR.surfaces"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816128,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "nonoverlapping same surface",
+        "four overlap directions",
+        "identical rectangle",
+        "aliases",
+        "keyed/clipped overlap"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Need original same-surface captures with complete before state and alias identity; no memmove assumption."
+    },
+    {
+      "id": "SURF.restore",
+      "requirement": "required",
+      "requirement_evidence": "Selected wrappers have restore/retry paths; successful Restore currently invalidates pixels/key and refuses history.",
+      "native_backend": "unsupported_baseline",
+      "wire_support": "fresh-session recovery/checkpoint are distinct native policies",
+      "behavior_ids": [
+        "RI.fills",
+        "RI.copies",
+        "NR.command-recovery",
+        "NR.command-checkpoint-attachment"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818528,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "lost result",
+        "Restore success/failure",
+        "retry ordering/count",
+        "pixel validity",
+        "key/palette retention/reload"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Need original call/state/output sequences, including undefined content validity. Never compare unspecified restored pixels as deterministic output."
+    },
+    {
+      "id": "SURF.lifetime_updates",
+      "requirement": "required",
+      "requirement_evidence": "Persistent offline replay needs complete baseline, partial CPU writes and resource ownership.",
+      "native_backend": "implemented_scoped",
+      "wire_support": "CREATE/UPDATE/DESTROY and session namespace",
+      "behavior_ids": [
+        "NR.surfaces",
+        "NR.continuous-resource-lifetime",
+        "NR.continuous-mutations"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811600,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813856,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "full baseline before partial write",
+        "padding/negative pitch",
+        "destroy/stale IDs",
+        "layout replacement",
+        "failed Unlock",
+        "lock/DC exclusivity"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Synthetic foundation exists; game-driver sequences and unobserved leases remain outside this fixture set."
+    },
+    {
+      "id": "SURF.flip",
+      "requirement": "required",
+      "requirement_evidence": "Observed two-buffer presentation is part of persistent composition.",
+      "native_backend": "implemented_two_buffer",
+      "wire_support": "SWAP/PRESENT",
+      "behavior_ids": [
+        "NR.surfaces",
+        "NR.continuous-mutations"
+      ],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810608,
+          "scope": "Selected surface wrapper anchor; operation semantics are limited to the linked research."
+        }
+      ],
+      "acceptance_cases": [
+        "front/back swap",
+        "palette stays with logical identity",
+        "failed Flip",
+        "attached alias ownership"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "No original paired front/back output fixtures here; longer chains are conditional scope."
+    },
+    {
+      "id": "SURF.key.ranged_destination",
+      "requirement": "conditional",
+      "requirement_evidence": "No recovered selected wrapper requirement established; current adapter refuses ranges/destination keys.",
+      "native_backend": "unsupported",
+      "wire_support": "not represented",
+      "behavior_ids": [
+        "RI.copies"
+      ],
+      "original": [],
+      "acceptance_cases": [
+        "range endpoints",
+        "destination admission",
+        "key/clipping interactions"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Keep as explicit discovery backlog; promote to required only with caller/descriptor evidence or an explicit scope decision."
+    },
+    {
+      "id": "SURF.conversion_stretch",
+      "requirement": "conditional",
+      "requirement_evidence": "Current selected copies are same-format/unscaled; other routes remain possible.",
+      "native_backend": "unsupported",
+      "wire_support": "not represented",
+      "behavior_ids": [
+        "RI.copies"
+      ],
+      "original": [],
+      "acceptance_cases": [
+        "format-pair conversion",
+        "scale sampling and clipping"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Keep as explicit discovery backlog; promote to required only with caller/descriptor evidence or an explicit scope decision."
+    },
+    {
+      "id": "SURF.effects",
+      "requirement": "conditional",
+      "requirement_evidence": "ROP/DDFX/blend/rotation are refused; no selected caller semantics recovered.",
+      "native_backend": "unsupported",
+      "wire_support": "not represented",
+      "behavior_ids": [
+        "RI.copies"
+      ],
+      "original": [],
+      "acceptance_cases": [
+        "flag-specific effects",
+        "failed/unsupported result"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Keep as explicit discovery backlog; promote to required only with caller/descriptor evidence or an explicit scope decision."
+    },
+    {
+      "id": "SURF.flip.complex",
+      "requirement": "conditional",
+      "requirement_evidence": "Only selected double buffers validated; longer/stereo/field chains unresolved.",
+      "native_backend": "unsupported",
+      "wire_support": "not represented",
+      "behavior_ids": [
+        "NR.surfaces"
+      ],
+      "original": [],
+      "acceptance_cases": [
+        "multi-buffer ownership",
+        "stereo/field flags"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Keep as explicit discovery backlog; promote to required only with caller/descriptor evidence or an explicit scope decision."
+    }
+  ]
+}
