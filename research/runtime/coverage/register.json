@@ -11890,7 +11890,8 @@
         "research/runtime/opengl-owned-session-unlock-packed.md",
         "research/runtime/opengl-owned-session-startup.md",
         "research/runtime/opengl-owned-session-sequence.md",
-        "research/runtime/opengl-command-ring-adapter.md"
+        "research/runtime/opengl-command-ring-adapter.md",
+        "research/runtime/opengl-command-streaming-lifecycle.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py"
@@ -11906,7 +11907,8 @@
         "NR.owned-session-unlock-packed.startup",
         "NR.owned-session-startup.live",
         "NR.owned-session-sequence.live",
-        "NR.command-ring-adapter.live"
+        "NR.command-ring-adapter.live",
+        "NR.command-streaming.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -13273,12 +13275,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Mapped native ring reader and cooperative owned producer queue",
-      "scope": "Version2 adapter and bounded queue drained nonblocking after tracker release. v1 preserved; idle scheduling, sustained decoder/archive lifetime and original-driver equivalence remain pending.",
+      "scope": "Version2 mapped adapter and bounded owned queue; idle lifecycle and streaming native decoder policies tracked separately. v1 preserved; sustained original capture, archive rotation and original-driver equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-ring-adapter.md",
-        "research/formats/render-command-ring-v2.md"
+        "research/formats/render-command-ring-v2.md",
+        "research/runtime/opengl-command-streaming-lifecycle.md"
       ],
       "implementation": [
         "runtime/render/command_channel.h",
@@ -13303,7 +13306,8 @@
         "NR.command-ring-adapter.queue",
         "NR.command-ring-adapter.sequence",
         "NR.command-ring-adapter.startup",
-        "NR.command-ring-adapter.live"
+        "NR.command-ring-adapter.live",
+        "NR.command-streaming.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -13334,6 +13338,88 @@
       ],
       "evidence": [
         "WS01.native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.command-idle-lifecycle",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Idle producer retries and explicit transport shutdown",
+      "scope": "Version2 owned queue retry thread started outside DllMain; bounded idle progress and explicit shutdown/cancellation outside loader lock. No dynamic hook uninstall.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-command-streaming-lifecycle.md"
+      ],
+      "implementation": [
+        "runtime/render/command_scheduler.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/bridge.c",
+        "tools/build-render-bridge.py"
+      ],
+      "tests": [
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-command-idle.py",
+        "tools/test-render-command-queue.py",
+        "tools/test-render-session-sequence.py",
+        "tools/test-render-session-startup.py",
+        "tools/test-live-render-game.py"
+      ],
+      "evidence": [
+        "NR.command-streaming.idle",
+        "NR.command-streaming.queue",
+        "NR.command-streaming.sequence",
+        "NR.command-streaming.startup",
+        "NR.command-streaming.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.command-streaming",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded-memory sustained native command decoding",
+      "scope": "Explicit version2 streaming mode beyond64MiB/4096 cumulative limits with bounded record/fragment/surface storage, monotonic surface IDs and finite sequence lifetime. Offline/v1 policies retained; original owned sample limits remain independent.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-command-streaming-lifecycle.md"
+      ],
+      "implementation": [
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/command_state.hpp",
+        "renderer/command_consumer.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp"
+      ],
+      "tests": [
+        "tests/live-render-channel-test.cpp",
+        "tools/test-render-command-streaming.py",
+        "tools/test-render-session-sequence.py",
+        "tools/test-live-render-game.py"
+      ],
+      "evidence": [
+        "NR.command-streaming.native",
+        "NR.command-streaming.sequence",
+        "NR.command-streaming.startup",
+        "NR.command-streaming.live",
+        "NR.command-streaming.sanitized"
       ],
       "status": {
         "understanding": "scoped",
@@ -23248,6 +23334,182 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.command-streaming.idle",
+      "kind": "native_integration",
+      "scope": "Actual PE32 retry worker with independent delayed reader validates owned2097275-byte idle completion without subsequent drawing callbacks, explicit shutdown with pending publication, cancellation, timeout and detach. No OS thread-failure/join-timeout injection.",
+      "record": "research/runtime/opengl-command-streaming-idle.json",
+      "sha256": "39f3a83204739039ba4f92964997b8073f94a712860321b8828725ba33c17551",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/acknowledged",
+          "equals": 2097275
+        },
+        {
+          "pointer": "/cases/1/state",
+          "equals": 2
+        },
+        {
+          "pointer": "/cases/2/reason",
+          "equals": 3
+        },
+        {
+          "pointer": "/cases/3/reason",
+          "equals": 4
+        },
+        {
+          "pointer": "/cases/4/reason",
+          "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "NR.command-streaming.native",
+      "kind": "native_integration",
+      "scope": "Native v2 decoder/consumer consumes74631284 bytes/5077 commands through1MiB ring,71 FULL retries andfour independent complete GPU frames. Bounded v1/offline regressions, monotonic-ID and fragment refusals. No sustained original-game claim.",
+      "record": "research/runtime/opengl-command-streaming-native.json",
+      "sha256": "dbfd71034a8a55f4265b5ebf3e0d5eccd9c3e6602a1c1b4d681424627d2f248d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sustained_bytes",
+          "equals": 74631284
+        },
+        {
+          "pointer": "/native/sustained_commands",
+          "equals": 5077
+        },
+        {
+          "pointer": "/native/sustained_frames",
+          "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "NR.command-streaming.queue",
+      "kind": "native_integration",
+      "scope": "Actual C queue/channel11 legacy plus7 queue cases native/ASan/UBSan;35653675-byte private queue wrap and delayed reader/owned bytes. Worker thread covered separately.",
+      "record": "research/runtime/opengl-command-streaming-queue.json",
+      "sha256": "f4ea4ce9a51b658262113505a56f3b7ee21d4ace3d309a5739c812d9a309e725",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized/1/queue_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/native/1/queue_wrap_bytes",
+          "equals": 35653675
+        }
+      ]
+    },
+    {
+      "id": "NR.command-streaming.sequence",
+      "kind": "native_integration",
+      "scope": "Eight PE32 v2 bounded sequence cases,44 independent GPU frame comparisons, five complete/three refused; original synthetic calls/results/errors retained.",
+      "record": "research/runtime/opengl-command-streaming-sequence.json",
+      "sha256": "75f867234070dade57256ec4c9ec9b8d7e4c906f4fd2b2416a8021abe8d46748",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/wire_version",
+          "equals": 2
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 44
+        }
+      ]
+    },
+    {
+      "id": "NR.command-streaming.startup",
+      "kind": "native_integration",
+      "scope": "Eight v1 startup regressions after shared lifecycle changes, four complete/four refused andfour independent complete GPU frames.",
+      "record": "research/runtime/opengl-command-streaming-startup.json",
+      "sha256": "33002f10767adfcde872517eba1d66afb3f032d9b64ec2a0d8edd6679b2e9b2a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-streaming.live",
+      "kind": "live_observation",
+      "scope": "Original hash40209ca7 bounded startup retains original drawing,39,363,820 bytes through1MiB ring, three identical native frames before producer exit, cleanEND, zero surfaces/readbacks/uploads. No independent original pixels or replacement.",
+      "record": "research/runtime/opengl-command-streaming-live.json",
+      "sha256": "67fa55a5a3ce064be1b57b1574eba5adb96ab3800b560f2f6dfda28915a713f4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/wire_version",
+          "equals": 2
+        },
+        {
+          "pointer": "/producer_state",
+          "equals": 2
+        },
+        {
+          "pointer": "/native_consumer/presentations",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_consumer/live_surfaces",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NR.command-streaming.sanitized",
+      "kind": "native_integration",
+      "scope": "ASan/UBSan native decoder/consumer repeats74631284-byte/5077-command v2 mapped GPU fixture and bounded regressions. Qt/Mesa integration uses detect_leaks=0 as existing harness; native C queue separately enables leak checking. No original/game or4GiB boundary validation.",
+      "record": "research/runtime/opengl-command-streaming-sanitized.json",
+      "sha256": "637534358b82f6ee2cde0e3abed4b37b66b38ef3948c9f0f19cbdb0a44c8f2a4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/sustained_bytes",
+          "equals": 74631284
+        },
+        {
+          "pointer": "/native/sustained_commands",
+          "equals": 5077
+        },
+        {
+          "pointer": "/native/sustained_frames",
+          "equals": 4
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -26861,6 +27123,65 @@
         "tests/test-bounded-scene.py",
         "tests/fixtures/forest-redcap-scene.json"
       ]
+    },
+    {
+      "id": "NR.command-streaming.idle",
+      "level": "preview",
+      "scope": "Actual PE32 retry worker with independent delayed reader validates owned2097275-byte idle completion without subsequent drawing callbacks, explicit shutdown with pending publication, cancellation, timeout and detach. No OS thread-failure/join-timeout injection.",
+      "behaviors": [
+        "NR.command-idle-lifecycle"
+      ],
+      "evidence": [
+        "NR.command-streaming.idle",
+        "NR.command-streaming.queue",
+        "NR.command-streaming.sequence",
+        "NR.command-streaming.startup"
+      ],
+      "tests": [
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-command-idle.py",
+        "tools/test-render-command-queue.py",
+        "tools/test-render-session-sequence.py",
+        "tools/test-render-session-startup.py",
+        "tools/test-live-render-game.py"
+      ]
+    },
+    {
+      "id": "NR.command-streaming.native",
+      "level": "preview",
+      "scope": "Native v2 decoder/consumer consumes74631284 bytes/5077 commands through1MiB ring,71 FULL retries andfour independent complete GPU frames. Bounded v1/offline regressions, monotonic-ID and fragment refusals. No sustained original-game claim.",
+      "behaviors": [
+        "NR.command-streaming"
+      ],
+      "evidence": [
+        "NR.command-streaming.native",
+        "NR.command-streaming.sequence",
+        "NR.command-streaming.startup",
+        "NR.command-streaming.sanitized"
+      ],
+      "tests": [
+        "tests/live-render-channel-test.cpp",
+        "tools/test-render-command-streaming.py",
+        "tools/test-render-session-sequence.py",
+        "tools/test-live-render-game.py"
+      ]
+    },
+    {
+      "id": "NR.command-streaming.live",
+      "level": "live_observation",
+      "scope": "Original hash40209ca7 bounded startup retains original drawing,39,363,820 bytes through1MiB ring, three identical native frames before producer exit, cleanEND, zero surfaces/readbacks/uploads. No independent original pixels or replacement.",
+      "behaviors": [
+        "NR.command-idle-lifecycle",
+        "NR.command-ring-adapter",
+        "NR.real-game-command-shadow"
+      ],
+      "evidence": [
+        "NR.command-streaming.live"
+      ],
+      "tests": [
+        "tools/test-live-render-game.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -27108,7 +27429,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-bounded-scene-commit-head.json",
-    "sha256": "9768fc83880d5cbd5b66b8642a78db825c80aa1dda919be546bdb7c3808742d2"
+    "path": "research/runtime/coverage/source-index-command-streaming.json",
+    "sha256": "1da9768e122bce54b168a0c6e766f1bb7a20ace4d87642926a0a93f346e9efa4"
   }
 }

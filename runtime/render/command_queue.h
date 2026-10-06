@@ -47,6 +47,6 @@ static void command_queue_drain(void){
     if(__atomic_load_n(&command_queue_end,__ATOMIC_ACQUIRE) && command_queue_read==__atomic_load_n(&command_queue_written,__ATOMIC_ACQUIRE))mnm_ring_end(&command_ring);
 }
 static void command_channel_pump(void){
-    if(!command_queue || !__sync_bool_compare_and_swap(&command_queue_draining,0,1))return;
-    u32 error=GetLastError();command_queue_drain();SetLastError(error);__sync_lock_release(&command_queue_draining);
+    if(!__sync_bool_compare_and_swap(&command_queue_draining,0,1))return;
+    u32 error=GetLastError();if(command_queue)command_queue_drain();SetLastError(error);__sync_lock_release(&command_queue_draining);
 }

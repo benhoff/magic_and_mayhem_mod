@@ -41,7 +41,9 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "owned_session_selftest.h"
 #include "input_selftest.h"
 #include "media_selftest.h"
+#include "command_idle_selftest.h"
 void start(void){
+    char idle_mode[16];if(GetEnvironmentVariableA("MNM_COMMAND_IDLE_SELFTEST",idle_mode,sizeof(idle_mode)))test_command_idle(idle_mode);
     char media_mode[8];if(GetEnvironmentVariableA("MNM_MEDIA_SELFTEST",media_mode,sizeof(media_mode)))test_media();
     char input_mode[8];if(GetEnvironmentVariableA("MNM_INPUT_SELFTEST",input_mode,sizeof(input_mode)))test_input();
     if(GetEnvironmentVariableA("MNM_OWNED_SESSION_SELFTEST",os_mode,sizeof(os_mode)))test_owned_session();

@@ -4,11 +4,11 @@
 #include <algorithm>
 LiveCommandRenderer::LiveCommandRenderer(GlViewport& viewport,bool verify):viewport_(viewport),verify_(verify){}
 LiveCommandRenderer::~LiveCommandRenderer(){abort();}
-bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}return true;}
-bool LiveCommandRenderer::open(const QString& path){if(!channel_.open(path)){error_=channel_.error();closed_=true;return false;}return true;}
+bool LiveCommandRenderer::create(const QString& path,quint32 session,quint32 version){if(!channel_.create(path,session,version)){error_=channel_.error();closed_=true;return false;}decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
+bool LiveCommandRenderer::open(const QString& path){if(!channel_.open(path)){error_=channel_.error();closed_=true;return false;}decoder_=std::make_unique<mnm::render::CommandDecoder>(channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded);return true;}
 void LiveCommandRenderer::fail(const QString& reason){error_=reason;abort();viewport_.setGpuFrame({});}
 void LiveCommandRenderer::abort(){
-    channel_.cancel();decoder_.abort();pending_.clear();cursor_=0;
+    channel_.cancel();if(decoder_)decoder_->abort();pending_.clear();cursor_=0;
     if(consumer_ && consumer_->state()==mnm::render::CommandConsumerState::Active)consumer_->abort();
     closed_=true;
 }
@@ -22,17 +22,17 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 viewport_.setGpuFrame(std::move(frame));viewport_.repaint();
                 if(!viewport_.error().isEmpty())throw std::runtime_error(viewport_.error().toStdString());
                 if(framePresented)framePresented();
-            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false});
+            },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded});
         }
         if(cursor_==pending_.size()){
-            pending_=decoder_.append(channel_.poll(budget));cursor_=0;
+            pending_=decoder_->append(channel_.poll(budget));cursor_=0;
         }
         const auto count=std::min<std::size_t>(32,pending_.size()-cursor_);
         if(count){consumer_->submit(pending_.data()+cursor_,count);cursor_+=count;}
         if(cursor_==pending_.size()){pending_.clear();cursor_=0;}
         if(channel_.state()==MNM_RENDER_COMMANDS_V1_STATE_ENDED && channel_.drained() && pending_.empty()){
             // poll() can expose terminal state before all bounded bytes drain.
-            decoder_.finish();consumer_->finish();ended_=true;closed_=true;
+            decoder_->finish();consumer_->finish();ended_=true;closed_=true;
         }
         return true;
     }catch(const std::exception& e){fail(e.what());return false;}

@@ -24,6 +24,8 @@ def build(selftest=False):
     if selftest:flags+=['-DMNM_RENDER_SELFTEST']
     subprocess.run(flags+['-c',str(source/'bridge.c'),'-o',str(root/'bridge.obj')],check=True)
     exports=['/export:RenderInstallForTest=_RenderInstallForTest@8','/export:RenderCaptureGuardForTest=_RenderCaptureGuardForTest@4','/export:RenderCaptureWaitsForTest=_RenderCaptureWaitsForTest@0','/export:RenderCreateForTest=_RenderCreateForTest@16','/export:RenderInputForTest=_RenderInputForTest@12','/export:RenderMediaForTest=_RenderMediaForTest@12'] if selftest else []
+    if selftest:exports+=['/export:RenderQueueForTest=_RenderQueueForTest@12']
+    exports+=['/export:RenderShutdown=_RenderShutdown@4']
     dll=root/'MnmRender.dll'
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib'),str(root/'gdi32.lib')],check=True)
     protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))+[REPO/'protocols/include/mnm/render_commands_v2.h',REPO/'protocols/include/mnm/render_command_ring.h']
@@ -32,7 +34,7 @@ def build(selftest=False):
         'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()},
         'protocol_sources':{str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest() for p in protocol_sources}},indent=2)+'\n')
     if selftest:
-        definition=root/'render.def';definition.write_text('LIBRARY MnmRender.dll\nEXPORTS\nRenderInstallForTest@8\nRenderCaptureGuardForTest@4\nRenderCaptureWaitsForTest@0\nRenderCreateForTest@16\nRenderInputForTest@12\nRenderMediaForTest@12\n')
+        definition=root/'render.def';definition.write_text('LIBRARY MnmRender.dll\nEXPORTS\nRenderInstallForTest@8\nRenderCaptureGuardForTest@4\nRenderCaptureWaitsForTest@0\nRenderCreateForTest@16\nRenderInputForTest@12\nRenderMediaForTest@12\nRenderShutdown@4\nRenderQueueForTest@12\n')
         subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'render.lib')],check=True)
         subprocess.run(flags+['-c',str(source/'selftest.c'),'-o',str(root/'selftest.obj')],check=True)
         subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x18000000','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{root / "selftest.exe"}',str(root/'selftest.obj'),str(root/'render.lib'),str(root/'kernel32.lib'),str(root/'gdi32.lib')],check=True)

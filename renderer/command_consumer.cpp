@@ -29,12 +29,12 @@ const CommandDescription& CommandState::get(unsigned id) const{
     const auto at=live.find(id);require(at!=live.end(),"Unknown or destroyed surface ID");return at->second;
 }
 void CommandState::accept(const SurfaceCommand& c){
-    require(!ended && commands<4096,"Closed or oversized command session");
+    require(!ended && commands<(mode==CommandStreamMode::Streaming?UINT32_MAX:4096u),"Closed or oversized command session");
     require(c.sequence==commands+1,"Command sequence gap");
     const auto& w=c.words;std::size_t payload=0;
     switch(c.operation){
     case 1:{
-        require(w[0] && !used.count(w[0]) && live.size()<64,"Reused, zero or excessive surface ID");
+        require(w[0] && (mode==CommandStreamMode::Streaming?w[0]>lastCreated:!used.count(w[0])) && live.size()<64,"Reused, zero or excessive surface ID");
         validateCommandFormat(c.format);
         require(c.format.bits==w[3] && c.format.masks==std::array<std::uint32_t,3>{w[4],w[5],w[6]},"Command format fields disagree");
         imageValid(c.image,w[1],w[2],c.format.bits);
@@ -66,12 +66,14 @@ void CommandState::accept(const SurfaceCommand& c){
         require(w[0]!=w[1] && a.width==b.width && a.height==b.height && a.format.bits==b.format.bits && a.format.masks==b.format.masks,"Aliased or incompatible surface swap");payload=8;break;}
     default:throw std::runtime_error("Unsupported command opcode");
     }
-    require(payload+12<=std::size_t(maxCommandBytes)-bytes,"Command byte budget exceeded");
-    if(c.operation==1){used.insert(w[0]);live.emplace(w[0],CommandDescription{c.image.width,c.image.height,c.format});pixels+=c.image.pixels.size();}
+    if(mode==CommandStreamMode::Bounded)require(payload+12<=std::size_t(maxCommandBytes)-bytes,"Command byte budget exceeded");
+    else require(payload+12<=std::size_t(maxStreamingRecordBytes),"Command record budget exceeded");
+    if(c.operation==1){if(mode==CommandStreamMode::Bounded)used.insert(w[0]);else lastCreated=w[0];live.emplace(w[0],CommandDescription{c.image.width,c.image.height,c.format});pixels+=c.image.pixels.size();}
     else if(c.operation==7){const auto& s=get(w[0]);pixels-=std::size_t(s.width)*s.height;live.erase(w[0]);}
     else if(c.operation==6)presented=true;
     else if(c.operation==8)ended=true;
-    bytes+=payload+12;++commands;
+    if(mode==CommandStreamMode::Bounded)bytes+=payload+12;
+    ++commands;
 }
 }
 struct CommandConsumer::Impl {
@@ -85,7 +87,7 @@ struct CommandConsumer::Impl {
     CommandConsumerState state=CommandConsumerState::Active;
     bool executing=false;
     Impl(GlBlitter& renderer,std::function<void(GpuFrame)> present,CommandConsumerOptions options):
-        renderer(renderer),present(std::move(present)),options(options){
+        renderer(renderer),present(std::move(present)),options(options),admission(options.stream){
         require(options.exportImages || bool(this->present),"GPU execution requires a presentation callback");
         require(!options.exportImages || !this->present,"Image export cannot use a GPU callback");
         require(options.diagnostics==CommandDiagnostics::Skip || options.diagnostics==CommandDiagnostics::Verify,"Invalid diagnostic mode");
