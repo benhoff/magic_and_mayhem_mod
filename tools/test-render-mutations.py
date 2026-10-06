@@ -32,7 +32,13 @@ def frames(data):
                 components=[]
                 for mask in [red,green,blue]:
                     shift=(mask & -mask).bit_length()-1
-                    components.append(((v & mask)>>shift)*255//(mask>>shift))
+                    channel=(v & mask)>>shift
+                    # Canonical RGB565 presentation follows retained Surface2 DC
+                    # bit expansion; other masks retain normalized scaling.
+                    if bits==16 and (red,green,blue)==(0xf800,0x7e0,0x1f):
+                        precision=(mask>>shift).bit_length()
+                        components.append((channel<<(8-precision))|(channel>>(2*precision-8)))
+                    else:components.append(channel*255//(mask>>shift))
                 r,g,b=components
             rgba.extend([b,g,r,255])
         result.append(hashlib.sha256(rgba).hexdigest())

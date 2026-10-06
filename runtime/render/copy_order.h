@@ -29,3 +29,10 @@ static void game_copy_unobserved(void* target){
     u32 error=GetLastError();__atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);
     game_pixel_missed(target);SetLastError(error);
 }
+
+/* A missed lifetime boundary can reuse any alias token, not only its receiver.
+ * Reset the derived graph at the next tracker entry without dereferencing COM. */
+static void game_lifetime_invalidate(void){
+    __atomic_store_n(&game_alias_reset_pending,1,__ATOMIC_RELEASE);
+    game_metadata_invalidate();
+}

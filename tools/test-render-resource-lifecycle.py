@@ -16,7 +16,7 @@ spec = importlib.util.spec_from_file_location('resource_continuous', ROOT/'tools
 continuous = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(continuous)
 live, ring = continuous.live, continuous.ring
-CASES = ['churn', 'pixels', 'alias', 'untracked', 'held', 'dc', 'contention', 'conflict', 'bounded']
+CASES = ['cross-release', 'release-timeout', 'cross-alias', 'alias-timeout', 'cross-create', 'create-timeout','churn', 'pixels', 'alias', 'untracked', 'held', 'dc', 'contention', 'conflict', 'bounded']
 
 
 def rgba_hash(width, height, color):
@@ -68,6 +68,7 @@ def main():
         'protocols/include/mnm/render_commands_v1.h','protocols/include/mnm/render_commands_v2.h',
         'protocols/include/mnm/render_command_ring.h',
         'protocols/python/mnm_protocols/render_commands_v1.py','protocols/python/mnm_protocols/render_commands_v2.py']]
+    paths += [ROOT/'renderer/dib.cpp',ROOT/'renderer/dib.hpp']
     fingerprints={str(p.relative_to(ROOT)):live.sha(p) for p in paths}
     parent=ROOT/'working/tests/render-resources';parent.mkdir(parents=True,exist_ok=True)
     run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
@@ -89,12 +90,12 @@ def main():
         (case/'selftest.exe').write_bytes(stage.add_import((dll.parent/'selftest.exe').read_bytes(),
             dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl'))
         output,active=case/'qt.json',case/'producer.active'
-        child=dict(env,MNM_RESOURCE_SELFTEST=mode,MNM_RENDER_CONTINUOUS='0' if mode=='bounded' else '1',
+        child=dict(env,MNM_RENDER_ORDERED_COPIES='1',MNM_RESOURCE_SELFTEST=mode,MNM_RENDER_CONTINUOUS='0' if mode=='bounded' else '1',
                    MNM_RENDER_OWNED_SESSION='1',MNM_RENDER_SESSION_ARCHIVE='0' if mode=='pixels' else '1',
                    MNM_RENDER_COMMAND_CHANNEL='Z:'+str(channel).replace('/', '\\'),
                    MNM_RENDER_STREAM='Z:'+str(frame).replace('/', '\\'),
                    MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/', '\\'))
-        valid=mode in ['churn','pixels','alias','untracked']
+        valid=mode in ['churn','pixels','alias','untracked','cross-release','cross-alias','cross-create']
         with (case/'qt.log').open('w') as qlog,(case/'wine.log').open('w') as wlog:
             qt=subprocess.Popen([str(args.build.resolve()/'live-render-channel-test'),str(channel),str(active),str(output)],
                                 env=env,stdout=qlog,stderr=qlog);wine=None
@@ -113,7 +114,7 @@ def main():
             for i in range(40 if mode=='churn' else 12):
                 color=((i*37)&255)<<16|((i*71)&255)<<8|((i*19)&255)
                 expected.append(rgba_hash(32+(i%2)*32 if mode=='churn' else 2048,16 if mode=='churn' else 1024,color))
-        elif mode in ['alias','untracked']:expected.append(rgba_hash(32,16,0xa5654321))
+        elif mode in ['alias','untracked','cross-release','cross-alias','cross-create']:expected.append(rgba_hash(32,16,0xa5654321))
         assert observed['frames']==expected,(mode,observed['frames'],expected)
         assert observed['presentations']==len(expected) and observed['success']==valid and observed['before_producer_exit']
         assert observed.get('native_readbacks',0)==observed.get('rgba_readbacks',0)==observed['viewport_uploads']==observed.get('live_surfaces',0)==0
@@ -121,6 +122,10 @@ def main():
                          'alias':(62,62,20,61,0,2),'untracked':(2,2,0,161,0,2),
                          'held':(3,2,0,1,0,1),'dc':(2,2,0,1,1,1),
                          'contention':(3,3,0,1,0,2),'conflict':(2,2,1,0,0,1),'bounded':(2,2,0,1,0,1)}
+        expected_counts.update({'cross-release':(4,4,1,4,0,2),'release-timeout':(4,4,1,4,0,2),'cross-alias':(3,3,1,3,0,2),'alias-timeout':(3,3,1,3,0,2),'cross-create':(3,3,0,2,0,2),'create-timeout':(3,3,0,2,0,2)})
+        if mode in ['cross-release', 'release-timeout', 'cross-alias', 'alias-timeout', 'cross-create', 'create-timeout']:
+            assert struct.unpack('<3I',(case/'lifetime-counts.bin').read_bytes())==(2 if 'create' in mode else 0,1,1)
+            assert ('copy_order_timeout ' if mode.endswith('timeout') else 'copy_order_wait_acquired ') in (capture/'lifecycle.log').read_text()
         assert counts==expected_counts[mode],(mode,counts)
         control=channel.read_bytes()[:64];published,state,reason=struct.unpack_from('<III',control,20)
         assert state==(2 if valid else 3) and reason==(0 if valid else 2)
@@ -131,10 +136,10 @@ def main():
         else:
             archived=check_archive(archive.read_bytes(),valid)
             if valid:
-                count={'churn':196,'alias':41,'untracked':1}[mode]
+                count={'churn':196,'alias':41,'untracked':1,'cross-release':3,'cross-alias':2,'cross-create':2}[mode]
                 assert archived['created']==list(range(1,count+1))
                 if mode=='churn':assert archived['peak_surfaces']==32
-            else:assert not archived['deleted']
+            elif mode not in ['cross-release', 'release-timeout', 'cross-alias', 'alias-timeout', 'cross-create', 'create-timeout']:assert not archived['deleted']
         report['cases'].append(dict(mode=mode,valid_session=valid,original_counts=list(counts),
                                    published_bytes=published,state=state,reason=reason,archive=archived,**observed))
         print(mode+': passed',flush=True)

@@ -11906,7 +11906,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original-game command shadow observation",
-      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim.",
+      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -11925,7 +11925,8 @@
         "research/runtime/opengl-copy-order.md",
         "research/runtime/opengl-cpu-handoff-order.md",
         "research/runtime/opengl-dc-flip-order.md",
-        "research/runtime/opengl-palette-property-order.md"
+        "research/runtime/opengl-palette-property-order.md",
+        "research/runtime/opengl-lifetime-order.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py",
@@ -11955,7 +11956,8 @@
         "NR.copy-order.live-verified-20261006",
         "NR.cpu-handoff.live-20261006",
         "NR.dc-flip-order.live-isolated-current-20261006",
-        "NR.palette-property-order.live-20261006"
+        "NR.palette-property-order.live-20261006",
+        "NR.lifetime-order.live-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13962,12 +13964,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous resource identity and confirmed final-release retirement",
-      "scope": "Continuous v2 CREATE IDs increase independently of reusable 32-slot storage. Confirmed application final Release retires an observed alias component via ordered DELETE, reclaims session pixels and tracker snapshots/metadata/alias slots, and permits address reuse with a fresh ID. Nonfinal/untracked releases preserve tracked resources. Pending lock/DC, missed retirement, ambiguous aliases, identity exhaustion and unsupported descriptor-only/partial shape, restore/create branches refuse; successful full Unlock replacement is covered separately by NR.continuous-mutations; default bounded release still refuses. Synthetic admitted lifetime validation recorded; original COM/driver equivalence and recovery excluded. Explicit native consumer cache DELETE retires residency while preserving independently owned CPU/alias/application state; re-admission uses fresh IDs. Primary/borrowed/current operands stay pinned and verified final Release remains separate.",
+      "scope": "Continuous v2 CREATE IDs increase independently of reusable 32-slot storage. Confirmed application final Release retires an observed alias component via ordered DELETE, reclaims session pixels and tracker snapshots/metadata/alias slots, and permits address reuse with a fresh ID. Nonfinal/untracked releases preserve tracked resources. Pending lock/DC, missed retirement, ambiguous aliases, identity exhaustion and unsupported descriptor-only/partial shape, restore/create branches refuse; successful full Unlock replacement is covered separately by NR.continuous-mutations; default bounded release still refuses. Synthetic admitted lifetime validation recorded; original COM/driver equivalence and recovery excluded. Explicit native consumer cache DELETE retires residency while preserving independently owned CPU/alias/application state; re-admission uses fresh IDs. Primary/borrowed/current operands stay pinned and verified final Release remains separate. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-continuous-resource-lifetime.md",
-        "research/runtime/opengl-resource-working-set.md"
+        "research/runtime/opengl-resource-working-set.md",
+        "research/runtime/opengl-lifetime-order.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -13988,7 +13991,8 @@
         "NR.continuous-resource-lifetime.continuity-regression",
         "NR.continuous-mutations.resource-regression",
         "NR.continuous-resource-working-set.native-20261006",
-        "NR.continuous-resource-working-set.lifetime-20261006"
+        "NR.continuous-resource-working-set.lifetime-20261006",
+        "NR.lifetime-order.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14003,7 +14007,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous mixed resource mutations and committed full-layout replacement",
-      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim.",
+      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families. Full-unlock delta envelopes preserve all native bytes, including unused RGB32 bits, and retain every eligible PRESENT after unchanged successful writes. Complete native dependency baselines survive consumer eviction; admitted copy/flip operands stay pinned during admission, and subsequent partial/full/DC writes preserve ordering through complete re-admission. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14014,7 +14018,8 @@
         "research/runtime/opengl-copy-order.md",
         "research/runtime/opengl-cpu-handoff-order.md",
         "research/runtime/opengl-dc-flip-order.md",
-        "research/runtime/opengl-palette-property-order.md"
+        "research/runtime/opengl-palette-property-order.md",
+        "research/runtime/opengl-lifetime-order.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -14050,7 +14055,8 @@
         "NR.copy-order.native-verified-20261006",
         "NR.cpu-handoff.native-20261006",
         "NR.dc-flip-order.native-isolated-current-20261006",
-        "NR.palette-property-order.native-20261006"
+        "NR.palette-property-order.native-20261006",
+        "NR.lifetime-order.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14287,14 +14293,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Explicit session-qualified palette resources and retirement",
-      "scope": "Native bounded session-qualified palette create/update/bind/delete, immutable lifetime and mutation guards, observed aliases, verified original final Release and same-pointer recreation; continuous stream v2 with explicit legacy compatibility. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim.",
+      "scope": "Native bounded session-qualified palette create/update/bind/delete, immutable lifetime and mutation guards, observed aliases, verified original final Release and same-pointer recreation; continuous stream v2 with explicit legacy compatibility. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-palette-identities.md",
         "research/formats/render-stream-v2.md",
         "protocols/CONTRACTS.md",
-        "research/runtime/opengl-palette-property-order.md"
+        "research/runtime/opengl-palette-property-order.md",
+        "research/runtime/opengl-lifetime-order.md"
       ],
       "implementation": [
         "runtime/render/lock_palette.h",
@@ -14322,7 +14329,8 @@
       "evidence": [
         "NR.palette-resources.pe32",
         "NR.palette-resources.gpu",
-        "NR.palette-property-order.native-20261006"
+        "NR.palette-property-order.native-20261006",
+        "NR.lifetime-order.native-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -15002,14 +15010,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in bounded scheduling across hooked original copies",
-      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim.",
+      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-copy-order.md",
         "research/runtime/opengl-cpu-handoff-order.md",
         "research/runtime/opengl-dc-flip-order.md",
-        "research/runtime/opengl-palette-property-order.md"
+        "research/runtime/opengl-palette-property-order.md",
+        "research/runtime/opengl-lifetime-order.md"
       ],
       "implementation": [
         "runtime/render/copy_order.h",
@@ -15028,7 +15037,8 @@
         "NR.copy-order.live-verified-20261006",
         "NR.cpu-handoff.native-20261006",
         "NR.dc-flip-order.native-isolated-current-20261006",
-        "NR.palette-property-order.native-20261006"
+        "NR.palette-property-order.native-20261006",
+        "NR.lifetime-order.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15171,13 +15181,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in CPU handoff ordering and bounded tracker provenance",
-      "scope": "Existing continuous opt-in copy owner now spans application Lock/Unlock admission, original call and commit. It does not span application borrowed intervals.50ms gate and8ms tracker budgets, failed-operation guards, same-thread reentry and timeout invalidation remain. Source-bound19-word diagnostic tags map tracker requests/holds; remote samples may race turnover. Exact historical missed requester, other callback families, abnormal owner-thread termination, archive-timeout replay, animated/full-frame/driver equivalence and default enablement remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim.",
+      "scope": "Existing continuous opt-in copy owner now spans application Lock/Unlock admission, original call and commit. It does not span application borrowed intervals.50ms gate and8ms tracker budgets, failed-operation guards, same-thread reentry and timeout invalidation remain. Source-bound19-word diagnostic tags map tracker requests/holds; remote samples may race turnover. Exact historical missed requester, other callback families, abnormal owner-thread termination, archive-timeout replay, animated/full-frame/driver equivalence and default enablement remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-cpu-handoff-order.md",
         "research/runtime/opengl-dc-flip-order.md",
-        "research/runtime/opengl-palette-property-order.md"
+        "research/runtime/opengl-palette-property-order.md",
+        "research/runtime/opengl-lifetime-order.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -15194,7 +15205,8 @@
         "NR.cpu-handoff.live-20261006",
         "NR.tracker-holds.observed-20261006",
         "NR.dc-flip-order.native-isolated-current-20261006",
-        "NR.palette-property-order.native-20261006"
+        "NR.palette-property-order.native-20261006",
+        "NR.lifetime-order.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15398,12 +15410,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in DC handoff and flip ordering with compound timeout invalidation",
-      "scope": "Existing continuous opt-in gate now spans original GetDC/ReleaseDC and Flip plus admitted native handoff/commit. Borrowed DC painting remains outside the lease.50ms gate,8ms tracker, original-result/LastError guards and same-thread behavior remain. Timed-out Flip invalidates metadata/pixel epochs before/after exactly one original call, preventing stale two-buffer checkpoints. Front flip diagnostic origin corrected to11. Other callback-family concurrency, DC/flip-specific reentrant fixtures, borrowed intervals, prolonged originals, abnormal owner-thread termination, archive-timeout replay, repeated scenes, animation/full-frame/driver equivalence and default enablement remain pending. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim.",
+      "scope": "Existing continuous opt-in gate now spans original GetDC/ReleaseDC and Flip plus admitted native handoff/commit. Borrowed DC painting remains outside the lease.50ms gate,8ms tracker, original-result/LastError guards and same-thread behavior remain. Timed-out Flip invalidates metadata/pixel epochs before/after exactly one original call, preventing stale two-buffer checkpoints. Front flip diagnostic origin corrected to11. Other callback-family concurrency, DC/flip-specific reentrant fixtures, borrowed intervals, prolonged originals, abnormal owner-thread termination, archive-timeout replay, repeated scenes, animation/full-frame/driver equivalence and default enablement remain pending. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-dc-flip-order.md",
-        "research/runtime/opengl-palette-property-order.md"
+        "research/runtime/opengl-palette-property-order.md",
+        "research/runtime/opengl-lifetime-order.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -15423,7 +15436,8 @@
         "NR.dc-flip-order.workspace-live-verified-20261006",
         "NR.dc-flip-order.historical-native-isolated-20261006",
         "NR.dc-flip-order.historical-live-isolated-prefsguard-20261006",
-        "NR.palette-property-order.native-20261006"
+        "NR.palette-property-order.native-20261006",
+        "NR.lifetime-order.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15551,6 +15565,43 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.lifetime-order",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded resource lifetime callback admission",
+      "scope": "Existing continuous opt-in50ms lease spans application QueryInterface/CreateSurface/CreatePalette and surface/palette Release through original and verified processing, without tracker across originals/waits or new references/budgets. Timed-out lifetime calls invalidate metadata/pixel epochs and schedule alias provenance reset before/after original-once forwarding, preventing pointer reuse from inheriting uncertain edges; returned unseen interfaces need later admitted observation. Test-only read-only alias inspection is absent from production. Six new Surface2 worker fixtures check QI/create/final+nonfinal release waiting/timeouts, failed creation/retry, poisoned descriptor, alias reuse and graph reset; palette lifetime recreation is same-thread only. Dedicated palette races, failed/nested QI/lifetimes, DirectDrawCreate/startup, description/attachment/Restore/BltBatch, borrowed intervals/owner termination, unseen-interface recovery/implicit destruction, archive-timeout replay, repeated scenes/actions and original-driver/animated/full-frame equivalence/default enablement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-lifetime-order.md"
+      ],
+      "implementation": [
+        "runtime/render/bridge.c",
+        "runtime/render/copy_order.h"
+      ],
+      "tests": [
+        "runtime/render/resource_selftest.h",
+        "tools/test-render-resource-lifecycle.py",
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py",
+        "tools/test-live-render-routes.py"
+      ],
+      "evidence": [
+        "NR.lifetime-order.native-20261006",
+        "NR.lifetime-order.live-20261006",
+        "NR.lifetime-order.mutations-20261006",
+        "NR.lifetime-order.historical-mutations-workspace-20261006",
+        "NR.lifetime-order.historical-live-workspace-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -28167,6 +28218,108 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.lifetime-order.native-20261006",
+      "kind": "native_integration",
+      "scope": "Fifteen final-source lifetime cases72 complete frames:7 valid/8 refused; creation/QI/release worker waits/timeouts, graph reset, poisoned creation descriptor/retry, reuse and borrowed retirement regression.",
+      "record": "research/runtime/opengl-lifetime-order-native-20261006.json",
+      "sha256": "2265b00c5c377c29274e55ad340eb5de5ae3c8080073800efd43d72f49ac0f49",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 72
+        }
+      ]
+    },
+    {
+      "id": "NR.lifetime-order.live-20261006",
+      "kind": "live_observation",
+      "scope": "Bounded strict original tutorial summon/30-second stable native regions and forced reader recovery with resource lifetime callback admission; no animated/full-frame/original-driver equivalence.",
+      "record": "research/runtime/opengl-lifetime-order-live-20261006.json",
+      "sha256": "16f4d47bcb4bceb49b832d518b3fe14a9b42451cdfa870bd042c61858028356c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordered_copies",
+          "equals": true
+        },
+        {
+          "pointer": "/world_summon_required",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/world_active_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/consumer/terminal_resources",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.lifetime-order.mutations-20261006",
+      "kind": "native_integration",
+      "scope": "Final-source gated shared palette factory/aliases/final releases during40 same-pointer cycles and mixed drawing/DC/flip/CPU regressions. Dedicated cross-thread palette lifetime fixtures remain pending.",
+      "record": "research/runtime/opengl-lifetime-order-mutations-20261006.json",
+      "sha256": "085ba55053cd7c04671671c2520393439ad4bfd769d041b6cce8ba4599dea866",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/palette_resources",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 545
+        }
+      ]
+    },
+    {
+      "id": "NR.lifetime-order.historical-mutations-workspace-20261006",
+      "kind": "native_integration",
+      "scope": "Retained workspace drawing attempt against uncommitted renderer sources; superseded by isolated committed-source validation, no current-code claim.",
+      "record": "research/runtime/opengl-lifetime-order-mutations-workspace-20261006.json",
+      "sha256": "47438a34c100050a677c1c9fc462ae27fb2922d9a706bbf2e6bc1bc74dc07ac7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.lifetime-order.historical-live-workspace-20261006",
+      "kind": "live_observation",
+      "scope": "Retained original observation with successful summon/regions/retirement but rejected by final source-freshness guard after independent renderer edits; not a passing complete run.",
+      "record": "research/runtime/opengl-lifetime-order-live-workspace-20261006.json",
+      "sha256": "e8a207308398daf951d0180b2fa39a4465216e3b763700ca22656cbb58efd7cb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -32731,6 +32884,41 @@
         "tests/render-ddraw-dib-test.cpp",
         "tools/check-native-ddraw-dib.py"
       ]
+    },
+    {
+      "id": "NR.lifetime-order.native",
+      "level": "preview",
+      "scope": "Fifteen cases72 complete frames plus independent shared-palette recreation/drawing regressions; no original COM equivalence.",
+      "behaviors": [
+        "NR.lifetime-order",
+        "NR.continuous-resource-lifetime",
+        "NR.palette-resources"
+      ],
+      "evidence": [
+        "NR.lifetime-order.native-20261006",
+        "NR.lifetime-order.mutations-20261006"
+      ],
+      "tests": [
+        "tools/test-render-resource-lifecycle.py",
+        "runtime/render/resource_selftest.h",
+        "tools/test-render-mutations.py"
+      ]
+    },
+    {
+      "id": "NR.lifetime-order.original-tutorial",
+      "level": "live_observation",
+      "scope": "Strict original tutorial summon and bounded stable regions; no original-driver/full-frame equivalence.",
+      "behaviors": [
+        "NR.lifetime-order",
+        "NR.real-game-command-shadow"
+      ],
+      "evidence": [
+        "NR.lifetime-order.live-20261006"
+      ],
+      "tests": [
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -32978,7 +33166,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-ddraw-dib-20261006.json",
-    "sha256": "34c8d238b84fa1c2e83c9a63c687d3f8c5b54f50b01e0313039eaa93d7410221"
+    "path": "research/runtime/coverage/source-index-lifetime-order-20261006.json",
+    "sha256": "d3fda920e52c40271c000621216905f58de6daeb95aa813691a7e7bc7949edd9"
   }
 }
