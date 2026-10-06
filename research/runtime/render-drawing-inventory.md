@@ -298,3 +298,16 @@ Primary API references:
 [Blt](https://learn.microsoft.com/en-us/windows/win32/api/ddraw/nf-ddraw-idirectdrawsurface7-blt),
 [BltFast](https://learn.microsoft.com/en-us/windows/win32/api/ddraw/nf-ddraw-idirectdrawsurface7-bltfast),
 [GetColorKey](https://learn.microsoft.com/en-us/windows/win32/api/ddraw/nf-ddraw-idirectdrawsurface7-getcolorkey).
+
+### Subsequent route observation — 2026-10-06
+
+The [campaign/movie-enabled route record](opengl-render-routes.md) extends the
+startup boundary above without changing its historical evidence. Five independent
+X11/native stable menu regions match within one channel value, including a title
+after failed-reader recovery. Original campaign Enter reaches three World ticks,
+but native publication exceeds the 32-surface budget at the 33rd observed resource;
+complete recovery refuses and fresh observations invalidate untracked copies. This
+is not complete terrain/sprite/effect/HUD output or a recovered original caller map.
+Movie-enabled startup reaches Main, with no movie sample return PCs in the bounded
+draw archive; actual playback and return semantics remain unverified. Original
+drawing stays active; full visual equivalence and replacement are still open.

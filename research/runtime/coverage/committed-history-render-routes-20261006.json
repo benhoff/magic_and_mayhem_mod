@@ -1,0 +1,356 @@
+{
+  "schema": 1,
+  "scope": "Exact committed parent/current SHA256 and behavior receipt review, separate from pending workspace changes. This audit does not assert historical gate passes or fresh validation.",
+  "base": "2013cae",
+  "head": "63863bcf5df19d5c2814670467dd8a720928c2e2",
+  "commits": [
+    {
+      "commit": "63863bcf5df19d5c2814670467dd8a720928c2e2",
+      "parent": "2013caeb6bb0c8c86a7ae98a538494574d5d8c96",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "eb3d05358dfbbcf2923eb348c9ec73b7ee722ccb994d76d83dd59b1ebb5cd572",
+          "after_sha256": "80ae5fff9c6ae7651e1bdd5acf12bea90d13da93b51fe2baa91b25153707e462",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "bdc2ffde5e0a6be6bb24ce0344361b8880250caea507e8162e2d84f06a48a68d",
+          "after_sha256": "6b38a5cb3d0cf4423adb93f5ccb02fa645ff7f5a0bece9d88c44f93a7ce2fec2",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-unlock-delta-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "196551eaed21d156b55e170eb952832e4c5f7ddf064b77ffeaedd993cefad536",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "c34aefab89f27237b796c592b54616e69cf27bda190b5aba7ef6c7ae29251e97",
+          "after_sha256": "59f6a10e2ec5b2bb42a3a5833e96810bb8487298354a6aaaf26408382bef0dda",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-unlock-delta-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "4b759982fa82eb5d904ea0acfba41cf290894600b306ac5312d6cb12f1bd88f5",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-unlock-delta-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "f76a16039f070fc23c75b452aef196e3aefc231212edf6871fbb3bfc4e1506bb",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlock-packed.md",
+          "before_sha256": "5b1747fe2960d58c821066e50559af7c5b64f84e9c1cd59bbbf1662d22c9a9a0",
+          "after_sha256": "473a32c848c056fed4305f69111706cd9783cb6a7a813e5f274662434b03dc00",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-owned-unlock-deltas.md",
+          "before_sha256": null,
+          "after_sha256": "adce52268af30a27d7279b2f933a4773003c75cd7fe11855fdc4918a734645f2",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-checkpoint-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "df2027cc5da082c1cc2aa93dc66e98aa12f481a98f5ba48bb4f244d9e008942f",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-continuous-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "602bcd4e3b8720faa4b290eb0aad068602fe9fe6e4477861d10d75717ce3b8f8",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-game-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "18c4338ee9b1d3112fdab6263f136e11281a1887061182bae04c239b712abdea",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-host-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "56e1c30411164cd59db763c94e19e6ebd90663bf8c3d2bd9c7c6020562aaaecd",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "9a89ef7a332e141a407386416f53d9020a287c9fefc4fcb67cebbc4aa8aa1526",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-unlock-delta-queue-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/continuous_selftest.h",
+          "before_sha256": "53bb2834d3075236afa16972899b3e7ab18f7f55135b7bf56b51ff5d9a7eb39d",
+          "after_sha256": "af693ffde67faadc24b79aa8f229a5980fa7cba983b934b19b6a1c0c32879b77",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/dirty_region.h",
+          "before_sha256": null,
+          "after_sha256": "e5743b9c82b63debe1b0431269d576672fcfee83ca42817e21d5558ec1ba936b",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/host_recovery_selftest.h",
+          "before_sha256": "8b05bb4b89899fda7e72ce87c2a8e6e4cbca6cc2cc4f11b9cb0c78f9385ebcf2",
+          "after_sha256": "7981baf6069b7caab473461f33e49798d26ad6cc5bcb07731d4916d00f873024",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/lock_lifecycle.h",
+          "before_sha256": "ff22b737dce7f047fab284ab8c2615530cf5407bb5aeed458740a694af884948",
+          "after_sha256": "e60932bcaf016535ce69e6c43538ce978d32e2869d449d540d6512960cdd172a",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/owned_session.h",
+          "before_sha256": "e68b5e4fea09a4a275bb8d0cfda9473afb798ee39cdc9d132c44861c18e20829",
+          "after_sha256": "2e2f7b2890a4c1547dbfbda63b35f5da9b5a4019519d302594ffab207ca7f9d2",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-dirty-region-test.c",
+          "before_sha256": null,
+          "after_sha256": "e5cbed4ff2e63e40a4112ad2ce84e25cb9e60a2057d35106face9f4c17b3f31c",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-recovery.py",
+          "before_sha256": "7bf20cdd7dd60a4a847903f89b21612bb2b1284d38ca5b97b73e58f84d8783af",
+          "after_sha256": "3cb14fa6eb409a9b70cf58f2ffe7dcd14e8b42123aba934eef759824198bd8da",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-continuous-producer.py",
+          "before_sha256": "b1644032c844f27cbe47635ad864775ca0a5865e3a4edaf00335688ea8f5764b",
+          "after_sha256": "4e46e49bdfdb2c2161d744528a57030b7a9028c3301069b5bbd7136129a2127f",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-dirty-region.py",
+          "before_sha256": null,
+          "after_sha256": "0b60e3c7830fa4f77074ab9c204a6141187666c4a92e66ef50bec2f7d230f7a1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-host-recovery.py",
+          "before_sha256": "0141e356b78943da2b6afabeee93489cef018618cb3d149372203475a631d881",
+          "after_sha256": "71144e0c4365b4838373cb797e45fbbc56f083ac4d46efff9f66dbddd337ddb1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-backpressure",
+          "before_sha256": "6bc303dc253a53c7bdb0a47f13c7e75a0ce566d29d0e7391a12c8c60d0c9b40f",
+          "after_sha256": "50528a946bbffd54dfdd79dbe1adac7393394d6249ebc2f146b16668f655ace8",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "4a17d6da939255fe939ef8441b046f94594c72dddcee64687edc1726402359ca",
+          "after_sha256": "d6763e6aefe8d48121cdafc250bd6de100a49188bd868299ed824041d35257ce",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "9f20f8e8d19184922067b4765f073d09f0c809c5f09b1559842f7c07bfd5c7ef",
+          "after_sha256": "4dba7e9b27e50335934d352b8d4239ba180b6fdc0c6acd4af93ceb684a6b205f",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "78b5531b606b9dfe438d8ca11529ab45e61e4df7cf3d95a67c3d7b36f8819c7a",
+          "after_sha256": "90de67921f5c0d3cd9161d18742461adb7e83790b321a99c15e9805e0fd7ab4d",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "4f3e991b09265822b6eb48b00f5361334df8bc94b9d868b45ffaf94083c88ae4",
+          "after_sha256": "9c75c0e7d384884782e56a7f39828bfbe7e1103b4a17084663e1f4eb513fe667",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring-adapter",
+          "before_sha256": "7a40f7b7743179b6bba894ba48b8e977c7a31c0390ef79f4b1a67704e680b4ef",
+          "after_sha256": "018f5a9be14b43619204bfcecb28bdc5cd2bd9539810358703959d940d21b956",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "4261ece4a2de8fdfc3d90b6f58dc3e423a85dcdf7cd582b0401d2c635bcf8d73",
+          "after_sha256": "2584e9c3cc90faaa884c9cbf5b33bdeaee8e3e62559e601e8c24919f959462d3",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "b7e33c3a9d14e6c0bc00142cdad30781212def4abff6f29e7c1cdd9537d60776",
+          "after_sha256": "f2cde87edde7bc19fb802d37070789a74f460ec1691ec235ed95cb438e6ca2d9",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "06440bdea8c8e01c4a97de381c68ce616fb21c0b45d130f07ec60e4169d089fc",
+          "after_sha256": "3fbc8aae42f117f1d86dbdcb28fbbb147f59d22312ae32cc4c305bf96007a643",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "c101260015b1b98f8e5905f7c41fdc62022e66193f9155ceb8484db66d947cda",
+          "after_sha256": "ddc7038d85b9e76b9356eb03884abd21eac27ae2c9abee3acb06118f026063bc",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-dc",
+          "before_sha256": "ac5eb5fd935ee5d2316b8f2741144fed10bcbf58930eb51670d2b470b8b35891",
+          "after_sha256": "c2e9f1f10ae33a3597980438d6474fc03d950d6a3491df36d45d4f3681360ae1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-fill",
+          "before_sha256": "f2d7009b8fc2b64c9c496cd189d5096eadea14d69b602a0472669dd7d841b4d9",
+          "after_sha256": "bd1214a9a5319f0014304a3e4ef3b9350d84902d81ff9d52e462b7ac3f8f3ddd",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": "91f990017b50e393642d23b975c24dd5f5a90d33feaca4eeb0869fec60625f7d",
+          "after_sha256": "925fa5be6fae7b687ae8e1f540cc8cffd2cff33d7aff2aea58bd2755d3bb6ca1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-startup",
+          "before_sha256": "4225e6f1d04504f2c9665a80d8e8eba825e8af6fcc167e3089bc6638205e26f2",
+          "after_sha256": "a856f8fffca056250f3b2b60411ad87d2c56b8e9fb8f4330dd048920ded86227",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-unlock-packed",
+          "before_sha256": "c6b0094a74acf99ec3105729272075b685b086a9202f61276bff2c5cb468e77b",
+          "after_sha256": "0b831845c5de527d99a82b263778feaeec6408645bfd5d279eef7eff90e5601a",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "5ec83314aa1923d14a9c35e4d8747c92cb1a9ca1ebb7702bd51356592cfd2333",
+          "after_sha256": "29aaa8eddff9081e49b4e0d22b8018e0d5592831017017401f228c9e2b5f1be1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "0b7334e0cacf82cdea9aabfef5e056fe4d095332125870f2f19adda481d81703",
+          "after_sha256": "01e88c19f6e7293393d367ba4cc2c5092ef5b8ffaccd75e6ad795255ca4914e6",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "d576fa9dd7ae27b665abe7369abcb6eb765bc4973eb3ad36d8297236586829c2",
+          "after_sha256": "5012b7ecc7f99d29d02513bc435287120f88098a13c6c0d25c3a5d53529f43a1",
+          "receipts": [
+            "REVIEW.compact-continuous-owned-unlock-updates-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    }
+  ]
+}

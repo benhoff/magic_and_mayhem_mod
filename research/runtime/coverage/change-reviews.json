@@ -28440,6 +28440,183 @@
         "reason": "Fresh native and ASan/UBSan envelope checks:5,928 cases per build with independent reconstruction/minimality. Three final actual-PE32 continuity cases:142 independent GPU frames, sparse publication1,051,588 bytes and dense publication73,723,756 bytes beyond64MiB/4096 commands. Strict checkpoint20 cases/294 comparisons and administrative16 cases/189 comparisons pass, including deterministic held-callback refusal, pending baseline cleanup, faults, stale ACK, overflow/cancellation and control native/sanitizer/protocol checks. Final production PE32 and native fixture builds passed. Bounded actual-game startup required one healthy recovered session with at least100 frames spanning11 seconds:208 checkpoint and235 automatic frames over12 seconds, zero ordinary readbacks/uploads, zero terminal consumer resources, original process retained and2,927 immutable originals verified before/after. Exact final source fingerprints were checked against the staged tree. The66 newly stale historical evidence/source gaps retain original hashes and remain pending; these results do not assert current equivalence for every affected shared-header contract. Independent original-driver pixels, gameplay/movies, long-running counter exhaustion, high-memory scenes and forced packed-scratch failure remain pending. Exploratory failures and earlier source snapshots remain under working; the accidental symlinked working installation staging was restored to exact verified prior bytes, with failed artifacts preserved before restoration.",
         "status": "pending"
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "5f1bc68d8a394aeef6fb7cae280fbc2093a8366d51e7f73b6f1f69e18492e4bd",
+          "before_sha256": "18bfcbc359e74fa17684d6d3f167e2b7e093ab8de985a61af5442883743dbcf7",
+          "id": "EXT.dependencies"
+        },
+        {
+          "after_sha256": "178c5c500843cdf3a97fd02a9a571a59aaff4b70b6899082955f6e0a436f0b22",
+          "before_sha256": "d6763e6aefe8d48121cdafc250bd6de100a49188bd868299ed824041d35257ce",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "316a579a7f716855b84f603554247d2d9ac9f7b494542a9cd14353e9506fe23a",
+          "before_sha256": "4dba7e9b27e50335934d352b8d4239ba180b6fdc0c6acd4af93ceb684a6b205f",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "e195012972e56a0daa0831104ac29fae173dd18ec5626e163aed3fe12ba81cb2",
+          "before_sha256": "b67e0a12e435cbb8ec88f92af7a258619d4a09b81df41205f78d9003220a4276",
+          "id": "NR.command-ring"
+        },
+        {
+          "after_sha256": "c86a06d1f1910e31e9019a1a4f332aede9ff0dc586dd9a5f0524635f8b164927",
+          "before_sha256": "f2cde87edde7bc19fb802d37070789a74f460ec1691ec235ed95cb438e6ca2d9",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "0851dba496bbdba43ccd0fa9b21e9dbe0d6040493d40ef14f7daf367b2729b11",
+          "before_sha256": "287f6ae11a506419f15b44bb3e10c3a79681960712ea2fdf63ba5ab2283a5369",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "83a3cf2d04886a4df84d24c7cfc4c5d903a1edab9f416faa3bf16e6083471bd0",
+          "before_sha256": "ddc7038d85b9e76b9356eb03884abd21eac27ae2c9abee3acb06118f026063bc",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "fdb4a1e7021f326738f0295d6ae0173c5eb0118d3d1b7ee863d655cfacd39797",
+          "before_sha256": "29aaa8eddff9081e49b4e0d22b8018e0d5592831017017401f228c9e2b5f1be1",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "6b7200c6095ca214cc79d966f4b09ac89925fe359635ce5481b0c170aa56f058",
+          "before_sha256": "01e88c19f6e7293393d367ba4cc2c5092ef5b8ffaccd75e6ad795255ca4914e6",
+          "id": "NR.real-game-command-shadow"
+        },
+        {
+          "after_sha256": "8bd0bb9a269638700693da1e5847228686ee2ba7d5ae101306c99b7dd0d2311a",
+          "before_sha256": "7796151b17d8b33badbe901ee89cc61a7b5329d07cf77eb5889e1af07c4ff893",
+          "id": "RI.copies"
+        },
+        {
+          "after_sha256": "dbf4192987c15b91302ba559aee5f76d46e02eb7fdde4ae86d2fb5134168bca4",
+          "before_sha256": "c574a74290cd658745dfdad40519b04f951b21b6883533c84a9fd09aa9cdfd2e",
+          "id": "RI.effects"
+        },
+        {
+          "after_sha256": "12270b7785854c00fbb9b23ad9389f996e129b7ad21fd37dd84879bba2c1d8b6",
+          "before_sha256": "4f0fe9ea7d81e41905b18dea9fdf998fe836c91da390e6cdcad0628d561248fa",
+          "id": "RI.fills"
+        },
+        {
+          "after_sha256": "0c257000ef73522ad6f333d4133eae5c89af952c2ecc65ce1bf3c33be4e068f2",
+          "before_sha256": "a07fb14dc2b0e463f78ca35ef8717bc665790550313dfec2f42ad5c31dc6e97d",
+          "id": "RI.gdi-text"
+        },
+        {
+          "after_sha256": "8d34d0cfc24ada6cee2ae06126d279461236dbad0f4c8bdae513a74da87b60b2",
+          "before_sha256": "716dd9ca297c9049bac4f13412ec3ede6de24808caa321e9b2e069b0b6616fa9",
+          "id": "RI.locked-writes"
+        },
+        {
+          "after_sha256": "efbfaa3a26c68aaae9199f9a61dbb8bf331a61f0622f755476c37d206a6fd204",
+          "before_sha256": "8e4a041c73235b753e1e135cf57ba45c472640b1e504777c65a88ef650acfb3e",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "7c440274a90b26978c0c5fbb0850c612dfaa5bc9fe474cf7034e5c1a6b35b279",
+          "before_sha256": "489355309e72f128886f65f99bedc84083c66a522c1c8e4bd0c8e1f5f968f0f7",
+          "id": "RI.sprites"
+        },
+        {
+          "after_sha256": "5bc86a80ee458d3462e6cf53b094435c2a571d8dac8a83ce3c890972d4bacc1c",
+          "before_sha256": "8deb8f5dd2c0d64a404a7e2058d79fc1f6ae1ea14532bca032bcbd4e777edd0a",
+          "id": "RI.terrain"
+        },
+        {
+          "after_sha256": "ce23f3cf589c94c8b2a1b0c9682c4405b7d1748874c990799ef9de67c2c55d86",
+          "before_sha256": "27b789ffea9a2a9e83e530dce172011c60745a9f577614ac63d55d5d3fac352a",
+          "id": "RI.ui"
+        },
+        {
+          "after_sha256": "4a521072c698454cbf4943925252d574311de3c72035cd8037e41e36fd679388",
+          "before_sha256": "5012b7ecc7f99d29d02513bc435287120f88098a13c6c0d25c3a5d53529f43a1",
+          "id": "RT.render"
+        },
+        {
+          "after_sha256": "0fbf47f08aa315b5bc2e915d5b1a011c84e0bf6cb4c747b3b515d271b353d949",
+          "before_sha256": "acf6b054dc33e215b1adbed51d1c0b2fc209872caf9f508b588766a9ed424b15",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "fe9f4119ffeb11dae11264fd63197be20cbb6c9331477a3b74aa6cb0788ea3a5",
+          "before_sha256": "3df6da095e1fe6e13652d14a4336745641128fa26d1e91632fdae19b0c2b2853",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "7d11fdecc15acaa3609a2c953c411a9497846d290c9402f79d8cdcde6089d533",
+          "before_sha256": "80ae5fff9c6ae7651e1bdd5acf12bea90d13da93b51fe2baa91b25153707e462",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "3fc6f322e5f9fa9681500a1f243f3776b9d4578b259a7fc99adcc62ea58a8bac",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-render-routes-20261006.json"
+        },
+        {
+          "after_sha256": "de21f1cf26cc8989399491dd8cd62a04e5225e595379a512c5e6011a9f035087",
+          "before_sha256": "59f6a10e2ec5b2bb42a3a5833e96810bb8487298354a6aaaf26408382bef0dda",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "1eb5fbf5ef1384a0667058bc1704a98493c8e678b88cdb7ab34151f2ad2f7cb4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-render-routes-20261006.json"
+        },
+        {
+          "after_sha256": "70337add787338f342d816bf6643b2e5c8a6ca7c8d202708b15e6b30dab8d479",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-render-routes-20261006.md"
+        },
+        {
+          "after_sha256": "4cd8068de8fdb9a786554a56356d4474728b93e8b77cf474d3bf0120e5fbb125",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-render-routes-live-20261006.json"
+        },
+        {
+          "after_sha256": "41542b4ea4ff6711a1de46366b1fbf22afb376b6719d0f8de6bd321b6b412ff6",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-render-routes.md"
+        },
+        {
+          "after_sha256": "9fad3da61bf7c9f6328a29c42818a1527d082c7ee3994708e32f1679adb5d8fb",
+          "before_sha256": "971f13bb59e0416cefda0bc8589e2ddafa010eb5449b4491abadbf9735811c28",
+          "path": "research/runtime/render-drawing-inventory.md"
+        },
+        {
+          "after_sha256": "16622a7c16456649ddadc4368bcf32b9e95a19c090843eef431c8f12f47a876a",
+          "before_sha256": null,
+          "path": "tests/live-render-route-probe.cpp"
+        },
+        {
+          "after_sha256": "a17a222ec9319b06102e6f5ef8c19df8fee8d7be4fdf7475475411fadb7df066",
+          "before_sha256": null,
+          "path": "tools/test-live-render-routes.py"
+        }
+      ],
+      "id": "review-render-routes-20261006",
+      "pending_gaps": [
+        "stale_evidence:0a8d6f833b642e02599f288953ed074ea8ee48a5ae52014c18c457b06c5f76c6",
+        "stale_evidence:56da6e5e753cffd8b8639cb089d4fd944c8176eb063865690599f4b1c18e5d97",
+        "stale_evidence:9d38860b05791ea0ec18e3397adf9f06afe6246c800f43aa9d9d6a5e1afb17bd",
+        "stale_evidence:a9134890ee12245444abc7905f9f5c1cfb3c9eef24097b7de62ea43562f6b4a8",
+        "stale_evidence:aacfb80edf81edef1c43514198ab73b664514204094f6ed91ff0b2241ac346a0"
+      ],
+      "reason": "Reviewed the isolated 16 ms Qt observation probe, bounded ordered controller requests and explicit diagnostic framebuffer snapshots. The new harness hash-checks rendering staging, patches only the disposable executable import through the existing script, builds the existing observation-only menu DLL and forwards original campaign ticks without an action channel. It exercises late attachment and a Region Entry failed reader, independent named X11 client geometry/capture, bounded stable-region pixel comparisons, three original World ticks, actual finite32-surface/checkpoint and untracked-copy fallback, process retention and resource cleanup. Movie-enabled Main readiness is explicitly separate from proven playback. Reviewed five updated scoped behavior claims, one fresh execution record/scenario, additive inventory/ledger research and matching staged source census. Reviewed committed range2013cae..63863bc against exact parent/current source and behavior receipts; no unresolved historical receipt gaps. Other concurrent surface-fixture work is excluded from this staged tree. No producer, renderer, protocol or gameplay policy changes or status promotions.",
+      "validation": {
+        "status": "pending",
+        "evidence": [
+          "NR.command-route-observation.live-20261006"
+        ],
+        "reason": "The strict-warning Qt target built successfully and the final two-case actual original-game/Xvfb/Wine harness passed with source hashes matching the staged tree. Five independent stable menu ROI comparisons pass first attempt with maximum RGB channel difference1 under predeclared tolerance8; one occurs after the second failed reader. Campaign reaches three original after-World ticks and238 native frames; World resource count33 refuses the existing32-surface budget, then fresh observations refuse untracked copies before a frame. Movie-enabled Main startup presents217 frames in an Active recovered session, but bounded draw evidence has no movie sample hits. Every ordinary presentation checks zero renderer readbacks/uploads; both finishes free all native resources and original processes remain alive until controlled termination. All retained artifact hashes were rechecked after termination; source preferences stayed unchanged and2,927 immutable originals verified before/after. Five newly stale historical fingerprints from shared build/research edits remain pending, with prior hashes preserved. Unsynchronized ROI observation does not establish full-frame, gameplay, movie or hardware-driver equivalence, caller completeness or live replacement; historical shared contracts were not revalidated."
+      }
     }
   ]
 }

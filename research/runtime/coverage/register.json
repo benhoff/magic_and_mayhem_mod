@@ -11896,7 +11896,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original-game command shadow observation",
-      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending.",
+      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -11907,14 +11907,19 @@
         "research/runtime/opengl-owned-session-startup.md",
         "research/runtime/opengl-owned-session-sequence.md",
         "research/runtime/opengl-command-ring-adapter.md",
-        "research/runtime/opengl-command-streaming-lifecycle.md"
+        "research/runtime/opengl-command-streaming-lifecycle.md",
+        "research/runtime/opengl-render-routes.md"
       ],
       "implementation": [
-        "tools/test-live-render-game.py"
+        "tools/test-live-render-game.py",
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
       ],
       "tests": [
         "tools/test-live-render-game.py",
-        "tests/live-render-channel-test.cpp"
+        "tests/live-render-channel-test.cpp",
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
       ],
       "evidence": [
         "NR.real-game-command-shadow.startup",
@@ -11924,7 +11929,8 @@
         "NR.owned-session-startup.live",
         "NR.owned-session-sequence.live",
         "NR.command-ring-adapter.live",
-        "NR.command-streaming.live"
+        "NR.command-streaming.live",
+        "NR.command-route-observation.live-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -13783,7 +13789,7 @@
       "subsystem": "rendering_inventory",
       "kind": "recovered",
       "title": "Menu assets and shared startup drawing paths",
-      "scope": "Startup surface/movie calls and existing menu observations/assets; complete widget/HUD/minimap caller classification and paired original pixels remain open. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "scope": "Startup surface/movie calls and existing menu observations/assets; complete widget/HUD/minimap caller classification and paired original pixels remain open. Inventory review only; no new implementation, execution comparison, integration or replacement claim. Subsequent bounded live observation matches five independent stable menu regions within one channel value, including Region Entry after failed-reader recovery; complete UI caller attribution, full screenshots and HUD/gameplay parity remain open.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -13793,12 +13799,17 @@
         }
       ],
       "documents": [
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/opengl-render-routes.md"
       ],
       "implementation": [],
-      "tests": [],
+      "tests": [
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
+      ],
       "evidence": [
-        "RI.static-callers-final-20261006"
+        "RI.static-callers-final-20261006",
+        "NR.command-route-observation.live-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -13813,7 +13824,7 @@
       "subsystem": "rendering_inventory",
       "kind": "recovered",
       "title": "Movie wrapper and startup callers",
-      "scope": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "scope": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified. Inventory review only; no new implementation, execution comparison, integration or replacement claim. Movie-enabled startup reaches original Main; no sample return PC in 0x469830..0x469a00 appears in the bounded 2048-record draw archive. Actual playback/return results and movie pixels remain unverified.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -13833,12 +13844,17 @@
         }
       ],
       "documents": [
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/opengl-render-routes.md"
       ],
       "implementation": [],
-      "tests": [],
+      "tests": [
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
+      ],
       "evidence": [
-        "RI.static-callers-final-20261006"
+        "RI.static-callers-final-20261006",
+        "NR.command-route-observation.live-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -13853,12 +13869,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous owned publication independent of bounded command archives",
-      "scope": "Explicit v2 continuous producer beyond sample operation/presentation/cumulative archive limits, optional independently bounded command archive; retained surface/pixel/snapshot/queue/ring and finite sequence/byte limits. Default bounded policy retained. Synthetic admitted updates only; resource retirement is covered separately by NR.continuous-resource-lifetime; recovery, automatic orchestration shutdown and sustained original-driver/gameplay equivalence remain pending. Compact successful full-unlock updates retain exact native pixels and finite pending ownership budgets. Bounded original startup recovery now publishes over100 frames spanning11 seconds in one healthy session; sustained gameplay/movie/driver equivalence remains pending.",
+      "scope": "Explicit v2 continuous producer beyond sample operation/presentation/cumulative archive limits, optional independently bounded command archive; retained surface/pixel/snapshot/queue/ring and finite sequence/byte limits. Default bounded policy retained. Synthetic admitted updates only; resource retirement is covered separately by NR.continuous-resource-lifetime; recovery, automatic orchestration shutdown and sustained original-driver/gameplay equivalence remain pending. Compact successful full-unlock updates retain exact native pixels and finite pending ownership budgets. Bounded original startup recovery now publishes over100 frames spanning11 seconds in one healthy session; sustained gameplay/movie/driver equivalence remains pending. Bounded original campaign entry reaches three World ticks but native publication encounters the 32-surface budget at 33 observed resources; finite World working-set admission and sustained gameplay publication remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-continuous-producer.md",
-        "research/runtime/opengl-owned-unlock-deltas.md"
+        "research/runtime/opengl-owned-unlock-deltas.md",
+        "research/runtime/opengl-render-routes.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -13878,7 +13895,9 @@
         "tools/test-render-session-dc.py",
         "tools/test-render-dirty-region.py",
         "tests/render-dirty-region-test.c",
-        "tools/test-live-render-recovery.py"
+        "tools/test-live-render-recovery.py",
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
       ],
       "evidence": [
         "NR.continuous-producer.synthetic",
@@ -13890,7 +13909,8 @@
         "NR.continuous-resource-lifetime.continuity-regression",
         "NR.continuous-mutations.continuity-regression",
         "NR.owned-session-unlock-packed.delta-continuous-verified-20261006",
-        "NR.owned-session-unlock-packed.delta-game-verified-20261006"
+        "NR.owned-session-unlock-packed.delta-game-verified-20261006",
+        "NR.command-route-observation.live-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14126,7 +14146,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Qt fresh-session recovery over a versioned producer control channel",
-      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence.",
+      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14135,7 +14155,8 @@
         "protocols/CONTRACTS.md",
         "apps/qt-shell/README.md",
         "research/runtime/opengl-automatic-checkpoint-recovery.md",
-        "research/runtime/opengl-owned-unlock-deltas.md"
+        "research/runtime/opengl-owned-unlock-deltas.md",
+        "research/runtime/opengl-render-routes.md"
       ],
       "implementation": [
         "apps/qt-shell/render_control.cpp",
@@ -14167,7 +14188,9 @@
         "tools/test-render-recovery.py",
         "tests/live-render-recovery-probe.cpp",
         "tools/test-live-render-recovery.py",
-        "tools/test-render-checkpoint.py"
+        "tools/test-render-checkpoint.py",
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
       ],
       "evidence": [
         "NR.command-host-recovery.pe32",
@@ -14180,7 +14203,8 @@
         "NR.command-host-recovery.auto-checkpoint-game-20261006",
         "NR.owned-session-unlock-packed.delta-host-verified-20261006",
         "NR.owned-session-unlock-packed.delta-checkpoint-verified-20261006",
-        "NR.owned-session-unlock-packed.delta-game-verified-20261006"
+        "NR.owned-session-unlock-packed.delta-game-verified-20261006",
+        "NR.command-route-observation.live-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -25960,6 +25984,60 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.command-route-observation.live-20261006",
+      "kind": "live_observation",
+      "scope": "Two bounded original no-CD routes: five unsynchronized independent stable X11/native menu regions with maximum channel difference 1, Region Entry failed-reader recovery, three original World ticks and explicit 33-surface/fresh-observation fallback, movie-enabled Main startup without verified movie sample playback. No whole-frame equivalence or replacement.",
+      "record": "research/runtime/opengl-render-routes-live-20261006.json",
+      "sha256": "4cd8068de8fdb9a786554a56356d4474728b93e8b77cf474d3bf0120e5fbb125",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/source_preferences_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/full_frame_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/cases/0/world_ticks/2/active_screen",
+          "equals": 7125880
+        },
+        {
+          "pointer": "/cases/0/consumer/state",
+          "equals": 3
+        },
+        {
+          "pointer": "/cases/0/consumer/terminal_resources",
+          "equals": 0
+        },
+        {
+          "pointer": "/cases/1/consumer/state",
+          "equals": 1
+        },
+        {
+          "pointer": "/cases/1/movie_playback_confirmed",
+          "equals": false
+        },
+        {
+          "pointer": "/cases/1/consumer/terminal_resources",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -30199,6 +30277,25 @@
         "tools/test-live-render-recovery.py",
         "tests/live-render-recovery-probe.cpp"
       ]
+    },
+    {
+      "id": "NR.command-route-observation.live-20261006",
+      "level": "live_observation",
+      "scope": "Late original-game attachment and Region Entry failed-reader recovery with independent stable menu ROI captures; original Enter reaches World and documents resource/untracked-copy native fallback. Movie-enabled startup does not establish playback. Whole-frame equivalence and replacement excluded.",
+      "behaviors": [
+        "NR.real-game-command-shadow",
+        "NR.command-host-recovery",
+        "NR.continuous-producer",
+        "RI.ui",
+        "RI.movies"
+      ],
+      "evidence": [
+        "NR.command-route-observation.live-20261006"
+      ],
+      "tests": [
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -30446,7 +30543,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-unlock-delta-20261006.json",
-    "sha256": "4b759982fa82eb5d904ea0acfba41cf290894600b306ac5312d6cb12f1bd88f5"
+    "path": "research/runtime/coverage/source-index-render-routes-20261006.json",
+    "sha256": "1eb5fbf5ef1384a0667058bc1704a98493c8e678b88cdb7ab34151f2ad2f7cb4"
   }
 }
