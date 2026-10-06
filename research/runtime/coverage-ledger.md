@@ -981,3 +981,19 @@ before/after, original drawing stays active. Sustained reusable transport,
 longer menu/gameplay scenarios, independent original-driver comparison and
 replacement remain pending. See [scope and records](opengl-owned-session-sequence.md).
 Historical shared-source evidence remains independently stale.
+
+## Acknowledged reusable command transport foundation
+
+2026-10-06 — `NR.command-ring` adds version2 single-producer/reader1MiB ring
+with release/acquire publication and acknowledgement after a private byte copy.
+FULL is nonblocking and changes no published data/counters; acknowledged slots
+may be reused. Identity/counter/terminal corruption, cancellation and32-bit
+lifetime saturation refuse. Native and ASan/UBSan16-case tests each transfer70MiB
+across independent processes; four changing native GPU display frames pass
+through production bounded decoder/consumer across wrap and oversized-record
+fragmentation, with cleanup and zero ordinary readbacks/uploads. Existing native
+incremental/v1 channel CTests and protocol tests pass. This additive foundation
+is not connected to PE32 hooks or live original-game rendering. Existing v1
+remains active; queues/retry scheduling outside tracker, Qt mapped adapter,
+launcher/shutdown/recovery and removal of bounded decoder/archive limits remain
+pending. See [wire, limits and execution](../formats/render-command-ring-v2.md).

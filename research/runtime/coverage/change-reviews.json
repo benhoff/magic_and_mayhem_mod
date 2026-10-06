@@ -17689,6 +17689,141 @@
         "evidence": [],
         "reason": "Documentation-only retrospective accounting. Preserve the prior independent rendering evidence/statuses and source hashes; this metadata work does not rerun sequence/startup rendering comparisons or observe a live game."
       }
+    },
+    {
+      "id": "NR.command-ring.exact-commit-v2",
+      "reason": "Review additive version2 schema/generated offsets and C/C++ x86 atomic32 ring. Producer owns published/state/reason; consumer owns acknowledged/cancel. Publication follows complete byte copy; acknowledgement follows owned read copy. Monotonic totals map modulo1MiB, no unread overwrite; FULL leaves bytes/counters unchanged and requires retained input retry without peer wait. Check fragmentation, command payload larger than capacity, final drain, sticky reader refusal, identity/reserved/cursor corruption, cancellation and UINT32 saturation; no counter wrap. Independent forked expected stream crosses70MiB. GPU fixture uses bounded production decoder/consumer and independent complete displayed colors; initial widget letterboxing/test-region overread corrections retained in research. Renderer CMake adds only test target. Reviewed committed history since6fb4b31 has matching exact receipts and no unmatched fingerprints; census indexing only. Existing v1/PE32 runtime remains active, mapped adapter, producer queue/retry outside tracker, scheduling, launcher, recovery and sustained engine integration pending.",
+      "files": [
+        {
+          "path": "protocols/include/mnm/render_command_ring.h",
+          "before_sha256": null,
+          "after_sha256": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3"
+        },
+        {
+          "path": "protocols/include/mnm/render_commands_v2.h",
+          "before_sha256": null,
+          "after_sha256": "357e127e0601ae55c30b821403df1be2c714d467d9c185c13e14091c2899d7a3"
+        },
+        {
+          "path": "protocols/python/mnm_protocols/render_commands_v2.py",
+          "before_sha256": null,
+          "after_sha256": "101a8efa81e63dc4f0eff660b15aca9b2c924d77ac537b868780f8c3be11e007"
+        },
+        {
+          "path": "protocols/schemas/render_commands-v2.json",
+          "before_sha256": null,
+          "after_sha256": "c640c1a425345eb569e90acc5c716e77317b63d24624d3741962ca1a4126354b"
+        },
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "168614fd8ad11d6455bb46d37b604ffdc3d70046b0439d0a4a08e37d4fb77162",
+          "after_sha256": "63e9ce380a90963d83f8576677430e46a2af0bd65261ff1969c3d7edeac5e97a"
+        },
+        {
+          "path": "research/formats/render-command-ring-v2.md",
+          "before_sha256": null,
+          "after_sha256": "b42efebf46469510d7ce6cd42798ad9e0522e4f4b345a84036878e691b54b282"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "4254df569f4882e5fd3624e646383a4251dfe6f76baf108891740654fe6aeb81",
+          "after_sha256": "a67e48fd0686d22a658d376adbea68bc2b803c602cb548e480736f2d689598e9"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "56ccef804197ca483bdca9c32943bfd239bd7e8814844c9d218ab19b68e36b28",
+          "after_sha256": "60f9c778d3870104144be967bdc66a9c29ff17693844826fb1fb2c156a62d1eb"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-command-ring-commit-v2.json",
+          "before_sha256": null,
+          "after_sha256": "d24dc89c45ca9182ecc183b381ee4783accdc8de8e0cdde61160ff490c28b63a"
+        },
+        {
+          "path": "research/runtime/coverage/summary-command-ring-commit-v2.md",
+          "before_sha256": null,
+          "after_sha256": "38862055f0b88c4eb0919dfe30b9e8ec6558310a072d407ed5579f3b2e79b145"
+        },
+        {
+          "path": "research/runtime/opengl-command-ring-history-review-v2.json",
+          "before_sha256": null,
+          "after_sha256": "e105f49d4321e6ee5e4b85fffa5b95e5c174c31bc51a403928a57674a84b8efe"
+        },
+        {
+          "path": "research/runtime/opengl-command-ring-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "5d04429395ca6429bb0f5367e2381995ff73005bee46274761a2637009055b6f"
+        },
+        {
+          "path": "research/runtime/opengl-command-ring.json",
+          "before_sha256": null,
+          "after_sha256": "4e442e11b5582f8cc1c1ee6db295aa4f33d7d22957eedbed643eea3b81918222"
+        },
+        {
+          "path": "tests/render-command-ring-gpu-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "d9bd64b240d42314fc2d5210631b1ff695248d6c184f178d52c174b224459a73"
+        },
+        {
+          "path": "tests/render-command-ring-test.c",
+          "before_sha256": null,
+          "after_sha256": "a2be91aed9c30db3c35be7bb2774b082b1a5d8992f322ce5e1f71d98712c5549"
+        },
+        {
+          "path": "tools/test-render-command-ring.py",
+          "before_sha256": null,
+          "after_sha256": "d409203ac7960e7043573c9ccd8202561eb27f27f243e28b12ab0fe79f073c49"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-ring",
+          "before_sha256": null,
+          "after_sha256": "625cd96f7654d3bec028260b2fdbc659e6885a32203f803883ec58e2880a69ee"
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "5b228dbd51f62a84cdbc3319b9611665fbd54ded383b0b135770d1ab81209cb2",
+          "after_sha256": "8247732bccea5fdbe5a0232d4aa861537274aaf9e36bed6cdd60fed6a8f1f310"
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "92a4e776862f3086fd5e55f3c5f2dc9f94d88eec3fc7cc12d9879c9e0f7dcbd2",
+          "after_sha256": "bc5ae9b21281f28b86f009e6e26eb353e0e955dae80bf5861cf8829169c36167"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:4f9bb2fb88b2d8abab33b980cc38ebdffecd5eb4cf98b1a891a273c6ceb886c9",
+        "stale_evidence:8b9b776aad67751cde9ebf6ec3be2790fd5e402d390583c1db1024679c4bfdbc",
+        "stale_evidence:af1c16f29b4d65a25373363b26ff352853efbf13f68ddddd9025f2a9350530e0",
+        "stale_evidence:e662265888f2a6761bc474f7e206087ea9e597260809a169576ef1a928467d8a",
+        "stale_evidence:e8bfffa7fadc3a2a529c7993b6b2e83d7f4510cc2a39833d72b623732b7319de"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh native and sanitized transport plus native GPU preview are recorded separately. Shared renderer build links leave historical full rendering contracts independently stale; no original-driver pixel equivalence, live replacement, unbounded decoder or PE32/live hook integration asserted.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NR.command-ring.recorded-commit-v2",
+      "reason": "Record only scoped version2 native transport/GPU preview, independent of original engine integration.",
+      "files": [],
+      "behaviors": [
+        {
+          "id": "NR.command-ring",
+          "before_sha256": null,
+          "after_sha256": "625cd96f7654d3bec028260b2fdbc659e6885a32203f803883ec58e2880a69ee"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Native and ASan/UBSan16-case fixtures each transfer73400320 bytes across independent processes in1MiB mapping. Four changing GPU frames,4194548 byte command session with49 FULL/retry cycles, oversized CREATE fragmentation and wrap pass through bounded production decoder/consumer. Private output survives overwritten acknowledged slots. Normal native/RGBA readbacks and viewport uploads zero, owned surfaces released. Existing incremental/v1 consumer and protocol tests pass; x86-64 native execution only, no PE32 runtime or original-game validation.",
+        "evidence": [
+          "NR.command-ring.native"
+        ]
+      }
     }
   ]
 }

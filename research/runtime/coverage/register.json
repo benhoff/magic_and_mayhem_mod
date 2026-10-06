@@ -13229,6 +13229,40 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.command-ring",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Acknowledged bounded reusable command-byte transport",
+      "scope": "Version2 single writer/reader ring with monotonic published/acknowledged cursors, finite32-bit lifetime, owned copies before acknowledgement and nonblocking backpressure. Foundation only; legacy hook integration, queues, shutdown scheduling and sustained rendering not yet claimed.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/formats/render-command-ring-v2.md"
+      ],
+      "implementation": [
+        "protocols/schemas/render_commands-v2.json",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/python/mnm_protocols/render_commands_v2.py",
+        "protocols/include/mnm/render_command_ring.h"
+      ],
+      "tests": [
+        "tests/render-command-ring-test.c",
+        "tests/render-command-ring-gpu-test.cpp",
+        "tools/test-render-command-ring.py",
+        "renderer/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NR.command-ring.native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -22959,6 +22993,32 @@
           "equals": 97
         }
       ]
+    },
+    {
+      "id": "NR.command-ring.native",
+      "kind": "native_integration",
+      "scope": "Native and ASan/UBSan16-case x86 C fixtures each transfer70MiB through1MiB ring in independent processes; bounded production decoder/GPU consumes4 changing frames from oversized fragmented commands. No PE32 hook or original-game integration.",
+      "record": "research/runtime/opengl-command-ring.json",
+      "sha256": "4e442e11b5582f8cc1c1ee6db295aa4f33d7d22957eedbed643eea3b81918222",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/cross_process_bytes",
+          "equals": 73400320
+        },
+        {
+          "pointer": "/sanitized/success",
+          "equals": true
+        },
+        {
+          "pointer": "/gpu/frames",
+          "equals": 4
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -26507,6 +26567,22 @@
         "tests/effect-animation-metadata-test.cpp",
         "tools/test-effect-animation-metadata.py"
       ]
+    },
+    {
+      "id": "NR.command-ring.preview",
+      "level": "preview",
+      "scope": "70MiB native/sanitized raw cross-process transfer and four bounded native GPU frames. Separate transport and decoder limits, no live original engine integration.",
+      "behaviors": [
+        "NR.command-ring"
+      ],
+      "evidence": [
+        "NR.command-ring.native"
+      ],
+      "tests": [
+        "tests/render-command-ring-test.c",
+        "tests/render-command-ring-gpu-test.cpp",
+        "tools/test-render-command-ring.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -26754,7 +26830,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-animation-metadata-source-index.json",
-    "sha256": "e3eddc7b6d61096c1026f397d31eb62dffb0a1de183735b906cfbe21aaf9c036"
+    "path": "research/runtime/coverage/source-index-command-ring-commit-v2.json",
+    "sha256": "d24dc89c45ca9182ecc183b381ee4783accdc8de8e0cdde61160ff490c28b63a"
   }
 }
