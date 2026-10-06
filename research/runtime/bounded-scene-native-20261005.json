@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "live_validated": false,
+  "pixel_comparisons": 4,
+  "repeat_pixels_and_geometry": true,
+  "arrival": true,
+  "hash_mismatch_refused_before_output": true,
+  "source_sha256": {
+    "tools/load-bounded-scene.py": "d16242b5ae1c3d0dfb17976b0a4e1980da01b2ee14ca8985b2ba18b338f658d1",
+    "tests/test-bounded-scene.py": "e19a5a1d43b09924432ab320046773a8b8fcbd88025fafe900679a601da6ada4",
+    "tests/fixtures/forest-redcap-scene.json": "757b79e4479836224797d4503d77f2ab53152e7dc91c68d26f6fe3bf22fb8272"
+  },
+  "scope": "Strict specification admission and installed Forest/Redcap ordinary scene; independent SPR composition, repeated native outputs and arrival. No original world equivalence.",
+  "result_sha256": {
+    "working/tests/bounded-scene-20261005-final/first/result.json": "e2d6a6039d622bd2e350def3a15077f8df0ce60a181be0f8145dc45c1e544665",
+    "working/tests/bounded-scene-20261005-final/repeat/result.json": "1a60f5d7ccb6a09f3b7b808a75de162f37ad5c347e8d6281ba4b4d8ccc5670ad"
+  },
+  "artifact_report": {
+    "path": "working/tests/bounded-scene-20261005-final/report.json",
+    "sha256": "9e08432900fed66baa68fa64892aaa4b42f69d84e70db9f3fb199c8854f3733a"
+  },
+  "original_manifest_verified_before_after": true,
+  "manifest_logs": {
+    "working/tests/bounded-scene-20261005-final/first/manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/bounded-scene-20261005-final/first/manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/bounded-scene-20261005-final/repeat/manifest-after.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "working/tests/bounded-scene-20261005-final/repeat/manifest-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+  }
+}

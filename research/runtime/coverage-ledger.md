@@ -1030,3 +1030,25 @@ Idle retry scheduling and explicit lifecycle shutdown outside DllMain are next.
 The decoder/archive64MiB/4096 limits, sustained gameplay, original pixel comparison
 and replacement remain outstanding. Shared historical source evidence remains
 independently stale; scoped fresh records do not promote unrelated contracts.
+
+## Bounded scene construction and resource admission (WS01; 2026-10-05)
+
+`NP.bounded-scene` now loads the hash-pinned Forest section-01/Redcap
+[specification](../formats/bounded-scene-specification.md) through the existing
+ordinary crop exporter and native scene preview. Six exact installed resources
+are admitted and staged once for navigation and presentation; unknown fields,
+unsupported policies/types/bindings and resource drift refuse. The document
+records preserved terrain/configuration fields and deliberately omitted world
+entities, scripts, resource nodes/economy and resource families.
+
+Fresh current-source Debug binaries pass the map-navigation and creature-profile
+CTests; four synthetic admission suites pass. Two installed loads reproduce
+geometry, PNG/RGB565 frames and queues; four complete frames match an independent
+SPR compositor. The specified actor reaches its terrain-aware destination, and a
+changed terrain-sprite hash refuses before output creation. Manifest checks retain
+all 2,927 original files. [Execution evidence](bounded-scene-native-20261005.json)
+records this native preview scope only. Original whole-world equivalence,
+reachability of arbitrary admitted endpoint pairs, scripts/entities/resource
+economy, other profiles/maps, portable checkpoint relocation and live replacement
+remain pending. A partial directory without `result.json` is not a successful
+load. Historical evidence and source hashes are preserved.
