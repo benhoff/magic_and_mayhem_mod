@@ -1688,3 +1688,20 @@ release and other metadata callbacks remain pending; see
 ## Native Surface2 DC formats and RGB565 colors — 2026-10-06
 
 Two serialized reserved Wine11.16 runs preserve72 standalone Surface2 GetDC/GDI/ReleaseDC cases each, from original submitted inputs, with native words/admission/selected bitmap/output handles and216 sample/full DC GetPixel outputs. Immutable manifests pass before/after. Full offline comparison matches1346928 native and1346928 DC RGB pixels, all32/64/32 RGB565 channel levels; prior floor expansion differs89860 pixels. Native RGB565 reload and shared presentation bit replication now match2693856 independent pixel comparisons in72 cases,24 scripted cursor compositions/253 refusals;1456 original dispatch projections/12 submitted buffers/813 bounded stops freshly pass. RGB24/32 compatibility36cases/12compositions/137refusals,9 renderer/2 sprite tests,104 viewport frames at scales1/1.5 and10 offline mutation tests pass. Historical evidence remains unchanged. Native DC admission, indexed/DC clipping, real loss and live/wire remain pending, including separate runtime CPU floor-color alignment. See [DC findings](surface-dib-ddraw.md).
+
+### Resource lifetime callback admission (2026-10-06)
+
+Continuous opt-in admission now spans QueryInterface, CreateSurface/CreatePalette
+and surface/palette Release through original and verified lifetime processing.
+Timeouts invalidate metadata/pixels and schedule alias reset on both sides of
+forwarding; uncertain pointer reuse never retains old provenance. Fifteen cases
+compare72 complete frames, including creation/QI/release worker waits/timeouts,
+failed creation/retry and descriptor poisoning, pointer reuse and borrowed
+retirement refusal. The committed-renderer shared palette/drawing regression
+compares545 frames. The private strict original summon remains Active with
+487 more frames over40296ms after forced recovery;17 regions match
+and terminal resources retire to zero. Source/preference and immutable-manifest
+guards pass. Historical/rejected workspace records remain unchanged. Dedicated
+palette lifetime races, nested/failed QI/lifetimes, DirectDrawCreate/startup, other
+metadata callbacks and unseen-interface/implicit destruction recovery remain
+pending; see [lifetime admission](opengl-lifetime-order.md).

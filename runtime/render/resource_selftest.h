@@ -1,3 +1,5 @@
+API u32 WIN GetTickCount(void);
+API u32 WIN RenderAliasSameForTest(void*,void*);
 /* Independent COM lifetime fixture. Only observed QI establishes aliases;
  * Release destroys storage logically before the hook sees its opaque token. */
 struct RsState {struct CsSurface pixels;u32 refs,live;};
@@ -7,12 +9,22 @@ static struct RsState rs_primary_state,rs_states[31];
 static struct RsSurface* rs_query_target;
 static u32 rs_queries,rs_releases,rs_dc_calls,rs_frames;
 static HANDLE rs_dc;
+static u32 rs_gate_kind,rs_gate_timeout,rs_gate_ready,rs_gate_arrived,rs_gate_done,rs_gate_original,rs_creates,rs_create_fail;
+static void rs_setup(struct RsSurface*,struct RsState*,u32,u32,u32);
+static i32 WIN rs_create(void* object,u32* d,void** out,void* outer){
+    (void)object;if(rs_gate_kind==3)__atomic_store_n(&rs_gate_original,1,__ATOMIC_RELEASE);
+    if(GetLastError()!=0x77 || !d || d[0]!=124 || d[2]!=4 || d[3]!=4 || outer || !out)ExitProcess(331);
+    ++rs_creates;SetLastError(0x88);if(rs_create_fail){rs_create_fail=0;return -1;}
+    rs_setup(rs_objects,rs_states,4,4,0);d[3]=0xcc;*out=rs_objects;return 23;
+}
 static i32 WIN rs_query(void* object,const void* iid,void** out){
+    if(rs_gate_kind==2)__atomic_store_n(&rs_gate_original,1,__ATOMIC_RELEASE);
     struct RsSurface* s=object;
     if(!s->state->live || !iid || !out || !rs_query_target || GetLastError()!=0x77)ExitProcess(310);
     ++rs_queries;++rs_query_target->state->refs;*out=rs_query_target;SetLastError(0x88);return 23;
 }
 static u32 WIN rs_release(void* object){
+    if(rs_gate_kind==1)__atomic_store_n(&rs_gate_original,1,__ATOMIC_RELEASE);
     struct RsState* s=((struct RsSurface*)object)->state;
     if(!s->live || !s->refs || GetLastError()!=0x77)ExitProcess(311);
     ++rs_releases;if(!--s->refs)s->live=0;SetLastError(0x88);return s->refs;
@@ -23,6 +35,11 @@ static i32 WIN rs_lock(void* object,void* rect,u32* d,u32 flags,HANDLE event){
 }
 static i32 WIN rs_unlock(void* object,void* arg){
     struct RsState* s=((struct RsSurface*)object)->state;if(!s->live)ExitProcess(313);
+    if(rs_gate_kind && object==&rs_primary){
+        __atomic_store_n(&rs_gate_ready,1,__ATOMIC_RELEASE);u32 start=GetTickCount();
+        while(!__atomic_load_n(rs_gate_timeout?&rs_gate_done:&rs_gate_arrived,__ATOMIC_ACQUIRE)){if(GetTickCount()-start>2000)ExitProcess(332);Sleep(0);}
+        if(!rs_gate_timeout){Sleep(10);if(__atomic_load_n(&rs_gate_original,__ATOMIC_ACQUIRE))ExitProcess(333);}
+    }
     return cs_unlock(&s->pixels,arg);
 }
 static i32 WIN rs_get_dc(void* object,void** out){
@@ -57,6 +74,19 @@ static void rs_observe_alias(struct RsSurface* from,struct RsSurface* to){
     rs_query_target=to;void* out=0;SetLastError(0x77);
     if(((i32 (WIN *)(void*,const void*,void**))from->table[0])(from,iid,&out)!=23 || out!=to || GetLastError()!=0x88)ExitProcess(320);
 }
+static u32 WIN rs_lifetime_worker(void* unused){
+    (void)unused;u32 start=GetTickCount();while(!__atomic_load_n(&rs_gate_ready,__ATOMIC_ACQUIRE)){if(GetTickCount()-start>2000)ExitProcess(334);Sleep(0);}
+    __atomic_store_n(&rs_gate_arrived,1,__ATOMIC_RELEASE);
+    if(rs_gate_kind==1){rs_drop(rs_objects,1);rs_drop(&rs_alias,0);}
+    else if(rs_gate_kind==2)rs_observe_alias(rs_objects,&rs_alias);
+    else{
+        u32 d[31]={124,0x1007,4,4};d[18]=32;d[19]=0x40;d[21]=32;d[22]=0xff0000;d[23]=0xff00;d[24]=0xff;d[26]=0x40;
+        static void* vt[7];vt[6]=(void*)&rs_create;static void** draw;draw=vt;RenderInstallForTest(&draw,4);void* out=0;rs_create_fail=1;
+        SetLastError(0x77);if(((i32 (WIN *)(void*,u32*,void**,void*))draw[6])(&draw,d,&out,0)!=-1 || GetLastError()!=0x88 || out)ExitProcess(335);
+        SetLastError(0x77);if(((i32 (WIN *)(void*,u32*,void**,void*))draw[6])(&draw,d,&out,0)!=23 || GetLastError()!=0x88 || out!=rs_objects || d[3]!=0xcc)ExitProcess(336);
+    }
+    __atomic_store_n(&rs_gate_done,1,__ATOMIC_RELEASE);return 0;
+}
 /* Fixture pacing only, outside hooks: wait until the independent consumer
  * acknowledges DELETE before producing the next large resource. This chunk
  * keeps production nonblocking backpressure policy unchanged. */
@@ -82,9 +112,23 @@ static void test_resources(const char* mode){
     u32 churn=rs_mode(mode,"churn"),pixels=rs_mode(mode,"pixels"),alias=rs_mode(mode,"alias");
     u32 untracked=rs_mode(mode,"untracked"),held=rs_mode(mode,"held"),dc=rs_mode(mode,"dc");
     u32 contention=rs_mode(mode,"contention"),conflict=rs_mode(mode,"conflict"),bounded=rs_mode(mode,"bounded");
-    u32 valid=churn || pixels || alias || untracked;
+    u32 gate_release=rs_mode(mode,"cross-release") || rs_mode(mode,"release-timeout"),gate_alias=rs_mode(mode,"cross-alias") || rs_mode(mode,"alias-timeout"),gate_create=rs_mode(mode,"cross-create") || rs_mode(mode,"create-timeout");
+    u32 gate=gate_release || gate_alias || gate_create;
+    u32 valid=churn || pixels || alias || untracked || (rs_mode(mode,"cross-release") || rs_mode(mode,"cross-alias") || rs_mode(mode,"cross-create"));
     rs_setup(&rs_primary,&rs_primary_state,32,16,1);rs_update(&rs_primary,0xa5123456);
-    if(churn){
+    if(gate){
+        if(!gate_create){rs_setup(rs_objects,rs_states,4,4,0);rs_update(rs_objects,0xa5010000);rs_alias.table=rs_objects[0].table;rs_alias.state=rs_states;if(gate_release)rs_observe_alias(rs_objects,&rs_alias);}
+        rs_gate_kind=gate_release?1:gate_alias?2:3;rs_gate_timeout=!valid;__atomic_store_n(&rs_gate_original,0,__ATOMIC_RELEASE);
+        HANDLE worker=CreateThread(0,0,rs_lifetime_worker,0,0,0);if(!worker)ExitProcess(337);
+        rs_update(&rs_primary,0xa5654321);if(WaitForSingleObject(worker,2000)!=0)ExitProcess(338);CloseHandle(worker);rs_gate_kind=0;
+        if(gate_release){rs_setup(&rs_alias,rs_states,8,4,0);rs_update(&rs_alias,0xa5030000);rs_drop(&rs_alias,0);}
+        else if(gate_alias){rs_drop(rs_objects,1);rs_drop(&rs_alias,0);}
+        else{rs_update(rs_objects,0xa5030000);rs_drop(rs_objects,0);}
+        if(rs_gate_timeout){
+            if(RenderAliasSameForTest(rs_objects,&rs_alias)!=0)ExitProcess(339);
+        }
+        rs_drop(&rs_primary,0);u32 lifetime_counts[3]={rs_creates,rs_gate_original,rs_gate_done};pl_file("lifetime-counts.bin",lifetime_counts,sizeof(lifetime_counts));
+    }else if(churn){
         /* Fill all 32 slots, then reclaim them out of order five times. */
         for(u32 cycle=0;cycle<5;++cycle){
             for(u32 i=0;i<31;++i){rs_setup(rs_objects+i,rs_states+i,4+i%3,4,0);rs_update(rs_objects+i,0xa5010000+cycle*31+i);}
