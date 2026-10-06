@@ -1644,3 +1644,7 @@ with500 more frames after forced World recovery and17 matched stable
 regions; terminal resources are zero. Other mutation concurrency, scene repetition
 and animated/full-frame/driver equivalence remain pending. See
 [CPU handoff ordering](opengl-cpu-handoff-order.md).
+
+## Original cursor sentinel and bitmap reload — 2026-10-06
+
+1698 unchanged original x86 sentinel/bitmap loader/four-wrapper captures compare20060 ordered scripted CRT/COM/GDI endpoint events offline from12 bitmap inputs, including the installed cursor asset.10 regression tests pass. The -1 route always reloads the fixed global cursor, including twice when both copy receivers recover, and sentinel/DC loader ignore nested/DC/GDI failures within the scripted out-parameter scope. See [cursor reload findings](original-surface-sentinel.md). Submitted DIB buffer hashes are captured; real GDI pixels, native resource routing/conversion, other reload bodies, malformed/second allocation branches and live recovery remain pending. No Wine executes in this chunk.

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "path": "original-sentinel.json.gz",
+  "sha256": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+  "raw_sha256": "624e1282eee73736ceb731994fbec8d3362e87671ac208f1bc7696e7115ca189",
+  "cases": 1698,
+  "assets": 12,
+  "scope": "Unchanged pinned x86 sentinel/bitmap parser/DC loader and four recovery wrappers in Unicorn2.1.4; scripted CRT file/allocation, COM, GetDC (always writes fixture HDC even on failure), GDI and error-report endpoints. Exact ordered calls and submitted DIB buffer hashes; no original CRT/driver/GDI rasterization, native asset reload or live equivalence.",
+  "oracle": "unchanged_original_x86_scripted_crt_com_gdi"
+}

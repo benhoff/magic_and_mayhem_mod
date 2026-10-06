@@ -14866,7 +14866,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original surface loss/Restore/retry wrapper scheduling",
-      "scope": "Four unchanged original fill/copy wrappers,4480 scripted draw/Restore/key result schedules and bounded reload/UI endpoints. CPU ordering and consumed-result counts match; selected source-before-destination recovery, no/one/unbounded retry differences and ignored key failure. Driver loss/Restore pixel validity, palette, asset/sentinel reload, null mutation/window retries and native/live replacement pending. Portable C++ adapter scheduling now matches4480 captured traces; explicit budget stops preserve original event prefixes and never claim original success. Test-only fill adapters compose this with native content invalidation/explicit reload; real driver/live recovery remains pending. Separate standalone real Wine API loss/Restore/key observations are now linked; lost COLORFILL returns success in that driver probe, so original-wrapper composition with real lost draw results remains pending.",
+      "scope": "Four unchanged original fill/copy wrappers,4480 scripted draw/Restore/key result schedules and bounded reload/UI endpoints. CPU ordering and consumed-result counts match; selected source-before-destination recovery, no/one/unbounded retry differences and ignored key failure. Driver loss/Restore pixel validity, palette, asset/sentinel reload, null mutation/window retries and native/live replacement pending. Portable C++ adapter scheduling now matches4480 captured traces; explicit budget stops preserve original event prefixes and never claim original success. Test-only fill adapters compose this with native content invalidation/explicit reload; real driver/live recovery remains pending. Separate standalone real Wine API loss/Restore/key observations are now linked; lost COLORFILL returns success in that driver probe, so original-wrapper composition with real lost draw results remains pending. Original -1 global cursor sentinel and bounded bitmap-to-DC nested call traces are independently registered as RE.surface-reload.cursor-sentinel. Portable C++ callback-only adapter does not yet route the global cursor resource or restore asset pixels; real GDI/native/live composition remains pending.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -14898,7 +14898,8 @@
       "documents": [
         "research/runtime/original-surface-retry.md",
         "research/runtime/native-surface-operation-matrix.json",
-        "research/runtime/surface-driver-restore.md"
+        "research/runtime/surface-driver-restore.md",
+        "research/runtime/original-surface-sentinel.md"
       ],
       "implementation": [
         "tools/check-original-surface-retry.py",
@@ -14920,7 +14921,9 @@
         "ORIGINAL.surface-copy.restore-retry.native-20261006",
         "DRIVER.surface-loss.restore.16-capture-20261006",
         "DRIVER.surface-loss.restore.32-capture-20261006",
-        "DRIVER.surface-loss.restore.offline-20261006"
+        "DRIVER.surface-loss.restore.offline-20261006",
+        "ORIGINAL.surface-reload.cursor-sentinel.capture-20261006",
+        "ORIGINAL.surface-reload.cursor-sentinel.cpu-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -15156,6 +15159,98 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-reload.cursor-sentinel",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Original global cursor sentinel and bounded bitmap-to-DC reload",
+      "scope": "Recovered object+40 zero/callback/-1 routes in four wrappers, fixed global cursor/path sentinel returning0, original bitmap/DC loader returning file-load status while ignoring DC/GDI results, bounded1/4/8/24-bit file reads/cleanup including installed cursor.1698 original x86 traces/20060 endpoint events independently compared offline. Scripted CRT/COM/GDI boundaries, submitted buffers only; second allocation failure, malformed/extreme BMP semantics, real GDI raster pixels, native resource routing/conversion, other reload bodies and live recovery remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4861840,
+          "scope": "Selected unchanged code with bounded CRT/COM/GDI/error endpoints; submitted input buffer and control-flow scope only, not complete parser/driver/GDI equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5820832,
+          "scope": "Selected unchanged code with bounded CRT/COM/GDI/error endpoints; submitted input buffer and control-flow scope only, not complete parser/driver/GDI equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745552,
+          "scope": "Selected unchanged code with bounded CRT/COM/GDI/error endpoints; submitted input buffer and control-flow scope only, not complete parser/driver/GDI equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745568,
+          "scope": "Selected unchanged code with bounded CRT/COM/GDI/error endpoints; submitted input buffer and control-flow scope only, not complete parser/driver/GDI equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745856,
+          "scope": "Selected unchanged code with bounded CRT/COM/GDI/error endpoints; submitted input buffer and control-flow scope only, not complete parser/driver/GDI equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745952,
+          "scope": "Selected unchanged code with bounded CRT/COM/GDI/error endpoints; submitted input buffer and control-flow scope only, not complete parser/driver/GDI equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814976,
+          "scope": "Selected unchanged code with bounded CRT/COM/GDI/error endpoints; submitted input buffer and control-flow scope only, not complete parser/driver/GDI equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Selected unchanged code with bounded CRT/COM/GDI/error endpoints; submitted input buffer and control-flow scope only, not complete parser/driver/GDI equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected unchanged code with bounded CRT/COM/GDI/error endpoints; submitted input buffer and control-flow scope only, not complete parser/driver/GDI equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818528,
+          "scope": "Selected unchanged code with bounded CRT/COM/GDI/error endpoints; submitted input buffer and control-flow scope only, not complete parser/driver/GDI equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 6161616,
+          "relation": "data",
+          "scope": "Fixed cursor bitmap path input selected by sentinel."
+        }
+      ],
+      "documents": [
+        "research/runtime/original-surface-sentinel.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "tools/check-original-surface-sentinel.py"
+      ],
+      "tests": [
+        "tests/surface-sentinel-reference.py",
+        "tests/surface-sentinel-requirements.txt",
+        "tests/test-original-surface-sentinel.py",
+        "tools/capture-original-surface-sentinel.py",
+        "tests/fixtures/surfaces/original-sentinel.json.gz",
+        "tests/fixtures/surfaces/original-sentinel-corpus.json"
+      ],
+      "evidence": [
+        "ORIGINAL.surface-reload.cursor-sentinel.capture-20261006",
+        "ORIGINAL.surface-reload.cursor-sentinel.cpu-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
         "replacement": "none"
       }
     }
@@ -27316,6 +27411,38 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "ORIGINAL.surface-reload.cursor-sentinel.capture-20261006",
+      "kind": "isolated_original",
+      "scope": "1698 unchanged original x86 sentinel/bitmap loader/four-wrapper executions in Unicorn2.1.4 with explicit scripted CRT/COM/GDI/error endpoints;20060 ordered calls and submitted DIB input buffers compared offline. GetDC always supplies fixture HDC even on scripted failure. No original CRT, real GDI rasterization/driver, native cursor reload or live equivalence.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-sentinel-capture-20261006.json",
+      "sha256": "296932ad4539d4619630f0d1aa818449871d98126765a86710f032a1cdf6da05",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-reload.cursor-sentinel.cpu-20261006",
+      "kind": "isolated_original",
+      "scope": "1698 unchanged original x86 sentinel/bitmap loader/four-wrapper executions in Unicorn2.1.4 with explicit scripted CRT/COM/GDI/error endpoints;20060 ordered calls and submitted DIB input buffers compared offline. GetDC always supplies fixture HDC even on scripted failure. No original CRT, real GDI rasterization/driver, native cursor reload or live equivalence.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-sentinel-cpu-20261006.json",
+      "sha256": "6fd9a8b5be84e154dcc788973d0ac47c4d26778d5e299a7dcb987c59163b03af",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -32024,7 +32151,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-cpu-handoff-20261006.json",
-    "sha256": "1f4d51b6a7fd757865864802773f4f64523a79d0d8959534bee46d119a140d5a"
+    "path": "research/runtime/coverage/source-index-sentinel-20261006.json",
+    "sha256": "d9d6260983d946c6e54b85c81b89baefc5e33fa3ce444cdd912939584680d4bf"
   }
 }
