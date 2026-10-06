@@ -19,10 +19,14 @@ unsigned transitionEffectCreatureWorld(EffectPlacementPool& pool,unsigned slot,
   throw std::invalid_argument("Creature collision world outside owned bounds");
  auto candidatePool=pool;auto next=state;
  const auto creator=candidatePool.records()[slot].parameters[6],iterations=candidatePool.records()[slot].parameters[9],kind=candidatePool.records()[slot].parameters[8];
+ if(kind!=0 && kind!=34 && kind!=68)throw std::invalid_argument("Unsupported creature collision kind");
  if(iterations>8)throw std::invalid_argument("Creature collision iteration bound exceeded");
- // Reuse bounded movement admission; creator affects only the candidate filter here.
+ // Reuse bounded movement bookkeeping. Kind 34 differs in creator selection;
+ // the public empty-world operation retains its original admission.
+ candidatePool.records()[slot].parameters[8]=kind==34?0:kind;
  candidatePool.records()[slot].parameters[6]=0xffffffffu;candidatePool.records()[slot].parameters[9]=0;
  transitionEffectEmptyWorld(candidatePool,slot,next.movement,width,height,layers,columns,updateMembership,occupancy);
+ candidatePool.records()[slot].parameters[8]=kind;
  candidatePool.records()[slot].parameters[6]=creator;candidatePool.records()[slot].parameters[9]=iterations;
  std::array<unsigned,27> candidates;candidates.fill(NoCreature);
  auto gather=[&]() { candidates.fill(NoCreature);for(unsigned i=0;i<27;++i) {
@@ -30,7 +34,7 @@ unsigned transitionEffectCreatureWorld(EffectPlacementPool& pool,unsigned slot,
   if(z<0 || z>=int(layers))continue;
   x=(x+int(width))%int(width);y=(y+int(height))%int(height);
   auto ordinal=world.cells[(unsigned(z)*height+unsigned(y))*width+unsigned(x)];
-  if(ordinal!=NoEffect && ordinal<world.creatures.size() && ordinal!=creator)candidates[i]=ordinal;
+  if(ordinal!=NoEffect && ordinal<world.creatures.size() && (ordinal!=creator || kind==34))candidates[i]=ordinal;
  }
  };
  if(kind!=68)gather();
@@ -39,8 +43,10 @@ unsigned transitionEffectCreatureWorld(EffectPlacementPool& pool,unsigned slot,
   const auto previousIndex=candidatePool.records()[slot].cell;
   const auto previousFlags=candidatePool.cells()[previousIndex].flags;
   const auto previousCell=candidatePool.records()[slot].position;
+  candidatePool.records()[slot].parameters[8]=kind==34?0:kind;
   candidatePool.records()[slot].parameters[6]=0xffffffffu;candidatePool.records()[slot].parameters[9]=1;
   auto code=transitionEffectEmptyWorld(candidatePool,slot,next.movement,width,height,layers,columns,updateMembership,occupancy);
+  candidatePool.records()[slot].parameters[8]=kind;
   candidatePool.records()[slot].parameters[6]=creator;candidatePool.records()[slot].parameters[9]=iterations;
   if(updateMembership && previousCell!=candidatePool.records()[slot].position && world.cells[previousIndex]!=NoEffect)
    candidatePool.cells()[previousIndex].flags=(candidatePool.cells()[previousIndex].flags&~0x80u)|(previousFlags&0x80u);
