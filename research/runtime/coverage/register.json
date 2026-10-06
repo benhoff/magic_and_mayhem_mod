@@ -14301,7 +14301,8 @@
         "tests/fixtures/surfaces/zpfft1bo.bin.gz"
       ],
       "evidence": [
-        "ORIGINAL.surface-copy.rgb565-bltfast-20261006"
+        "ORIGINAL.surface-copy.rgb565-bltfast-20261006",
+        "ORIGINAL.surface-copy.rgb565-bltfast-post-driver-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14341,7 +14342,8 @@
         "tests/fixtures/surfaces/zpfft1bo.bin.gz"
       ],
       "evidence": [
-        "NR.surface-fixture-corpus.offline-20261006"
+        "NR.surface-fixture-corpus.offline-20261006",
+        "NR.surface-fixture-corpus.post-driver-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14405,6 +14407,45 @@
         "implementation": "partial",
         "comparison": "recorded",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.surface-driver-fixtures",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Independent Wine Surface2 driver fixture capture and offline admission",
+      "scope": "Controlled external Wine 11.16 Surface2 RGB565 system-memory fixture inputs and independent offline model: 408 HRESULT/full-destination outputs, explicit/missing/empty clip lists, bounds, error precedence, two partial-write failures and WAIT pairs. Harness policy only; original game/Windows-driver equivalence, native renderer clipping and original retry/Restore branches remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/surface-driver-clipping.md",
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/surface-driver-clipping-wine-20261006.json",
+        "research/runtime/surface-driver-clipping-wine-v2-20261006.json"
+      ],
+      "implementation": [
+        "tools/capture-surface-driver.py"
+      ],
+      "tests": [
+        "tests/surface-driver-reference.c",
+        "tests/test-surface-driver.py",
+        "tests/fixtures/surfaces/driver-clipping-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-original.json.gz",
+        "tests/fixtures/surfaces/driver-clipping-v2-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-v2-original.json.gz",
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz"
+      ],
+      "evidence": [
+        "NR.surface-driver-fixtures.capture-20261006",
+        "NR.surface-driver-fixtures.offline-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -25327,6 +25368,108 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.surface-driver-fixtures.capture-20261006",
+      "kind": "native_integration",
+      "scope": "Real external Wine Surface2 driver output capture; synthetic API inputs, no original game execution or native renderer.",
+      "record": "research/runtime/surface-driver-clipping-surface2-20261006.json",
+      "sha256": "d906fa624faffebb712c9228a21cb18697defd7e07dd601ffd127850a990759f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 408
+        },
+        {
+          "pointer": "/driver_calls",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/native_renderer_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-driver-fixtures.offline-20261006",
+      "kind": "native_integration",
+      "scope": "Four offline fixture/model tests independently reproduce all retained Wine driver outputs, including partial-write failure. Not native renderer clipping or Windows driver equivalence.",
+      "record": "research/runtime/surface-driver-clipping-offline-20261006.json",
+      "sha256": "8b54962ff68a7b0aa0746e454cece60447b595f13d5c6c25d214d197705fd2b0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests",
+          "equals": 4
+        },
+        {
+          "pointer": "/matched",
+          "equals": 408
+        },
+        {
+          "pointer": "/partial_failure_cases",
+          "equals": 2
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-bltfast-post-driver-20261006",
+      "kind": "isolated_original",
+      "scope": "Offline native/CPU comparison with five retained independent original-game driver RGB565 opaque BltFast destination outputs at return PC0x0058c5be within wrapper0x0058c4a0. Includes three40x40, one40x3 and one unchanged40x1 rectangles with full800x600 destination comparisons. Not wrapper reexecution, timing, clipping, physical-driver, current collector or live equivalence. Evidence kind denotes isolated offline comparison against historical live captures, not a new isolated execution of original machine code.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/native-surface-fixtures-post-driver-20261006.json",
+      "sha256": "02fcbf4db30f9761ac13852bce9d0e78f5ef5706b43578210b957d19d14582df",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/backend",
+          "equals": "opengl"
+        },
+        {
+          "pointer": "/milestone_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-fixture-corpus.post-driver-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh CPU/OpenGL replay of the same five original RGB565 opaque fixtures after the acceptance matrix correction; new driver corpus does not count toward original fixture or native clipping coverage.",
+      "record": "research/runtime/native-surface-fixtures-post-driver-20261006.json",
+      "sha256": "02fcbf4db30f9761ac13852bce9d0e78f5ef5706b43578210b957d19d14582df",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/backend",
+          "equals": "opengl"
+        },
+        {
+          "pointer": "/milestone_complete",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -29351,6 +29494,50 @@
         "tests/live-render-recovery-probe.cpp",
         "tools/test-live-render-recovery.py"
       ]
+    },
+    {
+      "id": "NR.surface-driver-fixtures.offline",
+      "level": "headless",
+      "scope": "Python-only replay of independently captured external Wine Surface2 RGB565 API HRESULTs and full native pixel arrays; no Wine/game/media/display required for regression.",
+      "behaviors": [
+        "NR.surface-driver-fixtures"
+      ],
+      "evidence": [
+        "NR.surface-driver-fixtures.offline-20261006"
+      ],
+      "tests": [
+        "tests/test-surface-driver.py",
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz"
+      ]
+    },
+    {
+      "id": "NR.surface-fixture-corpus.post-driver",
+      "level": "headless",
+      "scope": "Five retained original-game RGB565 opaque rectangle captures replayed entirely offline through CPU and Mesa OpenGL; whole-destination native comparison and independent RGB conversion. All other matrix requirements remain pending.",
+      "behaviors": [
+        "NR.surface-fixture-corpus",
+        "RE.surface-copy.rgb565-bltfast"
+      ],
+      "evidence": [
+        "NR.surface-fixture-corpus.post-driver-20261006",
+        "ORIGINAL.surface-copy.rgb565-bltfast-post-driver-20261006"
+      ],
+      "tests": [
+        "tools/check-surface-fixtures.py",
+        "tests/test-surface-fixtures.py",
+        "tests/fixtures/surfaces/corpus.json",
+        "tests/fixtures/surfaces/g34xhs0b.manifest.json",
+        "tests/fixtures/surfaces/p66k189j.manifest.json",
+        "tests/fixtures/surfaces/ugdn7zhm.manifest.json",
+        "tests/fixtures/surfaces/yu55vq8i.manifest.json",
+        "tests/fixtures/surfaces/zpfft1bo.manifest.json",
+        "tests/fixtures/surfaces/g34xhs0b.bin.gz",
+        "tests/fixtures/surfaces/p66k189j.bin.gz",
+        "tests/fixtures/surfaces/ugdn7zhm.bin.gz",
+        "tests/fixtures/surfaces/yu55vq8i.bin.gz",
+        "tests/fixtures/surfaces/zpfft1bo.bin.gz"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -29598,7 +29785,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-render-recovery-metadata-20261006.json",
-    "sha256": "7f884b232bf1a1001dc872cdf2bc83df50482893a93392b789c04fca9d523e14"
+    "path": "research/runtime/coverage/source-index-surface-driver-20261006.json",
+    "sha256": "e9ca00f2ec3842b1b4564794098f9101fa230b05dad3dadbfdd05f0a363bcadc"
   }
 }
