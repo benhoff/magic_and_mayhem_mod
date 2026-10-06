@@ -1,4 +1,4 @@
-/* Fresh-session handoff after shutdown/join. Explicit recovery discards state;
+/* Fresh-session handoff after shutdown/join. Explicit recovery discards pixels;
  * administrative checkpoint attachment preserves only independently owned,
  * complete state behind the exclusive callback gate. No observer COM calls. */
 struct CommandCandidate {u32* map;u8* queue;struct CommandFile file;};
@@ -46,30 +46,37 @@ static int command_recovery_leases_quiet(void){
 static int command_recovery_quiet(void){return !game_session_enabled && command_recovery_leases_quiet();}
 /* Called with the tracker and callback gate closed. Do not synchronize away
  * uncertainty: every observed resource must already have complete owned state. */
+static int command_checkpoint_reject(u32 reason,struct GameSurface* s,u32 surfaces,u32 bytes){
+    u32 v[19]={reason,s?(u32)s->object:0,surfaces,bytes,game_lock_epoch,game_metadata_epoch,
+        s?s->epoch:0,s?s->metadata_epoch:0,s?s->layout_known:0,s?s->pixels.data!=0:0,
+        s?s->pixels.width:0,s?s->pixels.height:0,s?s->pixels.bits:0,s?s->pixels.length:0,
+        s?s->primary:0,game_pixel_misses_pending,game_alias_reset_pending};
+    lock_diagnostic_values("checkpoint_admission_refused",v);return 0;
+}
 static int command_checkpoint_complete(void){
-    if(game_pixel_misses_pending || game_alias_reset_pending)return 0;
-    for(u32 i=0;i<128;++i)if(game_pixel_misses[i])return 0;
+    if(game_pixel_misses_pending || game_alias_reset_pending)return command_checkpoint_reject(1,0,0,0);
+    for(u32 i=0;i<128;++i)if(game_pixel_misses[i])return command_checkpoint_reject(1,0,0,0);
     u32 surfaces=0,pixels=0,bytes=16+12,primary=0;
     for(u32 i=0;i<GAME_SURFACE_COUNT;++i){struct GameSurface* s=game_surfaces+i;if(!s->object)continue;
         struct Snapshot* p=&s->pixels;
         if(++surfaces>32 || s->epoch!=game_lock_epoch || s->metadata_epoch!=game_metadata_epoch ||
            !s->layout_known || !p->data || !p->width || p->width>2048 || !p->height || p->height>2048 ||
            (p->bits!=8 && p->bits!=16 && p->bits!=24 && p->bits!=32) ||
-           p->length!=p->width*p->height*(p->bits/8))return 0;
-        for(u32 j=0;j<i;++j)if(game_surfaces[j].object && game_alias_same(s->object,game_surfaces[j].object))return 0;
-        u32 count=p->width*p->height;if(count>16777216-pixels)return 0;pixels+=count;
-        if(bytes>COMMAND_QUEUE_CAPACITY-40 || p->length>COMMAND_QUEUE_CAPACITY-40-bytes)return 0;bytes+=40+p->length;
-        if(p->bits==8){if(!game_palette_complete(game_palette_find(s->palette,0)))return 0;
+           p->length!=p->width*p->height*(p->bits/8))return command_checkpoint_reject(2,s,surfaces,bytes);
+        for(u32 j=0;j<i;++j)if(game_surfaces[j].object && game_alias_same(s->object,game_surfaces[j].object))return command_checkpoint_reject(3,s,surfaces,bytes);
+        u32 count=p->width*p->height;if(count>16777216-pixels)return command_checkpoint_reject(4,s,surfaces,bytes);pixels+=count;
+        if(bytes>COMMAND_QUEUE_CAPACITY-40 || p->length>COMMAND_QUEUE_CAPACITY-40-bytes)return command_checkpoint_reject(5,s,surfaces,bytes);bytes+=40+p->length;
+        if(p->bits==8){if(!game_palette_complete(game_palette_find(s->palette,0)))return command_checkpoint_reject(6,s,surfaces,bytes);
             u32 colors=game_session_palette_resources?24:792;
-            if(bytes>COMMAND_QUEUE_CAPACITY-colors)return 0;bytes+=colors;}
+            if(bytes>COMMAND_QUEUE_CAPACITY-colors)return command_checkpoint_reject(5,s,surfaces,bytes);bytes+=colors;}
         if(s->primary)++primary;
     }
-    if(primary!=1)return 0;
+    if(primary!=1)return command_checkpoint_reject(7,0,surfaces,bytes);
     for(u32 i=0;i<32;++i){struct GamePalette* p=game_palettes+i;if(!p->count)continue;
-        if(p->epoch!=game_lock_epoch || !game_palette_complete(p))return 0;
-        if(game_session_palette_resources){if(bytes>COMMAND_QUEUE_CAPACITY-788)return 0;bytes+=788;}
+        if(p->epoch!=game_lock_epoch || !game_palette_complete(p))return command_checkpoint_reject(6,0,surfaces,bytes);
+        if(game_session_palette_resources){if(bytes>COMMAND_QUEUE_CAPACITY-788)return command_checkpoint_reject(5,0,surfaces,bytes);bytes+=788;}
     }
-    return bytes<=COMMAND_QUEUE_CAPACITY-session_cleanup_bytes();
+    return bytes<=COMMAND_QUEUE_CAPACITY-session_cleanup_bytes()?1:command_checkpoint_reject(5,0,surfaces,bytes);
 }
 static int command_checkpoint_publish(void){
     if(!session_start())return 0;
@@ -84,16 +91,21 @@ static int command_checkpoint_publish(void){
 }
 static void command_recovery_checkpoints(int preserve){
     /* Epochs/generations remain monotonic. Strict attachment keeps verified
-     * CPU state; ordinary recovery requires fresh observations. Wire resources
+     * CPU state; ordinary recovery requires fresh pixels. Wire resources
      * and pending presentation identity are always reset. */
     session_archive_close();session_active=0;
     for(u32 i=0;i<32;++i)game_lock_clear(game_locks+i);
     if(!preserve){
-    for(u32 i=0;i<GAME_SURFACE_COUNT;++i){game_surface_drop(game_surfaces+i);zero(game_surfaces+i,sizeof(game_surfaces[i]));}
-    zero(game_palettes,sizeof(game_palettes));zero(game_aliases,sizeof(game_aliases));
-    zero(game_alias_index,sizeof(game_alias_index));game_alias_index_valid=0;game_alias_reset_pending=0;
-    zero(game_pixel_misses,sizeof(game_pixel_misses));game_pixel_misses_pending=0;
-    game_metadata_invalidate();
+    /* Publication failure does not end application object lifetimes. Synchronize
+     * independently observed invalidations, then discard pixels while keeping
+     * current descriptors/properties and verified interface relationships. No
+     * application QI/GetDesc is guaranteed to repeat after a consumer failure. */
+    game_surface_sync();
+    for(u32 i=0;i<GAME_SURFACE_COUNT;++i)if(game_surfaces[i].object)game_surface_drop(game_surfaces+i);
+    for(u32 i=0;i<32;++i){
+        if(game_palettes[i].count && game_palettes[i].epoch!=game_lock_epoch)zero(game_palettes+i,sizeof(game_palettes[i]));
+        else game_palettes[i].session=0;
+    }
     }else for(u32 i=0;i<32;++i)game_palettes[i].session=0;
     game_presented_object=0;game_presented_generation=game_presented_frame=0;
     zero(session_surfaces,sizeof(session_surfaces));zero(session_palettes,sizeof(session_palettes));session_last_palette_id=0;

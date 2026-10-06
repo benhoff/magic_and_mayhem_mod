@@ -24,17 +24,17 @@ def main():
     if not os.environ.get('DISPLAY'):parser.error('Run under Xvfb')
     parent=ROOT/'working/tests/live-render-recovery';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     paths=list((ROOT/'runtime/render').glob('*.[ch]'))+[ROOT/p for p in ['tools/test-live-render-recovery.py','tools/test-live-render-game.py','tools/run-opengl-game.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py','tests/live-render-recovery-probe.cpp','renderer/CMakeLists.txt','renderer/commands.cpp','renderer/commands.hpp','renderer/command_consumer.cpp','renderer/command_state.hpp','renderer/blit.cpp','renderer/blit.hpp','apps/qt-shell/live_command_session.cpp','apps/qt-shell/live_command_session.hpp','apps/qt-shell/render_control.cpp','apps/qt-shell/render_control.hpp','apps/qt-shell/live_command_renderer.cpp','apps/qt-shell/live_command_renderer.hpp','apps/qt-shell/command_channel.cpp','apps/qt-shell/command_channel.hpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp','protocols/include/mnm/render_control_v1.h','protocols/include/mnm/render_commands_v2.h','protocols/include/mnm/render_stream_v2.h','protocols/include/mnm/render_command_ring.h']]
-    sources={str(p.relative_to(ROOT)):helper.sha(p) for p in paths};report=dict(schema=1,sources=sources,cases=[],scope='Two bounded original no-CD game startup observations with continuous rendering, guarded native recovery/checkpoint negotiation and retained original window. No gameplay route, independent pixel equivalence or live replacement claim.',pixel_equivalence=False,live_replacement=False)
+    sources={str(p.relative_to(ROOT)):helper.sha(p) for p in paths};report=dict(schema=1,sources=sources,cases=[],scope='Three bounded original no-CD game startup observations with continuous rendering, guarded native recovery/checkpoint negotiation and retained original window. No gameplay route, independent pixel equivalence or live replacement claim.',pixel_equivalence=False,live_replacement=False)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(run/'wineprefix'));env.pop('WAYLAND_DISPLAY',None)
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
         subprocess.run(['cp','-a','--reflink=auto',str(args.prefix_template.resolve()),env['WINEPREFIX']],check=True)
         with (run/'wineboot.log').open('w') as log:subprocess.run(['wineboot','-u'],env=env,stdout=log,stderr=log,check=True,timeout=90)
-        for mode in ['checkpoint','recover']:
+        for mode in ['early-checkpoint','checkpoint','recover']:
             case=run/mode;case.mkdir();qt=wine=None
             try:
                 with (case/'qt.log').open('w') as qlog,(case/'wine.log').open('w') as wlog:
-                    qt=subprocess.Popen([str(args.build.resolve()/'live-render-recovery-probe'),str(case),mode],env=env,stdout=qlog,stderr=qlog,start_new_session=True);wait(lambda:(case/'ready.json').exists(),qt,20)
+                    qt=subprocess.Popen([str(args.build.resolve()/'live-render-recovery-probe'),str(case),'checkpoint' if mode.endswith('checkpoint') else 'recover'],env=env,stdout=qlog,stderr=qlog,start_new_session=True);wait(lambda:(case/'ready.json').exists(),qt,20)
                     frame=case/'frame.bin';helper.create(frame,helper.frame_v1.initial_header(),helper.frame_v1.SIZE)
                     child=dict(env,MNM_RENDER_CONTINUOUS='1',MNM_RENDER_PALETTE_RESOURCES='1',MNM_RENDER_SESSION_ARCHIVE='1')
                     staged=subprocess.run(['python3',str(ROOT/'tools/run-opengl-game.py'),'--stream',str(frame),'--command-channel',str(case/'commands.bin'),'--render-control',str(case/'commands.bin.control'),'--capture-draws','--skip-movies','--stage-only'],env=child,capture_output=True,text=True,check=True,timeout=90)
@@ -43,8 +43,11 @@ def main():
                     for key,path in [('MNM_RENDER_STREAM',frame),('MNM_RENDER_COMMAND_CHANNEL',case/'commands.bin'),('MNM_RENDER_CONTROL',case/'commands.bin.control'),('MNM_RENDER_LOCK_CAPTURE_DIR',experiment/'lock-capture'),('MNM_RENDER_CAPTURE_DIR',experiment/'draw-capture'),('MNM_RENDER_FAILURE_LOG',experiment/'surface-failures.log')]:child[key]='Z:'+str(path).replace('/','\\')
                     wine=subprocess.Popen(['wine','explorer','/desktop=RecoveryObservation,800x600',str(game/'Chaos.exe')],cwd=game,env=child,stdout=wlog,stderr=wlog,start_new_session=True)
                     started=time.monotonic();lifecycle=experiment/'lock-capture/lifecycle.log'
-                    wait(lambda:lifecycle.exists() and any(event in lifecycle.read_text() for event in ['blit_propagated ','dc_checkpoint ','unlock_succeeded ']),wine,90)
-                    time.sleep(2)
+                    if mode=='early-checkpoint':
+                        wait(lambda:lifecycle.exists() and 'blit_propagated ' in lifecycle.read_text(),wine,90)
+                    else:
+                        wait(lambda:struct.unpack_from('<I',frame.read_bytes(),helper.frame_v1.FRAME_COUNT_OFFSET)[0]>0,wine,90)
+                        time.sleep(2)
                     # Simulate disappearance of the old reader. CHECKPOINT is strict;
                     # ordinary recovery is selected by the service's failed-ring path.
                     with (case/'commands.bin').open('r+b') as file:
@@ -54,11 +57,12 @@ def main():
                     time.sleep(2);assert wine.poll() is None,'Original drawing process exited during fallback observation'
                     subprocess.run(['import','-window','root',str(case/'original-window.png')],env=env,timeout=10,check=True)
                     diagnostics=(experiment/'lock-capture/lifecycle.log').read_text();control=(case/'commands.bin.control').read_bytes();request,operation,target,response,status=struct.unpack_from('<5I',control,20)
-                    assert request==response and operation==(2 if mode=='checkpoint' else 1) and status in [1,2]
+                    first=next(n for n in observed['negotiations'] if n['request']==n['response']==1 and n['status'] in [1,2])
+                    assert first['operation']==(2 if mode.endswith('checkpoint') else 1) and first['target']==124
                     assert observed['terminal_resources']==observed['ordinary_readbacks']==observed['viewport_uploads']==0
-                    outcome='checkpoint_ready' if mode=='checkpoint' and status==1 else 'fresh_observations_ready' if status==1 else 'ownership_or_state_refused'
+                    outcome='checkpoint_ready' if mode.endswith('checkpoint') and first['status']==1 else 'fresh_observations_ready' if first['status']==1 else 'ownership_or_state_refused'
                     assert diagnostics and ('command_recovery_' in diagnostics)
-                    report['source_sha256']=metadata['source_sha256'];report['cases'].append(dict(mode=mode,success=True,elapsed_seconds=time.monotonic()-started,outcome=outcome,operation=operation,target_session=target,producer_status=status,consumer=observed,pre_request_original_drawing_observed=True,original_process_alive=True,original_drawing_retained=True,initial_failure_reason=struct.unpack_from('<I',initial,28)[0],lifecycle=diagnostics.splitlines(),experiment=str(experiment.relative_to(ROOT)),artifacts={str(p.relative_to(ROOT)):helper.sha(p) for p in [case/'qt.json',case/'stage.log',case/'wine.log',case/'original-window.png',experiment/'manifest.json',experiment/'bridge-build.json',experiment/'lock-capture/lifecycle.log']}))
+                    report['source_sha256']=metadata['source_sha256'];report['cases'].append(dict(mode=mode,success=True,elapsed_seconds=time.monotonic()-started,outcome=outcome,operation=first['operation'],target_session=first['target'],producer_status=first['status'],final_control=dict(request=request,operation=operation,target=target,response=response,status=status),consumer=observed,pre_request_original_drawing_observed=True,pre_request_primary_frame_observed=mode!='early-checkpoint',original_process_alive=True,original_drawing_retained=True,initial_failure_reason=struct.unpack_from('<I',initial,28)[0],lifecycle=diagnostics.splitlines(),experiment=str(experiment.relative_to(ROOT)),artifacts={str(p.relative_to(ROOT)):helper.sha(p) for p in [case/'qt.json',case/'stage.log',case/'wine.log',case/'original-window.png',experiment/'manifest.json',experiment/'bridge-build.json',experiment/'lock-capture/lifecycle.log']}))
                     print(mode+': '+outcome+', frames='+str(len(observed['frames'])),flush=True)
             finally:helper.stop(qt);helper.stop(wine);subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)
         assert all(helper.sha(ROOT/p)==h for p,h in sources.items()),'Source changed during observation'

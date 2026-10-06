@@ -42,7 +42,7 @@ def archive(path):
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--case',action='append',choices=['orderly','cancel','stall','invalid','held','early','guards','repeat','budget']);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--case',action='append',choices=['orderly','cancel','stall','invalid','held','early','guards','repeat','alias','budget']);args=parser.parse_args()
     assert os.environ.get('DISPLAY'),'Run under xvfb-run -a'
     paths=sorted((ROOT/'runtime/render').glob('*.[ch]'))+[ROOT/p for p in ['tools/test-render-recovery.py','tools/build-render-bridge.py','tools/test-live-render-channel.py','tools/prepare-shadow-experiment.py','runtime/shadow/win32_min.h','tests/live-render-channel-test.cpp','apps/qt-shell/live_command_renderer.cpp','apps/qt-shell/live_command_renderer.hpp','apps/qt-shell/command_channel.cpp','apps/qt-shell/command_channel.hpp','renderer/commands.cpp','renderer/command_consumer.cpp','protocols/include/mnm/render_command_ring.h']]
     sources={str(p.relative_to(ROOT)):live.sha(p) for p in paths}
@@ -50,8 +50,8 @@ def main():
     dll=live.load('recovery_build','tools/build-render-bridge.py').build(True);stage=live.load('recovery_stage','tools/prepare-shadow-experiment.py')
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(ROOT/'working/tests/render-wine'))
     report=dict(schema=1,success=True,sources=sources,cases=[],scope='Quiescent actual same-process PE32 RenderShutdown/RenderRecover with distinct v2 file identities and strictly increasing session IDs; poisoned borrowed rows and independent complete GPU frames. Fresh consumer per session, sticky immutable old rings/archives, lifecycle and ownership guards. No original game, automatic IPC negotiation, in-flight callback stress, partial checkpoint/palette reconstruction or real-driver equivalence.')
-    for mode in args.case or ['orderly','cancel','stall','invalid','held','early','guards','repeat','budget']:
-        case=run/mode;case.mkdir();capture=case/'capture';capture.mkdir();phases=16 if mode=='budget' else 3 if mode=='repeat' else 2
+    for mode in args.case or ['orderly','cancel','stall','invalid','held','early','guards','repeat','alias','budget']:
+        case=run/mode;case.mkdir();capture=case/'capture';capture.mkdir();phases=16 if mode=='budget' else 3 if mode in ['repeat','alias'] else 2
         channels=[case/f'commands-{i:08x}.bin' for i in range(phases+1)]
         for i,path in enumerate(channels):create(path,123+i)
         frame=case/'frame.bin';live.create(frame,live.frame_v1.initial_header(),live.frame_v1.SIZE)
@@ -118,6 +118,7 @@ def main():
         for path,h in frozen.items():assert live.sha(Path(path))==h,'old terminal session mutated'
         for path,h in guard_hashes.items():assert live.sha(Path(path))==h,'rejected candidate mutated'
         assert struct.unpack_from('<I',channels[-1].read_bytes(),24)[0]==0,'unused candidate claimed'
+        if mode=='alias':assert struct.unpack('<I',(case/'alias-query-count.bin').read_bytes())[0]==1
         locks,unlocks,count=struct.unpack('<III',(case/'engine-counts.bin').read_bytes());assert locks==unlocks and count==phases
         assert locks==phases*3+(mode in ['held','stall'])
         report['cases'].append(dict(mode=mode,success=True,sessions=sessions,original_locks=locks,original_unlocks=unlocks,immutable_terminal_files=len(frozen),rejected_candidates_unchanged=len(guards)))

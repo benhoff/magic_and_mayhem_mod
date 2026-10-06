@@ -69,6 +69,19 @@ unsigned sustained(GlViewport& viewport){
 }
 unsigned synthetic(GlViewport& viewport){
     unsigned count=0;const auto bytes=fixture();
+    // A complete checkpoint record exceeds one ring fragment. One GUI poll
+    // must honor the requested byte budget while preserving the fragment cap.
+    for(unsigned budget:{65536u,1048576u}){
+        QTemporaryDir dir;LiveCommandRenderer live(viewport);auto path=dir.filePath("checkpoint-budget");check(live.create(path,812,2),"checkpoint budget create");Writer mapped(path);mnm_ring_writer writer{};check(mnm_ring_writer_bind(&writer,mapped.map,MNM_RENDER_COMMANDS_V2_SIZE),"checkpoint budget claim");
+        QByteArray large("MNMCMD01");word(large,1);word(large,16);
+        QByteArray pixels(256*128*4,0);for(qsizetype i=0;i<pixels.size();i+=4)qToLittleEndian<quint32>(0xff0000,pixels.data()+i);
+        record(large,1,1,{1,256,128,32,0xff0000,0xff00,0xff},pixels);record(large,2,6,{1});record(large,3,7,{1});record(large,4,8,{});
+        for(qsizetype at=0;at<large.size();at+=65536){auto part=large.mid(at,65536);check(mnm_ring_write(&writer,part.data(),part.size())==1,"checkpoint budget write");}
+        check(mnm_ring_end(&writer),"checkpoint budget END");unsigned shown=0;
+        live.framePresented=[&]{auto image=viewport.grabFramebuffer();auto rect=viewport.imageRect();for(int y=0;y<128;++y)for(int x=0;x<256;++x)check(image.pixel(int(rect.left()+(x+.5)*rect.width()/256),int(rect.top()+(y+.5)*rect.height()/128))==qRgb(255,0,0),"checkpoint budget independent pixels");++shown;};
+        check(live.poll(budget),"checkpoint budget poll");check(mnm_ring_load(writer.map+9)==(budget==65536?65536u:quint32(large.size())),"checkpoint byte bound and multi-fragment ACK");check(shown==(budget==65536?0u:1u),"checkpoint first-poll presentation");
+        check(live.finishProducer() && shown==1 && live.result()->liveSurfaces==0,"checkpoint budget drain and cleanup");
+    }
     for(unsigned batch:{1u,7u,65536u}){
         QTemporaryDir dir;LiveCommandRenderer live(viewport);auto path=dir.filePath("ring");check(live.create(path,123,2),"ring create");Writer mapped(path);
         mnm_ring_writer writer{};check(mnm_ring_writer_bind(&writer,mapped.map,MNM_RENDER_COMMANDS_V2_SIZE),"ring claim");unsigned shown=0;
@@ -126,7 +139,7 @@ int main(int argc,char** argv){
     QSurfaceFormat format;format.setVersion(3,3);format.setProfile(QSurfaceFormat::CoreProfile);QSurfaceFormat::setDefaultFormat(format);QApplication app(argc,argv);
     try {
         GlViewport viewport;viewport.setMinimumSize(1,1);viewport.resize(64,64);viewport.show();app.processEvents();check(viewport.ready(),"viewport ready");
-        if(argc==1){auto frames=synthetic(viewport)+sustained(viewport);std::printf("{\"success\":true,\"full_frames\":%u,\"failures\":14,\"ordinary_readbacks\":0,\"viewport_uploads\":0,\"sustained_bytes\":%llu,\"sustained_commands\":%u,\"sustained_frames\":4,\"full_retries\":%u}\n",frames,static_cast<unsigned long long>(sustainedBytes),sustainedCommands,sustainedRetries);return 0;}
+        if(argc==1){auto frames=synthetic(viewport)+sustained(viewport);std::printf("{\"success\":true,\"full_frames\":%u,\"checkpoint_budget_cases\":2,\"failures\":14,\"ordinary_readbacks\":0,\"viewport_uploads\":0,\"sustained_bytes\":%llu,\"sustained_commands\":%u,\"sustained_frames\":4,\"full_retries\":%u}\n",frames,static_cast<unsigned long long>(sustainedBytes),sustainedCommands,sustainedRetries);return 0;}
         check(argc==4,"live args: channel active-marker report");viewport.resize(800,600);app.processEvents();LiveCommandRenderer live(viewport);check(live.open(QString::fromLocal8Bit(argv[1])),"open live channel");QJsonArray frames;bool beforeExit=false;QElapsedTimer elapsed;elapsed.start();QTimer timer;
         live.framePresented=[&]{
             QFile marker(QString::fromLocal8Bit(argv[2]));if(marker.open(QIODevice::ReadOnly)){

@@ -58,20 +58,26 @@ callbacks. Worker join and shutdown retain their existing bounded policy.
 
 ## Fresh state
 
-Recovery frees owned checkpoints and detached lock bases, clears surface
-properties, alias graph/index, palettes, missed-target tokens and primary-frame
-identity, and advances metadata/pixel epochs. Generation and diagnostic capture
-budgets are retained. It resets session sequences, byte/pixel/resource counters,
-queue cursors, failure/deadline/pressure counters and worker lifecycle flags only
-under the new identity. Resource IDs start at one in the new stream; the channel
-session ID supplies their namespace. IDs still never repeat within a stream.
+As of the 2026-10-06 metadata correction, ordinary recovery frees every owned
+pixel checkpoint and detached lock base. It first synchronizes observed missed
+operations and retirement/metadata epochs. It then preserves only current
+application lifetime metadata: verified interface relationships, descriptors,
+clipping, color keys, attachments and palette bindings/colors whose epochs remain
+current. These observations continue during failed publication; consumer failure
+alone is not an application object lifetime boundary. Pending missed retirement
+still clears aliases; metadata uncertainty still retires affected descriptors.
+No COM calls or references are added. New complete pixels must come from admitted
+original operations; partial updates and keyed copies cannot invent a missing base.
 
-No old CPU pixels, aliases, color keys, clipping, attachments or palette entries
-can seed the new session. A fresh complete application-observed Lock/Unlock or
-other admitted full checkpoint must establish pixels. Partial writes/copies
-without their required new baseline and indexed presentations without newly
-observed palette state remain unsupported. A failed stream's stale checkpoint
-is never treated as evidence of current original pixels.
+Recovery resets primary-frame identity, session sequences, byte/pixel/resource
+counters, wire palette membership, queue/failure/deadline counters and worker flags
+under the new identity. Resource IDs start at one in the new stream and never
+repeat within it. CPU generations and diagnostic budgets remain monotonic. Strict
+CHECKPOINT admission remains separate: every observed resource must already have
+complete owned pixels and current metadata, with all finite limits unchanged.
+See [the current diagnosis](opengl-command-recovery-metadata.md) for evidence and
+remaining actual-game limits. Earlier records below describe their historical
+clear-all implementation; their hashes have not been refreshed.
 
 Diagnostic archives use an incrementing eight-hex-digit session suffix:
 `session-00000001.bin`, `session-00000002.bin`, etc. New sessions do not truncate
