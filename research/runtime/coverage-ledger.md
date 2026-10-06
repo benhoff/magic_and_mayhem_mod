@@ -1235,3 +1235,26 @@ GPU frames, eight pressure cases, five idle cases, two continuous GPU cases /72
 frames and native/sanitized queue checks. The register links new immutable
 records; historical statuses and fingerprints are retained. Original-game exit
 coverage and recovery remain pending.
+
+### 2026-10-06 explicit fresh-session recovery
+
+`NR.command-recovery` introduces a PE32-local recovery export for a quiescent
+caller after worker shutdown/join and mapping retirement. A distinct exact-size
+v2 file with usable filesystem identity and a higher session ID establishes a
+new resource namespace; a finite sixteen-file history prevents reopening old
+files, aliases or IDs. Old checkpoint/alias/palette state is discarded before
+fresh observations. Archives receive distinct suffixes. The
+[contract](opengl-command-recovery.md) retains automatic Qt negotiation,
+same-context consumer handoff, original-game recovery, unobserved leases,
+in-flight callback stress and failure injection as pending boundaries.
+Historical evidence/statuses retain their fingerprints. The committed range
+`bc29824..4eb3977` has matching exact receipts in
+[its history report](coverage/committed-history-orchestration-20261006.json).
+
+Final-source recovery evidence passes nine scenarios /33 same-process sessions /
+66 independent GPU frames, with immutable prior terminal files and fresh reset
+state. Twenty-five native/sanitized queue cases and eleven writer cases each,
+eight pressure cases, five idle cases, eleven startup/exit cases /eight frames,
+and two continuous GPU cases /72 frames pass. Production/selftest PE32 builds
+pass. The central register links six new records for this scoped native policy;
+original comparison and live replacement remain none.

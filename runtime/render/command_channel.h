@@ -2,9 +2,19 @@
  * Called only under the existing owned-session tracker; no peer wait or overwrite. */
 #include "../../protocols/include/mnm/render_commands_v1.h"
 API i32 WIN UnmapViewOfFile(const void*);
+API i32 WIN GetFileInformationByHandle(HANDLE,void*);
 #include "command_queue.h"
 static u32* command_channel;
 static u32 command_channel_session,command_channel_bytes,command_channel_refused;
+/* Finite per-process recovery history. Never recycle an earlier mapped file,
+ * including hard-link aliases, or a previously spent session identity. */
+struct CommandFile {u32 volume,high,low,session;};
+static struct CommandFile command_files[16];
+static u32 command_file_count;
+static int command_file_identity(HANDLE file,struct CommandFile* id){
+    u32 info[13];if(!GetFileInformationByHandle(file,info) || info[8] || info[9]!=MNM_RENDER_COMMANDS_V2_SIZE || !(info[11]|info[12]))return 0;
+    id->volume=info[7];id->high=info[11];id->low=info[12];id->session=0;return 1;
+}
 static int command_channel_identity(void){
     if(command_queue)return mnm_ring_identity(command_channel,command_channel_session);
     return command_channel && same(command_channel,MNM_RENDER_COMMANDS_V1_MAGIC,8) &&
@@ -52,10 +62,13 @@ static void command_channel_init(void){
     if(file==(HANDLE)-1)return;
     u32 size=GetFileSize(file,0);
     if(size!=MNM_RENDER_COMMANDS_V1_SIZE && size!=MNM_RENDER_COMMANDS_V2_SIZE){CloseHandle(file);return;}
+    struct CommandFile id;
+    if(size==MNM_RENDER_COMMANDS_V2_SIZE && !command_file_identity(file,&id)){CloseHandle(file);return;}
     HANDLE mapping=CreateFileMappingA(file,0,4,0,size,0);CloseHandle(file);if(!mapping)return;
     u32* p=MapViewOfFile(mapping,2,0,0,size);CloseHandle(mapping);if(!p)return;
     if(size==MNM_RENDER_COMMANDS_V2_SIZE){
         if(!mnm_ring_writer_bind(&command_ring,p,size)){command_channel_refused=1;UnmapViewOfFile(p);return;}
+        id.session=p[4];command_files[0]=id;command_file_count=1;
         command_queue=HeapAlloc(GetProcessHeap(),0,COMMAND_QUEUE_CAPACITY);
         if(!command_queue){command_channel_refused=1;mnm_ring_fail(&command_ring,MNM_RENDER_COMMANDS_V2_REASON_OVERFLOW);UnmapViewOfFile(p);return;}
         command_channel=p;command_channel_session=p[4];command_channel_refused=0;command_queue_configure();return;

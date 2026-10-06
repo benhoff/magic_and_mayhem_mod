@@ -8,6 +8,7 @@ static u32 session_archive_sequence,session_archive_bytes;
 /* A slot is storage, not identity. Continuous CREATE IDs never repeat, even
  * when a final Release frees a slot or the application reuses a COM address. */
 static u32 session_last_id;
+static u32 session_archive_id=1;
 static void session_archive_close(void){if(session_file)CloseHandle(session_file);session_file=0;}
 static void session_archive_gap(u32 reason){
     if(!session_file)return;
@@ -68,7 +69,7 @@ static int session_start(void){
     }
     u32 header[4];copy(header,"MNMCMD01",8);header[2]=1;header[3]=16;
     if(game_session_archive){
-        char path[544];copy(path,lock_capture_path,lock_capture_path_length);copy(path+lock_capture_path_length,"\\session-00000001.bin",22);
+        char path[544];copy(path,lock_capture_path,lock_capture_path_length);copy(path+lock_capture_path_length,"\\session-00000001.bin",22);failure_hex(path+lock_capture_path_length+9,session_archive_id);
         session_file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
         if(session_file==(HANDLE)-1)session_file=0;
         if(!session_file || !write_all(session_file,header,16)){

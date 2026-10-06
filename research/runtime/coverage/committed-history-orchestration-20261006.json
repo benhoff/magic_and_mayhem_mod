@@ -1,0 +1,305 @@
+{
+  "range": "bc29824868ce91672a6814a57f0d957fcb556c8e..4eb39771659909666d9774e6f91b4d4b77b414b8",
+  "scope": "Committed exact parent/current hashes and behavior contract receipts, separate from current recovery edits and execution. No retrospective validation or past gate pass inferred.",
+  "files": [
+    {
+      "path": "apps/qt-shell/README.md",
+      "before_sha256": "b05e6c962b19535666406f97a2d432b2eb776835f1f95212dcfca49b4df6d604",
+      "after_sha256": "59822ceb432406b80c1229d4fa67ade4bd5ed24f325cd5d1ee21887adef8de9b",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "84fd4ce07bb2ce334e5fc38c606f6406290674cfc90107a88794a5e9ef9786ae",
+      "after_sha256": "cc24d61a7a70870af0984a06b541bdac79bca3ae28fa8bd610f0d81245923d75",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "50bbc105178fba63e479649cc8c25813cf4f8591f1d70c77de0d50a9b014eb11",
+      "after_sha256": "3de3033754638ca8ca198b0657000f9c4d1586c6c0c495a3eb881cf3928dc839",
+      "reviews": [],
+      "exception": "Append-only journal independently verified; excluded from self-referential hash receipts."
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-backpressure-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "53f01fce2f61bf9237384f64c24790e43be91f8b6726878a900de0c0bba43a7b",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "a3c7c5c8093c97c31011639dcc3b35619b222e42df2bd6936182ea6ff6c6b8ba",
+      "after_sha256": "abafdd7bee7ad42fcfdab574bff50152e0867b6a40e18c284f597911d5d4e784",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-command-orchestration-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "37747674ff28fbf8c6c54bf97ab92825aee54c6c4d29986a4a04a2050dba4aaf",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-command-orchestration-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "51f8dcc29f7515e77027d9beca9b4f95b1adc1fee1c286b5eeeac905b0d4e6d1",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-orchestration-gpu-regression.json",
+      "before_sha256": null,
+      "after_sha256": "9477a3654624afdba0472b2be54ac1fc21843e58307dc65dcc5aab361b479911",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-orchestration-gpu-v2.json",
+      "before_sha256": null,
+      "after_sha256": "971dc9c00b2eb91ef57b5d0156764b971f10879dadea0350bd83118e30815825",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-orchestration-idle-regression.json",
+      "before_sha256": null,
+      "after_sha256": "90a6a55d8fc0b0eb084de41374021775d02c24ef65bfe6bc035b5c795524a407",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-orchestration-idle-v2.json",
+      "before_sha256": null,
+      "after_sha256": "9ac3687801405d9f4af203404474bf959780d725547d951992c70d483a6b32be",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-orchestration-pe32.json",
+      "before_sha256": null,
+      "after_sha256": "13ca8cb30079a58f27ee6ea05d1d77e049da5a13aced8605698f3feb1bbb1653",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-orchestration-pressure-regression.json",
+      "before_sha256": null,
+      "after_sha256": "9e522566bc5101de7976dd938b46833f29e0f61a09048dc1ac083fbceca00c72",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-orchestration-pressure-v2.json",
+      "before_sha256": null,
+      "after_sha256": "3732c4b323f935524c9aff6169183e3dd9abcceaa2036d6bd4682d1137433be5",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-orchestration-queue-regression.json",
+      "before_sha256": null,
+      "after_sha256": "edb3cc4ae9ddcfaa9805d0fec62da442e89f9f916effae431e170947b5ddfda2",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-orchestration.md",
+      "before_sha256": null,
+      "after_sha256": "bca26c64c7f8fbee3f6e42ae25a11bbed5623ff5d5840c15ee6cf74557698d33",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/README.md",
+      "before_sha256": "ef1527008f19e67885d7672779f402bf7e98c03107820b692bf7af8ee3ea142f",
+      "after_sha256": "06c426c48c1ac224fb2c112e4454b4546bf7cdc6e7f11301a0b95a4ca4709ccb",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/bridge.c",
+      "before_sha256": "c711738cf36980359bdbaf9258da6f2aec3e2a2df88f659ad3ec706811e236bb",
+      "after_sha256": "a4eefe6f36ba2ff3028aeb90f0ce8df6435b2b3550b899ab52452ba08eb07a02",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_channel.h",
+      "before_sha256": "1ebab36130e5f242373db04a93c51210274b424e2f27a6d6858cf4d86969d451",
+      "after_sha256": "26400daf495632b9929cbfc0f4d9972d9171fdc6b720989cba9ffd57ca599d96",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_lifecycle.h",
+      "before_sha256": null,
+      "after_sha256": "9f52792785cb1695b30238b353e8fe534f0852838df26f32f136aaf99a7e5a1a",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_scheduler.h",
+      "before_sha256": "c12d82882afe97d9cb4f24108886da6257bb4ba6a08d49ac88609d80b2aac97f",
+      "after_sha256": "05e41ab5918ed83720af7f61d720e58120a45c5c679f19d373862831d74774b1",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/lifecycle_selftest.h",
+      "before_sha256": null,
+      "after_sha256": "f68113110b83b034ec94e89660df4a3feb3d283f7ae0e9844790c8cf4b785bcb",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/selftest.c",
+      "before_sha256": "3ca975d36c45016e6beb520fac0a747f057873c189ba4254d16e630428c887ec",
+      "after_sha256": "43463c19d807808612c45bfb2d9fd294155c15a72b9497ca4d50bdf0cc7d40ea",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/build-render-bridge.py",
+      "before_sha256": "65130d68357ba7d954f319764f0ff0cb7a1b6e39be8c133795e05358f1749a31",
+      "after_sha256": "2ff08c5438fe8b1727bed78dbfcdbffa06c58705fa54c2b69315dee6e3f9782e",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-render-orchestration.py",
+      "before_sha256": null,
+      "after_sha256": "b3c5d8c8d6da77e036bee72a7e1e1b29eb71247fe65e467d579d4e5483fe65ea",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "after_sha256": "901404fde772ea0c6156a81bc4c7526b294ddda0d4e0df5a69c2dc7c4f6fc9f4",
+      "before_sha256": "5a938defc748559481c432f5f60dae6ba1bd3a93e5d889d23a33338786f46c68",
+      "id": "NR.command-backpressure",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "dcff8ed1bc5bf2d4d556b7a4b1ee739aa2c10716509bd11e3deec9a89d5525bc",
+      "before_sha256": "2b6d1e7ba974aee12bd80abb4d841422149ef99823d3bd8e11f11aab88919c8d",
+      "id": "NR.command-idle-lifecycle",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "f95baf75b4ae4088aac1d29a8d4f8c7cc0f35dc56a4431110b970b0f0a8ab891",
+      "before_sha256": null,
+      "id": "NR.command-orchestration",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006",
+        "NR.command-orchestration-recorded-validation-20261006"
+      ]
+    },
+    {
+      "after_sha256": "ce253e7b192f4d13c925fd2aea91c3a1cefed3cbfcfbbfc445fce1c8d8c8a314",
+      "before_sha256": "46973cc42c1f35e44cc84c1b8387425e69290a06fa4a4e3171269e80f0321eb7",
+      "id": "NR.command-ring-adapter",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "aa0959ab8fbc127def49ca97e1ea94488c6daba18c829bb7243a05f4bee70d4e",
+      "before_sha256": "5c0da095a36c0b10eb943b21a044bad6c0ab13bfd03365db545dd6d76df98032",
+      "id": "NR.continuous-mutations",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "a6977bc4291cd721b523ef808508453def8cbf8a4a775ccd9087981cee330c1f",
+      "before_sha256": "1793b3f5f0f598f61a97d1538f9b0284a2439ebbdf45cdba06425580f1f66b67",
+      "id": "NR.continuous-producer",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "9a634ad055243673d971937153453f176bdcaee19dfb64320a7716e750f1751e",
+      "before_sha256": "19bf745353ac16b44d6781877ab33bebebe24f598bac0053e8352515863417d2",
+      "id": "NR.continuous-resource-lifetime",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "a55a395540489852f7352f9ac10a446cbc496886f7ce48aa1980ce4337ca8037",
+      "before_sha256": "df94e3657e2fab8f3bf17e70875bd39a83ea15f440d3eeb5ca5189ae039e8931",
+      "id": "NR.incremental-command-consumer",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "2b187e51c14de6662e02e87d653986274901c017a523153f8045455731a6a324",
+      "before_sha256": "f5dd5f318cd9761906d2878d94eec57375ab0af838aa0306514522b1a07981f0",
+      "id": "NR.live-command-transport",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "8e129b61cdc1e48d2804a3a3d94bad87bed0e643272d747f58b296cac8403b74",
+      "before_sha256": "b6cc53a0077ce182fff30d58dc7126b24a781ab196c0038893f5eb1cfb7f857f",
+      "id": "NR.owned-session-sequence",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "11a66919fb49a0339efd84769b49f36ee99b911eb80c4e7456b0040c9b9c3c9d",
+      "before_sha256": "a7347991f687699b6ba55d29bc06cd1847515593e248883753726c38f7aeb340",
+      "id": "RT.render",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    },
+    {
+      "after_sha256": "37cba39da6480c3b7c6ccd8903f2c7537a94c4adcd424aa0329b67b007b75942",
+      "before_sha256": "fb7680d058237cd563ea4f583b29e84f1431dc17d6ad88d1a52875f1e151be6d",
+      "id": "UI.preview",
+      "reviews": [
+        "NR.command-orchestration-exact-review-20261006"
+      ]
+    }
+  ],
+  "unresolved": []
+}

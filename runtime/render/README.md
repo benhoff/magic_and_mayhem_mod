@@ -193,3 +193,10 @@ ExitProcess import so ordinary application exit invokes bounded shutdown outside
 DllMain. Set `MNM_RENDER_AUTO_SHUTDOWN=0` for a host that explicitly owns shutdown.
 Configured channel failures refuse startup. See the
 [startup/exit contract and limits](../../research/runtime/opengl-command-orchestration.md).
+
+`RenderRecover(const char* path)` permits an explicit quiescent handoff after
+shutdown/join into a distinct fresh v2 file with a higher session ID. It discards
+old checkpoints and requires fresh observations. Sixteen spent files bound the
+process history; archives receive distinct numbered suffixes. v2 admission now
+requires an exact-size file with usable filesystem identity. See the
+[recovery contract and unintegrated host boundaries](../../research/runtime/opengl-command-recovery.md).

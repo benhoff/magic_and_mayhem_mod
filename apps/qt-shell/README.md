@@ -602,3 +602,9 @@ mode retains original drawing and refuses unsupported ownership/operations;
 resource release and guarded orderly exit are implemented; recovery remains pending. See the
 [producer contract](../../research/runtime/opengl-continuous-producer.md) and
 [startup/exit orchestration](../../research/runtime/opengl-command-orchestration.md).
+
+The PE32 producer now has an explicit fresh-session recovery export for a
+quiescent host. Qt does not yet negotiate or invoke it; a native refusal still
+falls back to the original game window. The controlled recovery fixture uses a
+fresh consumer for each channel. See the
+[producer recovery contract](../../research/runtime/opengl-command-recovery.md).

@@ -34,6 +34,14 @@ int main(void){
     command_channel_end();command_channel_pump();check(mnm_ring_read(&reader,bytes,1)==0 && reader.state==2 && count>COMMAND_QUEUE_CAPACITY);command_channel_close();
     reset();command_channel_refused=0;memcpy(storage,MNM_RENDER_COMMANDS_V2_MAGIC,8);storage[2]=2;storage[3]=MNM_RENDER_COMMANDS_V2_SIZE;fail_alloc=1;
     command_channel_init();check(!command_queue && storage[6]==3 && storage[7]==1 && !command_channel_append(input,1,0,0,0,0));command_channel_close();fail_alloc=0;
+    /* Filesystem identity is required before a v2 claim; failed/zero IDs
+     * cannot create a recoverable transport or mutate the ready ring. */
+    for(u32 mode=1;mode<=4;++mode){
+        reset();command_channel_refused=0;memcpy(storage,MNM_RENDER_COMMANDS_V2_MAGIC,8);
+        storage[2]=2;storage[3]=MNM_RENDER_COMMANDS_V2_SIZE;identity_mode=mode;
+        command_channel_init();check(!command_queue && !command_channel && command_channel_refused && storage[6]==0 && !storage[5]);
+    }
+    identity_mode=0;
     /* Empty private queue still watches outstanding bytes and cancellation. */
     ring_reset();command_queue_timeout=100;check(command_channel_append(input,64,0,0,0,0));command_channel_pump();
     check(command_queue_read==command_queue_written && command_queue_peak==64);clock_ms=99;command_channel_pump();check(storage[6]==1);
@@ -54,5 +62,5 @@ int main(void){
     u32 expected[]={10,5000,5000,5000,5000,5000,150};
     for(u32 i=0;i<7;++i){stall_env=settings[i];ring_reset();check(command_queue_timeout==expected[i]);command_channel_close();}
     continuous_env=stall_env=0;
-    free(input);puts("{\"success\":true,\"queue_cases\":21,\"bytes\":2097275,\"queue_wrap_bytes\":35653675}");return 0;
+    free(input);puts("{\"success\":true,\"queue_cases\":25,\"bytes\":2097275,\"queue_wrap_bytes\":35653675}");return 0;
 }

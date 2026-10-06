@@ -5535,7 +5535,9 @@
         "runtime/render/mutation_selftest.h",
         "runtime/render/backpressure_selftest.h",
         "runtime/render/command_lifecycle.h",
-        "runtime/render/lifecycle_selftest.h"
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/recovery_selftest.h"
       ],
       "tests": [
         "runtime/render/selftest.c",
@@ -5546,7 +5548,8 @@
         "tools/test-render-resource-lifecycle.py",
         "tools/test-render-mutations.py",
         "tools/test-render-backpressure.py",
-        "tools/test-render-orchestration.py"
+        "tools/test-render-orchestration.py",
+        "tools/test-render-recovery.py"
       ],
       "evidence": [
         "REVIEW.RT.render"
@@ -14017,6 +14020,53 @@
         "NR.command-orchestration.idle",
         "NR.command-orchestration.gpu",
         "NR.command-orchestration.queue"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.command-recovery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Explicit recovery into a fresh continuous producer session",
+      "scope": "Explicit PE32-local recovery by a quiescent caller after shutdown/join and mapping retirement. Distinct exact-size v2 file identities, higher session IDs and sixteen-entry spent history guard new admission. Clear old checkpoints/aliases/palettes and require fresh observations; new archive suffix and resource namespace. Synthetic native integration only; automatic Qt negotiation, same-context texture handoff, unobserved leases, concurrent callbacks/candidate corruption, original-game recovery and fault injection excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-command-recovery.md"
+      ],
+      "implementation": [
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/bridge.c",
+        "tools/build-render-bridge.py"
+      ],
+      "tests": [
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-recovery.py",
+        "tests/render-command-queue-test.c",
+        "tests/render-command-writer-test.c",
+        "tools/test-render-command-queue.py",
+        "tools/test-render-backpressure.py",
+        "tools/test-render-command-idle.py",
+        "tools/test-render-orchestration.py",
+        "tools/test-render-continuous-producer.py"
+      ],
+      "evidence": [
+        "NR.command-recovery.pe32",
+        "NR.command-recovery.queue",
+        "NR.command-recovery.pressure",
+        "NR.command-recovery.idle",
+        "NR.command-recovery.exit",
+        "NR.command-recovery.gpu"
       ],
       "status": {
         "understanding": "scoped",
@@ -24497,6 +24547,90 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.command-recovery.pe32",
+      "kind": "native_integration",
+      "scope": "Nine same-process actual PE32 recovery scenarios, 33 sessions and 66 independent GPU frames, reset cache/alias/palette state, stale-ring/archive immutability, borrowed-lock and candidate guards, repeated and sixteen-file-budget handoffs. No original-game/driver equivalence or automatic recovery.",
+      "record": "research/runtime/opengl-command-recovery-pe32.json",
+      "sha256": "61ca40bda0044b508fe84421209f31fc48354025fbc0f54feaae60bf04538b8a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-recovery.queue",
+      "kind": "native_integration",
+      "scope": "Native and ASan/UBSan queue/channel checks, 25 queue/configuration/file identity and exact-size cases plus 11 v1 writer cases each, with leak checking. No original-game/driver equivalence or automatic recovery.",
+      "record": "research/runtime/opengl-command-recovery-queue.json",
+      "sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-recovery.pressure",
+      "kind": "native_integration",
+      "scope": "Eight actual PE32 pressure cases retaining ordered bytes and refusal reasons after recovery/file identity changes. No original-game/driver equivalence or automatic recovery.",
+      "record": "research/runtime/opengl-command-recovery-pressure.json",
+      "sha256": "7cbcb0f0716592ff3089b3a81b4574fd850a0d31b53dc13daa2ebac324bae941",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-recovery.idle",
+      "kind": "native_integration",
+      "scope": "Five actual PE32 default idle/cancellation/explicit shutdown/detach regressions. No original-game/driver equivalence or automatic recovery.",
+      "record": "research/runtime/opengl-command-recovery-idle.json",
+      "sha256": "047eb34f2423b66311bcc6f21e19d8849c837f28e42f0808ffcdb4a71e7e5c95",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-recovery.exit",
+      "kind": "native_integration",
+      "scope": "Eleven actual PE32 startup/ExitProcess cases, eight independent full GPU frames and cleanup/refusal checks. No original-game/driver equivalence or automatic recovery.",
+      "record": "research/runtime/opengl-command-recovery-exit.json",
+      "sha256": "9deba513d6d2d79e73c31f17d8c42fb7a89f8828c233db9e98c7ea8283c4218d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-recovery.gpu",
+      "kind": "native_integration",
+      "scope": "Two actual PE32 continuous producer/native GPU regression cases, 72 independent frames, including >64MiB live publication and bounded short archive. No original-game/driver equivalence or automatic recovery.",
+      "record": "research/runtime/opengl-command-recovery-gpu.json",
+      "sha256": "82e168e94470d79d0c989891a2d92e37613950ecc64e6dab9363416a430719b4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -28309,6 +28443,34 @@
         "tests/render-command-queue-test.c",
         "tests/render-command-writer-test.c"
       ]
+    },
+    {
+      "id": "NR.command-recovery-fixture",
+      "level": "preview",
+      "scope": "Quiescent actual same-process PE32 fresh-session handoff, fresh per-session GPU consumers and independent full frames, identity/ownership guards, immutable old channels/archives; no original engine or automatic Qt integration.",
+      "behaviors": [
+        "NR.command-recovery"
+      ],
+      "evidence": [
+        "NR.command-recovery.pe32",
+        "NR.command-recovery.queue",
+        "NR.command-recovery.pressure",
+        "NR.command-recovery.idle",
+        "NR.command-recovery.exit",
+        "NR.command-recovery.gpu"
+      ],
+      "tests": [
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-recovery.py",
+        "tests/render-command-queue-test.c",
+        "tests/render-command-writer-test.c",
+        "tools/test-render-command-queue.py",
+        "tools/test-render-backpressure.py",
+        "tools/test-render-command-idle.py",
+        "tools/test-render-orchestration.py",
+        "tools/test-render-continuous-producer.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -28556,7 +28718,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-command-orchestration-20261006.json",
-    "sha256": "37747674ff28fbf8c6c54bf97ab92825aee54c6c4d29986a4a04a2050dba4aaf"
+    "path": "research/runtime/coverage/source-index-command-recovery-20261006.json",
+    "sha256": "d7a33cfba1579942810deae5deca985f94378ef71c9ad7b0aec152863bdf38c2"
   }
 }
