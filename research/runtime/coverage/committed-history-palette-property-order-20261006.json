@@ -1,0 +1,368 @@
+{
+  "schema": 1,
+  "scope": "Exact committed parent/current SHA256 and behavior receipt review, separate from pending workspace changes. This audit does not assert historical gate passes or fresh validation.",
+  "base": "b9ed3a9",
+  "head": "e794fd2db224688bc76d3e9405c7361589b2c29e",
+  "commits": [
+    {
+      "commit": "e794fd2db224688bc76d3e9405c7361589b2c29e",
+      "parent": "b9ed3a99ba7a98e9c0c008b020251fc1fed4ff6b",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "6a9d06b682cdb544106c0c70a33fbbf25b7dc8f88ef433a99819e7f76cbc64d9",
+          "after_sha256": "f79d1a4a0456d98faff39682f78245073a1ec8f6a11f492bfaa1227f9ff4b784",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "9011f9c816222106fc79ba598a64fc9e0982c2407d8d5e4b9e6c126c4a53a47e",
+          "after_sha256": "f7a15249d9d49d603f16abfa493ab821c38bc1d2fafac8bcc4cbd411dd62fdcb",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-dc-flip-current-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "a2053b59e8108ae1e19adcaa663ddd8bdc0e9d792d920446957cc0ea39eadbe2",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-dc-flip-order-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "73c100c41d52856932cc00e273de9f3fe97f2628d173e78fefddaad5bdb457fe",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "cb73d2d94bf674f5c6cfd3a8b1de99f6acb48d82f9aa62254cee7eb4dcccea71",
+          "after_sha256": "a827af5e46a114b75bafb9f927b627df9b6cf9b260079822aa76e8c1ddff1c8e",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-dc-flip-order-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "1b3f1dfdba08244b622225c6bcaf5e1cf6c05897d87193c3cbc55857a4bf52fc",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-dc-flip-order-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "0340c258fa6665583e57cc920e3e03e7c5df9f40a75a908d4b764af57b08594e",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-dc-flip-order-live-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "44fdb2721c28569bf0e7ceefcd0f01e45e161c7aeef18e86b6a21671c8fa534c",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-dc-flip-order-live-isolated-current-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "9a574b5881c91d19c6db858a9e9c15377e45fccee513e884d0c33c01e4d60a70",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-dc-flip-order-live-isolated-prefsguard-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "203ca5f66716e58c2aef79d34c2e898472e49665b912ec654fcf31b66ac03815",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-dc-flip-order-live-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "8c5aff5506004f3eb90591b64bea6119e6da231a47cd83635e506d4559585cde",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-dc-flip-order-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "3c2100e24ff7245eaf032f76cf31a73bdbd0cd6f554c134fc15e28126f4e97f2",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-dc-flip-order-native-isolated-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "3f6c44eab43769bf8fd15bc7471abcb307f546c7ab0826820a56e630e09d27cb",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-dc-flip-order-native-isolated-current-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "adf49b7aa9b8b3492d1c3dfdb65c6dfa58652ba26f8d2ad91da2cf093f9f6792",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-dc-flip-order-native-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "297f030b20835c9955635c6826ffbb4a437097db9e090cc10a0617b0571930e2",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-dc-flip-order.md",
+          "before_sha256": null,
+          "after_sha256": "764f6efb014c7860e67b56eaa101d9a4b99b96f0b3139bba137f65df55ab596e",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/bridge.c",
+          "before_sha256": "1622e97e14bf20fef287c0ff0f3c0632838a8aca1ac291983e0e82ec79131a01",
+          "after_sha256": "c671fead30cea58670c03d3b575443d4d960b40f42ef6f859d5c7884155818b2",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/lock_flip.h",
+          "before_sha256": "56d693f52990fdfc6ec00f919f86a40f5619608ebc437ad35dc1405b21482bd0",
+          "after_sha256": "112c1a33cf20c0318d0b19289aba5dd2d9d0903013151d5c5759a86144cf8bf5",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/mutation_selftest.h",
+          "before_sha256": "2f0ec5e1be4d4edc49f5200ef75380109055f92ca8233d14e1a70229df569fba",
+          "after_sha256": "1d97506169c9f3d0b012c2fb3ce6c38d6b745081a2b302850171e7110275a04b",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-routes.py",
+          "before_sha256": "3e4a89dba51a3b080a49dc788b4492053882c47f6da205b13d6f8096a2f8740e",
+          "after_sha256": "805479c8de8a4bc5c884a5a9b60e5a7464232b1ed0bc2c1e7d8e9fb269b936a9",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-mutations.py",
+          "before_sha256": "468c2a24bf5c40cdc9b6f0a700aeadd2e0906362489bd6ca96c843d6ddc7e762",
+          "after_sha256": "c008a337ac36a7a656f1c19404d5a1f193a78f796b8539f7b1d61123101a1560",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006",
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.bounded-copy-order",
+          "before_sha256": "84bceffbe8a166eb21b6f33f154190a9c665f341f518799e8f36ea9c48401fd2",
+          "after_sha256": "f475772bd7b3ea067e51820268a384f84ac5b8ed3493cf0a72cc605eaba15a9d",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "377c9946052414878674fbac3c6e9544c37e3c0ea2cb9a24641aa53924faff18",
+          "after_sha256": "cc9735ae9a54b00248a5c45b5cde2e55064130045e90f179ad0c667c6b46b2b3",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "a3ab9043520b9b46d40602f58dcd30a2b716668966ec2ea45de01c9179f621d3",
+          "after_sha256": "e31114b00eff84fe50505632357c740a8e58fa227708c9b2090237165485c2b1",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-idle-lifecycle",
+          "before_sha256": "c4eb88dab00fcd387a48818e9c897527ed144c252e25d182b4be1aef77ed9d29",
+          "after_sha256": "06700182df9aba0265fbda7d23672e82135805c9da5856884a2da6d26897d6ff",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "53f131d6f212102293053d65c2092e944889c931063c4f47b17e63bcd141d3d5",
+          "after_sha256": "6d24be31998596879f88097e06c688b44cd89627ea14f722263b2bde32342ebf",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "7aabc0738f7722890c973a447eb91952bf689af0c741d14d375752a03631ce02",
+          "after_sha256": "d37d25d541b44461fe610b6244ba90a810f2a003e05ba7ba5b7f99274d459e50",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "75558b6ba97c96243f91a079f047ef4c43aa62f502af9a8e2580b81ba0097fec",
+          "after_sha256": "34b5407ba28df9ddaf3cd3ebaf31b426b4f9f8f80c4c4a79c9f0f98d4390abe5",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "b0cc6f2f5ac0db97dab8ba02f5fc07ae4c0ca682641b6fc3469699de879e1031",
+          "after_sha256": "bb72674674c28ddfd7711787cf09d6cc949a07a6f1a72f57c0a003c5d1743f2c",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "9121837b7475a8f0273ce8cff9a0e9bd6d1273fa274ddf72c3bdee781ad8108d",
+          "after_sha256": "582e29df592ffecd773a94c1eb734dc25c283ad169952fa7ffd8fa07f62b2a7f",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-working-set",
+          "before_sha256": "c310fe286b6cf7d989ebc679099b6b15930e0de39995ab1172ba8a019d61d6e6",
+          "after_sha256": "3b3cfef4e21e8ebc30281c9dd885bcb1d967cfe12e61b635ef111783fc8aff27",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.cpu-handoff-order",
+          "before_sha256": "68051b706f6a5bbdda81befb1a43ac20fdf10cb4681525ea38356f62f42f7120",
+          "after_sha256": "f42f8c2fa42b9eb56e66e15687b44b1939e4057fb1b5cdddd6e8980e4be1ca00",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.dc-flip-order",
+          "before_sha256": null,
+          "after_sha256": "a240fe6cba399e6163a2fc223110d84100f9928a7cab0ea1fc0b0378dbdd8b41",
+          "receipts": [
+            "dc-flip-order-isolated-recorded-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "ca5b0d3bcbadabd3cedd07587b9125b2dc66ef7f7bbfa1a9b75f42d96fa0147b",
+          "after_sha256": "79702699f907d5bef4aeb1eef025aa79d45ea049ade7db687d07329370bd1250",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.observed-metadata-idempotence",
+          "before_sha256": "637a7ad614bb8a522546737fe3743a07c742a2e2e56c52848f5b2a00110614b0",
+          "after_sha256": "a1ce48aa4fc5b8b309fbe7cccca9aeb767a694cf33613c7821108544ccc53832",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-dc",
+          "before_sha256": "0795f50bfbb176a3f3bfd63d3784a85a0e43f45f553a9ca99af054be07e243f9",
+          "after_sha256": "6c5a71d1fb8fc8d29a8b706380b5b943389b4879fff21cc594c68f16f73f379c",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "e0d4ac0b39f417b8b87b6ade0812d874d78d297ed80a4ce2ed11ad19fac25b9a",
+          "after_sha256": "012b314d63b22464479f4a5b646790370b5f364e3f475c0d550265f70e44ed2c",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "7fa373ee95d515655c64db8bc0772691aac2b16dbd03b9949a6ab6caab939a87",
+          "after_sha256": "f52e243656d332fc2ff023886a507769d91ab4a54a0a0f88725c1ffff9c5243a",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.movies",
+          "before_sha256": "480f926c5019cb43e9abb7f9727c2d41559bea4a0017419b8efbfb21cffd5b43",
+          "after_sha256": "e61b90795b849de88d34d95dc5d7f363893b3433233dc7bac01f693122717cee",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.ui",
+          "before_sha256": "965c8328515f572e3c60aeff9d10245f2503cad51e659499ecac639d5c9faf43",
+          "after_sha256": "d5fff450ebce9fd99acb97d23ae2d2abb09ef98ec46ae1a4e294a5b79c147351",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "b295bbb5d7e996075d517a6789da59eeb90efd7c257e9f170ca36a7afd527a6a",
+          "after_sha256": "8a7b6100ffeaa6c528df31fa0b899aad7cedc61bbf8bf4cf96feef8467c4cca9",
+          "receipts": [
+            "dc-flip-order-shared-pending-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    }
+  ]
+}
