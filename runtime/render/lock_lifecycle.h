@@ -62,8 +62,17 @@ static void init_lock_lifecycle(void){
 /* Tracker work contains no original COM calls. Brief cross-thread overlap can
  * wait without serializing the game API itself. Same-thread entry never waits.
  * Sleep(0) yields; GetTickCount resolution bounds the precision of the timeout. */
-static int game_tracker_acquire(void){
+/* Source-bound diagnostic tags use basename FNV16 and line; no host pointers
+ * cross the wire. Wrapper macros propagate the actual requesting call site. */
+static u32 game_tracker_site(const char* file,u32 line){
+    const char* name=file;for(const char* p=file;*p;++p)if(*p=='/' || *p=='\\')name=p+1;
+    u32 hash=2166136261u;while(*name){hash^=(u8)*name++;hash*=16777619u;}return (hash<<16)|(line&0xffffu);
+}
+static u32 game_tracker_site_owner,game_tracker_started;
+#define game_tracker_acquire() game_tracker_acquire_at(game_tracker_site(__FILE__,__LINE__))
+static int game_tracker_acquire_at(u32 site){
     if(__sync_bool_compare_and_swap(&game_locks_busy,0,1)){
+        __atomic_store_n(&game_tracker_site_owner,site,__ATOMIC_RELAXED);__atomic_store_n(&game_tracker_started,GetTickCount(),__ATOMIC_RELAXED);
         __atomic_store_n(&game_locks_owner,GetCurrentThreadId(),__ATOMIC_RELEASE);return 1;
     }
     u32 owner=__atomic_load_n(&game_locks_owner,__ATOMIC_ACQUIRE),thread=GetCurrentThreadId();
@@ -74,6 +83,7 @@ static int game_tracker_acquire(void){
     do{
         for(u32 i=0;i<64;++i){
             if(__sync_bool_compare_and_swap(&game_locks_busy,0,1)){
+                __atomic_store_n(&game_tracker_site_owner,site,__ATOMIC_RELAXED);__atomic_store_n(&game_tracker_started,GetTickCount(),__ATOMIC_RELAXED);
                 __atomic_store_n(&game_locks_owner,thread,__ATOMIC_RELEASE);
                 lock_diagnostic("tracker_wait_acquired",0,0,owner,GetTickCount()-start,0,0,0);return 1;
             }
@@ -81,11 +91,15 @@ static int game_tracker_acquire(void){
         }
         Sleep(0);
     }while(GetTickCount()-start<game_tracker_wait_ms);
+    u32 values[19]={GetCurrentThreadId(),__atomic_load_n(&game_locks_owner,__ATOMIC_ACQUIRE),site,__atomic_load_n(&game_tracker_site_owner,__ATOMIC_RELAXED),GetTickCount()-start,GetTickCount()-__atomic_load_n(&game_tracker_started,__ATOMIC_RELAXED)};
+    lock_diagnostic_values("tracker_wait_origin",values);
     lock_diagnostic("tracker_wait_timeout",0,0,owner,GetTickCount()-start,0,0,0);return 0;
 }
 static void game_tracker_release(void){
+    u32 error=GetLastError(),duration=GetTickCount()-__atomic_load_n(&game_tracker_started,__ATOMIC_RELAXED);
+    if(duration>=8){u32 values[19]={GetCurrentThreadId(),__atomic_load_n(&game_tracker_site_owner,__ATOMIC_RELAXED),duration};lock_diagnostic_values("tracker_hold_origin",values);}
     __atomic_store_n(&game_locks_owner,0,__ATOMIC_RELEASE);__sync_lock_release(&game_locks_busy);
-    command_channel_pump();
+    command_channel_pump();SetLastError(error);
 }
 static void game_pixel_missed(void* object){
     if(object)for(u32 i=0;i<128;++i){

@@ -1631,3 +1631,16 @@ no prepared-copy generation conflict or copy-gate timeout. The earlier passing
 strict attempt remains historical; reliable active-gameplay continuation and
 tracker ownership across other mutation families remain pending. Final synthetic
 ordering/timeout/reentry matrix still passes408 independent frames.
+
+### CPU handoff ordering and tracker provenance (2026-10-06)
+
+Bounded source-tagged tracker diagnostics observe8..15ms copy-commit holds,
+exceeding the unchanged8ms admission budget. The historical failed requester is
+still unknown. The existing opt-in50ms scheduling gate now covers CPU Lock/Unlock
+callbacks as well as copies, retaining borrowed-interval, nested-write and timeout
+refusal. Eight independent fixture cases compare411 complete frames. A strict
+final-source original summon and30-second post-action observation remain Active
+with500 more frames after forced World recovery and17 matched stable
+regions; terminal resources are zero. Other mutation concurrency, scene repetition
+and animated/full-frame/driver equivalence remain pending. See
+[CPU handoff ordering](opengl-cpu-handoff-order.md).
