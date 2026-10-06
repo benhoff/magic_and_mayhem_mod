@@ -21,3 +21,5 @@ void installLiveCampaignMiniTest(QApplication&,QMainWindow&,LiveMenuSession&,con
 
 void installLiveCampaignDefeatTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
 void installLiveCampaignQuitTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);
+
+void installLiveCampaignPreferencesTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&);

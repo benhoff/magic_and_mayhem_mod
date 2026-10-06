@@ -14,6 +14,7 @@
 #include <memory>
 #include <cstdio>
 void installLiveMenuTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,const QString& path){
+    if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_CAMPAIGN_PREFERENCES")){installLiveCampaignPreferencesTest(app,window,session,path);return;}
     session.campaignPreferencesEnabled=false;
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_CAMPAIGN_QUIT")){installLiveCampaignQuitTest(app,window,session,path);return;}
     if(!qEnvironmentVariableIsEmpty("MNM_LIVE_MENU_TEST_CAMPAIGN_DEFEAT")){installLiveCampaignDefeatTest(app,window,session,path);return;}

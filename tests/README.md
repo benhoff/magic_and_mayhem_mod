@@ -937,3 +937,7 @@ alongside the movement and Stop checks in four views. See
 ### Campaign Mini Preferences
 
 Run `python3 tools/test-campaign-preferences-bridge.py` and Qt `qt-menu-campaign-preferences`, `qt-menu-preferences-bridge`, `qt-menu-preferences-controller`, `qt-engine-preferences-store`, `qt-menu-campaign-mini-quit` and `qt-menu-campaign-defeat`. These isolated original-bytecode and synthetic Qt checks require no manual input. The full campaign gameplay return remains pending; see [UI34 evidence](../research/runtime/campaign-preferences-engine-bridge.md).
+
+### Campaign Preferences automated live round trip
+
+Run `python3 tools/test-live-qt-campaign-preferences.py --shell <built-shell> --source-root <compiled-tree>`. It creates private Wine/Xvfb/config state and drives native campaign Mini/Preferences three times: preview/Cancel rollback, preview/OK saving, reopened values/Cancel, then original Quit confirmation, report OK and Main Quit. No manual input; bounded execution with exact callback, World-resume, profile/store and source-fingerprint checks. See [UI35 evidence](../research/runtime/campaign-preferences-live-engine-bridge.md).
