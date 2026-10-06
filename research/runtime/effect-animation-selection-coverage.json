@@ -1,0 +1,854 @@
+{
+  "schema": 1,
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "dispatch_tables": [
+    {
+      "id": "effect-animation-kind-selection",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4756624,
+        "relation": "data",
+        "scope": "103-kind byte mapping to 30 target pointers at 00489418 within whole 00489200; outside-kind fallback and type6/7 override are separately described in the behavior"
+      },
+      "document": "research/runtime/effect-animation-selection.md",
+      "complete": true,
+      "scope": "All 103 compressed kind entries and all 30 action targets compared as exact original bytes and executed in the scoped whole selector; no parent type-dispatch/animation attachment completion claim",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 15,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 18,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 19,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 21,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 23,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 25,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 26,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 27,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 29,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 30,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 33,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 34,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 35,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 37,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 38,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 39,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 40,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 41,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 42,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 43,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 44,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 45,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 46,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 47,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 48,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 49,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 50,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 51,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 52,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 53,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 54,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 55,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 56,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 57,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 58,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 59,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 60,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 61,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 62,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 63,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 64,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 65,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 66,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 67,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 68,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 69,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 70,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 71,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 72,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 73,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 74,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 75,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 76,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 77,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 78,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 79,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 80,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 81,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 82,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 83,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 84,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 85,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 86,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 87,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 88,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 89,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 90,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 91,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 92,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 93,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 94,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 95,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 96,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 97,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 98,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 99,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 100,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 101,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 102,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        }
+      ]
+    }
+  ],
+  "recovered_ranges": [],
+  "classifications": [],
+  "api_bindings": [],
+  "behaviors": [
+    {
+      "id": "TL.effect-animation-selection",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Whole effect animation selection from owned kind and creature metadata",
+      "scope": "Whole read-only 00489200 animation selector: raw type/kind words, owned 103-kind metadata, valid creature ordinal and owned descriptor class when required, special type6/7 overrides, exact 103-kind compressed/30-target dispatch, default -1 and all metadata/type/descriptor branches; native missing-reference refusals separate, no installed metadata provenance, animation attachment/full type setup or live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4755968,
+          "scope": "Whole read-only 00489200 animation selector: raw type/kind words, owned 103-kind metadata, valid creature ordinal and owned descriptor class when required, special type6/7 overrides, exact 103-kind compressed/30-target dispatch, default -1 and all metadata/type/descriptor branches; native missing-reference refusals separate, no installed metadata provenance, animation attachment/full type setup or live replacement"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-animation-selection.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_animation_selection.cpp",
+        "reconstruction/rendering/effect_animation_selection.hpp",
+        "reconstruction/rendering/effect-animation-selection/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-animation-selection-reference.cpp",
+        "tests/effect-animation-selection-test.cpp",
+        "tools/test-effect-animation-selection.py"
+      ],
+      "evidence": [
+        "TL21.animation-selection-original",
+        "TL21.animation-selection-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-movement-recount",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Remaining effect movement and lifecycle contracts",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors."
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory.md",
+        "research/runtime/effect-same-cell-projection.md",
+        "research/runtime/effect-cell-transitions.md",
+        "research/runtime/effect-cell-cleanup.md",
+        "research/runtime/effect-blocked-destinations.md",
+        "research/runtime/effect-height-exits.md",
+        "research/runtime/effect-membership-disabled.md",
+        "research/runtime/effect-terrain-occupancy.md",
+        "research/runtime/creature-occupancy-lookup.md",
+        "research/runtime/creature-footprint-initializer.md",
+        "research/runtime/effect-creature-collision.md",
+        "research/runtime/effect-kind34-creator.md",
+        "research/runtime/effect-trajectory-initializer.md",
+        "research/runtime/effect-motion-initializer.md",
+        "research/runtime/effect-animation-selection.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-type-setup",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect type-specific animation and trajectory setup remains open",
+      "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, metadata/animation asset binding, direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4803248,
+          "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, metadata/animation asset binding, direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified."
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-record-placement.md",
+        "research/runtime/effect-motion-initializer.md",
+        "research/runtime/effect-animation-selection.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "TL21.animation-selection-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Whole read-only 00489200 animation selector: raw type/kind words, owned 103-kind metadata, valid creature ordinal and owned descriptor class when required, special type6/7 overrides, exact 103-kind compressed/30-target dispatch, default -1 and all metadata/type/descriptor branches; native missing-reference refusals separate, no installed metadata provenance, animation attachment/full type setup or live replacement",
+      "record": "research/runtime/effect-animation-selection.json",
+      "sha256": "cba2e45d130126c747ba49be6a9f8957854054291f98c1efcbf98d9b93de275e",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 1522626
+        },
+        {
+          "pointer": "/tables_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL21.animation-selection-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Whole read-only 00489200 animation selector: raw type/kind words, owned 103-kind metadata, valid creature ordinal and owned descriptor class when required, special type6/7 overrides, exact 103-kind compressed/30-target dispatch, default -1 and all metadata/type/descriptor branches; native missing-reference refusals separate, no installed metadata provenance, animation attachment/full type setup or live replacement",
+      "record": "research/runtime/effect-animation-selection.json",
+      "sha256": "cba2e45d130126c747ba49be6a9f8957854054291f98c1efcbf98d9b93de275e",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 1522626
+        },
+        {
+          "pointer": "/tables_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "terrain-lighting.effect-animation-selection",
+      "level": "headless",
+      "scope": "Whole read-only 00489200 animation selector: raw type/kind words, owned 103-kind metadata, valid creature ordinal and owned descriptor class when required, special type6/7 overrides, exact 103-kind compressed/30-target dispatch, default -1 and all metadata/type/descriptor branches; native missing-reference refusals separate, no installed metadata provenance, animation attachment/full type setup or live replacement",
+      "behaviors": [
+        "TL.effect-animation-selection"
+      ],
+      "evidence": [
+        "TL21.animation-selection-original",
+        "TL21.animation-selection-native"
+      ],
+      "tests": [
+        "tests/effect-animation-selection-reference.cpp",
+        "tests/effect-animation-selection-test.cpp",
+        "tools/test-effect-animation-selection.py"
+      ]
+    }
+  ]
+}
