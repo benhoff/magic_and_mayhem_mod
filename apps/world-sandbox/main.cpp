@@ -110,7 +110,7 @@ int main(int argc,char** argv) try {
     if(argc==9 && std::string_view(argv[1])=="spawn-terrain-ani") {
         const auto base=integer(argv[4]);if(base<0 || base>4088) throw std::invalid_argument("ANI sequence base outside 0..4088");
         auto animation=mnm::sandbox::loadMovementAnimation(argv[3],base);
-        auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2],animation);World world(8);
+        auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2],animation,true,true);World world(32);
         auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();state.animation=std::move(animation);world.restore(std::move(state));
         MovementSession movement(std::move(world),navigation);
         Entity e;e.type=navigation->creatureType();e.x=integer(argv[6]);e.y=integer(argv[7]);e.z=integer(argv[8]);

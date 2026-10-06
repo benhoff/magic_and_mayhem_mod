@@ -23,6 +23,15 @@ void Orders::select(const game::State& state,std::optional<game::Handle> h) {
 void Orders::synchronize(const game::State& state) {
     if(selected_ && !valid(state,*selected_)) selected_.reset();
 }
+void Orders::selectPlacement(const game::State& state,std::optional<game::Point> p) {
+    if(p && (!state.navigation || !game::contains(*p,*state.navigation))) throw std::invalid_argument("Spawn cell outside scene");
+    placement_=p;
+}
+game::Handle Orders::spawn(game::MovementSession& session,bool paused) {
+    if(!paused) throw std::invalid_argument("Pause before spawning a creature");
+    if(!placement_) throw std::invalid_argument("Select a terrain cell first");
+    const auto h=session.spawnCreature(*placement_);selected_=h;return h;
+}
 void Orders::stop(game::MovementSession& session) {
     synchronize(session.world().state());
     if(!selected_) throw std::invalid_argument("Select a creature first");

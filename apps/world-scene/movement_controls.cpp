@@ -3,6 +3,7 @@
 #include <QFormLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
+#include <QLabel>
 #include <QSignalBlocker>
 #include <QSpinBox>
 #include <stdexcept>
@@ -36,6 +37,10 @@ MovementControls::MovementControls(QWidget* parent):QWidget(parent) {
         if(onSelect) onSelect(i>0 && std::size_t(i)<=choices_.size()?std::optional<game::Handle>(choices_[i-1].handle):std::nullopt);
     });
     connect(move_,&QPushButton::clicked,this,[this] {if(onMove) onMove({x_->value(),y_->value(),z_->value()});});
+    spawnCell_=new QLabel("Select terrain to spawn",this);spawnCell_->setObjectName("spawnCell");layout->addRow("Spawn cell",spawnCell_);
+    spawn_=new QPushButton("Spawn creature",this);spawn_->setObjectName("spawnCreature");layout->addRow(spawn_);
+    connect(spawn_,&QPushButton::clicked,this,[this] {if(onSpawn) onSpawn();});
+    updateSpawning({},false,true);
     updateChoices({},std::nullopt,{1,1,1});
 }
 void MovementControls::updateChoices(std::vector<CreatureChoice> choices,std::optional<game::Handle> selected,game::Point d) {
@@ -52,6 +57,11 @@ void MovementControls::updateChoices(std::vector<CreatureChoice> choices,std::op
     creatures_->setCurrentIndex(index);choices_=std::move(choices);
     for(auto* spin:{x_,y_,z_}) spin->setEnabled(bool(selected_));
     move_->setEnabled(bool(selected_));stop_->setEnabled(bool(selected_));cancel_->setEnabled(bool(selected_));
+}
+void MovementControls::updateSpawning(std::optional<game::Point> cell,bool playing,bool capacity) {
+    spawnCell_->setText(cell?QString("%1,%2,%3").arg(cell->x).arg(cell->y).arg(cell->z):QString("Select terrain to spawn"));
+    spawn_->setEnabled(bool(cell) && !playing && capacity);
+    spawn_->setToolTip(playing?"Pause before spawning":!capacity?"Scene creature limit reached":!cell?"Left-click a terrain cell":"Spawn the scene creature in the selected terrain cell");
 }
 void MovementControls::setTarget(game::Point p) {
     if(p.x<x_->minimum() || p.x>x_->maximum() || p.y<y_->minimum() || p.y>y_->maximum() || p.z<z_->minimum() || p.z>z_->maximum())

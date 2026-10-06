@@ -68,7 +68,10 @@ int main(int argc,char** argv) try {
     refused([&]{wideNav->acceptsInWorld(wide.world().state(),{7,1},{{2,1,1},2,0,0,720});});
     std::uint32_t cellsOffset=92;
     for(unsigned i=0;i<2;++i){std::uint32_t size;std::memcpy(&size,profile.data()+64+4*i,4);cellsOffset+=size;}
-    profile.at(cellsOffset+10)=std::byte{1};refused([&]{mnm::sandbox::loadFrozenNavigationBytes(profile,{},true);});
+    profile.at(cellsOffset+10)=std::byte{1};
+    check(bool(mnm::sandbox::loadFrozenNavigationBytes(profile,{},true))); // Marker with empty sentinel has no occupant.
+    profile.at(cellsOffset+4)=std::byte{0};profile.at(cellsOffset+5)=std::byte{0};
+    refused([&]{mnm::sandbox::loadFrozenNavigationBytes(profile,{},true);});
     // A late obstruction is checked before committing the next waypoint.
     auto dynamic=session(map,nav);auto actor=dynamic.spawn(entity(1));dynamic.move(actor,{5,1,1});dynamic.step();
     check(dynamic.world().find(actor)->motion->action==Action::moving);

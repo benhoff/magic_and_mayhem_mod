@@ -30,6 +30,7 @@ public:
     virtual void validateOccupants(const State&) const {}
     virtual RoutePlan planInWorld(const State&,Handle,Point,std::uint32_t budget) const;
     virtual bool acceptsInWorld(const State&,Handle,const RoutePoint&) const;
+    virtual void validateSpawnPosition(Point) const;
     virtual Point finePosition(const Entity&) const;
     // Optional driver; services without recovered sample evidence refuse it.
     virtual std::optional<DisplayPose> initialDisplayPose() const {return {}; }
@@ -49,6 +50,8 @@ public:
     MovementSession(World,std::shared_ptr<const Navigation>);
     const World& world() const {return world_;}
     Handle spawn(Entity,bool sampleMotion=false,bool continuousMotion=false,bool terrainMotion=false,bool initialDisplay=false);
+    Handle spawnCreature(Point); // Explicit bound-profile terrain/ANI native placement.
+    bool canSpawnCreature() const;
     Handle spawnBlocker(Entity); // Stationary same-profile creature; owns no motion driver.
     void enqueue(Command);
     void move(Handle,Point,std::optional<Handle> goal={});

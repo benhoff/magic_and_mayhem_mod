@@ -1,0 +1,1272 @@
+{
+  "range": "fea5d9f..1016274551f0eba7c3de0ce6537da3dd71db08ef",
+  "scope": "Read committed Git trees without executing historical code. Compare exact parent/current file hashes and canonical behavior contracts (record, implementation/test/doc hashes, builds, evidence definitions and scenario links) against retained receipts. Historical census-scope migrations are not rerun as old gates; this is separate from current staged validation and asserts neither past gate success nor new runtime equivalence. Journal is append-only and not self-receipted.",
+  "files": [
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "apps/world-sandbox/frozen_navigation.cpp",
+      "before_sha256": "dce9888c436d092255579f97ffef8b897f7a9be6606fef892d07a965cbcc2e0a",
+      "after_sha256": "7fb260fa50adbe41f222f6455fa54a60319e3681f1a1ce008419cca70646fb2e",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "apps/world-sandbox/main.cpp",
+      "before_sha256": "d1e3b0fc4841f0c13b1281dfdc5fcda0d97f1e0f45aca1bb5c040346ed600e43",
+      "after_sha256": "a6cb574c56da197da672578a19e8de40e37c9bc719063c3f7fccde47fc117043",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "apps/world-scene/README.md",
+      "before_sha256": "575c6caf34642b360988694923c99c87f45acc7a3ae6159e2d1d428cdb003d3a",
+      "after_sha256": "6c2446531a0d597e2b9981b5972c4268164590633b5cbe3ed05cefb3a4600bb5",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "game/CMakeLists.txt",
+      "before_sha256": "1f3641bc45b2f0409cc2b2d1aebcd7683b0f2d3ea73fd2439a0159bdd6517a1e",
+      "after_sha256": "0ff7d1b41d7b9f8abfb3c655f2568be406b85d8003473e27dda9be117d10111b",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "game/README.md",
+      "before_sha256": "b4733ffbad53c90048a6ae9ab7035d6c3f9a834b318a5a7c3916287cfb54ca06",
+      "after_sha256": "6838c413e498328fd8d1a451f9d00e5d7414f4cc6c434858dd7918783000a1a8",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "game/simulation/movement.cpp",
+      "before_sha256": "4ba51faeafe133503422c917abef1f5d2aeeadaf0c56388a77833c27efc05fb9",
+      "after_sha256": "891f8d003ec525219107dbc53e2f0ff5c680c9bd82b2abc775401364d2111eb1",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "game/simulation/movement.hpp",
+      "before_sha256": "8c6d2bfaaeb60bb2c1cd07bc40596ae125b6efe7a80e8fb6e8caa91bc44e991c",
+      "after_sha256": "c50724e2ab995e169c4eaf324c57a196111b04a408dabab2cf6b203ea413be8c",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "38fd225fc8b031990298a01b0fd2ac5455d1a002eb0fe1f5bd46d0bbe9babe97",
+      "after_sha256": "a5070b07dd3f436d022ffbc231131a5e3af17b702cbda0341dfb8fcff9b606b6",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "7812d42e94a402933bda5372fbe4ade1fb9c015d490686ee9c4c7dd739f0d877",
+      "after_sha256": "df7a1ad1408b1be880befd51990268a41407936457692ecedb94edd4e7554fd2",
+      "reviews": []
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "cc597892c769df78b765b53330d2b725a64485cd46710faa7d0d77051f19e74c",
+      "after_sha256": "40768441b15059d2c8980254d3d7057be4449fd8df584584f2b2c044d58a1e4e",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "research/runtime/coverage/source-index-spawn-display-1.json",
+      "before_sha256": null,
+      "after_sha256": "decd4439403f92715fd924d96a48a8dd269912bd6ac07fe55c5a61e8060df2bf",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "d0c0c4a543b5f91361eabd11d6a98289556484095374bc6647547a5ce87cd84b",
+      "after_sha256": "3595535b84c63c5ec3f775b0f591d5188b6bcbedeab1fbfc675062da97928296",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "research/runtime/native-spawn-display-history-pipeline-1.json",
+      "before_sha256": null,
+      "after_sha256": "1d8b52e52c4badee6bcbb8facb150da6dcd205aff13f1f7a3eeff184cca32488",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "research/runtime/native-spawn-display-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "d1e99a14c0e38e9617243f0cde1d35eab607934fb5b40192544596389000991f",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "research/runtime/native-spawn-display.json",
+      "before_sha256": null,
+      "after_sha256": "2d9fc6d91549439f79033dfc1347a3badb3b8f6721e300e9e3e94d617df21b9f",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "research/runtime/native-spawn-display.md",
+      "before_sha256": null,
+      "after_sha256": "e2ce709dd2ac68ca1f36c4186e09432a9191f47970d9282f28920ee9d26f9f95",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "tests/README.md",
+      "before_sha256": "c9e04b15a1cbe0f10f47dabf71a531347afb0eef3f938b47b813352ee9f42469",
+      "after_sha256": "d6de99098ec496c9665a28a41de4e09aec4e89658b324d02760ee58ff7943afb",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "tests/native-spawn-display-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "tests/test-native-spawn-display.py",
+      "before_sha256": null,
+      "after_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "path": "tools/test-native-scene-window.py",
+      "before_sha256": "0319669d65ff96569f0441bff4ef31b3d6c1e69b8ce4d8c69f10c13faf8cb96d",
+      "after_sha256": "7760994630611ebc3f2a409b9f3718f3f358ba561e1921635407874705480d61",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "0c118dd8b5f1e12d7768fee363a5d6b9012e47165406523a66c513aa568216ba",
+      "after_sha256": "1f928df7ee7d5419d9e55d376a3ae0e665b0bd67eca88514c181b5455338a2f2",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "60c12021e58abce146389da4afdc424756c697ad239639a1999a485adff3b9f0",
+      "after_sha256": "25ccbbd8f260523a060dc04455e82421ea439528ef6f64e0e894a02d5cbe2a2c",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "6b53e83a42a7b79da9a604487614c98e0a358d6a4ccc306420b03a277fea4a96",
+      "after_sha256": "9253ed4ecaa4bd341a0423d33d42504c1e0c0700cb3ce842c9348286dcfdd3b8",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/live_menu_test.cpp",
+      "before_sha256": "89cc91453e19f5e40b9a89cdde77fd2db08c7d056f86c50febfb9d61dbc1acd1",
+      "after_sha256": "91caf6b1b45dd080d0c143ea27b74a8e3d218727430b15502c512a8475573ae8",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/live_mini_menu_controller.cpp",
+      "before_sha256": "25341c7408c940ed8b65087ff6e74476d86f9c500d37db18efc1a2535883fd64",
+      "after_sha256": "e3fc55a11796a2f4ca9b930b1bcbd1e5e47b66f20917eaabc10d5f3665cc4f15",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/live_preferences_menu_controller.cpp",
+      "before_sha256": "5048c816460f8223f5d426d47f6554973e4a6dcd4bea3d44aec0d7530ed577c3",
+      "after_sha256": "1bc94f804ecceb7213ba387f80679b11791e2dc135dadd3cd54ae367cacb4c38",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "0016c5268605dcd4db95491abd48befd28a488d0385bbe622036d6d63734cb41",
+      "after_sha256": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "0c9e85fd7dcb51a828816310becfd93b1178bf4fd2e124954eaae7d13beab361",
+      "after_sha256": "631087eda5168c3ddaaaa590c22c19e7958a49c7d9026f71bbde0702a1ec62fa",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "protocols/include/mnm/menu_v12.h",
+      "before_sha256": null,
+      "after_sha256": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/README.md",
+      "before_sha256": "3b68ea7bed534eee137277066f1e5db5967486f18705b9e5552cceef9f835c3c",
+      "after_sha256": "426baa67a67e7cbd62a1e2983be76c10f5a9f3cb7fef56d66b255eb28bdead75",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": "35d8b255a3116cef30d5eedaf1d10a0078abcaa952c5e22a7d8564a69bf47104",
+      "after_sha256": "b9d7ee8a1db40c1814f063cd4f8e031b374074b7f5dbac1ee17be49ed8abe691",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/campaign-preferences-engine-bridge.json",
+      "before_sha256": null,
+      "after_sha256": "712aa64590ec9c3bea70f08e9fff3d8c9e4ea7f47a92ca14c3d6c33e38dd6c7f",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/campaign-preferences-engine-bridge.md",
+      "before_sha256": null,
+      "after_sha256": "707cac78ec092409c33596d9548dd139838adcca6ef6da854039986eb849f7af",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/campaign-preferences-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "d6edae08eaf2705d500ebddef6986271be7b90706359da35865f825a68368935",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "a5070b07dd3f436d022ffbc231131a5e3af17b702cbda0341dfb8fcff9b606b6",
+      "after_sha256": "592e9f6e37c3282afd668c223d4e6ebc27feb79d5bc42661a12da7a5a7804350",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "df7a1ad1408b1be880befd51990268a41407936457692ecedb94edd4e7554fd2",
+      "after_sha256": "1eef46b83c3a9c49aedfb3f5c4d2b1d2f5e8a42c1b59804c2e19727d5c77bc63",
+      "reviews": []
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "40768441b15059d2c8980254d3d7057be4449fd8df584584f2b2c044d58a1e4e",
+      "after_sha256": "28072201ddddb88d3f74d2c52aceb5a9884073704578798b6219388f58df79b9",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/coverage/source-index-campaign-preferences.json",
+      "before_sha256": null,
+      "after_sha256": "237872895e0a6cd07bb31a5b0c6752e3bc5aca4b97f6ed18a3fc64a0c1b5c788",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "3595535b84c63c5ec3f775b0f591d5188b6bcbedeab1fbfc675062da97928296",
+      "after_sha256": "8b30355324f630ffd5c8174473a03a4af2bab4a713721ee6a1d8ed82d306b53a",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "runtime/menu/channel.h",
+      "before_sha256": "c84271d4a7f16d748904b207d073823729737ff8a429c89b6f3c2dc0bde6d937",
+      "after_sha256": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "runtime/menu/mini.h",
+      "before_sha256": "1285395e6123b1e81827a540680288f0eb8b2c7b0a2af6bffa72f788ddb266a2",
+      "after_sha256": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "runtime/menu/preferences.h",
+      "before_sha256": "e095dbc84cfe853dcb5b1478ac29e47e68d1ed73804b95baad9d775f57859251",
+      "after_sha256": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tests/README.md",
+      "before_sha256": "d6de99098ec496c9665a28a41de4e09aec4e89658b324d02760ee58ff7943afb",
+      "after_sha256": "62f9f7e1cda1e539b3d3de682f1af0b1023d66c7aca7e00cb810f6f456ec9a90",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tests/campaign-preferences-reference.c",
+      "before_sha256": null,
+      "after_sha256": "5f8160a3fc4990d623002f1c6d95f61daaf02deae4a9106dc448f4b08f7f342e",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tests/campaign-preferences-selftest.h",
+      "before_sha256": null,
+      "after_sha256": "b5252395a1546326687908911c36861deefc8042020ddc166f99b9dd6a878012",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tests/menu-campaign-preferences-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "3e865cd32baa24a07954118b11df78cb97aaaeb37527f392bb6b5c14eb751f01",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tools/build-menu-observer.py",
+      "before_sha256": "dad8006211c093cc78cf97182fb3a604f752720879abe81be53ebac92c540322",
+      "after_sha256": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "e100b6f586a026d2845492e304b8cf627ed56b10e7b266f93401d68e3fd13ab0",
+      "after_sha256": "42b40bbd9db95fe2cf096ec76f3b7d7102a0f2eb9a36b9b17e64a795e2a6bd56",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tools/test-campaign-preferences-bridge.py",
+      "before_sha256": null,
+      "after_sha256": "5a7e07c96444ca0258fba24e0fe3c1e39e93aa6c46d6e0e2c077e620de0ef1dc",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "assets/CMakeLists.txt",
+      "before_sha256": "919f6b4c789b36256d9573dd3c388d8cb03e7c9b4f6bb99577a5c99f8596fb9c",
+      "after_sha256": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "assets/effect_animation_catalog.cpp",
+      "before_sha256": null,
+      "after_sha256": "58a433d4a26441a0a5fde8f78f94138fc1ae807b9ab90ef0eb1384f0c0f47777",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "assets/effect_animation_catalog.hpp",
+      "before_sha256": null,
+      "after_sha256": "93756f4e055961447987bb4dac0d30afcddb7263056a569bc02a6a025178a162",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "reconstruction/rendering/effect-animation-catalog/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "dedd89a2f9981a45b57b7d39cb0484273b2ee30e89865639f3e62b30f6f25912",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "reconstruction/rendering/effect_animation_catalog_binding.cpp",
+      "before_sha256": null,
+      "after_sha256": "43bede84e033d4b7fbaff89a46a1ff39f7f7db4e96e288d0014d4f05be6f9bd7",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "reconstruction/rendering/effect_animation_catalog_binding.hpp",
+      "before_sha256": null,
+      "after_sha256": "4d03ca57d40b62fb8c7cb8635516d91b144389baa922d3392e95db2ae4d556ff",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "592e9f6e37c3282afd668c223d4e6ebc27feb79d5bc42661a12da7a5a7804350",
+      "after_sha256": "268fa9b4579978e3f7e57ac0e6b4613d4f80a0844d61a189415283f1a416e0ef",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "1eef46b83c3a9c49aedfb3f5c4d2b1d2f5e8a42c1b59804c2e19727d5c77bc63",
+      "after_sha256": "505f600fb7eb1a0a8234679b1a7bbcf3ffdccc7d11cee3e428410d2b0c81afa2",
+      "reviews": []
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "28072201ddddb88d3f74d2c52aceb5a9884073704578798b6219388f58df79b9",
+      "after_sha256": "d47dda0202f2e9d3638666f80826e926dd81888c850c2a8b06588cdec0942e09",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "8b30355324f630ffd5c8174473a03a4af2bab4a713721ee6a1d8ed82d306b53a",
+      "after_sha256": "52d1142baaaba7ce84d0808828de634f6d08a423e08ae56df21ae1f96d729447",
+      "reviews": [
+        "effect-catalog-summary-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "before_sha256": "e500c39765223741813bee96df96d80d49273c23da7b056e976a51828cc28ca7",
+      "after_sha256": "73fdd657e4a85e4cfc9584160cbc383a294955181ff65386231436714f678663",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "before_sha256": "e9c427bb22f170875744494daa70bd6cd3f1928df3eabe32bf881f90f8a1c833",
+      "after_sha256": "6093d6b8c327e90d14d8207e46e4f0db9658f47c119c7b5b987b587518d7a394",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-animation-binding-coverage.json",
+      "before_sha256": "99f614bbd6e8917b5c9e557f0278f413785d6c9fbc67eb97776f8b270b29b498",
+      "after_sha256": "abf87f660124b1225972d6f91e94c7a0c49ea5ca264148482f1a3118bc85a55e",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-animation-catalog-coverage.json",
+      "before_sha256": null,
+      "after_sha256": "e43ac3c5a940493464d52dbba1bc8c39886828125bd7af9512495f2866dab805",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-animation-catalog-source-index.json",
+      "before_sha256": null,
+      "after_sha256": "9ac0f06c2dcc9c86a8fdbad295df52e3ed961a6b69195fa428a543cbed283657",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-animation-catalog.json",
+      "before_sha256": null,
+      "after_sha256": "73ea8449670d4fca0764856bc89e6bc003b76648842c1f78372d6ac980148f61",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-animation-catalog.md",
+      "before_sha256": null,
+      "after_sha256": "f17dff05b59b7911c1eabd787d4a0cb31c27a796fa1f4f2c3d32d584790337eb",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-animation-selection-coverage.json",
+      "before_sha256": "a46ca53cc72823f32cedec801d3c4578df0843d083f50c0b638b46c3ac184541",
+      "after_sha256": "b95313a037c6b8b47be543db2a30e2187c3c5156f3e2a6037088efa6a60fe86c",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "before_sha256": "bf95a677967d6bce37d50f563d1d1e8a935d3dfe3f49337b6b4f7b06562bd656",
+      "after_sha256": "3d1e3cbc76c5d74b35d0c3aad4cef43b69f39d4a80da54dbbd34ba7bc3975762",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "before_sha256": "d4825f6cdc18bc0fedc61e746a1eb9ee9923301a89090b68bab200d888176be7",
+      "after_sha256": "21003b7b99cc5e87dfff9c4362bb26d044c6049d638580739ed77d5f3e9b5fc3",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "before_sha256": "4921abc5968022614acb9a24a46709c70fb09296f73d8847d4574f821b881822",
+      "after_sha256": "557448d893262f0bf337d45fdc60f769e4af78dcab887c4263cf555a5859e62a",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "before_sha256": "08c8aa5dd85f8431127959684fb5aacaf5d07296fa9583ed2779228396a50fcb",
+      "after_sha256": "da587d8039bdd755b48ff55c5bb465e49e7d1dabc4b99dd6cc083566f45a9c8f",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "before_sha256": "6918e2cf611a5cdb35103ac2b2d2798db1db24dbd12c423ecbb9ad48e3e22f69",
+      "after_sha256": "34dcd4175c8d78b0047a4a5f81783e3463c77ea9e915de96024d783b94c1ea9a",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "before_sha256": "1d1684a84bbce67b2515cd22e16bbbaeac402e656f3e268ee848403880c1319f",
+      "after_sha256": "6d7ca36cf4d81e5d4f7d605ff87376ea177bff1abff3c796a86a244c5d879c67",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-motion-initializer-coverage.json",
+      "before_sha256": "2c74f1ab4e481397d08d7add8909b25c81b654bf72b3011708c9cd0dcd5b516f",
+      "after_sha256": "da371d29e7a70197166af4bcff2954ecccda57ab2816c600c27c66b48dc7260c",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-record-placement-coverage.json",
+      "before_sha256": "9f495ef6a9bd168a4b5a59b8b867349aa475ed1bdde61aba51e96e9b25d16871",
+      "after_sha256": "ca36d96e533e2cee6be4aa9e930d613c0579eca689287b4deb29e304847fce46",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "before_sha256": "64694435ebfb5d2b576eaa9ff043420da69de59da06acf4dff42e0a9b236c033",
+      "after_sha256": "a2b4e15d79500c21b9a4d87e231f0c1c945efe1c5878bbf995f63d98dd3b07fc",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "before_sha256": "a290228403518685a5ae42969761f7db1876c1e146f097e966a9ebe0d5f5283c",
+      "after_sha256": "ed8923ec9551a11db104cc422f22f5103952e31f9824e380130765589bc71547",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "before_sha256": "4e1aa1acb05e98f3248ebb77f3ce340d70698df43818262a85a8037a6323f838",
+      "after_sha256": "6f7775e1957300c24a9eee89d367f7ce2f9f15729589473c9aa1f2fe37798b15",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "research/runtime/effect-trajectory-initializer-coverage.json",
+      "before_sha256": "5c77e03b6ed044cc030227241881ff4b090b0526b0c313a467432cfd93630a45",
+      "after_sha256": "0bd682b65edbfccd4d4bfd105bd9979f8869b211897cfd53d30992245560e7f6",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "tests/effect-animation-catalog-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ee12e912eb32f0339159da39ef575f5315c6fb0b911b49a45730462c2f069550",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "path": "tools/test-effect-animation-catalog.py",
+      "before_sha256": null,
+      "after_sha256": "5b5ba5a25072066e2484e972a651523bd45bfba7532f57daa72a5f11dca235a7",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    }
+  ],
+  "behavior_contracts": [
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.ani-forward",
+      "before_sha256": "00a6e8fa6b628d7f4a7e7182b2f1c49ffe32ede9cd2691e64e2e45b3961f8071",
+      "after_sha256": "07c3df9ccf2242b5ed789c4d48a9bf761d052d0f2ff355a2c2e79903b78f7b83",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.event-0",
+      "before_sha256": "29400771471ec338ff1bc9c1080df3168e8b9e179dcd3cc1481edec567546be3",
+      "after_sha256": "a075cad4ab26191fea46944063bdb29558505c525de08cfeba5d8b3e7b4d94cb",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.event-2",
+      "before_sha256": "dbfcc2926f09490746032ba5f4e2ec080341e3d4b34003d696f1362577da8622",
+      "after_sha256": "d6dd5487ff5e1d9afbd5509c46fad44dd26787f5f747aa07c25b2039304add46",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.fine-motion",
+      "before_sha256": "8b8275328b98765f7ca0fbffb83a0158da0ace9c288bfe28ac30be676d57984e",
+      "after_sha256": "0880695551576a63fb079a08ab4de8aa65fbc2428f771f4ab386c214d6f7b442",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.legality",
+      "before_sha256": "82b93399f16ce01830119ec407016bb3719b53ce21e1ca8b9750711a99500ed3",
+      "after_sha256": "086ff98c8d66dff26641672ddb597d14268eba23d30848a0c2b1ba55c9ea2343",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.ordinary-terrain-height",
+      "before_sha256": "b741d286bcf42f9e3ed4d6c88a66517ff813f484c78aae25c8230c4a04d9fa95",
+      "after_sha256": "c40d38de817f2524cbdb3fce8e01ac3ec8f9586b395d35d8e6ae83a7fce7f93c",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.planar-setup",
+      "before_sha256": "4da0f132953ed23155ffb52b2bda2afe71fd99975789beba78919778700d42b5",
+      "after_sha256": "42e431483569949b433cbddc02b194e7576e77dd68b253e46aa3664f63fc6386",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.request",
+      "before_sha256": "c9ecca43aa365932f6fcbcefee08093b147fac877195ad1d08c71c28f10b3aaf",
+      "after_sha256": "81b8dadefebbb6d6fee9ca34b24de85d5e394eb70d7233cd32fb2dd21f7a8e6a",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.route-consumption",
+      "before_sha256": "37c1ca5ce0c565b59c7f4884b19555ec9df3bc598b1d531ba644f4735a023a02",
+      "after_sha256": "ac5567b3debda96034d9ba9b94bc655f004fc1d3fe0d15d27aa294fb375b07e3",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.search",
+      "before_sha256": "48f9d185333d6f81b2570de3e978424bddc4eb7e961a9e840ea563f8ebe33a4c",
+      "after_sha256": "df95a7e17565928251b8682281de3c73bc2bccc758f1ad4c7819b78a2088e726",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "MV.vertical-setup",
+      "before_sha256": "3e8d862ed72bcc70cf8c205eeb18280e86b063a978144a00df723fa275600f80",
+      "after_sha256": "cbd56e4b1e8da418bf39b4b5a66f1e8b6d99c354a5f9962fc91ab956b4008e60",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.checkpoints",
+      "before_sha256": "4713a1b6cce3b8f7c54ab44216afc158a8aeb76400ae34992db3d919b31297af",
+      "after_sha256": "2c0518bbbe6547c01ef54a4d074d1415c461834eb55025b491729c93cd8e583f",
+      "reviews": [
+        "NS19.spawn-display-exact-1",
+        "NS19.spawn-display-recorded-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.idle-display",
+      "before_sha256": "51c5aad80124f0ad44886f119c73f1bc2e97fdad6aaac26c3ddb517155143eae",
+      "after_sha256": "bd1400e9e35729e11085327e5348f547485ba654707c10ca837f0aebfb1f065b",
+      "reviews": [
+        "NS19.spawn-display-exact-1",
+        "NS19.spawn-display-recorded-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.map-navigation",
+      "before_sha256": "5393e144b581a388de8aab1b51a5145a5c8317154d6e2378cfc99ffd56907606",
+      "after_sha256": "b42c35c43182d1f3e32a4ca80fe56f35a90d97e5de6253cc58a44d74bd0f3715",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.move-orders",
+      "before_sha256": "30a015442173000fff23f5a6e524e65e8b60ac3d3bd3def07cffd7d970d1a2ee",
+      "after_sha256": "7c6478c5bc7833b6ae58706b49cedac830da80c6ce44d72da502ab1810c27c63",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.multi-movement",
+      "before_sha256": "4c53bba144581f25b38373dbb87a029d04fdb58d9cbde2baef5399fbb45651b1",
+      "after_sha256": "beb325b62b1b8d3ff46a0ffba2c0b50a1f614db39a719410f28cd17907f05aa2",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.presentation",
+      "before_sha256": "fcb5cb25ba5f0d2b8494cd8ef7c472806ea21d21617e7cc58c1ce45011917f28",
+      "after_sha256": "8ec5af51f4efff24ead06ce365da1a9866bbf027c321aafb8d5ff5441da6ecf9",
+      "reviews": [
+        "NS19.spawn-display-exact-1",
+        "NS19.spawn-display-recorded-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.scene-picking",
+      "before_sha256": "fbc07add5e7e090110493585222e3e5403492d94a5f04dd9740ea1f367b474fa",
+      "after_sha256": "92df3856fc2c61c5fd109e160f94e7c2e3d1f39410bd915df019c455c6179db8",
+      "reviews": [
+        "NS19.spawn-display-exact-1",
+        "NS19.spawn-display-recorded-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.scene-playback",
+      "before_sha256": "855902ae1528a45e0d586c13534aad95526005f78c87217030a3b213f217dab0",
+      "after_sha256": "bfeb12e21c415ba9f3c6837b4bb50310c4280d1c971325949bf1271457815759",
+      "reviews": [
+        "NS19.spawn-display-exact-1",
+        "NS19.spawn-display-recorded-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.spawn-display",
+      "before_sha256": null,
+      "after_sha256": "c95e6156a52070fec49a40932d32c58a95a7599077bcaf2103057cd53f7244c6",
+      "reviews": [
+        "NS19.spawn-display-exact-1",
+        "NS19.spawn-display-recorded-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.stationary-occupancy",
+      "before_sha256": "ca94c8ad8170b32360db73b4e3d999f8d789286d4fc9d2b2f11113a471357a96",
+      "after_sha256": "f4f3959dfa2f5ce9c769c3f34f20ec1ba3c3a3df45f207740c67749b2e0ab588",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NP.stop-orders",
+      "before_sha256": "9f298a5c572286760914790c04e750b532c3123abccc55388e844062a097c4f8",
+      "after_sha256": "44d6a898ec4941fb49103e943f640c4ce35f4f9bc35d9cd58170c27c2c962b27",
+      "reviews": [
+        "NS19.spawn-display-exact-1",
+        "NS19.spawn-display-recorded-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "NR.world_scene",
+      "before_sha256": "a4cdf72e7dba0b0c8ab635c6013c6c06388b8794b8d43c08a4d8987c7a87c052",
+      "after_sha256": "92d4780361420e5e9210d5839b032c3bb2b02083069d4524664455188ac69478",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "0388a0f5cf9f0ffad5045c6224d81c26229bd285bce6eaa6b4fe7fa3767db0a1",
+      "after_sha256": "13f02341909d61127aedf1ebc6b5f699a9caf9adb18af638ef21bc1d64a21940",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "WORLD.owned",
+      "before_sha256": "9423c4f972b154626b253180cae120c4cab13d6d4ac02a7349f0e0c904caf1c9",
+      "after_sha256": "ffc41da9c86bac11d10f9a685a2625a7e74ce6fbaedafde0a561b6179726d1f8",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "fd615d9a358dd6af05907c8a800fd79fedef7594",
+      "id": "WORLD.sandbox",
+      "before_sha256": "525dee124e041d771b5be2e046648bf6af668728b0b141f390520409322624cd",
+      "after_sha256": "657a1641a882b5bc6f23e09cd502b00889f18a9acbcc97b1a3b50313f26bcede",
+      "reviews": [
+        "NS19.spawn-display-exact-1"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "BR.battle",
+      "before_sha256": "78bb7e14c2730c1fddb2a58aa11fc3656b769523bddaae67a6f18f01f7d5c1db",
+      "after_sha256": "baad7698a89f23cc9c5074d93ea140654f62b0c5dc1ff74016f5510b3791c763",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "BR.main",
+      "before_sha256": "4ff742e853abb882f381d9f297e2b08fa98811a6e623ff17647d3089a1ed527e",
+      "after_sha256": "8a1ee038c62a75fea9056479f88eca5728490d85b199a087090597d8f6bb3fd5",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "BR.mini",
+      "before_sha256": "98b4e645572687839d233557ad8d35b7fa70010ad3d4140b39ec9c8a085174a0",
+      "after_sha256": "2108aeb5b5b0afe9fef3b19d4ecb0490ca6e821f0b6c8db8231875fdb87b3239",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "BR.result",
+      "before_sha256": "fb1f77c289c6ac42bfb91c348fc1f6a4af60817e9ea0d206aa4ed72d5aa00675",
+      "after_sha256": "c6903de907fda7cd54be30cb94905c5aeb2d03c7f59c3af57c8a5231d318e2a6",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "BR.spell",
+      "before_sha256": "95226043da40037bbae10e7885178f68d6ff7a7fcab355cf65962cd912357b29",
+      "after_sha256": "5f1238ce3016dea9323d3e51cf23342a130440acf76584d439f26672b405bfeb",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-defeat-report",
+      "before_sha256": "67fcf3270e173d0d633df2b21171b0bce47c5988c0e80bd78f469df055909fa2",
+      "after_sha256": "ecf92f91c0cb35e49996e80786aec7a1f8b4ceeeea0862ebd3f133097b618632",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-mini-cancel",
+      "before_sha256": "8411df886ff61587658278729aa4f474b112611b99c6d09298a830da21dc9cd5",
+      "after_sha256": "d075c26b72d4daaff4d9581b66b89045c579b67bcce701f86726c3510a8794bb",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-mini-lifecycle",
+      "before_sha256": "2dbf477753699ad04d66fa326cad6d9c701b6e6e54aed4463f916aeacd3979bb",
+      "after_sha256": "245b9832ccaa046da90713ad782e84a59b2eab8a82c32b45ef382bad1f5000e2",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-mini-preferences",
+      "before_sha256": null,
+      "after_sha256": "2bfb84b71fd306e7f45172fef806d9e23f42005248f371c3af6d14636b86efc9",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc",
+        "campaign-preferences-ui34-execution-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-mini-quit",
+      "before_sha256": "51bced3ffccb76d504f4b91840fd03c6dea276e29cf4be5610dde8fa785d68c0",
+      "after_sha256": "4a4c0f70ec8f04d73732061f96406cdcc272b52b3e08b1eb8720a248d4225a5b",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-mini-quit-lifecycle",
+      "before_sha256": "b4127933579e58c2fe7eefb0449e97b16b528dc4ea55335221b308e33e562653",
+      "after_sha256": "45adab4d390cded58db399cde7ed0cc064231b136412603e67bad7e386079ebf",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-world-handoff-observation",
+      "before_sha256": "25411e448858c2c8da3feb864b51bcd497771b4a35cf65c566d4ef01734682ae",
+      "after_sha256": "8e2fb37afe41bf772a891620b6ad150e59fe5e58f75a0049d6a66b15b9d7a36b",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.realm-observation",
+      "before_sha256": "f1a4edf6008c306a90ef8d00543443165be4f9f49dfd59c8cc80a52fcfcfe241",
+      "after_sha256": "f19a4a443816e27783f2d671b790f619a2cadd2fb2415310ae8ce914eca4d8ee",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.region-entry-bridge",
+      "before_sha256": "4f94d8f0ac47721c9059f363aeedc8cbec6d2001f49d8d156881f58c3a3c2ee4",
+      "after_sha256": "ca998f79c36ef4f0310b7447f4f2719e71dff4f330bc250b561f216446bf0fda",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.region-entry-enter",
+      "before_sha256": "1242f62d27553c0c1721babadd971c499051d5d781e11e30355859c81ee3b823",
+      "after_sha256": "e5d544412fd81fc9e3a4b6d68194391418e94f28ebaa922111b029806b37f0e1",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.region-entry-observation",
+      "before_sha256": "140ef00c4e41d4b2477302f2bfe48dde3a88aeb2fd913e3e88e95c1bcddb00e4",
+      "after_sha256": "dd0051fdfe0995aa7b9b8e5961d733b98c477a6c19708e5400fc620e72699a0d",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.campaign-defeat-policy",
+      "before_sha256": "1efd161326ecbd2cd2a3e522a422dc1adf73bb8ba47d846148453a7e1aac6086",
+      "after_sha256": "b10249377bf769fbf8c01e1344de2a2020ae6bf3c4ae60f486b23ffcccb8bee3",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.campaign-mini-cancel-policy",
+      "before_sha256": "8d707fb456b2849fae87194ab1da1fb12443f8c6a76ced31af9c86f862527b48",
+      "after_sha256": "c522b5d02f86f0885e606d6a0e1939004012977c119d4582d7983351253358aa",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.campaign-mini-quit-policy",
+      "before_sha256": "4afcb3b2200e40a4be971c0612b8901a33dda7bb1c2a4b7e17b9fc9f2e7499e4",
+      "after_sha256": "abf8eec34866226ef04a0302c889968413561680b52b69bdd9ae465538bbce9f",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.campaign-preferences-policy",
+      "before_sha256": null,
+      "after_sha256": "042d2dd2bd51ae85c1dd119cd5e0b1e42fbdb4b7e82cbf349afc20bd3d525afa",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc",
+        "campaign-preferences-ui34-execution-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.preferences-draft",
+      "before_sha256": "93688171490e14591a3886267175ef8abc84b40c9e398d83fc1efbd2c603dfe8",
+      "after_sha256": "1918f56062b2ba7c7d81c7878b6004965a50544c307cea47d9506f0b7851f4f9",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.preferences-persistence",
+      "before_sha256": "4ad663076b5f1c16748095405184ec6b4e6ce6a1615d52d4b34f4c035e8eca7d",
+      "after_sha256": "6a723967991571d09af2486af99b4ad9c71fdeb5db3f8ca7fbbdc238826016bf",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.region-entry-fresh-policy",
+      "before_sha256": "98200f7c9e535cd485357976b1756ab6de718bc46b6af1fef1d908ae25e1acd8",
+      "after_sha256": "0a6c74f4e5a96b456da2ac8ca5a9969e3ecf66006dc98aa900448a06b466f346",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NR.gpu-presentation",
+      "before_sha256": "51e17340deedf84d767decdeace44768607cde793ffe9628f296ac62028e2ad5",
+      "after_sha256": "8580c217a68dcbd8ba94ef8eee1fd4ceba7785e5625c66b4bbbe8c5af631e066",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "PR.apply",
+      "before_sha256": "8c04f971ff220e51bb58076a4376aef00827d846300d376a56daec93bedbcc1d",
+      "after_sha256": "a22c5e90f2e899807df648bbb7ce4e7cb812f0f0744bd5105595337a3b0a3b04",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "PR.audio-preview-cancel",
+      "before_sha256": "790f2cf13767603c6d2b6f48254d586b54fa029ddc52bc471a6a2b9a9febc8ed",
+      "after_sha256": "c7da4283346ad7d58e538e1702ec15065ccdb38d5b97af17b0506f84886bc410",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "PR.control-admission",
+      "before_sha256": "d72e6628fadfbad0364ae0b2471ea4b462299eb6d77915f97e38dae23f0014cf",
+      "after_sha256": "a14e6089c022006fb032ffe3fc3739992c844378b47f93d92408218a5e8c88df",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "PR.main-entry",
+      "before_sha256": "4245a0a5766389a783f4dcc05613fd8b73841b591b5611a50c9a541ac62f34ac",
+      "after_sha256": "c7854aa8144b177b39b55222921320c34088ca95b72f47f86088a0824271d81b",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "13f02341909d61127aedf1ebc6b5f699a9caf9adb18af638ef21bc1d64a21940",
+      "after_sha256": "71213b3adbde86173146f971a92db61238c7a8687007fac74db8fb071fe4fa41",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "id": "AS.effect-animation-catalog",
+      "before_sha256": null,
+      "after_sha256": "6ed26ab64adad3fa6c7914dd1a0cf0f87758b13758834e85d13a0f21064ec127",
+      "reviews": [
+        "effect-catalog-recorded-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "id": "TL.effect-movement-recount",
+      "before_sha256": "2477643e64f2dd7f1ea4f0459f48d547b8ff2763c5677d8b31a398354b7bc3d6",
+      "after_sha256": "c8278abb9d7bf1ea38bd0625a9c04a8be7f52a732e58c6644330fba47e2b4551",
+      "reviews": [
+        "effect-catalog-remaining-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "id": "TL.effect-table-policy",
+      "before_sha256": "7bfc2dbbd214205e7c0cced00e3e39fb6b208252fce52c029763949061771531",
+      "after_sha256": "3b789eddf369d59ac55df4a18bdee5cb0d325b4ae80934c4021410f920d0d340",
+      "reviews": [
+        "effect-catalog-remaining-08caa57"
+      ]
+    },
+    {
+      "commit": "1016274551f0eba7c3de0ce6537da3dd71db08ef",
+      "id": "TL.effect-type-setup",
+      "before_sha256": "2897fbd84735a02caaa0fa5fe7b27885fa602c2ab74d2c23df2cd321fb437697",
+      "after_sha256": "d7bde1fb82054b10a2221cddee9d190c9dc9e27e38c484a295ea790964f29378",
+      "reviews": [
+        "effect-catalog-remaining-08caa57"
+      ]
+    }
+  ],
+  "unmatched": []
+}

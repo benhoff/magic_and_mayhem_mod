@@ -11,6 +11,7 @@
 #include <QJsonObject>
 #include <QMouseEvent>
 #include <QPushButton>
+#include <QLabel>
 #include <QRegularExpression>
 #include <QTimer>
 #include <iostream>
@@ -67,7 +68,8 @@ class Driver final:public QObject {
         auto* choices=window_.findChild<QComboBox*>("creatureSelection");check(choices,"Creature choices missing");
         const QJsonObject canonical{{"tick",qint64(state.tick)},{"queue",queue},{"actors",actors}};
         write(prefix+".json",QJsonDocument(canonical).toJson());
-        captures_.append(QJsonObject{{"name",name},{"tick",qint64(state.tick)},{"playing",playback_.playing()},{"selected_index",choices->currentIndex()},{"pending",pending}});
+        auto* status=window_.findChild<QLabel*>("sceneStatus");auto* cell=window_.findChild<QLabel*>("spawnCell");check(status && cell,"Spawn status widgets missing");
+        captures_.append(QJsonObject{{"status",status->text()},{"spawn_enabled",button("spawnCreature").isEnabled()},{"spawn_cell",cell->text()},{"name",name},{"tick",qint64(state.tick)},{"playing",playback_.playing()},{"selected_index",choices->currentIndex()},{"pending",pending}});
     }
     void acceptSave(const QString& path,unsigned tries=0) {
         guard([&] {
