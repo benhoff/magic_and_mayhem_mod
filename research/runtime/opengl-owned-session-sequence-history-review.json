@@ -1,0 +1,827 @@
+{
+  "range": "fd615d9..08caa574e237a0815bf765e72dbd6dde80c102c6",
+  "scope": "Read-only committed parent/current hashes against exact receipts; no retrospective gate pass or execution claim.",
+  "files": [
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "0c118dd8b5f1e12d7768fee363a5d6b9012e47165406523a66c513aa568216ba",
+      "after_sha256": "1f928df7ee7d5419d9e55d376a3ae0e665b0bd67eca88514c181b5455338a2f2",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy",
+        "NP.region-entry-fresh-policy",
+        "NR.gpu-presentation"
+      ],
+      "role": "build",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "60c12021e58abce146389da4afdc424756c697ad239639a1999a485adff3b9f0",
+      "after_sha256": "25ccbbd8f260523a060dc04455e82421ea439528ef6f64e0e894a02d5cbe2a2c",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy",
+        "NP.preferences-draft",
+        "NP.preferences-persistence",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "6b53e83a42a7b79da9a604487614c98e0a358d6a4ccc306420b03a277fea4a96",
+      "after_sha256": "9253ed4ecaa4bd341a0423d33d42504c1e0c0700cb3ce842c9348286dcfdd3b8",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy",
+        "NP.preferences-persistence",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/live_menu_test.cpp",
+      "before_sha256": "89cc91453e19f5e40b9a89cdde77fd2db08c7d056f86c50febfb9d61dbc1acd1",
+      "after_sha256": "91caf6b1b45dd080d0c143ea27b74a8e3d218727430b15502c512a8475573ae8",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/live_mini_menu_controller.cpp",
+      "before_sha256": "25341c7408c940ed8b65087ff6e74476d86f9c500d37db18efc1a2535883fd64",
+      "after_sha256": "e3fc55a11796a2f4ca9b930b1bcbd1e5e47b66f20917eaabc10d5f3665cc4f15",
+      "behaviors": [
+        "BR.mini",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/live_preferences_menu_controller.cpp",
+      "before_sha256": "5048c816460f8223f5d426d47f6554973e4a6dcd4bea3d44aec0d7530ed577c3",
+      "after_sha256": "1bc94f804ecceb7213ba387f80679b11791e2dc135dadd3cd54ae367cacb4c38",
+      "behaviors": [
+        "CP.campaign-mini-preferences",
+        "NP.campaign-preferences-policy",
+        "NP.preferences-draft",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/menu_bridge.cpp",
+      "before_sha256": "0016c5268605dcd4db95491abd48befd28a488d0385bbe622036d6d63734cb41",
+      "after_sha256": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy",
+        "NP.preferences-draft",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "0c9e85fd7dcb51a828816310becfd93b1178bf4fd2e124954eaae7d13beab361",
+      "after_sha256": "631087eda5168c3ddaaaa590c22c19e7958a49c7d9026f71bbde0702a1ec62fa",
+      "behaviors": [
+        "BR.main",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "protocols/include/mnm/menu_v12.h",
+      "before_sha256": null,
+      "after_sha256": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+      "behaviors": [
+        "CP.campaign-mini-preferences",
+        "NP.campaign-preferences-policy"
+      ],
+      "role": "protocol",
+      "change": "added",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/README.md",
+      "before_sha256": "3b68ea7bed534eee137277066f1e5db5967486f18705b9e5552cceef9f835c3c",
+      "after_sha256": "426baa67a67e7cbd62a1e2983be76c10f5a9f3cb7fef56d66b255eb28bdead75",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "before_sha256": "35d8b255a3116cef30d5eedaf1d10a0078abcaa952c5e22a7d8564a69bf47104",
+      "after_sha256": "b9d7ee8a1db40c1814f063cd4f8e031b374074b7f5dbac1ee17be49ed8abe691",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/campaign-preferences-engine-bridge.json",
+      "before_sha256": null,
+      "after_sha256": "712aa64590ec9c3bea70f08e9fff3d8c9e4ea7f47a92ca14c3d6c33e38dd6c7f",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/campaign-preferences-engine-bridge.md",
+      "before_sha256": null,
+      "after_sha256": "707cac78ec092409c33596d9548dd139838adcca6ef6da854039986eb849f7af",
+      "behaviors": [
+        "CP.campaign-mini-preferences",
+        "NP.campaign-preferences-policy"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/campaign-preferences-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "d6edae08eaf2705d500ebddef6986271be7b90706359da35865f825a68368935",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "a5070b07dd3f436d022ffbc231131a5e3af17b702cbda0341dfb8fcff9b606b6",
+      "after_sha256": "592e9f6e37c3282afd668c223d4e6ebc27feb79d5bc42661a12da7a5a7804350",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "40768441b15059d2c8980254d3d7057be4449fd8df584584f2b2c044d58a1e4e",
+      "after_sha256": "28072201ddddb88d3f74d2c52aceb5a9884073704578798b6219388f58df79b9",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/coverage/source-index-campaign-preferences.json",
+      "before_sha256": null,
+      "after_sha256": "237872895e0a6cd07bb31a5b0c6752e3bc5aca4b97f6ed18a3fc64a0c1b5c788",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "3595535b84c63c5ec3f775b0f591d5188b6bcbedeab1fbfc675062da97928296",
+      "after_sha256": "8b30355324f630ffd5c8174473a03a4af2bab4a713721ee6a1d8ed82d306b53a",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "runtime/menu/channel.h",
+      "before_sha256": "c84271d4a7f16d748904b207d073823729737ff8a429c89b6f3c2dc0bde6d937",
+      "after_sha256": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+      "behaviors": [
+        "BR.battle",
+        "BR.main",
+        "BR.mini",
+        "BR.result",
+        "BR.spell",
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy",
+        "NP.region-entry-fresh-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "runtime/menu/mini.h",
+      "before_sha256": "1285395e6123b1e81827a540680288f0eb8b2c7b0a2af6bffa72f788ddb266a2",
+      "after_sha256": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+      "behaviors": [
+        "BR.mini",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "runtime/menu/preferences.h",
+      "before_sha256": "e095dbc84cfe853dcb5b1478ac29e47e68d1ed73804b95baad9d775f57859251",
+      "after_sha256": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+      "behaviors": [
+        "CP.campaign-mini-preferences",
+        "NP.campaign-preferences-policy",
+        "PR.apply",
+        "PR.audio-preview-cancel",
+        "PR.control-admission",
+        "PR.main-entry"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tests/README.md",
+      "before_sha256": "d6de99098ec496c9665a28a41de4e09aec4e89658b324d02760ee58ff7943afb",
+      "after_sha256": "62f9f7e1cda1e539b3d3de682f1af0b1023d66c7aca7e00cb810f6f456ec9a90",
+      "behaviors": [
+        "TOOL.coverage-gate"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tests/campaign-preferences-reference.c",
+      "before_sha256": null,
+      "after_sha256": "5f8160a3fc4990d623002f1c6d95f61daaf02deae4a9106dc448f4b08f7f342e",
+      "behaviors": [
+        "CP.campaign-mini-preferences",
+        "NP.campaign-preferences-policy"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tests/campaign-preferences-selftest.h",
+      "before_sha256": null,
+      "after_sha256": "b5252395a1546326687908911c36861deefc8042020ddc166f99b9dd6a878012",
+      "behaviors": [
+        "CP.campaign-mini-preferences",
+        "NP.campaign-preferences-policy"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tests/menu-campaign-preferences-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "3e865cd32baa24a07954118b11df78cb97aaaeb37527f392bb6b5c14eb751f01",
+      "behaviors": [
+        "CP.campaign-mini-preferences",
+        "NP.campaign-preferences-policy"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tools/build-menu-observer.py",
+      "before_sha256": "dad8006211c093cc78cf97182fb3a604f752720879abe81be53ebac92c540322",
+      "after_sha256": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.realm-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "CP.region-entry-observation",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "e100b6f586a026d2845492e304b8cf627ed56b10e7b266f93401d68e3fd13ab0",
+      "after_sha256": "42b40bbd9db95fe2cf096ec76f3b7d7102a0f2eb9a36b9b17e64a795e2a6bd56",
+      "behaviors": [
+        "CP.campaign-defeat-report",
+        "CP.campaign-mini-cancel",
+        "CP.campaign-mini-lifecycle",
+        "CP.campaign-mini-preferences",
+        "CP.campaign-mini-quit",
+        "CP.campaign-mini-quit-lifecycle",
+        "CP.campaign-world-handoff-observation",
+        "CP.region-entry-bridge",
+        "CP.region-entry-enter",
+        "NP.campaign-defeat-policy",
+        "NP.campaign-mini-cancel-policy",
+        "NP.campaign-mini-quit-policy",
+        "NP.campaign-preferences-policy",
+        "NP.region-entry-fresh-policy"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "path": "tools/test-campaign-preferences-bridge.py",
+      "before_sha256": null,
+      "after_sha256": "5a7e07c96444ca0258fba24e0fe3c1e39e93aa6c46d6e0e2c077e620de0ef1dc",
+      "behaviors": [
+        "CP.campaign-mini-preferences",
+        "NP.campaign-preferences-policy"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "BR.battle",
+      "before_sha256": "78bb7e14c2730c1fddb2a58aa11fc3656b769523bddaae67a6f18f01f7d5c1db",
+      "after_sha256": "baad7698a89f23cc9c5074d93ea140654f62b0c5dc1ff74016f5510b3791c763",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "BR.main",
+      "before_sha256": "4ff742e853abb882f381d9f297e2b08fa98811a6e623ff17647d3089a1ed527e",
+      "after_sha256": "8a1ee038c62a75fea9056479f88eca5728490d85b199a087090597d8f6bb3fd5",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "BR.mini",
+      "before_sha256": "98b4e645572687839d233557ad8d35b7fa70010ad3d4140b39ec9c8a085174a0",
+      "after_sha256": "2108aeb5b5b0afe9fef3b19d4ecb0490ca6e821f0b6c8db8231875fdb87b3239",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "BR.result",
+      "before_sha256": "fb1f77c289c6ac42bfb91c348fc1f6a4af60817e9ea0d206aa4ed72d5aa00675",
+      "after_sha256": "c6903de907fda7cd54be30cb94905c5aeb2d03c7f59c3af57c8a5231d318e2a6",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "BR.spell",
+      "before_sha256": "95226043da40037bbae10e7885178f68d6ff7a7fcab355cf65962cd912357b29",
+      "after_sha256": "5f1238ce3016dea9323d3e51cf23342a130440acf76584d439f26672b405bfeb",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-defeat-report",
+      "before_sha256": "67fcf3270e173d0d633df2b21171b0bce47c5988c0e80bd78f469df055909fa2",
+      "after_sha256": "ecf92f91c0cb35e49996e80786aec7a1f8b4ceeeea0862ebd3f133097b618632",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-mini-cancel",
+      "before_sha256": "8411df886ff61587658278729aa4f474b112611b99c6d09298a830da21dc9cd5",
+      "after_sha256": "d075c26b72d4daaff4d9581b66b89045c579b67bcce701f86726c3510a8794bb",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-mini-lifecycle",
+      "before_sha256": "2dbf477753699ad04d66fa326cad6d9c701b6e6e54aed4463f916aeacd3979bb",
+      "after_sha256": "245b9832ccaa046da90713ad782e84a59b2eab8a82c32b45ef382bad1f5000e2",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-mini-preferences",
+      "before_sha256": null,
+      "after_sha256": "2bfb84b71fd306e7f45172fef806d9e23f42005248f371c3af6d14636b86efc9",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc",
+        "campaign-preferences-ui34-execution-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-mini-quit",
+      "before_sha256": "51bced3ffccb76d504f4b91840fd03c6dea276e29cf4be5610dde8fa785d68c0",
+      "after_sha256": "4a4c0f70ec8f04d73732061f96406cdcc272b52b3e08b1eb8720a248d4225a5b",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-mini-quit-lifecycle",
+      "before_sha256": "b4127933579e58c2fe7eefb0449e97b16b528dc4ea55335221b308e33e562653",
+      "after_sha256": "45adab4d390cded58db399cde7ed0cc064231b136412603e67bad7e386079ebf",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.campaign-world-handoff-observation",
+      "before_sha256": "25411e448858c2c8da3feb864b51bcd497771b4a35cf65c566d4ef01734682ae",
+      "after_sha256": "8e2fb37afe41bf772a891620b6ad150e59fe5e58f75a0049d6a66b15b9d7a36b",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.realm-observation",
+      "before_sha256": "f1a4edf6008c306a90ef8d00543443165be4f9f49dfd59c8cc80a52fcfcfe241",
+      "after_sha256": "f19a4a443816e27783f2d671b790f619a2cadd2fb2415310ae8ce914eca4d8ee",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.region-entry-bridge",
+      "before_sha256": "4f94d8f0ac47721c9059f363aeedc8cbec6d2001f49d8d156881f58c3a3c2ee4",
+      "after_sha256": "ca998f79c36ef4f0310b7447f4f2719e71dff4f330bc250b561f216446bf0fda",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.region-entry-enter",
+      "before_sha256": "1242f62d27553c0c1721babadd971c499051d5d781e11e30355859c81ee3b823",
+      "after_sha256": "e5d544412fd81fc9e3a4b6d68194391418e94f28ebaa922111b029806b37f0e1",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "CP.region-entry-observation",
+      "before_sha256": "140ef00c4e41d4b2477302f2bfe48dde3a88aeb2fd913e3e88e95c1bcddb00e4",
+      "after_sha256": "dd0051fdfe0995aa7b9b8e5961d733b98c477a6c19708e5400fc620e72699a0d",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.campaign-defeat-policy",
+      "before_sha256": "1efd161326ecbd2cd2a3e522a422dc1adf73bb8ba47d846148453a7e1aac6086",
+      "after_sha256": "b10249377bf769fbf8c01e1344de2a2020ae6bf3c4ae60f486b23ffcccb8bee3",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.campaign-mini-cancel-policy",
+      "before_sha256": "8d707fb456b2849fae87194ab1da1fb12443f8c6a76ced31af9c86f862527b48",
+      "after_sha256": "c522b5d02f86f0885e606d6a0e1939004012977c119d4582d7983351253358aa",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.campaign-mini-quit-policy",
+      "before_sha256": "4afcb3b2200e40a4be971c0612b8901a33dda7bb1c2a4b7e17b9fc9f2e7499e4",
+      "after_sha256": "abf8eec34866226ef04a0302c889968413561680b52b69bdd9ae465538bbce9f",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.campaign-preferences-policy",
+      "before_sha256": null,
+      "after_sha256": "042d2dd2bd51ae85c1dd119cd5e0b1e42fbdb4b7e82cbf349afc20bd3d525afa",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc",
+        "campaign-preferences-ui34-execution-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.preferences-draft",
+      "before_sha256": "93688171490e14591a3886267175ef8abc84b40c9e398d83fc1efbd2c603dfe8",
+      "after_sha256": "1918f56062b2ba7c7d81c7878b6004965a50544c307cea47d9506f0b7851f4f9",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.preferences-persistence",
+      "before_sha256": "4ad663076b5f1c16748095405184ec6b4e6ce6a1615d52d4b34f4c035e8eca7d",
+      "after_sha256": "6a723967991571d09af2486af99b4ad9c71fdeb5db3f8ca7fbbdc238826016bf",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NP.region-entry-fresh-policy",
+      "before_sha256": "98200f7c9e535cd485357976b1756ab6de718bc46b6af1fef1d908ae25e1acd8",
+      "after_sha256": "0a6c74f4e5a96b456da2ac8ca5a9969e3ecf66006dc98aa900448a06b466f346",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "NR.gpu-presentation",
+      "before_sha256": "51e17340deedf84d767decdeace44768607cde793ffe9628f296ac62028e2ad5",
+      "after_sha256": "8580c217a68dcbd8ba94ef8eee1fd4ceba7785e5625c66b4bbbe8c5af631e066",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "PR.apply",
+      "before_sha256": "8c04f971ff220e51bb58076a4376aef00827d846300d376a56daec93bedbcc1d",
+      "after_sha256": "a22c5e90f2e899807df648bbb7ce4e7cb812f0f0744bd5105595337a3b0a3b04",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "PR.audio-preview-cancel",
+      "before_sha256": "790f2cf13767603c6d2b6f48254d586b54fa029ddc52bc471a6a2b9a9febc8ed",
+      "after_sha256": "c7da4283346ad7d58e538e1702ec15065ccdb38d5b97af17b0506f84886bc410",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "PR.control-admission",
+      "before_sha256": "d72e6628fadfbad0364ae0b2471ea4b462299eb6d77915f97e38dae23f0014cf",
+      "after_sha256": "a14e6089c022006fb032ffe3fc3739992c844378b47f93d92408218a5e8c88df",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "PR.main-entry",
+      "before_sha256": "4245a0a5766389a783f4dcc05613fd8b73841b591b5611a50c9a541ac62f34ac",
+      "after_sha256": "c7854aa8144b177b39b55222921320c34088ca95b72f47f86088a0824271d81b",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    },
+    {
+      "commit": "08caa574e237a0815bf765e72dbd6dde80c102c6",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "13f02341909d61127aedf1ebc6b5f699a9caf9adb18af638ef21bc1d64a21940",
+      "after_sha256": "71213b3adbde86173146f971a92db61238c7a8687007fac74db8fb071fe4fa41",
+      "reviews": [
+        "campaign-preferences-ui33-campaign-preferences-commit-weha9suc"
+      ]
+    }
+  ],
+  "unmatched": []
+}

@@ -11557,7 +11557,8 @@
       ],
       "evidence": [
         "NR.live-command-transport.native",
-        "NR.live-command-transport.unlock-regression"
+        "NR.live-command-transport.unlock-regression",
+        "NR.live-command-transport.startup-regression"
       ],
       "status": {
         "understanding": "scoped",
@@ -11882,7 +11883,9 @@
         "research/runtime/opengl-real-game-shadow.md",
         "research/runtime/opengl-owned-session-fills.md",
         "research/runtime/opengl-owned-session-dc.md",
-        "research/runtime/opengl-owned-session-unlock-packed.md"
+        "research/runtime/opengl-owned-session-unlock-packed.md",
+        "research/runtime/opengl-owned-session-startup.md",
+        "research/runtime/opengl-owned-session-sequence.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py"
@@ -11895,7 +11898,9 @@
         "NR.real-game-command-shadow.startup",
         "NR.owned-session-fill.startup",
         "NR.owned-session-dc.startup",
-        "NR.owned-session-unlock-packed.startup"
+        "NR.owned-session-unlock-packed.startup",
+        "NR.owned-session-startup.live",
+        "NR.owned-session-sequence.live"
       ],
       "status": {
         "understanding": "scoped",
@@ -12686,7 +12691,8 @@
         "NR.owned-session-unlock-packed.initial",
         "NR.owned-session-unlock-packed.native",
         "NR.owned-session-unlock-packed.startup",
-        "NR.owned-session-unlock-packed.legacy"
+        "NR.owned-session-unlock-packed.legacy",
+        "NR.owned-session-unlock-packed.startup-regression"
       ],
       "status": {
         "understanding": "scoped",
@@ -13111,6 +13117,72 @@
         "replacement": "none"
       },
       "confidence": "high_within_scope"
+    },
+    {
+      "id": "NR.owned-session-startup",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded ordered startup through first primary presentation",
+      "scope": "Retain ordinary16 successful-operation sample when PRESENT exists; otherwise allow first eligible primary PRESENT through64 successful operations with unchanged record/byte/ownership/resource caps. Missing presentation, early exit and invalidation refuse. Bounded native policy; no original-driver equivalence, continuous presentation or replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-owned-session-startup.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h"
+      ],
+      "tests": [
+        "runtime/render/owned_session_selftest.h",
+        "tools/test-render-session-startup.py"
+      ],
+      "evidence": [
+        "NR.owned-session-startup.native",
+        "NR.owned-session-startup.live",
+        "NR.owned-session-startup.sequence-regression",
+        "NR.owned-session-startup.sequence-regression-v2"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.owned-session-sequence",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded successive native primary presentations",
+      "scope": "Opt-in1..32 successive primary PRESENTs in one owned surface history. First presentation by64 successful operations, target by256, early/short sequence refuses; ordinary sample and existing64MiB/record/ownership caps remain. Bounded sequence only; sustained reusable transport, original-driver pixel equivalence and replacement pending. Multi-frame mode omits diagnostic CHECK output; ordinary samples retain it. Owned render inputs are preserved.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-owned-session-sequence.md",
+        "runtime/render/README.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h",
+        "runtime/render/lock_lifecycle.h"
+      ],
+      "tests": [
+        "runtime/render/owned_session_selftest.h",
+        "tools/test-render-session-sequence.py"
+      ],
+      "evidence": [
+        "NR.owned-session-sequence.native",
+        "NR.owned-session-sequence.capacity",
+        "NR.owned-session-sequence.inputs",
+        "NR.owned-session-sequence.live"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -22547,6 +22619,204 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.owned-session-startup.native",
+      "kind": "native_integration",
+      "scope": "Bounded first primary native presentation and startup completion",
+      "record": "research/runtime/opengl-owned-session-startup.json",
+      "sha256": "1a2e47420591dd5b45c5a8bf2d8eba4e97dec39887a7d1299daf26fbdadd3672",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-startup.live",
+      "kind": "live_observation",
+      "scope": "Bounded first primary native presentation and startup completion",
+      "record": "research/runtime/opengl-real-game-shadow-startup.json",
+      "sha256": "c3a03ba27913602ed224a371335d871f91ef9998cbd50b923ae44a937d215985",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_state",
+          "equals": 2
+        },
+        {
+          "pointer": "/native_consumer/presentations",
+          "equals": 1
+        },
+        {
+          "pointer": "/pixel_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NR.live-command-transport.startup-regression",
+      "kind": "native_integration",
+      "scope": "Current bounded rendering regression; no original-driver pixel equivalence or replacement",
+      "record": "research/runtime/opengl-live-command-startup-regression.json",
+      "sha256": "d2a6b96fa90a5583c86d5e0a5cbb34c30cd29de8f8f4b678922e23cbc1523e73",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed.startup-regression",
+      "kind": "native_integration",
+      "scope": "Current bounded rendering regression; no original-driver pixel equivalence or replacement",
+      "record": "research/runtime/opengl-owned-session-unlock-startup-regression.json",
+      "sha256": "07f3d258ff175d0016e0989ced4549f6ca021e0a8b4440a96c1ca2cc2f916e4a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-sequence.native",
+      "kind": "native_integration",
+      "scope": "Eight finite sequence fixtures:40 whole frames on five complete streams and four prior frames on three deliberate refusals. Independent fixture pixels, CPU/GPU CHECK final bytes and native cleanup; no original-driver equivalence.",
+      "record": "research/runtime/opengl-owned-session-sequence.json",
+      "sha256": "55b5511d8ed11d5de6f55b95a861a564536ace84eb4e937e66ccab1704517242",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 44
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-startup.sequence-regression",
+      "kind": "native_integration",
+      "scope": "Ordinary sample retains16-operation completion and64-operation first-frame extension on current sequence-capable code; eight boundary fixtures with four valid independent frames and four refusals.",
+      "record": "research/runtime/opengl-owned-session-startup-sequence-regression.json",
+      "sha256": "2f930da850521e829f6fffcb62f9820fc36c61abbb3baa123cb3ca073bf54076",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-sequence.capacity",
+      "kind": "live_observation",
+      "scope": "Initial CHECK-carrying multi-frame attempt exhausts unchanged64MiB capacity after one producer PRESENT; consumer opened after failure sees zero. Historical code, no successful multi-frame validation.",
+      "record": "research/runtime/opengl-real-game-shadow-sequence-capacity.json",
+      "sha256": "c6f65da457bc4db564de45d5852f6623d7680093e759fde014df12d33a674319",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_state",
+          "equals": 3
+        },
+        {
+          "pointer": "/native_consumer/presentations",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NR.owned-session-sequence.inputs",
+      "kind": "native_integration",
+      "scope": "Current input-only sequence mode omits diagnostic CHECKs while preserving independently compared native outputs and lifetime, five complete/three refused streams and44 frames. Ordinary defaults retain CHECK. No original-driver equivalence.",
+      "record": "research/runtime/opengl-owned-session-sequence-inputs.json",
+      "sha256": "a83cf6d951fb5f6cb6281ac3fe0ff717fc3a756dd928d3bbcd6385a7a5e10fa7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 44
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-startup.sequence-regression-v2",
+      "kind": "native_integration",
+      "scope": "Current input-only sequence implementation preserves default diagnostic sample startup: eight cases, four complete independent frames/four refusals.",
+      "record": "research/runtime/opengl-owned-session-startup-sequence-regression-v2.json",
+      "sha256": "d24e0b340443d264cc660184e1aff2687f1cdfc102a55c32f975f5b98e27405a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.owned-session-sequence.live",
+      "kind": "live_observation",
+      "scope": "Original startup emits three successive primary native PRESENTs and clean END at57 operations,39,363,820 bytes/74 records; all three early startup frames are identical, not animated gameplay or independent original-driver comparison. Original drawing retained.",
+      "record": "research/runtime/opengl-real-game-shadow-sequence.json",
+      "sha256": "de78ab925524c7d2ae3268d69e5574ad7dae7b12da3b62e5272bc1aa3263163b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_state",
+          "equals": 2
+        },
+        {
+          "pointer": "/native_consumer/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_consumer/presentations",
+          "equals": 3
+        },
+        {
+          "pointer": "/pixel_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
     }
   ],
   "classifications": [],
@@ -26016,6 +26286,67 @@
         "tests/test-native-idle-display.py",
         "tools/test-native-scene-window.py"
       ]
+    },
+    {
+      "id": "NR.owned-session-startup.fixture",
+      "level": "preview",
+      "behaviors": [
+        "NR.owned-session-startup"
+      ],
+      "evidence": [
+        "NR.owned-session-startup.native"
+      ],
+      "tests": [
+        "tools/test-render-session-startup.py",
+        "runtime/render/owned_session_selftest.h"
+      ],
+      "scope": "Eight startup boundaries: four complete independent pixel comparisons and four refusal cases; no original-game pixel equivalence"
+    },
+    {
+      "id": "NR.owned-session-startup.original",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.owned-session-startup",
+        "NR.real-game-command-shadow"
+      ],
+      "evidence": [
+        "NR.owned-session-startup.live"
+      ],
+      "tests": [
+        "tools/test-live-render-game.py"
+      ],
+      "scope": "Original startup presents once at23 successful operations,69 records, clean END; original rendering retained; continuous presentation and original-driver comparison pending"
+    },
+    {
+      "id": "NR.owned-session-sequence.fixture",
+      "level": "preview",
+      "scope": "Changing3/32-frame sequences and failed original calls,256-operation missing target, early exit, invalidation and ordinary/out-of-range fallback; independent complete frame checks including frames preceding refusal.",
+      "behaviors": [
+        "NR.owned-session-sequence"
+      ],
+      "evidence": [
+        "NR.owned-session-sequence.native"
+      ],
+      "tests": [
+        "runtime/render/owned_session_selftest.h",
+        "tools/test-render-session-sequence.py"
+      ]
+    },
+    {
+      "id": "NR.owned-session-sequence.original",
+      "level": "live_observation",
+      "scope": "One bounded three-frame original startup,57 operations, clean END and native cleanup. Identical early startup pixels; animated gameplay/driver comparison/replacement excluded.",
+      "behaviors": [
+        "NR.owned-session-sequence",
+        "NR.real-game-command-shadow"
+      ],
+      "evidence": [
+        "NR.owned-session-sequence.live"
+      ],
+      "tests": [
+        "tools/test-live-render-game.py",
+        "tests/live-render-channel-test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -26258,7 +26589,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-spawning-4.json",
-    "sha256": "47214be647cd98bdb3c0f5be02d703fe565a5b7d0e456afc6d6f2e281d261ed1"
+    "path": "research/runtime/coverage/source-index-owned-session-sequence-commit-v2.json",
+    "sha256": "52209b4aa0df92cad783379df0aca1260a944905d491d2b9c672bc5becdac6bc"
   }
 }

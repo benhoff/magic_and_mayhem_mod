@@ -1,0 +1,1350 @@
+{
+  "range": "1f60919..773374364a84f5fca38ddfdc9e8dd236222138fc",
+  "scope": "Read-only committed parent/current hashes against exact receipts; no retrospective gate pass or execution claim.",
+  "files": [
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "audio/CMakeLists.txt",
+      "before_sha256": "3a28c28153ac5309cac2a359e0e112452b40f25a26ff299855f2448c542b097a",
+      "after_sha256": "b99a18773f8130d83449e75abc88d0733899680cf6bfea283cc231b88df29d0a",
+      "behaviors": [],
+      "role": "build",
+      "change": "modified",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "audio/README.md",
+      "before_sha256": "4f5ccc6519fdfadfcae08518267f850be8a013990f09eef5d9536fe7cf9f766e",
+      "after_sha256": "57b5851f4640b2678cb8347260c5f6d30ea2127e82ddfc03bcd84978e22ff9f0",
+      "behaviors": [
+        "NA.buffers",
+        "NA.cli",
+        "NA.mixer",
+        "NA.output",
+        "NA.voice_bridge",
+        "NA.voices",
+        "NA.wave"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "audio/buffers.cpp",
+      "before_sha256": "815cb9dace6fb29afd8fd5e5cc671a752cf4ef7bcbe52c7dd93e2d1bf9638e17",
+      "after_sha256": "bbd78334ddc5dcdca9bafeea577fe3d7c0a99b13f25a5f09a31e0a5314ed8d76",
+      "behaviors": [
+        "NA.buffers",
+        "NA.wave"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "audio/buffers.hpp",
+      "before_sha256": "bf688fa6ba89c2830e41b3726114ee545053a20e32bd41b8ac61364479a2701d",
+      "after_sha256": "a1171705d081290769a6493faeec7c0ac36b33f0dff42857238d1bd4740d2ba9",
+      "behaviors": [
+        "NA.buffers",
+        "NA.mixer",
+        "NA.voices",
+        "NA.wave"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "915c8356222e128092979cd49f21a408206d3c64bab84895b553bc1236cd8371",
+      "after_sha256": "1213adde8b6155955ee6032af96f76732e311244db44e47dedd631d22199f216",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "9d1e56c656388ac7252a38adae456c68eedd5fba468e97ee2d972bb96ed2f589",
+      "after_sha256": "a25b58f38444de1ac9dbc9f5b63849d60509d48971da5596fa30becc12f561c6",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NA.core-boundaries-audio-commit-pending-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "research/runtime/coverage/source-index-native-audio-boundaries-commit-20261005.json",
+      "before_sha256": null,
+      "after_sha256": "28f45b6db14b6afc4e824445c39a4c418b615885f94a3638c40c58e662f210a5",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "research/runtime/coverage/summary-native-audio-boundaries-commit-20261005.md",
+      "before_sha256": null,
+      "after_sha256": "c97bfc166d6bdc61493c990e29c9b2c3d9b49a540e6ad7394a210b445af0ce82",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "research/runtime/native-audio-boundaries-20261005.json",
+      "before_sha256": null,
+      "after_sha256": "81385e95991da550d8da993b8fdf87406ff6de7165cff6415829a10ec25afcbc",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "research/runtime/native-audio-boundaries-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "7f80bbbbe77e2c6cb0b65e6290b1b014f49822e0ba483e0e4f7a9c6bcbd54ccc",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "research/runtime/native-audio-boundaries.md",
+      "before_sha256": null,
+      "after_sha256": "ebef116b2a1d9f2c6e15eca99b040343e39ac97cd98790a98d0a514ed4a0bac4",
+      "behaviors": [
+        "NA.buffers",
+        "NA.mixer",
+        "NA.voices",
+        "NA.wave"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "tests/audio-boundaries-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "c13bf6fbc492440d2a5e5f322bff2dfaaf4f89496f9343ee264587539dedd582",
+      "behaviors": [
+        "NA.buffers",
+        "NA.mixer",
+        "NA.voices",
+        "NA.wave"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "path": "tools/test-native-audio-boundaries.py",
+      "before_sha256": null,
+      "after_sha256": "5cb2ed375ff86f3810c4a68c6d30508c8739c34cf3c556619e7f360133397ece",
+      "behaviors": [
+        "NA.buffers",
+        "NA.mixer",
+        "NA.voices",
+        "NA.wave"
+      ],
+      "role": "tool",
+      "change": "added",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "apps/world-sandbox/frozen_navigation.cpp",
+      "before_sha256": "7fb260fa50adbe41f222f6455fa54a60319e3681f1a1ce008419cca70646fb2e",
+      "after_sha256": "9571a559a1e69ef05060babb1a8bfdae142c79c24b6e8c36ce9f830edd14d484",
+      "behaviors": [
+        "MV.ani-forward",
+        "MV.event-0",
+        "MV.event-2",
+        "MV.fine-motion",
+        "MV.legality",
+        "MV.ordinary-terrain-height",
+        "MV.planar-setup",
+        "MV.request",
+        "MV.route-consumption",
+        "MV.search",
+        "MV.vertical-setup",
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.map-navigation",
+        "NP.multi-movement",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "WORLD.sandbox"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "apps/world-sandbox/main.cpp",
+      "before_sha256": "a6cb574c56da197da672578a19e8de40e37c9bc719063c3f7fccde47fc117043",
+      "after_sha256": "9c55b6a649e8451433873f63736a73d7ec7d4209e28fa0fc4c73b2b21e8936af",
+      "behaviors": [
+        "NP.multi-movement",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "WORLD.sandbox"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "apps/world-scene/CMakeLists.txt",
+      "before_sha256": "e45c451d3134a13a1fbaec215c8e470fda5ab78cd83154e1bd4dcf83c1c190c2",
+      "after_sha256": "5929f9601ae6d86aeceb1301f0502853c6baa0a4365e151ace578a9710f1b7e7",
+      "behaviors": [],
+      "role": "build",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "apps/world-scene/README.md",
+      "before_sha256": "6c2446531a0d597e2b9981b5972c4268164590633b5cbe3ed05cefb3a4600bb5",
+      "after_sha256": "4d4911491b99c23c4c0f31dc118405a58d28f2ddd81bb3280e41cd18f4cb2655",
+      "behaviors": [
+        "NP.map-navigation",
+        "NP.presentation",
+        "NR.world_scene"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "apps/world-scene/main.cpp",
+      "before_sha256": "cff183d59573752e829929e204add22d3e895450da798c3ebd6a6d8e4c7e5b66",
+      "after_sha256": "4387a59cc5e8cac4ce55083b10260d7ea4c52138d652687d5f5330d49988fc3c",
+      "behaviors": [
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.stop-orders",
+        "NR.world_scene"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "apps/world-scene/movement_controls.cpp",
+      "before_sha256": "79e50c5326fcd9175a5f2187ea4e2bd3f994dc4dfeb45dfe179ac104524349c8",
+      "after_sha256": "874c8320c8cd376933eee7081348146f5a2ec95ac2a37ecaff7cba327ef36acf",
+      "behaviors": [
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-spawning",
+        "NP.stop-orders"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "apps/world-scene/movement_controls.hpp",
+      "before_sha256": "a401433ecc002623afeb1a46f16781b86b6c2615f1849f55ba39a763493500e7",
+      "after_sha256": "a312489b68d184b06f3cdd9d717b01b880ec5934d255cda51f4cfa589dbe68f9",
+      "behaviors": [
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-spawning",
+        "NP.stop-orders"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "apps/world-scene/orders.cpp",
+      "before_sha256": "46f64e2af5f7defc2cc93852738fcb04e48720d72187c448f74ad1b134805817",
+      "after_sha256": "518c08d3b3cf5c12c2a71515e9cde9653fad10b597c63549323c42b32821ff1d",
+      "behaviors": [
+        "NP.scene-orders",
+        "NP.scene-spawning",
+        "NP.stop-orders"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "apps/world-scene/orders.hpp",
+      "before_sha256": "845ac3543b04b196801d44d89322b1359ab66b38c55fd421f7c89f70957c4690",
+      "after_sha256": "733e6a9f4fefe0a0b9763979185c353f3d3d540cef5b7d101f1dbdedb69e791a",
+      "behaviors": [
+        "NP.scene-orders",
+        "NP.scene-spawning",
+        "NP.stop-orders"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "apps/world-scene/scene_canvas.cpp",
+      "before_sha256": "3fb4faaa5f5c749b08d58c80f0d33fcb039c2f27a53cb8684e0bdd6b8e986e4f",
+      "after_sha256": "2ccaaca99ce4f0b3bc3b57488166ab1f0a6617ed1a28fcb05552493fb9874b67",
+      "behaviors": [
+        "NP.scene-picking",
+        "NP.scene-spawning"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "game/README.md",
+      "before_sha256": "6838c413e498328fd8d1a451f9d00e5d7414f4cc6c434858dd7918783000a1a8",
+      "after_sha256": "8d7125bb3956ac073877bac4e274e8c87fdf54fa43fba3720a115df074789db7",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.move-orders",
+        "WORLD.owned"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "game/simulation/movement.cpp",
+      "before_sha256": "891f8d003ec525219107dbc53e2f0ff5c680c9bd82b2abc775401364d2111eb1",
+      "after_sha256": "f88bed21394f2a4bcfe30010a95db29835e1cd26afe93413b3c6c46799853975",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.move-orders",
+        "NP.multi-movement",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "game/simulation/movement.hpp",
+      "before_sha256": "c50724e2ab995e169c4eaf324c57a196111b04a408dabab2cf6b203ea413be8c",
+      "after_sha256": "daf1f655ff0ad4fa610f8b11eefe177f98bdecfc273a7bdece14b6ddf3da2f2c",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.move-orders",
+        "NP.multi-movement",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "code",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "1213adde8b6155955ee6032af96f76732e311244db44e47dedd631d22199f216",
+      "after_sha256": "42fa3fd1fdf3e83f79cf45cbf30223ac43c83b9d347d69a4109612ffde13da84",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "a25b58f38444de1ac9dbc9f5b63849d60509d48971da5596fa30becc12f561c6",
+      "after_sha256": "72efa39dd521fa32994e57b4459ea71e1a6294b6b3f9a335448d4e9f155dd98f",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/coverage/source-index-scene-spawning-1.json",
+      "before_sha256": null,
+      "after_sha256": "0e5ee33d6e1e1ea472140e28a6d54595adb7727668f55a00c34e00c0e07674b2",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/coverage/source-index-scene-spawning-3.json",
+      "before_sha256": null,
+      "after_sha256": "54e7f4cdbf1ec6ecde9173c055a7e25b7466231ada453d27f7228e081f29a2ba",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/coverage/source-index-scene-spawning-4.json",
+      "before_sha256": null,
+      "after_sha256": "47214be647cd98bdb3c0f5be02d703fe565a5b7d0e456afc6d6f2e281d261ed1",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "cc32b7699e14640c70540133355ddf2a611d27135aed0f56a788ee341ddeeddf",
+      "after_sha256": "fde97793638ad9b2d74bf3e20ae5fe40bb0aa7b9ae4f4f34151732306a141457",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/native-scene-spawning-history-pipeline-1.json",
+      "before_sha256": null,
+      "after_sha256": "ca054a4fd46c76834a65f2d0f5b35bbf2b616614d78732fefa3910d8a5ba9259",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/native-scene-spawning-history-pipeline-2.json",
+      "before_sha256": null,
+      "after_sha256": "d4679263dbded503fa6a1656e94ede651f74a1071165433818396f3b98313a06",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/native-scene-spawning-history-pipeline-3.json",
+      "before_sha256": null,
+      "after_sha256": "9cd42981a5bc61c7ef1630bab829e0d4c0a537308ad54bde7458366e8d402537",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/native-scene-spawning-history-pipeline-4.json",
+      "before_sha256": null,
+      "after_sha256": "1f5194780bc471546489409039bdd5ffef73f3ffe55b40a46c33886f3f73dfcb",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/native-scene-spawning-history-review.json",
+      "before_sha256": null,
+      "after_sha256": "80eb8d3bee3b11362fd8ba421a2986d5adc63101e764524924e6a5ab0e51c84e",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/native-scene-spawning.json",
+      "before_sha256": null,
+      "after_sha256": "74a437ad5324629d6865b1cf32786b807bc1a83f59f6b08aac26406a56a8eb0c",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "research/runtime/native-scene-spawning.md",
+      "before_sha256": null,
+      "after_sha256": "75bdf846c170aadcdb8847f54985485798774febcbc7d013aa033a38c4cba6e9",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.multi-movement",
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "research",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tests/README.md",
+      "before_sha256": "10f1e2b487be4dee02949db2578ed2947b60ef16a47030d4cef7add1ed8cbeea",
+      "after_sha256": "310a64c7e1124d868a05c0e9598563e9952b29fb512fec4ba8d0a24ef847b2d9",
+      "behaviors": [
+        "TOOL.coverage-gate"
+      ],
+      "role": "research",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tests/native-idle-display-test.cpp",
+      "before_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+      "after_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.multi-movement",
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "test",
+      "change": "links_changed",
+      "reviews": [
+        "NS19.spawn-display-exact-1",
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tests/native-occupancy-test.cpp",
+      "before_sha256": "a2b7c89036e76a3f107f1f037a01b534ebaba08fbfaa4782ccf79c064ecaf052",
+      "after_sha256": "c488b94af6a6d402fd6508891abbb8267cf30afba0acfb1eb65c9b764ff3355c",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.multi-movement",
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "test",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tests/native-spawn-display-test.cpp",
+      "before_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+      "after_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.multi-movement",
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "test",
+      "change": "links_changed",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tests/scene-window-driver.cpp",
+      "before_sha256": "4b81956dcc07c17dd76c50f39ebd3b6925e4bfc7f5172d7b9b0195b9fe2b14bc",
+      "after_sha256": "14b4b8b42c335ab02126a4c1d82e2de371e8c1427a872dc51565ec2de4d5ce75",
+      "behaviors": [
+        "NP.presentation",
+        "NP.scene-picking",
+        "NP.scene-playback"
+      ],
+      "role": "test",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tests/test-native-idle-display.py",
+      "before_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+      "after_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.multi-movement",
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "test",
+      "change": "links_changed",
+      "reviews": [
+        "NS19.spawn-display-exact-1",
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tests/test-native-spawn-display.py",
+      "before_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+      "after_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.multi-movement",
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "test",
+      "change": "links_changed",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tests/test-world-spawning.py",
+      "before_sha256": null,
+      "after_sha256": "fcbafcf46c458564095c2d1aa424a5097648071add15ba4dd78935bc0af634d4",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.multi-movement",
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tests/world-scene-test.cpp",
+      "before_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+      "after_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.multi-movement",
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders",
+        "NR.world_scene"
+      ],
+      "role": "test",
+      "change": "links_changed",
+      "reviews": [
+        "NS19.spawn-display-exact-1",
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tests/world-spawning-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "4be0c36a2c98d266681754ed3e8555438f3e609d86655968e88179fb8c72fe8c",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.multi-movement",
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "test",
+      "change": "added",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "path": "tools/test-native-scene-window.py",
+      "before_sha256": "7760994630611ebc3f2a409b9f3718f3f358ba561e1921635407874705480d61",
+      "after_sha256": "57b31e1de9228ade66e40ee962675a36217fa290fc1033879a934ac0d19d8618",
+      "behaviors": [
+        "NP.checkpoints",
+        "NP.idle-display",
+        "NP.multi-movement",
+        "NP.presentation",
+        "NP.scene-orders",
+        "NP.scene-picking",
+        "NP.scene-playback",
+        "NP.scene-spawning",
+        "NP.spawn-display",
+        "NP.stationary-occupancy",
+        "NP.stop-orders"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "id": "NA.buffers",
+      "before_sha256": "780caada56eabdd8881f28ea8a7523984c2c42bf4c024f420fd3f3e8cf70da90",
+      "after_sha256": "f8308399e7533c0644d920fdef53df0ff2bf6011f4e4ace43da2a3740af46f2f",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-workspace-accounting-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "id": "NA.cli",
+      "before_sha256": "b7fbaaf0be62b694b6ddb419547a5c916870c22af6c2f31479a3d17cd16a3dcf",
+      "after_sha256": "5c53b6312be92e0fc4dbd104e965adce5eb6f6b48c6979eaea81306ac34f50e0",
+      "reviews": [
+        "NA.core-boundaries-shared-history-pending-20261005",
+        "NA.core-boundaries-workspace-accounting-20261005",
+        "NA.core-boundaries-audio-commit-pending-20261005",
+        "NA.core-boundaries-audio-commit-pending-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "id": "NA.mixer",
+      "before_sha256": "ecd8ecefbf158b117660b0ec9e3acaa8b1a2780517330ab5a493bbc99a76378a",
+      "after_sha256": "87d9879138e994b05fe64172a8e1697efc7f483449032708a7119b6e83a019e9",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-workspace-accounting-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "id": "NA.output",
+      "before_sha256": "2151828afaf7cc812a82ae70ddd2e315e9f72544c596e9c90acd6f19a49d9760",
+      "after_sha256": "8a2c23b93d548ad75cc2999754675668e9aa047cdc8f83bf3de31614d8f960a3",
+      "reviews": [
+        "NA.core-boundaries-shared-history-pending-20261005",
+        "NA.core-boundaries-workspace-accounting-20261005",
+        "NA.core-boundaries-audio-commit-pending-20261005",
+        "NA.core-boundaries-audio-commit-pending-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "id": "NA.voice_bridge",
+      "before_sha256": "59daaec798815246569616dc46a6d24d3e64a991f33c5a2b74c15f555e934593",
+      "after_sha256": "ddc58373f0edb8e8ac704483f960e64716ac008aa03c272e0c32dae7f0597ced",
+      "reviews": [
+        "NA.core-boundaries-shared-history-pending-20261005",
+        "NA.core-boundaries-audio-commit-pending-20261005",
+        "NA.core-boundaries-audio-commit-pending-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "id": "NA.voices",
+      "before_sha256": "6115851ad514afae36d9fe955578f3296e2ab82ba2c2ebfe4b753cacf317d354",
+      "after_sha256": "3005a7025db96b3ca883c7dd64589d4d1aca63404dd6afe2281bc435e4282d83",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-workspace-accounting-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "b2dcd337769427eabe22df1c6fa47ca5d5ad1e37",
+      "id": "NA.wave",
+      "before_sha256": "087a83d8811959c40f12b3278c604a72630acd80fb48543e1f4b7fa8834d8e8f",
+      "after_sha256": "56b5e725818dd4aa7c56a9256d155b7c6588f2397f7200ed7f836dd6a1356d71",
+      "reviews": [
+        "NA.core-boundaries-scoped-execution-20261005",
+        "NA.core-boundaries-workspace-accounting-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005",
+        "NA.core-boundaries-audio-commit-execution-20261005-1f60919"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.ani-forward",
+      "before_sha256": "07c3df9ccf2242b5ed789c4d48a9bf761d052d0f2ff355a2c2e79903b78f7b83",
+      "after_sha256": "fa1bb964335a76b9199ee546e9d56554964ba55166da1a284c3bce6d0c5ddf0b",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.event-0",
+      "before_sha256": "a075cad4ab26191fea46944063bdb29558505c525de08cfeba5d8b3e7b4d94cb",
+      "after_sha256": "06d76c82d83615a633e23c6b83d183a1e37a3e5683644977f8c3cfd0ce5f1e22",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.event-2",
+      "before_sha256": "d6dd5487ff5e1d9afbd5509c46fad44dd26787f5f747aa07c25b2039304add46",
+      "after_sha256": "d43186ff50cf51a1da1c0656f06fa503da62c37408b7fb0faef5481517cbda30",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.fine-motion",
+      "before_sha256": "0880695551576a63fb079a08ab4de8aa65fbc2428f771f4ab386c214d6f7b442",
+      "after_sha256": "697a25815c5df0c155d1c2375684e6ceee78b959ea889ddd70e162cef3599ed4",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.legality",
+      "before_sha256": "086ff98c8d66dff26641672ddb597d14268eba23d30848a0c2b1ba55c9ea2343",
+      "after_sha256": "659b227fb6f24d886b96f9bfdc39c19d5153ddeda9fb0cdff53d40fe2fbf9f40",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.ordinary-terrain-height",
+      "before_sha256": "c40d38de817f2524cbdb3fce8e01ac3ec8f9586b395d35d8e6ae83a7fce7f93c",
+      "after_sha256": "1867851648f06cd1f60a9086cdd7da633ec0ead11f468cc94bb1d7d2871c74bb",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.planar-setup",
+      "before_sha256": "42e431483569949b433cbddc02b194e7576e77dd68b253e46aa3664f63fc6386",
+      "after_sha256": "770f0bc4b4c21aecc2a327b73cd1f6cd943d90fbb49041f461fa007fdbecfc3f",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.request",
+      "before_sha256": "81b8dadefebbb6d6fee9ca34b24de85d5e394eb70d7233cd32fb2dd21f7a8e6a",
+      "after_sha256": "96558e4293918fa0cdee33f393a2dd71a8d4d5aaa0352b1c8ba5b98614d78012",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.route-consumption",
+      "before_sha256": "ac5567b3debda96034d9ba9b94bc655f004fc1d3fe0d15d27aa294fb375b07e3",
+      "after_sha256": "d72717f514f6392158b7dc63a6931d8fef955c8e0670197f9cd653ecd8a9f72e",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.search",
+      "before_sha256": "df95a7e17565928251b8682281de3c73bc2bccc758f1ad4c7819b78a2088e726",
+      "after_sha256": "0d6cfd6b9e621be95fd7c9e1acb0d6db3ffcdfc87e367a39431966c2a50ea1da",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "MV.vertical-setup",
+      "before_sha256": "cbd56e4b1e8da418bf39b4b5a66f1e8b6d99c354a5f9962fc91ab956b4008e60",
+      "after_sha256": "689853df0c5a71a781e004859b16b39694631529f4b29e8d59ae3ced6aeef672",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.checkpoints",
+      "before_sha256": "2c0518bbbe6547c01ef54a4d074d1415c461834eb55025b491729c93cd8e583f",
+      "after_sha256": "b002ba9d9108c9625c7e203dfdfac78030c76da814f6273f3253ac9b4fa42599",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.idle-display",
+      "before_sha256": "bd1400e9e35729e11085327e5348f547485ba654707c10ca837f0aebfb1f065b",
+      "after_sha256": "59ef734117734ebdc992272c569ce094e2f2077ff53f34094647ccf3cf67fcdb",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.map-navigation",
+      "before_sha256": "b42c35c43182d1f3e32a4ca80fe56f35a90d97e5de6253cc58a44d74bd0f3715",
+      "after_sha256": "0b21c24d135d91eb6c7f8b57455a108df211a8dd2090492f01aebb8de0ee2fe2",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.move-orders",
+      "before_sha256": "7c6478c5bc7833b6ae58706b49cedac830da80c6ce44d72da502ab1810c27c63",
+      "after_sha256": "d07dc14726d6fc859a13c47dc20087a27a507894584413ac118c3d7a9459c238",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.multi-movement",
+      "before_sha256": "beb325b62b1b8d3ff46a0ffba2c0b50a1f614db39a719410f28cd17907f05aa2",
+      "after_sha256": "80a9c7591463939f3dd83d06c327be4de41fc575d168c3fb5208b81a9e74c154",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.presentation",
+      "before_sha256": "8ec5af51f4efff24ead06ce365da1a9866bbf027c321aafb8d5ff5441da6ecf9",
+      "after_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.scene-orders",
+      "before_sha256": "43c0bc0fa987aa4e4753dcda5cba88a5148c621b4a6325ae3de8ab95d0365e17",
+      "after_sha256": "8384903a21052c82a2da8153891add18befaee9cb156eb6225417aaf39cf345e",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.scene-picking",
+      "before_sha256": "92df3856fc2c61c5fd109e160f94e7c2e3d1f39410bd915df019c455c6179db8",
+      "after_sha256": "f3972b15f55ed95bf36ee304839e244c7f7a639b3388b8f388dd435302c77543",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.scene-playback",
+      "before_sha256": "bfeb12e21c415ba9f3c6837b4bb50310c4280d1c971325949bf1271457815759",
+      "after_sha256": "6902ec19f6ca2c8c88818a77c12d221f572ca6ef8b3b0ddf483e2d9e27ef2012",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.scene-spawning",
+      "before_sha256": null,
+      "after_sha256": "e23aca8509969393af7319f84ea97bf4f65eb252d784e40c00a9694ea5f91aa6",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.spawn-display",
+      "before_sha256": "c95e6156a52070fec49a40932d32c58a95a7599077bcaf2103057cd53f7244c6",
+      "after_sha256": "cba8eaecc581225d07feb3a78d758d08da62d6b5daf8e8bc9dee4c2f23abd89e",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.stationary-occupancy",
+      "before_sha256": "f4f3959dfa2f5ce9c769c3f34f20ec1ba3c3a3df45f207740c67749b2e0ab588",
+      "after_sha256": "ed7d10f580d5905979f1307892f2678b7686058527c8e66819b31272114f2280",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NP.stop-orders",
+      "before_sha256": "44d6a898ec4941fb49103e943f640c4ce35f4f9bc35d9cd58170c27c2c962b27",
+      "after_sha256": "d85725dd8d27cc8a94ee0efa1a25e6650e613f275fc3b9ada71fe27a91ad8fe6",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-recorded-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-recorded-3",
+        "NS20.scene-spawning-exact-4",
+        "NS20.scene-spawning-recorded-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "NR.world_scene",
+      "before_sha256": "92d4780361420e5e9210d5839b032c3bb2b02083069d4524664455188ac69478",
+      "after_sha256": "a54b5e3748db37c5529c9eac551cc41d5821fb1833ccdcc329739d05339d9b92",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "TOOL.coverage-gate",
+      "before_sha256": "cf880af2ae9c01cd6125481a9e733379dc4b4cafbb28e3c29e92b5f0b5197651",
+      "after_sha256": "a441dcf31bf67cfb2ae549ea6586ee8e286dcf0d015b55e39993c63416005815",
+      "reviews": [
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "WORLD.owned",
+      "before_sha256": "ffc41da9c86bac11d10f9a685a2625a7e74ce6fbaedafde0a561b6179726d1f8",
+      "after_sha256": "8b627457e194f7ee5dc2fc00d24b592a4ab812e1603b673c4a5b285095a17ab6",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    },
+    {
+      "commit": "773374364a84f5fca38ddfdc9e8dd236222138fc",
+      "id": "WORLD.sandbox",
+      "before_sha256": "657a1641a882b5bc6f23e09cd502b00889f18a9acbcc97b1a3b50313f26bcede",
+      "after_sha256": "3a4ea690e1f52072a2954d136fd5bacc208a5f37594008864582a99765254261",
+      "reviews": [
+        "NS20.scene-spawning-exact-1",
+        "NS20.scene-spawning-exact-3",
+        "NS20.scene-spawning-exact-4"
+      ]
+    }
+  ],
+  "unmatched": []
+}

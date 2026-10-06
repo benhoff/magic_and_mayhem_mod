@@ -83,6 +83,10 @@ static int session_colors(struct SessionSurface* s){
 }
 static int session_check(struct SessionSurface* s,const struct Snapshot* pixels){
     if(s && s->dc_pending){game_session_gap(3);return 0;}
+    /* Expected output is diagnostic traffic, never render input. Keep it in
+     * the ordinary comparison sample; multi-frame live sequences retain only
+     * owned CREATE/UPDATE/COPY inputs and their lifetime/presentation records. */
+    if(game_session_presentations)return s!=0;
     return s && session_record(5,&s->id,4,pixels->data,pixels->length);
 }
 static int session_present(struct SessionSurface* s){
@@ -92,7 +96,7 @@ static int session_present(struct SessionSurface* s){
 static void session_finish_owned(void){
     if(!session_file)return;
     game_session_sync();if(!session_file)return;
-    if(!session_presented){game_session_gap(6);return;}
+    if(!session_presented || (game_session_presentations && session_presented<game_session_presentations)){game_session_gap(6);return;}
     for(u32 i=0;i<32;++i)if(session_surfaces[i].id && session_surfaces[i].dc_pending){game_session_gap(3);return;}
     for(u32 i=0;i<32;++i)if(game_locks[i].active && session_find(game_locks[i].object)){game_session_gap(3);return;}
     if(!session_file)return;
@@ -110,7 +114,22 @@ static void game_session_finish(void){
     if(!game_tracker_acquire())return;
     session_finish_owned();game_tracker_release();
 }
-static void session_done(void){if(session_file && ++session_operations>=16)session_finish_owned();}
+static void session_done(void){
+    if(!session_file)return;
+    ++session_operations;
+    if(game_session_presentations){
+        /* Continue the same native surface history across primary frames.
+         * First presentation must arrive by64; the complete sequence by256.
+         * A short sequence refuses rather than disguising a partial sample. */
+        if(session_presented>=game_session_presentations ||
+           (!session_presented && session_operations>=64) || session_operations>=256)session_finish_owned();
+        return;
+    }
+    /* Retain the ordinary 16-operation sample. Startup may need more owned
+     * offscreen initialization before any eligible primary PRESENT. Its
+     * separate 64-operation ceiling never relaxes record/byte/ownership caps. */
+    if(session_operations>=16 && (session_presented || session_operations>=64))session_finish_owned();
+}
 static void game_session_dc_checkpoint(struct GameSurface* surface){
     if(!game_session_enabled || (session_started && !session_file))return;
     struct SessionSurface* s=session_find(surface->object);int existing=s!=0;

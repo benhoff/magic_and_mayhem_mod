@@ -140,3 +140,12 @@ an acquired append-only mapped channel for immediate native GPU execution.
 The launcher supplies it with `--native-commands`; original calls/drawing remain
 active. The session remains bounded and gaps fail the native preview. See
 [live transport and limits](../../research/runtime/opengl-live-command-transport.md).
+
+`MNM_RENDER_SESSION_PRESENTATIONS=3` with `MNM_RENDER_OWNED_SESSION=1` keeps
+the same native surface history open through three primary presentations. Counts
+1 through32 are accepted; the default sample is unchanged. First presentation
+must arrive by64 successful operations and the sequence must finish by256;
+existing64MiB and ownership limits still apply. Run
+`python3 tools/test-render-session-sequence.py working/build/live-render-channel`
+under Xvfb for changing-frame and partial-session checks. See
+[bounded sequence scope](../../research/runtime/opengl-owned-session-sequence.md).

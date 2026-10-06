@@ -17156,6 +17156,297 @@
           "NS20.scene-spawning"
         ]
       }
+    },
+    {
+      "id": "NR.owned-session-sequence.exact-commit-v2",
+      "reason": "Review opt-in input-only multi-frame stream: omit diagnostic CHECK outputs, never render inputs; retain DC ownership guard. Default samples retain CHECK. Preserve failed original64MiB attempt separately from current implementation and fresh repeated-frame comparison. Review bounded sequence option1..32 parsed without overflow; invalid values retain sample. Explicit target closes on requested PRESENT, first by64 and complete by256; partial target on early exit/ceilings refusesGAP6. Review independent changing3/32 frames, failed original, post-END drawing,256 operations, partial-exit and invalidation cleanup. Test-only2ms budget pacing avoids30sec client timeout, original test-default30ms preserved. Review original three-frame run:57 operations/74 records39363820 bytes, identical early-startup pixels only, no animated gameplay claim. Also cumulative uncommitted startup policy: ordinary16 successful operations preserved when PRESENT exists; otherwise first primary PRESENT through64 successful operations completes immediately, no PRESENT by64 uses existing GAP6. Failed originals do not increment; exit/invalidation remain refusals. Ownership, records, bytes, surfaces and native pixel caps unchanged. Review independent original CPU pixel fixture, Unlock poison, HRESULT/LastError/call counts, operation16/18/64, failed original at ceiling, missing/exit/late/invalidation and stream remains ended after later original draws. Review real-game clean END at23 operations/69 records and zero ordinary GPU readbacks. Read-only intervening committed range has matching exact receipts; preserve historical evidence hashes and original-driver/continuous/replacement gaps. Census indexing is not execution evidence. Scoped HEAD overlay excludes other contributors uncommitted work.",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "42fa3fd1fdf3e83f79cf45cbf30223ac43c83b9d347d69a4109612ffde13da84",
+          "after_sha256": "89ab265ad83f6dd860f3b0561cfd3e1f07a837f9775548300af9269ca89b3962"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "72efa39dd521fa32994e57b4459ea71e1a6294b6b3f9a335448d4e9f155dd98f",
+          "after_sha256": "2217ef3145510a26793ab553ef3b89bccb39b5a9e6211f41efefe7ba85671d89"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-owned-session-sequence-commit-v2.json",
+          "before_sha256": null,
+          "after_sha256": "52209b4aa0df92cad783379df0aca1260a944905d491d2b9c672bc5becdac6bc"
+        },
+        {
+          "path": "research/runtime/coverage/summary-owned-session-sequence-commit-v2.md",
+          "before_sha256": null,
+          "after_sha256": "1bebbdddfa47d06a12abc493c9421ee7d016fc90a3acdec7409952a57485e243"
+        },
+        {
+          "path": "research/runtime/opengl-live-command-startup-regression.json",
+          "before_sha256": null,
+          "after_sha256": "d2a6b96fa90a5583c86d5e0a5cbb34c30cd29de8f8f4b678922e23cbc1523e73"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-sequence-history-review-commit-v2.json",
+          "before_sha256": null,
+          "after_sha256": "3caf848db29f53c0a53979f1039eb6be8db9dadc9b0c0562a33302abfa3e5b76"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-sequence-history-review-commit.json",
+          "before_sha256": null,
+          "after_sha256": "72e94adfe197ae0916e3d0011fe9df6b9f2292c92fcd6120714370cc9ca21f9b"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-sequence-history-review-v2.json",
+          "before_sha256": null,
+          "after_sha256": "27ddaf4193fc04e1137e74b7aff8caa427251114b532f37850a5fcc258fdbc67"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-sequence-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "f645969ce16271c8c5d4f26b44bfe2059ab99fccc429b5556bb1f93caed20d03"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-sequence-inputs.json",
+          "before_sha256": null,
+          "after_sha256": "a83cf6d951fb5f6cb6281ac3fe0ff717fc3a756dd928d3bbcd6385a7a5e10fa7"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-sequence.json",
+          "before_sha256": null,
+          "after_sha256": "55b5511d8ed11d5de6f55b95a861a564536ace84eb4e937e66ccab1704517242"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-sequence.md",
+          "before_sha256": null,
+          "after_sha256": "d1be9a371f3a15194fc061c5d690ea6dc0a5e263f1cec1aaf5c84aaa5a026b00"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-startup-history-review-v2.json",
+          "before_sha256": null,
+          "after_sha256": "64ee0a3a0022fb8f1174d8cfee0c2a8202d4c61e1ed32bd044ffd5cb7d7d7b00"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-startup-history-review.json",
+          "before_sha256": null,
+          "after_sha256": "844b1a8c52499e92fe18c5ab69771589fd88140ec8e41825c54afccb72b0fbb6"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-startup-sequence-regression-v2.json",
+          "before_sha256": null,
+          "after_sha256": "d24e0b340443d264cc660184e1aff2687f1cdfc102a55c32f975f5b98e27405a"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-startup-sequence-regression.json",
+          "before_sha256": null,
+          "after_sha256": "2f930da850521e829f6fffcb62f9820fc36c61abbb3baa123cb3ca073bf54076"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-startup.json",
+          "before_sha256": null,
+          "after_sha256": "1a2e47420591dd5b45c5a8bf2d8eba4e97dec39887a7d1299daf26fbdadd3672"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-startup.md",
+          "before_sha256": null,
+          "after_sha256": "9e7d0043caa3414cfc9951f02a697da370b9b6deab71795b01ddd82a5427b285"
+        },
+        {
+          "path": "research/runtime/opengl-owned-session-unlock-startup-regression.json",
+          "before_sha256": null,
+          "after_sha256": "07f3d258ff175d0016e0989ced4549f6ca021e0a8b4440a96c1ca2cc2f916e4a"
+        },
+        {
+          "path": "research/runtime/opengl-real-game-shadow-sequence-capacity.json",
+          "before_sha256": null,
+          "after_sha256": "c6f65da457bc4db564de45d5852f6623d7680093e759fde014df12d33a674319"
+        },
+        {
+          "path": "research/runtime/opengl-real-game-shadow-sequence.json",
+          "before_sha256": null,
+          "after_sha256": "de78ab925524c7d2ae3268d69e5574ad7dae7b12da3b62e5272bc1aa3263163b"
+        },
+        {
+          "path": "research/runtime/opengl-real-game-shadow-startup.json",
+          "before_sha256": null,
+          "after_sha256": "c3a03ba27913602ed224a371335d871f91ef9998cbd50b923ae44a937d215985"
+        },
+        {
+          "path": "runtime/render/README.md",
+          "before_sha256": null,
+          "after_sha256": "4fb9d61ef6b3c693886c6a6e763640b01c7dc3f0d05a2eec313436914d70b19f"
+        },
+        {
+          "path": "runtime/render/lock_lifecycle.h",
+          "before_sha256": "0f4e6f311630c14e76998bf542a5822f4d74293af905c4db3777669c451376ce",
+          "after_sha256": "18cbb796069a889cb96abdd8b843f7f4c4e0f24a1746c3dda703be02725ea196"
+        },
+        {
+          "path": "runtime/render/owned_session.h",
+          "before_sha256": "5408d1ff62936532e6947c00f5060c5ef8f2cc253555eb86615e620650a21199",
+          "after_sha256": "f6fd5f1c483a4945b41c64b07506295e2c60ec047daec6cbddd295800eeb55d8"
+        },
+        {
+          "path": "runtime/render/owned_session_selftest.h",
+          "before_sha256": "33caf5163cf835391febcf6611b482fa9b8b42cb5e2a9ed38f4b867f79b9c003",
+          "after_sha256": "a3ec9a32d9ca45919eb5c04b3362b4f1904b3a0e1b30174588f77eef5ae0e188"
+        },
+        {
+          "path": "tools/test-live-render-game.py",
+          "before_sha256": "792aeb413173c514ca85ac7517a25f4030e2e07bba890c3471acb339ae555fc7",
+          "after_sha256": "91c90f93c1c788d2a649f30bcfd32a53ce6b6922d6e5d08e63456b20d16ffb94"
+        },
+        {
+          "path": "tools/test-render-session-sequence.py",
+          "before_sha256": null,
+          "after_sha256": "5178608cfb3c7f201846961bfe1512784171fd3fae90d507f88da008d837b076"
+        },
+        {
+          "path": "tools/test-render-session-startup.py",
+          "before_sha256": null,
+          "after_sha256": "0a9871ccb39d1dd2d729173636edf75f2fe73ba7443b28f344811165f0ad787b"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "666f61f748f652e1cee380824b16bb0c5f14979fb5b6b6a336bcb332894e12f2",
+          "after_sha256": "92a4e776862f3086fd5e55f3c5f2dc9f94d88eec3fc7cc12d9879c9e0f7dcbd2"
+        },
+        {
+          "id": "NR.owned-session-dc",
+          "before_sha256": "fe4c5f7220d337bbd4ea78cd744374f1703e0efc26d9468ae44514a82b81e0ef",
+          "after_sha256": "b30a87879383826991d507f9c124bb624f28cbb81b21f92e43cdd6c165fe4422"
+        },
+        {
+          "id": "NR.owned-session-fill",
+          "before_sha256": "a87efd628881b3448d139112643f3c0d654e8c5596f1545484ed804b03577b96",
+          "after_sha256": "25dbf6f389eef1d9dd40ed05a758e06de3c8cdf6d6f19009c15a5be493af59b7"
+        },
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": null,
+          "after_sha256": "9342837251b1d4893f822bd29a6d1f0a054e37a4f3d8246b1bd78856f4da5f86"
+        },
+        {
+          "id": "NR.owned-session-startup",
+          "before_sha256": null,
+          "after_sha256": "98f2bf37541d3f83e1ff715dd44a3011ee7c4d0fd530d8b6e41e7a2931fe80d9"
+        },
+        {
+          "id": "NR.owned-session-unlock-packed",
+          "before_sha256": "5c8cdc391c42ecfce94e2303c7e3d6f36858d6d5807ce9cfdd3c5f3cd81282ee",
+          "after_sha256": "5d68a2c032434c9962bfdedd218172a882ce4a82b1127c82ba0fb1e38c40f967"
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "bd3af49a937df00b0d8538d1f95a71553118cd8035779a8cf227dec866000c86",
+          "after_sha256": "154ce1fc2216025e20955c266b8ec7b65da483221df69cb2b344f71c0a700f0d"
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "0dd3342a50a028e40b32f7c8b5ad6a2cb180b2a75fce9a1acc965f44623a660f",
+          "after_sha256": "0c8f1224a58580e2d8cc14dfb24fb33fb46df0b250e02a2691d7df78c2fe7260"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:96df1ebb351d36930ac18df8d1e65c4643802f58d66e186c9b819f880b6f7084",
+        "behaviors_without_comparison:f051bdce4b953d49056e8777c3dc93c8315381ed1ec3ca8c02f2d70ac74439a8",
+        "stale_evidence:00148062f841df7173faee4450c710455fff6fef9a75012ba845cb81cd5b0f83",
+        "stale_evidence:01324d197ab6d35377db1a0b853e2ae9a455cbd8ae9c7a6a11b081e3fce3967c",
+        "stale_evidence:03ee1f6e9bcd838b06b046e3bfb677f9d01b7380efff16f86dac200d47a176e8",
+        "stale_evidence:0c85bb1c6cd87c22c9acf898f11706036600c9c7ce3f844fb8d119e55d3f80ed",
+        "stale_evidence:0e657ad6bf7d770bfb5adab06acfd2d2354ec3c79f958b3744285108dfdfbfc9",
+        "stale_evidence:10147ddeee18b0bd91e53686a90fb3de5c7e273c94ad9be0939814b924a798c3",
+        "stale_evidence:190b7b490544a2fd9252a6b9d9198f0f5d059a30fcd8172b374d3ec91f260dc9",
+        "stale_evidence:1de16629c0d20fc050d9a3e2d337943f07991494ed121fb9ae40767cf005bbac",
+        "stale_evidence:23b5e07281b0c200c4082f164b04017819be64569d7f8ee4cecf69d7da9c9037",
+        "stale_evidence:2ac96e798f6c32937b0f2572f410912d2495bed9d3673f5beef663b5a7ae2a7d",
+        "stale_evidence:2e0920ff7052719fc64d50ed34fb8f82fd707a1c3f4cdb8efc60eb0394bf433c",
+        "stale_evidence:2ee7deddc3807b7d9ea7916796927a8e5f2ddddd239df81fe42a373fa7650c05",
+        "stale_evidence:31d19919c1d81c6d39f88bfc783368463d04ab788579b24d717c1b4e8c648da4",
+        "stale_evidence:3fd04231857500be2d8941a8eb4743ba49f9f000d8d95f4e3b119d23ae9d5140",
+        "stale_evidence:4319dfba1744b20ddb67c9356a3b9afc39dfd3bcd353a57a9e55248c3dbf8d70",
+        "stale_evidence:4a52554cedb9594420bf5eea6c9ccad457ad83b97ff831468cdf9196439925f5",
+        "stale_evidence:5a6dcd432faf420070b1ac97a873e04867caf4c4f76db13af996efa5e43afae3",
+        "stale_evidence:65a80a9417866bdc06a97984da9458234ac6d0706ed6e43bf43ad434b481309e",
+        "stale_evidence:68992f1e791227ef096718c35b464e41d8fb09cf3542ca6320c39b5db529e18b",
+        "stale_evidence:69661b5a004f8374921f07c76b8eba8e8a746e6c698abd0a9c5bbfa85fecaa9b",
+        "stale_evidence:6ad591dd3e38d7d63731c3af6b0f9d18eefcb9c4daad9e2fc21a648e984137a2",
+        "stale_evidence:6e9214a5b48bd0d20b36f4f3130ff77ec32e1519a47de8a3ad97b2ca50c9805e",
+        "stale_evidence:6eb427bfca8f3047ab718f9ea434209890937d44935f79b816d64e74d53f1b6d",
+        "stale_evidence:7389edfa4b5e3638d6cae1d7e635f240adbca731cb39b75038b1ddc4c12e12a5",
+        "stale_evidence:76db06de659c072a25f5062e96b5dc7eb5339aba4faa421ea3c145ea26bf9f81",
+        "stale_evidence:7d44940717f9f975e41cca9102d0e81715338fc356148e882f59a4636ded516e",
+        "stale_evidence:80ad4f375c6f33e3999d3d9f08ec021cb25100ad314eb5cfb61aa30d7a9d9528",
+        "stale_evidence:8145f4234390a930d879d9709b9c476ecdaed9eef730a95f243b57cc1c7efb70",
+        "stale_evidence:8174554a52b93e9fa00e54f20a772313bc158660a20f3bba1fdd70b13b5eb330",
+        "stale_evidence:81e649bda213f634c5da6f79a4b6dfd26b4da435678979de41ca1d6f2a58dc3c",
+        "stale_evidence:90511df8885f8b5e090753987036ffc1415f983ced253994d6416ab4ad5d5bbd",
+        "stale_evidence:94ffcb4a9d73d1d8b64347036e9aa5641d08252b6b4737d00a6afa28172e8ca7",
+        "stale_evidence:9946a553bc2d60c2370321b9d3cbf1fe7964a0130819e963974f783574a37362",
+        "stale_evidence:aa1d0895070d4c616670ad90c1511d0b7923540bc8c2d4a0c5dfe30c79877bc5",
+        "stale_evidence:b46e37c865c0535531a8ec8690e966d177b275dd9da8d4421825e6f030005d20",
+        "stale_evidence:b55111116997378c3ea58e83c81678800f419b32a6690904e96bf1bc52cb8d72",
+        "stale_evidence:b98afd860749f59e99b9ef997868a1c525ad4822d7c556e7241531328554777f",
+        "stale_evidence:bc5bebb47b516e0a999c7ac25032fff5597ed7bad0412952b25761a4f6af00e7",
+        "stale_evidence:c15728c6a44371033e08f57a9b06f33b3fed2d80b8338ebe53fa2c71411bc9b8",
+        "stale_evidence:c52f76a5d2acf2acdac80117394897df87caef8ce1a2298e4632901946c0a347",
+        "stale_evidence:c9be9fd24f0baf232d3de43b6d8235cd4ce0e578e90dc20ad0dff7949070f013",
+        "stale_evidence:cd2d600b3eed599987fd47ec673c691ef3fdfa6e07271b3d0bf7b8b74ca62df4",
+        "stale_evidence:d099156e1a8567043be9634729e265a642ebaa2ee1b2711e62e2ed61b27689be",
+        "stale_evidence:d6878db45712c25c74f22dcc924dc24a0a5cfcca1b8437abadaaa84a4f59eecc",
+        "stale_evidence:d7cd74ed2f7b87acb554c373350dc8f5939644cab137b171208345ab0be64ecb",
+        "stale_evidence:db09574d366e3f4fe747c77c6938c3b586540b82806e7aa98ab1c7a050b22cf7",
+        "stale_evidence:deee5c01533482804062d642245e40e7399cd06ff0a045f3db2218d97e0a61f4",
+        "stale_evidence:e376ae15b5fbe8f88daf405fb912dc6b6a8c3c84a82f9ef4840407780a914c4e",
+        "stale_evidence:e678a9bb348657d0b96abda3a70cbb9a9e57711eb83c49db785935aa55cf0424",
+        "stale_evidence:e7f1cec060d9c39d8805697f01d2162d46bfd535878ab8f7c27f4f55b22859e5",
+        "stale_evidence:e827006c52dbdd1b424fc0dcbec6edc523740aa6c46c1336a6384029cfe61045",
+        "stale_evidence:ebb682ce60eb79e7936c35f4ed88bd4f5fee233715df049f9d73ba7255b03f0d",
+        "stale_evidence:ee999d9274254470ee726fe176a06aac64580ea636c603c4cb59cce3b1e2dbe8",
+        "stale_evidence:f00bb8c88d6d6041276a9c3c104204c3b1d9a9b95487cb5bc4c66ab7c8a303f3",
+        "stale_evidence:f010e5802ef44a4efc3fc583454e0173d0c80590b9113c3bad81bebea0b2d4e7",
+        "stale_evidence:f175eb8ede4731b852e6f1353ef637cb2dd9256a79a03d9f2a5b533e80d77d46",
+        "stale_evidence:f37e3628ca4c9199c9e24a0806d61ca3c9eb42d75d38a590e3b161626313f241"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh eight startup fixtures, eight fresh startup regression fixtures plus current sequence fixtures and real-game bounded observation are recorded separately. Historical broad runtime/DC/fill shared-source evidence remains stale; current complete-contract equivalence is not asserted. Continuous presentation, independent original-driver pixel comparison, gameplay coverage and replacement remain pending.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NR.owned-session-sequence.recorded-commit-v2",
+      "reason": "Record current bounded startup preview and transport/unlock regressions; original live observation stays independent from original comparison.",
+      "files": [],
+      "behaviors": [
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": null,
+          "after_sha256": "9342837251b1d4893f822bd29a6d1f0a054e37a4f3d8246b1bd78856f4da5f86"
+        },
+        {
+          "id": "NR.owned-session-startup",
+          "before_sha256": null,
+          "after_sha256": "98f2bf37541d3f83e1ff715dd44a3011ee7c4d0fd530d8b6e41e7a2931fe80d9"
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "bd3af49a937df00b0d8538d1f95a71553118cd8035779a8cf227dec866000c86",
+          "after_sha256": "154ce1fc2216025e20955c266b8ec7b65da483221df69cb2b344f71c0a700f0d"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Eight sequence fixtures pass:40 complete-stream frames and four prior frames on deliberate refusal, five complete/three refused. Eight fresh startup regression fixtures pass with four complete/four refused; native incremental/live consumer CTests pass. Original game reaches three successive native PRESENTs at57 operations/74 records; identical early-startup pixels, clean END, mirror match and zero ordinary native/RGBA readbacks or viewport uploads. Manifest2927 verifies before/after. Input-only sequence has no CHECKs; independently drawn synthetic complete frames and final native bytes compare. No independent original-driver pixel equivalence. Continuous presentation and replacement remain pending.",
+        "evidence": [
+          "NR.owned-session-sequence.inputs",
+          "NR.owned-session-sequence.live",
+          "NR.owned-session-startup.sequence-regression-v2"
+        ]
+      }
     }
   ]
 }
