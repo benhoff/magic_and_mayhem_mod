@@ -17912,6 +17912,222 @@
         "reason": "Offline coverage audit passes; this observation does not establish a freshly rebuilt binary, waveform/timing equivalence, full-session audio validation or complete replacement. No new game experiment was run.",
         "evidence": []
       }
+    },
+    {
+      "id": "retrospective-6fb4b31-render-readme-20261005",
+      "reason": "Review the committed runtime/render README addition documenting the existing bounded successive-presentation environment selector, count/operation/storage limits and reproduction command. Scope is this historical documentation version only; no render working-tree files are changed and no past gate pass or execution is asserted.",
+      "files": [
+        {
+          "path": "runtime/render/README.md",
+          "before_sha256": "474bdd66295b45e8ea5ea1c0773552b47ca8a73cc1a8495de3a723631103bdf5",
+          "after_sha256": "4fb9d61ef6b3c693886c6a6e763640b01c7dc3f0d05a2eec313436914d70b19f"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": null,
+          "after_sha256": "9342837251b1d4893f822bd29a6d1f0a054e37a4f3d8246b1bd78856f4da5f86"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "reason": "Compared parent/commit README bytes with recorded sequence scope and existing implementation/test links. Historical original/native execution evidence remains unchanged; retrospective bookkeeping does not validate new behavior.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "AU06.user-observation-20261006-documentation",
+      "reason": "Document user-reported working audio and matching run-f2336iox native-selection counters; retain immutable binary provenance and disclose inferred run association and unspecified playback scope. No engine edits or status promotions. Exact before hashes refer to the local tree before this documentation change; concurrent unrelated changes are not reviewed here. Standard --draft-review/check blocked by pre-existing owned_session source-index link drift; local draft uses the same contract hashing and draft schema.",
+      "files": [
+        {
+          "path": "research/runtime/native-audio-voice-bridge.md",
+          "before_sha256": "84b7cf5db7c54e58d02ae12c1132afeb54b20229afa73b77e6f86475447020a9",
+          "after_sha256": "2382b529725ce78db6821590b57bede238334976d84ac3eba76bfcf9ef9e86ab"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "25d857eec705ff889e5a10205bd06e2f41924d44d7ea79138bd61eec2dce8fbe",
+          "after_sha256": "ea9e2b2b3877dbbb4a5b4ef57e7a4d4ebde70787ffe529cc1702c2158ec678c6"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "76c400a8b8698852752d9b35e0de9b9f160ed3b7b00560fcfb31f4bf6353345d",
+          "after_sha256": "5090d7fd62f2377fb2db5c0058734113b26ac813ddeb8b5b44c88cb9bbf915d0"
+        },
+        {
+          "path": "research/runtime/native-audio-live-observation-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "969f7a1c11ac5f063bd3ca8a4903520e79f320d71b7f724e695bc7cfd4997fbe"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NA.voice_bridge",
+          "before_sha256": "59daaec798815246569616dc46a6d24d3e64a991f33c5a2b74c15f555e934593",
+          "after_sha256": "2eba65cb0a89bd7eb94f3b98837b6998b6fb712d2c37438a1dea30b783e1fde6"
+        },
+        {
+          "id": "RT.audio",
+          "before_sha256": "394d892a21bb5a3a1df7aebc8e66944a56ff43da288f58358a5866311d3fcdf8",
+          "after_sha256": "d4d20e2707a864300515b200a836f4519c9e65c97b70e08ce4b282c60a05b599"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "reason": "User observation and channel counters recorded as AU06.user-live-20261006; no fresh build, audio equivalence or whole-session validation claimed. Audit/gate blocked by existing runtime/render/owned_session.h and owned_session_selftest.h index/link drift; historical source staleness retained.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "56166a9170fb7e43b71f5eee22783b0b20ebcb703e626f3ac69735df66b2be14",
+          "before_sha256": "d2bd179d731ce007be67428b31ee8f6ab7c0c78f4eee14751d378f253b29c545",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "89a7cd26a88490bb8c756e1d2bc8296212e5405d13378fbe5965e4027876c140",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-nonrender-20261005.json"
+        },
+        {
+          "after_sha256": "2c1febf7a4f11868695591a5ca0260aaf5fd36ac309e2e313685a667dc1763b5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-hook-messages-20261005.json"
+        },
+        {
+          "after_sha256": "4a2779c5fd84b54706f6223fe9f6aa8fcf0a15937d99c7b7e583785e0e241864",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-audio-boundaries-20261005.json"
+        },
+        {
+          "after_sha256": "4e00c7585037cad1c25e9df3f2beb7b2c004d3375d913c6af1797452ef2e8934",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-audio-boundaries-isolated-20261005.json"
+        },
+        {
+          "after_sha256": "daf7b42e030d68e4923310d8fb46172703242542a74ae87846f6feee1d4b043c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-audio-boundaries-20261005.md"
+        },
+        {
+          "after_sha256": "f4880fb89c4d5fbf598300b9fb39cc7183f54715607ffc44fec4b2f334689d1e",
+          "before_sha256": "310a64c7e1124d868a05c0e9598563e9952b29fb512fec4ba8d0a24ef847b2d9",
+          "path": "tests/README.md"
+        }
+      ],
+      "id": "nonrender-final-archives-20261005",
+      "pending_gaps": [],
+      "reason": "Preserve historical non-render census/summary bytes and existing audio documentation receipt; reorder campaign test sections without changing text. Review 41 committed revisions and 1024 file versions since the retained history report; append the one missing historical documentation receipt.",
+      "validation": {
+        "status": "pending",
+        "reason": "Exact parent/current hashes compared against committed receipts, with no unresolved missing file-version receipts after the retrospective entry. Test README line multiset unchanged. Historical scientific evidence and all status dimensions are retained; no new engine validation claimed.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "fbd7c9fd3d98822efa04da1fda472738262b84c02beae4b7433d2912bde4caba",
+          "before_sha256": "ddc58373f0edb8e8ac704483f960e64716ac008aa03c272e0c32dae7f0597ced",
+          "id": "NA.voice_bridge"
+        },
+        {
+          "after_sha256": "d4d20e2707a864300515b200a836f4519c9e65c97b70e08ce4b282c60a05b599",
+          "before_sha256": "394d892a21bb5a3a1df7aebc8e66944a56ff43da288f58358a5866311d3fcdf8",
+          "id": "RT.audio"
+        },
+        {
+          "after_sha256": "56166a9170fb7e43b71f5eee22783b0b20ebcb703e626f3ac69735df66b2be14",
+          "before_sha256": "a441dcf31bf67cfb2ae549ea6586ee8e286dcf0d015b55e39993c63416005815",
+          "id": "TOOL.coverage-gate"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9886586a24d3d207adc00c41be1ab93f251fb70f5a90aa54651d160d3c2891e6",
+          "before_sha256": "9a7f7ba435c1129855066a3e5cc6b423a270b16fbb887bf8a0366cc7eb2e8c60",
+          "path": ".githooks/pre-commit"
+        },
+        {
+          "after_sha256": "ae5d018a831ea012c00ac8c856a2a7f8b4f7af79a14914cd686827bd9b8f7826",
+          "before_sha256": "a67e48fd0686d22a658d376adbea68bc2b803c602cb548e480736f2d689598e9",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "89a7cd26a88490bb8c756e1d2bc8296212e5405d13378fbe5965e4027876c140",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-nonrender-20261005.json"
+        },
+        {
+          "after_sha256": "3a2ab3494737cff31ba05f0c43da681d5a9a93f5cc25463188c372fdb366e91b",
+          "before_sha256": "60f9c778d3870104144be967bdc66a9c29ff17693844826fb1fb2c156a62d1eb",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "2c1febf7a4f11868695591a5ca0260aaf5fd36ac309e2e313685a667dc1763b5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-hook-messages-20261005.json"
+        },
+        {
+          "after_sha256": "4a2779c5fd84b54706f6223fe9f6aa8fcf0a15937d99c7b7e583785e0e241864",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-audio-boundaries-20261005.json"
+        },
+        {
+          "after_sha256": "4e00c7585037cad1c25e9df3f2beb7b2c004d3375d913c6af1797452ef2e8934",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-audio-boundaries-isolated-20261005.json"
+        },
+        {
+          "after_sha256": "50135e0a3ab756442df08c47df06283db51fbc772fc76a9e326c682794a045ec",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-nonrender-hook-final-20261005.json"
+        },
+        {
+          "after_sha256": "daf7b42e030d68e4923310d8fb46172703242542a74ae87846f6feee1d4b043c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-audio-boundaries-20261005.md"
+        },
+        {
+          "after_sha256": "f4a1026efe4c2b30cd7f5d238920e6ae64c1a13dfb578c4e3e93af1e4241efaa",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-audio-observation-20261005.md"
+        },
+        {
+          "after_sha256": "969f7a1c11ac5f063bd3ca8a4903520e79f320d71b7f724e695bc7cfd4997fbe",
+          "before_sha256": null,
+          "path": "research/runtime/native-audio-live-observation-20261006.json"
+        },
+        {
+          "after_sha256": "2382b529725ce78db6821590b57bede238334976d84ac3eba76bfcf9ef9e86ab",
+          "before_sha256": "84b7cf5db7c54e58d02ae12c1132afeb54b20229afa73b77e6f86475447020a9",
+          "path": "research/runtime/native-audio-voice-bridge.md"
+        },
+        {
+          "after_sha256": "f4880fb89c4d5fbf598300b9fb39cc7183f54715607ffc44fec4b2f334689d1e",
+          "before_sha256": "310a64c7e1124d868a05c0e9598563e9952b29fb512fec4ba8d0a24ef847b2d9",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "cca0ffd65cccd2013cba1b34172c087202c05153c4ce36468df8305cb892c65f",
+          "before_sha256": "8ef78d1e12e70fe6c7252f5df46476136eb88e60197575323ea490be76e05516",
+          "path": "tests/test-coverage-gate.py"
+        }
+      ],
+      "id": "nonrender-final-combined-stack-20261005",
+      "pending_gaps": [],
+      "reason": "Review the combined non-render delta against the actual concurrent-render base: actionable hook/test messages, bounded audio observation and preserved coverage archives/history. Exact combined register and TOOL.coverage-gate fingerprints span the three separate commits. No render implementation differs from the base.",
+      "validation": {
+        "status": "pending",
+        "reason": "Each staged commit passed the accounting gate and normal pre-commit hook. Audit and 44/45 guard suites passed, with Git maintenance disabled for temporary fixtures after a cleanup race. Combined accounting is bookkeeping; no new original/native execution or stage promotion is claimed.",
+        "evidence": []
+      }
     }
   ]
 }
