@@ -14315,7 +14315,8 @@
       ],
       "evidence": [
         "ORIGINAL.surface-copy.rgb565-bltfast-20261006",
-        "ORIGINAL.surface-copy.rgb565-bltfast-post-driver-20261006"
+        "ORIGINAL.surface-copy.rgb565-bltfast-post-driver-20261006",
+        "ORIGINAL.surface-copy.rgb565-bltfast-clipping-backend-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14356,7 +14357,8 @@
       ],
       "evidence": [
         "NR.surface-fixture-corpus.offline-20261006",
-        "NR.surface-fixture-corpus.post-driver-20261006"
+        "NR.surface-fixture-corpus.post-driver-20261006",
+        "NR.surface-fixture-corpus.clipping-backend-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14453,6 +14455,41 @@
       "evidence": [
         "NR.surface-driver-fixtures.capture-20261006",
         "NR.surface-driver-fixtures.offline-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.surface-copy.clipping",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native RGB565 Surface2 clipping and partial-write result policy",
+      "scope": "Distinct RGB565 surfaces, bounded owned destination clip descriptors and one-to-one Blt/BltFast selected HRESULT/native pixel behavior modeled on408 retained Wine Surface2 outputs. Partial writes, empty/missing lists and18 native lifetime/admission checks; busy flags are caller observations only. Other formats, stretching, self-copy, successful keyed clipping, native locks/Restore, original game/Windows equivalence and live replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-surface-clipping.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "renderer/surface_copy.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp"
+      ],
+      "tests": [
+        "tests/render-surface-copy-fixtures.cpp",
+        "tools/check-native-surface-clipping.py",
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz"
+      ],
+      "evidence": [
+        "NR.surface-copy.clipping.backend-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -25551,6 +25588,86 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.surface-copy.clipping.backend-20261006",
+      "kind": "native_integration",
+      "scope": "Distinct RGB565 surfaces, bounded owned destination clip descriptors and one-to-one Blt/BltFast selected HRESULT/native pixel behavior modeled on408 retained Wine Surface2 outputs. Partial writes, empty/missing lists and18 native lifetime/admission checks; busy flags are caller observations only. Other formats, stretching, self-copy, successful keyed clipping, native locks/Restore, original game/Windows equivalence and live replacement remain pending.",
+      "record": "research/runtime/native-surface-clipping-backend-final-20261006.json",
+      "sha256": "bd33e2fcb013defcbd54550214379281fd9356c440efc254e8316e37b4421467",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/matched",
+          "equals": 408
+        },
+        {
+          "pointer": "/partial_failure_cases",
+          "equals": 2
+        },
+        {
+          "pointer": "/native/policy_tests",
+          "equals": 18
+        },
+        {
+          "pointer": "/native/ordinary_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/ordinary_uploads",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-bltfast-clipping-backend-20261006",
+      "kind": "isolated_original",
+      "scope": "Offline native/CPU comparison with five retained independent original-game driver RGB565 opaque BltFast destination outputs at return PC0x0058c5be within wrapper0x0058c4a0. Includes three40x40, one40x3 and one unchanged40x1 rectangles with full800x600 destination comparisons. Not wrapper reexecution, timing, clipping, physical-driver, current collector or live equivalence. Evidence kind denotes isolated offline comparison against historical live captures, not a new isolated execution of original machine code.",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/native-surface-fixtures-clipping-backend-final-20261006.json",
+      "sha256": "79ca4f603e70615d165c4f3ea04ac6e1d409a44cbd4ba5ca6fa82c71223c2fad",
+      "sources_pointer": "/sources",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/backend",
+          "equals": "opengl"
+        },
+        {
+          "pointer": "/milestone_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-fixture-corpus.clipping-backend-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh CPU/OpenGL replay of the same five original RGB565 opaque fixtures after the acceptance matrix correction; new driver corpus does not count toward original fixture or native clipping coverage.",
+      "record": "research/runtime/native-surface-fixtures-clipping-backend-final-20261006.json",
+      "sha256": "79ca4f603e70615d165c4f3ea04ac6e1d409a44cbd4ba5ca6fa82c71223c2fad",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/backend",
+          "equals": "opengl"
+        },
+        {
+          "pointer": "/milestone_complete",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -29657,6 +29774,51 @@
         "tools/test-live-render-recovery.py",
         "tests/live-render-recovery-probe.cpp"
       ]
+    },
+    {
+      "id": "NR.surface-copy.clipping.backend",
+      "level": "headless",
+      "scope": "Native Mesa integer surfaces against retained independent Wine output pairs;18 lifetime/admission policies. No original executable/media, command wire or live transport.",
+      "behaviors": [
+        "NR.surface-copy.clipping"
+      ],
+      "evidence": [
+        "NR.surface-copy.clipping.backend-20261006"
+      ],
+      "tests": [
+        "tests/render-surface-copy-fixtures.cpp",
+        "tools/check-native-surface-clipping.py",
+        "tests/fixtures/surfaces/driver-clipping-surface2-corpus.json",
+        "tests/fixtures/surfaces/driver-clipping-surface2-original.json.gz"
+      ]
+    },
+    {
+      "id": "NR.surface-fixture-corpus.clipping-backend",
+      "level": "headless",
+      "scope": "Five retained original-game RGB565 opaque rectangle captures replayed entirely offline through CPU and Mesa OpenGL; whole-destination native comparison and independent RGB conversion. All other matrix requirements remain pending.",
+      "behaviors": [
+        "NR.surface-fixture-corpus",
+        "RE.surface-copy.rgb565-bltfast"
+      ],
+      "evidence": [
+        "NR.surface-fixture-corpus.clipping-backend-20261006",
+        "ORIGINAL.surface-copy.rgb565-bltfast-clipping-backend-20261006"
+      ],
+      "tests": [
+        "tools/check-surface-fixtures.py",
+        "tests/test-surface-fixtures.py",
+        "tests/fixtures/surfaces/corpus.json",
+        "tests/fixtures/surfaces/g34xhs0b.manifest.json",
+        "tests/fixtures/surfaces/p66k189j.manifest.json",
+        "tests/fixtures/surfaces/ugdn7zhm.manifest.json",
+        "tests/fixtures/surfaces/yu55vq8i.manifest.json",
+        "tests/fixtures/surfaces/zpfft1bo.manifest.json",
+        "tests/fixtures/surfaces/g34xhs0b.bin.gz",
+        "tests/fixtures/surfaces/p66k189j.bin.gz",
+        "tests/fixtures/surfaces/ugdn7zhm.bin.gz",
+        "tests/fixtures/surfaces/yu55vq8i.bin.gz",
+        "tests/fixtures/surfaces/zpfft1bo.bin.gz"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -29904,7 +30066,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-auto-checkpoint-final-20261006.json",
-    "sha256": "9c3fa877c860f520333f8437640d85bf2e63cde8c56409d2cf4ca89b21093a9f"
+    "path": "research/runtime/coverage/source-index-native-clipping-backend-20261006.json",
+    "sha256": "f534019722969a017727b9f241490dab9cd7519331b8d1b2af135820d8cae369"
   }
 }

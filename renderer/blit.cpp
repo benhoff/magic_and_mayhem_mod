@@ -1,4 +1,5 @@
 #include "blit.hpp"
+#include "surface_copy.hpp"
 #include <QGuiApplication>
 #include <QOffscreenSurface>
 #include <QOpenGLContext>
@@ -112,7 +113,7 @@ struct GpuFrame::Data {
     ~Data();
 };
 struct GlBlitter::Impl {
-    struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;std::weak_ptr<GpuFrame::Data> gpu;};
+    struct Surface {int width=0,height=0;PixelFormat format;GLuint native=0,palette=0,rgba=0;std::weak_ptr<GpuFrame::Data> gpu;ClipperState clipper;};
     QOffscreenSurface surface;
     QOpenGLContext context;
     QOpenGLFunctions_3_3_Core gl;
@@ -265,6 +266,20 @@ void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,s
     g.glUniform1i(p.program->uniformLocation("hasKey"),key.has_value());g.glUniform1ui(p.program->uniformLocation("sourceKey"),key.value_or(0));
     g.glBindVertexArray(p.vao);g.glDrawArrays(GL_TRIANGLES,0,3);g.glBindVertexArray(0);p.program->release();g.glDisable(GL_SCISSOR_TEST);
     p.check();++p.counters.copies;
+}
+void GlBlitter::setClipper(SurfaceId id,const ClipperState& clipper){
+    auto& p=*impl_;p.thread();auto& s=p.get(id);
+    validateClipper(clipper,s.width,s.height);s.clipper=clipper;
+}
+SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest& request){
+    auto& p=*impl_;p.thread();const auto& s=p.get(source);const auto& d=p.get(destination);
+    const std::array<std::uint32_t,3> rgb565{0xf800,0x7e0,0x1f};
+    if(source==destination)throw std::runtime_error("Self-copy is unsupported");
+    if(s.format.bits!=16 || d.format.bits!=16 || s.format.masks!=rgb565 || d.format.masks!=rgb565)
+        throw std::runtime_error("Surface2 copy requires RGB565 surfaces");
+    const auto plan=planSurfaceCopy(s.width,s.height,d.width,d.height,d.clipper,request);
+    for(const auto& piece:plan.pieces)copy(source,destination,piece.source,piece.x,piece.y);
+    return {plan.hresult,unsigned(plan.pieces.size())};
 }
 void GlBlitter::swapContents(SurfaceId first,SurfaceId second){
     auto& p=*impl_;p.thread();auto& a=p.get(first);auto& b=p.get(second);
