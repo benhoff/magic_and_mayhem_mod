@@ -333,4 +333,4 @@ endif()
 target_sources(mnm-qt-shell PRIVATE command_replay.cpp)
 
 # Bounded mapped command transport and presentation adapter.
-target_sources(mnm-qt-shell PRIVATE command_channel.cpp live_command_renderer.cpp)
+target_sources(mnm-qt-shell PRIVATE command_channel.cpp live_command_renderer.cpp render_control.cpp live_command_session.cpp)

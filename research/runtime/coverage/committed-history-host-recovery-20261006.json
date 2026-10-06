@@ -1,0 +1,365 @@
+{
+  "schema": 1,
+  "scope": "Read-only committed parent/current SHA256 and behavior contract receipt review; separate from working changes, new validation or historical gate claims.",
+  "base": "4eb39771659909666d9774e6f91b4d4b77b414b8",
+  "head": "529019faec97ed4d34b0e2d3bfbe3a1dbbe35a2e",
+  "files": [
+    {
+      "path": "apps/qt-shell/README.md",
+      "before_sha256": "59822ceb432406b80c1229d4fa67ade4bd5ed24f325cd5d1ee21887adef8de9b",
+      "after_sha256": "30085b5067bec2a25b8dbf578014aecb06b18b89ef3d63c9cc3fb99e8b82ea73",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "cc24d61a7a70870af0984a06b541bdac79bca3ae28fa8bd610f0d81245923d75",
+      "after_sha256": "4bf61612cb666c893ad1d799579529d235c5545d33152e81a92ecb94d66155e5",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "3de3033754638ca8ca198b0657000f9c4d1586c6c0c495a3eb881cf3928dc839",
+      "after_sha256": "d5ff19751a34d5f1afee45196da4c7299e1e62a23fbf5c28423884b810f5228d",
+      "receipts": [
+        "append-only journal verified separately (self hash excluded)"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-orchestration-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "3edce0da039976a8bf3d5078078213e5232a72aa9d323687e5a5f7200db4706f",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "abafdd7bee7ad42fcfdab574bff50152e0867b6a40e18c284f597911d5d4e784",
+      "after_sha256": "b853107732f997e591bd9f7ca818594cc20f6387e2972738d872550e525cf272",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-command-recovery-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "d7a33cfba1579942810deae5deca985f94378ef71c9ad7b0aec152863bdf38c2",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-command-recovery-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "fc1c28ddf36e4459c668ca14a676a6f3c69862fe51db2eee22ce765d2489d573",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-orchestration.md",
+      "before_sha256": "bca26c64c7f8fbee3f6e42ae25a11bbed5623ff5d5840c15ee6cf74557698d33",
+      "after_sha256": "542dad4d929ad251d286b1e4bc86d6406eec6147436db69ccfa5d3b5948dd825",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-exit.json",
+      "before_sha256": null,
+      "after_sha256": "9deba513d6d2d79e73c31f17d8c42fb7a89f8828c233db9e98c7ea8283c4218d",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-gpu.json",
+      "before_sha256": null,
+      "after_sha256": "82e168e94470d79d0c989891a2d92e37613950ecc64e6dab9363416a430719b4",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-idle.json",
+      "before_sha256": null,
+      "after_sha256": "047eb34f2423b66311bcc6f21e19d8849c837f28e42f0808ffcdb4a71e7e5c95",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-pe32.json",
+      "before_sha256": null,
+      "after_sha256": "61ca40bda0044b508fe84421209f31fc48354025fbc0f54feaae60bf04538b8a",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-pressure.json",
+      "before_sha256": null,
+      "after_sha256": "7cbcb0f0716592ff3089b3a81b4574fd850a0d31b53dc13daa2ebac324bae941",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery-queue.json",
+      "before_sha256": null,
+      "after_sha256": "40fa066ea9a22abdfc1c67e3b96c5dc9a7dd2f97cc7c67b5b353d7df9a27543a",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-recovery.md",
+      "before_sha256": null,
+      "after_sha256": "0f4c95da91513d6c34294deddff80b2ca73742fa5fad22bdfc061aeecbec2e42",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/README.md",
+      "before_sha256": "06c426c48c1ac224fb2c112e4454b4546bf7cdc6e7f11301a0b95a4ca4709ccb",
+      "after_sha256": "4bd4f81c6283ad6c181f378cfa11e01fa83b2d5af3ac35956c4fc4e33e08e8e9",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/bridge.c",
+      "before_sha256": "a4eefe6f36ba2ff3028aeb90f0ce8df6435b2b3550b899ab52452ba08eb07a02",
+      "after_sha256": "1014a94ca351417c64336286434747809d6511f9394f434b56758a531bebeaa5",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_channel.h",
+      "before_sha256": "26400daf495632b9929cbfc0f4d9972d9171fdc6b720989cba9ffd57ca599d96",
+      "after_sha256": "3c0a2e177987cc499f4375deb662896bd320bacdaadce7d9d6537511027f0ebb",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_recovery.h",
+      "before_sha256": null,
+      "after_sha256": "d63fd6b0f925989d945e40229348d8e3e4b84d0819c52a186fc584e9bf30e8f0",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_scheduler.h",
+      "before_sha256": "05e41ab5918ed83720af7f61d720e58120a45c5c679f19d373862831d74774b1",
+      "after_sha256": "a53069a6196416819b000424ca07213c00f37e3ad7e2e1456e95f15bfc31b350",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/owned_session.h",
+      "before_sha256": "cd3c2f2b55e396265ed7c7bcdfc7353a0788c55250d7a5f6db15c97d43939034",
+      "after_sha256": "6e390e8a63cd044debe45f0531d3c32e9824d89ae99e31f6f6447555583b53b1",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/recovery_selftest.h",
+      "before_sha256": null,
+      "after_sha256": "d902eb05f98c13560f264bdfda39547217ae99f07cb5a6ce3e34c3c6a0a024c7",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/selftest.c",
+      "before_sha256": "43463c19d807808612c45bfb2d9fd294155c15a72b9497ca4d50bdf0cc7d40ea",
+      "after_sha256": "89c189d6af4ecfbd4fa82353aa5732b6dd33de702b50651116aa75d3a1367a2d",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tests/render-command-queue-test.c",
+      "before_sha256": "63fb33580e0f5eda718a8068c0c9ac6c26e6fbbb9380e67d6848f71f4e74f1a3",
+      "after_sha256": "31dd21195c2619c62100ab58ca74f385f3cadccf1e143d453b5b7825daa1bf80",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tests/render-command-writer-test.c",
+      "before_sha256": "47bce9be8c0940a5bd1adfd200edfbd68a28d898ff5aef8178baa7386eb2965b",
+      "after_sha256": "00b4c4939b7d17bbba4296ec866369fb66d0d51d094954085463ded0136ee5e0",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/build-render-bridge.py",
+      "before_sha256": "2ff08c5438fe8b1727bed78dbfcdbffa06c58705fa54c2b69315dee6e3f9782e",
+      "after_sha256": "ee1bd6d82ef433040cfd4e3c6279d363a6146e9eb3bd2e8d1bc7b26794cec41a",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-render-recovery.py",
+      "before_sha256": null,
+      "after_sha256": "e7e06e0c4e53e3bf7d654743f296a852eecbcde647501dbf12a6121b93822c66",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "NR.command-backpressure",
+      "before_sha256": "901404fde772ea0c6156a81bc4c7526b294ddda0d4e0df5a69c2dc7c4f6fc9f4",
+      "after_sha256": "ae31f1c11d7bea151fe562c22a7f874f1f555f987e0dd1ac1c8a4c24c19c7b75",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-idle-lifecycle",
+      "before_sha256": "dcff8ed1bc5bf2d4d556b7a4b1ee739aa2c10716509bd11e3deec9a89d5525bc",
+      "after_sha256": "4d1ef00e09f5f9ae3e3840c019a8cba92834ff027786381826d218369df2d535",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-orchestration",
+      "before_sha256": "f95baf75b4ae4088aac1d29a8d4f8c7cc0f35dc56a4431110b970b0f0a8ab891",
+      "after_sha256": "cacfa38dff1eb24de6470dbdd8e310fd5798f29515cb515891e50016e012aaef",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-recovery",
+      "before_sha256": null,
+      "after_sha256": "8c1dc77e3af48933b8184f68bbe79688c6a67edc51a4642977a8bde3c0a4242f",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006",
+        "NR.command-recovery-recorded-validation-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-ring-adapter",
+      "before_sha256": "ce253e7b192f4d13c925fd2aea91c3a1cefed3cbfcfbbfc445fce1c8d8c8a314",
+      "after_sha256": "6f37986b5e6cd217693bb3ba1669cd87d461821a11862f803d02373fa22e2f83",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-mutations",
+      "before_sha256": "aa0959ab8fbc127def49ca97e1ea94488c6daba18c829bb7243a05f4bee70d4e",
+      "after_sha256": "863b0b69132915b67a56a7d55ff55b96f60a4b0b5dd99a9a9c526e6301875f5b",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-producer",
+      "before_sha256": "a6977bc4291cd721b523ef808508453def8cbf8a4a775ccd9087981cee330c1f",
+      "after_sha256": "163a18e589224746a2f1409380bd9eb625e82f50115263401b43de9dc5797214",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-lifetime",
+      "before_sha256": "9a634ad055243673d971937153453f176bdcaee19dfb64320a7716e750f1751e",
+      "after_sha256": "e282dacaf671e172d1cec3f87ace8ffe344ad8ea5fe1683054e4b342bf4d3cdb",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.incremental-command-consumer",
+      "before_sha256": "a55a395540489852f7352f9ac10a446cbc496886f7ce48aa1980ce4337ca8037",
+      "after_sha256": "9626b020518f67d6af970de0c9fdead012f4cd64b0a63ebc432e051faf578914",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.live-command-transport",
+      "before_sha256": "2b187e51c14de6662e02e87d653986274901c017a523153f8045455731a6a324",
+      "after_sha256": "7fa6f6f31f3182f0cc010e65e757ddc00553da65f5273e12f5968cfeb69c272e",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.owned-session-dc",
+      "before_sha256": "2eb3ef6a1e56a6a8c1dec3f563003e0ff92aec83768305baaebc6565991244b4",
+      "after_sha256": "ad6f8c286fa6b1500ec2f460731c39e13f1dbc1a4dddf32d78d26e940b63b241",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.owned-session-fill",
+      "before_sha256": "04742685f1fcf4d519842519d2a025bbf4b02b04e906c79138f2dec707c55936",
+      "after_sha256": "0bb1ea4d2179c77f330e2619d7869145b49b7b0ea9a7e4ca9fed42a9441f93cd",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.owned-session-sequence",
+      "before_sha256": "8e129b61cdc1e48d2804a3a3d94bad87bed0e643272d747f58b296cac8403b74",
+      "after_sha256": "ec1108ec20398980eb9a962d4fb088d64db162e691f732dfcd3001f14218ca23",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.owned-session-startup",
+      "before_sha256": "b945138426bd877456ca671a07ae57983185518764cbe7360f073799c1caa086",
+      "after_sha256": "80dbb54bd9f47cf0ce51dc06ac1bb50c1be59d9044dda558ac0c6c8fa224cdd9",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed",
+      "before_sha256": "a7e1f34519e93d707a001991bcaa2a6c4acf7e04840416488769d337c605fa94",
+      "after_sha256": "ec3639842590c8e092398dbbb16401e36cba7014c55e00d6a8a1e0130ca3239a",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "RT.render",
+      "before_sha256": "11a66919fb49a0339efd84769b49f36ee99b911eb80c4e7456b0040c9b9c3c9d",
+      "after_sha256": "5a4cd94c597f85485ad001a30657a91ef476a8725234535778f79e0a49993e13",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    },
+    {
+      "id": "UI.preview",
+      "before_sha256": "37cba39da6480c3b7c6ccd8903f2c7537a94c4adcd424aa0329b67b007b75942",
+      "after_sha256": "1d83e71a4ba8b01dc2ec4ae8158b98a82711580a717185de2a3dff3e1e0a86bb",
+      "receipts": [
+        "NR.command-recovery-exact-review-20261006"
+      ]
+    }
+  ],
+  "journal_append_only": true,
+  "unresolved_gaps": []
+}

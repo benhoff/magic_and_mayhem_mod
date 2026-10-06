@@ -1,0 +1,59 @@
+{
+  "success": true,
+  "sources": {
+    "tools/test-render-control-launcher.py": "028ec45d017a30afe02210f5f047679f161ab4a990d2561ec8550b861f396d4d",
+    "tools/run-opengl-game.py": "4d0d4389cea04f97568ec6bfe325efdc86fc516319981feca9f6455ff8708ee9",
+    "protocols/python/mnm_protocols/frame_v1.py": "056632cb57c0f2f5fd64edd76c25aa3a63276811b863060f60e5e38a2404c8d3",
+    "protocols/python/mnm_protocols/render_commands_v1.py": "17d3c1fcea8d55d2d9ae146c50ad8d56d820ffc24f86770b9a3f50be4e17b256",
+    "protocols/python/mnm_protocols/render_commands_v2.py": "101a8efa81e63dc4f0eff660b15aca9b2c924d77ac537b868780f8c3be11e007",
+    "protocols/python/mnm_protocols/render_control_v1.py": "0875ccb4796f455f417480cb54929d647b287de621546ff622f7e83d1c9a8bb3"
+  },
+  "cases": [
+    {
+      "mode": "outside",
+      "success": true,
+      "refusal": "Recovery requires"
+    },
+    {
+      "mode": "not-continuous",
+      "success": true,
+      "refusal": "Recovery requires"
+    },
+    {
+      "mode": "size",
+      "success": true,
+      "refusal": "Invalid fresh rendering control"
+    },
+    {
+      "mode": "magic",
+      "success": true,
+      "refusal": "Invalid fresh rendering control"
+    },
+    {
+      "mode": "pending",
+      "success": true,
+      "refusal": "Invalid fresh rendering control"
+    },
+    {
+      "mode": "cancel",
+      "success": true,
+      "refusal": "Invalid fresh rendering control"
+    },
+    {
+      "mode": "identity",
+      "success": true,
+      "refusal": "launch ID mismatch"
+    },
+    {
+      "mode": "v1",
+      "success": true,
+      "refusal": "requires a v2"
+    },
+    {
+      "mode": "claimed",
+      "success": true,
+      "refusal": "not a fresh session"
+    }
+  ],
+  "scope": "Synthetic invalid CLI launch admission before original/game staging; no original artifacts consumed."
+}

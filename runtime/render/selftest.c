@@ -48,7 +48,9 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "backpressure_selftest.h"
 #include "lifecycle_selftest.h"
 #include "recovery_selftest.h"
+#include "host_recovery_selftest.h"
 void start(void){
+    char host[24];if(GetEnvironmentVariableA("MNM_HOST_RECOVERY_SELFTEST",host,sizeof(host)))test_host_recovery(host);
     char recovery[24];if(GetEnvironmentVariableA("MNM_RECOVERY_SELFTEST",recovery,sizeof(recovery)))test_recovery(recovery);
     char orchestration[24];if(GetEnvironmentVariableA("MNM_ORCHESTRATION_SELFTEST",orchestration,sizeof(orchestration))){
         if(orchestration[0]=='g')test_exit_guards();else test_orchestration(orchestration);
