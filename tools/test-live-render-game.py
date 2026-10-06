@@ -41,6 +41,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('build', type=Path, help='Build containing live-render-channel-test')
     parser.add_argument('--seconds', type=int, default=20, choices=range(5, 31))
+    parser.add_argument('--presentations', type=int, choices=range(1, 33),
+                        help='Request a bounded successive-frame session instead of the ordinary sample')
     parser.add_argument('--prefix-template', type=Path, default=ROOT / 'working/wineprefix-x86_64')
     args = parser.parse_args()
     if not os.environ.get('DISPLAY'):
@@ -100,6 +102,8 @@ def main():
                            ('MNM_RENDER_FAILURE_LOG', experiment / 'surface-failures.log')]:
             env[name] = 'Z:' + str(path).replace('/', '\\')
         env['MNM_RENDER_OWNED_SESSION'] = '1'
+        if args.presentations:
+            env['MNM_RENDER_SESSION_PRESENTATIONS'] = str(args.presentations)
         active, output = run / 'producer.active', run / 'qt.json'
         with (run / 'qt.log').open('w') as qlog, (run / 'wine.log').open('w') as wlog:
             wine = subprocess.Popen(['wine', 'explorer', '/desktop=RenderShadow,800x600',
@@ -168,6 +172,7 @@ def main():
                       startup_seconds=startup_seconds,
                       producer_state=struct.unpack_from('<I', control, 24)[0],
                       producer_reason=struct.unpack_from('<I', control, 28)[0],
+                      requested_presentations=args.presentations,
                       published_bytes=published, records=records, native_consumer=qt_report,
                       mirror_prefix_matches=(mirror.read_bytes()[:published] == payload
                                              if mirror.exists() else None),

@@ -929,3 +929,55 @@ window Save/reload/first-order continuation in four views are recorded in
 [native-scene-spawning.md](native-scene-spawning.md) and its JSON record.
 Original spawn/gameplay admission, other profiles and live replacement remain
 pending; historical evidence fingerprints are retained unchanged.
+
+## Bounded startup through first primary presentation
+
+2026-10-05 — `NR.owned-session-startup` retains the ordinary16-operation sample
+when PRESENT exists, and otherwise admits first primary PRESENT through64
+successful operations with all existing ownership, command and resource limits.
+Eight boundary fixtures pass (four complete/four refused); seven live transport
+and26 packed unlock regressions and both native consumer CTests pass.
+The original game now publishes69 records/39,226,036 bytes, presents one native
+GPU frame at23 successful operations and ends cleanly. Mirror/channel match,
+zero ordinary native/RGBA readbacks or viewport uploads, all native surfaces
+released. Original drawing remains active; immutable2927-file manifest verifies
+before/after. Explicit GPU replay passes31 owned CPU CHECKs; independent original
+pixels, continuous presentation and replacement remain pending. See
+[protocol and evidence](opengl-owned-session-startup.md). Old source fingerprints
+remain historical; this does not refresh complete-contract equivalence.
+
+### NS20 — paused-window terrain creature spawning
+
+The native scene accepts terrain-cell selection and a semantic paused Spawn
+action. New scene checkpoints admit up to 32 same-profile bodies under the
+already versioned multi-creature occupancy policy. Native terrain validation and
+transactional occupancy/reservation checks reject unsupported, occupied and
+unfinished-edge placement without state or selection mutation. Successful
+spawning selects the new body for orders and persists it in the existing v8
+checkpoint. Synthetic controls/admission/limit checks and actual Forest/Redcap
+window Save/reload/first-order continuation in four views are recorded in
+[native-scene-spawning.md](native-scene-spawning.md) and its JSON record.
+Original spawn/gameplay admission, other profiles and live replacement remain
+pending; historical evidence fingerprints are retained unchanged.
+
+
+## Bounded successive native primary presentations
+
+2026-10-06 — `NR.owned-session-sequence` requests1..32 primary PRESENTs while
+retaining the same native GPU surface history. First PRESENT by64 successful
+operations, requested sequence by256; early/short sessions refuseGAP6. Existing
+command/byte/ownership/resource caps stay unchanged. Explicit sequences omit
+CHECK expected-output diagnostics, preserving all owned render inputs; ordinary
+samples retain CHECKs. The initial CHECK-carrying original attempt exhausts64MiB
+before a second producer PRESENT; its evidence is preserved separately.
+Fresh input-only execution: eight sequence fixtures pass,40 complete-stream
+frames plus four prior frames on deliberate refusals; eight default startup
+regressions and both native consumer CTests pass. Original rerun presents three
+native frames at57 operations,74 records/39,363,820 bytes, clean END, mirror
+match, native cleanup and zero ordinary readbacks/uploads. All three frames
+have identical early-startup pixels; animation is validated synthetically, not
+claimed for this original-game sample. Original2927-file manifest verifies
+before/after, original drawing stays active. Sustained reusable transport,
+longer menu/gameplay scenarios, independent original-driver comparison and
+replacement remain pending. See [scope and records](opengl-owned-session-sequence.md).
+Historical shared-source evidence remains independently stale.

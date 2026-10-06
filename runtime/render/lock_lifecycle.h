@@ -20,7 +20,7 @@ static void game_lock_clear(struct GameLock* slot){
     if(slot->base.data)__atomic_sub_fetch(&lock_capture_reserved,slot->base.length,__ATOMIC_RELAXED);
     free_snapshot(&slot->base);zero(slot,sizeof(*slot));
 }
-static u32 game_session_enabled;
+static u32 game_session_enabled,game_session_presentations;
 struct GameSurface;struct GameBlit;
 static void game_session_gap(u32);
 static void game_session_sync(void);
@@ -38,6 +38,13 @@ static void init_lock_lifecycle(void){
         if(valid && value<=50)game_tracker_wait_ms=value;
     }
     char session[8];game_session_enabled=GetEnvironmentVariableA("MNM_RENDER_OWNED_SESSION",session,8)==1 && session[0]=='1';
+    /* Explicit finite multi-frame observation; malformed values retain the
+     * ordinary sample. This does not enlarge the append-only transport. */
+    char frames[4];u32 frames_length=GetEnvironmentVariableA("MNM_RENDER_SESSION_PRESENTATIONS",frames,sizeof(frames));
+    if(frames_length && frames_length<sizeof(frames)){
+        u32 value=0,valid=1;for(u32 i=0;i<frames_length;++i){if(frames[i]<'0' || frames[i]>'9'){valid=0;break;}value=value*10+(u32)(frames[i]-'0');}
+        if(valid && value>=1 && value<=32)game_session_presentations=value;
+    }
     u32 length=GetEnvironmentVariableA("MNM_RENDER_LOCK_CAPTURE_DIR",lock_capture_path,sizeof(lock_capture_path));
     if(length && length+28<sizeof(lock_capture_path))lock_capture_path_length=length;
 }
