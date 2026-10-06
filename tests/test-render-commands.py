@@ -87,6 +87,8 @@ def main():
                 rgb = []
                 for mask in masks:
                     low = mask & -mask;rgb.append(((value & mask)//low)*255//(mask//low))
+            if bits==16 and masks==(0xf800,0x7e0,0x1f):
+                red,green,blue=(value>>11)&31,(value>>5)&63,value&31;rgb=[(red<<3)|(red>>2),(green<<2)|(green>>4),(blue<<3)|(blue>>2)]
             rgba.extend([*rgb,255])
         records.insert(-2,(10,pack(33)+bytes(rgba)))
         report = run(f'sequence-{bits}', records, native(target), bytes(rgba))
@@ -109,6 +111,8 @@ def main():
                 rgba=bytearray()
                 for value in values:
                     rgb=palettes[sid][value] if bits==8 else [((value&mask)//(mask&-mask))*255//(mask//(mask&-mask)) for mask in masks]
+                    if bits==16 and masks==(0xf800,0x7e0,0x1f):
+                        red,green,blue=(value>>11)&31,(value>>5)&63,value&31;rgb=[(red<<3)|(red>>2),(green<<2)|(green>>4),(blue<<3)|(blue>>2)]
                     rgba.extend([*rgb,255])
                 records.append((10,pack(sid)+bytes(rgba)))
                 records.append((6,pack(sid)))

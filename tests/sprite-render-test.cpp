@@ -13,7 +13,7 @@ template<class F> static void rejected(F action){bool fail=false;try{action();}c
 static void checkColors(const QImage& actual,const Image& expected){
     for(int y=0;y<expected.height;++y)for(int x=0;x<expected.width;++x){
         const auto p=expected.pixels[std::size_t(y)*expected.width+x];
-        require(actual.pixelColor(x,y)==QColor(((p>>11)&31)*255/31,((p>>5)&63)*255/63,(p&31)*255/31),"Sprite presentation differs from RGB565 reference");
+        require(actual.pixelColor(x,y)==QColor((((p>>11)&31)<<3)|(p>>13),(((p>>5)&63)<<2)|((p>>9)&3),((p&31)<<3)|((p>>2)&7)),"Sprite presentation differs from RGB565 reference");
     }
 }
 int main(int argc,char** argv){

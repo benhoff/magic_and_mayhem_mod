@@ -22,6 +22,10 @@ static void checkPresentation(const QImage& actual,const Image& native,PixelForm
         else {
             std::uint8_t values[3];
             for(unsigned i=0;i<3;++i){const auto mask=format.masks[i],low=mask&(~mask+1);values[i]=std::uint8_t(((pixel&mask)/low)*255/(mask/low));}
+            if(format.bits==16 && format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}){
+                const auto r=(pixel>>11)&31,g=(pixel>>5)&63,b=pixel&31;
+                values[0]=(r<<3)|(r>>2);values[1]=(g<<2)|(g>>4);values[2]=(b<<3)|(b>>2);
+            }
             expected={values[0],values[1],values[2]};
         }
         require(actual.pixelColor(x,y)==QColor(expected.red,expected.green,expected.blue,255),"GPU palette/mask presentation differs from CPU");

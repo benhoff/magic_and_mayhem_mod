@@ -71,7 +71,7 @@ public:
     SurfaceId create(const Image& image,PixelFormat format);
     void destroy(SurfaceId surface);
     void update(SurfaceId surface,int x,int y,const Image& patch);
-    // SRCCOPY at origin to canonical RGB24/32, no scaling or DC clip region.
+    // SRCCOPY at origin to RGB565 or canonical RGB24/32, no scaling or DC clip region.
     // Only the cropped written rectangle becomes valid.
     void reloadDib(SurfaceId surface,const DibInput& dib);
     void copy(SurfaceId source,SurfaceId destination,Rect rect,int x,int y,

@@ -59,7 +59,7 @@ int main(int argc,char** argv){QGuiApplication app(argc,argv);try{
     auto palette=good;palette.palette.pop_back();refused([&]{gl.reloadDib(target,palette);});
     for(unsigned at:{4u,8u}){auto dimensions=good;dimensions.header[at+3]=0x80;refused([&]{gl.reloadDib(target,dimensions);});}
     gl.setClipper(target,{true,std::vector<Rect>{{0,0,8,6}}});refused([&]{gl.reloadDib(target,good);});gl.destroy(target);
-    for(const auto format:std::array<PixelFormat,3>{{{8,{}},{16,{0xf800,0x7e0,0x1f}},{32,{0xff,0xff00,0xff0000}}}}){auto incompatible=gl.create({8,6,std::vector<std::uint32_t>(48)},format);refused([&]{gl.reloadDib(incompatible,good);});gl.destroy(incompatible);}
+    for(const auto format:std::array<PixelFormat,3>{{{8,{}},{16,{0x7c00,0x3e0,0x1f}},{32,{0xff,0xff00,0xff0000}}}}){auto incompatible=gl.create({8,6,std::vector<std::uint32_t>(48)},format);refused([&]{gl.reloadDib(incompatible,good);});gl.destroy(incompatible);}
     refused([&]{gl.reloadDib(target,good);});
     unsigned compositions=0;
     for(unsigned wrapper=0;wrapper<4;++wrapper)for(unsigned mode=0;mode<3;++mode){
