@@ -76,6 +76,10 @@ public:
     // Surface2-style RGB565 operation; see surface_copy.hpp for the bounded policy.
     // Same-ID opaque copies freeze each ordered source piece on the GPU (max16MiB
     // transient storage). copy() retains its distinct-ID primitive contract.
+    // External accepted Restore/loss invalidates native bytes without inventing
+    // deterministic contents. Updates/opaque copies establish only written regions.
+    // Reads/presentation/source sampling refuse undefined pixels. No driver Restore.
+    void invalidateContents(SurfaceId surface);
     void setClipper(SurfaceId destination,const ClipperState& clipper);
     SurfaceCopyResult surfaceCopy(SurfaceId source,SurfaceId destination,
                                  const SurfaceCopyRequest& request);

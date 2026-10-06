@@ -14826,7 +14826,8 @@
       "evidence": [
         "ORIGINAL.surface-copy.rgb565-overlap.capture-20261006",
         "ORIGINAL.surface-copy.rgb565-overlap.cpu-20261006",
-        "ORIGINAL.surface-copy.rgb565-overlap.native-20261006"
+        "ORIGINAL.surface-copy.rgb565-overlap.native-20261006",
+        "ORIGINAL.surface-copy.rgb565-overlap.after-retry-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14841,7 +14842,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original surface loss/Restore/retry wrapper scheduling",
-      "scope": "Four unchanged original fill/copy wrappers,4480 scripted draw/Restore/key result schedules and bounded reload/UI endpoints. CPU ordering and consumed-result counts match; selected source-before-destination recovery, no/one/unbounded retry differences and ignored key failure. Driver loss/Restore pixel validity, palette, asset/sentinel reload, null mutation/window retries and native/live replacement pending.",
+      "scope": "Four unchanged original fill/copy wrappers,4480 scripted draw/Restore/key result schedules and bounded reload/UI endpoints. CPU ordering and consumed-result counts match; selected source-before-destination recovery, no/one/unbounded retry differences and ignored key failure. Driver loss/Restore pixel validity, palette, asset/sentinel reload, null mutation/window retries and native/live replacement pending. Portable C++ adapter scheduling now matches4480 captured traces; explicit budget stops preserve original event prefixes and never claim original success. Test-only fill adapters compose this with native content invalidation/explicit reload; real driver/live recovery remains pending.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -14875,24 +14876,61 @@
         "research/runtime/native-surface-operation-matrix.json"
       ],
       "implementation": [
-        "tools/check-original-surface-retry.py"
+        "tools/check-original-surface-retry.py",
+        "reconstruction/rendering/surface_retry.hpp"
       ],
       "tests": [
         "tests/surface-retry-reference.cpp",
         "tests/test-original-surface-retry.py",
         "tools/capture-original-surface-retry.py",
         "tests/fixtures/surfaces/original-retry.json.gz",
-        "tests/fixtures/surfaces/original-retry-corpus.json"
+        "tests/fixtures/surfaces/original-retry-corpus.json",
+        "tests/surface-retry-model.cpp",
+        "tools/check-native-surface-retry.py",
+        "tests/render-restoration-test.cpp"
       ],
       "evidence": [
         "ORIGINAL.surface-copy.restore-retry.capture-20261006",
-        "ORIGINAL.surface-copy.restore-retry.cpu-20261006"
+        "ORIGINAL.surface-copy.restore-retry.cpu-20261006",
+        "ORIGINAL.surface-copy.restore-retry.native-20261006"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "recorded",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.surface-contents.validity",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Explicit native undefined-content validity after restoration",
+      "scope": "GlBlitter invalidateContents declares all native bytes undefined without inventing/clearing pixels or changing uploads. Written update/opaque copy regions become known; source/mask sampling, keyed/masked destinations, full read and CPU/GPU presentation refuse unknown pixels. Validity follows swapped storage; clipper/palette metadata remains native policy.30 GL tests include explicit recovered fill adapters. No real driver Restore/palette retention, live hook or new wire integration.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/original-surface-retry.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "renderer/known_pixels.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp"
+      ],
+      "tests": [
+        "tests/render-restoration-test.cpp",
+        "tools/check-native-surface-retry.py"
+      ],
+      "evidence": [
+        "NR.surface-contents.validity.native-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -26687,6 +26725,56 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.restore-retry.native-20261006",
+      "kind": "isolated_original",
+      "scope": "Fresh portable C++ recovered scheduling versus4480 unchanged original/scripted fault event traces, including1536 finite-budget prefix stops. No actual driver loss/Restore/pixels or live replacement.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-retry-native-20261006.json",
+      "sha256": "e83454234408dff1d150376a87157c4433bd7b2614271c42464d2b42158f6d51",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 4480
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-contents.validity.native-20261006",
+      "kind": "native_integration",
+      "scope": "Native GL undefined-content validity policy and test-only recovered fill callback composition,30 deterministic policy checks. Intentional native validity/budget policy; no original restored-byte/driver/palette equivalence.",
+      "record": "research/runtime/original-surface-retry-native-20261006.json",
+      "sha256": "e83454234408dff1d150376a87157c4433bd7b2614271c42464d2b42158f6d51",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-overlap.after-retry-20261006",
+      "kind": "isolated_original",
+      "scope": "Fresh1536 opaque shared-backing GPU and v3 result/full-pixel comparisons against retained unchanged original captures after native validity guards. No live/driver Restore validation.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-overlap-after-retry-20261006.json",
+      "sha256": "2a0ae0b19bfb5c3fd16a636594babb0375046e95f5e710f8379036238c3d1bea",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -31014,6 +31102,21 @@
         "tools/test-live-render-routes.py",
         "tests/live-render-route-probe.cpp"
       ]
+    },
+    {
+      "id": "NR.surface-contents.validity.headless",
+      "level": "headless",
+      "scope": "Native GL30 content-validity checks, including test-only recovered fill adapters with explicit reload inputs; no real lost driver or live/wire integration.",
+      "behaviors": [
+        "NR.surface-contents.validity"
+      ],
+      "evidence": [
+        "NR.surface-contents.validity.native-20261006"
+      ],
+      "tests": [
+        "tests/render-restoration-test.cpp",
+        "tools/check-native-surface-retry.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -31261,7 +31364,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-retry-20261006.json",
-    "sha256": "ca7eaa73adf9847736baba663b36de0d7ce567899dfea7b520a6689a9b68f0f4"
+    "path": "research/runtime/coverage/source-index-native-retry-20261006.json",
+    "sha256": "28432ffc2310d588432a28967c3383fd14ac821503d50fa754e960fbe4660fcc"
   }
 }
