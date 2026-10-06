@@ -9,7 +9,8 @@
     "research/runtime/surface-driver-clipping.md",
     "research/runtime/native-surface-clipping.md",
     "research/formats/render-surface-commands-v3.md",
-    "research/runtime/original-surface-keys.md"
+    "research/runtime/original-surface-keys.md",
+    "research/runtime/original-surface-fills.md"
   ],
   "operations": [
     {
@@ -160,7 +161,7 @@
       "original_wrapper_fixture": {
         "catalog": "tests/fixtures/surfaces/original-rgb565-keyed-corpus.json",
         "capture": "research/runtime/original-surface-keys-capture-20261006.json",
-        "comparison": "research/runtime/original-surface-keys-replay-20261006.json",
+        "comparison": "research/runtime/original-surface-keys-replay-after-fills-20261006.json",
         "cases": 436,
         "native_success_cases": 434,
         "scope": "Isolated unchanged original routine with real Wine driver; no live original-game capture or replacement."
@@ -311,7 +312,8 @@
       "wire_support": "UPDATE of argument-derived constant pixels",
       "behavior_ids": [
         "RI.fills",
-        "NR.owned-session-fill"
+        "NR.owned-session-fill",
+        "RE.surface-fill.rgb565"
       ],
       "original": [
         {
@@ -332,8 +334,18 @@
         "failure/retry",
         "clip interactions"
       ],
-      "original_fixture_ids": [],
-      "remaining_gap": "Current captures exclude NULL-source fills; no independent original fill-output fixture. Dedicated GPU clear is not a completion requirement."
+      "original_fixture_ids": [
+        "original-rgb565-fills-58bac0-20261006"
+      ],
+      "remaining_gap": "250 unchanged original wrapper0x58bac0 calls against Wine Surface2 captured;145 successful RGB565 fill outputs compared offline through argument-derived UPDATE regions. CPU model also matches65 invalid-rectangle and40 missing-clip-list results. Native fill HRESULTs, original loss/Restore/retry and0x58bc10, unknown initial pixels, indexed/masked formats, live callers and Windows-driver equivalence remain pending. Error-report UI imports are bounded observers.",
+      "original_wrapper_fixture": {
+        "catalog": "tests/fixtures/surfaces/original-rgb565-fills-corpus.json",
+        "capture": "research/runtime/original-surface-fills-capture-20261006.json",
+        "comparison": "research/runtime/original-surface-fills-replay-final-20261006.json",
+        "cases": 250,
+        "native_success_cases": 145,
+        "scope": "Isolated unchanged original fill/API output, low16-bit wrapper color and captured clipping; no native fill HRESULT/loss/Restore or live replacement."
+      }
     },
     {
       "id": "SURF.copy.self_overlap",

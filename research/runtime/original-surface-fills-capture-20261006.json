@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-fill-reference.c": "28f30d03ded55479c04e876e2c2676224129ca0c06496f5392c615c52425a3cf",
+    "tests/surface-key-reference.c": "afbde88e95a563438cfce6cb477e1570451fceb0eac7041b508d307f01d5ff17",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/capture-original-surface-fills.py": "35cb7eed98b32fbbd32921f39d7dfb1cf0d39072e376be1e655929746a995183",
+    "tests/fixtures/surfaces/original-rgb565-fills.json.gz": "3de62db2c49674adad4d48960e4485c2ffebe523d9e3b174d0f6b6222cdbd7c6",
+    "tests/fixtures/surfaces/original-rgb565-fills-corpus.json": "dcc9f0bebe92ee1e4dc8328c13cdfd5651296be5ba38f2b837b00dccee1f5633"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "original_wrapper_executed": true,
+  "original_instruction_bytes_patched": false,
+  "ui_imports_observed": [
+    {
+      "iat": 6050316,
+      "name": "MessageBoxA"
+    },
+    {
+      "iat": 6050312,
+      "name": "DestroyWindow"
+    }
+  ],
+  "driver_calls": true,
+  "native_renderer_executed": false,
+  "scope": "Unchanged original fill wrapper0x58bac0 executed in a private PE mapping against Wine built-in Surface2 RGB565 system-memory objects. Independent original/API outputs; original error-reporting UI imports observed without modal windows. No lost-surface retry/Restore, live gameplay or Windows-driver equivalence.",
+  "environment": {
+    "wine": "wine-11.16",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b",
+    "surface_interface": "IDirectDrawSurface2",
+    "caps": 2112,
+    "cooperative_level": "NORMAL"
+  },
+  "cases": 250,
+  "hresults": {
+    "0x00000000": 145,
+    "0x88760096": 65,
+    "0x887600cd": 40
+  },
+  "artifacts": "working/tests/original-surface-fills/run-_ft2wxwg",
+  "probe_sha256": "4430a7c1762415aaab1741d841d6c4c19ff28ef6b59032ede76d648efba69516",
+  "inputs_sha256": "04437a6185b51af51802bf7a92adb966e7d7b4a0df22e48d89f4ddbfe9510963",
+  "outputs_sha256": "a31cc47a2e931b9294670262155c2bf6ab50bdfff9520ec8ebaaed12938cabd5",
+  "fixture": {
+    "schema": 1,
+    "path": "original-rgb565-fills.json.gz",
+    "sha256": "3de62db2c49674adad4d48960e4485c2ffebe523d9e3b174d0f6b6222cdbd7c6",
+    "raw_sha256": "cd3453c3585d727a8861a531c7b978422203f8315a99ee38a7d3b29bcbe8012c",
+    "cases": 250,
+    "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "entry": 5814976,
+    "oracle": "unchanged_original_fill_wrapper_real_surface2_post_call_lock",
+    "scope": "Unchanged original fill wrapper0x58bac0 executed in a private PE mapping against Wine built-in Surface2 RGB565 system-memory objects. Independent original/API outputs; original error-reporting UI imports observed without modal windows. No lost-surface retry/Restore, live gameplay or Windows-driver equivalence."
+  },
+  "original_manifest_verified_before_after": true
+}

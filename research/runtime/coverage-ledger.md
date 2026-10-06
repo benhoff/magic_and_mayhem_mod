@@ -1524,15 +1524,24 @@ replacement claim. Wine experiments are serialized. See
 [findings](original-surface-keys.md). The reviewed454c5d5..e6b493a history range
 has no missing exact file receipts; current uncommitted route work is separate.
 
-## Original RGB565 keyed wrapper outputs — 2026-10-06
+## Original RGB565 fill wrapper outputs — 2026-10-06
 
-Unchanged no-CD wrapper0x58ca90 ran in a private PE mapping against real Wine
-Surface2, retaining436 complete before/after cases, both APIs/WAIT branches,
-exact high-bit keys and144 second calls after key mutation. CPU checks compare
-all436 outputs; native COPY compares434 successful outputs with868 complete
-source/destination checks. Two E_INVALIDARG missing-key Blt calls remain captured
-without native HRESULT equivalence. Seven provenance/state/output refusal tests
-pass. No live gameplay, Windows-driver, indexed/clipped key, retry/Restore or
-replacement claim. Wine experiments are serialized. See
-[findings](original-surface-keys.md). The reviewed454c5d5..e6b493a history range
-has no missing exact file receipts; current uncommitted route work is separate.
+Unchanged no-CD wrapper0x58bac0 ran against real Wine Surface2 in the isolated
+loader-reserved mapping. Its250 cases cover full/partial/edge/invalid rectangles,
+five clipper states and original low16-bit truncation of high32-bit arguments.
+CPU admission and complete destination comparisons match145 successes,65
+invalid-rectangle failures and40 missing-clip-list failures. Native argument-derived
+constant UPDATE regions match145 full destinations; expected after pixels are
+CHECK diagnostics only. Eight provenance/state/color/result refusal tests pass.
+Error-reporting code executes with bounded MessageBoxA/DestroyWindow observers.
+Native fill HRESULTs, original lost/Restore/retry and0x58bc10, unknown initial
+storage, indexed/masked formats, live composition and Windows-driver equivalence
+remain pending. Keys and fills used serialized Wine sessions and manifest checks
+before/after each original experiment. See [findings](original-surface-fills.md).
+The ledger retains one keyed-work entry; a duplicate introduced while combining
+concurrent ledger edits is removed without changing its evidence or scope.
+
+The shared keyed checker now derives its missing-key Blt error admission from
+key/API input state and compares all436 CPU HRESULTs. A fresh native434-copy
+regression and eight keyed refusal tests pass; the historical keyed replay record
+is retained with its original source hashes. Native keyed HRESULTs remain pending.

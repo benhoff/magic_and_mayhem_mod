@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "success": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "cases": 436,
+  "cpu_hresult_checks": 436,
+  "cpu_destination_checks": 436,
+  "source_checks": 436,
+  "native_success_cases": 434,
+  "native_hresult_validation": false,
+  "pending_native_failure_cases": 2,
+  "mutation_second_calls": 144,
+  "hresults": {
+    "0x00000000": 434,
+    "0x80070057": 2
+  },
+  "scope": "Offline RGB565 pixel comparison with unchanged original keyed wrapper0x58ca90 through Wine Surface2; native COPY primitive compares successful pixels only. Failed HRESULTs retained, no native keyed API HRESULT/retry/Restore equivalence. Missing-key successful BltFast is opaque driver behavior.",
+  "backend": "opengl_native_integer",
+  "native": {
+    "backend": "opengl_native_integer",
+    "checks": 868,
+    "color_checks": 0,
+    "command_sha256": "6b5cee306ba4fbb21dfb771fb3301743b7a70c44aeb384a978651aa0af183f9a",
+    "commands": 3040,
+    "output_sha256": "6ed87425c8bd2ab6d1c474e55ad98458b0695493aa4d78b1865afd6cad08b8e3",
+    "presentation_rgba_sha256": "8db12f0e29351d03d99d07be5b59b2a8b9ad7b524fe5f6b5b6d67bd1973ff074",
+    "presentations": 1,
+    "rendered": true,
+    "renderer": "llvmpipe (LLVM 22.1.8, 256 bits)",
+    "result_checks": 0,
+    "surface_copies": 0,
+    "surface_copy_failures": 0,
+    "surface_stats": {
+      "copies": 434,
+      "palette_updates": 0,
+      "surfaces": 0,
+      "uploads": 868
+    },
+    "vendor": "Mesa",
+    "version": "4.6 (Core Profile) Mesa 26.2.1-arch1.1"
+  },
+  "binary_sha256": "c5fac6b5bae0ecdfebc53d8462a2922741ab1606c323de734a850f7384413207",
+  "stream_sha256": "6b5cee306ba4fbb21dfb771fb3301743b7a70c44aeb384a978651aa0af183f9a",
+  "artifacts": "working/tests/original-surface-key-replay/run-nntomiq7",
+  "sources": {
+    "tools/check-original-surface-keys.py": "542f2bc1feddd4b33ca16e3ba1cb75a2ae629de8183d27a95fe08f42edae5908",
+    "tests/test-original-surface-keys.py": "041b54eee0dcf78739045eecfa939fe561f0b03c3a722fdce1c78a1ab1a82778",
+    "renderer/blit.cpp": "e21ff91483d417a4e0bc407761c2f476c414ee39064e47e7d0397632e898753a",
+    "renderer/blit.hpp": "b348f7ad14ec06e79dfa07ec1c699388d13639cd74f65b251c79354ae33b3c27",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/commands.hpp": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+    "renderer/command_consumer.cpp": "be2ac2c2c86ec1f2e00cfaca8a5e66f574d3df4e9159b1c4a1be2c4fa377da38",
+    "renderer/command_state.hpp": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+    "renderer/commands_main.cpp": "91a5119315d2435ae3028da6393f104763f9da55c3862de56b8687bc57a3aacd",
+    "tests/fixtures/surfaces/original-rgb565-keyed-corpus.json": "3f8f6cf2e41f97af88e2359a04d59ffc0257329e55b901f3da48b67e92748e69",
+    "tests/fixtures/surfaces/original-rgb565-keyed.json.gz": "3ff187072a520bf787811b9a73a0aa02e75e88048329194d6bac52e16982dc33"
+  }
+}
