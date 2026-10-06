@@ -401,7 +401,8 @@
         "RE.surface-copy.restore-retry",
         "NR.surface-contents.validity",
         "RE.surface-driver.loss-restore",
-        "RE.surface-driver.indexed-restore"
+        "RE.surface-driver.indexed-restore",
+        "RE.surface-reload.cursor-sentinel"
       ],
       "original": [
         {
@@ -430,9 +431,10 @@
       "original_fixture_ids": [
         "original-retry-corpus.json",
         "surface-driver-restore-corpus.json",
-        "surface-palette-restore.json.gz"
+        "surface-palette-restore.json.gz",
+        "original-sentinel-corpus.json"
       ],
-      "remaining_gap": "Original scripted scheduling and native conservative validity remain independently validated. Indexed8 real Wine API capture adds GetPalette loss refusal, post-Restore identity/entry retention, shared palette updates and explicit index reload/rebind;8233 rows verified offline. Nine native API compositions pass45 guards/18 index checks/864 input-derived RGB pixels. Original asset/sentinel reloaders, actual-lost-draw wrapper composition, independently captured driver RGB, palette flags/detach/release, clippers/flip chains, Windows driver and live/wire recovery remain pending."
+      "remaining_gap": "Original scheduling/native validity and real Wine indexed metadata remain independently validated.1698 unchanged original x86 sentinel/bitmap loader/wrapper captures match20060 scripted CRT/COM/GDI endpoint events offline. -1 selects the fixed global cursor and ignores nested loader failure; submitted DIB buffers are captured, not GDI output pixels. Native global cursor routing/BMP conversion, other callback bodies, second-allocation/malformed inputs, real GDI and lost-draw wrapper composition, Windows/live/wire recovery remain pending."
     },
     {
       "id": "SURF.lifetime_updates",

@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "success": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "tests/surface-sentinel-reference.py": "edfe88e1729bbe560423b49800b275271564f1514469755699228ff01b301af1",
+    "tools/capture-original-surface-sentinel.py": "e493ec65a2e7abced07f554c92e5723fe03ccf19e330f32113ff4ef41f2abc7d",
+    "tests/surface-sentinel-requirements.txt": "eed0daa605a2bb7918221c25d2578d621722db198c0d292d5e83bfde9975215c",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b"
+  },
+  "cases": 1698,
+  "assets": 12,
+  "installed_cursor_sha256": "009ea05c7fded93d8a2a10b34ad23ba34013a4a21839fb291d3630c70f6131c2",
+  "unchanged_ranges": {
+    "0x486950": {
+      "end": 4745568,
+      "sha256": "9d20fb9737545d0eeb198c79dc5d325beabd6d570a4058d3f1e7f4a887df0403"
+    },
+    "0x486960": {
+      "end": 4745617,
+      "sha256": "99252ad26ac48d7d4945505eb62260907b00c7416bd7028ae985766c84ae54f4"
+    },
+    "0x486a80": {
+      "end": 4745941,
+      "sha256": "34fb693005ceb1fa7943e61e67434130f4205b184032c64ace71b3743ad1c154"
+    },
+    "0x486ae0": {
+      "end": 4746364,
+      "sha256": "380648391580addc4ce2f679ff313a15bb8e173819a5ae7e5a48e98415c36689"
+    },
+    "0x4a2f90": {
+      "end": 4861858,
+      "sha256": "d2a517b3323a69a43d17e48dfb6319b44285bbf3ce3f5d4864926ccb16547362"
+    },
+    "0x58d1a0": {
+      "end": 5820984,
+      "sha256": "9e5a2101f6eb654c8bf3d7cf292399b9c2bc5d363a00406c89e7d1f083f0083f"
+    },
+    "0x58bac0": {
+      "end": 5815175,
+      "sha256": "44414a7948810076d73946ee0ded85006d3f68dccf53eb644dd6bde66716d45e"
+    },
+    "0x58bc10": {
+      "end": 5815560,
+      "sha256": "c9f0d9ce0985146a837ce60e8a8cfe8fe555380901bc6b78872a9ffed60e0def"
+    },
+    "0x58c4a0": {
+      "end": 5818528,
+      "sha256": "1e005e9e97d867ed3681afe9972abd1c08e6ed5f8a78ea7772bb9371884ea556"
+    },
+    "0x58c8a0": {
+      "end": 5819024,
+      "sha256": "392e247c8fcb0ed936a68b25073f2a2e34a091b54de247a35a14270e2a741458"
+    }
+  },
+  "executed_entries": [
+    4745552,
+    4745568,
+    4745856,
+    4745952,
+    4861840,
+    5814976,
+    5815312,
+    5817504,
+    5818528,
+    5820832
+  ],
+  "instruction_budget_refused": true,
+  "emulator": "Unicorn2.1.4",
+  "original_instruction_bytes_patched": false,
+  "wine_executed": false,
+  "real_driver_executed": false,
+  "scope": "Unchanged pinned x86 sentinel/bitmap parser/DC loader and four recovery wrappers in Unicorn2.1.4; scripted CRT file/allocation, COM, GetDC (always writes fixture HDC even on failure), GDI and error-report endpoints. Exact ordered calls and submitted DIB buffer hashes; no original CRT/driver/GDI rasterization, native asset reload or live equivalence.",
+  "artifacts": "working/tests/surface-sentinel/run-pjnfc0x8",
+  "original_manifest_verified_before_after": true
+}

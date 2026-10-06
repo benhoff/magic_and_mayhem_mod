@@ -1,0 +1,31 @@
+{
+  "cases": 1698,
+  "assets": 12,
+  "matched": 1698,
+  "events": 20060,
+  "executed_entries": [
+    4745552,
+    4745568,
+    4745856,
+    4745952,
+    4861840,
+    5814976,
+    5815312,
+    5817504,
+    5818528,
+    5820832
+  ],
+  "schema": 1,
+  "success": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "tools/check-original-surface-sentinel.py": "6021b11bd95cc14ba957e2b86f4558c07060aa8fb73e320c23b9720008aa1082",
+    "tests/test-original-surface-sentinel.py": "003bd098dc2040d0eb4b836f9f3aa22bd111aea2a5e33d7aa03b0ac9bf861849",
+    "tests/surface-sentinel-reference.py": "edfe88e1729bbe560423b49800b275271564f1514469755699228ff01b301af1",
+    "tools/capture-original-surface-sentinel.py": "e493ec65a2e7abced07f554c92e5723fe03ccf19e330f32113ff4ef41f2abc7d",
+    "tests/surface-sentinel-requirements.txt": "eed0daa605a2bb7918221c25d2578d621722db198c0d292d5e83bfde9975215c",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52"
+  },
+  "scope": "Input-derived offline BMP/CRT endpoint and four-wrapper ordering comparison against retained unchanged original x86 captures. DIB submitted buffers only; no real GDI rasterization, original CRT, native asset reload or live equivalence."
+}

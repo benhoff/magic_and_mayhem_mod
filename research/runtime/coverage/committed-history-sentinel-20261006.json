@@ -1,0 +1,951 @@
+{
+  "schema": 1,
+  "base": "89ab1db",
+  "head": "de55918ca4bf3f172812b9c34fed83eb68936cd4",
+  "scope": "Exact committed file and behavior receipts; retrospective accounting does not assert a past gate pass or fresh execution.",
+  "commits": [
+    {
+      "commit": "694f29da4ffab6a2630a8ccd76a64fa36ff60aa7",
+      "parent": "89ab1db9f48b4662601f10bccf9562623fac1b4e",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "40ca7581da7ae4d194c57e66ad5bd0db7e3cd18ddcdf6c45397387e0198f83f3",
+          "after_sha256": "7f65a88fe2a6a09f6fe95c02895c7ebf8ae44ba768343aa269396ed013794438",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "5686b4c01f57332b28195ba641239e7e1b02b5ab2db51f2300769fea4de5bc83",
+          "after_sha256": "c66a601023ce6109a0364d19fc8139d9e6a50e1a731344b4c05e9eeafb114f9d",
+          "receipts": [
+            "append-only journal self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-palette-restore-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "8aed4578a762deb0a6e136a68dcabcc8c247e3cb2ada71472dfba56683516e8a",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "26d2b3cd8a025c7d65143819371c94e90ccea9fd377d9cf68febdccd6486ba0f",
+          "after_sha256": "c4e0c253932d39539ff1b7afc762b076439d80cef2019c294a9c8a135a58793b",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-palette-restore-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "ab6b9354d8a4000d986557aff86c90b49e95ac88182705697eb6ba2671e4c6c0",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-palette-restore-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "05dc83e3a341cd5b40105e46408185f28214533c7a92a500fb15ce0295d6e0f8",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "7f2857d58fcef2ca030ddba786fa26ae7fd0b41051cf5f436169a1fa4026bb69",
+          "after_sha256": "e79c5c3c5d768c5994bfdcf5cd26d48469454ef9a8d0054f11a0fd901ac1a756",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-driver-restore.md",
+          "before_sha256": "e489f54bc7cb88d93cbb71d01d621f4daf1059a32802f33b0b050e48affa8446",
+          "after_sha256": "9d628fa7023d3ecb18c3aa589aaa0ede5da41044cc6508dd4e6fe75cd99c00d8",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-palette-restore-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "c4a71a0033b934217905484473234161b0b9c82aa078d7effbea7a597154202b",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-palette-restore-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "4e0b2ba9421dedd2c01b52ff728364381d87fae3a4ffe5ef61c117dd59ed793f",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-palette-restore-offline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "827d46d2ab1f8f77b109672cc8bb0b13f1247c6d2092661cd0d205012ea71a5d",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-palette-restore.md",
+          "before_sha256": null,
+          "after_sha256": "909e93023bfe8e2e8993e8b9b3cb40ec58ae60a88d485a90c5154e3dea509ce0",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-palette-restore.json.gz",
+          "before_sha256": null,
+          "after_sha256": "9e6d00cb9c360702cd00b9cc43930985887131bfe741bf87c262b88d537fa52b",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-palette-restore-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "2aa3fe0f6b5415645ed60c5dcff79e76825d4004b56062df4b25cf08bf07d064",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-palette-restore-reference.c",
+          "before_sha256": null,
+          "after_sha256": "3b9c55ff7856bde2d3313df6f0b62343ba367395238f45bf156479292727ff12",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-surface-palette-restore.py",
+          "before_sha256": null,
+          "after_sha256": "07b7e7a85ac22b1febc937420f49e012575ae364d0e2224bc35c387ea51cc41f",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-surface-palette-restore.py",
+          "before_sha256": null,
+          "after_sha256": "611e2925d01c632a21705100d3f99003b0105cf1a7042279839a42fd97540b12",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-native-palette-restore.py",
+          "before_sha256": null,
+          "after_sha256": "758b1e76e6a8ebbda3d65b6b72ae1bbae25f274dc063d1b754e277b800e77eab",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-surface-palette-restore.py",
+          "before_sha256": null,
+          "after_sha256": "40b525e732be91b5a27cc28214968f0149c67fd40418752da0ea03901e7b4ab8",
+          "receipts": [
+            "indexed-palette-restore-20261006",
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.surface-contents.validity",
+          "before_sha256": "f54c81534c58718dd31bd8ab955e035cd9e71d47b115504b320de0814934cba5",
+          "after_sha256": "7d8399516afbc09f67d4e07c607469471391428072e05ae98012bd4104330ec7",
+          "receipts": [
+            "indexed-palette-restore-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "ab00cf42f48b8dc2dd0511b7e7b2636d37fc6bd5f8b82fbdc3caaf722cd58e98",
+          "after_sha256": "c0c703f76baa52323ea795adc93db19f64b4a36636c8001508a9f2d382afaf98",
+          "receipts": [
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "3aeb18eea2f72ba70da1f9b9972430bb2f008500323e2a6d4eca4d6712b589fb",
+          "after_sha256": "0006e896ec5542877012e1d4026be8addf36f9260703781d8d98fc7b3da1e3b5",
+          "receipts": [
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "b2ca608c403e2ed7399d358170c1233a13431087c1b821a4e3e55f433758ae84",
+          "after_sha256": "e580c89f6c5db8368b068c51f82a6b9e42061e7659085dcff2e8123d2bff2f81",
+          "receipts": [
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "84e61d46db856ba2b5a87ddc1b6bfe3d505b36e8e8bc527d2bb346b014467b63",
+          "after_sha256": "2b9840436b3ba6272507caffdc4bbede776463fcd6dce6db077bbbc2405d4814",
+          "receipts": [
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.restore-retry",
+          "before_sha256": "a5b0e60ebc15d90d4378583bee4638a56efbc7cbed1b16dc9b8e8c3b7f967c08",
+          "after_sha256": "22ecce13d033592200df5795ac863b9bb49eb4f01255b5c654a6e3ef89a68b66",
+          "receipts": [
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "d5f25f7b9244723bee578ce0bcf5017d84b6c80a23adcc6a36f6aaab3e4f4cb7",
+          "after_sha256": "1a568c8c33aa2972fe9dea5502d938bf58e343e9e9e03c64b96a38c565c49ac0",
+          "receipts": [
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "a1e0ca632582740d5c40f103086fdcba2571161c5ad118045dfa13f73e183acf",
+          "after_sha256": "c5cf4f0d0ea25c5e5f0485456346ff02ed72eb07dcbb3a3ab00ba27904a065d5",
+          "receipts": [
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "51f102e0344bd28fa8fb850bd981653e73dedacf0eb41c183d93176d66541cf5",
+          "after_sha256": "29a2281b2158d0e6e8f93fef08cd58779d3a14a7ae20b7920a3102f7636b3f98",
+          "receipts": [
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.indexed-restore",
+          "before_sha256": null,
+          "after_sha256": "738322e5d880bb4e36d81cec7a832a3b503b150c80822d3b8814d37bb7f11a8f",
+          "receipts": [
+            "indexed-palette-restore-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.loss-restore",
+          "before_sha256": "d06b4d37434c5dd071dd07e3a9c72d4d3bc5d807c11a9a171891262c6eb99324",
+          "after_sha256": "cf323a1e26afe4dd79c19d7f44502db2afa39502792645ef7b15881921c7722b",
+          "receipts": [
+            "indexed-palette-restore-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "dc07742a19de1bb837df816c54d58bac756f7cdfa5d8451651a7ac42bb19b3c6",
+          "after_sha256": "8ea2e1c1493b15702d89de1a309f0e6db1fefa8f42af28ef27f9f82d41bc9556",
+          "receipts": [
+            "indexed-palette-restore-shared-pending-20261006"
+          ]
+        }
+      ],
+      "unresolved_exact_receipts": []
+    },
+    {
+      "commit": "4c01686cd3c83804e3077eab1263001355c81895",
+      "parent": "694f29da4ffab6a2630a8ccd76a64fa36ff60aa7",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "7f65a88fe2a6a09f6fe95c02895c7ebf8ae44ba768343aa269396ed013794438",
+          "after_sha256": "3bec3cb4b9c0be5bfe3c60fa844c60a8e3e592226164156c6e7cbe8c07b0ea48",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "c66a601023ce6109a0364d19fc8139d9e6a50e1a731344b4c05e9eeafb114f9d",
+          "after_sha256": "f72298e4926fe67f702030bf6a4928f4082fe8b210737169db5f00475a7032fb",
+          "receipts": [
+            "append-only journal self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-copy-order-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "29b7d9cbc29df395f7a7f30ce47f81746b72db15a632907f810fc3a5b1219b73",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "c4e0c253932d39539ff1b7afc762b076439d80cef2019c294a9c8a135a58793b",
+          "after_sha256": "ed9764bdfeac3a86b8104b419eba7ff59326adff30dc660ce9b827a94dc90933",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-copy-order-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "19ba1f863a92150dd283cc1f0c569f4bff2b9ce2fde32ef7c298d9aacc466a74",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-copy-order-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "f8790de964682dfa22ce305ccd80a8e4b6d64262df17ea8bf97f9fb532a7fd63",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-copy-order-live-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "a54453834ffa17244b9378a5bc494f884d58c3129ea615ff24dca5de1f1ed2a7",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-copy-order-live-refusal-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "dd5435d23da9c567b0b6fd83f438b9e25c5a7b6bb24737111608d1df8b4c7c14",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-copy-order-live-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "a0fe0f45da134e83748cd6dc4738a2239554e7acf2fc231eacc5cd674b1d8276",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-copy-order-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "e8772b5fa27977246615ba405c965dac1c6b123c4493ff41def24d856c773016",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-copy-order-native-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "aa562ef2e7b0094975637c1b6063ba5fe69348383e5145d471629306c9b7e852",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-copy-order.md",
+          "before_sha256": null,
+          "after_sha256": "cb1a2f0bd7f69efe62c9d2daf97b35ba035d005b5983c122893e8dbfcf0770f8",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/bridge.c",
+          "before_sha256": "77e4bd93a49238f915eb2e05cd36799758ebbfa9e85f6b53adab95cce038a136",
+          "after_sha256": "91f1ef9e5877778d8065257fdedc68e227855e06a1243c8b9c76b9e97ae3f41d",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/copy_order.h",
+          "before_sha256": null,
+          "after_sha256": "8ad9c8737d31fab7409fb4a2afb46e44aa34ed4224764fd901bb09b9c7735463",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/lock_lifecycle.h",
+          "before_sha256": "8a97eee31234a891933988eb446f856600a1562e75c747fa7f485a765cf176db",
+          "after_sha256": "0b8cde294ee5c279c4f5a43a1140d8d70aa932fe27fc63168be8276f0251a768",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/mutation_selftest.h",
+          "before_sha256": "af0b9c515ef0244627008ff313a1d529e431862b6f6093bd25fbf098952d9bb1",
+          "after_sha256": "aa7b8de3b0fdee52a77e38ce8b4ddb59f51730f1e4a5b47972f58b429701f053",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-routes.py",
+          "before_sha256": "8089ab6a2c365acec9637d67a39e34c09aae7267daff85ec203e81aaa6aa0f8b",
+          "after_sha256": "9443b086d162108f30aa4542a8493624f7576ca13075705040b67d9ba4333644",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-mutations.py",
+          "before_sha256": "ed726ba1abbb50054372f25a3d8e697e59d019ba5422e13e55bb3f45f00f282f",
+          "after_sha256": "37028f4d82a782c17de7e47156c2300eefd24b3bccebc80329006213aaba8b4b",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006",
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.bounded-copy-order",
+          "before_sha256": null,
+          "after_sha256": "9db4434e313a5e78f04b52364ec60ac1320ef3b6a7f19f64bb957df9bfa67494",
+          "receipts": [
+            "copy-order-scoped-native-execution-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "56f4bd0a46fbfbfd052a98d64ce6dbb24b560202930ff3e940fee226cdb25e03",
+          "after_sha256": "e89376fb4ef02a80fc5b90c6597b22e6939e8e055fcde205e4cc3d20739f33a8",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "92d31f175c43a7400da63092ca9d03c1d87ca9f27dea1a16cd362e6bb78788b9",
+          "after_sha256": "34fa65571789efce827f27ecf81cf1af649b4e59b86312ae5a4f1c00a5b25f1b",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-idle-lifecycle",
+          "before_sha256": "d149e9c1371024e1a19c879aa4e2a6d34736fbac84cc48abfe24fb48607ca1fd",
+          "after_sha256": "82036ce46f7a5be9e171be4575cd359ef6fc2308c04ed22f8a272f7a616e3bb9",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "f602f2c9f88aafb6f541532c7271e1875493f251cdfbba6a0a9925539bd97205",
+          "after_sha256": "0963a645b75a72af9b51f26383534850962ada7fa6961771a480184fdedc7a53",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "505d2c90172bf76deb0580d863247c60be7751dae03dc802133a1fc06d623623",
+          "after_sha256": "311a65b4b3cb434efcc0c3281b8edfd71cf24296bc5810225a13e428b4b7830b",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring-adapter",
+          "before_sha256": "5882347a602f106ce65423485b20fbb8a0e01f8ad6c2e6053af99c954836db2c",
+          "after_sha256": "aa8cde5e416eddda8ac32c722a6becd9ebaad4a445fddee8d323f54cb64c50bb",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "765fa9bbf3830cf79ac0bcec171d313152db731677e286ae8b78136dfedbb374",
+          "after_sha256": "388e5be6b8379fd8e3bb711742f6a1232e999f28c290f47db8eac961f87f29b6",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "20f4b31c77beac8bf0c59805b81e3a056c1189ddf2c6e0f6d3c73f3e838fa4bd",
+          "after_sha256": "b8685f055e8c9417624ef336f340b41f977b004a10b4dce84a7687d45681c610",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "a40cff4e085d6f45fc17decd1283476a7012f57a28b99491789d06c0e1205180",
+          "after_sha256": "68358929ba4c5aacae99b1f5aa63ad70e96203ab0b3bf3a8635f06a96066e67e",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-working-set",
+          "before_sha256": "968a677cc1f13d155f29ce0fea43467566bf82a7b0cf95c27e6268c20203a5c4",
+          "after_sha256": "ed4f3cf36bf069c135b4dd51d76211e1f8c7b77a0541c5ea43c34f337813111f",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "4301537767ccdf604c64fbc847dbfc02bde02e272af517aa0257e6dadc78f486",
+          "after_sha256": "10d79c6d952f9f6e283844d5e0eb93ee63100acf72dc2767ec121d9d2b966389",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.observed-metadata-idempotence",
+          "before_sha256": "4fe83fd593fcbcdd6b303a2ac9ec70bd0a0b91b6b28874911108dbd8fd3a6a04",
+          "after_sha256": "6390118ebabea3ca56ee5c26e7c4ff7bbe799d2d2b42fe9fc998a4e5ee123efe",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": "eeb7d80c6401689dd6ce0944366e71bf3ca35206505f6357d40754ea88add7b4",
+          "after_sha256": "267cdfc42af206f7426005ca0c2fa50dbc5368cda678243bb59ebf228f48b04b",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-unlock-packed",
+          "before_sha256": "c2058ad92a2dc4fd908248b374b73bcdfa338ab79b948a3ac8561ce4a8f0d55b",
+          "after_sha256": "ed7c0eea5b8ac6d6e3cc8dd5894fbeab92737eeea61126dd60b575cac21cd671",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "aa0abaf58e4b457082eda849ca62db98b79de36810434cf7fde0dbef599ec7ac",
+          "after_sha256": "8351ef257f438b2176c6c843250078c827dded6ef346bf458ed845fc5a3eb6df",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "3118f20b98f349172fe4a23183fc9702dd9324bee09a32f32b85a1e6cb049afc",
+          "after_sha256": "77a02f0adb667c8efc4bbec74088f0e084d447ba2efd2da110b44469e090ee27",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.copies",
+          "before_sha256": "196e35c2d345ea7b0270c9642cb88a024bb3b2d2b8d910ff387f213051e65ef5",
+          "after_sha256": "f5b1cb8b5f9ac10d0c22f31f9c0bec68b838edf85e97847c41d1ab95fba956ef",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.movies",
+          "before_sha256": "938af48095b0efe498ac6439e358452c9eded4feb8fe081810eaa7b457755b3b",
+          "after_sha256": "b50559bc76cfae4d87863c9778d382afa8d4ee9df9eeaf80d93cb380e4b21856",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.ui",
+          "before_sha256": "e294f4ed94a1b22ce9399dfc30886364a4c5571470a4d270d70b303df82933f2",
+          "after_sha256": "6a7626b515ca03c1472a5a8cfdf334d8a26220180bc27e6c7e80f1a8fd99cc99",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "ecaa8aac187a7b6685cf191af0e1ca8c3c19b7f5dc3966228fd376822d72360d",
+          "after_sha256": "95f62f33fef35a716fbea75efe1012689a8eb12377b1ee45ad269fb480180cd9",
+          "receipts": [
+            "copy-order-shared-contracts-pending-20261006"
+          ]
+        }
+      ],
+      "unresolved_exact_receipts": []
+    },
+    {
+      "commit": "de55918ca4bf3f172812b9c34fed83eb68936cd4",
+      "parent": "4c01686cd3c83804e3077eab1263001355c81895",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "3bec3cb4b9c0be5bfe3c60fa844c60a8e3e592226164156c6e7cbe8c07b0ea48",
+          "after_sha256": "a16ce7fe0210e609d0cb406f08994604afcddda071c6ba6c460959f91e20c818",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "f72298e4926fe67f702030bf6a4928f4082fe8b210737169db5f00475a7032fb",
+          "after_sha256": "c3d06e38541a3196828cb88a1e3e1d8db969bc35681fd82f9476e701611f3dc8",
+          "receipts": [
+            "append-only journal self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-tracker-order-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "99d005096f7b6c9285534f26f781bba052419bd22c44f98d25ff98061e1de5d6",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "ed9764bdfeac3a86b8104b419eba7ff59326adff30dc660ce9b827a94dc90933",
+          "after_sha256": "4d7f65a2d84d389f3244a282c1fd3a57883ca6c4ad0113297d05a7101ea765be",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-cpu-handoff-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "1f4d51b6a7fd757865864802773f4f64523a79d0d8959534bee46d119a140d5a",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-cpu-handoff-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "64c5d67eb290aff2c15ed1c7ea2409ce01d9957ad89f8dfe73715c0dd2a01cc0",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-cpu-handoff-live-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "f7322588dc2876140402e3c0d7e211f10d254a15836e65856d33394eb1434b53",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-cpu-handoff-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "1c7a1d76ef040ff998d46b882fdf0b64e8e094aefcdc983d2bbeb14813b29981",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-cpu-handoff-order.md",
+          "before_sha256": null,
+          "after_sha256": "30a6562c1d78a536b41cea1aaa192877141e7f05e6a765bf332dfefe68274cae",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-tracker-holds-observation-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "cf041b7ced65f75c459c918e8940b04955fa6f6affe9075c5b4e8ea890c3f588",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/bridge.c",
+          "before_sha256": "91f1ef9e5877778d8065257fdedc68e227855e06a1243c8b9c76b9e97ae3f41d",
+          "after_sha256": "1622e97e14bf20fef287c0ff0f3c0632838a8aca1ac291983e0e82ec79131a01",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/lock_lifecycle.h",
+          "before_sha256": "0b8cde294ee5c279c4f5a43a1140d8d70aa932fe27fc63168be8276f0251a768",
+          "after_sha256": "0964b68c6d05942212c107a12abea61088e6397104122c9543757a63c67e3214",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/lock_surfaces.h",
+          "before_sha256": "1237388ac28dbcf96c84b07b0f42b7d5598b09f90b0d982173257cfbdc7ae5b3",
+          "after_sha256": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/mutation_selftest.h",
+          "before_sha256": "aa7b8de3b0fdee52a77e38ce8b4ddb59f51730f1e4a5b47972f58b429701f053",
+          "after_sha256": "2f0ec5e1be4d4edc49f5200ef75380109055f92ca8233d14e1a70229df569fba",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-routes.py",
+          "before_sha256": "9443b086d162108f30aa4542a8493624f7576ca13075705040b67d9ba4333644",
+          "after_sha256": "3e4a89dba51a3b080a49dc788b4492053882c47f6da205b13d6f8096a2f8740e",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-mutations.py",
+          "before_sha256": "37028f4d82a782c17de7e47156c2300eefd24b3bccebc80329006213aaba8b4b",
+          "after_sha256": "468c2a24bf5c40cdc9b6f0a700aeadd2e0906362489bd6ca96c843d6ddc7e762",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006",
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.bounded-copy-order",
+          "before_sha256": "9db4434e313a5e78f04b52364ec60ac1320ef3b6a7f19f64bb957df9bfa67494",
+          "after_sha256": "84bceffbe8a166eb21b6f33f154190a9c665f341f518799e8f36ea9c48401fd2",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "e89376fb4ef02a80fc5b90c6597b22e6939e8e055fcde205e4cc3d20739f33a8",
+          "after_sha256": "27652d7c59850d544b7cd680baba38f7b6bf7e867ec35ddae8cc19f74b4db89d",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "34fa65571789efce827f27ecf81cf1af649b4e59b86312ae5a4f1c00a5b25f1b",
+          "after_sha256": "32dd88def8dad278a4f841d301da607a22ac76c3300e93988f3cab15d4adbe9b",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-idle-lifecycle",
+          "before_sha256": "82036ce46f7a5be9e171be4575cd359ef6fc2308c04ed22f8a272f7a616e3bb9",
+          "after_sha256": "c4eb88dab00fcd387a48818e9c897527ed144c252e25d182b4be1aef77ed9d29",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "0963a645b75a72af9b51f26383534850962ada7fa6961771a480184fdedc7a53",
+          "after_sha256": "53f131d6f212102293053d65c2092e944889c931063c4f47b17e63bcd141d3d5",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "311a65b4b3cb434efcc0c3281b8edfd71cf24296bc5810225a13e428b4b7830b",
+          "after_sha256": "7aabc0738f7722890c973a447eb91952bf689af0c741d14d375752a03631ce02",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring-adapter",
+          "before_sha256": "aa8cde5e416eddda8ac32c722a6becd9ebaad4a445fddee8d323f54cb64c50bb",
+          "after_sha256": "b621823081b27990679c9d8b31565a48b6c8afef14f0df01e2ad15005429615a",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "388e5be6b8379fd8e3bb711742f6a1232e999f28c290f47db8eac961f87f29b6",
+          "after_sha256": "75558b6ba97c96243f91a079f047ef4c43aa62f502af9a8e2580b81ba0097fec",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "b8685f055e8c9417624ef336f340b41f977b004a10b4dce84a7687d45681c610",
+          "after_sha256": "b0cc6f2f5ac0db97dab8ba02f5fc07ae4c0ca682641b6fc3469699de879e1031",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "68358929ba4c5aacae99b1f5aa63ad70e96203ab0b3bf3a8635f06a96066e67e",
+          "after_sha256": "9121837b7475a8f0273ce8cff9a0e9bd6d1273fa274ddf72c3bdee781ad8108d",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-working-set",
+          "before_sha256": "ed4f3cf36bf069c135b4dd51d76211e1f8c7b77a0541c5ea43c34f337813111f",
+          "after_sha256": "c310fe286b6cf7d989ebc679099b6b15930e0de39995ab1172ba8a019d61d6e6",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.cpu-handoff-order",
+          "before_sha256": null,
+          "after_sha256": "68051b706f6a5bbdda81befb1a43ac20fdf10cb4681525ea38356f62f42f7120",
+          "receipts": [
+            "cpu-handoff-scoped-execution-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "10d79c6d952f9f6e283844d5e0eb93ee63100acf72dc2767ec121d9d2b966389",
+          "after_sha256": "60a406e35bb7f00238e9184f4fd80140edb80faaac6a4fe8d48c1d9d2ecd7dfa",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.observed-metadata-idempotence",
+          "before_sha256": "6390118ebabea3ca56ee5c26e7c4ff7bbe799d2d2b42fe9fc998a4e5ee123efe",
+          "after_sha256": "637a7ad614bb8a522546737fe3743a07c742a2e2e56c52848f5b2a00110614b0",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-dc",
+          "before_sha256": "7309ca598fd11d95ab91b2e7a71b53da473bd5cae3296f9bbf76d444651a22ea",
+          "after_sha256": "0795f50bfbb176a3f3bfd63d3784a85a0e43f45f553a9ca99af054be07e243f9",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": "267cdfc42af206f7426005ca0c2fa50dbc5368cda678243bb59ebf228f48b04b",
+          "after_sha256": "9121254c206e8be7512989dfa8ba84361cf3ed7f14559309223a0d704dca63f1",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-unlock-packed",
+          "before_sha256": "ed7c0eea5b8ac6d6e3cc8dd5894fbeab92737eeea61126dd60b575cac21cd671",
+          "after_sha256": "5dee9e0755b29d1cd5c944c8b49c04c38b193690b1982488caa8cbbb220acd22",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "8351ef257f438b2176c6c843250078c827dded6ef346bf458ed845fc5a3eb6df",
+          "after_sha256": "479ad5c4ce656af834585c866428f39683a8bc2c61cbb03501b69c59076dd1fb",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "77a02f0adb667c8efc4bbec74088f0e084d447ba2efd2da110b44469e090ee27",
+          "after_sha256": "7fa373ee95d515655c64db8bc0772691aac2b16dbd03b9949a6ab6caab939a87",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.movies",
+          "before_sha256": "b50559bc76cfae4d87863c9778d382afa8d4ee9df9eeaf80d93cb380e4b21856",
+          "after_sha256": "480f926c5019cb43e9abb7f9727c2d41559bea4a0017419b8efbfb21cffd5b43",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.ui",
+          "before_sha256": "6a7626b515ca03c1472a5a8cfdf334d8a26220180bc27e6c7e80f1a8fd99cc99",
+          "after_sha256": "965c8328515f572e3c60aeff9d10245f2503cad51e659499ecac639d5c9faf43",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "95f62f33fef35a716fbea75efe1012689a8eb12377b1ee45ad269fb480180cd9",
+          "after_sha256": "b295bbb5d7e996075d517a6789da59eeb90efd7c257e9f170ca36a7afd527a6a",
+          "receipts": [
+            "cpu-handoff-shared-contracts-pending-20261006"
+          ]
+        }
+      ],
+      "unresolved_exact_receipts": []
+    }
+  ],
+  "unresolved_gaps": [],
+  "retrospective_receipts": []
+}
