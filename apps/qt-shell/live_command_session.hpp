@@ -8,6 +8,8 @@ public:
     explicit LiveCommandSession(GlViewport& viewport):viewport_(viewport){}
     ~LiveCommandSession();
     bool create(const QString& path,quint32 session,quint32 version=1);
+    // Discard any backlog and attach through a strict complete owned checkpoint.
+    bool attachCheckpoint();
     bool poll();
     bool finishProducer();
     void abort();
@@ -21,7 +23,7 @@ public:
 private:
     bool fresh(const QString& path,quint32 session);
     bool fail(const QString& message);
-    bool recover();
+    bool recover(bool checkpoint=false);
     void change(State state);
     GlViewport& viewport_;std::unique_ptr<LiveCommandRenderer> renderer_;RenderControl control_;
     QString path_,error_;quint32 session_=0,version_=0;unsigned retries_=0;

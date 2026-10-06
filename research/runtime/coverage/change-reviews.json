@@ -25663,6 +25663,281 @@
           "NR.palette-resources.gpu"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "eeec5ba1360ae87ccd523917af05b6fd62142ae0721feef4c56c498ce15a1b4c",
+          "before_sha256": "a2f8caad45ec1b34ea690a7539cca63987b700e62056efc9a889fc078daeed88",
+          "id": "NR.command-backpressure"
+        },
+        {
+          "after_sha256": "7fc7b0674b4aecc91572d1285981bb17e4fc2609e7b869dfde164d1317597964",
+          "before_sha256": null,
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "0a71b9cba2aae905455c1956c2f74d8c08ffa4513e2c9aff68a9acaa41f2e0df",
+          "before_sha256": "fdefbcc264dc1655db78c11c9143ed7c81cc8f735439416cee2f0493e10bf9e7",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "adf64c81a2671b06e19a3095ecc38c4761d3df3ccfa38aa160691ec9ff483ea5",
+          "before_sha256": "116f6bbe79f89b718d717485a486107d090a25e28911dd635606e10eac34c13c",
+          "id": "NR.command-idle-lifecycle"
+        },
+        {
+          "after_sha256": "0b9e09f9f4348f530dc11fb0b9c34d2b797df059aa3253e504cbb024f69a77c7",
+          "before_sha256": "43738ff9cb6c75440626b00a2b64b0e193922c6086b3454a667ede450e43bc5d",
+          "id": "NR.command-orchestration"
+        },
+        {
+          "after_sha256": "b90515f0cd6841da942713ce282948f1481719de4ad6de126875e1f370d16255",
+          "before_sha256": "db848797e6adea3d5710dbd3476d567fe76ec739eb028020a86ad603a428c72d",
+          "id": "NR.command-recovery"
+        },
+        {
+          "after_sha256": "bfd9ea55b69492a66af513df101cf95862992b405e14437ac6fe218b25c7bfd3",
+          "before_sha256": "bbf15e8efb70e169411408183bc24730c8b1187f79e26f47b4594608466eb2a3",
+          "id": "NR.command-ring"
+        },
+        {
+          "after_sha256": "7e984b8e9818c573108109139975e2f56af3b72e9d6dd7f6ee7cf72b6335f6ec",
+          "before_sha256": "8e4b8a21f124b0925e524d5ecca4f636cb29fe9a3319a091bee1de36c0f95ece",
+          "id": "NR.continuous-mutations"
+        },
+        {
+          "after_sha256": "4f547b97e37200e771d4c84127fabaf10b77684ca84f4492821c4f4e6bdcc5b9",
+          "before_sha256": "d87aef4ad7a7156a78a33d5d25480291730501a351c8a369598bb6690493b3a2",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "206272c3f2ba5ea8b8c6ff194c21cbff4309f1f2dd55e5dc787f574935947176",
+          "before_sha256": "ba341794af60953d3c192ac93fa10a2184bebbd780c52a1858a71539b4ec3ff8",
+          "id": "NR.continuous-resource-lifetime"
+        },
+        {
+          "after_sha256": "bc8a327046e05538788ee1c97f5b5d0455fec928bb69f750fc85a3894ea97974",
+          "before_sha256": "06ff433336ca6c62079756f0198333b680f0ccf1537946a3d9e798f0553bc819",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "50976a8758f7c323463d42ca69666905519b5204404d9f87385c092a7790a67b",
+          "before_sha256": "c48caeba1d62d8384af6a212caba50fccaca69fa1f661619af568ade9e9f026b",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "7d230149e88bfcd999bb35a7b8e4648bc21caf2724eb23721a07e43d8d0ff40d",
+          "before_sha256": "433c7b2ecefc4f86ea25578caea7820d7b9c70f350bbecfc2fd65f98400f0e9d",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "6095bcdc0c76b0a1b21d82a4c02312d07f386f11f7f1f08b96c617ec82da7c52",
+          "before_sha256": "0550bd3a0a124fa6b926b52d17436b18ad443cb623fdb4c811d7757bc16d547e",
+          "id": "RT.render"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "58cb29456d127106830ee6de114f8f49c88e4265f4908ba4ff9aa61a9f33b40c",
+          "before_sha256": "293b71d008f11b2cad76d8aa921c7602d778dedcf4686bfb90d6f5bdd74bf8a1",
+          "path": "apps/qt-shell/live_command_session.cpp"
+        },
+        {
+          "after_sha256": "a8fbf9010e4721463215b6621a7ea7baeadf48633064c8bb8a38e5b0e5f8dfa0",
+          "before_sha256": "d184d019e990eb69370459dd76d561b1a6b6d4489ecd2952dce31e18916ca36e",
+          "path": "apps/qt-shell/live_command_session.hpp"
+        },
+        {
+          "after_sha256": "bdd72b25ca107f324faa737aa3abbd98cd566a77a3f7ecae289b73d4d5469a8b",
+          "before_sha256": "39a5faed02fffb7937783f7f082bbd56d0f09fd28a852727083d4bdbf33476fc",
+          "path": "apps/qt-shell/render_control.cpp"
+        },
+        {
+          "after_sha256": "1229d563b0e0fa27c325f4a8c1ed6698c0820ed43931a4b8b824408475c2c1e9",
+          "before_sha256": "dd7e491127b3b33099cb9104292a9338280808169e4957775323abcfb8c5cf84",
+          "path": "apps/qt-shell/render_control.hpp"
+        },
+        {
+          "after_sha256": "fd22c206fa3833255048ffc9dc2b9e32e551130c4571c88851628545c023faa1",
+          "before_sha256": "16a3adba0ee37b5f05a8342cf5b63c1790dcffce140bd5ac8ac8991360158c25",
+          "path": "protocols/CONTRACTS.md"
+        },
+        {
+          "after_sha256": "ab15450b9347c312062719bdc35f62adf6bff9f4298f88de250513a5651ffb8b",
+          "before_sha256": "62c54b1a04a5e2e217e1742adc1d260ae222738ae85412cd2754d49752c8ebb7",
+          "path": "protocols/include/mnm/render_control_v1.h"
+        },
+        {
+          "after_sha256": "170f1be0cd49c21942fa547d48bb6bf4ed6741836128d8929ed1da9600377e7d",
+          "before_sha256": "0875ccb4796f455f417480cb54929d647b287de621546ff622f7e83d1c9a8bb3",
+          "path": "protocols/python/mnm_protocols/render_control_v1.py"
+        },
+        {
+          "after_sha256": "4b045e0c914a952fd5c9389d062ff7688646dafd2abc9fa2b5d52decc81783dc",
+          "before_sha256": "29196373c00c344e0c5f9ddb523945930d6cd0a71272e084d29896d184b273c0",
+          "path": "protocols/schemas/render_control-v1.json"
+        },
+        {
+          "after_sha256": "47135cf8c3e304eb252bf1693e074412c360725924c1d64c7f1b922cdef5c5fe",
+          "before_sha256": "df14005bd43e96035fd0524b98ad202f83200a203ac9c7c345b5b23f472dcdef",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "b3ba7b39862edff17e012c552ebbe4eb4ecce663ce06dc6c9166e48975913f08",
+          "before_sha256": "206bd7674415b4581d2cf457066dc64f98675716924dc129a2fe546398d08a44",
+          "path": "research/formats/render-control-v1.md"
+        },
+        {
+          "after_sha256": "bb41fdccaf07f3b3f118fa66cdff56cef70d5e061774d6e544d4c6c9711c48d7",
+          "before_sha256": "694ad346d20cd919a6f08ad6f6b81ca4310a6f118da484ab67fdac0ca9f1fb73",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "48a8d8b8a0dcbf31be11224ca4b16d361e97bcbfc2a274feceda58ed3f1ac136",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/checkpoint-summary-20261006.md"
+        },
+        {
+          "after_sha256": "f7dbfb89be0ac1a7e90752a7a264cb478deeb1bc84d1282ac93060b88502ed63",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-checkpoint-20261006.json"
+        },
+        {
+          "after_sha256": "a0af9798dca824d7a334a9252d74d66a28cc09768f79264db2c124ef5412b6b6",
+          "before_sha256": "c2408113fac4e3f950fcf67a1bb696ad4ed1b570ac4fcbc36698508ec7e4079b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "eb682050518084e111c0f85bdc8f1c4617181330ebcffe9d25d8b8c00580bbc0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-checkpoint-20261006.json"
+        },
+        {
+          "after_sha256": "151c2b313f205099c701a0d3eae825214fc3cf12a72b8d4c1a7877d022a89238",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-checkpoint-api-regressions.json"
+        },
+        {
+          "after_sha256": "718724abf0a31d68f95b9d58e635ef2e6dab2e0ddfc1a53a9ad6eb37de29d89d",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-checkpoint-host-regressions.json"
+        },
+        {
+          "after_sha256": "be07389bcd31542a2fc1752f9efbca11cd4fc2e44eee77787bbf6baf4520e66c",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-checkpoint-pe32.json"
+        },
+        {
+          "after_sha256": "f8a6b3fe95f95e94dc8271cfa65a2d3017966e63203a8d5dc961c846ab6c17e3",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-command-checkpoint.md"
+        },
+        {
+          "after_sha256": "f1bbbc7a51ca943fff2b9662621c25eb1b734c804f30cbaa36e9ccba51eadf79",
+          "before_sha256": null,
+          "path": "runtime/render/checkpoint_selftest.h"
+        },
+        {
+          "after_sha256": "1bbe16d98dba2f78365e027b23d6eed7470e9ca5e815a08068d05a250bc459eb",
+          "before_sha256": "fd0ee80f942c9a119bf10fa6b7970b21f1612f6a995cb7685fa0bd251b41e38d",
+          "path": "runtime/render/command_control.h"
+        },
+        {
+          "after_sha256": "8d4dc5ec30925f3352de6d1c66501d0494968bbb613e0f00f889b395ac724d2b",
+          "before_sha256": "d3e17b0a49be0a2e6635be9a7ec4af4e2c99ada113187d267c7777f03d187176",
+          "path": "runtime/render/command_recovery.h"
+        },
+        {
+          "after_sha256": "2cbc36afcb620a64e5f4ffbc12ef8972e934514fbe464fc861863244a0e583bf",
+          "before_sha256": "2cbc36afcb620a64e5f4ffbc12ef8972e934514fbe464fc861863244a0e583bf",
+          "path": "runtime/render/host_recovery_selftest.h"
+        },
+        {
+          "after_sha256": "d902eb05f98c13560f264bdfda39547217ae99f07cb5a6ce3e34c3c6a0a024c7",
+          "before_sha256": "d902eb05f98c13560f264bdfda39547217ae99f07cb5a6ce3e34c3c6a0a024c7",
+          "path": "runtime/render/recovery_selftest.h"
+        },
+        {
+          "after_sha256": "868633bcbbe0c8e505300d9eace63bf59a2450e4bbf05cb3bc0fc9af040df358",
+          "before_sha256": "a1215dc3c64ad79fb95869b1f9772e5ff42bfde3f394a6fd855de9ef5751ee0e",
+          "path": "runtime/render/selftest.c"
+        },
+        {
+          "after_sha256": "6c433c99f1ed70758612e23b58e8d40ec11f4768ebad394a64d1854f518044e4",
+          "before_sha256": null,
+          "path": "tests/live-command-checkpoint-test.cpp"
+        },
+        {
+          "after_sha256": "46168e28c75d57a8139642a1b77f7f3e621dc77a3013da3e9e6ae60bf243e84a",
+          "before_sha256": "c7793c44322ceb620c661bff8cbfe21cff2b439626cdf3ab3f493abcd56950f0",
+          "path": "tests/render-control-test.cpp"
+        },
+        {
+          "after_sha256": "fbdb37f7ed35d3c5a3f93375b1889b2b6cbe191fdae53a8debdfc8b49b40e718",
+          "before_sha256": null,
+          "path": "tools/test-render-checkpoint.py"
+        },
+        {
+          "after_sha256": "8c12c65f47f1e4ded500a233c8e8598d8d335dab766f4bfb39ac8e84d8e8efe4",
+          "before_sha256": "8c12c65f47f1e4ded500a233c8e8598d8d335dab766f4bfb39ac8e84d8e8efe4",
+          "path": "tools/test-render-host-recovery.py"
+        },
+        {
+          "after_sha256": "e7e06e0c4e53e3bf7d654743f296a852eecbcde647501dbf12a6121b93822c66",
+          "before_sha256": "e7e06e0c4e53e3bf7d654743f296a852eecbcde647501dbf12a6121b93822c66",
+          "path": "tools/test-render-recovery.py"
+        }
+      ],
+      "id": "NR.command-checkpoint-attachment-accounting-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:b3d8d2c20d96af95293b56b2daeefc9d21a665e87430f91d316d9bf4f9fd499a",
+        "stale_evidence:11afe50c9c20a7446de0f38153d219499b72d6b58d32767c7a6de0c5b8319a80",
+        "stale_evidence:14969fdc8f98c0c6d3d2ae464e7fb4b6f1e9d07963b00ec6730a3af804ef9b6a",
+        "stale_evidence:22d3622d195b3d74e677bd8d23c0e1d06e2160f484d2cd19ffaa555a7d1b94ee",
+        "stale_evidence:30e9ef9a74c6734490a32a4999ed0ecd3a9a0201ac369d5f19cb363bb1f6428a",
+        "stale_evidence:43c666ade83f62a0814e322a8145c29a077b6ea6cc4bf524aecf61f84384a28c",
+        "stale_evidence:47de8e26d9a126dd94f75a8039fca1570d298ade134401be0b55a70013055b19",
+        "stale_evidence:4e36ed9cc076026fdc28bf6477ef98f5d8b4e81c7c97926cd5612231f519238f",
+        "stale_evidence:554de2ac154f0e09689da1eb5b32466b97bf7d96f3ba9293dc91373f12cd3248",
+        "stale_evidence:609645120b9acc190862ece2eca85a654b49ee7ee63b7d317ad2f1eb41afaf14",
+        "stale_evidence:68c019e8ce141b320ee0fb769d40e008fb5bd9a3500b144673da408b4ef3aad6",
+        "stale_evidence:73e7a87cf29b63c9a9d6afc0c1718b987db0ed5bbfcdb5e590880d271418d303",
+        "stale_evidence:8a33305d39dff1ad24f980efcad937edb5d488211fb25b631f3d8a24c96aa276",
+        "stale_evidence:9a9dea7a2da592403977285b60d12aa6ab5fa2f470dfc3b3707a2d3bceab89e7",
+        "stale_evidence:b21d1de90d194559ff6bfd9190a63aa92dce503d86f07f19147696827ea49982",
+        "stale_evidence:dad6da4a736ecdb1c13673c73e42b31c108f38997c35b2ee3462182951e31c1f",
+        "stale_evidence:e80f4dcaea63df38327af873b517cd3ed31e95bb2fab5901be26aac8acfd02e3",
+        "stale_evidence:f5e02feaa3282317e63042031cf746502752eadaf28e3dd312973eaea2b544c4"
+      ],
+      "reason": "Reviewed additive CHECKPOINT operation in the versioned administrative envelope, immutable operation/path/session revalidation, exclusive callback/observed lease gating, old worker shutdown/join and strict complete authoritative state admission without synchronizing uncertainty away. Reviewed finite surface/pixel/palette/serialization budgets, source epoch/alias/pixel-miss guards, complete create/color/bind/PRESENT publication before readiness, preserved CPU pixels/metadata/lifetime generations versus always-fresh wire namespace, original RECOVER compatibility and actual worker-join storage ownership on failed startup. Reviewed Qt semantic attachment API, unread initial backlog, clearing/destruction and matching READY before polling/PRESENT before activation. New synthetic tests preserve original HRESULT/LastError/counts and compare all native pixels after mixed incremental drawing; fixed registers, census, evidence, ledger and summary reflect those precise scopes. Separately verified 4428c27..ade3e60 exact committed file and behavior receipts and append-only history.",
+      "validation": {
+        "evidence": [],
+        "reason": "Scoped new native checkpoint policy is recorded below. Shared-source historical original/live and older synthetic evidence retain fingerprints and statuses; all newly stale evidence and comparison gaps remain explicitly pending. Actual-game/driver checkpoints, external host takeover, 16/24-bit and legacy-profile checkpoint fixtures, callback collision during checkpoint serialization and allocation/worker/map fault injection are pending. No original comparison or live replacement promoted.",
+        "status": "pending"
+      }
+    },
+    {
+      "id": "NR.command-checkpoint-attachment-recorded-validation-20261006",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "7fc7b0674b4aecc91572d1285981bb17e4fc2609e7b869dfde164d1317597964",
+          "before_sha256": null,
+          "id": "NR.command-checkpoint-attachment"
+        }
+      ],
+      "pending_gaps": [],
+      "reason": "Reviewed complete independently owned checkpoint attachment as a scoped native policy; original comparison and live replacement remain none.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Final-source ten PE32/Qt scenarios pass six fresh retained checkpoint sessions and42 independent full native-pixel frame comparisons across RGB32 and indexed shared/aliased palettes with initial consumer history unread. Mixed partial negative-pitch writes, failed-call retries, fills, keyed/unkeyed copies, flips and RGB/flags palette updates retain authoritative pixels/properties and exact original call/HRESULT/LastError behavior. Incomplete base, partial-only extra resource, incomplete palette, held lock/DC,33 surfaces, over32MiB checkpoint and uncertain metadata refuse; terminal consumers retain no resources and old failed rings remain immutable. Four automatic recovery regressions pass83 frames; eleven native and eleven ASan/UBSan control checks pass. Four explicit API regressions pass18 frames with stale-file/session/ownership guards. Three control/OpenGL CTests, five protocol tests, generated freshness and final production/selftest PE32 plus Qt builds pass. These fixtures consume no original artifacts and establish no actual-game/driver equivalence.",
+        "evidence": [
+          "NR.command-checkpoint-attachment.pe32",
+          "NR.command-checkpoint-attachment.host-regressions",
+          "NR.command-checkpoint-attachment.api-regressions"
+        ]
+      }
     }
   ]
 }

@@ -1309,3 +1309,32 @@ The committed range `529019f..4428c27` was reviewed against exact parent/current
 receipts in `coverage/committed-history-palette-resources-20261006.json`. A missing
 `protocols/CONTRACTS.md` file receipt was appended retrospectively, independently
 of working changes or claims about the prior gate.
+
+### Complete owned checkpoint attachment (2026-10-06)
+
+`NR.command-checkpoint-attachment` adds strict administrative CHECKPOINT=2 and
+Qt `attachCheckpoint()` for delayed readers or fresh attachment during drawing.
+It preserves complete independently owned pixels, current metadata, observed
+aliases and palette lifetime generations, then serializes all resources and an
+initial PRESENT into bounded storage before READY. Incremental drawing resumes
+in the fresh wire namespace. Unknown/incomplete state, borrowed locks/DCs and
+capacity limits refuse; ordinary RECOVER retains its fresh-observation policy.
+[Contract and remaining boundaries](opengl-command-checkpoint.md).
+
+Ten synthetic PE32/Qt scenarios pass six fresh checkpoint sessions and 42
+independent full native-pixel frame comparisons. RGB32 and indexed/shared/aliased
+palette continuations cover partial negative-pitch writes, failed-call retries,
+fills, keyed/unkeyed copies, flips and palette RGB/flags updates. Seven distinct
+incomplete/borrowed/capacity refusal categories plus uncertain metadata are
+covered. Four automatic recovery regressions pass 83 frames; eleven native and
+eleven ASan/UBSan control client cases, five protocol checks and three existing
+control/OpenGL CTests pass. Production/selftest PE32 and Qt shell builds pass.
+Original call/error preservation and immutable retired rings remain explicit.
+
+This is attachment within an already established producer/host launch, not
+independent external host takeover. Actual-game checkpoints, 16/24-bit and legacy
+palette checkpoint fixtures, concurrent checkpoint callback collision and injected
+allocation/worker/map failures remain pending. Shared historical evidence stays
+pinned; no original comparison or live replacement status is promoted. The
+predecessor `4428c27..ade3e60` was reviewed against exact parent/current receipts
+in `coverage/committed-history-checkpoint-20261006.json`.

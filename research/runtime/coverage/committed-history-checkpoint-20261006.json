@@ -1,0 +1,421 @@
+{
+  "schema": 1,
+  "scope": "Read-only committed parent/current SHA256 and behavior contract receipt review; separate from working changes, new validation or historical gate claims.",
+  "base": "4428c272233eb909fc9cec2b52b51a56c81947d9",
+  "head": "ade3e60499f59c0cba2c3b55b118a06c0350a482",
+  "files": [
+    {
+      "path": "protocols/CONTRACTS.md",
+      "before_sha256": "be8f61fc6124e229a5efcb9383646c3a0df6bda35afe808a7769dda3686087ca",
+      "after_sha256": "16a3adba0ee37b5f05a8342cf5b63c1790dcffce140bd5ac8ac8991360158c25",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "protocols/include/mnm/render_stream_v2.h",
+      "before_sha256": null,
+      "after_sha256": "4f8416f6dcdb5031b2f95f209e21e43dce0c0cad176c11ec8f2293c6c89c4101",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "protocols/python/mnm_protocols/render_stream_v2.py",
+      "before_sha256": null,
+      "after_sha256": "3dcdc025048173b2f40c4d2b8c47a60fa38e47d8944bf957322328123c266b21",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "protocols/schemas/render_stream-v2.json",
+      "before_sha256": null,
+      "after_sha256": "a0097ef2596bc7bc277fc9c87d828dad4a40d74756dea99248346bb9d0fab475",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "renderer/CMakeLists.txt",
+      "before_sha256": "148cbd9a3f9e32710908499ad7e3da593c45a353d87fcd5d8f2fbbabcd8eeb2f",
+      "after_sha256": "df14005bd43e96035fd0524b98ad202f83200a203ac9c7c345b5b23f472dcdef",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "renderer/command_consumer.cpp",
+      "before_sha256": "a0c083f538d095eb6cf2f0d8f5388e9af201b8f688449c93f1ba385adbc4acbe",
+      "after_sha256": "39f9c48ebaef77164f59f1b8a3aa2c5203e69fe799fc56ef12a54ba33e9ec2c6",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "renderer/command_state.hpp",
+      "before_sha256": "3cd8ab5e0a627cb9c90cc89faffa293e77281ed60d1a319e76ec10ffd2e71faa",
+      "after_sha256": "534e6d935993abf0252618598728f8f6aee8c57d7d54c9c14355e52aece6185c",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "renderer/commands.cpp",
+      "before_sha256": "04a260a20d4879fe09ece28484ba6ced49cd8ba5e5f80bfd566f8837fa98dbb9",
+      "after_sha256": "77ce3018dfd245c7e69eb0cc938949734b88cb4f6efa29efafd243621b1c349d",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "renderer/commands.hpp",
+      "before_sha256": "5a8816780f40d915b37fafb920909c02daee265976a490802fa58b864fad8090",
+      "after_sha256": "3c730d314f3430c10e1f17a3eea14d0c10b85499df964d10e7e789b7d64bab9d",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/formats/render-stream-v2.md",
+      "before_sha256": null,
+      "after_sha256": "fcba95b0b4af10da18b298b673d4429c7e0f1d45d68886b663f6b7110a774efe",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "0a96117041a4fa01203a9f411bc7b72833b00a0c9bc5cddae928c54db08ae06a",
+      "after_sha256": "694ad346d20cd919a6f08ad6f6b81ca4310a6f118da484ab67fdac0ca9f1fb73",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "79d8115081ee9b74fa05653a3c11c7ca0c73a94d1dc95396cca9229a51165e00",
+      "after_sha256": "7e67b8e1885d82218c9b8f275cc4d083a1bb50e04baa0fd973faf71cb19efc3f",
+      "receipts": [
+        "append-only journal verified separately (self hash excluded)"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-palette-resources-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "5805e24a61505a31400e53e4d4322320fbbcbed4ad103c4ed8c7a978aa0135b6",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/palette-resources-summary-reviewed-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "a677df887a25842a7a15ca3f40aa366db6cb3cd08af56999dca8ffb38e5b5c43",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "2d1152b2493510bc70e0d6d6c02869ca3652b68e95e6e157b9aeceb9da9c4a7f",
+      "after_sha256": "c2408113fac4e3f950fcf67a1bb696ad4ed1b570ac4fcbc36698508ec7e4079b",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-palette-resources-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "4a17f99f88b2cde7e27dfb3b3f62a503e433734e2354b98af2069ed28e8565f2",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-palette-identities.md",
+      "before_sha256": null,
+      "after_sha256": "173fbfd4444bd58a90b5f347fa66c4dd132f2d0ec457e5cf9f996e90d0a27f89",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-palette-resources-gpu.json",
+      "before_sha256": null,
+      "after_sha256": "fe3210123cf17185ace051f0ca4102b81f60ea62eab6c97561c44b70df9a2502",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-palette-resources-pe32.json",
+      "before_sha256": null,
+      "after_sha256": "22cb53b8fa674b0b49546513e233e5eac31120bb0a39eab9667e53d9fb7f2d49",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/bridge.c",
+      "before_sha256": "11616106aecb25e7044468514f994da2e968f9f83b44699699db161143e803fe",
+      "after_sha256": "735fa7509cedbe93e329835e652701ad5116d24ab84c666c2ddb5a5ef734420c",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/command_recovery.h",
+      "before_sha256": "dea804da7fd4021a475c08ca20d1e7f3379a50cc13fa253c387d7e64fff8c5f4",
+      "after_sha256": "d3e17b0a49be0a2e6635be9a7ec4af4e2c99ada113187d267c7777f03d187176",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/lock_lifecycle.h",
+      "before_sha256": "96c27846e8077d9a87fe2c5cb42698cb304162d3b0e8186908398cc1d3ad8bb3",
+      "after_sha256": "ff22b737dce7f047fab284ab8c2615530cf5407bb5aeed458740a694af884948",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/lock_palette.h",
+      "before_sha256": "ad65d84a74aacd2d08c5ce92c948ce0cfb413b0d26dee9e965f0d5b7f5b09452",
+      "after_sha256": "9357a0191b92714e2a2d9c2d52958e6fd3f1c56aa82ad8fec713d07deaf5330e",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/mutation_selftest.h",
+      "before_sha256": "e1fd466f67637cadbdfe4e79246a5be3035f602f10baab07233158b6c495739f",
+      "after_sha256": "fdf2112b9f7fd5f95f266a7f6b8e85ac93785a9d8b07f5874b7cd103dcb7fa60",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "runtime/render/owned_session.h",
+      "before_sha256": "6e390e8a63cd044debe45f0531d3c32e9824d89ae99e31f6f6447555583b53b1",
+      "after_sha256": "e68b5e4fea09a4a275bb8d0cfda9473afb798ee39cdc9d132c44861c18e20829",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "tests/render-palette-resources-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "4e4c3e10074b318507682bf7a9f27f13d065b04e2e821b0f7684c6e784e9db38",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "tools/build-render-bridge.py",
+      "before_sha256": "ee1bd6d82ef433040cfd4e3c6279d363a6146e9eb3bd2e8d1bc7b26794cec41a",
+      "after_sha256": "b4679e204ffc4f9043109a77381f735f363eaa9684484c09d2e141fa2bd83d04",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "tools/run-opengl-game.py",
+      "before_sha256": "4d0d4389cea04f97568ec6bfe325efdc86fc516319981feca9f6455ff8708ee9",
+      "after_sha256": "f26681ad6e9f19c3f3e32a2e42bde97ce955d58d91509c689672d0fc088aa429",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-render-mutations.py",
+      "before_sha256": "11ee201ac48199484f3fdc5412c2811baffd75c384c916ce7b7b31a456cecca0",
+      "after_sha256": "877afeefe0d8c53c8c4b44c32861dae545457c16141943ff5dad48cd8a2bf30e",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-render-palette-resources.py",
+      "before_sha256": null,
+      "after_sha256": "34d2acde84229539beee24aba70d9ef18f8110c51db580901b19865687e2316d",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "NR.command-host-recovery",
+      "before_sha256": "87a632c8dffc4c99b2c08c471ad7bf7e7ecb488c7142010e6f3d4bb2bc8e7bb2",
+      "after_sha256": "fdefbcc264dc1655db78c11c9143ed7c81cc8f735439416cee2f0493e10bf9e7",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-idle-lifecycle",
+      "before_sha256": "72f61768f4c0505c15005c2f775c36c9a23254ac8305003a5389920c5eea8b42",
+      "after_sha256": "116f6bbe79f89b718d717485a486107d090a25e28911dd635606e10eac34c13c",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-orchestration",
+      "before_sha256": "d5c8553c902ba364ffdcb963e49f6adf6391ea35571f1774584451fe50493661",
+      "after_sha256": "43738ff9cb6c75440626b00a2b64b0e193922c6086b3454a667ede450e43bc5d",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-recovery",
+      "before_sha256": "3a30db314e2fd8b7ebfa8fdb655a7e8d8f47a0f4f976c29f57453f89739ed4c8",
+      "after_sha256": "db848797e6adea3d5710dbd3476d567fe76ec739eb028020a86ad603a428c72d",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-ring",
+      "before_sha256": "378f39092ebe8f729aa74209f0bc386113bcd4cde9033faa59b8cd82fae568c8",
+      "after_sha256": "bbf15e8efb70e169411408183bc24730c8b1187f79e26f47b4594608466eb2a3",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-ring-adapter",
+      "before_sha256": "a29f9e4fedabdcc538c68e7edcfc5217b2a89516301275144b770b129a65dae7",
+      "after_sha256": "40260b62b4b273ba392fa101d46ce811a8ca132447b6399a368deaf401d88262",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.command-streaming",
+      "before_sha256": "b12d50b5285f5667d83b9b87b9045719a1bf95f859ae11928b11b69c75f24b0c",
+      "after_sha256": "2ce6aa87e272b994faa428ee5157bf9171b2284b3b8542d1f51d09994013ba22",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-mutations",
+      "before_sha256": "4c383f9d367530704f05abd87b37a5a0fc5d2a7709c4d6ad19dc90c6262c5b77",
+      "after_sha256": "8e4b8a21f124b0925e524d5ecca4f636cb29fe9a3319a091bee1de36c0f95ece",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-producer",
+      "before_sha256": "df2412c7bed2c233152fe99c42ae547478143c478721f89ed8ee19ba2841c425",
+      "after_sha256": "d87aef4ad7a7156a78a33d5d25480291730501a351c8a369598bb6690493b3a2",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-lifetime",
+      "before_sha256": "588095086a9b2458c0046e8c57f0863236ac7642849d31049a377aec43b91cde",
+      "after_sha256": "ba341794af60953d3c192ac93fa10a2184bebbd780c52a1858a71539b4ec3ff8",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.gpu-presentation",
+      "before_sha256": "860df9aab6fe37def8224cdf17d02617af5df8b9a42f112960f092eb5bf96c45",
+      "after_sha256": "b4c17b308df20087bf3036629e6688d18988473b6a0a78611d35c350d4c6e237",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.incremental-command-consumer",
+      "before_sha256": "f7b35ef356623eeca27dcfee598db1333e0e18b576fd7f70dcf22231aaa7f442",
+      "after_sha256": "06ff433336ca6c62079756f0198333b680f0ccf1537946a3d9e798f0553bc819",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.live-command-transport",
+      "before_sha256": "f1381c00ebf05fbd61f5cb1c3fdf3034345fee657dd977a69fe526d819068e14",
+      "after_sha256": "c48caeba1d62d8384af6a212caba50fccaca69fa1f661619af568ade9e9f026b",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.owned-session-dc",
+      "before_sha256": "ad6f8c286fa6b1500ec2f460731c39e13f1dbc1a4dddf32d78d26e940b63b241",
+      "after_sha256": "ac5eb5fd935ee5d2316b8f2741144fed10bcbf58930eb51670d2b470b8b35891",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.owned-session-fill",
+      "before_sha256": "0bb1ea4d2179c77f330e2619d7869145b49b7b0ea9a7e4ca9fed42a9441f93cd",
+      "after_sha256": "f2d7009b8fc2b64c9c496cd189d5096eadea14d69b602a0472669dd7d841b4d9",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.owned-session-sequence",
+      "before_sha256": "ec1108ec20398980eb9a962d4fb088d64db162e691f732dfcd3001f14218ca23",
+      "after_sha256": "91f990017b50e393642d23b975c24dd5f5a90d33feaca4eeb0869fec60625f7d",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.owned-session-startup",
+      "before_sha256": "80dbb54bd9f47cf0ce51dc06ac1bb50c1be59d9044dda558ac0c6c8fa224cdd9",
+      "after_sha256": "4225e6f1d04504f2c9665a80d8e8eba825e8af6fcc167e3089bc6638205e26f2",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.owned-session-unlock-packed",
+      "before_sha256": "ec3639842590c8e092398dbbb16401e36cba7014c55e00d6a8a1e0130ca3239a",
+      "after_sha256": "c6b0094a74acf99ec3105729272075b685b086a9202f61276bff2c5cb468e77b",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "NR.palette-resources",
+      "before_sha256": null,
+      "after_sha256": "433c7b2ecefc4f86ea25578caea7820d7b9c70f350bbecfc2fd65f98400f0e9d",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006",
+        "NR.palette-resources-recorded-validation-20261006"
+      ]
+    },
+    {
+      "id": "NR.surfaces",
+      "before_sha256": "5803557aa8498afc5cf781a227b421f1089324e64cd2d1148bc3b61cfedc6fe3",
+      "after_sha256": "3717103b930807ad525f9f458058ba3d210d9918d30f459e6d808b7f0d9c5e51",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    },
+    {
+      "id": "RT.render",
+      "before_sha256": "eb9ecee3a517d9ebe059f7622fe563d53ff2b7e1bb014d2af725d4e6552a0e63",
+      "after_sha256": "0550bd3a0a124fa6b926b52d17436b18ad443cb623fdb4c811d7757bc16d547e",
+      "receipts": [
+        "NR.palette-resources-accounting-20261006"
+      ]
+    }
+  ],
+  "journal_append_only": true,
+  "unresolved_gaps": []
+}

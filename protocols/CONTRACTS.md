@@ -118,3 +118,9 @@ ordered create/update/bind/delete and a 32-palette limit. Indexed presentation
 requires a binding; attached palettes cannot be deleted. Continuous launch uses
 this profile by default. Explicit legacy profile and bounded stream v1 remain
 supported. This version is independent of the mapped ring transport version.
+
+Administrative CHECKPOINT=2 requests strict attachment through complete retained
+owned state. Resource creation and initial PRESENT are queued before READY;
+incomplete or borrowed state refuses. RECOVER=1 retains its fresh-observation
+policy. Both share the existing three-request budget, immutable negotiation and
+matching-response-before-polling rule. See [checkpoint policy](../research/runtime/opengl-command-checkpoint.md).

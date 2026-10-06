@@ -8,11 +8,13 @@ public:
     ~RenderControl();
     bool create(const QString& path,quint32 launch);
     bool recover(const QString& path,quint32 session);
+    bool checkpoint(const QString& path,quint32 session);
     // 0 waiting, 1 accepted, -1 refused/invalid/timed out.
     int poll();
     void cancel();
     QString error() const{return error_;}
 private:
+    bool request(const QString& path,quint32 session,quint32 operation);
     quint32 load(unsigned offset) const;
     void store(unsigned offset,quint32 value);
     bool identity() const;

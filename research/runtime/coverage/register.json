@@ -14180,6 +14180,55 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.command-checkpoint-attachment",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Complete owned checkpoint attachment to a fresh rendering session",
+      "scope": "Strict administrative late consumer attachment and repeated fresh sessions from complete independently owned native pixels, current metadata and palettes; finite admission, resource serialization before READY/PRESENT, continued mixed incremental updates and incomplete/borrowed-state refusal. External host takeover and actual-game integration remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-command-checkpoint.md",
+        "research/formats/render-control-v1.md",
+        "protocols/CONTRACTS.md"
+      ],
+      "implementation": [
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_control.h",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/render_control.hpp",
+        "protocols/schemas/render_control-v1.json",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/python/mnm_protocols/render_control_v1.py"
+      ],
+      "tests": [
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/selftest.c",
+        "tests/live-command-checkpoint-test.cpp",
+        "tests/render-control-test.cpp",
+        "tools/test-render-checkpoint.py",
+        "renderer/CMakeLists.txt",
+        "tools/test-render-host-recovery.py",
+        "tools/test-render-recovery.py",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/host_recovery_selftest.h"
+      ],
+      "evidence": [
+        "NR.command-checkpoint-attachment.pe32",
+        "NR.command-checkpoint-attachment.host-regressions",
+        "NR.command-checkpoint-attachment.api-regressions"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -24820,6 +24869,48 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment.pe32",
+      "kind": "native_integration",
+      "scope": "Ten strict checkpoint scenarios, six complete fresh checkpoint sessions and42 independent GPU frame comparisons from original synthetic engine pixels; metadata/original call preservation, finite capacity and incomplete/borrowed uncertainty refusal. No original game or driver equivalence.",
+      "record": "research/runtime/opengl-command-checkpoint-pe32.json",
+      "sha256": "be07389bcd31542a2fc1752f9efbca11cd4fc2e44eee77787bbf6baf4520e66c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment.host-regressions",
+      "kind": "native_integration",
+      "scope": "Four automatic Qt/PE32 recovery regression cases and eleven native plus eleven ASan/UBSan client cases, including literal CHECKPOINT request and matching readiness. No original comparison.",
+      "record": "research/runtime/opengl-command-checkpoint-host-regressions.json",
+      "sha256": "718724abf0a31d68f95b9d58e635ef2e6dab2e0ddfc1a53a9ad6eb37de29d89d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment.api-regressions",
+      "kind": "native_integration",
+      "scope": "Four explicit RenderRecover regression cases, native fresh observations, stale file/session and ownership guards and repeated resource cleanup. No checkpoint equivalence inferred from these separate regression cases.",
+      "record": "research/runtime/opengl-command-checkpoint-api-regressions.json",
+      "sha256": "151c2b313f205099c701a0d3eae825214fc3cf12a72b8d4c1a7877d022a89238",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -28705,6 +28796,31 @@
         "tools/test-render-mutations.py",
         "renderer/CMakeLists.txt"
       ]
+    },
+    {
+      "id": "NR.command-checkpoint-attachment.preview",
+      "level": "preview",
+      "scope": "Strict administrative late consumer attachment and repeated fresh sessions from complete independently owned native pixels, current metadata and palettes; finite admission, resource serialization before READY/PRESENT, continued mixed incremental updates and incomplete/borrowed-state refusal. External host takeover and actual-game integration remain pending.",
+      "behaviors": [
+        "NR.command-checkpoint-attachment"
+      ],
+      "evidence": [
+        "NR.command-checkpoint-attachment.pe32",
+        "NR.command-checkpoint-attachment.host-regressions",
+        "NR.command-checkpoint-attachment.api-regressions"
+      ],
+      "tests": [
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/selftest.c",
+        "tests/live-command-checkpoint-test.cpp",
+        "tests/render-control-test.cpp",
+        "tools/test-render-checkpoint.py",
+        "renderer/CMakeLists.txt",
+        "tools/test-render-host-recovery.py",
+        "tools/test-render-recovery.py",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/host_recovery_selftest.h"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -28952,7 +29068,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-palette-resources-20261006.json",
-    "sha256": "4a17f99f88b2cde7e27dfb3b3f62a503e433734e2354b98af2069ed28e8565f2"
+    "path": "research/runtime/coverage/source-index-checkpoint-20261006.json",
+    "sha256": "eb682050518084e111c0f85bdc8f1c4617181330ebcffe9d25d8b8c00580bbc0"
   }
 }
