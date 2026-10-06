@@ -133,3 +133,12 @@ real original lost-draw/Restore composition, Windows hardware and live/wire
 recovery remain pending. Indexed cursor recovery is not claimed by the existing
 RGB scripted compositions. The runtime CPU frame adapter's earlier RGB565 floor
 policy remains a separate pending bridge-color contract.
+
+## Subsequent default context and repeated leases
+
+[DC reuse findings](surface-dc-reuse.md) add192 cases/576 real Surface2 leases
+with a separate preflight default palette input. An owned native raster adapter
+matches55,296 independent pixels/258,048 palette entries: fresh regions on each
+acquire, deferred binding updates and lease-local direct table edits. The earlier
+absent-palette observations above retain their limited historical scope; native
+COM/lock ownership and live/loss integration remain pending.

@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-dc-reuse-reference.c": "e1500cb4ad5a06442d9bd903130f758512a75469a3b7ca1015119b68a72d966e",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-dc-reuse.py": "9c6f0b9f3ab10a389cfb41d998ee3209849114bf08fc60fa08e6634e0d85f5c1",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/check-original-surface-sentinel.py": "6021b11bd95cc14ba957e2b86f4558c07060aa8fb73e320c23b9720008aa1082",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+    "tests/fixtures/surfaces/surface-dc-reuse.json.gz": "9fb8d221edfb87c8e24333598ef2afd50c664b62fbb09133a8bfbabf4f6443aa"
+  },
+  "cases": 192,
+  "phases": 576,
+  "pixels": 27648,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-dc-reuse.json.gz",
+    "sha256": "9fb8d221edfb87c8e24333598ef2afd50c664b62fbb09133a8bfbabf4f6443aa"
+  },
+  "inputs_sha256": "3ca7a377361810fb145aa640030217827f81c697a451f2ba9c4af2606aad98c3",
+  "outputs_sha256": "b4393f4a73d57302f8453c91aca9644dfe44a6da7c3b6d0c00e5ff41c099751a",
+  "probe_sha256": "cdf00962c8b9bda4564e8d7e0bcc10e974c90a572da23ee4c47ca970ed11256e",
+  "artifacts": "working/tests/surface-dc-reuse/run-rev9zjw0",
+  "environment": {
+    "wine": "wine-11.16",
+    "gdi32_sha256": "089d8e8e7e5d7b26c72f6d0b90b89531fe43e915c900d4dd485f2924ab584b0c",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b"
+  },
+  "original_game_executed": false,
+  "scope": "Standalone Surface2 three-lease DC reuse, separate preflight default table context, absent/gray palettes, partial object/DC table updates, rebind/detach between and during leases and persistent/cleared application clip.192 cases/576 phases of independent tables/native/DC pixels. No original game/loss/Windows/live equivalence.",
+  "original_manifest_verified_before_after": true
+}

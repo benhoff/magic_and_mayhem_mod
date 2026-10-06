@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "renderer/bitmap_dc.hpp": "df2ddb4a1c8547a184788053e4d925528b984a7ba7bbb0d4ff630dd926f0e456",
+    "renderer/blit.hpp": "d4d7229c0a7ee70a0fd2c6f0c63fb86835b77f6e7282e196cdcb17cb173aa0c3",
+    "renderer/blit.cpp": "1c0aa177d59eea6116b8f0e733ee0b7d8b36e16b26a739868f229c548318edc8",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/known_pixels.hpp": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+    "renderer/CMakeLists.txt": "05b10d3caa4ae23a94491c94394596b47615f79cdfff99e118b2cd78d394b021",
+    "reconstruction/rendering/surface_bitmap.hpp": "d115f4908653fdc05b745a1067a24a549e2c7dfc4fe969c15a5f9bc6db0c8334",
+    "tests/render-dc-reuse-test.cpp": "23d6035a7fcc4b1fd43c2b232e95366ae94fbb3ca63861ec1322330ef409ab3f",
+    "tools/check-native-dc-reuse.py": "9fef4ae9943de30dc4d97fcf34fb0d155ded8c18170b99cf4d8ba2c75a9144a6",
+    "tools/check-surface-dc-reuse.py": "536102c550c4eb4a0a153ef08e33722c8474b6b1b7ce77926c2829c1ec2bd979",
+    "tools/check-surface-dc-palette.py": "88578d24576ca3f7a01663020e6fa94fa30d73352633347fb71039155963bd9c",
+    "tools/check-surface-dib-ddraw.py": "31036dba35e0382c9734b7169d8f57bf2c3c47991c64360134fe832a1db748cd",
+    "tools/check-surface-dib-gdi.py": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "research/runtime/surface-dc-reuse-capture-20261006.json": "86500f7d25fde556cc8903cdef676f0ddd063f0181739a11233ef1330cf8ffc8",
+    "tests/fixtures/surfaces/surface-dc-reuse.json.gz": "9fb8d221edfb87c8e24333598ef2afd50c664b62fbb09133a8bfbabf4f6443aa"
+  },
+  "native": {
+    "success": true,
+    "cases": 192,
+    "phases": 576,
+    "refusals": 1928
+  },
+  "driver_pixel_comparisons": 55296,
+  "palette_entry_comparisons": 258048,
+  "default_palette_context_sha256": "0226adc6291031e51aeaa851738238473a989fe5cc28ba33d4d288d7966543f6",
+  "library_sha256": "a61eeed98cec0b4bcc49bb525b1a6aa6a8ff09f775d00db404a839ff868e761f",
+  "binary_sha256": "cd159c8d098210b681b1aa04efc0c8366dcd0be4e0c5d47a8d7701e7dd6b15db",
+  "outputs_sha256": "04b9b84a006293e6808e2c42cd225148662bd4127620e7dcf37744343b1d8a24",
+  "artifacts": "working/tests/native-dc-reuse/run-lsbs92d8",
+  "scope": "Owned BitmapDcState and GlBlitter raster target192cases/576leases compare independent Surface2 before/draw tables/native/DC RGB outputs. Default table is separate preflight environment input; snapshots/deferred binding/reset clipping/private DC edits plus native guard/validity policies. No COM HDC, global busy/lock ownership, original engine/loss/Windows/live/wire replacement."
+}

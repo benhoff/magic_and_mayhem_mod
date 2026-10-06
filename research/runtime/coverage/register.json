@@ -15057,7 +15057,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Explicit native undefined-content validity after restoration",
-      "scope": "GlBlitter invalidateContents declares all native bytes undefined without inventing/clearing pixels or changing uploads. Written update/opaque copy regions become known; source/mask sampling, keyed/masked destinations, full read and CPU/GPU presentation refuse unknown pixels. Validity follows swapped storage; clipper/palette metadata remains native policy.30 GL tests include explicit recovered fill adapters. No real driver Restore/palette retention, live hook or new wire integration. Nine indexed8 palette/reload cases add45 unknown-content refusals,18 captured index-input comparisons and864 input-derived RGB pixels. Verified palette installation does not define unknown indices; partial reload remains unreadable, full reload establishes pixels and subsequent palette/rebind inputs retain indices. No independently captured driver RGB/COM shared identity or original asset reload equivalence. Bounded DIB reload defines only cropped written regions; larger invalid targets retain unknown borders.12 scripted cursor-recovery compositions retain unknown triggering surfaces and137 native refusal checks pass across36 RGB24/32 cases. Existing30 validity checks freshly pass; no actual-lost DirectDraw/live claim. Subsequent72 RGB565/RGB32 DC-raster cases/24 scripted recovery compositions keep only cropped written region known, preserve unknown borders and triggering surfaces;253 refusals pass. Real Restore/loss/live remain excluded.450 native DC region/palette cases establish only written pixels after invalidation,13995 defined-pixel checks/9510 refusals. Empty DC regions leave all pixels unknown; clipped holes refuse sampling/read/CPU/GPU present. Installing palettes does not define pixels.",
+      "scope": "GlBlitter invalidateContents declares all native bytes undefined without inventing/clearing pixels or changing uploads. Written update/opaque copy regions become known; source/mask sampling, keyed/masked destinations, full read and CPU/GPU presentation refuse unknown pixels. Validity follows swapped storage; clipper/palette metadata remains native policy.30 GL tests include explicit recovered fill adapters. No real driver Restore/palette retention, live hook or new wire integration. Nine indexed8 palette/reload cases add45 unknown-content refusals,18 captured index-input comparisons and864 input-derived RGB pixels. Verified palette installation does not define unknown indices; partial reload remains unreadable, full reload establishes pixels and subsequent palette/rebind inputs retain indices. No independently captured driver RGB/COM shared identity or original asset reload equivalence. Bounded DIB reload defines only cropped written regions; larger invalid targets retain unknown borders.12 scripted cursor-recovery compositions retain unknown triggering surfaces and137 native refusal checks pass across36 RGB24/32 cases. Existing30 validity checks freshly pass; no actual-lost DirectDraw/live claim. Subsequent72 RGB565/RGB32 DC-raster cases/24 scripted recovery compositions keep only cropped written region known, preserve unknown borders and triggering surfaces;253 refusals pass. Real Restore/loss/live remain excluded.450 native DC region/palette cases establish only written pixels after invalidation,13995 defined-pixel checks/9510 refusals. Empty DC regions leave all pixels unknown; clipped holes refuse sampling/read/CPU/GPU present. Installing palettes does not define pixels. New bitmap DC adapter checks empty-region reload after invalidation does not upload pixels or allow read/GPU present, while fresh acquire/full reload defines bytes.1928 combined native context/validity guards pass; real driver Restore bytes/loss remain excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -15066,7 +15066,8 @@
         "research/runtime/surface-palette-restore.md",
         "research/runtime/native-cursor-reload.md",
         "research/runtime/surface-dib-ddraw.md",
-        "research/runtime/surface-dc-palette.md"
+        "research/runtime/surface-dc-palette.md",
+        "research/runtime/surface-dc-reuse.md"
       ],
       "implementation": [
         "renderer/known_pixels.hpp",
@@ -15083,7 +15084,9 @@
         "tests/render-ddraw-dib-test.cpp",
         "tools/check-native-ddraw-dib.py",
         "tests/render-dc-palette-test.cpp",
-        "tools/check-native-dc-palette.py"
+        "tools/check-native-dc-palette.py",
+        "tests/render-dc-reuse-test.cpp",
+        "tools/check-native-dc-reuse.py"
       ],
       "evidence": [
         "NR.surface-contents.validity.native-20261006",
@@ -15094,7 +15097,8 @@
         "NR.surface-reload.dib-rgb.after-ddraw-20261006",
         "NR.surface-reload.dc-palette.native-20261006",
         "NR.surface-reload.dib-rgb.after-dc-palette-20261006",
-        "NR.surface-reload.dib-rgb.cursor-after-dc-palette-20261006"
+        "NR.surface-reload.dib-rgb.cursor-after-dc-palette-20261006",
+        "NR.surface-reload.bitmap-dc.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15687,12 +15691,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded indexed bitmap reload with explicit palette state",
-      "scope": "Owned positive-height1/4/8/24-bit source DIB to indexed8 with all256 palette entries explicitly installed; CPU mirrored successful updates remain with surface across storage swaps. Identical full8-bit source/destination palettes preserve indices, otherwise first nearest RGB entry;24-bit source channels use observed5-bit-bin centers with per-call bounded cache.450 native DC-format cases include installed gray/reverse/cube/exact-source palettes and duplicate ties/partial update/storage ownership checks;43200 native/DC comparisons total. Partial/uninstalled palette refuses. Absent/default palettes, flag/logic/sharedCOM palette, lease reuse, indexed original cursor/loss/live remain pending.",
+      "scope": "Owned positive-height1/4/8/24-bit source DIB to indexed8 with all256 palette entries explicitly installed; CPU mirrored successful updates remain with surface across storage swaps. Identical full8-bit source/destination palettes preserve indices, otherwise first nearest RGB entry;24-bit source channels use observed5-bit-bin centers with per-call bounded cache.450 native DC-format cases include installed gray/reverse/cube/exact-source palettes and duplicate ties/partial update/storage ownership checks;43200 native/DC comparisons total. Partial/uninstalled palette refuses. Absent/default palettes, flag/logic/sharedCOM palette, lease reuse, indexed original cursor/loss/live remain pending. New owned bitmap DC adapter installs an explicitly supplied preflight default context for unbound indexed rasterization;228 default-context leases compare independently. Primitive GlBlitter full-installed-palette policy is unchanged. No portable default formula/live COM identity.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/surface-dc-palette.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/surface-dc-reuse.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -15702,7 +15707,9 @@
         "tests/render-dc-palette-test.cpp",
         "tools/check-native-dc-palette.py",
         "tests/test-surface-dc-palette.py",
-        "tests/test-surface-dc-palette-identity.py"
+        "tests/test-surface-dc-palette-identity.py",
+        "tests/render-dc-reuse-test.cpp",
+        "tools/check-native-dc-reuse.py"
       ],
       "evidence": [
         "DRIVER.surface-dc.palette-clip.capture-20261006",
@@ -15711,7 +15718,8 @@
         "DRIVER.surface-dc.palette-identity.offline-20261006",
         "NR.surface-reload.dc-palette.initial-20261006",
         "NR.surface-reload.dc-palette.native-20261006",
-        "NR.surface-reload.dc-palette.regressions-20261006"
+        "NR.surface-reload.dc-palette.regressions-20261006",
+        "NR.surface-reload.bitmap-dc.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15726,12 +15734,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owned bitmap DC region union independent of DirectDraw Blt clipper",
-      "scope": "Native reloadDib owned optional in-target positive rectangles: nullopt no region, empty no writes, maximum32 rectangles with overlap as union of identical writes; all geometry/budget validation precedes writes. Attached DirectDraw Blt clipper metadata is ignored for this measured bitmap operation. Only written cropped regions become known; unknown holes refuse sampling/read/CPU/GPU presentation.450 native format/palette cases/13995 defined checks/9510 refusals pass; bounds/max32 are explicit native policy, not recovered arbitrary GDI admission. Native COMDC lease, out-of-bounds/other mappings/origins/stretch, actual loss/Windows/live remain pending.",
+      "scope": "Native reloadDib owned optional in-target positive rectangles: nullopt no region, empty no writes, maximum32 rectangles with overlap as union of identical writes; all geometry/budget validation precedes writes. Attached DirectDraw Blt clipper metadata is ignored for this measured bitmap operation. Only written cropped regions become known; unknown holes refuse sampling/read/CPU/GPU presentation.450 native format/palette cases/13995 defined checks/9510 refusals pass; bounds/max32 are explicit native policy, not recovered arbitrary GDI admission. Native COMDC lease, out-of-bounds/other mappings/origins/stretch, actual loss/Windows/live remain pending. New owned DC contexts reset regions on acquire, separately compared across576 real leases. Empty invalidated raster regions remain unknown and fresh full reload defines them; live COMDC/native lock ownership stays pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/surface-dc-palette.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/surface-dc-reuse.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -15741,7 +15750,9 @@
         "tests/render-dc-palette-test.cpp",
         "tools/check-native-dc-palette.py",
         "tests/test-surface-dc-palette.py",
-        "tests/test-surface-dc-palette-identity.py"
+        "tests/test-surface-dc-palette-identity.py",
+        "tests/render-dc-reuse-test.cpp",
+        "tools/check-native-dc-reuse.py"
       ],
       "evidence": [
         "DRIVER.surface-dc.palette-clip.capture-20261006",
@@ -15750,7 +15761,8 @@
         "DRIVER.surface-dc.palette-identity.offline-20261006",
         "NR.surface-reload.dc-palette.initial-20261006",
         "NR.surface-reload.dc-palette.native-20261006",
-        "NR.surface-reload.dc-palette.regressions-20261006"
+        "NR.surface-reload.dc-palette.regressions-20261006",
+        "NR.surface-reload.bitmap-dc.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15790,6 +15802,75 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-driver.dc-reuse",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Standalone default palette input and repeated Surface2 DC snapshots",
+      "scope": "Wine11.16 Surface2 normal-mode8x6 system-memory192cases/576leases: independent preflight default table becomes explicit environment input. Each new DC differs from first within run, resets application clip and snapshots current binding/default; between/in-lease object updates/rebind/detach appear next acquire, direct32-entry DC edits are lease-local.27648 native/DC pixels each and258048 tables compare,228 default-context leases. Original helper anchor identifies previously captured inputs only; no game instructions, portable default palette formula, real COM/native locks/other objects/loss/Windows/live claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745856,
+          "scope": "Previously captured loader submitted-input boundary; standalone DC probe executes no original instructions."
+        }
+      ],
+      "documents": [
+        "research/runtime/surface-dc-reuse.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/surface-dc-reuse-reference.c",
+        "tools/capture-surface-dc-reuse.py",
+        "tools/check-surface-dc-reuse.py",
+        "tests/test-surface-dc-reuse.py",
+        "tests/fixtures/surfaces/surface-dc-reuse.json.gz"
+      ],
+      "evidence": [
+        "DRIVER.surface-dc.reuse.capture-20261006",
+        "DRIVER.surface-dc.reuse.offline-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.surface-reload.bitmap-dc",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned bitmap DC raster snapshots with supplied default palette context",
+      "scope": "Noncopyable owned BitmapDcState8/16/32 bounded context accepts explicit256-entry default environment palette and optional owned binding. Acquire resets regions/snapshots current binding/default; updates during active context are deferred to next acquire, direct DC edits current-only. Reload installs snapshot colors on associated GlBlitter raster target and delegates bounded DIB conversion/regions.192cases/576leases match55296 independent pixels/258048 entries with1928 native lifetime/range/region/unknown refusals and zero surfaces. Native exceptions/geometry/association are intentional policy, not COMHDC/global busy/lock or live/wire replacement. Missing default for unbound indexed acquire refuses; logical/flags/shared palettes/other GDI objects/primary-video/loss/Windows remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/surface-dc-reuse.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "renderer/bitmap_dc.hpp"
+      ],
+      "tests": [
+        "tests/render-dc-reuse-test.cpp",
+        "tools/check-native-dc-reuse.py",
+        "tests/test-surface-dc-reuse.py"
+      ],
+      "evidence": [
+        "NR.surface-reload.bitmap-dc.native-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -28702,6 +28783,48 @@
           "equals": 2
         }
       ]
+    },
+    {
+      "id": "DRIVER.surface-dc.reuse.capture-20261006",
+      "kind": "native_integration",
+      "scope": "Standalone Wine11.16 Surface2 system-memory8x6 normal-mode192cases/576leases from6 retained original submitted inputs; separate preflight default table context, indexed absence/gray binding/7 mutation schedules and RGB565/32 controls. Independent before/draw tables/native/DC RGB/clip boxes/normalized handle equality; no original game, actual loss, Windows/live equivalence.",
+      "record": "research/runtime/surface-dc-reuse-capture-20261006.json",
+      "sha256": "86500f7d25fde556cc8903cdef676f0ddd063f0181739a11233ef1330cf8ffc8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-dc.reuse.offline-20261006",
+      "kind": "native_integration",
+      "scope": "Input-derived192cases/576leases compare27648 native words/27648 DC RGB pixels/258048 table entries.228 indexed leases use separate preflight environment palette input. Fresh clip/table on acquire, binding updates deferred, direct DC edits lease-local;9 mutation tests pass. No portable default palette formula/original game/loss/Windows/live equivalence.",
+      "record": "research/runtime/surface-dc-reuse-offline-20261006.json",
+      "sha256": "28db224357c84287708b46f5dc96c2dfe1a563c09fb39c2cdf9c5c329ee86c79",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-reload.bitmap-dc.native-20261006",
+      "kind": "native_integration",
+      "scope": "Owned native BitmapDcState/raster target192cases/576leases compare55296 independent native/DC pixels and258048 palette entries.1928 native guard/unknown-content refusals and zero surfaces; supplied default context, snapshot/deferred binding/fresh clips/private edits. No COMHDC/global busy or lock ownership/wire/original-loss/Windows/live replacement.",
+      "record": "research/runtime/native-dc-reuse-20261006.json",
+      "sha256": "1e683b81ff1251c2687f3f440970d337d26687ff3ac82d41496a1771129c9e49",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -33337,6 +33460,24 @@
         "runtime/render/mutation_selftest.h",
         "tools/test-render-mutations.py"
       ]
+    },
+    {
+      "id": "NR.surface-reload.bitmap-dc.headless",
+      "level": "headless",
+      "scope": "192 owned raster contexts/576 acquire-draw-release phases compare independent driver tables/native/DC pixels with explicit preflight defaults, deferred binding, private DC edits and clip reset. No original wrapper/loss/real COM/native global locks/live equivalence.",
+      "behaviors": [
+        "NR.surface-reload.bitmap-dc",
+        "NR.surface-reload.dib-indexed",
+        "NR.surface-reload.dc-regions",
+        "NR.surface-contents.validity"
+      ],
+      "evidence": [
+        "NR.surface-reload.bitmap-dc.native-20261006"
+      ],
+      "tests": [
+        "tests/render-dc-reuse-test.cpp",
+        "tools/check-native-dc-reuse.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -33584,7 +33725,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-metadata-order-20261006.json",
-    "sha256": "981dc45721dc9361638845e224cd0fafef830787c04e86f447e7e1a65779d301"
+    "path": "research/runtime/coverage/source-index-dc-reuse-20261006.json",
+    "sha256": "c17204a1357c9900975c7f0096208e5ba431968a702b61ee86844adfc1e8cd30"
   }
 }

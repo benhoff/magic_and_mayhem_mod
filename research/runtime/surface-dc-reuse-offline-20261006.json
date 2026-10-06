@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/check-surface-dc-reuse.py": "536102c550c4eb4a0a153ef08e33722c8474b6b1b7ce77926c2829c1ec2bd979",
+    "tests/test-surface-dc-reuse.py": "3fa98a6912c3eab180c35d0a6651e3c02c3eb7dbbf045dd90f32ec6bfb114568",
+    "tools/check-surface-dc-palette.py": "88578d24576ca3f7a01663020e6fa94fa30d73352633347fb71039155963bd9c",
+    "tools/check-surface-dib-ddraw.py": "31036dba35e0382c9734b7169d8f57bf2c3c47991c64360134fe832a1db748cd",
+    "tools/check-surface-dib-gdi.py": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+    "research/runtime/surface-dc-reuse-capture-20261006.json": "86500f7d25fde556cc8903cdef676f0ddd063f0181739a11233ef1330cf8ffc8",
+    "tests/fixtures/surfaces/surface-dc-reuse.json.gz": "9fb8d221edfb87c8e24333598ef2afd50c664b62fbb09133a8bfbabf4f6443aa",
+    "tests/fixtures/surfaces/original-sentinel-corpus.json": "e90c11480f634b819e0fd693bc7532b9c920af117d28a864d733620b11c6677b",
+    "tests/fixtures/surfaces/original-sentinel.json.gz": "423598efc90becf8b0bc8c91a1a1d70f05fcdd4406c5f42fe32fc924af238d52"
+  },
+  "cases": 192,
+  "phases": 576,
+  "native_pixels": 27648,
+  "dc_rgb_pixels": 27648,
+  "palette_entries": 258048,
+  "default_palette_phases": 228,
+  "scope": "192 standalone Surface2 cases/576 leases compare input-derived binding/update/DC edit/clip-reset behavior and default context from separate preflight read. Complete native/DC output frames independent of model. Default context is environment input, not portable palette formula. No original game/loss/COM implementation/Windows/live equivalence."
+}
