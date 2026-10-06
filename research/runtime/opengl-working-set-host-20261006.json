@@ -1,0 +1,1243 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "runtime/render/history_selftest.h": "077d923f30ff81d927fa770f6b841e0461a345e4fc4310ab3048fa284ec3bdb5",
+    "runtime/render/palette_history.h": "d298ee386d6a70c406dd3ec248eb071e79a0688daf5c7da8f91a43bc4a2cad72",
+    "runtime/render/command_idle_selftest.h": "efc9a0be0823c894a5693f748d7f171866e0d3efdc6bd1bf7888ceb3afb96c0b",
+    "runtime/render/lock_blit_selftest.h": "e0083a9c20400e058e0a914f80b9bcda79d13f81c070e39aa34f36bec59b64fa",
+    "runtime/render/mutation_selftest.h": "cab3f9f7b895fb52848a9d83556861ea9876c36785d82d2c9d05aeee92a3ff8c",
+    "runtime/render/indexed_owned_selftest.h": "7ab70e041a806281903ec11a5708fa9b3e69fe2e5bd6a54baa131793b19ba723",
+    "runtime/render/draw_capture.h": "7b6e113cc86c0015f855711fdd893fc6efc83d0fa4287f91d829847b9612b868",
+    "runtime/render/lock_aliases.h": "df4a344c6f010b8f8022c99ec1a1ce04cd708564248d18a3362d2ad165745a95",
+    "runtime/render/continuous_selftest.h": "d19b4b07522d2f4c3a528e8447fda37e6b3e5239bfa4e4041fef85965f5b9021",
+    "runtime/render/command_scheduler.h": "49380205a77db5e876308b302dbec9d95633f1adb3d8381df3056d6bea815535",
+    "runtime/render/lock_updates.h": "4fd32d69ac6b2a8f6557e9bb3cc5ddd5540e4f6ea942fbebaf9b43f9725c78a3",
+    "runtime/render/command_gate.h": "c9810ef6ad365daeb255e34123d547992fc72784e0e84bc74337b3776007edc2",
+    "runtime/render/command_lifecycle.h": "7a6a04d37998ad9685c7199d415b9a5b87dd7033cf10e2aae5040e53f63f462c",
+    "runtime/render/working_set_selftest.h": "f6bbfcc44991193fa608e54b07cf79ea18d3ea8e34853946608b1bc6dcea733b",
+    "runtime/render/lock_surfaces.h": "91fa1e4957efd6f7f0d5c8a2a55ead7fd952f253531dbbf2ea4dfa75f40f8cd9",
+    "runtime/render/flip_history.h": "4c1910ed299700ba95e9b49923710b54817ab8dd2d2cba823b40ccf4dbc388d8",
+    "runtime/render/bootstrap_selftest.h": "3fca231aeeb189832182d36fe85a8ed58adab8f6a133499c48a5f5b1311215c7",
+    "runtime/render/checkpoint_selftest.h": "e0320f879bd79b43ca6d563b342fcf02edd5323fcb97c085a650c11351c751a4",
+    "runtime/render/partial_lock_selftest.h": "6b9df18d4b435e6adcce961abcb060b344a1a3bbc5f19b0266786775f08c3c7f",
+    "runtime/render/command_queue.h": "d96f125aa7a712f96d0745a993b48a19820a10470257a629ef0960e29c736877",
+    "runtime/render/owned_dc_selftest.h": "69ea01ac97f58887f9fd63614418974c9d8c925cbdde26c71117b2738fe34407",
+    "runtime/render/lock_diagnostics.h": "e21d9134b6f2d0a9d7624a017a2ea0b52ee05aae6a249a1c84ccf8740959b5a0",
+    "runtime/render/media_bridge.h": "dc7e64883ef491ac42f42a2f10c36dda1ca5a04eda993cdab04e9645df572e6f",
+    "runtime/render/owned_session_selftest.h": "a3ec9a32d9ca45919eb5c04b3362b4f1904b3a0e1b30174588f77eef5ae0e188",
+    "runtime/render/media_selftest.h": "9f9592dc30aeed9b8d0f7fa622c4335fd9fc6357b84d67eb5077ff795143e4b0",
+    "runtime/render/backpressure_selftest.h": "c007732548f9791058bdcd1b1778a1674f734f540077a477ea67f1818185380e",
+    "runtime/render/selftest.c": "a22d70fbfe33fdeec7885cfe1eeefc5044a113b70b7aff6203289e1f4369f08f",
+    "runtime/render/input_polling.h": "95d53d43f99b3de9390b07a150db112ae7d280e7bb112ba5957e3ce62dca736c",
+    "runtime/render/bridge.c": "735fa7509cedbe93e329835e652701ad5116d24ab84c666c2ddb5a5ef734420c",
+    "runtime/render/owned_session.h": "8f7218f11f93f5286492c86385978a581b3f66c24d1ed87e0a2ff8493d47453b",
+    "runtime/render/failure_diagnostics.h": "97d72ef8174e01c80c4b3eb57f4fa80cedfd8f56f25f7b77904121d0996baf11",
+    "runtime/render/adapter_startup.h": "52457ffc947fbbf242a6949d4a871779a171aaafc8e0ae741868f33a20374192",
+    "runtime/render/lock_lifecycle.h": "e60932bcaf016535ce69e6c43538ce978d32e2869d449d540d6512960cdd172a",
+    "runtime/render/lifecycle_selftest.h": "f68113110b83b034ec94e89660df4a3feb3d283f7ae0e9844790c8cf4b785bcb",
+    "runtime/render/surface_history.h": "63976b18f13b5db96ca4385c30d6783769a7f25f32656888023171ce111ffa7d",
+    "runtime/render/resource_selftest.h": "64c52c7140527fb7236df0bcc6325ab473e429a762eb9af57ee27a866cdfb9de",
+    "runtime/render/command_control.h": "e4bdb2c58052eb9efde6d9082a7f4c850a8bb6531014aa41fe70b131c2f48719",
+    "runtime/render/surface_commands.h": "2353c4a1d704bef43594c0042c97d3f0c65927fb8d14abb60a10ec0b4c4bb8cf",
+    "runtime/render/lock_lifecycle_selftest.h": "ebdfe7dd2773746496a1b138e6309b0250e2207b67d4e2ba6f05f24843bcb406",
+    "runtime/render/flip_selftest.h": "f46d45004a39a82283021903e468730b365825c6efec1cbebe61d2fd875eb03b",
+    "runtime/render/dirty_region.h": "e5743b9c82b63debe1b0431269d576672fcfee83ca42817e21d5558ec1ba936b",
+    "runtime/render/draw_selftest.h": "03799a2bd9c3df1ac3b426c85b34b7f1d25b36791947ca95ac2af687d177d24f",
+    "runtime/render/host_recovery_selftest.h": "7981baf6069b7caab473461f33e49798d26ad6cc5bcb07731d4916d00f873024",
+    "runtime/render/recovery_selftest.h": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+    "runtime/render/command_channel.h": "3c0a2e177987cc499f4375deb662896bd320bacdaadce7d9d6537511027f0ebb",
+    "runtime/render/dc_selftest.h": "123bf310df0197f17a63df26349e14a5e5757b9a903c8924ef9ac711ee7ef13c",
+    "runtime/render/lock_dc.h": "c4c86958dffa67829bc60553c783d472b8f22a1e5cf1be6ec009aaa08a457b26",
+    "runtime/render/indexed_copy_selftest.h": "9d3fc4c7a0d8f66a7ba765172c920cb4889301b63dea02556c7eeb3ef5e45fb6",
+    "runtime/render/frame_pixels.h": "671110ec34e214010c51d2a13838cd56e08869ecebdf7d38c8aaaae9156109be",
+    "runtime/render/command_recovery.h": "586a9253d5a32f7df12db82edfb5970a69cd0137cf3e1bd07746461360fa43b6",
+    "runtime/render/input_selftest.h": "78d5c31ec213d5bd06daa667e38320671807a5700903a392fbb78f8cfeb9abab",
+    "runtime/render/lock_palette.h": "9357a0191b92714e2a2d9c2d52958e6fd3f1c56aa82ad8fec713d07deaf5330e",
+    "runtime/render/lock_flip.h": "a423a22742ca55c968ef6487088a8b587decc5def07c7ef7bf701ad9b909fd2e",
+    "runtime/render/palette_selftest.h": "5d7e6f9c254d9ed634f4656b0256dda811adbc6cfe1f0c768abc8242aa43b73d",
+    "apps/qt-shell/render_control.cpp": "bdd72b25ca107f324faa737aa3abbd98cd566a77a3f7ecae289b73d4d5469a8b",
+    "apps/qt-shell/render_control.hpp": "1229d563b0e0fa27c325f4a8c1ed6698c0820ed43931a4b8b824408475c2c1e9",
+    "apps/qt-shell/live_command_session.cpp": "58cb29456d127106830ee6de114f8f49c88e4265f4908ba4ff9aa61a9f33b40c",
+    "apps/qt-shell/live_command_session.hpp": "a8fbf9010e4721463215b6621a7ea7baeadf48633064c8bb8a38e5b0e5f8dfa0",
+    "apps/qt-shell/live_command_renderer.cpp": "d5288ce683e65418a5e791781df33c5efbcb1f85558eda2feced7e2142e21dcc",
+    "apps/qt-shell/live_command_renderer.hpp": "b1f51a4a3ce767c6a4739e25a5cf4f9c82cc8b00f43e144c09bba82a8091a2ae",
+    "apps/qt-shell/command_channel.cpp": "cef42f0fb6e7d9dc7dafd032d5c52e384de94d97b06a8d6028c8c572ff3d0ba4",
+    "apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "apps/qt-shell/gl_viewport.cpp": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+    "apps/qt-shell/main.cpp": "30f1e8991dcd8048dd171418c78ee85ac3bdf13734d3f77202b213fbd982b35a",
+    "apps/qt-shell/CMakeLists.txt": "a996eb3d3fa80ec5cd36f4e215d2617c287f120d7fb40f72afbf3629c69baad1",
+    "renderer/CMakeLists.txt": "fe9f4119ffeb11dae11264fd63197be20cbb6c9331477a3b74aa6cb0788ea3a5",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/command_consumer.cpp": "be2ac2c2c86ec1f2e00cfaca8a5e66f574d3df4e9159b1c4a1be2c4fa377da38",
+    "tests/live-command-recovery-test.cpp": "35acaf9566624eea2dac2d4a8146f6fcafbe5e46e5b7a45f723c3b1cf112ff83",
+    "tools/test-render-host-recovery.py": "71144e0c4365b4838373cb797e45fbbc56f083ac4d46efff9f66dbddd337ddb1",
+    "tools/run-opengl-game.py": "f26681ad6e9f19c3f3e32a2e42bde97ce955d58d91509c689672d0fc088aa429",
+    "tools/build-render-bridge.py": "fb335374d59ffafc898a6959f280f9a43616ad72d7632e6d2929504373ab6263",
+    "protocols/schemas/render_control-v1.json": "4b045e0c914a952fd5c9389d062ff7688646dafd2abc9fa2b5d52decc81783dc",
+    "protocols/include/mnm/render_control_v1.h": "ab15450b9347c312062719bdc35f62adf6bff9f4298f88de250513a5651ffb8b",
+    "protocols/python/mnm_protocols/render_control_v1.py": "170f1be0cd49c21942fa547d48bb6bf4ed6741836128d8929ed1da9600377e7d",
+    "protocols/tests/test_contracts.py": "724aee61e91111120fc358e5b922a8bffa3a3a1d8bc0de4c2cc0676487e8f7a2",
+    "tests/render-control-test.cpp": "46168e28c75d57a8139642a1b77f7f3e621dc77a3013da3e9e6ae60bf243e84a"
+  },
+  "cases": [
+    {
+      "mode": "healthy",
+      "success": true,
+      "recovery_policies": [
+        1
+      ],
+      "consumer": {
+        "clears": 1,
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          },
+          {
+            "index": 2,
+            "session": 1
+          },
+          {
+            "index": 3,
+            "session": 1
+          },
+          {
+            "index": 4,
+            "session": 1
+          },
+          {
+            "index": 5,
+            "session": 1
+          },
+          {
+            "index": 6,
+            "session": 1
+          },
+          {
+            "index": 7,
+            "session": 1
+          },
+          {
+            "index": 8,
+            "session": 1
+          },
+          {
+            "index": 9,
+            "session": 1
+          },
+          {
+            "index": 10,
+            "session": 1
+          },
+          {
+            "index": 11,
+            "session": 1
+          },
+          {
+            "index": 12,
+            "session": 1
+          },
+          {
+            "index": 13,
+            "session": 1
+          },
+          {
+            "index": 14,
+            "session": 1
+          },
+          {
+            "index": 15,
+            "session": 1
+          },
+          {
+            "index": 16,
+            "session": 1
+          },
+          {
+            "index": 17,
+            "session": 1
+          },
+          {
+            "index": 18,
+            "session": 1
+          },
+          {
+            "index": 19,
+            "session": 1
+          },
+          {
+            "index": 20,
+            "session": 1
+          },
+          {
+            "index": 21,
+            "session": 1
+          },
+          {
+            "index": 22,
+            "session": 1
+          },
+          {
+            "index": 23,
+            "session": 1
+          },
+          {
+            "index": 24,
+            "session": 1
+          },
+          {
+            "index": 25,
+            "session": 1
+          },
+          {
+            "index": 26,
+            "session": 1
+          },
+          {
+            "index": 27,
+            "session": 1
+          },
+          {
+            "index": 28,
+            "session": 1
+          },
+          {
+            "index": 29,
+            "session": 1
+          },
+          {
+            "index": 30,
+            "session": 1
+          },
+          {
+            "index": 31,
+            "session": 1
+          },
+          {
+            "index": 32,
+            "session": 1
+          },
+          {
+            "index": 33,
+            "session": 1
+          },
+          {
+            "index": 34,
+            "session": 1
+          },
+          {
+            "index": 35,
+            "session": 1
+          },
+          {
+            "index": 36,
+            "session": 1
+          },
+          {
+            "index": 37,
+            "session": 1
+          },
+          {
+            "index": 38,
+            "session": 1
+          },
+          {
+            "index": 39,
+            "session": 1
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          0,
+          1,
+          4
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 1,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "static",
+      "success": true,
+      "recovery_policies": [
+        1
+      ],
+      "consumer": {
+        "clears": 1,
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 1
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          0,
+          1,
+          4
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 1,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "incomplete",
+      "success": true,
+      "recovery_policies": [
+        0
+      ],
+      "consumer": {
+        "clears": 1,
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          },
+          {
+            "index": 3,
+            "session": 1
+          },
+          {
+            "index": 4,
+            "session": 1
+          },
+          {
+            "index": 5,
+            "session": 1
+          },
+          {
+            "index": 6,
+            "session": 1
+          },
+          {
+            "index": 7,
+            "session": 1
+          },
+          {
+            "index": 8,
+            "session": 1
+          },
+          {
+            "index": 9,
+            "session": 1
+          },
+          {
+            "index": 10,
+            "session": 1
+          },
+          {
+            "index": 11,
+            "session": 1
+          },
+          {
+            "index": 12,
+            "session": 1
+          },
+          {
+            "index": 13,
+            "session": 1
+          },
+          {
+            "index": 14,
+            "session": 1
+          },
+          {
+            "index": 15,
+            "session": 1
+          },
+          {
+            "index": 16,
+            "session": 1
+          },
+          {
+            "index": 17,
+            "session": 1
+          },
+          {
+            "index": 18,
+            "session": 1
+          },
+          {
+            "index": 19,
+            "session": 1
+          },
+          {
+            "index": 20,
+            "session": 1
+          },
+          {
+            "index": 21,
+            "session": 1
+          },
+          {
+            "index": 22,
+            "session": 1
+          },
+          {
+            "index": 23,
+            "session": 1
+          },
+          {
+            "index": 24,
+            "session": 1
+          },
+          {
+            "index": 25,
+            "session": 1
+          },
+          {
+            "index": 26,
+            "session": 1
+          },
+          {
+            "index": 27,
+            "session": 1
+          },
+          {
+            "index": 28,
+            "session": 1
+          },
+          {
+            "index": 29,
+            "session": 1
+          },
+          {
+            "index": 30,
+            "session": 1
+          },
+          {
+            "index": 31,
+            "session": 1
+          },
+          {
+            "index": 32,
+            "session": 1
+          },
+          {
+            "index": 33,
+            "session": 1
+          },
+          {
+            "index": 34,
+            "session": 1
+          },
+          {
+            "index": 35,
+            "session": 1
+          },
+          {
+            "index": 36,
+            "session": 1
+          },
+          {
+            "index": 37,
+            "session": 1
+          },
+          {
+            "index": 38,
+            "session": 1
+          },
+          {
+            "index": 39,
+            "session": 1
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          0,
+          1,
+          4
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 1,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "checkpoint-fault",
+      "success": true,
+      "recovery_policies": [
+        1
+      ],
+      "consumer": {
+        "clears": 2,
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "repeat",
+      "success": true,
+      "recovery_policies": [
+        1,
+        1
+      ],
+      "consumer": {
+        "clears": 2,
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          },
+          {
+            "index": 2,
+            "session": 1
+          },
+          {
+            "index": 3,
+            "session": 1
+          },
+          {
+            "index": 3,
+            "session": 2
+          },
+          {
+            "index": 4,
+            "session": 2
+          },
+          {
+            "index": 5,
+            "session": 2
+          },
+          {
+            "index": 6,
+            "session": 2
+          },
+          {
+            "index": 7,
+            "session": 2
+          },
+          {
+            "index": 8,
+            "session": 2
+          },
+          {
+            "index": 9,
+            "session": 2
+          },
+          {
+            "index": 10,
+            "session": 2
+          },
+          {
+            "index": 11,
+            "session": 2
+          },
+          {
+            "index": 12,
+            "session": 2
+          },
+          {
+            "index": 13,
+            "session": 2
+          },
+          {
+            "index": 14,
+            "session": 2
+          },
+          {
+            "index": 15,
+            "session": 2
+          },
+          {
+            "index": 16,
+            "session": 2
+          },
+          {
+            "index": 17,
+            "session": 2
+          },
+          {
+            "index": 18,
+            "session": 2
+          },
+          {
+            "index": 19,
+            "session": 2
+          },
+          {
+            "index": 20,
+            "session": 2
+          },
+          {
+            "index": 21,
+            "session": 2
+          },
+          {
+            "index": 22,
+            "session": 2
+          },
+          {
+            "index": 23,
+            "session": 2
+          },
+          {
+            "index": 24,
+            "session": 2
+          },
+          {
+            "index": 25,
+            "session": 2
+          },
+          {
+            "index": 26,
+            "session": 2
+          },
+          {
+            "index": 27,
+            "session": 2
+          },
+          {
+            "index": 28,
+            "session": 2
+          },
+          {
+            "index": 29,
+            "session": 2
+          },
+          {
+            "index": 30,
+            "session": 2
+          },
+          {
+            "index": 31,
+            "session": 2
+          },
+          {
+            "index": 32,
+            "session": 2
+          },
+          {
+            "index": 33,
+            "session": 2
+          },
+          {
+            "index": 34,
+            "session": 2
+          },
+          {
+            "index": 35,
+            "session": 2
+          },
+          {
+            "index": 36,
+            "session": 2
+          },
+          {
+            "index": 37,
+            "session": 2
+          },
+          {
+            "index": 38,
+            "session": 2
+          },
+          {
+            "index": 39,
+            "session": 2
+          }
+        ],
+        "recoveries": 2,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 2,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "exhausted",
+      "success": true,
+      "recovery_policies": [
+        1,
+        1,
+        1
+      ],
+      "consumer": {
+        "clears": 4,
+        "ended": false,
+        "error": "Rendering recovery unavailable or exhausted",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          },
+          {
+            "index": 2,
+            "session": 1
+          },
+          {
+            "index": 3,
+            "session": 1
+          },
+          {
+            "index": 3,
+            "session": 2
+          },
+          {
+            "index": 4,
+            "session": 2
+          },
+          {
+            "index": 4,
+            "session": 3
+          },
+          {
+            "index": 5,
+            "session": 3
+          }
+        ],
+        "recoveries": 3,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 3,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "held",
+      "success": true,
+      "recovery_policies": [],
+      "consumer": {
+        "clears": 2,
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "blocked",
+      "success": true,
+      "recovery_policies": [],
+      "consumer": {
+        "clears": 2,
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "collision",
+      "success": true,
+      "recovery_policies": [],
+      "consumer": {
+        "clears": 2,
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "invalid-reply",
+      "success": true,
+      "recovery_policies": [],
+      "consumer": {
+        "clears": 2,
+        "ended": false,
+        "error": "Invalid rendering recovery response",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "silent",
+      "success": true,
+      "recovery_policies": [],
+      "consumer": {
+        "clears": 2,
+        "ended": false,
+        "error": "Rendering recovery response timed out",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "exit",
+      "success": true,
+      "recovery_policies": [],
+      "consumer": {
+        "clears": 2,
+        "ended": false,
+        "error": "Rendering recovery response timed out",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": false
+    },
+    {
+      "mode": "cancel",
+      "success": true,
+      "recovery_policies": [],
+      "consumer": {
+        "clears": 2,
+        "ended": false,
+        "error": "Invalid rendering recovery response",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "mutated-request",
+      "success": true,
+      "recovery_policies": [],
+      "consumer": {
+        "clears": 2,
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "frame-timeout",
+      "success": true,
+      "recovery_policies": [
+        0
+      ],
+      "consumer": {
+        "clears": 2,
+        "ended": false,
+        "error": "Recovered producer did not publish a complete frame",
+        "frames": [
+          {
+            "index": 0,
+            "session": 0
+          },
+          {
+            "index": 1,
+            "session": 0
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          1,
+          2,
+          0,
+          3
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": true
+    },
+    {
+      "mode": "startup",
+      "success": true,
+      "recovery_policies": [
+        1
+      ],
+      "consumer": {
+        "clears": 1,
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "index": 2,
+            "session": 1
+          },
+          {
+            "index": 3,
+            "session": 1
+          },
+          {
+            "index": 4,
+            "session": 1
+          },
+          {
+            "index": 5,
+            "session": 1
+          },
+          {
+            "index": 6,
+            "session": 1
+          },
+          {
+            "index": 7,
+            "session": 1
+          },
+          {
+            "index": 8,
+            "session": 1
+          },
+          {
+            "index": 9,
+            "session": 1
+          },
+          {
+            "index": 10,
+            "session": 1
+          },
+          {
+            "index": 11,
+            "session": 1
+          },
+          {
+            "index": 12,
+            "session": 1
+          },
+          {
+            "index": 13,
+            "session": 1
+          },
+          {
+            "index": 14,
+            "session": 1
+          },
+          {
+            "index": 15,
+            "session": 1
+          },
+          {
+            "index": 16,
+            "session": 1
+          },
+          {
+            "index": 17,
+            "session": 1
+          },
+          {
+            "index": 18,
+            "session": 1
+          },
+          {
+            "index": 19,
+            "session": 1
+          },
+          {
+            "index": 20,
+            "session": 1
+          },
+          {
+            "index": 21,
+            "session": 1
+          },
+          {
+            "index": 22,
+            "session": 1
+          },
+          {
+            "index": 23,
+            "session": 1
+          },
+          {
+            "index": 24,
+            "session": 1
+          },
+          {
+            "index": 25,
+            "session": 1
+          },
+          {
+            "index": 26,
+            "session": 1
+          },
+          {
+            "index": 27,
+            "session": 1
+          },
+          {
+            "index": 28,
+            "session": 1
+          },
+          {
+            "index": 29,
+            "session": 1
+          },
+          {
+            "index": 30,
+            "session": 1
+          },
+          {
+            "index": 31,
+            "session": 1
+          },
+          {
+            "index": 32,
+            "session": 1
+          },
+          {
+            "index": 33,
+            "session": 1
+          },
+          {
+            "index": 34,
+            "session": 1
+          },
+          {
+            "index": 35,
+            "session": 1
+          },
+          {
+            "index": 36,
+            "session": 1
+          },
+          {
+            "index": 37,
+            "session": 1
+          },
+          {
+            "index": 38,
+            "session": 1
+          },
+          {
+            "index": 39,
+            "session": 1
+          }
+        ],
+        "recoveries": 1,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          4
+        ],
+        "viewport_uploads": 0
+      },
+      "immutable_old_rings": 0,
+      "original_counts_equal": true
+    }
+  ],
+  "scope": "Actual PE32 administrative recovery worker and Qt single-viewport/context native consumer handoffs with independent full original-fixture pixels. No original artifacts/game, original-driver equivalence, dynamic unloading or unobserved leases.",
+  "control_native": {
+    "success": true,
+    "cases": 11
+  },
+  "control_sanitized": {
+    "success": true,
+    "cases": 11
+  },
+  "full_frame_comparisons": 189
+}

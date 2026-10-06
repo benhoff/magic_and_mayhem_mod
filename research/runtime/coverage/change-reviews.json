@@ -29352,6 +29352,584 @@
         "evidence": [],
         "reason": "Fresh validation covers only scoped original RGB565 keyed/fill comparisons. Shared native implementation bytes are unchanged; broader transport/palette/GPU/live/clipping/game-fixture revalidation is not asserted. Historical keyed replay fingerprints remain stale after the helper/test correction; its separately registered current replay carries fresh evidence. All historical reports retained."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "90214b8226ba245df6338a8034055a9844a57a6aefda988de8314343024e2e46",
+          "before_sha256": null,
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "bf8563e0ee7b6ec96f8dd81039173d12d56e303946741af031a87d7f0ab3bcec",
+          "before_sha256": "074a2f7c976ba3e9ddab7e6151f51152b39ac78f8caea92a6c9a76aafc9ea02c",
+          "id": "NR.surface-fixture-corpus"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "3ff187072a520bf787811b9a73a0aa02e75e88048329194d6bac52e16982dc33",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/original-rgb565-keyed.json.gz"
+        }
+      ],
+      "id": "retrospective-keyed-fixture-payload-558b1fc-20261006",
+      "pending_gaps": [],
+      "reason": "Retrospective review of the compressed436-case original RGB565 keyed fixture payload added in558b1fc: exact parent absence/currentSHA2563ff187072a520bf787811b9a73a0aa02e75e88048329194d6bac52e16982dc33, JSON list shape and436 retained before/after/result/input records inspected. The corpus manifest/checker and behavior/evidence receipts were already present; the compressed binary payload itself lacked an exact file receipt because it is outside the normal source-census suffixes. This accounting does not assert a historical gate pass or new execution validation.",
+      "validation": {
+        "evidence": [],
+        "reason": "Exact committed compressed payload and retained structural records reviewed retrospectively; existing original comparison results keep their recorded source hashes. No original routine execution was rerun for this receipt and no past gate success or current equivalence is asserted.",
+        "status": "pending"
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "3a4f7b521d21a0f70fd871f77e3bfc34b2b471f9d625b8461044ee1be216e0cf",
+          "before_sha256": null,
+          "id": "RE.surface-fill.rgb565"
+        },
+        {
+          "after_sha256": "7f00c211f64aeba1b563bdc5e4167b28f5b67e3ea259910d7876a17a8dd34961",
+          "before_sha256": "bf8563e0ee7b6ec96f8dd81039173d12d56e303946741af031a87d7f0ab3bcec",
+          "id": "NR.surface-fixture-corpus"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "3de62db2c49674adad4d48960e4485c2ffebe523d9e3b174d0f6b6222cdbd7c6",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/original-rgb565-fills.json.gz"
+        }
+      ],
+      "id": "retrospective-fill-fixture-payload-c84f26e-20261006",
+      "pending_gaps": [],
+      "reason": "Retrospective exact compressed250-case fill fixture payload review for c84f26e: parent absence/current SHA2563de62db2c49674adad4d48960e4485c2ffebe523d9e3b174d0f6b6222cdbd7c6, decoded JSON list shape and250 input/trace/HRESULT/before/after/dialog/clip records inspected. The manifest/checker and behavior/evidence receipts were already present; this compressed payload lies outside the normal source-census suffixes and lacked an exact file receipt. No historical gate pass or new validation is asserted.",
+      "validation": {
+        "evidence": [],
+        "reason": "Committed payload and retained record structure reviewed retrospectively. Original routine/driver execution was not rerun for this accounting receipt; existing comparison results retain historical source hashes.",
+        "status": "pending"
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "f61d808d1526713f31e569f128b65ea58f11da60163e8cb407e41e2af078251f",
+          "before_sha256": null,
+          "id": "NR.continuous-resource-working-set"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "477a9ea33f2b36e529d0501427db46cfcbc81d823655e54e2324db48601e2bf7",
+          "before_sha256": "dd600649344789ae8336c45629896d13b0d27f39c2065fd00f1c170c754455e2",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "cea33aad463051cf2fc6442f91c806dfb9bc35f1ae9dae412f51f5c6fc389544",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-render-working-set-20261006.json"
+        },
+        {
+          "after_sha256": "54a9c5db9f65de71618257ded8ec183da484021d10a08453e11fff8b6d91fbdb",
+          "before_sha256": "47421d712ac8911fbd81dd61aff6439ec698ba4fcb7625988b05dbd73f0665c9",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "a58c7d8c9434797475bedfd5bc3a51b74442f3bcd4058368fba5f21a7cd79075",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-render-working-set-20261006.json"
+        },
+        {
+          "after_sha256": "c34445028ac86dd550b1e5babfa8e6d147057ce21d6d44fefc02e92225e0b1b3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-render-working-set-20261006.md"
+        },
+        {
+          "after_sha256": "ca7e40dc535484996266bb9d239b6e6f65b5bdc47517d0d5eef41565912c3cdb",
+          "before_sha256": "f8a6b3fe95f95e94dc8271cfa65a2d3017966e63203a8d5dc961c846ab6c17e3",
+          "path": "research/runtime/opengl-command-checkpoint.md"
+        },
+        {
+          "after_sha256": "cdd16e5615aa9e7e6495b03639bded0af30d6cc7ef0d9a7758de922a80aaf713",
+          "before_sha256": "00cd514803f05192d2a0b04ff92d4ca3f302d72db6b487780691cef064deffe5",
+          "path": "research/runtime/opengl-continuous-resource-lifetime.md"
+        },
+        {
+          "after_sha256": "8f4278152009c03d66747dd2cd2c97cd1b778a0e9242b6c68d2f50493fc6c44b",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-resource-working-set.md"
+        },
+        {
+          "after_sha256": "0528cb16d806bf680764b80f35fd339a60567e1a7e1727c526806d0771495062",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-checkpoint-20261006.json"
+        },
+        {
+          "after_sha256": "2cc793b0f671ce6e2a17d8df66ca0fa0b4be182b85c4dc3336cfe4663c70233f",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-continuous-20261006.json"
+        },
+        {
+          "after_sha256": "1e9e6f57bb24befa9f6d7b441bb9c328fa8701bea611e749f7356d34b7cd7729",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-game-20261006.json"
+        },
+        {
+          "after_sha256": "127c14a9b6ee5e57545b12f1ed5133781716d21d4db139a58176fb352a79dad5",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-host-20261006.json"
+        },
+        {
+          "after_sha256": "1009b53802ccb33ac66d65bb3becbd4590996e6d518a5a1074c155ee75a41011",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-lifetime-20261006.json"
+        },
+        {
+          "after_sha256": "3e3a2528885eac7ae0d28e2883da066b8d3ab38e337c0a7ab71e45882cb41ee0",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-native-20261006.json"
+        },
+        {
+          "after_sha256": "e0320f879bd79b43ca6d563b342fcf02edd5323fcb97c085a650c11351c751a4",
+          "before_sha256": "3d88614e72f799680c5519162add9a2f71ff2d54a080c1ebea980f9907abf9d4",
+          "path": "runtime/render/checkpoint_selftest.h"
+        },
+        {
+          "after_sha256": "586a9253d5a32f7df12db82edfb5970a69cd0137cf3e1bd07746461360fa43b6",
+          "before_sha256": "f635345877bd61c747a8fe1b33def085473ff1dca0ad19d22cf7960c70a6a6e2",
+          "path": "runtime/render/command_recovery.h"
+        },
+        {
+          "after_sha256": "d19b4b07522d2f4c3a528e8447fda37e6b3e5239bfa4e4041fef85965f5b9021",
+          "before_sha256": "af693ffde67faadc24b79aa8f229a5980fa7cba983b934b19b6a1c0c32879b77",
+          "path": "runtime/render/continuous_selftest.h"
+        },
+        {
+          "after_sha256": "8f7218f11f93f5286492c86385978a581b3f66c24d1ed87e0a2ff8493d47453b",
+          "before_sha256": "2e2f7b2890a4c1547dbfbda63b35f5da9b5a4019519d302594ffab207ca7f9d2",
+          "path": "runtime/render/owned_session.h"
+        },
+        {
+          "after_sha256": "a22d70fbfe33fdeec7885cfe1eeefc5044a113b70b7aff6203289e1f4369f08f",
+          "before_sha256": "868633bcbbe0c8e505300d9eace63bf59a2450e4bbf05cb3bc0fc9af040df358",
+          "path": "runtime/render/selftest.c"
+        },
+        {
+          "after_sha256": "f6bbfcc44991193fa608e54b07cf79ea18d3ea8e34853946608b1bc6dcea733b",
+          "before_sha256": null,
+          "path": "runtime/render/working_set_selftest.h"
+        },
+        {
+          "after_sha256": "ddd7fe37eadb44fdae01f4ae024ebd57b57256e83c1fcb437791e77d18163445",
+          "before_sha256": "ddd7fe37eadb44fdae01f4ae024ebd57b57256e83c1fcb437791e77d18163445",
+          "path": "tests/live-command-checkpoint-test.cpp"
+        },
+        {
+          "after_sha256": "35acaf9566624eea2dac2d4a8146f6fcafbe5e46e5b7a45f723c3b1cf112ff83",
+          "before_sha256": "35acaf9566624eea2dac2d4a8146f6fcafbe5e46e5b7a45f723c3b1cf112ff83",
+          "path": "tests/live-command-recovery-test.cpp"
+        },
+        {
+          "after_sha256": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+          "before_sha256": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+          "path": "tests/live-render-channel-test.cpp"
+        },
+        {
+          "after_sha256": "16622a7c16456649ddadc4368bcf32b9e95a19c090843eef431c8f12f47a876a",
+          "before_sha256": "16622a7c16456649ddadc4368bcf32b9e95a19c090843eef431c8f12f47a876a",
+          "path": "tests/live-render-route-probe.cpp"
+        },
+        {
+          "after_sha256": "39453ce9c0fda8c97f7cab2a61b7e4bab7b5b5b28f87d1ce7237e6c7e0456f70",
+          "before_sha256": "a17a222ec9319b06102e6f5ef8c19df8fee8d7be4fdf7475475411fadb7df066",
+          "path": "tools/test-live-render-routes.py"
+        },
+        {
+          "after_sha256": "9bf79ed4503944592802da08f265d0d77ca50b01435983e484cb4210c04f1817",
+          "before_sha256": "224ebc4d8c85bad4441d73da3818457e902596d9c8f68f8b557225a9d6bb9ee7",
+          "path": "tools/test-render-checkpoint.py"
+        },
+        {
+          "after_sha256": "ee50a622301a12ebf3d99814735494783a57daa92583f939ab34490a60d8d011",
+          "before_sha256": "4e46e49bdfdb2c2161d744528a57030b7a9028c3301069b5bbd7136129a2127f",
+          "path": "tools/test-render-continuous-producer.py"
+        },
+        {
+          "after_sha256": "71144e0c4365b4838373cb797e45fbbc56f083ac4d46efff9f66dbddd337ddb1",
+          "before_sha256": "71144e0c4365b4838373cb797e45fbbc56f083ac4d46efff9f66dbddd337ddb1",
+          "path": "tools/test-render-host-recovery.py"
+        },
+        {
+          "after_sha256": "51a2f61b2b339d23b8920c126c6b773b3383a0bc5a76c2bb27de9b4058f4c3af",
+          "before_sha256": "51a2f61b2b339d23b8920c126c6b773b3383a0bc5a76c2bb27de9b4058f4c3af",
+          "path": "tools/test-render-resource-lifecycle.py"
+        },
+        {
+          "after_sha256": "ad587e7b8ae977ea6edc3763acffdfec320cdec5b311002cc12d718145b7f713",
+          "before_sha256": null,
+          "path": "tools/test-render-working-set.py"
+        }
+      ],
+      "id": "continuous-resource-working-set-20261006-recorded",
+      "pending_gaps": [],
+      "reason": "Reviewed bounded consumer residency, FIFO DELETE before fresh-ID CREATE re-admission, retained authoritative CPU pixels and verified aliases, protection of both copy/flip operands and borrowed lock/DC resources, ID exhaustion before eviction, and conservative complete checkpoint validation with primary-only initial materialization. Reviewed changed fixtures and required World Active recovery assertions against independent original-storage pixels and actual bounded campaign execution. Resource and queue limits remain finite; all-protected admission fails explicitly.",
+      "validation": {
+        "evidence": [
+          "NR.continuous-resource-working-set.native-20261006",
+          "NR.continuous-resource-working-set.checkpoint-20261006",
+          "NR.continuous-resource-working-set.host-20261006",
+          "NR.continuous-resource-working-set.continuous-20261006",
+          "NR.continuous-resource-working-set.lifetime-20261006",
+          "NR.continuous-resource-working-set.game-20261006"
+        ],
+        "reason": "Fresh PE32/Wine and native OpenGL execution covers six residency cases, strict checkpoint and host recovery matrices, beyond-sample continuity, and nine original-lifetime cases: 1,128 independent complete GPU frame comparisons. Original campaign publishes 336 frames; World remains Active after forced reader failure and publishes 29 additional frames over 3,020 ms in the same recovered session. Four stable menu regions match original X11 within one channel value. Manifest and source preferences preserved; consumer resources and publication storage clean up. Preview policy only: independent full World pixels, long gameplay, movies and hardware drivers remain pending.",
+        "status": "recorded"
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "307ef8a82727e21f0d398e7fc97f02beceec0fdffccd772ceb333ea7bd83f80d",
+          "before_sha256": "50528a946bbffd54dfdd79dbe1adac7393394d6249ebc2f146b16668f655ace8",
+          "id": "NR.command-backpressure"
+        },
+        {
+          "after_sha256": "851710198a88bc108d975cea5fc88cad0c416c52cd4415cadb1fe7c14e0d7d6c",
+          "before_sha256": "178c5c500843cdf3a97fd02a9a571a59aaff4b70b6899082955f6e0a436f0b22",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "7475c62fd5622e0e080181c2431b576debeae020e80610a84eae835dc9930c16",
+          "before_sha256": "316a579a7f716855b84f603554247d2d9ac9f7b494542a9cd14353e9506fe23a",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "49ce896a26a7e85cd02a36618160e8bda70754b33128e53453bdf39cb5a7c4ad",
+          "before_sha256": "02d9696dc44ef6b52acb1e6d1885740bff4301ba62aa42c5b8bf6cec31933645",
+          "id": "NR.command-idle-lifecycle"
+        },
+        {
+          "after_sha256": "891830dad0754b8261845bbe4a0da258f64c997ef91d2d040c802873b8b7839b",
+          "before_sha256": "90de67921f5c0d3cd9161d18742461adb7e83790b321a99c15e9805e0fd7ab4d",
+          "id": "NR.command-orchestration"
+        },
+        {
+          "after_sha256": "c116d6339a28154a162d25a531cb6141e248cf413172cf4cfdab345c7fd6d222",
+          "before_sha256": "9c75c0e7d384884782e56a7f39828bfbe7e1103b4a17084663e1f4eb513fe667",
+          "id": "NR.command-recovery"
+        },
+        {
+          "after_sha256": "018f5a9be14b43619204bfcecb28bdc5cd2bd9539810358703959d940d21b956",
+          "before_sha256": "018f5a9be14b43619204bfcecb28bdc5cd2bd9539810358703959d940d21b956",
+          "id": "NR.command-ring-adapter"
+        },
+        {
+          "after_sha256": "d7ee4b0fc38aac5de36c4bfc8b5ab1be5f9b089fa2cbdea2a02106b448651675",
+          "before_sha256": "d7ee4b0fc38aac5de36c4bfc8b5ab1be5f9b089fa2cbdea2a02106b448651675",
+          "id": "NR.command-streaming"
+        },
+        {
+          "after_sha256": "bcb8d74d5b9e81ce395692a2f329b3ffdb03d816dbcb0514dca0691f494645d1",
+          "before_sha256": "2584e9c3cc90faaa884c9cbf5b33bdeaee8e3e62559e601e8c24919f959462d3",
+          "id": "NR.continuous-mutations"
+        },
+        {
+          "after_sha256": "256712d6564fe277edeb56952295ac9c8a60f6db4ca2c2aae48833ad57b22b62",
+          "before_sha256": "c86a06d1f1910e31e9019a1a4f332aede9ff0dc586dd9a5f0524635f8b164927",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "17df08527d12c7a7b476d7e1907fc8392ccb306d2105fda5dca6fded85e8d5da",
+          "before_sha256": "3fbc8aae42f117f1d86dbdcb28fbbb147f59d22312ae32cc4c305bf96007a643",
+          "id": "NR.continuous-resource-lifetime"
+        },
+        {
+          "after_sha256": "0851dba496bbdba43ccd0fa9b21e9dbe0d6040493d40ef14f7daf367b2729b11",
+          "before_sha256": "0851dba496bbdba43ccd0fa9b21e9dbe0d6040493d40ef14f7daf367b2729b11",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "a1e7683c73ea267740c09939911c345f5b66d74a1d5551ee434d13add2833d61",
+          "before_sha256": "83a3cf2d04886a4df84d24c7cfc4c5d903a1edab9f416faa3bf16e6083471bd0",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "f33f58556985d881ff5518683f5aea4ab133694374a357ae1ac71b8ad8e30a81",
+          "before_sha256": "c2e9f1f10ae33a3597980438d6474fc03d950d6a3491df36d45d4f3681360ae1",
+          "id": "NR.owned-session-dc"
+        },
+        {
+          "after_sha256": "829c6ec1e29b056a45a8417c1b62973a6f9f389d72fbc9b9381618af1a6ccb43",
+          "before_sha256": "bd1214a9a5319f0014304a3e4ef3b9350d84902d81ff9d52e462b7ac3f8f3ddd",
+          "id": "NR.owned-session-fill"
+        },
+        {
+          "after_sha256": "b8899fd20f5a2584cfcd24745a5909b3f6412478defba5d332e676288f16b809",
+          "before_sha256": "925fa5be6fae7b687ae8e1f540cc8cffd2cff33d7aff2aea58bd2755d3bb6ca1",
+          "id": "NR.owned-session-sequence"
+        },
+        {
+          "after_sha256": "8d5a3d6432abc8003848f6ec87f8527c198a830b97edd03abce7dc15c4537828",
+          "before_sha256": "a856f8fffca056250f3b2b60411ad87d2c56b8e9fb8f4330dd048920ded86227",
+          "id": "NR.owned-session-startup"
+        },
+        {
+          "after_sha256": "3215b2d0687235d8400dfebf6f13584cd773a9067b085e4f9803c70843abad8c",
+          "before_sha256": "0b831845c5de527d99a82b263778feaeec6408645bfd5d279eef7eff90e5601a",
+          "id": "NR.owned-session-unlock-packed"
+        },
+        {
+          "after_sha256": "1ccf783012286e713069b1e02912acc7a51e8ee6ff9960031d71e18fbcdbda93",
+          "before_sha256": "fdb4a1e7021f326738f0295d6ae0173c5eb0118d3d1b7ee863d655cfacd39797",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "832597cb34984a33b10cf626167f31fab6d5b7df37c134ab4658b8d45075c7dc",
+          "before_sha256": "6b7200c6095ca214cc79d966f4b09ac89925fe359635ce5481b0c170aa56f058",
+          "id": "NR.real-game-command-shadow"
+        },
+        {
+          "after_sha256": "32731dc35034ad92300b98a09e0ab62b65587c844667e40fb620d3ecef6eceaf",
+          "before_sha256": "efbfaa3a26c68aaae9199f9a61dbb8bf331a61f0622f755476c37d206a6fd204",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "b4eebeb2545fc9117e803c9eda00c52d23cee06a2961f04b081bf89b7b6fb60e",
+          "before_sha256": "ce23f3cf589c94c8b2a1b0c9682c4405b7d1748874c990799ef9de67c2c55d86",
+          "id": "RI.ui"
+        },
+        {
+          "after_sha256": "3a167229d1a7dde4f3970e202e1691f1e710a218edbf34a8e2d283938f615eed",
+          "before_sha256": "4a521072c698454cbf4943925252d574311de3c72035cd8037e41e36fd679388",
+          "id": "RT.render"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "477a9ea33f2b36e529d0501427db46cfcbc81d823655e54e2324db48601e2bf7",
+          "before_sha256": "dd600649344789ae8336c45629896d13b0d27f39c2065fd00f1c170c754455e2",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "cea33aad463051cf2fc6442f91c806dfb9bc35f1ae9dae412f51f5c6fc389544",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-render-working-set-20261006.json"
+        },
+        {
+          "after_sha256": "54a9c5db9f65de71618257ded8ec183da484021d10a08453e11fff8b6d91fbdb",
+          "before_sha256": "47421d712ac8911fbd81dd61aff6439ec698ba4fcb7625988b05dbd73f0665c9",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "a58c7d8c9434797475bedfd5bc3a51b74442f3bcd4058368fba5f21a7cd79075",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-render-working-set-20261006.json"
+        },
+        {
+          "after_sha256": "c34445028ac86dd550b1e5babfa8e6d147057ce21d6d44fefc02e92225e0b1b3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-render-working-set-20261006.md"
+        },
+        {
+          "after_sha256": "ca7e40dc535484996266bb9d239b6e6f65b5bdc47517d0d5eef41565912c3cdb",
+          "before_sha256": "f8a6b3fe95f95e94dc8271cfa65a2d3017966e63203a8d5dc961c846ab6c17e3",
+          "path": "research/runtime/opengl-command-checkpoint.md"
+        },
+        {
+          "after_sha256": "cdd16e5615aa9e7e6495b03639bded0af30d6cc7ef0d9a7758de922a80aaf713",
+          "before_sha256": "00cd514803f05192d2a0b04ff92d4ca3f302d72db6b487780691cef064deffe5",
+          "path": "research/runtime/opengl-continuous-resource-lifetime.md"
+        },
+        {
+          "after_sha256": "8f4278152009c03d66747dd2cd2c97cd1b778a0e9242b6c68d2f50493fc6c44b",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-resource-working-set.md"
+        },
+        {
+          "after_sha256": "0528cb16d806bf680764b80f35fd339a60567e1a7e1727c526806d0771495062",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-checkpoint-20261006.json"
+        },
+        {
+          "after_sha256": "2cc793b0f671ce6e2a17d8df66ca0fa0b4be182b85c4dc3336cfe4663c70233f",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-continuous-20261006.json"
+        },
+        {
+          "after_sha256": "1e9e6f57bb24befa9f6d7b441bb9c328fa8701bea611e749f7356d34b7cd7729",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-game-20261006.json"
+        },
+        {
+          "after_sha256": "127c14a9b6ee5e57545b12f1ed5133781716d21d4db139a58176fb352a79dad5",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-host-20261006.json"
+        },
+        {
+          "after_sha256": "1009b53802ccb33ac66d65bb3becbd4590996e6d518a5a1074c155ee75a41011",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-lifetime-20261006.json"
+        },
+        {
+          "after_sha256": "3e3a2528885eac7ae0d28e2883da066b8d3ab38e337c0a7ab71e45882cb41ee0",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-working-set-native-20261006.json"
+        },
+        {
+          "after_sha256": "e0320f879bd79b43ca6d563b342fcf02edd5323fcb97c085a650c11351c751a4",
+          "before_sha256": "3d88614e72f799680c5519162add9a2f71ff2d54a080c1ebea980f9907abf9d4",
+          "path": "runtime/render/checkpoint_selftest.h"
+        },
+        {
+          "after_sha256": "586a9253d5a32f7df12db82edfb5970a69cd0137cf3e1bd07746461360fa43b6",
+          "before_sha256": "f635345877bd61c747a8fe1b33def085473ff1dca0ad19d22cf7960c70a6a6e2",
+          "path": "runtime/render/command_recovery.h"
+        },
+        {
+          "after_sha256": "d19b4b07522d2f4c3a528e8447fda37e6b3e5239bfa4e4041fef85965f5b9021",
+          "before_sha256": "af693ffde67faadc24b79aa8f229a5980fa7cba983b934b19b6a1c0c32879b77",
+          "path": "runtime/render/continuous_selftest.h"
+        },
+        {
+          "after_sha256": "8f7218f11f93f5286492c86385978a581b3f66c24d1ed87e0a2ff8493d47453b",
+          "before_sha256": "2e2f7b2890a4c1547dbfbda63b35f5da9b5a4019519d302594ffab207ca7f9d2",
+          "path": "runtime/render/owned_session.h"
+        },
+        {
+          "after_sha256": "a22d70fbfe33fdeec7885cfe1eeefc5044a113b70b7aff6203289e1f4369f08f",
+          "before_sha256": "868633bcbbe0c8e505300d9eace63bf59a2450e4bbf05cb3bc0fc9af040df358",
+          "path": "runtime/render/selftest.c"
+        },
+        {
+          "after_sha256": "f6bbfcc44991193fa608e54b07cf79ea18d3ea8e34853946608b1bc6dcea733b",
+          "before_sha256": null,
+          "path": "runtime/render/working_set_selftest.h"
+        },
+        {
+          "after_sha256": "ddd7fe37eadb44fdae01f4ae024ebd57b57256e83c1fcb437791e77d18163445",
+          "before_sha256": "ddd7fe37eadb44fdae01f4ae024ebd57b57256e83c1fcb437791e77d18163445",
+          "path": "tests/live-command-checkpoint-test.cpp"
+        },
+        {
+          "after_sha256": "35acaf9566624eea2dac2d4a8146f6fcafbe5e46e5b7a45f723c3b1cf112ff83",
+          "before_sha256": "35acaf9566624eea2dac2d4a8146f6fcafbe5e46e5b7a45f723c3b1cf112ff83",
+          "path": "tests/live-command-recovery-test.cpp"
+        },
+        {
+          "after_sha256": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+          "before_sha256": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+          "path": "tests/live-render-channel-test.cpp"
+        },
+        {
+          "after_sha256": "16622a7c16456649ddadc4368bcf32b9e95a19c090843eef431c8f12f47a876a",
+          "before_sha256": "16622a7c16456649ddadc4368bcf32b9e95a19c090843eef431c8f12f47a876a",
+          "path": "tests/live-render-route-probe.cpp"
+        },
+        {
+          "after_sha256": "39453ce9c0fda8c97f7cab2a61b7e4bab7b5b5b28f87d1ce7237e6c7e0456f70",
+          "before_sha256": "a17a222ec9319b06102e6f5ef8c19df8fee8d7be4fdf7475475411fadb7df066",
+          "path": "tools/test-live-render-routes.py"
+        },
+        {
+          "after_sha256": "9bf79ed4503944592802da08f265d0d77ca50b01435983e484cb4210c04f1817",
+          "before_sha256": "224ebc4d8c85bad4441d73da3818457e902596d9c8f68f8b557225a9d6bb9ee7",
+          "path": "tools/test-render-checkpoint.py"
+        },
+        {
+          "after_sha256": "ee50a622301a12ebf3d99814735494783a57daa92583f939ab34490a60d8d011",
+          "before_sha256": "4e46e49bdfdb2c2161d744528a57030b7a9028c3301069b5bbd7136129a2127f",
+          "path": "tools/test-render-continuous-producer.py"
+        },
+        {
+          "after_sha256": "71144e0c4365b4838373cb797e45fbbc56f083ac4d46efff9f66dbddd337ddb1",
+          "before_sha256": "71144e0c4365b4838373cb797e45fbbc56f083ac4d46efff9f66dbddd337ddb1",
+          "path": "tools/test-render-host-recovery.py"
+        },
+        {
+          "after_sha256": "51a2f61b2b339d23b8920c126c6b773b3383a0bc5a76c2bb27de9b4058f4c3af",
+          "before_sha256": "51a2f61b2b339d23b8920c126c6b773b3383a0bc5a76c2bb27de9b4058f4c3af",
+          "path": "tools/test-render-resource-lifecycle.py"
+        },
+        {
+          "after_sha256": "ad587e7b8ae977ea6edc3763acffdfec320cdec5b311002cc12d718145b7f713",
+          "before_sha256": null,
+          "path": "tools/test-render-working-set.py"
+        }
+      ],
+      "id": "continuous-resource-working-set-20261006-pending-boundaries",
+      "pending_gaps": [
+        "behaviors_without_comparison:8c7ee86a3d64d4b5ff52c020aae72ea6854098ff2ef498269073d6145abf981a",
+        "stale_evidence:04524763c03b76c9d06e1bf1f8abdccf8604c1c36fde18c14a4822c7d00385ae",
+        "stale_evidence:06a75e9e3b8a7fa6fbdbdc7cec7f8ab6f3a7dca3b5955888ae3782625ebdc1e4",
+        "stale_evidence:0b49b18b2ec8cc07db6c184d29e17c22537714d5fb4e5492688a1cdc24c75512",
+        "stale_evidence:0dfac907935721bc0510205aea37bca785663349a55d0bd48c0b22b7a48e8c92",
+        "stale_evidence:11c297f4ae0dadf2c968d6b6aec188d11e9f62c1b03be5cb55ed1f4bb6d2cf1b",
+        "stale_evidence:126bce7d6647678e6244f325fa6709534ce066f35a9db4fd1ac2b6eb4450c9f6",
+        "stale_evidence:13f97b07e378aaabe2e53c76fe17412bbdbc8dad14dd91af7aa5281701baa073",
+        "stale_evidence:1519fb3e303ec7665b07a1d110bdd6d723abd864e355fa1dc1432e0c43fa022e",
+        "stale_evidence:19844e1d3d48423e27487be3306cd9974a9727a5d8420cf6a46782ba6d9f87d0",
+        "stale_evidence:24572e089bd178d5586b6484eb3415a45c6fe37fb1cc817d32c5f57400a1a7f6",
+        "stale_evidence:2aaeac6a48cb4f1725158dbea399d8beb81a131c23425296e10b28b1b25479a3",
+        "stale_evidence:2e688de5d11bfc8bc764e4fdfecb3612e50b50d666375ee7a6ca16a4162f4fe0",
+        "stale_evidence:342032e8ea983d9f8b24a4f105d31fa2f3b7198bc2d23b3842701c6e2d7784fb",
+        "stale_evidence:345ad5561162f5ecd64f0f50cb3f32e1ef59d63e755b081c2107c24595b4806e",
+        "stale_evidence:3fb1eb4abcb3074f7b08ae188eef9c37377d3e5ba7f108bb2e60080622f72f87",
+        "stale_evidence:45158a071bf214e7565dee9ecfa857005dc1719ff2d40866868f7af0b9d93ae9",
+        "stale_evidence:5022794ed81c677ef1caba8e75993c9dd25da6dd85983c6a171606ec70083421",
+        "stale_evidence:517ebe105731cebc9afb5f3c64d069f1f503579a3113f7e0de5c681e4abcd181",
+        "stale_evidence:52dad90d86bafe29c4f178197f924db42f8346b6c0f1a5c3fae1ca5312edba4f",
+        "stale_evidence:547b4ce4da96dc33b426f1b1e0771b661d5481cd5b88958b6634ee2ff4f2f661",
+        "stale_evidence:54afde2fd5525ccf52bb0f2695e81c9ef9099c1f2a88af0dea4d99e2b49ae699",
+        "stale_evidence:58c8c22aa2ab06bd7f9584c19d5d06ed74d6ca5c1e896a6c703da6dd28cdd6e4",
+        "stale_evidence:590cb964965089a9ea2ab4583d7eecad9c5a2c2cdaa98a1d063813e4fcd4d7db",
+        "stale_evidence:5e09488d5e2db80f819c9fece601d38a73cb27990bd965dad55109f1de4d0e4d",
+        "stale_evidence:611baaffdd5f5a2e186b65dd54438e42995f7ffb981d406003e347938b7d6792",
+        "stale_evidence:64f37dd71a22c17a15534800853781fb75159b31a3055102e284f64950b2bd35",
+        "stale_evidence:6cfcf8a86fb1785b6e49e4d5963486a6560f1311246c9798db48fe9c2180a31e",
+        "stale_evidence:6d7d3adf3248b4a07edc681addefbcdfd1fca693c171f58c6a20d3ba6c0d1e2b",
+        "stale_evidence:6f508aa63d3fe43331cdfb098ace349dad7cbc39ff0665bbfc4d4bbd1af4e6c2",
+        "stale_evidence:7059b343ead1490d125b44d06a791ba805aebce01748d92cb971728858e02a71",
+        "stale_evidence:74ececfed4cfd4da10f268edc60fa8f8434a9c1d11c7bf0c08074dcb0e6c297b",
+        "stale_evidence:78e3da8d5c4464c1251d6190eb805deed33c28d7d9a53d52da9717263a14ad08",
+        "stale_evidence:7de2bd77607195f3368930d005eafa3ec01ab7ad950715a08420db1501e9d48d",
+        "stale_evidence:806fca9dc6a4057144194105e2a271e5ffb090747e1c396c0c4da251f4b5bdbd",
+        "stale_evidence:86ec07f4b7e897b396cb82b92cdea68f14912806bb200e86b4f7b5951b391484",
+        "stale_evidence:8828c3f92fa2068ea09b496387406c57a54ff1a8148a52318015c00d9a3cf735",
+        "stale_evidence:8f7717a07babb399790218b8d666234cd3263c76f259fc90a0c2db24a63352d0",
+        "stale_evidence:981d27336daef74bc458a26e4e712de6924e64189f94cde0a5aed110e2f7d6f8",
+        "stale_evidence:9dbc2b32b1c0cf6b0e26240bf90f6f2d8e9bf04ec465903ca78eb40563135e35",
+        "stale_evidence:9e94198cbd6318899c0ae6f52618c6402826f02a2eb5bea6e0174ab9a7f9c1db",
+        "stale_evidence:9f304b876f88968a1e9bbb44f0298500e1fabd79e54b27295d7e28000ba6fc98",
+        "stale_evidence:a14f6eddbfb0474c8985169741cb7ac0a32caa5ec629785537b5bc913245f9de",
+        "stale_evidence:a215bf66265bede9bd380f1a756fd2b021cb81c51d5f21b924334037317f637f",
+        "stale_evidence:a61e5a28639c2e66ae7152ab88c91a99334098196a73dade29b9c65c19dfb73f",
+        "stale_evidence:b39fc5e23ab3b9208eacf7047e8103575aa9eb6ea032d00155ec4975c598c7ca",
+        "stale_evidence:b95d5edce253234257153394c13eafc7e60b3c907f2a6f048e0721361c65ebfc",
+        "stale_evidence:ba86bee1abe2d4d1892c008e76d71beea05b2c6719386a8d9dd6982e2709c3de",
+        "stale_evidence:bfadab4ba5d5cd6297680d0ef15ad4075ab2fa624de3f6eecea543559dffa0fa",
+        "stale_evidence:c21c5e0b24b4000e37631929bf8db6aa13177c8603153d415c8395ff1c6556c6",
+        "stale_evidence:c23964afda9851dbeb9c75e07a9ed139e63917a927f181ba0c1f849295cd928f",
+        "stale_evidence:c44b98cc0a31fb5c26fe50e789cd7f773e6115df5f66a6c6000b7f28765866ae",
+        "stale_evidence:c521b56d05c7e2fc06f216bfbac6e2044e2e318c270e264221feb828a4541190",
+        "stale_evidence:c99d4d6472871f277dcbb6808de955f8727bf1c9f10797cf12006939ae0c69aa",
+        "stale_evidence:cb2aa630dd6cd64981d303f10ee46c4f0232fe64499d2773598125f8425f55d8",
+        "stale_evidence:d19d6318d1ef00c33397fe2659c5a469819e5664cbb5bc63e59ca8f4228ea3a8",
+        "stale_evidence:d35d6f5a365218f98a58ecc40c112abe41c0c84f5d3639115107a2f818f51ba8",
+        "stale_evidence:d594bed85fefba4ab7ac65e3157e28a60bd4bbc6cf73a532042308eedb92d525",
+        "stale_evidence:df674dccad77d994a444271e8e63360ddf32c551e8af177c9c5bbb3e45aa6b82",
+        "stale_evidence:e0187476631a2aa520d2fdb5077efedfb70c9e3208744fc0f4e21ceb030248a1",
+        "stale_evidence:e4e8bc5beb2a6ae443d7d042c506208123c3e1ad149fa1d09ac75c61a28f29af",
+        "stale_evidence:e6165a9d937a48175399f1b7a754c1aaa98014b2aaba831c2d2ed639367bdbf1",
+        "stale_evidence:f323ad5add53b8739b54f745ca89d4b775cc59d0ea2cda7273c6a1ceecd1a177",
+        "stale_evidence:fa9f78a3a4e56c2188652f01a22cb07c897b57767f016664d274bd48dd0179e5"
+      ],
+      "reason": "Reviewed all affected shared render contracts, unchanged consumer/probe dependencies, coverage census and immutable evidence links. Preserve historical evidence fingerprints and existing shared behavior levels while adding scoped working-set evidence. Reviewed committed range 63863bc..c84f26e and appended retrospective hash receipts for two compressed fixture payloads without asserting historical gate passage or fresh original comparison. New policy is intentional native residency behavior, not recovered original eviction behavior.",
+      "validation": {
+        "evidence": [],
+        "reason": "Account explicitly for newly stale historical fingerprints caused by shared producer/test changes and absent original comparison of the new native policy. Fresh bounded residency, checkpoint, recovery, continuity, lifetime and campaign results are separately recorded; they do not refresh prior evidence or establish full World pixel, sustained gameplay, movie, unsupported branch, driver or live replacement equivalence. Broader shared contracts retain historical statuses and these current validation limits.",
+        "status": "pending"
+      }
     }
   ]
 }

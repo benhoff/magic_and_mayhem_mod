@@ -72,7 +72,7 @@ static void test_continuous(const char* mode){
     pl_file("engine-final.bin",cs_big.native,512*512*4);
     u32 result[3]={cs_locks,cs_unlocks,frames};pl_file("engine-counts.bin",result,12);
     SetLastError(0x77);u32 complete=RenderShutdown(3000);
-    if(complete!=(refused || missing || limited?0u:1u) || GetLastError()!=0x77)ExitProcess(297);
+    if(complete!=(refused || missing?0u:1u) || GetLastError()!=0x77)ExitProcess(297);
     if(RenderShutdown(0)!=complete || GetLastError()!=0x77)ExitProcess(298);
     ExitProcess(0);
 }

@@ -43,7 +43,7 @@ def main():
         child=dict(env,MNM_CHECKPOINT_SELFTEST=mode,MNM_RENDER_PALETTE_RESOURCES='1',MNM_RENDER_CONTINUOUS='1',MNM_RENDER_NO_READBACK='1',MNM_RENDER_SESSION_ARCHIVE='1',MNM_RENDER_COMMAND_CHANNEL='Z:'+str(case/'commands.bin').replace('/','\\'),MNM_RENDER_CONTROL='Z:'+str(case/'commands.bin.control').replace('/','\\'),MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'),MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/','\\'))
         if mode in ['allocation','mapping','worker']:child['MNM_RENDER_RECOVERY_FAULT_FOR_TEST']=mode
         if mode=='stall':child['MNM_RENDER_STALL_TIMEOUT_MS']='500'
-        valid=mode in ['rgb','indexed','rgb16','rgb24','mixed','recreate','overflow','stall','stale-ack'];wine=qt=None;frozen=[];failures=[]
+        valid=mode in ['rgb','indexed','rgb16','rgb24','mixed','capacity','recreate','overflow','stall','stale-ack'];wine=qt=None;frozen=[];failures=[]
         with (case/'qt.log').open('w') as qlog,(case/'wine.log').open('w') as wlog:
             try:
                 qt=subprocess.Popen([str(args.build.resolve()/'live-command-checkpoint-test'),str(case)],env=env,stdout=qlog,stderr=qlog);wait(lambda:(case/'ready.json').exists(),qt)
@@ -85,10 +85,10 @@ def main():
                 if valid:
                     for phase in range(1,4):
                         rec=mutation.archive((capture/f'session-{phase+1:08x}.bin').read_bytes());ops=[x['op'] for x in rec];first_present=ops.index(6)
-                        assert (phase!=3 or ops[-1]==8) and ops[:first_present].count(1)==(4 if mode=='mixed' else 3 if mode in ['overflow','stall'] else 2) and not any(op in [2,3,11] for op in ops[:first_present])
+                        assert (phase!=3 or ops[-1]==8) and ops[:first_present].count(1)==1 and not any(op in [2,3,11] for op in ops[:first_present])
                         assert all(op in ops[first_present+1:] for op in [2,3,11])
-                        if mode in ['indexed','recreate']:assert ops[:first_present].count(12)==1 and ops[:first_present].count(14)==2 and ops.count(13)==1
-                        records.append(dict(session=123+phase,complete_resources_before_present=True,archive_complete=ops[-1]==8,opcodes={str(op):ops.count(op) for op in set(ops)}))
+                        if mode in ['indexed','recreate']:assert ops[:first_present].count(12)==1 and ops[:first_present].count(14)==1 and ops.count(13)==1
+                        records.append(dict(session=123+phase,complete_primary_before_present=True,retained_dependencies_admitted_on_use=True,archive_complete=ops[-1]==8,opcodes={str(op):ops.count(op) for op in set(ops)}))
                 counts=struct.unpack('<10I',(case/'engine-counts.bin').read_bytes());assert counts[0]==counts[1] and counts[2:6]==(2 if mode=='uncertain' else 1,4 if mode=='recreate' else 1,4 if mode=='recreate' else 1,4 if mode=='recreate' else 1),(mode,counts)
                 if valid:assert counts==((254,254,1,4,4,4,12,6,9,0) if mode=='recreate' else (14,14,1,1,1,1,12,6,9 if mode=='indexed' else 0,0)),(mode,counts)
                 cs_counts=struct.unpack('<II',(case/'checkpoint-cs-counts.bin').read_bytes());assert cs_counts==((31,31) if mode=='capacity' else (2,2) if mode=='budget' else (451,451) if mode=='overflow' else (31,31) if mode=='stall' else (2,2) if mode=='mixed' else (0,0))

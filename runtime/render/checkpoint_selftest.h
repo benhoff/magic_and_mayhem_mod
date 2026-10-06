@@ -3,7 +3,7 @@ API u32 WIN RenderRecoveryStorageForTest(u32*);
 static i32 WIN cp_assign(void* object,void* palette){return mu_assign(object,palette==&mu_palette_alias?&mu_palette:palette);}
 static void test_checkpoint(const char* mode){
     SetLastError(0x77);if(!RenderStartup() || GetLastError()!=0x77)ExitProcess(440);
-    u32 recreate=rs_mode(mode,"recreate"),mixed=rs_mode(mode,"mixed");
+    u32 recreate=rs_mode(mode,"recreate"),mixed=rs_mode(mode,"mixed"),capacity=rs_mode(mode,"capacity");
     u32 pressure=rs_mode(mode,"overflow") || rs_mode(mode,"stall"),fault=rs_mode(mode,"allocation") || rs_mode(mode,"mapping") || rs_mode(mode,"worker");
     u32 indexed=recreate || rs_mode(mode,"indexed") || rs_mode(mode,"palette-incomplete"),bits=indexed?8:rs_mode(mode,"rgb16")?16:rs_mode(mode,"rgb24")?24:32;
     static void* table[33];table[2]=(void*)&mu_surface_release;table[5]=(void*)&mu_blt;table[11]=(void*)&mu_flip;table[12]=(void*)&mu_attached;table[17]=(void*)&mu_get_dc;
@@ -36,7 +36,7 @@ static void test_checkpoint(const char* mode){
     if(rs_mode(mode,"uncertain")){RenderCaptureGuardForTest(1);u32 desc[31]={124};SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[22])(&mu_front,desc)!=23 || GetLastError()!=0x88)ExitProcess(455);RenderCaptureGuardForTest(0);}
     if(pressure || mixed){cs_setup(cs_extra,pressure?256:4,pressure?256:4,32,0);cs_update(cs_extra,0x123456);}
     if(mixed){cs_setup(cs_extra+1,4,4,16,0);cs_update(cs_extra+1,0x1234);}
-    u32 held=rs_mode(mode,"held"),dc=rs_mode(mode,"dc"),valid=!fault && (rs_mode(mode,"rgb") || rs_mode(mode,"rgb16") || rs_mode(mode,"rgb24") || pressure || mixed || rs_mode(mode,"stale-ack") || (indexed && !rs_mode(mode,"palette-incomplete")));
+    u32 held=rs_mode(mode,"held"),dc=rs_mode(mode,"dc"),valid=!fault && (rs_mode(mode,"rgb") || rs_mode(mode,"rgb16") || rs_mode(mode,"rgb24") || pressure || mixed || capacity || rs_mode(mode,"stale-ack") || (indexed && !rs_mode(mode,"palette-incomplete")));
     if(held){u32 desc[31]={124};SetLastError(0x77);if(((i32 (WIN *)(void*,void*,void*,u32,HANDLE))table[25])(&mu_front,0,desc,1,0)!=13 || GetLastError()!=0x88)ExitProcess(449);}
     if(dc){u32 info[13]={40,6,(u32)-4,(32u<<16)|1,3,0,0,0,0,0,0xff0000,0xff00,0xff};
         mu_dc=CreateCompatibleDC(0);mu_bitmap=CreateDIBSection(mu_dc,info,0,(void**)&mu_dib,0,0);mu_old=SelectObject(mu_dc,mu_bitmap);
@@ -45,7 +45,7 @@ static void test_checkpoint(const char* mode){
         if(pressure){for(u32 i=0;i<(rs_mode(mode,"overflow")?150u:10u);++i)cs_update(cs_extra,0x123456+phase*151+i);Sleep(rs_mode(mode,"stall")?650:50);}
         /* Checkpoint is an additional PRESENT of the latest original pixels. */
         mu_record();rc_mark("checkpoint-ready-",phase,phase);rc_wait("resume-",phase);
-        if(valid){u32 state[8];SetLastError(0x77);if(!RenderRecoveryStateForTest(state) || GetLastError()!=0x77 || state[0]!=48*(bits/8)+(pressure?256*256*4:mixed?16*6:0) || state[1] || state[7]!=(indexed?2u:0u))ExitProcess(454);
+        if(valid){u32 state[8];SetLastError(0x77);if(!RenderRecoveryStateForTest(state) || GetLastError()!=0x77 || state[0]!=48*(bits/8)+(pressure?256*256*4:mixed?16*6:capacity?31*16*2:0) || state[1] || state[7]!=(indexed?2u:0u))ExitProcess(454);
             mu_cycle(&mu_back,1,5+phase,1);mu_draw(0,0,0,1,0);mu_draw(1,0,17+phase,0,0);mu_draw(0,1,0,0,0);mu_swap(1);mu_cycle(&mu_front,1,9+phase,1);if(indexed){mu_palette_change(0,1,0);mu_palette_change(1,0,0);}
             if(recreate){mu_palette_refs=3;mu_palette_lifetimes();
                 SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[28])(&mu_front,0)!=23 || GetLastError()!=0x88)ExitProcess(457);

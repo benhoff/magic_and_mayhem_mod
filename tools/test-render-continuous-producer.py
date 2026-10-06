@@ -101,7 +101,7 @@ def main():
         archive = mode in ['record-archive', 'byte-archive', 'failed-archive', 'short-archive','delta']
         if archive:
             child['MNM_RENDER_SESSION_ARCHIVE'] = '1'
-        valid = mode not in ['v1', 'missing-present', 'limit']
+        valid = mode not in ['v1', 'missing-present']
         with (case/'qt.log').open('w') as qlog, (case/'wine.log').open('w') as wlog:
             qt = subprocess.Popen([str(args.build.resolve()/'live-render-channel-test'),
                                    str(channel), str(active), str(output)], env=env, stdout=qlog, stderr=qlog)

@@ -65,14 +65,15 @@ class XInput:
         self.xt.XTestFakeButtonEvent(self.d,1,0,0);self.x.XFlush(self.d);time.sleep(.15)
     def close(self):self.x.XCloseDisplay(self.d)
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64');parser.add_argument('--mode',choices=['campaign','movies-enabled','both'],default='both');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64');parser.add_argument('--mode',choices=['campaign','movies-enabled','both'],default='both');parser.add_argument('--require-world-active',action='store_true',help='Require native World frames before/after failed-reader recovery and at least20 additional frames over2 seconds');args=parser.parse_args()
+    if args.require_world_active and args.mode=='movies-enabled':parser.error('--require-world-active needs the campaign route')
     assert os.environ.get('DISPLAY'),'Run under xvfb-run -a -s "-screen 0 1800x1000x24"'
     parent=ROOT/'working/tests/live-render-routes';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     paths=[*sorted((ROOT/'runtime/render').glob('*.[ch]')),*sorted((ROOT/'runtime/menu').glob('*.[ch]'))]
     paths += [ROOT/p for p in ['tools/test-live-render-routes.py','tools/test-live-render-game.py','tools/test-menu-observer.py','tools/build-menu-observer.py','tools/run-opengl-game.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py','tests/live-render-route-probe.cpp','renderer/CMakeLists.txt','renderer/commands.cpp','renderer/commands.hpp','renderer/command_consumer.cpp','renderer/command_state.hpp','renderer/blit.cpp','renderer/blit.hpp','apps/qt-shell/live_command_session.cpp','apps/qt-shell/live_command_session.hpp','apps/qt-shell/render_control.cpp','apps/qt-shell/render_control.hpp','apps/qt-shell/live_command_renderer.cpp','apps/qt-shell/live_command_renderer.hpp','apps/qt-shell/command_channel.cpp','apps/qt-shell/command_channel.hpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp']]
     paths += sorted((ROOT/'protocols/include/mnm').glob('render*.h'))
     paths += sorted((ROOT/'protocols/python/mnm_protocols').glob('render*.py'))
-    report=dict(schema=1,success=False,sources={str(p.relative_to(ROOT)):helper.sha(p) for p in paths},cases=[],scope='Original campaign ingress through three forwarded World ticks and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.',live_replacement=False,full_frame_equivalence=False)
+    report=dict(schema=1,success=False,sources={str(p.relative_to(ROOT)):helper.sha(p) for p in paths},cases=[],scope='Original campaign ingress through three forwarded World ticks and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.',live_replacement=False,full_frame_equivalence=False,world_active_required=args.require_world_active)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(run/'wineprefix'));env.pop('WAYLAND_DISPLAY',None)
     source_prefs=ROOT/'working/game-nocd/CFG/prefs.cfg';prefs_hash=helper.sha(source_prefs)
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
@@ -149,6 +150,13 @@ def main():
                             time.sleep(4);phase('world-after-forced-failure')
                         else:record['world_failure_injection']='Refused: session already inactive'
                         time.sleep(3);phase('world-end')
+                        if args.require_world_active:
+                            phases={p['name']:p for p in record['phases']}
+                            before=phases['world-before-forced-failure'];after=phases.get('world-after-forced-failure');final=phases['world-end']
+                            assert after and all(p['state']==1 and not p['error'] and p['width']==800 and p['height']==600 for p in [before,after,final]),'World native publication/recovery refused'
+                            assert after['recoveries']==before['recoveries']+1==final['recoveries'],'Unexpected World recovery session'
+                            assert final['frames']-after['frames']>=20 and final['ms']-after['ms']>=2000,'World publication did not continue after recovery'
+                            record['world_active_validated']=True
                         origin=inputs.origin;ImageGrab.grab(xdisplay=env['DISPLAY']).crop((origin[0],origin[1],origin[0]+800,origin[1]+600)).save(case/'world-original.png')
                     else:
                         time.sleep(8);phase('movie-enabled-main-end')

@@ -50,7 +50,9 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "recovery_selftest.h"
 #include "host_recovery_selftest.h"
 #include "checkpoint_selftest.h"
+#include "working_set_selftest.h"
 void start(void){
+    char working_set[24];if(GetEnvironmentVariableA("MNM_WORKING_SET_SELFTEST",working_set,sizeof(working_set)))test_working_set(working_set);
     char checkpoint[24];if(GetEnvironmentVariableA("MNM_CHECKPOINT_SELFTEST",checkpoint,sizeof(checkpoint)))test_checkpoint(checkpoint);
     char host[24];if(GetEnvironmentVariableA("MNM_HOST_RECOVERY_SELFTEST",host,sizeof(host)))test_host_recovery(host);
     char recovery[24];if(GetEnvironmentVariableA("MNM_RECOVERY_SELFTEST",recovery,sizeof(recovery)))test_recovery(recovery);
