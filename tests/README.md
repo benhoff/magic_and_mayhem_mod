@@ -912,3 +912,14 @@ equivalence and other installed-world profiles remain outside this scenario.
 ### Campaign Quit defeat report
 
 Run `python3 tools/test-campaign-defeat-bridge.py` and the V10 regression `python3 tools/test-campaign-mini-quit-bridge.py`. Eleven focused Qt checks include `qt-menu-campaign-defeat` and prior Mini, Region Entry, Quick Battle results, V1/V6 bridges. `python3 tools/test-live-qt-campaign-defeat.py --shell <built-shell> --source-root <compiled-tree>` checks native original-text report, original OK and normal Main Quit in an isolated bounded run without manual input. Static recovery is reproducible with `tools/export-campaign-defeat-support.py`. See [UI33 evidence](../research/runtime/campaign-defeat-engine-bridge.md).
+
+## Native retained display after Stop (NS18)
+
+`native-idle-display-process` runs a synthetic owned-ANI fixture with an
+independent v8 wire check, backward read, malformed inputs, transactional resource
+refusal, reorders, FIFO Stop/restart and cleanup/reuse.
+`tools/test-native-scene-window.py BUILD NEW_OUTPUT` extends the actual native
+entry-point window experiment with static stopped-body pixels, modal Save,
+fresh-window v8 restoration, idle ticks and active movement restart in four views.
+Installed artifacts are read only and bracketed by original-manifest checks.
+See [native idle display](../research/runtime/native-idle-display.md).

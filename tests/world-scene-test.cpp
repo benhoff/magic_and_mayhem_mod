@@ -38,7 +38,12 @@ int main(int argc,char** argv) try {
     scene::displayed(animation,e);check(before==e.motion->fine->animation->pc,"Scene advanced ANI clock");
     e.motion->previous=game::SegmentHistory{*e.motion->fine,0,0,0,{}};e.motion->fine.reset();
     check(bool(scene::displayed(animation,e)),"Boundary lost completed controller display");
-    e.motion->previous->motion.animation->displayed=1;bool rejected=false;
+    e.motion->pose=game::displayedPose(*e.motion);e.motion->previous.reset();
+    check(bool(scene::displayed(animation,e)),"Stopped pose lost body");
+    scene::displayed(animation,e);check(e.motion->pose->displayed==0,"Static display advanced");
+    e.motion->fine=game::FineMotion{};e.motion->fine->animation=game::AnimationCursor{0,1,0,true,1,0,0,0};
+    check(bool(scene::displayed(animation,e)),"Active display did not override retained pose");
+    e.motion->fine.reset();e.motion->pose->displayed=1;bool rejected=false;
     try {scene::displayed(animation,e);} catch(const std::invalid_argument&) {rejected=true;}
     check(rejected,"Control opcode accepted as display");
     std::cout<<cases<<" mixed CPU/OpenGL pixel comparisons; four views and owned display boundaries pass\n";

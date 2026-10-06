@@ -13,6 +13,7 @@ Point Navigation::finePosition(const Entity& e) const {
     if(e.motion && e.motion->terrainMotion) throw std::invalid_argument("terrain height driver unavailable");
     return {e.x*32,e.y*32,e.z*16};
 }
+void Navigation::validateDisplayPose(const DisplayPose&) const {throw std::invalid_argument("display pose driver unavailable");}
 void Navigation::validateSegmentHistory(const Entity&,const SegmentHistory&) const {throw std::invalid_argument("segment setup driver unavailable");}
 FineMotion Navigation::prepareFineMotion(const Entity&,const RoutePoint&) const {throw std::invalid_argument("sample motion driver unavailable");}
 bool Navigation::advanceFineMotion(const Entity&,const RoutePoint&,FineMotion&) const {throw std::invalid_argument("sample motion driver unavailable");}
@@ -52,6 +53,8 @@ void validateMotion(const Entity& e,const NavigationBinding& binding) {
     if((m.continuousMotion && !m.sampleMotion) || (m.terrainMotion && !m.continuousMotion) || (!m.continuousMotion && (m.previous || m.segmentTicks)) ||
        m.segmentTicks>100000 || (!m.fine && m.segmentTicks) ||
        (m.continuousMotion && ((m.fine && !m.segmentTicks) || (m.next && !m.previous)))) throw std::invalid_argument("invalid segment continuation policy");
+    if(m.pose && (!m.continuousMotion || e.cleaned || m.pose->sequence>=4096 || m.pose->displayed>=65536))
+        throw std::invalid_argument("invalid retained display pose");
     auto cursor=[&](const FineMotion& f) {
         if(f.animation && (!m.continuousMotion || f.animation->sequence>=4096 || f.animation->pc>65536 ||
            (f.animation->displayed && *f.animation->displayed>=65536) ||
@@ -126,6 +129,7 @@ void MovementSession::validateBinding(const State& state,const Navigation& navig
         if(++creatures>navigation.maxMovingCreatures() || e.type!=navigation.creatureType()) throw std::invalid_argument("movement slice exceeds the bound captured profile/count");
         validateMotion(e,*state.navigation);
         if(e.motion->terrainMotion) (void)navigation.finePosition(e);
+        if(e.motion->pose) navigation.validateDisplayPose(*e.motion->pose);
         if(e.motion->previous) navigation.validateSegmentHistory(e,*e.motion->previous);
         if(e.motion->sampleMotion) {
             if(e.motion->fine) navigation.validateFineMotion(e,e.motion->route.at(e.motion->next),*e.motion->fine);
@@ -194,7 +198,7 @@ TickReport MovementSession::step(TickInput input) {
                     ++movementWaits;continue; // Keep route/fine state; retry at the next maintenance tick.
                 }
                 if(!navigation_->acceptsInWorld(scheduled,{i,state.slots[i].generation},waypoint)) {
-                    motion.action=Action::blocked;motion.route.clear();motion.next=0;motion.origin=position;motion.fine.reset();motion.previous.reset();motion.segmentTicks=0;
+                    motion.pose=displayedPose(motion);motion.action=Action::blocked;motion.route.clear();motion.next=0;motion.origin=position;motion.fine.reset();motion.previous.reset();motion.segmentTicks=0;
                 } else {
                     bool completed=true;
                     if(motion.sampleMotion) {

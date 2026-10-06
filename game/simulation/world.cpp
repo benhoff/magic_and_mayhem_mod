@@ -6,6 +6,13 @@
 #include <utility>
 
 namespace mnm::game {
+std::optional<DisplayPose> displayedPose(const CreatureMotion& m) {
+    if(m.fine && m.fine->animation && m.fine->animation->displayed)
+        return DisplayPose{m.fine->animation->sequence,*m.fine->animation->displayed};
+    if(m.previous && m.previous->motion.animation && m.previous->motion.animation->displayed)
+        return DisplayPose{m.previous->motion.animation->sequence,*m.previous->motion.animation->displayed};
+    return m.pose;
+}
 namespace {
 const Entity* resolve(const State& s,Handle h) {
     if(h.slot>=s.slots.size()) return nullptr;
@@ -15,7 +22,7 @@ const Entity* resolve(const State& s,Handle h) {
 bool known(Family f) {return static_cast<std::uint32_t>(f)<=2;}
 void cancel(Entity& e) {
     if(!e.motion) return;
-    auto& m=*e.motion;m.action=Action::cancelled;m.route.clear();m.next=0;m.goal.reset();m.origin={e.x,e.y,e.z};m.fine.reset();m.previous.reset();m.segmentTicks=0;
+    auto& m=*e.motion;m.pose=e.cleaned?std::nullopt:displayedPose(m);m.action=Action::cancelled;m.route.clear();m.next=0;m.goal.reset();m.origin={e.x,e.y,e.z};m.fine.reset();m.previous.reset();m.segmentTicks=0;
 }
 bool apply(State& s,const Command& c) {
     if(!resolve(s,c.subject)) return false;
@@ -43,7 +50,8 @@ bool apply(State& s,const Command& c) {
         if(c.target) {const auto* goal=resolve(s,*c.target);destination={goal->x,goal->y,goal->z};}
         if(!contains(destination,*s.navigation)) return false;
         const auto budget=e.motion->budget;const auto sampleMotion=e.motion->sampleMotion;const auto continuousMotion=e.motion->continuousMotion;const auto terrainMotion=e.motion->terrainMotion;
-        e.motion=CreatureMotion{};e.motion->sampleMotion=sampleMotion;e.motion->continuousMotion=continuousMotion;e.motion->terrainMotion=terrainMotion;e.motion->action=Action::planning;e.motion->origin={e.x,e.y,e.z};
+        const auto pose=displayedPose(*e.motion);
+        e.motion=CreatureMotion{};e.motion->pose=pose;e.motion->sampleMotion=sampleMotion;e.motion->continuousMotion=continuousMotion;e.motion->terrainMotion=terrainMotion;e.motion->action=Action::planning;e.motion->origin={e.x,e.y,e.z};
         e.motion->destination=destination;e.motion->goal=c.target;e.motion->budget=budget;break;
     }
     case Operation::stop:
@@ -86,6 +94,7 @@ void World::validate(const State& s,const Limits& l) {
             if(!s.navigation) throw std::invalid_argument("movement state requires bound map");
             validateMotion(*slot.entity,*s.navigation);charge(slot.entity->motion->route.size()*28);
             const auto& m=*slot.entity->motion;
+            if(m.pose && !s.animation) throw std::invalid_argument("display pose requires ANI binding");
             if(s.animation && !m.continuousMotion) throw std::invalid_argument("ANI binding requires continuous motion");
             if((m.fine && bool(m.fine->animation)!=bool(s.animation)) || (m.previous && bool(m.previous->motion.animation)!=bool(s.animation)))
                 throw std::invalid_argument("animation cursor/binding disagreement");
