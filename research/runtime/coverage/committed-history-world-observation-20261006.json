@@ -1,0 +1,631 @@
+{
+  "schema": 1,
+  "scope": "Exact committed parent/current SHA256 and behavior receipt review, separate from pending workspace changes. This audit does not assert historical gate passes or fresh validation.",
+  "base": "c84f26e",
+  "head": "057f07df4091dce30768c7b3cd6bf555dcdd1649",
+  "commits": [
+    {
+      "commit": "7ed49435c2a93f67c6a852624c1d5c667e65f198",
+      "parent": "c84f26e8e26ce90441fa6383cbe5909658720565",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "dd600649344789ae8336c45629896d13b0d27f39c2065fd00f1c170c754455e2",
+          "after_sha256": "477a9ea33f2b36e529d0501427db46cfcbc81d823655e54e2324db48601e2bf7",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "e7817ddaf75e096e996628485b00dbe9f14314bea7bfe32ab1b74675358413b1",
+          "after_sha256": "92ab8a41baf3ddcbb7c364e42109ef8b22f42d7a1b726fddc1a6fbc039177269",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-render-working-set-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "cea33aad463051cf2fc6442f91c806dfb9bc35f1ae9dae412f51f5c6fc389544",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "47421d712ac8911fbd81dd61aff6439ec698ba4fcb7625988b05dbd73f0665c9",
+          "after_sha256": "54a9c5db9f65de71618257ded8ec183da484021d10a08453e11fff8b6d91fbdb",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-render-working-set-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "a58c7d8c9434797475bedfd5bc3a51b74442f3bcd4058368fba5f21a7cd79075",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-render-working-set-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "c34445028ac86dd550b1e5babfa8e6d147057ce21d6d44fefc02e92225e0b1b3",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-command-checkpoint.md",
+          "before_sha256": "f8a6b3fe95f95e94dc8271cfa65a2d3017966e63203a8d5dc961c846ab6c17e3",
+          "after_sha256": "ca7e40dc535484996266bb9d239b6e6f65b5bdc47517d0d5eef41565912c3cdb",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-continuous-resource-lifetime.md",
+          "before_sha256": "00cd514803f05192d2a0b04ff92d4ca3f302d72db6b487780691cef064deffe5",
+          "after_sha256": "cdd16e5615aa9e7e6495b03639bded0af30d6cc7ef0d9a7758de922a80aaf713",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-resource-working-set.md",
+          "before_sha256": null,
+          "after_sha256": "8f4278152009c03d66747dd2cd2c97cd1b778a0e9242b6c68d2f50493fc6c44b",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-working-set-checkpoint-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "0528cb16d806bf680764b80f35fd339a60567e1a7e1727c526806d0771495062",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-working-set-continuous-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "2cc793b0f671ce6e2a17d8df66ca0fa0b4be182b85c4dc3336cfe4663c70233f",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-working-set-game-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "1e9e6f57bb24befa9f6d7b441bb9c328fa8701bea611e749f7356d34b7cd7729",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-working-set-host-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "127c14a9b6ee5e57545b12f1ed5133781716d21d4db139a58176fb352a79dad5",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-working-set-lifetime-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "1009b53802ccb33ac66d65bb3becbd4590996e6d518a5a1074c155ee75a41011",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-working-set-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "3e3a2528885eac7ae0d28e2883da066b8d3ab38e337c0a7ab71e45882cb41ee0",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "runtime/render/checkpoint_selftest.h",
+          "before_sha256": "3d88614e72f799680c5519162add9a2f71ff2d54a080c1ebea980f9907abf9d4",
+          "after_sha256": "e0320f879bd79b43ca6d563b342fcf02edd5323fcb97c085a650c11351c751a4",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "runtime/render/command_recovery.h",
+          "before_sha256": "f635345877bd61c747a8fe1b33def085473ff1dca0ad19d22cf7960c70a6a6e2",
+          "after_sha256": "586a9253d5a32f7df12db82edfb5970a69cd0137cf3e1bd07746461360fa43b6",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "runtime/render/continuous_selftest.h",
+          "before_sha256": "af693ffde67faadc24b79aa8f229a5980fa7cba983b934b19b6a1c0c32879b77",
+          "after_sha256": "d19b4b07522d2f4c3a528e8447fda37e6b3e5239bfa4e4041fef85965f5b9021",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "runtime/render/owned_session.h",
+          "before_sha256": "2e2f7b2890a4c1547dbfbda63b35f5da9b5a4019519d302594ffab207ca7f9d2",
+          "after_sha256": "8f7218f11f93f5286492c86385978a581b3f66c24d1ed87e0a2ff8493d47453b",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "runtime/render/selftest.c",
+          "before_sha256": "868633bcbbe0c8e505300d9eace63bf59a2450e4bbf05cb3bc0fc9af040df358",
+          "after_sha256": "a22d70fbfe33fdeec7885cfe1eeefc5044a113b70b7aff6203289e1f4369f08f",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "runtime/render/working_set_selftest.h",
+          "before_sha256": null,
+          "after_sha256": "f6bbfcc44991193fa608e54b07cf79ea18d3ea8e34853946608b1bc6dcea733b",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-routes.py",
+          "before_sha256": "a17a222ec9319b06102e6f5ef8c19df8fee8d7be4fdf7475475411fadb7df066",
+          "after_sha256": "39453ce9c0fda8c97f7cab2a61b7e4bab7b5b5b28f87d1ce7237e6c7e0456f70",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "tools/test-render-checkpoint.py",
+          "before_sha256": "224ebc4d8c85bad4441d73da3818457e902596d9c8f68f8b557225a9d6bb9ee7",
+          "after_sha256": "9bf79ed4503944592802da08f265d0d77ca50b01435983e484cb4210c04f1817",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "tools/test-render-continuous-producer.py",
+          "before_sha256": "4e46e49bdfdb2c2161d744528a57030b7a9028c3301069b5bbd7136129a2127f",
+          "after_sha256": "ee50a622301a12ebf3d99814735494783a57daa92583f939ab34490a60d8d011",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "path": "tools/test-render-working-set.py",
+          "before_sha256": null,
+          "after_sha256": "ad587e7b8ae977ea6edc3763acffdfec320cdec5b311002cc12d718145b7f713",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded",
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-backpressure",
+          "before_sha256": "50528a946bbffd54dfdd79dbe1adac7393394d6249ebc2f146b16668f655ace8",
+          "after_sha256": "307ef8a82727e21f0d398e7fc97f02beceec0fdffccd772ceb333ea7bd83f80d",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "178c5c500843cdf3a97fd02a9a571a59aaff4b70b6899082955f6e0a436f0b22",
+          "after_sha256": "851710198a88bc108d975cea5fc88cad0c416c52cd4415cadb1fe7c14e0d7d6c",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "316a579a7f716855b84f603554247d2d9ac9f7b494542a9cd14353e9506fe23a",
+          "after_sha256": "7475c62fd5622e0e080181c2431b576debeae020e80610a84eae835dc9930c16",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.command-idle-lifecycle",
+          "before_sha256": "02d9696dc44ef6b52acb1e6d1885740bff4301ba62aa42c5b8bf6cec31933645",
+          "after_sha256": "49ce896a26a7e85cd02a36618160e8bda70754b33128e53453bdf39cb5a7c4ad",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "90de67921f5c0d3cd9161d18742461adb7e83790b321a99c15e9805e0fd7ab4d",
+          "after_sha256": "891830dad0754b8261845bbe4a0da258f64c997ef91d2d040c802873b8b7839b",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "9c75c0e7d384884782e56a7f39828bfbe7e1103b4a17084663e1f4eb513fe667",
+          "after_sha256": "c116d6339a28154a162d25a531cb6141e248cf413172cf4cfdab345c7fd6d222",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "2584e9c3cc90faaa884c9cbf5b33bdeaee8e3e62559e601e8c24919f959462d3",
+          "after_sha256": "bcb8d74d5b9e81ce395692a2f329b3ffdb03d816dbcb0514dca0691f494645d1",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "c86a06d1f1910e31e9019a1a4f332aede9ff0dc586dd9a5f0524635f8b164927",
+          "after_sha256": "256712d6564fe277edeb56952295ac9c8a60f6db4ca2c2aae48833ad57b22b62",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "3fbc8aae42f117f1d86dbdcb28fbbb147f59d22312ae32cc4c305bf96007a643",
+          "after_sha256": "17df08527d12c7a7b476d7e1907fc8392ccb306d2105fda5dca6fded85e8d5da",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-working-set",
+          "before_sha256": null,
+          "after_sha256": "f61d808d1526713f31e569f128b65ea58f11da60163e8cb407e41e2af078251f",
+          "receipts": [
+            "continuous-resource-working-set-20261006-recorded"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "83a3cf2d04886a4df84d24c7cfc4c5d903a1edab9f416faa3bf16e6083471bd0",
+          "after_sha256": "a1e7683c73ea267740c09939911c345f5b66d74a1d5551ee434d13add2833d61",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.owned-session-dc",
+          "before_sha256": "c2e9f1f10ae33a3597980438d6474fc03d950d6a3491df36d45d4f3681360ae1",
+          "after_sha256": "f33f58556985d881ff5518683f5aea4ab133694374a357ae1ac71b8ad8e30a81",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.owned-session-fill",
+          "before_sha256": "bd1214a9a5319f0014304a3e4ef3b9350d84902d81ff9d52e462b7ac3f8f3ddd",
+          "after_sha256": "829c6ec1e29b056a45a8417c1b62973a6f9f389d72fbc9b9381618af1a6ccb43",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": "925fa5be6fae7b687ae8e1f540cc8cffd2cff33d7aff2aea58bd2755d3bb6ca1",
+          "after_sha256": "b8899fd20f5a2584cfcd24745a5909b3f6412478defba5d332e676288f16b809",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.owned-session-startup",
+          "before_sha256": "a856f8fffca056250f3b2b60411ad87d2c56b8e9fb8f4330dd048920ded86227",
+          "after_sha256": "8d5a3d6432abc8003848f6ec87f8527c198a830b97edd03abce7dc15c4537828",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.owned-session-unlock-packed",
+          "before_sha256": "0b831845c5de527d99a82b263778feaeec6408645bfd5d279eef7eff90e5601a",
+          "after_sha256": "3215b2d0687235d8400dfebf6f13584cd773a9067b085e4f9803c70843abad8c",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "fdb4a1e7021f326738f0295d6ae0173c5eb0118d3d1b7ee863d655cfacd39797",
+          "after_sha256": "1ccf783012286e713069b1e02912acc7a51e8ee6ff9960031d71e18fbcdbda93",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "6b7200c6095ca214cc79d966f4b09ac89925fe359635ce5481b0c170aa56f058",
+          "after_sha256": "832597cb34984a33b10cf626167f31fab6d5b7df37c134ab4658b8d45075c7dc",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "RI.movies",
+          "before_sha256": "efbfaa3a26c68aaae9199f9a61dbb8bf331a61f0622f755476c37d206a6fd204",
+          "after_sha256": "32731dc35034ad92300b98a09e0ab62b65587c844667e40fb620d3ecef6eceaf",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "RI.ui",
+          "before_sha256": "ce23f3cf589c94c8b2a1b0c9682c4405b7d1748874c990799ef9de67c2c55d86",
+          "after_sha256": "b4eebeb2545fc9117e803c9eda00c52d23cee06a2961f04b081bf89b7b6fb60e",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "4a521072c698454cbf4943925252d574311de3c72035cd8037e41e36fd679388",
+          "after_sha256": "3a167229d1a7dde4f3970e202e1691f1e710a218edbf34a8e2d283938f615eed",
+          "receipts": [
+            "continuous-resource-working-set-20261006-pending-boundaries"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    },
+    {
+      "commit": "057f07df4091dce30768c7b3cd6bf555dcdd1649",
+      "parent": "7ed49435c2a93f67c6a852624c1d5c667e65f198",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "477a9ea33f2b36e529d0501427db46cfcbc81d823655e54e2324db48601e2bf7",
+          "after_sha256": "abb7a008d9d236638a7091bd15218ca7dedbb75b422be424c2667383c56cf28d",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "92ab8a41baf3ddcbb7c364e42109ef8b22f42d7a1b726fddc1a6fbc039177269",
+          "after_sha256": "216f95095c4e1f263a9b18078a30b592743c51e2e4f2040e5624ee6ebec1a07f",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-original-overlap-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "14dddaa46fa1ef086e072adb110548e8c9604fb6765d18b47d315a105f864579",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "54a9c5db9f65de71618257ded8ec183da484021d10a08453e11fff8b6d91fbdb",
+          "after_sha256": "9f14205eaa4cadd3f0bd39a864f4830f2b3873e7b304989ce34ab16fb1b6330c",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-original-overlap-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "75823176fdda8c92fe4b10d259e2e94461c8004d40bb03ab84da08dc1036fb61",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-original-overlap-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "2470fdab401ff35e28c9da1548f8f1f9528917ec111037e8d39bfec24918974c",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "220c09dc1fcabc9a9159960876b2efef456dad89a5c4ea983ec5af686784f5e7",
+          "after_sha256": "8eabaf3a1dc45967c574019c439c04bc860d90e054b87fe3bad5e2e74b45fb26",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "98aadf6348ef1bd5fed6be963a3b0bf712538ef889c00556a2db353c64034138",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap-cpu-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "71f20011f58fb4e3e69cbb636ce9249e02be7695efbe4372233bbee91ef6ed36",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-overlap.md",
+          "before_sha256": null,
+          "after_sha256": "adc2c3c94560de509b57d535b7963e7a2035bfd777a4df1e6cd943b6c1eea5cc",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-rgb565-overlap-corpus.json",
+          "before_sha256": null,
+          "after_sha256": "dbb088e45a19a3d354c8cb530f92046ade325c0dddaeb38b4d9e35958ab88fe2",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-rgb565-overlap.json.gz",
+          "before_sha256": null,
+          "after_sha256": "a1750be482070deea5bb4ab100bc3b2887db9e1e63d5f0aed4ca0761bc124f37",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-overlap-reference.c",
+          "before_sha256": null,
+          "after_sha256": "d205006e23a776d10d3e3d19106d54008ed57508d3681f4c76e5b8dfc5d53f37",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-original-surface-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "e68b82192f803ce6b1a0ecddef17ec25c5c4c237034d7d9885d54e596a382bd4",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-original-surface-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "4b6556737124800d3f583013adb95f3400c9c5dcb6f5b42bde2107e49168d28c",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-original-surface-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "a9475f944a4c5351452ecb1230ad2ba50f6a77a581381b9c8d3f72812fc71709",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006",
+            "original-overlap-shared-accounting-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "2c5690659ae0bc07040874dff90f84d21cdd10ab82f6a1f08075619aab0f112a",
+          "after_sha256": "63a26be9b07095e48c01a644f00efd29273bf68e11e0c2e688fe1e7ca743e34d",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "f38721c348a18f559853d1c18e18e865ab393401c988a7a65756b7a6b6c27397",
+          "after_sha256": "220d0d4037840a96eb1ba7a4e9476229407da9bfdb0b882adffb33f49f331392",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "6aa59e88062f0074110870710647a5eafb4af63482c2b5cffe83cdc6f092a60e",
+          "after_sha256": "b7ce6d2adebaa229194358e4bc7e051752603b4625f8c24968838c1fac413097",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "7f00c211f64aeba1b563bdc5e4167b28f5b67e3ea259910d7876a17a8dd34961",
+          "after_sha256": "0ae2594b731b354e035dd7f0aff79fc48bf0594621165804279352e6fe2d5a58",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "eba0ec0b6b7caf49dbdf8d4cda8113d74d7f79777dc942b2d688336e6843de87",
+          "after_sha256": "f9ddde962af73d775b5086310470800ef078649b59ff895671ae392b1efb9e96",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "e61be205a05caec731c1f2304bb26841d8851620ad210ee5f7e56eea6a6ede74",
+          "after_sha256": "088a2c486fd6a0c1fd1077d1a1b45f843abda72e8e85a91806b90ee5c0971ed0",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": null,
+          "after_sha256": "921d6970b400f821f7ed2a1ddd1b6830a13627dc68d5c4729f75225eb72d29e7",
+          "receipts": [
+            "original-overlap-capture-cpu-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "3a4f7b521d21a0f70fd871f77e3bfc34b2b471f9d625b8461044ee1be216e0cf",
+          "after_sha256": "766add71f1489ca7011aceb010d6aed68f1478034891e61d93db5d6a6ce5ce6e",
+          "receipts": [
+            "original-overlap-shared-accounting-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    }
+  ]
+}

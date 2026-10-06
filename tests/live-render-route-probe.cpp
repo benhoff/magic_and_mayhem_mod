@@ -31,7 +31,7 @@ int main(int argc,char** argv){
                 if(request.open(QIODevice::ReadOnly)){
                     check(request.size()<=1024,"request budget");auto value=QJsonDocument::fromJson(request.readAll()).object();unsigned id=value["id"].toInt();
                     if(id>lastRequest){
-                        check(id==lastRequest+1 && id<=32,"request order/budget");lastRequest=id;const auto operation=value["op"].toString();auto result=status();
+                        check(id==lastRequest+1 && id<=160,"request order/budget");lastRequest=id;const auto operation=value["op"].toString();auto result=status();
                         if(operation=="snapshot"){
                             check(session.state()==LiveCommandSession::State::Active && !viewport.frameSize().isEmpty(),"snapshot requires native frame");
                             const auto name=QString("native-%1.png").arg(id,8,10,QChar('0'));check(viewport.grabFramebuffer().save(dir.filePath(name)),"native capture");++snapshots;result=status();result["image"]=name;

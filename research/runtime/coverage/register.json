@@ -11896,7 +11896,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original-game command shadow observation",
-      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending.",
+      "scope": "Isolated original startup with bounded native command consumer; records refusal, owned lifecycle and mirror publication. Independent original pixel comparison, gameplay coverage and replacement remain pending. Subsequent original route observation independently compares five stable menu regions (maximum channel error 1), confirms three forwarded World ticks and records native refusal at the 33rd tracked surface followed by untracked-copy fallback. Movie-enabled arrival at Main does not verify playback; whole-frame/gameplay/driver equivalence remains open. Subsequent required campaign observation stays Active at 32 resident surfaces, across World entry and forced World recovery, with 336 total native frames and four independent stable menu regions matching within one channel value. Whole-World/movie/driver pixels and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with 331 more frames over 32.398 seconds; 11 independent World guidance/terrain/portrait regions and 4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -11909,7 +11909,8 @@
         "research/runtime/opengl-command-ring-adapter.md",
         "research/runtime/opengl-command-streaming-lifecycle.md",
         "research/runtime/opengl-render-routes.md",
-        "research/runtime/opengl-resource-working-set.md"
+        "research/runtime/opengl-resource-working-set.md",
+        "research/runtime/opengl-world-observation.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py",
@@ -11932,7 +11933,8 @@
         "NR.command-ring-adapter.live",
         "NR.command-streaming.live",
         "NR.command-route-observation.live-20261006",
-        "NR.continuous-resource-working-set.game-20261006"
+        "NR.continuous-resource-working-set.game-20261006",
+        "NR.command-world-observation.live-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14162,7 +14164,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Qt fresh-session recovery over a versioned producer control channel",
-      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate.",
+      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14173,7 +14175,8 @@
         "research/runtime/opengl-automatic-checkpoint-recovery.md",
         "research/runtime/opengl-owned-unlock-deltas.md",
         "research/runtime/opengl-render-routes.md",
-        "research/runtime/opengl-resource-working-set.md"
+        "research/runtime/opengl-resource-working-set.md",
+        "research/runtime/opengl-world-observation.md"
       ],
       "implementation": [
         "apps/qt-shell/render_control.cpp",
@@ -14225,7 +14228,8 @@
         "NR.command-route-observation.live-20261006",
         "NR.continuous-resource-working-set.host-20261006",
         "NR.continuous-resource-working-set.checkpoint-20261006",
-        "NR.continuous-resource-working-set.game-20261006"
+        "NR.continuous-resource-working-set.game-20261006",
+        "NR.command-world-observation.live-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14736,11 +14740,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Finite consumer residency separate from complete owned producer checkpoints",
-      "scope": "Continuous 32-slot/16,777,216-pixel consumer cache with ordered offscreen DELETE and fresh-ID complete re-admission. Retains 128-entry/64MiB independently owned CPU state and aliases; primary, borrowed locks/DCs and both copy/flip operands stay pinned. All-protected pressure refuses. Strict checkpoint admission validates all owned resources under existing aggregate byte/pixel/palette/ownership guards, then materializes complete primary/palettes before READY and dependencies when used. Default bounded policy and original final Release remain separate. Synthetic independent pixels and bounded required original World recovery observed; long scenes, World/movie/driver pixel equivalence, all callers and replacement remain pending.",
+      "scope": "Continuous 32-slot/16,777,216-pixel consumer cache with ordered offscreen DELETE and fresh-ID complete re-admission. Retains 128-entry/64MiB independently owned CPU state and aliases; primary, borrowed locks/DCs and both copy/flip operands stay pinned. All-protected pressure refuses. Strict checkpoint admission validates all owned resources under existing aggregate byte/pixel/palette/ownership guards, then materializes complete primary/palettes before READY and dependencies when used. Default bounded policy and original final Release remain separate. Synthetic independent pixels and bounded required original World recovery observed; long scenes, World/movie/driver pixel equivalence, all callers and replacement remain pending. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-resource-working-set.md"
+        "research/runtime/opengl-resource-working-set.md",
+        "research/runtime/opengl-world-observation.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -14768,7 +14773,8 @@
         "NR.continuous-resource-working-set.host-20261006",
         "NR.continuous-resource-working-set.continuous-20261006",
         "NR.continuous-resource-working-set.lifetime-20261006",
-        "NR.continuous-resource-working-set.game-20261006"
+        "NR.continuous-resource-working-set.game-20261006",
+        "NR.command-world-observation.live-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -26494,6 +26500,72 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.command-world-observation.live-20261006",
+      "kind": "live_observation",
+      "scope": "Bounded 30-second guided idle original World, independent unsynchronized stable guidance/terrain/portrait/menu regions, required Active recovery and continuation. No active spell/creature action, synchronized animation, full-frame/movie/driver equivalence or replacement.",
+      "record": "research/runtime/opengl-world-observation-20261006.json",
+      "sha256": "03e79a13a3edc47b971d94347418565e28e9f18cab1fe52db89a363999a4d106",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/world_active_required",
+          "equals": true
+        },
+        {
+          "pointer": "/world_pixels_required",
+          "equals": true
+        },
+        {
+          "pointer": "/world_seconds",
+          "equals": 30
+        },
+        {
+          "pointer": "/cases/0/world_active_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/world_pixels_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/world_additional_frames",
+          "equals": 331
+        },
+        {
+          "pointer": "/cases/0/world_observation_ms",
+          "equals": 32398
+        },
+        {
+          "pointer": "/cases/0/consumer/state",
+          "equals": 1
+        },
+        {
+          "pointer": "/cases/0/consumer/terminal_resources",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/source_preferences_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -30804,6 +30876,23 @@
         "tools/test-live-render-routes.py",
         "tests/live-render-route-probe.cpp"
       ]
+    },
+    {
+      "id": "NR.command-world-observation.guided-idle-20261006",
+      "scope": "Isolated actual original campaign, 30-second guided idle World after failed-reader recovery. Independent stable terrain/commander portrait regions at five intervals, initial guidance dismissal and four menu checks. Select Zombie tutorial actions, animated/full-frame/movie/driver pixels and replacement pending.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.real-game-command-shadow",
+        "NR.command-host-recovery",
+        "NR.continuous-resource-working-set"
+      ],
+      "evidence": [
+        "NR.command-world-observation.live-20261006"
+      ],
+      "tests": [
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -31051,7 +31140,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-original-overlap-20261006.json",
-    "sha256": "75823176fdda8c92fe4b10d259e2e94461c8004d40bb03ab84da08dc1036fb61"
+    "path": "research/runtime/coverage/source-index-world-observation-20261006.json",
+    "sha256": "4b6eeddda366f88fd17ce41001310846884ecd198a983704772c63ec26d42058"
   }
 }

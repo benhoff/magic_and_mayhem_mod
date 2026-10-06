@@ -1566,6 +1566,20 @@ and cleanup/manifests remain intact. Whole-World pixels, long action/effect/HUD
 scenes, movies, hardware drivers and replacement remain pending. See the
 [policy, evidence and finite boundaries](opengl-resource-working-set.md).
 
+### Guided idle World pixels and sustained publication (2026-10-06)
+
+[Independent World observation](opengl-world-observation.md) extends the required
+campaign route to 30 seconds after forced reader recovery: 642 total native
+frames, 331 additional frames over 32.398 seconds in the same Active session.
+Initial guidance, five forest terrain regions and five commander portrait regions
+match independent original X11 pixels; four menu comparisons also pass. Explicit
+test snapshots are separate from ordinary renderer readbacks/uploads, which stay
+zero, and final native resources retire. Original artifacts/preferences are
+preserved. The opening dialog advances to Select Zombie Spell: active tutorial
+actions, creature animation, spells/effects, other scenes, movies, synchronized
+whole-frame/driver equivalence and replacement remain pending. Historical
+synthetic fingerprints/statuses are retained rather than refreshed.
+
 ## Original opaque RGB565 overlap — 2026-10-06
 
 Unchanged wrapper0x58c360 capture and input-derived CPU comparison now cover same-surface copies, four directions/diagonals, identical/nonoverlapping rectangles and verified Surface1 aliases with ordered clipping and selected errors. See [overlap evidence](original-surface-overlap.md). Native GPU replay, keyed/masked and other formats, original loss/Restore/retry, live replacement and Windows driver equivalence remain pending.

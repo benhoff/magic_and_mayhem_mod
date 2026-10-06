@@ -65,7 +65,9 @@ class XInput:
         self.xt.XTestFakeButtonEvent(self.d,1,0,0);self.x.XFlush(self.d);time.sleep(.15)
     def close(self):self.x.XCloseDisplay(self.d)
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64');parser.add_argument('--mode',choices=['campaign','movies-enabled','both'],default='both');parser.add_argument('--require-world-active',action='store_true',help='Require native World frames before/after failed-reader recovery and at least20 additional frames over2 seconds');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64');parser.add_argument('--mode',choices=['campaign','movies-enabled','both'],default='both');parser.add_argument('--require-world-active',action='store_true',help='Require native World frames before/after failed-reader recovery and at least20 additional frames over2 seconds');parser.add_argument('--world-seconds',type=int,default=3,help='Bounded post-recovery World observation, 3..60 seconds');parser.add_argument('--require-world-pixels',action='store_true',help='Compare independent stable World terrain and portrait regions, dismissing the initial guidance dialog');args=parser.parse_args()
+    if not 3<=args.world_seconds<=60:parser.error('--world-seconds must be 3..60')
+    if args.require_world_pixels:args.require_world_active=True
     if args.require_world_active and args.mode=='movies-enabled':parser.error('--require-world-active needs the campaign route')
     assert os.environ.get('DISPLAY'),'Run under xvfb-run -a -s "-screen 0 1800x1000x24"'
     parent=ROOT/'working/tests/live-render-routes';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
@@ -73,7 +75,7 @@ def main():
     paths += [ROOT/p for p in ['tools/test-live-render-routes.py','tools/test-live-render-game.py','tools/test-menu-observer.py','tools/build-menu-observer.py','tools/run-opengl-game.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py','tests/live-render-route-probe.cpp','renderer/CMakeLists.txt','renderer/commands.cpp','renderer/commands.hpp','renderer/command_consumer.cpp','renderer/command_state.hpp','renderer/blit.cpp','renderer/blit.hpp','apps/qt-shell/live_command_session.cpp','apps/qt-shell/live_command_session.hpp','apps/qt-shell/render_control.cpp','apps/qt-shell/render_control.hpp','apps/qt-shell/live_command_renderer.cpp','apps/qt-shell/live_command_renderer.hpp','apps/qt-shell/command_channel.cpp','apps/qt-shell/command_channel.hpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp']]
     paths += sorted((ROOT/'protocols/include/mnm').glob('render*.h'))
     paths += sorted((ROOT/'protocols/python/mnm_protocols').glob('render*.py'))
-    report=dict(schema=1,success=False,sources={str(p.relative_to(ROOT)):helper.sha(p) for p in paths},cases=[],scope='Original campaign ingress through three forwarded World ticks and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.',live_replacement=False,full_frame_equivalence=False,world_active_required=args.require_world_active)
+    report=dict(schema=1,success=False,sources={str(p.relative_to(ROOT)):helper.sha(p) for p in paths},cases=[],scope='Original campaign ingress through three forwarded World ticks, bounded idle World observation and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.',live_replacement=False,full_frame_equivalence=False,world_active_required=args.require_world_active,world_pixels_required=args.require_world_pixels,world_seconds=args.world_seconds)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',WINEDEBUG='-all',WINEPREFIX=str(run/'wineprefix'));env.pop('WAYLAND_DISPLAY',None)
     source_prefs=ROOT/'working/game-nocd/CFG/prefs.cfg';prefs_hash=helper.sha(source_prefs)
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
@@ -149,7 +151,20 @@ def main():
                             with ring.open('r+b') as f:f.seek(32);f.write(struct.pack('<I',1))
                             time.sleep(4);phase('world-after-forced-failure')
                         else:record['world_failure_injection']='Refused: session already inactive'
-                        time.sleep(3);phase('world-end')
+                        if args.require_world_pixels:
+                            compare('world-guidance',(160,225,640,375))
+                            assert record['comparisons'][-1].get('matched'),'World guidance pixels differ'
+                            inputs.click(400,300);inputs.move(1750,950)
+                        started=time.monotonic();sample=0
+                        while time.monotonic()-started<args.world_seconds:
+                            time.sleep(min(5,args.world_seconds-(time.monotonic()-started)))
+                            sample+=1;value=phase('world-sustained-'+str(sample))
+                            assert value['state']==1 and not value['error'],'Sustained World publication refused'
+                            if args.require_world_pixels:
+                                for label,rect in [('terrain',(0,0,160,180)),('portrait',(700,500,778,561))]:
+                                    compare('world-'+label+'-'+str(sample),rect)
+                                    assert record['comparisons'][-1].get('matched'),'World '+label+' pixels differ'
+                        phase('world-end')
                         if args.require_world_active:
                             phases={p['name']:p for p in record['phases']}
                             before=phases['world-before-forced-failure'];after=phases.get('world-after-forced-failure');final=phases['world-end']
@@ -157,6 +172,9 @@ def main():
                             assert after['recoveries']==before['recoveries']+1==final['recoveries'],'Unexpected World recovery session'
                             assert final['frames']-after['frames']>=20 and final['ms']-after['ms']>=2000,'World publication did not continue after recovery'
                             record['world_active_validated']=True
+                            record['world_pixels_validated']=args.require_world_pixels
+                            record['world_observation_ms']=final['ms']-after['ms']
+                            record['world_additional_frames']=final['frames']-after['frames']
                         origin=inputs.origin;ImageGrab.grab(xdisplay=env['DISPLAY']).crop((origin[0],origin[1],origin[0]+800,origin[1]+600)).save(case/'world-original.png')
                     else:
                         time.sleep(8);phase('movie-enabled-main-end')
