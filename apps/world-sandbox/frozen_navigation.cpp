@@ -1,5 +1,6 @@
 #include "frozen_navigation.hpp"
 #include "route_world.hpp"
+#include "route_cell_support.hpp"
 #include "simulation/occupancy.hpp"
 #include "creature_motion.hpp"
 #include "segment_setup.hpp"
@@ -113,7 +114,7 @@ public:
         if(width<1 || width>2 || height<1 || height>d.z || frozen_->boundary<0 || frozen_->boundary>d.z)
             throw std::invalid_argument("unsupported frozen creature/map geometry");
         if(stationaryOccupancy_) {
-            for(const auto& cell:frozen_->cells) if(cell.flags_0a&3)
+            for(const auto& cell:frozen_->cells) if((cell.flags_0a&3) && cell.occupant_04!=0xffff)
                 throw std::invalid_argument("stationary overlay requires an occupancy-free frozen baseline");
             // Version the native occupancy policy in the existing resource identity.
             for(unsigned char c:std::string("stationary-occupancy-v1")) {hash^=c;hash*=1099511628211ULL;}
@@ -134,6 +135,14 @@ public:
         const auto height=id?frozen_->terrain.at(id).classification_94:0;
         if(height<-16 || height>16) throw std::invalid_argument("terrain height outside bounded ordinary profile");
         return height;
+    }
+    void validateSpawnPosition(g::Point p) const override {
+        if(!g::contains(p,binding_) || p.z==0) throw std::invalid_argument("Spawn cell outside standing terrain");
+        const r::CellValidityMapView view{{frozen_->dimensions,frozen_->cells.data(),frozen_->cells.size(),frozen_->rows.data(),frozen_->rows.size(),frozen_->layers.data(),frozen_->layers.size(),frozen_->plane_stride,frozen_->dimensions.z},frozen_->terrain.data(),frozen_->terrain.size()};
+        const r::CreatureMovementParameters profile{read<int>(frozen_->scalar_type.data(),12),read<int>(frozen_->scalar_type.data(),8),0,read<int>(frozen_->scalar_type.data(),0x44),0,int(creatureType()),0};
+        (void)terrainOffset(p);
+        if(!r::test_cell_validity(coordinate(p),profile,view) || !r::test_cell_support(coordinate(p),profile,view))
+            throw std::invalid_argument("Creature cannot stand in this terrain cell");
     }
     g::Point finePosition(const g::Entity& e) const override {
         return {e.x*32,e.y*32,e.motion && e.motion->terrainMotion?r::ordinary_creature_height(e.z,terrainOffset({e.x,e.y,e.z})):e.z*16};

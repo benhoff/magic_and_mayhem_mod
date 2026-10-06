@@ -15844,6 +15844,1318 @@
         "reason": "Dependent recovered/device/CLI policies retain historical statuses; native PCM execution does not rerun original comparisons or physical-device integration. Changed shared source freshness stays explicit.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "fa1bb964335a76b9199ee546e9d56554964ba55166da1a284c3bce6d0c5ddf0b",
+          "before_sha256": "07c3df9ccf2242b5ed789c4d48a9bf761d052d0f2ff355a2c2e79903b78f7b83",
+          "id": "MV.ani-forward"
+        },
+        {
+          "after_sha256": "06d76c82d83615a633e23c6b83d183a1e37a3e5683644977f8c3cfd0ce5f1e22",
+          "before_sha256": "a075cad4ab26191fea46944063bdb29558505c525de08cfeba5d8b3e7b4d94cb",
+          "id": "MV.event-0"
+        },
+        {
+          "after_sha256": "d43186ff50cf51a1da1c0656f06fa503da62c37408b7fb0faef5481517cbda30",
+          "before_sha256": "d6dd5487ff5e1d9afbd5509c46fad44dd26787f5f747aa07c25b2039304add46",
+          "id": "MV.event-2"
+        },
+        {
+          "after_sha256": "697a25815c5df0c155d1c2375684e6ceee78b959ea889ddd70e162cef3599ed4",
+          "before_sha256": "0880695551576a63fb079a08ab4de8aa65fbc2428f771f4ab386c214d6f7b442",
+          "id": "MV.fine-motion"
+        },
+        {
+          "after_sha256": "659b227fb6f24d886b96f9bfdc39c19d5153ddeda9fb0cdff53d40fe2fbf9f40",
+          "before_sha256": "086ff98c8d66dff26641672ddb597d14268eba23d30848a0c2b1ba55c9ea2343",
+          "id": "MV.legality"
+        },
+        {
+          "after_sha256": "1867851648f06cd1f60a9086cdd7da633ec0ead11f468cc94bb1d7d2871c74bb",
+          "before_sha256": "c40d38de817f2524cbdb3fce8e01ac3ec8f9586b395d35d8e6ae83a7fce7f93c",
+          "id": "MV.ordinary-terrain-height"
+        },
+        {
+          "after_sha256": "770f0bc4b4c21aecc2a327b73cd1f6cd943d90fbb49041f461fa007fdbecfc3f",
+          "before_sha256": "42e431483569949b433cbddc02b194e7576e77dd68b253e46aa3664f63fc6386",
+          "id": "MV.planar-setup"
+        },
+        {
+          "after_sha256": "96558e4293918fa0cdee33f393a2dd71a8d4d5aaa0352b1c8ba5b98614d78012",
+          "before_sha256": "81b8dadefebbb6d6fee9ca34b24de85d5e394eb70d7233cd32fb2dd21f7a8e6a",
+          "id": "MV.request"
+        },
+        {
+          "after_sha256": "d72717f514f6392158b7dc63a6931d8fef955c8e0670197f9cd653ecd8a9f72e",
+          "before_sha256": "ac5567b3debda96034d9ba9b94bc655f004fc1d3fe0d15d27aa294fb375b07e3",
+          "id": "MV.route-consumption"
+        },
+        {
+          "after_sha256": "0d6cfd6b9e621be95fd7c9e1acb0d6db3ffcdfc87e367a39431966c2a50ea1da",
+          "before_sha256": "df95a7e17565928251b8682281de3c73bc2bccc758f1ad4c7819b78a2088e726",
+          "id": "MV.search"
+        },
+        {
+          "after_sha256": "689853df0c5a71a781e004859b16b39694631529f4b29e8d59ae3ced6aeef672",
+          "before_sha256": "cbd56e4b1e8da418bf39b4b5a66f1e8b6d99c354a5f9962fc91ab956b4008e60",
+          "id": "MV.vertical-setup"
+        },
+        {
+          "after_sha256": "b002ba9d9108c9625c7e203dfdfac78030c76da814f6273f3253ac9b4fa42599",
+          "before_sha256": "2c0518bbbe6547c01ef54a4d074d1415c461834eb55025b491729c93cd8e583f",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "59ef734117734ebdc992272c569ce094e2f2077ff53f34094647ccf3cf67fcdb",
+          "before_sha256": "bd1400e9e35729e11085327e5348f547485ba654707c10ca837f0aebfb1f065b",
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "0b21c24d135d91eb6c7f8b57455a108df211a8dd2090492f01aebb8de0ee2fe2",
+          "before_sha256": "b42c35c43182d1f3e32a4ca80fe56f35a90d97e5de6253cc58a44d74bd0f3715",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "d07dc14726d6fc859a13c47dc20087a27a507894584413ac118c3d7a9459c238",
+          "before_sha256": "7c6478c5bc7833b6ae58706b49cedac830da80c6ce44d72da502ab1810c27c63",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "80a9c7591463939f3dd83d06c327be4de41fc575d168c3fb5208b81a9e74c154",
+          "before_sha256": "beb325b62b1b8d3ff46a0ffba2c0b50a1f614db39a719410f28cd17907f05aa2",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+          "before_sha256": "8ec5af51f4efff24ead06ce365da1a9866bbf027c321aafb8d5ff5441da6ecf9",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "8384903a21052c82a2da8153891add18befaee9cb156eb6225417aaf39cf345e",
+          "before_sha256": "43c0bc0fa987aa4e4753dcda5cba88a5148c621b4a6325ae3de8ab95d0365e17",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "f3972b15f55ed95bf36ee304839e244c7f7a639b3388b8f388dd435302c77543",
+          "before_sha256": "92df3856fc2c61c5fd109e160f94e7c2e3d1f39410bd915df019c455c6179db8",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "6902ec19f6ca2c8c88818a77c12d221f572ca6ef8b3b0ddf483e2d9e27ef2012",
+          "before_sha256": "bfeb12e21c415ba9f3c6837b4bb50310c4280d1c971325949bf1271457815759",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "e23aca8509969393af7319f84ea97bf4f65eb252d784e40c00a9694ea5f91aa6",
+          "before_sha256": null,
+          "id": "NP.scene-spawning"
+        },
+        {
+          "after_sha256": "cba8eaecc581225d07feb3a78d758d08da62d6b5daf8e8bc9dee4c2f23abd89e",
+          "before_sha256": "c95e6156a52070fec49a40932d32c58a95a7599077bcaf2103057cd53f7244c6",
+          "id": "NP.spawn-display"
+        },
+        {
+          "after_sha256": "ed7d10f580d5905979f1307892f2678b7686058527c8e66819b31272114f2280",
+          "before_sha256": "f4f3959dfa2f5ce9c769c3f34f20ec1ba3c3a3df45f207740c67749b2e0ab588",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "d85725dd8d27cc8a94ee0efa1a25e6650e613f275fc3b9ada71fe27a91ad8fe6",
+          "before_sha256": "44d6a898ec4941fb49103e943f640c4ce35f4f9bc35d9cd58170c27c2c962b27",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "a54b5e3748db37c5529c9eac551cc41d5821fb1833ccdcc329739d05339d9b92",
+          "before_sha256": "92d4780361420e5e9210d5839b032c3bb2b02083069d4524664455188ac69478",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "d1f4b772b296353a9808fae0a20724622bbfa249d1acf9d9beafcd9f2b0a6aa1",
+          "before_sha256": "71213b3adbde86173146f971a92db61238c7a8687007fac74db8fb071fe4fa41",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "8b627457e194f7ee5dc2fc00d24b592a4ab812e1603b673c4a5b285095a17ab6",
+          "before_sha256": "ffc41da9c86bac11d10f9a685a2625a7e74ce6fbaedafde0a561b6179726d1f8",
+          "id": "WORLD.owned"
+        },
+        {
+          "after_sha256": "3a4ea690e1f52072a2954d136fd5bacc208a5f37594008864582a99765254261",
+          "before_sha256": "657a1641a882b5bc6f23e09cd502b00889f18a9acbcc97b1a3b50313f26bcede",
+          "id": "WORLD.sandbox"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9571a559a1e69ef05060babb1a8bfdae142c79c24b6e8c36ce9f830edd14d484",
+          "before_sha256": "7fb260fa50adbe41f222f6455fa54a60319e3681f1a1ce008419cca70646fb2e",
+          "path": "apps/world-sandbox/frozen_navigation.cpp"
+        },
+        {
+          "after_sha256": "9c55b6a649e8451433873f63736a73d7ec7d4209e28fa0fc4c73b2b21e8936af",
+          "before_sha256": "a6cb574c56da197da672578a19e8de40e37c9bc719063c3f7fccde47fc117043",
+          "path": "apps/world-sandbox/main.cpp"
+        },
+        {
+          "after_sha256": "5929f9601ae6d86aeceb1301f0502853c6baa0a4365e151ace578a9710f1b7e7",
+          "before_sha256": "e45c451d3134a13a1fbaec215c8e470fda5ab78cd83154e1bd4dcf83c1c190c2",
+          "path": "apps/world-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "4d4911491b99c23c4c0f31dc118405a58d28f2ddd81bb3280e41cd18f4cb2655",
+          "before_sha256": "6c2446531a0d597e2b9981b5972c4268164590633b5cbe3ed05cefb3a4600bb5",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "4387a59cc5e8cac4ce55083b10260d7ea4c52138d652687d5f5330d49988fc3c",
+          "before_sha256": "cff183d59573752e829929e204add22d3e895450da798c3ebd6a6d8e4c7e5b66",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "874c8320c8cd376933eee7081348146f5a2ec95ac2a37ecaff7cba327ef36acf",
+          "before_sha256": "79e50c5326fcd9175a5f2187ea4e2bd3f994dc4dfeb45dfe179ac104524349c8",
+          "path": "apps/world-scene/movement_controls.cpp"
+        },
+        {
+          "after_sha256": "a312489b68d184b06f3cdd9d717b01b880ec5934d255cda51f4cfa589dbe68f9",
+          "before_sha256": "a401433ecc002623afeb1a46f16781b86b6c2615f1849f55ba39a763493500e7",
+          "path": "apps/world-scene/movement_controls.hpp"
+        },
+        {
+          "after_sha256": "518c08d3b3cf5c12c2a71515e9cde9653fad10b597c63549323c42b32821ff1d",
+          "before_sha256": "46f64e2af5f7defc2cc93852738fcb04e48720d72187c448f74ad1b134805817",
+          "path": "apps/world-scene/orders.cpp"
+        },
+        {
+          "after_sha256": "733e6a9f4fefe0a0b9763979185c353f3d3d540cef5b7d101f1dbdedb69e791a",
+          "before_sha256": "845ac3543b04b196801d44d89322b1359ab66b38c55fd421f7c89f70957c4690",
+          "path": "apps/world-scene/orders.hpp"
+        },
+        {
+          "after_sha256": "2ccaaca99ce4f0b3bc3b57488166ab1f0a6617ed1a28fcb05552493fb9874b67",
+          "before_sha256": "3fb4faaa5f5c749b08d58c80f0d33fcb039c2f27a53cb8684e0bdd6b8e986e4f",
+          "path": "apps/world-scene/scene_canvas.cpp"
+        },
+        {
+          "after_sha256": "8d7125bb3956ac073877bac4e274e8c87fdf54fa43fba3720a115df074789db7",
+          "before_sha256": "6838c413e498328fd8d1a451f9d00e5d7414f4cc6c434858dd7918783000a1a8",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "f88bed21394f2a4bcfe30010a95db29835e1cd26afe93413b3c6c46799853975",
+          "before_sha256": "891f8d003ec525219107dbc53e2f0ff5c680c9bd82b2abc775401364d2111eb1",
+          "path": "game/simulation/movement.cpp"
+        },
+        {
+          "after_sha256": "daf1f655ff0ad4fa610f8b11eefe177f98bdecfc273a7bdece14b6ddf3da2f2c",
+          "before_sha256": "c50724e2ab995e169c4eaf324c57a196111b04a408dabab2cf6b203ea413be8c",
+          "path": "game/simulation/movement.hpp"
+        },
+        {
+          "after_sha256": "d41edd86fdffd7f624d8f9540044b677eb17d70b97b321b5a0d6354a2ee1e6ac",
+          "before_sha256": "268fa9b4579978e3f7e57ac0e6b4613d4f80a0844d61a189415283f1a416e0ef",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "f6a12f5359e5ec189dbe889ba8416c91f7a5294322c4f8689caab360f028d17a",
+          "before_sha256": "d47dda0202f2e9d3638666f80826e926dd81888c850c2a8b06588cdec0942e09",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "0e5ee33d6e1e1ea472140e28a6d54595adb7727668f55a00c34e00c0e07674b2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-spawning-1.json"
+        },
+        {
+          "after_sha256": "7704d74852e36033fd659616616f454f22ca431883bda3b0059746a3ec5ca613",
+          "before_sha256": "52d1142baaaba7ce84d0808828de634f6d08a423e08ae56df21ae1f96d729447",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "ca054a4fd46c76834a65f2d0f5b35bbf2b616614d78732fefa3910d8a5ba9259",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-pipeline-1.json"
+        },
+        {
+          "after_sha256": "80eb8d3bee3b11362fd8ba421a2986d5adc63101e764524924e6a5ab0e51c84e",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-review.json"
+        },
+        {
+          "after_sha256": "74a437ad5324629d6865b1cf32786b807bc1a83f59f6b08aac26406a56a8eb0c",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning.json"
+        },
+        {
+          "after_sha256": "75bdf846c170aadcdb8847f54985485798774febcbc7d013aa033a38c4cba6e9",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning.md"
+        },
+        {
+          "after_sha256": "9a3babb116d121db6568e75a2fe6bd5964772352ba7bb34bedf5789f8683b43f",
+          "before_sha256": "62f9f7e1cda1e539b3d3de682f1af0b1023d66c7aca7e00cb810f6f456ec9a90",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "before_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "path": "tests/native-idle-display-test.cpp"
+        },
+        {
+          "after_sha256": "c488b94af6a6d402fd6508891abbb8267cf30afba0acfb1eb65c9b764ff3355c",
+          "before_sha256": "a2b7c89036e76a3f107f1f037a01b534ebaba08fbfaa4782ccf79c064ecaf052",
+          "path": "tests/native-occupancy-test.cpp"
+        },
+        {
+          "after_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+          "before_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+          "path": "tests/native-spawn-display-test.cpp"
+        },
+        {
+          "after_sha256": "14b4b8b42c335ab02126a4c1d82e2de371e8c1427a872dc51565ec2de4d5ce75",
+          "before_sha256": "4b81956dcc07c17dd76c50f39ebd3b6925e4bfc7f5172d7b9b0195b9fe2b14bc",
+          "path": "tests/scene-window-driver.cpp"
+        },
+        {
+          "after_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "before_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "path": "tests/test-native-idle-display.py"
+        },
+        {
+          "after_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+          "before_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+          "path": "tests/test-native-spawn-display.py"
+        },
+        {
+          "after_sha256": "fcbafcf46c458564095c2d1aa424a5097648071add15ba4dd78935bc0af634d4",
+          "before_sha256": null,
+          "path": "tests/test-world-spawning.py"
+        },
+        {
+          "after_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "before_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "path": "tests/world-scene-test.cpp"
+        },
+        {
+          "after_sha256": "4be0c36a2c98d266681754ed3e8555438f3e609d86655968e88179fb8c72fe8c",
+          "before_sha256": null,
+          "path": "tests/world-spawning-test.cpp"
+        },
+        {
+          "after_sha256": "57b31e1de9228ade66e40ee962675a36217fa290fc1033879a934ac0d19d8618",
+          "before_sha256": "7760994630611ebc3f2a409b9f3718f3f358ba561e1921635407874705480d61",
+          "path": "tools/test-native-scene-window.py"
+        }
+      ],
+      "id": "NS20.scene-spawning-exact-1",
+      "pending_gaps": [
+        "behaviors_without_comparison:35bb60f7004aab443231f74d2cd83a1aae734e9eba5b880da083e6a60946de8d",
+        "stale_evidence:025bc4eaaf1dacfcf81461743e7b396ba3ce6909c08b874de78ac3425705d5d1",
+        "stale_evidence:071e3ff7506e063aace544eecb6c363c329b3379551c21d4513e9a5e4f9577e6",
+        "stale_evidence:0c3c470d75350a2ddef8f64befb3bf7f72d2ac2e519d054ca7da4af1bb4618e2",
+        "stale_evidence:16e6fdd87e59f3b17a2270789a5063e5412d815646d3a80a60bf568f923b25a8",
+        "stale_evidence:1b07a1a113bd305de995168c6129177871cf452eb1f8eae7fa28ea9a7abfb355",
+        "stale_evidence:2733e271e79212bc3ec2d5040d2af7f38723dbee70cf1464ab62a19f85c6780b",
+        "stale_evidence:2c21a736c7840287f943e052bdcc68ccb060193033f932d58f27026c8ea132f9",
+        "stale_evidence:40aa0dec75ee383af495578530aadf31fd3059a01fbaf28c4a96e6a699dd0d64",
+        "stale_evidence:498c494fb8b2c01ff427e49173e651cdaba3e7ff25dc4e43b85ee39123bb5f29",
+        "stale_evidence:4de2724663ae65227ac30a566f225516f3bdda764dc1f3d8c7bbccfa955ddc51",
+        "stale_evidence:4eb2ddf1d9eb484116499f698422a92eacaffbd71ff60ba141de4edb4a4c3135",
+        "stale_evidence:5359c34d68d4fbdd3f3b1f76eb02cb1f031fade67e767aa32de47dce3130621c",
+        "stale_evidence:5d224d7b7b3c12dcc402df21915bf89265393ebdf2bc0b90a578eae3e7bf715f",
+        "stale_evidence:61550b16278e9c4e7ba9a69b26479fc8eaa43ae09068578cdd45a7c899d2d126",
+        "stale_evidence:67eae04bb73c78241adf4642ebf86f726655b492a44b4c04c13235efacea166c",
+        "stale_evidence:6c815f7496b367af32d0c0b17dfac66d0f3fdc13c4150288ddff978b2c6ea626",
+        "stale_evidence:7b94c650a162f38eb08a7e01ebbe6d89386b00f98a163c8707f506d1e6b019af",
+        "stale_evidence:7bfc84a0d6517f3afd0bbc176078d8fee722c1908e824ab15c5f1b8dc450e576",
+        "stale_evidence:829e6abc110b329d021488bf0df6c4108d25b0a4d07419ec9f67d7dc89207fb5",
+        "stale_evidence:87770397efbec0d64971e941c3eba9a1425647e29f1a0028deb34d41d76ec231",
+        "stale_evidence:8942588c6aecd7dbed56a5ef77fb000e1d54f5b9e27b0dec596ae7bf7fc8ba0a",
+        "stale_evidence:8d4be26e8da50e9beadb4e02600adfa1e25a6b1fa325526f48ab28cb237ca6e1",
+        "stale_evidence:9320fdf488714cc3bea9de72b7202b4b4ed7b6442cb4238c59d1e361e76957ac",
+        "stale_evidence:94c3fd4fec5a7223f2a9330d6b9fa57c266d2a3d7fecc3835b56c86db1a1624b",
+        "stale_evidence:9bf4e842a9bb93aacaa7dc38b6abb33eaff46cf4296e31351fa90592027ffbce",
+        "stale_evidence:9d8242ec3a3452b73b235fac8b974fbddc8bfbb195c3b7dc6bdae74716aa0149",
+        "stale_evidence:b12ff9c9892dd08f652816fc8361503b7292806d517a6e84bdc0d36dd1bc71ae",
+        "stale_evidence:b1d5d55a6ecc4cc473ad551964a9396fd5204146348ede0f531ede1272c9bfbe",
+        "stale_evidence:bf27ce8f6dc54d1322a90af28e1e40abe17a3026650ade669b7b442346d69fd0",
+        "stale_evidence:d22193de9dcdeff6b31a7e46fe20600ef694564a14d725028ea93978d4926c8f",
+        "stale_evidence:d60845db56b783ddcd14e711df40df3755600c42da31c02bddec75881e3c99f7",
+        "stale_evidence:da99831c422a104bcdb1856946c9839b398c2cc574d4a7a1d4376fe30bb2fbfc",
+        "stale_evidence:e36d838da800f366644f443f6c03f55f08d06a93b9265dc1ec922f9cda05ef33",
+        "stale_evidence:e716b3d9e537b8d4fe47c7bf960ae657ae1742fa62574336a72e5dc8f4000c2f",
+        "stale_evidence:f2231c10171f6b8ebab0bf38588989157a0bf3122627a0dbdd3ddf1ddaf3d1fe",
+        "stale_evidence:f896d92269214bca93c64b014dfad243e13907b308e94cc5f598c2b5522dc0ab",
+        "stale_evidence:f9bd905e1a4c920459fb6385a3e115646f5643e74933214109c5edbbcca73c17",
+        "stale_evidence:fbefbfc5f69752c6266be0380a7326313af115b952e1344ebb1906ad6eafdf55"
+      ],
+      "reason": "Review paused semantic Orders spawning and transient terrain-cell/actor selection. Widgets express placement/spawn actions and disable on playing/no cell/full capacity; Orders independently requires paused and changes actor identity only after transactional admission. Review native bound-profile spawn helper/capacity query and adapter standing-height/cell-validity/support validation before owned initial-pose spawn. Existing footprint and unfinished-edge reservations validate the candidate world and preserve state/queued commands/selection on refusal. Review zero-tick new-actor selection/order controls, actual left/right mouse dispatch, displayed spawn coordinates, errors, reload transient selection and existing playback/Save flow. New scene seed uses the existing versioned multi-occupancy policy with 32 slots. Review discovered baseline guard: marker bits with occupant 0xffff are empty under the recovered occupancy predicate; admit that case without clearing cell bytes/terrain flags, while refusing marked actual occupant IDs. Synthetic regression covers both, with no recovered status promotion. Review production controls/limit/refusal/restart tests, installed Forest/Redcap two-body actual-window Save/reload/first-order continuation in four views, real-timer playing disable, complete independent decoded-SPR pixels and exact state/artifact fingerprints. Preserve failed pre-sentinel experiment logs, original-manifest checks, register/census/ledger scope and explicit remaining gaps. Exact history fea5d9f..1016274551f0eba7c3de0ce6537da3dd71db08ef matches every file/behavior version to preserved receipts without executing historical code or asserting a past gate/validation; stage only this milestone plus committed peer work.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared native movement/adapter/CLI, Qt orders/controls/entry point, test and documentation edits affect other linked contracts and historical evidence. Preserve earlier hashes/statuses and explicitly account every new stale-evidence/absent-comparison gap. NS20 does not revalidate every recovered planner/setup/event or all linked historical native scenarios. Native static pose, multi-occupancy and UI integration remain bounded to selected fixtures/profiles; original spawn lifecycle, factions/balance, other creature configurations, animated idle/facing, full-game admission and live replacement remain pending. No original comparison/replacement or gameplay promotion is made.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS20.scene-spawning-recorded-1",
+      "reason": "Record native paused terrain-cell spawning, transactional placement admission, selected orders and owned two-actor checkpoint/presentation continuation. Original spawning/gameplay stays outside scope.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "b002ba9d9108c9625c7e203dfdfac78030c76da814f6273f3253ac9b4fa42599",
+          "before_sha256": "2c0518bbbe6547c01ef54a4d074d1415c461834eb55025b491729c93cd8e583f",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "59ef734117734ebdc992272c569ce094e2f2077ff53f34094647ccf3cf67fcdb",
+          "before_sha256": "bd1400e9e35729e11085327e5348f547485ba654707c10ca837f0aebfb1f065b",
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "80a9c7591463939f3dd83d06c327be4de41fc575d168c3fb5208b81a9e74c154",
+          "before_sha256": "beb325b62b1b8d3ff46a0ffba2c0b50a1f614db39a719410f28cd17907f05aa2",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+          "before_sha256": "8ec5af51f4efff24ead06ce365da1a9866bbf027c321aafb8d5ff5441da6ecf9",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "8384903a21052c82a2da8153891add18befaee9cb156eb6225417aaf39cf345e",
+          "before_sha256": "43c0bc0fa987aa4e4753dcda5cba88a5148c621b4a6325ae3de8ab95d0365e17",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "f3972b15f55ed95bf36ee304839e244c7f7a639b3388b8f388dd435302c77543",
+          "before_sha256": "92df3856fc2c61c5fd109e160f94e7c2e3d1f39410bd915df019c455c6179db8",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "6902ec19f6ca2c8c88818a77c12d221f572ca6ef8b3b0ddf483e2d9e27ef2012",
+          "before_sha256": "bfeb12e21c415ba9f3c6837b4bb50310c4280d1c971325949bf1271457815759",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "e23aca8509969393af7319f84ea97bf4f65eb252d784e40c00a9694ea5f91aa6",
+          "before_sha256": null,
+          "id": "NP.scene-spawning"
+        },
+        {
+          "after_sha256": "cba8eaecc581225d07feb3a78d758d08da62d6b5daf8e8bc9dee4c2f23abd89e",
+          "before_sha256": "c95e6156a52070fec49a40932d32c58a95a7599077bcaf2103057cd53f7244c6",
+          "id": "NP.spawn-display"
+        },
+        {
+          "after_sha256": "ed7d10f580d5905979f1307892f2678b7686058527c8e66819b31272114f2280",
+          "before_sha256": "f4f3959dfa2f5ce9c769c3f34f20ec1ba3c3a3df45f207740c67749b2e0ab588",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "d85725dd8d27cc8a94ee0efa1a25e6650e613f275fc3b9ada71fe27a91ad8fe6",
+          "before_sha256": "44d6a898ec4941fb49103e943f640c4ce35f4f9bc35d9cd58170c27c2c962b27",
+          "id": "NP.stop-orders"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Normal 111 CTests and twelve selected ASan/UBSan suites pass after the sentinel correction. Synthetic production Qt widgets/Orders/native session/frozen adapter exercise missing/invalid cell, unsupported layer, occupied footprint and unfinished-edge refusal with world/selection rollback, playing guard/disabled button, immediate selected zero-tick static pose, selected actor orders and exact two-actor continuation. A 32-actor cap refuses despite spare pool slots and disables Spawn. Regression accepts marker bits with occupant 0xffff and rejects a real occupant ID without modifying frozen terrain or bypassing navigation. Normal and ASan/UBSan each open 24 actual entry-point windows over four installed Forest/Redcap views, pass 128 complete independently decoded SPR/RGB565 frame comparisons and sixteen byte-exact fresh-window state/canonical JSON/RGB565/PNG continuations. Real mouse/button/modal Save selects terrain, spawns/selects a second body, refuses occupied retry without state/selection change, saves both bodies, queues its first order, disables Spawn during real-timer playback, and reproduces the order after fresh-window masked body picking. Earlier initial/mid/Stop branches stay exercised. All retained source/input/report/artifact/log fingerprints match; original-manifest checks verify 2927 files before/after installed experiments. Failed initial admission experiments remain retained as diagnostics. Native bounded preview claims only.",
+        "evidence": [
+          "NS20.scene-spawning"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "fa1bb964335a76b9199ee546e9d56554964ba55166da1a284c3bce6d0c5ddf0b",
+          "before_sha256": "07c3df9ccf2242b5ed789c4d48a9bf761d052d0f2ff355a2c2e79903b78f7b83",
+          "id": "MV.ani-forward"
+        },
+        {
+          "after_sha256": "06d76c82d83615a633e23c6b83d183a1e37a3e5683644977f8c3cfd0ce5f1e22",
+          "before_sha256": "a075cad4ab26191fea46944063bdb29558505c525de08cfeba5d8b3e7b4d94cb",
+          "id": "MV.event-0"
+        },
+        {
+          "after_sha256": "d43186ff50cf51a1da1c0656f06fa503da62c37408b7fb0faef5481517cbda30",
+          "before_sha256": "d6dd5487ff5e1d9afbd5509c46fad44dd26787f5f747aa07c25b2039304add46",
+          "id": "MV.event-2"
+        },
+        {
+          "after_sha256": "697a25815c5df0c155d1c2375684e6ceee78b959ea889ddd70e162cef3599ed4",
+          "before_sha256": "0880695551576a63fb079a08ab4de8aa65fbc2428f771f4ab386c214d6f7b442",
+          "id": "MV.fine-motion"
+        },
+        {
+          "after_sha256": "659b227fb6f24d886b96f9bfdc39c19d5153ddeda9fb0cdff53d40fe2fbf9f40",
+          "before_sha256": "086ff98c8d66dff26641672ddb597d14268eba23d30848a0c2b1ba55c9ea2343",
+          "id": "MV.legality"
+        },
+        {
+          "after_sha256": "1867851648f06cd1f60a9086cdd7da633ec0ead11f468cc94bb1d7d2871c74bb",
+          "before_sha256": "c40d38de817f2524cbdb3fce8e01ac3ec8f9586b395d35d8e6ae83a7fce7f93c",
+          "id": "MV.ordinary-terrain-height"
+        },
+        {
+          "after_sha256": "770f0bc4b4c21aecc2a327b73cd1f6cd943d90fbb49041f461fa007fdbecfc3f",
+          "before_sha256": "42e431483569949b433cbddc02b194e7576e77dd68b253e46aa3664f63fc6386",
+          "id": "MV.planar-setup"
+        },
+        {
+          "after_sha256": "96558e4293918fa0cdee33f393a2dd71a8d4d5aaa0352b1c8ba5b98614d78012",
+          "before_sha256": "81b8dadefebbb6d6fee9ca34b24de85d5e394eb70d7233cd32fb2dd21f7a8e6a",
+          "id": "MV.request"
+        },
+        {
+          "after_sha256": "d72717f514f6392158b7dc63a6931d8fef955c8e0670197f9cd653ecd8a9f72e",
+          "before_sha256": "ac5567b3debda96034d9ba9b94bc655f004fc1d3fe0d15d27aa294fb375b07e3",
+          "id": "MV.route-consumption"
+        },
+        {
+          "after_sha256": "0d6cfd6b9e621be95fd7c9e1acb0d6db3ffcdfc87e367a39431966c2a50ea1da",
+          "before_sha256": "df95a7e17565928251b8682281de3c73bc2bccc758f1ad4c7819b78a2088e726",
+          "id": "MV.search"
+        },
+        {
+          "after_sha256": "689853df0c5a71a781e004859b16b39694631529f4b29e8d59ae3ced6aeef672",
+          "before_sha256": "cbd56e4b1e8da418bf39b4b5a66f1e8b6d99c354a5f9962fc91ab956b4008e60",
+          "id": "MV.vertical-setup"
+        },
+        {
+          "after_sha256": "b002ba9d9108c9625c7e203dfdfac78030c76da814f6273f3253ac9b4fa42599",
+          "before_sha256": "2c0518bbbe6547c01ef54a4d074d1415c461834eb55025b491729c93cd8e583f",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "59ef734117734ebdc992272c569ce094e2f2077ff53f34094647ccf3cf67fcdb",
+          "before_sha256": "bd1400e9e35729e11085327e5348f547485ba654707c10ca837f0aebfb1f065b",
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "0b21c24d135d91eb6c7f8b57455a108df211a8dd2090492f01aebb8de0ee2fe2",
+          "before_sha256": "b42c35c43182d1f3e32a4ca80fe56f35a90d97e5de6253cc58a44d74bd0f3715",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "d07dc14726d6fc859a13c47dc20087a27a507894584413ac118c3d7a9459c238",
+          "before_sha256": "7c6478c5bc7833b6ae58706b49cedac830da80c6ce44d72da502ab1810c27c63",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "80a9c7591463939f3dd83d06c327be4de41fc575d168c3fb5208b81a9e74c154",
+          "before_sha256": "beb325b62b1b8d3ff46a0ffba2c0b50a1f614db39a719410f28cd17907f05aa2",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+          "before_sha256": "8ec5af51f4efff24ead06ce365da1a9866bbf027c321aafb8d5ff5441da6ecf9",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "8384903a21052c82a2da8153891add18befaee9cb156eb6225417aaf39cf345e",
+          "before_sha256": "43c0bc0fa987aa4e4753dcda5cba88a5148c621b4a6325ae3de8ab95d0365e17",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "f3972b15f55ed95bf36ee304839e244c7f7a639b3388b8f388dd435302c77543",
+          "before_sha256": "92df3856fc2c61c5fd109e160f94e7c2e3d1f39410bd915df019c455c6179db8",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "6902ec19f6ca2c8c88818a77c12d221f572ca6ef8b3b0ddf483e2d9e27ef2012",
+          "before_sha256": "bfeb12e21c415ba9f3c6837b4bb50310c4280d1c971325949bf1271457815759",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "e23aca8509969393af7319f84ea97bf4f65eb252d784e40c00a9694ea5f91aa6",
+          "before_sha256": null,
+          "id": "NP.scene-spawning"
+        },
+        {
+          "after_sha256": "cba8eaecc581225d07feb3a78d758d08da62d6b5daf8e8bc9dee4c2f23abd89e",
+          "before_sha256": "c95e6156a52070fec49a40932d32c58a95a7599077bcaf2103057cd53f7244c6",
+          "id": "NP.spawn-display"
+        },
+        {
+          "after_sha256": "ed7d10f580d5905979f1307892f2678b7686058527c8e66819b31272114f2280",
+          "before_sha256": "f4f3959dfa2f5ce9c769c3f34f20ec1ba3c3a3df45f207740c67749b2e0ab588",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "d85725dd8d27cc8a94ee0efa1a25e6650e613f275fc3b9ada71fe27a91ad8fe6",
+          "before_sha256": "44d6a898ec4941fb49103e943f640c4ce35f4f9bc35d9cd58170c27c2c962b27",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "a54b5e3748db37c5529c9eac551cc41d5821fb1833ccdcc329739d05339d9b92",
+          "before_sha256": "92d4780361420e5e9210d5839b032c3bb2b02083069d4524664455188ac69478",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "a441dcf31bf67cfb2ae549ea6586ee8e286dcf0d015b55e39993c63416005815",
+          "before_sha256": "cf880af2ae9c01cd6125481a9e733379dc4b4cafbb28e3c29e92b5f0b5197651",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "8b627457e194f7ee5dc2fc00d24b592a4ab812e1603b673c4a5b285095a17ab6",
+          "before_sha256": "ffc41da9c86bac11d10f9a685a2625a7e74ce6fbaedafde0a561b6179726d1f8",
+          "id": "WORLD.owned"
+        },
+        {
+          "after_sha256": "3a4ea690e1f52072a2954d136fd5bacc208a5f37594008864582a99765254261",
+          "before_sha256": "657a1641a882b5bc6f23e09cd502b00889f18a9acbcc97b1a3b50313f26bcede",
+          "id": "WORLD.sandbox"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9571a559a1e69ef05060babb1a8bfdae142c79c24b6e8c36ce9f830edd14d484",
+          "before_sha256": "7fb260fa50adbe41f222f6455fa54a60319e3681f1a1ce008419cca70646fb2e",
+          "path": "apps/world-sandbox/frozen_navigation.cpp"
+        },
+        {
+          "after_sha256": "9c55b6a649e8451433873f63736a73d7ec7d4209e28fa0fc4c73b2b21e8936af",
+          "before_sha256": "a6cb574c56da197da672578a19e8de40e37c9bc719063c3f7fccde47fc117043",
+          "path": "apps/world-sandbox/main.cpp"
+        },
+        {
+          "after_sha256": "5929f9601ae6d86aeceb1301f0502853c6baa0a4365e151ace578a9710f1b7e7",
+          "before_sha256": "e45c451d3134a13a1fbaec215c8e470fda5ab78cd83154e1bd4dcf83c1c190c2",
+          "path": "apps/world-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "4d4911491b99c23c4c0f31dc118405a58d28f2ddd81bb3280e41cd18f4cb2655",
+          "before_sha256": "6c2446531a0d597e2b9981b5972c4268164590633b5cbe3ed05cefb3a4600bb5",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "4387a59cc5e8cac4ce55083b10260d7ea4c52138d652687d5f5330d49988fc3c",
+          "before_sha256": "cff183d59573752e829929e204add22d3e895450da798c3ebd6a6d8e4c7e5b66",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "874c8320c8cd376933eee7081348146f5a2ec95ac2a37ecaff7cba327ef36acf",
+          "before_sha256": "79e50c5326fcd9175a5f2187ea4e2bd3f994dc4dfeb45dfe179ac104524349c8",
+          "path": "apps/world-scene/movement_controls.cpp"
+        },
+        {
+          "after_sha256": "a312489b68d184b06f3cdd9d717b01b880ec5934d255cda51f4cfa589dbe68f9",
+          "before_sha256": "a401433ecc002623afeb1a46f16781b86b6c2615f1849f55ba39a763493500e7",
+          "path": "apps/world-scene/movement_controls.hpp"
+        },
+        {
+          "after_sha256": "518c08d3b3cf5c12c2a71515e9cde9653fad10b597c63549323c42b32821ff1d",
+          "before_sha256": "46f64e2af5f7defc2cc93852738fcb04e48720d72187c448f74ad1b134805817",
+          "path": "apps/world-scene/orders.cpp"
+        },
+        {
+          "after_sha256": "733e6a9f4fefe0a0b9763979185c353f3d3d540cef5b7d101f1dbdedb69e791a",
+          "before_sha256": "845ac3543b04b196801d44d89322b1359ab66b38c55fd421f7c89f70957c4690",
+          "path": "apps/world-scene/orders.hpp"
+        },
+        {
+          "after_sha256": "2ccaaca99ce4f0b3bc3b57488166ab1f0a6617ed1a28fcb05552493fb9874b67",
+          "before_sha256": "3fb4faaa5f5c749b08d58c80f0d33fcb039c2f27a53cb8684e0bdd6b8e986e4f",
+          "path": "apps/world-scene/scene_canvas.cpp"
+        },
+        {
+          "after_sha256": "8d7125bb3956ac073877bac4e274e8c87fdf54fa43fba3720a115df074789db7",
+          "before_sha256": "6838c413e498328fd8d1a451f9d00e5d7414f4cc6c434858dd7918783000a1a8",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "f88bed21394f2a4bcfe30010a95db29835e1cd26afe93413b3c6c46799853975",
+          "before_sha256": "891f8d003ec525219107dbc53e2f0ff5c680c9bd82b2abc775401364d2111eb1",
+          "path": "game/simulation/movement.cpp"
+        },
+        {
+          "after_sha256": "daf1f655ff0ad4fa610f8b11eefe177f98bdecfc273a7bdece14b6ddf3da2f2c",
+          "before_sha256": "c50724e2ab995e169c4eaf324c57a196111b04a408dabab2cf6b203ea413be8c",
+          "path": "game/simulation/movement.hpp"
+        },
+        {
+          "after_sha256": "ff1c12b85f986282d0052e9a754c4d07550963feafc5ca09ee0c2ee736bf5c8b",
+          "before_sha256": "915c8356222e128092979cd49f21a408206d3c64bab84895b553bc1236cd8371",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8e50cdc978c91265b307358235c3dbd8b9e29cca893d87fce18f44acdd494e70",
+          "before_sha256": "9d1e56c656388ac7252a38adae456c68eedd5fba468e97ee2d972bb96ed2f589",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "0e5ee33d6e1e1ea472140e28a6d54595adb7727668f55a00c34e00c0e07674b2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-spawning-1.json"
+        },
+        {
+          "after_sha256": "54e7f4cdbf1ec6ecde9173c055a7e25b7466231ada453d27f7228e081f29a2ba",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-spawning-3.json"
+        },
+        {
+          "after_sha256": "26a0283730823a0017ae7321702c3855446cc20597cd0194600126814171abed",
+          "before_sha256": "cc32b7699e14640c70540133355ddf2a611d27135aed0f56a788ee341ddeeddf",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "ca054a4fd46c76834a65f2d0f5b35bbf2b616614d78732fefa3910d8a5ba9259",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-pipeline-1.json"
+        },
+        {
+          "after_sha256": "d4679263dbded503fa6a1656e94ede651f74a1071165433818396f3b98313a06",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-pipeline-2.json"
+        },
+        {
+          "after_sha256": "9cd42981a5bc61c7ef1630bab829e0d4c0a537308ad54bde7458366e8d402537",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-pipeline-3.json"
+        },
+        {
+          "after_sha256": "80eb8d3bee3b11362fd8ba421a2986d5adc63101e764524924e6a5ab0e51c84e",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-review.json"
+        },
+        {
+          "after_sha256": "74a437ad5324629d6865b1cf32786b807bc1a83f59f6b08aac26406a56a8eb0c",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning.json"
+        },
+        {
+          "after_sha256": "75bdf846c170aadcdb8847f54985485798774febcbc7d013aa033a38c4cba6e9",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning.md"
+        },
+        {
+          "after_sha256": "310a64c7e1124d868a05c0e9598563e9952b29fb512fec4ba8d0a24ef847b2d9",
+          "before_sha256": "10f1e2b487be4dee02949db2578ed2947b60ef16a47030d4cef7add1ed8cbeea",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "before_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "path": "tests/native-idle-display-test.cpp"
+        },
+        {
+          "after_sha256": "c488b94af6a6d402fd6508891abbb8267cf30afba0acfb1eb65c9b764ff3355c",
+          "before_sha256": "a2b7c89036e76a3f107f1f037a01b534ebaba08fbfaa4782ccf79c064ecaf052",
+          "path": "tests/native-occupancy-test.cpp"
+        },
+        {
+          "after_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+          "before_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+          "path": "tests/native-spawn-display-test.cpp"
+        },
+        {
+          "after_sha256": "14b4b8b42c335ab02126a4c1d82e2de371e8c1427a872dc51565ec2de4d5ce75",
+          "before_sha256": "4b81956dcc07c17dd76c50f39ebd3b6925e4bfc7f5172d7b9b0195b9fe2b14bc",
+          "path": "tests/scene-window-driver.cpp"
+        },
+        {
+          "after_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "before_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "path": "tests/test-native-idle-display.py"
+        },
+        {
+          "after_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+          "before_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+          "path": "tests/test-native-spawn-display.py"
+        },
+        {
+          "after_sha256": "fcbafcf46c458564095c2d1aa424a5097648071add15ba4dd78935bc0af634d4",
+          "before_sha256": null,
+          "path": "tests/test-world-spawning.py"
+        },
+        {
+          "after_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "before_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "path": "tests/world-scene-test.cpp"
+        },
+        {
+          "after_sha256": "4be0c36a2c98d266681754ed3e8555438f3e609d86655968e88179fb8c72fe8c",
+          "before_sha256": null,
+          "path": "tests/world-spawning-test.cpp"
+        },
+        {
+          "after_sha256": "57b31e1de9228ade66e40ee962675a36217fa290fc1033879a934ac0d19d8618",
+          "before_sha256": "7760994630611ebc3f2a409b9f3718f3f358ba561e1921635407874705480d61",
+          "path": "tools/test-native-scene-window.py"
+        }
+      ],
+      "id": "NS20.scene-spawning-exact-3",
+      "pending_gaps": [
+        "behaviors_without_comparison:35bb60f7004aab443231f74d2cd83a1aae734e9eba5b880da083e6a60946de8d",
+        "stale_evidence:025bc4eaaf1dacfcf81461743e7b396ba3ce6909c08b874de78ac3425705d5d1",
+        "stale_evidence:071e3ff7506e063aace544eecb6c363c329b3379551c21d4513e9a5e4f9577e6",
+        "stale_evidence:0c3c470d75350a2ddef8f64befb3bf7f72d2ac2e519d054ca7da4af1bb4618e2",
+        "stale_evidence:16e6fdd87e59f3b17a2270789a5063e5412d815646d3a80a60bf568f923b25a8",
+        "stale_evidence:1b07a1a113bd305de995168c6129177871cf452eb1f8eae7fa28ea9a7abfb355",
+        "stale_evidence:2733e271e79212bc3ec2d5040d2af7f38723dbee70cf1464ab62a19f85c6780b",
+        "stale_evidence:2c21a736c7840287f943e052bdcc68ccb060193033f932d58f27026c8ea132f9",
+        "stale_evidence:40aa0dec75ee383af495578530aadf31fd3059a01fbaf28c4a96e6a699dd0d64",
+        "stale_evidence:498c494fb8b2c01ff427e49173e651cdaba3e7ff25dc4e43b85ee39123bb5f29",
+        "stale_evidence:4de2724663ae65227ac30a566f225516f3bdda764dc1f3d8c7bbccfa955ddc51",
+        "stale_evidence:4eb2ddf1d9eb484116499f698422a92eacaffbd71ff60ba141de4edb4a4c3135",
+        "stale_evidence:5359c34d68d4fbdd3f3b1f76eb02cb1f031fade67e767aa32de47dce3130621c",
+        "stale_evidence:5d224d7b7b3c12dcc402df21915bf89265393ebdf2bc0b90a578eae3e7bf715f",
+        "stale_evidence:61550b16278e9c4e7ba9a69b26479fc8eaa43ae09068578cdd45a7c899d2d126",
+        "stale_evidence:67eae04bb73c78241adf4642ebf86f726655b492a44b4c04c13235efacea166c",
+        "stale_evidence:6c815f7496b367af32d0c0b17dfac66d0f3fdc13c4150288ddff978b2c6ea626",
+        "stale_evidence:7b94c650a162f38eb08a7e01ebbe6d89386b00f98a163c8707f506d1e6b019af",
+        "stale_evidence:7bfc84a0d6517f3afd0bbc176078d8fee722c1908e824ab15c5f1b8dc450e576",
+        "stale_evidence:829e6abc110b329d021488bf0df6c4108d25b0a4d07419ec9f67d7dc89207fb5",
+        "stale_evidence:87770397efbec0d64971e941c3eba9a1425647e29f1a0028deb34d41d76ec231",
+        "stale_evidence:8942588c6aecd7dbed56a5ef77fb000e1d54f5b9e27b0dec596ae7bf7fc8ba0a",
+        "stale_evidence:8d4be26e8da50e9beadb4e02600adfa1e25a6b1fa325526f48ab28cb237ca6e1",
+        "stale_evidence:9320fdf488714cc3bea9de72b7202b4b4ed7b6442cb4238c59d1e361e76957ac",
+        "stale_evidence:94c3fd4fec5a7223f2a9330d6b9fa57c266d2a3d7fecc3835b56c86db1a1624b",
+        "stale_evidence:9bf4e842a9bb93aacaa7dc38b6abb33eaff46cf4296e31351fa90592027ffbce",
+        "stale_evidence:9d8242ec3a3452b73b235fac8b974fbddc8bfbb195c3b7dc6bdae74716aa0149",
+        "stale_evidence:b12ff9c9892dd08f652816fc8361503b7292806d517a6e84bdc0d36dd1bc71ae",
+        "stale_evidence:b1d5d55a6ecc4cc473ad551964a9396fd5204146348ede0f531ede1272c9bfbe",
+        "stale_evidence:bf27ce8f6dc54d1322a90af28e1e40abe17a3026650ade669b7b442346d69fd0",
+        "stale_evidence:d22193de9dcdeff6b31a7e46fe20600ef694564a14d725028ea93978d4926c8f",
+        "stale_evidence:d60845db56b783ddcd14e711df40df3755600c42da31c02bddec75881e3c99f7",
+        "stale_evidence:da99831c422a104bcdb1856946c9839b398c2cc574d4a7a1d4376fe30bb2fbfc",
+        "stale_evidence:e36d838da800f366644f443f6c03f55f08d06a93b9265dc1ec922f9cda05ef33",
+        "stale_evidence:e716b3d9e537b8d4fe47c7bf960ae657ae1742fa62574336a72e5dc8f4000c2f",
+        "stale_evidence:f2231c10171f6b8ebab0bf38588989157a0bf3122627a0dbdd3ddf1ddaf3d1fe",
+        "stale_evidence:f896d92269214bca93c64b014dfad243e13907b308e94cc5f598c2b5522dc0ab",
+        "stale_evidence:f9bd905e1a4c920459fb6385a3e115646f5643e74933214109c5edbbcca73c17",
+        "stale_evidence:fbefbfc5f69752c6266be0380a7326313af115b952e1344ebb1906ad6eafdf55"
+      ],
+      "reason": "Review paused semantic Orders spawning and transient terrain-cell/actor selection. Widgets express placement/spawn actions and disable on playing/no cell/full capacity; Orders independently requires paused and changes actor identity only after transactional admission. Review native bound-profile spawn helper/capacity query and adapter standing-height/cell-validity/support validation before owned initial-pose spawn. Existing footprint and unfinished-edge reservations validate the candidate world and preserve state/queued commands/selection on refusal. Review zero-tick new-actor selection/order controls, actual left/right mouse dispatch, displayed spawn coordinates, errors, reload transient selection and existing playback/Save flow. New scene seed uses the existing versioned multi-occupancy policy with 32 slots. Review discovered baseline guard: marker bits with occupant 0xffff are empty under the recovered occupancy predicate; admit that case without clearing cell bytes/terrain flags, while refusing marked actual occupant IDs. Synthetic regression covers both, with no recovered status promotion. Review production controls/limit/refusal/restart tests, installed Forest/Redcap two-body actual-window Save/reload/first-order continuation in four views, real-timer playing disable, complete independent decoded-SPR pixels and exact state/artifact fingerprints. Preserve failed pre-sentinel experiment logs, original-manifest checks, register/census/ledger scope and explicit remaining gaps. Exact history fea5d9f..1f609197db02127c9b611e734552357551a60f1f matches every file/behavior version to preserved receipts without executing historical code or asserting a past gate/validation; stage only this milestone plus committed peer work.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared native movement/adapter/CLI, Qt orders/controls/entry point, test and documentation edits affect other linked contracts and historical evidence. Preserve earlier hashes/statuses and explicitly account every new stale-evidence/absent-comparison gap. NS20 does not revalidate every recovered planner/setup/event or all linked historical native scenarios. Native static pose, multi-occupancy and UI integration remain bounded to selected fixtures/profiles; original spawn lifecycle, factions/balance, other creature configurations, animated idle/facing, full-game admission and live replacement remain pending. No original comparison/replacement or gameplay promotion is made.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS20.scene-spawning-recorded-3",
+      "reason": "Record native paused terrain-cell spawning, transactional placement admission, selected orders and owned two-actor checkpoint/presentation continuation. Original spawning/gameplay stays outside scope.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "b002ba9d9108c9625c7e203dfdfac78030c76da814f6273f3253ac9b4fa42599",
+          "before_sha256": "2c0518bbbe6547c01ef54a4d074d1415c461834eb55025b491729c93cd8e583f",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "59ef734117734ebdc992272c569ce094e2f2077ff53f34094647ccf3cf67fcdb",
+          "before_sha256": "bd1400e9e35729e11085327e5348f547485ba654707c10ca837f0aebfb1f065b",
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "80a9c7591463939f3dd83d06c327be4de41fc575d168c3fb5208b81a9e74c154",
+          "before_sha256": "beb325b62b1b8d3ff46a0ffba2c0b50a1f614db39a719410f28cd17907f05aa2",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+          "before_sha256": "8ec5af51f4efff24ead06ce365da1a9866bbf027c321aafb8d5ff5441da6ecf9",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "8384903a21052c82a2da8153891add18befaee9cb156eb6225417aaf39cf345e",
+          "before_sha256": "43c0bc0fa987aa4e4753dcda5cba88a5148c621b4a6325ae3de8ab95d0365e17",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "f3972b15f55ed95bf36ee304839e244c7f7a639b3388b8f388dd435302c77543",
+          "before_sha256": "92df3856fc2c61c5fd109e160f94e7c2e3d1f39410bd915df019c455c6179db8",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "6902ec19f6ca2c8c88818a77c12d221f572ca6ef8b3b0ddf483e2d9e27ef2012",
+          "before_sha256": "bfeb12e21c415ba9f3c6837b4bb50310c4280d1c971325949bf1271457815759",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "e23aca8509969393af7319f84ea97bf4f65eb252d784e40c00a9694ea5f91aa6",
+          "before_sha256": null,
+          "id": "NP.scene-spawning"
+        },
+        {
+          "after_sha256": "cba8eaecc581225d07feb3a78d758d08da62d6b5daf8e8bc9dee4c2f23abd89e",
+          "before_sha256": "c95e6156a52070fec49a40932d32c58a95a7599077bcaf2103057cd53f7244c6",
+          "id": "NP.spawn-display"
+        },
+        {
+          "after_sha256": "ed7d10f580d5905979f1307892f2678b7686058527c8e66819b31272114f2280",
+          "before_sha256": "f4f3959dfa2f5ce9c769c3f34f20ec1ba3c3a3df45f207740c67749b2e0ab588",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "d85725dd8d27cc8a94ee0efa1a25e6650e613f275fc3b9ada71fe27a91ad8fe6",
+          "before_sha256": "44d6a898ec4941fb49103e943f640c4ce35f4f9bc35d9cd58170c27c2c962b27",
+          "id": "NP.stop-orders"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Normal 111 CTests and twelve selected ASan/UBSan suites pass after the sentinel correction. Synthetic production Qt widgets/Orders/native session/frozen adapter exercise missing/invalid cell, unsupported layer, occupied footprint and unfinished-edge refusal with world/selection rollback, playing guard/disabled button, immediate selected zero-tick static pose, selected actor orders and exact two-actor continuation. A 32-actor cap refuses despite spare pool slots and disables Spawn. Regression accepts marker bits with occupant 0xffff and rejects a real occupant ID without modifying frozen terrain or bypassing navigation. Normal and ASan/UBSan each open 24 actual entry-point windows over four installed Forest/Redcap views, pass 128 complete independently decoded SPR/RGB565 frame comparisons and sixteen byte-exact fresh-window state/canonical JSON/RGB565/PNG continuations. Real mouse/button/modal Save selects terrain, spawns/selects a second body, refuses occupied retry without state/selection change, saves both bodies, queues its first order, disables Spawn during real-timer playback, and reproduces the order after fresh-window masked body picking. Earlier initial/mid/Stop branches stay exercised. All retained source/input/report/artifact/log fingerprints match; original-manifest checks verify 2927 files before/after installed experiments. Failed initial admission experiments remain retained as diagnostics. Native bounded preview claims only.",
+        "evidence": [
+          "NS20.scene-spawning"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "fa1bb964335a76b9199ee546e9d56554964ba55166da1a284c3bce6d0c5ddf0b",
+          "before_sha256": "07c3df9ccf2242b5ed789c4d48a9bf761d052d0f2ff355a2c2e79903b78f7b83",
+          "id": "MV.ani-forward"
+        },
+        {
+          "after_sha256": "06d76c82d83615a633e23c6b83d183a1e37a3e5683644977f8c3cfd0ce5f1e22",
+          "before_sha256": "a075cad4ab26191fea46944063bdb29558505c525de08cfeba5d8b3e7b4d94cb",
+          "id": "MV.event-0"
+        },
+        {
+          "after_sha256": "d43186ff50cf51a1da1c0656f06fa503da62c37408b7fb0faef5481517cbda30",
+          "before_sha256": "d6dd5487ff5e1d9afbd5509c46fad44dd26787f5f747aa07c25b2039304add46",
+          "id": "MV.event-2"
+        },
+        {
+          "after_sha256": "697a25815c5df0c155d1c2375684e6ceee78b959ea889ddd70e162cef3599ed4",
+          "before_sha256": "0880695551576a63fb079a08ab4de8aa65fbc2428f771f4ab386c214d6f7b442",
+          "id": "MV.fine-motion"
+        },
+        {
+          "after_sha256": "659b227fb6f24d886b96f9bfdc39c19d5153ddeda9fb0cdff53d40fe2fbf9f40",
+          "before_sha256": "086ff98c8d66dff26641672ddb597d14268eba23d30848a0c2b1ba55c9ea2343",
+          "id": "MV.legality"
+        },
+        {
+          "after_sha256": "1867851648f06cd1f60a9086cdd7da633ec0ead11f468cc94bb1d7d2871c74bb",
+          "before_sha256": "c40d38de817f2524cbdb3fce8e01ac3ec8f9586b395d35d8e6ae83a7fce7f93c",
+          "id": "MV.ordinary-terrain-height"
+        },
+        {
+          "after_sha256": "770f0bc4b4c21aecc2a327b73cd1f6cd943d90fbb49041f461fa007fdbecfc3f",
+          "before_sha256": "42e431483569949b433cbddc02b194e7576e77dd68b253e46aa3664f63fc6386",
+          "id": "MV.planar-setup"
+        },
+        {
+          "after_sha256": "96558e4293918fa0cdee33f393a2dd71a8d4d5aaa0352b1c8ba5b98614d78012",
+          "before_sha256": "81b8dadefebbb6d6fee9ca34b24de85d5e394eb70d7233cd32fb2dd21f7a8e6a",
+          "id": "MV.request"
+        },
+        {
+          "after_sha256": "d72717f514f6392158b7dc63a6931d8fef955c8e0670197f9cd653ecd8a9f72e",
+          "before_sha256": "ac5567b3debda96034d9ba9b94bc655f004fc1d3fe0d15d27aa294fb375b07e3",
+          "id": "MV.route-consumption"
+        },
+        {
+          "after_sha256": "0d6cfd6b9e621be95fd7c9e1acb0d6db3ffcdfc87e367a39431966c2a50ea1da",
+          "before_sha256": "df95a7e17565928251b8682281de3c73bc2bccc758f1ad4c7819b78a2088e726",
+          "id": "MV.search"
+        },
+        {
+          "after_sha256": "689853df0c5a71a781e004859b16b39694631529f4b29e8d59ae3ced6aeef672",
+          "before_sha256": "cbd56e4b1e8da418bf39b4b5a66f1e8b6d99c354a5f9962fc91ab956b4008e60",
+          "id": "MV.vertical-setup"
+        },
+        {
+          "after_sha256": "b002ba9d9108c9625c7e203dfdfac78030c76da814f6273f3253ac9b4fa42599",
+          "before_sha256": "2c0518bbbe6547c01ef54a4d074d1415c461834eb55025b491729c93cd8e583f",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "59ef734117734ebdc992272c569ce094e2f2077ff53f34094647ccf3cf67fcdb",
+          "before_sha256": "bd1400e9e35729e11085327e5348f547485ba654707c10ca837f0aebfb1f065b",
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "0b21c24d135d91eb6c7f8b57455a108df211a8dd2090492f01aebb8de0ee2fe2",
+          "before_sha256": "b42c35c43182d1f3e32a4ca80fe56f35a90d97e5de6253cc58a44d74bd0f3715",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "d07dc14726d6fc859a13c47dc20087a27a507894584413ac118c3d7a9459c238",
+          "before_sha256": "7c6478c5bc7833b6ae58706b49cedac830da80c6ce44d72da502ab1810c27c63",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "80a9c7591463939f3dd83d06c327be4de41fc575d168c3fb5208b81a9e74c154",
+          "before_sha256": "beb325b62b1b8d3ff46a0ffba2c0b50a1f614db39a719410f28cd17907f05aa2",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+          "before_sha256": "8ec5af51f4efff24ead06ce365da1a9866bbf027c321aafb8d5ff5441da6ecf9",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "8384903a21052c82a2da8153891add18befaee9cb156eb6225417aaf39cf345e",
+          "before_sha256": "43c0bc0fa987aa4e4753dcda5cba88a5148c621b4a6325ae3de8ab95d0365e17",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "f3972b15f55ed95bf36ee304839e244c7f7a639b3388b8f388dd435302c77543",
+          "before_sha256": "92df3856fc2c61c5fd109e160f94e7c2e3d1f39410bd915df019c455c6179db8",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "6902ec19f6ca2c8c88818a77c12d221f572ca6ef8b3b0ddf483e2d9e27ef2012",
+          "before_sha256": "bfeb12e21c415ba9f3c6837b4bb50310c4280d1c971325949bf1271457815759",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "e23aca8509969393af7319f84ea97bf4f65eb252d784e40c00a9694ea5f91aa6",
+          "before_sha256": null,
+          "id": "NP.scene-spawning"
+        },
+        {
+          "after_sha256": "cba8eaecc581225d07feb3a78d758d08da62d6b5daf8e8bc9dee4c2f23abd89e",
+          "before_sha256": "c95e6156a52070fec49a40932d32c58a95a7599077bcaf2103057cd53f7244c6",
+          "id": "NP.spawn-display"
+        },
+        {
+          "after_sha256": "ed7d10f580d5905979f1307892f2678b7686058527c8e66819b31272114f2280",
+          "before_sha256": "f4f3959dfa2f5ce9c769c3f34f20ec1ba3c3a3df45f207740c67749b2e0ab588",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "d85725dd8d27cc8a94ee0efa1a25e6650e613f275fc3b9ada71fe27a91ad8fe6",
+          "before_sha256": "44d6a898ec4941fb49103e943f640c4ce35f4f9bc35d9cd58170c27c2c962b27",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "a54b5e3748db37c5529c9eac551cc41d5821fb1833ccdcc329739d05339d9b92",
+          "before_sha256": "92d4780361420e5e9210d5839b032c3bb2b02083069d4524664455188ac69478",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "a441dcf31bf67cfb2ae549ea6586ee8e286dcf0d015b55e39993c63416005815",
+          "before_sha256": "cf880af2ae9c01cd6125481a9e733379dc4b4cafbb28e3c29e92b5f0b5197651",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "8b627457e194f7ee5dc2fc00d24b592a4ab812e1603b673c4a5b285095a17ab6",
+          "before_sha256": "ffc41da9c86bac11d10f9a685a2625a7e74ce6fbaedafde0a561b6179726d1f8",
+          "id": "WORLD.owned"
+        },
+        {
+          "after_sha256": "3a4ea690e1f52072a2954d136fd5bacc208a5f37594008864582a99765254261",
+          "before_sha256": "657a1641a882b5bc6f23e09cd502b00889f18a9acbcc97b1a3b50313f26bcede",
+          "id": "WORLD.sandbox"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9571a559a1e69ef05060babb1a8bfdae142c79c24b6e8c36ce9f830edd14d484",
+          "before_sha256": "7fb260fa50adbe41f222f6455fa54a60319e3681f1a1ce008419cca70646fb2e",
+          "path": "apps/world-sandbox/frozen_navigation.cpp"
+        },
+        {
+          "after_sha256": "9c55b6a649e8451433873f63736a73d7ec7d4209e28fa0fc4c73b2b21e8936af",
+          "before_sha256": "a6cb574c56da197da672578a19e8de40e37c9bc719063c3f7fccde47fc117043",
+          "path": "apps/world-sandbox/main.cpp"
+        },
+        {
+          "after_sha256": "5929f9601ae6d86aeceb1301f0502853c6baa0a4365e151ace578a9710f1b7e7",
+          "before_sha256": "e45c451d3134a13a1fbaec215c8e470fda5ab78cd83154e1bd4dcf83c1c190c2",
+          "path": "apps/world-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "4d4911491b99c23c4c0f31dc118405a58d28f2ddd81bb3280e41cd18f4cb2655",
+          "before_sha256": "6c2446531a0d597e2b9981b5972c4268164590633b5cbe3ed05cefb3a4600bb5",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "4387a59cc5e8cac4ce55083b10260d7ea4c52138d652687d5f5330d49988fc3c",
+          "before_sha256": "cff183d59573752e829929e204add22d3e895450da798c3ebd6a6d8e4c7e5b66",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "874c8320c8cd376933eee7081348146f5a2ec95ac2a37ecaff7cba327ef36acf",
+          "before_sha256": "79e50c5326fcd9175a5f2187ea4e2bd3f994dc4dfeb45dfe179ac104524349c8",
+          "path": "apps/world-scene/movement_controls.cpp"
+        },
+        {
+          "after_sha256": "a312489b68d184b06f3cdd9d717b01b880ec5934d255cda51f4cfa589dbe68f9",
+          "before_sha256": "a401433ecc002623afeb1a46f16781b86b6c2615f1849f55ba39a763493500e7",
+          "path": "apps/world-scene/movement_controls.hpp"
+        },
+        {
+          "after_sha256": "518c08d3b3cf5c12c2a71515e9cde9653fad10b597c63549323c42b32821ff1d",
+          "before_sha256": "46f64e2af5f7defc2cc93852738fcb04e48720d72187c448f74ad1b134805817",
+          "path": "apps/world-scene/orders.cpp"
+        },
+        {
+          "after_sha256": "733e6a9f4fefe0a0b9763979185c353f3d3d540cef5b7d101f1dbdedb69e791a",
+          "before_sha256": "845ac3543b04b196801d44d89322b1359ab66b38c55fd421f7c89f70957c4690",
+          "path": "apps/world-scene/orders.hpp"
+        },
+        {
+          "after_sha256": "2ccaaca99ce4f0b3bc3b57488166ab1f0a6617ed1a28fcb05552493fb9874b67",
+          "before_sha256": "3fb4faaa5f5c749b08d58c80f0d33fcb039c2f27a53cb8684e0bdd6b8e986e4f",
+          "path": "apps/world-scene/scene_canvas.cpp"
+        },
+        {
+          "after_sha256": "8d7125bb3956ac073877bac4e274e8c87fdf54fa43fba3720a115df074789db7",
+          "before_sha256": "6838c413e498328fd8d1a451f9d00e5d7414f4cc6c434858dd7918783000a1a8",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "f88bed21394f2a4bcfe30010a95db29835e1cd26afe93413b3c6c46799853975",
+          "before_sha256": "891f8d003ec525219107dbc53e2f0ff5c680c9bd82b2abc775401364d2111eb1",
+          "path": "game/simulation/movement.cpp"
+        },
+        {
+          "after_sha256": "daf1f655ff0ad4fa610f8b11eefe177f98bdecfc273a7bdece14b6ddf3da2f2c",
+          "before_sha256": "c50724e2ab995e169c4eaf324c57a196111b04a408dabab2cf6b203ea413be8c",
+          "path": "game/simulation/movement.hpp"
+        },
+        {
+          "after_sha256": "42fa3fd1fdf3e83f79cf45cbf30223ac43c83b9d347d69a4109612ffde13da84",
+          "before_sha256": "1213adde8b6155955ee6032af96f76732e311244db44e47dedd631d22199f216",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "72efa39dd521fa32994e57b4459ea71e1a6294b6b3f9a335448d4e9f155dd98f",
+          "before_sha256": "a25b58f38444de1ac9dbc9f5b63849d60509d48971da5596fa30becc12f561c6",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "0e5ee33d6e1e1ea472140e28a6d54595adb7727668f55a00c34e00c0e07674b2",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-spawning-1.json"
+        },
+        {
+          "after_sha256": "54e7f4cdbf1ec6ecde9173c055a7e25b7466231ada453d27f7228e081f29a2ba",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-spawning-3.json"
+        },
+        {
+          "after_sha256": "47214be647cd98bdb3c0f5be02d703fe565a5b7d0e456afc6d6f2e281d261ed1",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-spawning-4.json"
+        },
+        {
+          "after_sha256": "fde97793638ad9b2d74bf3e20ae5fe40bb0aa7b9ae4f4f34151732306a141457",
+          "before_sha256": "cc32b7699e14640c70540133355ddf2a611d27135aed0f56a788ee341ddeeddf",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "ca054a4fd46c76834a65f2d0f5b35bbf2b616614d78732fefa3910d8a5ba9259",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-pipeline-1.json"
+        },
+        {
+          "after_sha256": "d4679263dbded503fa6a1656e94ede651f74a1071165433818396f3b98313a06",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-pipeline-2.json"
+        },
+        {
+          "after_sha256": "9cd42981a5bc61c7ef1630bab829e0d4c0a537308ad54bde7458366e8d402537",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-pipeline-3.json"
+        },
+        {
+          "after_sha256": "1f5194780bc471546489409039bdd5ffef73f3ffe55b40a46c33886f3f73dfcb",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-pipeline-4.json"
+        },
+        {
+          "after_sha256": "80eb8d3bee3b11362fd8ba421a2986d5adc63101e764524924e6a5ab0e51c84e",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning-history-review.json"
+        },
+        {
+          "after_sha256": "74a437ad5324629d6865b1cf32786b807bc1a83f59f6b08aac26406a56a8eb0c",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning.json"
+        },
+        {
+          "after_sha256": "75bdf846c170aadcdb8847f54985485798774febcbc7d013aa033a38c4cba6e9",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-spawning.md"
+        },
+        {
+          "after_sha256": "310a64c7e1124d868a05c0e9598563e9952b29fb512fec4ba8d0a24ef847b2d9",
+          "before_sha256": "10f1e2b487be4dee02949db2578ed2947b60ef16a47030d4cef7add1ed8cbeea",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "before_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "path": "tests/native-idle-display-test.cpp"
+        },
+        {
+          "after_sha256": "c488b94af6a6d402fd6508891abbb8267cf30afba0acfb1eb65c9b764ff3355c",
+          "before_sha256": "a2b7c89036e76a3f107f1f037a01b534ebaba08fbfaa4782ccf79c064ecaf052",
+          "path": "tests/native-occupancy-test.cpp"
+        },
+        {
+          "after_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+          "before_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+          "path": "tests/native-spawn-display-test.cpp"
+        },
+        {
+          "after_sha256": "14b4b8b42c335ab02126a4c1d82e2de371e8c1427a872dc51565ec2de4d5ce75",
+          "before_sha256": "4b81956dcc07c17dd76c50f39ebd3b6925e4bfc7f5172d7b9b0195b9fe2b14bc",
+          "path": "tests/scene-window-driver.cpp"
+        },
+        {
+          "after_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "before_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "path": "tests/test-native-idle-display.py"
+        },
+        {
+          "after_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+          "before_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+          "path": "tests/test-native-spawn-display.py"
+        },
+        {
+          "after_sha256": "fcbafcf46c458564095c2d1aa424a5097648071add15ba4dd78935bc0af634d4",
+          "before_sha256": null,
+          "path": "tests/test-world-spawning.py"
+        },
+        {
+          "after_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "before_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "path": "tests/world-scene-test.cpp"
+        },
+        {
+          "after_sha256": "4be0c36a2c98d266681754ed3e8555438f3e609d86655968e88179fb8c72fe8c",
+          "before_sha256": null,
+          "path": "tests/world-spawning-test.cpp"
+        },
+        {
+          "after_sha256": "57b31e1de9228ade66e40ee962675a36217fa290fc1033879a934ac0d19d8618",
+          "before_sha256": "7760994630611ebc3f2a409b9f3718f3f358ba561e1921635407874705480d61",
+          "path": "tools/test-native-scene-window.py"
+        }
+      ],
+      "id": "NS20.scene-spawning-exact-4",
+      "pending_gaps": [
+        "behaviors_without_comparison:35bb60f7004aab443231f74d2cd83a1aae734e9eba5b880da083e6a60946de8d",
+        "stale_evidence:025bc4eaaf1dacfcf81461743e7b396ba3ce6909c08b874de78ac3425705d5d1",
+        "stale_evidence:071e3ff7506e063aace544eecb6c363c329b3379551c21d4513e9a5e4f9577e6",
+        "stale_evidence:0c3c470d75350a2ddef8f64befb3bf7f72d2ac2e519d054ca7da4af1bb4618e2",
+        "stale_evidence:16e6fdd87e59f3b17a2270789a5063e5412d815646d3a80a60bf568f923b25a8",
+        "stale_evidence:1b07a1a113bd305de995168c6129177871cf452eb1f8eae7fa28ea9a7abfb355",
+        "stale_evidence:2733e271e79212bc3ec2d5040d2af7f38723dbee70cf1464ab62a19f85c6780b",
+        "stale_evidence:2c21a736c7840287f943e052bdcc68ccb060193033f932d58f27026c8ea132f9",
+        "stale_evidence:40aa0dec75ee383af495578530aadf31fd3059a01fbaf28c4a96e6a699dd0d64",
+        "stale_evidence:498c494fb8b2c01ff427e49173e651cdaba3e7ff25dc4e43b85ee39123bb5f29",
+        "stale_evidence:4de2724663ae65227ac30a566f225516f3bdda764dc1f3d8c7bbccfa955ddc51",
+        "stale_evidence:4eb2ddf1d9eb484116499f698422a92eacaffbd71ff60ba141de4edb4a4c3135",
+        "stale_evidence:5359c34d68d4fbdd3f3b1f76eb02cb1f031fade67e767aa32de47dce3130621c",
+        "stale_evidence:5d224d7b7b3c12dcc402df21915bf89265393ebdf2bc0b90a578eae3e7bf715f",
+        "stale_evidence:61550b16278e9c4e7ba9a69b26479fc8eaa43ae09068578cdd45a7c899d2d126",
+        "stale_evidence:67eae04bb73c78241adf4642ebf86f726655b492a44b4c04c13235efacea166c",
+        "stale_evidence:6c815f7496b367af32d0c0b17dfac66d0f3fdc13c4150288ddff978b2c6ea626",
+        "stale_evidence:7b94c650a162f38eb08a7e01ebbe6d89386b00f98a163c8707f506d1e6b019af",
+        "stale_evidence:7bfc84a0d6517f3afd0bbc176078d8fee722c1908e824ab15c5f1b8dc450e576",
+        "stale_evidence:829e6abc110b329d021488bf0df6c4108d25b0a4d07419ec9f67d7dc89207fb5",
+        "stale_evidence:87770397efbec0d64971e941c3eba9a1425647e29f1a0028deb34d41d76ec231",
+        "stale_evidence:8942588c6aecd7dbed56a5ef77fb000e1d54f5b9e27b0dec596ae7bf7fc8ba0a",
+        "stale_evidence:8d4be26e8da50e9beadb4e02600adfa1e25a6b1fa325526f48ab28cb237ca6e1",
+        "stale_evidence:9320fdf488714cc3bea9de72b7202b4b4ed7b6442cb4238c59d1e361e76957ac",
+        "stale_evidence:94c3fd4fec5a7223f2a9330d6b9fa57c266d2a3d7fecc3835b56c86db1a1624b",
+        "stale_evidence:9bf4e842a9bb93aacaa7dc38b6abb33eaff46cf4296e31351fa90592027ffbce",
+        "stale_evidence:9d8242ec3a3452b73b235fac8b974fbddc8bfbb195c3b7dc6bdae74716aa0149",
+        "stale_evidence:b12ff9c9892dd08f652816fc8361503b7292806d517a6e84bdc0d36dd1bc71ae",
+        "stale_evidence:b1d5d55a6ecc4cc473ad551964a9396fd5204146348ede0f531ede1272c9bfbe",
+        "stale_evidence:bf27ce8f6dc54d1322a90af28e1e40abe17a3026650ade669b7b442346d69fd0",
+        "stale_evidence:d22193de9dcdeff6b31a7e46fe20600ef694564a14d725028ea93978d4926c8f",
+        "stale_evidence:d60845db56b783ddcd14e711df40df3755600c42da31c02bddec75881e3c99f7",
+        "stale_evidence:da99831c422a104bcdb1856946c9839b398c2cc574d4a7a1d4376fe30bb2fbfc",
+        "stale_evidence:e36d838da800f366644f443f6c03f55f08d06a93b9265dc1ec922f9cda05ef33",
+        "stale_evidence:e716b3d9e537b8d4fe47c7bf960ae657ae1742fa62574336a72e5dc8f4000c2f",
+        "stale_evidence:f2231c10171f6b8ebab0bf38588989157a0bf3122627a0dbdd3ddf1ddaf3d1fe",
+        "stale_evidence:f896d92269214bca93c64b014dfad243e13907b308e94cc5f598c2b5522dc0ab",
+        "stale_evidence:f9bd905e1a4c920459fb6385a3e115646f5643e74933214109c5edbbcca73c17",
+        "stale_evidence:fbefbfc5f69752c6266be0380a7326313af115b952e1344ebb1906ad6eafdf55"
+      ],
+      "reason": "Review paused semantic Orders spawning and transient terrain-cell/actor selection. Widgets express placement/spawn actions and disable on playing/no cell/full capacity; Orders independently requires paused and changes actor identity only after transactional admission. Review native bound-profile spawn helper/capacity query and adapter standing-height/cell-validity/support validation before owned initial-pose spawn. Existing footprint and unfinished-edge reservations validate the candidate world and preserve state/queued commands/selection on refusal. Review zero-tick new-actor selection/order controls, actual left/right mouse dispatch, displayed spawn coordinates, errors, reload transient selection and existing playback/Save flow. New scene seed uses the existing versioned multi-occupancy policy with 32 slots. Review discovered baseline guard: marker bits with occupant 0xffff are empty under the recovered occupancy predicate; admit that case without clearing cell bytes/terrain flags, while refusing marked actual occupant IDs. Synthetic regression covers both, with no recovered status promotion. Review production controls/limit/refusal/restart tests, installed Forest/Redcap two-body actual-window Save/reload/first-order continuation in four views, real-timer playing disable, complete independent decoded-SPR pixels and exact state/artifact fingerprints. Preserve failed pre-sentinel experiment logs, original-manifest checks, register/census/ledger scope and explicit remaining gaps. Exact history fea5d9f..b2dcd337769427eabe22df1c6fa47ca5d5ad1e37 matches every file/behavior version to preserved receipts without executing historical code or asserting a past gate/validation; stage only this milestone plus committed peer work.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared native movement/adapter/CLI, Qt orders/controls/entry point, test and documentation edits affect other linked contracts and historical evidence. Preserve earlier hashes/statuses and explicitly account every new stale-evidence/absent-comparison gap. NS20 does not revalidate every recovered planner/setup/event or all linked historical native scenarios. Native static pose, multi-occupancy and UI integration remain bounded to selected fixtures/profiles; original spawn lifecycle, factions/balance, other creature configurations, animated idle/facing, full-game admission and live replacement remain pending. No original comparison/replacement or gameplay promotion is made.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS20.scene-spawning-recorded-4",
+      "reason": "Record native paused terrain-cell spawning, transactional placement admission, selected orders and owned two-actor checkpoint/presentation continuation. Original spawning/gameplay stays outside scope.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "b002ba9d9108c9625c7e203dfdfac78030c76da814f6273f3253ac9b4fa42599",
+          "before_sha256": "2c0518bbbe6547c01ef54a4d074d1415c461834eb55025b491729c93cd8e583f",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "59ef734117734ebdc992272c569ce094e2f2077ff53f34094647ccf3cf67fcdb",
+          "before_sha256": "bd1400e9e35729e11085327e5348f547485ba654707c10ca837f0aebfb1f065b",
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "80a9c7591463939f3dd83d06c327be4de41fc575d168c3fb5208b81a9e74c154",
+          "before_sha256": "beb325b62b1b8d3ff46a0ffba2c0b50a1f614db39a719410f28cd17907f05aa2",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "ecdfc7d59ab1b14c3c72775b09b54306e0a0bd7819f43a59c353e70bc3dbb15c",
+          "before_sha256": "8ec5af51f4efff24ead06ce365da1a9866bbf027c321aafb8d5ff5441da6ecf9",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "8384903a21052c82a2da8153891add18befaee9cb156eb6225417aaf39cf345e",
+          "before_sha256": "43c0bc0fa987aa4e4753dcda5cba88a5148c621b4a6325ae3de8ab95d0365e17",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "f3972b15f55ed95bf36ee304839e244c7f7a639b3388b8f388dd435302c77543",
+          "before_sha256": "92df3856fc2c61c5fd109e160f94e7c2e3d1f39410bd915df019c455c6179db8",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "6902ec19f6ca2c8c88818a77c12d221f572ca6ef8b3b0ddf483e2d9e27ef2012",
+          "before_sha256": "bfeb12e21c415ba9f3c6837b4bb50310c4280d1c971325949bf1271457815759",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "e23aca8509969393af7319f84ea97bf4f65eb252d784e40c00a9694ea5f91aa6",
+          "before_sha256": null,
+          "id": "NP.scene-spawning"
+        },
+        {
+          "after_sha256": "cba8eaecc581225d07feb3a78d758d08da62d6b5daf8e8bc9dee4c2f23abd89e",
+          "before_sha256": "c95e6156a52070fec49a40932d32c58a95a7599077bcaf2103057cd53f7244c6",
+          "id": "NP.spawn-display"
+        },
+        {
+          "after_sha256": "ed7d10f580d5905979f1307892f2678b7686058527c8e66819b31272114f2280",
+          "before_sha256": "f4f3959dfa2f5ce9c769c3f34f20ec1ba3c3a3df45f207740c67749b2e0ab588",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "d85725dd8d27cc8a94ee0efa1a25e6650e613f275fc3b9ada71fe27a91ad8fe6",
+          "before_sha256": "44d6a898ec4941fb49103e943f640c4ce35f4f9bc35d9cd58170c27c2c962b27",
+          "id": "NP.stop-orders"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Normal 111 CTests and twelve selected ASan/UBSan suites pass after the sentinel correction. Synthetic production Qt widgets/Orders/native session/frozen adapter exercise missing/invalid cell, unsupported layer, occupied footprint and unfinished-edge refusal with world/selection rollback, playing guard/disabled button, immediate selected zero-tick static pose, selected actor orders and exact two-actor continuation. A 32-actor cap refuses despite spare pool slots and disables Spawn. Regression accepts marker bits with occupant 0xffff and rejects a real occupant ID without modifying frozen terrain or bypassing navigation. Normal and ASan/UBSan each open 24 actual entry-point windows over four installed Forest/Redcap views, pass 128 complete independently decoded SPR/RGB565 frame comparisons and sixteen byte-exact fresh-window state/canonical JSON/RGB565/PNG continuations. Real mouse/button/modal Save selects terrain, spawns/selects a second body, refuses occupied retry without state/selection change, saves both bodies, queues its first order, disables Spawn during real-timer playback, and reproduces the order after fresh-window masked body picking. Earlier initial/mid/Stop branches stay exercised. All retained source/input/report/artifact/log fingerprints match; original-manifest checks verify 2927 files before/after installed experiments. Failed initial admission experiments remain retained as diagnostics. Native bounded preview claims only.",
+        "evidence": [
+          "NS20.scene-spawning"
+        ]
+      }
     }
   ]
 }

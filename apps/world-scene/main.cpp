@@ -159,9 +159,9 @@ int main(int argc,char** argv) try {
     }
     if(p.isSet("frames")) throw std::invalid_argument("Frames requires output");
     QWidget window;window.setObjectName("nativeSceneWindow");window.setWindowTitle("Native movement scene");auto* layout=new QVBoxLayout(&window);
-    auto* image=new mnm::scene::SceneCanvas;image->setObjectName("sceneCanvas");std::vector<mnm::scene::Draw> displayedQueue;auto* status=new QLabel;layout->addWidget(image);layout->addWidget(status);
+    auto* image=new mnm::scene::SceneCanvas;image->setObjectName("sceneCanvas");std::vector<mnm::scene::Draw> displayedQueue;auto* status=new QLabel;status->setObjectName("sceneStatus");layout->addWidget(image);layout->addWidget(status);
     mnm::scene::Orders orders;auto* controls=new mnm::scene::MovementControls;layout->addWidget(controls);
-    layout->addWidget(new QLabel("Left-click a creature, then right-click terrain to queue a move. Play runs at 10 ticks/second; Step works while paused. Target-cell fields also work."));
+    layout->addWidget(new QLabel("Left-click terrain and use Spawn creature while paused. Left-click a creature, then right-click terrain to queue a move. Play runs at 10 ticks/second; Step works while paused. Target-cell fields also work."));
     auto* actions=new QHBoxLayout;layout->addLayout(actions);
     auto* playbackControls=new mnm::scene::PlaybackControls;auto* save=new QPushButton("Save checkpoint");save->setObjectName("saveCheckpoint");actions->addWidget(playbackControls);actions->addWidget(save);
 #ifdef MNM_SCENE_WINDOW_TEST
@@ -185,7 +185,12 @@ int main(int argc,char** argv) try {
             }
         }
         displayedQueue=frame.queue;image->present(pixels);controls->updateChoices(mnm::scene::creatureChoices(session.world().state()),orders.selected(),navigation->binding().dimensions);
+        controls->updateSpawning(orders.placement(),playback.playing(),session.canSpawnCreature());
         status->setText(QString("Tick %1 · terrain scene · view %2 · %3").arg(session.world().state().tick).arg(camera.view).arg(playback.playing()?"Playing":"Paused"));
+    };
+    controls->onSpawn=[&] {
+        try {orders.spawn(session,!playback.playing());refresh();status->setText("Creature spawned and selected. Right-click terrain to move it.");}
+        catch(const std::exception& e) {refresh();status->setText(e.what());}
     };
     controls->onSelect=[&](std::optional<mnm::game::Handle> actor) {
         try {orders.select(session.world().state(),actor);refresh();}
@@ -204,7 +209,11 @@ int main(int argc,char** argv) try {
         catch(const std::exception& e) {refresh();status->setText(e.what());}
     };
     image->onSelectAt=[&](int x,int y) {
-        try {controls->onSelect(mnm::scene::pickActor(displayedQueue,terrain,creature,x,y));}
+        try {
+            const auto actor=mnm::scene::pickActor(displayedQueue,terrain,creature,x,y);
+            orders.selectPlacement(session.world().state(),actor?std::nullopt:mnm::scene::pickTerrain(displayedQueue,terrain,x,y));
+            controls->onSelect(actor);
+        }
         catch(const std::exception& e) {status->setText(e.what());}
     };
     image->onMoveAt=[&](int x,int y) {

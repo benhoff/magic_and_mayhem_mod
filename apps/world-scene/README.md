@@ -234,3 +234,12 @@ with the scene preview. The new body can be picked and ordered immediately;
 Save/reload preserves its static pose. It uses the first bitmap of movement
 direction zero as an explicit native policy, with original idle selection pending.
 See [initial display evidence](../../research/runtime/native-spawn-display.md).
+
+## Spawn creatures in the paused window (NS20)
+
+Left-click terrain, then press **Spawn creature** while paused. The new creature
+appears and becomes selected; right-click a target to order it. Occupied,
+unsupported and unfinished movement cells refuse placement. Save preserves every
+spawned actor; reload clears transient selection, so pick the body again.
+`spawn-terrain-ani` now creates a scene with room for 32 same-profile creatures.
+See [scene spawning evidence](../../research/runtime/native-scene-spawning.md).

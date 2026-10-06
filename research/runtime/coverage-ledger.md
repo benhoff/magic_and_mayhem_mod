@@ -915,3 +915,17 @@ validated in the bounded Forest/Redcap slice. Scope, evidence and remaining
 original idle/action, animation, initial-facing and full-game admission gaps are
 in [native-spawn-display.md](native-spawn-display.md) and its JSON record.
 No original comparison, live replacement or gameplay balance promotion is made.
+
+### NS20 — paused-window terrain creature spawning
+
+The native scene accepts terrain-cell selection and a semantic paused Spawn
+action. New scene checkpoints admit up to 32 same-profile bodies under the
+already versioned multi-creature occupancy policy. Native terrain validation and
+transactional occupancy/reservation checks reject unsupported, occupied and
+unfinished-edge placement without state or selection mutation. Successful
+spawning selects the new body for orders and persists it in the existing v8
+checkpoint. Synthetic controls/admission/limit checks and actual Forest/Redcap
+window Save/reload/first-order continuation in four views are recorded in
+[native-scene-spawning.md](native-scene-spawning.md) and its JSON record.
+Original spawn/gameplay admission, other profiles and live replacement remain
+pending; historical evidence fingerprints are retained unchanged.

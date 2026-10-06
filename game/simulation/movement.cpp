@@ -13,6 +13,7 @@ Point Navigation::finePosition(const Entity& e) const {
     if(e.motion && e.motion->terrainMotion) throw std::invalid_argument("terrain height driver unavailable");
     return {e.x*32,e.y*32,e.z*16};
 }
+void Navigation::validateSpawnPosition(Point) const {throw std::invalid_argument("creature placement driver unavailable");}
 void Navigation::validateDisplayPose(const DisplayPose&) const {throw std::invalid_argument("display pose driver unavailable");}
 void Navigation::validateSegmentHistory(const Entity&,const SegmentHistory&) const {throw std::invalid_argument("segment setup driver unavailable");}
 FineMotion Navigation::prepareFineMotion(const Entity&,const RoutePoint&) const {throw std::invalid_argument("sample motion driver unavailable");}
@@ -167,6 +168,17 @@ Handle MovementSession::spawn(Entity entity,bool sampleMotion,bool continuousMot
     }
     validateMotion(entity,navigation_->binding());if(terrainMotion) (void)navigation_->finePosition(entity);
     auto candidate=world_;auto h=candidate.spawn(std::move(entity));navigation_->validateOccupants(candidate.state());world_=std::move(candidate);return h;
+}
+bool MovementSession::canSpawnCreature() const {
+    const auto& s=world_.state();unsigned count=0;bool free=false;
+    for(const auto& slot:s.slots) {if(slot.entity && slot.entity->motion) ++count;else if(!slot.entity && slot.generation) free=true;}
+    return bool(s.animation) && free && count<navigation_->maxMovingCreatures();
+}
+Handle MovementSession::spawnCreature(Point p) {
+    if(!canSpawnCreature()) throw std::invalid_argument("Scene creature limit reached");
+    navigation_->validateSpawnPosition(p);
+    Entity e;e.type=navigation_->creatureType();e.x=p.x;e.y=p.y;e.z=p.z;
+    return spawn(std::move(e),true,true,true,true);
 }
 Handle MovementSession::spawnBlocker(Entity entity) {
     if(!navigation_->supportsStationaryOccupants() || entity.family!=Family::creature || entity.motion || entity.cleaned || entity.type!=navigation_->creatureType())

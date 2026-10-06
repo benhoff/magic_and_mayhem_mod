@@ -941,3 +941,13 @@ Run `python3 tools/test-campaign-preferences-bridge.py` and Qt `qt-menu-campaign
 ### Campaign Preferences automated live round trip
 
 Run `python3 tools/test-live-qt-campaign-preferences.py --shell <built-shell> --source-root <compiled-tree>`. It creates private Wine/Xvfb/config state and drives native campaign Mini/Preferences three times: preview/Cancel rollback, preview/OK saving, reopened values/Cancel, then original Quit confirmation, report OK and Main Quit. No manual input; bounded execution with exact callback, World-resume, profile/store and source-fingerprint checks. See [UI35 evidence](../research/runtime/campaign-preferences-live-engine-bridge.md).
+
+## Paused native scene spawning (NS20)
+
+`native-world-spawning` runs production Qt controls with owned frozen/ANI inputs
+for zero-tick admission, occupied/unsupported/reserved-cell rollback, playing
+guards, a 32-actor limit with spare pool slots, selected orders and exact
+two-actor checkpoint continuation. The actual-window runner additionally selects
+terrain, spawns and selects a second creature, rejects duplicate occupancy, saves
+both bodies, and reproduces its first move after a fresh-window reload in four
+views. See [native scene spawning](../research/runtime/native-scene-spawning.md).

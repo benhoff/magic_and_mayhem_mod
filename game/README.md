@@ -370,3 +370,12 @@ sample motion and an ANI binding; missing bitmaps and invalid policy refuse
 transactionally. No clock, control/event or movement runs during initialization.
 Existing calls retain their default policy, and loading an old checkpoint does
 not invent a pose. The initial display uses the existing v8 checkpoint contract.
+
+## Native terrain placement admission (NS20)
+
+`MovementSession::spawnCreature` creates the bound creature profile with terrain
+motion and an owned initial display. The navigation adapter validates standing
+terrain before transactional admission; occupancy and unfinished-edge
+reservations must remain valid afterward. `canSpawnCreature` reports actor/pool
+capacity for the UI. Paused-only admission and transient cell/actor selection
+belong to the application Orders boundary, separate from simulation services.
