@@ -2361,28 +2361,32 @@
       "subsystem": "native_audio",
       "kind": "native_policy",
       "title": "Owned PCM buffers and upload",
-      "scope": "Native ownership, validation and output policies; these do not establish original manager equivalence. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "scope": "Native PCM mono/stereo 8/16-bit validation, encoding-correct initial silence, bounded ownership, transactional lock publication/commit, shared alias retirement and allocation-exception atomicity. Thread confined; counter exhaustion reviewed only; excludes original allocator/COM and physical backend guarantees.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/directsound-buffer-setup.md",
-        "audio/README.md"
+        "audio/README.md",
+        "research/runtime/native-audio-boundaries.md"
       ],
       "implementation": [
         "audio/buffers.cpp",
         "audio/buffers.hpp"
       ],
       "tests": [
-        "tests/audio-buffers-test.cpp"
+        "tests/audio-buffers-test.cpp",
+        "tests/audio-boundaries-test.cpp",
+        "tools/test-native-audio-boundaries.py"
       ],
       "evidence": [
-        "REVIEW.NA.buffers"
+        "REVIEW.NA.buffers",
+        "NA.core-boundaries-20261005"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -2391,27 +2395,32 @@
       "subsystem": "native_audio",
       "kind": "native_policy",
       "title": "Native voice state",
-      "scope": "Native ownership, validation and output policies; these do not establish original manager equivalence. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "scope": "Native secondary stop/resume/reset, completion/replay, whole-buffer looping, independent duplicate controls/cursors and retirement; step-oracle and locked/playing destruction execution. Excludes original scheduling, concurrency, pitch and nonzero seeks.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-audio-voice-state.md",
-        "audio/README.md"
+        "audio/README.md",
+        "research/runtime/native-audio-boundaries.md"
       ],
       "implementation": [
-        "audio/voices.cpp"
+        "audio/voices.cpp",
+        "audio/buffers.hpp"
       ],
       "tests": [
-        "tests/audio-voice-state-test.cpp"
+        "tests/audio-voice-state-test.cpp",
+        "tests/audio-boundaries-test.cpp",
+        "tools/test-native-audio-boundaries.py"
       ],
       "evidence": [
-        "REVIEW.NA.voices"
+        "REVIEW.NA.voices",
+        "NA.core-boundaries-20261005"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -2420,27 +2429,32 @@
       "subsystem": "native_audio",
       "kind": "native_policy",
       "title": "Native PCM mixer",
-      "scope": "Native ownership, validation and output policies; these do not establish original manager equivalence. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "scope": "Native signed stereo16 output, committed PCM visibility, 8/16-bit mono/stereo decode, linear resampling, block continuity, gain/pan, final-sum clipping, frame limits and allocation-exception atomicity. Excludes physical device/timing and original mix equivalence.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-audio-mixer.md",
-        "audio/README.md"
+        "audio/README.md",
+        "research/runtime/native-audio-boundaries.md"
       ],
       "implementation": [
-        "audio/mixer.cpp"
+        "audio/mixer.cpp",
+        "audio/buffers.hpp"
       ],
       "tests": [
-        "tests/audio-mixer-test.cpp"
+        "tests/audio-mixer-test.cpp",
+        "tests/audio-boundaries-test.cpp",
+        "tools/test-native-audio-boundaries.py"
       ],
       "evidence": [
-        "REVIEW.NA.mixer"
+        "REVIEW.NA.mixer",
+        "NA.core-boundaries-20261005"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -2509,28 +2523,34 @@
       "subsystem": "native_audio",
       "kind": "native_policy",
       "title": "Strict WAV loading",
-      "scope": "Native ownership, validation and output policies; these do not establish original manager equivalence. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
-      "confidence": "provisional",
+      "scope": "Strict native RIFF/WAVE PCM parser and bounded AssetFile loading: mono/stereo 8/16-bit, consistent nonzero rates, chunk order/padding/container bounds, rejected encodings/duplicates/truncation/partial frames, owned bytes independent of input lifetime. Excludes compressed/streaming decoding and original unchecked WinMM equivalence.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/formats/pcm-wav-loading.md",
-        "audio/README.md"
+        "audio/README.md",
+        "research/runtime/native-audio-boundaries.md"
       ],
       "implementation": [
         "audio/wave_loader.cpp",
-        "audio/wave_loader.hpp"
+        "audio/wave_loader.hpp",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp"
       ],
       "tests": [
-        "tests/test-audio-asset-input.py"
+        "tests/test-audio-asset-input.py",
+        "tests/audio-boundaries-test.cpp",
+        "tools/test-native-audio-boundaries.py"
       ],
       "evidence": [
-        "REVIEW.NA.wave"
+        "REVIEW.NA.wave",
+        "NA.core-boundaries-20261005"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -22303,6 +22323,36 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NA.core-boundaries-20261005",
+      "kind": "native_integration",
+      "scope": "Synthetic native PCM core: supported formats, parser, ownership, lock/voice lifetime, failure atomicity and PCM mixing.",
+      "record": "research/runtime/native-audio-boundaries-20261005.json",
+      "sha256": "81385e95991da550d8da993b8fdf87406ff6de7165cff6415829a10ec25afcbc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/tests_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizers_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/standalone_ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/device_output",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -25719,6 +25769,28 @@
         "tools/test-live-qt-campaign-preferences.py",
         "tests/menu-campaign-preferences-test.cpp"
       ]
+    },
+    {
+      "id": "NA.core-boundaries-headless",
+      "scope": "Synthetic supported PCM format/parser/alias lifetime/exception atomicity and independent voice/mix oracles; normal and sanitizer execution only, no physical output or original equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "NA.buffers",
+        "NA.voices",
+        "NA.mixer",
+        "NA.wave"
+      ],
+      "evidence": [
+        "NA.core-boundaries-20261005"
+      ],
+      "tests": [
+        "tests/audio-boundaries-test.cpp",
+        "tests/audio-buffers-test.cpp",
+        "tests/audio-voice-state-test.cpp",
+        "tests/audio-mixer-test.cpp",
+        "tests/test-audio-asset-input.py",
+        "tools/test-native-audio-boundaries.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -25961,7 +26033,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-campaign-preferences-live.json",
-    "sha256": "aed6a001cf21e69baeade70bf0c2571daebb8b1ad1742d398f3c21a92bcbfc50"
+    "path": "research/runtime/coverage/source-index-native-audio-boundaries-commit-20261005.json",
+    "sha256": "28f45b6db14b6afc4e824445c39a4c418b615885f94a3638c40c58e662f210a5"
   }
 }
