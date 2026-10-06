@@ -89,3 +89,13 @@ base-plus-facing variants, interpret Data1, construct effects through the full
 89-type dispatcher, or establish lifecycle/scheduling/live replacement.
 Historical controller/binding evidence remains unchanged; this run does not
 refresh old fingerprints or promote their original-comparison scopes.
+
+## Subsequent producer comparison
+
+The [metadata-region comparison](effect-animation-metadata.md) now executes
+0049c6e2..0049c735 and0049c836..0049caae with real original CRT calls, controlled
+profile results and seeded allocation memory. All installed entries agree;
+missing/unmatched fields, prefix atoi, file-count clamping and explicit native
+trim/annotation differences are recorded separately. This new evidence does
+not alter the earlier installed report or establish whole-loader/profile-API,
+allocation, file loading, cache or lifecycle equivalence.

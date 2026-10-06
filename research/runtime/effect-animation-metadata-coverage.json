@@ -9,46 +9,40 @@
   ],
   "behaviors": [
     {
-      "id": "AS.effect-animation-catalog",
-      "subsystem": "assets",
-      "kind": "native_policy",
-      "title": "Installed owned effect animation catalog and forward binding",
-      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement. Original metadata regions and native policy differences are now compared separately in TL24; this native policy does not claim whole-loader or malformed-input equivalence.",
+      "id": "TL.effect-animation-metadata",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect animation file-count and metadata producer regions",
+      "scope": "Executed original 0049c6e2..0049c735 file-count parse/clamp and 0049c836..0049caae metadata loop with authored stack/register/allocation preconditions, checked ASCII profile-output callback and unchanged CRT calls; explicit seeded word retention, prefix atoi, exact case-insensitive references/printer codes and Data1. All 222 installed entries and bounded malformed fixtures compare against owned reconstructed model. Native complete-entry catalog differences remain deliberate policy; no whole loader, Windows profile/file API, allocation/SEH/cache/lifecycle, dispatcher/render/live equivalence.",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4834736,
-          "scope": "Static windows 0049c653..0049c735 count/allocation, 0049c841..0049caae 16-byte metadata producer and 0049cabe..0049cc11 paired path construction; no whole loader execution or equivalence"
+          "scope": "Executed regions 0049c6e2..0049c735 and0049c836..0049caae only; authored preexisting allocation/context, original CRT and checked profile-output callback, hardware breakpoint endpoints; whole collection loader remains unexecuted"
         }
       ],
       "documents": [
-        "research/runtime/effect-animation-catalog.md",
         "research/runtime/effect-animation-metadata.md"
       ],
       "implementation": [
-        "assets/effect_animation_catalog.cpp",
-        "assets/effect_animation_catalog.hpp",
-        "assets/CMakeLists.txt",
-        "reconstruction/rendering/effect_animation_catalog_binding.cpp",
-        "reconstruction/rendering/effect_animation_catalog_binding.hpp",
-        "reconstruction/rendering/effect-animation-catalog/CMakeLists.txt"
+        "reconstruction/rendering/effect_animation_metadata.cpp",
+        "reconstruction/rendering/effect_animation_metadata.hpp",
+        "reconstruction/rendering/effect-animation-metadata/CMakeLists.txt"
       ],
       "tests": [
-        "tests/effect-animation-catalog-test.cpp",
-        "tools/test-effect-animation-catalog.py",
         "tests/effect-animation-metadata-reference.cpp",
         "tests/effect-animation-metadata-test.cpp",
         "tools/test-effect-animation-metadata.py"
       ],
       "evidence": [
-        "AS23.effect-animation-catalog-native",
+        "TL24.animation-metadata-original",
         "TL24.animation-metadata-native"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
-        "comparison": "none",
+        "comparison": "recorded",
         "integration": "headless",
         "replacement": "none"
       }
@@ -132,40 +126,46 @@
       }
     },
     {
-      "id": "TL.effect-animation-metadata",
-      "subsystem": "terrain_lighting",
-      "kind": "recovered",
-      "title": "Effect animation file-count and metadata producer regions",
-      "scope": "Executed original 0049c6e2..0049c735 file-count parse/clamp and 0049c836..0049caae metadata loop with authored stack/register/allocation preconditions, checked ASCII profile-output callback and unchanged CRT calls; explicit seeded word retention, prefix atoi, exact case-insensitive references/printer codes and Data1. All 222 installed entries and bounded malformed fixtures compare against owned reconstructed model. Native complete-entry catalog differences remain deliberate policy; no whole loader, Windows profile/file API, allocation/SEH/cache/lifecycle, dispatcher/render/live equivalence.",
+      "id": "AS.effect-animation-catalog",
+      "subsystem": "assets",
+      "kind": "native_policy",
+      "title": "Installed owned effect animation catalog and forward binding",
+      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement. Original metadata regions and native policy differences are now compared separately in TL24; this native policy does not claim whole-loader or malformed-input equivalence.",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4834736,
-          "scope": "Executed regions 0049c6e2..0049c735 and0049c836..0049caae only; authored preexisting allocation/context, original CRT and checked profile-output callback, hardware breakpoint endpoints; whole collection loader remains unexecuted"
+          "scope": "Static windows 0049c653..0049c735 count/allocation, 0049c841..0049caae 16-byte metadata producer and 0049cabe..0049cc11 paired path construction; no whole loader execution or equivalence"
         }
       ],
       "documents": [
+        "research/runtime/effect-animation-catalog.md",
         "research/runtime/effect-animation-metadata.md"
       ],
       "implementation": [
-        "reconstruction/rendering/effect_animation_metadata.cpp",
-        "reconstruction/rendering/effect_animation_metadata.hpp",
-        "reconstruction/rendering/effect-animation-metadata/CMakeLists.txt"
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/CMakeLists.txt",
+        "reconstruction/rendering/effect_animation_catalog_binding.cpp",
+        "reconstruction/rendering/effect_animation_catalog_binding.hpp",
+        "reconstruction/rendering/effect-animation-catalog/CMakeLists.txt"
       ],
       "tests": [
+        "tests/effect-animation-catalog-test.cpp",
+        "tools/test-effect-animation-catalog.py",
         "tests/effect-animation-metadata-reference.cpp",
         "tests/effect-animation-metadata-test.cpp",
         "tools/test-effect-animation-metadata.py"
       ],
       "evidence": [
-        "TL24.animation-metadata-original",
+        "AS23.effect-animation-catalog-native",
         "TL24.animation-metadata-native"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
-        "comparison": "recorded",
+        "comparison": "none",
         "integration": "headless",
         "replacement": "none"
       }
@@ -173,12 +173,12 @@
   ],
   "evidence": [
     {
-      "id": "AS23.effect-animation-catalog-native",
-      "kind": "native_integration",
+      "id": "TL24.animation-metadata-original",
+      "kind": "isolated_original",
       "build": "nocd-40209ca7",
-      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement.",
-      "record": "research/runtime/effect-animation-catalog.json",
-      "sha256": "73ea8449670d4fca0764856bc89e6bc003b76648842c1f78372d6ac980148f61",
+      "scope": "Executed original 0049c6e2..0049c735 file-count parse/clamp and 0049c836..0049caae metadata loop with authored stack/register/allocation preconditions, checked ASCII profile-output callback and unchanged CRT calls; explicit seeded word retention, prefix atoi, exact case-insensitive references/printer codes and Data1. All 222 installed entries and bounded malformed fixtures compare against owned reconstructed model. Native complete-entry catalog differences remain deliberate policy; no whole loader, Windows profile/file API, allocation/SEH/cache/lifecycle, dispatcher/render/live equivalence.",
+      "record": "research/runtime/effect-animation-metadata.json",
+      "sha256": "cc59e33c5ca1b5e3d2dbd8db3cc49326c01a0390a4fd2339da005b1d8961262a",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -187,28 +187,36 @@
           "equals": true
         },
         {
-          "pointer": "/original_loader_executed",
+          "pointer": "/original_regions_executed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_whole_loader_executed",
           "equals": false
         },
         {
-          "pointer": "/installed_files",
-          "equals": 13
+          "pointer": "/count_windows",
+          "equals": 131
+        },
+        {
+          "pointer": "/metadata_windows",
+          "equals": 393
+        },
+        {
+          "pointer": "/metadata_rows",
+          "equals": 2076
         },
         {
           "pointer": "/installed_entries",
           "equals": 222
         },
         {
-          "pointer": "/normal/states",
-          "equals": 14430
+          "pointer": "/native_policy/native_accepted",
+          "equals": 34
         },
         {
-          "pointer": "/sanitized/states",
-          "equals": 14430
-        },
-        {
-          "pointer": "/refusal_cases_per_build",
-          "equals": 3
+          "pointer": "/native_policy/native_refused",
+          "equals": 97
         }
       ]
     },
@@ -261,12 +269,12 @@
       ]
     },
     {
-      "id": "TL24.animation-metadata-original",
-      "kind": "isolated_original",
+      "id": "AS23.effect-animation-catalog-native",
+      "kind": "native_integration",
       "build": "nocd-40209ca7",
-      "scope": "Executed original 0049c6e2..0049c735 file-count parse/clamp and 0049c836..0049caae metadata loop with authored stack/register/allocation preconditions, checked ASCII profile-output callback and unchanged CRT calls; explicit seeded word retention, prefix atoi, exact case-insensitive references/printer codes and Data1. All 222 installed entries and bounded malformed fixtures compare against owned reconstructed model. Native complete-entry catalog differences remain deliberate policy; no whole loader, Windows profile/file API, allocation/SEH/cache/lifecycle, dispatcher/render/live equivalence.",
-      "record": "research/runtime/effect-animation-metadata.json",
-      "sha256": "cc59e33c5ca1b5e3d2dbd8db3cc49326c01a0390a4fd2339da005b1d8961262a",
+      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement.",
+      "record": "research/runtime/effect-animation-catalog.json",
+      "sha256": "73ea8449670d4fca0764856bc89e6bc003b76648842c1f78372d6ac980148f61",
       "sources_pointer": "/registered_source_sha256",
       "original_hash_pointer": "/executable_sha256",
       "assertions": [
@@ -275,56 +283,33 @@
           "equals": true
         },
         {
-          "pointer": "/original_regions_executed",
-          "equals": true
-        },
-        {
-          "pointer": "/original_whole_loader_executed",
+          "pointer": "/original_loader_executed",
           "equals": false
         },
         {
-          "pointer": "/count_windows",
-          "equals": 131
-        },
-        {
-          "pointer": "/metadata_windows",
-          "equals": 393
-        },
-        {
-          "pointer": "/metadata_rows",
-          "equals": 2076
+          "pointer": "/installed_files",
+          "equals": 13
         },
         {
           "pointer": "/installed_entries",
           "equals": 222
         },
         {
-          "pointer": "/native_policy/native_accepted",
-          "equals": 34
+          "pointer": "/normal/states",
+          "equals": 14430
         },
         {
-          "pointer": "/native_policy/native_refused",
-          "equals": 97
+          "pointer": "/sanitized/states",
+          "equals": 14430
+        },
+        {
+          "pointer": "/refusal_cases_per_build",
+          "equals": 3
         }
       ]
     }
   ],
   "scenarios": [
-    {
-      "id": "assets.effect-animation-catalog-installed",
-      "level": "headless",
-      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement.",
-      "behaviors": [
-        "AS.effect-animation-catalog"
-      ],
-      "evidence": [
-        "AS23.effect-animation-catalog-native"
-      ],
-      "tests": [
-        "tests/effect-animation-catalog-test.cpp",
-        "tools/test-effect-animation-catalog.py"
-      ]
-    },
     {
       "id": "terrain-lighting.effect-animation-metadata",
       "level": "headless",
@@ -341,6 +326,21 @@
         "tests/effect-animation-metadata-reference.cpp",
         "tests/effect-animation-metadata-test.cpp",
         "tools/test-effect-animation-metadata.py"
+      ]
+    },
+    {
+      "id": "assets.effect-animation-catalog-installed",
+      "level": "headless",
+      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement.",
+      "behaviors": [
+        "AS.effect-animation-catalog"
+      ],
+      "evidence": [
+        "AS23.effect-animation-catalog-native"
+      ],
+      "tests": [
+        "tests/effect-animation-catalog-test.cpp",
+        "tools/test-effect-animation-catalog.py"
       ]
     }
   ],
