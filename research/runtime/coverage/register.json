@@ -14835,6 +14835,66 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RE.surface-copy.restore-retry",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Original surface loss/Restore/retry wrapper scheduling",
+      "scope": "Four unchanged original fill/copy wrappers,4480 scripted draw/Restore/key result schedules and bounded reload/UI endpoints. CPU ordering and consumed-result counts match; selected source-before-destination recovery, no/one/unbounded retry differences and ignored key failure. Driver loss/Restore pixel validity, palette, asset/sentinel reload, null mutation/window retries and native/live replacement pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814976,
+          "scope": "Selected unchanged wrapper with scripted COM faults and bounded reload/UI callbacks; no driver pixel/loss equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Selected unchanged wrapper with scripted COM faults and bounded reload/UI callbacks; no driver pixel/loss equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected unchanged wrapper with scripted COM faults and bounded reload/UI callbacks; no driver pixel/loss equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818528,
+          "scope": "Selected unchanged wrapper with scripted COM faults and bounded reload/UI callbacks; no driver pixel/loss equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4738048,
+          "scope": "Selected unchanged wrapper with scripted COM faults and bounded reload/UI callbacks; no driver pixel/loss equivalence."
+        }
+      ],
+      "documents": [
+        "research/runtime/original-surface-retry.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "tools/check-original-surface-retry.py"
+      ],
+      "tests": [
+        "tests/surface-retry-reference.cpp",
+        "tests/test-original-surface-retry.py",
+        "tools/capture-original-surface-retry.py",
+        "tests/fixtures/surfaces/original-retry.json.gz",
+        "tests/fixtures/surfaces/original-retry-corpus.json"
+      ],
+      "evidence": [
+        "ORIGINAL.surface-copy.restore-retry.capture-20261006",
+        "ORIGINAL.surface-copy.restore-retry.cpu-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -26595,6 +26655,38 @@
           "equals": 1536
         }
       ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.restore-retry.capture-20261006",
+      "kind": "isolated_original",
+      "scope": "Unchanged original wrappers with scripted COM fault results and bounded UI/reload observers; independent control-flow traces and CPU ordering comparison. Actual driver loss/Restore pixels/palette and native/live execution remain pending.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-retry-capture-20261006.json",
+      "sha256": "d0969365386c3896b08800484ea20e8aec67a0cb2be66804950ceaef31e239b3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.restore-retry.cpu-20261006",
+      "kind": "isolated_original",
+      "scope": "Unchanged original wrappers with scripted COM fault results and bounded UI/reload observers; independent control-flow traces and CPU ordering comparison. Actual driver loss/Restore pixels/palette and native/live execution remain pending.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "record": "research/runtime/original-surface-retry-cpu-20261006.json",
+      "sha256": "6a65624d498a753a40531bd6a1280228122a7627a7b91397aa1cfc8422da7538",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -31169,7 +31261,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-overlap-20261006.json",
-    "sha256": "fef46d37e8154b02f51a760d69b055290c6e1aefe43bb38a52ddc5cd35cf6a69"
+    "path": "research/runtime/coverage/source-index-original-retry-20261006.json",
+    "sha256": "ca7eaa73adf9847736baba663b36de0d7ce567899dfea7b520a6689a9b68f0f4"
   }
 }

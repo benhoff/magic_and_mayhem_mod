@@ -30692,6 +30692,236 @@
         "reason": "Shared renderer/protocol/helper source changes reviewed and8 focused renderer regressions pass. Recorded overlap evidence is narrowly scoped; historical evidence for other linked behaviors remains historical/stale and is not promoted to current original equivalence.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "b1f247b4304daddb28a3f184eb9e4a66656f820a682dc3cc61794a6fc4bc47d6",
+          "before_sha256": null,
+          "id": "RE.surface-copy.restore-retry"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d9b8056d04106682300abd2b289316b932bbb8e5e12faaa74a0e30eea9965f42",
+          "before_sha256": "6d4ee198c64a47a13021ba1cfe20515fa424411d3f29bad2c974e7e9c7617932",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e976dcd7d30d841a53a31baed7a905d6a126628e4da8f08a2dbf21dcfcb0c6b5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-original-retry-20261006.json"
+        },
+        {
+          "after_sha256": "20a94331255f7ef3d5ab87bafd097d752469fe47a8461cc63e89ff1f209de051",
+          "before_sha256": "2e5f1f06ff4a5524e5db30da7cf2af264865252e30db73f052d4d8d82b350db9",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "ca7eaa73adf9847736baba663b36de0d7ce567899dfea7b520a6689a9b68f0f4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-original-retry-20261006.json"
+        },
+        {
+          "after_sha256": "d3e384d8145a7d8cd8891f168d2c9b8a5855649d158623cc20333715717e9fd7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-original-retry-20261006.md"
+        },
+        {
+          "after_sha256": "a4d6291898d2a7e06369302e2a9abbb3d5e605dc37060831f923425759308d01",
+          "before_sha256": "69db90705ece625db5c9c7a159b796e3996dec844e9e4b33b9b4efbdc5eecbd8",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "d0969365386c3896b08800484ea20e8aec67a0cb2be66804950ceaef31e239b3",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-retry-capture-20261006.json"
+        },
+        {
+          "after_sha256": "6a65624d498a753a40531bd6a1280228122a7627a7b91397aa1cfc8422da7538",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-retry-cpu-20261006.json"
+        },
+        {
+          "after_sha256": "7786df0625312cd59472be1acda2bd1a38fad86bce00ec4e29e5dbb695446cb3",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-retry.md"
+        },
+        {
+          "after_sha256": "ad58af4ddb3c5d09a8c1d6a58ebc958fd37711d45d24047abbec81e72f550e9c",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/original-retry-corpus.json"
+        },
+        {
+          "after_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+          "before_sha256": null,
+          "path": "tests/surface-retry-reference.cpp"
+        },
+        {
+          "after_sha256": "cacd54dada93bb9bd41651727464b0790d1837e0c9c91bae411aeca838e7de57",
+          "before_sha256": null,
+          "path": "tests/test-original-surface-retry.py"
+        },
+        {
+          "after_sha256": "d5b0f5c05a361cfd9fd103fc3dd0954eb09bd2734bb4bf6cdb1ad52381aec7b6",
+          "before_sha256": null,
+          "path": "tools/capture-original-surface-retry.py"
+        },
+        {
+          "after_sha256": "c8da795ff99a2438d80e8e77fa8e30a8dee643c940a5df252c1336d46961741f",
+          "before_sha256": null,
+          "path": "tools/check-original-surface-retry.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-retry.json.gz",
+          "before_sha256": null,
+          "after_sha256": "c111fde6a0364d564d1c059fc6eed5e406518e7799997d62435a4e93553ebad5"
+        }
+      ],
+      "id": "original-retry-capture-cpu-20261006",
+      "pending_gaps": [
+        "behaviors_without_scenarios:5cb06c024f73eb9779636b7c26a60d514648d8dae7b78f8982969147fb4530fb"
+      ],
+      "reason": "Reviewed unchanged original four-wrapper execution with scripted result inputs, finite endpoint call budget, independent captured ordering/consumption, CPU recovery model and8 provenance/order/refusal tests. Source census reviewed with explicit links and historical hashes retained.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh4480 original scripted fault trace captures and offline complete ordering/consumption comparison;8 tests pass. No real driver or native storage validation asserted.",
+        "evidence": [
+          "ORIGINAL.surface-copy.restore-retry.capture-20261006",
+          "ORIGINAL.surface-copy.restore-retry.cpu-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a8db8233a3cd3f4522500e82bd7eb86fffdd69492980ab89fbc0204032aef426",
+          "before_sha256": "dd648124e5a98e049e57847451be6a19e3b5b418b959596f775d13e95d121384",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "8c1181fb9a0f4c23c3f1fa33275babda27823a1e482151af975f4acd3d6a5597",
+          "before_sha256": "d586b756789d167601d4bc10dc6e70b0ea6acab35fc4af3a3900a61b18cf16fa",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "dee1242bfc9c64102dd631bde33934ab35ad8122337bb233e2d4077bdcf63c33",
+          "before_sha256": "4bba31c6a0e16719263102b5d1d8a105c235eb29c0987b11421d319f2c57cfbd",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "2ee8e5a9edb8761d9736ce0d59f9002620264726ea44b6387178d743c3b0b860",
+          "before_sha256": "a7feff8625b7a14841fd589f99dd76eb9a124eb94390c99d56c314d6ee1a8bd4",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "6cf4ec485f1dd4626c08434c5c013568e3250baf3364c965cc1f0db3d4b2d611",
+          "before_sha256": "7bf33fa9afd38d8acc6555455ce475b05dfa665f46be4e2fb351dc1595b42a35",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "cc194d424648b3a1d2c253fd5935c22db436dc88f68e63c74787778ca286606a",
+          "before_sha256": "91f8cb7d78397bd64e619cdf563eabc7f6659be2fcce17ad308a0c748c9f8161",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "f248d066c4be40a1be4113d65df3386fe6eb05d5cbbc63cd4f648f49c2f1e1ab",
+          "before_sha256": "aa31c076f61dca8f0387c01ffb6eda2d24c914d1aed4fa28b63e812500b18bc3",
+          "id": "RE.surface-copy.rgb565-overlap"
+        },
+        {
+          "after_sha256": "a1044897bfed992b2c816fd12c207cc5363417b96394ffa31735c19381e83bbf",
+          "before_sha256": "13c6f2593fd7d1c6f3cf28e88f359a7361add51737d39be03238540fc595ad17",
+          "id": "RE.surface-fill.rgb565"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d9b8056d04106682300abd2b289316b932bbb8e5e12faaa74a0e30eea9965f42",
+          "before_sha256": "6d4ee198c64a47a13021ba1cfe20515fa424411d3f29bad2c974e7e9c7617932",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e976dcd7d30d841a53a31baed7a905d6a126628e4da8f08a2dbf21dcfcb0c6b5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-original-retry-20261006.json"
+        },
+        {
+          "after_sha256": "20a94331255f7ef3d5ab87bafd097d752469fe47a8461cc63e89ff1f209de051",
+          "before_sha256": "2e5f1f06ff4a5524e5db30da7cf2af264865252e30db73f052d4d8d82b350db9",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "ca7eaa73adf9847736baba663b36de0d7ce567899dfea7b520a6689a9b68f0f4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-original-retry-20261006.json"
+        },
+        {
+          "after_sha256": "d3e384d8145a7d8cd8891f168d2c9b8a5855649d158623cc20333715717e9fd7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-original-retry-20261006.md"
+        },
+        {
+          "after_sha256": "a4d6291898d2a7e06369302e2a9abbb3d5e605dc37060831f923425759308d01",
+          "before_sha256": "69db90705ece625db5c9c7a159b796e3996dec844e9e4b33b9b4efbdc5eecbd8",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "d0969365386c3896b08800484ea20e8aec67a0cb2be66804950ceaef31e239b3",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-retry-capture-20261006.json"
+        },
+        {
+          "after_sha256": "6a65624d498a753a40531bd6a1280228122a7627a7b91397aa1cfc8422da7538",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-retry-cpu-20261006.json"
+        },
+        {
+          "after_sha256": "7786df0625312cd59472be1acda2bd1a38fad86bce00ec4e29e5dbb695446cb3",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-retry.md"
+        },
+        {
+          "after_sha256": "ad58af4ddb3c5d09a8c1d6a58ebc958fd37711d45d24047abbec81e72f550e9c",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/original-retry-corpus.json"
+        },
+        {
+          "after_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+          "before_sha256": null,
+          "path": "tests/surface-retry-reference.cpp"
+        },
+        {
+          "after_sha256": "cacd54dada93bb9bd41651727464b0790d1837e0c9c91bae411aeca838e7de57",
+          "before_sha256": null,
+          "path": "tests/test-original-surface-retry.py"
+        },
+        {
+          "after_sha256": "d5b0f5c05a361cfd9fd103fc3dd0954eb09bd2734bb4bf6cdb1ad52381aec7b6",
+          "before_sha256": null,
+          "path": "tools/capture-original-surface-retry.py"
+        },
+        {
+          "after_sha256": "c8da795ff99a2438d80e8e77fa8e30a8dee643c940a5df252c1336d46961741f",
+          "before_sha256": null,
+          "path": "tools/check-original-surface-retry.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-retry.json.gz",
+          "before_sha256": null,
+          "after_sha256": "c111fde6a0364d564d1c059fc6eed5e406518e7799997d62435a4e93553ebad5"
+        }
+      ],
+      "id": "original-retry-shared-accounting-20261006",
+      "pending_gaps": [
+        "behaviors_without_scenarios:5cb06c024f73eb9779636b7c26a60d514648d8dae7b78f8982969147fb4530fb"
+      ],
+      "reason": "Reviewed unchanged original four-wrapper execution with scripted result inputs, finite endpoint call budget, independent captured ordering/consumption, CPU recovery model and8 provenance/order/refusal tests. Source census reviewed with explicit links and historical hashes retained.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared operation matrix/ledger and helper test links reviewed; other subsystem historical source fingerprints remain unchanged. No new validation/status promotion for those contracts.",
+        "evidence": []
+      }
     }
   ]
 }
