@@ -1,0 +1,254 @@
+{
+  "schema": 1,
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "dispatch_tables": [],
+  "recovered_ranges": [],
+  "classifications": [],
+  "api_bindings": [],
+  "behaviors": [
+    {
+      "id": "TL.effect-animation-binding",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Owned effect ANI binding and forward controller initialization",
+      "scope": "Owned effect animation metadata binding from static 00494be3..00494c26: selected 16-byte entry, ANI asset/sequence, retained raw property/opaque words and copied sequence into existing forward player. Original comparison executes whole 00464ca0 bind, 00464cb0 forward start and 00464ec0 forward ticks on valid authored normalized ANI; no execution of caller metadata-resolution window, full creation dispatch, installed provenance, reverse playback, effect drawing or live replacement",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4803248,
+          "scope": "Static metadata-resolution and forward binding window 00494be3..00494c26 only; caller/type dispatcher is not executed in TL22 comparisons"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607136,
+          "scope": "Whole asset-pointer bind, preserves all other controller bytes; composed with forward start"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607152,
+          "scope": "Whole start with reverse argument zero, selected valid bounded ANI sequences, initial control dispatch; reverse counters remain untouched and unmodeled"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4607680,
+          "scope": "Whole selected forward ticks on bound authored sequences; raw events, timing, repeat and break states; no reverse playback or global scheduling"
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-animation-binding.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/effect_animation_binding.cpp",
+        "reconstruction/rendering/effect_animation_binding.hpp",
+        "reconstruction/rendering/effect-animation-binding/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/effect-animation-binding-reference.cpp",
+        "tests/effect-animation-binding-test.cpp",
+        "tools/test-effect-animation-binding.py"
+      ],
+      "evidence": [
+        "TL22.animation-binding-original",
+        "TL22.animation-binding-native"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-movement-recount",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Remaining effect movement and lifecycle contracts",
+      "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors. Owned effect ANI binding and forward controller state are recovered separately from static caller resolution and authored inputs; full caller integration and installed metadata/assets remain pending.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4752368,
+          "scope": "Selected effect movement, terrain occupancy, footprint lookup/initialization and bounded creature candidate snapshot/status filtering/raw coordinate production/first-hit collision integration are recovered separately. Kind34 creator selection for supported types is recovered separately; other types/nonzero metadata and termination, type35 terrain mutation, remaining effect creation/type-dispatch parents and installed trajectory inputs, creature descriptors and construction/lifecycle, installed catalogs/cells/columns and live scheduling remain unimplemented/unverified; combined branch coverage remains bounded by authored fixtures. The whole trajectory initializer is recovered separately from authored inputs. Whole 0048a950 motion record setup is recovered separately from valid authored inputs. Whole animation selection is recovered separately from owned metadata and valid required creature descriptors. Owned effect ANI binding and forward controller state are recovered separately from static caller resolution and authored inputs; full caller integration and installed metadata/assets remain pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-trajectory.md",
+        "research/runtime/effect-same-cell-projection.md",
+        "research/runtime/effect-cell-transitions.md",
+        "research/runtime/effect-cell-cleanup.md",
+        "research/runtime/effect-blocked-destinations.md",
+        "research/runtime/effect-height-exits.md",
+        "research/runtime/effect-membership-disabled.md",
+        "research/runtime/effect-terrain-occupancy.md",
+        "research/runtime/creature-occupancy-lookup.md",
+        "research/runtime/creature-footprint-initializer.md",
+        "research/runtime/effect-creature-collision.md",
+        "research/runtime/effect-kind34-creator.md",
+        "research/runtime/effect-trajectory-initializer.md",
+        "research/runtime/effect-motion-initializer.md",
+        "research/runtime/effect-animation-selection.md",
+        "research/runtime/effect-animation-binding.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TL.effect-type-setup",
+      "subsystem": "terrain_lighting",
+      "kind": "recovered",
+      "title": "Effect type-specific animation and trajectory setup remains open",
+      "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, installed metadata/animation asset binding and remaining direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified. The native owned-entry/ANI binding adapter and composed original forward controller start/tick are recovered separately; inline caller resolution and full dispatcher remain unexecuted.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4803248,
+          "scope": "89 type-specific dispatch entries following the type write; original common-placement experiment redirects this entire child to checked type assignment. Whole 0048a950 motion setup and 00489200 animation selection are recovered separately, but full dispatch branch composition, installed metadata/animation asset binding and remaining direction/frame/start state, child effects and installed input provenance remain unimplemented/unverified. The native owned-entry/ANI binding adapter and composed original forward controller start/tick are recovered separately; inline caller resolution and full dispatcher remain unexecuted."
+        }
+      ],
+      "documents": [
+        "research/runtime/effect-record-placement.md",
+        "research/runtime/effect-motion-initializer.md",
+        "research/runtime/effect-animation-selection.md",
+        "research/runtime/effect-animation-binding.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "TL22.animation-binding-original",
+      "kind": "isolated_original",
+      "build": "nocd-40209ca7",
+      "scope": "Owned effect animation metadata binding from static 00494be3..00494c26: selected 16-byte entry, ANI asset/sequence, retained raw property/opaque words and copied sequence into existing forward player. Original comparison executes whole 00464ca0 bind, 00464cb0 forward start and 00464ec0 forward ticks on valid authored normalized ANI; no execution of caller metadata-resolution window, full creation dispatch, installed provenance, reverse playback, effect drawing or live replacement",
+      "record": "research/runtime/effect-animation-binding.json",
+      "sha256": "0c4d09e09bf77651bad5cdbea2367c02c14a264d874fe8a03b733fe352106d8a",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/bindings",
+          "equals": 448
+        },
+        {
+          "pointer": "/ticks",
+          "equals": 28672
+        },
+        {
+          "pointer": "/states",
+          "equals": 29120
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TL22.animation-binding-native",
+      "kind": "native_integration",
+      "build": "nocd-40209ca7",
+      "scope": "Owned effect animation metadata binding from static 00494be3..00494c26: selected 16-byte entry, ANI asset/sequence, retained raw property/opaque words and copied sequence into existing forward player. Original comparison executes whole 00464ca0 bind, 00464cb0 forward start and 00464ec0 forward ticks on valid authored normalized ANI; no execution of caller metadata-resolution window, full creation dispatch, installed provenance, reverse playback, effect drawing or live replacement",
+      "record": "research/runtime/effect-animation-binding.json",
+      "sha256": "0c4d09e09bf77651bad5cdbea2367c02c14a264d874fe8a03b733fe352106d8a",
+      "sources_pointer": "/registered_source_sha256",
+      "original_hash_pointer": "/executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/bindings",
+          "equals": 448
+        },
+        {
+          "pointer": "/ticks",
+          "equals": 28672
+        },
+        {
+          "pointer": "/states",
+          "equals": 29120
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitized_unit_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/cmake_tests_passed",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "terrain-lighting.effect-animation-binding",
+      "level": "headless",
+      "scope": "Owned effect animation metadata binding from static 00494be3..00494c26: selected 16-byte entry, ANI asset/sequence, retained raw property/opaque words and copied sequence into existing forward player. Original comparison executes whole 00464ca0 bind, 00464cb0 forward start and 00464ec0 forward ticks on valid authored normalized ANI; no execution of caller metadata-resolution window, full creation dispatch, installed provenance, reverse playback, effect drawing or live replacement",
+      "behaviors": [
+        "TL.effect-animation-binding"
+      ],
+      "evidence": [
+        "TL22.animation-binding-original",
+        "TL22.animation-binding-native"
+      ],
+      "tests": [
+        "tests/effect-animation-binding-reference.cpp",
+        "tests/effect-animation-binding-test.cpp",
+        "tools/test-effect-animation-binding.py"
+      ]
+    }
+  ]
+}
