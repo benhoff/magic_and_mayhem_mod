@@ -107,6 +107,17 @@ int main(int argc,char** argv) try {
         auto commit=writeSnapshot(argv[3],movement.world().state());if(!commit.durable) throw std::runtime_error(commit.detail);
         json(movement.world().state(),&movement);return 0;
     }
+    if(argc==9 && std::string_view(argv[1])=="spawn-terrain-ani") {
+        const auto base=integer(argv[4]);if(base<0 || base>4088) throw std::invalid_argument("ANI sequence base outside 0..4088");
+        auto animation=mnm::sandbox::loadMovementAnimation(argv[3],base);
+        auto navigation=mnm::sandbox::loadFrozenNavigation(argv[2],animation);World world(8);
+        auto state=world.state();state.map=std::filesystem::absolute(argv[2]).lexically_normal().string();state.navigation=navigation->binding();state.animation=std::move(animation);world.restore(std::move(state));
+        MovementSession movement(std::move(world),navigation);
+        Entity e;e.type=navigation->creatureType();e.x=integer(argv[6]);e.y=integer(argv[7]);e.z=integer(argv[8]);
+        movement.spawn(e,true,true,true,true);
+        const auto commit=writeSnapshot(argv[5],movement.world().state());if(!commit.durable) throw std::runtime_error(commit.detail);
+        json(movement.world().state(),&movement);return 0;
+    }
     if(argc==13 && (std::string_view(argv[1])=="move-ani" || std::string_view(argv[1])=="move-terrain-ani")) {
         auto base=integer(argv[4]);if(base<0 || base>4088) throw std::invalid_argument("ANI sequence base outside 0..4088");
         auto animation=mnm::sandbox::loadMovementAnimation(argv[3],base);
@@ -156,5 +167,5 @@ int main(int argc,char** argv) try {
         auto commit=writeSnapshot(argv[3],world.state());if(!commit.durable) throw std::runtime_error(commit.detail);
         std::cout<<"resumed "<<count<<" admitted idle ticks\n";return 0;
     }
-    std::cerr<<"usage: mnm-world-sandbox move-pair|move-pair-fine MAP OUTPUT SX1 SY1 SZ1 TX1 TY1 TZ1 SX2 SY2 SZ2 TX2 TY2 TZ2 TICKS | move-occupied MAP OUTPUT SX SY SZ TX TY TZ BX BY BZ TICKS | create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous|move-terrain MAP OUTPUT SX SY SZ TX TY TZ TICKS | move-ani|move-terrain-ani MAP ANI BASE OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
+    std::cerr<<"usage: mnm-world-sandbox move-pair|move-pair-fine MAP OUTPUT SX1 SY1 SZ1 TX1 TY1 TZ1 SX2 SY2 SZ2 TX2 TY2 TZ2 TICKS | move-occupied MAP OUTPUT SX SY SZ TX TY TZ BX BY BZ TICKS | create FILE | inspect FILE | inspect-json FILE | resume INPUT OUTPUT TICKS | trace INPUT TICKS | move|move-fine|move-continuous|move-terrain MAP OUTPUT SX SY SZ TX TY TZ TICKS | spawn-terrain-ani MAP ANI BASE OUTPUT X Y Z | move-ani|move-terrain-ani MAP ANI BASE OUTPUT SX SY SZ TX TY TZ TICKS\n";return 2;
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}

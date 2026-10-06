@@ -14125,6 +14125,321 @@
         "evidence": [],
         "reason": "Generated research metadata only; no independent engine implementation or validation/status promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "07c3df9ccf2242b5ed789c4d48a9bf761d052d0f2ff355a2c2e79903b78f7b83",
+          "before_sha256": "00a6e8fa6b628d7f4a7e7182b2f1c49ffe32ede9cd2691e64e2e45b3961f8071",
+          "id": "MV.ani-forward"
+        },
+        {
+          "after_sha256": "a075cad4ab26191fea46944063bdb29558505c525de08cfeba5d8b3e7b4d94cb",
+          "before_sha256": "29400771471ec338ff1bc9c1080df3168e8b9e179dcd3cc1481edec567546be3",
+          "id": "MV.event-0"
+        },
+        {
+          "after_sha256": "d6dd5487ff5e1d9afbd5509c46fad44dd26787f5f747aa07c25b2039304add46",
+          "before_sha256": "dbfcc2926f09490746032ba5f4e2ec080341e3d4b34003d696f1362577da8622",
+          "id": "MV.event-2"
+        },
+        {
+          "after_sha256": "0880695551576a63fb079a08ab4de8aa65fbc2428f771f4ab386c214d6f7b442",
+          "before_sha256": "8b8275328b98765f7ca0fbffb83a0158da0ace9c288bfe28ac30be676d57984e",
+          "id": "MV.fine-motion"
+        },
+        {
+          "after_sha256": "086ff98c8d66dff26641672ddb597d14268eba23d30848a0c2b1ba55c9ea2343",
+          "before_sha256": "82b93399f16ce01830119ec407016bb3719b53ce21e1ca8b9750711a99500ed3",
+          "id": "MV.legality"
+        },
+        {
+          "after_sha256": "c40d38de817f2524cbdb3fce8e01ac3ec8f9586b395d35d8e6ae83a7fce7f93c",
+          "before_sha256": "b741d286bcf42f9e3ed4d6c88a66517ff813f484c78aae25c8230c4a04d9fa95",
+          "id": "MV.ordinary-terrain-height"
+        },
+        {
+          "after_sha256": "42e431483569949b433cbddc02b194e7576e77dd68b253e46aa3664f63fc6386",
+          "before_sha256": "4da0f132953ed23155ffb52b2bda2afe71fd99975789beba78919778700d42b5",
+          "id": "MV.planar-setup"
+        },
+        {
+          "after_sha256": "81b8dadefebbb6d6fee9ca34b24de85d5e394eb70d7233cd32fb2dd21f7a8e6a",
+          "before_sha256": "c9ecca43aa365932f6fcbcefee08093b147fac877195ad1d08c71c28f10b3aaf",
+          "id": "MV.request"
+        },
+        {
+          "after_sha256": "ac5567b3debda96034d9ba9b94bc655f004fc1d3fe0d15d27aa294fb375b07e3",
+          "before_sha256": "37c1ca5ce0c565b59c7f4884b19555ec9df3bc598b1d531ba644f4735a023a02",
+          "id": "MV.route-consumption"
+        },
+        {
+          "after_sha256": "df95a7e17565928251b8682281de3c73bc2bccc758f1ad4c7819b78a2088e726",
+          "before_sha256": "48f9d185333d6f81b2570de3e978424bddc4eb7e961a9e840ea563f8ebe33a4c",
+          "id": "MV.search"
+        },
+        {
+          "after_sha256": "cbd56e4b1e8da418bf39b4b5a66f1e8b6d99c354a5f9962fc91ab956b4008e60",
+          "before_sha256": "3e8d862ed72bcc70cf8c205eeb18280e86b063a978144a00df723fa275600f80",
+          "id": "MV.vertical-setup"
+        },
+        {
+          "after_sha256": "2c0518bbbe6547c01ef54a4d074d1415c461834eb55025b491729c93cd8e583f",
+          "before_sha256": "4713a1b6cce3b8f7c54ab44216afc158a8aeb76400ae34992db3d919b31297af",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "bd1400e9e35729e11085327e5348f547485ba654707c10ca837f0aebfb1f065b",
+          "before_sha256": "51c5aad80124f0ad44886f119c73f1bc2e97fdad6aaac26c3ddb517155143eae",
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "b42c35c43182d1f3e32a4ca80fe56f35a90d97e5de6253cc58a44d74bd0f3715",
+          "before_sha256": "5393e144b581a388de8aab1b51a5145a5c8317154d6e2378cfc99ffd56907606",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "7c6478c5bc7833b6ae58706b49cedac830da80c6ce44d72da502ab1810c27c63",
+          "before_sha256": "30a015442173000fff23f5a6e524e65e8b60ac3d3bd3def07cffd7d970d1a2ee",
+          "id": "NP.move-orders"
+        },
+        {
+          "after_sha256": "beb325b62b1b8d3ff46a0ffba2c0b50a1f614db39a719410f28cd17907f05aa2",
+          "before_sha256": "4c53bba144581f25b38373dbb87a029d04fdb58d9cbde2baef5399fbb45651b1",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "8ec5af51f4efff24ead06ce365da1a9866bbf027c321aafb8d5ff5441da6ecf9",
+          "before_sha256": "fcb5cb25ba5f0d2b8494cd8ef7c472806ea21d21617e7cc58c1ce45011917f28",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "92df3856fc2c61c5fd109e160f94e7c2e3d1f39410bd915df019c455c6179db8",
+          "before_sha256": "fbc07add5e7e090110493585222e3e5403492d94a5f04dd9740ea1f367b474fa",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "bfeb12e21c415ba9f3c6837b4bb50310c4280d1c971325949bf1271457815759",
+          "before_sha256": "855902ae1528a45e0d586c13534aad95526005f78c87217030a3b213f217dab0",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "c95e6156a52070fec49a40932d32c58a95a7599077bcaf2103057cd53f7244c6",
+          "before_sha256": null,
+          "id": "NP.spawn-display"
+        },
+        {
+          "after_sha256": "f4f3959dfa2f5ce9c769c3f34f20ec1ba3c3a3df45f207740c67749b2e0ab588",
+          "before_sha256": "ca94c8ad8170b32360db73b4e3d999f8d789286d4fc9d2b2f11113a471357a96",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "44d6a898ec4941fb49103e943f640c4ce35f4f9bc35d9cd58170c27c2c962b27",
+          "before_sha256": "9f298a5c572286760914790c04e750b532c3123abccc55388e844062a097c4f8",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "92d4780361420e5e9210d5839b032c3bb2b02083069d4524664455188ac69478",
+          "before_sha256": "a4cdf72e7dba0b0c8ab635c6013c6c06388b8794b8d43c08a4d8987c7a87c052",
+          "id": "NR.world_scene"
+        },
+        {
+          "after_sha256": "13f02341909d61127aedf1ebc6b5f699a9caf9adb18af638ef21bc1d64a21940",
+          "before_sha256": "0388a0f5cf9f0ffad5045c6224d81c26229bd285bce6eaa6b4fe7fa3767db0a1",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "ffc41da9c86bac11d10f9a685a2625a7e74ce6fbaedafde0a561b6179726d1f8",
+          "before_sha256": "9423c4f972b154626b253180cae120c4cab13d6d4ac02a7349f0e0c904caf1c9",
+          "id": "WORLD.owned"
+        },
+        {
+          "after_sha256": "657a1641a882b5bc6f23e09cd502b00889f18a9acbcc97b1a3b50313f26bcede",
+          "before_sha256": "525dee124e041d771b5be2e046648bf6af668728b0b141f390520409322624cd",
+          "id": "WORLD.sandbox"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7fb260fa50adbe41f222f6455fa54a60319e3681f1a1ce008419cca70646fb2e",
+          "before_sha256": "dce9888c436d092255579f97ffef8b897f7a9be6606fef892d07a965cbcc2e0a",
+          "path": "apps/world-sandbox/frozen_navigation.cpp"
+        },
+        {
+          "after_sha256": "a6cb574c56da197da672578a19e8de40e37c9bc719063c3f7fccde47fc117043",
+          "before_sha256": "d1e3b0fc4841f0c13b1281dfdc5fcda0d97f1e0f45aca1bb5c040346ed600e43",
+          "path": "apps/world-sandbox/main.cpp"
+        },
+        {
+          "after_sha256": "6c2446531a0d597e2b9981b5972c4268164590633b5cbe3ed05cefb3a4600bb5",
+          "before_sha256": "575c6caf34642b360988694923c99c87f45acc7a3ae6159e2d1d428cdb003d3a",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "0ff7d1b41d7b9f8abfb3c655f2568be406b85d8003473e27dda9be117d10111b",
+          "before_sha256": "1f3641bc45b2f0409cc2b2d1aebcd7683b0f2d3ea73fd2439a0159bdd6517a1e",
+          "path": "game/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "6838c413e498328fd8d1a451f9d00e5d7414f4cc6c434858dd7918783000a1a8",
+          "before_sha256": "b4733ffbad53c90048a6ae9ab7035d6c3f9a834b318a5a7c3916287cfb54ca06",
+          "path": "game/README.md"
+        },
+        {
+          "after_sha256": "891f8d003ec525219107dbc53e2f0ff5c680c9bd82b2abc775401364d2111eb1",
+          "before_sha256": "4ba51faeafe133503422c917abef1f5d2aeeadaf0c56388a77833c27efc05fb9",
+          "path": "game/simulation/movement.cpp"
+        },
+        {
+          "after_sha256": "c50724e2ab995e169c4eaf324c57a196111b04a408dabab2cf6b203ea413be8c",
+          "before_sha256": "8c6d2bfaaeb60bb2c1cd07bc40596ae125b6efe7a80e8fb6e8caa91bc44e991c",
+          "path": "game/simulation/movement.hpp"
+        },
+        {
+          "after_sha256": "a5070b07dd3f436d022ffbc231131a5e3af17b702cbda0341dfb8fcff9b606b6",
+          "before_sha256": "38fd225fc8b031990298a01b0fd2ac5455d1a002eb0fe1f5bd46d0bbe9babe97",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "40768441b15059d2c8980254d3d7057be4449fd8df584584f2b2c044d58a1e4e",
+          "before_sha256": "cc597892c769df78b765b53330d2b725a64485cd46710faa7d0d77051f19e74c",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "decd4439403f92715fd924d96a48a8dd269912bd6ac07fe55c5a61e8060df2bf",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-spawn-display-1.json"
+        },
+        {
+          "after_sha256": "3595535b84c63c5ec3f775b0f591d5188b6bcbedeab1fbfc675062da97928296",
+          "before_sha256": "d0c0c4a543b5f91361eabd11d6a98289556484095374bc6647547a5ce87cd84b",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "1d8b52e52c4badee6bcbb8facb150da6dcd205aff13f1f7a3eeff184cca32488",
+          "before_sha256": null,
+          "path": "research/runtime/native-spawn-display-history-pipeline-1.json"
+        },
+        {
+          "after_sha256": "d1e99a14c0e38e9617243f0cde1d35eab607934fb5b40192544596389000991f",
+          "before_sha256": null,
+          "path": "research/runtime/native-spawn-display-history-review.json"
+        },
+        {
+          "after_sha256": "2d9fc6d91549439f79033dfc1347a3badb3b8f6721e300e9e3e94d617df21b9f",
+          "before_sha256": null,
+          "path": "research/runtime/native-spawn-display.json"
+        },
+        {
+          "after_sha256": "e2ce709dd2ac68ca1f36c4186e09432a9191f47970d9282f28920ee9d26f9f95",
+          "before_sha256": null,
+          "path": "research/runtime/native-spawn-display.md"
+        },
+        {
+          "after_sha256": "d6de99098ec496c9665a28a41de4e09aec4e89658b324d02760ee58ff7943afb",
+          "before_sha256": "c9e04b15a1cbe0f10f47dabf71a531347afb0eef3f938b47b813352ee9f42469",
+          "path": "tests/README.md"
+        },
+        {
+          "after_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "before_sha256": "8d4d8801a2882f90cbf65da256a2048e5a0b199160aa623523621ef2ca138086",
+          "path": "tests/native-idle-display-test.cpp"
+        },
+        {
+          "after_sha256": "1fe22682b03f883de6946061ca961044945e6db3d61f5baae83332d4b6fed5ba",
+          "before_sha256": null,
+          "path": "tests/native-spawn-display-test.cpp"
+        },
+        {
+          "after_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "before_sha256": "5b6702b0ecf63a6770d2ffa9ffb2e916e95607202440c999a5c9c2c7d63cfbc3",
+          "path": "tests/test-native-idle-display.py"
+        },
+        {
+          "after_sha256": "0833901c83f7e19cefc97d21bc25530f51aafc1229d6006f21c4824053491e11",
+          "before_sha256": null,
+          "path": "tests/test-native-spawn-display.py"
+        },
+        {
+          "after_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "before_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "path": "tests/world-scene-test.cpp"
+        },
+        {
+          "after_sha256": "7760994630611ebc3f2a409b9f3718f3f358ba561e1921635407874705480d61",
+          "before_sha256": "0319669d65ff96569f0441bff4ef31b3d6c1e69b8ce4d8c69f10c13faf8cb96d",
+          "path": "tools/test-native-scene-window.py"
+        }
+      ],
+      "id": "NS19.spawn-display-exact-1",
+      "pending_gaps": [
+        "behaviors_without_comparison:8a9f7078b96d3a9b7114304fb2e8fbc00f876f53cfe56813251698fa65d63822",
+        "stale_evidence:02bfe36bcf55ba1ea9157cfccf924cee7b59a404e4c3ec1f501774d97a54c3d2",
+        "stale_evidence:2be7b7ad8975fd25bf8f8d707d04e197f21caadd0d5bb9cd3405103e9066d12e",
+        "stale_evidence:405b3040d66aad5a9106cccd12804d17bda8df7e7a5600a9d53d1f8bfabf414d",
+        "stale_evidence:5ec04487ac13efe43938a4092a4363e1cb48b32726d895e31515723561767f40",
+        "stale_evidence:a831d831a330be871135e426a541e06c012b94e16c2b0aa469783d70d5025f79",
+        "stale_evidence:ab475aa131c67dec0f89bad6e6bae5c99b0a9b0081793a0906a54b780ceea147",
+        "stale_evidence:b7c5549bbf83063a0885892c13b5efcab1ba6e51845cc2ea3e1b1a0ba2531524",
+        "stale_evidence:da010f5dd0504f7cc1de610468b45ee671c5bfb776754f4b281d0059e72b0509",
+        "stale_evidence:e38da95c9dac8b29f4cfec4ec6681644879416d0a09818741de3a7527ce5bd9e"
+      ],
+      "reason": "Review explicit native spawn initializer with default-off policy: require ordinary uncleaned creature, continuous sample driver and owned ANI; select/validate behind Navigation before transactional slot admission. Review first opcode-0 bitmap of bound direction zero as a static reference without running ANI controls/events or world ticks; refuse no bitmap and incompatible policy/resource without mutation. Existing callers and restored checkpoints keep their policy. Review zero-tick spawn-terrain-ani CLI, argument/base/position checks, durable native v8 checkpoint and no queued orders. Review synthetic initial ownership/layout/checksum, static checkpoint continuation, empty-world refusal/rollback, first movement/Stop priority and generation reuse. Review actual entry-point window initial idle body, two idle ticks, real modal Save, fresh-window masked picking/first order, retained movement and stopped-pose branches in four views, independent complete decoded-SPR rasterization, exact state/canonical JSON/RGB565/PNG continuations and source/input/artifact fingerprints. Review census, native policy/register links, ledger and scoped evidence. Exact history 8b8b01c..fea5d9fb88294459e2f6033facb4f15fc9bb55a6 matches all file/behavior versions against preserved receipts; no historical code executes or past gate/runtime success is inferred. Stage only this milestone plus committed peer work.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared movement interface/adapter/CLI, test and documentation bytes affect other linked contracts and historical evidence fingerprints. Preserve all earlier source hashes/statuses and explicitly account new stale-evidence and absent-comparison gaps; NS19 does not rerun every recovered planner/setup/event or other policy contract. Only the explicit native initializer and bounded selected scene slice gain fresh execution evidence. Original idle/action sequence choice, animated idle, caller-selected facing, stationary blocker/non-ANI poses, other installed profiles, full-game spawn admission and live replacement remain pending. No recovered comparison/replacement or gameplay promotion is made.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "NS19.spawn-display-recorded-1",
+      "reason": "Record bounded native static initial body ownership, checkpoint and first-order presentation; original idle/action selection remains separate.",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "2c0518bbbe6547c01ef54a4d074d1415c461834eb55025b491729c93cd8e583f",
+          "before_sha256": "4713a1b6cce3b8f7c54ab44216afc158a8aeb76400ae34992db3d919b31297af",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "bd1400e9e35729e11085327e5348f547485ba654707c10ca837f0aebfb1f065b",
+          "before_sha256": "51c5aad80124f0ad44886f119c73f1bc2e97fdad6aaac26c3ddb517155143eae",
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "8ec5af51f4efff24ead06ce365da1a9866bbf027c321aafb8d5ff5441da6ecf9",
+          "before_sha256": "fcb5cb25ba5f0d2b8494cd8ef7c472806ea21d21617e7cc58c1ce45011917f28",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "92df3856fc2c61c5fd109e160f94e7c2e3d1f39410bd915df019c455c6179db8",
+          "before_sha256": "fbc07add5e7e090110493585222e3e5403492d94a5f04dd9740ea1f367b474fa",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "bfeb12e21c415ba9f3c6837b4bb50310c4280d1c971325949bf1271457815759",
+          "before_sha256": "855902ae1528a45e0d586c13534aad95526005f78c87217030a3b213f217dab0",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "c95e6156a52070fec49a40932d32c58a95a7599077bcaf2103057cd53f7244c6",
+          "before_sha256": null,
+          "id": "NP.spawn-display"
+        },
+        {
+          "after_sha256": "44d6a898ec4941fb49103e943f640c4ce35f4f9bc35d9cd58170c27c2c962b27",
+          "before_sha256": "9f298a5c572286760914790c04e750b532c3123abccc55388e844062a097c4f8",
+          "id": "NP.stop-orders"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "reason": "Normal 110 CTests and ten selected ASan/UBSan suites pass. Synthetic initial display is direction-zero first bitmap at tick zero with no fine motion/history/route/events or queued order; independent Python verifies v8 initial layout/checksum, zero-tick CLI and fresh-process static idle continuation. Invalid families/cleaned creatures/driver policy, absent binding and no bitmap refuse in empty worlds without mutation. Initial pose survives idle/reload/suppressed planning; active movement overrides it, Stop retains the current display, and generation reuse initializes afresh. Normal and ASan/UBSan each open 16 actual entry-point Qt windows over four installed Forest/Redcap views, compare 84 complete independently decoded SPR/RGB565 frames and pass 12 byte-exact fresh-window state/canonical JSON/RGB565/PNG continuations including initial-body first order, mid-motion and stopped-body restart. Real mouse/button/timer/modal Save paths execute, with initial/static body pixels and transient selection reset checked. All source/input/report/artifact/log fingerprints match and original-manifest checks verify 2927 files before/after installed experiments. Native preview validation only.",
+        "evidence": [
+          "NS19.spawn-display"
+        ]
+      }
     }
   ]
 }

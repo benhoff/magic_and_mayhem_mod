@@ -939,12 +939,13 @@
       "subsystem": "movement",
       "kind": "native_policy",
       "title": "Native checkpoint and fresh-process continuation",
-      "scope": "Native v1-v8 formats and staged resource restoration; NS18 validates retained static ANI poses with bound directional opcode-0 records, refusal/rollback, independent v8 layout and installed fresh-window Stop-pose restoration. No original version-20 save compatibility claim.",
+      "scope": "Native v1-v8 formats and staged resource restoration; NS18 validates retained static ANI poses with bound directional opcode-0 records, refusal/rollback, independent v8 layout and installed fresh-window Stop-pose restoration. No original version-20 save compatibility claim. NS19 adds an explicit direction-zero first-bitmap initial static pose at zero ticks and validates initial body/picking, modal Save, admitted idle ticks and fresh-window first-order continuation; original idle/action selection remains excluded.",
       "original": [],
       "documents": [
         "game/README.md",
         "research/runtime/native-ani-motion.md",
-        "research/runtime/native-idle-display.md"
+        "research/runtime/native-idle-display.md",
+        "research/runtime/native-spawn-display.md"
       ],
       "implementation": [
         "game/persistence/snapshot.cpp",
@@ -960,11 +961,14 @@
         "tests/native-idle-display-test.cpp",
         "tests/test-native-idle-display.py",
         "tests/world-scene-test.cpp",
-        "tools/test-native-scene-window.py"
+        "tools/test-native-scene-window.py",
+        "tests/native-spawn-display-test.cpp",
+        "tests/test-native-spawn-display.py"
       ],
       "evidence": [
         "NS05.native",
-        "NS18.idle-display"
+        "NS18.idle-display",
+        "NS19.spawn-display"
       ],
       "status": {
         "understanding": "scoped",
@@ -980,7 +984,7 @@
       "subsystem": "movement",
       "kind": "native_policy",
       "title": "World movement connected to terrain/sprite presentation",
-      "scope": "One ordinary terrain-motion creature with owned checkpoint/ANI display, diagnostic cell-centred projection, matched ordinary installed-map geometry/navigation and recovered mixed depth queue. Camera/action mapping, full map/entity admission, shaded/visibility/attachment integration and live replacement excluded. NS12 extends this to bounded same-profile native multi-mover presentation, independent owned displays, identity-bearing mixed depth queues and policy-aware checkpoint admission; original multi-actor scene/live equivalence remains excluded. NS17 adds 40 complete independently rasterized actual-window frame checks and four exact installed Forest/Redcap native continuations per build. NS17 observed missing Stop bodies. NS18 retains a static last-displayed movement bitmap at the committed logical cell and verifies its presentation across Save, idle ticks, fresh-window reload and movement restart; original idle/action sequence mapping and initially spawned idle bodies remain pending.",
+      "scope": "One ordinary terrain-motion creature with owned checkpoint/ANI display, diagnostic cell-centred projection, matched ordinary installed-map geometry/navigation and recovered mixed depth queue. Camera/action mapping, full map/entity admission, shaded/visibility/attachment integration and live replacement excluded. NS12 extends this to bounded same-profile native multi-mover presentation, independent owned displays, identity-bearing mixed depth queues and policy-aware checkpoint admission; original multi-actor scene/live equivalence remains excluded. NS17 adds 40 complete independently rasterized actual-window frame checks and four exact installed Forest/Redcap native continuations per build. NS17 observed missing Stop bodies. NS18 retains a static last-displayed movement bitmap at the committed logical cell and verifies its presentation across Save, idle ticks, fresh-window reload and movement restart; original idle/action sequence mapping and initially spawned idle bodies remain pending. NS19 adds an explicit direction-zero first-bitmap initial static pose at zero ticks and validates initial body/picking, modal Save, admitted idle ticks and fresh-window first-order continuation; original idle/action selection remains excluded.",
       "original": [],
       "documents": [
         "research/runtime/native-world-scene.md",
@@ -989,7 +993,8 @@
         "research/runtime/native-creature-profile.md",
         "research/runtime/native-multi-world-scene.md",
         "research/runtime/native-scene-window.md",
-        "research/runtime/native-idle-display.md"
+        "research/runtime/native-idle-display.md",
+        "research/runtime/native-spawn-display.md"
       ],
       "implementation": [
         "apps/world-scene/scene.cpp",
@@ -1005,7 +1010,9 @@
         "tests/scene-window-driver.hpp",
         "tools/test-native-scene-window.py",
         "tests/native-idle-display-test.cpp",
-        "tests/test-native-idle-display.py"
+        "tests/test-native-idle-display.py",
+        "tests/native-spawn-display-test.cpp",
+        "tests/test-native-spawn-display.py"
       ],
       "evidence": [
         "NS08.native",
@@ -1013,7 +1020,8 @@
         "NS09.native",
         "NS12.multi-scene",
         "NS17.scene-window",
-        "NS18.idle-display"
+        "NS18.idle-display",
+        "NS19.spawn-display"
       ],
       "status": {
         "understanding": "scoped",
@@ -11838,13 +11846,14 @@
       "subsystem": "native_world",
       "kind": "native_policy",
       "title": "Native presented-pixel selection and terrain click-to-move",
-      "scope": "Native bounded presented-queue masked picking with explicit standing cells. NS14 synthetic full-viewport ownership/canvas policy remains historical; NS17 corrects ordinary MAP z+1 annotation to same-layer z above zero and executes installed Forest crop/Redcap pixel clicks in four actual native-window views. Original ray/input mappings, other world profiles and live equivalence remain excluded. NS18 additionally validates native retained Stop-body pose, v8 save/reload, idle ticks and active restart in the installed Forest/Redcap window slice; original idle/action selection remains excluded.",
+      "scope": "Native bounded presented-queue masked picking with explicit standing cells. NS14 synthetic full-viewport ownership/canvas policy remains historical; NS17 corrects ordinary MAP z+1 annotation to same-layer z above zero and executes installed Forest crop/Redcap pixel clicks in four actual native-window views. Original ray/input mappings, other world profiles and live equivalence remain excluded. NS18 additionally validates native retained Stop-body pose, v8 save/reload, idle ticks and active restart in the installed Forest/Redcap window slice; original idle/action selection remains excluded. NS19 adds an explicit direction-zero first-bitmap initial static pose at zero ticks and validates initial body/picking, modal Save, admitted idle ticks and fresh-window first-order continuation; original idle/action selection remains excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-scene-picking.md",
         "research/runtime/native-scene-window.md",
-        "research/runtime/native-idle-display.md"
+        "research/runtime/native-idle-display.md",
+        "research/runtime/native-spawn-display.md"
       ],
       "implementation": [
         "apps/world-scene/picking.cpp",
@@ -11866,12 +11875,15 @@
         "tools/test-native-scene-window.py",
         "tests/native-idle-display-test.cpp",
         "tests/test-native-idle-display.py",
-        "tests/world-scene-test.cpp"
+        "tests/world-scene-test.cpp",
+        "tests/native-spawn-display-test.cpp",
+        "tests/test-native-spawn-display.py"
       ],
       "evidence": [
         "NS14.scene-picking",
         "NS17.scene-window",
-        "NS18.idle-display"
+        "NS18.idle-display",
+        "NS19.spawn-display"
       ],
       "status": {
         "understanding": "scoped",
@@ -11936,13 +11948,14 @@
       "subsystem": "native_world",
       "kind": "native_policy",
       "title": "Native queued stop and cancellation of pending moves",
-      "scope": "Synthetic production Qt stop/cancel controls: selected pending move removal without active-route mutation, FIFO tick-boundary stops, fine motion reset to committed logical cell, identity/cleanup refusal, transactional rollback and v7 exact pending-stop restart. Original stop/input and whole installed-window/live equivalence excluded. NS18 additionally validates native retained Stop-body pose, v8 save/reload, idle ticks and active restart in the installed Forest/Redcap window slice; original idle/action selection remains excluded.",
+      "scope": "Synthetic production Qt stop/cancel controls: selected pending move removal without active-route mutation, FIFO tick-boundary stops, fine motion reset to committed logical cell, identity/cleanup refusal, transactional rollback and v7 exact pending-stop restart. Original stop/input and whole installed-window/live equivalence excluded. NS18 additionally validates native retained Stop-body pose, v8 save/reload, idle ticks and active restart in the installed Forest/Redcap window slice; original idle/action selection remains excluded. NS19 adds an explicit direction-zero first-bitmap initial static pose at zero ticks and validates initial body/picking, modal Save, admitted idle ticks and fresh-window first-order continuation; original idle/action selection remains excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-stop-orders.md",
         "research/formats/native-world-snapshot.md",
-        "research/runtime/native-idle-display.md"
+        "research/runtime/native-idle-display.md",
+        "research/runtime/native-spawn-display.md"
       ],
       "implementation": [
         "apps/world-scene/orders.cpp",
@@ -11962,11 +11975,14 @@
         "tests/native-idle-display-test.cpp",
         "tests/test-native-idle-display.py",
         "tests/world-scene-test.cpp",
-        "tools/test-native-scene-window.py"
+        "tools/test-native-scene-window.py",
+        "tests/native-spawn-display-test.cpp",
+        "tests/test-native-spawn-display.py"
       ],
       "evidence": [
         "NS15.stop-orders",
-        "NS18.idle-display"
+        "NS18.idle-display",
+        "NS19.spawn-display"
       ],
       "status": {
         "understanding": "scoped",
@@ -11981,13 +11997,14 @@
       "subsystem": "native_world",
       "kind": "native_policy",
       "title": "Native fixed-rate scene Play/Pause and paused stepping",
-      "scope": "Native 10 Hz bounded clock admission, production Qt playback controls/orchestration, pause-preserved orders, paused Step, fresh resume interval, fault pause and deterministic same-tick checkpoint continuation. Original pause/cadence, installed whole-window and live equivalence excluded. NS17 additionally executes the actual production-entry-point native window with installed Forest/Redcap inputs in four views, modal Save and exact fresh-window continuation; a test-only post-tick observer chooses pause boundaries without replacing the real timer. Original pause/cadence remains excluded. NS18 additionally validates native retained Stop-body pose, v8 save/reload, idle ticks and active restart in the installed Forest/Redcap window slice; original idle/action selection remains excluded.",
+      "scope": "Native 10 Hz bounded clock admission, production Qt playback controls/orchestration, pause-preserved orders, paused Step, fresh resume interval, fault pause and deterministic same-tick checkpoint continuation. Original pause/cadence, installed whole-window and live equivalence excluded. NS17 additionally executes the actual production-entry-point native window with installed Forest/Redcap inputs in four views, modal Save and exact fresh-window continuation; a test-only post-tick observer chooses pause boundaries without replacing the real timer. Original pause/cadence remains excluded. NS18 additionally validates native retained Stop-body pose, v8 save/reload, idle ticks and active restart in the installed Forest/Redcap window slice; original idle/action selection remains excluded. NS19 adds an explicit direction-zero first-bitmap initial static pose at zero ticks and validates initial body/picking, modal Save, admitted idle ticks and fresh-window first-order continuation; original idle/action selection remains excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-scene-playback.md",
         "research/runtime/native-scene-window.md",
-        "research/runtime/native-idle-display.md"
+        "research/runtime/native-idle-display.md",
+        "research/runtime/native-spawn-display.md"
       ],
       "implementation": [
         "game/simulation/tick_clock.cpp",
@@ -12006,12 +12023,15 @@
         "tools/test-native-scene-window.py",
         "tests/native-idle-display-test.cpp",
         "tests/test-native-idle-display.py",
-        "tests/world-scene-test.cpp"
+        "tests/world-scene-test.cpp",
+        "tests/native-spawn-display-test.cpp",
+        "tests/test-native-spawn-display.py"
       ],
       "evidence": [
         "NS16.scene-playback",
         "NS17.scene-window",
-        "NS18.idle-display"
+        "NS18.idle-display",
+        "NS19.spawn-display"
       ],
       "status": {
         "understanding": "scoped",
@@ -12602,10 +12622,11 @@
       "subsystem": "native_world",
       "kind": "native_policy",
       "title": "Owned retained creature display after motion cancellation",
-      "scope": "Native compact last-displayed movement ANI pose after Stop, reorders and blocked-edge clearing; static logical-cell presentation and v8 checkpoint resource validation. NS18 executes synthetic refusal/rollback/lifecycle/wire cases plus installed Forest/Redcap actual-window Stop, Save, idle ticks, fresh-window restoration and active movement restart in four views. Blocked-edge retention lacks a separate installed scenario. Original idle/action ANI selection, animation continuation, initially spawned idle mapping, gameplay balance and live replacement remain excluded.",
+      "scope": "Native compact last-displayed movement ANI pose after Stop, reorders and blocked-edge clearing; static logical-cell presentation and v8 checkpoint resource validation. NS18 executes synthetic refusal/rollback/lifecycle/wire cases plus installed Forest/Redcap actual-window Stop, Save, idle ticks, fresh-window restoration and active movement restart in four views. Blocked-edge retention lacks a separate installed scenario. Original idle/action ANI selection, animation continuation, initially spawned idle mapping, gameplay balance and live replacement remain excluded. NS19 adds an explicit direction-zero first-bitmap initial static pose at zero ticks and validates initial body/picking, modal Save, admitted idle ticks and fresh-window first-order continuation; original idle/action selection remains excluded.",
       "original": [],
       "documents": [
-        "research/runtime/native-idle-display.md"
+        "research/runtime/native-idle-display.md",
+        "research/runtime/native-spawn-display.md"
       ],
       "implementation": [
         "game/simulation/world.hpp",
@@ -12620,10 +12641,13 @@
         "tests/native-idle-display-test.cpp",
         "tools/test-native-scene-window.py",
         "tests/test-native-idle-display.py",
-        "tests/world-scene-test.cpp"
+        "tests/world-scene-test.cpp",
+        "tests/native-spawn-display-test.cpp",
+        "tests/test-native-spawn-display.py"
       ],
       "evidence": [
-        "NS18.idle-display"
+        "NS18.idle-display",
+        "NS19.spawn-display"
       ],
       "status": {
         "understanding": "scoped",
@@ -12687,6 +12711,42 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NP.spawn-display",
+      "subsystem": "native_world",
+      "kind": "native_policy",
+      "title": "Explicit static initial display for native creatures",
+      "scope": "Explicit native initial pose chooses the first opcode-0 bitmap in direction zero of the bound movement ANI without running controls/events, animation or world ticks. Synthetic refusal/rollback, v8 restart, movement/Stop priority and fresh generation reuse; NS19 installed Forest/Redcap actual-window immediate body, picking, modal Save, static idle ticks and fresh-window first-order continuation in four views. Original idle/action sequence selection, animated idle, caller-selected initial facing, stationary blocker/non-ANI initial poses and live replacement remain excluded.",
+      "original": [],
+      "documents": [
+        "research/runtime/native-spawn-display.md"
+      ],
+      "implementation": [
+        "game/simulation/movement.hpp",
+        "game/simulation/movement.cpp",
+        "apps/world-sandbox/frozen_navigation.cpp",
+        "apps/world-sandbox/main.cpp"
+      ],
+      "tests": [
+        "tests/native-spawn-display-test.cpp",
+        "tests/test-native-spawn-display.py",
+        "tools/test-native-scene-window.py",
+        "tests/native-idle-display-test.cpp",
+        "tests/test-native-idle-display.py",
+        "tests/world-scene-test.cpp"
+      ],
+      "evidence": [
+        "NS19.spawn-display"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      },
+      "confidence": "high_within_scope"
     }
   ],
   "evidence": [
@@ -21821,6 +21881,72 @@
           "equals": 1
         }
       ]
+    },
+    {
+      "id": "NS19.spawn-display",
+      "kind": "native_integration",
+      "scope": "Same native window entry point, production QTimer/elapsed clock and actual Qt mouse/button/modal Save events: installed Forest 8x8 crop and Redcap movement ANI base 0/SPR, four diagnostic views, corrected same-layer native terrain click mapping, mid-segment pause, pending move/stop admission and byte-exact fresh-process native state/frame continuation. Test-only observer pauses exact committed tick boundaries; original input/rays/cadence and live equivalence excluded. Static last-displayed ANI pose survives Stop, paused/modal Save, admitted idle ticks and fresh-window v8 restoration; movement restarts an active cursor. Explicit spawn initializes a static first bitmap of movement direction zero without ticking or executing an ANI player; initial body, Save, admitted idle ticks, masked picking and fresh-window first-order continuation are checked. Original idle/action sequence selection is not claimed.",
+      "record": "research/runtime/native-spawn-display.json",
+      "sha256": "2d9fc6d91549439f79033dfc1347a3badb3b8f6721e300e9e3e94d617df21b9f",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/window_runs",
+          "equals": 16
+        },
+        {
+          "pointer": "/native_window/pixel_comparisons",
+          "equals": 84
+        },
+        {
+          "pointer": "/native_window/fresh_process_continuations",
+          "equals": 12
+        },
+        {
+          "pointer": "/native_window/same_layer_target",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/real_timer_native_window",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/actual_modal_save",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/pause_preserves_motion",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/stop_while_playing",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/stopped_body_display",
+          "equals": "retained-static-pose"
+        },
+        {
+          "pointer": "/native_window/stopped_checkpoint_restart",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/initial_body_display",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/initial_checkpoint_restart",
+          "equals": true
+        },
+        {
+          "pointer": "/native_window/zero_tick_spawn",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -25131,6 +25257,30 @@
         "tests/effect-animation-binding-test.cpp",
         "tools/test-effect-animation-binding.py"
       ]
+    },
+    {
+      "id": "world.spawn-display",
+      "level": "preview",
+      "scope": "Same native window entry point, production QTimer/elapsed clock and actual Qt mouse/button/modal Save events: installed Forest 8x8 crop and Redcap movement ANI base 0/SPR, four diagnostic views, corrected same-layer native terrain click mapping, mid-segment pause, pending move/stop admission and byte-exact fresh-process native state/frame continuation. Test-only observer pauses exact committed tick boundaries; original input/rays/cadence and live equivalence excluded. Static last-displayed ANI pose survives Stop, paused/modal Save, admitted idle ticks and fresh-window v8 restoration; movement restarts an active cursor. Explicit spawn initializes a static first bitmap of movement direction zero without ticking or executing an ANI player; initial body, Save, admitted idle ticks, masked picking and fresh-window first-order continuation are checked. Original idle/action sequence selection is not claimed.",
+      "behaviors": [
+        "NP.spawn-display",
+        "NP.idle-display",
+        "NP.presentation",
+        "NP.stop-orders",
+        "NP.checkpoints",
+        "NP.scene-playback",
+        "NP.scene-picking"
+      ],
+      "evidence": [
+        "NS19.spawn-display"
+      ],
+      "tests": [
+        "tests/native-spawn-display-test.cpp",
+        "tests/test-native-spawn-display.py",
+        "tests/native-idle-display-test.cpp",
+        "tests/test-native-idle-display.py",
+        "tools/test-native-scene-window.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -25350,7 +25500,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/effect-animation-binding-source-index.json",
-    "sha256": "247a9a7562837f79a8141991140a2d8e7d5594e0a65a176d04db765405c7be76"
+    "path": "research/runtime/coverage/source-index-spawn-display-1.json",
+    "sha256": "decd4439403f92715fd924d96a48a8dd269912bd6ac07fe55c5a61e8060df2bf"
   }
 }

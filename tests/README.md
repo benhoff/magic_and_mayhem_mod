@@ -923,3 +923,13 @@ entry-point window experiment with static stopped-body pixels, modal Save,
 fresh-window v8 restoration, idle ticks and active movement restart in four views.
 Installed artifacts are read only and bracketed by original-manifest checks.
 See [native idle display](../research/runtime/native-idle-display.md).
+
+## Initial native creature display (NS19)
+
+`native-spawn-display-process` uses owned frozen/ANI fixtures to check explicit
+zero-tick initial poses, independent initial v8 layout/checksum, static restart,
+policy/resource refusal, active movement priority and generation reuse.
+The actual-window runner starts from `spawn-terrain-ani` and verifies immediate
+body/picking, idle ticks, modal Save and fresh-window first-move continuation
+alongside the movement and Stop checks in four views. See
+[native spawn display](../research/runtime/native-spawn-display.md).
