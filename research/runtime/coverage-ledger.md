@@ -1094,3 +1094,108 @@ eight v2 cases/44 full frames and eight v1 startup cases/four frames. Final orig
 startup completes three native PRESENTs/39,363,820 bytes, with original drawing
 retained and both2927-file manifest checks passing. Shared historical evidence
 retains its source fingerprints; these scoped records do not refresh full contracts.
+
+
+## Rendering path inventory
+
+2026-10-06: [current drawing inventory](render-drawing-inventory.md) separates
+live observations, isolated original execution and static reachability for
+copies, fills, locked pixel writes, GDI/text, terrain, sprites, effects, UI and
+movies. `RI.*` entries seed the nine partial contracts and preserve unsupported
+branches and caller gaps. The retained static report contains selected caller
+contexts, discovery owners and unresolved indirect sites for the pinned No-CD
+build. Its WORD-copy window remains outside discovered function boundaries.
+
+No new game session or original comparison was run. Existing effect/terrain state
+comparisons, native previews, startup command CHECKs and live activity retain
+their original scoped evidence and source hashes. No runtime frequency, complete
+consumer dispatch, independent driver-pixel parity or live replacement claim is
+added. Full UI/HUD and effect raster caller chains remain pending.
+
+
+## Continuous producer independent of bounded archives
+
+2026-10-06: `NR.continuous-producer` adds explicit v2 continuous owned publication,
+with independent live state and optional bounded command archives. Default
+bounded sessions retain their limits. Optional archive record/byte exhaustion
+ends only the archive with GAP; archive creation/write failure cannot complete
+or refuse the continuous transport. Current 32-surface / 16,777,216-pixel session,
+64MiB owned snapshot, 32MiB queue, 1MiB ring and finite UINT32 lifetime budgets
+remain. Unsupported ownership/drawing and transport failures still refuse.
+
+[Final synthetic execution](opengl-continuous-producer.md) checks eight actual
+PE32/Wine-to-native-GPU cases: five complete streams, three intentional refusals
+and 352 complete independent frame comparisons. Long sessions exceed 64MiB,
+4096 commands, 256 operations and 32 presentations, with 70 changing frames.
+Both archive exhaustion modes and archive creation failure leave native END
+complete. Explicit shutdown, missing-PRESENT/v1 and surface capacity boundaries
+are checked; default sample and idle/queue regressions remain separate evidence.
+
+No original game run or driver-pixel comparison was performed. Current resource
+retirement still invalidates the stream; dynamic IDs/releases, continuous mixed
+operations, full counter-lifetime exhaustion, better backpressure, automatic
+application shutdown, recovery and sustained original gameplay remain pending.
+Historical evidence fingerprints are preserved rather than refreshed.
+
+## Continuous resource IDs and final-release retirement
+
+2026-10-06: `NR.continuous-resource-lifetime` separates wire IDs from reusable
+session slots. Continuous CREATE IDs increase without reuse; confirmed observed
+final Release emits DELETE, reclaims session pixels, and uses existing tracker
+cleanup for component snapshots, metadata, aliases and attached-surface links.
+Nonfinal/untracked Release preserves live resources. A reused address receives a
+fresh ID and layout state, while simultaneous surface/pixel/storage budgets stay
+bounded. Default bounded final-release GAP remains unchanged.
+
+[Resource-lifetime contract](opengl-continuous-resource-lifetime.md) distinguishes
+admitted retirement from active lock/DC, contention and ambiguous-alias refusals.
+The new synthetic PE32/GPU suite checks all slots occupied and repeatedly reclaimed,
+more than128 created lifetimes, independent primary recreation, aliases/nonfinal
+Release, untracked retirement and cumulative pixel/snapshot-budget reclamation.
+Final execution evidence is recorded separately from historical results.
+
+No original game or driver comparison is claimed. UINT32 ID exhaustion is guarded
+but not executed. Successful CreateSurface at a still-tracked address, unsupported
+shape/restore branches, unobserved implicit destruction, alias saturation and
+uncertain ownership retain refusal. Broader updates, improved backpressure,
+automatic lifecycle orchestration, recovery and original-game validation remain
+separate chunks; historical evidence hashes and statuses remain intact.
+
+Final-source lifetime execution passes nine cases, four complete/five refused
+streams, 63 independent complete-frame comparisons, 196 unique churn IDs and
+100,666,308 bytes in the pixel-churn case. Fresh continuity regression passes
+all eight cases and 352 frames under a new evidence ID. The bounded owned-session
+suite passes all ten cases; its legacy record lacks source fingerprints, so no
+new current-source equivalence status is promoted from that report.
+
+## Continuous mixed mutations and committed layout replacement
+
+2026-10-06: `NR.continuous-mutations` adds complete writable Unlock replacement
+of dimensions/format/masks through ordered DELETE and a fresh monotonic CREATE,
+preserving observed COM aliases. Continuous palette changes retain a complete
+initial palette, then serialize the minimum changed contiguous RGB range;
+flags-only changes never become alpha or redundant palette commands. Bounded
+serialization and layout mismatch policy remain unchanged.
+
+[Mutation contract](opengl-continuous-mutations.md) links sustained owned full/
+partial writes, constant fills, admitted keyed/unkeyed same-format copies,
+observed two-buffer flips, indexed palette changes and validated RGB DIB handoffs.
+Independent synthetic engine storage and palettes supply complete GPU frame
+comparisons; failed original calls/retries and ownership/layout/flags refusals
+are separate cases. Final execution is recorded under new IDs; historical
+comparison/integration records and source fingerprints remain intact.
+
+Descriptor-only shape changes, invalid partial bases, Restore, missed operations,
+unsupported effects/stretch/clipping/complex flip chains and recovery retain
+refusal. No original game, driver equivalence, GDI/text instruction replay or movie
+producer is claimed. Backpressure, lifecycle orchestration, recovery and original-
+game validation remain separate chunks.
+
+Final-source mutation execution passes all twelve cases: eight valid/four refused
+streams and 933 independent complete-frame comparisons. Each mixed stream runs
+40 cycles, with 201 RGB or 281 indexed presentations; RGB DIB handoffs repeat
+12 times with failed-release retry. Layout replacement covers dimensions, bit
+depth and mask-only RGB565-to-RGB555 changes, then RGB24/indexed8 with fresh IDs.
+Forty two-entry palette RGB updates and flags-only cache changes are checked.
+Fresh lifetime and continuity regressions pass nine/63 and eight/352 cases/frames
+under separate new evidence IDs. Production and selftest PE32 builds pass.

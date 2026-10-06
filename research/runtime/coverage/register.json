@@ -5529,13 +5529,19 @@
         "runtime/render/partial_lock_selftest.h",
         "runtime/render/surface_commands.h",
         "runtime/render/surface_history.h",
-        "runtime/render/command_channel.h"
+        "runtime/render/command_channel.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/mutation_selftest.h"
       ],
       "tests": [
         "runtime/render/selftest.c",
         "tests/test-render-capture.py",
         "tests/test-render-commands.py",
-        "tests/test-render-stream-rate.py"
+        "tests/test-render-stream-rate.py",
+        "tools/test-render-continuous-producer.py",
+        "tools/test-render-resource-lifecycle.py",
+        "tools/test-render-mutations.py"
       ],
       "evidence": [
         "REVIEW.RT.render"
@@ -9337,14 +9343,16 @@
       "confidence": "provisional",
       "original": [],
       "documents": [
-        "research/runtime/coverage/README.md"
+        "research/runtime/coverage/README.md",
+        "research/runtime/render-drawing-inventory.md"
       ],
       "implementation": [
         "tools/inventory-binary.py",
         "tools/ghidra/ExportBinaryInventory.java",
         "tools/coverage_audit.py",
         "tools/audit-re-coverage.py",
-        "tools/index-coverage-sources.py"
+        "tools/index-coverage-sources.py",
+        "tools/export-render-support.py"
       ],
       "tests": [
         "tests/test-re-coverage.py",
@@ -13420,6 +13428,506 @@
         "NR.command-streaming.startup",
         "NR.command-streaming.live",
         "NR.command-streaming.sanitized"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RI.copies",
+      "subsystem": "rendering_inventory",
+      "kind": "recovered",
+      "title": "Surface copy and rectangle-copy routes",
+      "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816128,
+          "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816640,
+          "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817504,
+          "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818528,
+          "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819024,
+          "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819328,
+          "scope": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking."
+        }
+      ],
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RI.fills",
+      "subsystem": "rendering_inventory",
+      "kind": "recovered",
+      "title": "Constant surface fills",
+      "scope": "Selected NULL-source Blt fill construction and retry windows; initial partial fill and unsupported effects/ownership remain open. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814976,
+          "scope": "Selected NULL-source Blt fill construction and retry windows; initial partial fill and unsupported effects/ownership remain open."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815312,
+          "scope": "Selected NULL-source Blt fill construction and retry windows; initial partial fill and unsupported effects/ownership remain open."
+        }
+      ],
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RI.locked-writes",
+      "subsystem": "rendering_inventory",
+      "kind": "recovered",
+      "title": "CPU drawing into locked pixel storage",
+      "scope": "Lock pointer/pitch and selected JPEG destination route; unassigned WORD-copy window and semantic classification of remaining lock callers retained. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813856,
+          "scope": "Lock pointer/pitch and selected JPEG destination route; unassigned WORD-copy window and semantic classification of remaining lock callers retained."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821216,
+          "scope": "Lock pointer/pitch and selected JPEG destination route; unassigned WORD-copy window and semantic classification of remaining lock callers retained."
+        }
+      ],
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RI.gdi-text",
+      "subsystem": "rendering_inventory",
+      "kind": "recovered",
+      "title": "DC image handoff and separate SFT glyph drawing",
+      "scope": "Selected DC image wrappers and shared sprite destination used by SFT; individual GDI rasterization and higher-level text layout/encoding/palette equivalence remain unresolved. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5820832,
+          "scope": "Selected DC image wrappers and shared sprite destination used by SFT; individual GDI rasterization and higher-level text layout/encoding/palette equivalence remain unresolved."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5820992,
+          "scope": "Selected DC image wrappers and shared sprite destination used by SFT; individual GDI rasterization and higher-level text layout/encoding/palette equivalence remain unresolved."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821056,
+          "scope": "Selected DC image wrappers and shared sprite destination used by SFT; individual GDI rasterization and higher-level text layout/encoding/palette equivalence remain unresolved."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821296,
+          "scope": "Selected DC image wrappers and shared sprite destination used by SFT; individual GDI rasterization and higher-level text layout/encoding/palette equivalence remain unresolved."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5775040,
+          "scope": "Selected DC image wrappers and shared sprite destination used by SFT; individual GDI rasterization and higher-level text layout/encoding/palette equivalence remain unresolved."
+        }
+      ],
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RI.terrain",
+      "subsystem": "rendering_inventory",
+      "kind": "recovered",
+      "title": "Ordinary terrain producer to depth queue",
+      "scope": "Existing selected ordinary traversal/submission links; object/overlay/creature/picking and full original-world raster output excluded. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5212512,
+          "scope": "Existing selected ordinary traversal/submission links; object/overlay/creature/picking and full original-world raster output excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5211120,
+          "scope": "Existing selected ordinary traversal/submission links; object/overlay/creature/picking and full original-world raster output excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5225984,
+          "scope": "Existing selected ordinary traversal/submission links; object/overlay/creature/picking and full original-world raster output excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5227504,
+          "scope": "Existing selected ordinary traversal/submission links; object/overlay/creature/picking and full original-world raster output excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5228848,
+          "scope": "Existing selected ordinary traversal/submission links; object/overlay/creature/picking and full original-world raster output excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RI.sprites",
+      "subsystem": "rendering_inventory",
+      "kind": "recovered",
+      "title": "Shared sprite dispatch and queue drawing",
+      "scope": "Selected shared dispatch/direct-word backend and consumer sites; alternate/MMX/auxiliary/shading and complete consumer draw-kind dispatch remain unresolved. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5775040,
+          "scope": "Selected shared dispatch/direct-word backend and consumer sites; alternate/MMX/auxiliary/shading and complete consumer draw-kind dispatch remain unresolved."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Selected shared dispatch/direct-word backend and consumer sites; alternate/MMX/auxiliary/shading and complete consumer draw-kind dispatch remain unresolved."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Selected shared dispatch/direct-word backend and consumer sites; alternate/MMX/auxiliary/shading and complete consumer draw-kind dispatch remain unresolved."
+        }
+      ],
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RI.effects",
+      "subsystem": "rendering_inventory",
+      "kind": "recovered",
+      "title": "Effect state upstream of visual submission",
+      "scope": "Existing creation/animation setup anchors only; full effect-to-queue-to-raster chain and reverse/attachment/shading variants remain open. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4800288,
+          "scope": "Existing creation/animation setup anchors only; full effect-to-queue-to-raster chain and reverse/attachment/shading variants remain open."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4803248,
+          "scope": "Existing creation/animation setup anchors only; full effect-to-queue-to-raster chain and reverse/attachment/shading variants remain open."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4755968,
+          "scope": "Existing creation/animation setup anchors only; full effect-to-queue-to-raster chain and reverse/attachment/shading variants remain open."
+        }
+      ],
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RI.ui",
+      "subsystem": "rendering_inventory",
+      "kind": "recovered",
+      "title": "Menu assets and shared startup drawing paths",
+      "scope": "Startup surface/movie calls and existing menu observations/assets; complete widget/HUD/minimap caller classification and paired original pixels remain open. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5148032,
+          "scope": "Startup surface/movie calls and existing menu observations/assets; complete widget/HUD/minimap caller classification and paired original pixels remain open."
+        }
+      ],
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RI.movies",
+      "subsystem": "rendering_inventory",
+      "kind": "recovered",
+      "title": "Movie wrapper and startup callers",
+      "scope": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified. Inventory review only; no new implementation, execution comparison, integration or replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4626944,
+          "scope": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4626144,
+          "scope": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4626480,
+          "scope": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified."
+        }
+      ],
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.continuous-producer",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Continuous owned publication independent of bounded command archives",
+      "scope": "Explicit v2 continuous producer beyond sample operation/presentation/cumulative archive limits, optional independently bounded command archive; retained surface/pixel/snapshot/queue/ring and finite sequence/byte limits. Default bounded policy retained. Synthetic admitted updates only; resource retirement is covered separately by NR.continuous-resource-lifetime; recovery, automatic orchestration shutdown and sustained original-driver/gameplay equivalence remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-continuous-producer.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h",
+        "runtime/render/lock_lifecycle.h",
+        "tools/run-opengl-game.py",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-continuous-producer.py",
+        "tests/live-render-channel-test.cpp",
+        "tools/test-render-session-sequence.py",
+        "tools/test-render-command-idle.py",
+        "tools/test-render-command-queue.py",
+        "tools/test-render-session-dc.py"
+      ],
+      "evidence": [
+        "NR.continuous-producer.synthetic",
+        "NR.continuous-producer.regression.bounded-v1",
+        "NR.continuous-producer.regression.bounded-v2",
+        "NR.continuous-producer.regression.idle",
+        "NR.continuous-producer.regression.queue",
+        "NR.continuous-producer.regression.dc",
+        "NR.continuous-resource-lifetime.continuity-regression",
+        "NR.continuous-mutations.continuity-regression"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.continuous-resource-lifetime",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Continuous resource identity and confirmed final-release retirement",
+      "scope": "Continuous v2 CREATE IDs increase independently of reusable 32-slot storage. Confirmed application final Release retires an observed alias component via ordered DELETE, reclaims session pixels and tracker snapshots/metadata/alias slots, and permits address reuse with a fresh ID. Nonfinal/untracked releases preserve tracked resources. Pending lock/DC, missed retirement, ambiguous aliases, identity exhaustion and unsupported descriptor-only/partial shape, restore/create branches refuse; successful full Unlock replacement is covered separately by NR.continuous-mutations; default bounded release still refuses. Synthetic admitted lifetime validation recorded; original COM/driver equivalence and recovery excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-continuous-resource-lifetime.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/bridge.c"
+      ],
+      "tests": [
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-resource-lifecycle.py",
+        "tests/live-render-channel-test.cpp"
+      ],
+      "evidence": [
+        "NR.continuous-resource-lifetime.synthetic",
+        "NR.continuous-resource-lifetime.continuity-regression",
+        "NR.continuous-mutations.resource-regression"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.continuous-mutations",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Continuous mixed resource mutations and committed full-layout replacement",
+      "scope": "Admitted owned full/partial CPU writes, constant fills, same-format keyed/unkeyed copies, two-buffer swaps, palette colors and validated RGB DIB checkpoints in sustained continuous v2 sessions. Successful complete writable Unlock can replace dimensions/format/masks via DELETE plus fresh CREATE while preserving COM aliases. Subsequent palette updates publish the minimum contiguous changed RGB range and ignore entry flags as alpha. Failed-call retries, unsupported partial layout and default bounded policy retain their guards. Synthetic admitted mutation validation recorded; no inferred restore/recovery, original driver/game equivalence or new rendering families.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-continuous-mutations.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_dc.h"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-mutations.py",
+        "tests/live-render-channel-test.cpp"
+      ],
+      "evidence": [
+        "NR.continuous-mutations.synthetic",
+        "NR.continuous-mutations.resource-regression",
+        "NR.continuous-mutations.continuity-regression"
       ],
       "status": {
         "understanding": "scoped",
@@ -23510,6 +24018,270 @@
           "equals": 4
         }
       ]
+    },
+    {
+      "id": "RI.static-callers-20261006",
+      "kind": "static",
+      "scope": "Hash-checked selected assembly windows/direct caller contexts and pinned discovery owner candidates; no runtime frequencies, complete function boundaries or original comparison claim. Historical initial parser computed-flow lists overinclude direct operands; preserved as superseded attempts, not used by current RI contracts.",
+      "record": "research/runtime/render-path-inventory-static.json",
+      "sha256": "2122753f3dc42407b90c3fee91b08c27ee2abe3b35031222587064b90926e51e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/source_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/direct_caller_counts/terrain_submission",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "RI.static-callers-full-20261006",
+      "kind": "static",
+      "scope": "Expanded static caller evidence including outgoing direct edges and computed jumps; no recovered dispatch semantics, original comparison or live claim. Historical initial parser computed-flow lists overinclude direct operands; preserved as superseded attempts, not used by current RI contracts.",
+      "record": "research/runtime/render-path-inventory-static-full.json",
+      "sha256": "2053fb5fab4b19258dd208edac76f85d62d448e58759ca67d3568400f4c7edd6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/source_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/direct_caller_counts/terrain_submission",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "RI.static-callers-final-20261006",
+      "kind": "static",
+      "scope": "Final static caller/outgoing/indirect/computed-jump inventory with checked operand classification; no dispatch semantic, frequency, comparison or live claim.",
+      "record": "research/runtime/render-path-inventory-static-final.json",
+      "sha256": "01d30a9574fef5a02d0195ae354e6ca1e1f600cff5c33079788f6f778762777a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/source_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/direct_caller_counts/terrain_submission",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-producer.synthetic",
+      "kind": "native_integration",
+      "scope": "Actual synthetic PE32 Lock/Unlock producer beyond sample limits, optional bounded command archive and v2 native GPU presentation; 352 independently checked complete frames, five complete sessions and three refusals. Launcher missing/v1 guard execution and current launcher source fingerprints; valid original-game launch/driver equivalence and continuous mixed operations excluded.",
+      "record": "research/runtime/opengl-continuous-producer.json",
+      "sha256": "2b05df57ef61a3778de9cd65261fa141ab9ebf9bf23ca5adfe617a347a984496",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 352
+        },
+        {
+          "pointer": "/launcher_refusals_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 5
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 3
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-producer.regression.bounded-v1",
+      "kind": "native_integration",
+      "scope": "Default bounded v1 producer regression: eight cases and 44 full-frame comparisons; synthetic engine only.",
+      "record": "research/runtime/opengl-continuous-producer-bounded-v1-regression.json",
+      "sha256": "d4f16bc17e708578581458f6e0bfa0517a59893eaadf1b136cbecb0fea80f3c7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-producer.regression.bounded-v2",
+      "kind": "native_integration",
+      "scope": "Default bounded v2 producer regression: eight cases and 44 full-frame comparisons; synthetic engine only.",
+      "record": "research/runtime/opengl-continuous-producer-bounded-v2-regression.json",
+      "sha256": "a36b506df45942e4b6aecc020bb6c44f19316d91e9b1289cd01d9336a75b35d7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-producer.regression.idle",
+      "kind": "native_integration",
+      "scope": "Shared producer idle retry, shutdown, cancellation, timeout and detach synthetic regressions.",
+      "record": "research/runtime/opengl-continuous-producer-idle-regression.json",
+      "sha256": "61fb65b390637a07bdb9955c4b9cbb474376713685d44612cd92833afece1657",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-producer.regression.queue",
+      "kind": "native_integration",
+      "scope": "Shared queue native and ASan/UBSan regression including leak checks; API fakes, no original game.",
+      "record": "research/runtime/opengl-continuous-producer-queue-regression.json",
+      "sha256": "f4ea4ce9a51b658262113505a56f3b7ee21d4ace3d309a5739c812d9a309e725",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-producer.regression.dc",
+      "kind": "native_integration",
+      "scope": "Default bounded GDI/DC producer regression: 18 cases, 38 full-frame comparisons, twelve valid and six refused; synthetic bitmap pixels only.",
+      "record": "research/runtime/opengl-continuous-producer-dc-regression.json",
+      "sha256": "aa8ca737f448e2234e0466bd959d1b11644eac007cc976f47043cef24fea44bd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-lifetime.synthetic",
+      "kind": "native_integration",
+      "scope": "Final-source actual PE32 hooks and native GPU: nine synthetic resource lifetime cases, 63 independent complete frames, four successful and five deliberately refused sessions. Includes196 unique identities with32 simultaneously live, aliases/nonfinal and untracked Release, >96MiB of recreated native pixels with ordered reclamation; held lock/DC, contention, ambiguous aliases and default bounded refusal. Excludes original COM/driver/game equivalence, unobserved destruction, UINT32 endpoint execution and recovery.",
+      "record": "research/runtime/opengl-continuous-resource-lifetime.json",
+      "sha256": "d5d2e5d50167502f11ab3fae7216ec57dd63da22e45a97530c64ccb8ecae7535",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 63
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 4
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 5
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-lifetime.continuity-regression",
+      "kind": "native_integration",
+      "scope": "Fresh final resource-increment sources pass the existing continuous-publication suite: eight synthetic PE32/GPU cases and352 independent complete-frame comparisons beyond sample byte/record/operation/presentation limits. Optional archive completion/exhaustion/failure, v1/missing-presentation and simultaneous resource-capacity refusal; original launch/equivalence excluded.",
+      "record": "research/runtime/opengl-continuous-resource-continuity-regression.json",
+      "sha256": "c17bb438c26395156f5c772735d9f0bf26bba11a153ea49e0b80131efbc6b74c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 352
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-mutations.synthetic",
+      "kind": "native_integration",
+      "scope": "Twelve actual synthetic PE32/GPU mixed mutation cases: eight valid/four refused,933 complete independent engine/native GPU frame comparisons. Sustained RGB16/24/32/indexed writes, fills, keyed/unkeyed copies, swaps, RGB palette ranges/flags-only updates, real Wine RGB DIB release retries and full layout replacement including RGB555 masks. Original calls/HRESULT/LastError and archive opcode/range checks; no original game/driver equivalence or recovery.",
+      "record": "research/runtime/opengl-continuous-mutations.json",
+      "sha256": "f96e6d9ee4d2fadc25d6437a3a19cfd5ba2130bc1cdf7837d8ca36a3c0ad42ea",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 933
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-mutations.resource-regression",
+      "kind": "native_integration",
+      "scope": "Fresh final-mutation sources pass the nine-case synthetic continuous resource-lifetime suite: increasing identities, alias/nonfinal/untracked release, final-release reclamation/address reuse, resource budgets and held-work/contention/ambiguity refusals. No original COM/driver equivalence.",
+      "record": "research/runtime/opengl-continuous-mutations-resource-regression.json",
+      "sha256": "a04df9ed9cb464d7819e8a1fc2f39486b5f5c0829ddc76e3b7ff5c128d996682",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 63
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-mutations.continuity-regression",
+      "kind": "native_integration",
+      "scope": "Fresh final-mutation sources pass the eight-case synthetic continuous-publication suite with352 independent complete GPU frames: optional bounded archive completion/exhaustion/creation failure, >64MiB/4096 commands/256 operations/32 presentations and v1/missing-frame/surface-capacity refusal. No original game or recovery.",
+      "record": "research/runtime/opengl-continuous-mutations-continuity-regression.json",
+      "sha256": "2ea2e71e20a28e095c93ac54e8909c11a6f86bd42bb594106ba8ebf1373cdd96",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 352
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -25608,6 +26380,45 @@
           ]
         }
       ]
+    },
+    {
+      "id": "RI.queue-draw-00501184",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5247364,
+        "relation": "data",
+        "scope": "Static computed jump at 0x5003fc; table semantics unclassified."
+      },
+      "document": "research/runtime/render-drawing-inventory.md",
+      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
+      "complete": false,
+      "entries": []
+    },
+    {
+      "id": "RI.queue-draw-00501210",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5247504,
+        "relation": "data",
+        "scope": "Static computed jump at 0x50093d; table semantics unclassified."
+      },
+      "document": "research/runtime/render-drawing-inventory.md",
+      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
+      "complete": false,
+      "entries": []
+    },
+    {
+      "id": "RI.queue-draw-0050129c",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5247644,
+        "relation": "data",
+        "scope": "Static computed jump at 0x500d69; table semantics unclassified."
+      },
+      "document": "research/runtime/render-drawing-inventory.md",
+      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
+      "complete": false,
+      "entries": []
     }
   ],
   "scenarios": [
@@ -27182,6 +27993,57 @@
       "tests": [
         "tools/test-live-render-game.py"
       ]
+    },
+    {
+      "id": "NR.continuous-producer-fixture",
+      "level": "preview",
+      "scope": "Synthetic padded poisoned Lock/Unlock inputs, first presentation beyond64 operations, >64MiB/4096 commands/256 operations/32 frames, optional archive completion/exhaustion/creation failure, explicit shutdown, v1/missing-frame/surface-capacity refusals. Independent full GPU frames; no original gameplay or recovery.",
+      "behaviors": [
+        "NR.continuous-producer"
+      ],
+      "evidence": [
+        "NR.continuous-producer.synthetic",
+        "NR.continuous-resource-lifetime.continuity-regression",
+        "NR.continuous-mutations.continuity-regression"
+      ],
+      "tests": [
+        "tools/test-render-continuous-producer.py",
+        "runtime/render/continuous_selftest.h",
+        "tests/live-render-channel-test.cpp"
+      ]
+    },
+    {
+      "id": "NR.continuous-resource-lifetime-fixture",
+      "level": "preview",
+      "scope": "Independent synthetic engine pixels and reference counts through actual PE32 Release/QI/Lock/Unlock hooks and GPU. Reuse and budget reclamation, aliases/nonfinal/untracked release, held lock/DC, missed retirement and ambiguity refusal; no original game or recovery.",
+      "behaviors": [
+        "NR.continuous-resource-lifetime"
+      ],
+      "evidence": [
+        "NR.continuous-resource-lifetime.synthetic",
+        "NR.continuous-mutations.resource-regression"
+      ],
+      "tests": [
+        "tools/test-render-resource-lifecycle.py",
+        "runtime/render/resource_selftest.h",
+        "tests/live-render-channel-test.cpp"
+      ]
+    },
+    {
+      "id": "NR.continuous-mutations-fixture",
+      "level": "preview",
+      "scope": "Independent engine native pixels/palettes through synthetic PE32 hooks and continuous native GPU. Sustained mixed operations, padded negative-pitch partial writes, failed retries, full layout/mask replacements and unsupported successful mutation refusal; real synthetic DIBs, no original game/driver comparison.",
+      "behaviors": [
+        "NR.continuous-mutations"
+      ],
+      "evidence": [
+        "NR.continuous-mutations.synthetic"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py",
+        "tests/live-render-channel-test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -27429,7 +28291,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-command-streaming.json",
-    "sha256": "1da9768e122bce54b168a0c6e766f1bb7a20ace4d87642926a0a93f346e9efa4"
+    "path": "research/runtime/coverage/source-index-continuous-mutations-20261006.json",
+    "sha256": "675b9c681e5ec57e676500d37776dd3de6d552a755f28627addda43015db013e"
   }
 }

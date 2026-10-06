@@ -267,8 +267,9 @@ private:
             if(captureLocks_)arguments.append("--capture-locks");
             if(nativeCommands_){
                 commands_=std::make_unique<LiveCommandRenderer>(*gl_);
-                commands_->framePresented=[this]{placeholder_->hide();gl_->show();statusBar()->showMessage("Bounded native command presentation active. Original rendering retained.");};
-                if(!commands_->create(path+".commands",QRandomGenerator::global()->generate()|1u)){const auto error=commands_->error();finished();statusBar()->showMessage(error);return;}
+                commands_->framePresented=[this]{placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
+                const bool continuous=qEnvironmentVariable("MNM_RENDER_CONTINUOUS")==QStringLiteral("1");
+                if(!commands_->create(path+".commands",QRandomGenerator::global()->generate()|1u,continuous?2:1)){const auto error=commands_->error();finished();statusBar()->showMessage(error);return;}
                 arguments.append({"--command-channel",path+".commands"});
             }
             if(nativeCommands_)gl_->show();else gl_->hide();placeholder_->show();

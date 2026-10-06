@@ -83,11 +83,14 @@ def main():
     with stream.open('rb') as file:
         if not frame_protocol.valid_header(file.read(frame_protocol.HEADER_SIZE), stream.stat().st_size):raise ValueError('Invalid pre-created frame stream')
     command_path=args.command_channel.resolve() if args.command_channel else None
+    continuous=os.environ.get('MNM_RENDER_CONTINUOUS')=='1'
+    if continuous and not command_path:raise ValueError('Continuous production requires a pre-created v2 command channel')
     if command_path:
         if not command_path.is_relative_to(REPO/'working'):raise ValueError('Command channel must be under working/')
         with command_path.open('rb') as file:
             header=file.read(command_protocol.HEADER_SIZE)
             if not (command_protocol.valid_header(header,command_path.stat().st_size) or ring_protocol.valid_header(header,command_path.stat().st_size)):raise ValueError('Invalid command channel')
+            if continuous and not ring_protocol.valid_header(header,command_path.stat().st_size):raise ValueError('Continuous production requires a v2 command channel')
             import struct
             if not struct.unpack_from('<I',header,16)[0] or any(header[20:]):raise ValueError('Command channel is not a fresh session')
     input_path=args.input.resolve() if args.input else None
@@ -129,6 +132,8 @@ def main():
     metadata['audio_dll_sha256']=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None
     metadata['media_channel']=str(media_path) if media_path else None
     metadata['command_channel']=str(command_path) if command_path else None
+    metadata['continuous_commands']=continuous
+    metadata['command_archive']=not continuous or os.environ.get('MNM_RENDER_SESSION_ARCHIVE')=='1'
     metadata['input_channel']=str(input_path) if input_path else None
     if args.capture_locks:
         lock_capture=root/'lock-capture';lock_capture.mkdir();metadata['lock_capture_directory']=str(lock_capture);metadata['lock_lifecycle_log']=str(lock_capture/'lifecycle.log')

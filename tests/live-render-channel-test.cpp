@@ -147,7 +147,7 @@ int main(int argc,char** argv){
         QObject::connect(&timer,&QTimer::timeout,[&]{
             if(!live.poll(65536) || live.ended() || elapsed.elapsed()>30000){
                 timer.stop();QJsonObject report{{"success",live.ended()},{"error",live.error()},{"frames",frames},{"before_producer_exit",beforeExit},{"presentations",int(live.presentations())},{"viewport_uploads",int(viewport.imageUploads())}};
-                if(live.result()){report["native_readbacks"]=int(live.result()->stats.nativeReadbacks);report["rgba_readbacks"]=int(live.result()->stats.rgbaReadbacks);report["live_surfaces"]=int(live.result()->liveSurfaces);}
+                if(live.result()){report["decoded_commands"]=int(live.result()->commands);report["native_readbacks"]=int(live.result()->stats.nativeReadbacks);report["rgba_readbacks"]=int(live.result()->stats.rgbaReadbacks);report["live_surfaces"]=int(live.result()->liveSurfaces);}
                 QFile out(QString::fromLocal8Bit(argv[3]));check(out.open(QIODevice::WriteOnly),"report write");out.write(QJsonDocument(report).toJson());app.exit(live.ended()?0:8);
             }
         });QFile ready(QString::fromLocal8Bit(argv[3])+".ready");check(ready.open(QIODevice::WriteOnly),"ready marker");ready.close();timer.start(1);return app.exec();
