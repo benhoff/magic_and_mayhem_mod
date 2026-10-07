@@ -1,0 +1,775 @@
+{
+  "schema": 1,
+  "scope": "Committed exact file/behavior accounting only; no retrospective gate pass or new execution validation. Surface format work is the committed base, outside the fullscreen/native-command change.",
+  "range": "fc656368aa3c21a149c0284daacf1812dfe2b09d..475019fe7a0060f384411173c9fb06624ad44c24",
+  "commits": [
+    {
+      "commit": "475019fe7a0060f384411173c9fb06624ad44c24",
+      "parent": "fc656368aa3c21a149c0284daacf1812dfe2b09d",
+      "files": [
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "b83cb42298ebbfb2dad14545b44cb8f2f608e9206e97c7b556c29f10d50ad479",
+          "after_sha256": "a90dc730ded6c713fed02083625c71bb5e00a897ac25e9a4c9276eb1c9434463",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/bitmap_dc.hpp",
+          "before_sha256": "df2ddb4a1c8547a184788053e4d925528b984a7ba7bbb0d4ff630dd926f0e456",
+          "after_sha256": "c8fadb0fc0f4217960e08f067283b504a8dc918ef425de160df262798876fe29",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/blit.cpp",
+          "before_sha256": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+          "after_sha256": "b3dd75480462463fda6fd23696a5e9bb2d4f98578614a7c05d69a34e102a9503",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "before_sha256": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70",
+          "after_sha256": "af4be9b90298558cab670406e639779e8ed7b2d6e8864de2fdaa98ffe465fe64",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/pixel_rows.cpp",
+          "before_sha256": null,
+          "after_sha256": "ffa72fac123001700e435112c7b09f39fc90ca4cb3308b1e4e4e31ef93027bfd",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/pixel_rows.hpp",
+          "before_sha256": null,
+          "after_sha256": "858459228fd19d19640a3d2fcefc0347952bdb07e6ccbdb0af3f3dce1637df88",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_access.hpp",
+          "before_sha256": "29306563839b79760e26450d294fc75c4c3b057ffa81a64588bb42a98514fb16",
+          "after_sha256": "95166e8226849e7302dffa9762b737ed5dd1381ffc8b392283763b1fc77854ad",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_backend.cpp",
+          "before_sha256": "281ec802b0c8996bae80665eceab0dad5b1cf4021f40eeefcac115f71754090e",
+          "after_sha256": "c5cb22ea00315d78d2bcb8b4c6a252f34b32fab087f045187816a954d6113bff",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_backend.hpp",
+          "before_sha256": "197e2033443d82b888df7073a3f7c198d0b366b71e13ff351b8b54b383bef338",
+          "after_sha256": "f7b269b079dfb94b20fce31986a7464c403bec298c98756bb675369956992425",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "65695fb534f19dd9ed216ac0a29a4ef973ddd6964b60ca8376d0b8fb42da7004",
+          "after_sha256": "d665107c8d36ea0d4839b6405a6c2da9c7a699c67d18867559a230b2500f4f7f",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-formats-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "06ae7099a217defa83e601e67b149de5de4a24ea512973a9d1562ea551486134",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "03d837dd8330d1ed5526b1d4a94fb2756de3a760035a8764e764ef9e8c4d1aab",
+          "after_sha256": "c74880add5678e85ecec1a6e172a4ec1c9d9fe8ba970736d7e263b2a9f537932",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-formats-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d315cee202321dfc254619a241fc4ac1198010b015032c12c4511a64ec5fe11c",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-formats-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "423abb1c797f1e7b0a3ac0d18e947abb5f786be8886c1446fa5ff11da7ddcd84",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-backend.md",
+          "before_sha256": "38ced2454a43f3eda11496bca068d6280970be16eb97d986e4b5182e9c652393",
+          "after_sha256": "f2041060e1f1a835570f8a9b183192343c7abedb917a0dabe325a36f6c20775e",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "8d205d9d740edf6848eecbd2f162616d16574ecf0399b314a5c7e8957e9849fb",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-backend-regression-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "5dd3c32c194707429f98961ac26a87dcca75336baf58e6d966cfbad1d8443e92",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-final-regressions-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "507e09b52a87b949ea02a2b3a0eb228c110061aa1c4a1411c0085c54f96f3414",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-ownership-regression-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "ba10c169caba0f404bc50f352f24585c55d1c3523203c484e88051be66575dba",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-pitch.md",
+          "before_sha256": null,
+          "after_sha256": "412813dae86bdc7acd5e57adde1958a52ae83e84926bba38a1c3ea7e51edd0ce",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-regressions-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "edf0cca2615ea38b89d717313905a34c2d20987b37c6af6e15fcfe490798b0dc",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "707670d5f3399cad8acb19bd98164d5618dfda6fec0173f24af2f5aaca2713a3",
+          "after_sha256": "18ff88e582573d851d8852cfdf054723ec2b383c91b2b6b1c9fd4cfed168bb1e",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/render-drawing-inventory.md",
+          "before_sha256": "9fad3da61bf7c9f6328a29c42818a1527d082c7ee3994708e32f1679adb5d8fb",
+          "after_sha256": "9fad3da61bf7c9f6328a29c42818a1527d082c7ee3994708e32f1679adb5d8fb",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006",
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-formats-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "5a01f7781fc008ce2d326c22c4cacdeacdd0a0d7a12e22e7753db14515ea5286",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-formats-dd2-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d567fad1d7f9b03177c70bfef26f80a2875c64b799f415f5796ba6cc77207b65",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-formats-final-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "16500e6d9fde369085313fcde3d4f309259c0c1560bb7bbeafc36eddf7a0290c",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-formats-offline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "259b62e7caf4745d8b9d792cb262dcd6fa54aeaf56422d12f08edaea4eec9b9b",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-surface-backend-test.cpp",
+          "before_sha256": "e93476f1df2382088c58b893c934b3bdef942f48811cf8f6e99a4db6133d758c",
+          "after_sha256": "279f88c3c8d07a07d43d20fa79f77895c35a9f28a5d000eb4e73dac47c2649d3",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-surface-formats-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "37653d16ce3d43b87cb75eed9b50c30c6d7aabdf85a2a5b0d9c48ede6e50f52e",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-formats-reference.c",
+          "before_sha256": null,
+          "after_sha256": "609eac62dc75c25cab9b489464081d6cfb4124b0693cf67f814abba73c6688c1",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-re-coverage.py",
+          "before_sha256": "9a836d6fbaf1b3c94d523b7f8c420f0553dae3c94331057b4d685c20f7f4fca6",
+          "after_sha256": "2b6042c5deeea9ad948dd246bb2e53fd90e68b46cd26e019e43f2d4e65a9c7e8",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-surface-formats.py",
+          "before_sha256": null,
+          "after_sha256": "89bdd27c10ba32a6cb2a7fd18f1094bb30af9f60e374cf61f417fbfa8805965f",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-surface-formats.py",
+          "before_sha256": null,
+          "after_sha256": "fe18187933b6a3333d3373ecd1e25b32a442dba04e2d3b288088abcf4dfd4e52",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-native-surface-formats.py",
+          "before_sha256": null,
+          "after_sha256": "bc29e0bbd9c17d72fdb234fecda1e254d364b2b3d3c6e1add451b3ad5890c0c8",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-surface-formats.py",
+          "before_sha256": null,
+          "after_sha256": "43e4ff15e034f7c89c472945b25599985e2a16cbe96491dd90d4d803849d7abf",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/coverage_audit.py",
+          "before_sha256": "e632e389d5ecbdfb20192b2806f17d39840e094b3f7f29df07c905008a639a56",
+          "after_sha256": "6ae69d07be7125353368fe9d65b91b3a0c8fd4f8eb67ba304bb6d7e298a1e1a2",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/index-coverage-sources.py",
+          "before_sha256": "b06f0438360462b7965af998ebcf73ca9f88bcb00befd0d5a46d5e6ae98b56d9",
+          "after_sha256": "23cbf38c44eac4fc9971b62e813632450793b13609ab8395c428d3f696d2a815",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "EXT.dependencies",
+          "before_sha256": "5f1bc68d8a394aeef6fb7cae280fbc2093a8366d51e7f73b6f1f69e18492e4bd",
+          "after_sha256": "5f1bc68d8a394aeef6fb7cae280fbc2093a8366d51e7f73b6f1f69e18492e4bd",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "c0d3df8f86c6e562c9288060a934c262c2330b641586de8078a93d15f9dc8656",
+          "after_sha256": "9e71547b0b829a84bb422b73e46c45b115528a9569237504bb91faf2a13a8a82",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "2cfd926385b13cf2f8a4ca69a398f0a433767aa7b6d6dbd086201d5c099c3a06",
+          "after_sha256": "c209fb09723b9db05539e96252911d4af3efe9d32bdfddb45fafd317722bad9f",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring",
+          "before_sha256": "87a57df3aaac3e590fec83d77de612322aee1d9c26b90c8ff35e92c3a32a540f",
+          "after_sha256": "cbf01f61ad76af5efff3fb001f1c5de8f8dc58c4ff787e4f489120d75b01f5bb",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.gpu-presentation",
+          "before_sha256": "bb3160d57cd23904f367e06bc7e7cd816f2f4756f76d49ad4882c0c4a548c35c",
+          "after_sha256": "1a44ac3d8cfaab35c70e6424c3d88629a092e0842466c044eb113cacbb78c823",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "c6dc45e9af6f67cb070fb23515ca1195fad00ea933e3d0b36e0ee48e3f62698d",
+          "after_sha256": "cb331eed66cc24c51c644096ba5f48a0d65f78ffd37af0a7246c16d8ca91afcb",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "0d43e393f00fcffdf92bd1c0fb34d9caa3afbf314c25688815a8744eebe07c94",
+          "after_sha256": "9dd5b6746d5f669ba4212f3a21f002066d13432f5f8561ee236f9097c2357b70",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "ffa52a4a3b069607da00b277c851e54779fd838b091210040cfe7fd2bea2ad67",
+          "after_sha256": "828fb21f853406217431cc4917508c5e807fb0571a9ec9689d1822daebdc0583",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-access",
+          "before_sha256": "d641b4d2c316327d12f9f1d74cbca60818ee432a18de257b8e9d5cea92667e13",
+          "after_sha256": "60f42f918a108c4ee4ef210089a803f6c9f87d0bcdd0fe00fb4f16327bdbe0a1",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-backend.formats-pitch",
+          "before_sha256": null,
+          "after_sha256": "ea75a9c7a327bb4b12dede324cb6df370a201df97f2d97a01b81bc9b23ee4cdd",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-backend.owned",
+          "before_sha256": "0b9064de6f298f2aa4f2e7508144cb274966bb70c42f1c79eb8f05bd83872716",
+          "after_sha256": "19a3e7c2c4eac7b07993b3c4e068e96cb18288bebecb0287c4836ba49b4d881b",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-backend.ownership-recovery",
+          "before_sha256": "4d2d6050d246d2dc5c899cd79711974f5ef789469ffddff69fd1de69190022ba",
+          "after_sha256": "4fbc1534fb9525ff5cac84905b5c431660ed3ebef5d6590055f5c129882909de",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-colors.rgb565-dc",
+          "before_sha256": "dabe9fba41180161ae0a7006aeba530c7b0e0e8f49a4a1f641765655ffa3d00f",
+          "after_sha256": "ce5830a4785308a3f2c713457632f3b2f2542f756b09aad962295fe6e98a4c8e",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-contents.validity",
+          "before_sha256": "0ea6d497ec004888aeea3c8b03a079304ab87a6fe89c7004e540035972d529b3",
+          "after_sha256": "642d50c24fc102f48ac491bebe796ab410fb985c6ab14448fe28f0756bd89ef3",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "936fc54ae9f6f358cff873fcb0db5148aef75bdc60a8ed37f27fd9af02990d48",
+          "after_sha256": "f115f0089e836dfba20edf078dbfbb146e6136f64a3e03a911a8e368aa16e7d4",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "bd07748080e869dc483338c64ef47ce3c33593ac9d5c7910a052b5672920fcf8",
+          "after_sha256": "c16bbab367e1786209dbcfbbcaa4da02bd57717c5546ee1542d1f64adb8f9f1a",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "ee4982b90c3811dfd8897423f89da4289948db241a5abc596198e39c84ef6b3e",
+          "after_sha256": "cfaf82e542a455a9ef399aaa3b0f5b7e32109d41f2aa62a4a3863adf1736f6bd",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "11eb344e92a7ee94dd379708207c41e752e5065edbaa9382b35706dfcf351b82",
+          "after_sha256": "d462c94160145210eaf5efa01bca70043c4b4d8790865969cae514452992e2a0",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.bitmap-dc",
+          "before_sha256": "0d1aaa545109d5847b1a3c27982c28542d434ca77aa5cdb4bf0462fb8d619d2a",
+          "after_sha256": "635571d84bbfcb43fa5cf691ef5cff8a231efb40d7d358956f0a380280569a31",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dc-regions",
+          "before_sha256": "3604024ec23bbdd27ce68d8386f70398874a0ec087ab210b1eb67dffc534ed38",
+          "after_sha256": "b2853286129b3101214ea083b72759b42b784cabc2eb4b8400feb81c917e1af9",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dib-indexed",
+          "before_sha256": "86d502f1603b271ea6b9f4c7cdf55126738935a27d6312db416709e372d8d59d",
+          "after_sha256": "2c0a0cfbf7ed6c99015bdb30616fcfd34bc7e6108e87e94021b62c8fe37563fd",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dib-rgb",
+          "before_sha256": "eee30d23033800aa93ff4ff37f7b670c2d544f4b7a981de3653835a7e0728db1",
+          "after_sha256": "c897829c08a6b913648ca8742b2e11676564c4d5643d31c8cb39eecd59588923",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surfaces",
+          "before_sha256": "187192fadc15f405dfbad38701b3d8d57e52a0a0315e35377f0a0dc8738f7325",
+          "after_sha256": "19588dd3597224b62730fd95574fab6b3315b8fd33e883db2db9e3ef8ebfef2f",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.restore-retry",
+          "before_sha256": "6727db48490d9e6eea1fc9fcd6ea8e4ac27c3355c63005451ba2f1f3c7c41dbc",
+          "after_sha256": "2191d9591332d1bac5da2b60d7bb2fbf183a099b2bccabe8191f90a33ba779b4",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "9536c35d935f792ab53697cc318846219f804cbf9cec896555327d36477f7342",
+          "after_sha256": "bc41662b0bae256dfba1b345e05d0c8451844aac81c5fb7c3f51a09dd31b17dd",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "5ca20580338022621acc14cdbac98f3579852117fd4f6964733234bfb029d43c",
+          "after_sha256": "5d3b21cbb56f820f7f684154219fd267b3256df75620fc5600775b17e76df2e6",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed-overlap",
+          "before_sha256": "bef5bce993d6fb3cc13c2db1b6c7a6bc7adc04a0c80ada87d4342370e4569909",
+          "after_sha256": "3495739159fad7083f3ba80007aab5255410ad101572946760b56bff059268d5",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "237481a06f931d3a189b9f365f4045983f60aec52a49d60eb1f07a450bc4d053",
+          "after_sha256": "5aef6d55f2a992647ea5f5ce43d1a2f9ee8d0bea87645bcf0f4a1e27cdaa4f85",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.access",
+          "before_sha256": "87abbdeaa3c80b37260c27c63151e44bac6ac5675ab8da2e63467ec71c422aaf",
+          "after_sha256": "e0d8b30e5fb726c22ab30169f2b7aa29fec79a4a3e38008b19722cae736f20e8",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.borrowed-draw",
+          "before_sha256": "552f4fe38ef48e2780a1f46fa1801f1a0218e26bfc9d442f5364567384a876d1",
+          "after_sha256": "eb925b2f8d0158f1cb62f011883972e8ed11562d553f3540c1cf947e982f48e3",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-palette-clip",
+          "before_sha256": "29918ee9b85551e2ac7f6d2ca1001c979085dd2f740bb9180df5ce772189b565",
+          "after_sha256": "88c659ff7f8114a0586031d2f9060105daa1540bd9b1b3a26c73923a5b73f322",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-raster",
+          "before_sha256": "76d0a4b2d3c5741610d44b39aa96ac14fe5e87a0491250d60ec4e8dbe4bea128",
+          "after_sha256": "54f0e1ec682fc4e1f87cceb368c012e6f1111b3002968c4e4afb51e62b962fe8",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-reuse",
+          "before_sha256": "2a88b9cf6653ff0b08a9736634c2500da9c53cdf356c96ff77f3dfaee98dfc5a",
+          "after_sha256": "69498af502d94f2c11ba19de3e4a965833466b5457ed37e7373a4f1e9abaaeb3",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dib-raster",
+          "before_sha256": "81c5279b5dad02bdbb4560311abf9bd679f4fab1c08e91049b31fb6d47c71200",
+          "after_sha256": "a173f0ff1d8fe5bc7c734dffd41311fcccc92ba969ba6289dc09b7be30b01738",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.formats-pitch",
+          "before_sha256": null,
+          "after_sha256": "c8fb92b804438e7d10ae76eda082d55b27a4ef423bc4fcfeb781d927a54c437c",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.indexed-restore",
+          "before_sha256": "a55421ee407c4d0337834136db1f87d46b94980e2dbfd8912e643469f7e75ce3",
+          "after_sha256": "92a52441d5e739675b0b5c2055176bb0901ed98e03ec69059ba7dd3aecef174a",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.loss-restore",
+          "before_sha256": "af9dc64c50b69800042a4d9a87d763bdb2caad29f3c45798d5eb9b725f7f5638",
+          "after_sha256": "d210a23b6275ffb25bd04ea40f2d83208815b9c416d475516585679d3c6408f5",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.ownership-flip",
+          "before_sha256": "2cc6ea31dc0cd4384288002e61bba93547c65f9a44f4c1082c06b61c2d128222",
+          "after_sha256": "9720ca25210ec8661d042d6cdc6f9960e3f9cb64472d38ff7b4870fe10b42bdd",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "d3f397a6f26bd41353dd4bce4393c68eb791aa7a1ceab1991137ffaaeb1965d2",
+          "after_sha256": "981d97abc9229798607a8d404fda48a655beff9cc955730236d6f2aab31d4525",
+          "receipts": [
+            "surface-formats-pitch-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-reload.cursor-sentinel",
+          "before_sha256": "9352e85d4c6ff5a08c1857309d973e8daaf5c3de7b02c086674de6a9c790b39a",
+          "after_sha256": "f7d12b581fbbc9bccdf4dfe9e80cf512e3d60fe52abe7a3a2b4e18c94276a9ef",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.copies",
+          "before_sha256": "f5b1cb8b5f9ac10d0c22f31f9c0bec68b838edf85e97847c41d1ab95fba956ef",
+          "after_sha256": "f5b1cb8b5f9ac10d0c22f31f9c0bec68b838edf85e97847c41d1ab95fba956ef",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.effects",
+          "before_sha256": "dbf4192987c15b91302ba559aee5f76d46e02eb7fdde4ae86d2fb5134168bca4",
+          "after_sha256": "dbf4192987c15b91302ba559aee5f76d46e02eb7fdde4ae86d2fb5134168bca4",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.fills",
+          "before_sha256": "12270b7785854c00fbb9b23ad9389f996e129b7ad21fd37dd84879bba2c1d8b6",
+          "after_sha256": "12270b7785854c00fbb9b23ad9389f996e129b7ad21fd37dd84879bba2c1d8b6",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.gdi-text",
+          "before_sha256": "0c257000ef73522ad6f333d4133eae5c89af952c2ecc65ce1bf3c33be4e068f2",
+          "after_sha256": "0c257000ef73522ad6f333d4133eae5c89af952c2ecc65ce1bf3c33be4e068f2",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.locked-writes",
+          "before_sha256": "8d34d0cfc24ada6cee2ae06126d279461236dbad0f4c8bdae513a74da87b60b2",
+          "after_sha256": "8d34d0cfc24ada6cee2ae06126d279461236dbad0f4c8bdae513a74da87b60b2",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.movies",
+          "before_sha256": "4eaf2248c06f1efea86f22fedbdc76d3fc9913a2251edc4ec64993e0a4017ea1",
+          "after_sha256": "4eaf2248c06f1efea86f22fedbdc76d3fc9913a2251edc4ec64993e0a4017ea1",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.sprites",
+          "before_sha256": "7c440274a90b26978c0c5fbb0850c612dfaa5bc9fe474cf7034e5c1a6b35b279",
+          "after_sha256": "7c440274a90b26978c0c5fbb0850c612dfaa5bc9fe474cf7034e5c1a6b35b279",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.terrain",
+          "before_sha256": "5bc86a80ee458d3462e6cf53b094435c2a571d8dac8a83ce3c890972d4bacc1c",
+          "after_sha256": "5bc86a80ee458d3462e6cf53b094435c2a571d8dac8a83ce3c890972d4bacc1c",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.ui",
+          "before_sha256": "d1a1e195ba0684f4c9f32610d4040afc737f1690a9bd86b59a4e9854ae22ba76",
+          "after_sha256": "d1a1e195ba0684f4c9f32610d4040afc737f1690a9bd86b59a4e9854ae22ba76",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "a8e56e241e48776f08aa1b90adc080413eb1638942866b150bcadbbb00b15a04",
+          "after_sha256": "a8e56e241e48776f08aa1b90adc080413eb1638942866b150bcadbbb00b15a04",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "TOOL.coverage-gate",
+          "before_sha256": "56166a9170fb7e43b71f5eee22783b0b20ebcb703e626f3ac69735df66b2be14",
+          "after_sha256": "fe2be40cf0ec9cf1d351905c851af53dc1b8fa8702a0dcf84a7ab70f623d6f5c",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "TOOL.traceability",
+          "before_sha256": "0fbf47f08aa315b5bc2e915d5b1a011c84e0bf6cb4c747b3b515d271b353d949",
+          "after_sha256": "c62d17ab26d731b5caf7fdcbde62357d821e638c96ce8ea4b0e7a636646342fc",
+          "receipts": [
+            "surface-formats-shared-pending-20261006"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved": []
+}

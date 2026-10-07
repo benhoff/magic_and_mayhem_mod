@@ -48,13 +48,18 @@ drawing stays active.
 ## Launch
 
 ```sh
-MNM_RENDER_CONTINUOUS=1 ./tools/run-qt-shell.sh --native-commands
+./tools/run-qt-shell.sh --native-commands
 # Optional bounded command prefix:
 MNM_RENDER_CONTINUOUS=1 MNM_RENDER_SESSION_ARCHIVE=1 \
   ./tools/run-qt-shell.sh --native-commands
 ```
 
-The Qt launcher selects v2 for this opt-in. Staging rejects a continuous request
+The Qt launcher defaults `--native-commands` to continuous v2 and passes
+`MNM_RENDER_CONTINUOUS=1` to its child alongside matching command/control channels.
+`MNM_RENDER_CONTINUOUS=0` explicitly retains the bounded diagnostic preview.
+Direct experiment/producer defaults remain bounded. See the
+[startup default correction](native-command-launch.md) for the observed black
+sample and actual-shell regression. Staging rejects a continuous request
 without a fresh v2 channel before reading/staging game media, and records the
 continuous/archive configuration. Opening the shell does not launch the game.
 Full original startup/menu/gameplay validation remains pending.

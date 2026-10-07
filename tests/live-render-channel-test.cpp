@@ -69,6 +69,19 @@ unsigned sustained(GlViewport& viewport){
 }
 unsigned synthetic(GlViewport& viewport){
     unsigned count=0;const auto bytes=fixture();
+    // Preserve producer refusal reasons without misclassifying a malformed ring.
+    for(unsigned reason:{MNM_RENDER_COMMANDS_V2_REASON_GAP,MNM_RENDER_COMMANDS_V2_REASON_OVERFLOW,MNM_RENDER_COMMANDS_V2_REASON_CANCELLED,MNM_RENDER_COMMANDS_V2_REASON_INTERRUPTED,MNM_RENDER_COMMANDS_V2_REASON_INVALID,99u}){
+        QTemporaryDir dir;LiveCommandRenderer live(viewport);auto path=dir.filePath("producer-refusal");
+        check(live.create(path,456,2),"refusal create");Writer mapped(path);mnm_ring_writer writer{};
+        check(mnm_ring_writer_bind(&writer,mapped.map,MNM_RENDER_COMMANDS_V2_SIZE),"refusal claim");
+        mnm_ring_fail(&writer,reason);check(!live.poll(),"producer failure accepted");
+        check(live.error().contains("Native command producer refused session 456") && live.error().contains(QString("reason %1").arg(reason)),"producer failure lost identity/reason");
+        if(reason==MNM_RENDER_COMMANDS_V2_REASON_GAP)check(live.error().contains("GAP"),"GAP diagnostic missing");
+        if(reason==99)check(live.error().contains("UNKNOWN"),"unknown reason misclassified");
+        check(mnm_ring_load(writer.map+8)==1 && viewport.frameSize().isEmpty(),"refusal did not cancel/clear");
+    }
+    {QTemporaryDir dir;LiveCommandRenderer live(viewport);auto path=dir.filePath("invalid-refusal");check(live.create(path,456,2),"invalid refusal create");Writer mapped(path);mapped.set(16,999);mapped.set(24,3);mapped.set(28,MNM_RENDER_COMMANDS_V2_REASON_GAP);
+        check(!live.poll() && !live.error().contains("GAP"),"invalid identity trusted producer reason");}
     // A complete checkpoint record exceeds one ring fragment. One GUI poll
     // must honor the requested byte budget while preserving the fragment cap.
     for(unsigned budget:{65536u,1048576u}){

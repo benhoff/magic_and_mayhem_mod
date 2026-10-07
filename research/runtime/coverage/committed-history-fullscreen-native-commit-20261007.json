@@ -1,0 +1,518 @@
+{
+  "schema": 1,
+  "scope": "Committed exact file/behavior accounting only; no retrospective gate pass or new execution validation.",
+  "range": "b48b2a9689d63dac6ef8dccfaf7e9df6109fdd2d..fc656368aa3c21a149c0284daacf1812dfe2b09d",
+  "commits": [
+    {
+      "commit": "fc656368aa3c21a149c0284daacf1812dfe2b09d",
+      "parent": "b48b2a9689d63dac6ef8dccfaf7e9df6109fdd2d",
+      "files": [
+        {
+          "path": "apps/qt-shell/live_command_renderer.cpp",
+          "before_sha256": "d5288ce683e65418a5e791781df33c5efbcb1f85558eda2feced7e2142e21dcc",
+          "after_sha256": "246442c7f28b3caf12c00c04c61d1f0a43a1e7af8a23b9d92c4452ce1eb5bc21",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "a41879fc9cf6aba9b78dc96d2dfc68fb3ffe9bf5ea58521277f8a319f5bb5793",
+          "after_sha256": "65695fb534f19dd9ed216ac0a29a4ef973ddd6964b60ca8376d0b8fb42da7004",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-sustained-publication-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "97f0361ce33b3f96adca910649c4bf40bd9718608dd69be409be8ff75ca00671",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "3edf30be5314089045b615a5cf964f155da61d4db5d3163b86bbbbe176da7acc",
+          "after_sha256": "03d837dd8330d1ed5526b1d4a94fb2756de3a760035a8764e764ef9e8c4d1aab",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-sustained-publication-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "af99dade6016b862b8b6f743472d427da870089f631c731666231ea34863e1f4",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-sustained-publication-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "e9541a1a90b0e5113bb2e892129d7ddb6155a62a42f2af334624e91877c36120",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-baseline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "b6bd6afdeafedf4a94e7afc5a0ab630cbddbceae223c9938a4a9fa27bb0e4829",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-consumer-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "5e9be1cef1e672ceb0fd77b5c87cf07166c796c16a71a4b3f6e6ebd1d262cc34",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-continuous-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "62b6d69bc46e9a70e113a474f30cf765922a49b3a04cdd66a6650e5537e7044e",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-cost-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "810feae8a2100de4c280318f17cdee0e01e75b7ef6dfadd426a944a4314bfd27",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-game-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "a92129532153db363b49a28bb5a3c98dce0de2bc5ea7507c328deb374ce3b81e",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7f38c4df52241f3e297795e1aef6a427badc46d2e5c783412fd168d2de89c24c",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-pressure-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7b1eeccbd0f2ce6f4621571fe7ac15e67ebc3cc2ebb3fb4a881219b59969b8ac",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-split-delay-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "b22ca1e776775785ca60d94bd4b0c82f1eae9755f3bae91749482ee8108960a7",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-unlocks-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "f93f658e97e3ae9eb1d6576e1078c4b4f5bd58e50c520753116e8dcd5d7c04a4",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication.md",
+          "before_sha256": null,
+          "after_sha256": "6e1c3cb058fb1c4290432ede5f385531615176c10f8e6cc7d5c98c87255b98e1",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/continuous_selftest.h",
+          "before_sha256": "d19b4b07522d2f4c3a528e8447fda37e6b3e5239bfa4e4041fef85965f5b9021",
+          "after_sha256": "5cff6f7811f19a5303fb10c0a4bcb87147c3514de1951194d4fc3785ebeb6e44",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/dirty_region.h",
+          "before_sha256": "e5743b9c82b63debe1b0431269d576672fcfee83ca42817e21d5558ec1ba936b",
+          "after_sha256": "b83297212f9991546eacdee84dee2a97cffe32105af08c6061db05829bcb0040",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/owned_session.h",
+          "before_sha256": "de7136a6148e0c0d226db41f48145b5bcd86901546aca91d9c452b3957003892",
+          "after_sha256": "e9fcadd83938455a551fb48ab82ce3ee5dcc2b0414c4d967390e037f997032cc",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/partial_lock_selftest.h",
+          "before_sha256": "6b9df18d4b435e6adcce961abcb060b344a1a3bbc5f19b0266786775f08c3c7f",
+          "after_sha256": "0fba2e0a483a03f62c07f4dc4ad7933e3a020b3706a78982940382dd1eaf7e6e",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/live-render-channel-test.cpp",
+          "before_sha256": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+          "after_sha256": "566e9518243d2bc0ff2dab92b7642b78a4e2168a028b05565edcae4bafb3fc0c",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/live-render-route-probe.cpp",
+          "before_sha256": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+          "after_sha256": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-dirty-region-test.c",
+          "before_sha256": "e5cbed4ff2e63e40a4112ad2ce84e25cb9e60a2057d35106face9f4c17b3f31c",
+          "after_sha256": "a7df330faa866cd3170f43117f3ca7a4f6d47c3ab9f8131e8cd882d449f907fc",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/analyze-render-update-cost.py",
+          "before_sha256": null,
+          "after_sha256": "c80f3de4ba82b6db8f56b6846412a6fce661493a0fe1d93f24db737deed1b983",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-routes.py",
+          "before_sha256": "805479c8de8a4bc5c884a5a9b60e5a7464232b1ed0bc2c1e7d8e9fb269b936a9",
+          "after_sha256": "e877bfeb0ed2ae2d7f85ec9e7f2613f1bf939f2920e8b36169b11d880fb3a6e5",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-backpressure.py",
+          "before_sha256": "fd73e78a39d2d386d8833aefd2186715b43d2f52924076092e683978581c1023",
+          "after_sha256": "fd73e78a39d2d386d8833aefd2186715b43d2f52924076092e683978581c1023",
+          "receipts": [
+            "NR.command-orchestration-exact-review-20261006",
+            "NR.command-recovery-exact-review-20261006",
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-continuous-producer.py",
+          "before_sha256": "ee50a622301a12ebf3d99814735494783a57daa92583f939ab34490a60d8d011",
+          "after_sha256": "751e916ae59ef33b34c3f50a7e388f56dab80e80cf95226eeca0d0e0072585f2",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-dirty-region.py",
+          "before_sha256": "0b60e3c7830fa4f77074ab9c204a6141187666c4a92e66ef50bec2f7d230f7a1",
+          "after_sha256": "c6e6032699575772341f42b8c54f70dba9b9743cd7d530288e17e85a7434ba36",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-session-unlocks.py",
+          "before_sha256": "893f6d6a06ed2bdeb7f24df7add3fa55018c49cd80c391533ee95a0d86e23f73",
+          "after_sha256": "e828a487024955b65778ee93ed95e650cbb6e9e1386e35675194878705fe4fd8",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.application-shutdown",
+          "before_sha256": "7c4693c66146f7a52359840ae867f8ccfa4ed4df9fceb6934223c293a2fdaf55",
+          "after_sha256": "aabfcfc58d4231db97abc8a853677ecc79a1786db42bd726fa04bf0ae41cc0a1",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.bounded-copy-order",
+          "before_sha256": "286b14274b3c5dffde4304a1bd54a5ca35be86e49198e9e56d121782a9dedbc6",
+          "after_sha256": "2b6309db0ddf6b8c248ebcdf2d2a8cfd46566930b308077f7fa24c4b092ebe61",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-backpressure",
+          "before_sha256": "0c056be9e07b8a502ca04f1f23f2c93b04618ff1c1156555dd07c2e3c2fb061d",
+          "after_sha256": "5f6693507b10d9a939b0b11c861f5c0fa6a6c1bd0c8bc9d1d9c33950666a0f08",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "2de6c7c49552549ce9d189c2ccd5914acfea9ecd066b4671a28ebe93bf6f6c60",
+          "after_sha256": "2cfd926385b13cf2f8a4ca69a398f0a433767aa7b6d6dbd086201d5c099c3a06",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "aeda0bd7b291ef3e284e42394de673f9044094bdd37f7d902de7711f444eb665",
+          "after_sha256": "5868d6cfd08969f020aa0ae2ad517b0a423793c12381e96329a483fac4c16a95",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "c98829ad6c07ccd9b43183ea3ea1dd4d2317b1f6901857d035086e9a8ed5b92b",
+          "after_sha256": "cfc09fc00b22a152e80cff6b37bdd816b6acf4c5cc13f1dd3d741827a1784586",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring-adapter",
+          "before_sha256": "3f645d839b606179fddb696480052a567163e3699fa3332a65e079d95d3087a4",
+          "after_sha256": "ad75764f76b75282663d7215c6677819491f51fb5c26df6818fc7728a1ae2dcf",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-streaming",
+          "before_sha256": "45f81e2bb8fe3ef160e0061ee1ef69a7798b3d990ca73e253f8493cd4e116194",
+          "after_sha256": "545f15870d6f9effceb2a5836df3d9a18ea89d87fb1b725514b3731e6a26785c",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "73c9123e114bfe46e283a1f6ccbbe3531922121d630af398a69a5069aa808f73",
+          "after_sha256": "64220452875ac6f2d3e54cfd4b18f8f3f55411bf556a5e9bbbcc0bb88be3ca5e",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "68ce849bc1719fe7a7ccdc260e51cd72d2d83979241cfb02346791cc10ccfb63",
+          "after_sha256": "450df5d55bb7f0d06a7e37438c2c08e6db9708d021abc85528984a050f4eb69b",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "ed6e73806921951cee1c3d2a13ba7c197b4672c0486502b51edf293682d6a12a",
+          "after_sha256": "1e328e82ee890e6c007d674b3c40e225747bb7d98b314d9bbc58534375392d54",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-working-set",
+          "before_sha256": "efd1f1998d075cb7ba9b21620a49f8845642c2f9aa54b2d8c387675d68b71051",
+          "after_sha256": "8356ad20200a9a9ce4993e23c5232d6e75006c2dde83dea920d6628d69ecde26",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-update-partition",
+          "before_sha256": null,
+          "after_sha256": "25687a7aa74618638510256b996c0857d5c36c2b6690bf43986e526cd8f14b00",
+          "receipts": [
+            "sustained-publication-recorded-20261006"
+          ]
+        },
+        {
+          "id": "NR.cpu-handoff-order",
+          "before_sha256": "6c2c8036a9cfdc3ffe85c1da14d4b84762ff7363b9f062e392d7b9a3100d8c93",
+          "after_sha256": "1da0be61b12a3e43cb3cd1072cb311f15bf17ae352808825a77d2e714fa987b9",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.dc-flip-order",
+          "before_sha256": "160fac792827f1f3ce7e7df5002c7c80d2851a3f9cd59d9e7eb90677270bbd76",
+          "after_sha256": "faee05ece4ffd43794df5450c3859e6511ce210eb62af9a1b8e019e1863a26a1",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "873fcc199a4179a3ebe15a61cb069e98f36692d7606907f6629dc439ecd66e80",
+          "after_sha256": "c6dc45e9af6f67cb070fb23515ca1195fad00ea933e3d0b36e0ee48e3f62698d",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.lifetime-order",
+          "before_sha256": "0aaf1efc59176ea2fd45753141686af38f9512517c8300abf9646d96cb03a30b",
+          "after_sha256": "f4cee338c0c432c4df4ae28fbc1f365f4f7f36b623604cd7edb1712dce6feff7",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "52d3aead1f196dc57ab4623c8931ce172a70d9a2407245051d9ff472a5a98d22",
+          "after_sha256": "0d43e393f00fcffdf92bd1c0fb34d9caa3afbf314c25688815a8744eebe07c94",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.observed-metadata-idempotence",
+          "before_sha256": "36484d9f0714e641acafae8b3848b5589198cfbffb323cc4c99caf3630ac89f0",
+          "after_sha256": "fcc65aecc53b707324b1c27aceda534cd7e54ec12270bad4a71c3cc6896bd654",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-dc",
+          "before_sha256": "811211cbcb1d8545493a14ee2649ccfe097151fb0bc73d6b8287a5984bfb644e",
+          "after_sha256": "a9679ef3fc2514d57569d155283d769fd550946f039bb3217cec269953ee2a00",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-fill",
+          "before_sha256": "c6f6997c01d2ddbcc2a1c9d16563a6ad282c2b77b8a65596686632b3000b58eb",
+          "after_sha256": "698d3fc55b5bfa5dfcb55329d711e9b18d76882357b595279d9a3ad5bb2bc7c6",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": "02470d9d95d3bcf3ebe77182ad56b19cc4e8d3d437e43911e401a60506b5d966",
+          "after_sha256": "2f3ac894d456540de3e92d97c03501ec14957d7dc051e596fb0342241f207af4",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-startup",
+          "before_sha256": "b406fcfe6f7c04e871d92948a518a774c9dd3149ea580f2c5d2fe187198af122",
+          "after_sha256": "c2392939a9fc718460db92fef59730591b6bb0c75d85925bdd0e8ccdd3e0b026",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-unlock-packed",
+          "before_sha256": "cc34c107bdb2fd9fbbf57d15f7b47af14006e1c35a35503611418adbbb84a1ab",
+          "after_sha256": "e4676ca89957d2c392d901e565359e3c532bccc9aba412591bd6521343170bd8",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-property-order",
+          "before_sha256": "8d052daf49abd874117868f14b2f2a471bf235b3a0a4807b1c3539c9afe64db4",
+          "after_sha256": "794bceb47a98274856df011218b23d5072cc7fc5404ecb764a36afb3f4c3466a",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "3e5a15e5ce7b0902208198f3de2fa0f1a3996bd92e1adb96d7da9f6251ae5aae",
+          "after_sha256": "ffa52a4a3b069607da00b277c851e54779fd838b091210040cfe7fd2bea2ad67",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "6f9700602e7b77ea3d209a4d0e8015610b899f435b158bdb51aeca00347c34df",
+          "after_sha256": "ee96b9ec95d0be941b5da00bad27c76525baa22ab32b326a6b7f34a6383ecd29",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.movies",
+          "before_sha256": "e61b90795b849de88d34d95dc5d7f363893b3433233dc7bac01f693122717cee",
+          "after_sha256": "4eaf2248c06f1efea86f22fedbdc76d3fc9913a2251edc4ec64993e0a4017ea1",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RI.ui",
+          "before_sha256": "d5fff450ebce9fd99acb97d23ae2d2abb09ef98ec46ae1a4e294a5b79c147351",
+          "after_sha256": "d1a1e195ba0684f4c9f32610d4040afc737f1690a9bd86b59a4e9854ae22ba76",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "22a213e83ef8dc21d4ef35d678b4f6811cf647df32df5f9fbeb01ff75643277c",
+          "after_sha256": "a8e56e241e48776f08aa1b90adc080413eb1638942866b150bcadbbb00b15a04",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved": []
+}

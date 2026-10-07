@@ -1,5 +1,31 @@
 # Magic & Mayhem Qt shell
 
+## Fullscreen and display scaling
+
+```bash
+./tools/run-qt-shell.sh --fullscreen --scaling smooth
+```
+
+Click **Launch game**, or use the same options with `--native-commands` for the
+existing experimental command renderer. The **Fullscreen** toolbar button or **F11** enters/exits fullscreen and
+restores the previous window size, maximized state and launch log visibility.
+Fullscreen hides the shell toolbar, log and status bar while the viewport is
+active; launch/recovery controls remain available while waiting for a frame.
+Escape keeps its game
+meaning. Exit fullscreen to change scaling in the toolbar.
+
+Choose `--scaling sharp` (default) for nearest-pixel aspect fit, `smooth` for
+bilinear aspect fit, or `integer` for whole physical-pixel enlargement with
+letterboxing. Integer mode falls back to aspect fit when the window is smaller
+than the source frame. Resizing and high-DPI displays change only the output
+size; input maps back into the original logical canvas. The engine's resolution,
+simulation, field of view and assets are unchanged. Upscaling does not add
+source detail, and larger output can increase GPU presentation cost.
+
+These controls apply to the OpenGL shell, `--commands` replay and `--surface-demo`.
+Wine-window embedding (`--renderer native` / `--live-menus`) retains its existing
+fixed viewport. See [presentation policy and validation](../../research/runtime/viewport-presentation.md).
+
 ## Live Main / Quick Battle menus
 
 ```bash
@@ -587,21 +613,37 @@ readbacks; add `--command-checks` for explicit comparison. The complete bounded
 file is still validated before playback. This is an offline service, separate
 from a live engine channel. [Lifecycle and validation](../../research/runtime/opengl-incremental-commands.md).
 
-`--native-commands` opts into bounded live command/GPU presentation from the
+`--native-commands` opts into continuous live command/GPU presentation from the
 owned PE32 hooks and implies `--capture-locks`. It uses a fresh mapped command
 channel per launch, processes at most 32 commands per poll and refuses incomplete
 sessions. The original Wine window remains available after native refusal.
 See [scope and validation](../../research/runtime/opengl-live-command-transport.md).
 
 
-`MNM_RENDER_CONTINUOUS=1 ./tools/run-qt-shell.sh --native-commands` selects a v2
-channel and the continuous owned producer. Its command archive defaults off;
+`./tools/run-qt-shell.sh --native-commands` selects a v2
+channel and the continuous owned producer by default. Its command archive defaults off;
 `MNM_RENDER_SESSION_ARCHIVE=1` retains a bounded diagnostic prefix independently
-of live progress. Default launches retain their bounded sample policy. This
+of live progress. `MNM_RENDER_CONTINUOUS=0` explicitly selects the bounded
+diagnostic preview, which can stop on a black startup frame. Direct experiment
+launches retain their bounded sample policy unless opted into continuous mode. This
 mode retains original drawing and refuses unsupported ownership/operations;
 resource release and guarded orderly exit are implemented. See the
 [producer contract](../../research/runtime/opengl-continuous-producer.md) and
 [startup/exit orchestration](../../research/runtime/opengl-command-orchestration.md).
+
+For an isolated native-command launch with the existing opt-in drawing-order
+policy, software rendering and movie playback disabled:
+
+```sh
+MNM_RENDER_ORDERED_COPIES=1 ./tools/run-qt-shell.sh \
+  --native-commands --software-rendering --skip-movies --scaling smooth
+```
+
+Drawing ordering coordinates concurrent copies and surface handoffs. It changes
+drawing-call scheduling and remains opt-in; simulation rules and logical game
+resolution are unchanged. A GAP refusal means the producer lost complete surface
+history. Software rendering alone does not repair that history. See
+[failure diagnosis and validation boundaries](../../research/runtime/native-command-refusal.md).
 
 Qt continuous mode now negotiates recovery through a fresh versioned control
 channel. It cancels the failed consumer, clears presentation, creates a fresh

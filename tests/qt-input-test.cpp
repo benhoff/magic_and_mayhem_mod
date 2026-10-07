@@ -63,6 +63,16 @@ int main(int argc,char** argv){
         mouse(QEvent::MouseButtonPress,{50,300},Qt::LeftButton,Qt::LeftButton);require(events().empty(),"Bar click was forwarded");
         mouse(QEvent::MouseMove,{500,300},Qt::NoButton,{});
         auto received=events();require(received.size()==1 && received[0].event==target && received[0].event_x==400 && received[0].event_y==300,"Mouse center forwarding");
+        viewport.resize(1001,701);
+        for(auto mode:{GlViewport::Scaling::Sharp,GlViewport::Scaling::Smooth,GlViewport::Scaling::Integer}){
+            viewport.setScaling(mode);const auto rect=viewport.imageRect();
+            // Probe the center of a logical pixel, avoiding an exact texel boundary.
+            mouse(QEvent::MouseMove,{rect.x()+400.5*rect.width()/800,rect.y()+300.5*rect.height()/600},Qt::NoButton,{});received=events();
+            require(received.size()==1 && received[0].event_x==400 && received[0].event_y==300,"Scaled logical input forwarding");
+            mouse(QEvent::MouseButtonPress,{rect.x()-1,rect.center().y()},Qt::LeftButton,Qt::LeftButton);
+            require(events().empty(),"Scaled letterbox forwarded a click");
+        }
+        viewport.setScaling(GlViewport::Scaling::Sharp);viewport.resize(1000,600);
         mouse(QEvent::MouseButtonPress,{500,300},Qt::LeftButton,Qt::LeftButton,Qt::ControlModifier);
         mouse(QEvent::MouseMove,{999,700},Qt::NoButton,Qt::LeftButton);
         mouse(QEvent::MouseButtonRelease,{999,700},Qt::LeftButton,{});

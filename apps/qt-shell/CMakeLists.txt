@@ -233,6 +233,14 @@ if(BUILD_TESTING)
     set_tests_properties(qt-shell-startup PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen" TIMEOUT 10)
     find_program(XVFB_RUN xvfb-run)
     if(XVFB_RUN)
+        add_executable(viewport-presentation-test ../../tests/viewport-presentation-test.cpp gl_viewport.cpp viewport_presentation.cpp)
+        target_include_directories(viewport-presentation-test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+        target_link_libraries(viewport-presentation-test PRIVATE Qt6::Widgets Qt6::OpenGLWidgets mnm-renderer)
+        target_compile_options(viewport-presentation-test PRIVATE -Wall -Wextra -Werror -pedantic)
+        add_test(NAME qt-viewport-presentation COMMAND "${XVFB_RUN}" -a -s "-screen 0 1920x1440x24" $<TARGET_FILE:viewport-presentation-test>)
+        add_test(NAME qt-viewport-presentation-hidpi COMMAND "${XVFB_RUN}" -a -s "-screen 0 1920x1440x24" $<TARGET_FILE:viewport-presentation-test>)
+        set_tests_properties(qt-viewport-presentation PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=xcb;LIBGL_ALWAYS_SOFTWARE=1;QT_SCALE_FACTOR=1" TIMEOUT 30)
+        set_tests_properties(qt-viewport-presentation-hidpi PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=xcb;LIBGL_ALWAYS_SOFTWARE=1;QT_SCALE_FACTOR=1.5" TIMEOUT 30)
         add_executable(gpu-presentation-test ../../tests/gpu-presentation-test.cpp gl_viewport.cpp)
         target_include_directories(gpu-presentation-test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
         target_link_libraries(gpu-presentation-test PRIVATE Qt6::Widgets Qt6::OpenGLWidgets mnm-renderer)
@@ -330,7 +338,7 @@ if(BUILD_TESTING)
 endif()
 
 # Incremental command replay service; independent of game/menu lifecycle.
-target_sources(mnm-qt-shell PRIVATE command_replay.cpp)
+target_sources(mnm-qt-shell PRIVATE command_replay.cpp viewport_presentation.cpp)
 
 # Bounded mapped command transport and presentation adapter.
 target_sources(mnm-qt-shell PRIVATE command_channel.cpp live_command_renderer.cpp render_control.cpp live_command_session.cpp)

@@ -1,0 +1,584 @@
+{
+  "schema": 1,
+  "scope": "Exact committed parent/current file and behavior receipts; separate from uncommitted linker/presentation edits. No historical gate or new execution claim.",
+  "base": "c0753c3",
+  "head": "ef5b5a4925f04c3a4ea944b13542e2e6457ffc7b",
+  "commits": [
+    {
+      "commit": "ef5b5a4925f04c3a4ea944b13542e2e6457ffc7b",
+      "parent": "c0753c3d687cac23e6109fd6c09c58474947d1cc",
+      "files": [
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "73916c1eefffaa68652dff21553bf7b7b568cc56f68698c8e21f1f3c64b1eed0",
+          "after_sha256": "5d0ebc8dd15963e17af25d564fa87ecf8bfa438331af76e246ffc93bbba342a3",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/blit.cpp",
+          "before_sha256": "1c0aa177d59eea6116b8f0e733ee0b7d8b36e16b26a739868f229c548318edc8",
+          "after_sha256": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "before_sha256": "d4d7229c0a7ee70a0fd2c6f0c63fb86835b77f6e7282e196cdcb17cb173aa0c3",
+          "after_sha256": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_backend.cpp",
+          "before_sha256": "13e1828cd0e521aaa84fd88ba941127dc5417760d3fbb2f7c6a9fab6c52013d9",
+          "after_sha256": "7b9172485a2d9309086bc857d078a4795ac8528259a1b2f262cd3a99f2bf2189",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "e11520875d5b950c58311780931eec9c2c8cafd93c17d5acc9eed8d00ed05146",
+          "after_sha256": "2d12c905fe16b1a90be62c317b05252ae44440db3c39f5e494813ca357de959c",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "7b7e0839567f9b8fcf7f7287dae06af70d62ea9f26a6216930f64065e0dbafb7",
+          "after_sha256": "1807f6642e7d57f00aa6c98a1db5e17a57f7b6a0c50e99548a32df8b942efd20",
+          "receipts": [
+            "Append-only journal verified"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-backend-combined-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "a4dd4b48a122c2b13871f22729d5fce9b1e15adcc67347782c202707ec559700",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "4f6a68b8e2e996390470428f2c45600da8c4865797a6800296aebf70c0c2ed0f",
+          "after_sha256": "9a1d7416d601a958338142cc02646c15e8f7fe0a30db31b82ab26fff71d48a88",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-backend-combined-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "35a29dfb0bae5fd08269f9ea9c6edfaca3ea1c4f7e2d6c5daa9ccc4f7fa2b109",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-backend-combined-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "3a760298f930d8f2fb59dacdd67df80514ed9a74c24751a322e2c9bb38b3b988",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-backend-combined-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "6275c4a5faeb71c9c6470e1d136aab7f371c302f6f94efc7a330bef29e46912f",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-backend-final-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "4775eee9d279e98e7db0bdf6986453255299349ae7589fd62206040754d17c42",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-backend-regressions-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "40419cbd99d71a55c5b6eff1dc1e2f50ae019ced3b4f2c9fa0a155fce02b4f1e",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-backend.md",
+          "before_sha256": "f19fec1dc2ccdcf50d16128fa621b220d27b5429f4e161384798943b496b91a3",
+          "after_sha256": "0823dc609d8acc4ad74b571eb752a800973c078cae1e838d422b60da2a87cd1f",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "2decc6080d3cf704f90d3fc886644b930f94cec1cb7e5d3c3084aa0d6cfa8cfc",
+          "after_sha256": "c3f8f54f65853beaa9ceff2326a9f94f2781635638b2b62e7946fa964c09fe10",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-keyed-overlap-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "379a0b4d4df2016ccad6ffbdf72ab1f35503f5d6ee04839f558b6cb2858486bc",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/original-surface-keyed-overlap-offline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "97018a8ae083d32a905320debc4df57a811b0f13ae98e165ac68816bcc6651d9",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-borrowed-draw-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d5fd1fd18e344b917a5f10314b65ec073fbc833ea98ce1cf9e3cb9bed3609e66",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-borrowed-draw-offline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "6a4c2a2fce3da6be8709811f6779143fe1e4c259bdfb055be1ca7db72ac9cdfe",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-rgb565-keyed-overlap-corpus.json",
+          "before_sha256": null,
+          "after_sha256": "f531b4880cbd016a0baa4f89c7e5654107875a3d20be66ce2d66784150951990",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-rgb565-keyed-overlap.json.gz",
+          "before_sha256": null,
+          "after_sha256": "dc197aeb330d8a8b2e21147442b319956816f9b230effcafe671849dc7b0766f",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-borrowed-draw.json.gz",
+          "before_sha256": null,
+          "after_sha256": "94a85e506856609174a669d5983abd03f0bf22138ba6012cb6d764ec419e53c2",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-surface-backend-test.cpp",
+          "before_sha256": "944f36056cb2095c7e32b81ba111053a85978405fbe79b270732d5ad9d2c4b24",
+          "after_sha256": "e93476f1df2382088c58b893c934b3bdef942f48811cf8f6e99a4db6133d758c",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-borrowed-draw-reference.c",
+          "before_sha256": null,
+          "after_sha256": "dcf9b91c6cc885f1c9bac7adb7f1382b2159383549d82235f348ee221de5b963",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-keyed-overlap-reference.c",
+          "before_sha256": null,
+          "after_sha256": "7fbcce35ddda99c916994a39b07467468177317ee2ee812394510a00bebf9f22",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-original-surface-keyed-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "c6b163f6d544423fd27bd1be5db82345c4cf60c6243f9dca670a72df5d635c79",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-surface-borrowed-draw.py",
+          "before_sha256": null,
+          "after_sha256": "eb4a14389ecd95f399b13ff68533be67be5787d549734f5d1f12d24e8454bcde",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-original-surface-keyed-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "b4506ecb2fb53b6df7dc36123dd2d0cb8e7b7535b8f17e1c2e4c7e30e51d0748",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-surface-borrowed-draw.py",
+          "before_sha256": null,
+          "after_sha256": "592dbe6eb7db2a166cb45ffbe18ae4de7faca99d0c1ca1840e6c660b5b88b3f5",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-native-surface-backend.py",
+          "before_sha256": "dd53be7eb351074347b993aa8631719e48dd1306e66ceca3c6f3b3671806d770",
+          "after_sha256": "241e950f1c9cedc07974ae548844970f7598b196c8d1f7d9582362b54bf89f5e",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-original-surface-keyed-overlap.py",
+          "before_sha256": null,
+          "after_sha256": "b5701e792381582217472c6f16c63129b4047c278b0146def2fd5009ac1258d5",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-surface-borrowed-draw.py",
+          "before_sha256": null,
+          "after_sha256": "35c3ee4f5012bfc09340740bc6be34fa424201198dfa424a72a650d46441ad1b",
+          "receipts": [
+            "surface-backend-owned-combined-20261006",
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "4f36f8a6cdf86ffcae20134e418367022ff670f391b92f16070ef6eb6c1766dd",
+          "after_sha256": "3653074a5ebd5ff7f9d797af39fd7510523eea576f0362416806507114350d48",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "e5dedf7a95663af8a66594827dc7a1c6d2d1deefe83647fe05d93e1e956c55be",
+          "after_sha256": "764661f57869fb3260e6502fc19886a8a0e4cf67af9b603f5f8b886e3599a93a",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring",
+          "before_sha256": "b24c59d14baea79c9f0a1ca50cc1054ca29522546abe612bd95965b1333dfd34",
+          "after_sha256": "b91885d18e48cdae692be2d2ab60e5818622840299f24545ba2f5ac052e76a1a",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.gpu-presentation",
+          "before_sha256": "ed84cdde87e88fd888df1da2c30839fbf7b34f7a9d822c139e66bc00f80ced8b",
+          "after_sha256": "f855b610faf7c1dbf26bc78cbd24cd96388df348617df0861334e9d32fb0dfdf",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "ed0f9994dc83f3d947ecf47a4c7837b9998f9b05470710d7e7cc83645ffef2ea",
+          "after_sha256": "70d74b32e0eaecd3bc83e5f6c494147baef18c0c69343f79951a668e6ff256b0",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "593d4e723283f04a55a9397597388e4d7df065f0ea342aaa15225c1408a73edd",
+          "after_sha256": "b442805a7dd433e927c3d1d84c35813c5df792365d79c6b2ca7969867d81291a",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "47171c5ffa865827e292520837a3b89c0c3d6af186e29fca6537592ff88ee2cb",
+          "after_sha256": "31b6017cbd5a6344174b0167bbf9fac45ec945297bfe9bccad025630a441bc8e",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-access",
+          "before_sha256": "ce193697f52d8b1dc610de69fb74c6ee94071698f6a00e0b15854ab83514f569",
+          "after_sha256": "861cc1c17f586005c4079e8d56287b3a702bf2a0445fef4566010a9e3b772c10",
+          "receipts": [
+            "surface-backend-owned-combined-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-backend.owned",
+          "before_sha256": "96a1342e5e395fd30336f94ef161a9544222e5c1d950493c9f7076b1cb1ad72b",
+          "after_sha256": "e11b0cb53bae083087c24173d9b02d82a8929ace1ba703fef2ce92e36084c379",
+          "receipts": [
+            "surface-backend-owned-combined-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-colors.rgb565-dc",
+          "before_sha256": "ca6870dbcb082fb9a21524b3f949949bbb623233f6fe709aa7d547f3080cc6c8",
+          "after_sha256": "dabe9fba41180161ae0a7006aeba530c7b0e0e8f49a4a1f641765655ffa3d00f",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-contents.validity",
+          "before_sha256": "51d5da796a87c840ca82459fa3cf9bd2198c6b7bc7c571ffa47f3e22bd8808b5",
+          "after_sha256": "a824486089e4ce0a2103625b65fd2f50aac05e37911837f5cb094d858eaef24d",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "3fe042e87101d58cfca32abd3f85adfb6de5ba6b6f3b3aefa2c9dcb93f7fe0e3",
+          "after_sha256": "f8eeeb7878188ca3617b6a3a81a9211564eaf01f77d042d21d418fdf3c3249dd",
+          "receipts": [
+            "surface-backend-owned-combined-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "d44c79cf873bec62ef976f325e5bc21029c011fd61639e0cb523b797b17966a9",
+          "after_sha256": "2d22ff6ed91c84c2400dbcdccd016f50167655d160949a6b865543b975b46d86",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "208cf84f8ca9e3ad17321fa72ed79d3045080dca59357178956de3c0978bcdc3",
+          "after_sha256": "a411c05cfadc273f0f7ffe588450461d41d4528fbd53ce14a89304d4ca8fd40a",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "810c28769ea92543f695815f4167a726268573d6f188b126a6a7db277d81f080",
+          "after_sha256": "181ea1566f3b2495c29491b41421a1149cf344333dfcfe9d750f8aa4fa5d1c09",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.bitmap-dc",
+          "before_sha256": "f2a59976e4212be4282d091edbd14d6e983ba903ba369fa973bb493302c7c955",
+          "after_sha256": "869da0aebc29ba63849ece45f86a5293d17c27050e26cbf9970905ad4570e51a",
+          "receipts": [
+            "surface-backend-owned-combined-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dc-regions",
+          "before_sha256": "d0319b09cd8fd0499f4f037ebcdce673c75612fd8d2d939d43dffec9c56486bf",
+          "after_sha256": "4b399bba3db3c544a5dd5e8f29ac5829015902a84421784bab624ec38e3b60fe",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dib-indexed",
+          "before_sha256": "094d8741937c215ec8a8ac3d93423bcbc9ec68a86ed4aafbfec5693e9ef81bef",
+          "after_sha256": "2bd3c81e04c3d073fb179e4534e7be8b4f5e48e76d3d51f04fb67ccb656a75cd",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dib-rgb",
+          "before_sha256": "8d5a55a8530aca55a61f572a5621353a18bdc8cd4e2d087a8b4bb8a4f0efeb5f",
+          "after_sha256": "65ea8bc0594d431b5943cd24336ee568319c7f5da1f0bde3238caaa8e5ca83fa",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surfaces",
+          "before_sha256": "056fd927c77328554df607abf98eed35c0c34d470905e0336fab63aea7e22243",
+          "after_sha256": "187192fadc15f405dfbad38701b3d8d57e52a0a0315e35377f0a0dc8738f7325",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.restore-retry",
+          "before_sha256": "ed0dfed3953d49ecb0db406c369b4fa8a3aeec9893ba1f75321d0fa63f8900c9",
+          "after_sha256": "cacc60ecb14c7ffff3c91fbd4d9066b91ea729cdb3dc9d7e6e47ecf295657ed4",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "7e5f3c0e3ec1d1de69e7d95645d2972d798150e5666c0fbab7919ea620761ba8",
+          "after_sha256": "beefe4f93c53a08df475bb0530c875dd71b1230792bc2ad06ca532c4f46fa509",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "ad83703c65f888f0432a8e5af1812e192a9406ff39c7ba1fdc2a9134fa0b235c",
+          "after_sha256": "7a3a116634226f4dd3c589a52c3dafce4849e3dc71ea737e6857b0756562a3f1",
+          "receipts": [
+            "surface-backend-owned-combined-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed-overlap",
+          "before_sha256": null,
+          "after_sha256": "aca9684ce14028cabe66b3c19d45d46fe73e140d76a261d5192f8716bf1fef68",
+          "receipts": [
+            "surface-backend-owned-combined-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "5020891f4d507f24a97d12a61c430c709c03d1997ecf2d8179da09f0aa3f0f85",
+          "after_sha256": "d0237fe2a02046b629b71ae9d055691571a56b56b56ff1ac98897d4d0141d0e0",
+          "receipts": [
+            "surface-backend-owned-combined-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.access",
+          "before_sha256": "6700f42b59094dd307032bca9ae83a59dc86328d713af1d1294a51c9b82d8cdc",
+          "after_sha256": "0cf11c79a7a936067b01a349a3df3d3718613cfc974a8d566179271df48ae383",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.borrowed-draw",
+          "before_sha256": null,
+          "after_sha256": "d8d658d69df231f54b6702f32aeda5acca2bfe8f365555ecdda3cb40dc91be5a",
+          "receipts": [
+            "surface-backend-owned-combined-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-palette-clip",
+          "before_sha256": "10061a4cb0e83d89034a3a9fbee8cb4c7949a4be6dc42fd0684b2365856ddca6",
+          "after_sha256": "ee161e56593a2228ccd3eb80ced0fac51477476c54f943ab44bb22390694cfcd",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-raster",
+          "before_sha256": "f003a0a309235ff3957350adc914c16bcd02c25cd8ffe9777e17fdc4d054583c",
+          "after_sha256": "fa4c21b1449f5dde44eb17d740a48d3b12286e8fb2d26f9d26fabc82491c8e53",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-reuse",
+          "before_sha256": "3500d3dbe4b8aa4fc13aa77c1644c6786e84b4875209ad9940a79ec0c52d0119",
+          "after_sha256": "9bb30b49727f4d208702bea5e24cb9fd136271f3724189a90b4d608a8de8d4cd",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dib-raster",
+          "before_sha256": "8a42263a5785ecdc48881687b3375ecbc556ca65306a02dafcf5d99b2afd9523",
+          "after_sha256": "cd631d13f7be83fa7ad5492377d7150f975dc9a151e1818595b433d22e4dcfac",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.indexed-restore",
+          "before_sha256": "2d5137919913b2674e9d27e06fbb278d5d128db7758ccb471fd245592bbbb73a",
+          "after_sha256": "af733d8aeb3a768728a612669182675c23c7d8b872562561d0054f5efd657216",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.loss-restore",
+          "before_sha256": "554f12e806304bde193062bf5a274a52e814e4704e52e7e5faf09b1c99351c77",
+          "after_sha256": "c8316e68d5307c13e5e360c2b9b4f2c2b3d449a56b3bfdaca756d2461f1c5821",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "851374570340aae00c6d7b61629d994ed1692a7012a516d56c3fcdf79a43b7f9",
+          "after_sha256": "a796c4b34f9bbb28fee59156dae959a842d68b20719209f0f4f21e529f28612c",
+          "receipts": [
+            "surface-backend-owned-combined-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-reload.cursor-sentinel",
+          "before_sha256": "a7c830c7f2281612b453dfb459ee9cb0c587edaf6bce3628c5ecf4dd9d05def3",
+          "after_sha256": "73a3a596937e1fd6cde74476be96e193c652e7d15699962ecd30b196568e6bd1",
+          "receipts": [
+            "surface-backend-combined-shared-pending-20261006"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved": []
+}
