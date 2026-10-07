@@ -1,6 +1,6 @@
 #pragma once
 #include "simulation/movement.hpp"
-#include "sprite.hpp"
+#include "scene_renderer.hpp"
 #include "terrain_submission.hpp"
 #include "animation.hpp"
 #include "terrain_catalog.hpp"
@@ -18,6 +18,6 @@ std::optional<assets::AnimationRecord> displayed(const assets::Animation&,const 
 std::vector<Draw> compose(const game::MovementSession&,const assets::Animation&,
                          const assets::TerrainCatalog&,const std::vector<Tile>&,const Camera&,
                          std::size_t terrainFrames,std::size_t creatureFrames);
-Frame render(render::GlBlitter&,const assets::Sprite& terrain,const assets::Sprite& creature,
+Frame render(render::SceneRenderer&,const assets::ResourceId& terrain,const assets::ResourceId& creature,
              const std::vector<Draw>&);
 }

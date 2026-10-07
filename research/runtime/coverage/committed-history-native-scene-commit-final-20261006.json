@@ -1,0 +1,630 @@
+{
+  "schema": 1,
+  "base": "b48b2a9",
+  "head": "475019fe7a0060f384411173c9fb06624ad44c24",
+  "scope": "Intervening publication and format/pitch commits reviewed with exact per-commit parent/current hashes and receipts; no past gate pass or new execution asserted. Native candidate preserves these changes and freshly validates affected resource/scene/snapshot code.",
+  "commits": [
+    {
+      "commit": "fc656368aa3c21a149c0284daacf1812dfe2b09d",
+      "parent": "b48b2a9689d63dac6ef8dccfaf7e9df6109fdd2d",
+      "files": [
+        {
+          "path": "apps/qt-shell/live_command_renderer.cpp",
+          "before_sha256": "d5288ce683e65418a5e791781df33c5efbcb1f85558eda2feced7e2142e21dcc",
+          "after_sha256": "246442c7f28b3caf12c00c04c61d1f0a43a1e7af8a23b9d92c4452ce1eb5bc21",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "a41879fc9cf6aba9b78dc96d2dfc68fb3ffe9bf5ea58521277f8a319f5bb5793",
+          "after_sha256": "65695fb534f19dd9ed216ac0a29a4ef973ddd6964b60ca8376d0b8fb42da7004",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "84b4a6ce71a898ab725443ceace8d65b8d11ccfe1874c9cef72f2bc60fb87dc3",
+          "after_sha256": "64c9d38b13777db48dccb9d4c8caf86d0087935f24c12b94b48aac8057e371a2",
+          "receipts": [
+            "Append-only journal; self-hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-sustained-publication-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "97f0361ce33b3f96adca910649c4bf40bd9718608dd69be409be8ff75ca00671",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "3edf30be5314089045b615a5cf964f155da61d4db5d3163b86bbbbe176da7acc",
+          "after_sha256": "03d837dd8330d1ed5526b1d4a94fb2756de3a760035a8764e764ef9e8c4d1aab",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-sustained-publication-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "af99dade6016b862b8b6f743472d427da870089f631c731666231ea34863e1f4",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-sustained-publication-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "e9541a1a90b0e5113bb2e892129d7ddb6155a62a42f2af334624e91877c36120",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-baseline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "b6bd6afdeafedf4a94e7afc5a0ab630cbddbceae223c9938a4a9fa27bb0e4829",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-consumer-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "5e9be1cef1e672ceb0fd77b5c87cf07166c796c16a71a4b3f6e6ebd1d262cc34",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-continuous-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "62b6d69bc46e9a70e113a474f30cf765922a49b3a04cdd66a6650e5537e7044e",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-cost-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "810feae8a2100de4c280318f17cdee0e01e75b7ef6dfadd426a944a4314bfd27",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-game-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "a92129532153db363b49a28bb5a3c98dce0de2bc5ea7507c328deb374ce3b81e",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7f38c4df52241f3e297795e1aef6a427badc46d2e5c783412fd168d2de89c24c",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-pressure-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7b1eeccbd0f2ce6f4621571fe7ac15e67ebc3cc2ebb3fb4a881219b59969b8ac",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-split-delay-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "b22ca1e776775785ca60d94bd4b0c82f1eae9755f3bae91749482ee8108960a7",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication-unlocks-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "f93f658e97e3ae9eb1d6576e1078c4b4f5bd58e50c520753116e8dcd5d7c04a4",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-sustained-publication.md",
+          "before_sha256": null,
+          "after_sha256": "6e1c3cb058fb1c4290432ede5f385531615176c10f8e6cc7d5c98c87255b98e1",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/continuous_selftest.h",
+          "before_sha256": "d19b4b07522d2f4c3a528e8447fda37e6b3e5239bfa4e4041fef85965f5b9021",
+          "after_sha256": "5cff6f7811f19a5303fb10c0a4bcb87147c3514de1951194d4fc3785ebeb6e44",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/dirty_region.h",
+          "before_sha256": "e5743b9c82b63debe1b0431269d576672fcfee83ca42817e21d5558ec1ba936b",
+          "after_sha256": "b83297212f9991546eacdee84dee2a97cffe32105af08c6061db05829bcb0040",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/owned_session.h",
+          "before_sha256": "de7136a6148e0c0d226db41f48145b5bcd86901546aca91d9c452b3957003892",
+          "after_sha256": "e9fcadd83938455a551fb48ab82ce3ee5dcc2b0414c4d967390e037f997032cc",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/partial_lock_selftest.h",
+          "before_sha256": "6b9df18d4b435e6adcce961abcb060b344a1a3bbc5f19b0266786775f08c3c7f",
+          "after_sha256": "0fba2e0a483a03f62c07f4dc4ad7933e3a020b3706a78982940382dd1eaf7e6e",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/live-render-channel-test.cpp",
+          "before_sha256": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+          "after_sha256": "566e9518243d2bc0ff2dab92b7642b78a4e2168a028b05565edcae4bafb3fc0c",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-dirty-region-test.c",
+          "before_sha256": "e5cbed4ff2e63e40a4112ad2ce84e25cb9e60a2057d35106face9f4c17b3f31c",
+          "after_sha256": "a7df330faa866cd3170f43117f3ca7a4f6d47c3ab9f8131e8cd882d449f907fc",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/analyze-render-update-cost.py",
+          "before_sha256": null,
+          "after_sha256": "c80f3de4ba82b6db8f56b6846412a6fce661493a0fe1d93f24db737deed1b983",
+          "receipts": [
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-live-render-routes.py",
+          "before_sha256": "805479c8de8a4bc5c884a5a9b60e5a7464232b1ed0bc2c1e7d8e9fb269b936a9",
+          "after_sha256": "e877bfeb0ed2ae2d7f85ec9e7f2613f1bf939f2920e8b36169b11d880fb3a6e5",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-continuous-producer.py",
+          "before_sha256": "ee50a622301a12ebf3d99814735494783a57daa92583f939ab34490a60d8d011",
+          "after_sha256": "751e916ae59ef33b34c3f50a7e388f56dab80e80cf95226eeca0d0e0072585f2",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-dirty-region.py",
+          "before_sha256": "0b60e3c7830fa4f77074ab9c204a6141187666c4a92e66ef50bec2f7d230f7a1",
+          "after_sha256": "c6e6032699575772341f42b8c54f70dba9b9743cd7d530288e17e85a7434ba36",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-session-unlocks.py",
+          "before_sha256": "893f6d6a06ed2bdeb7f24df7add3fa55018c49cd80c391533ee95a0d86e23f73",
+          "after_sha256": "e828a487024955b65778ee93ed95e650cbb6e9e1386e35675194878705fe4fd8",
+          "receipts": [
+            "sustained-publication-recorded-20261006",
+            "sustained-publication-shared-pending-20261006"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "475019fe7a0060f384411173c9fb06624ad44c24",
+      "parent": "fc656368aa3c21a149c0284daacf1812dfe2b09d",
+      "files": [
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "b83cb42298ebbfb2dad14545b44cb8f2f608e9206e97c7b556c29f10d50ad479",
+          "after_sha256": "a90dc730ded6c713fed02083625c71bb5e00a897ac25e9a4c9276eb1c9434463",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/bitmap_dc.hpp",
+          "before_sha256": "df2ddb4a1c8547a184788053e4d925528b984a7ba7bbb0d4ff630dd926f0e456",
+          "after_sha256": "c8fadb0fc0f4217960e08f067283b504a8dc918ef425de160df262798876fe29",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/blit.cpp",
+          "before_sha256": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+          "after_sha256": "b3dd75480462463fda6fd23696a5e9bb2d4f98578614a7c05d69a34e102a9503",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "before_sha256": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70",
+          "after_sha256": "af4be9b90298558cab670406e639779e8ed7b2d6e8864de2fdaa98ffe465fe64",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/pixel_rows.cpp",
+          "before_sha256": null,
+          "after_sha256": "ffa72fac123001700e435112c7b09f39fc90ca4cb3308b1e4e4e31ef93027bfd",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/pixel_rows.hpp",
+          "before_sha256": null,
+          "after_sha256": "858459228fd19d19640a3d2fcefc0347952bdb07e6ccbdb0af3f3dce1637df88",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_access.hpp",
+          "before_sha256": "29306563839b79760e26450d294fc75c4c3b057ffa81a64588bb42a98514fb16",
+          "after_sha256": "95166e8226849e7302dffa9762b737ed5dd1381ffc8b392283763b1fc77854ad",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_backend.cpp",
+          "before_sha256": "281ec802b0c8996bae80665eceab0dad5b1cf4021f40eeefcac115f71754090e",
+          "after_sha256": "c5cb22ea00315d78d2bcb8b4c6a252f34b32fab087f045187816a954d6113bff",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_backend.hpp",
+          "before_sha256": "197e2033443d82b888df7073a3f7c198d0b366b71e13ff351b8b54b383bef338",
+          "after_sha256": "f7b269b079dfb94b20fce31986a7464c403bec298c98756bb675369956992425",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "65695fb534f19dd9ed216ac0a29a4ef973ddd6964b60ca8376d0b8fb42da7004",
+          "after_sha256": "d665107c8d36ea0d4839b6405a6c2da9c7a699c67d18867559a230b2500f4f7f",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "64c9d38b13777db48dccb9d4c8caf86d0087935f24c12b94b48aac8057e371a2",
+          "after_sha256": "877996a19fdf581714a5eb94bfc51bcc678bf09089672de502c64ba6073d6884",
+          "receipts": [
+            "Append-only journal; self-hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-formats-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "06ae7099a217defa83e601e67b149de5de4a24ea512973a9d1562ea551486134",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "03d837dd8330d1ed5526b1d4a94fb2756de3a760035a8764e764ef9e8c4d1aab",
+          "after_sha256": "c74880add5678e85ecec1a6e172a4ec1c9d9fe8ba970736d7e263b2a9f537932",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-formats-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d315cee202321dfc254619a241fc4ac1198010b015032c12c4511a64ec5fe11c",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-formats-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "423abb1c797f1e7b0a3ac0d18e947abb5f786be8886c1446fa5ff11da7ddcd84",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-backend.md",
+          "before_sha256": "38ced2454a43f3eda11496bca068d6280970be16eb97d986e4b5182e9c652393",
+          "after_sha256": "f2041060e1f1a835570f8a9b183192343c7abedb917a0dabe325a36f6c20775e",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "8d205d9d740edf6848eecbd2f162616d16574ecf0399b314a5c7e8957e9849fb",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-backend-regression-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "5dd3c32c194707429f98961ac26a87dcca75336baf58e6d966cfbad1d8443e92",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-final-regressions-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "507e09b52a87b949ea02a2b3a0eb228c110061aa1c4a1411c0085c54f96f3414",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-ownership-regression-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "ba10c169caba0f404bc50f352f24585c55d1c3523203c484e88051be66575dba",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-pitch.md",
+          "before_sha256": null,
+          "after_sha256": "412813dae86bdc7acd5e57adde1958a52ae83e84926bba38a1c3ea7e51edd0ce",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-formats-regressions-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "edf0cca2615ea38b89d717313905a34c2d20987b37c6af6e15fcfe490798b0dc",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "707670d5f3399cad8acb19bd98164d5618dfda6fec0173f24af2f5aaca2713a3",
+          "after_sha256": "18ff88e582573d851d8852cfdf054723ec2b383c91b2b6b1c9fd4cfed168bb1e",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-formats-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "5a01f7781fc008ce2d326c22c4cacdeacdd0a0d7a12e22e7753db14515ea5286",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-formats-dd2-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d567fad1d7f9b03177c70bfef26f80a2875c64b799f415f5796ba6cc77207b65",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-formats-final-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "16500e6d9fde369085313fcde3d4f309259c0c1560bb7bbeafc36eddf7a0290c",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-formats-offline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "259b62e7caf4745d8b9d792cb262dcd6fa54aeaf56422d12f08edaea4eec9b9b",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-formats-dd2.json.gz",
+          "before_sha256": null,
+          "after_sha256": "8bab0fad9e2f6edf613e72cc046496d6bd8f398d0c982de55b04777a552f3aa7",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-formats-final.json.gz",
+          "before_sha256": null,
+          "after_sha256": "d955207662df6b62c1c57b7abc6a4777df2807d52298940cd19d318cf1ed00eb",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-formats.json.gz",
+          "before_sha256": null,
+          "after_sha256": "891323de9f75b12e5e402e8f14d71622dfc53e313d93e4704b053fce99b8dfd0",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-surface-backend-test.cpp",
+          "before_sha256": "e93476f1df2382088c58b893c934b3bdef942f48811cf8f6e99a4db6133d758c",
+          "after_sha256": "279f88c3c8d07a07d43d20fa79f77895c35a9f28a5d000eb4e73dac47c2649d3",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-surface-formats-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "37653d16ce3d43b87cb75eed9b50c30c6d7aabdf85a2a5b0d9c48ede6e50f52e",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-formats-reference.c",
+          "before_sha256": null,
+          "after_sha256": "609eac62dc75c25cab9b489464081d6cfb4124b0693cf67f814abba73c6688c1",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-re-coverage.py",
+          "before_sha256": "9a836d6fbaf1b3c94d523b7f8c420f0553dae3c94331057b4d685c20f7f4fca6",
+          "after_sha256": "2b6042c5deeea9ad948dd246bb2e53fd90e68b46cd26e019e43f2d4e65a9c7e8",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-surface-formats.py",
+          "before_sha256": null,
+          "after_sha256": "89bdd27c10ba32a6cb2a7fd18f1094bb30af9f60e374cf61f417fbfa8805965f",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-surface-formats.py",
+          "before_sha256": null,
+          "after_sha256": "fe18187933b6a3333d3373ecd1e25b32a442dba04e2d3b288088abcf4dfd4e52",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-native-surface-formats.py",
+          "before_sha256": null,
+          "after_sha256": "bc29e0bbd9c17d72fdb234fecda1e254d364b2b3d3c6e1add451b3ad5890c0c8",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-surface-formats.py",
+          "before_sha256": null,
+          "after_sha256": "43e4ff15e034f7c89c472945b25599985e2a16cbe96491dd90d4d803849d7abf",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/coverage_audit.py",
+          "before_sha256": "e632e389d5ecbdfb20192b2806f17d39840e094b3f7f29df07c905008a639a56",
+          "after_sha256": "6ae69d07be7125353368fe9d65b91b3a0c8fd4f8eb67ba304bb6d7e298a1e1a2",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/index-coverage-sources.py",
+          "before_sha256": "b06f0438360462b7965af998ebcf73ca9f88bcb00befd0d5a46d5e6ae98b56d9",
+          "after_sha256": "23cbf38c44eac4fc9971b62e813632450793b13609ab8395c428d3f696d2a815",
+          "receipts": [
+            "surface-formats-pitch-20261006",
+            "surface-formats-shared-pending-20261006"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

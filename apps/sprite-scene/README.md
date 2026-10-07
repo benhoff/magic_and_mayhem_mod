@@ -6,6 +6,13 @@ controller for explicit sequences, and composes mask/RGB565 uploads in OpenGL.
 The original executable and Wine are only needed by research comparisons, not
 by this preview application.
 
+Body and child assets now have immutable native resource recipes and semantic
+IDs. The preview submits its existing ordered display queue to the shared
+[native scene service](../../renderer/scenes/README.md), which retains its canvas
+and uploads. ANI scheduling, attachment placement, depth sorting and visibility
+remain in the existing scene adapter. The manager outlives that adapter and keeps
+its decoded resources resident; rendering does not advance the controller.
+
 ```bash
 cmake -S apps/sprite-scene -B working/build/sprite-scene
 cmake --build working/build/sprite-scene --parallel 4

@@ -1,3 +1,4 @@
+#include "scene-resource-fixtures.hpp"
 #include "picking.hpp"
 #include "scene_canvas.hpp"
 #include "movement_controls.hpp"
@@ -83,7 +84,8 @@ int main(int argc,char** argv) try {
     auto s=empty();game::Entity e;e.type=7;e.x=1;e.y=1;e.z=1;auto a=s.spawn(e);e.y=3;auto b=s.spawn(e);
     auto state=s.world().state();state.slots[a.slot].generation=0xfedcba98;a.generation=0xfedcba98;s=session(state);
     scene::Orders orders;scene::SceneCanvas canvas;scene::MovementControls controls;unsigned picks=0,moves=0;bool rejectedEvent=false;
-    render::GlBlitter renderer;const auto displayed=scene::render(renderer,terrain,creature,q);canvas.present(QPixmap::fromImage(displayed.image));refused([&] {canvas.present(QPixmap(511,256));});
+    test::SceneResources resources;const auto terrainId=resources.add("terrain",terrain),creatureId=resources.add("creature",creature);
+    render::GlBlitter renderer;render::SceneRenderer drawing(renderer,resources.manager,{512,256,std::vector<std::uint32_t>(512*256,0x2124)});const auto displayed=scene::render(drawing,terrainId,creatureId,q);canvas.present(QPixmap::fromImage(displayed.image));refused([&] {canvas.present(QPixmap(511,256));});
     auto refresh=[&] {orders.synchronize(s.world().state());controls.updateChoices(scene::creatureChoices(s.world().state()),orders.selected(),Navigation().binding().dimensions);};refresh();
     canvas.onSelectAt=[&](int x,int y) {++picks;try {orders.select(s.world().state(),scene::pickActor(q,terrain,creature,x,y));} catch(const std::exception&) {rejectedEvent=true;}refresh();};
     canvas.onMoveAt=[&](int x,int y) {const auto target=scene::pickTerrain(q,terrain,x,y);if(target) {try {orders.move(s,*target);controls.setTarget(*target);++moves;} catch(const std::exception&) {rejectedEvent=true;}refresh();}};

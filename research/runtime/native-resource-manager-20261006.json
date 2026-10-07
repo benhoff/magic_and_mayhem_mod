@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Native ownership/cache policy; synthetic independent pixels and optional installed recipe smoke, no original equivalence or live replacement",
+  "sources": {
+    "assets/resources/CMakeLists.txt": "da6130752ec59f30090e092c8e712ee45bbf4bacbfad1505201356bde9afcfba",
+    "assets/resources/resource_manager.cpp": "8d4eb4e5d98248b5e159c9b0e37c02a4f0a929b37fcb6b1e6e7410610ba0ee06",
+    "assets/resources/resource_manager.hpp": "b2aacdfe98c244df0e5ff30df7b8993016c3036fedfc0951b4314c8393c54c98",
+    "renderer/resources/CMakeLists.txt": "c9a76a4978d2fc0a09b267de9c68f089bbfd3e2da5b035d812a6d8504c1cdce7",
+    "renderer/resources/resource_cache.cpp": "a4a3ef28ce73e24ae01044574dc42bf7365209bf7f3cbcb7f96b919a2dcf4fc0",
+    "renderer/resources/resource_cache.hpp": "3727f7706f400ea7696485f5070bc8b7f706555e6407ab141b4951a274e9fcd5",
+    "renderer/resources/preview_main.cpp": "4355079b26e3672cdd9028c40de62998802c0ccf6bf014f08393b7e1d595ff44",
+    "tests/resource-fixtures.hpp": "80cfb1ed1b880c352c485e0188d97a6c95fed643ca11f35046f32ca0d3ea4b44",
+    "tests/resource-manager-test.cpp": "ee45f50c5dc18652f06fb31063fb7324dd7456bbeecc6754099836c6afed6ef8",
+    "tests/resource-cache-test.cpp": "d5c9acb5af84b77c3dd21e22da44667f5f16866e0fedd3d76ff610b0ee29dbf7",
+    "tests/test-resource-preview.py": "1e727f9b1273b58d70a10efbc54b9c40b74fcbfe516884fe0104c94ccdc0581f",
+    "tools/test-native-resources.py": "1fec91f84bf916abd922a8178c7eb20d79d85102d31da9ea5109371ef4f1aabd",
+    "assets/CMakeLists.txt": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/sprite_loader.cpp": "00abda9b22c1f85be51e2f00028bcd448a044efbacc0fff1a24fec676df68e67",
+    "assets/sprite_loader.hpp": "0ab5f80fe75601ad3010afd048c87176bd1b3d37d371525a5c4ea6e3991d263e",
+    "assets/sprite_frame_decoder.hpp": "55ff6be0e30d13672c8fc2fab5c2328582fc3eb0ffdf4456d3b2c6ab1a0ec6ab",
+    "assets/animation.cpp": "0cdd420e8bbd08751f652696a4eadf9fb0eada1b96ec04c83402feee1acf0bda",
+    "assets/animation_decode.cpp": "76523a27832349dda6daf9988bc42b348611b657af710a2f3e65b7a2912e947d",
+    "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+    "assets/terrain_catalog.cpp": "46f520fbada169bc3044b121e0a8838825214cff91730fa0046e5231d53f3b26",
+    "assets/terrain_catalog.hpp": "a1b91474346fd9a780fe34282684e63f826707147e628099ae4bb24b6ff50478",
+    "assets/bmp.cpp": "2905db6469699156e4113816a9563a02f2f6071ecf3ce428bd19a535daf21151",
+    "assets/bmp.hpp": "a109cb3177826c54deba46b5952581ebbe9936a5feab49e0e958bee9f2fbc0d5",
+    "assets/pcx.cpp": "776eac976327478959336bc1fa20fdfd1ac04c35a431f0e1fb949ef411defa8b",
+    "assets/pcx.hpp": "f823529c1bfd7f3b4359289f8cd6880e485c318acf711d5371cb84d8392348c2",
+    "assets/jpeg.cpp": "0a3772e79bcace89a84aa060b3f95637f05171e7bd8c85ed77efcc0c9955d28e",
+    "assets/jpeg.hpp": "e2a16ca4030480c7832c0f1b80be5d9d48134d49d65871c37ab03e79f23fda9a",
+    "renderer/sprites/CMakeLists.txt": "925072708b6db2f7e478b3c7f0f74dd9a5c2b624bc4af02534b53f49c130d7ce",
+    "renderer/sprites/sprite.cpp": "15c9c4b2ced791fba045795ff02525d76b4c6a1ee12caab7a11655b4de0b66bf",
+    "renderer/sprites/sprite.hpp": "8026c4bff5313c1adbf870f5ae53ca0525c1cfe6eab7d511b8d52078b5f660a0",
+    "renderer/CMakeLists.txt": "5d0ebc8dd15963e17af25d564fa87ecf8bfa438331af76e246ffc93bbba342a3",
+    "renderer/blit.cpp": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+    "renderer/blit.hpp": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70"
+  },
+  "steps": [
+    {
+      "name": "original-before",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "configure",
+      "command": [
+        "cmake",
+        "-S",
+        "/home/hoff/swdev/magic_and_mayhem_mod/renderer/resources",
+        "-B",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/resources",
+        "-DCMAKE_BUILD_TYPE=Debug"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "build",
+      "command": [
+        "cmake",
+        "--build",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/resources",
+        "--target",
+        "resource-manager-test",
+        "resource-cache-test",
+        "mnm-resource-preview",
+        "sprite-render-test",
+        "sprite-loader-test",
+        "animation-loader-test",
+        "terrain-catalog-test",
+        "bmp-loader-test",
+        "pcx-loader-test",
+        "jpeg-loader-test",
+        "asset-path-test",
+        "asset-file-test",
+        "render-blit-test",
+        "render-surfaces-test",
+        "-j4"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "tests",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/resources",
+        "-R",
+        "^(native-resource-(manager|cache|preview)|sprite-loader|animation-loader|terrain-catalog-owned-records|bmp-loader|pcx-loader|jpeg-loader|asset-path-resolution|asset-file-io|opengl-sprite-frames|opengl-native-blits|opengl-persistent-surfaces)$",
+        "--output-on-failure"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "installed",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/resources/mnm-resource-preview",
+        "--root",
+        "working/game-clean",
+        "--kind",
+        "creature",
+        "--id",
+        "10",
+        "--image",
+        "Creatures/RedCap.spr",
+        "--animation",
+        "Creatures/redcap.ani",
+        "--frame",
+        "0",
+        "--output",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-resources/run-9bk9ejcl/redcap.png"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "original-after",
+      "command": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "installed": {
+    "inputs": {
+      "working/game-clean/Creatures/RedCap.spr": "9e62b75682a41d15c1419010e580f3ca4e8087673f7650bfd0b0f64dec97d1e1",
+      "working/game-clean/Creatures/redcap.ani": "6af0d77f2a8a95f44ccc6d09f4330191757a584e4deb8b9417a98f8cd402902e"
+    },
+    "stable": true,
+    "result": {
+      "decoded_bytes": 0,
+      "decoded_loads": 1,
+      "frame": 0,
+      "id": "creature:10",
+      "ok": true,
+      "surfaces": 0
+    },
+    "png": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-resources/run-9bk9ejcl/redcap.png",
+    "png_sha256": "2dedeae3b5da8ba3fee8d545d84a8c1709968106ffc90cf6fa9ac70c8a6f486c"
+  },
+  "binaries": {
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/build/resources/resources/resource-manager-test": "370b6438c8ff8e60320c70cfaa416466f96ebf1e685e3a5fb78b5e24decd871d",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/build/resources/resource-cache-test": "553cf6e1813281de811c870bcfac3fe68bf91b96dbd9c52438f15a9413357d65",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/build/resources/mnm-resource-preview": "fa7f4f7ef1b79f8f960d5f44a6a5c817e9b3057ddc2999e4554eae8025dcbe23"
+  },
+  "sources_stable": true,
+  "tests_passed": 14,
+  "retained_run": "working/tests/native-resources/run-9bk9ejcl",
+  "limitations": [
+    "Explicit recipes only; installed catalog population and live simulation binding remain pending.",
+    "No original loader/pixel-equivalence or live replacement claim.",
+    "An earlier unrestricted all-target build hit a concurrent Qt presentation linker error; the fresh report builds only resource/loader/sprite/primitive targets."
+  ]
+}

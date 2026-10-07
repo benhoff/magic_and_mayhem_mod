@@ -4498,28 +4498,39 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native animated sprite scene",
-      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Step 2 delegates ordered resource/frame/anchor drawing to a persistent scene service, retaining existing animation/order/projection/picking policies; the fresh migration evidence covers only its listed bounded cases.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "apps/sprite-scene/README.md",
-        "research/runtime/surface-dib-ddraw.md"
+        "research/runtime/surface-dib-ddraw.md",
+        "research/runtime/native-shared-scene-renderer.md"
       ],
       "implementation": [
         "apps/sprite-scene/attachment_recipe.cpp",
         "apps/sprite-scene/main.cpp",
         "apps/sprite-scene/scene.cpp",
         "apps/sprite-scene/attachment_recipe.hpp",
-        "apps/sprite-scene/scene.hpp"
+        "apps/sprite-scene/scene.hpp",
+        "apps/sprite-scene/CMakeLists.txt"
       ],
       "tests": [
         "tests/sprite-scene-queue-test.cpp",
-        "tests/sprite-scene-test.cpp"
+        "tests/sprite-scene-test.cpp",
+        "tests/scene-resource-fixtures.hpp",
+        "tools/test-native-scene-service.py",
+        "tools/test-sprite-scene.py",
+        "tools/test-animation-layers.py"
       ],
       "evidence": [
         "REVIEW.NR.sprite_scene",
         "NATIVE.native-animation-scene",
-        "NR.surface-colors.rgb565-dc.regressions-20261006"
+        "NR.surface-colors.rgb565-dc.regressions-20261006",
+        "NR.scene-service.synthetic-20261006",
+        "NR.scene-service.installed-20261006",
+        "NR.scene-service.native-commit-20261006",
+        "NR.scene-service.native-commit-head-20261006",
+        "NR.scene-service.native-commit-final-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -4571,28 +4582,37 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native world movement presentation",
-      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. NS12 extends this to bounded same-profile native multi-mover presentation, independent owned displays, identity-bearing mixed depth queues and policy-aware checkpoint admission; original multi-actor scene/live equivalence remains excluded.",
+      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. NS12 extends this to bounded same-profile native multi-mover presentation, independent owned displays, identity-bearing mixed depth queues and policy-aware checkpoint admission; original multi-actor scene/live equivalence remains excluded. Step 2 delegates ordered resource/frame/anchor drawing to a persistent scene service, retaining existing animation/order/projection/picking policies; the fresh migration evidence covers only its listed bounded cases.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "apps/world-scene/README.md",
         "research/runtime/native-world-scene.md",
-        "research/runtime/native-multi-world-scene.md"
+        "research/runtime/native-multi-world-scene.md",
+        "research/runtime/native-shared-scene-renderer.md"
       ],
       "implementation": [
         "apps/world-scene/main.cpp",
         "apps/world-scene/scene.cpp",
-        "apps/world-scene/scene.hpp"
+        "apps/world-scene/scene.hpp",
+        "apps/world-scene/CMakeLists.txt"
       ],
       "tests": [
         "tests/world-scene-test.cpp",
         "tools/test-world-scene.py",
-        "tools/test-multi-world-scene.py"
+        "tools/test-multi-world-scene.py",
+        "tests/scene-resource-fixtures.hpp",
+        "tools/test-native-scene-service.py"
       ],
       "evidence": [
         "REVIEW.NR.world_scene",
         "NATIVE.native-world-scene",
-        "NS12.multi-scene"
+        "NS12.multi-scene",
+        "NR.scene-service.synthetic-20261006",
+        "NR.scene-service.installed-20261006",
+        "NR.scene-service.native-commit-20261006",
+        "NR.scene-service.native-commit-head-20261006",
+        "NR.scene-service.native-commit-final-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -9389,7 +9409,8 @@
         "tests/test-tooling.sh"
       ],
       "evidence": [
-        "REVIEW.TOOL.traceability"
+        "REVIEW.TOOL.traceability",
+        "TOOL.traceability.scene-root-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -9991,7 +10012,9 @@
         "tests/test-re-coverage.py",
         "tests/test-tooling.sh"
       ],
-      "evidence": [],
+      "evidence": [
+        "TOOL.traceability.scene-root-20261006"
+      ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
@@ -16951,6 +16974,182 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "AS.resource-manager",
+      "subsystem": "assets",
+      "kind": "native_policy",
+      "title": "Stable semantic visual resource recipes and owned bounded decoding",
+      "scope": "Explicit canonical kind/name IDs independent of insertion order/pointers/paths; immutable lazy SPR/ANI creature/effect and SPR/TTD terrain recipes plus SPR/BMP/PCX/JPEG UI recipes. Complete paired loading, all ANI bitmap/selected sequence admission, explicit CPU unload/revision and charged resident object/vector-capacity budgets. No automatic installed catalog population, original loader equivalence, terrain field interpretation, action selection, wire protocol or live replacement. Checkpoint-owned ANI bytes replace an ANI path exclusively, retain immutable encoded vector capacities across decoded unload and enforce separate aggregate/input byte budgets.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "assets/resources/README.md",
+        "research/runtime/native-resource-manager.md"
+      ],
+      "implementation": [
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/resources/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/resource-manager-test.cpp",
+        "tests/resource-fixtures.hpp",
+        "tools/test-native-resources.py",
+        "tools/test-native-scene-service.py"
+      ],
+      "evidence": [
+        "AS.resources.native-20261006",
+        "NR.scene-service.synthetic-20261006",
+        "AS.resources.native-commit-20261006",
+        "NR.scene-service.native-commit-20261006",
+        "AS.resources.native-commit-head-20261006",
+        "NR.scene-service.native-commit-head-20261006",
+        "AS.resources.native-commit-final-20261006",
+        "NR.scene-service.native-commit-final-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.resource-cache",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded revision-aware native resource upload ownership and recipe preview",
+      "scope": "Native resource-to-OpenGL integration with LRU frame/colour-value keys, two-plane texel/global handle admission, explicit retirement, stale-revision eviction, owned bitmap RGB565/indexed opaque policy and clipped SPR placement. Synthetic independently expected pixels, cache counters, external budgets and preview admission, plus installed Redcap frame-zero smoke. No scene composition, original bitmap/driver/gameplay equivalence, full lighting/animation/effects, Qt-shell integration, context-loss recovery or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "assets/resources/README.md",
+        "research/runtime/native-resource-manager.md"
+      ],
+      "implementation": [
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/preview_main.cpp",
+        "renderer/resources/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/resource-cache-test.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/test-resource-preview.py",
+        "tools/test-native-resources.py",
+        "tools/test-native-scene-service.py"
+      ],
+      "evidence": [
+        "AS.resources.native-20261006",
+        "NR.scene-service.synthetic-20261006",
+        "AS.resources.native-commit-20261006",
+        "NR.scene-service.native-commit-20261006",
+        "AS.resources.native-commit-head-20261006",
+        "NR.scene-service.native-commit-head-20261006",
+        "AS.resources.native-commit-final-20261006",
+        "NR.scene-service.native-commit-final-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.scene-service",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Shared resource-backed ordered scene service",
+      "scope": "Persistent RGB565 background/canvas and ResourceCache ownership; caller-ordered visible resource/frame/projected anchor/colour entries with optional clipping. Whole-list admission preserves previous completed pixels; execution failures refuse partial presentation until a complete retry. Sprite/world preview adapters preserve recovered clocks/order/visibility. Explicit owned checkpoint ANI recipe bytes have separate encoded capacity budgets. Live snapshots, full scene admission/lighting/effects and original replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-shared-scene-renderer.md",
+        "renderer/scenes/README.md"
+      ],
+      "implementation": [
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/scene-renderer-test.cpp",
+        "tests/scene-resource-fixtures.hpp",
+        "tests/resource-fixtures.hpp",
+        "tools/test-native-scene-service.py"
+      ],
+      "evidence": [
+        "NR.scene-service.synthetic-20261006",
+        "NR.scene-service.installed-20261006",
+        "NR.scene-service.native-commit-20261006",
+        "NR.scene-service.native-commit-head-20261006",
+        "NR.scene-service.native-commit-final-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.scene-snapshot",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded original display queue observation and native asset rebinding",
+      "scope": "Opt-in pinned queue-consumer entry observation, owned bounded immutable v1 display records with per-snapshot frame tokens and normalized encoded frame identity. Native explicit SPR bindings resolve content to resource IDs and caller-order SceneDraw. Original drawing remains in control; unsupported modes/shading, incomplete mapping, full live frame equivalence and replacement stay independent.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Entry observes ECX queue base/count/view and record traversal boundary only; consumer draw dispatch/callers not claimed."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-scene-snapshot.md",
+        "research/formats/scene-snapshot-v1.md",
+        "compat/legacy/README.md",
+        "docs/architecture.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "runtime/scene/observer.c",
+        "runtime/scene/entry.S",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/snapshot_main.cpp",
+        "compat/legacy/CMakeLists.txt",
+        "tools/build-scene-observer.py",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py",
+        "tools/index-scene-bindings.py"
+      ],
+      "tests": [
+        "runtime/scene/selftest.c",
+        "tests/scene-snapshot-test.cpp",
+        "tools/test-scene-snapshot.py",
+        "tools/capture-scene-game.py"
+      ],
+      "evidence": [
+        "NR.scene-snapshot.live-20261006",
+        "NR.scene-snapshot.native-20261006",
+        "NR.scene-snapshot.native-commit-20261006",
+        "NR.scene-snapshot.native-commit-head-20261006",
+        "NR.scene-snapshot.native-commit-final-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -31299,6 +31498,342 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "AS.resources.native-20261006",
+      "kind": "native_integration",
+      "scope": "14 synthetic/relevant dependency CTests and installed explicit Redcap recipe frame-zero smoke; source stability and unchanged input/manifests verified. No original execution or equivalence/live replacement.",
+      "record": "research/runtime/native-resource-manager-20261006.json",
+      "sha256": "99345317f99cb696c8004c7e95c5649cf22069f9c7bccef575f6863dd0228c3a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests_passed",
+          "equals": 14
+        },
+        {
+          "pointer": "/installed/stable",
+          "equals": true
+        },
+        {
+          "pointer": "/installed/result/surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/installed/result/decoded_bytes",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-service.synthetic-20261006",
+      "kind": "native_integration",
+      "scope": "Synthetic native resource/scene ownership and migrated preview contracts; no original equivalence or live replacement",
+      "record": "research/runtime/native-shared-scene-synthetic-20261006.json",
+      "sha256": "9e64ff3433e9cde32dc70b1e9c177b4350c53d4d4f0fe3f5741002557dc7baa8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/tests_passed",
+          "equals": 7
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-service.installed-20261006",
+      "kind": "native_integration",
+      "scope": "Bounded installed native resource/scene preview migration, independent complete pixels and actual Qt input/timer/save continuation. Isolated original controller/attachment comparisons remain limited to the embedded sprite/layer scopes; no new original whole-scene or live replacement claim.",
+      "record": "research/runtime/native-shared-scene-installed-20261006.json",
+      "sha256": "318be60ede039f3bf1552e1c204edb17d472511fddc3a13b13a7393429af974d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/summary/window_runs",
+          "equals": 24
+        },
+        {
+          "pointer": "/summary/window_pixel_comparisons",
+          "equals": 128
+        },
+        {
+          "pointer": "/live_validated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-snapshot.live-20261006",
+      "kind": "live_observation",
+      "scope": "Four bounded original Single Player queue-consumer snapshots; original simulation/drawing active. No continuous native host presentation, original pixel equivalence or replacement.",
+      "record": "research/runtime/native-scene-snapshot-live-20261006.json",
+      "sha256": "da25c052cef535cfc904148890f23de3476720c81d408a5be6a6bd8ea58f9fa7",
+      "sources_pointer": "/sources",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/samples",
+          "equals": 4
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_compared",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-snapshot.native-20261006",
+      "kind": "native_integration",
+      "scope": "Owned v1 admission, content-to-native binding, PE32 forwarding fixture and eight full independent native policy pixel compositions (four from actual original snapshots); original shaded output/continuous native host/replacement pending.",
+      "record": "research/runtime/native-scene-snapshot-replay-20261006.json",
+      "sha256": "a28017b80425766f1704cefe98b6ad64217a9136f239ea331444da8e242d7400",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 3
+        },
+        {
+          "pointer": "/forwarding_selftest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/summary/supported_original_draws",
+          "equals": 6860
+        },
+        {
+          "pointer": "/original_pixels_compared",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TOOL.traceability.scene-root-20261006",
+      "kind": "native_integration",
+      "scope": "90 synthetic census/audit/gate guard checks; old root declaration does not hide new host adapter sources. No engine equivalence or new semantic mappings.",
+      "record": "research/runtime/scene-snapshot-accounting-20261006.json",
+      "sha256": "4f6beac7916cb35e67a3b98ed6ea727a78e2d777d4131514093e09502664a486",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests_passed",
+          "equals": 90
+        }
+      ]
+    },
+    {
+      "id": "AS.resources.native-commit-20261006",
+      "kind": "native_integration",
+      "scope": "14 resource/loader/backend synthetic checks against isolated commit sources; no original equivalence or new installed capture.",
+      "record": "research/runtime/native-scene-commit-resources-20261006.json",
+      "sha256": "4b38475e7b0d6066e6b68b2af0e8db457832148fdcef51e25e0aab8e4a0c88cf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-service.native-commit-20261006",
+      "kind": "native_integration",
+      "scope": "Seven synthetic ownership and migrated sprite/world preview contracts against isolated commit sources; prior installed comparisons remain historical.",
+      "record": "research/runtime/native-scene-commit-service-20261006.json",
+      "sha256": "dfb4f8f4f167d927dbd2733a9feb8a59fee937a83d166448527254ae50b5bd3a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-snapshot.native-commit-20261006",
+      "kind": "native_integration",
+      "scope": "Three native CTests, bounded PE32 forwarding fixture and four complete independent synthetic unshaded native-policy pixel compositions against isolated commit sources; original drawing/output equivalence not claimed.",
+      "record": "research/runtime/native-scene-commit-snapshot-20261006.json",
+      "sha256": "63df0765897b1bf01b67a4895a64bd93f618aeb8999111f3a428c36d6987e076",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AS.resources.native-commit-head-20261006",
+      "kind": "native_integration",
+      "scope": "14 resource/loader/backend synthetic checks against isolated commit sources; no original equivalence or new installed capture.",
+      "record": "research/runtime/native-scene-commit-resources-head-20261006.json",
+      "sha256": "51691382eb2318aa458e801c21c8367eef7336feb238ce31fa1c8a5a7a765992",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-service.native-commit-head-20261006",
+      "kind": "native_integration",
+      "scope": "Seven synthetic ownership and migrated sprite/world preview contracts against isolated commit sources; prior installed comparisons remain historical.",
+      "record": "research/runtime/native-scene-commit-service-head-20261006.json",
+      "sha256": "4f9af19c4199886635fb5ab3be9b7a299e59596dc973d76320cb090ebe09523d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-snapshot.native-commit-head-20261006",
+      "kind": "native_integration",
+      "scope": "Three native CTests, bounded PE32 forwarding fixture and four complete independent synthetic unshaded native-policy pixel compositions against isolated commit sources; original drawing/output equivalence not claimed.",
+      "record": "research/runtime/native-scene-commit-snapshot-head-20261006.json",
+      "sha256": "371fb49ff5a2aa796c56691410d2797e723c38dfdc548552aae9c4abe3d0dce3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "AS.resources.native-commit-final-20261006",
+      "kind": "native_integration",
+      "scope": "14 resource/loader/backend synthetic checks against isolated commit sources; no original equivalence or new installed capture.",
+      "record": "research/runtime/native-scene-commit-resources-final-20261006.json",
+      "sha256": "f8f0c7f93ef3db6e9277eae4b7ecc3b81e1329b58a42e5e605c35162faeae6d3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-service.native-commit-final-20261006",
+      "kind": "native_integration",
+      "scope": "Seven synthetic ownership and migrated sprite/world preview contracts against isolated commit sources; prior installed comparisons remain historical.",
+      "record": "research/runtime/native-scene-commit-service-final-20261006.json",
+      "sha256": "b9f1b8176ec2a38c2de1369ab58e51c931efabae3c95b3cb934b1b4265fcfb96",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-snapshot.native-commit-final-20261006",
+      "kind": "native_integration",
+      "scope": "Three native CTests, bounded PE32 forwarding fixture and four complete independent synthetic unshaded native-policy pixel compositions against isolated commit sources; original drawing/output equivalence not claimed.",
+      "record": "research/runtime/native-scene-commit-snapshot-final-20261006.json",
+      "sha256": "407453efd7d8548ef53e093473394ab4e9733eedae452971e666dc18db4e5290",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -36330,6 +36865,89 @@
         "tools/test-viewport-presentation.py",
         "tools/test-native-command-launch.py"
       ]
+    },
+    {
+      "id": "AS.resources.owned-headless-20261006",
+      "scope": "Explicit native category recipes, synthetic owned decode/cache/pixel/budget/retirement and CLI checks plus one installed Redcap preview frame, no original-game rendering or scene ownership.",
+      "level": "headless",
+      "behaviors": [
+        "AS.resource-manager",
+        "NR.resource-cache"
+      ],
+      "evidence": [
+        "AS.resources.native-20261006",
+        "AS.resources.native-commit-20261006",
+        "AS.resources.native-commit-head-20261006",
+        "AS.resources.native-commit-final-20261006"
+      ],
+      "tests": [
+        "tests/resource-manager-test.cpp",
+        "tests/resource-cache-test.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/test-resource-preview.py",
+        "tools/test-native-resources.py"
+      ]
+    },
+    {
+      "id": "NR.scene-service.previews-20261006",
+      "level": "preview",
+      "scope": "Shared native resource-to-scene service with synthetic pixels/budgets/failure retry and bounded installed sprite/layer/world/Qt-window integration. Original record/controller comparisons retained inside specific sprite runs; no whole original scene, live capture or replacement.",
+      "behaviors": [
+        "AS.resource-manager",
+        "NR.resource-cache",
+        "NR.scene-service",
+        "NR.sprite_scene",
+        "NR.world_scene"
+      ],
+      "evidence": [
+        "NR.scene-service.synthetic-20261006",
+        "NR.scene-service.installed-20261006",
+        "NR.scene-service.native-commit-20261006",
+        "NR.scene-service.native-commit-head-20261006",
+        "NR.scene-service.native-commit-final-20261006"
+      ],
+      "tests": [
+        "tests/scene-renderer-test.cpp",
+        "tests/scene-resource-fixtures.hpp",
+        "tools/test-native-scene-service.py",
+        "tools/test-sprite-scene.py",
+        "tools/test-animation-layers.py",
+        "tools/test-world-scene.py",
+        "tools/test-native-scene-window.py"
+      ]
+    },
+    {
+      "id": "native-scene.original-queue-observation",
+      "level": "live_observation",
+      "scope": "Four bounded original Single Player display-consumer snapshots; original drawing remains active, no full-frame equivalence/replacement.",
+      "behaviors": [
+        "NR.scene-snapshot"
+      ],
+      "evidence": [
+        "NR.scene-snapshot.live-20261006"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py"
+      ]
+    },
+    {
+      "id": "native-scene.owned-snapshot-replay",
+      "level": "preview",
+      "scope": "Strict and explicit partial native asset replay, complete independent unshaded policy pixels and original-frame identities; no original shade/output comparison.",
+      "behaviors": [
+        "NR.scene-snapshot"
+      ],
+      "evidence": [
+        "NR.scene-snapshot.native-20261006",
+        "NR.scene-snapshot.native-commit-20261006",
+        "NR.scene-snapshot.native-commit-head-20261006",
+        "NR.scene-snapshot.native-commit-final-20261006"
+      ],
+      "tests": [
+        "tests/scene-snapshot-test.cpp",
+        "runtime/scene/selftest.c",
+        "tools/test-scene-snapshot.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -36577,7 +37195,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-fullscreen-native-commit-final-base-20261007.json",
-    "sha256": "976b374aa536cbc49053882f6b01d9752c6d82154e1a1807eea554ce60e5799c"
+    "path": "research/runtime/coverage/source-index-native-scene-commit-final-66744e9-20261006.json",
+    "sha256": "b7dee97a5cb7ff22de3e1a9d9d024d32ab8dc544648af322c4dfdf950ef2c8c9"
   }
 }

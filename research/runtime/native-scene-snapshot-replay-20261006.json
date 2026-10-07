@@ -1,0 +1,1568 @@
+{
+  "success": true,
+  "sources": {
+    "assets/CMakeLists.txt": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401",
+    "assets/README.md": "e3c2a8ea580f581e732f4db58c09bb2c40d7b5f9cd1aedf96519ce9cf40df40f",
+    "assets/animation.cpp": "0cdd420e8bbd08751f652696a4eadf9fb0eada1b96ec04c83402feee1acf0bda",
+    "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+    "assets/animation_decode.cpp": "76523a27832349dda6daf9988bc42b348611b657af710a2f3e65b7a2912e947d",
+    "assets/animation_inspect_main.cpp": "4d73a87295c7144abfb6d7894d4d8e6f5d104af0567a888ace22268e6c893f2e",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/bmp.cpp": "2905db6469699156e4113816a9563a02f2f6071ecf3ce428bd19a535daf21151",
+    "assets/bmp.hpp": "a109cb3177826c54deba46b5952581ebbe9936a5feab49e0e958bee9f2fbc0d5",
+    "assets/bmp_inspect_main.cpp": "4746b8ed657cd7fac31a5a7a62aa60b5db6ac89904a93449c73ebd0bfa93118e",
+    "assets/compare_main.cpp": "be67af31dc0440838c5323a4f8a5513c56c3128a4522f1974371bc6e47bc5706",
+    "assets/config_loader.cpp": "706851875120533c7a49492eb34ff158314b4d17c8328749766d1a7ea9c1bb6a",
+    "assets/creature_movement.cpp": "0ceaa3cdc3e9a5f45a695ac2f8f0f5f122288e296af04c586185524582d337c6",
+    "assets/creature_movement.hpp": "5f2ac13f91904f8af7a9737fc357b1751745217d73de9f4103ef0ca8f6996953",
+    "assets/cursor.cpp": "72b0754f61658e7e3577be77e8474866f84ec422b7e7a5ae250ea1a8fa9ce440",
+    "assets/cursor.hpp": "625e5decc1a0f7f9c31660e1cf291dc59783fbbb45549095b5d610b6dfb401f8",
+    "assets/cursor_inspect_main.cpp": "b8f11cda4d1f089fe730df6cc1dc070c37fac8ba7fc08cd1839f24b42cc49562",
+    "assets/dat.cpp": "32527f25ba533121a909a1eb5a6e1b5cdbf1a1ddbec2ef89ba30cfb784723fa8",
+    "assets/dat.hpp": "7fa2f8cb8df157119a474b0fcb48ba8bfdde3f2c1b45bea1bc610fea685de532",
+    "assets/dat_inspect_main.cpp": "b40a5042575c0a5d5a276a734f67d0943552b50a9053833638d12a66af2b1411",
+    "assets/effect_animation_catalog.cpp": "58a433d4a26441a0a5fde8f78f94138fc1ae807b9ab90ef0eb1384f0c0f47777",
+    "assets/effect_animation_catalog.hpp": "93756f4e055961447987bb4dac0d30afcddb7263056a569bc02a6a025178a162",
+    "assets/effect_lighting.cpp": "1d412b98700a0f07ab392e90258f881866c182ed491422f88b73c7958314f83d",
+    "assets/effect_lighting.hpp": "a5f5892c1aff7770ce1a85356e8c9f192cd816504f82d2f4df3e79fd9f62750a",
+    "assets/evt.cpp": "a17f3492108373be55559adf2dc922d81704ccc9b0d8cf006cd41a2097db47c2",
+    "assets/evt.hpp": "3ce9ca0cd44d84eba406602a4268ad75691568484a4f62a8006ae1117b2702d5",
+    "assets/evt_inspect_main.cpp": "a9719e3001ae1edbf3e6000dbb9894a8065949b00dad9bcd300fde6af75f9293",
+    "assets/fp.cpp": "f096e28026badfa5759db40e7df0996c5de6d44c92c931574c86f3ca0e40a1d6",
+    "assets/fp.hpp": "3802e59c4dcfcd26df9bc8aa2d62c2f93024e5c5e3bc230714b4d43ea0370eb6",
+    "assets/fp_inspect_main.cpp": "66f40d2825a8ffedf7d5bc3fbe9c2ee16a10660512e4c8d2e73b9323152923e5",
+    "assets/jpeg.cpp": "0a3772e79bcace89a84aa060b3f95637f05171e7bd8c85ed77efcc0c9955d28e",
+    "assets/jpeg.hpp": "e2a16ca4030480c7832c0f1b80be5d9d48134d49d65871c37ab03e79f23fda9a",
+    "assets/jpeg_inspect_main.cpp": "cc8cc173bec58e35b4588cc52cfb01e899681bffda9b7c8aeea0ad83e9649c18",
+    "assets/map.cpp": "28d65fe5cb71efc4a3d0a30cba131118588d516f7c5693a85950a580f1234789",
+    "assets/map.hpp": "f08dd9f7092da782b7a3ae9c9e5cc40c32ed8de791aaf568d81403ec893d4e0a",
+    "assets/map_inspect_main.cpp": "8ed9e4f2e181b3b82a77fd24f0766e7c217719df3035d37946fe732b8fa46b6f",
+    "assets/mps.cpp": "02664575ae1377059faa3f76d1beb395ae48c798932357d00cf111d61a6bd1f1",
+    "assets/mps.hpp": "75e4faf786a5b2ec3166b70ea671e5e707a0e09f14054aa9dabb516bb3e81e81",
+    "assets/mps_inspect_main.cpp": "6f2766bf07cf7fda417eb3ab32103a40e6d0eb4045496686ad13ebb4d97b348e",
+    "assets/nod.cpp": "0ae47f764bae42793587a31a4ebd9751e3629c7d68ad2689b7d3c88292aec371",
+    "assets/nod.hpp": "99002bd4bace7dbde011f91d1e921734134ec00cb2b7cca2747236b9a6e4e95d",
+    "assets/nod_inspect_main.cpp": "1b8b03cc701bf265155594237dab592165daacfea9e0dafe7b582e336cd7daed",
+    "assets/packed_container.cpp": "1a69d4236536be0ae9f9944b00ea816b33a4a249010bc4e011e4a43cb2e17e0d",
+    "assets/palette_lighting.cpp": "de05923d86bd5d76fbca30942d2d5ac9dffa3cc943e27ce0cef22637d9c0b769",
+    "assets/palette_lighting.hpp": "75bf4bf2fb0a9bcce1995572acf0a67a8033e985f345a605a33aad5ee0890b75",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "assets/pcx.cpp": "776eac976327478959336bc1fa20fdfd1ac04c35a431f0e1fb949ef411defa8b",
+    "assets/pcx.hpp": "f823529c1bfd7f3b4359289f8cd6880e485c318acf711d5371cb84d8392348c2",
+    "assets/pcx_inspect_main.cpp": "512a6a962845a5c0f66857c902a3b4e21136b4bc6ea22354f9046786ea4ac018",
+    "assets/persistence.hpp": "3013cefe3f0cfe931b8f7c3961c66765233f2826fc417d2f48da3574501249b1",
+    "assets/persistence_inspect_main.cpp": "e9099f19131f8d472af848c9796b35bae6cb27e09c0bacc1499f288b8bbc58f2",
+    "assets/persistence_internal.hpp": "f704e35fdd852b18f370d71a62a9881dc6f41d2e99b8f0cf9aa4c1bc46d76c0f",
+    "assets/profile.cpp": "a6e917c7e14b5599c97aaca99c6b39dfd7222b22d5be2744c8dc42c9acd0420f",
+    "assets/profile.hpp": "f1fe154be5c9b06d23d7b847c3e3488de89e2d54669586e3a3f9705bbfaa7279",
+    "assets/region_recipe.cpp": "97fbc0f22f1fe59f8ade1d3c9d6f5f233061eb7120662d89b34aa9845798692e",
+    "assets/region_recipe.hpp": "bceb3d7345bee18ef9c353a284b89cd8e91864fb4001d02c04635a9c3fb2037b",
+    "assets/region_recipe_inspect_main.cpp": "d72e36d3b30816bbe13fcd163db03f4afffbc5da852bb738d2e1938960bb1c54",
+    "assets/resources/CMakeLists.txt": "da6130752ec59f30090e092c8e712ee45bbf4bacbfad1505201356bde9afcfba",
+    "assets/resources/README.md": "87e788e0a9adb306ecc93b05f9bc170f75af2d1706cbdcd96318a36e26f069bd",
+    "assets/resources/resource_manager.cpp": "2ae26f0317450cefb4348db0798b32c9c66e62a4169ce3a6687e3ade55396f0e",
+    "assets/resources/resource_manager.hpp": "5f82a10dadc3e880238059824d4d73c202629365d3b2914c90bb38bc43ab69b5",
+    "assets/save_loader.cpp": "8f0d9f2c5314a168e9aba80a52772b8a8cda8c9c32ea4dfcb3a16d57a2046895",
+    "assets/save_world.cpp": "fc792c919a6bbb3b9af6535da4b976880e4ec13dfe7a15e4be41195f5f6db31c",
+    "assets/save_world.hpp": "fca5bec61c6ae42971d713f2ea188ea59ff6ec261404a9105dc44761f05b7995",
+    "assets/sft.cpp": "e317648525c1bd53d0a25a84db2ff943041b392c39ba34afc8781ac7fee8e985",
+    "assets/sft.hpp": "91a41125164f294985873e4812728886a10c763f7082275e04b99f1bd0483c3b",
+    "assets/sft_inspect_main.cpp": "381ba95e1a00624a17e944a0df11f6dcd6b3b1f79b383da170bf4e3764c3b535",
+    "assets/sprite_frame_decoder.hpp": "55ff6be0e30d13672c8fc2fab5c2328582fc3eb0ffdf4456d3b2c6ab1a0ec6ab",
+    "assets/sprite_inspect_main.cpp": "c44155bf38d8c292f708acce7aea1b30ac43450011bc96c8a6d5774e61c40069",
+    "assets/sprite_loader.cpp": "00abda9b22c1f85be51e2f00028bcd448a044efbacc0fff1a24fec676df68e67",
+    "assets/sprite_loader.hpp": "0ab5f80fe75601ad3010afd048c87176bd1b3d37d371525a5c4ea6e3991d263e",
+    "assets/tag.cpp": "c8ecf2f5b36167d83a98ae022bf37f39473060033df56ce58bce4294ce7a5126",
+    "assets/tag.hpp": "21f7602afa005b16877d9716b9eeb71967e04112b25104c5a241331fc924d967",
+    "assets/tag_inspect_main.cpp": "7fb763a8f10bb8988912e21f61bcc8bed2b7e0c6745b6746af6577d2bc70d8a6",
+    "assets/terrain_catalog.cpp": "46f520fbada169bc3044b121e0a8838825214cff91730fa0046e5231d53f3b26",
+    "assets/terrain_catalog.hpp": "a1b91474346fd9a780fe34282684e63f826707147e628099ae4bb24b6ff50478",
+    "assets/text.cpp": "d0ea03cab975714d466682bfc00628dc9c856c96b14c8ba5996dc6b17081670f",
+    "assets/text.hpp": "46e5665f828cdf0eff7a8a6f6f2222c143a2f855705122384cea4108a07adbc2",
+    "assets/text_inspect_main.cpp": "0ec9c3220e2ac1f388dc091c23e2f81f17f234f7c36c2a13b7f68fa384784e69",
+    "assets/wbt.cpp": "15691fbee7dcc7ea4d1209b3a3962f4b2a0df4b857d853ebfb7fea4ba67cd5a8",
+    "assets/wbt.hpp": "a182d07bcddd3338157bc73d2bc935d72049bd45cb5fa6d81ceca136659d55e3",
+    "assets/wizard.cpp": "0049845c510f89fd2ef51d5b8f476fd83f1dca5454bab6c40414117c5b596a35",
+    "assets/wizard.hpp": "6e4ea8e6bbe57bb87a61d14e481b9baa7edda58e79dd41ee56cdaefc071231ab",
+    "assets/wizard_inspect_main.cpp": "2a1061567cc3b57cba8760b4284611113a8c5413d5bb01195312f57fef30c94d",
+    "compat/legacy/CMakeLists.txt": "739a983dab21872557ca47d45f67c70310b007334d63f7e236710fc992221ebd",
+    "compat/legacy/README.md": "8ecd4cd281c1a8696bca09654771e9dd52722acb686ac6ceba06bca760c80fab",
+    "compat/legacy/scene_snapshot.cpp": "6786082314af247cf97e5c5f9b4fe02361413bfa68969be39c62ab314f3f7bce",
+    "compat/legacy/scene_snapshot.hpp": "d22476a8c00d88860b7978aba3eef88b7979640ca5cb3a0ebd217970f40c9ca8",
+    "compat/legacy/snapshot_main.cpp": "433e62660994d0c268f6f64ee328d2e55a723ec3a1e76252ddd890066f42c665",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "renderer/CMakeLists.txt": "9e33c8b9e37b77835ef7f34e7788316912cf2e33f1b68bfbdb4cdfa656e876d0",
+    "renderer/README.md": "1bb039869543934df034e906f4da5bf05a56bb4631ba48e6a4603456c0556ceb",
+    "renderer/bitmap_dc.hpp": "df2ddb4a1c8547a184788053e4d925528b984a7ba7bbb0d4ff630dd926f0e456",
+    "renderer/blit.cpp": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+    "renderer/blit.hpp": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70",
+    "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+    "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+    "renderer/command_consumer.cpp": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+    "renderer/command_state.hpp": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/commands.hpp": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+    "renderer/commands_main.cpp": "91a5119315d2435ae3028da6393f104763f9da55c3862de56b8687bc57a3aacd",
+    "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "renderer/known_pixels.hpp": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+    "renderer/replay_main.cpp": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+    "renderer/resources/CMakeLists.txt": "c9a76a4978d2fc0a09b267de9c68f089bbfd3e2da5b035d812a6d8504c1cdce7",
+    "renderer/resources/preview_main.cpp": "4355079b26e3672cdd9028c40de62998802c0ccf6bf014f08393b7e1d595ff44",
+    "renderer/resources/resource_cache.cpp": "a4a3ef28ce73e24ae01044574dc42bf7365209bf7f3cbcb7f96b919a2dcf4fc0",
+    "renderer/resources/resource_cache.hpp": "3727f7706f400ea7696485f5070bc8b7f706555e6407ab141b4951a274e9fcd5",
+    "renderer/scenes/CMakeLists.txt": "d7d8121e9c05a41e233845b4e05b832276b3ba9550f5164236bd47b7f99280c6",
+    "renderer/scenes/README.md": "b7450a2af3b89860d317eade60a17260ff25a6232f1eed8518c702f0fd15d88a",
+    "renderer/scenes/scene_renderer.cpp": "855076370549513d18e77d3f7589ac1deec8776d9b684b3549a64059ef7255e5",
+    "renderer/scenes/scene_renderer.hpp": "e1d61c75bf4d5d1cdedd32ac80f1475f904e46fbc9d965205216ab31b2155d07",
+    "renderer/sprites/CMakeLists.txt": "925072708b6db2f7e478b3c7f0f74dd9a5c2b624bc4af02534b53f49c130d7ce",
+    "renderer/sprites/preview_main.cpp": "e4948d5e8e997c16fe9a08f04dbad086648b376a96b3302a066aff64228e4a23",
+    "renderer/sprites/sprite.cpp": "15c9c4b2ced791fba045795ff02525d76b4c6a1ee12caab7a11655b4de0b66bf",
+    "renderer/sprites/sprite.hpp": "8026c4bff5313c1adbf870f5ae53ca0525c1cfe6eab7d511b8d52078b5f660a0",
+    "renderer/surface_access.hpp": "29306563839b79760e26450d294fc75c4c3b057ffa81a64588bb42a98514fb16",
+    "renderer/surface_backend.cpp": "281ec802b0c8996bae80665eceab0dad5b1cf4021f40eeefcac115f71754090e",
+    "renderer/surface_backend.hpp": "197e2033443d82b888df7073a3f7c198d0b366b71e13ff351b8b54b383bef338",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "research/formats/scene-snapshot-v1.md": "b3ea14ac9cf87c7be92656e618f7daca32626249dd470b3d22c6e4d3cb66334e",
+    "research/runtime/native-scene-snapshot.md": "260722a225148b3c6ed1c30a1a4e1f7827bfdde5a861f92a97ecad7c22408375",
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/observer.c": "bd673f01724092f38cd5b246aa5bb2f00eb01a90b0a776483f63d78c8817a250",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/resource-fixtures.hpp": "80cfb1ed1b880c352c485e0188d97a6c95fed643ca11f35046f32ca0d3ea4b44",
+    "tests/scene-snapshot-test.cpp": "e59210d380b8061241c126525665412082acb8bf96e90eec47f8aec2eb610264",
+    "tools/build-scene-observer.py": "37882db464a89b5c0a8efdf85485508c59dda3a2b0e3dcb6434cf11ba55d034d",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/test-scene-snapshot.py": "0728e90b3e1940c5cc45ec3e64a6ef8f64afdad13a5d6c6605a2b768f6c6cafa",
+    "tools/test-terrain-preview.py": "123d72e06b847c06f8c49fcfe50ab38ae4fda45f1b56b0be6e37dcf8b9a25686"
+  },
+  "runs": [
+    {
+      "name": "fixture-0",
+      "snapshot_sha256": "a3f0d874d439016eb8550957d3f2a9933f5a4a62c38f37b685f5e35f9e5324ff",
+      "records": 3,
+      "draws": 2,
+      "hidden": 1,
+      "unsupported": 0,
+      "unmapped": 0,
+      "shaded_records": 0,
+      "gaps": [],
+      "complete_mapping": true,
+      "complete_native_policy_pixels_match": true,
+      "pixel_sha256": "ce0747610109b5170176df5af0e05d1c38f191f7b1c3bb77d331ee9e11b42e09"
+    },
+    {
+      "name": "fixture-1",
+      "snapshot_sha256": "17e9c4e4df345ebf78f780184e8ace2c91a7b65b112e39d4a08241874bbfce9d",
+      "records": 3,
+      "draws": 2,
+      "hidden": 1,
+      "unsupported": 0,
+      "unmapped": 0,
+      "shaded_records": 0,
+      "gaps": [],
+      "complete_mapping": true,
+      "complete_native_policy_pixels_match": true,
+      "pixel_sha256": "ce0747610109b5170176df5af0e05d1c38f191f7b1c3bb77d331ee9e11b42e09"
+    },
+    {
+      "name": "fixture-2",
+      "snapshot_sha256": "ba62eab573e412973ef3d632720d28654dc25efc87932fb91ccba0a94ed9b240",
+      "records": 3,
+      "draws": 2,
+      "hidden": 1,
+      "unsupported": 0,
+      "unmapped": 0,
+      "shaded_records": 0,
+      "gaps": [],
+      "complete_mapping": true,
+      "complete_native_policy_pixels_match": true,
+      "pixel_sha256": "ce0747610109b5170176df5af0e05d1c38f191f7b1c3bb77d331ee9e11b42e09"
+    },
+    {
+      "name": "fixture-3",
+      "snapshot_sha256": "f4b5c20eec874175b76d8f7b0ffba7ebb674d16ef10a28118381f7114b0994b7",
+      "records": 3,
+      "draws": 2,
+      "hidden": 1,
+      "unsupported": 0,
+      "unmapped": 0,
+      "shaded_records": 0,
+      "gaps": [],
+      "complete_mapping": true,
+      "complete_native_policy_pixels_match": true,
+      "pixel_sha256": "ce0747610109b5170176df5af0e05d1c38f191f7b1c3bb77d331ee9e11b42e09"
+    },
+    {
+      "name": "original-0",
+      "snapshot_sha256": "ebec4c807f6c86bfaea0667f0e1d9ca38339fb7b5f8df005593b1457ba309a49",
+      "records": 1778,
+      "draws": 1715,
+      "hidden": 58,
+      "unsupported": 5,
+      "unmapped": 0,
+      "shaded_records": 1715,
+      "gaps": [
+        {
+          "kind": 3,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 340,
+          "token": 128
+        },
+        {
+          "kind": 22,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 343,
+          "token": 128
+        },
+        {
+          "kind": 3,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 651,
+          "token": 197
+        },
+        {
+          "kind": 22,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 653,
+          "token": 197
+        },
+        {
+          "kind": 2,
+          "reason": "Original draw mode pending",
+          "record": 654,
+          "token": 199
+        }
+      ],
+      "complete_mapping": false,
+      "complete_native_policy_pixels_match": true,
+      "pixel_sha256": "52f1904b8e96b0c3c2167236a2580e17defb9dfc2f9fa3d55a17add6becafebc"
+    },
+    {
+      "name": "original-1",
+      "snapshot_sha256": "c4ab367708fe19065f1a3f52173274ab5146d417ec681232eec16bc8b56b994c",
+      "records": 1774,
+      "draws": 1715,
+      "hidden": 0,
+      "unsupported": 59,
+      "unmapped": 0,
+      "shaded_records": 1715,
+      "gaps": [
+        {
+          "kind": 3,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 335,
+          "token": 128
+        },
+        {
+          "kind": 22,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 342,
+          "token": 128
+        },
+        {
+          "kind": 2,
+          "reason": "Original draw mode pending",
+          "record": 343,
+          "token": 130
+        },
+        {
+          "kind": 31,
+          "reason": "Original draw mode pending",
+          "record": 345,
+          "token": 132
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 428,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 462,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 498,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 499,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 500,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 538,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 539,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 540,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 541,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 581,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 582,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 583,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 584,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 620,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 621,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 622,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 623,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 624,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 657,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 658,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 659,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 660,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 661,
+          "token": 168
+        },
+        {
+          "kind": 3,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 663,
+          "token": 200
+        },
+        {
+          "kind": 22,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 665,
+          "token": 200
+        },
+        {
+          "kind": 2,
+          "reason": "Original draw mode pending",
+          "record": 666,
+          "token": 130
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 694,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 695,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 696,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 697,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 725,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 726,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 727,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 728,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 750,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 751,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 783,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 784,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 821,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 822,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 823,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 824,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 869,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 870,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 924,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 980,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 981,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1032,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1033,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1034,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1085,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1086,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1087,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1124,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1125,
+          "token": 168
+        }
+      ],
+      "complete_mapping": false,
+      "complete_native_policy_pixels_match": true,
+      "pixel_sha256": "52f1904b8e96b0c3c2167236a2580e17defb9dfc2f9fa3d55a17add6becafebc"
+    },
+    {
+      "name": "original-2",
+      "snapshot_sha256": "cbfdd3548a8e1c533a9aabce3498f1a42a359207985b5d99a1cc8a2a08fde53c",
+      "records": 1774,
+      "draws": 1715,
+      "hidden": 0,
+      "unsupported": 59,
+      "unmapped": 0,
+      "shaded_records": 1715,
+      "gaps": [
+        {
+          "kind": 4,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 335,
+          "token": 128
+        },
+        {
+          "kind": 20,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 342,
+          "token": 128
+        },
+        {
+          "kind": 2,
+          "reason": "Original draw mode pending",
+          "record": 343,
+          "token": 130
+        },
+        {
+          "kind": 31,
+          "reason": "Original draw mode pending",
+          "record": 345,
+          "token": 132
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 428,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 462,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 498,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 499,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 500,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 538,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 539,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 540,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 541,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 581,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 582,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 583,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 584,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 620,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 621,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 622,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 623,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 624,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 657,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 658,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 659,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 660,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 661,
+          "token": 168
+        },
+        {
+          "kind": 4,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 663,
+          "token": 200
+        },
+        {
+          "kind": 20,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 665,
+          "token": 200
+        },
+        {
+          "kind": 2,
+          "reason": "Original draw mode pending",
+          "record": 666,
+          "token": 130
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 694,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 695,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 696,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 697,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 725,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 726,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 727,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 728,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 750,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 751,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 783,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 784,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 821,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 822,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 823,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 824,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 869,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 870,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 924,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 980,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 981,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1032,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1033,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1034,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1085,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1086,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1087,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1124,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1125,
+          "token": 168
+        }
+      ],
+      "complete_mapping": false,
+      "complete_native_policy_pixels_match": true,
+      "pixel_sha256": "52f1904b8e96b0c3c2167236a2580e17defb9dfc2f9fa3d55a17add6becafebc"
+    },
+    {
+      "name": "original-3",
+      "snapshot_sha256": "662ee067c16e9b91a39bea4ea0817c9f64316c92db0a6cc2c3382c97f4536847",
+      "records": 1774,
+      "draws": 1715,
+      "hidden": 0,
+      "unsupported": 59,
+      "unmapped": 0,
+      "shaded_records": 1715,
+      "gaps": [
+        {
+          "kind": 4,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 335,
+          "token": 128
+        },
+        {
+          "kind": 20,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 342,
+          "token": 128
+        },
+        {
+          "kind": 2,
+          "reason": "Original draw mode pending",
+          "record": 343,
+          "token": 130
+        },
+        {
+          "kind": 31,
+          "reason": "Original draw mode pending",
+          "record": 345,
+          "token": 132
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 428,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 462,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 498,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 499,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 500,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 538,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 539,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 540,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 541,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 581,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 582,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 583,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 584,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 620,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 621,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 622,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 623,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 624,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 657,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 658,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 659,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 660,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 661,
+          "token": 168
+        },
+        {
+          "kind": 4,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 663,
+          "token": 200
+        },
+        {
+          "kind": 20,
+          "reason": "Original depth-sentinel adjustment pending",
+          "record": 665,
+          "token": 200
+        },
+        {
+          "kind": 2,
+          "reason": "Original draw mode pending",
+          "record": 666,
+          "token": 130
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 694,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 695,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 696,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 697,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 725,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 726,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 727,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 728,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 750,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 751,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 783,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 784,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 821,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 822,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 823,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 824,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 869,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 870,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 924,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 980,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 981,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1032,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1033,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1034,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1085,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1086,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1087,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1124,
+          "token": 168
+        },
+        {
+          "kind": 6,
+          "reason": "Original draw mode pending",
+          "record": 1125,
+          "token": 168
+        }
+      ],
+      "complete_mapping": false,
+      "complete_native_policy_pixels_match": true,
+      "pixel_sha256": "0c548bf75337d961f042f8c511a6626841b64603619744e20959493f9845f864"
+    }
+  ],
+  "scope": "Bounded observation forwarding and native unshaded replay; independent native policy pixels, no original full-frame comparison or replacement",
+  "capture_report": "working/experiments/scene-observer/run-hff74ouf/report.json",
+  "live_observation": true,
+  "sources_stable": true,
+  "inputs": {
+    "working/tests/scene-snapshot/run-xfnfgxjq/capture/scene-0001.bin": "a3f0d874d439016eb8550957d3f2a9933f5a4a62c38f37b685f5e35f9e5324ff",
+    "working/tests/scene-snapshot/run-xfnfgxjq/fixture-bindings.json": "c2a584e7b838dab9308bfe3b3e46a493b14ceb6c69f4b9519af3edd2e033fc71",
+    "working/tests/scene-snapshot/run-xfnfgxjq/fixture/fixture.spr": "708ebb33908b5441ac692d029d95757b32bd2b5d1b9d6c1dbae44d96a9175671",
+    "working/tests/scene-snapshot/run-xfnfgxjq/capture/scene-0002.bin": "17e9c4e4df345ebf78f780184e8ace2c91a7b65b112e39d4a08241874bbfce9d",
+    "working/tests/scene-snapshot/run-xfnfgxjq/capture/scene-0003.bin": "ba62eab573e412973ef3d632720d28654dc25efc87932fb91ccba0a94ed9b240",
+    "working/tests/scene-snapshot/run-xfnfgxjq/capture/scene-0004.bin": "f4b5c20eec874175b76d8f7b0ffba7ebb674d16ef10a28118381f7114b0994b7",
+    "working/experiments/scene-observer/run-hff74ouf/report.json": "05f2bb7ea4eee5a0a8b3a35364d48ba7b5700e1e2b44d75eb1fb247a62b759d1",
+    "working/experiments/scene-observer/run-hff74ouf/capture/scene-0001.bin": "ebec4c807f6c86bfaea0667f0e1d9ca38339fb7b5f8df005593b1457ba309a49",
+    "working/tests/scene-snapshot-v4-bindings-20261006.json": "c2d91df355b766a8622d6e819f45810a4b9925ed72b29061af8e8463bf2f7ae3",
+    "working/game-clean/Bitmaps/ScanSmallEdge.spr": "b8f9c4250191674729e82c422e96433ccd54331daa8b320eef054d978e68501e",
+    "working/game-clean/Bitmaps/scanLargeEdge.spr": "a76deb9023fe93ed1e9fc851ce8cc5bb2e671a1b2c3076ec990658c24a5d6b48",
+    "working/game-clean/Creatures/16Mb_Anims/Ariadne.spr": "7e30e32c42d3ceca8495383179f6bfe70fb5a26032bd0a6bdf929e405326cc35",
+    "working/game-clean/Creatures/16Mb_Anims/Bat.spr": "792d512ff91997c5cbaea68ee2b8c140cfe030f09102e5c2309ed970cba946ef",
+    "working/game-clean/Creatures/16Mb_Anims/Brownie.spr": "7c94957c3c3b449184bfc99e1ed86bab7e4100feaca7ad24c3739860839193b5",
+    "working/game-clean/Creatures/16Mb_Anims/CelticWizard.spr": "b0c13e078e4ab52884653015ef2240238bd691d1ea443e92b0bd0c0c25c38fc1",
+    "working/game-clean/Creatures/16Mb_Anims/Centaur.spr": "280ef877c263ba20ea70cb4a13cf6ba8c08b52098af104a9f742d4aebf83a8f3",
+    "working/game-clean/Creatures/16Mb_Anims/Chaos.spr": "4e006e7c3c0be94c8179c6260960bbc5b02246c78ac643cf720c0f626c3eb4ca",
+    "working/game-clean/Creatures/16Mb_Anims/Crocodile.spr": "f284d8e81b16f78d3e99e471e4092d34cc71fa56b2391c98a1e58073398e2178",
+    "working/game-clean/Creatures/16Mb_Anims/Dog.spr": "fdb03147529c34e4ee84365182075b25fa57337de0701be7760b1bd4a6b3cbf2",
+    "working/game-clean/Creatures/16Mb_Anims/Dragon.spr": "78fc748605e8786959b00c37fc521be39af99b0e11326e777858f4a2ff358935",
+    "working/game-clean/Creatures/16Mb_Anims/Elf.spr": "98a953d9e7e13953597895e92f07b5102b3b176cdbbe39bdffa1f4875f430e05",
+    "working/game-clean/Creatures/16Mb_Anims/Greek Female.spr": "ff70e87e053943589326cd432018444a515fd613cd2766b61132107cc602e516",
+    "working/game-clean/Creatures/16Mb_Anims/Greek Male.spr": "77f974edd5afa0d8167a754d878fce4fbc19f90cca04d43593b5823c94a781c8",
+    "working/game-clean/Creatures/16Mb_Anims/Griffin.spr": "624ebfcb9cc977091136e8b2a78a0ea52491b6f4e132a0cf481099a84c7dbb52",
+    "working/game-clean/Creatures/16Mb_Anims/Hermes.spr": "1a144c6cbc772088d3ef3233e3767e2b6c2684ce7dbd29b1bf7cc9d3775e3530",
+    "working/game-clean/Creatures/16Mb_Anims/Hero.spr": "64757587259e541111c54d18730510ce993dd5cd509452591abae508294da8bd",
+    "working/game-clean/Creatures/16Mb_Anims/Law.spr": "204b161c2abacf0b4a85f3fa1d9982932b8e39b90d602534fc8c1266a3c81483",
+    "working/game-clean/Creatures/16Mb_Anims/Lucan.spr": "0e4285a6a599c026541bb0a93f8300e259058ff9ce8a95eb12932368451f0d30",
+    "working/game-clean/Creatures/16Mb_Anims/Manticore.spr": "aeebf0dd30ecc227a7a249738f823d87ef0c04a5a50823085ebb6513fb2cb32f",
+    "working/game-clean/Creatures/16Mb_Anims/Med02.spr": "29ecbeeadc17a3c134dc80ed68cc771dcc22b350075389d521f6bae84af81c01",
+    "working/game-clean/Creatures/16Mb_Anims/MedWizard01.spr": "c41ebf1493cead2ac6829dea3fd9c9dedb1826bfa94d840fd2906f0f6e9557d7",
+    "working/game-clean/Creatures/16Mb_Anims/Overlord.spr": "637d3cb7ca4039913c1ae83f82c20af0962c20c65934663ed8ed273d1a47daed",
+    "working/game-clean/Creatures/16Mb_Anims/Percival.spr": "8f6e938fc29da8fc2607633822b55872e2fbd9b32cb86e7e74be33c38d0e5613",
+    "working/game-clean/Creatures/16Mb_Anims/Phoenix.spr": "df48c2e7ad02aef5786b7a861eff49c702ff6a44b1e5350e3b2f28e9166b57bf",
+    "working/game-clean/Creatures/16Mb_Anims/RedCap.spr": "a5ba2b17d83becce8ac5fbf1a6aa41e7844d6e62579ff266ad511d1bc7f28fd8",
+    "working/game-clean/Creatures/16Mb_Anims/Sophia.spr": "21089fa07891579970f23ea06c1b56152994edc578bbf0be58ec7345397aa05f",
+    "working/game-clean/Creatures/16Mb_Anims/Troll.spr": "dbceee9e56e33be3c3e7c9bf2e0641532e8df671d8158a24179b136f14231b1b",
+    "working/game-clean/Creatures/16Mb_Anims/Unicorn.spr": "4ca8744ba09f75d7a67e97bed41105fc220ff504c423091d491220b1d794af3c",
+    "working/game-clean/Creatures/16Mb_Anims/Vampire.spr": "d1e381a06a0c4eb7cff87e6555de48369336a0fd228a16bc61785b31c63fc7a3",
+    "working/game-clean/Creatures/16Mb_Anims/Wizard1.spr": "5f04b49c911fb2182ff99898fd989c25640b3a51c9e5f5f8fa607f87a51e7365",
+    "working/game-clean/Creatures/16Mb_Anims/Wizard2.spr": "7df3766f757770555e13cd4eb123575be6f090711becb740fee98208bcdd4e7b",
+    "working/game-clean/Creatures/16Mb_Anims/Wizard3.spr": "96d68576b542caf13074a35ec33fe356948e789f5a0e283c4a92024a047883fd",
+    "working/game-clean/Creatures/16Mb_Anims/Wizard4.spr": "0cb0ca66c9188d0b4f613fc7530510d38ec54dd2b321b0811b75b8cd7ff69ae3",
+    "working/game-clean/Creatures/16Mb_Anims/Wizard5.spr": "0ef1898c45a30520a53ae13b2a19dd060bc93994cae845275461115b2b6ebfba",
+    "working/game-clean/Creatures/16Mb_Anims/Wizard6.spr": "0fd3ad15933c0a781085e95b45df8c94cd01d2fb35c5015575ac7810901fd130",
+    "working/game-clean/Creatures/16Mb_Anims/Wraith.spr": "36904369eaa5b4de1e1dc0cb3a25f3e024f444fa08010d760f668491f15ce62e",
+    "working/game-clean/Creatures/16Mb_Anims/basilisk.spr": "0749de904a1c94a88f3bd07371c363cbff41658683fd05dadd09f2dc3e7dc78d",
+    "working/game-clean/Creatures/16Mb_Anims/eye.spr": "665aadbda360f03bce0e5f944130c6718ba3e0276b1e8ff6d49b7e6f3843b8bc",
+    "working/game-clean/Creatures/16Mb_Anims/faun.spr": "e66a057b0a2d40421d981de1cd77a34b7e5e535bdbf9d1fca56584c5126d45c5",
+    "working/game-clean/Creatures/16Mb_Anims/skeleton.spr": "d0fa706ca08b01ddf8ef6b20caafc3b53767ef0882a628a1faef019954cdda23",
+    "working/game-clean/Creatures/16Mb_Anims/sysprite.spr": "2d94f922f9894ba329032366280a515c081dcf38b3b1ab5363bdb9a614191a03",
+    "working/game-clean/Creatures/16Mb_Anims/zombie.spr": "22a3bbb039c82e9ede263d6388bdbaf1de12c8d88a1e3637ad9076d9dc37496a",
+    "working/game-clean/Creatures/Ariadne.spr": "7474ec8c40d539df8510442d80b628a49b7cb7483b2ecd25366dfe94cd66a473",
+    "working/game-clean/Creatures/Bat.spr": "cb422fafddd0fc18f413d0cfea2ef0a2e97ae575aceca0603ae97925e9c27e3f",
+    "working/game-clean/Creatures/BodyParts/Basilisk.spr": "0ddfef88387226735a99dd3becb0704360686958c8fa21c52e21579902588184",
+    "working/game-clean/Creatures/BodyParts/Bat.spr": "7733b30323a4fc6e206530c6d65e2bb60171d84e56df07aa4e823b7798159d75",
+    "working/game-clean/Creatures/BodyParts/Blob.spr": "46a920491e3cd1b42fba5cbe8802e8b56c38ce1c5917d31165f029dea79bf0a3",
+    "working/game-clean/Creatures/BodyParts/Brownie.spr": "704ac953e84d33f6e0ee3dbff536ad9fd75660f5e5b0ade97f21eec9505c84c5",
+    "working/game-clean/Creatures/BodyParts/Centaur.spr": "dd57e47a966819df24f7e642523148b4abe319dfec4bd86ec9145f31ada99bfb",
+    "working/game-clean/Creatures/BodyParts/Chaos.spr": "e1bedfe9155ecd8c3c8a1f19432b2b0ee5e2f663cbc980cd12b5c8b90465cb0c",
+    "working/game-clean/Creatures/BodyParts/Crocodile.spr": "e580695f671fffc0bbf6c6f476f6e71745d8a4480092d4c0307544f6df16731c",
+    "working/game-clean/Creatures/BodyParts/Dog.spr": "0f824b453f133bed7d8ece9dd5d97a2da7d779a816f47884be070b22c5054330",
+    "working/game-clean/Creatures/BodyParts/Dragon.spr": "1f0dff8d660b853ac08b807f63436c67cd99d456a71433f7783734c8fa165a48",
+    "working/game-clean/Creatures/BodyParts/Elf.spr": "77b9a20a44897a28dd3b5642f5a5f7d17719a2881a19c5e89cf7ea09a1269ece",
+    "working/game-clean/Creatures/BodyParts/Faun.spr": "2069d08ae4f5890032cc768cf12e165104700c3db48951edb1cc259a874e06f5",
+    "working/game-clean/Creatures/BodyParts/Griffin.spr": "822c7d97807c0e8e6bf7790b908936669ef733a77eb87bfe576a06cb4138e03f",
+    "working/game-clean/Creatures/BodyParts/Hero.spr": "cf24561756944fe0bddb2e9b7bbc73fc462896104dc027f01f59e1e6afe1357b",
+    "working/game-clean/Creatures/BodyParts/Law.spr": "e08ab21fda964413b79e6c053d140bc58eeaa361dd67a42c87bbb3b7486b6d83",
+    "working/game-clean/Creatures/BodyParts/Manticore.spr": "a5a29cb12944f139f7c9399d511dbff256e4fe3c9a720cce530e263010b4571b",
+    "working/game-clean/Creatures/BodyParts/Offal.spr": "29d32e047133d563a4356b491c1376b8a4a5dff74a185e8f0922f25815e725a7",
+    "working/game-clean/Creatures/BodyParts/OffalSml.spr": "fd7bbdbd2641e88bba83ce255b83ecd36f6c38d4a4188ecbc359f13ffb199a87",
+    "working/game-clean/Creatures/BodyParts/Phoenix.spr": "cf59fa77f13ecb53a4382b42f149ec681ceeffdce6017cf3ab425c83555dae8a",
+    "working/game-clean/Creatures/BodyParts/Redcap.spr": "adeb7d7aa9178583dc5486a2aee14ac73525783d25c0f87f86c3480d96ca8e2e",
+    "working/game-clean/Creatures/BodyParts/Skeleton.spr": "618a1f70c50321b5077bcc5548370ae21d32361f86dbf16a30a833f58d4d4438",
+    "working/game-clean/Creatures/BodyParts/Troll.spr": "00714b4e4e33a53da65bc0e0ed1f5f27e6594bbbf346d64b7a5ec268a63d8736",
+    "working/game-clean/Creatures/BodyParts/Unicorn.spr": "4dd3db86f14a43c25922034df16f5232ba0687120295f5fd85f1cde73cfaf3ef",
+    "working/game-clean/Creatures/BodyParts/Vampire.spr": "9ede192471a182dd7aa55d236cc8cc21c389fa178d8353ecb7e946f03a0c77f4",
+    "working/game-clean/Creatures/BodyParts/Wraith.spr": "f385d56b8e390d16ea8f228370e83a9ca94a7257269acc63f65b9cb9b9ac81ea",
+    "working/game-clean/Creatures/BodyParts/Zombie.spr": "88dbc033fedae12cfb84914c99397bc08e35fd7f9493d8fd55713fe00469b623",
+    "working/game-clean/Creatures/BodyParts/eye.spr": "c07c6217387af99e230d1842aec47c76cad2036fec9d2231ff2275c214e2a9ae",
+    "working/game-clean/Creatures/Brownie.spr": "1b89f9c96712d99ad6978218503e69a006880b08ba799896872ba76dae4bdb03",
+    "working/game-clean/Creatures/Centaur.spr": "38d0a6ef7d53ad9c3265bddb608787d438a9bb39924b03b1f05d3afaf99ced31",
+    "working/game-clean/Creatures/Chaos.spr": "5df5df01dda8d046e3e36d183a5df8735d8bb2c31de0f559d56953e68ded29ac",
+    "working/game-clean/Creatures/Crocodile.spr": "f3651a6609896a878c79bbed356f8951ffba056a8481ee628d5f3bbff0e94d91",
+    "working/game-clean/Creatures/Dog.spr": "f73ff73a4854f4d9007a1e991231593e5ad34ad89f22d3864ade4dfc5de8aa1d",
+    "working/game-clean/Creatures/Dragon.spr": "4c73c91f7b59d6164aee9b5a6c4cf88feb59ba5d034804702851e01de8699f50",
+    "working/game-clean/Creatures/Elf.spr": "91f309aa78530bec7b00f196292cf8e3836c4306962aa37a5f2625346e36bd4a",
+    "working/game-clean/Creatures/Greek Female.spr": "60b2f5e5f97f2b180120aae135166af45d189baf1b36e9361ac3d554f3287b4b",
+    "working/game-clean/Creatures/Greek Male.spr": "dbe4889c272c83462bf162b7825b4cb6ff3cf255608e6be41eecc03b6333025b",
+    "working/game-clean/Creatures/Griffin.spr": "046680dd78762539256627817b1a7d3a90d883935ceb82ed721e5663c225ffbe",
+    "working/game-clean/Creatures/Hermes.spr": "1a144c6cbc772088d3ef3233e3767e2b6c2684ce7dbd29b1bf7cc9d3775e3530",
+    "working/game-clean/Creatures/Hero.spr": "50150482cdb3325c4b8733c46e8fd765c8e6524e18fce4d938cd72de6410fd1e",
+    "working/game-clean/Creatures/Law.spr": "a94c338ee89cd0ad434764082ebb1c227c558c1cbfdea5609c4a8d66d93b0bfa",
+    "working/game-clean/Creatures/Lucan.spr": "5942cb07c897b260456a7139b402abae01909547e9a45268c833fcb007a22489",
+    "working/game-clean/Creatures/Manticore.spr": "e3373c3b16ea4fb9d1fb28a8f25b04e498e6dd3cf2f0e253c9efe6e9f55c57ff",
+    "working/game-clean/Creatures/Med02.spr": "9cc60a75b6bc39591a0ffea646aac0411d25783c0efbacb37200f7fb1d52dfae",
+    "working/game-clean/Creatures/MedWizard01.spr": "def79c7307bbe5f6b3fb032a4727bd90d6a95a275f624d54ee31131206243269",
+    "working/game-clean/Creatures/Overlord.spr": "4172afd950d4ad3369d550cc956760f8e53136e348828e4a162ae47b94eb2865",
+    "working/game-clean/Creatures/Percival.spr": "4b400203f53d321a5189a9cf3c67a120cf6915e7373a9271e4057edd3001f4bc",
+    "working/game-clean/Creatures/Phoenix.spr": "b5261c6e8d80dd6ee0144fc5f47e6a6dad2e6a30c86750170c61296da5a02368",
+    "working/game-clean/Creatures/RedCap.spr": "9e62b75682a41d15c1419010e580f3ca4e8087673f7650bfd0b0f64dec97d1e1",
+    "working/game-clean/Creatures/Troll.spr": "6550612b887bcf925237d3901fe6aabe465f8faae1d3c89b8af9c7795a2ac323",
+    "working/game-clean/Creatures/Unicorn.spr": "a7e558076bd6ff40b373206053509929be46a0b743b0d423e746465549f95ae4",
+    "working/game-clean/Creatures/Vampire.spr": "2c1fe80ed0b0449c2be8e8f9a34f03409d157d3e85ccbd4440433137607324b2",
+    "working/game-clean/Creatures/Wizard1.spr": "584002390f9d97e6bd524e7aea71f718f43429e45c4630e76ac7c198a48caf6b",
+    "working/game-clean/Creatures/Wizard2.spr": "72c1973c379615c74da5ba507cbf6b3087836708bc9e86ee73776b1440d2ac07",
+    "working/game-clean/Creatures/Wizard3.spr": "5436b0b7892546d94620f4f72a640bf4b773813403c5c244f2144fb8544b4bfa",
+    "working/game-clean/Creatures/Wizard4.spr": "6addf3d4ac6072fd214b85bc14cc8afa9cab14bf4fd87be1d4e2613bbe74829c",
+    "working/game-clean/Creatures/Wizard5.spr": "5565cda3788f7f4ca19c168510cdfe7351464b556a2b8517012bcef127996e28",
+    "working/game-clean/Creatures/Wizard6.spr": "964b7aa1b19eea4693ca744702aaea3089129d0eb4848d618f03d228af5736ab",
+    "working/game-clean/Creatures/Wraith.spr": "d9a759d9236860c41340d5e5aebc904a343c819320a47b0d1641ce648ca66b52",
+    "working/game-clean/Creatures/basilisk.spr": "b5f8c5111bfa3d53a5678d9f941174b18292338e9ef0ce5c6323d559edf98315",
+    "working/game-clean/Creatures/celticwizard.spr": "4e83b237451f39ca268e58282385f2264eaae7facd77cca28bd9f1afcace6a02",
+    "working/game-clean/Creatures/eye.spr": "665aadbda360f03bce0e5f944130c6718ba3e0276b1e8ff6d49b7e6f3843b8bc",
+    "working/game-clean/Creatures/faun.spr": "10df06be9a9d7966810829a2685bbe6e116ce3941e31be31fbb166d0d64b43f3",
+    "working/game-clean/Creatures/skeleton.spr": "ee0776b131967879db0e85b478f321d5cdf7b8583aa1424cb44aaf109004af8e",
+    "working/game-clean/Creatures/zombie.spr": "ac08f4e79b2848180d6e6818fa0b0ce7111cf8692e4f1dbbf1bebf0878c3539e",
+    "working/game-clean/Interface/CharacterScreen/640x480/sprites.spr": "91210b71ebb2457419d7969bc8d72957206bc19c52e1ac5543e917058a78cf64",
+    "working/game-clean/Interface/CharacterScreen/800x600/sprites.spr": "59cbb9ce5e8adbcb0917b081171055c83edbd500259bf993d53fde6e0f9d9ec4",
+    "working/game-clean/Interface/Grimoire/640x480/Icons.spr": "dde57c35a619b72da6d01f9aef171f85547d607bea66a52c77092736b170eebd",
+    "working/game-clean/Interface/Grimoire/800x600/icons.spr": "885091a8c270be4ad13e366ee1a760de0532bc0ea9e5347191efff99d076faeb",
+    "working/game-clean/Interface/Grimoire/Generic/Icons.spr": "1c49d675126f074b2b77e75540d990193c856101abbc4664fcb54693a6467e38",
+    "working/game-clean/Interface/Grimoire/Generic/PageTurns.spr": "25a14a3efc5d90485c09776bf014d4a6a287dabed42f4a775a58e7ac52f03b1e",
+    "working/game-clean/Interface/MultiplayerBattleSetup/MultiPBattle Screen buttons 640-480.spr": "767955dd3b540b1a615cd52487c55923c26cce3087c9467f1f4ee86eaf03acee",
+    "working/game-clean/Interface/MultiplayerBattleSetup/MultiPBattle Screen buttons 800-600.spr": "8bb426ac8dd3e0b68d5b195204ca720d94c678f9a43dbfc222466e03822b9c5a",
+    "working/game-clean/Interface/RealmViewer/Generic/RlmBtn.spr": "2550d3b855ce716377203dca5bc3f7b8d5830f6899c60a5ce60da63fac26d287",
+    "working/game-clean/Interface/RealmViewer/Generic/flags.spr": "a57cb4a5bfb07e4a6108028c0b1538c069637eeaec775a967b08922824d1cb3c",
+    "working/game-clean/Interface/SpellBox/640x480/Talisman.spr": "dfa5cb6d7233a40052c9b732ecc2ae3920d3fe2809c0f3024f24d76083986dc7",
+    "working/game-clean/Interface/SpellBox/640x480/mitems.spr": "be749390bee478552b94765e9e7e2fd284c0471cc3207153d006c19ec3c18ff3",
+    "working/game-clean/Interface/SpellBox/800x600/Talisman.spr": "5ad9b18a2638278554ac5f37143e6c25b35ada81267b757327c30ae4ef4589ac",
+    "working/game-clean/Interface/SpellBox/800x600/mitems.spr": "8658ed92bbf2d30021f5d6c271e567130cd4d178f878e67ad4d125c4dae27db3",
+    "working/game-clean/Realms/Celtic/Forest/Terrain.spr": "bbff01037b19eaf97c067dc742c2b93bb29f69d4862f0c811a9e2a33fff7b65b",
+    "working/game-clean/Realms/Celtic/Plains/Terrain.spr": "db01740f661a4a05688bb4e745aa4249e31640b64b984ebe030b4ffcf17c3a00",
+    "working/game-clean/Realms/Celtic/Swamp/Terrain.spr": "1c017f29943ff11cc58534dc79c1eab855562220df872770c301f3e433ae6f77",
+    "working/game-clean/Realms/Celtic/Tutorial/Terrain.spr": "63f6fca1ea5305ba305dc917b0ad18a4d3143b1f4736c5e38d2ee21df6f2ca32",
+    "working/game-clean/Realms/Celtic/Village/Terrain.spr": "baa69f075fa9f6930f6aa4de086fdc20b8ccbd69a00f730b709a2690f5ccd277",
+    "working/game-clean/Realms/Greek/Forest/Terrain.spr": "5823b7414c24f74bec308e5cd5d607083390da7e3c0d9d019989fc34e3b6a498",
+    "working/game-clean/Realms/Greek/Labyrinth/Terrain.spr": "23a34cf528e86e61029ec6c16b3a1c617e7d858fea143941ea9288fac52b833a",
+    "working/game-clean/Realms/Greek/Mountains/Terrain.spr": "122e027c637b50dc2c6a0f2644d270e8e10c61f87d8c129d0572100c5a012e01",
+    "working/game-clean/Realms/Greek/Plains/Terrain.spr": "20dbd02d3735cf4ee2bdf5c05a6eae1a000b8b82ee47176bced697e4e30aee19",
+    "working/game-clean/Realms/Greek/Village/Terrain.spr": "5823b7414c24f74bec308e5cd5d607083390da7e3c0d9d019989fc34e3b6a498",
+    "working/game-clean/Realms/Medieval/Camelot/Terrain.spr": "ef1094884a355c40e4c243a4ce5d70405ec6ba1711816c272a3264a40b3fd67f",
+    "working/game-clean/Realms/Medieval/Forest/Terrain.spr": "af0e00c53d3a5194d4c0be99ab94625bdef04288c1406d361cde0d36d9580b3e",
+    "working/game-clean/Realms/Medieval/Mountains/Terrain.spr": "394a2c5dcdc61d90c847655d74fd046e868b11728fc4f2e7b8fd128b723a8ab6",
+    "working/game-clean/Realms/Medieval/Plains1/Terrain.spr": "cca4988c7e8b7809ed447b87a3a0cda6e8b140279770d3fe446fdc2766c06462",
+    "working/game-clean/Realms/Medieval/Plains2/Terrain.spr": "e237afaf0023e739e931473121dcad9f0d3046d15f98645691c457b8741b2f5d",
+    "working/game-clean/Realms/Medieval/Swamp/Terrain.spr": "11cb25f07eb095629d3c829e714179c2246860dc5a909eb990c2274f3903e4e7",
+    "working/game-clean/Realms/Medieval/Village/Terrain.spr": "008f61e4d72fc057f8a695e6450f2adf73581a49b3f405f8c18452255e1be4dd",
+    "working/game-clean/Sprites/Buttons.spr": "14bc9f870348b8e3df556628de28f5b751748803ba98fc90a6514c7ede47ae23",
+    "working/game-clean/Sprites/CheckBox.spr": "109a7871e2693e7f5b07a8eee78955ebaac7e1ccd0eb9a7db0018ecf424bcca5",
+    "working/game-clean/Sprites/Cure.spr": "f91d3add7fb46a0b71dc97ed7b90b3e73054182da98bd32fdabf99031af3df0a",
+    "working/game-clean/Sprites/Effects10.spr": "4aeaff75aab5608f22c4815e968743ed23a2d5713b0c33f664ef0f6f13f84756",
+    "working/game-clean/Sprites/Effects11.spr": "5b6cfda83380a2543dd01e4192a900a6935ee00f56b53d72c21f30bd5eee483e",
+    "working/game-clean/Sprites/Effects5.spr": "fe89cdbb7fb4a64579c6143ec253bfe15a3a82db8db9f39f5f9a6b04bca913aa",
+    "working/game-clean/Sprites/Effects6.spr": "ea16ae346945a6e7ec9ee9875327047475ce029b245c04abd958610241dac610",
+    "working/game-clean/Sprites/Effects8.spr": "020126eae2f7f211696786ded483aa2bd215bea90fbe80ae4e95c383c77afaa5",
+    "working/game-clean/Sprites/Effects9.spr": "1b086cffdab85cd8053666e8dc6dcedf17d95fbabb2ace8f92e72cacccc942df",
+    "working/game-clean/Sprites/Lines.spr": "62fcc260b499afb7cd02ac8b6dc819f93f463dd4324cd946653afbda06f561cb",
+    "working/game-clean/Sprites/LordKing.spr": "a64c60769de6ed74bfa5125756e50bff6bbd1ddd1ab347ce0431ae10154eafd9",
+    "working/game-clean/Sprites/SplIcons.spr": "c4c47ba065669878afdc197558e3ad8a71d86bf4e0cfceda2f7d016e41b50e29",
+    "working/game-clean/Sprites/Subvert.spr": "68faa89f8dd7b674a30b412d1d8fde66d14b340ecbb0c2289c2beda454414686",
+    "working/game-clean/Sprites/battlebuttons.spr": "bb626c7b7d5dc32c4b0a17f5be7463c9c7d9d2bdc9f689be01037d28f9b54b36",
+    "working/game-clean/Sprites/border.spr": "f086ea10890c68d593575d9043551bcc8e76944d18915164c342d0814c7c8d7e",
+    "working/game-clean/Sprites/cursors.spr": "80660105528aa9067bc5d1c3c5ea21e881d27672d60e74b3c39c141d30759561",
+    "working/game-clean/Sprites/effects0.spr": "d86829a13dfd4558d820e01a993823c45b8e0e76b5ff248abfec99167e1552ca",
+    "working/game-clean/Sprites/effects1.spr": "0c13567e597500e0730a46a0da9b54487ecd3ea54a16503ad5a41f449158f99c",
+    "working/game-clean/Sprites/effects12.spr": "bd29c2ee8de52e7f6fa2a7db311f297263227448e9021cb9b7e248e4d9faa000",
+    "working/game-clean/Sprites/effects2.spr": "241a2da482dca1bbdb38d9ef88f5029755fbc42c9b760d1d4095f59a2a5f211f",
+    "working/game-clean/Sprites/effects3.spr": "e77ca413c0b636d6428f891cd02ad8677ed110ea2a07a2a0b76ba4a4a1f5d4ad",
+    "working/game-clean/Sprites/effects4.spr": "1c8f05d30c11fe8fc4bf749a3667a9ba744797e4f589b47cf80cbbcd01d79205",
+    "working/game-clean/Sprites/effects7.spr": "a8425af3680ee3be67216566ccbbbdd59f2e6348309fe0416d57bdc13188498f",
+    "working/game-clean/Sprites/flys.spr": "c7594531aa991f5e561f9863975dd66974be1d866f9da15464dbae91a0e2312b",
+    "working/game-clean/Sprites/manablack.spr": "368768cf3cdf5b7c2b194247649af98f87a0e1c92599988b1c066697456df3b0",
+    "working/game-clean/Sprites/manadullyellow.spr": "46cdd78c29c685240f7da49c98637be1895df591c1278f48f7084b95f69fe33e",
+    "working/game-clean/Sprites/manayellow.spr": "6d08dfbe930391fc078836e53d01ca283a29aa3ff25189a2f222aef50de79215",
+    "working/game-clean/Sprites/markers.spr": "14f2d9412f274b23742200439514f9677e65bc16a74beebddd64e70b592facdb",
+    "working/game-clean/Sprites/radiobuttons.spr": "cc20e334b571ce7e3106a0c63668ba0f7ea359be82f63eba17205a6e95112256",
+    "working/game-clean/Sprites/scrollbar.spr": "f333ee022e115ab4d98a23173f31a86c591f5bc5cf96e7020de8374d90c0b42c",
+    "working/game-clean/Sprites/selbut.spr": "6dcf2ef9752317ef60a7a437ed11e00196d1041023a9a0d32766aeef52eec006",
+    "working/game-clean/Sprites/selcur.spr": "5df89e4257aae68d3ac0dc84ce59dd8a5367694bc2d08d8c39e3da393b100d1c",
+    "working/game-clean/Sprites/slider.spr": "8306aaa70e0abd2771b1a3acbfe3c2fcd72dbf8fc72b5981235bb0ed545deb9e",
+    "working/game-clean/Sprites/spotIcons.spr": "6da852fffe64f485bc94603cb6c2fd4e9a174dea57524182fbefc61fb767ec67",
+    "working/game-clean/Sprites/timer.spr": "4de7008b1689283087dbe3c1b59ad870b37c23d2002405644d776699204d6e2b",
+    "working/experiments/scene-observer/run-hff74ouf/capture/scene-0002.bin": "c4ab367708fe19065f1a3f52173274ab5146d417ec681232eec16bc8b56b994c",
+    "working/experiments/scene-observer/run-hff74ouf/capture/scene-0003.bin": "cbfdd3548a8e1c533a9aabce3498f1a42a359207985b5d99a1cc8a2a08fde53c",
+    "working/experiments/scene-observer/run-hff74ouf/capture/scene-0004.bin": "662ee067c16e9b91a39bea4ea0817c9f64316c92db0a6cc2c3382c97f4536847"
+  },
+  "binaries": {
+    "working/build/scene-snapshot/mnm-scene-snapshot-preview": "8dfbcfc225e8f44f1c93c1af8e20effe653980f6a58cebf63422925cf29909f1",
+    "working/build/scene-snapshot/scene-snapshot-test": "e9874c03f499fadb6b72511baf511e39d7c6420d39b899beb8e72fa6693fdb13",
+    "working/build/scene-observer-selftest/selftest.exe": "4cc28735a6686d428057759a28878f08375ed2f0b8a8edc60fa3634f3551569e",
+    "working/build/scene-observer-selftest/MnmScene.dll": "181860c6faf5a652c03b72dc695b55b5b4dfa394546d498cd9136104cc180dd2"
+  },
+  "ctests_passed": 3,
+  "forwarding_selftest_passed": true,
+  "original_pixels_compared": false,
+  "live_replacement": false,
+  "retained_run": "working/tests/scene-snapshot/run-xfnfgxjq",
+  "retained_report_sha256": "e059c15375edc5303c8e73dd4d2375a47e34407c55d7ce47266b4e507d411509",
+  "summary": {
+    "original_snapshots": 4,
+    "synthetic_snapshots": 4,
+    "supported_original_draws": 6860,
+    "unmapped_supported_frames": 0,
+    "complete_native_policy_pixel_comparisons": 8
+  },
+  "limitations": [
+    "Embedded unshaded native asset palettes and diagnostic background; original shade remapping/output not compared.",
+    "Original modes and depth adjustments remain explicit indexed gaps; no continuous native host presentation or replacement.",
+    "Broad dependency fingerprints do not imply full subsystem validation."
+  ]
+}

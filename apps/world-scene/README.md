@@ -6,6 +6,12 @@ owned ANI controller display, and interleaves terrain and creature draws using
 the recovered signed sprite queue. Step advances the simulation once; rendering
 never advances animation. Save checkpoint publishes a new native checkpoint.
 
+Terrain and creature recipes now load through the native ResourceManager. The
+creature recipe owns the checkpoint's ANI bytes rather than substituting an
+installed animation. The shared [scene service](../../renderer/scenes/README.md)
+retains a canvas and bounded uploads between frames. Existing projection, signed
+depth sorting, picking metadata and simulation clocks remain in their adapters.
+
 The default mode is an explicit **diagnostic terrain fixture**. The installed-map
 crop mode below presents matched ordinary geometry/navigation with declared
 projection and creature-profile limits. Neither loads a complete game world.

@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "tests_passed": 90,
+  "scope": "46 audit and 44 gate synthetic guards; historical census roots remain admissible while new compat code still creates blocking source drift. No engine behavior validation.",
+  "sources": {
+    "tools/index-coverage-sources.py": "23cbf38c44eac4fc9971b62e813632450793b13609ab8395c428d3f696d2a815",
+    "tools/coverage_audit.py": "6ae69d07be7125353368fe9d65b91b3a0c8fd4f8eb67ba304bb6d7e298a1e1a2",
+    "tools/coverage_gate.py": "1c474eecb267f4368df128fa2abc23d0f02bff6f1a617aeaf5a795fd92d1acd2",
+    "tools/check-re-coverage.py": "ae205fc6464dff496aab51bbdeca6d37a11e0bc196014892e86957afb684a118",
+    "tests/test-re-coverage.py": "2b6042c5deeea9ad948dd246bb2e53fd90e68b46cd26e019e43f2d4e65a9c7e8",
+    "tests/test-coverage-gate.py": "cca0ffd65cccd2013cba1b34172c087202c05153c4ce36468df8305cb892c65f"
+  },
+  "logs": {
+    "working/tests/scene-snapshot-coverage-regressions-20261006.log": "958bc298dc55493b45b87bf0d5c3a24864b0a24de3d18bb0dbdff055af1a7e49",
+    "working/tests/scene-snapshot-gate-regressions-20261006.log": "213bd0b94cc6be18f6952f07485a0d8d68cc0fc508927fbd4c94d662d3fa3db8"
+  }
+}

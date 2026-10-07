@@ -1,0 +1,1015 @@
+{
+  "schema": 1,
+  "scope": "Committed history b48b2a9..66744e92e78f5ca82f94694b31610cc4089d6df0 reviewed separately from native assets/scenes. Exact parent/current hashes and receipts retained; no retrospective gate or new behavior validation claim. Relevant compiled native sources are unchanged by the intervening publication commit.",
+  "base": "fc656368aa3c21a149c0284daacf1812dfe2b09d",
+  "head": "66744e92e78f5ca82f94694b31610cc4089d6df0",
+  "files": [
+    {
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "a996eb3d3fa80ec5cd36f4e215d2617c287f120d7fb40f72afbf3629c69baad1",
+      "after_sha256": "9b0747e40e5647f09287ad1ddc882c4fa394f157266610ca23f9406207466082",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/README.md",
+      "before_sha256": "819e2a1c5e77baf6d17dfadd12c927f4db8875e84899e130e6066f16cb0bb08a",
+      "after_sha256": "4bfc6ee6e85e98eb688ba46ad587d462c39d90b545f7d31ca99088612afdf08f",
+      "receipts": [
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/command_channel.cpp",
+      "before_sha256": "cef42f0fb6e7d9dc7dafd032d5c52e384de94d97b06a8d6028c8c572ff3d0ba4",
+      "after_sha256": "6973bca9fc624b62906b034dcc60c8f160614c98e2ebeccf54410beb11bf12f7",
+      "receipts": [
+        "native-command-refusal-recorded-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/command_replay.cpp",
+      "before_sha256": "2684084ad35b562377f978e5d39f3aa3de11818219d7ec84f761bb826b6a4dae",
+      "after_sha256": "af609551d80dcd6e43fab3438a8621e7fcf0c0a598637077faa50d79727a756a",
+      "receipts": [
+        "viewport-presentation-recorded-20261006",
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/command_replay.hpp",
+      "before_sha256": "7a9527cf8e69b3831d5f182469645bff33ff2df8531ff85275f31cb82dcd2478",
+      "after_sha256": "a249a0038faac77de7df6f3627101deaeb1e22de4834d9cd4b10821188ca2385",
+      "receipts": [
+        "viewport-presentation-recorded-20261006",
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/gl_viewport.cpp",
+      "before_sha256": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+      "after_sha256": "372bdf4b55fd7f9e6a00a411e2ebf916e58287294c0e0962b9dbd3f712843b45",
+      "receipts": [
+        "viewport-presentation-recorded-20261006",
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/gl_viewport.hpp",
+      "before_sha256": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+      "after_sha256": "49f37c5d61b1d565eaff59fd68b2a17af77bd24d6625ed718c1697060a105c18",
+      "receipts": [
+        "viewport-presentation-recorded-20261006",
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "6bec9cf8e832f248c9cecce1a2e9637151083c9676880718f586a2b15b66f34c",
+      "after_sha256": "f0fedf54bf52b366f312851dbd860a88e67ece0557590b0ebd8d1e7e7f2b7d59",
+      "receipts": [
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/viewport_presentation.cpp",
+      "before_sha256": null,
+      "after_sha256": "b4e5376ba29b9195f4f4de80287ae7cc56886945e899923eb518906040e50712",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/viewport_presentation.hpp",
+      "before_sha256": null,
+      "after_sha256": "f479d86eec6e9aeda7f29351039502f60e211f14cd386145b39bb7594208ba37",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "renderer/CMakeLists.txt",
+      "before_sha256": "b83cb42298ebbfb2dad14545b44cb8f2f608e9206e97c7b556c29f10d50ad479",
+      "after_sha256": "67dae6886d7f85fd9c97fa354d70060953476df1b1505c23dffb08fcf6ac14e6",
+      "receipts": []
+    },
+    {
+      "path": "renderer/bitmap_dc.hpp",
+      "before_sha256": "df2ddb4a1c8547a184788053e4d925528b984a7ba7bbb0d4ff630dd926f0e456",
+      "after_sha256": "c8fadb0fc0f4217960e08f067283b504a8dc918ef425de160df262798876fe29",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "renderer/blit.cpp",
+      "before_sha256": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+      "after_sha256": "b3dd75480462463fda6fd23696a5e9bb2d4f98578614a7c05d69a34e102a9503",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "renderer/blit.hpp",
+      "before_sha256": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70",
+      "after_sha256": "af4be9b90298558cab670406e639779e8ed7b2d6e8864de2fdaa98ffe465fe64",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "renderer/pixel_rows.cpp",
+      "before_sha256": null,
+      "after_sha256": "ffa72fac123001700e435112c7b09f39fc90ca4cb3308b1e4e4e31ef93027bfd",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "renderer/pixel_rows.hpp",
+      "before_sha256": null,
+      "after_sha256": "858459228fd19d19640a3d2fcefc0347952bdb07e6ccbdb0af3f3dce1637df88",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "renderer/surface_access.hpp",
+      "before_sha256": "29306563839b79760e26450d294fc75c4c3b057ffa81a64588bb42a98514fb16",
+      "after_sha256": "95166e8226849e7302dffa9762b737ed5dd1381ffc8b392283763b1fc77854ad",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "renderer/surface_backend.cpp",
+      "before_sha256": "281ec802b0c8996bae80665eceab0dad5b1cf4021f40eeefcac115f71754090e",
+      "after_sha256": "c5cb22ea00315d78d2bcb8b4c6a252f34b32fab087f045187816a954d6113bff",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "renderer/surface_backend.hpp",
+      "before_sha256": "197e2033443d82b888df7073a3f7c198d0b366b71e13ff351b8b54b383bef338",
+      "after_sha256": "f7b269b079dfb94b20fce31986a7464c403bec298c98756bb675369956992425",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "65695fb534f19dd9ed216ac0a29a4ef973ddd6964b60ca8376d0b8fb42da7004",
+      "after_sha256": "b6673fc5adb8be5dc980ca9aeeac7b56111e0295ea72171845e301da5dc71211",
+      "receipts": []
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "64c9d38b13777db48dccb9d4c8caf86d0087935f24c12b94b48aac8057e371a2",
+      "after_sha256": "b131bfb529088ca76498f016c0de80f5611bea7e0d002ebf1e282e59843443d7",
+      "receipts": [
+        "Append-only journal; self-hash excluded"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-fullscreen-native-base-update-20261007.json",
+      "before_sha256": null,
+      "after_sha256": "07be68adbb516845f166d4e95ca37d8890c8462283618db8b51d70c257daaab1",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-fullscreen-native-commit-20261007.json",
+      "before_sha256": null,
+      "after_sha256": "bc129ecea0d516a88ccdc18f07c3f0d5bee067adfbd6723123e992344f897061",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-fullscreen-ready-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "3472060aac5d9d8e287cf8a02010c95b19d6f111417de280c815667a69449f87",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-native-refusal-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "68fb9a08708d06eaef75d5409e728dcad1ab9395b6f6ee199bbfe53ddceff586",
+      "receipts": [
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-presentation-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "27c8b2b516d5f6a502adc7568757c8459208637a78f54f600f1f51d4cdfa93da",
+      "receipts": [
+        "viewport-presentation-recorded-20261006",
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-presentation-link-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "6412380c4a67a4961c056d2aa34c3fd783287232408ef69d0dd218778edbec3c",
+      "receipts": [
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-surface-formats-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "06ae7099a217defa83e601e67b149de5de4a24ea512973a9d1562ea551486134",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "03d837dd8330d1ed5526b1d4a94fb2756de3a760035a8764e764ef9e8c4d1aab",
+      "after_sha256": "9f26b3dc0587131d243080c333a4e89a0320914354e14590489007a18c14418e",
+      "receipts": []
+    },
+    {
+      "path": "research/runtime/coverage/source-index-fullscreen-button-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "a497b4c2113b9a5c51285b02fe9142106994bb25d3b2a151e144d1d00656de08",
+      "receipts": [
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-fullscreen-button-reconciled-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "b02effc6fba863758d3c748e354ff3bd9b4e6b1b58ca5518633b2d005f87e8b7",
+      "receipts": [
+        "fullscreen-button-concurrent-metadata-pending-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-fullscreen-native-commit-20261007.json",
+      "before_sha256": null,
+      "after_sha256": "45e1da7a0c208d9f32fd64f364caea5cb8d640a69bfb4620ae444f8be0c22bd5",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-fullscreen-native-commit-final-20261007.json",
+      "before_sha256": null,
+      "after_sha256": "45e1da7a0c208d9f32fd64f364caea5cb8d640a69bfb4620ae444f8be0c22bd5",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-fullscreen-native-commit-final-base-20261007.json",
+      "before_sha256": null,
+      "after_sha256": "976b374aa536cbc49053882f6b01d9752c6d82154e1a1807eea554ce60e5799c",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-fullscreen-native-commit-gate-ready-20261007.json",
+      "before_sha256": null,
+      "after_sha256": "564e5554a7b6255ac88ef33d9f530217faf16892fa0e4f7dc66a2bbd122fc4ad",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-fullscreen-native-commit-reconciled-20261007.json",
+      "before_sha256": null,
+      "after_sha256": "45e1da7a0c208d9f32fd64f364caea5cb8d640a69bfb4620ae444f8be0c22bd5",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-fullscreen-ready-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "a4ceaf6d3f976574176126811c9b99cb5c0f2772142fdddb73084e4ca9178930",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-fullscreen-ready-reconciled-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "5d722788d4afe22784ebe346efca25d83345d5f6e1f661619b6e2ec2a31eb4f1",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-command-default-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "7e80c40994baf5d410d0a3d145f9bd83f2c04252f94ce4f023e5f9afdab4d3c9",
+      "receipts": [
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-command-default-reconciled-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "5c06c5817423fecad2cc8466873a424c53e42de6bd938f0148d08ffde76ca326",
+      "receipts": [
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-refusal-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "971a22c7eb601721ab1b7ce8b2b8331afd4053740fdbc37327e693abc91e4b41",
+      "receipts": [
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-refusal-reconciled-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "971a22c7eb601721ab1b7ce8b2b8331afd4053740fdbc37327e693abc91e4b41",
+      "receipts": [
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-presentation-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "b6c773cf49ea4ef881008eae22082c243c5389f25c74013c8fd99c7209abb755",
+      "receipts": [
+        "viewport-presentation-recorded-20261006",
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-presentation-link-fix-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "0f50d22106fe257a686d3fa8c3ef3c4672c79b0ede38bd9252520192e4bcdba9",
+      "receipts": [
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-surface-formats-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "d315cee202321dfc254619a241fc4ac1198010b015032c12c4511a64ec5fe11c",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-fullscreen-button-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "1196c81a7a0fb8dbe9fc1c08e3c0c609c1f381cc8a316ccd5addb70c4e3ced89",
+      "receipts": [
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-fullscreen-native-commit-final-20261007.md",
+      "before_sha256": null,
+      "after_sha256": "6b55e228670276ffa6d03b009d2bb407fc189b8b49837b148ef52bd7a4c90242",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-fullscreen-native-commit-final-base-20261007.md",
+      "before_sha256": null,
+      "after_sha256": "cc5e28df90228c58f484c049ea0c307855859cbf71cef11422424c07020d9773",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-fullscreen-native-commit-gate-ready-20261007.md",
+      "before_sha256": null,
+      "after_sha256": "6f8b9e887b7c3c0b316788ea3205fead3299f0808c110a3807ceb19ae774c7cf",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-fullscreen-ready-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "793d54f41a8673c037d47ab548c2572ac995016151790fff0c8388a032a97517",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-command-default-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "c27a718dd3bf90f55d3571ece6073e6aa097e7859752285f0c35ae71b0e67e73",
+      "receipts": [
+        "fullscreen-native-summary-whitespace-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-refusal-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "2127755576608a3b5ea98b16c6c67bccf300b5446ac747a57ec69e725e38e434",
+      "receipts": [
+        "fullscreen-native-summary-whitespace-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-refusal-reconciled-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "556a7d6b7050aa39d647f67fd9d6031872a94c2008267eaef16186141ba025ad",
+      "receipts": [
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-presentation-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "71be41dba4ffdaae70ce5c422e9f14acf2c97c309b538754c3bc237a855f1d32",
+      "receipts": [
+        "viewport-presentation-recorded-20261006",
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-presentation-link-fix-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "126733bd0d8b1bd6fa77d35550dcbcffe097b9079b77dac71557b1444f3c1047",
+      "receipts": [
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-surface-formats-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "423abb1c797f1e7b0a3ac0d18e947abb5f786be8886c1446fa5ff11da7ddcd84",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/fullscreen-native-commit-final-validation-20261007.json",
+      "before_sha256": null,
+      "after_sha256": "cb4cf8e69ca9e0a20fa91cd1cdd6c41165b5f538277b83a3e5e01f144c3a8e4a",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/fullscreen-native-commit-validation-20261007.json",
+      "before_sha256": null,
+      "after_sha256": "a59d6a6b8f548c156f8b799fdfa18dbcac07bf75f8573846ce818db6fce56d9d",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/native-command-default-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "dca7182323a98a278df4aff6ef3ff4e57abef1bee0513e3eb4ec1acfd6bb2631",
+      "receipts": [
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/native-command-launch.md",
+      "before_sha256": null,
+      "after_sha256": "7abcdcfa1b0bc878a3c2ff9647d8396b938871c8f136593f8924b42cf74662ba",
+      "receipts": [
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/native-command-refusal-native-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "0f95c5b950715988fad9f3aa1931391fe6fdae82ee39f9e2ba259a0abb0ab007",
+      "receipts": [
+        "native-command-refusal-recorded-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/native-command-refusal-ordered-route-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "b51c5473efc8817067035785d3d402cb8821049f9c86d0b2d2759174da978907",
+      "receipts": [
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/native-command-refusal-startup-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "0bf3d46586a41923e06d4ee9af6eca10ba3955280c1d4af862fd062e69388156",
+      "receipts": [
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/native-command-refusal-user-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "8e514424caac322db431b122b813d41830ded4ff1d64d8b2fde0b0720b62de75",
+      "receipts": [
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/native-command-refusal-user-command-scope-20261007.json",
+      "before_sha256": null,
+      "after_sha256": "3c5ae046afa73fc1c72c6ca92198319cbf952a39ae778e544fc6d39c8d47415f",
+      "receipts": [
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/native-command-refusal.md",
+      "before_sha256": null,
+      "after_sha256": "d733796e25259124365de826cbf06c73907cc5cfb7cf0540b7eee482d4bda75c",
+      "receipts": [
+        "native-command-refusal-recorded-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-backend.md",
+      "before_sha256": "38ced2454a43f3eda11496bca068d6280970be16eb97d986e4b5182e9c652393",
+      "after_sha256": "f2041060e1f1a835570f8a9b183192343c7abedb917a0dabe325a36f6c20775e",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-formats-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "8d205d9d740edf6848eecbd2f162616d16574ecf0399b314a5c7e8957e9849fb",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-formats-backend-regression-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "5dd3c32c194707429f98961ac26a87dcca75336baf58e6d966cfbad1d8443e92",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-formats-final-regressions-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "507e09b52a87b949ea02a2b3a0eb228c110061aa1c4a1411c0085c54f96f3414",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-formats-ownership-regression-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "ba10c169caba0f404bc50f352f24585c55d1c3523203c484e88051be66575dba",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-formats-pitch.md",
+      "before_sha256": null,
+      "after_sha256": "412813dae86bdc7acd5e57adde1958a52ae83e84926bba38a1c3ea7e51edd0ce",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-formats-regressions-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "edf0cca2615ea38b89d717313905a34c2d20987b37c6af6e15fcfe490798b0dc",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-surface-operation-matrix.json",
+      "before_sha256": "707670d5f3399cad8acb19bd98164d5618dfda6fec0173f24af2f5aaca2713a3",
+      "after_sha256": "18ff88e582573d851d8852cfdf054723ec2b383c91b2b6b1c9fd4cfed168bb1e",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-command-ring-adapter.md",
+      "before_sha256": "31731c31dc24402e851d12dd19c83958282ee614a9587c746fef5d1984b3876a",
+      "after_sha256": "d8647d1e9ac3749df3ef65875b523921e0b4ae1d40fd0f62f1fe2e461fbed84b",
+      "receipts": [
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/opengl-continuous-producer.md",
+      "before_sha256": "c36244020a0dba04c9a4370984de29cfeca6d047ab34aa47dc605ec5d31ede90",
+      "after_sha256": "5859502b1127b76631282f4706319f2c1cc42790028a8bce756652348e3195eb",
+      "receipts": [
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/surface-formats-capture-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "5a01f7781fc008ce2d326c22c4cacdeacdd0a0d7a12e22e7753db14515ea5286",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/surface-formats-dd2-capture-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "d567fad1d7f9b03177c70bfef26f80a2875c64b799f415f5796ba6cc77207b65",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/surface-formats-final-capture-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "16500e6d9fde369085313fcde3d4f309259c0c1560bb7bbeafc36eddf7a0290c",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/surface-formats-offline-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "259b62e7caf4745d8b9d792cb262dcd6fa54aeaf56422d12f08edaea4eec9b9b",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/viewport-fullscreen-button-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "ac598758698c6a689bc81a9ed0ed245723d1542caaf924490fa1135dd1f09d96",
+      "receipts": [
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/viewport-fullscreen-ready-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "9548cf0b6620bc47ce2c08d2d3dfd7ad2233d028ceb808ae63dc1f43ecb8a674",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/viewport-presentation-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "6fc3cf87dc65b1861fcfce575ff8399ed07a2e00d5250776cf0de159d5721c24",
+      "receipts": [
+        "viewport-presentation-recorded-20261006",
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/viewport-presentation-link-fix-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "8b25a718af1bf4a450bc7889414203d842e3a20833bab8805eee55907d19ede2",
+      "receipts": [
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "research/runtime/viewport-presentation.md",
+      "before_sha256": null,
+      "after_sha256": "11206112e6ee82ee9e8a7452afa746d801611db80d372498f13124a93f6d845f",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-shared-pending-20261007"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/surface-formats-dd2.json.gz",
+      "before_sha256": null,
+      "after_sha256": "8bab0fad9e2f6edf613e72cc046496d6bd8f398d0c982de55b04777a552f3aa7",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/surface-formats-final.json.gz",
+      "before_sha256": null,
+      "after_sha256": "d955207662df6b62c1c57b7abc6a4777df2807d52298940cd19d318cf1ed00eb",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tests/fixtures/surfaces/surface-formats.json.gz",
+      "before_sha256": null,
+      "after_sha256": "891323de9f75b12e5e402e8f14d71622dfc53e313d93e4704b053fce99b8dfd0",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tests/live-render-channel-test.cpp",
+      "before_sha256": "566e9518243d2bc0ff2dab92b7642b78a4e2168a028b05565edcae4bafb3fc0c",
+      "after_sha256": "bafc4d6134e6641180cf97e186f6d1194d3194ec4b919cdb312dc99ae7170e63",
+      "receipts": [
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "tests/qt-input-test.cpp",
+      "before_sha256": "78819b26fde7837597ea1360b063dcc4b3882421b34111b520555d342d1c080c",
+      "after_sha256": "cfd0ec0568fdad82b1d9baacfeca4aaa428e6d4fea5f1365e5b4ec2759c7a4a1",
+      "receipts": [
+        "viewport-presentation-recorded-20261006",
+        "fullscreen-button-recorded-20261006",
+        "presentation-replay-link-recorded-20261006",
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "tests/render-surface-backend-test.cpp",
+      "before_sha256": "e93476f1df2382088c58b893c934b3bdef942f48811cf8f6e99a4db6133d758c",
+      "after_sha256": "279f88c3c8d07a07d43d20fa79f77895c35a9f28a5d000eb4e73dac47c2649d3",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tests/render-surface-formats-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "37653d16ce3d43b87cb75eed9b50c30c6d7aabdf85a2a5b0d9c48ede6e50f52e",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tests/surface-formats-reference.c",
+      "before_sha256": null,
+      "after_sha256": "609eac62dc75c25cab9b489464081d6cfb4124b0693cf67f814abba73c6688c1",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tests/test-re-coverage.py",
+      "before_sha256": "9a836d6fbaf1b3c94d523b7f8c420f0553dae3c94331057b4d685c20f7f4fca6",
+      "after_sha256": "2b6042c5deeea9ad948dd246bb2e53fd90e68b46cd26e019e43f2d4e65a9c7e8",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tests/test-surface-formats.py",
+      "before_sha256": null,
+      "after_sha256": "89bdd27c10ba32a6cb2a7fd18f1094bb30af9f60e374cf61f417fbfa8805965f",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tests/viewport-presentation-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "5565de95e96437b8ecf9c90a30b90adc44cac463e48803acf1b89c672c852d96",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "tools/capture-surface-formats.py",
+      "before_sha256": null,
+      "after_sha256": "fe18187933b6a3333d3373ecd1e25b32a442dba04e2d3b288088abcf4dfd4e52",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tools/check-native-surface-formats.py",
+      "before_sha256": null,
+      "after_sha256": "bc29e0bbd9c17d72fdb234fecda1e254d364b2b3d3c6e1add451b3ad5890c0c8",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tools/check-surface-formats.py",
+      "before_sha256": null,
+      "after_sha256": "43e4ff15e034f7c89c472945b25599985e2a16cbe96491dd90d4d803849d7abf",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tools/coverage_audit.py",
+      "before_sha256": "e632e389d5ecbdfb20192b2806f17d39840e094b3f7f29df07c905008a639a56",
+      "after_sha256": "6ae69d07be7125353368fe9d65b91b3a0c8fd4f8eb67ba304bb6d7e298a1e1a2",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tools/index-coverage-sources.py",
+      "before_sha256": "b06f0438360462b7965af998ebcf73ca9f88bcb00befd0d5a46d5e6ae98b56d9",
+      "after_sha256": "23cbf38c44eac4fc9971b62e813632450793b13609ab8395c428d3f696d2a815",
+      "receipts": [
+        "surface-formats-pitch-20261006",
+        "surface-formats-shared-pending-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-native-command-launch.py",
+      "before_sha256": null,
+      "after_sha256": "7a1becf0232feb45d7d0820ac25c56e43a94ade5d0c87ed990a76197c8699b48",
+      "receipts": [
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    },
+    {
+      "path": "tools/test-viewport-presentation.py",
+      "before_sha256": null,
+      "after_sha256": "8bcecea28b26ecab385ff05c287729cc3cd7d6e2f0bd6e13da90be4473d66c23",
+      "receipts": [
+        "fullscreen-ready-recorded-20261006",
+        "native-command-default-recorded-20261006",
+        "native-command-refusal-shared-pending-20261006",
+        "fullscreen-native-selected-final-recorded-20261007"
+      ]
+    }
+  ],
+  "unresolved_gaps": [
+    "renderer/CMakeLists.txt",
+    "research/runtime/coverage-ledger.md",
+    "research/runtime/coverage/register.json"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "success": true,
+  "live_observation": true,
+  "live_replacement": false,
+  "original_pixels_compared": false,
+  "scope": "Original Single Player battle setup and ordered queue consumer entry. Original simulation/drawing remain active; bounded immutable snapshots, no whole-scene visual equivalence.",
+  "sources": {
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/observer.c": "bd673f01724092f38cd5b246aa5bb2f00eb01a90b0a776483f63d78c8817a250",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "tools/build-scene-observer.py": "37882db464a89b5c0a8efdf85485508c59dda3a2b0e3dcb6434cf11ba55d034d",
+    "tools/prepare-scene-observer.py": "e4bcd0597c1204649041ec7ea62615596f514b22f4346ecd5b35737e0dd98a48",
+    "tools/capture-scene-game.py": "c6175171b31bbd27b77bcd4242b9cd9f64ec4d6a8628b0bf7301947072017893",
+    "tools/scene-game-runner.py": "9422fccfb4d62f25ddd55f2817b63a1c5a7a6596c068a7f7cbb23a253a3834fd"
+  },
+  "sources_stable": true,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "samples": 4,
+  "map_selection": 2,
+  "menu_trace": [
+    {
+      "screen": 3,
+      "action": 1,
+      "argument": 0,
+      "ack": 1,
+      "status": 1
+    },
+    {
+      "screen": 22,
+      "action": 4,
+      "argument": 0,
+      "ack": 2,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 6,
+      "argument": 0,
+      "ack": 3,
+      "status": 1
+    },
+    {
+      "screen": 25,
+      "action": 9,
+      "argument": 2,
+      "ack": 4,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 7,
+      "argument": 0,
+      "ack": 5,
+      "status": 1
+    }
+  ],
+  "snapshots": {
+    "capture/scene-0001.bin": "ebec4c807f6c86bfaea0667f0e1d9ca38339fb7b5f8df005593b1457ba309a49",
+    "capture/scene-0002.bin": "c4ab367708fe19065f1a3f52173274ab5146d417ec681232eec16bc8b56b994c",
+    "capture/scene-0003.bin": "cbfdd3548a8e1c533a9aabce3498f1a42a359207985b5d99a1cc8a2a08fde53c",
+    "capture/scene-0004.bin": "662ee067c16e9b91a39bea4ea0817c9f64316c92db0a6cc2c3382c97f4536847"
+  },
+  "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-hff74ouf",
+  "retained_capture_report": "working/experiments/scene-observer/run-hff74ouf/report.json",
+  "retained_capture_report_sha256": "05f2bb7ea4eee5a0a8b3a35364d48ba7b5700e1e2b44d75eb1fb247a62b759d1",
+  "original_manifest_verified_before_after": true
+}

@@ -1,0 +1,1129 @@
+{
+  "schema": 1,
+  "scope": "Preserved uncommitted native asset/scene workspace receipts with their exact original hashes and reasons. The isolated staged profile receives a separate active review; this archive does not assert a past gate pass or rerun validation.",
+  "reviews": [
+    {
+      "behaviors": [
+        {
+          "after_sha256": "8d0c73d09b8ee7f59dba0c63c10d5b6ef269b6eb4b805b6b0c9b90f03a49efc9",
+          "before_sha256": null,
+          "id": "AS.resource-manager"
+        },
+        {
+          "after_sha256": "33a30166ef5349bf2b8de04a749a6b1dff5a949cfa48f65b7eaca8e2472bba14",
+          "before_sha256": null,
+          "id": "NR.resource-cache"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "da6130752ec59f30090e092c8e712ee45bbf4bacbfad1505201356bde9afcfba",
+          "before_sha256": null,
+          "path": "assets/resources/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "6f518fb0a61d74433d0f4448de2cb3fe6bd516afa8e2a61db91ab249c1194be0",
+          "before_sha256": null,
+          "path": "assets/resources/README.md"
+        },
+        {
+          "after_sha256": "8d4eb4e5d98248b5e159c9b0e37c02a4f0a929b37fcb6b1e6e7410610ba0ee06",
+          "before_sha256": null,
+          "path": "assets/resources/resource_manager.cpp"
+        },
+        {
+          "after_sha256": "b2aacdfe98c244df0e5ff30df7b8993016c3036fedfc0951b4314c8393c54c98",
+          "before_sha256": null,
+          "path": "assets/resources/resource_manager.hpp"
+        },
+        {
+          "after_sha256": "c9a76a4978d2fc0a09b267de9c68f089bbfd3e2da5b035d812a6d8504c1cdce7",
+          "before_sha256": null,
+          "path": "renderer/resources/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "4355079b26e3672cdd9028c40de62998802c0ccf6bf014f08393b7e1d595ff44",
+          "before_sha256": null,
+          "path": "renderer/resources/preview_main.cpp"
+        },
+        {
+          "after_sha256": "a4a3ef28ce73e24ae01044574dc42bf7365209bf7f3cbcb7f96b919a2dcf4fc0",
+          "before_sha256": null,
+          "path": "renderer/resources/resource_cache.cpp"
+        },
+        {
+          "after_sha256": "3727f7706f400ea7696485f5070bc8b7f706555e6407ab141b4951a274e9fcd5",
+          "before_sha256": null,
+          "path": "renderer/resources/resource_cache.hpp"
+        },
+        {
+          "after_sha256": "37ef60e4c8f5e76ac71215a8f7b4b34fb2588f645b4c87b11adf8eed87a975b2",
+          "before_sha256": "e11520875d5b950c58311780931eec9c2c8cafd93c17d5acc9eed8d00ed05146",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "92dfdde58c79a2de2bab86470203a59d57bdab7587f77f2eaeeab1fa390bd6d8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-native-resources-20261006.json"
+        },
+        {
+          "after_sha256": "4d749bbd301a2b07774a56f09a5cd3adea26b694dc9523f43b771cbcd7242f40",
+          "before_sha256": "4f6a68b8e2e996390470428f2c45600da8c4865797a6800296aebf70c0c2ed0f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b6c773cf49ea4ef881008eae22082c243c5389f25c74013c8fd99c7209abb755",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-resources-20261006.json"
+        },
+        {
+          "after_sha256": "941be6749b8059a8fca4c701ab14c8a847e045a2763aae253cf9ebabd3214ff7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-resources-20261006.md"
+        },
+        {
+          "after_sha256": "99345317f99cb696c8004c7e95c5649cf22069f9c7bccef575f6863dd0228c3a",
+          "before_sha256": null,
+          "path": "research/runtime/native-resource-manager-20261006.json"
+        },
+        {
+          "after_sha256": "fef4d0647f761eefad121ae15af73ceb48bef73ec7cb720bc6483fb6a1f14e2e",
+          "before_sha256": null,
+          "path": "research/runtime/native-resource-manager.md"
+        },
+        {
+          "after_sha256": "d5c9acb5af84b77c3dd21e22da44667f5f16866e0fedd3d76ff610b0ee29dbf7",
+          "before_sha256": null,
+          "path": "tests/resource-cache-test.cpp"
+        },
+        {
+          "after_sha256": "80cfb1ed1b880c352c485e0188d97a6c95fed643ca11f35046f32ca0d3ea4b44",
+          "before_sha256": null,
+          "path": "tests/resource-fixtures.hpp"
+        },
+        {
+          "after_sha256": "ee45f50c5dc18652f06fb31063fb7324dd7456bbeecc6754099836c6afed6ef8",
+          "before_sha256": null,
+          "path": "tests/resource-manager-test.cpp"
+        },
+        {
+          "after_sha256": "1e727f9b1273b58d70a10efbc54b9c40b74fcbfe516884fe0104c94ccdc0581f",
+          "before_sha256": null,
+          "path": "tests/test-resource-preview.py"
+        },
+        {
+          "after_sha256": "1fec91f84bf916abd922a8178c7eb20d79d85102d31da9ea5109371ef4f1aabd",
+          "before_sha256": null,
+          "path": "tools/test-native-resources.py"
+        }
+      ],
+      "id": "native-resources-owned-recorded-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:06d01840f5dbec18ec6f6bd734ce8cd0a96a7413e4608c53a1e53a0d4887e186",
+        "behaviors_without_comparison:4aa4ab2c4de8c4aff52adfaea3e45b3e861c7e40cd7d72bdc7363cca81c762f3"
+      ],
+      "reason": "Reviewed canonical kind/name identities, immutable category recipes, complete owned decoding/ANI admission, resident capacity/count accounting and monotonic reload revisions. Reviewed GUI upload ownership, value-keyed palettes, revision invalidation, LRU/local/global admission, bitmap conversion, clipped draws, standalone preview/output guards and independent fixture expectations. Added AS.resource-manager/NR.resource-cache contracts and native integration evidence while preserving existing original mappings/statuses and historical hashes. Census refresh records indexing of the present shared tree; unowned source/behavior changes and their gaps are not approved by this receipt. Shared register/ledger hashes bind these exact appended blocks with other contributors' content preserved. Committed 5798eea..c0753c3 parent/current hashes match prior receipts; retrospective report asserts no historical gate pass.",
+      "validation": {
+        "status": "recorded",
+        "reason": "AS.resources.native-20261006 records 14 fresh resource/CLI/loader/sprite/OpenGL tests, complete synthetic expected RGB565 pixels and ownership/refusal/counter checks, plus installed Redcap frame-zero smoke. Sources/inputs stayed stable, originals verified before/after and terminal CPU/GPU resources were zero. Complete installed catalog population, terrain/action/lighting/effect binding, context loss, original comparison and scene/wire/Qt-shell/live replacement remain pending. Earlier all-target failure concerned concurrent Qt presentation linkage; the recorded run builds only declared relevant targets.",
+        "evidence": [
+          "AS.resources.native-20261006"
+        ]
+      }
+    },
+    {
+      "id": "native-shared-scene-recorded-20261006",
+      "reason": "Reviewed reusable caller-ordered screen-space scene service, persistent canvas/cache ownership, whole-list admission and partial-frame refusal/retry. Sprite/world adapters replace duplicated upload/draw ownership with semantic native resources while retaining original controller clocks, placement, sorting/visibility and picking metadata. Resource manager exclusively admits copied immutable checkpoint ANI bytes with separate encoded capacity accounting; explicit asset-relative includes remove reconstruction header shadowing. Independent presentation oracles now use previously confirmed RGB565 bit replication. Evidence preserves historical hashes and asserts bounded native behavior only.",
+      "files": [
+        {
+          "after_sha256": "17b05aaac64946d62fb0e79bec2ae855d42629ce61a20a8fcaac53cac3da0fe8",
+          "before_sha256": "fb3e9c5bd95a1f5f202e8ed2336166db00e217830a9493104f484b55dd79c355",
+          "path": "apps/sprite-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "c0c6a8aeabef457d5e76ca12e885bede3ab0177a2e6584db7563bddd8ee5b1e1",
+          "before_sha256": "9c708fecd8b7b655380a2368af33f5046ca7b7b541f7e74f5554c2a9a5e122da",
+          "path": "apps/sprite-scene/README.md"
+        },
+        {
+          "after_sha256": "f0dfa119916c15a1f131a9b75f454baa36c49269359fbfe249165b9658382c74",
+          "before_sha256": "eaa9bc36347d2057ca94d2b22c121cd156164effb683b3ecf4b629581a2d5f19",
+          "path": "apps/sprite-scene/main.cpp"
+        },
+        {
+          "after_sha256": "b85a0b18c6f708b52bb0dc9d4408e0eea2a4bc3968263ec0d973a4d48f9f5447",
+          "before_sha256": "2d4747e4e976774dc2ed2c534c0a23c5b4d2d87599c0d6c7489f8c45cdb20a98",
+          "path": "apps/sprite-scene/scene.cpp"
+        },
+        {
+          "after_sha256": "2693af7924c36daa55a10ec7d958dcadae4beef7d29ab5625edbecd65b0d2d2f",
+          "before_sha256": "85defac68b301a9f2b21cc5041b93363757d8f7629293aa63deeebc3f0b7e0c3",
+          "path": "apps/sprite-scene/scene.hpp"
+        },
+        {
+          "after_sha256": "1a49d78a0a0abd0a4a28b55dda48f868b37e4396c77a781437dd7e419cceb0d0",
+          "before_sha256": "5929f9601ae6d86aeceb1301f0502853c6baa0a4365e151ace578a9710f1b7e7",
+          "path": "apps/world-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "52c820f200efda7db8ebcdc6b0a68af4c39dad6e9401653506b294816f75bd32",
+          "before_sha256": "7009f987159c6a30f401c0d0413134e76df7be850ea5acd808c5a455439ca0d6",
+          "path": "apps/world-scene/README.md"
+        },
+        {
+          "after_sha256": "1a496b9200caa43c7cbe8e7d8c5b2fa962a6cca79a303587dcd071fd098ffc91",
+          "before_sha256": "4387a59cc5e8cac4ce55083b10260d7ea4c52138d652687d5f5330d49988fc3c",
+          "path": "apps/world-scene/main.cpp"
+        },
+        {
+          "after_sha256": "83b5558f7106aff82afbeac032f01b8f5ef072b012e30629a9a0977f7b2ce554",
+          "before_sha256": "79b68d892e86f5666842cb504c215c2e1a598de9ca0bf85db4cf6dfa3d98d93f",
+          "path": "apps/world-scene/scene.cpp"
+        },
+        {
+          "after_sha256": "4e5f7a980e4a63c55a1a4d69ff86438a98023ce2dc135c9b5ccbf8067b0fdb8f",
+          "before_sha256": "601736b6fffc82e4bdecbeaed0f80d3f361ce5df65869abd0b32a36184a15ddd",
+          "path": "apps/world-scene/scene.hpp"
+        },
+        {
+          "after_sha256": "da6130752ec59f30090e092c8e712ee45bbf4bacbfad1505201356bde9afcfba",
+          "before_sha256": null,
+          "path": "assets/resources/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "87e788e0a9adb306ecc93b05f9bc170f75af2d1706cbdcd96318a36e26f069bd",
+          "before_sha256": null,
+          "path": "assets/resources/README.md"
+        },
+        {
+          "after_sha256": "2ae26f0317450cefb4348db0798b32c9c66e62a4169ce3a6687e3ade55396f0e",
+          "before_sha256": null,
+          "path": "assets/resources/resource_manager.cpp"
+        },
+        {
+          "after_sha256": "5f82a10dadc3e880238059824d4d73c202629365d3b2914c90bb38bc43ab69b5",
+          "before_sha256": null,
+          "path": "assets/resources/resource_manager.hpp"
+        },
+        {
+          "after_sha256": "c9a76a4978d2fc0a09b267de9c68f089bbfd3e2da5b035d812a6d8504c1cdce7",
+          "before_sha256": null,
+          "path": "renderer/resources/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "4355079b26e3672cdd9028c40de62998802c0ccf6bf014f08393b7e1d595ff44",
+          "before_sha256": null,
+          "path": "renderer/resources/preview_main.cpp"
+        },
+        {
+          "after_sha256": "a4a3ef28ce73e24ae01044574dc42bf7365209bf7f3cbcb7f96b919a2dcf4fc0",
+          "before_sha256": null,
+          "path": "renderer/resources/resource_cache.cpp"
+        },
+        {
+          "after_sha256": "3727f7706f400ea7696485f5070bc8b7f706555e6407ab141b4951a274e9fcd5",
+          "before_sha256": null,
+          "path": "renderer/resources/resource_cache.hpp"
+        },
+        {
+          "after_sha256": "d7d8121e9c05a41e233845b4e05b832276b3ba9550f5164236bd47b7f99280c6",
+          "before_sha256": null,
+          "path": "renderer/scenes/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "b7450a2af3b89860d317eade60a17260ff25a6232f1eed8518c702f0fd15d88a",
+          "before_sha256": null,
+          "path": "renderer/scenes/README.md"
+        },
+        {
+          "after_sha256": "855076370549513d18e77d3f7589ac1deec8776d9b684b3549a64059ef7255e5",
+          "before_sha256": null,
+          "path": "renderer/scenes/scene_renderer.cpp"
+        },
+        {
+          "after_sha256": "e1d61c75bf4d5d1cdedd32ac80f1475f904e46fbc9d965205216ab31b2155d07",
+          "before_sha256": null,
+          "path": "renderer/scenes/scene_renderer.hpp"
+        },
+        {
+          "after_sha256": "318be60ede039f3bf1552e1c204edb17d472511fddc3a13b13a7393429af974d",
+          "before_sha256": null,
+          "path": "research/runtime/native-shared-scene-installed-20261006.json"
+        },
+        {
+          "after_sha256": "1cf9643fe0b4a5a64b92315686aae87ad3f1e057efb5e6c622f06ba97c045f7a",
+          "before_sha256": null,
+          "path": "research/runtime/native-shared-scene-renderer.md"
+        },
+        {
+          "after_sha256": "9e64ff3433e9cde32dc70b1e9c177b4350c53d4d4f0fe3f5741002557dc7baa8",
+          "before_sha256": null,
+          "path": "research/runtime/native-shared-scene-synthetic-20261006.json"
+        },
+        {
+          "after_sha256": "d5c9acb5af84b77c3dd21e22da44667f5f16866e0fedd3d76ff610b0ee29dbf7",
+          "before_sha256": null,
+          "path": "tests/resource-cache-test.cpp"
+        },
+        {
+          "after_sha256": "80cfb1ed1b880c352c485e0188d97a6c95fed643ca11f35046f32ca0d3ea4b44",
+          "before_sha256": null,
+          "path": "tests/resource-fixtures.hpp"
+        },
+        {
+          "after_sha256": "5a9e5fc72a06c642d0f6429c11de7a2d03fb7f83f31bbb8f004d966f882a2429",
+          "before_sha256": null,
+          "path": "tests/resource-manager-test.cpp"
+        },
+        {
+          "after_sha256": "1929f917ac94b80608a6d826079a69e20acf6c1e35739519906a303dadb6a20a",
+          "before_sha256": null,
+          "path": "tests/scene-renderer-test.cpp"
+        },
+        {
+          "after_sha256": "5ced8ef0997b85f1298f7239154c43c6af940dd5fcc38712c9894956d29882ea",
+          "before_sha256": null,
+          "path": "tests/scene-resource-fixtures.hpp"
+        },
+        {
+          "after_sha256": "da3c5a3fdaca9fdca6227858543347332f83c436540e79a4543c73806aab6948",
+          "before_sha256": "d5f540cdaac44eb44a7aec93f91a548c07a3858240fa456bdd1a1d3308d57e79",
+          "path": "tests/sprite-scene-queue-test.cpp"
+        },
+        {
+          "after_sha256": "b6d346bed4cd964c2184620315130aa37b05198e3a2115432342d1671d641a24",
+          "before_sha256": "e54a47f4241c476113ae02de68455400762e20b51dd28496a1ad139b5f072d84",
+          "path": "tests/sprite-scene-test.cpp"
+        },
+        {
+          "after_sha256": "9e446cc67698f543ee4e12cc4ea24f796db07f42533590a6e4c6681bd2b2e030",
+          "before_sha256": "ad16cba35c06e9c089d8d6be751de2d282f5f332c1a930aa54295253a9b9c0ce",
+          "path": "tests/world-picking-test.cpp"
+        },
+        {
+          "after_sha256": "33a5a7c6b6b78a5f4150a765b6ded6225a7f4c9ece5cb522b1c01de296964400",
+          "before_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+          "path": "tests/world-scene-test.cpp"
+        },
+        {
+          "after_sha256": "b0f0f19bbcb2abfa9613ee1cd4c5e52c5c89bab308a7fb329c8c17d1ae5de29d",
+          "before_sha256": "12fbb518876c0c4817085954a0ee80d8523642d25935e75bdaf3e3785befd975",
+          "path": "tools/test-animation-layers.py"
+        },
+        {
+          "after_sha256": "37e1fac472738c95b03b917dfb2b1dbdc1d012faad38324c2e058364223986b1",
+          "before_sha256": null,
+          "path": "tools/test-native-scene-service.py"
+        },
+        {
+          "after_sha256": "b2543ac36d2a720a5b35f7886b0fc07fd358d8741d680acea3114a3f6c6f5034",
+          "before_sha256": "da04b35bf2db569823a302b94e11d0d2020a11a48cd14c234e2f13c3446f069c",
+          "path": "tools/test-sprite-scene.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "a4c3fe3e1602f7d48fbf9df619904c9d79c0631be530343b1e1068cf77cf48b5",
+          "before_sha256": null,
+          "id": "AS.resource-manager"
+        },
+        {
+          "after_sha256": "a1af804e169299a98dd05bd2199ca17b49da49bf49e6a83ce54489993d225bd1",
+          "before_sha256": null,
+          "id": "NR.resource-cache"
+        },
+        {
+          "after_sha256": "f1ec761c19a283d5934e16a0dfcb8ab5d18e553984c3ae9bdc278d6b7ea88846",
+          "before_sha256": null,
+          "id": "NR.scene-service"
+        },
+        {
+          "after_sha256": "19f927bd38c26e6cce6cad9a30bf0d3b34d166430ed9f14cc3e19e0c16f9de16",
+          "before_sha256": "0b3cd5ec5c2f69bcc9b919205fd6a4dafae550dd6e5aa524db39334b5691d32e",
+          "id": "NR.sprite_scene"
+        },
+        {
+          "after_sha256": "33fc9b18cf5c0e10c93975edaf86e1d14656966f2941215fe58996fed17dfb65",
+          "before_sha256": "d2ac58a478065cf38e648b3edde573b96009353984707df62f34360c21d4ce5c",
+          "id": "NR.world_scene"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:06d01840f5dbec18ec6f6bd734ce8cd0a96a7413e4608c53a1e53a0d4887e186",
+        "behaviors_without_comparison:4aa4ab2c4de8c4aff52adfaea3e45b3e861c7e40cd7d72bdc7363cca81c762f3",
+        "behaviors_without_comparison:9d69949b73fefcbc54801e728b2d5ea0398901fa0bc6e53d03264430ef5bdfd8",
+        "stale_evidence:01741ac95e8192edbe5f960a65418dbd0f81ecf2b82600fe98559f20291c2017",
+        "stale_evidence:0976eab16f3949020b1da4f945c1d3d7f5ed73e2d14be1908233a901b283562c",
+        "stale_evidence:181e3c7ab04b72a008eab1cef6f7fef2a6ecaa080b564006e2ba61de5f576970",
+        "stale_evidence:1ec575ada8c513f99a6321a1c52967748cd4b61fdde75edc8ccc025be0b34a19",
+        "stale_evidence:249c3703a3ee81644ee49f57399190881ce6ed91dd7cf0c58f6bdb93ae49af48",
+        "stale_evidence:323055e0bca556f2583ea6b5beea6e20be290c6d817e3b8f553507475f6f24f8",
+        "stale_evidence:351ad710d2e17c97e58b7b33650d946362a6bc5e4ac133c9b6ecde504c8569a1",
+        "stale_evidence:3914794feee6b5791cbab09cabe273e740b93ee66d92c112814e67a8668b07c0",
+        "stale_evidence:3dd752d21105c6acc33522f7fea9ef5ed7039c108fd70c85f7fe792fe1ed5005",
+        "stale_evidence:5ae67e8048170c7784665c42776252e660607f8f12f764e529a1b47dc5fa91be",
+        "stale_evidence:835d81fb5f52843f7f83d0c7878094aa98bc3fdacc4a5ca6699f7339d545ff69",
+        "stale_evidence:9b425bd63f6b3bf24e22df671772c97112a2de4de5dcbc52a18651667d27e9a4",
+        "stale_evidence:9c095720f3ded59630ba9c7c69096c06fb27af5fed397a136015db4b5a85d5c2",
+        "stale_evidence:a02741d1777d4562d556f650f2d44ef3ce19970b466f860f6b5e8b433a546ef5",
+        "stale_evidence:a0398a95c54aa39a5855220a16731165566ff73eb130e1ce1a65b04d1188711a",
+        "stale_evidence:a4472b37cb30273c7fb475219db864c2295d0a0d23774a2e7ca0ea7a63a406c8",
+        "stale_evidence:a5ea58daa5e67460ef92ac167fd4ff073c37270134d08fb78f0de57d4d4bf0f8",
+        "stale_evidence:a84e64a91f180de8883ecf427673fb27229f13b5635f3720911bb832ec07218a",
+        "stale_evidence:b4aa5dc9d51525b73d3df9ac08859d70c919119cb4e6e12a7f4f1c2981e0d251",
+        "stale_evidence:b7c5b2a4ccb894bf65ad7d313b357f1fd38c2303f6514a30c73a98608fa99092",
+        "stale_evidence:becdf19c7e585eb6a73b2ce33486a885be1651b6d08289c8ad64f47ef5f47687",
+        "stale_evidence:c9f3bbed5a267fdac7a9211df178c79ba4344de555d1ca51e2522065ce3f19c7",
+        "stale_evidence:cc679bdb82433925cc26ec4944059ab9de7fa06012959ba6fad696304212c8f6",
+        "stale_evidence:d8ac49b06834425aaca4f66445534eec786e7dad4a6fed9e5a591003d53fca0e",
+        "stale_evidence:de6e373b0ad2fba9797d0adcec8d1d5e1f39a9b81ce5dcc2be907a4f5e7311cb",
+        "stale_evidence:e72de4a7627b08103465f90cce010e9b04281610d84198a2f685657c55894cf7",
+        "stale_evidence:effd0f1d51355d022a92e4dc2e1724bd0cf646e86c684a0c633f9023979e8ce6"
+      ],
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh source-stable runner builds affected targets and passes seven synthetic CTests, including complete independent pixels, cache/budget/lifecycle/failure recovery and existing adapter checks. Exact rebuilt binary hashes associate retained installed results:195 sprite frames/390 original controller records,198 layered frames,144 world pixels/12 continuations and24 actual Qt windows/128 pixels/16 continuations. Original/controller comparisons stay inside embedded run scopes; native integration supports only the five named native policies. Full original scene/action/lighting/camera, all shared contracts and live snapshot/replacement validation remain pending.",
+        "evidence": [
+          "NR.scene-service.synthetic-20261006",
+          "NR.scene-service.installed-20261006"
+        ]
+      }
+    },
+    {
+      "id": "native-shared-scene-shared-pending-20261006",
+      "reason": "Reviewed source/census/ledger/register migration and exact committed c0753c3..2f95b25 receipts separately from workspace changes. Shared world adapter/tests/README also fingerprint checkpoint, occupancy, movement, map preview, orders, picking, playback, stop, idle and spawn policies; changing asset/render ownership does not assert every existing semantic branch. The sprite fixture changes also affect the independent RGB565/DC contract. Historical resource CLI runner/preview and resource-step1 report/source snapshots remain preserved. Shared metadata retains concurrent authors entries without claiming validation of their unrelated engine/Qt changes.",
+      "files": [
+        {
+          "after_sha256": "9d935ee059243e9b15ef0ff818060620199ac1b61611794291e7b8c09cec21f5",
+          "before_sha256": "77504fbbd85765e9cccd07e6195c934e6525e3aeb74d96ebc173d72e1e9ac628",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "92dfdde58c79a2de2bab86470203a59d57bdab7587f77f2eaeeab1fa390bd6d8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-native-resources-20261006.json"
+        },
+        {
+          "after_sha256": "1ce3d5bf7ce05f891e6ba4da93ca08c10d188c179deffe3538bdb38972369593",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-scene-service-20261006.json"
+        },
+        {
+          "after_sha256": "81858c62229b64ec6134e54e5c58942eb40f08372cadf649b11e305fb82db8e0",
+          "before_sha256": "634fe3bd4b52f9c963bf6cd4bd615e7dc5ec1363f84499825de6a89aaf01b487",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b6c773cf49ea4ef881008eae22082c243c5389f25c74013c8fd99c7209abb755",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-resources-20261006.json"
+        },
+        {
+          "after_sha256": "5d722788d4afe22784ebe346efca25d83345d5f6e1f661619b6e2ec2a31eb4f1",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-service-20261006.json"
+        },
+        {
+          "after_sha256": "e3db9df23a01974a42930ac0741c762bf27ee6e053d8cdb0af80384652b7ae4e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-service-reconciled-20261006.json"
+        },
+        {
+          "after_sha256": "941be6749b8059a8fca4c701ab14c8a847e045a2763aae253cf9ebabd3214ff7",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-resources-20261006.md"
+        },
+        {
+          "after_sha256": "4a064e6eada40d9ae67e29051f26c3cbc672588f8da9c8f492a9ca6a9c515391",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-scene-service-20261006.md"
+        },
+        {
+          "after_sha256": "43f431a61b9414dc65a758dfd3e5cdd97f8939ad548bcc8e659ff68cbfe03c4b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-scene-service-reconciled-20261006.md"
+        },
+        {
+          "after_sha256": "99345317f99cb696c8004c7e95c5649cf22069f9c7bccef575f6863dd0228c3a",
+          "before_sha256": null,
+          "path": "research/runtime/native-resource-manager-20261006.json"
+        },
+        {
+          "after_sha256": "fef4d0647f761eefad121ae15af73ceb48bef73ec7cb720bc6483fb6a1f14e2e",
+          "before_sha256": null,
+          "path": "research/runtime/native-resource-manager.md"
+        },
+        {
+          "after_sha256": "1e727f9b1273b58d70a10efbc54b9c40b74fcbfe516884fe0104c94ccdc0581f",
+          "before_sha256": null,
+          "path": "tests/test-resource-preview.py"
+        },
+        {
+          "after_sha256": "1fec91f84bf916abd922a8178c7eb20d79d85102d31da9ea5109371ef4f1aabd",
+          "before_sha256": null,
+          "path": "tools/test-native-resources.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "9ea9ebffd95c62405be25d7b9d806c26007e3f4b3dac5ec303c5d98d8f392432",
+          "before_sha256": "b002ba9d9108c9625c7e203dfdfac78030c76da814f6273f3253ac9b4fa42599",
+          "id": "NP.checkpoints"
+        },
+        {
+          "after_sha256": "cf33145d54e77cb30f5acde354ef8fb634d31a57b219d0c999e12a91908e36b8",
+          "before_sha256": "59ef734117734ebdc992272c569ce094e2f2077ff53f34094647ccf3cf67fcdb",
+          "id": "NP.idle-display"
+        },
+        {
+          "after_sha256": "4a1328d9e390ec8a34eaf85889de62d648c5fa97b4cc56c4eed5f8035ab22989",
+          "before_sha256": "bae2843560c5f7d56fe855f5dd64535d8e49e3ac585bdc798911af930f0ad3b6",
+          "id": "NP.map-navigation"
+        },
+        {
+          "after_sha256": "1406796e47efcfeb3f8183e187c7f2ab489c348e3a415937f6132c2cf55f379d",
+          "before_sha256": "80a9c7591463939f3dd83d06c327be4de41fc575d168c3fb5208b81a9e74c154",
+          "id": "NP.multi-movement"
+        },
+        {
+          "after_sha256": "8d5caace641fd26232db1161f88655fac2bb2b19fb360a3805d54db4511e5ca5",
+          "before_sha256": "92008718bc9863af33fd24780f401b7dbd934f1cf39abea126f943c32f2394ea",
+          "id": "NP.presentation"
+        },
+        {
+          "after_sha256": "9f71e7151f0265f5de336fc9d251f626c63c5e376c69dcb93899cf6ae6a50816",
+          "before_sha256": "8384903a21052c82a2da8153891add18befaee9cb156eb6225417aaf39cf345e",
+          "id": "NP.scene-orders"
+        },
+        {
+          "after_sha256": "53c001dbe2cc3c491475307f45b53ee2f348abe9d95e26f35f5f6e9da04f8bbe",
+          "before_sha256": "f3972b15f55ed95bf36ee304839e244c7f7a639b3388b8f388dd435302c77543",
+          "id": "NP.scene-picking"
+        },
+        {
+          "after_sha256": "0b53b0c2f8f8677ff5041385071f7944b3293074285fd08391a26100eb098d10",
+          "before_sha256": "6902ec19f6ca2c8c88818a77c12d221f572ca6ef8b3b0ddf483e2d9e27ef2012",
+          "id": "NP.scene-playback"
+        },
+        {
+          "after_sha256": "1014eac4d71800fd3241e8f2e2d641a5e85178d0766d4fe39b4ac66cc44e3cb7",
+          "before_sha256": "e23aca8509969393af7319f84ea97bf4f65eb252d784e40c00a9694ea5f91aa6",
+          "id": "NP.scene-spawning"
+        },
+        {
+          "after_sha256": "03ae85dcd6c15965b3da50d7c2ee32950106550986f1662a84aa8d687dc1374b",
+          "before_sha256": "cba8eaecc581225d07feb3a78d758d08da62d6b5daf8e8bc9dee4c2f23abd89e",
+          "id": "NP.spawn-display"
+        },
+        {
+          "after_sha256": "c4bd0686c4482cdd2b037e27ee7a9ddc50545df431fae9d23d6f6e9a0e034b34",
+          "before_sha256": "ed7d10f580d5905979f1307892f2678b7686058527c8e66819b31272114f2280",
+          "id": "NP.stationary-occupancy"
+        },
+        {
+          "after_sha256": "b92a71721e0a38f579bb6228986bc0e04a9e3e75af1e889597917b8a0c4f742f",
+          "before_sha256": "d85725dd8d27cc8a94ee0efa1a25e6650e613f275fc3b9ada71fe27a91ad8fe6",
+          "id": "NP.stop-orders"
+        },
+        {
+          "after_sha256": "09318b27d44341d79f9883b7087a37a3097c2f3b73466ecbfa18e7bcf77e4da0",
+          "before_sha256": "dabe9fba41180161ae0a7006aeba530c7b0e0e8f49a4a1f641765655ffa3d00f",
+          "id": "NR.surface-colors.rgb565-dc"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:06d01840f5dbec18ec6f6bd734ce8cd0a96a7413e4608c53a1e53a0d4887e186",
+        "behaviors_without_comparison:4aa4ab2c4de8c4aff52adfaea3e45b3e861c7e40cd7d72bdc7363cca81c762f3",
+        "behaviors_without_comparison:9d69949b73fefcbc54801e728b2d5ea0398901fa0bc6e53d03264430ef5bdfd8",
+        "stale_evidence:01741ac95e8192edbe5f960a65418dbd0f81ecf2b82600fe98559f20291c2017",
+        "stale_evidence:0976eab16f3949020b1da4f945c1d3d7f5ed73e2d14be1908233a901b283562c",
+        "stale_evidence:181e3c7ab04b72a008eab1cef6f7fef2a6ecaa080b564006e2ba61de5f576970",
+        "stale_evidence:1ec575ada8c513f99a6321a1c52967748cd4b61fdde75edc8ccc025be0b34a19",
+        "stale_evidence:249c3703a3ee81644ee49f57399190881ce6ed91dd7cf0c58f6bdb93ae49af48",
+        "stale_evidence:323055e0bca556f2583ea6b5beea6e20be290c6d817e3b8f553507475f6f24f8",
+        "stale_evidence:351ad710d2e17c97e58b7b33650d946362a6bc5e4ac133c9b6ecde504c8569a1",
+        "stale_evidence:3914794feee6b5791cbab09cabe273e740b93ee66d92c112814e67a8668b07c0",
+        "stale_evidence:3dd752d21105c6acc33522f7fea9ef5ed7039c108fd70c85f7fe792fe1ed5005",
+        "stale_evidence:5ae67e8048170c7784665c42776252e660607f8f12f764e529a1b47dc5fa91be",
+        "stale_evidence:835d81fb5f52843f7f83d0c7878094aa98bc3fdacc4a5ca6699f7339d545ff69",
+        "stale_evidence:9b425bd63f6b3bf24e22df671772c97112a2de4de5dcbc52a18651667d27e9a4",
+        "stale_evidence:9c095720f3ded59630ba9c7c69096c06fb27af5fed397a136015db4b5a85d5c2",
+        "stale_evidence:a02741d1777d4562d556f650f2d44ef3ce19970b466f860f6b5e8b433a546ef5",
+        "stale_evidence:a0398a95c54aa39a5855220a16731165566ff73eb130e1ce1a65b04d1188711a",
+        "stale_evidence:a4472b37cb30273c7fb475219db864c2295d0a0d23774a2e7ca0ea7a63a406c8",
+        "stale_evidence:a5ea58daa5e67460ef92ac167fd4ff073c37270134d08fb78f0de57d4d4bf0f8",
+        "stale_evidence:a84e64a91f180de8883ecf427673fb27229f13b5635f3720911bb832ec07218a",
+        "stale_evidence:b4aa5dc9d51525b73d3df9ac08859d70c919119cb4e6e12a7f4f1c2981e0d251",
+        "stale_evidence:b7c5b2a4ccb894bf65ad7d313b357f1fd38c2303f6514a30c73a98608fa99092",
+        "stale_evidence:becdf19c7e585eb6a73b2ce33486a885be1651b6d08289c8ad64f47ef5f47687",
+        "stale_evidence:c9f3bbed5a267fdac7a9211df178c79ba4344de555d1ca51e2522065ce3f19c7",
+        "stale_evidence:cc679bdb82433925cc26ec4944059ab9de7fa06012959ba6fad696304212c8f6",
+        "stale_evidence:d8ac49b06834425aaca4f66445534eec786e7dad4a6fed9e5a591003d53fca0e",
+        "stale_evidence:de6e373b0ad2fba9797d0adcec8d1d5e1f39a9b81ce5dcc2be907a4f5e7311cb",
+        "stale_evidence:e72de4a7627b08103465f90cce010e9b04281610d84198a2f685657c55894cf7",
+        "stale_evidence:effd0f1d51355d022a92e4dc2e1724bd0cf646e86c684a0c633f9023979e8ce6"
+      ],
+      "validation": {
+        "status": "pending",
+        "reason": "Bounded scene execution passes in the recorded receipt, but exhaustive current comparison for all shared original/driver/simulation contracts and every resource CLI failure branch is pending. Existing evidence hashes/statuses remain historical; no blanket equivalence promotion or refreshed old hashes. Live original snapshots/resource dispatch, complete lighting/effect/action production and replacement remain separate milestones.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "native-scene-snapshot-recorded-baseline-20261006",
+      "files": [
+        {
+          "after_sha256": "739a983dab21872557ca47d45f67c70310b007334d63f7e236710fc992221ebd",
+          "before_sha256": null,
+          "path": "compat/legacy/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "8ecd4cd281c1a8696bca09654771e9dd52722acb686ac6ceba06bca760c80fab",
+          "before_sha256": null,
+          "path": "compat/legacy/README.md"
+        },
+        {
+          "after_sha256": "6786082314af247cf97e5c5f9b4fe02361413bfa68969be39c62ab314f3f7bce",
+          "before_sha256": null,
+          "path": "compat/legacy/scene_snapshot.cpp"
+        },
+        {
+          "after_sha256": "d22476a8c00d88860b7978aba3eef88b7979640ca5cb3a0ebd217970f40c9ca8",
+          "before_sha256": null,
+          "path": "compat/legacy/scene_snapshot.hpp"
+        },
+        {
+          "after_sha256": "433e62660994d0c268f6f64ee328d2e55a723ec3a1e76252ddd890066f42c665",
+          "before_sha256": null,
+          "path": "compat/legacy/snapshot_main.cpp"
+        },
+        {
+          "after_sha256": "26624053b05e9a5811742a2dbefd9e18d447e14d6a580e28683d102db2fe36b7",
+          "before_sha256": "5f12ac326b29b74a5378fffd89559aa643f0d5257d318c55a09e4879c5355a25",
+          "path": "docs/architecture.md"
+        },
+        {
+          "after_sha256": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+          "before_sha256": null,
+          "path": "protocols/include/mnm/scene_snapshot_v1.h"
+        },
+        {
+          "after_sha256": "b3ea14ac9cf87c7be92656e618f7daca32626249dd470b3d22c6e4d3cb66334e",
+          "before_sha256": null,
+          "path": "research/formats/scene-snapshot-v1.md"
+        },
+        {
+          "after_sha256": "9f7beda2c198c6d4d2985986a2185757a4a59b54f2ee68826ef637bed500ca54",
+          "before_sha256": "ab621d47b6fb5e317b9ccda9d512845083dc345728c2cc06e6eff913cb8f7837",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "273afc8f0eb5ef2d967bf8678b31819aa9dc4de141c7973ba9a2641c2e7a5d00",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-scene-snapshot-20261006.json"
+        },
+        {
+          "after_sha256": "4f689f90c7f26be3fceecddd1e65fa8ff8104449424b1d48aed966ebe58ede85",
+          "before_sha256": "9beae2683ccc8aa1ce351c3b28027690f2b780be38cc9ee99eb78d023b2e65aa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f87424e7c808a84db170fc7880acedae2492c53567156b024d01497ecbcfd789",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-snapshot-20261006.json"
+        },
+        {
+          "after_sha256": "6c91e3318afb7feda582f0b3ac65fd236b3556cb6ac44bc77c88d0f0e5133ef9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-snapshot-closeout-20261006.json"
+        },
+        {
+          "after_sha256": "3723e3944867ca6aa4322deac1cc8b81afd6dfd5806907324f93f85dba6db29d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-snapshot-final-20261006.json"
+        },
+        {
+          "after_sha256": "3754092020e9db6016a53a0cb87eea0217919d73179794eada893950ea7c4143",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-snapshot-reconciled-20261006.json"
+        },
+        {
+          "after_sha256": "28a44bb8655f76dbbbf4761a8cff728ea247900c65232cd458effac3f7c43e0a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-scene-snapshot-20261006.md"
+        },
+        {
+          "after_sha256": "da25c052cef535cfc904148890f23de3476720c81d408a5be6a6bd8ea58f9fa7",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-snapshot-live-20261006.json"
+        },
+        {
+          "after_sha256": "a28017b80425766f1704cefe98b6ad64217a9136f239ea331444da8e242d7400",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-snapshot-replay-20261006.json"
+        },
+        {
+          "after_sha256": "260722a225148b3c6ed1c30a1a4e1f7827bfdde5a861f92a97ecad7c22408375",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-snapshot.md"
+        },
+        {
+          "after_sha256": "4f6beac7916cb35e67a3b98ed6ea727a78e2d777d4131514093e09502664a486",
+          "before_sha256": null,
+          "path": "research/runtime/scene-snapshot-accounting-20261006.json"
+        },
+        {
+          "after_sha256": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+          "before_sha256": null,
+          "path": "runtime/scene/entry.S"
+        },
+        {
+          "after_sha256": "bd673f01724092f38cd5b246aa5bb2f00eb01a90b0a776483f63d78c8817a250",
+          "before_sha256": null,
+          "path": "runtime/scene/observer.c"
+        },
+        {
+          "after_sha256": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+          "before_sha256": null,
+          "path": "runtime/scene/selftest.c"
+        },
+        {
+          "after_sha256": "e59210d380b8061241c126525665412082acb8bf96e90eec47f8aec2eb610264",
+          "before_sha256": null,
+          "path": "tests/scene-snapshot-test.cpp"
+        },
+        {
+          "after_sha256": "2b6042c5deeea9ad948dd246bb2e53fd90e68b46cd26e019e43f2d4e65a9c7e8",
+          "before_sha256": "a0ad8462ad3e17d98a41262a31c66b94ae1efc4486e6c6f536686f51fb23546d",
+          "path": "tests/test-re-coverage.py"
+        },
+        {
+          "after_sha256": "37882db464a89b5c0a8efdf85485508c59dda3a2b0e3dcb6434cf11ba55d034d",
+          "before_sha256": null,
+          "path": "tools/build-scene-observer.py"
+        },
+        {
+          "after_sha256": "c6175171b31bbd27b77bcd4242b9cd9f64ec4d6a8628b0bf7301947072017893",
+          "before_sha256": null,
+          "path": "tools/capture-scene-game.py"
+        },
+        {
+          "after_sha256": "6ae69d07be7125353368fe9d65b91b3a0c8fd4f8eb67ba304bb6d7e298a1e1a2",
+          "before_sha256": "8ac337e13c825f72a1202f5c5bd64892c16d3b007d62b659b83495967a55a28d",
+          "path": "tools/coverage_audit.py"
+        },
+        {
+          "after_sha256": "23cbf38c44eac4fc9971b62e813632450793b13609ab8395c428d3f696d2a815",
+          "before_sha256": "6b783efda805feb49d9f959d9ce531895a96014607c257602ad77fc26c07ffca",
+          "path": "tools/index-coverage-sources.py"
+        },
+        {
+          "after_sha256": "e4bcd0597c1204649041ec7ea62615596f514b22f4346ecd5b35737e0dd98a48",
+          "before_sha256": null,
+          "path": "tools/prepare-scene-observer.py"
+        },
+        {
+          "after_sha256": "9422fccfb4d62f25ddd55f2817b63a1c5a7a6596c068a7f7cbb23a253a3834fd",
+          "before_sha256": null,
+          "path": "tools/scene-game-runner.py"
+        },
+        {
+          "after_sha256": "0728e90b3e1940c5cc45ec3e64a6ef8f64afdad13a5d6c6605a2b768f6c6cafa",
+          "before_sha256": null,
+          "path": "tools/test-scene-snapshot.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "0ca7513df9ccb1138d347056d1ff8b5024537d18718d801b5a67d43942686eb2",
+          "before_sha256": null,
+          "id": "NR.scene-snapshot"
+        },
+        {
+          "after_sha256": "6ca77c237497282a6ce183890b57fac24fcbe8e33e58b93e7b80d9ad538b766b",
+          "before_sha256": "0c1874406780eb3b25950c50efcca0b08f3e36d71bc08c459544ed25d375305c",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "2bcb41c03a31f40498a6b8125f040c5267aae89cfeb7212ae643a8c55fda2a71",
+          "before_sha256": "840b2f847f74b57841089cef5dded08a6d30640ce93ebc39f7a9a39197833e32",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:8f543ec3b085b2b4b3c557e9a82f93bfa7879356938f4952b44149acc6bee2e4",
+        "stale_evidence:171a96f9862abd913182a2e61fbf1eb2cd52eabc946ac02137fa28f747730d7e",
+        "stale_evidence:406591710c61d34485a40f48a92d109a776002ec4913eaa42461f9ba4acc277a",
+        "stale_evidence:52d78b16b56d9529e14009710286cf0b78722e2fdbef869be9cc30520a31d47c",
+        "stale_evidence:56bdbd91c02a0957bccf38c5d812a94ca337d5c11ea6f698d44766f5145c47a1",
+        "stale_evidence:6e716ba961536931dea18f9cff9d5d0f15648f83017e8175a62a2aabc8ed114d",
+        "stale_evidence:7559e2cc4ec7192147c7577bbd4ba746f335af3e7daf9d418666d9216aea1374",
+        "stale_evidence:9ec92e830af1d173431030cf80fdf78bcb0cd9473c457c1801456f30b36097e6",
+        "stale_evidence:ba8de8d0b75e07d4486dc1bbc772afdf9ab5164bbec6ef6891952abf9c0a431e",
+        "stale_evidence:c4ab1950a9cb22d5c6d6a537b2f264c148ee0b2dc370964608edbdf1692a08d2",
+        "stale_evidence:d7f856645d7e12912ca2dc6407620eb674116524aafa3d94cd3045a8488585ab",
+        "stale_evidence:dd116cb5a681cc375a15712e440dc7788e6af113c7caebb26731bd76ec540581"
+      ],
+      "reason": "Reviewed opt-in pinned original consumer entry forwarding, saved processor/LastError state, bounded pointer-free owned wire, content/visual identity admission, native resource replay and strict/explicit partial policy. Reviewed compat census extension with historical-base compatibility and drift guards. Metadata merges preserve existing owners and historical evidence. Unknown draw modes, depth adjustments, original shading/background/HUD, concurrency/performance, continuous native hosting and replacement remain explicit.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh source-bound PE32 forwarding fixture, three native CTests and eight independent complete native-policy pixel compositions pass; four original queues yield6860 supported draws and zero unmapped supported identities. Four live original snapshots retain original drawing and before/after immutable guards; no original shaded output comparison.90 synthetic coverage audit/gate guards pass. Broad dependency hashes do not establish complete engine coverage.",
+        "evidence": [
+          "NR.scene-snapshot.native-20261006",
+          "NR.scene-snapshot.live-20261006",
+          "TOOL.traceability.scene-root-20261006"
+        ]
+      }
+    },
+    {
+      "id": "native-scene-snapshot-pending-baseline-20261006",
+      "files": [
+        {
+          "after_sha256": "4943f3b5966425b221e5d4c1b5f97e0bcb5ef1e860ffd409e6367a712f79ff64",
+          "before_sha256": null,
+          "path": "tools/index-scene-bindings.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "3eb41748ed987e404116bbdc9cd9a19d698b8d953e841b333dbdc7b3f2239ef9",
+          "before_sha256": "88eb18aecd22f0c0979d9194765fc321fdda6bef2b47deb11b9be759e0782477",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "deb16081a8a418de0ef05e007b7f36bfb0af3d43da1a243df1451826daa6b4c2",
+          "before_sha256": "2e13923e7baf9d06d9d1ebebde6530a8418fd38443c34de8ce06d566a0737a9e",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "8377d796761850dc9c2e6ad3b624ef25bde517b47616e2dde0af3acf4ee27217",
+          "before_sha256": "18084b107a332a7b8cd2eb133b6522f528f5c96283435d83d05c30b1193eae9a",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "0ca7513df9ccb1138d347056d1ff8b5024537d18718d801b5a67d43942686eb2",
+          "before_sha256": null,
+          "id": "NR.scene-snapshot"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:8f543ec3b085b2b4b3c557e9a82f93bfa7879356938f4952b44149acc6bee2e4",
+        "stale_evidence:171a96f9862abd913182a2e61fbf1eb2cd52eabc946ac02137fa28f747730d7e",
+        "stale_evidence:406591710c61d34485a40f48a92d109a776002ec4913eaa42461f9ba4acc277a",
+        "stale_evidence:52d78b16b56d9529e14009710286cf0b78722e2fdbef869be9cc30520a31d47c",
+        "stale_evidence:56bdbd91c02a0957bccf38c5d812a94ca337d5c11ea6f698d44766f5145c47a1",
+        "stale_evidence:6e716ba961536931dea18f9cff9d5d0f15648f83017e8175a62a2aabc8ed114d",
+        "stale_evidence:7559e2cc4ec7192147c7577bbd4ba746f335af3e7daf9d418666d9216aea1374",
+        "stale_evidence:9ec92e830af1d173431030cf80fdf78bcb0cd9473c457c1801456f30b36097e6",
+        "stale_evidence:ba8de8d0b75e07d4486dc1bbc772afdf9ab5164bbec6ef6891952abf9c0a431e",
+        "stale_evidence:c4ab1950a9cb22d5c6d6a537b2f264c148ee0b2dc370964608edbdf1692a08d2",
+        "stale_evidence:d7f856645d7e12912ca2dc6407620eb674116524aafa3d94cd3045a8488585ab",
+        "stale_evidence:dd116cb5a681cc375a15712e440dc7788e6af113c7caebb26731bd76ec540581"
+      ],
+      "reason": "Reviewed candidate manifest version/path/hash limits and explicit observation names;174 version4 candidates were generated and their exact bytes validated by replay. A generation-time source-bound execution record for this helper is not asserted. Architecture prose preserves all three outstanding gameplay objectives without gameplay implementation or balance changes.",
+      "validation": {
+        "status": "pending",
+        "reason": "Keep helper generation provenance and unrelated gameplay validation separate from fresh consumer/host replay evidence; no current gameplay equivalence or feature promotion.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "native-scene-snapshot-recorded-head-20261006",
+      "files": [
+        {
+          "after_sha256": "739a983dab21872557ca47d45f67c70310b007334d63f7e236710fc992221ebd",
+          "before_sha256": null,
+          "path": "compat/legacy/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "8ecd4cd281c1a8696bca09654771e9dd52722acb686ac6ceba06bca760c80fab",
+          "before_sha256": null,
+          "path": "compat/legacy/README.md"
+        },
+        {
+          "after_sha256": "6786082314af247cf97e5c5f9b4fe02361413bfa68969be39c62ab314f3f7bce",
+          "before_sha256": null,
+          "path": "compat/legacy/scene_snapshot.cpp"
+        },
+        {
+          "after_sha256": "d22476a8c00d88860b7978aba3eef88b7979640ca5cb3a0ebd217970f40c9ca8",
+          "before_sha256": null,
+          "path": "compat/legacy/scene_snapshot.hpp"
+        },
+        {
+          "after_sha256": "433e62660994d0c268f6f64ee328d2e55a723ec3a1e76252ddd890066f42c665",
+          "before_sha256": null,
+          "path": "compat/legacy/snapshot_main.cpp"
+        },
+        {
+          "after_sha256": "26624053b05e9a5811742a2dbefd9e18d447e14d6a580e28683d102db2fe36b7",
+          "before_sha256": "c1efa87244c4438825089416464313013c18931b4c66fa85b1d26c16d0460bdb",
+          "path": "docs/architecture.md"
+        },
+        {
+          "after_sha256": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+          "before_sha256": null,
+          "path": "protocols/include/mnm/scene_snapshot_v1.h"
+        },
+        {
+          "after_sha256": "b3ea14ac9cf87c7be92656e618f7daca32626249dd470b3d22c6e4d3cb66334e",
+          "before_sha256": null,
+          "path": "research/formats/scene-snapshot-v1.md"
+        },
+        {
+          "after_sha256": "9f7beda2c198c6d4d2985986a2185757a4a59b54f2ee68826ef637bed500ca54",
+          "before_sha256": "a41879fc9cf6aba9b78dc96d2dfc68fb3ffe9bf5ea58521277f8a319f5bb5793",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "273afc8f0eb5ef2d967bf8678b31819aa9dc4de141c7973ba9a2641c2e7a5d00",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-scene-snapshot-20261006.json"
+        },
+        {
+          "after_sha256": "4f689f90c7f26be3fceecddd1e65fa8ff8104449424b1d48aed966ebe58ede85",
+          "before_sha256": "3edf30be5314089045b615a5cf964f155da61d4db5d3163b86bbbbe176da7acc",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f87424e7c808a84db170fc7880acedae2492c53567156b024d01497ecbcfd789",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-snapshot-20261006.json"
+        },
+        {
+          "after_sha256": "6c91e3318afb7feda582f0b3ac65fd236b3556cb6ac44bc77c88d0f0e5133ef9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-snapshot-closeout-20261006.json"
+        },
+        {
+          "after_sha256": "3723e3944867ca6aa4322deac1cc8b81afd6dfd5806907324f93f85dba6db29d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-snapshot-final-20261006.json"
+        },
+        {
+          "after_sha256": "3754092020e9db6016a53a0cb87eea0217919d73179794eada893950ea7c4143",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-scene-snapshot-reconciled-20261006.json"
+        },
+        {
+          "after_sha256": "28a44bb8655f76dbbbf4761a8cff728ea247900c65232cd458effac3f7c43e0a",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-scene-snapshot-20261006.md"
+        },
+        {
+          "after_sha256": "da25c052cef535cfc904148890f23de3476720c81d408a5be6a6bd8ea58f9fa7",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-snapshot-live-20261006.json"
+        },
+        {
+          "after_sha256": "a28017b80425766f1704cefe98b6ad64217a9136f239ea331444da8e242d7400",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-snapshot-replay-20261006.json"
+        },
+        {
+          "after_sha256": "260722a225148b3c6ed1c30a1a4e1f7827bfdde5a861f92a97ecad7c22408375",
+          "before_sha256": null,
+          "path": "research/runtime/native-scene-snapshot.md"
+        },
+        {
+          "after_sha256": "4f6beac7916cb35e67a3b98ed6ea727a78e2d777d4131514093e09502664a486",
+          "before_sha256": null,
+          "path": "research/runtime/scene-snapshot-accounting-20261006.json"
+        },
+        {
+          "after_sha256": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+          "before_sha256": null,
+          "path": "runtime/scene/entry.S"
+        },
+        {
+          "after_sha256": "bd673f01724092f38cd5b246aa5bb2f00eb01a90b0a776483f63d78c8817a250",
+          "before_sha256": null,
+          "path": "runtime/scene/observer.c"
+        },
+        {
+          "after_sha256": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+          "before_sha256": null,
+          "path": "runtime/scene/selftest.c"
+        },
+        {
+          "after_sha256": "e59210d380b8061241c126525665412082acb8bf96e90eec47f8aec2eb610264",
+          "before_sha256": null,
+          "path": "tests/scene-snapshot-test.cpp"
+        },
+        {
+          "after_sha256": "2b6042c5deeea9ad948dd246bb2e53fd90e68b46cd26e019e43f2d4e65a9c7e8",
+          "before_sha256": "9a836d6fbaf1b3c94d523b7f8c420f0553dae3c94331057b4d685c20f7f4fca6",
+          "path": "tests/test-re-coverage.py"
+        },
+        {
+          "after_sha256": "37882db464a89b5c0a8efdf85485508c59dda3a2b0e3dcb6434cf11ba55d034d",
+          "before_sha256": null,
+          "path": "tools/build-scene-observer.py"
+        },
+        {
+          "after_sha256": "c6175171b31bbd27b77bcd4242b9cd9f64ec4d6a8628b0bf7301947072017893",
+          "before_sha256": null,
+          "path": "tools/capture-scene-game.py"
+        },
+        {
+          "after_sha256": "6ae69d07be7125353368fe9d65b91b3a0c8fd4f8eb67ba304bb6d7e298a1e1a2",
+          "before_sha256": "e632e389d5ecbdfb20192b2806f17d39840e094b3f7f29df07c905008a639a56",
+          "path": "tools/coverage_audit.py"
+        },
+        {
+          "after_sha256": "23cbf38c44eac4fc9971b62e813632450793b13609ab8395c428d3f696d2a815",
+          "before_sha256": "b06f0438360462b7965af998ebcf73ca9f88bcb00befd0d5a46d5e6ae98b56d9",
+          "path": "tools/index-coverage-sources.py"
+        },
+        {
+          "after_sha256": "e4bcd0597c1204649041ec7ea62615596f514b22f4346ecd5b35737e0dd98a48",
+          "before_sha256": null,
+          "path": "tools/prepare-scene-observer.py"
+        },
+        {
+          "after_sha256": "9422fccfb4d62f25ddd55f2817b63a1c5a7a6596c068a7f7cbb23a253a3834fd",
+          "before_sha256": null,
+          "path": "tools/scene-game-runner.py"
+        },
+        {
+          "after_sha256": "0728e90b3e1940c5cc45ec3e64a6ef8f64afdad13a5d6c6605a2b768f6c6cafa",
+          "before_sha256": null,
+          "path": "tools/test-scene-snapshot.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "0ca7513df9ccb1138d347056d1ff8b5024537d18718d801b5a67d43942686eb2",
+          "before_sha256": null,
+          "id": "NR.scene-snapshot"
+        },
+        {
+          "after_sha256": "6ca77c237497282a6ce183890b57fac24fcbe8e33e58b93e7b80d9ad538b766b",
+          "before_sha256": "56166a9170fb7e43b71f5eee22783b0b20ebcb703e626f3ac69735df66b2be14",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "2bcb41c03a31f40498a6b8125f040c5267aae89cfeb7212ae643a8c55fda2a71",
+          "before_sha256": "0fbf47f08aa315b5bc2e915d5b1a011c84e0bf6cb4c747b3b515d271b353d949",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:8f543ec3b085b2b4b3c557e9a82f93bfa7879356938f4952b44149acc6bee2e4",
+        "stale_evidence:171a96f9862abd913182a2e61fbf1eb2cd52eabc946ac02137fa28f747730d7e",
+        "stale_evidence:52d78b16b56d9529e14009710286cf0b78722e2fdbef869be9cc30520a31d47c",
+        "stale_evidence:56bdbd91c02a0957bccf38c5d812a94ca337d5c11ea6f698d44766f5145c47a1",
+        "stale_evidence:6e716ba961536931dea18f9cff9d5d0f15648f83017e8175a62a2aabc8ed114d",
+        "stale_evidence:7559e2cc4ec7192147c7577bbd4ba746f335af3e7daf9d418666d9216aea1374",
+        "stale_evidence:c4ab1950a9cb22d5c6d6a537b2f264c148ee0b2dc370964608edbdf1692a08d2",
+        "stale_evidence:d7f856645d7e12912ca2dc6407620eb674116524aafa3d94cd3045a8488585ab",
+        "stale_evidence:dd116cb5a681cc375a15712e440dc7788e6af113c7caebb26731bd76ec540581"
+      ],
+      "reason": "Reviewed opt-in pinned original consumer entry forwarding, saved processor/LastError state, bounded pointer-free owned wire, content/visual identity admission, native resource replay and strict/explicit partial policy. Reviewed compat census extension with historical-base compatibility and drift guards. Metadata merges preserve existing owners and historical evidence. Unknown draw modes, depth adjustments, original shading/background/HUD, concurrency/performance, continuous native hosting and replacement remain explicit.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh source-bound PE32 forwarding fixture, three native CTests and eight independent complete native-policy pixel compositions pass; four original queues yield6860 supported draws and zero unmapped supported identities. Four live original snapshots retain original drawing and before/after immutable guards; no original shaded output comparison.90 synthetic coverage audit/gate guards pass. Broad dependency hashes do not establish complete engine coverage.",
+        "evidence": [
+          "NR.scene-snapshot.native-20261006",
+          "NR.scene-snapshot.live-20261006",
+          "TOOL.traceability.scene-root-20261006"
+        ]
+      }
+    },
+    {
+      "id": "native-scene-snapshot-pending-head-20261006",
+      "files": [
+        {
+          "after_sha256": "4943f3b5966425b221e5d4c1b5f97e0bcb5ef1e860ffd409e6367a712f79ff64",
+          "before_sha256": null,
+          "path": "tools/index-scene-bindings.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "3eb41748ed987e404116bbdc9cd9a19d698b8d953e841b333dbdc7b3f2239ef9",
+          "before_sha256": "e64035336f31cc6d607bfdf8b5649261b1cc1e3b5a803577b477fe32ac24efb9",
+          "id": "GP.commander"
+        },
+        {
+          "after_sha256": "deb16081a8a418de0ef05e007b7f36bfb0af3d43da1a243df1451826daa6b4c2",
+          "before_sha256": "ff452c25eb41dc425ef153701bdd1d806d458fe55f9d07817b66c3a635b744f9",
+          "id": "GP.mana"
+        },
+        {
+          "after_sha256": "8377d796761850dc9c2e6ad3b624ef25bde517b47616e2dde0af3acf4ee27217",
+          "before_sha256": "b027f62fbb6663c228250f90d3f4ca7ee7f12d15bb83998184a57a6d161a3e74",
+          "id": "GP.veterancy"
+        },
+        {
+          "after_sha256": "0ca7513df9ccb1138d347056d1ff8b5024537d18718d801b5a67d43942686eb2",
+          "before_sha256": null,
+          "id": "NR.scene-snapshot"
+        }
+      ],
+      "pending_gaps": [
+        "behaviors_without_comparison:8f543ec3b085b2b4b3c557e9a82f93bfa7879356938f4952b44149acc6bee2e4",
+        "stale_evidence:171a96f9862abd913182a2e61fbf1eb2cd52eabc946ac02137fa28f747730d7e",
+        "stale_evidence:52d78b16b56d9529e14009710286cf0b78722e2fdbef869be9cc30520a31d47c",
+        "stale_evidence:56bdbd91c02a0957bccf38c5d812a94ca337d5c11ea6f698d44766f5145c47a1",
+        "stale_evidence:6e716ba961536931dea18f9cff9d5d0f15648f83017e8175a62a2aabc8ed114d",
+        "stale_evidence:7559e2cc4ec7192147c7577bbd4ba746f335af3e7daf9d418666d9216aea1374",
+        "stale_evidence:c4ab1950a9cb22d5c6d6a537b2f264c148ee0b2dc370964608edbdf1692a08d2",
+        "stale_evidence:d7f856645d7e12912ca2dc6407620eb674116524aafa3d94cd3045a8488585ab",
+        "stale_evidence:dd116cb5a681cc375a15712e440dc7788e6af113c7caebb26731bd76ec540581"
+      ],
+      "reason": "Reviewed candidate manifest version/path/hash limits and explicit observation names;174 version4 candidates were generated and their exact bytes validated by replay. A generation-time source-bound execution record for this helper is not asserted. Architecture prose preserves all three outstanding gameplay objectives without gameplay implementation or balance changes.",
+      "validation": {
+        "status": "pending",
+        "reason": "Keep helper generation provenance and unrelated gameplay validation separate from fresh consumer/host replay evidence; no current gameplay equivalence or feature promotion.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "native-scene-snapshot-census-baseline-20261006",
+      "files": [
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "9beae2683ccc8aa1ce351c3b28027690f2b780be38cc9ee99eb78d023b2e65aa",
+          "after_sha256": "bcb262364ff967c1601bbe04dcba9426738b2d2fc726498e684b25d5dd012372"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-scene-snapshot-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "2649bd61d0049278252c3ca9fc80747234920802f56e61946cc7f82d04a55f17"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "reason": "Reviewed current census references for owned scene adapter and compatibility accounting. Concurrent surface-format test/capture files remain separately owned; this census records their current byte identities and existing links/debt without new semantic mapping or execution claims. Preserve all historical evidence and receipts.",
+      "validation": {
+        "status": "pending",
+        "reason": "Indexing review only; fresh native scene and accounting evidence remains registered separately. Other contributors own current surface-format validation.",
+        "evidence": []
+      }
+    },
+    {
+      "id": "native-scene-snapshot-census-head-20261006",
+      "files": [
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "3edf30be5314089045b615a5cf964f155da61d4db5d3163b86bbbbe176da7acc",
+          "after_sha256": "bcb262364ff967c1601bbe04dcba9426738b2d2fc726498e684b25d5dd012372"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-scene-snapshot-verified-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "2649bd61d0049278252c3ca9fc80747234920802f56e61946cc7f82d04a55f17"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "reason": "Reviewed current census references for owned scene adapter and compatibility accounting. Concurrent surface-format test/capture files remain separately owned; this census records their current byte identities and existing links/debt without new semantic mapping or execution claims. Preserve all historical evidence and receipts.",
+      "validation": {
+        "status": "pending",
+        "reason": "Indexing review only; fresh native scene and accounting evidence remains registered separately. Other contributors own current surface-format validation.",
+        "evidence": []
+      }
+    }
+  ]
+}

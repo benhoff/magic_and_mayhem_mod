@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "base": "475019f",
+  "head": "66744e92e78f5ca82f94694b31610cc4089d6df0",
+  "scope": "Retrospective exact parent475019f/current66744e9 receipt for the three intermediate shared files missing exact transitions in the committed UI journal. Renderer CMake adds the presentation controller to standalone replay hosting; ledger/register preserve scoped display and command refusal/default findings. All other committed paths retain existing exact receipts. This does not assert an earlier gate pass.",
+  "exact_missing_files": [
+    {
+      "path": "renderer/CMakeLists.txt",
+      "before_sha256": "a90dc730ded6c713fed02083625c71bb5e00a897ac25e9a4c9276eb1c9434463",
+      "after_sha256": "67dae6886d7f85fd9c97fa354d70060953476df1b1505c23dffb08fcf6ac14e6"
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d665107c8d36ea0d4839b6405a6c2da9c7a699c67d18867559a230b2500f4f7f",
+      "after_sha256": "b6673fc5adb8be5dc980ca9aeeac7b56111e0295ea72171845e301da5dc71211"
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "c74880add5678e85ecec1a6e172a4ec1c9d9fe8ba970736d7e263b2a9f537932",
+      "after_sha256": "9f26b3dc0587131d243080c333a4e89a0320914354e14590489007a18c14418e"
+    }
+  ],
+  "affected_behaviors": [
+    "CP.campaign-defeat-report",
+    "CP.campaign-mini-cancel",
+    "CP.campaign-mini-lifecycle",
+    "CP.campaign-mini-preferences",
+    "CP.campaign-mini-quit",
+    "CP.campaign-mini-quit-lifecycle",
+    "CP.campaign-world-handoff-observation",
+    "CP.region-entry-bridge",
+    "CP.region-entry-enter",
+    "HOST.command-refusal-diagnostics",
+    "HOST.input",
+    "HOST.native-command-launch",
+    "HOST.presentation",
+    "HOST.session",
+    "NP.campaign-defeat-policy",
+    "NP.campaign-mini-cancel-policy",
+    "NP.campaign-mini-quit-policy",
+    "NP.campaign-preferences-policy",
+    "NP.region-entry-fresh-policy",
+    "NR.application-shutdown",
+    "NR.command-checkpoint-attachment",
+    "NR.command-host-recovery",
+    "NR.command-ring",
+    "NR.command-ring-adapter",
+    "NR.command-streaming",
+    "NR.continuous-mutations",
+    "NR.continuous-producer",
+    "NR.continuous-resource-lifetime",
+    "NR.continuous-resource-working-set",
+    "NR.continuous-update-partition",
+    "NR.gpu-presentation",
+    "NR.incremental-command-consumer",
+    "NR.live-command-transport",
+    "NR.palette-resources",
+    "NR.real-game-command-shadow",
+    "NR.surface-backend.formats-pitch",
+    "NR.surface-backend.owned",
+    "NR.surface-backend.ownership-recovery",
+    "UI.preview"
+  ],
+  "retrospective_receipt": "native-scenes-retrospective-ui-shared-hashes-20261006",
+  "unresolved_gaps": []
+}

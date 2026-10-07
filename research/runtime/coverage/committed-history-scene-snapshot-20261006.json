@@ -1,0 +1,302 @@
+{
+  "schema": 1,
+  "scope": "Intervening committed ownership/backing/recovery changes and exact receipt transitions reviewed separately from scene snapshot workspace work; no past gate or new behavioral execution claim. Existing behavior/evidence links are retained; shared renderer regression now exercised by snapshot tests.",
+  "base": "2f95b2521d12be7d6359b341f88fd016b2d8b1d6",
+  "head": "b48b2a9689d63dac6ef8dccfaf7e9df6109fdd2d",
+  "commits": [
+    {
+      "commit": "b48b2a9689d63dac6ef8dccfaf7e9df6109fdd2d",
+      "parent": "2f95b2521d12be7d6359b341f88fd016b2d8b1d6",
+      "files": [
+        {
+          "path": "reconstruction/rendering/owned_surface_retry.hpp",
+          "before_sha256": null,
+          "after_sha256": "a5d41336ee9371a7f43a364538b3157bd44ca7f7c3aeea42f55c1a72f69c1f35",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "5d0ebc8dd15963e17af25d564fa87ecf8bfa438331af76e246ffc93bbba342a3",
+          "after_sha256": "b83cb42298ebbfb2dad14545b44cb8f2f608e9206e97c7b556c29f10d50ad479",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_access.hpp",
+          "before_sha256": "de30d7e2f74815f706d3cf158d0d981e0523e1f4d33fbb7ce6aa849439709c50",
+          "after_sha256": "29306563839b79760e26450d294fc75c4c3b057ffa81a64588bb42a98514fb16",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_backend.cpp",
+          "before_sha256": "7b9172485a2d9309086bc857d078a4795ac8528259a1b2f262cd3a99f2bf2189",
+          "after_sha256": "281ec802b0c8996bae80665eceab0dad5b1cf4021f40eeefcac115f71754090e",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_backend.hpp",
+          "before_sha256": "5346c612adf93a4a121cacfb6fd65b66712230c6eef48992e19b5865c17ac8f6",
+          "after_sha256": "197e2033443d82b888df7073a3f7c198d0b366b71e13ff351b8b54b383bef338",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "77504fbbd85765e9cccd07e6195c934e6525e3aeb74d96ebc173d72e1e9ac628",
+          "after_sha256": "a41879fc9cf6aba9b78dc96d2dfc68fb3ffe9bf5ea58521277f8a319f5bb5793",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "e531da509a8e392791ec9ec7bf0f4036d2bcb9b5df8b0c2a6b125a8f72648532",
+          "after_sha256": "84b4a6ce71a898ab725443ceace8d65b8d11ccfe1874c9cef72f2bc60fb87dc3",
+          "receipts": [
+            "Append-only journal; self-hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-ownership-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7c896e1b6fc670686177207f4a8cc350cae9b657fbaa99b7b79464dd08ec9ed4",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "634fe3bd4b52f9c963bf6cd4bd615e7dc5ec1363f84499825de6a89aaf01b487",
+          "after_sha256": "3edf30be5314089045b615a5cf964f155da61d4db5d3163b86bbbbe176da7acc",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-ownership-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "da48024ec93e757d70aa68d647590b92e675541a374aa7b569c79937b32f8f24",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-ownership-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "067e8df984b6df619142fc30ac1fb1e1b660a863dc1116e762b0859e49efe51b",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-backend.md",
+          "before_sha256": "0823dc609d8acc4ad74b571eb752a800973c078cae1e838d422b60da2a87cd1f",
+          "after_sha256": "38ced2454a43f3eda11496bca068d6280970be16eb97d986e4b5182e9c652393",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "c3f8f54f65853beaa9ceff2326a9f94f2781635638b2b62e7946fa964c09fe10",
+          "after_sha256": "707670d5f3399cad8acb19bd98164d5618dfda6fec0173f24af2f5aaca2713a3",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-backend-regression-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "e1cbfea59ac28fc237f515249963f1fe1debbce76e1362399b8e7ea7a5d6f6fe",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-backend-regression-pre-guard-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "3f97cb34da1686a74c25cd5103fc2366b4bbd3d10f1857334867381dafa35eb5",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-final-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "14a5cba7adf928e5ce55a14a38ac41dc22f10e67a1876b20bc2a1f4ab1a380b4",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-final-pre-guard-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "3c13e84552e353e79e6bd96e3aafa270aad483bd9ddde7ff63eb29623c54add1",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-initial-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7b6190fe1a1efd092ab2173671f03c8fdb2d417b4e11eaa6b5954b608c932e64",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-recovery.md",
+          "before_sha256": null,
+          "after_sha256": "e02ea8fec1362f0c14f97b7891bb242fcad23b6136738dd13480986936233fd7",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-regressions-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "9e779254edf329cc1122b36ba54a4866657ee54a6b1bfcbf55cd3bea04f2dee9",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-regressions-pre-guard-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "dd1d4735dce707af9c43beaa7729b8626177c8a40151649fdc517aa0f929c3c9",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-ownership-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "29243968d2659c8caf1feb70315a36ec4c599b594ba03c5ba64f09c4e7ff50fd",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-ownership-final-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "c01144134bc00e4a6aeaf53a514082d7d627141d0fd376576d6c57895ab252dd",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-ownership-offline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "8373f5e71ce99749e0f23e0c55a2d18fdb5f82aa9dbf543ec8b086a140eb8c1c",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-ownership-final.json.gz",
+          "before_sha256": null,
+          "after_sha256": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-ownership.json.gz",
+          "before_sha256": null,
+          "after_sha256": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-surface-ownership-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "d5699c5bba8d3a6273893f6a9b30533b72e1f6f1f71d33486a72abb9f67df44d",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-ownership-reference.c",
+          "before_sha256": null,
+          "after_sha256": "0ff1a437b2228bd61aa181f3a0ee4f18b9a17fed22802138c1434084b2551ee8",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-surface-ownership.py",
+          "before_sha256": null,
+          "after_sha256": "133cfc54a45dc2ff4f58ac09cf09467b830b1898ec825b5b5270116204c42930",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-surface-ownership.py",
+          "before_sha256": null,
+          "after_sha256": "f414c20e93f2397f036c8702b643c240866bd07bb1aa350b35c4a3b3441e2659",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-native-surface-ownership.py",
+          "before_sha256": null,
+          "after_sha256": "8ea093225b760c0fd3829e58f0da6f782afe5e3a7689329f40b17c850413f55b",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-surface-ownership.py",
+          "before_sha256": null,
+          "after_sha256": "67800b21467e7b71f0bdcb22252bb2e2ad4de4c5093196daf9866b619c1aa9b3",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

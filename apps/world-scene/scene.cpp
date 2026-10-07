@@ -71,18 +71,11 @@ std::vector<Draw> compose(const game::MovementSession& session,const assets::Ani
     for(const auto& item:queue) ordered.push_back(draws.at(item.payload));
     return ordered;
 }
-Frame render(render::GlBlitter& renderer,const assets::Sprite& terrain,const assets::Sprite& creature,
+Frame render(render::SceneRenderer& renderer,const assets::ResourceId& terrain,const assets::ResourceId& creature,
              const std::vector<Draw>& draws) {
     if(draws.size()>12288+32) throw std::invalid_argument("Scene draw budget exceeded");
-    const auto canvas=renderer.create({512,256,std::vector<std::uint32_t>(512*256,0x2124)},render::spriteFormat);
-    try {
-        // Bounded sequential uploads keep the surface budget independent of ANI length.
-        for(const auto& d:draws) {
-            render::UploadedSpriteFrame frame(renderer,d.creature?creature:terrain,d.frame);
-            frame.drawClipped(canvas,d.x,d.y,{0,0,512,256});
-        }
-        Frame result{renderer.read(canvas),renderer.present(canvas),draws};
-        renderer.destroy(canvas);return result;
-    } catch(...) {renderer.destroy(canvas);throw;}
+    std::vector<render::SceneDraw> submitted;submitted.reserve(draws.size());
+    for(const auto& d:draws)submitted.push_back({d.creature?creature:terrain,d.frame,d.x,d.y,true,true,{}});
+    renderer.draw(submitted);return {renderer.read(),renderer.present(),draws};
 }
 }
