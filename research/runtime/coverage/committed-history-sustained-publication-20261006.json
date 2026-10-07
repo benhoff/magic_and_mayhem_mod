@@ -1,0 +1,1260 @@
+{
+  "schema": 1,
+  "scope": "Exact committed parent/current SHA256 and behavior receipt review, separate from pending workspace changes. This audit does not assert historical gate passes or fresh validation.",
+  "base": "ef5b5a4",
+  "head": "b48b2a9689d63dac6ef8dccfaf7e9df6109fdd2d",
+  "commits": [
+    {
+      "commit": "2f95b2521d12be7d6359b341f88fd016b2d8b1d6",
+      "parent": "ef5b5a4925f04c3a4ea944b13542e2e6457ffc7b",
+      "files": [
+        {
+          "path": "apps/qt-shell/README.md",
+          "before_sha256": "9e1eff880ea3ce05761fb0fa39823718c84363e93a534350fe595c46d240d4bb",
+          "after_sha256": "819e2a1c5e77baf6d17dfadd12c927f4db8875e84899e130e6066f16cb0bb08a",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "apps/qt-shell/live_command_session.cpp",
+          "before_sha256": "58cb29456d127106830ee6de114f8f49c88e4265f4908ba4ff9aa61a9f33b40c",
+          "after_sha256": "6af077f38c2a076336c3b748cb983f24a85afc67f0483d6b282f682d2c1393f6",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "apps/qt-shell/live_command_session.hpp",
+          "before_sha256": "a8fbf9010e4721463215b6621a7ea7baeadf48633064c8bb8a38e5b0e5f8dfa0",
+          "after_sha256": "cdae916c86e6ed462591b9cfae2ded9e833ab96963ac73f7540f14b847ed68a2",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "apps/qt-shell/main.cpp",
+          "before_sha256": "30f1e8991dcd8048dd171418c78ee85ac3bdf13734d3f77202b213fbd982b35a",
+          "after_sha256": "6bec9cf8e832f248c9cecce1a2e9637151083c9676880718f586a2b15b66f34c",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "apps/qt-shell/render_control.cpp",
+          "before_sha256": "bdd72b25ca107f324faa737aa3abbd98cd566a77a3f7ecae289b73d4d5469a8b",
+          "after_sha256": "4eae2c56fbeb93d84264b22622d1a3789bb138acb030914a7a0cf560eedc2eb8",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "apps/qt-shell/render_control.hpp",
+          "before_sha256": "1229d563b0e0fa27c325f4a8c1ed6698c0820ed43931a4b8b824408475c2c1e9",
+          "after_sha256": "c03459d7dfd58bb7c6764f84ce1d127742369656bc6ec7d8b1075b95aa5fd615",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "protocols/include/mnm/render_control_v1.h",
+          "before_sha256": "ab15450b9347c312062719bdc35f62adf6bff9f4298f88de250513a5651ffb8b",
+          "after_sha256": "1d696c2a560e64fb9337f4ea77f9b73f284de889ba702ad3136612dcde8adbd6",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "protocols/python/mnm_protocols/render_control_v1.py",
+          "before_sha256": "170f1be0cd49c21942fa547d48bb6bf4ed6741836128d8929ed1da9600377e7d",
+          "after_sha256": "56463ab7211bedd358943ae2154a9ec19c7a56f334f9730600951f7db6671716",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "protocols/schemas/render_control-v1.json",
+          "before_sha256": "4b045e0c914a952fd5c9389d062ff7688646dafd2abc9fa2b5d52decc81783dc",
+          "after_sha256": "0b9331969251cb7586f8f8574484212b2c99e24c8e6e4bade53b900635a31031",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/formats/render-control-v1.md",
+          "before_sha256": "6ff58741912aca8f84d3cb09efa8615f37ec6ffc2469aa12f2660db3feccc603",
+          "after_sha256": "62c9e4d5d2dc805485236af952237cd9b0506ac694b086d09eb9d8d2cb839ebf",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "2d12c905fe16b1a90be62c317b05252ae44440db3c39f5e494813ca357de959c",
+          "after_sha256": "77504fbbd85765e9cccd07e6195c934e6525e3aeb74d96ebc173d72e1e9ac628",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "1807f6642e7d57f00aa6c98a1db5e17a57f7b6a0c50e99548a32df8b942efd20",
+          "after_sha256": "e531da509a8e392791ec9ec7bf0f4036d2bcb9b5df8b0c2a6b125a8f72648532",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-application-shutdown-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7fc48882d51f3fd68caea6a8787d626358f0abaab2ebbfd9b6e4fc3629425576",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "9a1d7416d601a958338142cc02646c15e8f7fe0a30db31b82ab26fff71d48a88",
+          "after_sha256": "634fe3bd4b52f9c963bf6cd4bd615e7dc5ec1363f84499825de6a89aaf01b487",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-application-shutdown-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "0f69b35b4427e52686fde13f3dd8e9f72d00bbfe7423854f0ac53fde9b0b3e33",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-application-shutdown-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "0ad06be02b256892d925331d316f33106e5f667140d8c311260dd246adc9042d",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-application-shutdown-checkpoint-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "846f96bacc585c9eaf04e6404c548c91b964cfd7c22edcb22cd86d283bf74bf5",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-application-shutdown-drawing-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "d8b090f4f82bea30443bb4d0ea3ac3d519f2d91f74bd6e8336cc64bd750a9708",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-application-shutdown-host-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "641deeb4f873394082c18c771aa9caa6a22e921659bc0b129cbe22eaea169fa2",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-application-shutdown-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "77f3630464ba6cb086e9886f5db6f290d75d55a5aac263aa5571895383a68113",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-application-shutdown-orchestration-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "796e86634cb90c0497bdaa94d5077adf635768273ef9bfa067ea7f4731dacaa5",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-application-shutdown-recovery-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "0e317874e63e78d595749b032bb536443748d1a300cf1ab24a120296a091cf90",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-application-shutdown-transitions-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "e4c6d2ae1ace10b38a0e07e01d44a9e54d48322f524471cb5ad282e96070a4f7",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-application-shutdown.md",
+          "before_sha256": null,
+          "after_sha256": "7fde9641e3b2e94d8895892e1e7585044254ed0a5f180ecb9cf0c68b683ac009",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/application_stop_selftest.h",
+          "before_sha256": null,
+          "after_sha256": "b7e2d77f1a04ce94c56db14d87a02baf5105fd5432c4896428535c8807de8aa0",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/bridge.c",
+          "before_sha256": "ce7c739088ee25c77dfadc8dcfda419b43fbe536b61c8c7cdfb7321aff4f198f",
+          "after_sha256": "f7bc0400d3f8ab1dd3d1536ce4827bdd28c5e34c86b02a21ae3f531c9cad2798",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_application_stop.h",
+          "before_sha256": null,
+          "after_sha256": "c7027ada062b5157e31918bb67a9f497c4e9b0406ac64713e93a8f70e097004c",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_control.h",
+          "before_sha256": "b0504d4d05753cb9e2a70ed93d426c7edf8eec372f3eebb0f0f74f5ee3c9ffce",
+          "after_sha256": "876ed2c234ab8068169bc0402f680c454f3fbed226f66c49444f343e32977fda",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_gate.h",
+          "before_sha256": "e3dbb7601304402d80cb8d89d3f591281a9ebcc1d0b954e185aa6518e6782630",
+          "after_sha256": "6f746ad652a52f5ef0ecd7f48438c854cda40e20c6ad0989927addea2234f272",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_lifecycle.h",
+          "before_sha256": "d37e421b26755a14012453148bfec8fe9109922f6e2a3452cab37a300d8219ce",
+          "after_sha256": "db8dcb65784bc123a463bb672efdf653f0d765cc1858dfb2dc42c88b892e8521",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_recovery.h",
+          "before_sha256": "67551305e7bd301bcf2f33c209856a7348fa50af7e4b424ecfabacef87d9b79f",
+          "after_sha256": "6fb515b02faffb12afec48d08cc231675068f091e73307d22997e7a68408684a",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_scheduler.h",
+          "before_sha256": "79292f7fec1f1f627ea555d2004be601d2366ef3bf1e557dd727fffb37a3f55d",
+          "after_sha256": "ef2fc8751a9a2f5a1e67d08a98eb687b333c474f6ee1d5123db725db7893e224",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/owned_session.h",
+          "before_sha256": "8f7218f11f93f5286492c86385978a581b3f66c24d1ed87e0a2ff8493d47453b",
+          "after_sha256": "de7136a6148e0c0d226db41f48145b5bcd86901546aca91d9c452b3957003892",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/selftest.c",
+          "before_sha256": "b38408c5de9ebb7c71e157825660155c54118e823f7bc3c93079d554e14b1dd7",
+          "after_sha256": "48499b295725fe5b67c5dd84e7c4ad05fd981100e6a8eae6bce050161ee55662",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/live-command-stop-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "aa564b5d5665b15cd4529d9ce97035fe87014df7dd51b38ab9d01d6c8aec7420",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-control-test.cpp",
+          "before_sha256": "46168e28c75d57a8139642a1b77f7f3e621dc77a3013da3e9e6ae60bf243e84a",
+          "after_sha256": "1991b4592564492b56dcc4dd6d339d023919f7eb38fd720ef90be8e18b0d82b3",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/build-render-bridge.py",
+          "before_sha256": "2370fbfd16718c2818e96be32ad155a551374d21b1050c7553e55fcb0e24cf6e",
+          "after_sha256": "3873455feffcf93af8a253f20de21f75a183068da6128bf58fb4c27577b5510c",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-application-stop.py",
+          "before_sha256": null,
+          "after_sha256": "8a6685b861bbed0cedb55fd27f68122cee392e5d10c17dc83ac50398022cab7a",
+          "receipts": [
+            "application-shutdown-recorded-20261006",
+            "application-shutdown-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "CP.campaign-defeat-report",
+          "before_sha256": "4b9254240346bef65b0b0ec2c870f876404fda140c7d750019004166fa22c74d",
+          "after_sha256": "2327fc8cddd605d7afc8f90e256e7e48ff7f2a099dacb6cd0d8987f990f3a377",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "CP.campaign-world-handoff-observation",
+          "before_sha256": "5dd39d8d06f27a58053e295e0ec08b28f45f7b97bb6a3b888860d459e192d702",
+          "after_sha256": "063104a17a1640e33e5018d2546e7684a0b7cf0647602d7734ef9ea1a893f4ed",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "CP.region-entry-bridge",
+          "before_sha256": "48f2c49df189a0156a8ff2c91c8ceaf51ac0c59d81658bad4bd62756d250b08a",
+          "after_sha256": "b128b86015a78a71093e259e37e0b7df0279d938a019a1437a091929a4d629f6",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "CP.region-entry-enter",
+          "before_sha256": "4f306e96d2cd24678588a62d86f4f0f3706e70a9328ae7d2cecc64ce17033617",
+          "after_sha256": "8a80ced1d826e6a47625c4f68e9fdd7d9cbca0ac540f6f17925995320a5d15a6",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "HOST.session",
+          "before_sha256": "ffdff2fda33caf89c8f314aa13a5506a393924deb26ae2e17b812ca169598e33",
+          "after_sha256": "c91e4f4dae1574e0bf3990f26d9def57cb078f785b57ca5c853ba7688147b9a7",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NP.campaign-defeat-policy",
+          "before_sha256": "943381f784591141d56034dfa2198b342057d2a17d75ef421db9abdada19cbfd",
+          "after_sha256": "48dbfb6f73701f1cfdf67ef25e1ddeaebf21cedd0ab073fba845cf3e3077b8e4",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NP.region-entry-fresh-policy",
+          "before_sha256": "3c2e0625ce8bc380bac41106674a0c9d8357ce4440b2be596d0a0f527878ef95",
+          "after_sha256": "bba6884f85a780608e778adc9be1263fc5195835361ad63f031bf2528e7d5359",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.application-shutdown",
+          "before_sha256": null,
+          "after_sha256": "7c4693c66146f7a52359840ae867f8ccfa4ed4df9fceb6934223c293a2fdaf55",
+          "receipts": [
+            "application-shutdown-recorded-20261006"
+          ]
+        },
+        {
+          "id": "NR.bounded-copy-order",
+          "before_sha256": "3485cbc3b665f36f0907e7b6a18260d8369bdb495270471b38d392d7beb3717e",
+          "after_sha256": "286b14274b3c5dffde4304a1bd54a5ca35be86e49198e9e56d121782a9dedbc6",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-backpressure",
+          "before_sha256": "5236b008e04de8c1356e3d059a37b4c35f72caeee1188adae92e598fd11a6168",
+          "after_sha256": "0c056be9e07b8a502ca04f1f23f2c93b04618ff1c1156555dd07c2e3c2fb061d",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "3653074a5ebd5ff7f9d797af39fd7510523eea576f0362416806507114350d48",
+          "after_sha256": "363770dd2e73a9bb93f7cde1e4027677c51e1c5b3debc5a4efa5767d3fb230b8",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "764661f57869fb3260e6502fc19886a8a0e4cf67af9b603f5f8b886e3599a93a",
+          "after_sha256": "45e9b48e70e025ae7e4d52e8c851bbd294ede9c79aa71b4f2cf148081188ba64",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-idle-lifecycle",
+          "before_sha256": "5bd2ce9f505ac0f6b2cbfef7b5bb5358576776b99f4e4768cd25978eb514a1ee",
+          "after_sha256": "bdc23b4674451110e90cfdd9bfea8c849412aa40e6fd4ec06e8e9218cf69e2c8",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "3f2f2cedd750e62f32b72b22d56427db06d0aa5ef91d078f384649419526720a",
+          "after_sha256": "aeda0bd7b291ef3e284e42394de673f9044094bdd37f7d902de7711f444eb665",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "4317263d1f42abfb71bb0cbcd9a78b239fd700964a7952649ea8d76bce0535ee",
+          "after_sha256": "c98829ad6c07ccd9b43183ea3ea1dd4d2317b1f6901857d035086e9a8ed5b92b",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring-adapter",
+          "before_sha256": "1f6fa4013f19227646d29004e21b7b394ce82f3ee27e80dddcdcd31480fcfab2",
+          "after_sha256": "3f645d839b606179fddb696480052a567163e3699fa3332a65e079d95d3087a4",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "d21e09aee439690e13da97489ed9bd62caee361150ec708b2f7eaf19e2b3390c",
+          "after_sha256": "73c9123e114bfe46e283a1f6ccbbe3531922121d630af398a69a5069aa808f73",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "6dc450c5bf053c10267105ee1cd0740d51e485020572ea07a7ded0be433a6e87",
+          "after_sha256": "68ce849bc1719fe7a7ccdc260e51cd72d2d83979241cfb02346791cc10ccfb63",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "3708674cf46aa1d99ed9eea625e0b5c2653cf39e2aadc0b63e84fa2e8db23776",
+          "after_sha256": "ed6e73806921951cee1c3d2a13ba7c197b4672c0486502b51edf293682d6a12a",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-working-set",
+          "before_sha256": "2535e07b0e1618fd79e9d21c7b3fcf564dc8bee0c37e7ff4ed627c45f6b74ccf",
+          "after_sha256": "efd1f1998d075cb7ba9b21620a49f8845642c2f9aa54b2d8c387675d68b71051",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.cpu-handoff-order",
+          "before_sha256": "37827b107f9512f647b347f91cb002c8948fad557f8bb310a2638c1ad6b0424c",
+          "after_sha256": "6c2c8036a9cfdc3ffe85c1da14d4b84762ff7363b9f062e392d7b9a3100d8c93",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.dc-flip-order",
+          "before_sha256": "19e8cb8ede414bad76b71759b12eebf401c93add081bfcc5557c1bb9017892f0",
+          "after_sha256": "160fac792827f1f3ce7e7df5002c7c80d2851a3f9cd59d9e7eb90677270bbd76",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.draw-startup-order",
+          "before_sha256": "903a2d203c342011579c5d99c42dd400c2554d9f7e354b1f8613e0ab089f8bbb",
+          "after_sha256": "faac756c1bcf4f9bc7e1202d4e0960cbbfb6617e4e4c8723f748662c456858cd",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.drawing-recovery",
+          "before_sha256": "13c2ad476aabf7dea62f35c1a330fc1f0fc42cea18078d7438ce38c799eb4b5b",
+          "after_sha256": "6029d2cabbd0540aea00e20d09794f6bb71478a67d13eb22a27bec4a7ae3820e",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.gpu-presentation",
+          "before_sha256": "f855b610faf7c1dbf26bc78cbd24cd96388df348617df0861334e9d32fb0dfdf",
+          "after_sha256": "bb3160d57cd23904f367e06bc7e7cd816f2f4756f76d49ad4882c0c4a548c35c",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "70d74b32e0eaecd3bc83e5f6c494147baef18c0c69343f79951a668e6ff256b0",
+          "after_sha256": "85a9663ad330df1e69e45437c7c14c2a6582a7e870d3af612cebfa3e76e1fbb9",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.lifecycle-races",
+          "before_sha256": "c47b950ccc97a7072d1a98717626084d9d0433bd0414119111e5ee792885ffdf",
+          "after_sha256": "6619daa22868b17dfb6cce31508644290f17cd7d7297990404ac89bbb185b7ea",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.lifetime-order",
+          "before_sha256": "8706351243bfc704ceb06087a386abd343680b0448eb58f8b81a7123a2d2685e",
+          "after_sha256": "0aaf1efc59176ea2fd45753141686af38f9512517c8300abf9646d96cb03a30b",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "b442805a7dd433e927c3d1d84c35813c5df792365d79c6b2ca7969867d81291a",
+          "after_sha256": "04469af6ee9321f05751600f35715c30d9833c24d2a99642cdcb4be4bac8680d",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.metadata-order",
+          "before_sha256": "ea134af502453c2101a4f6335727de14bf47cf62ed40ba46378b2f8196873e5d",
+          "after_sha256": "6eec658519242708d4cd0ddac92192ea2d98cede493b46c2fd436b777394c04e",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.observed-metadata-idempotence",
+          "before_sha256": "b9bb7b5dabbd2cb7c544731758a717a30a6cb39de83bf3b45cbb1453eed04fc3",
+          "after_sha256": "36484d9f0714e641acafae8b3848b5589198cfbffb323cc4c99caf3630ac89f0",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-dc",
+          "before_sha256": "6c5a71d1fb8fc8d29a8b706380b5b943389b4879fff21cc594c68f16f73f379c",
+          "after_sha256": "811211cbcb1d8545493a14ee2649ccfe097151fb0bc73d6b8287a5984bfb644e",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-fill",
+          "before_sha256": "829c6ec1e29b056a45a8417c1b62973a6f9f389d72fbc9b9381618af1a6ccb43",
+          "after_sha256": "c6f6997c01d2ddbcc2a1c9d16563a6ad282c2b77b8a65596686632b3000b58eb",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-sequence",
+          "before_sha256": "23ab41a231be0de49bc622c62e06bf6660ca030ffdfbe2bc7348df6ebc3f2547",
+          "after_sha256": "02470d9d95d3bcf3ebe77182ad56b19cc4e8d3d437e43911e401a60506b5d966",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-startup",
+          "before_sha256": "8d5a3d6432abc8003848f6ec87f8527c198a830b97edd03abce7dc15c4537828",
+          "after_sha256": "b406fcfe6f7c04e871d92948a518a774c9dd3149ea580f2c5d2fe187198af122",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.owned-session-unlock-packed",
+          "before_sha256": "9c95553a19c77c10d03202395b448f5e919ae9d99056b03a5bc92bf752a1e77a",
+          "after_sha256": "cc34c107bdb2fd9fbbf57d15f7b47af14006e1c35a35503611418adbbb84a1ab",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-property-order",
+          "before_sha256": "9203dd295dabbe9251fbbc24342aea1187486deb0eb85530a16ee98af44f1441",
+          "after_sha256": "8d052daf49abd874117868f14b2f2a471bf235b3a0a4807b1c3539c9afe64db4",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "31b6017cbd5a6344174b0167bbf9fac45ec945297bfe9bccad025630a441bc8e",
+          "after_sha256": "79287930a8fdf5286a3d46fc057d51126dd998755ef75074b2edde96c36d0d93",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.recovery-lifecycle-races",
+          "before_sha256": "b9492365d690cb3443fd2546e70641429b4f9942aa19b1eced2091e792495b30",
+          "after_sha256": "0e06b134a92da468f6e119716152fd25b8546cc97773f452335fabfeef0bf190",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "6518c89e0d463954de65a58c7c617b4879b410aa5d42e825ff29f929f3b643ab",
+          "after_sha256": "22a213e83ef8dc21d4ef35d678b4f6811cf647df32df5f9fbeb01ff75643277c",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "UI.preview",
+          "before_sha256": "cab0eb240235f3065903f4186773946ebebc972744b8be73afc5effc1042dbe7",
+          "after_sha256": "49ca484fa905f8672024cac37f05cffae6efbc423e38ccd3e40485da001b8c08",
+          "receipts": [
+            "application-shutdown-shared-pending-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    },
+    {
+      "commit": "b48b2a9689d63dac6ef8dccfaf7e9df6109fdd2d",
+      "parent": "2f95b2521d12be7d6359b341f88fd016b2d8b1d6",
+      "files": [
+        {
+          "path": "reconstruction/rendering/owned_surface_retry.hpp",
+          "before_sha256": null,
+          "after_sha256": "a5d41336ee9371a7f43a364538b3157bd44ca7f7c3aeea42f55c1a72f69c1f35",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/CMakeLists.txt",
+          "before_sha256": "5d0ebc8dd15963e17af25d564fa87ecf8bfa438331af76e246ffc93bbba342a3",
+          "after_sha256": "b83cb42298ebbfb2dad14545b44cb8f2f608e9206e97c7b556c29f10d50ad479",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_access.hpp",
+          "before_sha256": "de30d7e2f74815f706d3cf158d0d981e0523e1f4d33fbb7ce6aa849439709c50",
+          "after_sha256": "29306563839b79760e26450d294fc75c4c3b057ffa81a64588bb42a98514fb16",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_backend.cpp",
+          "before_sha256": "7b9172485a2d9309086bc857d078a4795ac8528259a1b2f262cd3a99f2bf2189",
+          "after_sha256": "281ec802b0c8996bae80665eceab0dad5b1cf4021f40eeefcac115f71754090e",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "renderer/surface_backend.hpp",
+          "before_sha256": "5346c612adf93a4a121cacfb6fd65b66712230c6eef48992e19b5865c17ac8f6",
+          "after_sha256": "197e2033443d82b888df7073a3f7c198d0b366b71e13ff351b8b54b383bef338",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "77504fbbd85765e9cccd07e6195c934e6525e3aeb74d96ebc173d72e1e9ac628",
+          "after_sha256": "a41879fc9cf6aba9b78dc96d2dfc68fb3ffe9bf5ea58521277f8a319f5bb5793",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "e531da509a8e392791ec9ec7bf0f4036d2bcb9b5df8b0c2a6b125a8f72648532",
+          "after_sha256": "84b4a6ce71a898ab725443ceace8d65b8d11ccfe1874c9cef72f2bc60fb87dc3",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-ownership-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7c896e1b6fc670686177207f4a8cc350cae9b657fbaa99b7b79464dd08ec9ed4",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "634fe3bd4b52f9c963bf6cd4bd615e7dc5ec1363f84499825de6a89aaf01b487",
+          "after_sha256": "3edf30be5314089045b615a5cf964f155da61d4db5d3163b86bbbbe176da7acc",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-ownership-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "da48024ec93e757d70aa68d647590b92e675541a374aa7b569c79937b32f8f24",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-ownership-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "067e8df984b6df619142fc30ac1fb1e1b660a863dc1116e762b0859e49efe51b",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-backend.md",
+          "before_sha256": "0823dc609d8acc4ad74b571eb752a800973c078cae1e838d422b60da2a87cd1f",
+          "after_sha256": "38ced2454a43f3eda11496bca068d6280970be16eb97d986e4b5182e9c652393",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "c3f8f54f65853beaa9ceff2326a9f94f2781635638b2b62e7946fa964c09fe10",
+          "after_sha256": "707670d5f3399cad8acb19bd98164d5618dfda6fec0173f24af2f5aaca2713a3",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-backend-regression-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "e1cbfea59ac28fc237f515249963f1fe1debbce76e1362399b8e7ea7a5d6f6fe",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-backend-regression-pre-guard-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "3f97cb34da1686a74c25cd5103fc2366b4bbd3d10f1857334867381dafa35eb5",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-final-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "14a5cba7adf928e5ce55a14a38ac41dc22f10e67a1876b20bc2a1f4ab1a380b4",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-final-pre-guard-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "3c13e84552e353e79e6bd96e3aafa270aad483bd9ddde7ff63eb29623c54add1",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-initial-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7b6190fe1a1efd092ab2173671f03c8fdb2d417b4e11eaa6b5954b608c932e64",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-recovery.md",
+          "before_sha256": null,
+          "after_sha256": "e02ea8fec1362f0c14f97b7891bb242fcad23b6136738dd13480986936233fd7",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-regressions-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "9e779254edf329cc1122b36ba54a4866657ee54a6b1bfcbf55cd3bea04f2dee9",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-ownership-regressions-pre-guard-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "dd1d4735dce707af9c43beaa7729b8626177c8a40151649fdc517aa0f929c3c9",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-ownership-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "29243968d2659c8caf1feb70315a36ec4c599b594ba03c5ba64f09c4e7ff50fd",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-ownership-final-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "c01144134bc00e4a6aeaf53a514082d7d627141d0fd376576d6c57895ab252dd",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-ownership-offline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "8373f5e71ce99749e0f23e0c55a2d18fdb5f82aa9dbf543ec8b086a140eb8c1c",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-ownership-final.json.gz",
+          "before_sha256": null,
+          "after_sha256": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-ownership.json.gz",
+          "before_sha256": null,
+          "after_sha256": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-surface-ownership-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "d5699c5bba8d3a6273893f6a9b30533b72e1f6f1f71d33486a72abb9f67df44d",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-ownership-reference.c",
+          "before_sha256": null,
+          "after_sha256": "0ff1a437b2228bd61aa181f3a0ee4f18b9a17fed22802138c1434084b2551ee8",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-surface-ownership.py",
+          "before_sha256": null,
+          "after_sha256": "133cfc54a45dc2ff4f58ac09cf09467b830b1898ec825b5b5270116204c42930",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-surface-ownership.py",
+          "before_sha256": null,
+          "after_sha256": "f414c20e93f2397f036c8702b643c240866bd07bb1aa350b35c4a3b3441e2659",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-native-surface-ownership.py",
+          "before_sha256": null,
+          "after_sha256": "8ea093225b760c0fd3829e58f0da6f782afe5e3a7689329f40b17c850413f55b",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-surface-ownership.py",
+          "before_sha256": null,
+          "after_sha256": "67800b21467e7b71f0bdcb22252bb2e2ad4de4c5093196daf9866b619c1aa9b3",
+          "receipts": [
+            "surface-ownership-recovery-20261006",
+            "surface-ownership-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "363770dd2e73a9bb93f7cde1e4027677c51e1c5b3debc5a4efa5767d3fb230b8",
+          "after_sha256": "c0d3df8f86c6e562c9288060a934c262c2330b641586de8078a93d15f9dc8656",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "45e9b48e70e025ae7e4d52e8c851bbd294ede9c79aa71b4f2cf148081188ba64",
+          "after_sha256": "2de6c7c49552549ce9d189c2ccd5914acfea9ecd066b4671a28ebe93bf6f6c60",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring",
+          "before_sha256": "b91885d18e48cdae692be2d2ab60e5818622840299f24545ba2f5ac052e76a1a",
+          "after_sha256": "87a57df3aaac3e590fec83d77de612322aee1d9c26b90c8ff35e92c3a32a540f",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "before_sha256": "85a9663ad330df1e69e45437c7c14c2a6582a7e870d3af612cebfa3e76e1fbb9",
+          "after_sha256": "873fcc199a4179a3ebe15a61cb069e98f36692d7606907f6629dc439ecd66e80",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "04469af6ee9321f05751600f35715c30d9833c24d2a99642cdcb4be4bac8680d",
+          "after_sha256": "52d3aead1f196dc57ab4623c8931ce172a70d9a2407245051d9ff472a5a98d22",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "79287930a8fdf5286a3d46fc057d51126dd998755ef75074b2edde96c36d0d93",
+          "after_sha256": "3e5a15e5ce7b0902208198f3de2fa0f1a3996bd92e1adb96d7da9f6251ae5aae",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-access",
+          "before_sha256": "861cc1c17f586005c4079e8d56287b3a702bf2a0445fef4566010a9e3b772c10",
+          "after_sha256": "d641b4d2c316327d12f9f1d74cbca60818ee432a18de257b8e9d5cea92667e13",
+          "receipts": [
+            "surface-ownership-recovery-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-backend.owned",
+          "before_sha256": "e11b0cb53bae083087c24173d9b02d82a8929ace1ba703fef2ce92e36084c379",
+          "after_sha256": "0b9064de6f298f2aa4f2e7508144cb274966bb70c42f1c79eb8f05bd83872716",
+          "receipts": [
+            "surface-ownership-recovery-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-backend.ownership-recovery",
+          "before_sha256": null,
+          "after_sha256": "4d2d6050d246d2dc5c899cd79711974f5ef789469ffddff69fd1de69190022ba",
+          "receipts": [
+            "surface-ownership-recovery-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-contents.validity",
+          "before_sha256": "a824486089e4ce0a2103625b65fd2f50aac05e37911837f5cb094d858eaef24d",
+          "after_sha256": "0ea6d497ec004888aeea3c8b03a079304ab87a6fe89c7004e540035972d529b3",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "f8eeeb7878188ca3617b6a3a81a9211564eaf01f77d042d21d418fdf3c3249dd",
+          "after_sha256": "936fc54ae9f6f358cff873fcb0db5148aef75bdc60a8ed37f27fd9af02990d48",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "2d22ff6ed91c84c2400dbcdccd016f50167655d160949a6b865543b975b46d86",
+          "after_sha256": "bd07748080e869dc483338c64ef47ce3c33593ac9d5c7910a052b5672920fcf8",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "a411c05cfadc273f0f7ffe588450461d41d4528fbd53ce14a89304d4ca8fd40a",
+          "after_sha256": "ee4982b90c3811dfd8897423f89da4289948db241a5abc596198e39c84ef6b3e",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "181ea1566f3b2495c29491b41421a1149cf344333dfcfe9d750f8aa4fa5d1c09",
+          "after_sha256": "11eb344e92a7ee94dd379708207c41e752e5065edbaa9382b35706dfcf351b82",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.bitmap-dc",
+          "before_sha256": "869da0aebc29ba63849ece45f86a5293d17c27050e26cbf9970905ad4570e51a",
+          "after_sha256": "0d1aaa545109d5847b1a3c27982c28542d434ca77aa5cdb4bf0462fb8d619d2a",
+          "receipts": [
+            "surface-ownership-recovery-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dc-regions",
+          "before_sha256": "4b399bba3db3c544a5dd5e8f29ac5829015902a84421784bab624ec38e3b60fe",
+          "after_sha256": "3604024ec23bbdd27ce68d8386f70398874a0ec087ab210b1eb67dffc534ed38",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dib-indexed",
+          "before_sha256": "2bd3c81e04c3d073fb179e4534e7be8b4f5e48e76d3d51f04fb67ccb656a75cd",
+          "after_sha256": "86d502f1603b271ea6b9f4c7cdf55126738935a27d6312db416709e372d8d59d",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dib-rgb",
+          "before_sha256": "65ea8bc0594d431b5943cd24336ee568319c7f5da1f0bde3238caaa8e5ca83fa",
+          "after_sha256": "eee30d23033800aa93ff4ff37f7b670c2d544f4b7a981de3653835a7e0728db1",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.restore-retry",
+          "before_sha256": "cacc60ecb14c7ffff3c91fbd4d9066b91ea729cdb3dc9d7e6e47ecf295657ed4",
+          "after_sha256": "6727db48490d9e6eea1fc9fcd6ea8e4ac27c3355c63005451ba2f1f3c7c41dbc",
+          "receipts": [
+            "surface-ownership-recovery-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "beefe4f93c53a08df475bb0530c875dd71b1230792bc2ad06ca532c4f46fa509",
+          "after_sha256": "9536c35d935f792ab53697cc318846219f804cbf9cec896555327d36477f7342",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "7a3a116634226f4dd3c589a52c3dafce4849e3dc71ea737e6857b0756562a3f1",
+          "after_sha256": "5ca20580338022621acc14cdbac98f3579852117fd4f6964733234bfb029d43c",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed-overlap",
+          "before_sha256": "aca9684ce14028cabe66b3c19d45d46fe73e140d76a261d5192f8716bf1fef68",
+          "after_sha256": "bef5bce993d6fb3cc13c2db1b6c7a6bc7adc04a0c80ada87d4342370e4569909",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "d0237fe2a02046b629b71ae9d055691571a56b56b56ff1ac98897d4d0141d0e0",
+          "after_sha256": "237481a06f931d3a189b9f365f4045983f60aec52a49d60eb1f07a450bc4d053",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.access",
+          "before_sha256": "0cf11c79a7a936067b01a349a3df3d3718613cfc974a8d566179271df48ae383",
+          "after_sha256": "87abbdeaa3c80b37260c27c63151e44bac6ac5675ab8da2e63467ec71c422aaf",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.borrowed-draw",
+          "before_sha256": "d8d658d69df231f54b6702f32aeda5acca2bfe8f365555ecdda3cb40dc91be5a",
+          "after_sha256": "552f4fe38ef48e2780a1f46fa1801f1a0218e26bfc9d442f5364567384a876d1",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-palette-clip",
+          "before_sha256": "ee161e56593a2228ccd3eb80ced0fac51477476c54f943ab44bb22390694cfcd",
+          "after_sha256": "29918ee9b85551e2ac7f6d2ca1001c979085dd2f740bb9180df5ce772189b565",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-raster",
+          "before_sha256": "fa4c21b1449f5dde44eb17d740a48d3b12286e8fb2d26f9d26fabc82491c8e53",
+          "after_sha256": "76d0a4b2d3c5741610d44b39aa96ac14fe5e87a0491250d60ec4e8dbe4bea128",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-reuse",
+          "before_sha256": "9bb30b49727f4d208702bea5e24cb9fd136271f3724189a90b4d608a8de8d4cd",
+          "after_sha256": "2a88b9cf6653ff0b08a9736634c2500da9c53cdf356c96ff77f3dfaee98dfc5a",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dib-raster",
+          "before_sha256": "cd631d13f7be83fa7ad5492377d7150f975dc9a151e1818595b433d22e4dcfac",
+          "after_sha256": "81c5279b5dad02bdbb4560311abf9bd679f4fab1c08e91049b31fb6d47c71200",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.indexed-restore",
+          "before_sha256": "af733d8aeb3a768728a612669182675c23c7d8b872562561d0054f5efd657216",
+          "after_sha256": "a55421ee407c4d0337834136db1f87d46b94980e2dbfd8912e643469f7e75ce3",
+          "receipts": [
+            "surface-ownership-recovery-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.loss-restore",
+          "before_sha256": "c8316e68d5307c13e5e360c2b9b4f2c2b3d449a56b3bfdaca756d2461f1c5821",
+          "after_sha256": "af9dc64c50b69800042a4d9a87d763bdb2caad29f3c45798d5eb9b725f7f5638",
+          "receipts": [
+            "surface-ownership-recovery-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.ownership-flip",
+          "before_sha256": null,
+          "after_sha256": "2cc6ea31dc0cd4384288002e61bba93547c65f9a44f4c1082c06b61c2d128222",
+          "receipts": [
+            "surface-ownership-recovery-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "a796c4b34f9bbb28fee59156dae959a842d68b20719209f0f4f21e529f28612c",
+          "after_sha256": "d3f397a6f26bd41353dd4bce4393c68eb791aa7a1ceab1991137ffaaeb1965d2",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-reload.cursor-sentinel",
+          "before_sha256": "73a3a596937e1fd6cde74476be96e193c652e7d15699962ecd30b196568e6bd1",
+          "after_sha256": "9352e85d4c6ff5a08c1857309d973e8daaf5c3de7b02c086674de6a9c790b39a",
+          "receipts": [
+            "surface-ownership-shared-pending-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    }
+  ]
+}

@@ -33,7 +33,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('build', type=Path)
     parser.add_argument('--case', action='append', choices=['no-archive', 'record-archive', 'byte-archive',
-                        'failed-archive', 'short-archive', 'delta', 'v1', 'missing-present', 'limit'])
+                        'failed-archive', 'short-archive', 'delta', 'tiled', 'v1', 'missing-present', 'limit'])
     args = parser.parse_args()
     if not os.environ.get('DISPLAY'):
         parser.error('Run under xvfb-run -a')
@@ -59,7 +59,7 @@ def main():
     env.update(QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1', WINEDEBUG='-all',
                WINEPREFIX=str(ROOT/'working/tests/render-wine'))
     cases = args.case or ['no-archive', 'record-archive', 'byte-archive', 'failed-archive',
-                         'short-archive', 'delta', 'v1', 'missing-present', 'limit']
+                         'short-archive', 'delta', 'tiled', 'v1', 'missing-present', 'limit']
     report = dict(schema=1, sources=fingerprints, cases=[], scope='Synthetic actual PE32 hooked Lock/Unlock '
                   'through owned producer, v2 queue/idle scheduler, native streaming decoder and GPU. '
                   'Independent complete RGB32 display frames and poisoned padded borrowed storage. '
@@ -98,7 +98,7 @@ def main():
                      MNM_RENDER_COMMAND_CHANNEL='Z:'+str(channel).replace('/', '\\'),
                      MNM_RENDER_STREAM='Z:'+str(frame).replace('/', '\\'),
                      MNM_RENDER_LOCK_CAPTURE_DIR='Z:'+str(capture).replace('/', '\\'))
-        archive = mode in ['record-archive', 'byte-archive', 'failed-archive', 'short-archive','delta']
+        archive = mode in ['record-archive', 'byte-archive', 'failed-archive', 'short-archive','delta','tiled']
         if archive:
             child['MNM_RENDER_SESSION_ARCHIVE'] = '1'
         valid = mode not in ['v1', 'missing-present']
@@ -120,13 +120,22 @@ def main():
                         process.terminate();process.wait(timeout=5)
         observed = json.loads(output.read_text())
         locks, unlocks, count = struct.unpack('<III', (case/'engine-counts.bin').read_bytes())
+        native_expected=[]
         expected = [];delta_pixels=bytearray(bytes([0,0,0,0xa5])*(512*512))
         for i in range(count):
             rgb = ((i*37)&255, (i*71)&255, (i*19)&255)
-            if mode=='delta':
+            if mode in ['delta','tiled']:
                 at=((i*29%512)*512+i*17%512)*4
-                if i%3==1:struct.pack_into('<I',delta_pixels,at,0xa5000000|(i*0x254713&0xffffff))
+                if mode=='tiled':
+                    if i%5==4:delta_pixels[:]=bytes([rgb[2],rgb[1],rgb[0],0xa5])*(512*512)
+                    elif i%5==1:delta_pixels[0]^=0x5a;delta_pixels[-1]^=0x80
+                    elif i%5==2:
+                        for y in range(8):
+                            for x in range(4):delta_pixels[((y*64+11)*512+x*128+17)*4+i%4]^=0x81
+                    elif i and i%5==0:delta_pixels[3]^=0x80;delta_pixels[-1]^=0x80
+                elif i%3==1:struct.pack_into('<I',delta_pixels,at,0xa5000000|(i*0x254713&0xffffff))
                 elif i%3==2:delta_pixels[at+3]^=0x80
+                native_expected.append(hashlib.sha256(delta_pixels).hexdigest())
                 display=bytearray(delta_pixels);display[3::4]=bytes([255])*(512*512)
                 expected.append(hashlib.sha256(display).hexdigest())
             else:expected.append(hashlib.sha256(bytes([rgb[2], rgb[1], rgb[0], 255])*(512*512)).hexdigest())
@@ -136,23 +145,39 @@ def main():
         if count:
             i = count-1
             native = bytes([(i*19)&255, (i*71)&255, (i*37)&255, 0xa5])*(512*512)
-            if mode=='delta':native=delta_pixels
+            if mode in ['delta','tiled']:native=delta_pixels
             assert (case/'engine-final.bin').read_bytes() == native
             assert observed['before_producer_exit']
         with channel.open('rb') as file:
             control = file.read(64)
         published, state, reason = struct.unpack_from('<III', control, 20)
-        if valid and mode not in ['short-archive','delta']:
+        if valid and mode not in ['short-archive','delta','tiled']:
             assert published > 64*1024*1024 and observed['decoded_commands'] > 4096 and locks > 256 and count > 32
             assert struct.unpack_from('<I', control, 36)[0] == published
         assert state == (2 if valid else 3)
         assert reason == (0 if valid else 5 if mode == 'v1' else 2)
         archived = None
-        if mode in ['record-archive', 'byte-archive', 'short-archive','delta']:
+        if mode in ['record-archive', 'byte-archive', 'short-archive','delta','tiled']:
             data = archive_path.read_bytes();records = archive_records(data)
             assert len(data) <= 64*1024*1024 and len(records) <= 4096
             assert not any(op in [5,10] for op,_,_ in records)
-            if mode=='delta':
+            if mode=='tiled':
+                states={};presented=[];updates=[]
+                for op,_,payload in records:
+                    if op==1:
+                        sid,w,h,bits,*_=struct.unpack_from('<7I',payload);states[sid]=(w,h,bits//8,bytearray(payload[28:]))
+                    elif op==2:
+                        sid,x,y,w,h=struct.unpack_from('<5I',payload);sw,sh,b,pixels=states[sid];updates.append((w,h,len(payload)))
+                        assert x+w<=sw and y+h<=sh and len(payload)==20+w*h*b
+                        for row in range(h):pixels[((y+row)*sw+x)*b:((y+row)*sw+x+w)*b]=payload[20+row*w*b:20+(row+1)*w*b]
+                    elif op==6:presented.append(hashlib.sha256(states[struct.unpack('<I',payload)[0]][3]).hexdigest())
+                    elif op==7:del states[struct.unpack('<I',payload)[0]]
+                    else:assert op==8
+                assert presented==native_expected and not states and published==len(data)
+                assert sum(w==h==1 for w,h,_ in updates)>400 and any(w==h==512 for w,h,_ in updates)
+                assert len(data)<17000000 and [op for op,_,_ in records[-3:]]==[7,7,8]
+                report['tiled_native_storage_comparisons']=len(presented)
+            elif mode=='delta':
                 updates=[payload for op,_,payload in records if op==2]
                 # One complete offscreen overwrite plus 46 changed primary
                 # pixels; unchanged locks still produce every PRESENT.

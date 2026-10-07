@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "sources": {
+    "runtime/render/dirty_region.h": "b83297212f9991546eacdee84dee2a97cffe32105af08c6061db05829bcb0040",
+    "runtime/render/owned_session.h": "e9fcadd83938455a551fb48ab82ce3ee5dcc2b0414c4d967390e037f997032cc",
+    "tests/render-dirty-region-test.c": "a7df330faa866cd3170f43117f3ca7a4f6d47c3ab9f8131e8cd882d449f907fc",
+    "tools/test-render-dirty-region.py": "c6e6032699575772341f42b8c54f70dba9b9743cd7d530288e17e85a7434ba36"
+  },
+  "cases": [
+    {
+      "label": "native",
+      "success": true,
+      "cases": 5948,
+      "native_formats": 4,
+      "split_cases": 803,
+      "single_cases": 4090,
+      "unchanged_cases": 1055
+    },
+    {
+      "label": "sanitized",
+      "success": true,
+      "cases": 5948,
+      "native_formats": 4,
+      "split_cases": 803,
+      "single_cases": 4090,
+      "unchanged_cases": 1055
+    }
+  ],
+  "scope": "Native storage-byte delta envelope and at most32 nonoverlapping cost-selected updates, independent reconstruction, unchanged input, dense fallback, distant and per-cell changes including unused storage bits across indexed8/RGB16/24/32. No original pixels or driver equivalence."
+}

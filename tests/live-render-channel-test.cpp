@@ -82,6 +82,39 @@ unsigned synthetic(GlViewport& viewport){
         check(live.poll(budget),"checkpoint budget poll");check(mnm_ring_load(writer.map+9)==(budget==65536?65536u:quint32(large.size())),"checkpoint byte bound and multi-fragment ACK");check(shown==(budget==65536?0u:1u),"checkpoint first-poll presentation");
         check(live.finishProducer() && shown==1 && live.result()->liveSurfaces==0,"checkpoint budget drain and cleanup");
     }
+    // Partitioned uploads have a finite256-unit GUI budget, while expensive
+    // copies keep the32-command limit. ACK may precede decoded submission.
+    for(unsigned small:{0u,1u}){
+        QTemporaryDir dir;LiveCommandRenderer live(viewport);const auto path=dir.filePath("partition-budget");
+        check(live.create(path,819,2),"partition budget create");Writer mapped(path);mnm_ring_writer writer{};
+        check(mnm_ring_writer_bind(&writer,mapped.map,MNM_RENDER_COMMANDS_V2_SIZE),"partition budget claim");
+        QByteArray data("MNMCMD01");word(data,1);word(data,16);unsigned seq=0,shown=0;
+        QByteArray pixels(64*64*4,0);for(qsizetype i=0;i<pixels.size();i+=4)qToLittleEndian<quint32>(0xff0000,pixels.data()+i);
+        record(data,++seq,1,{1,64,64,32,0xff0000,0xff00,0xff},pixels);
+        if(!small)record(data,++seq,1,{2,64,64,32,0xff0000,0xff00,0xff},pixels);
+        for(unsigned i=0;i<(small?400u:40u);++i){
+            if(small)record(data,++seq,2,{1,0,0,1,1},QByteArray::fromHex("00ff0000"));
+            else record(data,++seq,3,{1,2,0,0,64,64,0,0,0,0});
+        }
+        record(data,++seq,6,{small?1u:2u});record(data,++seq,7,{1});
+        if(!small)record(data,++seq,7,{2});
+        record(data,++seq,8,{});
+        check(data.size()<65536 && mnm_ring_write(&writer,data.data(),data.size())==1 && mnm_ring_end(&writer),"partition budget input");
+        live.framePresented=[&]{const auto image=viewport.grabFramebuffer();const auto rect=viewport.imageRect();
+            for(int y=0;y<64;++y)for(int x=0;x<64;++x){
+                const auto expected=small && !x && !y?qRgb(0,255,0):qRgb(255,0,0);
+                check(image.pixel(int(rect.left()+(x+.5)*rect.width()/64),int(rect.top()+(y+.5)*rect.height()/64))==expected,"partition budget pixels");
+            }++shown;};
+        check(live.poll(65536),"partition budget first poll");
+        check(live.result()->commands==(small?249u:32u) && !shown && !live.ended(),"partition finite weighted work");
+        check(mnm_ring_load(writer.map+9)==unsigned(data.size()),"partition bounded owned-copy ACK");
+        check(live.poll(65536) && live.ended() && shown==1 && live.result()->commands==seq && !live.result()->liveSurfaces,"partition ordered eventual drain");
+        check(!live.result()->stats.nativeReadbacks && !live.result()->stats.rgbaReadbacks && !viewport.imageUploads(),"partition ordinary GPU counters");++count;
+    }
+    for(unsigned budget:{0u,MNM_RENDER_COMMANDS_V1_POLL_BYTES+1u}){
+        QTemporaryDir dir;LiveCommandRenderer live(viewport);check(live.create(dir.filePath("invalid-budget"),832,2),"invalid budget create");
+        check(!live.poll(budget) && live.error()=="Invalid command poll budget" && !live.ended(),"invalid caller budget refusal");
+    }
     for(unsigned batch:{1u,7u,65536u}){
         QTemporaryDir dir;LiveCommandRenderer live(viewport);auto path=dir.filePath("ring");check(live.create(path,123,2),"ring create");Writer mapped(path);
         mnm_ring_writer writer{};check(mnm_ring_writer_bind(&writer,mapped.map,MNM_RENDER_COMMANDS_V2_SIZE),"ring claim");unsigned shown=0;

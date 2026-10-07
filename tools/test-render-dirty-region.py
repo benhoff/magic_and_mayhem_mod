@@ -11,7 +11,7 @@ def main():
     paths=['runtime/render/dirty_region.h','runtime/render/owned_session.h','tests/render-dirty-region-test.c','tools/test-render-dirty-region.py']
     sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     parent=ROOT/'working/tests/render-dirty-region';parent.mkdir(parents=True,exist_ok=True)
-    run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));report=dict(success=True,sources=sources,cases=[],scope='Native storage-byte delta envelope, independent reconstruction and minimality across indexed8/RGB16/24/32. No original pixels or driver equivalence.')
+    run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));report=dict(success=True,sources=sources,cases=[],scope='Native storage-byte delta envelope and at most32 nonoverlapping cost-selected updates, independent reconstruction, unchanged input, dense fallback, distant and per-cell changes including unused storage bits across indexed8/RGB16/24/32. No original pixels or driver equivalence.')
     for label,flags in [('native',['-O2']),('sanitized',['-O1','-g','-fsanitize=address,undefined','-fno-omit-frame-pointer'])]:
         binary=run/label
         subprocess.run(['cc','-std=c11','-Wall','-Wextra','-Werror',*flags,str(ROOT/'tests/render-dirty-region-test.c'),'-o',str(binary)],check=True)

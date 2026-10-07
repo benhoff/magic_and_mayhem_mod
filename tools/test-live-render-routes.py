@@ -65,7 +65,7 @@ class XInput:
         self.xt.XTestFakeButtonEvent(self.d,button,0,0);self.x.XFlush(self.d);time.sleep(.15)
     def close(self):self.x.XCloseDisplay(self.d)
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64');parser.add_argument('--mode',choices=['campaign','movies-enabled','both'],default='both');parser.add_argument('--require-world-active',action='store_true',help='Require native World frames before/after failed-reader recovery and at least20 additional frames over2 seconds');parser.add_argument('--world-seconds',type=int,default=3,help='Bounded post-recovery World observation, 3..60 seconds');parser.add_argument('--require-world-pixels',action='store_true',help='Compare independent stable World terrain and portrait regions, dismissing the initial guidance dialog');parser.add_argument('--require-world-summon',action='store_true',help='Select and right-click the original tutorial Zombie summon; require independently read control count and stable pixels');parser.add_argument('--observe-world-summon',action='store_true',help='Require an original tutorial summon and record any native refusal with owned-state diagnostics');parser.add_argument('--ordered-copies',action='store_true',help='Opt into bounded native scheduling across original copy calls');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64');parser.add_argument('--mode',choices=['campaign','movies-enabled','both'],default='both');parser.add_argument('--require-world-active',action='store_true',help='Require native World frames before/after failed-reader recovery and at least20 additional frames over2 seconds');parser.add_argument('--world-seconds',type=int,default=3,help='Bounded post-recovery World observation, 3..60 seconds');parser.add_argument('--require-world-pixels',action='store_true',help='Compare independent stable World terrain and portrait regions, dismissing the initial guidance dialog');parser.add_argument('--require-world-summon',action='store_true',help='Select and right-click the original tutorial Zombie summon; require independently read control count and stable pixels');parser.add_argument('--observe-world-summon',action='store_true',help='Require an original tutorial summon and record any native refusal with owned-state diagnostics');parser.add_argument('--ordered-copies',action='store_true',help='Opt into bounded native scheduling across original copy calls');parser.add_argument('--require-route-pixels',action='store_true',help='Require every independent menu and World region comparison to match');args=parser.parse_args()
     if not 3<=args.world_seconds<=60:parser.error('--world-seconds must be 3..60')
     if args.require_world_summon and args.observe_world_summon:parser.error('Choose strict or diagnostic summon observation')
     if args.require_world_summon or args.observe_world_summon:args.require_world_pixels=True
@@ -87,7 +87,7 @@ def main():
                 tag=((value<<16)&0xffffffff)|number
                 assert str(tag) not in tracker_sites
                 tracker_sites[str(tag)]=dict(path=str(path.relative_to(ROOT)),line=number,source=line.strip())
-    report=dict(schema=1,success=False,sources={str(p.relative_to(ROOT)):helper.sha(p) for p in paths},cases=[],scope='Original campaign ingress through three forwarded World ticks, bounded World observation, optional independent tutorial summon/control-count checks and classified native refusal, and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.',live_replacement=False,full_frame_equivalence=False,world_active_required=args.require_world_active and not args.observe_world_summon,world_pixels_required=args.require_world_pixels and not args.observe_world_summon,world_initial_active_required=args.require_world_active,world_seconds=args.world_seconds,world_summon_required=args.require_world_summon,world_summon_observed=args.observe_world_summon,ordered_copies=args.ordered_copies,tracker_sites=tracker_sites)
+    report=dict(schema=1,success=False,sources={str(p.relative_to(ROOT)):helper.sha(p) for p in paths},cases=[],scope='Original campaign ingress through three forwarded World ticks, bounded World observation, optional independent tutorial summon/control-count checks and classified native refusal, and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.',live_replacement=False,full_frame_equivalence=False,world_active_required=args.require_world_active and not args.observe_world_summon,world_pixels_required=args.require_world_pixels and not args.observe_world_summon,world_initial_active_required=args.require_world_active,world_seconds=args.world_seconds,world_summon_required=args.require_world_summon,world_summon_observed=args.observe_world_summon,ordered_copies=args.ordered_copies,route_pixels_required=args.require_route_pixels,tracker_sites=tracker_sites)
     probe=args.build.resolve()/'live-render-route-probe'
     cache=args.build.resolve()/'CMakeCache.txt'
     build_type=next((line.split('=',1)[1] for line in cache.read_text().splitlines() if line.startswith('CMAKE_BUILD_TYPE:STRING=')),None)
@@ -135,7 +135,13 @@ def main():
                         reply=case/('reply-%08d.json'%request_id);wait(reply.exists,qt,5,'Probe '+op);return json.loads(reply.read_text())
                     wait(lambda:(case/'progress.json').exists(),qt,15,'Initial native frame');time.sleep(2)
                     def phase(name):
-                        value=request('status');record['phases'].append(dict(name=name,**value));print(mode+': '+name+' '+json.dumps(value),flush=True);return value
+                        value=request('status')
+                        rings={}
+                        for path in case.glob('commands.bin*'):
+                            if path.name.endswith('.control'):continue
+                            with path.open('rb') as f:header=struct.unpack('<16I',f.read(64))
+                            rings[path.name]=dict(session=header[4],published=header[5],state=header[6],reason=header[7],cancel=header[8],acknowledged=header[9])
+                        record['phases'].append(dict(name=name,ring_samples=rings,**value));print(mode+': '+name+' '+json.dumps(value),flush=True);return value
                     def compare(name,rect):
                         inputs.move(1750,950)
                         value=phase(name)
@@ -239,6 +245,7 @@ def main():
                         record['native_summon_refusal_classified']=True
                     record['refusals']=[line for line in record['lifecycle'] if line.startswith(('session_gap ','checkpoint_admission_refused ','command_queue_refused ','blit_invalidated ','blit_untracked '))]
                     assert any(c.get('matched') for c in record['comparisons']),'No independent stable region matched'
+                    if args.require_route_pixels:assert all(c.get('matched') for c in record['comparisons']),'Route pixel comparison failed'
                     candidates=list((experiment/'draw-capture').glob('*.bin'));record['draw_capture_files']=[str(p.relative_to(ROOT)) for p in candidates]
                     # Existing bounded original call-site archive can confirm sample playback.
                     movie_calls=[]

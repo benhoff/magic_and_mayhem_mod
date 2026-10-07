@@ -16,6 +16,7 @@ bool LiveCommandRenderer::poll(quint32 budget){
     if(closed_)return false;
     try {
         if(!viewport_.ready())return true;
+        if(!budget || budget>MNM_RENDER_COMMANDS_V1_POLL_BYTES)throw std::runtime_error("Invalid command poll budget");
         if(!consumer_){
             renderer_=std::make_unique<mnm::render::GlBlitter>(viewport_.context());
             consumer_=std::make_unique<mnm::render::CommandConsumer>(*renderer_,[this](auto frame){
@@ -24,21 +25,31 @@ bool LiveCommandRenderer::poll(quint32 budget){
                 if(framePresented)framePresented();
             },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded});
         }
-        // Consume the caller's finite byte budget across ring fragments. A
-        // single 64KiB fragment per GUI tick delays multi-megabyte checkpoints
-        // while the producer continues drawing. Keep the command budget finite.
-        quint32 remaining=budget;std::size_t submitted=0;
-        do {
+        // Retain the finite byte budget and the32 ordinary-command budget.
+        // A split UPDATE of <=16,384 pixels costs one eighth of an ordinary
+        // command, allowing at most256 small uploads in a streaming GUI poll.
+        // Copies, CREATE, larger updates and all v1 commands retain full cost.
+        unsigned work=0;quint32 remaining=budget;
+        while(work<256){
             if(cursor_==pending_.size()){
+                if(!remaining)break;
                 const auto bytes=channel_.poll(remaining);
                 remaining-=quint32(bytes.size());
                 pending_=decoder_->append(bytes);cursor_=0;
                 if(bytes.isEmpty())break;
             }
-            const auto count=std::min<std::size_t>(32-submitted,pending_.size()-cursor_);
-            if(count){consumer_->submit(pending_.data()+cursor_,count);cursor_+=count;submitted+=count;}
+            const auto first=cursor_;
+            while(cursor_<pending_.size()){
+                const auto& command=pending_[cursor_];
+                const unsigned cost=channel_.version()==2 && command.operation==2 &&
+                    command.image.pixels.size()<=16384?1:8;
+                if(cost>256-work)break;
+                work+=cost;++cursor_;
+            }
+            if(cursor_!=first)consumer_->submit(pending_.data()+first,cursor_-first);
             if(cursor_==pending_.size()){pending_.clear();cursor_=0;}
-        }while(remaining && submitted<32);
+            else break; // The next command exceeds this poll's remaining work.
+        }
         if(channel_.state()==MNM_RENDER_COMMANDS_V1_STATE_ENDED && channel_.drained() && pending_.empty()){
             // poll() can expose terminal state before all bounded bytes drain.
             decoder_->finish();consumer_->finish();ended_=true;closed_=true;

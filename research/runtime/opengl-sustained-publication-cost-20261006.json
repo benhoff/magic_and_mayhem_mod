@@ -1,0 +1,2412 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/analyze-render-update-cost.py": "c80f3de4ba82b6db8f56b6846412a6fce661493a0fe1d93f24db737deed1b983"
+  },
+  "scope": "Bounded owned wire replay and UPDATE redundancy measurement. Changed pixels count all storage bytes including unused bits. Archive may end in diagnostic GAP; this is not independent original pixel or driver validation.",
+  "archive": "working/experiments/opengl-render/run-00xcpa6t/lock-capture/session-00000004.bin",
+  "archive_sha256": "6786f433320b4b58ba69b5c9d5d59f135e191c5e470ec9b15d3be6e5bea19c5c",
+  "archive_bytes": 66857310,
+  "records": 1068,
+  "opcode_counts": {
+    "1": 16,
+    "6": 96,
+    "3": 611,
+    "2": 340,
+    "7": 4,
+    "9": 1
+  },
+  "opcode_wire_bytes": {
+    "1": 2995888,
+    "6": 1536,
+    "3": 31772,
+    "2": 63828018,
+    "7": 64,
+    "9": 16
+  },
+  "update_pixel_bytes": 63817138,
+  "changed_pixel_storage_bytes": 18748044,
+  "updates": [
+    {
+      "sequence": 10,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 62116
+    },
+    {
+      "sequence": 19,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 21,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 26,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 61544
+    },
+    {
+      "sequence": 31,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 32,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 37,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 61028
+    },
+    {
+      "sequence": 42,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 43,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 48,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 60786
+    },
+    {
+      "sequence": 53,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 54,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 59,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 59478
+    },
+    {
+      "sequence": 64,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 65,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 70,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 61200
+    },
+    {
+      "sequence": 75,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 76,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 81,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 61378
+    },
+    {
+      "sequence": 86,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 87,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 92,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 59200
+    },
+    {
+      "sequence": 97,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 98,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 103,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 59190
+    },
+    {
+      "sequence": 108,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 109,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 114,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 59168
+    },
+    {
+      "sequence": 119,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 120,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 125,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 59134
+    },
+    {
+      "sequence": 130,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 131,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 136,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 59134
+    },
+    {
+      "sequence": 141,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 142,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 147,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 59134
+    },
+    {
+      "sequence": 152,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 153,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 154,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2660
+    },
+    {
+      "sequence": 155,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2634
+    },
+    {
+      "sequence": 156,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2650
+    },
+    {
+      "sequence": 157,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2660
+    },
+    {
+      "sequence": 158,
+      "width": 35,
+      "height": 38,
+      "pixel_bytes": 2660,
+      "changed_pixel_storage_bytes": 1900
+    },
+    {
+      "sequence": 159,
+      "width": 36,
+      "height": 36,
+      "pixel_bytes": 2592,
+      "changed_pixel_storage_bytes": 1862
+    },
+    {
+      "sequence": 164,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 59134
+    },
+    {
+      "sequence": 169,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 170,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 172,
+      "width": 510,
+      "height": 180,
+      "pixel_bytes": 183600,
+      "changed_pixel_storage_bytes": 183600
+    },
+    {
+      "sequence": 173,
+      "width": 510,
+      "height": 180,
+      "pixel_bytes": 183600,
+      "changed_pixel_storage_bytes": 183472
+    },
+    {
+      "sequence": 175,
+      "width": 80,
+      "height": 100,
+      "pixel_bytes": 16000,
+      "changed_pixel_storage_bytes": 16000
+    },
+    {
+      "sequence": 176,
+      "width": 77,
+      "height": 93,
+      "pixel_bytes": 14322,
+      "changed_pixel_storage_bytes": 7596
+    },
+    {
+      "sequence": 177,
+      "width": 510,
+      "height": 179,
+      "pixel_bytes": 182580,
+      "changed_pixel_storage_bytes": 40
+    },
+    {
+      "sequence": 179,
+      "width": 390,
+      "height": 119,
+      "pixel_bytes": 92820,
+      "changed_pixel_storage_bytes": 8164
+    },
+    {
+      "sequence": 185,
+      "width": 612,
+      "height": 593,
+      "pixel_bytes": 725832,
+      "changed_pixel_storage_bytes": 58916
+    },
+    {
+      "sequence": 190,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 191,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 197,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 202,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 203,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 209,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 214,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 215,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 221,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 226,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 227,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 233,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 238,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 239,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 245,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 250,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 251,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 257,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 262,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 263,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 269,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 274,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 275,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 281,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 286,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 287,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 293,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 298,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 299,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 305,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 310,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 311,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 317,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 322,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 323,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 329,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 334,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 335,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 341,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 346,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 347,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 353,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 358,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 359,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 365,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 370,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 371,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 377,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 382,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 383,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 389,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 394,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 395,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 401,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 406,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 407,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 413,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 418,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 419,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 425,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 430,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 431,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 437,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 442,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 443,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 449,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 454,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 455,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 461,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 466,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 467,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 473,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 478,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 479,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 485,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 490,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 491,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 497,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242038
+    },
+    {
+      "sequence": 502,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 503,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 509,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242292
+    },
+    {
+      "sequence": 514,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 515,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 521,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242038
+    },
+    {
+      "sequence": 526,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 527,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 531,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242038
+    },
+    {
+      "sequence": 536,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 537,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 541,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242038
+    },
+    {
+      "sequence": 546,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 547,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 551,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242038
+    },
+    {
+      "sequence": 556,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 557,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 566,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242034
+    },
+    {
+      "sequence": 571,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 572,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 578,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242038
+    },
+    {
+      "sequence": 583,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 584,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 590,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242038
+    },
+    {
+      "sequence": 595,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 596,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 599,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2660
+    },
+    {
+      "sequence": 600,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2634
+    },
+    {
+      "sequence": 601,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2650
+    },
+    {
+      "sequence": 602,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2660
+    },
+    {
+      "sequence": 603,
+      "width": 35,
+      "height": 38,
+      "pixel_bytes": 2660,
+      "changed_pixel_storage_bytes": 1900
+    },
+    {
+      "sequence": 604,
+      "width": 36,
+      "height": 36,
+      "pixel_bytes": 2592,
+      "changed_pixel_storage_bytes": 1862
+    },
+    {
+      "sequence": 605,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2660
+    },
+    {
+      "sequence": 606,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2650
+    },
+    {
+      "sequence": 607,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2660
+    },
+    {
+      "sequence": 608,
+      "width": 35,
+      "height": 38,
+      "pixel_bytes": 2660,
+      "changed_pixel_storage_bytes": 1900
+    },
+    {
+      "sequence": 609,
+      "width": 36,
+      "height": 36,
+      "pixel_bytes": 2592,
+      "changed_pixel_storage_bytes": 1862
+    },
+    {
+      "sequence": 614,
+      "width": 655,
+      "height": 593,
+      "pixel_bytes": 776830,
+      "changed_pixel_storage_bytes": 242038
+    },
+    {
+      "sequence": 619,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 620,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 622,
+      "width": 420,
+      "height": 320,
+      "pixel_bytes": 268800,
+      "changed_pixel_storage_bytes": 268800
+    },
+    {
+      "sequence": 623,
+      "width": 416,
+      "height": 319,
+      "pixel_bytes": 265408,
+      "changed_pixel_storage_bytes": 215296
+    },
+    {
+      "sequence": 625,
+      "width": 80,
+      "height": 100,
+      "pixel_bytes": 16000,
+      "changed_pixel_storage_bytes": 16000
+    },
+    {
+      "sequence": 626,
+      "width": 80,
+      "height": 100,
+      "pixel_bytes": 16000,
+      "changed_pixel_storage_bytes": 16000
+    },
+    {
+      "sequence": 627,
+      "width": 416,
+      "height": 319,
+      "pixel_bytes": 265408,
+      "changed_pixel_storage_bytes": 760
+    },
+    {
+      "sequence": 629,
+      "width": 275,
+      "height": 172,
+      "pixel_bytes": 94600,
+      "changed_pixel_storage_bytes": 11040
+    },
+    {
+      "sequence": 635,
+      "width": 400,
+      "height": 593,
+      "pixel_bytes": 474400,
+      "changed_pixel_storage_bytes": 59068
+    },
+    {
+      "sequence": 640,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 641,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 647,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 654,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 655,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 661,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 666,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 667,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 673,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 678,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 679,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 683,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 688,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 689,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 693,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 698,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 699,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 703,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 708,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 709,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 713,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 718,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 719,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 723,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 728,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 729,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 733,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 738,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 739,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 743,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 748,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 749,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 753,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 758,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 759,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 763,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 768,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 769,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 773,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 778,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 779,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 783,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 788,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 789,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 793,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 798,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 799,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 803,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 808,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 809,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 813,
+      "width": 575,
+      "height": 593,
+      "pixel_bytes": 681950,
+      "changed_pixel_storage_bytes": 273124
+    },
+    {
+      "sequence": 818,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 819,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 828,
+      "width": 575,
+      "height": 597,
+      "pixel_bytes": 686550,
+      "changed_pixel_storage_bytes": 273194
+    },
+    {
+      "sequence": 833,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 834,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 841,
+      "width": 575,
+      "height": 597,
+      "pixel_bytes": 686550,
+      "changed_pixel_storage_bytes": 273260
+    },
+    {
+      "sequence": 846,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 847,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 853,
+      "width": 575,
+      "height": 597,
+      "pixel_bytes": 686550,
+      "changed_pixel_storage_bytes": 273190
+    },
+    {
+      "sequence": 858,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2656
+    },
+    {
+      "sequence": 859,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 861,
+      "width": 60,
+      "height": 93,
+      "pixel_bytes": 11160,
+      "changed_pixel_storage_bytes": 4396
+    },
+    {
+      "sequence": 862,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2660
+    },
+    {
+      "sequence": 863,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2650
+    },
+    {
+      "sequence": 864,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2660
+    },
+    {
+      "sequence": 865,
+      "width": 35,
+      "height": 38,
+      "pixel_bytes": 2660,
+      "changed_pixel_storage_bytes": 1900
+    },
+    {
+      "sequence": 866,
+      "width": 36,
+      "height": 36,
+      "pixel_bytes": 2592,
+      "changed_pixel_storage_bytes": 1862
+    },
+    {
+      "sequence": 867,
+      "width": 34,
+      "height": 34,
+      "pixel_bytes": 2312,
+      "changed_pixel_storage_bytes": 1852
+    },
+    {
+      "sequence": 873,
+      "width": 575,
+      "height": 597,
+      "pixel_bytes": 686550,
+      "changed_pixel_storage_bytes": 273190
+    },
+    {
+      "sequence": 874,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 1020
+    },
+    {
+      "sequence": 875,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 1020
+    },
+    {
+      "sequence": 880,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 881,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 886,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60966
+    },
+    {
+      "sequence": 887,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 890
+    },
+    {
+      "sequence": 888,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 890
+    },
+    {
+      "sequence": 893,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 894,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 899,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60978
+    },
+    {
+      "sequence": 900,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 850
+    },
+    {
+      "sequence": 901,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 850
+    },
+    {
+      "sequence": 906,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 907,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 912,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60938
+    },
+    {
+      "sequence": 913,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 846
+    },
+    {
+      "sequence": 914,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 846
+    },
+    {
+      "sequence": 919,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 920,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 925,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60976
+    },
+    {
+      "sequence": 926,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 856
+    },
+    {
+      "sequence": 927,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 856
+    },
+    {
+      "sequence": 932,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 933,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 938,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60938
+    },
+    {
+      "sequence": 939,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 842
+    },
+    {
+      "sequence": 940,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 842
+    },
+    {
+      "sequence": 945,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 946,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 949,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60936
+    },
+    {
+      "sequence": 950,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 864
+    },
+    {
+      "sequence": 951,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 864
+    },
+    {
+      "sequence": 956,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 957,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 960,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60936
+    },
+    {
+      "sequence": 961,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 868
+    },
+    {
+      "sequence": 962,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 868
+    },
+    {
+      "sequence": 967,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 968,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 971,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60938
+    },
+    {
+      "sequence": 972,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 848
+    },
+    {
+      "sequence": 973,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 848
+    },
+    {
+      "sequence": 978,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 979,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 982,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60940
+    },
+    {
+      "sequence": 983,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 852
+    },
+    {
+      "sequence": 984,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 852
+    },
+    {
+      "sequence": 989,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 990,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 993,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60930
+    },
+    {
+      "sequence": 994,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 846
+    },
+    {
+      "sequence": 995,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 846
+    },
+    {
+      "sequence": 1000,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 1001,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 1004,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60938
+    },
+    {
+      "sequence": 1005,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 842
+    },
+    {
+      "sequence": 1006,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 842
+    },
+    {
+      "sequence": 1011,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 1012,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 1015,
+      "width": 420,
+      "height": 597,
+      "pixel_bytes": 501480,
+      "changed_pixel_storage_bytes": 62884
+    },
+    {
+      "sequence": 1016,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 886
+    },
+    {
+      "sequence": 1017,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 886
+    },
+    {
+      "sequence": 1022,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 1023,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 1026,
+      "width": 420,
+      "height": 597,
+      "pixel_bytes": 501480,
+      "changed_pixel_storage_bytes": 63206
+    },
+    {
+      "sequence": 1027,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 890
+    },
+    {
+      "sequence": 1028,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 890
+    },
+    {
+      "sequence": 1033,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 1034,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 1037,
+      "width": 344,
+      "height": 597,
+      "pixel_bytes": 410736,
+      "changed_pixel_storage_bytes": 60936
+    },
+    {
+      "sequence": 1038,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 850
+    },
+    {
+      "sequence": 1039,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 850
+    },
+    {
+      "sequence": 1044,
+      "width": 40,
+      "height": 40,
+      "pixel_bytes": 3200,
+      "changed_pixel_storage_bytes": 2662
+    },
+    {
+      "sequence": 1045,
+      "width": 176,
+      "height": 94,
+      "pixel_bytes": 33088,
+      "changed_pixel_storage_bytes": 16756
+    },
+    {
+      "sequence": 1048,
+      "width": 40,
+      "height": 44,
+      "pixel_bytes": 3520,
+      "changed_pixel_storage_bytes": 2740
+    },
+    {
+      "sequence": 1051,
+      "width": 40,
+      "height": 44,
+      "pixel_bytes": 3520,
+      "changed_pixel_storage_bytes": 2740
+    },
+    {
+      "sequence": 1052,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2660
+    },
+    {
+      "sequence": 1053,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2634
+    },
+    {
+      "sequence": 1054,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2650
+    },
+    {
+      "sequence": 1055,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2634
+    },
+    {
+      "sequence": 1056,
+      "width": 35,
+      "height": 38,
+      "pixel_bytes": 2660,
+      "changed_pixel_storage_bytes": 1900
+    },
+    {
+      "sequence": 1057,
+      "width": 36,
+      "height": 36,
+      "pixel_bytes": 2592,
+      "changed_pixel_storage_bytes": 1862
+    },
+    {
+      "sequence": 1058,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2660
+    },
+    {
+      "sequence": 1059,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2634
+    },
+    {
+      "sequence": 1060,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2650
+    },
+    {
+      "sequence": 1061,
+      "width": 40,
+      "height": 43,
+      "pixel_bytes": 3440,
+      "changed_pixel_storage_bytes": 2634
+    },
+    {
+      "sequence": 1062,
+      "width": 35,
+      "height": 38,
+      "pixel_bytes": 2660,
+      "changed_pixel_storage_bytes": 1900
+    },
+    {
+      "sequence": 1063,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 1026
+    },
+    {
+      "sequence": 1064,
+      "width": 48,
+      "height": 48,
+      "pixel_bytes": 4608,
+      "changed_pixel_storage_bytes": 1026
+    },
+    {
+      "sequence": 1065,
+      "width": 36,
+      "height": 36,
+      "pixel_bytes": 2592,
+      "changed_pixel_storage_bytes": 1862
+    }
+  ]
+}

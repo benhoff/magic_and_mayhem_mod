@@ -1,0 +1,4503 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "runtime/render/adapter_startup.h": "52457ffc947fbbf242a6949d4a871779a171aaafc8e0ae741868f33a20374192",
+    "runtime/render/application_stop_selftest.h": "b7e2d77f1a04ce94c56db14d87a02baf5105fd5432c4896428535c8807de8aa0",
+    "runtime/render/backpressure_selftest.h": "c007732548f9791058bdcd1b1778a1674f734f540077a477ea67f1818185380e",
+    "runtime/render/bootstrap_selftest.h": "3fca231aeeb189832182d36fe85a8ed58adab8f6a133499c48a5f5b1311215c7",
+    "runtime/render/bridge.c": "f7bc0400d3f8ab1dd3d1536ce4827bdd28c5e34c86b02a21ae3f531c9cad2798",
+    "runtime/render/checkpoint_selftest.h": "e0320f879bd79b43ca6d563b342fcf02edd5323fcb97c085a650c11351c751a4",
+    "runtime/render/command_application_stop.h": "c7027ada062b5157e31918bb67a9f497c4e9b0406ac64713e93a8f70e097004c",
+    "runtime/render/command_channel.h": "3c0a2e177987cc499f4375deb662896bd320bacdaadce7d9d6537511027f0ebb",
+    "runtime/render/command_control.h": "876ed2c234ab8068169bc0402f680c454f3fbed226f66c49444f343e32977fda",
+    "runtime/render/command_gate.h": "6f746ad652a52f5ef0ecd7f48438c854cda40e20c6ad0989927addea2234f272",
+    "runtime/render/command_idle_selftest.h": "efc9a0be0823c894a5693f748d7f171866e0d3efdc6bd1bf7888ceb3afb96c0b",
+    "runtime/render/command_lifecycle.h": "db8dcb65784bc123a463bb672efdf653f0d765cc1858dfb2dc42c88b892e8521",
+    "runtime/render/command_queue.h": "d96f125aa7a712f96d0745a993b48a19820a10470257a629ef0960e29c736877",
+    "runtime/render/command_recovery.h": "6fb515b02faffb12afec48d08cc231675068f091e73307d22997e7a68408684a",
+    "runtime/render/command_scheduler.h": "ef2fc8751a9a2f5a1e67d08a98eb687b333c474f6ee1d5123db725db7893e224",
+    "runtime/render/continuous_selftest.h": "5cff6f7811f19a5303fb10c0a4bcb87147c3514de1951194d4fc3785ebeb6e44",
+    "runtime/render/copy_order.h": "7fce0c71de373f4496fceb4e50185a3061be8a91377c2a7dabb287b0ce7d6ebf",
+    "runtime/render/dc_selftest.h": "123bf310df0197f17a63df26349e14a5e5757b9a903c8924ef9ac711ee7ef13c",
+    "runtime/render/dirty_region.h": "b83297212f9991546eacdee84dee2a97cffe32105af08c6061db05829bcb0040",
+    "runtime/render/draw_capture.h": "7b6e113cc86c0015f855711fdd893fc6efc83d0fa4287f91d829847b9612b868",
+    "runtime/render/draw_selftest.h": "03799a2bd9c3df1ac3b426c85b34b7f1d25b36791947ca95ac2af687d177d24f",
+    "runtime/render/draw_startup_selftest.h": "c9622c9d870884a6179f0835bec379f5add8ebc46835b7ad328eed1b34e07f5f",
+    "runtime/render/drawing_recovery_selftest.h": "dadebb93b1dd2d70439bf469b9760d83c869516fb36c1badfb1d202180d8ee95",
+    "runtime/render/failure_diagnostics.h": "97d72ef8174e01c80c4b3eb57f4fa80cedfd8f56f25f7b77904121d0996baf11",
+    "runtime/render/flip_history.h": "4c1910ed299700ba95e9b49923710b54817ab8dd2d2cba823b40ccf4dbc388d8",
+    "runtime/render/flip_selftest.h": "f46d45004a39a82283021903e468730b365825c6efec1cbebe61d2fd875eb03b",
+    "runtime/render/frame_pixels.h": "671110ec34e214010c51d2a13838cd56e08869ecebdf7d38c8aaaae9156109be",
+    "runtime/render/history_selftest.h": "077d923f30ff81d927fa770f6b841e0461a345e4fc4310ab3048fa284ec3bdb5",
+    "runtime/render/host_recovery_selftest.h": "7981baf6069b7caab473461f33e49798d26ad6cc5bcb07731d4916d00f873024",
+    "runtime/render/indexed_copy_selftest.h": "9d3fc4c7a0d8f66a7ba765172c920cb4889301b63dea02556c7eeb3ef5e45fb6",
+    "runtime/render/indexed_owned_selftest.h": "7ab70e041a806281903ec11a5708fa9b3e69fe2e5bd6a54baa131793b19ba723",
+    "runtime/render/input_polling.h": "95d53d43f99b3de9390b07a150db112ae7d280e7bb112ba5957e3ce62dca736c",
+    "runtime/render/input_selftest.h": "78d5c31ec213d5bd06daa667e38320671807a5700903a392fbb78f8cfeb9abab",
+    "runtime/render/lifecycle_race_selftest.h": "7efb30260c04e28444b09acf87b298a76ddbc580862a749516e951ec2c30833d",
+    "runtime/render/lifecycle_selftest.h": "f68113110b83b034ec94e89660df4a3feb3d283f7ae0e9844790c8cf4b785bcb",
+    "runtime/render/lock_aliases.h": "df4a344c6f010b8f8022c99ec1a1ce04cd708564248d18a3362d2ad165745a95",
+    "runtime/render/lock_blit_selftest.h": "e0083a9c20400e058e0a914f80b9bcda79d13f81c070e39aa34f36bec59b64fa",
+    "runtime/render/lock_dc.h": "c039565519593443bd2c00f17c305b59d19aa5c4583d2d1cd7a5dc7918977456",
+    "runtime/render/lock_diagnostics.h": "e21d9134b6f2d0a9d7624a017a2ea0b52ee05aae6a249a1c84ccf8740959b5a0",
+    "runtime/render/lock_flip.h": "112c1a33cf20c0318d0b19289aba5dd2d9d0903013151d5c5759a86144cf8bf5",
+    "runtime/render/lock_lifecycle.h": "eb1c2aa105c5d5a2b54f15e028122272acc24e190f076645f352be37708468d1",
+    "runtime/render/lock_lifecycle_selftest.h": "ebdfe7dd2773746496a1b138e6309b0250e2207b67d4e2ba6f05f24843bcb406",
+    "runtime/render/lock_palette.h": "4215170fa390fb87b75877fd2af90b917514075abbc35ef192f75f220850d18d",
+    "runtime/render/lock_surfaces.h": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+    "runtime/render/lock_updates.h": "4fd32d69ac6b2a8f6557e9bb3cc5ddd5540e4f6ea942fbebaf9b43f9725c78a3",
+    "runtime/render/media_bridge.h": "dc7e64883ef491ac42f42a2f10c36dda1ca5a04eda993cdab04e9645df572e6f",
+    "runtime/render/media_selftest.h": "9f9592dc30aeed9b8d0f7fa622c4335fd9fc6357b84d67eb5077ff795143e4b0",
+    "runtime/render/mutation_selftest.h": "e22304bbcd997c8423abf4d04baf720280999f0ed9514c60bed66f81319dceea",
+    "runtime/render/owned_dc_selftest.h": "69ea01ac97f58887f9fd63614418974c9d8c925cbdde26c71117b2738fe34407",
+    "runtime/render/owned_session.h": "e9fcadd83938455a551fb48ab82ce3ee5dcc2b0414c4d967390e037f997032cc",
+    "runtime/render/owned_session_selftest.h": "a3ec9a32d9ca45919eb5c04b3362b4f1904b3a0e1b30174588f77eef5ae0e188",
+    "runtime/render/palette_history.h": "d298ee386d6a70c406dd3ec248eb071e79a0688daf5c7da8f91a43bc4a2cad72",
+    "runtime/render/palette_selftest.h": "5d7e6f9c254d9ed634f4656b0256dda811adbc6cfe1f0c768abc8242aa43b73d",
+    "runtime/render/partial_lock_selftest.h": "0fba2e0a483a03f62c07f4dc4ad7933e3a020b3706a78982940382dd1eaf7e6e",
+    "runtime/render/recovery_race_selftest.h": "f8fa8b3cdb19d9ab038b2452de54159c41ed62bed45b49f7fe5f9b331b1edda1",
+    "runtime/render/recovery_selftest.h": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+    "runtime/render/resource_selftest.h": "69f5e270595583ea566bbe3e06a4a6b9a534fa42e255f8e342987b94b0f49942",
+    "runtime/render/selftest.c": "48499b295725fe5b67c5dd84e7c4ad05fd981100e6a8eae6bce050161ee55662",
+    "runtime/render/surface_commands.h": "2353c4a1d704bef43594c0042c97d3f0c65927fb8d14abb60a10ec0b4c4bb8cf",
+    "runtime/render/surface_history.h": "63976b18f13b5db96ca4385c30d6783769a7f25f32656888023171ce111ffa7d",
+    "runtime/render/working_set_selftest.h": "f6bbfcc44991193fa608e54b07cf79ea18d3ea8e34853946608b1bc6dcea733b",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+    "runtime/menu/campaign_observe.h": "a220db2c27e263f7fc29fc41fd98876051de0f02839b2bde48fddb04d55950b4",
+    "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+    "runtime/menu/campaign_world_observe.h": "6f2eb6187cb077c5d1bab2e85c3c7301ef0a2e887fc6a89e4bccf57ea1c316f0",
+    "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+    "runtime/menu/channel_selftest.h": "1104046daa23c138c71ce2acc6367546e27e8bcadf17981660b7ae250890ef3e",
+    "runtime/menu/contract_selftest.c": "a41c0188b16e4275333e4f5c7e963614ad0c43d3759150fd297410a649b273e7",
+    "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+    "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+    "runtime/menu/observer.c": "04137d835048e078c65fffd46cf532bc273b323c05d8dcabd566ae78cebd39e1",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+    "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+    "runtime/menu/region_entry.h": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+    "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+    "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "tools/test-live-render-routes.py": "e877bfeb0ed2ae2d7f85ec9e7f2613f1bf939f2920e8b36169b11d880fb3a6e5",
+    "tools/test-live-render-game.py": "9d0e15467395a30e5f59cce3151972e3165fc1e325fce2111414f30e409637fe",
+    "tools/test-menu-observer.py": "8750c1b36e25895fe58e426d8542326adc61548863e132769b56ee88a3408460",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/run-opengl-game.py": "f26681ad6e9f19c3f3e32a2e42bde97ce955d58d91509c689672d0fc088aa429",
+    "tools/build-render-bridge.py": "3873455feffcf93af8a253f20de21f75a183068da6128bf58fb4c27577b5510c",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tests/live-render-route-probe.cpp": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+    "renderer/CMakeLists.txt": "b83cb42298ebbfb2dad14545b44cb8f2f608e9206e97c7b556c29f10d50ad479",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/commands.hpp": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+    "renderer/command_consumer.cpp": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+    "renderer/command_state.hpp": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+    "renderer/blit.cpp": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+    "renderer/blit.hpp": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "apps/qt-shell/live_command_session.cpp": "6af077f38c2a076336c3b748cb983f24a85afc67f0483d6b282f682d2c1393f6",
+    "apps/qt-shell/live_command_session.hpp": "cdae916c86e6ed462591b9cfae2ded9e833ab96963ac73f7540f14b847ed68a2",
+    "apps/qt-shell/render_control.cpp": "4eae2c56fbeb93d84264b22622d1a3789bb138acb030914a7a0cf560eedc2eb8",
+    "apps/qt-shell/render_control.hpp": "c03459d7dfd58bb7c6764f84ce1d127742369656bc6ec7d8b1075b95aa5fd615",
+    "apps/qt-shell/live_command_renderer.cpp": "246442c7f28b3caf12c00c04c61d1f0a43a1e7af8a23b9d92c4452ce1eb5bc21",
+    "apps/qt-shell/live_command_renderer.hpp": "b1f51a4a3ce767c6a4739e25a5cf4f9c82cc8b00f43e144c09bba82a8091a2ae",
+    "apps/qt-shell/command_channel.cpp": "cef42f0fb6e7d9dc7dafd032d5c52e384de94d97b06a8d6028c8c572ff3d0ba4",
+    "apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "apps/qt-shell/gl_viewport.cpp": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+    "apps/qt-shell/gl_viewport.hpp": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+    "protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3",
+    "protocols/include/mnm/render_commands_v1.h": "da3687442c203a85bbec98810c084346154a860bce2d3b65bb0f96c13dd66a0f",
+    "protocols/include/mnm/render_commands_v2.h": "357e127e0601ae55c30b821403df1be2c714d467d9c185c13e14091c2899d7a3",
+    "protocols/include/mnm/render_control_v1.h": "1d696c2a560e64fb9337f4ea77f9b73f284de889ba702ad3136612dcde8adbd6",
+    "protocols/include/mnm/render_stream_v2.h": "4f8416f6dcdb5031b2f95f209e21e43dce0c0cad176c11ec8f2293c6c89c4101",
+    "protocols/include/mnm/render_stream_v3.h": "5dcb2dcb44b2ab94c8800babe8cbddeec66fccf18ab2dcc9c7153d57d63bb152",
+    "protocols/python/mnm_protocols/render_commands_v1.py": "17d3c1fcea8d55d2d9ae146c50ad8d56d820ffc24f86770b9a3f50be4e17b256",
+    "protocols/python/mnm_protocols/render_commands_v2.py": "101a8efa81e63dc4f0eff660b15aca9b2c924d77ac537b868780f8c3be11e007",
+    "protocols/python/mnm_protocols/render_control_v1.py": "56463ab7211bedd358943ae2154a9ec19c7a56f334f9730600951f7db6671716",
+    "protocols/python/mnm_protocols/render_stream_v2.py": "3dcdc025048173b2f40c4d2b8c47a60fa38e47d8944bf957322328123c266b21",
+    "protocols/python/mnm_protocols/render_stream_v3.py": "b6394c3928b5b52ec135c066c71718aed55018611e101fb42fd890701f63df8a",
+    "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2"
+  },
+  "cases": [
+    {
+      "mode": "campaign",
+      "comparisons": [
+        {
+          "phase": "main-title",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000002.png",
+              "original": "main-title-original-0.png",
+              "rect": [
+                100,
+                30,
+                700,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 90000,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.3469386590004433,
+              "consumer": {
+                "commands": 11016,
+                "error": "",
+                "explicit_framebuffer_captures": 1,
+                "frames": 44,
+                "height": 600,
+                "id": 2,
+                "image": "native-00000002.png",
+                "live_palettes": 0,
+                "live_surfaces": 5,
+                "ms": 2457,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 1,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "region-title",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000004.png",
+              "original": "region-title-original-0.png",
+              "rect": [
+                45,
+                40,
+                220,
+                80
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 7000,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.2444762669983902,
+              "consumer": {
+                "commands": 21751,
+                "error": "",
+                "explicit_framebuffer_captures": 2,
+                "frames": 95,
+                "height": 600,
+                "id": 4,
+                "image": "native-00000004.png",
+                "live_palettes": 0,
+                "live_surfaces": 5,
+                "ms": 5324,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 1,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "region-difficulty",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000006.png",
+              "original": "region-difficulty-original-0.png",
+              "rect": [
+                45,
+                92,
+                620,
+                114
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 12650,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.3871398240007693,
+              "consumer": {
+                "commands": 23794,
+                "error": "",
+                "explicit_framebuffer_captures": 3,
+                "frames": 105,
+                "height": 600,
+                "id": 6,
+                "image": "native-00000006.png",
+                "live_palettes": 0,
+                "live_surfaces": 5,
+                "ms": 5876,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 1,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "region-recovered-title",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000010.png",
+              "original": "region-recovered-title-original-0.png",
+              "rect": [
+                45,
+                40,
+                220,
+                80
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 7000,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.2813185060003889,
+              "consumer": {
+                "commands": 8280,
+                "error": "",
+                "explicit_framebuffer_captures": 4,
+                "frames": 161,
+                "height": 600,
+                "id": 10,
+                "image": "native-00000010.png",
+                "live_palettes": 0,
+                "live_surfaces": 3,
+                "ms": 8653,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 2,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-guidance",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000014.png",
+              "original": "world-guidance-original-0.png",
+              "rect": [
+                160,
+                225,
+                640,
+                375
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 72000,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.28126178400270874,
+              "consumer": {
+                "commands": 2335,
+                "error": "",
+                "explicit_framebuffer_captures": 5,
+                "frames": 301,
+                "height": 600,
+                "id": 14,
+                "image": "native-00000014.png",
+                "live_palettes": 0,
+                "live_surfaces": 10,
+                "ms": 19776,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-summon-instruction",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000016.png",
+              "original": "world-summon-instruction-original-0.png",
+              "rect": [
+                340,
+                82,
+                560,
+                123
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 9020,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.22667617499973858,
+              "consumer": {
+                "commands": 7965,
+                "error": "",
+                "explicit_framebuffer_captures": 6,
+                "frames": 373,
+                "height": 600,
+                "id": 16,
+                "image": "native-00000016.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 26722,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-summon-count",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000018.png",
+              "original": "world-summon-count-original-0.png",
+              "rect": [
+                716,
+                444,
+                759,
+                466
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 946,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.21850542900210712,
+              "consumer": {
+                "commands": 10915,
+                "error": "",
+                "explicit_framebuffer_captures": 7,
+                "frames": 431,
+                "height": 600,
+                "id": 18,
+                "image": "native-00000018.png",
+                "live_palettes": 0,
+                "live_surfaces": 12,
+                "ms": 29726,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-terrain-1",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000021.png",
+              "original": "world-terrain-1-original-0.png",
+              "rect": [
+                0,
+                0,
+                160,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 28800,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.2578389420013991,
+              "consumer": {
+                "commands": 16402,
+                "error": "",
+                "explicit_framebuffer_captures": 8,
+                "frames": 491,
+                "height": 600,
+                "id": 21,
+                "image": "native-00000021.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 35289,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-portrait-1",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000023.png",
+              "original": "world-portrait-1-original-0.png",
+              "rect": [
+                700,
+                500,
+                778,
+                561
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 4758,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.24106868200033205,
+              "consumer": {
+                "commands": 16928,
+                "error": "",
+                "explicit_framebuffer_captures": 9,
+                "frames": 500,
+                "height": 600,
+                "id": 23,
+                "image": "native-00000023.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 35791,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-terrain-2",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000026.png",
+              "original": "world-terrain-2-original-0.png",
+              "rect": [
+                0,
+                0,
+                160,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 28800,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.24626522499602288,
+              "consumer": {
+                "commands": 22445,
+                "error": "",
+                "explicit_framebuffer_captures": 10,
+                "frames": 559,
+                "height": 600,
+                "id": 26,
+                "image": "native-00000026.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 41296,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-portrait-2",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000028.png",
+              "original": "world-portrait-2-original-0.png",
+              "rect": [
+                700,
+                500,
+                778,
+                561
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 4758,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.24184206100471783,
+              "consumer": {
+                "commands": 22972,
+                "error": "",
+                "explicit_framebuffer_captures": 11,
+                "frames": 571,
+                "height": 600,
+                "id": 28,
+                "image": "native-00000028.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 41758,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-terrain-3",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000031.png",
+              "original": "world-terrain-3-original-0.png",
+              "rect": [
+                0,
+                0,
+                160,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 28800,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.2439057040028274,
+              "consumer": {
+                "commands": 28536,
+                "error": "",
+                "explicit_framebuffer_captures": 12,
+                "frames": 629,
+                "height": 600,
+                "id": 31,
+                "image": "native-00000031.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 47328,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-portrait-3",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000033.png",
+              "original": "world-portrait-3-original-0.png",
+              "rect": [
+                700,
+                500,
+                778,
+                561
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 4758,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.23246210199431516,
+              "consumer": {
+                "commands": 28953,
+                "error": "",
+                "explicit_framebuffer_captures": 13,
+                "frames": 637,
+                "height": 600,
+                "id": 33,
+                "image": "native-00000033.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 47796,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-terrain-4",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000036.png",
+              "original": "world-terrain-4-original-0.png",
+              "rect": [
+                0,
+                0,
+                160,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 28800,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.22537331200146582,
+              "consumer": {
+                "commands": 34528,
+                "error": "",
+                "explicit_framebuffer_captures": 14,
+                "frames": 699,
+                "height": 600,
+                "id": 36,
+                "image": "native-00000036.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 53348,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-portrait-4",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000038.png",
+              "original": "world-portrait-4-original-0.png",
+              "rect": [
+                700,
+                500,
+                778,
+                561
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 4758,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.2748289590017521,
+              "consumer": {
+                "commands": 35052,
+                "error": "",
+                "explicit_framebuffer_captures": 15,
+                "frames": 710,
+                "height": 600,
+                "id": 38,
+                "image": "native-00000038.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 53836,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-terrain-5",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000041.png",
+              "original": "world-terrain-5-original-0.png",
+              "rect": [
+                0,
+                0,
+                160,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 28800,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.25997754000127316,
+              "consumer": {
+                "commands": 40616,
+                "error": "",
+                "explicit_framebuffer_captures": 16,
+                "frames": 768,
+                "height": 600,
+                "id": 41,
+                "image": "native-00000041.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 59428,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-portrait-5",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000043.png",
+              "original": "world-portrait-5-original-0.png",
+              "rect": [
+                700,
+                500,
+                778,
+                561
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 4758,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.2691536560014356,
+              "consumer": {
+                "commands": 41140,
+                "error": "",
+                "explicit_framebuffer_captures": 17,
+                "frames": 779,
+                "height": 600,
+                "id": 43,
+                "image": "native-00000043.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 59905,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-terrain-6",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000046.png",
+              "original": "world-terrain-6-original-0.png",
+              "rect": [
+                0,
+                0,
+                160,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 28800,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.25157698200200684,
+              "consumer": {
+                "commands": 46605,
+                "error": "",
+                "explicit_framebuffer_captures": 18,
+                "frames": 837,
+                "height": 600,
+                "id": 46,
+                "image": "native-00000046.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 65499,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-portrait-6",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000048.png",
+              "original": "world-portrait-6-original-0.png",
+              "rect": [
+                700,
+                500,
+                778,
+                561
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 4758,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.2361714260041481,
+              "consumer": {
+                "commands": 47131,
+                "error": "",
+                "explicit_framebuffer_captures": 19,
+                "frames": 848,
+                "height": 600,
+                "id": 48,
+                "image": "native-00000048.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 65996,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-terrain-7",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000051.png",
+              "original": "world-terrain-7-original-0.png",
+              "rect": [
+                0,
+                0,
+                160,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 28800,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.22912410400022054,
+              "consumer": {
+                "commands": 52600,
+                "error": "",
+                "explicit_framebuffer_captures": 20,
+                "frames": 906,
+                "height": 600,
+                "id": 51,
+                "image": "native-00000051.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 71533,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-portrait-7",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000053.png",
+              "original": "world-portrait-7-original-0.png",
+              "rect": [
+                700,
+                500,
+                778,
+                561
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 4758,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.276583920000121,
+              "consumer": {
+                "commands": 53123,
+                "error": "",
+                "explicit_framebuffer_captures": 21,
+                "frames": 918,
+                "height": 600,
+                "id": 53,
+                "image": "native-00000053.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 72001,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-terrain-8",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000056.png",
+              "original": "world-terrain-8-original-0.png",
+              "rect": [
+                0,
+                0,
+                160,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 28800,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.23652441400190582,
+              "consumer": {
+                "commands": 58696,
+                "error": "",
+                "explicit_framebuffer_captures": 22,
+                "frames": 978,
+                "height": 600,
+                "id": 56,
+                "image": "native-00000056.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 77575,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-portrait-8",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000058.png",
+              "original": "world-portrait-8-original-0.png",
+              "rect": [
+                700,
+                500,
+                778,
+                561
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 4758,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.303193760002614,
+              "consumer": {
+                "commands": 59109,
+                "error": "",
+                "explicit_framebuffer_captures": 23,
+                "frames": 986,
+                "height": 600,
+                "id": 58,
+                "image": "native-00000058.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 78027,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-terrain-9",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000061.png",
+              "original": "world-terrain-9-original-0.png",
+              "rect": [
+                0,
+                0,
+                160,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 28800,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.2793642109973007,
+              "consumer": {
+                "commands": 64693,
+                "error": "",
+                "explicit_framebuffer_captures": 24,
+                "frames": 1050,
+                "height": 600,
+                "id": 61,
+                "image": "native-00000061.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 83686,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-portrait-9",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000063.png",
+              "original": "world-portrait-9-original-0.png",
+              "rect": [
+                700,
+                500,
+                778,
+                561
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 4758,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.22889375600061612,
+              "consumer": {
+                "commands": 65310,
+                "error": "",
+                "explicit_framebuffer_captures": 25,
+                "frames": 1060,
+                "height": 600,
+                "id": 63,
+                "image": "native-00000063.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 84248,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-terrain-10",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000066.png",
+              "original": "world-terrain-10-original-0.png",
+              "rect": [
+                0,
+                0,
+                160,
+                180
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 28800,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.23254724800062831,
+              "consumer": {
+                "commands": 70779,
+                "error": "",
+                "explicit_framebuffer_captures": 26,
+                "frames": 1118,
+                "height": 600,
+                "id": 66,
+                "image": "native-00000066.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 89799,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        },
+        {
+          "phase": "world-portrait-10",
+          "performed": true,
+          "matched": true,
+          "synchronized": false,
+          "observations": [
+            {
+              "attempt": 0,
+              "native": "native-00000068.png",
+              "original": "world-portrait-10-original-0.png",
+              "rect": [
+                700,
+                500,
+                778,
+                561
+              ],
+              "max_channel_error": 1,
+              "pixels_above_tolerance": 0,
+              "pixels": 4758,
+              "tolerance": 8,
+              "reference_capture_seconds": 0.22346900800039293,
+              "consumer": {
+                "commands": 71299,
+                "error": "",
+                "explicit_framebuffer_captures": 27,
+                "frames": 1129,
+                "height": 600,
+                "id": 68,
+                "image": "native-00000068.png",
+                "live_palettes": 0,
+                "live_surfaces": 13,
+                "ms": 90252,
+                "op": "snapshot",
+                "ordinary_native_readbacks": 0,
+                "ordinary_rgba_readbacks": 0,
+                "recoveries": 3,
+                "state": 1,
+                "viewport_uploads": 0,
+                "width": 800
+              }
+            }
+          ]
+        }
+      ],
+      "phases": [
+        {
+          "name": "main-title",
+          "ring_samples": {
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 6041660,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 6025272
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 10600,
+          "error": "",
+          "explicit_framebuffer_captures": 0,
+          "frames": 41,
+          "height": 600,
+          "id": 1,
+          "live_palettes": 0,
+          "live_surfaces": 3,
+          "ms": 2147,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 1,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "region-title",
+          "ring_samples": {
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 14483148,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 14483148
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 21483,
+          "error": "",
+          "explicit_framebuffer_captures": 1,
+          "frames": 93,
+          "height": 600,
+          "id": 3,
+          "live_palettes": 0,
+          "live_surfaces": 5,
+          "ms": 5055,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 1,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "region-difficulty",
+          "ring_samples": {
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15001804,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 15001804
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 23792,
+          "error": "",
+          "explicit_framebuffer_captures": 2,
+          "frames": 104,
+          "height": 600,
+          "id": 5,
+          "live_palettes": 0,
+          "live_surfaces": 5,
+          "ms": 5599,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 1,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "region-before-forced-failure",
+          "ring_samples": {
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 26506,
+          "error": "",
+          "explicit_framebuffer_captures": 3,
+          "frames": 119,
+          "height": 600,
+          "id": 7,
+          "live_palettes": 0,
+          "live_surfaces": 5,
+          "ms": 6307,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 1,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "region-after-forced-failure",
+          "ring_samples": {
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 4954152,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 4954152
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 7958,
+          "error": "",
+          "explicit_framebuffer_captures": 3,
+          "frames": 159,
+          "height": 600,
+          "id": 8,
+          "live_palettes": 0,
+          "live_surfaces": 3,
+          "ms": 8351,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 2,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "region-recovered-title",
+          "ring_samples": {
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 4959874,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 4954152
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 8164,
+          "error": "",
+          "explicit_framebuffer_captures": 3,
+          "frames": 161,
+          "height": 600,
+          "id": 9,
+          "live_palettes": 0,
+          "live_surfaces": 3,
+          "ms": 8395,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 2,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-before-forced-failure",
+          "ring_samples": {
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 14555,
+          "error": "",
+          "explicit_framebuffer_captures": 4,
+          "frames": 258,
+          "height": 600,
+          "id": 11,
+          "live_palettes": 0,
+          "live_surfaces": 32,
+          "ms": 15452,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 2,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-after-forced-failure",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 14180516,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 14180516
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 2275,
+          "error": "",
+          "explicit_framebuffer_captures": 4,
+          "frames": 299,
+          "height": 600,
+          "id": 12,
+          "live_palettes": 0,
+          "live_surfaces": 10,
+          "ms": 19507,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-guidance",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 14547664,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 14547664
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 2277,
+          "error": "",
+          "explicit_framebuffer_captures": 4,
+          "frames": 300,
+          "height": 600,
+          "id": 13,
+          "live_palettes": 0,
+          "live_surfaces": 10,
+          "ms": 19577,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-summon-instruction",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 39352566,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 39148950
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 7892,
+          "error": "",
+          "explicit_framebuffer_captures": 5,
+          "frames": 372,
+          "height": 600,
+          "id": 15,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 26513,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-summon-count",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 49201746,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 49137014
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 10817,
+          "error": "",
+          "explicit_framebuffer_captures": 6,
+          "frames": 430,
+          "height": 600,
+          "id": 17,
+          "live_palettes": 0,
+          "live_surfaces": 12,
+          "ms": 29483,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-sustained-1",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 67405122,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 67405122
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 16298,
+          "error": "",
+          "explicit_framebuffer_captures": 7,
+          "frames": 489,
+          "height": 600,
+          "id": 19,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 34992,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-terrain-1",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 67698790,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 67698790
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 16298,
+          "error": "",
+          "explicit_framebuffer_captures": 7,
+          "frames": 489,
+          "height": 600,
+          "id": 20,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 35041,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-portrait-1",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 69178716,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 69178596
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 16824,
+          "error": "",
+          "explicit_framebuffer_captures": 8,
+          "frames": 499,
+          "height": 600,
+          "id": 22,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 35573,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-sustained-2",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 84969352,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 84969352
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 22417,
+          "error": "",
+          "explicit_framebuffer_captures": 9,
+          "frames": 559,
+          "height": 600,
+          "id": 24,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 41068,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-terrain-2",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 84969352,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 84969352
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 22445,
+          "error": "",
+          "explicit_framebuffer_captures": 9,
+          "frames": 559,
+          "height": 600,
+          "id": 25,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 41106,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-portrait-2",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 86365080,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 86219174
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 22867,
+          "error": "",
+          "explicit_framebuffer_captures": 10,
+          "frames": 569,
+          "height": 600,
+          "id": 27,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 41556,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-sustained-3",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 101328510,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 101328510
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 28434,
+          "error": "",
+          "explicit_framebuffer_captures": 11,
+          "frames": 628,
+          "height": 600,
+          "id": 29,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 47058,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-terrain-3",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 101328578,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 101328510
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 28434,
+          "error": "",
+          "explicit_framebuffer_captures": 11,
+          "frames": 628,
+          "height": 600,
+          "id": 30,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 47107,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-portrait-3",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 102724090,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 102724090
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 28953,
+          "error": "",
+          "explicit_framebuffer_captures": 12,
+          "frames": 637,
+          "height": 600,
+          "id": 32,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 47605,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-sustained-4",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 117940170,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 117687756
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 34423,
+          "error": "",
+          "explicit_framebuffer_captures": 13,
+          "frames": 697,
+          "height": 600,
+          "id": 34,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 53093,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-terrain-4",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 117964806,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 117964806
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 34498,
+          "error": "",
+          "explicit_framebuffer_captures": 13,
+          "frames": 698,
+          "height": 600,
+          "id": 35,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 53138,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-portrait-4",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 119360454,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 119360454
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 35021,
+          "error": "",
+          "explicit_framebuffer_captures": 14,
+          "frames": 709,
+          "height": 600,
+          "id": 37,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 53632,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-sustained-5",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 134323864,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 134323864
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 40514,
+          "error": "",
+          "explicit_framebuffer_captures": 15,
+          "frames": 767,
+          "height": 600,
+          "id": 39,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 59163,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-terrain-5",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 134323932,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 134323864
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 40514,
+          "error": "",
+          "explicit_framebuffer_captures": 15,
+          "frames": 767,
+          "height": 600,
+          "id": 40,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 59199,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-portrait-5",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 135975502,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 135719788
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 41040,
+          "error": "",
+          "explicit_framebuffer_captures": 16,
+          "frames": 778,
+          "height": 600,
+          "id": 42,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 59703,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-sustained-6",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 150960040,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 150960040
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 46509,
+          "error": "",
+          "explicit_framebuffer_captures": 17,
+          "frames": 836,
+          "height": 600,
+          "id": 44,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 65224,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-terrain-6",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 150960040,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 150960040
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 46605,
+          "error": "",
+          "explicit_framebuffer_captures": 17,
+          "frames": 837,
+          "height": 600,
+          "id": 45,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 65287,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-portrait-6",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 152355964,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 152355964
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 47131,
+          "error": "",
+          "explicit_framebuffer_captures": 18,
+          "frames": 848,
+          "height": 600,
+          "id": 47,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 65788,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-sustained-7",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 167319510,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 167319510
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 52498,
+          "error": "",
+          "explicit_framebuffer_captures": 19,
+          "frames": 905,
+          "height": 600,
+          "id": 49,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 71276,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-terrain-7",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 167319510,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 167319510
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 52600,
+          "error": "",
+          "explicit_framebuffer_captures": 19,
+          "frames": 906,
+          "height": 600,
+          "id": 50,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 71324,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-portrait-7",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 168715338,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 168715338
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 53120,
+          "error": "",
+          "explicit_framebuffer_captures": 20,
+          "frames": 917,
+          "height": 600,
+          "id": 52,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 71815,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-sustained-8",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 183678952,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 183678952
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 58593,
+          "error": "",
+          "explicit_framebuffer_captures": 21,
+          "frames": 977,
+          "height": 600,
+          "id": 54,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 77295,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-terrain-8",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 183679020,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 183678952
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 58594,
+          "error": "",
+          "explicit_framebuffer_captures": 21,
+          "frames": 977,
+          "height": 600,
+          "id": 55,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 77347,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-portrait-8",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 185074532,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 185074532
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 59109,
+          "error": "",
+          "explicit_framebuffer_captures": 22,
+          "frames": 986,
+          "height": 600,
+          "id": 57,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 77834,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-sustained-9",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 200294000,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 200294000
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 64583,
+          "error": "",
+          "explicit_framebuffer_captures": 23,
+          "frames": 1046,
+          "height": 600,
+          "id": 59,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 83388,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-terrain-9",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 200315316,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 200315248
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 64684,
+          "error": "",
+          "explicit_framebuffer_captures": 23,
+          "frames": 1047,
+          "height": 600,
+          "id": 60,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 83433,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-portrait-9",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 201987878,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 201987758
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 65205,
+          "error": "",
+          "explicit_framebuffer_captures": 24,
+          "frames": 1058,
+          "height": 600,
+          "id": 62,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 84027,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-sustained-10",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 216674498,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 216674498
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 70674,
+          "error": "",
+          "explicit_framebuffer_captures": 25,
+          "frames": 1116,
+          "height": 600,
+          "id": 64,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 89500,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-terrain-10",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 216951424,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 216951424
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 70747,
+          "error": "",
+          "explicit_framebuffer_captures": 25,
+          "frames": 1117,
+          "height": 600,
+          "id": 65,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 89559,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-portrait-10",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 218347192,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 218347072
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 71196,
+          "error": "",
+          "explicit_framebuffer_captures": 26,
+          "frames": 1127,
+          "height": 600,
+          "id": 67,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 90040,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        },
+        {
+          "name": "world-end",
+          "ring_samples": {
+            "commands.bin.retry-3": {
+              "session": 126,
+              "published": 219465838,
+              "state": 1,
+              "reason": 0,
+              "cancel": 0,
+              "acknowledged": 219465770
+            },
+            "commands.bin.retry-2": {
+              "session": 125,
+              "published": 21322302,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 21322302
+            },
+            "commands.bin.retry-1": {
+              "session": 124,
+              "published": 15728084,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 15728084
+            },
+            "commands.bin": {
+              "session": 123,
+              "published": 1048576,
+              "state": 3,
+              "reason": 3,
+              "cancel": 1,
+              "acknowledged": 0
+            }
+          },
+          "commands": 71715,
+          "error": "",
+          "explicit_framebuffer_captures": 27,
+          "frames": 1136,
+          "height": 600,
+          "id": 69,
+          "live_palettes": 0,
+          "live_surfaces": 13,
+          "ms": 90512,
+          "op": "status",
+          "ordinary_native_readbacks": 0,
+          "ordinary_rgba_readbacks": 0,
+          "recoveries": 3,
+          "state": 1,
+          "viewport_uploads": 0,
+          "width": 800
+        }
+      ],
+      "experiment": "working/experiments/opengl-render/run-6pwfjo_z",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "combined_executable_sha256": "f6679a6c3a94f03c6348ac55db14f26855ba17b28c4c0c87570a1428d844b83a",
+      "render_dll_sha256": "af4a1461bbb18f0890bd540cb20f9066ac78fa1b7c53c56e3412b16032cda2bf",
+      "menu_dll_sha256": "fb0388e87c052e5199c7cfb62fb4733a2cfd185a194abb03d656f8b47e934b27",
+      "movies_skipped": true,
+      "original_client": {
+        "window": 14680065,
+        "name": "Magic & Mayhem",
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 600
+      },
+      "world_ticks": [
+        {
+          "sequence": 15,
+          "event": 12,
+          "thread": 400,
+          "menu_id": 2,
+          "object": 7125880,
+          "vtable": 6053336,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 0,
+          "result": 0,
+          "active_screen": 7125880,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 17,
+          "event": 12,
+          "thread": 400,
+          "menu_id": 2,
+          "object": 7125880,
+          "vtable": 6053336,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 1,
+          "result": 3,
+          "active_screen": 7125880,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 19,
+          "event": 12,
+          "thread": 400,
+          "menu_id": 2,
+          "object": 7125880,
+          "vtable": 6053336,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 2,
+          "result": 0,
+          "active_screen": 7125880,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        }
+      ],
+      "original_ui_checks": [
+        {
+          "name": "select-zombie",
+          "expected": "Select Zombie Spell",
+          "observations": [
+            {
+              "original": "select-zombie-original-0.png",
+              "rect": [
+                360,
+                257,
+                590,
+                292
+              ],
+              "text": "T e",
+              "matched": false
+            },
+            {
+              "original": "select-zombie-original-1.png",
+              "rect": [
+                360,
+                257,
+                590,
+                292
+              ],
+              "text": "Select Zombie Spell",
+              "matched": true
+            }
+          ]
+        },
+        {
+          "name": "summon-zombie",
+          "expected": "Summon Zombie",
+          "observations": [
+            {
+              "original": "summon-zombie-original-0.png",
+              "rect": [
+                340,
+                82,
+                560,
+                123
+              ],
+              "text": "",
+              "matched": false
+            },
+            {
+              "original": "summon-zombie-original-1.png",
+              "rect": [
+                340,
+                82,
+                560,
+                123
+              ],
+              "text": "",
+              "matched": false
+            },
+            {
+              "original": "summon-zombie-original-2.png",
+              "rect": [
+                340,
+                82,
+                560,
+                123
+              ],
+              "text": "",
+              "matched": false
+            },
+            {
+              "original": "summon-zombie-original-3.png",
+              "rect": [
+                340,
+                82,
+                560,
+                123
+              ],
+              "text": "Summon Zombie",
+              "matched": true
+            }
+          ]
+        },
+        {
+          "name": "control-before",
+          "expected": "0/15",
+          "observations": [
+            {
+              "original": "control-before-original-0.png",
+              "rect": [
+                716,
+                444,
+                759,
+                466
+              ],
+              "text": "0/15",
+              "matched": true
+            }
+          ]
+        },
+        {
+          "name": "control-after",
+          "expected": "1/15",
+          "observations": [
+            {
+              "original": "control-after-original-0.png",
+              "rect": [
+                716,
+                444,
+                759,
+                466
+              ],
+              "text": "/15",
+              "matched": false
+            },
+            {
+              "original": "control-after-original-1.png",
+              "rect": [
+                716,
+                444,
+                759,
+                466
+              ],
+              "text": "1/15",
+              "matched": true
+            }
+          ]
+        }
+      ],
+      "original_summon_validated": true,
+      "world_summon_validated": true,
+      "world_actions": [
+        {
+          "name": "select-zombie",
+          "x": 523,
+          "y": 575,
+          "button": 1
+        },
+        {
+          "name": "summon-zombie",
+          "x": 400,
+          "y": 280,
+          "button": 3
+        }
+      ],
+      "world_active_validated": true,
+      "world_pixels_validated": true,
+      "world_observation_ms": 71005,
+      "world_additional_frames": 837,
+      "original_process_alive": true,
+      "menu_records": [
+        {
+          "sequence": 1,
+          "event": 1,
+          "thread": 400,
+          "menu_id": 3,
+          "object": 6651104,
+          "vtable": 6054884,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 0,
+          "result": 0,
+          "active_screen": 6651104,
+          "depth": 2,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 2,
+          "event": 2,
+          "thread": 400,
+          "menu_id": 3,
+          "object": 6651104,
+          "vtable": 6054884,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 0,
+          "result": 0,
+          "active_screen": 6651104,
+          "depth": 2,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 67
+        },
+        {
+          "sequence": 3,
+          "event": 3,
+          "thread": 400,
+          "menu_id": 3,
+          "object": 6651104,
+          "vtable": 6054884,
+          "initialized": 1,
+          "next_screen": 6657032,
+          "returning": 0,
+          "argument": 0,
+          "result": 0,
+          "active_screen": 6651104,
+          "depth": 2,
+          "last_error": 0,
+          "fade_active": 1,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 4,
+          "event": 4,
+          "thread": 400,
+          "menu_id": 3,
+          "object": 6651104,
+          "vtable": 6054884,
+          "initialized": 1,
+          "next_screen": 6657032,
+          "returning": 0,
+          "argument": 0,
+          "result": 0,
+          "active_screen": 6651104,
+          "depth": 2,
+          "last_error": 0,
+          "fade_active": 1,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 5,
+          "event": 4,
+          "thread": 400,
+          "menu_id": 3,
+          "object": 6651104,
+          "vtable": 6054884,
+          "initialized": 1,
+          "next_screen": 6657032,
+          "returning": 0,
+          "argument": 0,
+          "result": 4,
+          "active_screen": 6651104,
+          "depth": 2,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 6
+        },
+        {
+          "sequence": 6,
+          "event": 4,
+          "thread": 400,
+          "menu_id": 3,
+          "object": 6651104,
+          "vtable": 6054884,
+          "initialized": 0,
+          "next_screen": 6657032,
+          "returning": 0,
+          "argument": 0,
+          "result": 2147328000,
+          "active_screen": 6657032,
+          "depth": 3,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 6
+        },
+        {
+          "sequence": 7,
+          "event": 9,
+          "thread": 400,
+          "menu_id": 18,
+          "object": 6650048,
+          "vtable": 6055548,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 0,
+          "result": 4,
+          "active_screen": 6650048,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 8,
+          "event": 10,
+          "thread": 400,
+          "menu_id": 18,
+          "object": 6650048,
+          "vtable": 6055548,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 0,
+          "result": 4,
+          "active_screen": 6650048,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 1
+        },
+        {
+          "sequence": 9,
+          "event": 10,
+          "thread": 400,
+          "menu_id": 18,
+          "object": 6650048,
+          "vtable": 6055548,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 1,
+          "argument": 0,
+          "result": 4,
+          "active_screen": 6650048,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 1,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 10,
+          "event": 9,
+          "thread": 400,
+          "menu_id": 18,
+          "object": 6650048,
+          "vtable": 6055548,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 1,
+          "argument": 0,
+          "result": 4,
+          "active_screen": 6650048,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 1,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 11,
+          "event": 10,
+          "thread": 400,
+          "menu_id": 18,
+          "object": 6650048,
+          "vtable": 6055548,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 1,
+          "argument": 0,
+          "result": 4,
+          "active_screen": 6650048,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 6
+        },
+        {
+          "sequence": 12,
+          "event": 9,
+          "thread": 400,
+          "menu_id": 18,
+          "object": 6650048,
+          "vtable": 6055548,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 1,
+          "argument": 0,
+          "result": 4,
+          "active_screen": 6650048,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 6
+        },
+        {
+          "sequence": 13,
+          "event": 10,
+          "thread": 400,
+          "menu_id": 18,
+          "object": 6650048,
+          "vtable": 6055548,
+          "initialized": 0,
+          "next_screen": 0,
+          "returning": 1,
+          "argument": 0,
+          "result": 4,
+          "active_screen": 6657032,
+          "depth": 3,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 6
+        },
+        {
+          "sequence": 14,
+          "event": 11,
+          "thread": 400,
+          "menu_id": 2,
+          "object": 7125880,
+          "vtable": 6053336,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 0,
+          "result": 0,
+          "active_screen": 7125880,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 15,
+          "event": 12,
+          "thread": 400,
+          "menu_id": 2,
+          "object": 7125880,
+          "vtable": 6053336,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 0,
+          "result": 0,
+          "active_screen": 7125880,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 16,
+          "event": 11,
+          "thread": 400,
+          "menu_id": 2,
+          "object": 7125880,
+          "vtable": 6053336,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 1,
+          "result": 0,
+          "active_screen": 7125880,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 17,
+          "event": 12,
+          "thread": 400,
+          "menu_id": 2,
+          "object": 7125880,
+          "vtable": 6053336,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 1,
+          "result": 3,
+          "active_screen": 7125880,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 18,
+          "event": 11,
+          "thread": 400,
+          "menu_id": 2,
+          "object": 7125880,
+          "vtable": 6053336,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 2,
+          "result": 0,
+          "active_screen": 7125880,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        },
+        {
+          "sequence": 19,
+          "event": 12,
+          "thread": 400,
+          "menu_id": 2,
+          "object": 7125880,
+          "vtable": 6053336,
+          "initialized": 1,
+          "next_screen": 0,
+          "returning": 0,
+          "argument": 2,
+          "result": 0,
+          "active_screen": 7125880,
+          "depth": 4,
+          "last_error": 0,
+          "fade_active": 0,
+          "fade_counter": 0
+        }
+      ],
+      "consumer": {
+        "commands": 72019,
+        "error": "",
+        "explicit_framebuffer_captures": 27,
+        "frames": 1139,
+        "height": 600,
+        "id": 70,
+        "live_palettes": 0,
+        "live_surfaces": 13,
+        "ms": 90796,
+        "op": "finish",
+        "ordinary_native_readbacks": 0,
+        "ordinary_rgba_readbacks": 0,
+        "recoveries": 3,
+        "state": 1,
+        "success": true,
+        "terminal_resources": 0,
+        "viewport_uploads": 0,
+        "width": 800
+      },
+      "lifecycle": [
+        "surface_metadata_rejected 01750b98 00000190 0000000c 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "alias_observed 01750b98 00000190 0000000c 01750b94 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "surface_metadata 01750b98 00000190 0000000c 00000000 00000000 00000000 00000000 0000006c 0000100f 00000320 00000258 00000640 00000000 00000040 00000010 0000f800 000007e0 0000001f 1000c200 ",
+        "surface_metadata_rejected 016a38f8 00000190 0000000c 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "alias_observed 016a38f8 00000190 0000000c 016a38f4 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "surface_metadata 016a38f8 00000190 0000000c 00000000 00000000 00000000 00000000 0000006c 0000100f 00000320 00000258 00000640 00000000 00000040 00000010 0000f800 000007e0 0000001f 00000840 ",
+        "fill_ready 016a38f4 00000190 00000000 00000000 01000400 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_started 00000000 00000190 00000000 00000001 00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_initialized 016a38f4 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_propagated 016a38f4 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "tracker_hold_origin 00000190 c73d012a 00000009 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "surface_metadata_rejected 01676eb8 00000190 0000000c 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "alias_observed 01676eb8 00000190 0000000c 01676eb4 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "surface_metadata 01676eb8 00000190 0000000c 00000000 00000000 00000000 00000000 0000006c 0000100f 0000012c 00000080 00000258 00000000 00000040 00000010 0000f800 000007e0 0000001f 10004040 ",
+        "fill_ready 01676eb4 00000190 00000000 00000000 01000400 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_initialized 01676eb4 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_propagated 01676eb4 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "surface_metadata_rejected 01735d58 00000190 0000000c 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "alias_observed 01735d58 00000190 0000000c 01735d54 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "surface_metadata 01735d58 00000190 0000000c 00000000 00000000 00000000 00000000 0000006c 0000100f 00000194 00000050 00000328 00000000 00000040 00000010 0000f800 000007e0 0000001f 10004040 ",
+        "fill_ready 01735d54 00000190 00000000 00000000 01000400 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_initialized 01735d54 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_propagated 01735d54 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "fill_ready 067c96d4 00000190 00000000 00000000 01000400 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_initialized 067c96d4 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_propagated 067c96d4 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_acquired 016889c4 00000190 00000000 03410058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_bitmap 016889c4 00000190 03410058 0109005e 00000054 00000190 00000118 00000320 00100001 06833a58 00000028 00000190 00000118 00100001 00000003 0000f800 000007e0 0000001f 00000001 ",
+        "dc_ready 016889c4 00000190 00000000 03410058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_copied 016889c4 00000190 00000000 03410058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_released 016889c4 00000190 00000000 03410058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_checkpoint 016889c4 00000190 00000000 03410058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "lock_accepted 01676d54 00000190 0000000c 00000000 00000001 00000000 00000000 0000006c 0000100f 00000320 00000258 00000640 07a30030 00000040 00000010 0000f800 000007e0 0000001f 00000840 ",
+        "unlock_copied 01676d58 00000190 0000000c 07a30030 00000001 00000000 00000190 0000006c 0000100f 00000320 00000258 00000640 07a30030 00000040 00000010 0000f800 000007e0 0000001f 00000840 ",
+        "unlock_succeeded 01676d54 00000190 0000000c 00000000 00000001 00000000 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_ready 016a38f4 00000190 00000000 01676d54 00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "lock_accepted 016a38f4 00000190 0000000c 00000000 00000001 00000000 00000000 0000006c 0000100f 00000320 00000258 00000640 06680030 00000040 00000010 0000f800 000007e0 0000001f 00000840 ",
+        "unlock_copied 016a38f8 00000190 0000000c 06680030 00000001 00000000 00000190 0000006c 0000100f 00000320 00000258 00000640 06680030 00000040 00000010 0000f800 000007e0 0000001f 00000840 ",
+        "unlock_succeeded 016a38f4 00000190 0000000c 00000000 00000001 00000000 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_bootstrap_ready 01750b94 00000190 00000000 016a38f4 00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_presented 01750b94 00000190 00000000 016a38f4 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_queue_refused 00000000 000001b0 00000000 00000003 003a55c8 00000000 00000155 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_channel_failed 00000000 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "unlock_recording_limit 016a38f4 00000190 0000000c 00000000 00000001 00000000 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_ready 01750b94 00000190 00000000 016a38f4 00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "tracker_hold_origin 00000190 c73d012a 0000000a 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_recovery_policy 00000000 000001b4 00000000 00000001 0000007c 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_started 00000000 000001b4 00000000 00000001 00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_recovery_started 00000000 000001b4 00000000 0000007c 00000002 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "tracker_hold_origin 00000190 c73d012a 00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "tracker_hold_origin 00000190 916700ee 0000000e 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_recording_limit 01750b94 00000190 00000000 016a38f4 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_recording_limit 016a38f4 00000190 00000000 01676d54 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_archive_stopped 00000000 00000190 00000000 00000002 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "copy_order_wait_acquired 067c96d4 000001bc 00000000 000001bc 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_ready 067c96d4 000001bc 00000000 01750b94 00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_recording_limit 067c96d4 000001bc 00000000 01750b94 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "copy_order_wait_acquired 016a38f8 00000190 00000000 00000190 00000004 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "copy_order_wait_acquired 01750b94 000001bc 00000000 000001bc 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_ready 01750b94 000001bc 00000000 016889c4 00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "primary_region_presented 01750b98 000001bc 00000000 00000001 00000028 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_presented 01750b94 000001bc 00000000 016889c4 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_recording_limit 01750b94 000001bc 00000000 016889c4 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_presented 01750b94 000001bc 00000000 067c96d4 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "copy_order_wait_acquired 016a38f8 00000190 00000000 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "primary_region_presented 01750b98 000001bc 00000000 00000028 00000028 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "lock_accepted 067d3414 00000190 0000000c 00000000 00000001 00000000 00000000 0000006c 0000100f 00000320 00000258 00000640 07a30030 00000040 00000010 0000f800 000007e0 0000001f 00000840 ",
+        "unlock_copied 067d3418 00000190 0000000c 07a30030 00000001 00000000 00000190 0000006c 0000100f 00000320 00000258 00000640 07a30030 00000040 00000010 0000f800 000007e0 0000001f 00000840 ",
+        "unlock_succeeded 067d3414 00000190 0000000c 00000000 00000001 00000000 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "unlock_recording_limit 067d3414 00000190 0000000c 00000000 00000001 00000000 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "source_key_descriptor 067d3414 00000190 00000000 0000001f 0000001f 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "lock_accepted 067d3414 00000190 0000000c 00000000 00000001 00000000 00000000 0000006c 0001100f 00000320 00000258 00000640 07a30030 00000040 00000010 0000f800 000007e0 0000001f 00000840 ",
+        "unlock_copied 067d3418 00000190 0000000c 07a30030 00000001 00000000 00000190 0000006c 0001100f 00000320 00000258 00000640 07a30030 00000040 00000010 0000f800 000007e0 0000001f 00000840 ",
+        "command_queue_refused 00000000 000001c0 00000000 00000003 001d4c84 00000000 0000001f 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_channel_failed 00000000 000001b4 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_file_failed 00000000 000001b4 00000000 000006b6 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_recovery_policy 00000000 000001b4 00000000 00000001 0000007d 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_recovery_started 00000000 000001b4 00000000 0000007d 00000003 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "unlock_succeeded 01721164 00000190 0000000c 00000000 00000001 00000000 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "unlock_recording_limit 01721164 00000190 0000000c 00000000 00000001 00000000 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "source_key_descriptor 0171d8c4 00000190 00000000 0000001f 0000001f 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "unlock_recording_limit 0171d8c4 00000190 0000000c 00000000 00000001 00000000 00000190 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_acquired 0167e6cc 00000190 00000000 0241005e 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_bitmap 0167e6cc 00000190 0241005e 0f090059 00000054 000000a4 00000050 00000148 00100001 06a8a4c8 00000028 000000a4 00000050 00100001 00000003 0000f800 000007e0 0000001f 00000001 ",
+        "dc_ready 0167e6cc 00000190 00000000 0241005e 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_copied 0167e6cc 00000190 00000000 0241005e 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_released 0167e6cc 00000190 00000000 0241005e 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_checkpoint 0167e6cc 00000190 00000000 0241005e 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_acquired 06792154 00000190 00000000 10410059 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_bitmap 06792154 00000190 10410059 05090058 00000054 000000a0 00000050 00000140 00100001 067808e0 00000028 000000a0 00000050 00100001 00000003 0000f800 000007e0 0000001f 00000001 ",
+        "dc_ready 06792154 00000190 00000000 10410059 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_copied 06792154 00000190 00000000 10410059 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_released 06792154 00000190 00000000 10410059 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_checkpoint 06792154 00000190 00000000 10410059 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_bootstrap_ready 06792514 00000190 00000000 06792294 00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_bootstrap_ready 06792654 00000190 00000000 06792294 00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "blit_bootstrap_ready 06792794 00000190 00000000 06792294 00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_cache_evicted 016889c4 00000190 00000000 00000005 0017f260 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_cache_evicted 067c96d4 00000190 00000000 00000004 001645e0 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_cache_evicted 0172c3b4 00000190 00000000 00000008 001648a0 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_cache_evicted 01721164 00000190 00000000 00000006 00136e40 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "source_key_descriptor 06792294 00000190 00000000 0000001f 0000001f 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "source_key_descriptor 067923d4 00000190 00000000 0000001f 0000001f 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_acquired 069344ac 00000190 00000000 06410058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_bitmap 069344ac 00000190 06410058 0409005e 00000054 00000030 00000016 00000060 00100001 06b624b8 00000028 00000030 00000016 00100001 00000003 0000f800 000007e0 0000001f 00000001 ",
+        "dc_ready 069344ac 00000190 00000000 06410058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_copied 069344ac 00000190 00000000 06410058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_released 069344ac 00000190 00000000 06410058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "dc_checkpoint 069344ac 00000190 00000000 06410058 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_queue_refused 00000000 000001c4 00000000 00000003 001d4c84 00000000 00000068 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_file_failed 00000000 000001b4 00000000 00000661 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_recovery_policy 00000000 000001b4 00000000 00000001 0000007e 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_recovery_started 00000000 000001b4 00000000 0000007e 00000004 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "primary_region_presented 01750b98 000001bc 00000000 00000028 00000019 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "session_file_failed 00000000 000001b4 00000000 000023fd 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_application_stopped 00000000 000001b4 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 "
+      ],
+      "ring_headers": {
+        "commands.bin.retry-3": [
+          1380798029,
+          842023748,
+          2,
+          1048640,
+          126,
+          220296440,
+          3,
+          3,
+          1,
+          220296440,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "commands.bin.retry-2": [
+          1380798029,
+          842023748,
+          2,
+          1048640,
+          125,
+          21322302,
+          3,
+          3,
+          1,
+          21322302,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "commands.bin.retry-1": [
+          1380798029,
+          842023748,
+          2,
+          1048640,
+          124,
+          15728084,
+          3,
+          3,
+          1,
+          15728084,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "commands.bin": [
+          1380798029,
+          842023748,
+          2,
+          1048640,
+          123,
+          1048576,
+          3,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "copy_conflicts": [],
+      "refusals": [
+        "command_queue_refused 00000000 000001b0 00000000 00000003 003a55c8 00000000 00000155 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_queue_refused 00000000 000001c0 00000000 00000003 001d4c84 00000000 0000001f 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 ",
+        "command_queue_refused 00000000 000001c4 00000000 00000003 001d4c84 00000000 00000068 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 "
+      ],
+      "draw_capture_files": [
+        "working/experiments/opengl-render/run-6pwfjo_z/draw-capture/events.bin"
+      ],
+      "original_movie_sample_calls": [],
+      "movie_playback_confirmed": false,
+      "artifacts": {
+        "working/tests/live-render-routes/run-tq84onoy/campaign/summary.json": "84de124026e8fc6a3330a58d58ea1d9973ef7590e8867e0403e09c7371c178bb",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/events.bin": "3db514ae437d170a69f91e07a9f52310be40d43eb211226f134ab3b40c2cd841",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/stage.log": "0c5e8e01604d6b7c34bba168d55642d66aaae0c7e7fa7d48e5171a71b67d50cd",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/qt.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "working/experiments/opengl-render/run-6pwfjo_z/manifest.json": "62a30445b04b36b646c789bea127e6ad532b0c149bd672d261be607733a3061e",
+        "working/experiments/opengl-render/run-6pwfjo_z/bridge-build.json": "2635d0b57180dec43e38de95726c049e21da98254dd4af211be5c046a0ba4a81",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-original.png": "74b1f60f38d1361e5518f64e6891a296189bd34e3ed6350ab1c319a4d671aa83",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-portrait-10-original-0.png": "cdb486bfae1c72025ea67c2c05e53fbbbf5267be9e5f71014ef0e933ff5c860b",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000068.png": "b2a1aa262958d475e05a057f52ddfc19129b1b04895116de486e5ba6ba90dd9c",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-terrain-10-original-0.png": "0470c6ebf3fd5ef1049cff61d83b5f2c3d419e80437c739eb17ccf23330ae8da",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000066.png": "02ef87204d50f0f0fc5c5ea9f52cd1775bec6180726e1cdd0de30def5088d1ac",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-portrait-9-original-0.png": "9a9aaa5dc85f4ec6aa074ce1f6da4b18b3851c131ad729ebf6e04b9c5def91c8",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000063.png": "41b1d204670c01d5e4dd932327bbc5a0db7f45a9fe2be245191ba90dda52cdc9",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-terrain-9-original-0.png": "20f285083113ba451d7c057b8a547df9cf6413acac3d43582661c13b15716823",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000061.png": "68896be0d616a3eaf97349e2030be35b68132b42020dd34bd2683cea0e5bf9ba",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-portrait-8-original-0.png": "cdb486bfae1c72025ea67c2c05e53fbbbf5267be9e5f71014ef0e933ff5c860b",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000058.png": "4fb5b6575d53d3b9d49c78efcf61d3673dfe7d705a0b11e64ad9aea3e3343c55",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-terrain-8-original-0.png": "20f285083113ba451d7c057b8a547df9cf6413acac3d43582661c13b15716823",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000056.png": "c05714772273ec96368165c84deaeaecc7032eff6c23a8497b5201ee56eb008b",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-portrait-7-original-0.png": "9a9aaa5dc85f4ec6aa074ce1f6da4b18b3851c131ad729ebf6e04b9c5def91c8",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000053.png": "d523f670d5faf73790fedad203ec5fc54b077851abb99765ce5dcf1f3296b9e7",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-terrain-7-original-0.png": "20f285083113ba451d7c057b8a547df9cf6413acac3d43582661c13b15716823",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000051.png": "c05714772273ec96368165c84deaeaecc7032eff6c23a8497b5201ee56eb008b",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-portrait-6-original-0.png": "c5db0e075badcedc70764b4fee43e22bca33328cc65351b7e3e8fd617a86d563",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000048.png": "d99666fe3208d32275fd8d760923ff02a75abd8fc1f8202195e5155e98252de2",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-terrain-6-original-0.png": "b0eb2dc6592605ccae984543917c6433e3aaeb00be9ac989072126b001fc8cb7",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000046.png": "180b6e97171df712423593da32a0ec7b9ee9e93e2d82764fb5d9157c6fbf7f20",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-portrait-5-original-0.png": "c5db0e075badcedc70764b4fee43e22bca33328cc65351b7e3e8fd617a86d563",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000043.png": "a8f0a522eba17d4972b54e1d23f1cd1222fc786f6e9864100a5b5f37d7bf7ba6",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-terrain-5-original-0.png": "b0eb2dc6592605ccae984543917c6433e3aaeb00be9ac989072126b001fc8cb7",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000041.png": "bc9efa97a4a85486302fdce76253ab293d7d76a631c6b96b6561705e2fb07e65",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-portrait-4-original-0.png": "74b1f60f38d1361e5518f64e6891a296189bd34e3ed6350ab1c319a4d671aa83",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000038.png": "54590a1f4960742a5783769949999785594a9bf2baf5f9145fcc1c52e1cc5a0d",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-terrain-4-original-0.png": "447dabb4a31f84653a57180bc4045a3409d34c79b20bf3b307e764def43708c4",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000036.png": "1dca4465d11a3dd1dc90574126bc41417ddf1d4620fffd9ee3aa8efe25bedb89",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-portrait-3-original-0.png": "74b1f60f38d1361e5518f64e6891a296189bd34e3ed6350ab1c319a4d671aa83",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000033.png": "a8f0a522eba17d4972b54e1d23f1cd1222fc786f6e9864100a5b5f37d7bf7ba6",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-terrain-3-original-0.png": "8af5f948686f846da5340a4a8d36f0e0a4334ca03f3d96189affb1ad8da6bce3",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000031.png": "18b7d68c1180d27b69a8cae05df1b97c2a677bd6513378f0d30970f664704832",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-portrait-2-original-0.png": "b403ae942a447526663575bda03615a990b54e843452dd0ee2b365076189dace",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000028.png": "c2b676dbe822b840fc418752f3019b1888a85796a824da1cd1b413f35a712a87",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-terrain-2-original-0.png": "88f0e813a99111248e18121318062ca05324c152173d665eda1ebc4da2f4492a",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000026.png": "18b7d68c1180d27b69a8cae05df1b97c2a677bd6513378f0d30970f664704832",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-portrait-1-original-0.png": "d8a02da26357b7854301005f1df68c5be254e0cbc6e5d3f4bea97dae1e79d5a2",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000023.png": "f074efdad39eb52a43fad7cf6a85c47323fac56e4b2c9d7ecd111b062f971676",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-terrain-1-original-0.png": "1022db59fa2ddbbaa774ceb328cad44b6a23afd8a542b795bee99ce4142482f6",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000021.png": "a496b3eeb1d77f7e1cabaca8633e58498a0677178b0e2c09357fe98af42c7442",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-summon-count-original-0.png": "f57bd05eba7f66050118eef84bf32a00f29d59ca3df82028a766fc8258ca74f3",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000018.png": "ab4918e02ad25c99ec39d1cb0c4ce16425cde738d1c876d9d70371dd51d5e7c0",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/control-after-original-1.png": "f8a5da20d9ab76c52490df3ea0ec9b41aa5512ce1ee3af82d3c2cac5faf9d0dd",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/control-after-ocr.png": "f222fcafde54c48a2fcf21ebab151054d00f169fcc11bf3f92461f3daa38d9fe",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/control-after-original-0.png": "e0b39c56b0e33355de1a6700ac60146d299eefd248225d9f962442ccb9ef0adf",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/control-before-ocr.png": "82f9e538eef17ffce5bef6d821796ec8a4ad71bc89689b2568ff9bdcfdf4adc5",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/control-before-original-0.png": "59ac399d373a1c1825116ad1df90fca4700415e2431daa0bb0c355cf559a8875",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-summon-instruction-original-0.png": "918303a62c916e2a608e03c1416fa13a0f232c3791eb72c24f6bcc8090ff0422",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000016.png": "e1642e7141ab521eb9527045c68ce3090e139211aea71ca9b28801a654044da9",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/summon-zombie-original-3.png": "264ac05aac5178e6feb5d630002061e85b4ad5f67a8cbb0d988d6bc9ab8ea130",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/summon-zombie-original-2.png": "1d818d4947df76696d64ac19317981e00133e4f89dd4ae17ff735844079f7b06",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/summon-zombie-original-1.png": "83bf4c28b2fbfab6e0b222d96cfb089833f721307ed3e5644caf1a057038f05d",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/summon-zombie-ocr.png": "5b6d8f9563e5c8889ea9cb68878d6fd671d521c170959fd21398041a42ef3f50",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/summon-zombie-original-0.png": "e45156362fb45c631b289c94a3e64e41f86865db873c7a3c3bebc91abb42a64f",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/select-zombie-original-1.png": "0f0da71ac2fad8be438294963c7f6858c2d2370a0e711f617374abaa90fc15b0",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/select-zombie-ocr.png": "c848a8be6a661e6e144803ec3cfefd9b89df2526f9cb7ac80e5766407d12c940",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/select-zombie-original-0.png": "f3f3bf8e8fb1f821ea60ae7a93a688f5fb8789a7f04930b0128324b5f8aec472",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/world-guidance-original-0.png": "90d76f39d3aa9691295e6f2319d191645be8316d5fdb05f6535f8201bb33099a",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000014.png": "55ce4137c1cf86147cbb8daa84a9fd21517b2507e8c54fd681c454c6fd9087f7",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/region-recovered-title-original-0.png": "ba38e5b01b09134d7705edca6a8b0298b40c2a644a6fae92376d8c27572672a1",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000010.png": "293ec1de175170c99385aa8aa0369700cad6f73ade0cf81fce64bb716bc474e9",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/region-difficulty-original-0.png": "ba38e5b01b09134d7705edca6a8b0298b40c2a644a6fae92376d8c27572672a1",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000006.png": "293ec1de175170c99385aa8aa0369700cad6f73ade0cf81fce64bb716bc474e9",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/region-title-original-0.png": "ba38e5b01b09134d7705edca6a8b0298b40c2a644a6fae92376d8c27572672a1",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000004.png": "21256ae0ae95daf658555d9d69ac2f6ed7002a9c2ba5da9460303d33fe29a130",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/main-title-original-0.png": "e50bff1ce4b8a440832a41ef94d654542fcc23112d2194d7538273f16b485fac",
+        "working/tests/live-render-routes/run-tq84onoy/campaign/native-00000002.png": "8faf77fe971bd3dee2910e30e945bf34c9263f67ecadf2d0a298149a46b41731",
+        "working/experiments/opengl-render/run-6pwfjo_z/lock-capture/lifecycle.log": "d5fb378558f4b496f638fb5fd821c74fc332ffb189e774f6e85b51cb63df72fa"
+      },
+      "success": true
+    }
+  ],
+  "scope": "Original campaign ingress through three forwarded World ticks, bounded World observation, optional independent tutorial summon/control-count checks and classified native refusal, and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.",
+  "live_replacement": false,
+  "full_frame_equivalence": false,
+  "world_active_required": true,
+  "world_pixels_required": true,
+  "world_initial_active_required": true,
+  "world_seconds": 60,
+  "world_summon_required": true,
+  "world_summon_observed": false,
+  "ordered_copies": true,
+  "route_pixels_required": true,
+  "tracker_sites": {
+    "2969240035": {
+      "path": "runtime/render/bridge.c",
+      "line": 483,
+      "source": "if(!admission.observe || !game_tracker_acquire()){SetLastError(error);return 0;}"
+    },
+    "2969240050": {
+      "path": "runtime/render/bridge.c",
+      "line": 498,
+      "source": "if(!game_tracker_acquire()){SetLastError(error);return 0;}"
+    },
+    "2969240057": {
+      "path": "runtime/render/bridge.c",
+      "line": 505,
+      "source": "u32 error=GetLastError();if(!game_tracker_acquire()){SetLastError(error);return 2;}"
+    },
+    "2490236938": {
+      "path": "runtime/render/command_application_stop.h",
+      "line": 10,
+      "source": "if(!game_tracker_acquire()){__atomic_fetch_and(&command_gate,0x7fffffffu,__ATOMIC_RELEASE);SetLastError(error);return 0;}"
+    },
+    "2490236953": {
+      "path": "runtime/render/command_application_stop.h",
+      "line": 25,
+      "source": "if(!command_worker_joined || __atomic_load_n(&command_gate,__ATOMIC_ACQUIRE) || !command_borrows_quiet() || !game_tracker_acquire()){SetLastError(error);return 0;}"
+    },
+    "576585761": {
+      "path": "runtime/render/command_control.h",
+      "line": 33,
+      "source": "if(!game_tracker_acquire())return 0;"
+    },
+    "2744582210": {
+      "path": "runtime/render/command_lifecycle.h",
+      "line": 66,
+      "source": "if(!game_tracker_acquire()){SetLastError(error);return 0;}"
+    },
+    "1807351948": {
+      "path": "runtime/render/command_recovery.h",
+      "line": 140,
+      "source": "if(!game_tracker_acquire())goto done;"
+    },
+    "1807352023": {
+      "path": "runtime/render/command_recovery.h",
+      "line": 215,
+      "source": "u32 error=GetLastError();if(!game_tracker_acquire()){SetLastError(error);return 0;}"
+    },
+    "1807352028": {
+      "path": "runtime/render/command_recovery.h",
+      "line": 220,
+      "source": "u32 error=GetLastError();if(!game_tracker_acquire()){SetLastError(error);return 0;}"
+    },
+    "1886584895": {
+      "path": "runtime/render/lock_aliases.h",
+      "line": 63,
+      "source": "if(!game_tracker_acquire()){game_metadata_invalidate();return;}"
+    },
+    "3245867015": {
+      "path": "runtime/render/lock_dc.h",
+      "line": 7,
+      "source": "if(!game_surface_pixels_enter(object))return;"
+    },
+    "3245867034": {
+      "path": "runtime/render/lock_dc.h",
+      "line": 26,
+      "source": "if(!game_surface_pixels_enter(object))return;"
+    },
+    "3245867065": {
+      "path": "runtime/render/lock_dc.h",
+      "line": 57,
+      "source": "if(!game_surface_pixels_enter(pending->target))goto free;"
+    },
+    "3446800388": {
+      "path": "runtime/render/lock_flip.h",
+      "line": 4,
+      "source": "if(!game_surface_enter())return;"
+    },
+    "3446800399": {
+      "path": "runtime/render/lock_flip.h",
+      "line": 15,
+      "source": "if(!game_surface_enter())return;"
+    },
+    "3446800440": {
+      "path": "runtime/render/lock_flip.h",
+      "line": 56,
+      "source": "if(!game_surface_enter())return;"
+    },
+    "2439446653": {
+      "path": "runtime/render/lock_lifecycle.h",
+      "line": 125,
+      "source": "if(!game_tracker_acquire()){__atomic_store_n(&game_alias_reset_pending,1,__ATOMIC_RELEASE);game_metadata_invalidate();return;}"
+    },
+    "2439446672": {
+      "path": "runtime/render/lock_lifecycle.h",
+      "line": 144,
+      "source": "if(!game_tracker_acquire()){game_pixel_missed(object);return;}"
+    },
+    "2439446719": {
+      "path": "runtime/render/lock_lifecycle.h",
+      "line": 191,
+      "source": "if(!game_tracker_acquire()){game_pixel_missed(object);return;}"
+    },
+    "2439446755": {
+      "path": "runtime/render/lock_lifecycle.h",
+      "line": 227,
+      "source": "if(!game_surface_pixels_enter(pending->target))return;"
+    },
+    "2439446766": {
+      "path": "runtime/render/lock_lifecycle.h",
+      "line": 238,
+      "source": "if(!game_tracker_acquire()){game_pixel_missed(pending->target);if(pending->pixels.data)__atomic_sub_fetch(&lock_capture_reserved,pending->pixels.length,__ATOMIC_RELAXED);free_snapshot(&pending->pixels);return;}"
+    },
+    "1772617801": {
+      "path": "runtime/render/lock_palette.h",
+      "line": 73,
+      "source": "if(!game_surface_enter())return;struct GameSurface* s=game_surface_find(object,1);"
+    },
+    "1772617808": {
+      "path": "runtime/render/lock_palette.h",
+      "line": 80,
+      "source": "if(!game_surface_enter())return;struct GamePalette* p=game_palette_find(object,1),*other=game_palette_find(alias,0);"
+    },
+    "1772617822": {
+      "path": "runtime/render/lock_palette.h",
+      "line": 94,
+      "source": "if(!game_surface_enter())return;struct GamePalette* p=game_palette_find(object,1);"
+    },
+    "1772617831": {
+      "path": "runtime/render/lock_palette.h",
+      "line": 103,
+      "source": "zero(pending,sizeof(*pending));if(!game_surface_enter())return;"
+    },
+    "1772617839": {
+      "path": "runtime/render/lock_palette.h",
+      "line": 111,
+      "source": "if(result<0)return;if(!game_surface_enter())return;"
+    },
+    "1772617854": {
+      "path": "runtime/render/lock_palette.h",
+      "line": 126,
+      "source": "if(!game_surface_enter())return;"
+    },
+    "1772617862": {
+      "path": "runtime/render/lock_palette.h",
+      "line": 134,
+      "source": "if(!game_surface_enter())return;struct GamePalette* p=game_palette_find(object,0);"
+    },
+    "1772617869": {
+      "path": "runtime/render/lock_palette.h",
+      "line": 141,
+      "source": "if(!game_surface_enter())return;"
+    },
+    "3342663826": {
+      "path": "runtime/render/lock_surfaces.h",
+      "line": 146,
+      "source": "if(!game_surface_enter())return;"
+    },
+    "3342663830": {
+      "path": "runtime/render/lock_surfaces.h",
+      "line": 150,
+      "source": "if(!game_surface_enter())return;"
+    },
+    "3342663842": {
+      "path": "runtime/render/lock_surfaces.h",
+      "line": 162,
+      "source": "if(!game_surface_pixels_enter(object))return;"
+    },
+    "3342663846": {
+      "path": "runtime/render/lock_surfaces.h",
+      "line": 166,
+      "source": "if(!game_surface_enter())return;"
+    },
+    "3342663852": {
+      "path": "runtime/render/lock_surfaces.h",
+      "line": 172,
+      "source": "if(!(flags&8) || !game_surface_enter())return;"
+    },
+    "3342663915": {
+      "path": "runtime/render/lock_surfaces.h",
+      "line": 235,
+      "source": "if(!game_surface_pixels_enter(target))return;"
+    },
+    "3342663978": {
+      "path": "runtime/render/lock_surfaces.h",
+      "line": 298,
+      "source": "if(!game_surface_pixels_enter(p->target)){game_blit_free(p);return;}"
+    }
+  },
+  "native_build": {
+    "type": "Release",
+    "probe_sha256": "e2b37c5a6aab4a206f20eba00d0c2fac4c247bc64656b68e4dd793daf5596b5c"
+  },
+  "ocr_version": "tesseract 5.5.3",
+  "original_manifest_verified_before_after": true,
+  "source_preferences_unchanged": true
+}

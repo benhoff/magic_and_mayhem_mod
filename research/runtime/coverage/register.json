@@ -12731,12 +12731,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Packed ordered unlock rectangle updates",
-      "scope": "Bounded native policy to serialize an admitted owned full or partial unlock rectangle as a single existing v1 UPDATE, preserving partial base CHECK, normalized native row layout, ownership/failure guards and existing command/resource limits. First full checkpoint still uses CREATE. No original-driver pixel equivalence or replacement. Continuous full writable locks quarantine matching owned baselines and, after successful Unlock, publish the minimal changed native-storage envelope; unchanged writes retain PRESENT. Missing/layout-changing baselines and bounded/partial policies retain prior behavior.",
+      "scope": "Bounded native policy to serialize an admitted owned full or partial unlock rectangle as a single existing v1 UPDATE, preserving partial base CHECK, normalized native row layout, ownership/failure guards and existing command/resource limits. First full checkpoint still uses CREATE. No original-driver pixel equivalence or replacement. Continuous full writable locks quarantine matching owned baselines and, after successful Unlock, publish the minimal changed native-storage envelope; unchanged writes retain PRESENT. Missing/layout-changing baselines and bounded/partial policies retain prior behavior. Existing continuous full Unlock deltas now optionally split into at most32 nonoverlapping cost-selected regions; dense input keeps one UPDATE, equal bytes retain PRESENT and partial/initial/layout paths retain prior policy. Fresh split-storage/GPU and sustained original-game region observation evidence is scoped separately as NR.continuous-update-partition. This changes native wire bandwidth policy, not recovered original drawing or driver scheduling; old evidence fingerprints and statuses remain historical.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-owned-session-unlock-packed.md",
-        "research/runtime/opengl-owned-unlock-deltas.md"
+        "research/runtime/opengl-owned-unlock-deltas.md",
+        "research/runtime/opengl-sustained-publication.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -13905,14 +13906,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous owned publication independent of bounded command archives",
-      "scope": "Explicit v2 continuous producer beyond sample operation/presentation/cumulative archive limits, optional independently bounded command archive; retained surface/pixel/snapshot/queue/ring and finite sequence/byte limits. Default bounded policy retained. Synthetic admitted updates only; resource retirement is covered separately by NR.continuous-resource-lifetime; recovery, automatic orchestration shutdown and sustained original-driver/gameplay equivalence remain pending. Compact successful full-unlock updates retain exact native pixels and finite pending ownership budgets. Bounded original startup recovery now publishes over100 frames spanning11 seconds in one healthy session; sustained gameplay/movie/driver equivalence remains pending. Bounded original campaign entry reaches three World ticks but native publication encounters the 32-surface budget at 33 observed resources; finite World working-set admission and sustained gameplay publication remain pending. Continuous consumer residency now evicts eligible offscreen storage at the 32-slot/pixel budget and recreates complete owned inputs under fresh IDs. Required original World ingress/recovery remains Active; existing producer/transport budgets and default bounded policy remain finite.",
+      "scope": "Explicit v2 continuous producer beyond sample operation/presentation/cumulative archive limits, optional independently bounded command archive; retained surface/pixel/snapshot/queue/ring and finite sequence/byte limits. Default bounded policy retained. Synthetic admitted updates only; resource retirement is covered separately by NR.continuous-resource-lifetime; recovery, automatic orchestration shutdown and sustained original-driver/gameplay equivalence remain pending. Compact successful full-unlock updates retain exact native pixels and finite pending ownership budgets. Bounded original startup recovery now publishes over100 frames spanning11 seconds in one healthy session; sustained gameplay/movie/driver equivalence remains pending. Bounded original campaign entry reaches three World ticks but native publication encounters the 32-surface budget at 33 observed resources; finite World working-set admission and sustained gameplay publication remain pending. Continuous consumer residency now evicts eligible offscreen storage at the 32-slot/pixel budget and recreates complete owned inputs under fresh IDs. Required original World ingress/recovery remains Active; existing producer/transport budgets and default bounded policy remain finite. Existing continuous full Unlock deltas now optionally split into at most32 nonoverlapping cost-selected regions; dense input keeps one UPDATE, equal bytes retain PRESENT and partial/initial/layout paths retain prior policy. Fresh split-storage/GPU and sustained original-game region observation evidence is scoped separately as NR.continuous-update-partition. This changes native wire bandwidth policy, not recovered original drawing or driver scheduling; old evidence fingerprints and statuses remain historical.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-continuous-producer.md",
         "research/runtime/opengl-owned-unlock-deltas.md",
         "research/runtime/opengl-render-routes.md",
-        "research/runtime/opengl-resource-working-set.md"
+        "research/runtime/opengl-resource-working-set.md",
+        "research/runtime/opengl-sustained-publication.md"
       ],
       "implementation": [
         "runtime/render/owned_session.h",
@@ -16562,6 +16564,54 @@
         "implementation": "partial",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.continuous-update-partition",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded cost-selected full Unlock partitions reduce measured live wire redundancy",
+      "scope": "Existing admitted continuous resources with equal-layout owned baselines partition full writable Unlock deltas into a fixed4x8 grid with tight cell bounds; at most32 UPDATEs precede CHECK/PRESENT and use one budgeted scratch at a time. Select split only for fewer pixel plus32-byte envelope bytes; unchanged, dense, unused native bits, initial CREATE, layout change, partial and finite observation policies remain explicit. Streaming consumer keeps32 full-cost work operations or at most256 small <=16384-pixel UPDATEs under a finite weighted poll budget, positive <=1MiB caller byte budget, FIFO pending submission and terminal END after retained work; v1/copies/CREATE/large updates keep full cost. Existing64MiB CPU/pending/scratch,32MiB queue,1MiB ring,128 owned/32 resident surfaces and finite32-bit byte/session lifetime remain. Wire/archive failure retains explicit session invalidation and independent bounded archive handling. Original API scheduling/order remains opt-in prior policy. Native/sanitizer independent byte reconstruction, actual PE32 poisoned/padded synthetic borrow with full GPU hashes and native byte replay, continuous/archive and packed unlock matrices, pause/cancel/stall/overflow regressions and one strict60-second original tutorial summon run requiring every menu/World region to match qualify this scope. Baseline was healthy; measured wire redundancy is not CPU/GPU/game-pacing bottleneck attribution or a frame-rate promise. Stable regions and OCR are independent original observations, not whole animated-frame, battle/multi-action/movie/hardware-driver equivalence, default activation, original shutdown or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-sustained-publication.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/live_command_renderer.cpp",
+        "runtime/render/dirty_region.h",
+        "runtime/render/owned_session.h"
+      ],
+      "tests": [
+        "tests/live-render-channel-test.cpp",
+        "tests/render-dirty-region-test.c",
+        "tools/test-render-dirty-region.py",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "tools/test-render-continuous-producer.py",
+        "tools/test-render-session-unlocks.py",
+        "tools/test-render-backpressure.py",
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp",
+        "tools/analyze-render-update-cost.py"
+      ],
+      "evidence": [
+        "NR.continuous-update-partition.baseline-20261006",
+        "NR.continuous-update-partition.cost-20261006",
+        "NR.continuous-update-partition.native-20261006",
+        "NR.continuous-update-partition.consumer-20261006",
+        "NR.continuous-update-partition.split-delay-20261006",
+        "NR.continuous-update-partition.continuous-20261006",
+        "NR.continuous-update-partition.unlocks-20261006",
+        "NR.continuous-update-partition.pressure-20261006",
+        "NR.continuous-update-partition.game-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -30300,6 +30350,132 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.continuous-update-partition.baseline-20261006",
+      "kind": "live_observation",
+      "scope": "Historical current-HEAD baseline before partition change, deliberately retains prior source hashes. Original campaign ingress through three forwarded World ticks, bounded World observation, optional independent tutorial summon/control-count checks and classified native refusal, and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.",
+      "record": "research/runtime/opengl-sustained-publication-baseline-20261006.json",
+      "sha256": "b6bd6afdeafedf4a94e7afc5a0ab630cbddbceae223c9938a4a9fa27bb0e4829",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-update-partition.cost-20261006",
+      "kind": "static",
+      "scope": "Bounded owned wire replay and UPDATE redundancy measurement. Changed pixels count all storage bytes including unused bits. Archive may end in diagnostic GAP; this is not independent original pixel or driver validation.",
+      "record": "research/runtime/opengl-sustained-publication-cost-20261006.json",
+      "sha256": "810feae8a2100de4c280318f17cdee0e01e75b7ef6dfadd426a944a4314bfd27",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-update-partition.native-20261006",
+      "kind": "native_integration",
+      "scope": "Native storage-byte delta envelope and at most32 nonoverlapping cost-selected updates, independent reconstruction, unchanged input, dense fallback, distant and per-cell changes including unused storage bits across indexed8/RGB16/24/32. No original pixels or driver equivalence.",
+      "record": "research/runtime/opengl-sustained-publication-native-20261006.json",
+      "sha256": "7f38c4df52241f3e297795e1aef6a427badc46d2e5c783412fd168d2de89c24c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-update-partition.consumer-20261006",
+      "kind": "native_integration",
+      "scope": "Actual optimized Qt/OpenGL literal v2 fixtures verify finite weighted work: first249 small-UPDATE commands or32 full-cost CREATE/COPY commands, owned-copy ACK ahead of retained GPU submission, no early PRESENT/END and ordered second-poll resource cleanup with independent complete pixels. Additional zero/oversized caller-budget refusal cases, existing v1/checkpoint byte/work ceilings, fragmentation/failure and >64MiB/>4096-record streaming comparisons pass. 18 independent complete framebuffer comparisons;14 existing failure cases plus2 new invalid-budget cases. No original game/driver equivalence or hard wall-time guarantee.",
+      "record": "research/runtime/opengl-sustained-publication-consumer-20261006.json",
+      "sha256": "5e9be1cef1e672ceb0fd77b5c87cf07166c796c16a71a4b3f6e6ebd1d262cc34",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-update-partition.split-delay-20261006",
+      "kind": "live_observation",
+      "scope": "Historical split-only run before weighted consumer: World stayed healthy but two RegionEntry regions missed before forced recovery; retains exact source hashes. Original campaign ingress through three forwarded World ticks, bounded World observation, optional independent tutorial summon/control-count checks and classified native refusal, and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.",
+      "record": "research/runtime/opengl-sustained-publication-split-delay-20261006.json",
+      "sha256": "b22ca1e776775785ca60d94bd4b0c82f1eae9755f3bae91749482ee8108960a7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-update-partition.continuous-20261006",
+      "kind": "native_integration",
+      "scope": "Synthetic actual PE32 hooked Lock/Unlock through owned producer, v2 queue/idle scheduler, native streaming decoder and GPU. Independent complete RGB32 display frames and poisoned padded borrowed storage. Optional bounded archive refusal does not complete live production. No original game, driver equivalence, resource retirement or recovery claim.",
+      "record": "research/runtime/opengl-sustained-publication-continuous-20261006.json",
+      "sha256": "62b6d69bc46e9a70e113a474f30cf765922a49b3a04cdd66a6650e5537e7044e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-update-partition.unlocks-20261006",
+      "kind": "native_integration",
+      "scope": "Bounded existing v1 UPDATE per admitted unlock rectangle; independent fixture input and GPU pixels, no original-driver equivalence.",
+      "record": "research/runtime/opengl-sustained-publication-unlocks-20261006.json",
+      "sha256": "f93f658e97e3ae9eb1d6576e1078c4b4f5bd58e50c520753116e8dcd5d7c04a4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-update-partition.pressure-20261006",
+      "kind": "native_integration",
+      "scope": "Actual synthetic PE32 queue/retry scheduler and raw mapped reader. Pause/resume and slow advancing ACK beyond the deadline preserve every owned byte; idle clears demand, no-ACK stalls, cancellation, invalid ACK and hard overflow refuse with sticky reason. No original game, GPU completion, queue coalescing or recovery.",
+      "record": "research/runtime/opengl-sustained-publication-pressure-20261006.json",
+      "sha256": "7b1eeccbd0f2ce6f4621571fe7ac15e67ebc3cc2ebb3fb4a881219b59969b8ac",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.continuous-update-partition.game-20261006",
+      "kind": "live_observation",
+      "scope": "Original campaign ingress through three forwarded World ticks, bounded World observation, optional independent tutorial summon/control-count checks and classified native refusal, and movie-enabled startup; finite 16 ms native observation, forced failed-reader recovery and independent unsynchronized stable X11 ROI comparisons. No full-frame, gameplay animation, movie frame or hardware-driver equivalence; no replacement.",
+      "record": "research/runtime/opengl-sustained-publication-game-20261006.json",
+      "sha256": "a92129532153db363b49a28bb5a3c98dce0de2bc5ea7507c328deb374ce3b81e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -35173,6 +35349,40 @@
         "tests/test-surface-ownership.py",
         "tools/check-surface-ownership.py"
       ]
+    },
+    {
+      "id": "NR.continuous-update-partition.live",
+      "level": "preview",
+      "scope": "Existing admitted continuous resources with equal-layout owned baselines partition full writable Unlock deltas into a fixed4x8 grid with tight cell bounds; at most32 UPDATEs precede CHECK/PRESENT and use one budgeted scratch at a time. Select split only for fewer pixel plus32-byte envelope bytes; unchanged, dense, unused native bits, initial CREATE, layout change, partial and finite observation policies remain explicit. Streaming consumer keeps32 full-cost work operations or at most256 small <=16384-pixel UPDATEs under a finite weighted poll budget, positive <=1MiB caller byte budget, FIFO pending submission and terminal END after retained work; v1/copies/CREATE/large updates keep full cost. Existing64MiB CPU/pending/scratch,32MiB queue,1MiB ring,128 owned/32 resident surfaces and finite32-bit byte/session lifetime remain. Wire/archive failure retains explicit session invalidation and independent bounded archive handling. Original API scheduling/order remains opt-in prior policy. Native/sanitizer independent byte reconstruction, actual PE32 poisoned/padded synthetic borrow with full GPU hashes and native byte replay, continuous/archive and packed unlock matrices, pause/cancel/stall/overflow regressions and one strict60-second original tutorial summon run requiring every menu/World region to match qualify this scope. Baseline was healthy; measured wire redundancy is not CPU/GPU/game-pacing bottleneck attribution or a frame-rate promise. Stable regions and OCR are independent original observations, not whole animated-frame, battle/multi-action/movie/hardware-driver equivalence, default activation, original shutdown or live replacement.",
+      "behaviors": [
+        "NR.continuous-update-partition",
+        "NR.owned-session-unlock-packed",
+        "NR.continuous-producer"
+      ],
+      "evidence": [
+        "NR.continuous-update-partition.baseline-20261006",
+        "NR.continuous-update-partition.cost-20261006",
+        "NR.continuous-update-partition.native-20261006",
+        "NR.continuous-update-partition.consumer-20261006",
+        "NR.continuous-update-partition.split-delay-20261006",
+        "NR.continuous-update-partition.continuous-20261006",
+        "NR.continuous-update-partition.unlocks-20261006",
+        "NR.continuous-update-partition.pressure-20261006",
+        "NR.continuous-update-partition.game-20261006"
+      ],
+      "tests": [
+        "tests/live-render-channel-test.cpp",
+        "tests/render-dirty-region-test.c",
+        "tools/test-render-dirty-region.py",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "tools/test-render-continuous-producer.py",
+        "tools/test-render-session-unlocks.py",
+        "tools/test-render-backpressure.py",
+        "tools/test-live-render-routes.py",
+        "tests/live-render-route-probe.cpp",
+        "tools/analyze-render-update-cost.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -35420,7 +35630,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-surface-ownership-20261006.json",
-    "sha256": "da48024ec93e757d70aa68d647590b92e675541a374aa7b569c79937b32f8f24"
+    "path": "research/runtime/coverage/source-index-sustained-publication-20261006.json",
+    "sha256": "af99dade6016b862b8b6f743472d427da870089f631c731666231ea34863e1f4"
   }
 }

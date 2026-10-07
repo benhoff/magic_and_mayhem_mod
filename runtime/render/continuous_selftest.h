@@ -53,17 +53,27 @@ static void cs_delta_update(struct CsSurface* s,u32 frame){
     SetLastError(0x77);
     if(((i32 (WIN *)(void*,void*))s->table[32])(s,0)!=19 || GetLastError()!=0x88)ExitProcess(299);
 }
+static void cs_tiled_update(struct CsSurface* s,u32 frame){
+    if(!frame || frame%5==4){cs_update(s,frame?0xa5000000u|((frame*37u)&255u)<<16|((frame*71u)&255u)<<8|((frame*19u)&255u):0xa5000000u);return;}
+    u32 desc[31]={124};SetLastError(0x77);
+    if(((i32 (WIN *)(void*,void*,void*,u32,HANDLE))s->table[25])(s,0,desc,1,0)!=13 || GetLastError()!=0x88)ExitProcess(299);
+    if(frame%5==1){s->exposed[0]^=0x5a;s->exposed[511*desc[4]+511*4+3]^=0x80;}
+    else if(frame%5==2)for(u32 y=0;y<8;++y)for(u32 x=0;x<4;++x)s->exposed[(y*64+11)*desc[4]+(x*128+17)*4+frame%4]^=0x81;
+    else if(frame%5==0){s->exposed[3]^=0x80;s->exposed[511*desc[4]+511*4+3]^=0x80;}
+    SetLastError(0x77);
+    if(((i32 (WIN *)(void*,void*))s->table[32])(s,0)!=19 || GetLastError()!=0x88)ExitProcess(299);
+}
 static void test_continuous(const char* mode){
     cs_setup(&cs_small,4,4,16,0);cs_setup(&cs_big,512,512,32,1);
     u32 refused=mode[0]=='v',missing=mode[0]=='m',limited=mode[0]=='l';
     u32 byte_archive=mode[0]=='b',short_archive=mode[0]=='s';
-    u32 delta=mode[0]=='d';
-    u32 setup=refused || delta?2:byte_archive?80:short_archive?80:5000;
+    u32 delta=mode[0]=='d',tiled=mode[0]=='t';
+    u32 setup=refused || delta || tiled?2:byte_archive?80:short_archive?80:5000;
     for(u32 i=0;i<setup;++i)cs_update(&cs_small,0x100+i);
     u32 frames=refused || missing?0:short_archive?2:70;
     for(u32 i=0;i<frames;++i){
         cs_color=0xa5000000u|((i*37u)&255u)<<16|((i*71u)&255u)<<8|((i*19u)&255u);
-        if(delta)cs_delta_update(&cs_big,i);else cs_update(&cs_big,cs_color);
+        if(tiled)cs_tiled_update(&cs_big,i);else if(delta)cs_delta_update(&cs_big,i);else cs_update(&cs_big,cs_color);
         Sleep(75); /* Fixture pacing, outside hooks. */
     }
     if(byte_archive)for(u32 i=0;i<5000;++i)cs_update(&cs_small,0x200+i);
