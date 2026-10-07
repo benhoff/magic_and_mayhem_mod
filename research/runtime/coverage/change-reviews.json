@@ -38384,6 +38384,369 @@
         "reason": "Drawing/factory and borrowed interval collisions during direct recovery, repeated contention at deeper stages, simultaneous long or failed joins, abandoned callback owners, administrative worker shutdown/unloading, sustained original application/driver/full-frame comparison and default enablement remain pending. Existing evidence remains historical; new source-bound assertions apply to the explicit new overlap-policy scenarios.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "ce193697f52d8b1dc610de69fb74c6ee94071698f6a00e0b15854ab83514f569",
+          "before_sha256": "08ee71b1a557c6519e4455b7d70053f64e329cbfa5810cbf75555312adbdb9aa",
+          "id": "NR.surface-access"
+        },
+        {
+          "after_sha256": "96a1342e5e395fd30336f94ef161a9544222e5c1d950493c9f7076b1cb1ad72b",
+          "before_sha256": null,
+          "id": "NR.surface-backend.owned"
+        },
+        {
+          "after_sha256": "3fe042e87101d58cfca32abd3f85adfb6de5ba6b6f3b3aefa2c9dcb93f7fe0e3",
+          "before_sha256": "4ff69417ae4618eadc4fdf8e5677e2cb0a394d1eb80a5232fdbef33058f62fbd",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "f2a59976e4212be4282d091edbd14d6e983ba903ba369fa973bb493302c7c955",
+          "before_sha256": "4a7dfb5996a15e233f3bde13b8a4a302d5664a9cf3ea091e1165a9d61d0f9a59",
+          "id": "NR.surface-reload.bitmap-dc"
+        },
+        {
+          "after_sha256": "ad83703c65f888f0432a8e5af1812e192a9406ff39c7ba1fdc2a9134fa0b235c",
+          "before_sha256": "fe58f7b25065601fbf7e293411f334fa29b4fab67b804b50b76cca82b1d71255",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "5020891f4d507f24a97d12a61c430c709c03d1997ecf2d8179da09f0aa3f0f85",
+          "before_sha256": "999a5bcb856f6fe47f5b9a7d61ce8861d83af9de58ba9e27da4156a5d1495d12",
+          "id": "RE.surface-copy.rgb565-overlap"
+        },
+        {
+          "after_sha256": "851374570340aae00c6d7b61629d994ed1692a7012a516d56c3fcdf79a43b7f9",
+          "before_sha256": "ef0cb600de225bd0db4393a262cff0dff166ea4d80a95a595fcb6bb4aa19688e",
+          "id": "RE.surface-fill.rgb565"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "73916c1eefffaa68652dff21553bf7b7b568cc56f68698c8e21f1f3c64b1eed0",
+          "before_sha256": "05b10d3caa4ae23a94491c94394596b47615f79cdfff99e118b2cd78d394b021",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "13e1828cd0e521aaa84fd88ba941127dc5417760d3fbb2f7c6a9fab6c52013d9",
+          "before_sha256": null,
+          "path": "renderer/surface_backend.cpp"
+        },
+        {
+          "after_sha256": "5346c612adf93a4a121cacfb6fd65b66712230c6eef48992e19b5865c17ac8f6",
+          "before_sha256": null,
+          "path": "renderer/surface_backend.hpp"
+        },
+        {
+          "after_sha256": "1eb6f6fe6ed387e54cefbdf576defb05372a5b0df329a35a96e90a14d87294b3",
+          "before_sha256": "76a83e3bf2216d2e72d57a679f1c492fc1d88c7b318f03537bbc238bb7db85ef",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "2acc97fb832824605c7017d1e3cc4a1aac0908354ed157ab6033b0df484bcc23",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-backend-base-20261006.json"
+        },
+        {
+          "after_sha256": "83a3c6b9f9760287c6709130cc4c7ba651e4467f9a9db0dabe726b9c064ef6fd",
+          "before_sha256": "1ff93fe4b3b4535da97f92a2a220cb8e5340e96bb852860553cbdd9a57c0c71a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "cf99088319a843b8884c7e446334570ca4b5e8adf418f39f1864b65ca35e72c1",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-backend-base-20261006.json"
+        },
+        {
+          "after_sha256": "893465bee6d024b92a7740f9dd004b7fa0dc1b3da391259d9d74cb5e9d7f369b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-backend-base-20261006.md"
+        },
+        {
+          "after_sha256": "e219c0874fe5a3e6c7d24db8353ef13af7bac6e06a1b031c4667b75167d836f0",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-backend-base-20261006.json"
+        },
+        {
+          "after_sha256": "f19fec1dc2ccdcf50d16128fa621b220d27b5429f4e161384798943b496b91a3",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-backend.md"
+        },
+        {
+          "after_sha256": "2decc6080d3cf704f90d3fc886644b930f94cec1cb7e5d3c3084aa0d6cfa8cfc",
+          "before_sha256": "5971357850a1fe8d8a5dc43de76a9f22c8132ec69c6ff5a6ca99b6135760c1c2",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "944f36056cb2095c7e32b81ba111053a85978405fbe79b270732d5ad9d2c4b24",
+          "before_sha256": null,
+          "path": "tests/render-surface-backend-test.cpp"
+        },
+        {
+          "after_sha256": "dd53be7eb351074347b993aa8631719e48dd1306e66ceca3c6f3b3671806d770",
+          "before_sha256": null,
+          "path": "tools/check-native-surface-backend.py"
+        }
+      ],
+      "id": "surface-backend-owned-base-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:5e1e2e41f17baed6a785f51d7b1116ea3942888935af2f3f4b0e59e68baa9c9b",
+        "stale_evidence:0480266098ac573e19e87a188f6447ac61bf9dc51a9a12b36a8b1cdfa797cdc1",
+        "stale_evidence:097c1f624986fbc045a84367e54b09aa6900f0156979bc9268ee32cf70efa2cb",
+        "stale_evidence:16f290dd36640da9889792406b22a1809f39ab91a430b156ae4471e65d9bf034",
+        "stale_evidence:19f086167bfe12fbd3a840d1be2800d3b4dd15fb151d5a4e16b7441bfa9b29db",
+        "stale_evidence:1c00eb317117137a228cf9d8adeb1be3c1f151d17f804a2cbc025e0131f4dc54",
+        "stale_evidence:2618f4d547479af7409f54cfa7549b1370522c91bdbe1aca003f7e47ff3dd9d5",
+        "stale_evidence:3164f59a309d70cd57d19f07649a8e006687c147e378cf615018879a42545cfb",
+        "stale_evidence:3375dad0dea632744b1eb189940946754ed515ebe05faac950ac3d5c032ea346",
+        "stale_evidence:3b759a03571d61f47ba4fc9cb040ba5c16886baa32c2e9be209282d7066e8111",
+        "stale_evidence:3dcc0b2df39cca965ac2ca8ec9b5d10278c515d210cdd7406cbebbe1f37c4cb3",
+        "stale_evidence:47d492c70fb738df05b0f895f31eb5ed8a5a7acaee28c3e2b3b5f38519ac892e",
+        "stale_evidence:4d8b2725e611d90ca80242ce5114400299aa0235e175dbf136830bdd3455d391",
+        "stale_evidence:50e15bf128a5ec400ae7de5f345c18271ba6ad53ef864f9843429ea38553b795",
+        "stale_evidence:536911f2fc85d476699af1319a035750bf00c453783f7271d4f5f9912a588a09",
+        "stale_evidence:6103dc95ddf6a6d2996c745a1effaced2539ee465c2afa7dcb92b92210daef8e",
+        "stale_evidence:61e799b794c38c6b8281d692cdda64c6217a731b109c6bb8ccc94c0bb147b054",
+        "stale_evidence:694118b2a5aa58ef558c03cdb959a628c7c632542c03aa6763ce7e85fc864364",
+        "stale_evidence:72a6dfd336f82c7f3976f000fee23dd48b469b8baf95848d7529f5a8b0512a0a",
+        "stale_evidence:90f49adca00b6371d92cb344a324982aec05d3ee21de822cf858ae9ea0946b19",
+        "stale_evidence:a6bb0b3903a80b4b08ff7900048ddd2916bdaa2eb2cd28c99c9a92f2555021a3",
+        "stale_evidence:b2758894688e687e6e73a5a8bcab6189ab0e281e44b6309cf047dadaa98bca32",
+        "stale_evidence:bc7a7e32ef151c1cad1414941a135191ac8329dd249b5f957aebc675ee9f3848",
+        "stale_evidence:de5b9d89814d5de05f243d7bc05592d82c786f1055c571e692170406ccfccaa3",
+        "stale_evidence:eecb8899ac464ec2622a3f24710b0909428b0c1f2d100856d553aafab905c3b6"
+      ],
+      "reason": "Reviewed unified GUI-thread storage/admission/DC/palette/clip/key ownership, conservative unvalidated guards and independent retained input/output separation.2630draw results/299808pixels/258048tables/8664stable access words with39native guards;105fill/2key failures now matched, same-ID key/DC continuation and12explicit poisoned owner resets. Existing core primitives unchanged; CMake owns production source. New discovery gaps/later recovery/alias/shared-palette/formats/live boundaries remain explicit. Census and intervening exact history reviewed.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh headless native replay against independent historical original/driver output corpora validates owned bounded operations only; no new original execution or underlying COM pointer/live/loss equivalence. Borrowed-fill/keyed-overlap/new combinations intentionally pending.",
+        "evidence": [
+          "NR.surface-backend.owned.base-20261006",
+          "ORIGINAL.surface-backend.owned.replay-base-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "96c1ed0c329a82345f72625fb38951b4ca0d0131b88e700a62ebe2710c3c5b12",
+          "before_sha256": "9707bfd99f64e3877fbe6665ec3489d9ba3801d639efc29d681e493902d3af65",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "7fb6ea6ae2372e26e392f2f9e998e3cfb87b30a6e3036fd6d583c5a1c8d2657a",
+          "before_sha256": "36c91213884755d9f14747880bbbdc9af1da2d7c21a959510ba2b743a4d012d5",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "b24c59d14baea79c9f0a1ca50cc1054ca29522546abe612bd95965b1333dfd34",
+          "before_sha256": "feac5934c42256c550ba017b8ff6fbe199f42068841668560bf074430f45b354",
+          "id": "NR.command-ring"
+        },
+        {
+          "after_sha256": "ed0f9994dc83f3d947ecf47a4c7837b9998f9b05470710d7e7cc83645ffef2ea",
+          "before_sha256": "1f77cbb9fc916eec3a9237b476fe028c33d4aaf468baf082f429446ff6dc312b",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "075c03586eb55e3d1b2b9f13b0d7f2e2ee15b692c9bd507b87c6de1a1a88e6b5",
+          "before_sha256": "0a03348a9b93bb3a9f870fde2bfc5e7a242da88d12a5af2ff84080975583307c",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "f178f06811660454325e93abf6cc24438ba9cd268e9fbef70c6b9f080e51d398",
+          "before_sha256": "a45105fadfaa606e7f3e6d72af800a8a0fe72f2753b5deda57645b969478a3a7",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "51d5da796a87c840ca82459fa3cf9bd2198c6b7bc7c571ffa47f3e22bd8808b5",
+          "before_sha256": "8f72a66d5902e79c4621d1eaa025c7681dabf29df585fcfc37e13b3d82c34caf",
+          "id": "NR.surface-contents.validity"
+        },
+        {
+          "after_sha256": "d44c79cf873bec62ef976f325e5bc21029c011fd61639e0cb523b797b17966a9",
+          "before_sha256": "cd5e66f96130132d3af23b789e4a26931e6873518881d7d99842a67b3f026333",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "208cf84f8ca9e3ad17321fa72ed79d3045080dca59357178956de3c0978bcdc3",
+          "before_sha256": "65a9db3b44e9468fbbe60b61e2877e22fdfafe11c403a5212620ee1049d06513",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "810c28769ea92543f695815f4167a726268573d6f188b126a6a7db277d81f080",
+          "before_sha256": "f259a1710570795431c0dc2ded8d12edc74b3382fa17c84d2ceaa0f7f4ba60f9",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "d0319b09cd8fd0499f4f037ebcdce673c75612fd8d2d939d43dffec9c56486bf",
+          "before_sha256": "be98d04ac9a2d468abb101305aabf00cbda8a6d119d8db2fb1582a9582a1f7bc",
+          "id": "NR.surface-reload.dc-regions"
+        },
+        {
+          "after_sha256": "094d8741937c215ec8a8ac3d93423bcbc9ec68a86ed4aafbfec5693e9ef81bef",
+          "before_sha256": "876d64c228ff5cef5dec23f41adc28931735476d5298e2e2a52096c7c8da806c",
+          "id": "NR.surface-reload.dib-indexed"
+        },
+        {
+          "after_sha256": "8d5a55a8530aca55a61f572a5621353a18bdc8cd4e2d087a8b4bb8a4f0efeb5f",
+          "before_sha256": "ceda4cc56a33b1b88d88cfcda4b631ac6dee4e484835b642fc33c92aae4d7e0e",
+          "id": "NR.surface-reload.dib-rgb"
+        },
+        {
+          "after_sha256": "ed0dfed3953d49ecb0db406c369b4fa8a3aeec9893ba1f75321d0fa63f8900c9",
+          "before_sha256": "f75776059d0df9cd6d078629cfc69eff972303f65802a5161f2b238362409b3d",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "7e5f3c0e3ec1d1de69e7d95645d2972d798150e5666c0fbab7919ea620761ba8",
+          "before_sha256": "994a9ee31322ecefc3a808e0b5a9b1240618eca0d75fe26cf237d714f3114ba7",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "6700f42b59094dd307032bca9ae83a59dc86328d713af1d1294a51c9b82d8cdc",
+          "before_sha256": "1cf87ba8778f75d3131d8f97d86732233f8f9b246457b93b1d8e6cdd5dd4d76a",
+          "id": "RE.surface-driver.access"
+        },
+        {
+          "after_sha256": "10061a4cb0e83d89034a3a9fbee8cb4c7949a4be6dc42fd0684b2365856ddca6",
+          "before_sha256": "80153b5893d917e4f9bf6028b9bcbc4cd016fcc875ae1b04a29bd57554d9fa97",
+          "id": "RE.surface-driver.dc-palette-clip"
+        },
+        {
+          "after_sha256": "f003a0a309235ff3957350adc914c16bcd02c25cd8ffe9777e17fdc4d054583c",
+          "before_sha256": "516435199d6fe92d55d990576d86075f5d11bf37d132ff39ce30967531f21a3b",
+          "id": "RE.surface-driver.dc-raster"
+        },
+        {
+          "after_sha256": "3500d3dbe4b8aa4fc13aa77c1644c6786e84b4875209ad9940a79ec0c52d0119",
+          "before_sha256": "ff1a13d314986dac87c06aab5742c5834d4468c32458e8565c6a3f2e5a237d7f",
+          "id": "RE.surface-driver.dc-reuse"
+        },
+        {
+          "after_sha256": "8a42263a5785ecdc48881687b3375ecbc556ca65306a02dafcf5d99b2afd9523",
+          "before_sha256": "085e32a98a5b2b5104b9a02422c077293eb8c4021f4f908cf9e574b8f053438f",
+          "id": "RE.surface-driver.dib-raster"
+        },
+        {
+          "after_sha256": "2d5137919913b2674e9d27e06fbb278d5d128db7758ccb471fd245592bbbb73a",
+          "before_sha256": "4897905330651fc0601e3b0e4a851f74efdb5f6cbf4e52ed98195b19b194c264",
+          "id": "RE.surface-driver.indexed-restore"
+        },
+        {
+          "after_sha256": "554f12e806304bde193062bf5a274a52e814e4704e52e7e5faf09b1c99351c77",
+          "before_sha256": "a90d702f9797115922dca60cdfd3ad500d774948f0d8d1dc5ad158d6bc5da672",
+          "id": "RE.surface-driver.loss-restore"
+        },
+        {
+          "after_sha256": "a7c830c7f2281612b453dfb459ee9cb0c587edaf6bce3628c5ecf4dd9d05def3",
+          "before_sha256": "bbb3351b675a51bf6cab974ee5ad99ff3faece9620b900f16c7a3c943a01ee9f",
+          "id": "RE.surface-reload.cursor-sentinel"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "73916c1eefffaa68652dff21553bf7b7b568cc56f68698c8e21f1f3c64b1eed0",
+          "before_sha256": "05b10d3caa4ae23a94491c94394596b47615f79cdfff99e118b2cd78d394b021",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "13e1828cd0e521aaa84fd88ba941127dc5417760d3fbb2f7c6a9fab6c52013d9",
+          "before_sha256": null,
+          "path": "renderer/surface_backend.cpp"
+        },
+        {
+          "after_sha256": "5346c612adf93a4a121cacfb6fd65b66712230c6eef48992e19b5865c17ac8f6",
+          "before_sha256": null,
+          "path": "renderer/surface_backend.hpp"
+        },
+        {
+          "after_sha256": "1eb6f6fe6ed387e54cefbdf576defb05372a5b0df329a35a96e90a14d87294b3",
+          "before_sha256": "76a83e3bf2216d2e72d57a679f1c492fc1d88c7b318f03537bbc238bb7db85ef",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "2acc97fb832824605c7017d1e3cc4a1aac0908354ed157ab6033b0df484bcc23",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-backend-base-20261006.json"
+        },
+        {
+          "after_sha256": "83a3c6b9f9760287c6709130cc4c7ba651e4467f9a9db0dabe726b9c064ef6fd",
+          "before_sha256": "1ff93fe4b3b4535da97f92a2a220cb8e5340e96bb852860553cbdd9a57c0c71a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "cf99088319a843b8884c7e446334570ca4b5e8adf418f39f1864b65ca35e72c1",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-backend-base-20261006.json"
+        },
+        {
+          "after_sha256": "893465bee6d024b92a7740f9dd004b7fa0dc1b3da391259d9d74cb5e9d7f369b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-backend-base-20261006.md"
+        },
+        {
+          "after_sha256": "e219c0874fe5a3e6c7d24db8353ef13af7bac6e06a1b031c4667b75167d836f0",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-backend-base-20261006.json"
+        },
+        {
+          "after_sha256": "f19fec1dc2ccdcf50d16128fa621b220d27b5429f4e161384798943b496b91a3",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-backend.md"
+        },
+        {
+          "after_sha256": "2decc6080d3cf704f90d3fc886644b930f94cec1cb7e5d3c3084aa0d6cfa8cfc",
+          "before_sha256": "5971357850a1fe8d8a5dc43de76a9f22c8132ec69c6ff5a6ca99b6135760c1c2",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "944f36056cb2095c7e32b81ba111053a85978405fbe79b270732d5ad9d2c4b24",
+          "before_sha256": null,
+          "path": "tests/render-surface-backend-test.cpp"
+        },
+        {
+          "after_sha256": "dd53be7eb351074347b993aa8631719e48dd1306e66ceca3c6f3b3671806d770",
+          "before_sha256": null,
+          "path": "tools/check-native-surface-backend.py"
+        }
+      ],
+      "id": "surface-backend-base-shared-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:5e1e2e41f17baed6a785f51d7b1116ea3942888935af2f3f4b0e59e68baa9c9b",
+        "stale_evidence:0480266098ac573e19e87a188f6447ac61bf9dc51a9a12b36a8b1cdfa797cdc1",
+        "stale_evidence:097c1f624986fbc045a84367e54b09aa6900f0156979bc9268ee32cf70efa2cb",
+        "stale_evidence:16f290dd36640da9889792406b22a1809f39ab91a430b156ae4471e65d9bf034",
+        "stale_evidence:19f086167bfe12fbd3a840d1be2800d3b4dd15fb151d5a4e16b7441bfa9b29db",
+        "stale_evidence:1c00eb317117137a228cf9d8adeb1be3c1f151d17f804a2cbc025e0131f4dc54",
+        "stale_evidence:2618f4d547479af7409f54cfa7549b1370522c91bdbe1aca003f7e47ff3dd9d5",
+        "stale_evidence:3164f59a309d70cd57d19f07649a8e006687c147e378cf615018879a42545cfb",
+        "stale_evidence:3375dad0dea632744b1eb189940946754ed515ebe05faac950ac3d5c032ea346",
+        "stale_evidence:3b759a03571d61f47ba4fc9cb040ba5c16886baa32c2e9be209282d7066e8111",
+        "stale_evidence:3dcc0b2df39cca965ac2ca8ec9b5d10278c515d210cdd7406cbebbe1f37c4cb3",
+        "stale_evidence:47d492c70fb738df05b0f895f31eb5ed8a5a7acaee28c3e2b3b5f38519ac892e",
+        "stale_evidence:4d8b2725e611d90ca80242ce5114400299aa0235e175dbf136830bdd3455d391",
+        "stale_evidence:50e15bf128a5ec400ae7de5f345c18271ba6ad53ef864f9843429ea38553b795",
+        "stale_evidence:536911f2fc85d476699af1319a035750bf00c453783f7271d4f5f9912a588a09",
+        "stale_evidence:6103dc95ddf6a6d2996c745a1effaced2539ee465c2afa7dcb92b92210daef8e",
+        "stale_evidence:61e799b794c38c6b8281d692cdda64c6217a731b109c6bb8ccc94c0bb147b054",
+        "stale_evidence:694118b2a5aa58ef558c03cdb959a628c7c632542c03aa6763ce7e85fc864364",
+        "stale_evidence:72a6dfd336f82c7f3976f000fee23dd48b469b8baf95848d7529f5a8b0512a0a",
+        "stale_evidence:90f49adca00b6371d92cb344a324982aec05d3ee21de822cf858ae9ea0946b19",
+        "stale_evidence:a6bb0b3903a80b4b08ff7900048ddd2916bdaa2eb2cd28c99c9a92f2555021a3",
+        "stale_evidence:b2758894688e687e6e73a5a8bcab6189ab0e281e44b6309cf047dadaa98bca32",
+        "stale_evidence:bc7a7e32ef151c1cad1414941a135191ac8329dd249b5f957aebc675ee9f3848",
+        "stale_evidence:de5b9d89814d5de05f243d7bc05592d82c786f1055c571e692170406ccfccaa3",
+        "stale_evidence:eecb8899ac464ec2622a3f24710b0909428b0c1f2d100856d553aafab905c3b6"
+      ],
+      "reason": "Reviewed unified GUI-thread storage/admission/DC/palette/clip/key ownership, conservative unvalidated guards and independent retained input/output separation.2630draw results/299808pixels/258048tables/8664stable access words with39native guards;105fill/2key failures now matched, same-ID key/DC continuation and12explicit poisoned owner resets. Existing core primitives unchanged; CMake owns production source. New discovery gaps/later recovery/alias/shared-palette/formats/live boundaries remain explicit. Census and intervening exact history reviewed.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared research/matrix/register source fingerprints reviewed. Broader historical renderer/asset/original/COM/protocol scenarios retain their scope/source hashes without fresh execution or status promotion; new owned admission state does not assert their original/live equivalence.",
+        "evidence": []
+      }
     }
   ]
 }
