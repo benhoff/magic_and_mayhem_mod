@@ -1779,3 +1779,7 @@ DLLs build; test pause exports/waits are excluded from production. Drawing durin
 direct recovery, deeper-stage/repeated collisions, abandoned owners, long/failed
 joins, administrative worker shutdown and original-driver/full-frame equivalence
 remain pending; see [recovery overlap findings](opengl-recovery-races.md).
+
+## Integrated owned surface operations — 2026-10-06
+
+One native SurfaceBackend associates storage/admission/palettes/clipping/DC reload and RGB565 fills/exact-key copies.2630original/driver HRESULTs/299808pixels/258048palette entries/8664stable descriptors compare retained independent outputs, including105fill/2keyed failures, same-ID key/DC continuations and39native guards.84unstable caps excluded;12poisoned access cases release whole owners. Historical reports stay unchanged; this is fresh native reuse, not new original execution. Keyed overlap/borrowed-fill and new combinations/sharedCOM identity/recovery/other formats/live remain pending. See [owned backend](native-surface-backend.md).
