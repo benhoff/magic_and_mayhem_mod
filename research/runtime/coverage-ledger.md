@@ -1764,3 +1764,18 @@ original game/driver/full-frame equivalence remain pending; see
 ## Surface lock/DC admission — 2026-10-06
 
 One serialized Wine capture96 standalone Surface2 sequences spans indexed8/RGB565/RGB32 and system/default offscreen caps. Offline and native state replay compare independently captured HRESULTs/normalized output descriptors and readable unchanged final words; terminal busy cases supply no invented bytes and unstable failure caps words are excluded. Mutation checks verify corruption detection. Native tokens/storage bounds/single-thread state are intentional policies; DC raster association/drawing while borrowed, aliases/other flags/rectangles/cross-thread/original game/loss/Windows/live remain pending. Manifests verified before/after; initial sandbox socket and terminal-success-assumption failures yielded no evidence.96cases/1182transitions/8664stable descriptor fields/4032readable words compare with11offline tests/10native guards;84unstable caps words excluded and12terminal busy cases have no final frame. See [lock/DC findings](surface-access.md).
+
+### Recovery overlapping lifecycle transitions (2026-10-06)
+
+Recovery now shares scoped lifecycle ownership through admission, candidate claim,
+reset/publication/worker launch and cleanup. Three actual startup/shutdown/recovery
+ownership barriers verify all competing entry points refuse before mutation, both
+candidate channels remain byte-for-byte unchanged, and retry establishes distinct
+sessions with complete independently generated pixels. Three cases compare12
+frames in six sessions. Fresh recovery10-case/72-frame, lifecycle6-case/12-frame and
+administrative checkpoint6-case/186-frame regressions pass, including alias/repeat/
+finite session budgets and failure/borrowed ownership guards. Production/SELFTEST
+DLLs build; test pause exports/waits are excluded from production. Drawing during
+direct recovery, deeper-stage/repeated collisions, abandoned owners, long/failed
+joins, administrative worker shutdown and original-driver/full-frame equivalence
+remain pending; see [recovery overlap findings](opengl-recovery-races.md).

@@ -1,0 +1,749 @@
+{
+  "schema": 1,
+  "scope": "Exact committed parent/current SHA256 and behavior receipt review, separate from pending workspace changes. This audit does not assert historical gate passes or fresh validation.",
+  "base": "e7c56c2",
+  "head": "0c80a96851b3513ec1110c458bc5cebee456c843",
+  "commits": [
+    {
+      "commit": "ab97f857bca5315a288986c17e3f9c35f9e9574b",
+      "parent": "e7c56c2a509e098186fa93c2a6bc23a6cf17decd",
+      "files": [
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "2cacf371492751c7604194ed2fb1d6c4c33eebd9e9b94056a545d1f925ead92a",
+          "after_sha256": "65f55cb023eaab78a7ba13e5deeb4f94effeec44cea6799ff5956b003300f4dd",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "a13ff977af965a07399fd9bfc7b4b22b3cdefc3fe0b21a412439c252a9c64dd4",
+          "after_sha256": "df0058530186aa74f923d93e16857a4fbbf27d1f8666af00859fcbf933745e98",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-lifecycle-races-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "0e3b4e6c4d27636e2da0d398bdbcff7fffeffef713bdd0df6f9fdb1b3ec76a9c",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "396363dd993343962c134db19ab593f45c8f7e1f1737fc7e6f99a971671e135a",
+          "after_sha256": "66ca1cbdbc3e1e9c31ad829b7e645caa1714bdc9f9ae1bde6936c8aa5718f742",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-lifecycle-races-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "992d315cb8d223c0c9b8af8d0b3d8c2dae551e7254a396edecf7a6c28fcab14d",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-lifecycle-races-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "8cab6ffcf55b61817d52d6427d29f4614955d3e4df50382ca19506ebd2cc0a7c",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-lifecycle-races-checkpoint-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "f60ced485fce2a253510d26b14be0f3d265332b7c29d0fbb4b238eaead420696",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-lifecycle-races-lifecycle-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "687e358a7601bd40aac629aa865e45fc2cbcd1206110a062e9ef43456f0565c3",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-lifecycle-races-native-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7de06cf37a26363acf5a21be88f2f4a52798ce20bf37eeac6ca65153e7c5274b",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-lifecycle-races-startup-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "0d2501ecbe67cb96baf2774265160e0265eceb01f7097f79f20aabd1f8faaf6d",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/opengl-lifecycle-races.md",
+          "before_sha256": null,
+          "after_sha256": "bde8ec0f0ca341041ad37e9a4b9dd45be111e17ca9f158b9f2bead778541070d",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/bridge.c",
+          "before_sha256": "2bb8bafae00d7128c98e864a687ca059cd11f85cd4b9c2d16a4221209918427b",
+          "after_sha256": "b2b5a6ff7555f81b08989b3d0b7956e62664fa3ef2c2952a0689a4201b0797ca",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_lifecycle.h",
+          "before_sha256": "7a6a04d37998ad9685c7199d415b9a5b87dd7033cf10e2aae5040e53f63f462c",
+          "after_sha256": "705ea201b6e2cb0213fb08693372a3efc0bb37c6497166911b9b1ac705c6bfc7",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/command_scheduler.h",
+          "before_sha256": "49380205a77db5e876308b302dbec9d95633f1adb3d8381df3056d6bea815535",
+          "after_sha256": "0b774d38564189b480bd102c082276551507898cb87191b1c5014e322e9b389a",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/copy_order.h",
+          "before_sha256": "b7be6edc0647fdf3c5da8b6cf4c04fa54a9b9d8781f89c93edd5d245a28dfffa",
+          "after_sha256": "9d95bc3c009d18c43d02e8d4244c23091a688f831d43fdc89c002cc93c97dddc",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/draw_startup_selftest.h",
+          "before_sha256": "b6a0bf370d2d95c6bcfe2d5b3c082567fbf97b36b04bcef6c413be709fbfb9aa",
+          "after_sha256": "c9622c9d870884a6179f0835bec379f5add8ebc46835b7ad328eed1b34e07f5f",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/lifecycle_race_selftest.h",
+          "before_sha256": null,
+          "after_sha256": "7efb30260c04e28444b09acf87b298a76ddbc580862a749516e951ec2c30833d",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "runtime/render/selftest.c",
+          "before_sha256": "7ee48237eda191b98a0839978dfe704795e65dd2adf4ac25dcb447b06bc836b8",
+          "after_sha256": "76fdaabb22b7ba6be2f0ed5b13f1ad373ef7d8a15ad9a95d911375f89db7e746",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/build-render-bridge.py",
+          "before_sha256": "6a7c9bd9c82cf73ab5134f86efc970bc6484066a193cea921a85bcdc334f47af",
+          "after_sha256": "3a884b83200da88f630c1d8919706572528d2458c30f90b8a729f7eeba12df2f",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/test-render-lifecycle-races.py",
+          "before_sha256": null,
+          "after_sha256": "5f7c5030e7da3f6c5c9910c0854172bc567f998047b03a0fb0e2f91e45c3fe43",
+          "receipts": [
+            "lifecycle-races-recorded-20261006",
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.bounded-copy-order",
+          "before_sha256": "da75145313caa1faf39303d7f06aaa86984f1eac0e12f6e4942f3d88c7164d03",
+          "after_sha256": "f99a0390c06874c88ee7f6ff0f9ed2616da928250518147913a2866c323a74d4",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-backpressure",
+          "before_sha256": "ccfe1ac6ada5af1930d661bd16cb56d69f56f852658325f2e4b327f0627b4bd9",
+          "after_sha256": "919002137de17db8c95b4d7298ae242a70eefce24a9574ecf60010cdf094ef0b",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-checkpoint-attachment",
+          "before_sha256": "38404ebf0f3d4b9c9f5c41a9569c3e4a3aa1f91b384f7b04142a4c1840b92586",
+          "after_sha256": "5fa759860f0ca1525e013a4b86af69ff3749e5b26239e5cd23e82735d8b5b545",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "before_sha256": "82454046bf0190cd6e27b7203acf503e04d92aaadd7802dfcf65a8119a7befa3",
+          "after_sha256": "c123325b90c9fcd1ea4cfe72daaab7cb63f33358790f376cad7deda7680c6a3d",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-idle-lifecycle",
+          "before_sha256": "a72e499122f2bdb30370bb0e26a833d3c809b5158277fef88d82d5814d6a5ee6",
+          "after_sha256": "488690be18912652ed3503d35fa6c8acfe5cccd797259f0fc2575da8275ab928",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-orchestration",
+          "before_sha256": "50e779b7feb5b40877f8fa4cb57ff3204cce9fa7f290d7c92d946795a43f9936",
+          "after_sha256": "41ae60b7bcdc7844530a3c75576bc38f70039bcfca0b3d038649cb3cc625a358",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-recovery",
+          "before_sha256": "210ab95d488a1015b5772af9edbb3ed86804fac9ccfea3849ab242402ac2f4b7",
+          "after_sha256": "b532815e00404de000b27e4af1bd3c3b0eeb3b3b52a61dd90377a92a1a4160c1",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.command-ring-adapter",
+          "before_sha256": "d722429294110b284f17bf6ed12124e0350e935c9ee507e0b85a9ea6469c7b5a",
+          "after_sha256": "d91fca39b3c3954044b3d996f8b68b32698ef760a4781ef6f8a98a06189f4eb5",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-mutations",
+          "before_sha256": "acdbcb47a47eb2d066ab7057e897a052b05bc5d1e4fbc8abc50e3ead1e2ceb68",
+          "after_sha256": "fe7077e7484b2ac698664f5de6a5824daad033646100760a47c962fb506c5a22",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-producer",
+          "before_sha256": "d276ec68d588f960cc1a4498c79a4db4dd2bf44f966d4e5824a388b498f4ec77",
+          "after_sha256": "47013e5b9b28fc9aff8c34d920ea6686dfb874c88f3ca1be0a3168d5e73f5459",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-lifetime",
+          "before_sha256": "3b9213f95d2523d5608a236cf4e7efdf314fc81aaafcb8defa23a338173f4be7",
+          "after_sha256": "65af4d36e6c31b7ac0acc13ab76d11d19c4506f2cbb0648071367d2f20519b17",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.continuous-resource-working-set",
+          "before_sha256": "81fc2fbb16b193b77221328c486f9d9195ac72d58256b5fc08745e7d7d1cbcd4",
+          "after_sha256": "1799faba08b95cbd979eda0c4203d236d8db5fda647d1bc4bb6903729acd6018",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.cpu-handoff-order",
+          "before_sha256": "ec8109b9f7652e73e7250e3c95df4afef3a48a44f722721d07366d7bdfcaa2fa",
+          "after_sha256": "7990b7dd2c700d6787e00b089a0f315a115a21ffe4e7193820340bbf72bfe480",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.dc-flip-order",
+          "before_sha256": "13ba6dc0efa4876ba548ba7701d657ce247c93368c0d02cbf22d9f952a8062d2",
+          "after_sha256": "45f90f5c8239cff5afc1c9f720222dd1106335d2825a83dfac9a21634462be00",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.draw-startup-order",
+          "before_sha256": "7293ce97f697bbb6b5c56433d9036e133d42cbc4751983535e148d272a610b54",
+          "after_sha256": "17632300ed7d424f5d7fce449162ba94715c1f63292bbfdf798bbe4326df85b3",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.lifecycle-races",
+          "before_sha256": null,
+          "after_sha256": "49ed95bdc82866fb9e62b3b637d7f52146dd4acc3461185195bbd1bbb1d14873",
+          "receipts": [
+            "lifecycle-races-recorded-20261006"
+          ]
+        },
+        {
+          "id": "NR.lifetime-order",
+          "before_sha256": "5f3fde38b28398863a9809835c6989640dcab147eec4ee207157bc6466a44736",
+          "after_sha256": "7d2ea6f1fc3b97b47c31be3664ee8c567a45b0733f8002ec5fe456aa892537c0",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "d76356bdd4af49ab155e3ba0ee86ff3eec5d2468868b5eff3691bd71ada94c09",
+          "after_sha256": "00b71412ac7892f6fecf702b59bfc615ce3dd6f9fddaf34d42d6b121efd88c62",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.metadata-order",
+          "before_sha256": "fd8516f11d63a68d9475d2a747df8ed59c39e8cdd0264333bc6441c0e336a8a8",
+          "after_sha256": "8f1351158b54bff9e07fce8f5bd5395db4d1337980a69c53e2132ab171ac34b9",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.observed-metadata-idempotence",
+          "before_sha256": "0e6d28660b1d5ae4eab0870566d9dd863d69d04183bb8d459fe5f0a152943954",
+          "after_sha256": "9eb4eab4bddc237a1a5d566971d20dbb64af4ce1e1f3c27900699b10ad3fe44f",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-property-order",
+          "before_sha256": "e1d0d281da3b448746403ecbab2f43e19b4e9879c062128a59d1bd6d0c9fdf06",
+          "after_sha256": "10208ebbf99bdad9fdca99f08b6cd1b01ec0612b9cf3c5dc44b1c1919fed49e9",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.palette-resources",
+          "before_sha256": "cdd393ba457e049a3f372d7e1a9ba3f0a60d143e1187412f84056a7c095e7e52",
+          "after_sha256": "67da38700d5fd32413c062b87b828c43473ee0c7f207bb9af5f8f987235af59a",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RT.render",
+          "before_sha256": "fb4c7a46bbdd6e96da9d7a37aee25f1f59eea5a99e09c374d5fb80a6c963912f",
+          "after_sha256": "a86e16dd43ac8605c35897b4914e23b5e4684aecd8e95b0ed4d4c4edba2c4327",
+          "receipts": [
+            "lifecycle-races-shared-pending-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    },
+    {
+      "commit": "0c80a96851b3513ec1110c458bc5cebee456c843",
+      "parent": "ab97f857bca5315a288986c17e3f9c35f9e9574b",
+      "files": [
+        {
+          "path": "renderer/surface_access.hpp",
+          "before_sha256": null,
+          "after_sha256": "de30d7e2f74815f706d3cf158d0d981e0523e1f4d33fbb7ce6aa849439709c50",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "before_sha256": "65f55cb023eaab78a7ba13e5deeb4f94effeec44cea6799ff5956b003300f4dd",
+          "after_sha256": "702f8ac0631b886d06e2d7d56e4b756f38ba24bba40bfde444029137ffbed1ed",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "before_sha256": "df0058530186aa74f923d93e16857a4fbbf27d1f8666af00859fcbf933745e98",
+          "after_sha256": "8ff1d5dedd76a5943b8693202bff87e1017c33b4a2c64cc503302bb80f09cc1f",
+          "receipts": [
+            "append-only relative receipt ordering reviewed; self hash excluded"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-surface-access-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "9f4eff5aa2dff99df5d4933bf7fad9d7cc3f3bb4d8319e8bb0f4e6b6e61a34e0",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "before_sha256": "66ca1cbdbc3e1e9c31ad829b7e645caa1714bdc9f9ae1bde6936c8aa5718f742",
+          "after_sha256": "2ca47f06cb6fbf402ff1d9352b383180901b16300e39e708a0b20cc3f135f525",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/source-index-surface-access-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "f2812d3ad20be42a22471ee3eb49a957ef413f8ae3fcbe5037c4b69d57267e6d",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/coverage/summary-surface-access-20261006.md",
+          "before_sha256": null,
+          "after_sha256": "df5ddf2ae85074753c3c8a17d1181866c373125744156015f3019786678d8044",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-access-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "1c016473eeb881deaccf4d297c3f9645e6eefa2541b6e769ab17ae8600ffe087",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/native-surface-operation-matrix.json",
+          "before_sha256": "50f0cd8d9d96238ab0e41666ad0d87b1c161cf7fba2d6ae2c8073b9c66032788",
+          "after_sha256": "5971357850a1fe8d8a5dc43de76a9f22c8132ec69c6ff5a6ca99b6135760c1c2",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-access-capture-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "4646e929641cae1360ede4b44de770d2da03ca7b9f94ed030aec40f2cdf9d70c",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-access-offline-20261006.json",
+          "before_sha256": null,
+          "after_sha256": "7b16f8e37f7ab2e01dd5914f530623a2611b4c8f2e548b2bfd4cc0c8de175f0a",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "research/runtime/surface-access.md",
+          "before_sha256": null,
+          "after_sha256": "14baf6374516e28718faa95ab7479fff08a27b77233e23e45752d83cdea69ba1",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-access.json.gz",
+          "before_sha256": null,
+          "after_sha256": "b80055aef41fffe9b3a3b6c9fed7f8f0ab4aa06b669ac4ad3f4d553e6e670def",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/render-surface-access-test.cpp",
+          "before_sha256": null,
+          "after_sha256": "0b9bf7d8682b7eb844e420183b867f1d83e12b8874482f962f260d1c4d96dd73",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/surface-access-reference.c",
+          "before_sha256": null,
+          "after_sha256": "e9e30a5c1db9f67e67699c6c193054b4a5d9db384c963446e4a4988589dd24d2",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tests/test-surface-access.py",
+          "before_sha256": null,
+          "after_sha256": "b2d10f6675475b15ead350659399ca245d2fe654b10c2d95cc9d0d05b34b169d",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/capture-surface-access.py",
+          "before_sha256": null,
+          "after_sha256": "69d22322aaaff04377cf963bcf9f83c4e6909052f17c1187f311cdde50766a68",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-native-surface-access.py",
+          "before_sha256": null,
+          "after_sha256": "87f314dfa1273d5ce54aaa3a7c617ee1a2c34806a3d25322074303fd40160679",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "path": "tools/check-surface-access.py",
+          "before_sha256": null,
+          "after_sha256": "8bef3406ccdc2f4c171518c18375fe4863bdecaca75d283bc6dbf4bd5ad6ef77",
+          "receipts": [
+            "surface-access-state-20261006",
+            "surface-access-shared-pending-20261006"
+          ]
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "NR.surface-access",
+          "before_sha256": null,
+          "after_sha256": "08ee71b1a557c6519e4455b7d70053f64e329cbfa5810cbf75555312adbdb9aa",
+          "receipts": [
+            "surface-access-state-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-contents.validity",
+          "before_sha256": "f71d9e9d663efbb1ad43fa93f44c6e43a39e8e6fb53d607c38c4d1e668eb0a19",
+          "after_sha256": "8f72a66d5902e79c4621d1eaa025c7681dabf29df585fcfc37e13b3d82c34caf",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping",
+          "before_sha256": "8827a00bc76b700e5d3d2cea640a0e17ab40f6cac7f33bb07ae5b7d016c0e0f6",
+          "after_sha256": "4ff69417ae4618eadc4fdf8e5677e2cb0a394d1eb80a5232fdbef33058f62fbd",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-copy.clipping-stream",
+          "before_sha256": "bfb95bad4aab62ed23af0fdeb4c11044895cbfd391587daacc93f3f607b66d67",
+          "after_sha256": "cd5e66f96130132d3af23b789e4a26931e6873518881d7d99842a67b3f026333",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-driver-fixtures",
+          "before_sha256": "9b9894d5b5efa80cf4ec31bd93bb2bade2eff50094bd67ef96fc3421ab2f8fa3",
+          "after_sha256": "65a9db3b44e9468fbbe60b61e2877e22fdfafe11c403a5212620ee1049d06513",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "52e854c3fd622c44ddfc26d7637324628bcb5625cd1e32e2eec822516fe80f31",
+          "after_sha256": "f259a1710570795431c0dc2ded8d12edc74b3382fa17c84d2ceaa0f7f4ba60f9",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.bitmap-dc",
+          "before_sha256": "f5c1479dc30d07cbbcf79f26425fa239ac454a11686f87c48362af58cf9b4851",
+          "after_sha256": "4a7dfb5996a15e233f3bde13b8a4a302d5664a9cf3ea091e1165a9d61d0f9a59",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dc-regions",
+          "before_sha256": "96006f7ea800484710d2e5a68b79bfce10495e13d262be27f883f50b34a30636",
+          "after_sha256": "be98d04ac9a2d468abb101305aabf00cbda8a6d119d8db2fb1582a9582a1f7bc",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dib-indexed",
+          "before_sha256": "671cf282294b76fbed245765a93c6472df889ab5320bd583ac4d2fa7ed804ef2",
+          "after_sha256": "876d64c228ff5cef5dec23f41adc28931735476d5298e2e2a52096c7c8da806c",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "NR.surface-reload.dib-rgb",
+          "before_sha256": "8c61bcd855f981cc2dcc2633fad5fad7f56b28a8a1bb916a5e6f85475c056c9d",
+          "after_sha256": "ceda4cc56a33b1b88d88cfcda4b631ac6dee4e484835b642fc33c92aae4d7e0e",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.restore-retry",
+          "before_sha256": "e30d34142e5802bbbb8fc090de175efc10de2609694639f102f716285676292d",
+          "after_sha256": "f75776059d0df9cd6d078629cfc69eff972303f65802a5161f2b238362409b3d",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-bltfast",
+          "before_sha256": "2f0411563108d0cc42512628e4d4f7484d5885eb848e9ea42fc0694b0e35105c",
+          "after_sha256": "994a9ee31322ecefc3a808e0b5a9b1240618eca0d75fe26cf237d714f3114ba7",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-keyed",
+          "before_sha256": "ea555b7b937255d9412ce41fed58cabbf4cefed384449a5206be9868992caad7",
+          "after_sha256": "fe58f7b25065601fbf7e293411f334fa29b4fab67b804b50b76cca82b1d71255",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-copy.rgb565-overlap",
+          "before_sha256": "62c751fd62567061a4d9fad6544a1b9ae5ab8d850feaa0c2454e5fd07c8be529",
+          "after_sha256": "999a5bcb856f6fe47f5b9a7d61ce8861d83af9de58ba9e27da4156a5d1495d12",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.access",
+          "before_sha256": null,
+          "after_sha256": "1cf87ba8778f75d3131d8f97d86732233f8f9b246457b93b1d8e6cdd5dd4d76a",
+          "receipts": [
+            "surface-access-state-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-palette-clip",
+          "before_sha256": "f25add3908e20ee8b4f490cc7572b32481d84232bd9201301395eccbe805383f",
+          "after_sha256": "80153b5893d917e4f9bf6028b9bcbc4cd016fcc875ae1b04a29bd57554d9fa97",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-raster",
+          "before_sha256": "0a3433e870dcd3d46ca9f456feee0ca8e982f5fe36b97c11d97ce15da4798a1b",
+          "after_sha256": "516435199d6fe92d55d990576d86075f5d11bf37d132ff39ce30967531f21a3b",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dc-reuse",
+          "before_sha256": "634c2ea6a51ba6a73758fe3971aa91b648cc561dba1dcaa9ef4ea9f979066127",
+          "after_sha256": "ff1a13d314986dac87c06aab5742c5834d4468c32458e8565c6a3f2e5a237d7f",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.dib-raster",
+          "before_sha256": "09178e3adfa0331f09818922d7944bb83ffb74dd604c699222a4c8eb256839f4",
+          "after_sha256": "085e32a98a5b2b5104b9a02422c077293eb8c4021f4f908cf9e574b8f053438f",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.indexed-restore",
+          "before_sha256": "3126c8b153820dc4ff7f5e6954f0c9b9a3daf865f604431ebc5b6b72049b0343",
+          "after_sha256": "4897905330651fc0601e3b0e4a851f74efdb5f6cbf4e52ed98195b19b194c264",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-driver.loss-restore",
+          "before_sha256": "1cf377eb0912cd929a85c1828288edc4b0146cfaa6e29cb7ca383c61aec5a86a",
+          "after_sha256": "a90d702f9797115922dca60cdfd3ad500d774948f0d8d1dc5ad158d6bc5da672",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-fill.rgb565",
+          "before_sha256": "6a86ce363e26086031020203450d6ed676266c1e1c70b2adde2a12390974aaa7",
+          "after_sha256": "ef0cb600de225bd0db4393a262cff0dff166ea4d80a95a595fcb6bb4aa19688e",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        },
+        {
+          "id": "RE.surface-reload.cursor-sentinel",
+          "before_sha256": "8a8cca6964eeee5a6ece031f0a41c94c46495adbcd64ed9f31e0fbf12f5aeea3",
+          "after_sha256": "bbb3351b675a51bf6cab974ee5ad99ff3faece9620b900f16c7a3c943a01ee9f",
+          "receipts": [
+            "surface-access-shared-pending-20261006"
+          ]
+        }
+      ],
+      "prior_receipts_preserved": true,
+      "prior_relative_order_preserved": true,
+      "journal_prefix_append": true,
+      "unresolved_exact_receipts": []
+    }
+  ]
+}

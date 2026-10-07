@@ -37953,6 +37953,437 @@
         "reason": "Shared research/matrix/register source fingerprints reviewed. Broader historical renderer/asset/original/COM/protocol scenarios retain their scope/source hashes without fresh execution or status promotion; new owned admission state does not assert their original/live equivalence.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "07a6f3bced2ca3336a14f28d17be13393a7e8974b0c4d3112c23850a639699b0",
+          "before_sha256": null,
+          "id": "NR.recovery-lifecycle-races"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "76a83e3bf2216d2e72d57a679f1c492fc1d88c7b318f03537bbc238bb7db85ef",
+          "before_sha256": "702f8ac0631b886d06e2d7d56e4b756f38ba24bba40bfde444029137ffbed1ed",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9fa97916204f506646cb6988020cfa7e677db91212cfb571e94d2d58c12d7af6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-recovery-races-20261006.json"
+        },
+        {
+          "after_sha256": "1ff93fe4b3b4535da97f92a2a220cb8e5340e96bb852860553cbdd9a57c0c71a",
+          "before_sha256": "2ca47f06cb6fbf402ff1d9352b383180901b16300e39e708a0b20cc3f135f525",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "15a47998cfc3afc524acc804b25ca4ae4aab30a26aa7eaebf74af43640b7f1a3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-recovery-races-20261006.json"
+        },
+        {
+          "after_sha256": "d09029683cd38c3d7558215598ec95e6cd34c226947db4518c3ed64d194ecc3b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-recovery-races-20261006.md"
+        },
+        {
+          "after_sha256": "9e927b4b2419c0ee91193d59f297927c480881429b621f9bab69844f7632e908",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-recovery-races-checkpoint-20261006.json"
+        },
+        {
+          "after_sha256": "f327bf70b25b3f23a264ceed6a321a92c0a9642eaa3eec37c0172db900cf1924",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-recovery-races-lifecycle-20261006.json"
+        },
+        {
+          "after_sha256": "392344444df405967c916ddd82b13008f0f3bd49ae043396c14a09914b492413",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-recovery-races-native-20261006.json"
+        },
+        {
+          "after_sha256": "a694a0e81c6be46576b1368295f444c3616e77f1d5dbd54f1e280a10e9a51345",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-recovery-races-recovery-20261006.json"
+        },
+        {
+          "after_sha256": "c6c48864b1d5227bdd8a2868b25a14b165a582f601e32c05ab2fae652927bc1c",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-recovery-races.md"
+        },
+        {
+          "after_sha256": "2696c60453e46425409f9257fbeb76fe81f2d02480eba56852e7aee3a1993166",
+          "before_sha256": "b2b5a6ff7555f81b08989b3d0b7956e62664fa3ef2c2952a0689a4201b0797ca",
+          "path": "runtime/render/bridge.c"
+        },
+        {
+          "after_sha256": "d37e421b26755a14012453148bfec8fe9109922f6e2a3452cab37a300d8219ce",
+          "before_sha256": "705ea201b6e2cb0213fb08693372a3efc0bb37c6497166911b9b1ac705c6bfc7",
+          "path": "runtime/render/command_lifecycle.h"
+        },
+        {
+          "after_sha256": "b0539a0fe1cbfb04ba2589390f22fc0304cc8fda33421ed944eb3afa3af997bb",
+          "before_sha256": "586a9253d5a32f7df12db82edfb5970a69cd0137cf3e1bd07746461360fa43b6",
+          "path": "runtime/render/command_recovery.h"
+        },
+        {
+          "after_sha256": "79292f7fec1f1f627ea555d2004be601d2366ef3bf1e557dd727fffb37a3f55d",
+          "before_sha256": "0b774d38564189b480bd102c082276551507898cb87191b1c5014e322e9b389a",
+          "path": "runtime/render/command_scheduler.h"
+        },
+        {
+          "after_sha256": "f8fa8b3cdb19d9ab038b2452de54159c41ed62bed45b49f7fe5f9b331b1edda1",
+          "before_sha256": null,
+          "path": "runtime/render/recovery_race_selftest.h"
+        },
+        {
+          "after_sha256": "64b3854cbb68696c762840b6d04e712720030a0741b2447cdcc6112bb5896986",
+          "before_sha256": "76fdaabb22b7ba6be2f0ed5b13f1ad373ef7d8a15ad9a95d911375f89db7e746",
+          "path": "runtime/render/selftest.c"
+        },
+        {
+          "after_sha256": "2370fbfd16718c2818e96be32ad155a551374d21b1050c7553e55fcb0e24cf6e",
+          "before_sha256": "3a884b83200da88f630c1d8919706572528d2458c30f90b8a729f7eeba12df2f",
+          "path": "tools/build-render-bridge.py"
+        },
+        {
+          "after_sha256": "9bf79ed4503944592802da08f265d0d77ca50b01435983e484cb4210c04f1817",
+          "before_sha256": "9bf79ed4503944592802da08f265d0d77ca50b01435983e484cb4210c04f1817",
+          "path": "tools/test-render-checkpoint.py"
+        },
+        {
+          "after_sha256": "5f7c5030e7da3f6c5c9910c0854172bc567f998047b03a0fb0e2f91e45c3fe43",
+          "before_sha256": "5f7c5030e7da3f6c5c9910c0854172bc567f998047b03a0fb0e2f91e45c3fe43",
+          "path": "tools/test-render-lifecycle-races.py"
+        },
+        {
+          "after_sha256": "b1faec1d5dd218d59eaaa21d86c0e1ad0225f9902babd98ae3fdf8e67b501ed7",
+          "before_sha256": null,
+          "path": "tools/test-render-recovery-races.py"
+        },
+        {
+          "after_sha256": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
+          "before_sha256": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
+          "path": "tools/test-render-recovery.py"
+        }
+      ],
+      "id": "recovery-lifecycle-races-recorded-20261006",
+      "pending_gaps": [],
+      "reason": "Reviewed recovery conversion from manual lifecycle CAS/release to the common scoped lease, candidate close before release, contended recovery diagnostic/LastError preservation and unchanged finite candidate/checkpoint/reset/worker guards. SELFTEST one-shot barriers pause actual startup/shutdown/recovery ownership before mutation with bounded fixture file rendezvous; export/import/macro bodies are absent in production. Independent original CPU operations, competing real entry points and full candidate/retired-ring hashes test refusal, retry and fresh-session publication rather than injected pixel state.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh3-case overlap matrix12 complete native frames in six sessions passes all competing entry points returning false, unchanged candidate bytes and retired files, successful owner/retry with distinct session identities and zero terminal consumer storage. Fresh10-case recovery matrix72 frames covers aliases/repeated cycles,16-session limit, candidate guards, cancellation/stall/invalid ACK and borrowed refusal;6-case lifecycle12 frames and6-case administrative checkpoint186 frames pass. Production/SELFTEST DLLs build; production exports exclude barrier/guard. Direct drawing collisions, deeper transition points, abandoned owners and original driver equivalence remain pending.",
+        "evidence": [
+          "NR.recovery-lifecycle-races.native-20261006",
+          "NR.recovery-lifecycle-races.recovery-20261006",
+          "NR.recovery-lifecycle-races.lifecycle-20261006",
+          "NR.recovery-lifecycle-races.checkpoint-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "5fa89284412d5bcf9e64d9056335573b0435bb256bfcd1f8c0d141e8da90266f",
+          "before_sha256": "f99a0390c06874c88ee7f6ff0f9ed2616da928250518147913a2866c323a74d4",
+          "id": "NR.bounded-copy-order"
+        },
+        {
+          "after_sha256": "71036f3972bd2af08ef32175e17529f36e3a80969938ea7eef0cd42df0edffa0",
+          "before_sha256": "919002137de17db8c95b4d7298ae242a70eefce24a9574ecf60010cdf094ef0b",
+          "id": "NR.command-backpressure"
+        },
+        {
+          "after_sha256": "9707bfd99f64e3877fbe6665ec3489d9ba3801d639efc29d681e493902d3af65",
+          "before_sha256": "5fa759860f0ca1525e013a4b86af69ff3749e5b26239e5cd23e82735d8b5b545",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "36c91213884755d9f14747880bbbdc9af1da2d7c21a959510ba2b743a4d012d5",
+          "before_sha256": "c123325b90c9fcd1ea4cfe72daaab7cb63f33358790f376cad7deda7680c6a3d",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "be6d8c1fb9fb99b9f3fb6a7bb1e1359a9ce27c357bb358fc3b04e6eb6c1045b6",
+          "before_sha256": "488690be18912652ed3503d35fa6c8acfe5cccd797259f0fc2575da8275ab928",
+          "id": "NR.command-idle-lifecycle"
+        },
+        {
+          "after_sha256": "494ca4f7d5e156420c8c651ad1920a6ad3cd3c218643b4e1101cc4b41dbc9c9b",
+          "before_sha256": "41ae60b7bcdc7844530a3c75576bc38f70039bcfca0b3d038649cb3cc625a358",
+          "id": "NR.command-orchestration"
+        },
+        {
+          "after_sha256": "a6facda99634379b0a8498a0d56ffd668081d585e124017896dd176a77b96b85",
+          "before_sha256": "b532815e00404de000b27e4af1bd3c3b0eeb3b3b52a61dd90377a92a1a4160c1",
+          "id": "NR.command-recovery"
+        },
+        {
+          "after_sha256": "5887b4b82cf1bb25824882d1bae90d563f69e3814c15583456c75793968da0a1",
+          "before_sha256": "d91fca39b3c3954044b3d996f8b68b32698ef760a4781ef6f8a98a06189f4eb5",
+          "id": "NR.command-ring-adapter"
+        },
+        {
+          "after_sha256": "931837d9330af825063601cf79111f11aa0d5e53f4346f2ed27f1118343c6aa9",
+          "before_sha256": "fe7077e7484b2ac698664f5de6a5824daad033646100760a47c962fb506c5a22",
+          "id": "NR.continuous-mutations"
+        },
+        {
+          "after_sha256": "913bb3cc8d93d757a41b74677e1976b0e79dfbc1e7dacf9cfdfa77680fc43f8d",
+          "before_sha256": "47013e5b9b28fc9aff8c34d920ea6686dfb874c88f3ca1be0a3168d5e73f5459",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "c936190c2590b5761deec0ff2fe6e8a91e3cf30c1e84cbd8baeebfaba6724474",
+          "before_sha256": "65af4d36e6c31b7ac0acc13ab76d11d19c4506f2cbb0648071367d2f20519b17",
+          "id": "NR.continuous-resource-lifetime"
+        },
+        {
+          "after_sha256": "5583d4142959d92be68774e49c150ab2ed71cba222fb407f5554ea14c1d03ddf",
+          "before_sha256": "1799faba08b95cbd979eda0c4203d236d8db5fda647d1bc4bb6903729acd6018",
+          "id": "NR.continuous-resource-working-set"
+        },
+        {
+          "after_sha256": "29345525f3c9c20e362cce796597ebb106a37aac7ede147cf5a74387093ee99d",
+          "before_sha256": "7990b7dd2c700d6787e00b089a0f315a115a21ffe4e7193820340bbf72bfe480",
+          "id": "NR.cpu-handoff-order"
+        },
+        {
+          "after_sha256": "fb3de547917769c9b9dc7a66799283e4bbedd03f2bb8c6c07ff586b8b90d47dc",
+          "before_sha256": "45f90f5c8239cff5afc1c9f720222dd1106335d2825a83dfac9a21634462be00",
+          "id": "NR.dc-flip-order"
+        },
+        {
+          "after_sha256": "ba5893171e38e221414f4764272b2c6931850221e3db5c63619a8afbad6690dc",
+          "before_sha256": "17632300ed7d424f5d7fce449162ba94715c1f63292bbfdf798bbe4326df85b3",
+          "id": "NR.draw-startup-order"
+        },
+        {
+          "after_sha256": "0822b64d10cde035d484cc7fc9d4629e80299608fb1b3b6adc0cfd86a806ff27",
+          "before_sha256": "49ed95bdc82866fb9e62b3b637d7f52146dd4acc3461185195bbd1bbb1d14873",
+          "id": "NR.lifecycle-races"
+        },
+        {
+          "after_sha256": "1a700041de647fd714ed9d58e786065c30db158c4e1e61ec654e37405a5d0d76",
+          "before_sha256": "7d2ea6f1fc3b97b47c31be3664ee8c567a45b0733f8002ec5fe456aa892537c0",
+          "id": "NR.lifetime-order"
+        },
+        {
+          "after_sha256": "0a03348a9b93bb3a9f870fde2bfc5e7a242da88d12a5af2ff84080975583307c",
+          "before_sha256": "00b71412ac7892f6fecf702b59bfc615ce3dd6f9fddaf34d42d6b121efd88c62",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "80ca706dd1123dc79d4479840b6074931dbbe59a4f794309b48b93c1e385072a",
+          "before_sha256": "8f1351158b54bff9e07fce8f5bd5395db4d1337980a69c53e2132ab171ac34b9",
+          "id": "NR.metadata-order"
+        },
+        {
+          "after_sha256": "3fe840ffb891ae14d3c7446f4ddcc20a9d85d3fd5c85e5e8b4ae4cd3157ab769",
+          "before_sha256": "9eb4eab4bddc237a1a5d566971d20dbb64af4ce1e1f3c27900699b10ad3fe44f",
+          "id": "NR.observed-metadata-idempotence"
+        },
+        {
+          "after_sha256": "5dee9e0755b29d1cd5c944c8b49c04c38b193690b1982488caa8cbbb220acd22",
+          "before_sha256": "5dee9e0755b29d1cd5c944c8b49c04c38b193690b1982488caa8cbbb220acd22",
+          "id": "NR.owned-session-unlock-packed"
+        },
+        {
+          "after_sha256": "39ecabad7c1c5b825fdbcc96a13f4ed407dc7c58c59de3f0fa22b31dcc052e83",
+          "before_sha256": "10208ebbf99bdad9fdca99f08b6cd1b01ec0612b9cf3c5dc44b1c1919fed49e9",
+          "id": "NR.palette-property-order"
+        },
+        {
+          "after_sha256": "a45105fadfaa606e7f3e6d72af800a8a0fe72f2753b5deda57645b969478a3a7",
+          "before_sha256": "67da38700d5fd32413c062b87b828c43473ee0c7f207bb9af5f8f987235af59a",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "e939e807d59ad34cca4380b749dfd50ce3dede94532078be9ed46422d6045ba9",
+          "before_sha256": "a86e16dd43ac8605c35897b4914e23b5e4684aecd8e95b0ed4d4c4edba2c4327",
+          "id": "RT.render"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "76a83e3bf2216d2e72d57a679f1c492fc1d88c7b318f03537bbc238bb7db85ef",
+          "before_sha256": "702f8ac0631b886d06e2d7d56e4b756f38ba24bba40bfde444029137ffbed1ed",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9fa97916204f506646cb6988020cfa7e677db91212cfb571e94d2d58c12d7af6",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-recovery-races-20261006.json"
+        },
+        {
+          "after_sha256": "1ff93fe4b3b4535da97f92a2a220cb8e5340e96bb852860553cbdd9a57c0c71a",
+          "before_sha256": "2ca47f06cb6fbf402ff1d9352b383180901b16300e39e708a0b20cc3f135f525",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "15a47998cfc3afc524acc804b25ca4ae4aab30a26aa7eaebf74af43640b7f1a3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-recovery-races-20261006.json"
+        },
+        {
+          "after_sha256": "d09029683cd38c3d7558215598ec95e6cd34c226947db4518c3ed64d194ecc3b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-recovery-races-20261006.md"
+        },
+        {
+          "after_sha256": "9e927b4b2419c0ee91193d59f297927c480881429b621f9bab69844f7632e908",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-recovery-races-checkpoint-20261006.json"
+        },
+        {
+          "after_sha256": "f327bf70b25b3f23a264ceed6a321a92c0a9642eaa3eec37c0172db900cf1924",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-recovery-races-lifecycle-20261006.json"
+        },
+        {
+          "after_sha256": "392344444df405967c916ddd82b13008f0f3bd49ae043396c14a09914b492413",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-recovery-races-native-20261006.json"
+        },
+        {
+          "after_sha256": "a694a0e81c6be46576b1368295f444c3616e77f1d5dbd54f1e280a10e9a51345",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-recovery-races-recovery-20261006.json"
+        },
+        {
+          "after_sha256": "c6c48864b1d5227bdd8a2868b25a14b165a582f601e32c05ab2fae652927bc1c",
+          "before_sha256": null,
+          "path": "research/runtime/opengl-recovery-races.md"
+        },
+        {
+          "after_sha256": "2696c60453e46425409f9257fbeb76fe81f2d02480eba56852e7aee3a1993166",
+          "before_sha256": "b2b5a6ff7555f81b08989b3d0b7956e62664fa3ef2c2952a0689a4201b0797ca",
+          "path": "runtime/render/bridge.c"
+        },
+        {
+          "after_sha256": "d37e421b26755a14012453148bfec8fe9109922f6e2a3452cab37a300d8219ce",
+          "before_sha256": "705ea201b6e2cb0213fb08693372a3efc0bb37c6497166911b9b1ac705c6bfc7",
+          "path": "runtime/render/command_lifecycle.h"
+        },
+        {
+          "after_sha256": "b0539a0fe1cbfb04ba2589390f22fc0304cc8fda33421ed944eb3afa3af997bb",
+          "before_sha256": "586a9253d5a32f7df12db82edfb5970a69cd0137cf3e1bd07746461360fa43b6",
+          "path": "runtime/render/command_recovery.h"
+        },
+        {
+          "after_sha256": "79292f7fec1f1f627ea555d2004be601d2366ef3bf1e557dd727fffb37a3f55d",
+          "before_sha256": "0b774d38564189b480bd102c082276551507898cb87191b1c5014e322e9b389a",
+          "path": "runtime/render/command_scheduler.h"
+        },
+        {
+          "after_sha256": "f8fa8b3cdb19d9ab038b2452de54159c41ed62bed45b49f7fe5f9b331b1edda1",
+          "before_sha256": null,
+          "path": "runtime/render/recovery_race_selftest.h"
+        },
+        {
+          "after_sha256": "64b3854cbb68696c762840b6d04e712720030a0741b2447cdcc6112bb5896986",
+          "before_sha256": "76fdaabb22b7ba6be2f0ed5b13f1ad373ef7d8a15ad9a95d911375f89db7e746",
+          "path": "runtime/render/selftest.c"
+        },
+        {
+          "after_sha256": "2370fbfd16718c2818e96be32ad155a551374d21b1050c7553e55fcb0e24cf6e",
+          "before_sha256": "3a884b83200da88f630c1d8919706572528d2458c30f90b8a729f7eeba12df2f",
+          "path": "tools/build-render-bridge.py"
+        },
+        {
+          "after_sha256": "9bf79ed4503944592802da08f265d0d77ca50b01435983e484cb4210c04f1817",
+          "before_sha256": "9bf79ed4503944592802da08f265d0d77ca50b01435983e484cb4210c04f1817",
+          "path": "tools/test-render-checkpoint.py"
+        },
+        {
+          "after_sha256": "5f7c5030e7da3f6c5c9910c0854172bc567f998047b03a0fb0e2f91e45c3fe43",
+          "before_sha256": "5f7c5030e7da3f6c5c9910c0854172bc567f998047b03a0fb0e2f91e45c3fe43",
+          "path": "tools/test-render-lifecycle-races.py"
+        },
+        {
+          "after_sha256": "b1faec1d5dd218d59eaaa21d86c0e1ad0225f9902babd98ae3fdf8e67b501ed7",
+          "before_sha256": null,
+          "path": "tools/test-render-recovery-races.py"
+        },
+        {
+          "after_sha256": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
+          "before_sha256": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
+          "path": "tools/test-render-recovery.py"
+        }
+      ],
+      "id": "recovery-lifecycle-races-shared-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:b23a988fbb3a2f745a476fa41f10ae7617f48917bfe64cf99977d50a95090bcf",
+        "stale_evidence:04121c382d5bd10fb669d5b611a258fabbbc4d705a64af44ab5b8db1775797c0",
+        "stale_evidence:04da89d9d90fa6854791d27c2fb6a884a992a53e4674771b9178dca82dd833a1",
+        "stale_evidence:07a192000b02a2ea378db71808f5d4aa2548af6398adc630197a574d763768e1",
+        "stale_evidence:0b556df86ac50d977252b3b395cbbd726aff0f6acb755fcf3c3b1b31a9883293",
+        "stale_evidence:13dead967634e7a0cc66bc2b4e8305a25a3bb5033a8b204928ce7042e9a02d0c",
+        "stale_evidence:1511647cf0cb2a66008075627e76ff3d0a75dea3229176319f8db8436788a1b1",
+        "stale_evidence:171c0eb935ec0f0c0b915f30e20127c2a1968c4ce2d7107c03ba8e4317b15612",
+        "stale_evidence:17467082b786e099e7bbefb92330b9b26209148b1a159b7bca6bfea59dbc0525",
+        "stale_evidence:1e30a69e95b3dc21286aceaaac04cd72e0faf46b35b473373b19eaec4859647e",
+        "stale_evidence:21f0821769ae6178a65839383f4cc9462ba0697a8a723aa19e3b5c5e5aee9702",
+        "stale_evidence:222ccc064ed9c970457e121c0115145bbed0e25954572a91b2761aebbc5a7b71",
+        "stale_evidence:26cf63ef918b6bb8539b2e45ef5b70b5213ed5a1128e3257da0c97829fdc87f6",
+        "stale_evidence:2e3c77290db62da45515c92a91f39a55f0c3d8af07078bee7c178f54b4f62d2d",
+        "stale_evidence:48aceef66c2297c2b84ada93d44e1b0d4c874183dc8bce7eb853ce8225dcafff",
+        "stale_evidence:4d2215e9d03d6a54e2b8ca4bb22236358723cc836caa4cbda3624f2396dbf016",
+        "stale_evidence:4e137fd108115f8b9b20833027a6771cdc469707aebbcb6c76e7b7e1d611dc89",
+        "stale_evidence:5384c45d423c5e6d287f3aeb63a3efd7b431b0d493362d610013abb70af4eb15",
+        "stale_evidence:545cf48090e56f8cf0a2e49498626fe8640bfbf384e693ff167d877d0719d537",
+        "stale_evidence:547bdcf018497c5078efe1fa8ce6aa719b90fb903a330c1e0a04d76400b3e277",
+        "stale_evidence:5d9f584343a0f04d397aacc0604d88a978bc58c61c7d3e9aaf27647c529c0394",
+        "stale_evidence:60368073d3a1f6820e0c6112f12f111611c91ea35e6bd3b692e09ab0d5dcdba4",
+        "stale_evidence:60a2200bcc18e1181ba0de922c54a43a8d65ba99bf388979614ee31c83981148",
+        "stale_evidence:63617699fb17e77a325299a9d43b4323c5680cc59167b4d0aac7937c41fa8d44",
+        "stale_evidence:6a5b8d7d618184fafdd58ac5ea02c29197774a19d64531fe0d739d5fd39d3eb1",
+        "stale_evidence:6bc41a9fd8cbb177b9ec8d619269af83c9653eb41b50ff578d1fccac75965ab9",
+        "stale_evidence:76dcf706f6d40248e9b05742dc04ebac75b0ea2f7111c10ec05cb1982e19211b",
+        "stale_evidence:7889f336417b6533a81c443a0f13d6d053fdcc50fbd5620591862b69b9fd0a1c",
+        "stale_evidence:7adb7d6da91236980fd76bbd125ba16998a89cc3b63218ff18ec6efa919b2123",
+        "stale_evidence:7cd0b858e677d6dc8cf9e1ec46ee032bee86af7f4441b36e386309e5d12e657e",
+        "stale_evidence:7f1a4d96abd61c96ec009655126c0d279a6a39bcaf7ef41a64f85e71fa22f740",
+        "stale_evidence:7fa9f68d78aba7a72b11f0e3d8eae2f7aaab51d03a7d36d7758ab438aa9196a5",
+        "stale_evidence:81932d6b712e2bae812bc7e476fa3e9b245400817cfe57f5f85cbd0ff24619b8",
+        "stale_evidence:883a7b2454fc68fa43aab5aca9721e4998af0d18968f408132f09c081913e249",
+        "stale_evidence:8a75b3163f7e8c2be9f8ecc0c3a87b391f3aff476b6e806bb5fbfd3ec602bf55",
+        "stale_evidence:8b10ac76c4953df22a8f307f252356c04bafedc61f470593010d61025a588039",
+        "stale_evidence:958526e88a65d7225717c67eee40f3ac14c7b6a6d77c3286b39e98348e35efb0",
+        "stale_evidence:991fb8cca147adb94ab7ebb8491dcb539366d63272dc46a1461c92f48fe07744",
+        "stale_evidence:a8755f43b11deacfc538fe30b7ba1458872396f91e1a189d2014702141b1e90c",
+        "stale_evidence:aa1eea8452c7328e430107703a722d86a80d79f1e31dd0a9a9bc8bd3d9c95606",
+        "stale_evidence:af1fdec49ae5a3dc6799646bfd9f7b98b105b8753424f905811746d2f1386774",
+        "stale_evidence:ba49c8e979ca90574c10c1c6e7ac78fb8b239b77fc96a71883bbdc0c93c6b806",
+        "stale_evidence:bd6d61e59930a0749924e14e3158cdd0d1184cf007447767e8526f62b73140e4",
+        "stale_evidence:be437cf05335e9b5d6a80ad2ce636616bed7ff5c5bbc43ff2e0a7a83a3d4c7f5",
+        "stale_evidence:bf6c3f038aa4f2c5f63cac2df7cf638137b35d09f855d60d2b3c906a96ce3088",
+        "stale_evidence:c0e1699cd4c6877078b4789720ba872a4c134e9ca69c1f635dd1e909d583da5f",
+        "stale_evidence:c24bba385be62121238140580055b16155353ff51d253fe48d6e077df0f4c490",
+        "stale_evidence:c8b8892bbef06c16f8c122237beb81a107830477e94cc3dc307b64f56800d625",
+        "stale_evidence:ce7c31f234088408cd3d152f5ef6a0a4d26a77367a4dfb78c65ba19420aaffe7",
+        "stale_evidence:d92e9c977dc6cfcefba0375404cacad38df47dbaf17e4132605b1acefabf0eb9",
+        "stale_evidence:d94d104988c08ffd6fc2fd5be67c51147e7f7135c66bca76380789e17c4f5977",
+        "stale_evidence:da587ff99eadd8488bbb729e893d2967d44ce9078cfe5d713f109bc465c7d42d",
+        "stale_evidence:dd1b7de849e4c0a5ab038b1d5383d20eb608d8ea39ece54f96d400e6a44b29b1",
+        "stale_evidence:e515c122f5f5a85e6d3d9538e630edf37c9a961b935804018b46994b08f2c096",
+        "stale_evidence:e74b09a7cb2471487487abc1f74fc30241acaf4dfe511bcdd81ff6707a464d7e",
+        "stale_evidence:e817f96c97d5afce79221c8ee78f95a379b9cc69d4a8ec84d9ff512da24349c0",
+        "stale_evidence:e9e3b6a6e71768a6b8f1cacbe023fde045292659299f2f13fa585e2d34864b4e",
+        "stale_evidence:edb2bc8ccb5d4693705451d0b0711e4e2d5a038bcd2bf951f646760134ea2787",
+        "stale_evidence:f129b9ef11da519f7b39afbc052864e2cf9d95ebaf360ad62118cfa643a063f2",
+        "stale_evidence:f371638cf46639c6c5086b5351b22fafd8ec0b56ad6f9a8b8122518528f7844c",
+        "stale_evidence:f5b4a7bcd12f6d196041bb6a44c679f2c5dad389e5578e0a5df34ab663fa9ee4",
+        "stale_evidence:f5e87ebf17cc6f02396aafedaf3072321f2d34cd6269fc1825aba7359cd67097"
+      ],
+      "reason": "Reviewed shared recovery/lifecycle/scheduler/bridge and SELFTEST/build links, explicit central scope/evidence additions, census/ledger/summary and exact committede7c56c2..0c80a96 parent/current receipts with preserved prior journal ordering. Separate Surface2 access-model commit changes no execution fingerprints tested here. Historical evidence hashes and unrelated contract statuses remain independent; shared edits do not blanket-promote prior validation.",
+      "validation": {
+        "status": "pending",
+        "reason": "Drawing/factory and borrowed interval collisions during direct recovery, repeated contention at deeper stages, simultaneous long or failed joins, abandoned callback owners, administrative worker shutdown/unloading, sustained original application/driver/full-frame comparison and default enablement remain pending. Existing evidence remains historical; new source-bound assertions apply to the explicit new overlap-policy scenarios.",
+        "evidence": []
+      }
     }
   ]
 }

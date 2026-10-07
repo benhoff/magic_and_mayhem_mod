@@ -14115,13 +14115,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous producer startup and orderly process-exit orchestration",
-      "scope": "Explicit startup readiness and guarded resolved PE32 main-image ExitProcess IAT admission for continuous mode; application callback closes producer admission, emits cleanup and drains/joins outside DllMain. Configured transport failures cannot become optional or report successful shutdown. Native synthetic integration only; original exit branch coverage, forced termination, dynamic unloading, OS scheduling guarantees and recovery excluded. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending.",
+      "scope": "Explicit startup readiness and guarded resolved PE32 main-image ExitProcess IAT admission for continuous mode; application callback closes producer admission, emits cleanup and drains/joins outside DllMain. Configured transport failures cannot become optional or report successful shutdown. Native synthetic integration only; original exit branch coverage, forced termination, dynamic unloading, OS scheduling guarantees and recovery excluded. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending. Recovery now shares scoped lifecycle cleanup. Actual startup/shutdown/recovery ownership barriers verify all competing entry points refuse before mutation, candidate rings remain untouched and retry publishes distinct fresh sessions. This covers one pre-mutation point per transition; drawing during direct recovery, deeper stage collisions, abandoned owners and original-driver lifecycle equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-orchestration.md",
         "research/runtime/opengl-draw-startup-order.md",
-        "research/runtime/opengl-lifecycle-races.md"
+        "research/runtime/opengl-lifecycle-races.md",
+        "research/runtime/opengl-recovery-races.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -14148,7 +14149,8 @@
         "NR.command-orchestration.gpu",
         "NR.command-orchestration.queue",
         "NR.draw-startup-order.native-20261006",
-        "NR.lifecycle-races.native-20261006"
+        "NR.lifecycle-races.native-20261006",
+        "NR.recovery-lifecycle-races.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14163,12 +14165,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Explicit recovery into a fresh continuous producer session",
-      "scope": "Explicit quiescent PE32 fresh-session recovery after shutdown/join with distinct v2 files and higher session IDs. Synchronize lifetime/metadata uncertainty, discard owned surface pixels and require fresh complete input; retain current verified application aliases, descriptors/properties and palette state independently of consumer lifetime. Reset wire IDs/session counters. Synthetic cross-interface continuation and existing guard regressions; bounded original-game observation exposes missing source baselines, so sustained game recovery and original equivalence remain pending.",
+      "scope": "Explicit quiescent PE32 fresh-session recovery after shutdown/join with distinct v2 files and higher session IDs. Synchronize lifetime/metadata uncertainty, discard owned surface pixels and require fresh complete input; retain current verified application aliases, descriptors/properties and palette state independently of consumer lifetime. Reset wire IDs/session counters. Synthetic cross-interface continuation and existing guard regressions; bounded original-game observation exposes missing source baselines, so sustained game recovery and original equivalence remain pending. Recovery now shares scoped lifecycle cleanup. Actual startup/shutdown/recovery ownership barriers verify all competing entry points refuse before mutation, candidate rings remain untouched and retry publishes distinct fresh sessions. This covers one pre-mutation point per transition; drawing during direct recovery, deeper stage collisions, abandoned owners and original-driver lifecycle equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-recovery.md",
-        "research/runtime/opengl-command-recovery-metadata.md"
+        "research/runtime/opengl-command-recovery-metadata.md",
+        "research/runtime/opengl-recovery-races.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -14203,7 +14206,8 @@
         "NR.command-recovery.metadata-host-20261006",
         "NR.command-recovery.metadata-queue-20261006",
         "NR.command-recovery.metadata-game-20261006",
-        "NR.command-host-recovery.auto-checkpoint-explicit-20261006"
+        "NR.command-host-recovery.auto-checkpoint-explicit-20261006",
+        "NR.recovery-lifecycle-races.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -15933,11 +15937,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Full startup/shutdown transition ownership and bounded callback quiescence",
-      "scope": "Existing lifecycle CAS spans startup readiness/worker/control startup and shutdown capture closure/drain/join/storage release, sharing recovery serialization. Contending transitions return false before tracked mutation. Ordered drawing shutdown waits up to existing50ms budget for active callback commit; timeout and same-thread reentry before completion refuse without changing stream state. Completed joined shutdown returns cached status before quiescence; callback admission closes before lease release/drain. Default-off callback policy retained; lifecycle serialization independent. Six independent PE32 worker/reentrant/completed schedules prove native frame continuity, original-only post-END drawing and blocked transition no-op with opt-in on/off; SELFTEST guard is absent in production. External recovery collisions, simultaneous long joins, tracker closure contention, abandoned/prolonged owners, administrative worker shutdown/unloading and original game/driver/full-frame equivalence remain pending.",
+      "scope": "Existing lifecycle CAS spans startup readiness/worker/control startup and shutdown capture closure/drain/join/storage release, sharing recovery serialization. Contending transitions return false before tracked mutation. Ordered drawing shutdown waits up to existing50ms budget for active callback commit; timeout and same-thread reentry before completion refuse without changing stream state. Completed joined shutdown returns cached status before quiescence; callback admission closes before lease release/drain. Default-off callback policy retained; lifecycle serialization independent. Six independent PE32 worker/reentrant/completed schedules prove native frame continuity, original-only post-END drawing and blocked transition no-op with opt-in on/off; SELFTEST guard is absent in production. External recovery collisions, simultaneous long joins, tracker closure contention, abandoned/prolonged owners, administrative worker shutdown/unloading and original game/driver/full-frame equivalence remain pending. Recovery now shares scoped lifecycle cleanup. Actual startup/shutdown/recovery ownership barriers verify all competing entry points refuse before mutation, candidate rings remain untouched and retry publishes distinct fresh sessions. This covers one pre-mutation point per transition; drawing during direct recovery, deeper stage collisions, abandoned owners and original-driver lifecycle equivalence remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-lifecycle-races.md"
+        "research/runtime/opengl-lifecycle-races.md",
+        "research/runtime/opengl-recovery-races.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -15959,7 +15964,8 @@
         "NR.lifecycle-races.native-20261006",
         "NR.lifecycle-races.lifecycle-20261006",
         "NR.lifecycle-races.startup-20261006",
-        "NR.lifecycle-races.checkpoint-20261006"
+        "NR.lifecycle-races.checkpoint-20261006",
+        "NR.recovery-lifecycle-races.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16036,6 +16042,46 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.recovery-lifecycle-races",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Scoped recovery lifecycle ownership and overlapping-transition refusal",
+      "scope": "Recovery uses existing common scoped lifecycle lease across admission/candidate claim/reset/publication/worker launch and cleanup, preserving quiet ownership and finite file/session guards. Contended recovery returns false before opening/claiming and records lifecycle-busy diagnostic with preserved LastError. Three actual held startup/shutdown/recovery schedules reject all three competing entry points before mutation, preserve active or retired old streams and both candidate bytes, then publish independent complete pixels in distinct fresh sessions. SELFTEST-only bounded one-shot pre-mutation barriers are absent in production. Existing repeated/alias/guard/session-budget and failure recovery, lifecycle and administrative checkpoint regressions freshly rerun. Drawing during direct recovery, prolonged/abandoned original owners, simultaneous long/failed joins, deeper stage/repeated collisions, administrative worker shutdown/unloading and original application/driver/full-frame equivalence remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-recovery-races.md"
+      ],
+      "implementation": [
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/bridge.c"
+      ],
+      "tests": [
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-recovery-races.py",
+        "tools/build-render-bridge.py",
+        "tools/test-render-recovery.py",
+        "tools/test-render-lifecycle-races.py",
+        "tools/test-render-checkpoint.py"
+      ],
+      "evidence": [
+        "NR.recovery-lifecycle-races.native-20261006",
+        "NR.recovery-lifecycle-races.recovery-20261006",
+        "NR.recovery-lifecycle-races.lifecycle-20261006",
+        "NR.recovery-lifecycle-races.checkpoint-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -29158,6 +29204,78 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.recovery-lifecycle-races.native-20261006",
+      "kind": "native_integration",
+      "scope": "Three actual held transition schedules, six fresh sessions/twelve complete frames; all competing startup/shutdown/recovery return false, candidates and frozen old rings remain unchanged, retry succeeds.",
+      "record": "research/runtime/opengl-recovery-races-native-20261006.json",
+      "sha256": "392344444df405967c916ddd82b13008f0f3bd49ae043396c14a09914b492413",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 12
+        }
+      ]
+    },
+    {
+      "id": "NR.recovery-lifecycle-races.recovery-20261006",
+      "kind": "native_integration",
+      "scope": "Ten same-process quiescent fresh recovery cases: alias/repeated sessions,16-session budget, candidate guards and cancellation/FULL/invalid acknowledgement/borrowed refusal, immutable terminal storage.",
+      "record": "research/runtime/opengl-recovery-races-recovery-20261006.json",
+      "sha256": "a694a0e81c6be46576b1368295f444c3616e77f1d5dbd54f1e280a10e9a51345",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 72
+        }
+      ]
+    },
+    {
+      "id": "NR.recovery-lifecycle-races.lifecycle-20261006",
+      "kind": "native_integration",
+      "scope": "Six existing full-transition contention, callback quiescence/timeout/reentry and post-END cached completion cases.",
+      "record": "research/runtime/opengl-recovery-races-lifecycle-20261006.json",
+      "sha256": "f327bf70b25b3f23a264ceed6a321a92c0a9642eaa3eec37c0172db900cf1924",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 12
+        }
+      ]
+    },
+    {
+      "id": "NR.recovery-lifecycle-races.checkpoint-20261006",
+      "kind": "native_integration",
+      "scope": "Six administrative late complete/indexed/recreated checkpoint and incomplete/active Lock/DC refusal regressions.",
+      "record": "research/runtime/opengl-recovery-races-checkpoint-20261006.json",
+      "sha256": "9e927b4b2419c0ee91193d59f297927c480881429b621f9bab69844f7632e908",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 186
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -33870,6 +33988,29 @@
         "tests/render-surface-access-test.cpp",
         "tools/check-native-surface-access.py"
       ]
+    },
+    {
+      "id": "NR.recovery-lifecycle-races.native",
+      "level": "preview",
+      "scope": "Actual held startup/shutdown/recovery entry points reject competitors without mutating or claiming candidates; subsequent complete independent pixels in distinct sessions. Quiescent recovery and lifecycle/checkpoint regressions remain separate from direct drawing collision and original driver equivalence.",
+      "behaviors": [
+        "NR.recovery-lifecycle-races",
+        "NR.command-recovery",
+        "NR.lifecycle-races"
+      ],
+      "evidence": [
+        "NR.recovery-lifecycle-races.native-20261006",
+        "NR.recovery-lifecycle-races.recovery-20261006",
+        "NR.recovery-lifecycle-races.lifecycle-20261006",
+        "NR.recovery-lifecycle-races.checkpoint-20261006"
+      ],
+      "tests": [
+        "tools/test-render-recovery-races.py",
+        "runtime/render/recovery_race_selftest.h",
+        "tools/test-render-recovery.py",
+        "tools/test-render-lifecycle-races.py",
+        "tools/test-render-checkpoint.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -34117,7 +34258,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-surface-access-20261006.json",
-    "sha256": "f2812d3ad20be42a22471ee3eb49a957ef413f8ae3fcbe5037c4b69d57267e6d"
+    "path": "research/runtime/coverage/source-index-recovery-races-20261006.json",
+    "sha256": "15a47998cfc3afc524acc804b25ca4ae4aab30a26aa7eaebf74af43640b7f1a3"
   }
 }
