@@ -391,7 +391,13 @@ def audit(root, register):
             require(sha(index_file) == register['code_index']['sha256'], 'Source index hash mismatch')
             catalog = json.loads(index_file.read_text())
             require(catalog['schema'] == 1, 'Unsupported source index schema')
-            require(catalog['roots'] == list(source_tool.SOURCE_ROOTS), 'Source index roots differ from census scope')
+            # Retained Git bases predate the host adapter root. Accept their
+            # exact declaration; current_paths still includes new compat code,
+            # so an old census cannot hide adapter additions from the gate.
+            legacy_roots = (catalog['roots'] == [name for name in source_tool.SOURCE_ROOTS if name != 'compat']
+                            and not any(Path(row['path']).parts[0] == 'compat' for row in catalog['files']))
+            require(catalog['roots'] == list(source_tool.SOURCE_ROOTS) or legacy_roots,
+                    'Source index roots differ from census scope')
             # Retained Git bases predate the web-source extension. Accept that
             # exact older declaration only for catalogs without web rows. New
             # web files still enter current_paths and fail the gate as drift;

@@ -61,12 +61,13 @@ uniform ivec2 sourceOrigin;
 uniform ivec2 destinationOrigin;
 uniform bool hasKey;
 uniform uint sourceKey;
+uniform uint keyMask;
 layout(location=0) out uint nativePixel;
 void main(){
     ivec2 at=ivec2(gl_FragCoord.xy)-destinationOrigin+sourceOrigin;
     if(hasMask && texelFetch(sourceMask,at,0).r==0u)discard;
     uint pixel=texelFetch(sourcePixels,at,0).r;
-    if(hasKey && pixel==sourceKey)discard;
+    if(hasKey && (pixel&keyMask)==sourceKey)discard;
     nativePixel=pixel;
 })";
 }
@@ -181,7 +182,7 @@ struct GlBlitter::Impl {
     }
     // Both samplers refer to storage distinct from the attached destination.
     void copyTexture(GLuint sourceTexture,GLuint maskTexture,Surface& dst,Rect r,int x,int y,
-                     std::optional<std::uint32_t> key){
+                     std::optional<std::uint32_t> key,std::uint32_t keyMask=UINT32_MAX){
         attach(dst.native,dst.width,dst.height);
         gl.glEnable(GL_SCISSOR_TEST);gl.glScissor(x,y,r.right-r.left,r.bottom-r.top);
         gl.glActiveTexture(GL_TEXTURE0);gl.glBindTexture(GL_TEXTURE_2D,sourceTexture);
@@ -192,6 +193,7 @@ struct GlBlitter::Impl {
         gl.glUniform1i(program->uniformLocation("hasMask"),maskTexture!=0);
         gl.glUniform2i(program->uniformLocation("sourceOrigin"),r.left,r.top);gl.glUniform2i(program->uniformLocation("destinationOrigin"),x,y);
         gl.glUniform1i(program->uniformLocation("hasKey"),key.has_value());gl.glUniform1ui(program->uniformLocation("sourceKey"),key.value_or(0));
+        gl.glUniform1ui(program->uniformLocation("keyMask"),keyMask);
         gl.glBindVertexArray(vao);gl.glDrawArrays(GL_TRIANGLES,0,3);gl.glBindVertexArray(0);program->release();gl.glDisable(GL_SCISSOR_TEST);
         check();++counters.copies;
     }
@@ -210,7 +212,7 @@ struct GlBlitter::Impl {
     }
     // Measured keyed overlap reads its own preceding writes in row-major order.
     // A separate one-pixel texture avoids sampling the attached framebuffer.
-    void copySharedKeyed(Surface& dst,const SurfaceCopyPiece& piece,std::uint32_t key){
+    void copySharedKeyed(Surface& dst,const SurfaceCopyPiece& piece,std::uint32_t key,std::uint32_t keyMask){
         GLuint pixel=0;
         try {
             gl.glActiveTexture(GL_TEXTURE0);
@@ -221,7 +223,7 @@ struct GlBlitter::Impl {
                     gl.glBindTexture(GL_TEXTURE_2D,pixel);
                     gl.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,x,y,1,1);check();
                     copyTexture(pixel,0,dst,{0,0,1,1},piece.x+x-piece.source.left,
-                                piece.y+y-piece.source.top,key);
+                                piece.y+y-piece.source.top,key,keyMask);
                 }
             gl.glDeleteTextures(1,&pixel);pixel=0;check();
         }catch(...){gl.glDeleteTextures(1,&pixel);throw;}
@@ -353,7 +355,7 @@ void GlBlitter::reloadDib(SurfaceId id,const DibInput& dib,const std::optional<s
     }
 }
 void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,std::optional<std::uint32_t> key,
-                     std::optional<SurfaceId> mask){
+                     std::optional<SurfaceId> mask,std::uint32_t keyMask){
     auto& p=*impl_;p.thread();auto& src=p.get(source);auto& dst=p.get(destination);
     if(source==destination)throw std::runtime_error("Self-copy is unsupported");
     if(src.format.bits!=dst.format.bits || src.format.masks!=dst.format.masks)throw std::runtime_error("Copy requires identical native formats");
@@ -369,7 +371,7 @@ void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,s
             throw std::runtime_error("Copy mask must be an indexed source-sized surface distinct from destination");
     }
     Current current(p.context,&p.surface);
-    p.copyTexture(src.native,mask?p.get(*mask).native:0,dst,r,x,y,key);
+    p.copyTexture(src.native,mask?p.get(*mask).native:0,dst,r,x,y,key,keyMask);
     dst.validity.define({x,y,x+r.right-r.left,y+r.bottom-r.top});
 }
 void GlBlitter::invalidateContents(SurfaceId id){
@@ -382,12 +384,13 @@ void GlBlitter::setClipper(SurfaceId id,const ClipperState& clipper){
 SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest& request,
                                        std::optional<std::uint32_t> nativeKey){
     auto& p=*impl_;p.thread();const auto& s=p.get(source);auto& d=p.get(destination);
-    const std::array<std::uint32_t,3> rgb565{0xf800,0x7e0,0x1f};
     if(source==destination && request.flags!=0 && request.flags!=(request.api==SurfaceCopyApi::BltFast?0x10u:0x01000000u))
         throw std::runtime_error("Self-copy requires opaque flags");
-    if(s.format.bits!=16 || d.format.bits!=16 || s.format.masks!=rgb565 || d.format.masks!=rgb565)
-        throw std::runtime_error("Surface2 copy requires RGB565 surfaces");
-    if(nativeKey && *nativeKey>0xffff)throw std::runtime_error("RGB565 key exceeds its format");
+    if(s.format.bits!=d.format.bits || s.format.masks!=d.format.masks)
+        throw std::runtime_error("Surface2 copy requires identical native formats");
+    if(nativeKey && s.format.bits<32 && *nativeKey>((std::uint32_t{1}<<s.format.bits)-1))
+        throw std::runtime_error("Source key exceeds native storage width");
+    const auto keyMask=s.format.bits==8?255u:s.format.masks[0]|s.format.masks[1]|s.format.masks[2];
     const auto plan=planSurfaceCopy(s.width,s.height,d.width,d.height,d.clipper,request);
     if(source==destination){
         if(nativeKey){
@@ -402,11 +405,11 @@ SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,
             d.validity.require(piece.source);
             if(nativeKey){
                 d.validity.require({piece.x,piece.y,piece.x+piece.source.right-piece.source.left,piece.y+piece.source.bottom-piece.source.top});
-                p.copySharedKeyed(d,piece,*nativeKey);
+                p.copySharedKeyed(d,piece,*nativeKey,keyMask);
             }else p.copyShared(d,piece);
             d.validity.define({piece.x,piece.y,piece.x+piece.source.right-piece.source.left,piece.y+piece.source.bottom-piece.source.top});
         }
-    }else for(const auto& piece:plan.pieces)copy(source,destination,piece.source,piece.x,piece.y,nativeKey);
+    }else for(const auto& piece:plan.pieces)copy(source,destination,piece.source,piece.x,piece.y,nativeKey,std::nullopt,keyMask);
     return {plan.hresult,unsigned(plan.pieces.size())};
 }
 void GlBlitter::swapContents(SurfaceId first,SurfaceId second){

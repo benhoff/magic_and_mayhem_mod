@@ -146,3 +146,7 @@ busy-after-swap cases, independent driver/original trace comparisons, and native
 policies. This supersedes chunk 1's provisional ownership/recovery gap within the
 listed offline scopes. Formats/pitch, uncaptured interleavings, actual asset and
 physical original lost-draw composition, and live/wire replacement remain pending.
+
+## Formats and row pitch — 2026-10-06
+
+[Chunk 3](native-surface-formats-pitch.md) adds indexed8, RGB555, RGB565, RGB24 and RGB32 same-format fills/keys/copies with explicit signed owned byte rows. Independent standalone capture supplies 1,400 admitted draws and 2,100 actual rejected layouts; native replay also compares 2,800 signed-row variants. Active-mask key/fill rules and key descriptor output are measured. Imported negative pitches are native policy, not driver acceptance. Existing operation/ownership/retry comparisons freshly pass; required original format reachability and final milestone acceptance remain pending. Earlier sections describe historical scope.

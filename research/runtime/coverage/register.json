@@ -14734,7 +14734,8 @@
         "research/runtime/original-surface-keys.md",
         "research/runtime/native-surface-operation-matrix.json",
         "research/runtime/native-surface-fixtures.md",
-        "research/runtime/native-surface-backend.md"
+        "research/runtime/native-surface-backend.md",
+        "research/runtime/native-surface-formats-pitch.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -14753,7 +14754,11 @@
         "tests/fixtures/surfaces/original-rgb565-keyed-corpus.json",
         "tests/fixtures/surfaces/original-rgb565-keyed.json.gz",
         "tests/render-surface-backend-test.cpp",
-        "tools/check-native-surface-backend.py"
+        "tools/check-native-surface-backend.py",
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
       ],
       "evidence": [
         "ORIGINAL.surface-copy.rgb565-keyed.capture-20261006",
@@ -14763,7 +14768,12 @@
         "ORIGINAL.surface-backend.owned.replay-base-20261006",
         "NR.surface-backend.owned.final-20261006",
         "ORIGINAL.surface-backend.owned.replay-final-20261006",
-        "NR.surface-backend.owned.regressions-20261006"
+        "NR.surface-backend.owned.regressions-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006",
+        "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14796,7 +14806,8 @@
         "research/runtime/original-surface-fills.md",
         "research/runtime/native-surface-operation-matrix.json",
         "research/runtime/native-surface-fixtures.md",
-        "research/runtime/native-surface-backend.md"
+        "research/runtime/native-surface-backend.md",
+        "research/runtime/native-surface-formats-pitch.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -14818,7 +14829,11 @@
         "tests/fixtures/surfaces/original-rgb565-fills-corpus.json",
         "tests/fixtures/surfaces/original-rgb565-fills.json.gz",
         "tests/render-surface-backend-test.cpp",
-        "tools/check-native-surface-backend.py"
+        "tools/check-native-surface-backend.py",
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
       ],
       "evidence": [
         "ORIGINAL.surface-fill.rgb565.capture-20261006",
@@ -14827,7 +14842,12 @@
         "ORIGINAL.surface-backend.owned.replay-base-20261006",
         "NR.surface-backend.owned.final-20261006",
         "ORIGINAL.surface-backend.owned.replay-final-20261006",
-        "NR.surface-backend.owned.regressions-20261006"
+        "NR.surface-backend.owned.regressions-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006",
+        "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14905,7 +14925,8 @@
         "research/runtime/original-surface-overlap.md",
         "research/runtime/native-surface-operation-matrix.json",
         "research/formats/render-surface-commands-v3.md",
-        "research/runtime/native-surface-backend.md"
+        "research/runtime/native-surface-backend.md",
+        "research/runtime/native-surface-formats-pitch.md"
       ],
       "implementation": [
         "tools/check-original-surface-overlap.py",
@@ -14925,7 +14946,11 @@
         "tests/render-surface-copy-fixtures.cpp",
         "tools/check-native-surface-overlap.py",
         "tests/render-surface-backend-test.cpp",
-        "tools/check-native-surface-backend.py"
+        "tools/check-native-surface-backend.py",
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
       ],
       "evidence": [
         "ORIGINAL.surface-copy.rgb565-overlap.capture-20261006",
@@ -14936,7 +14961,12 @@
         "ORIGINAL.surface-backend.owned.replay-base-20261006",
         "NR.surface-backend.owned.final-20261006",
         "ORIGINAL.surface-backend.owned.replay-final-20261006",
-        "NR.surface-backend.owned.regressions-20261006"
+        "NR.surface-backend.owned.regressions-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006",
+        "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14986,7 +15016,8 @@
         "research/runtime/surface-driver-restore.md",
         "research/runtime/original-surface-sentinel.md",
         "research/runtime/native-cursor-reload.md",
-        "research/runtime/native-surface-ownership-recovery.md"
+        "research/runtime/native-surface-ownership-recovery.md",
+        "research/runtime/native-surface-formats-pitch.md"
       ],
       "implementation": [
         "tools/check-original-surface-retry.py",
@@ -15008,7 +15039,11 @@
         "tests/render-surface-ownership-test.cpp",
         "tools/check-native-surface-ownership.py",
         "tests/test-surface-ownership.py",
-        "tools/check-surface-ownership.py"
+        "tools/check-surface-ownership.py",
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
       ],
       "evidence": [
         "ORIGINAL.surface-copy.restore-retry.capture-20261006",
@@ -15022,7 +15057,12 @@
         "ORIGINAL.surface-copy.restore-retry.cursor-regression-20261006",
         "NR.surface-backend.ownership-recovery.final-20261006",
         "NR.surface-backend.ownership-recovery.regressions-20261006",
-        "ORIGINAL.surface-retry.ownership-replay-20261006"
+        "ORIGINAL.surface-retry.ownership-replay-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006",
+        "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -16121,14 +16161,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owned Surface2-style lock and DC admission state",
-      "scope": "Bounded noncopyable single-thread owned state for supported full-surface lock and DC transitions with captured HRESULT/output mutation semantics for the recorded schedules; unstable busy-Lock caps word excluded. Native storage/DC tokens and depth budget are intentional policies.96 input sequences replay against independent driver outputs; no actual COM HDC/alias lifetime, attached raster adapter/global drawing admission, wire, loss, Windows or live replacement. New owned backend associates all96access sequences/1182transitions with actual GL storage/CPU snapshots;12poisoned cases require whole-owner cleanup. No actual HDC/COM pointer or live replacement. Combined backend no longer conservatively refuses leased COLORFILL;12CPU-held destination fills compare active snapshot bytes.180standalone driver draws establish borrowed busy/clip branches, preserving lease state; negative debt raster/interleaving remain outside scope. Ownership chunk separates physical storage DC/CPU lease from logical cachedDC identity across11sampled primary flips; wrong-surface returns preserve state and DC flipback returns original handle.96old schedules/1182transitions freshly match. Mixed leases, cached-DC Lock/reacquisition after flip and negative-debt raster remain pending.",
+      "scope": "Bounded noncopyable single-thread owned state for supported full-surface lock and DC transitions with captured HRESULT/output mutation semantics for the recorded schedules; unstable busy-Lock caps word excluded. Native storage/DC tokens and depth budget are intentional policies.96 input sequences replay against independent driver outputs; no actual COM HDC/alias lifetime, attached raster adapter/global drawing admission, wire, loss, Windows or live replacement. New owned backend associates all96access sequences/1182transitions with actual GL storage/CPU snapshots;12poisoned cases require whole-owner cleanup. No actual HDC/COM pointer or live replacement. Combined backend no longer conservatively refuses leased COLORFILL;12CPU-held destination fills compare active snapshot bytes.180standalone driver draws establish borrowed busy/clip branches, preserving lease state; negative debt raster/interleaving remain outside scope. Ownership chunk separates physical storage DC/CPU lease from logical cachedDC identity across11sampled primary flips; wrong-surface returns preserve state and DC flipback returns original handle.96old schedules/1182transitions freshly match. Mixed leases, cached-DC Lock/reacquisition after flip and negative-debt raster remain pending. Formats chunk supports canonicalRGB555/RGB24mask descriptors and signed imported row pitch; key flags/words track object-local key state and pitch follows physical storage across native two-buffer swaps. Default eight-byte row rounding matches sampled width7 and prior width8; native policy beyond samples.1400driver descriptors and2800native signed variants compare; CPU snapshots/tokens remain pointer-free. Real driver negative layouts rejected.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/surface-access.md",
         "research/runtime/native-surface-operation-matrix.json",
         "research/runtime/native-surface-backend.md",
-        "research/runtime/native-surface-ownership-recovery.md"
+        "research/runtime/native-surface-ownership-recovery.md",
+        "research/runtime/native-surface-formats-pitch.md"
       ],
       "implementation": [
         "renderer/surface_access.hpp"
@@ -16142,7 +16183,11 @@
         "tests/render-surface-ownership-test.cpp",
         "tools/check-native-surface-ownership.py",
         "tests/test-surface-ownership.py",
-        "tools/check-surface-ownership.py"
+        "tools/check-surface-ownership.py",
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
       ],
       "evidence": [
         "NR.surface-access.native-20261006",
@@ -16154,7 +16199,11 @@
         "NR.surface-backend.ownership-recovery.final-20261006",
         "NR.surface-backend.ownership-recovery.regressions-20261006",
         "NR.surface-backend.ownership-recovery.operations-20261006",
-        "ORIGINAL.surface-backend.ownership-recovery.operations-20261006"
+        "ORIGINAL.surface-backend.ownership-recovery.operations-20261006",
+        "NR.surface-backend.formats-pitch.replay-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16212,13 +16261,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Integrated owned surface operations and independent offline replay",
-      "scope": "GUI-thread owned canonical8/16/32GL storage, CPU/DC leases, binding/default palette snapshots, clipping and RGB565 fill/exact-key/overlap. Fresh5114results/538272pixels/258048palette entries/8664stable descriptors; mapped fill/empty-Blt success and4096texel ordered keyed-self bound. Chunk2 adds retained canonical aliases/shared palette identities/two-buffer attachments and actual storage/validity/CPU-lease swaps with cachedDC kept object-local;11sampled driver flips include busy after swap. Explicit loss/Restore retains metadata but unknown pixels until reload/overwrite; recovered retry/globalcursor BMP-DC callback composition. Native counts/tokens/default palette/budgets/lost-wrapper admission are intentional policies. COM pointers/realHDC/flagged palettes/new-format draws/pitch/long chains/mixed flipped leases/error precedence/negative-debt raster/physical original lost-draw/asset internals/live/wire/Windows remain pending.",
+      "scope": "GUI-thread owned indexed8/RGB555/RGB565/RGB24/RGB32 same-format storage/fill/key/copy/clip/self-overlap, CPU/DC leases and explicit palette/default contexts. Chunk3 compares1400independent standalone driver draws plus2800signed-row imports,667800native words/descriptors/presentation values and2150400packedbytes;27259checks/60refusals. Measured pixel-side active-mask key comparison retains installed high key bits and whole copied words; fill clears unusedbits and Lock retains key flags/range. Owned signedbytebuffer copies/padding/guards and eight-byte-rounded default pitch are native policies, not borrowed driver pointers; negative driver binding and sampled RGB24 binding rejected. Previous5114drawresults/538272pixels/258048entries/8664descriptors and ownership/retry scopes freshly compare. Canonical aliases/shared palettes/two-buffer storage+leases and unknown Restore pixels remain bounded. Required original caller/format census, arbitrary masks/conversion/flagged palettes/realCOM-HDC/new RGB555DC/longchains/mixed flipped leases/error combinations/physical original loss/asset internals/live/wire/Windows remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-surface-backend.md",
         "research/runtime/native-surface-operation-matrix.json",
-        "research/runtime/native-surface-ownership-recovery.md"
+        "research/runtime/native-surface-ownership-recovery.md",
+        "research/runtime/native-surface-formats-pitch.md"
       ],
       "implementation": [
         "renderer/surface_backend.hpp",
@@ -16233,7 +16283,11 @@
         "tests/render-surface-ownership-test.cpp",
         "tools/check-native-surface-ownership.py",
         "tests/test-surface-ownership.py",
-        "tools/check-surface-ownership.py"
+        "tools/check-surface-ownership.py",
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
       ],
       "evidence": [
         "NR.surface-backend.owned.base-20261006",
@@ -16249,7 +16303,11 @@
         "NR.surface-backend.ownership-recovery.final-20261006",
         "NR.surface-backend.ownership-recovery.regressions-20261006",
         "NR.surface-backend.ownership-recovery.operations-20261006",
-        "ORIGINAL.surface-backend.ownership-recovery.operations-20261006"
+        "ORIGINAL.surface-backend.ownership-recovery.operations-20261006",
+        "NR.surface-backend.formats-pitch.replay-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16323,7 +16381,8 @@
       ],
       "documents": [
         "research/runtime/native-surface-backend.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/native-surface-formats-pitch.md"
       ],
       "implementation": [
         "tools/check-original-surface-keyed-overlap.py",
@@ -16338,14 +16397,23 @@
         "tests/fixtures/surfaces/original-rgb565-keyed-overlap.json.gz",
         "tests/fixtures/surfaces/original-rgb565-keyed-overlap-corpus.json",
         "tests/render-surface-backend-test.cpp",
-        "tools/check-native-surface-backend.py"
+        "tools/check-native-surface-backend.py",
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
       ],
       "evidence": [
         "ORIGINAL.surface-copy.rgb565-keyed-overlap.capture-20261006",
         "ORIGINAL.surface-copy.rgb565-keyed-overlap.cpu-20261006",
         "NR.surface-backend.owned.final-20261006",
         "ORIGINAL.surface-backend.owned.replay-final-20261006",
-        "NR.surface-backend.owned.regressions-20261006"
+        "NR.surface-backend.owned.regressions-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006",
+        "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -16381,7 +16449,8 @@
       ],
       "documents": [
         "research/runtime/native-surface-backend.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/native-surface-formats-pitch.md"
       ],
       "implementation": [
         "tools/check-surface-borrowed-draw.py",
@@ -16393,13 +16462,22 @@
         "tests/test-surface-borrowed-draw.py",
         "tests/fixtures/surfaces/surface-borrowed-draw.json.gz",
         "tests/render-surface-backend-test.cpp",
-        "tools/check-native-surface-backend.py"
+        "tools/check-native-surface-backend.py",
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
       ],
       "evidence": [
         "DRIVER.surface-borrowed-draw.capture-20261006",
         "DRIVER.surface-borrowed-draw.cpu-20261006",
         "NR.surface-backend.owned.final-20261006",
-        "NR.surface-backend.owned.regressions-20261006"
+        "NR.surface-backend.owned.regressions-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006",
+        "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -16476,13 +16554,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owned shared identities, two-buffer storage leases and explicit recovery",
-      "scope": "Canonical aliases/shared palette binding ownership, bounded caller budgets, attachment retention/reacquisition/retirement and two-buffer swaps with independent validity/CPU/DC lease state.11driver flip results/2128ownershipwords;6656entries/864knownindices/66loss-palette statuses.16controlled recovered-wrapper callbacks/432inputpixels and global supplied indexedBMP DC reload. Native reference counts/default context/lost-wrapper admission and conservative guards are policies; no original physical lost-draw, realCOM/HDC, flags/longchains/uncaptured interleavings/asset internals/live/wire/Windows equivalence.",
+      "scope": "Canonical aliases/shared palette binding ownership, bounded caller budgets, attachment retention/reacquisition/retirement and two-buffer swaps with independent validity/CPU/DC lease state.11driver flip results/2128ownershipwords;6656entries/864knownindices/66loss-palette statuses.16controlled recovered-wrapper callbacks/432inputpixels and global supplied indexedBMP DC reload. Native reference counts/default context/lost-wrapper admission and conservative guards are policies; no original physical lost-draw, realCOM/HDC, flags/longchains/uncaptured interleavings/asset internals/live/wire/Windows equivalence. Formats chunk independently preserves existing11driver flips and recovered4480retrytraces; native signed row pitch follows storage with distinct format masks checked on attachment. No original newformat physical recovery or RGB555DC conversion claim.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-surface-ownership-recovery.md",
         "research/runtime/native-surface-operation-matrix.json",
-        "research/runtime/native-surface-backend.md"
+        "research/runtime/native-surface-backend.md",
+        "research/runtime/native-surface-formats-pitch.md"
       ],
       "implementation": [
         "renderer/surface_backend.hpp",
@@ -16495,7 +16574,11 @@
         "tests/render-surface-ownership-test.cpp",
         "tools/check-native-surface-ownership.py",
         "tests/test-surface-ownership.py",
-        "tools/check-surface-ownership.py"
+        "tools/check-surface-ownership.py",
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
       ],
       "evidence": [
         "NR.surface-backend.ownership-recovery.final-20261006",
@@ -16503,7 +16586,11 @@
         "NR.surface-backend.ownership-recovery.operations-20261006",
         "DRIVER.surface-ownership.capture-final-20261006",
         "DRIVER.surface-ownership.offline-20261006",
-        "NR.surface-backend.ownership-recovery.initial-20261006"
+        "NR.surface-backend.ownership-recovery.initial-20261006",
+        "NR.surface-backend.formats-pitch.replay-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16612,6 +16699,113 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.surface-backend.formats-pitch",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Canonical native format draws and owned signed byte-row storage",
+      "scope": "Five canonical indexed8/RGB555/RGB565/RGB24/RGB32 formats with same-format masks, full-width keys, active-mask fills/keycomparison and retainedunusedcopybits.1400independentdriverdraws plus2800tight/padded signedrow imports compare667800nativewords/descriptors/presentation values and2150400packedbytes;60refusals/CPU lease writes/loss reload/alias cleanup/unequalpitch flips checked. Own byte buffers never borrow host pointers; dimensions2048/storage64MiB/abs pitch32768, keyoverflow/malformedmasks/rows/truncation/INT_MIN/SIZE_MAX refuse atomically. Presentation/eight-byte-rounded allocation/signed layouts are native policies. No required original format census, arbitrary masks, newDC/crossformat conversion, live/wire, Windows or driver negative acceptance.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-surface-formats-pitch.md",
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/native-surface-backend.md"
+      ],
+      "implementation": [
+        "renderer/pixel_rows.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_access.hpp",
+        "renderer/blit.hpp",
+        "renderer/blit.cpp",
+        "renderer/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
+      ],
+      "evidence": [
+        "NR.surface-backend.formats-pitch.replay-20261006",
+        "DRIVER.surface-formats.capture-final-20261006",
+        "DRIVER.surface-formats.offline-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-driver.formats-pitch",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Standalone five-format Surface2 draws, masks and memory-binding outcomes",
+      "scope": "Standalone Wine DirectDraw2/Surface2 7x5 indexed8/RGB555/RGB565/RGB24/RGB32 five-layout/sevenoperation/fiveclip/fourkeystate matrix:3500cases,1400draws,2100rejectedsetups. Keyed pixel masks versus retained high keybits, cleared fill bits, complete native copybits/indexkeys, keydescriptor outputs, overlap/errorprecedence, admittedpositiveSurface3user-memory guards; negative/RGB24/tight exceptions explicitly retained. Existing game captures establish RGB565; setup8/non8 and WORD-scaledcreation/pitchLock instructions reviewed statically only. External original-address links identify caller boundaries, no original execution/new requiredformat reachability/Windows/live claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810608,
+          "scope": "Static fullscreen setup depth forwarding and indexed8/non8 branch only; no new original setup execution or caller census."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811600,
+          "scope": "Static supplied descriptor DirectDraw2 CreateSurface/Surface2 QI boundary and selected WORD-scaled bookkeeping only; standalone probe never executes this function or asserts game Surface3 binding."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813856,
+          "scope": "Static Surface2 Lock returned pitch propagation boundary only; standalone matrix does not execute the original Lock/retry wrapper."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-surface-formats-pitch.md",
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [
+        "tools/check-surface-formats.py",
+        "renderer/surface_backend.cpp",
+        "renderer/blit.cpp",
+        "renderer/surface_access.hpp"
+      ],
+      "tests": [
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py",
+        "tests/surface-formats-reference.c",
+        "tools/capture-surface-formats.py",
+        "tests/fixtures/surfaces/surface-formats-final.json.gz",
+        "tests/fixtures/surfaces/surface-formats.json.gz",
+        "tests/fixtures/surfaces/surface-formats-dd2.json.gz"
+      ],
+      "evidence": [
+        "DRIVER.surface-formats.capture-final-20261006",
+        "DRIVER.surface-formats.offline-20261006",
+        "NR.surface-backend.formats-pitch.replay-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006",
+        "DRIVER.surface-formats.capture-initial-20261006",
+        "DRIVER.surface-formats.capture-dd2-initial-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -30476,6 +30670,164 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRIVER.surface-formats.capture-final-20261006",
+      "kind": "native_integration",
+      "scope": "Independent standalone Wine DirectDraw2/Surface2 five formats,3500cases/1400admitteddraws/2100rejectedsetups. Native words/descriptors/keymutation/highunusedbits/fillmasks/clipping/errors/overlap and callerstorage guards. LPSURFACE CreateSurface rejection and separately admitted Surface3 positive bindings retained; negative/RGB24/tight refusers are actual. No original game instructions, caller reachability, Windows or negative driver acceptance.",
+      "record": "research/runtime/surface-formats-final-capture-20261006.json",
+      "sha256": "16500e6d9fde369085313fcde3d4f309259c0c1560bb7bbeafc36eddf7a0290c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-formats.offline-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh input-derived offline oracle checks526400words/provenance for1400draws and2100actualrejectedsetups;13 completeness/mutation tests. No new original execution or native negative-driver-pitch claim.",
+      "record": "research/runtime/surface-formats-offline-20261006.json",
+      "sha256": "259b62e7caf4745d8b9d792cb262dcd6fa54aeaf56422d12f08edaea4eec9b9b",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-backend.formats-pitch.replay-20261006",
+      "kind": "native_integration",
+      "scope": "Owned five canonical same-format fills/keys/copies/clip/self-overlap and key descriptor outputs compare1400independentdriver cases;2800signedrow imports compare identical logicaloutputs separately as nativepolicy.667800nativewords/descriptors/presentation values,2150400packedbytes,27259checks/60refusals. New RGBA conversion and signed import/lease/pitch flip policies are native; no original game multi-format/live/Windows claim.",
+      "record": "research/runtime/native-surface-formats-20261006.json",
+      "sha256": "8d205d9d740edf6848eecbd2f162616d16574ecf0399b314a5c7e8957e9849fb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-backend.formats-pitch.operations-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh retained5114drawresults/538272pixels/258048palette entries/8664descriptor fields,576DCleases/1182access transitions/40guards after format source changes. Exact library hash matches format replay. Original RGB565 subset and broader standalone driver/DC scope remain separate.",
+      "record": "research/runtime/native-surface-formats-backend-regression-20261006.json",
+      "sha256": "5dd3c32c194707429f98961ac26a87dcca75336baf58e6d966cfbad1d8443e92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+      "kind": "isolated_original",
+      "scope": "Fresh changed-backend offline comparison of retained250originalfills/436keyed/1536opaque-overlap/2304keyed-overlap results and pixels, no new original execution. Other driver/DC outputs remain separate scope.",
+      "record": "research/runtime/native-surface-formats-backend-regression-20261006.json",
+      "sha256": "5dd3c32c194707429f98961ac26a87dcca75336baf58e6d966cfbad1d8443e92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NR.surface-backend.formats-pitch.ownership-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh11standalonedriver flips/2128ownershipwords,6656palette entries/864definedindices/66loss-palette statuses and16native retry/reloader compositions/432inputpixels plus supplied globalcursorBMPDC path,286checks/29refusals. No physical original loss or newformat DC conversion.",
+      "record": "research/runtime/native-surface-formats-ownership-regression-20261006.json",
+      "sha256": "ba10c169caba0f404bc50f352f24585c55d1c3523203c484e88051be66575dba",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
+      "kind": "isolated_original",
+      "scope": "Fresh offline4480retained unchanged-original retry fault traces and1536bounded prefixes. Original build hash preserved; native physical loss/ownership/driver comparisons are separate scopes.",
+      "record": "research/runtime/native-surface-formats-ownership-regression-20261006.json",
+      "sha256": "ba10c169caba0f404bc50f352f24585c55d1c3523203c484e88051be66575dba",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NR.surface-backend.formats-pitch.initial-regressions-20261006",
+      "kind": "native_integration",
+      "scope": "Historical b48b2a9 suite and report correction recheck; exact hashes retained, later application committed source changes make this aggregate stale. Not latest-baseline validation.",
+      "record": "research/runtime/native-surface-formats-regressions-20261006.json",
+      "sha256": "edf0cca2615ea38b89d717313905a34c2d20987b37c6af6e15fcfe490798b0dc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-backend.formats-pitch.regressions-20261006",
+      "kind": "native_integration",
+      "scope": "Isolated fc65636 archive plus exact own source changes: all16renderer cases pass across full suite and serial Xvfb-cleanup rechecks;13offline mutation tests and coverage audit/gate suites pass. Native code unchanged between suite/recheck. Narrow compat scanner/audit/test fixes repair the intervening committed census root; old roots cannot hide new files. Root foreign resources/scene/application/runtime changes excluded. No original execution.",
+      "record": "research/runtime/native-surface-formats-final-regressions-20261006.json",
+      "sha256": "507e09b52a87b949ea02a2b3a0eb228c110061aa1c4a1411c0085c54f96f3414",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-formats.capture-initial-20261006",
+      "kind": "native_integration",
+      "scope": "Historical completed standalone capture before final memory-binding fallback and corrected collector; source hashes retained unchanged and now stale. First DD2 report reconstructed after relative-path collector report failure from unchanged source/artifacts. Not current native/original validation.",
+      "record": "research/runtime/surface-formats-capture-20261006.json",
+      "sha256": "5a01f7781fc008ce2d326c22c4cacdeacdd0a0d7a12e22e7753db14515ea5286",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-formats.capture-dd2-initial-20261006",
+      "kind": "native_integration",
+      "scope": "Historical completed standalone capture before final memory-binding fallback and corrected collector; source hashes retained unchanged and now stale. First DD2 report reconstructed after relative-path collector report failure from unchanged source/artifacts. Not current native/original validation.",
+      "record": "research/runtime/surface-formats-dd2-capture-20261006.json",
+      "sha256": "d567fad1d7f9b03177c70bfef26f80a2875c64b799f415f5796ba6cc77207b65",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -35383,6 +35735,39 @@
         "tests/live-render-route-probe.cpp",
         "tools/analyze-render-update-cost.py"
       ]
+    },
+    {
+      "id": "NR.surface-backend.formats-pitch.offline",
+      "scope": "Five-format standalone driver comparison and owned signed/padded native byte imports with strict masks/key words/guards; original gameplay reachability, unsupported driver negative/RGB24 memory bindings, arbitrary conversion/DC/Windows/live remain separate.",
+      "level": "headless",
+      "behaviors": [
+        "NR.surface-backend.formats-pitch",
+        "RE.surface-driver.formats-pitch",
+        "NR.surface-backend.owned",
+        "NR.surface-access",
+        "NR.surface-backend.ownership-recovery",
+        "RE.surface-copy.rgb565-keyed",
+        "RE.surface-fill.rgb565",
+        "RE.surface-copy.rgb565-overlap",
+        "RE.surface-copy.rgb565-keyed-overlap",
+        "RE.surface-copy.restore-retry"
+      ],
+      "evidence": [
+        "NR.surface-backend.formats-pitch.replay-20261006",
+        "DRIVER.surface-formats.capture-final-20261006",
+        "DRIVER.surface-formats.offline-20261006",
+        "NR.surface-backend.formats-pitch.regressions-20261006",
+        "NR.surface-backend.formats-pitch.operations-20261006",
+        "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+        "NR.surface-backend.formats-pitch.ownership-20261006",
+        "ORIGINAL.surface-retry.formats-pitch-replay-20261006"
+      ],
+      "tests": [
+        "tests/render-surface-formats-test.cpp",
+        "tools/check-native-surface-formats.py",
+        "tools/check-surface-formats.py",
+        "tests/test-surface-formats.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -35630,7 +36015,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-sustained-publication-20261006.json",
-    "sha256": "af99dade6016b862b8b6f743472d427da870089f631c731666231ea34863e1f4"
+    "path": "research/runtime/coverage/source-index-surface-formats-20261006.json",
+    "sha256": "d315cee202321dfc254619a241fc4ac1198010b015032c12c4511a64ec5fe11c"
   }
 }

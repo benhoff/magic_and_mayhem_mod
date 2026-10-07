@@ -26,7 +26,7 @@ private:
 public:
     BitmapDcState(int width,int height,unsigned bits,std::optional<Palette> defaults=std::nullopt)
         :width_(width),height_(height),bits_(bits),defaults_(std::move(defaults)){
-        if(width<1 || height<1 || width>2048 || height>2048 || (bits!=8 && bits!=16 && bits!=32))
+        if(width<1 || height<1 || width>2048 || height>2048 || (bits!=8 && bits!=16 && bits!=24 && bits!=32))
             throw std::runtime_error("Unsupported bitmap DC dimensions/format");
         if(bits!=8 && defaults_)throw std::runtime_error("RGB bitmap DC has no indexed default table");
     }

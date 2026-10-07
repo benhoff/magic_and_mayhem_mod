@@ -239,6 +239,22 @@ class CoverageTests(unittest.TestCase):
         self.write_json('source-index.json', source_tool.index(self.root, self.register))
         self.register['code_index'] = {'path': 'source-index.json', 'sha256': self.digest('source-index.json')}
 
+    def test_legacy_root_census_cannot_hide_new_host_adapter(self):
+        catalog = source_tool.index(self.root, self.register)
+        catalog['roots'].remove('compat')
+        self.write_json('source-index.json', catalog)
+        self.register['code_index'] = {'path':'source-index.json', 'sha256':self.digest('source-index.json')}
+        self.assertEqual(self.report()['errors'], [])
+        for path in ('compat/legacy/adapter.cpp', 'compat/legacy/CMakeLists.txt'):
+            target = self.root/path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text('fixture')
+        self.assertEqual(self.report()['findings']['new_sources_without_index'],
+                         ['compat/legacy/CMakeLists.txt', 'compat/legacy/adapter.cpp'])
+        self.pin_source_index()
+        self.assertEqual(self.report()['errors'], [])
+        self.assertEqual(self.report()['findings']['new_sources_without_index'], [])
+
     def test_source_census_reports_new_removed_changed_and_unlinked_files(self):
         (self.root/'assets').mkdir()
         for name in ('linked.cpp', 'unlinked.hpp', 'removed.cpp'):

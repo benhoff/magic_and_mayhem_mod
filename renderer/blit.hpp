@@ -79,8 +79,8 @@ public:
                    const std::optional<std::vector<Rect>>& dcRegions=std::nullopt);
     void copy(SurfaceId source,SurfaceId destination,Rect rect,int x,int y,
               std::optional<std::uint32_t> key=std::nullopt,
-              std::optional<SurfaceId> mask=std::nullopt);
-    // Surface2-style RGB565 operation; see surface_copy.hpp for the bounded policy.
+              std::optional<SurfaceId> mask=std::nullopt,std::uint32_t keyMask=UINT32_MAX);
+    // Surface2-style same-format native operation; see surface_copy.hpp for the bounded policy.
     // Same-ID opaque copies freeze each ordered source piece on the GPU (max16MiB
     // transient storage). copy() retains its distinct-ID primitive contract.
     // External accepted Restore/loss invalidates native bytes without inventing
