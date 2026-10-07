@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-access-reference.c": "e9e30a5c1db9f67e67699c6c193054b4a5d9db384c963446e4a4988589dd24d2",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-access.py": "69d22322aaaff04377cf963bcf9f83c4e6909052f17c1187f311cdde50766a68",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tests/fixtures/surfaces/surface-access.json.gz": "b80055aef41fffe9b3a3b6c9fed7f8f0ab4aa06b669ac4ad3f4d553e6e670def"
+  },
+  "cases": 96,
+  "steps": 1182,
+  "pixels": 4032,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-access.json.gz",
+    "sha256": "b80055aef41fffe9b3a3b6c9fed7f8f0ab4aa06b669ac4ad3f4d553e6e670def"
+  },
+  "inputs_sha256": "9f2ac87266f7332ae47530e2aaad0cb629443e7d9f3484c6e96495e1664d6318",
+  "outputs_sha256": "2f49f6ba4b439591a20e9c7027a58750449bc64aa23e8e0c96fc303043c93337",
+  "probe_sha256": "99dd3e01bb961c3609e7a7cc1762ce421539d2bb8848f1614d1b2abf601f380f",
+  "artifacts": "working/tests/surface-access/run-542596o8",
+  "environment": {
+    "wine": "wine-11.16",
+    "gdi32_sha256": "089d8e8e7e5d7b26c72f6d0b90b89531fe43e915c900d4dd485f2924ab584b0c",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b"
+  },
+  "original_game_executed": false,
+  "scope": "Standalone Wine Surface2 full-surface lock/DC HRESULT, normalized output/descriptor fields and post-transition bytes;96 cases across indexed8/RGB565/RGB32 and system/default offscreen caps. Null/valid-foreign/stale DC release arguments; no arbitrary invalid pointers, original game, real loss, Windows or live equivalence.",
+  "original_manifest_verified_before_after": true
+}

@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "renderer/surface_access.hpp": "de30d7e2f74815f706d3cf158d0d981e0523e1f4d33fbb7ce6aa849439709c50",
+    "tests/render-surface-access-test.cpp": "0b9bf7d8682b7eb844e420183b867f1d83e12b8874482f962f260d1c4d96dd73",
+    "tools/check-native-surface-access.py": "87f314dfa1273d5ce54aaa3a7c617ee1a2c34806a3d25322074303fd40160679",
+    "tools/check-surface-access.py": "8bef3406ccdc2f4c171518c18375fe4863bdecaca75d283bc6dbf4bd5ad6ef77",
+    "tools/capture-surface-access.py": "69d22322aaaff04377cf963bcf9f83c4e6909052f17c1187f311cdde50766a68",
+    "research/runtime/surface-access-capture-20261006.json": "4646e929641cae1360ede4b44de770d2da03ca7b9f94ed030aec40f2cdf9d70c",
+    "tests/fixtures/surfaces/surface-access.json.gz": "b80055aef41fffe9b3a3b6c9fed7f8f0ab4aa06b669ac4ad3f4d553e6e670def"
+  },
+  "native": {
+    "cases": 96,
+    "steps": 1182,
+    "terminal_busy_cases": 12,
+    "native_guards": 10
+  },
+  "driver_descriptor_field_comparisons": 8664,
+  "unstable_failure_caps_excluded": 84,
+  "driver_pixel_comparisons": 4032,
+  "inputs_sha256": "124034899466026d5d6a1f3a939c9ebc35057fec340184629c1e3059ff5156cd",
+  "binary_sha256": "20f7615e265dbe9590de7c622a47bdd7c2bd1f7b20337d51e0ba644a435dcec4",
+  "outputs_sha256": "3594fdf3af7084f8e3282687308810dbfc8fefa761438c25d6cc11060e3b27e4",
+  "artifacts": "working/tests/native-surface-access/run-2v1um1dg",
+  "scope": "Owned single-thread SurfaceAccessState replay compares all independent driver HRESULTs/output mutations and stable descriptor fields. Native tokens/packed storage/layout/budget policies; signed terminal mapping debt explicitly represented. Final native bytes remain untouched. No actual COM/HDC/GPU raster/drawing admission/alias/cross-thread/game/loss/Windows/live equivalence."
+}

@@ -460,7 +460,9 @@
       "behavior_ids": [
         "NR.surfaces",
         "NR.continuous-resource-lifetime",
-        "NR.continuous-mutations"
+        "NR.continuous-mutations",
+        "RE.surface-driver.access",
+        "NR.surface-access"
       ],
       "original": [
         {
@@ -480,10 +482,12 @@
         "destroy/stale IDs",
         "layout replacement",
         "failed Unlock",
-        "lock/DC exclusivity"
+        "lock/DC asymmetric admission"
       ],
-      "original_fixture_ids": [],
-      "remaining_gap": "Synthetic foundation exists; game-driver sequences and unobserved leases remain outside this fixture set."
+      "original_fixture_ids": [
+        "surface-access.json.gz"
+      ],
+      "remaining_gap": "Synthetic foundation exists; game-driver sequences and unobserved leases remain outside this fixture set. Standalone96 driver lock/DC sequences now compare HRESULT/normalized output/stable descriptor fields and readable final bytes, replayed by owned native admission state. Drawing while borrowed, integration with bitmap raster/storage, pointer/alias ownership, other flags/rectangles, cross-thread behavior, original game/actual loss/Windows/live remain pending."
     },
     {
       "id": "SURF.flip",
