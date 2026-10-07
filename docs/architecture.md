@@ -86,7 +86,12 @@ original/
 working/
 ```
 
-`compat/legacy/` would own host-side bridge clients, Wine/X11 integration, and
+`compat/legacy/` currently owns the bounded original display-snapshot decoder,
+content-to-native-resource adapter and diagnostic replay executable. Original
+draw order and anchors feed the shared scene service through resource IDs;
+unshaded replay and live observation remain separate from original pixel
+equivalence and replacement. See [the adapter](../compat/legacy/README.md).
+This directory would also own host-side bridge clients, Wine/X11 integration, and
 the legacy session implementation. `runtime/` remains the injected side of that
 connection. The two processes communicate through protocols, rather than sharing
 host pointers or C++ object layouts.

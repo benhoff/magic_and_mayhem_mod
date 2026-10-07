@@ -93,33 +93,34 @@ int main(int argc,char** argv)try{
     if(const auto* e=std::get_if<mnm::assets::Error>(&configured))throw std::runtime_error(e->detail);
     auto store=std::get<mnm::assets::AssetStore>(std::move(configured));
     auto open=[&](const QString& path){auto value=store.open(path.toStdString());if(const auto* e=std::get_if<mnm::assets::Error>(&value))throw std::runtime_error(e->detail);return std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(value));};
-    auto load=[&](const QString& aniPath,const QString& overridePath){
+    mnm::assets::ResourceManager resources(store);
+    auto load=[&](mnm::assets::ResourceId id,const QString& aniPath,const QString& overridePath){
         mnm::preview::SpriteLayer asset;
         auto file=open(aniPath);auto result=mnm::assets::loadAnimation(*file);file.reset();
         if(const auto* e=std::get_if<mnm::assets::AnimationError>(&result))throw std::runtime_error(e->detail);
-        asset.animation=std::get<mnm::assets::Animation>(std::move(result));
+        const auto animation=std::get<mnm::assets::Animation>(std::move(result));
         QString spritePath=overridePath;
         if(spritePath.isEmpty()){
-            const auto& nameBytes=asset.animation.spriteName;const auto end=std::find(nameBytes.begin(),nameBytes.end(),0);
+            const auto& nameBytes=animation.spriteName;const auto end=std::find(nameBytes.begin(),nameBytes.end(),0);
             const std::string name(nameBytes.begin(),end);
             if(end==nameBytes.end() || name.empty() || name=="." || name==".." || name.find_first_of("/\\:")!=std::string::npos ||
                std::any_of(name.begin(),name.end(),[](unsigned char c){return c<32 || c>126;}))throw std::runtime_error("ANI sprite basename requires an explicit sprite path");
             const auto slash=std::max(aniPath.lastIndexOf('/'),aniPath.lastIndexOf('\\'));
             spritePath=aniPath.left(slash+1)+QString::fromStdString(name);
         }
-        file=open(spritePath);auto decoded=mnm::assets::loadSprite(*file);file.reset();
-        if(const auto* e=std::get_if<mnm::assets::SpriteError>(&decoded))throw std::runtime_error(e->detail);
-        asset.sprite=std::get<mnm::assets::Sprite>(std::move(decoded));return std::make_pair(std::move(asset),spritePath);
+        resources.bind(id,{mnm::assets::ResourceImageFormat::sprite,spritePath.toStdString(),aniPath.toStdString(),{},{}});
+        resources.load(id);asset.resource=std::move(id);return std::make_pair(std::move(asset),spritePath);
     };
-    auto primary=load(parser.value("ani"),parser.value("sprite"));
-    const auto animation=std::move(primary.first.animation);auto sprite=std::move(primary.first.sprite);const auto spritePath=primary.second;
+    const mnm::assets::ResourceId body{mnm::assets::ResourceKind::creature,"preview/body"};
+    auto primary=load(body,parser.value("ani"),parser.value("sprite"));const auto spritePath=primary.second;
+
     mnm::preview::ScenePlacement placement;placement.tileSizeXY=parser.value("tile-size").toUInt(&ok);
     if(!ok || placement.tileSizeXY<1 || placement.tileSizeXY>2)throw std::runtime_error("Tile size must be 1 or 2");
     placement.view=parser.value("placement-view").toUInt(&ok);if(!ok || placement.view>3)throw std::runtime_error("Placement view must be 0..3");
     std::vector<mnm::preview::SpriteLayer> layers;QJsonArray layerInputs;
     if(modeOne){
         const auto recipe=mnm::preview::loadModeOneRecipe(store,attachmentFacing);
-        auto loaded=load(QString::fromStdString(recipe.ani),{});loaded.first.sequence=recipe.selection.sequence;loaded.first.modeOne=true;
+        auto loaded=load({mnm::assets::ResourceKind::effect,"36"},QString::fromStdString(recipe.ani),{});loaded.first.sequence=recipe.selection.sequence;loaded.first.modeOne=true;
         layerInputs.append(QJsonObject{{"ani",QString::fromStdString(recipe.ani)},{"sprite",loaded.second},{"sequence",qint64(recipe.selection.sequence)},
             {"slot",1},{"recipe","mode-one"},{"config_entry",36},{"asset_index",qint64(recipe.selection.assetIndex)},{"admission_facing",qint64(attachmentFacing)}});
         layers.push_back(std::move(loaded.first));
@@ -129,7 +130,7 @@ int main(int argc,char** argv)try{
         const auto fields=selection.split(',');if(fields.size()!=3)throw std::runtime_error("Layer needs ANI,sequence,slot");
         const auto sequence=fields[1].toUInt(&ok);if(!ok)throw std::runtime_error("Invalid layer sequence");
         const auto slot=fields[2].toUInt(&ok);if(!ok || (slot!=1 && slot!=2))throw std::runtime_error("Layer slot must be 1 or 2");
-        auto loaded=load(fields[0],{});loaded.first.sequence=sequence;
+        auto loaded=load({mnm::assets::ResourceKind::effect,"preview/layer-"+std::to_string(layers.size())},fields[0],{});loaded.first.sequence=sequence;
         loaded.first.attachment=slot==1?mnm::reconstruction::AttachmentPoint::first:mnm::reconstruction::AttachmentPoint::second;
         layerInputs.append(QJsonObject{{"ani",fields[0]},{"sprite",loaded.second},{"sequence",qint64(sequence)},{"slot",int(slot)}});
         layers.push_back(std::move(loaded.first));
@@ -139,7 +140,7 @@ int main(int argc,char** argv)try{
         const auto directory=parser.value("export-dir");if(QFile::exists(directory) || !QDir().mkdir(directory))throw std::runtime_error("Export directory must be new with an existing parent");
         QJsonArray frames;
         {
-            mnm::preview::SpriteScene scene(renderer,std::move(sprite),animation,sequences,parser.isSet("loop"),placement,std::move(layers));
+            mnm::preview::SpriteScene scene(renderer,resources,body,sequences,parser.isSet("loop"),placement,std::move(layers));
             initialize(scene);
             for(unsigned tick=0;tick<=ticks;++tick){
                 if(tick){change(scene,tick);scene.advance();}
@@ -171,7 +172,7 @@ int main(int argc,char** argv)try{
             {"remaining_surfaces",int(stats.surfaces)},{"renderer",QString::fromStdString(driver.renderer)}}).toJson();
         writeNew(QDir(directory).filePath("report.json"),bytes);std::cout<<bytes.constData();return 0;
     }
-    mnm::preview::SpriteScene scene(renderer,std::move(sprite),animation,sequences,parser.isSet("loop"),placement,std::move(layers));
+    mnm::preview::SpriteScene scene(renderer,resources,body,sequences,parser.isSet("loop"),placement,std::move(layers));
     initialize(scene);
     QWidget window;window.setWindowTitle("Native ANI/SPR scene preview");auto* layout=new QVBoxLayout(&window);
     auto* caption=new QLabel("Sequences "+parser.value("sequences")+" — presentation clock; "+QString::number(ticks)+" steps per run");layout->addWidget(caption);

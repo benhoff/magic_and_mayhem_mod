@@ -1,4 +1,5 @@
 #include "scene.hpp"
+#include "scene-resource-fixtures.hpp"
 #include <QGuiApplication>
 #include <QColor>
 #include <iostream>
@@ -15,7 +16,8 @@ int main(int argc,char** argv){
             animation.records.push_back({6,-1,{}});}
         animation.starts.push_back(animation.records.size());
         {
-            mnm::preview::SpriteScene scene(renderer,std::move(sprite),animation,{0,1,2,3},true);
+            mnm::test::SceneResources resources;const auto body=resources.add("body",sprite,animation);
+            mnm::preview::SpriteScene scene(renderer,resources.manager,body,{0,1,2,3},true);
             for(unsigned tick=0;tick<80;++tick){
                 if(tick){scene.advance();}
                 const auto image=scene.present();auto expected=mnm::preview::SpriteScene::background();
@@ -38,7 +40,8 @@ int main(int argc,char** argv){
         for(unsigned s=0;s<16;++s){groups.starts.push_back(groups.records.size());groups.records.push_back({0,int(s*2),{}});groups.records.push_back({0,int(s*2+1),{}});groups.records.push_back({6,-1,{}});}
         groups.starts.push_back(groups.records.size());
         {
-            mnm::preview::SpriteScene scene(renderer,std::move(directional),groups,{0},false);
+            mnm::test::SceneResources resources;const auto body=resources.add("body",directional,groups);
+            mnm::preview::SpriteScene scene(renderer,resources.manager,body,{0},false);
             require(scene.directionalGroups()==std::vector<std::uint32_t>({0,8}),"Directional group validation differs");
             scene.advance();scene.advance();scene.selectFacing(0,7);
             require(scene.actors()[0].sprite==15,"Facing change restarted animation");
@@ -56,10 +59,11 @@ int main(int argc,char** argv){
         const auto first=makeAnimation({5,std::uint32_t(-6),0,0,0,0,0,0,0},{7,std::uint32_t(-8),0,0,0,0,0,0,0});
         const auto second=makeAnimation({std::uint32_t(-9),10,0,0,0,0,0,0,0},{std::uint32_t(-11),12,0,0,0,0,0,0,0});
         for(unsigned view=0;view<4;++view){
+            mnm::test::SceneResources resources;
             std::vector<mnm::preview::SpriteLayer> layers;
-            layers.push_back({makeSprite(0,1,2),first,0,mnm::reconstruction::AttachmentPoint::first});
-            layers.push_back({makeSprite(202,-1,-2),second,0,mnm::reconstruction::AttachmentPoint::second});
-            mnm::preview::SpriteScene scene(renderer,makeSprite(11,3,4),parent,{0},false,{2,view},std::move(layers));
+            layers.push_back({resources.add("left",makeSprite(0,1,2),first),0,mnm::reconstruction::AttachmentPoint::first});
+            layers.push_back({resources.add("right",makeSprite(202,-1,-2),second),0,mnm::reconstruction::AttachmentPoint::second});
+            mnm::preview::SpriteScene scene(renderer,resources.manager,resources.add("body",makeSprite(11,3,4),parent),{0},false,{2,view},std::move(layers));
             const int shiftX=view==1?32:(view==3?-32:0),shiftY=view==2?-32:((view==1 || view==3)?-16:0);
             for(unsigned tick=0;tick<4;++tick){if(tick)scene.advance();scene.present();auto expected=mnm::preview::SpriteScene::background();
                 const bool active=tick<3;const bool next=tick==2;
@@ -74,9 +78,10 @@ int main(int argc,char** argv){
         }
         require(renderer.stats().surfaces==0,"Layered scenes leaked surfaces");
         {
+            mnm::test::SceneResources resources;
             std::vector<mnm::preview::SpriteLayer> layers;
-            layers.push_back({makeSprite(202,0,0),first,0,mnm::reconstruction::AttachmentPoint::first,true});
-            mnm::preview::SpriteScene scene(renderer,makeSprite(11,0,0),parent,{0},true,{},std::move(layers));
+            layers.push_back({resources.add("left",makeSprite(202,0,0),first),0,mnm::reconstruction::AttachmentPoint::first,true});
+            mnm::preview::SpriteScene scene(renderer,resources.manager,resources.add("body",makeSprite(11,0,0),parent),{0},true,{},std::move(layers));
             require(scene.layers()[0].sprite==0,"Recipe was not admitted");
             scene.advance();scene.setModeOneAttachment(0,true);scene.advance();
             require(scene.layers()[0].sprite==1,"Same-mode admission reset child phase");

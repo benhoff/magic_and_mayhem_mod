@@ -70,7 +70,9 @@ def main():
                 if delta>at+size or pixel>at+size:raise ValueError('SPR planes outside frame')
             decoded[index]=(ox,oy,pixels);return decoded[index]
         background=[0x2124 if (x//16+y//16)%2 else 0x2945 for y in range(256) for x in range(512)]
-        rgba=[bytes((((p>>11)&31)*255//31,((p>>5)&63)*255//63,(p&31)*255//31,255)) for p in range(65536)]
+        # Surface2 RGB565 comparison established bit replication; keep the CPU
+        # oracle explicit and independent of the renderer.
+        rgba=[bytes(((((p>>11)&31)<<3)|(p>>13),(((p>>5)&63)<<2)|((p>>9)&3),((p&31)<<3)|((p>>2)&7),255)) for p in range(65536)]
         results=[]
         base_command=[str(preview),
                       '--root',str(root),'--ani','c:\\MagicMayhem\\cReAtUrEs\\rEdCaP.aNi','--sequences','0,4']

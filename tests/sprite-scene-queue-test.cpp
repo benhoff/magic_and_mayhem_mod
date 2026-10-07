@@ -1,4 +1,5 @@
 #include "scene.hpp"
+#include "scene-resource-fixtures.hpp"
 #include <QGuiApplication>
 #include <QFile>
 #include <QJsonDocument>
@@ -38,9 +39,10 @@ int main(int argc,char** argv){
         for(const auto& value:cases){const auto fixture=value.toObject();const unsigned view=fixture["view"].toInt();
             const auto body=sprite(0),left=sprite(1),right=sprite(2);
             const auto ani=animation(0),one=animation(1),two=animation(2);
-            std::vector<preview::SpriteLayer> layers{{left,one,0,reconstruction::AttachmentPoint::first},{right,two,0,reconstruction::AttachmentPoint::second}};
+            test::SceneResources resources;const auto bodyId=resources.add("body",body,ani);
+            std::vector<preview::SpriteLayer> layers{{resources.add("left",left,one),0,reconstruction::AttachmentPoint::first},{resources.add("right",right,two),0,reconstruction::AttachmentPoint::second}};
             {
-                preview::SpriteScene scene(renderer,body,ani,{0,1,2,3},false,{1,view},std::move(layers));
+                preview::SpriteScene scene(renderer,resources.manager,bodyId,{0,1,2,3},false,{1,view},std::move(layers));
                 const auto positions=fixture["positions"].toArray();require(positions.size()==4);
                 for(unsigned actor=0;actor<4;++actor){const auto p=positions[actor].toArray();require(p.size()==4);scene.setAnchor(actor,256,190);
                     scene.setQueueInput(actor,{{p[0].toInt(),p[1].toInt(),p[2].toInt(),p[3].toInt()},{{6,8,9}}});}
@@ -71,8 +73,9 @@ int main(int argc,char** argv){
                 f.auxiliaryData[0]={32,1,0,0,0,0,0,128};f.auxiliaryData[1]={0,0,0,128};}
             auto ani=animation(0),one=animation(1),two=animation(2);
             for(auto& r:ani.records)r.metadata={};
-            std::vector<preview::SpriteLayer> layers{{left,one,0,reconstruction::AttachmentPoint::first},{right,two,0,reconstruction::AttachmentPoint::second}};
-            preview::SpriteScene scene(renderer,body,ani,{0},false,{},std::move(layers));scene.setVisibility(true);
+            test::SceneResources resources;const auto bodyId=resources.add("body",body,ani);
+            std::vector<preview::SpriteLayer> layers{{resources.add("left",left,one),0,reconstruction::AttachmentPoint::first},{resources.add("right",right,two),0,reconstruction::AttachmentPoint::second}};
+            preview::SpriteScene scene(renderer,resources.manager,bodyId,{0},false,{},std::move(layers));scene.setVisibility(true);
             for(unsigned tick=0;tick<3;++tick){if(tick)scene.advance();scene.present();auto expected=preview::SpriteScene::background();
                 const auto queue=scene.drawQueue();
                 if(tick<2){require(queue.size()==3 && queue[0].kind==0 && queue[1].kind==-2 && queue[2].kind==0);

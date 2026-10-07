@@ -61,9 +61,6 @@ int main(int argc,char** argv) try {
     if(!p.isSet("checkpoint") || !p.isSet("root")) throw std::invalid_argument("Specify --checkpoint and --root");
     auto state=mnm::game::readSnapshot(p.value("checkpoint").toStdString());
     if(!state.animation || !state.navigation) throw std::invalid_argument("Scene needs owned ANI and frozen navigation");
-    auto decoded=mnm::assets::decodeAnimation(state.animation->data);
-    if(auto* error=std::get_if<mnm::assets::AnimationError>(&decoded)) throw std::runtime_error(error->detail);
-    auto animation=std::get<mnm::assets::Animation>(std::move(decoded));
     auto navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation);
     const auto geometryFingerprint=navigation->binding().fingerprint;
     if(!(navigation->binding()==*state.navigation)) navigation=mnm::sandbox::loadFrozenNavigation(state.map,state.animation,true);
@@ -73,20 +70,16 @@ int main(int argc,char** argv) try {
     auto configured=mnm::assets::AssetStore::create(p.value("root").toStdString());
     if(auto* error=std::get_if<mnm::assets::Error>(&configured)) throw std::runtime_error(error->detail);
     auto store=std::get<mnm::assets::AssetStore>(std::move(configured));
-    const auto open=[&](QString path) {
-        auto result=store.open(path.toStdString());
-        if(auto* error=std::get_if<mnm::assets::Error>(&result)) throw std::runtime_error(error->detail);
-        return std::get<std::unique_ptr<mnm::assets::AssetFile>>(std::move(result));
-    };
-    const auto sprite=[&](QString path) {
-        auto file=open(path);auto result=mnm::assets::loadSprite(*file);
-        if(auto* error=std::get_if<mnm::assets::SpriteError>(&result)) throw std::runtime_error(error->detail);
-        return std::get<mnm::assets::Sprite>(std::move(result));
-    };
-    auto terrain=sprite(p.value("realm")+"/Terrain.spr"),creature=sprite(p.value("sprite"));
-    auto ttd=open(p.value("realm")+"/Terrain.ttd");auto loaded=mnm::assets::loadTerrainCatalog(*ttd);
-    if(auto* error=std::get_if<mnm::assets::TerrainCatalogError>(&loaded)) throw std::runtime_error(error->detail);
-    const auto catalog=std::get<mnm::assets::TerrainCatalog>(std::move(loaded));
+    mnm::assets::ResourceManager resources(std::move(store));
+    const mnm::assets::ResourceId terrainId{mnm::assets::ResourceKind::terrain,"preview/terrain"};
+    const mnm::assets::ResourceId creatureId{mnm::assets::ResourceKind::creature,"preview/creature"};
+    resources.bind(terrainId,{mnm::assets::ResourceImageFormat::sprite,(p.value("realm")+"/Terrain.spr").toStdString(),{},(p.value("realm")+"/Terrain.ttd").toStdString(),{}});
+    mnm::assets::ResourceRecipe creatureRecipe{mnm::assets::ResourceImageFormat::sprite,p.value("sprite").toStdString(),{},{},{}};
+    creatureRecipe.animationBytes=session.world().state().animation->data;resources.bind(creatureId,creatureRecipe);
+    const auto& terrainResource=resources.load(terrainId);const auto& creatureResource=resources.load(creatureId);
+    const auto& terrain=std::get<mnm::assets::Sprite>(terrainResource.image);
+    const auto& creature=std::get<mnm::assets::Sprite>(creatureResource.image);
+    const auto& catalog=*terrainResource.terrainCatalog;const auto& animation=*creatureResource.animation;
     std::vector<mnm::scene::Tile> tiles;
     mnm::scene::Camera camera;camera.view=number(p.value("view"),3);camera.x=256;camera.y=160;
     if(p.isSet("terrain-map")) {
@@ -125,7 +118,8 @@ int main(int argc,char** argv) try {
         camera.origin={int(x*32+w*16),int(y*32+h*16),0};
     }
     mnm::render::GlBlitter renderer;
-    const auto draw=[&] {return mnm::scene::render(renderer,terrain,creature,mnm::scene::compose(session,animation,catalog,tiles,camera,terrain.frames.size(),creature.frames.size()));};
+    mnm::render::SceneRenderer drawing(renderer,resources,{512,256,std::vector<std::uint32_t>(512*256,0x2124)});
+    const auto draw=[&] {return mnm::scene::render(drawing,terrainId,creatureId,mnm::scene::compose(session,animation,catalog,tiles,camera,terrain.frames.size(),creature.frames.size()));};
     for(unsigned i=0,n=number(p.value("ticks"),4096);i<n;++i) session.step();
     if(p.isSet("output")) {
         const auto frames=number(p.value("frames"),64);if(!frames) throw std::invalid_argument("Frames must be positive");

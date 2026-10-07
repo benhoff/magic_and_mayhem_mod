@@ -1,0 +1,83 @@
+#pragma once
+#include "../animation.hpp"
+#include "../bmp.hpp"
+#include "../jpeg.hpp"
+#include "../pcx.hpp"
+#include "../sprite_loader.hpp"
+#include "../terrain_catalog.hpp"
+#include <map>
+#include <thread>
+
+namespace mnm::assets {
+enum class ResourceKind { creature, terrain, effect, ui };
+// Caller-assigned semantic names, independent of load order, pointers and paths.
+// Names use lowercase ASCII [a-z0-9_-] components separated by '/'.
+struct ResourceId {
+    ResourceKind kind=ResourceKind::ui;
+    std::string name;
+    bool operator<(const ResourceId&) const;
+    bool operator==(const ResourceId&) const;
+    std::string text() const;
+};
+enum class ResourceImageFormat { sprite, bmp, pcx, jpeg };
+struct ResourceRecipe {
+    ResourceImageFormat format=ResourceImageFormat::sprite;
+    std::string image;
+    std::optional<std::string> animation, terrainCatalog;
+    std::optional<std::uint32_t> sequence;
+    // Owned checkpoint ANI source, mutually exclusive with the ANI path.
+    std::optional<std::vector<std::uint8_t>> animationBytes{};
+    bool operator==(const ResourceRecipe&) const;
+};
+using ResourceImage=std::variant<Sprite,BmpImage,PcxImage,JpegImage>;
+struct VisualResource {
+    ResourceImage image;
+    std::optional<Animation> animation;
+    std::optional<TerrainCatalog> terrainCatalog;
+    std::uint64_t revision=0, decodedBytes=0;
+    std::size_t frameCount() const;
+};
+struct ResourceLimits {
+    std::size_t bindings=1024, residentResources=64;
+    // Owned vector capacities + object storage, excluding allocator/map overhead.
+    // Decoder scratch/input allocations have separate existing loader bounds.
+    std::uint64_t decodedBytes=128ULL*1024*1024;
+    std::uint64_t recipeBytes=8ULL*1024*1024;
+    SpriteLimits sprite;
+    AnimationLimits animation;
+    BmpLimits bmp;
+    PcxLimits pcx;
+    JpegLimits jpeg;
+};
+struct ResourceStats {
+    std::size_t bindings=0, residentResources=0;
+    std::uint64_t decodedBytes=0, loads=0, hits=0;
+    std::uint64_t recipeBytes=0;
+};
+// Thread-confined, read-only input. Immutable bindings; unload releases decoded
+// data but preserves the ID/recipe. Each subsequent successful load gets a fresh
+// revision, so GPU caches never reuse a retired image. No implicit file watching.
+// Returned references live until unload(id), unloadAll(), or destruction.
+class ResourceManager final {
+public:
+    explicit ResourceManager(AssetStore store,ResourceLimits limits={});
+    ResourceManager(const ResourceManager&)=delete;
+    ResourceManager& operator=(const ResourceManager&)=delete;
+    void bind(const ResourceId&,const ResourceRecipe&);
+    const ResourceRecipe& recipe(const ResourceId&) const;
+    const VisualResource& load(const ResourceId&);
+    void unload(const ResourceId&);
+    void unloadAll();
+    ResourceStats stats() const;
+private:
+    struct Entry {ResourceRecipe recipe;std::unique_ptr<VisualResource> resource;};
+    AssetStore store_;
+    ResourceLimits limits_;
+    std::thread::id thread_;
+    std::map<ResourceId,Entry> entries_;
+    ResourceStats stats_;
+    std::uint64_t nextRevision_=1;
+    void checkThread() const;
+    std::unique_ptr<AssetFile> open(const std::string&) const;
+};
+}

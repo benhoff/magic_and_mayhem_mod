@@ -1894,3 +1894,98 @@ After the committed surface-format update (`475019f`), the same selected Release
 build and synthetic matrix were rerun successfully. Fresh immutable evidence is
 `fullscreen-native-commit-final-validation-20261007.json`; prior records retain
 their original hashes. This rerun retains the same hardware/live/latency limits.
+
+## Native semantic visual resources and bounded upload ownership — 2026-10-06
+
+A reusable native manager now binds immutable canonical creature/terrain/effect/UI
+IDs to explicit SPR/ANI/TTD/BMP/PCX/JPEG recipes, owns complete decoded resources
+and enforces binding/count/resident-capacity budgets. Explicit retirement keeps
+IDs stable and assigns fresh reload revisions. A separate GPU cache uses frame/
+colour-value/revision keys, LRU eviction and shared renderer budgets, preserves
+SPR coverage/origins, and supplies an offline recipe preview. Fourteen synthetic
+and dependency checks pass, including complete expected pixels, cache reuse,
+palette/revision changes, clipping, refusal and zero terminal ownership. Installed
+Redcap frame-zero smoke and immutable manifests pass before/after. Complete
+installed recipe population, terrain field/action/lighting/effect admission, scene
+snapshot/wire and Qt-shell/live replacement remain pending. This is native policy
+and integration evidence, with no new original comparison or gameplay change.
+See [resource ownership contract and evidence](native-resource-manager.md).
+
+## Shared native resource-backed scene service — 2026-10-06
+
+Step 2 routes sprite/layer and world previews through semantic resource IDs and
+one persistent native background/canvas/upload service. Ordered display records
+own optional colour tables; existing ANI clocks, attachment/visibility, camera
+projection, exact signed sort and picking identity remain in their adapters.
+World recipes own checkpoint ANI bytes with separately bounded encoded storage.
+Synthetic tests exercise complete pixels, zero-upload/readback resident draws,
+whole-list refusal preserving completed frames, GPU failure blocking partial
+presentation, retry and terminal surface cleanup. Installed checks pass195 sprite
+frames/390 original controller selections,198 layered frames,144 world pixels/
+12 continuations and24 actual Qt windows/128 pixels/16 fresh-window continuations.
+New evidence preserves all historical report hashes; broader original contract
+equivalence is not reasserted for shared-source changes. Live original scene
+snapshots/resource mapping are step 3; complete lighting/effects/action admission,
+camera equivalence and rendering replacement remain pending. No gameplay balance
+changes. See [scope and reproduction](native-shared-scene-renderer.md).
+
+## Original display snapshot to native resources — 2026-10-06
+
+`NR.scene-snapshot` observes the pinned original queue consumer at `0x005002a0`
+without replacing simulation or drawing. Its bounded immutable v1 protocol owns
+ordered display records and normalized frame identities; snapshot-local tokens
+replace original pointers. The host adapter resolves explicit pinned SPR assets
+through native storage/resource services and renders supported records using
+`SceneRenderer`. Readable frame admission, malformed/truncated wire refusal,
+alias ambiguity, changed-asset detection, ordering, hidden draws and terminal
+surface ownership are tested. The PE32 fixture also checks original forwarding,
+return/LastError, sample bounds, x87/XMM/MXCSR state and unchanged queue inputs.
+
+A fresh original Single Player battle produced four complete 800x600 snapshots.
+Native replay resolves every supported frame; independent Python SPR decoding
+checks all native RGB565 pixels and byte-exact observed frame identities. This
+is native diagnostic-policy comparison, not original shaded-frame equivalence.
+Strict replay refuses the observed special modes/sentinel adjustments; partial
+preview requires explicit `--supported-only`, and embedded-palette replay always
+requires `--unshaded`. Shade parameters and omitted record indices remain in
+reports. Continuous host streaming, original palette remaps/effects, background,
+HUD and live original-renderer replacement remain pending. Existing historical
+source fingerprints are preserved. [Scope and reproduction](native-scene-snapshot.md)
+and [wire admission](../formats/scene-snapshot-v1.md) document the measured limits.
+The source census now includes `compat/` so the host adapter is accounted for.
+
+### Isolated native scene commit validation (2026-10-06)
+
+Fresh hash-bound commit records validate14 resource checks, seven migrated
+preview checks, three snapshot CTests, the PE32 forwarding fixture and four
+independent synthetic pixel compositions against HEAD plus native asset/scene
+changes. One initial OpenGL test timeout is retained separately; the full
+seven-test retry passes. Earlier installed/captured replay evidence and its
+source hashes remain historical when excluded shared build changes differ.
+Original queue observation remains independently recorded; new synthetic
+validation does not establish shaded output equivalence or live replacement.
+Unrelated Qt presentation, command producer and surface-format work is excluded.
+
+### Native scene validation after the format/pitch commit (2026-10-06)
+
+Fresh hash-bound commit records validate14 resource checks, seven migrated
+preview checks, three snapshot CTests, the PE32 forwarding fixture and four
+independent synthetic pixel compositions against HEAD plus native asset/scene
+changes. The earlier OpenGL timeout and successful retry remain historical;
+the final renderer profile passes the complete suites. Earlier installed/captured replay evidence and its
+source hashes remain historical when excluded shared build changes differ.
+Original queue observation remains independently recorded; new synthetic
+validation does not establish shaded output equivalence or live replacement.
+Unrelated Qt presentation, command producer and surface-format work is excluded.
+
+### Final native scene commit profile (2026-10-06)
+
+Fresh hash-bound commit records validate14 resource checks, seven migrated
+preview checks, three snapshot CTests, the PE32 forwarding fixture and four
+independent synthetic pixel compositions against HEAD plus native asset/scene
+changes. The earlier OpenGL timeout and successful retry remain historical;
+the final renderer profile passes the complete suites. Earlier installed/captured replay evidence and its
+source hashes remain historical when excluded shared build changes differ.
+Original queue observation remains independently recorded; new synthetic
+validation does not establish shaded output equivalence or live replacement.
+Unrelated Qt presentation, command producer and surface-format work is excluded.
