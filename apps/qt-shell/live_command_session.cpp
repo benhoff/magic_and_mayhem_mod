@@ -5,7 +5,7 @@ LiveCommandSession::~LiveCommandSession(){abort();}
 void LiveCommandSession::change(State state){state_=state;if(stateChanged)stateChanged(state);}
 bool LiveCommandSession::fresh(const QString& path,quint32 session){
     renderer_=std::make_unique<LiveCommandRenderer>(viewport_);
-    renderer_->framePresented=[this]{if(state_==State::WaitingFrame)change(State::Active);if(framePresented)framePresented();};
+    renderer_->framePresented=[this]{if(state_==State::WaitingFrame)change(State::Active);if(state_!=State::Stopping && framePresented)framePresented();};
     if(!renderer_->create(path,session,version_))return fail(renderer_->error());
     return true;
 }
@@ -30,9 +30,23 @@ bool LiveCommandSession::recover(bool checkpoint){
     if(!(checkpoint?control_.checkpoint(next,session_):control_.recover(next,session_)))return fail(control_.error());
     return true;
 }
+bool LiveCommandSession::requestStop(){
+    if(ended() || state_==State::Stopping)return true;
+    if(version_!=2 || state_==State::Recovering || state_==State::Fallback)return fail("Rendering stop unavailable during recovery/fallback");
+    if(!control_.stop())return fail(control_.error());
+    change(State::Stopping);return true;
+}
 bool LiveCommandSession::poll(){
     if(state_==State::Fallback)return false;
     if(ended())return true;
+    if(state_==State::Stopping){
+        const int response=stopAcknowledged_?1:control_.poll();
+        if(response<0)return fail(control_.error());
+        stopAcknowledged_=response==1;
+        if(!renderer_->ended() && !renderer_->poll())return fail(renderer_->error());
+        if(stopAcknowledged_ && renderer_->ended()){change(State::Ended);return true;}
+        return true;
+    }
     if(state_==State::Recovering){
         const int status=control_.poll();if(status<0)return fail(control_.error());
         if(!status)return true;

@@ -210,6 +210,7 @@ protected:
     void closeEvent(QCloseEvent* event) override {
         if(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running())){
             if(closeAfterGame_){event->ignore();return;}
+            if(commands_)commands_->requestStop();
             if(liveMenus_&&liveMenus_->requestExit()){
                 closeAfterGame_=true;statusBar()->showMessage("Exiting through the original game menu…");
             }else{
@@ -268,7 +269,7 @@ private:
             if(captureLocks_)arguments.append("--capture-locks");
             if(nativeCommands_){
                 commands_=std::make_unique<LiveCommandSession>(*gl_);
-                commands_->stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
+                commands_->stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
                 commands_->framePresented=[this]{input_->suspend(media_ && media_->movieActive());placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
                 const bool continuous=qEnvironmentVariable("MNM_RENDER_CONTINUOUS")==QStringLiteral("1");
                 if(!commands_->create(path+".commands",(QRandomGenerator::global()->generate()&0x7fffffffu)|1u,continuous?2:1)){const auto error=commands_->error();finished();statusBar()->showMessage(error);return;}

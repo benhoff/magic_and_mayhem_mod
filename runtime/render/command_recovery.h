@@ -121,6 +121,7 @@ static u32 command_recover_mode(const char* path,u32 expected_session,int checkp
     struct CommandLifecycleLease lifecycle __attribute__((cleanup(command_lifecycle_leave)))=command_lifecycle_enter();
     if(!lifecycle.held){lock_diagnostic("command_recovery_lifecycle_busy",0,0,0,expected_session,0,0,0);SetLastError(error);return 0;}
     COMMAND_LIFECYCLE_PAUSE(3);
+    if(__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE))goto done;
     if(!stream || !game_session_continuous || !lock_capture_path_length || !command_worker_joined ||
        command_worker || command_queue || command_channel || command_file_count>=16 ||
        (command_auto_shutdown() && !command_exit_installed))goto done;
@@ -132,12 +133,13 @@ static u32 command_recover_mode(const char* path,u32 expected_session,int checkp
 #ifdef MNM_RENDER_SELFTEST
     if(!command_lifecycle_pause_for_test(4))goto done;
 #endif
+    if(__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE))goto done;
     stage=2;
     if(!command_candidate_open(&next,path) || (expected_session && next.file.session!=expected_session))goto done;
     stage=3;
     if(!game_tracker_acquire())goto done;
     stage=4;
-    if(__atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE) || !command_recovery_quiet() || game_lock_epoch==0xffffffffu || game_metadata_epoch==0xffffffffu ||
+    if(__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE) || __atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE) || !command_recovery_quiet() || game_lock_epoch==0xffffffffu || game_metadata_epoch==0xffffffffu ||
        game_surface_generation>0xffffffffu-GAME_SURFACE_COUNT || session_archive_id==0xffffffffu || (checkpoint==COMMAND_RECOVER_CHECKPOINT && !command_checkpoint_complete())){game_tracker_release();goto done;}
     /* Select once behind exclusive admission. Incomplete state can use fresh
      * observations; a failed claimed checkpoint must never retry that same file. */

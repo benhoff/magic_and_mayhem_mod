@@ -1807,3 +1807,21 @@ One native SurfaceBackend associates storage/admission/palettes/clipping/DC relo
 ## Combined owned surface operations — 2026-10-06
 
 Chunk1 is implemented within the measured operation scopes:5114draw HRESULTs/538272pixels,258048palette entries/8664stable descriptors,576DC phases/1182access transitions and40native guards.2304new unchanged-original keyed overlap calls establish forward row-major current-storage reads;180standalone driver calls establish leased COLORFILL success and borrowed empty-Blt success. Native CPU snapshots remain coherent for12held-destination fills. GPU copies use no pixel uploads/readbacks; keyed self-overlap has an intentional4096texel pre-write admission cap. Both captures serialize Wine and verify immutable manifests before/after. Six keyed-overlap and eight borrowed-draw mutation tests pass, plus all14renderer CTests in an isolated committed baseline with exact owned changes. Final fresh evidence supersedes validation of shared sources; preliminary/base evidence hashes remain historical. Shared palette/COM ownership, flip/loss/Restore/retry, additional formats/pitch, uncaptured precedence/negative-debt raster and live/wire/Windows equivalence remain pending; the whole milestone is not complete. See [owned backend](native-surface-backend.md).
+
+### Terminal application shutdown ownership (2026-10-06)
+
+RenderStop permanently retires the continuous producer launch, separately from
+recoverable RenderShutdown. Qt semantic stop and actual PE32 ExitProcess now
+coordinate administrative/publication workers, callback and borrowed ownership,
+bounded cleanup/END draining through owned-copy ACK, verified joins and independent
+CPU/transport retirement. Failed joins keep storage; successful borrow return
+permits retry, cancellation/reader loss/timeout refuse clean completion, repeated
+stop cannot revive a session, and post-stop callbacks remain original-only.
+Eleven synthetic application-stop cases compare22 complete frames, including real
+active checkpoint recovery and failed DC return, plus fresh regression matrices.
+The DLL is pinned before installing callbacks. Dynamic unload remains unsupported;
+loader detach signals only, with OS reclamation of refused ownership. Separate
+frame/input/media and diagnostic mappings remain process-owned. Original-game and
+hardware-driver shutdown, abandoned callbacks/borrows, opaque capacity/alias
+uncertainty and arbitrary hostile-peer mutation schedules remain pending.
+See [ownership, phase bounds and evidence](opengl-application-shutdown.md).

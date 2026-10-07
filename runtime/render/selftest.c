@@ -52,10 +52,12 @@ static i32 WIN flip(void* object,void* dst,u32 flags){(void)object;(void)dst;(vo
 #include "recovery_selftest.h"
 #include "recovery_race_selftest.h"
 #include "drawing_recovery_selftest.h"
+#include "application_stop_selftest.h"
 #include "host_recovery_selftest.h"
 #include "checkpoint_selftest.h"
 #include "working_set_selftest.h"
 void start(void){
+    char application_stop[24];if(GetEnvironmentVariableA("MNM_APPLICATION_STOP_SELFTEST",application_stop,sizeof(application_stop)))test_application_stop(application_stop);
     char drawing_recovery[24];if(GetEnvironmentVariableA("MNM_DRAWING_RECOVERY_SELFTEST",drawing_recovery,sizeof(drawing_recovery)))test_drawing_recovery(drawing_recovery);
     char recovery_race[24];if(GetEnvironmentVariableA("MNM_RECOVERY_RACE_SELFTEST",recovery_race,sizeof(recovery_race)))test_recovery_race(recovery_race);
     char lifecycle_race[24];if(GetEnvironmentVariableA("MNM_LIFECYCLE_RACE_SELFTEST",lifecycle_race,sizeof(lifecycle_race)))test_lifecycle_race(lifecycle_race);

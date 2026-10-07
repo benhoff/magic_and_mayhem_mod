@@ -65,7 +65,7 @@ static int session_record(u32 op,const void* fields,u32 fl,const void* pixels,u3
     return session_emit(op,fields,fl,pixels,length,0);
 }
 static int session_start(void){
-    if(!game_session_enabled || !lock_capture_path_length)return 0;
+    if(__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE) || !game_session_enabled || !lock_capture_path_length)return 0;
     if(session_started)return session_active!=0;
     session_started=1;session_epoch=__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED);
     /* Continuous publication requires a successfully claimed v2 queue. Never
@@ -263,10 +263,6 @@ static void session_finish_owned(void){
     if(ok)command_channel_end();else command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);
     session_archive_close();session_active=0;
     lock_diagnostic(ok?"session_finished":"session_file_failed",0,0,session_operations,0,0,0,0);
-}
-static void game_session_finish(void){
-    if(!game_tracker_acquire())return;
-    session_finish_owned();game_tracker_release();
 }
 static void session_done(void){
     if(!session_active)return;
