@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "success": true,
+  "base": "c0753c3d687cac23e6109fd6c09c58474947d1cc",
+  "sources": {
+    "renderer/blit.cpp": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+    "renderer/blit.hpp": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70",
+    "renderer/CMakeLists.txt": "5d0ebc8dd15963e17af25d564fa87ecf8bfa438331af76e246ffc93bbba342a3",
+    "renderer/surface_backend.hpp": "5346c612adf93a4a121cacfb6fd65b66712230c6eef48992e19b5865c17ac8f6",
+    "renderer/surface_backend.cpp": "7b9172485a2d9309086bc857d078a4795ac8528259a1b2f262cd3a99f2bf2189",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/command_consumer.cpp": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+    "tests/render-surface-backend-test.cpp": "e93476f1df2382088c58b893c934b3bdef942f48811cf8f6e99a4db6133d758c",
+    "tools/check-native-surface-backend.py": "241e950f1c9cedc07974ae548844970f7598b196c8d1f7d9582362b54bf89f5e"
+  },
+  "tests": [
+    {
+      "name": "render-control-client",
+      "time": "0.00920094"
+    },
+    {
+      "name": "renderer-help",
+      "time": "0.0196612"
+    },
+    {
+      "name": "native-capture-reference",
+      "time": "0.0820833"
+    },
+    {
+      "name": "opengl-owned-surface-backend",
+      "time": "20.6887"
+    },
+    {
+      "name": "opengl-clipping-stream",
+      "time": "4.42554"
+    },
+    {
+      "name": "opengl-surface-clipping",
+      "time": "3.56178"
+    },
+    {
+      "name": "opengl-command-ring",
+      "time": "3.72941"
+    },
+    {
+      "name": "opengl-palette-resources",
+      "time": "3.99758"
+    },
+    {
+      "name": "opengl-incremental-consumer",
+      "time": "6.56796"
+    },
+    {
+      "name": "opengl-live-command-channel",
+      "time": "5.38155"
+    },
+    {
+      "name": "opengl-command-stream",
+      "time": "5.60493"
+    },
+    {
+      "name": "opengl-native-blits",
+      "time": "3.382"
+    },
+    {
+      "name": "opengl-persistent-surfaces",
+      "time": "3.29112"
+    },
+    {
+      "name": "opengl-capture-replay",
+      "time": "5.93218"
+    }
+  ],
+  "count": 14,
+  "tree": "/tmp/mnm-surface-regression-xvx5g5b5",
+  "junit_sha256": "dec83f96948c53c3940ecd9ab3159d135435dd41c51ee94e83aa33f8c2756c2c",
+  "log_sha256": "2dee2de8941e536ebe75234382a793b6dd1c98c68d00525718803c5cd0a392bd",
+  "scope": "Full renderer CTest suite in isolated HEAD archive with exact owned backend/core/checker sources overlaid, preserving other process uncommitted Qt edits. Offline native operations/presentation/replay/channel regressions; no Wine/original game/live equivalence."
+}

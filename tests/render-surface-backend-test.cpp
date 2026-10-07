@@ -31,21 +31,29 @@ static void policies(SurfaceBackend& b,const SurfaceBackend::Palette& defaults){
  b.setClipper(s,clip(1));refuses([&]{b.setClipper(s,{true,std::vector<Rect>{{-1,0,2,2}}});});require(b.fill(s,std::nullopt,321).pieces==1,"Rejected clip mutated state");b.destroy(s);refuses([&]{b.read(s);});
  auto i=b.create({8,6,std::vector<std::uint32_t>(48,19)},format(8));dc=0xabababab;refuses([&]{b.acquireDc(i,dc);});require(dc==0xabababab&&!b.borrowed(i),"Missing default admission mutation");b.bindPalette(i,palette(1));require(b.acquireDc(i,dc)==0,"Explicit palette admission");refuses([&]{b.bindPalette(i,std::nullopt);});refuses([&]{b.setDcColors(i,255,{{0,0,0},{1,1,1}});});require(b.dcPalette(i)[255].red==255,"Rejected table edit");require(b.releaseDc(i,dc)==0,"Release palette DC");b.destroy(i);
  auto p=b.create({8,6,std::vector<std::uint32_t>(48,19)},format(8),0x840,defaults);b.bindPalette(p,palette(1));require(b.acquireDc(p,dc)==0,"DC snapshot");b.bindPalette(p,palette(3));require(b.dcPalette(p)[64].red==64,"Binding changed active snapshot");require(b.releaseDc(p,0)==SurfaceAccessState::badDc&&b.borrowed(p),"Bad token released ownership");require(b.releaseDc(p,dc)==0,"Palette DC release");const auto displayed=b.present(p).pixel(0,0)&0xffffff;auto c=palette(3)[19];require(displayed==((unsigned(c.red)<<16)|(unsigned(c.green)<<8)|c.blue),"Deferred display binding");b.destroy(p);
- refuses([&]{b.create({1,1,{0}},{16,{0x7c00,0x3e0,31}});});require(b.stats().surfaces==0,"Policy resource leak");
+ refuses([&]{b.create({1,1,{0}},{16,{0x7c00,0x3e0,31}});});
+ auto large=b.create({70,70,std::vector<std::uint32_t>(4900,123)},format(16));b.setSourceKey(large,321);SurfaceCopyRequest r;r.source=r.destination={0,0,70,70};r.flags=0x8000;refuses([&]{b.copy(large,large,r);});require(b.read(large).pixels==std::vector<std::uint32_t>(4900,123),"Overlap budget mutated bytes");b.destroy(large);
+ require(b.stats().surfaces==0,"Policy resource leak");
 }
 int main(int argc,char** argv){QGuiApplication app(argc,argv);try{
  require(argc==4,"Expected input/assets/output");QFile in(QString::fromLocal8Bit(argv[1]));require(in.open(QIODevice::ReadOnly),"Input file");QJsonParseError error;auto input=QJsonDocument::fromJson(in.readAll(),&error).object();require(error.error==QJsonParseError::NoError,"Input JSON");SurfaceBackend::Palette defaults{};auto values=input["defaults"].toArray();require(values.size()==256,"Default context");for(unsigned i=0;i<256;++i){auto v=unsigned(values[int(i)].toDouble());defaults[i]={std::uint8_t(v>>16),std::uint8_t(v>>8),std::uint8_t(v)};}
  auto backend=std::make_unique<SurfaceBackend>();auto& b=*backend;policies(b,defaults);QJsonArray draws;SurfaceId s=0,d=0;
- for(auto v:input["draws"].toArray()){auto c=v.toObject();const bool fill=c["kind"]=="fill";
-  if(!c["continues"].toBool()){if(!fill)s=b.create(image(c["source_pixels"].toArray()),format(16));d=c["shared"].toBool()?s:b.create(image(c["destination_pixels"].toArray()),format(16));}
+ for(auto v:input["draws"].toArray()){auto c=v.toObject();const bool fill=c["kind"]=="fill";const bool hasSource=!fill||c["aux_source"].toBool();
+  if(!c["continues"].toBool()){if(hasSource)s=b.create(image(c["source_pixels"].toArray()),format(16));d=c["shared"].toBool()?s:b.create(image(c["destination_pixels"].toArray()),format(16));}
   else require(b.read(s).pixels==image(c["source_pixels"].toArray()).pixels&&b.read(d).pixels==image(c["destination_pixels"].toArray()).pixels,"Recorded continuation inputs differ");
-  b.setClipper(d,clip(c["clip"].toInt()));if(!fill)b.setSourceKey(s,c["key"].isNull()?std::nullopt:std::optional<std::uint16_t>(c["key"].toInt()));
-  SurfaceBackend::Descriptor descriptor;descriptor.fill(0xabababab);descriptor[0]=108;auto held=c["held"].toInt();if(held)require(b.lock(held==1?s:d,descriptor)==0,"Owned held-lock setup");
+  b.setClipper(d,clip(c["clip"].toInt()));if(hasSource)b.setSourceKey(s,c["key"].isNull()?std::nullopt:std::optional<std::uint16_t>(c["key"].toInt()));
+  SurfaceBackend::Descriptor descriptor;descriptor.fill(0xabababab);descriptor[0]=108;auto held=c["held"].toInt();std::uint32_t heldDc=0;
+  if(held==1||held==2||held==5)require(b.lock(held==1?s:d,descriptor)==0,"Owned held-lock setup");
+  if(held==3||held==4||held==5)require(b.acquireDc(held==3?s:d,heldDc)==0,"Owned held-DC setup");
+  const auto counters=b.stats();
   SurfaceCopyResult result;if(fill)result=b.fill(d,c["null_rect"].toBool()?std::nullopt:std::optional(rect(c["destination"].toArray())),std::uint16_t(c["color"].toDouble()),unsigned(c["flags"].toDouble()));
   else{SurfaceCopyRequest r;r.api=c["fast"].toBool()?SurfaceCopyApi::BltFast:SurfaceCopyApi::Blt;r.source=rect(c["source"].toArray());r.destination=rect(c["destination"].toArray());r.flags=unsigned(c["flags"].toDouble());result=b.copy(s,d,r);}
-  if(held){require(b.unlock(held==1?s:d)==0,"Owned held-lock cleanup");}
-  QJsonObject out{{"tag",c["tag"]},{"hresult",qint64(result.hresult)},{"destination_after",words(b.read(d))}};if(!fill)out["source_after"]=words(b.read(s));draws.append(out);
-  if(!c["keep"].toBool()){b.destroy(d);if(!fill&&s!=d)b.destroy(s);s=d=0;}
+  const auto after=b.stats();if(!fill)require(after.uploads==counters.uploads&&after.nativeReadbacks==counters.nativeReadbacks,"Resident copy uploaded/read pixels");
+  QJsonArray lockedAfter;if(fill&&(held==2||held==5))lockedAfter=words(b.lockedPixels(d));
+  if(held==3||held==4||held==5)require(b.releaseDc(held==3?s:d,heldDc)==0,"Owned held-DC cleanup");
+  if(held==1||held==2||held==5)require(b.unlock(held==1?s:d)==0,"Owned held-lock cleanup");
+  QJsonObject out{{"tag",c["tag"]},{"hresult",qint64(result.hresult)},{"destination_after",words(b.read(d))}};if(hasSource)out["source_after"]=words(b.read(s));if(!lockedAfter.isEmpty())out["locked_after"]=lockedAfter;draws.append(out);
+  if(!c["keep"].toBool()){b.destroy(d);if(hasSource&&s!=d)b.destroy(s);s=d=0;}
  }
  require(b.stats().surfaces==0,"Draw resources");QJsonArray reuse;
  for(auto v:input["reuse"].toArray()){auto c=v.toObject();unsigned bits=c["bits"].toInt(),action=c["action"].toInt();bool initial=c["initial_palette"].toBool();const auto id=b.create({8,6,std::vector<std::uint32_t>(48,bits==8?19:bits==16?0x2bab:0x556677)},format(bits),0x840,bits==8?std::optional(defaults):std::nullopt);if(initial)b.bindPalette(id,palette(1));

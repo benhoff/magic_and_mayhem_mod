@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "success": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "tools/check-original-surface-keyed-overlap.py": "b5701e792381582217472c6f16c63129b4047c278b0146def2fd5009ac1258d5",
+    "tools/check-original-surface-overlap.py": "a9475f944a4c5351452ecb1230ad2ba50f6a77a581381b9c8d3f72812fc71709",
+    "tools/check-original-surface-keys.py": "542f2bc1feddd4b33ca16e3ba1cb75a2ae629de8183d27a95fe08f42edae5908",
+    "tools/capture-original-surface-keyed-overlap.py": "b4506ecb2fb53b6df7dc36123dd2d0cb8e7b7535b8f17e1c2e4c7e30e51d0748",
+    "tests/test-original-surface-keyed-overlap.py": "c6b163f6d544423fd27bd1be5db82345c4cf60c6243f9dca670a72df5d635c79",
+    "tests/fixtures/surfaces/original-rgb565-keyed-overlap-corpus.json": "f531b4880cbd016a0baa4f89c7e5654107875a3d20be66ce2d66784150951990",
+    "tests/fixtures/surfaces/original-rgb565-keyed-overlap.json.gz": "dc197aeb330d8a8b2e21147442b319956816f9b230effcafe671849dc7b0766f"
+  },
+  "cases": 2304,
+  "pixels": 110592,
+  "partial_error_cases": 24,
+  "scope": "2304unchanged original0x58ca90 keyed same-backing RGB565 calls match input-derived ordered forward per-pixel mutation and discard equality, including self-read of preceding writes; same/Surface1 alias,3keys,mixed/all-key,8geometries,6clip states,WAITpairs. No other formats/masks/original retry/loss/Windows/live equivalence."
+}

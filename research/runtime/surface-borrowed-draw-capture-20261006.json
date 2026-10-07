@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-borrowed-draw-reference.c": "dcf9b91c6cc885f1c9bac7adb7f1382b2159383549d82235f348ee221de5b963",
+    "tests/surface-access-reference.c": "e9e30a5c1db9f67e67699c6c193054b4a5d9db384c963446e4a4988589dd24d2",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-borrowed-draw.py": "592dbe6eb7db2a166cb45ffbe18ae4de7faca99d0c1ca1840e6c660b5b88b3f5",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tests/fixtures/surfaces/surface-borrowed-draw.json.gz": "94a85e506856609174a669d5983abd03f0bf22138ba6012cb6d764ec419e53c2"
+  },
+  "cases": 180,
+  "pixels": 17280,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-borrowed-draw.json.gz",
+    "sha256": "94a85e506856609174a669d5983abd03f0bf22138ba6012cb6d764ec419e53c2"
+  },
+  "inputs_sha256": "dfcb4575354763871552e355891f5fc159ff69d2cd5370fe46dc497db4ee874e",
+  "outputs_sha256": "c9ddf06047708a0aaebee125135e54dcd5b9d6190799c27d24ccbac7be9286aa",
+  "probe_sha256": "7bf93cb289fddaadc70ec7645259b540841043648642520c46afe34236ce8a52",
+  "artifacts": "working/tests/surface-borrowed-draw/run-rsn3v9fa",
+  "environment": {
+    "wine": "wine-11.16",
+    "gdi32_sha256": "089d8e8e7e5d7b26c72f6d0b90b89531fe43e915c900d4dd485f2924ab584b0c",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b"
+  },
+  "original_game_executed": false,
+  "scope": "Standalone Wine Surface2 RGB565180draws:COLORFILL/opaque-keyed Blt-BltFast with source/destination Lock/DC and destination Lock+DC,6clip states. Independent results and full before/after bytes. No original game, actual loss, Windows/live equivalence.",
+  "original_manifest_verified_before_after": true
+}

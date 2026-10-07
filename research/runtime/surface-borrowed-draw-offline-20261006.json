@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/check-surface-borrowed-draw.py": "35c3ee4f5012bfc09340740bc6be34fa424201198dfa424a72a650d46441ad1b",
+    "tools/capture-surface-borrowed-draw.py": "592dbe6eb7db2a166cb45ffbe18ae4de7faca99d0c1ca1840e6c660b5b88b3f5",
+    "tests/test-surface-borrowed-draw.py": "eb4a14389ecd95f399b13ff68533be67be5787d549734f5d1f12d24e8454bcde",
+    "research/runtime/surface-borrowed-draw-capture-20261006.json": "d5fd1fd18e344b917a5f10314b65ec073fbc833ea98ce1cf9e3cb9bed3609e66",
+    "tests/fixtures/surfaces/surface-borrowed-draw.json.gz": "94a85e506856609174a669d5983abd03f0bf22138ba6012cb6d764ec419e53c2"
+  },
+  "cases": 180,
+  "pixels": 17280,
+  "borrowed_fill_successes": 25,
+  "borrowed_empty_blt_successes": 10,
+  "scope": "180standalone Surface2 RGB565 operation inputs match independent results/full frames with6clip states and no/source-destination Lock/DC/destinationLock+DC. Fill bypasses mapping busy; empty Blt clips skip borrowed copies, while BltFast clip refusal precedes busy. No new game execution, other geometry/error precedence/format/real loss/Windows/live claim."
+}
