@@ -4,6 +4,10 @@ Document runtime structures, functions, addresses, signatures, and hooks here.
 For each finding, record the executable hash, discovery method, evidence,
 confidence, and whether it remains stable across launches.
 
+- [Complete live drawing replacement plan](../../docs/live-drawing-replacement.md):
+  authoritative scope, current dependencies, implementation order and launcher
+  readiness gates; subsystem documents below own their facts and evidence.
+
 - [Binary-to-behavior accounting](coverage/README.md): whole-image discovery
   inventory, cross-subsystem code/behavior index, source-census changes,
   independent validation dimensions, evidence freshness, bounded scenarios and

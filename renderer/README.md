@@ -2,10 +2,15 @@
 
 New rendering code, separate from original-engine reconstructions, the PE32
 capture hooks in `runtime/render/`, and the Qt shell in `apps/qt-shell/`.
+The [complete live drawing replacement plan](../docs/live-drawing-replacement.md)
+owns takeover milestones and release criteria. Current live capture/replay
+presentation retains original drawing; native renderer primitives and previews
+provide implementation foundations.
 The renderer owns persistent native-pixel surfaces, accepts rectangular updates
 and opaque/exact-keyed copies, and resolves indexed palettes or RGB masks with
 a presentation shader. Replay compares native output and displayed colors with
-the CPU reference. Live game command routing remains pending.
+the CPU reference. Live game capture/replay command routing is available within
+its registered scope; original drawing replacement remains outstanding.
 
 ## Replay a capture
 
@@ -98,8 +103,9 @@ capture replay keeps its original 256x256 source bound. `draw` is a compatibilit
 wrapper that creates temporary surfaces, copies, reads and destroys them.
 `present` retains RGBA readback for image export. `presentGpu` returns a GUI-thread
 texture lease for a sharing viewport, with producer/consumer fences and no pixel
-readback. The Qt `--commands` replay uses this direct path; live engine command
-routing remains pending. See [direct presentation](../research/runtime/opengl-direct-presentation.md).
+readback. The Qt `--commands` replay and live native command presentation use
+this direct path. See [direct presentation](../research/runtime/opengl-direct-presentation.md)
+and [current live launch scope](../research/runtime/native-command-launch.md).
 
 See [implementation and validation evidence](../research/runtime/opengl-blit-replay.md)
 and [capture format](../research/formats/render-draw-capture.md).

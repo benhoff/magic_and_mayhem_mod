@@ -1,5 +1,11 @@
 # Engine modernization coverage ledger
 
+The [complete live drawing replacement plan](../../docs/live-drawing-replacement.md)
+is the authoritative source for drawing takeover scope, implementation order,
+remaining dependencies and complete launcher-mode criteria. This ledger and the
+coverage register retain achieved milestones and their evidence. Current default
+launches retain original drawing through native capture/replay presentation.
+
 ## Surface contention and application-held presentation — 2026-10-07
 
 [Diagnosis and retained evidence](render-surface-contention.md) records four

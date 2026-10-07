@@ -11615,7 +11615,8 @@
       "original": [],
       "documents": [
         "research/runtime/opengl-live-command-transport.md",
-        "research/formats/render-command-channel.md"
+        "research/formats/render-command-channel.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [
         "runtime/render/command_channel.h",
@@ -11984,7 +11985,8 @@
         "research/runtime/opengl-dc-flip-order.md",
         "research/runtime/opengl-palette-property-order.md",
         "research/runtime/opengl-lifetime-order.md",
-        "research/runtime/render-surface-contention.md"
+        "research/runtime/render-surface-contention.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [
         "tools/test-live-render-game.py",
@@ -13618,7 +13620,8 @@
         "research/runtime/render-drawing-inventory.md",
         "research/runtime/surface-rectangle-forwarding.md",
         "research/runtime/opengl-world-summon-observation.md",
-        "research/runtime/opengl-copy-order.md"
+        "research/runtime/opengl-copy-order.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [],
       "tests": [],
@@ -13656,7 +13659,8 @@
         }
       ],
       "documents": [
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [],
       "tests": [],
@@ -13691,7 +13695,8 @@
         }
       ],
       "documents": [
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [],
       "tests": [],
@@ -13741,7 +13746,8 @@
         }
       ],
       "documents": [
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [],
       "tests": [],
@@ -13791,7 +13797,8 @@
         }
       ],
       "documents": [
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [],
       "tests": [],
@@ -13831,7 +13838,8 @@
         }
       ],
       "documents": [
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [],
       "tests": [],
@@ -13871,7 +13879,8 @@
         }
       ],
       "documents": [
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [],
       "tests": [],
@@ -13902,7 +13911,8 @@
       ],
       "documents": [
         "research/runtime/render-drawing-inventory.md",
-        "research/runtime/opengl-render-routes.md"
+        "research/runtime/opengl-render-routes.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [],
       "tests": [
@@ -13947,7 +13957,8 @@
       ],
       "documents": [
         "research/runtime/render-drawing-inventory.md",
-        "research/runtime/opengl-render-routes.md"
+        "research/runtime/opengl-render-routes.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [],
       "tests": [
@@ -14573,7 +14584,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-surface-fixtures.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [
         "tools/check-surface-fixtures.py"
@@ -15954,7 +15966,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-shared-scene-renderer.md",
-        "renderer/scenes/README.md"
+        "renderer/scenes/README.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [
         "renderer/scenes/scene_renderer.hpp",
@@ -16000,7 +16013,8 @@
         "research/runtime/native-scene-snapshot.md",
         "research/formats/scene-snapshot-v1.md",
         "compat/legacy/README.md",
-        "docs/architecture.md"
+        "docs/architecture.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [
         "protocols/include/mnm/scene_snapshot_v1.h",
@@ -16047,7 +16061,8 @@
       "documents": [
         "research/runtime/native-command-launch.md",
         "apps/qt-shell/README.md",
-        "research/runtime/render-surface-contention.md"
+        "research/runtime/render-surface-contention.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp"
@@ -17372,6 +17387,28 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.live-drawing-replacement",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Complete live drawing replacement scope and release gates",
+      "scope": "Planned No-CD single-player drawing takeover retaining original simulation. The authoritative roadmap defines drawing coverage, independent comparison, complete native scenes, continuous versioned delivery, actual original-raster bypass, supported session validation and capability-checked launcher release. Capture/replay, bounded snapshots and surface primitives do not establish replacement. Implementation, tests, original comparison, continuous integration, actual bypass and scenario execution remain pending; no launcher option enables this target today. This entry records planning policy only, not recovered rendering equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "docs/live-drawing-replacement.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
         "replacement": "none"
       }
     }
@@ -38121,7 +38158,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-tracker-investigation-20261007.json",
+    "path": "research/runtime/coverage/source-index-live-drawing-replacement-plan-20261007.json",
     "sha256": "a771e6569d8cd4b293bd498c7d669d0d6814e8a64412ab158cedb585792ae8fa"
   }
 }

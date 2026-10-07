@@ -1,5 +1,9 @@
 # Original display queues connected to native assets
 
+The [complete live drawing replacement plan](../../docs/live-drawing-replacement.md)
+owns implementation order and replacement criteria. This document owns the
+bounded scene snapshot contract, evidence and unsupported modes.
+
 Step 3 adds bounded observation of original simulation display queues and native
 asset-backed replay. The original engine still schedules simulation and draws
 its own window. Captured queues can be rendered through `SceneRenderer` using
@@ -81,9 +85,8 @@ the captured record. These comparisons validate the stated unshaded native
 policy, not the original shaded window. Original captures and aggregate reports
 are registered separately so live observation never implies pixel equivalence.
 
-Next: reconstruct the observed unsupported draw modes and original palette
-remapping, capture an original draw-output oracle, compare complete original
-batches, then introduce a versioned continuous scene channel and native host
-presentation behind an explicit validated replacement boundary. Animation and
+Unsupported draw modes, original palette remapping, independent complete batch
+output and continuous scene delivery are dependencies tracked in the replacement
+plan. Animation and
 simulation scheduling remain controlled by the original engine until their own
 contracts are validated. Gameplay changes remain outside this workstream.
