@@ -297,6 +297,32 @@ static void game_session_dc_checkpoint(struct GameSurface* surface){
     if(!session_check(s,&surface->pixels) || (surface->primary && !session_present(s)))return;
     session_done();
 }
+/* Each packed UPDATE borrows only owned input. Scratch is freed before the
+ * next rectangle; all updates precede CHECK/PRESENT and use existing budgets. */
+static int session_unlock_region(struct SessionSurface* s,const struct Snapshot* after,const struct Rect* region){
+    struct Rect r=*region;
+    u32 stride=after->width*(after->bits/8),bytes=(u32)(r.right-r.left)*(after->bits/8);
+    if(!inside(&r,after->width,after->height) || after->length!=stride*after->height){game_session_gap(4);return 0;}
+    u32 fields[5]={s->id,(u32)r.left,(u32)r.top,(u32)(r.right-r.left),(u32)(r.bottom-r.top)};
+    u32 length=bytes*fields[4];u8* packed=0;
+    const u8* pixels=after->data+(u32)r.top*stride+(u32)r.left*(after->bits/8);
+    if(bytes!=stride){
+        /* The pending after-snapshot is no longer in reserved storage at
+         * this point. Count it as well as the partial base and scratch. */
+        u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
+        if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes ||
+           after->length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved ||
+           length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved-after->length){game_session_gap(2);return 0;}
+        packed=HeapAlloc(GetProcessHeap(),0,length);if(!packed){game_session_gap(4);return 0;}
+        __atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
+        for(u32 y=0;y<fields[4];++y)copy(packed+y*bytes,pixels+y*stride,bytes);
+        pixels=packed;
+    }
+    int ok=session_record(2,fields,20,pixels,length);
+    if(packed){HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);}
+    return ok;
+}
+
 static void game_session_unlock(struct GameLock* lock,const struct Snapshot* after,u32 primary){
     if(!game_session_enabled)return;
     struct SessionSurface* s=session_find(lock->object);int existing=s!=0;
@@ -320,31 +346,16 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
             if(before && before->data && before->length==after->length &&
                before->width==after->width && before->height==after->height &&
                before->bits==after->bits && before->r==after->r && before->g==after->g && before->b==after->b){
-                u32 region[4];
-                if(!command_dirty_region(before->data,after->data,after->width,after->height,after->bits/8,region))goto present;
-                r.left=(i32)region[0];r.top=(i32)region[1];r.right=(i32)region[2];r.bottom=(i32)region[3];
+                u32 regions[COMMAND_DIRTY_REGIONS][4];
+                u32 count=command_dirty_regions(before->data,after->data,after->width,after->height,after->bits/8,regions);
+                for(u32 i=0;i<count;++i){
+                    struct Rect part={(i32)regions[i][0],(i32)regions[i][1],(i32)regions[i][2],(i32)regions[i][3]};
+                    if(!session_unlock_region(s,after,&part))return;
+                }
+                goto present;
             }
         }
-        u32 stride=after->width*(after->bits/8),bytes=(u32)(r.right-r.left)*(after->bits/8);
-        if(!inside(&r,after->width,after->height) || after->length!=stride*after->height){game_session_gap(4);return;}
-        u32 fields[5]={s->id,(u32)r.left,(u32)r.top,(u32)(r.right-r.left),(u32)(r.bottom-r.top)};
-        u32 length=bytes*fields[4];u8* packed=0;
-        const u8* pixels=after->data+(u32)r.top*stride+(u32)r.left*(after->bits/8);
-        if(bytes!=stride){
-            /* The pending after-snapshot is no longer in reserved storage at
-             * this point. Count it as well as the partial base and scratch. */
-            u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
-            if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes ||
-               after->length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved ||
-               length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved-after->length){game_session_gap(2);return;}
-            packed=HeapAlloc(GetProcessHeap(),0,length);if(!packed){game_session_gap(4);return;}
-            __atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
-            for(u32 y=0;y<fields[4];++y)copy(packed+y*bytes,pixels+y*stride,bytes);
-            pixels=packed;
-        }
-        int ok=session_record(2,fields,20,pixels,length);
-        if(packed){HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);}
-        if(!ok)return;
+        if(!session_unlock_region(s,after,&r))return;
     }
  present:
     if(!session_check(s,after) || (primary && !session_present(s)))return;session_done();

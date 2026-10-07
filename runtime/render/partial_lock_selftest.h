@@ -1,3 +1,4 @@
+API u32 WIN RenderShutdown(u32);
 #include "../../protocols/include/mnm/frame_v1.h"
 /* Independent native storage; Unlock poisons every exposed byte. */
 static char partial_mode[32];
@@ -121,7 +122,8 @@ static void pl_big_test(void){
             for(u32 j=0;j<8;++j)path[9+j]=hex[(i>>(28-j*4))&15];pl_file(path,pl_big_pixels,8*1024*1024);}
         pl_expected_unlock=rect;SetLastError(0x77);if(((i32 (WIN *)(void*,void*))table[32])(&object,rect)!=19 || GetLastError()!=0x88)ExitProcess(234);
     }
-    if(pl_big_locks!=count || pl_big_unlocks!=count || bs_stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4])ExitProcess(235);ExitProcess(0);
+    if(pl_big_locks!=count || pl_big_unlocks!=count || bs_stream[MNM_FRAME_V1_FRAME_COUNT_OFFSET/4])ExitProcess(235);
+    SetLastError(0x77);RenderShutdown(0);if(GetLastError()!=0x77)ExitProcess(246);ExitProcess(0);
 }
 static void test_partial_lock(void){
     char path[512];if(!GetEnvironmentVariableA("MNM_RENDER_STREAM",path,512))ExitProcess(220);
@@ -153,5 +155,7 @@ static void test_partial_lock(void){
     u32 expected_locks=pl_mode("no-base")?1:pl_mode("budget")?20:(pl_mode("chain")||pl_mode("failed-lock"))?3:2;
     if(pl_locks!=expected_locks || pl_unlocks!=expected_locks-(pl_mode("failed-lock")?1:0)+(pl_mode("retry")?1:0))ExitProcess(219);
     if(pl_has_palette() && (pl_caps!=1 || pl_reads!=1 || pl_assigns!=1 || pl_writes!=(u32)pl_mode("indexed-palette-change")))ExitProcess(245);
+    /* Application ownership emits END; process detach only signals. */
+    SetLastError(0x77);RenderShutdown(0);if(GetLastError()!=0x77)ExitProcess(246);
     ExitProcess(0);
 }

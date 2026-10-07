@@ -1829,3 +1829,30 @@ See [ownership, phase bounds and evidence](opengl-application-shutdown.md).
 ## Owned surface ownership and recovery — 2026-10-06
 
 Chunk2 is implemented within the offline scopes in [ownership and recovery](native-surface-ownership-recovery.md): canonical aliases, caller-released retained/shared palettes, detach/rebind, attached-back reacquisition/retirement, and two-buffer storage/validity/CPU-DC lease swaps. A serialized standalone Wine capture records5647rows/11flips, including busy after swap and object-local cachedDC return failures/flipback recovery; no original game instructions run. Fresh native replay compares2128ownershipwords,6656palette entries/864definedindexbytes/66loss-palette statuses.4480retained original fault traces and1536bounded prefixes freshly match the existing scheduler, separately from16native wrapper/reloader compositions/432input pixels and supplied globalcursor BMP/DC reload. Restore never invents content. Existing5114draw results/538272pixels/258048entries/8664stable descriptors and all15renderer CTests pass in isolated ef5b5a4 baseline with exact own changes;11oracle tests pass. Native counts/budgets/defaults/lost-wrapper fill admission are explicit policies; initial reports/hashes remain historical. Formats/pitch, flagged palettes, longchains, uncaptured interleavings/negative-debt raster, physical original lost-draw/asset internals and live/wire/Windows remain pending; the full surface milestone is not complete.
+
+### Sustained publication and bounded unlock partitions (2026-10-06)
+
+Fresh optimized original World/tutorial summon observation extends the prior
+short qualification to60 seconds after the summon. The baseline stays healthy
+beyond old frame/operation/record/archive limits; measured UPDATE pixel traffic
+includes70.6% unchanged storage in the retained World archive. Existing full
+Unlock compaction now chooses at most32 disjoint tight cell rectangles when
+pixel plus envelope bytes beat one bounding UPDATE. Finite scratch/CPU/queue/ring,
+resource and byte/session budgets are unchanged. Independent native/sanitizer
+reconstruction and real PE32 native-byte/GPU fixture checks accompany fresh
+continuous/archive, partial unlock and backpressure regressions and strict live
+original stable-region comparison. Legacy partial fixtures explicitly call
+RenderShutdown before ExitProcess; DLL detach no longer owns END. Whole animated
+frames, longer multi-action/battle/movie/hardware scenes, default activation,
+original shutdown and live replacement remain pending. See
+[measurement, final result and exact limitations](opengl-sustained-publication.md).
+
+Final strict live result:27/27 independent stable regions match,1,139 total
+native frames,837 further presentations over71.005 seconds since World recovery,
+no unplanned recovery and zero ordinary readbacks/uploads. Recovered World wire
+traffic falls from571,708,670 to220,296,440 bytes (61.47%) at similar observed
+pacing. Weighted polling removes the split-only RegionEntry lag; that intermediate
+25/27 run and its near-full ring samples remain recorded rather than discarded.
+The default renderer/producer remains opt-in, without whole-frame or replacement
+equivalence. Committed b48b2a9 ownership code is included in the final snapshot;
+independent pending presentation/resource/scene workspace changes are excluded.

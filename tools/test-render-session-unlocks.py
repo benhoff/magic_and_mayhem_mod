@@ -127,6 +127,13 @@ def main():
                     native = original.read_bytes()
                     colors = (case / f'colors-{step}.bin').read_bytes() if bits == 8 else None
                     rgba = partial.resolved(native, bits, masks, colors)
+                    if bits == 16:
+                        # Native RGB565 presentation uses replicated bits (the
+                        # independently committed renderer policy). Legacy
+                        # frame-v1 conversion still floors mask scaling.
+                        rgba = b''.join(bytes((((v>>11)<<3)|((v>>11)>>2),
+                            (((v>>5)&63)<<2)|(((v>>5)&63)>>4),
+                            ((v&31)<<3)|((v&31)>>2),255)) for v, in struct.iter_unpack('<H',native))
                     # Qt's framebuffer hash uses little-endian opaque QRgb.
                     qr = b''.join(bytes((rgba[i+2], rgba[i+1], rgba[i], rgba[i+3])) for i in range(0, len(rgba), 4))
                     expected.append(hashlib.sha256(qr).hexdigest())
