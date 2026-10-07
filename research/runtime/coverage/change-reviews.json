@@ -41040,6 +41040,668 @@
         "reason": "Original application/driver shutdown, whole-game frame/behavior equivalence, crash/forced-termination END, arbitrary abandoned or destroyed callbacks/borrows, opaque borrow capacity/alias uncertainty, arbitrary hostile peer request/identity mutation schedules, default live enablement and dynamic unloading remain unvalidated or unsupported. Shared historical comparisons retain their source hashes and can be stale after this edit; synthetic stop/recovery matrices do not refresh original comparison or live replacement. Separate frame/input/media hooks and diagnostic storage retain process-lifetime ownership. Independent pending viewport/resource changes in the shared workspace are excluded from this isolated staged commit and its execution snapshot.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "d641b4d2c316327d12f9f1d74cbca60818ee432a18de257b8e9d5cea92667e13",
+          "before_sha256": "861cc1c17f586005c4079e8d56287b3a702bf2a0445fef4566010a9e3b772c10",
+          "id": "NR.surface-access"
+        },
+        {
+          "after_sha256": "0b9064de6f298f2aa4f2e7508144cb274966bb70c42f1c79eb8f05bd83872716",
+          "before_sha256": "e11b0cb53bae083087c24173d9b02d82a8929ace1ba703fef2ce92e36084c379",
+          "id": "NR.surface-backend.owned"
+        },
+        {
+          "after_sha256": "4d2d6050d246d2dc5c899cd79711974f5ef789469ffddff69fd1de69190022ba",
+          "before_sha256": null,
+          "id": "NR.surface-backend.ownership-recovery"
+        },
+        {
+          "after_sha256": "0d1aaa545109d5847b1a3c27982c28542d434ca77aa5cdb4bf0462fb8d619d2a",
+          "before_sha256": "869da0aebc29ba63849ece45f86a5293d17c27050e26cbf9970905ad4570e51a",
+          "id": "NR.surface-reload.bitmap-dc"
+        },
+        {
+          "after_sha256": "6727db48490d9e6eea1fc9fcd6ea8e4ac27c3355c63005451ba2f1f3c7c41dbc",
+          "before_sha256": "cacc60ecb14c7ffff3c91fbd4d9066b91ea729cdb3dc9d7e6e47ecf295657ed4",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "a55421ee407c4d0337834136db1f87d46b94980e2dbfd8912e643469f7e75ce3",
+          "before_sha256": "af733d8aeb3a768728a612669182675c23c7d8b872562561d0054f5efd657216",
+          "id": "RE.surface-driver.indexed-restore"
+        },
+        {
+          "after_sha256": "af9dc64c50b69800042a4d9a87d763bdb2caad29f3c45798d5eb9b725f7f5638",
+          "before_sha256": "c8316e68d5307c13e5e360c2b9b4f2c2b3d449a56b3bfdaca756d2461f1c5821",
+          "id": "RE.surface-driver.loss-restore"
+        },
+        {
+          "after_sha256": "2cc6ea31dc0cd4384288002e61bba93547c65f9a44f4c1082c06b61c2d128222",
+          "before_sha256": null,
+          "id": "RE.surface-driver.ownership-flip"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "a5d41336ee9371a7f43a364538b3157bd44ca7f7c3aeea42f55c1a72f69c1f35",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/owned_surface_retry.hpp"
+        },
+        {
+          "after_sha256": "b83cb42298ebbfb2dad14545b44cb8f2f608e9206e97c7b556c29f10d50ad479",
+          "before_sha256": "5d0ebc8dd15963e17af25d564fa87ecf8bfa438331af76e246ffc93bbba342a3",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "29306563839b79760e26450d294fc75c4c3b057ffa81a64588bb42a98514fb16",
+          "before_sha256": "de30d7e2f74815f706d3cf158d0d981e0523e1f4d33fbb7ce6aa849439709c50",
+          "path": "renderer/surface_access.hpp"
+        },
+        {
+          "after_sha256": "281ec802b0c8996bae80665eceab0dad5b1cf4021f40eeefcac115f71754090e",
+          "before_sha256": "7b9172485a2d9309086bc857d078a4795ac8528259a1b2f262cd3a99f2bf2189",
+          "path": "renderer/surface_backend.cpp"
+        },
+        {
+          "after_sha256": "197e2033443d82b888df7073a3f7c198d0b366b71e13ff351b8b54b383bef338",
+          "before_sha256": "5346c612adf93a4a121cacfb6fd65b66712230c6eef48992e19b5865c17ac8f6",
+          "path": "renderer/surface_backend.hpp"
+        },
+        {
+          "after_sha256": "a41879fc9cf6aba9b78dc96d2dfc68fb3ffe9bf5ea58521277f8a319f5bb5793",
+          "before_sha256": "77504fbbd85765e9cccd07e6195c934e6525e3aeb74d96ebc173d72e1e9ac628",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "7c896e1b6fc670686177207f4a8cc350cae9b657fbaa99b7b79464dd08ec9ed4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-ownership-20261006.json"
+        },
+        {
+          "after_sha256": "3edf30be5314089045b615a5cf964f155da61d4db5d3163b86bbbbe176da7acc",
+          "before_sha256": "634fe3bd4b52f9c963bf6cd4bd615e7dc5ec1363f84499825de6a89aaf01b487",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "da48024ec93e757d70aa68d647590b92e675541a374aa7b569c79937b32f8f24",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-ownership-20261006.json"
+        },
+        {
+          "after_sha256": "067e8df984b6df619142fc30ac1fb1e1b660a863dc1116e762b0859e49efe51b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-ownership-20261006.md"
+        },
+        {
+          "after_sha256": "38ced2454a43f3eda11496bca068d6280970be16eb97d986e4b5182e9c652393",
+          "before_sha256": "0823dc609d8acc4ad74b571eb752a800973c078cae1e838d422b60da2a87cd1f",
+          "path": "research/runtime/native-surface-backend.md"
+        },
+        {
+          "after_sha256": "707670d5f3399cad8acb19bd98164d5618dfda6fec0173f24af2f5aaca2713a3",
+          "before_sha256": "c3f8f54f65853beaa9ceff2326a9f94f2781635638b2b62e7946fa964c09fe10",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "e1cbfea59ac28fc237f515249963f1fe1debbce76e1362399b8e7ea7a5d6f6fe",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-backend-regression-20261006.json"
+        },
+        {
+          "after_sha256": "3f97cb34da1686a74c25cd5103fc2366b4bbd3d10f1857334867381dafa35eb5",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-backend-regression-pre-guard-20261006.json"
+        },
+        {
+          "after_sha256": "14a5cba7adf928e5ce55a14a38ac41dc22f10e67a1876b20bc2a1f4ab1a380b4",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-final-20261006.json"
+        },
+        {
+          "after_sha256": "3c13e84552e353e79e6bd96e3aafa270aad483bd9ddde7ff63eb29623c54add1",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-final-pre-guard-20261006.json"
+        },
+        {
+          "after_sha256": "7b6190fe1a1efd092ab2173671f03c8fdb2d417b4e11eaa6b5954b608c932e64",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-initial-20261006.json"
+        },
+        {
+          "after_sha256": "e02ea8fec1362f0c14f97b7891bb242fcad23b6136738dd13480986936233fd7",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-recovery.md"
+        },
+        {
+          "after_sha256": "9e779254edf329cc1122b36ba54a4866657ee54a6b1bfcbf55cd3bea04f2dee9",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-regressions-20261006.json"
+        },
+        {
+          "after_sha256": "dd1d4735dce707af9c43beaa7729b8626177c8a40151649fdc517aa0f929c3c9",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-regressions-pre-guard-20261006.json"
+        },
+        {
+          "after_sha256": "9fad3da61bf7c9f6328a29c42818a1527d082c7ee3994708e32f1679adb5d8fb",
+          "before_sha256": "9fad3da61bf7c9f6328a29c42818a1527d082c7ee3994708e32f1679adb5d8fb",
+          "path": "research/runtime/render-drawing-inventory.md"
+        },
+        {
+          "after_sha256": "29243968d2659c8caf1feb70315a36ec4c599b594ba03c5ba64f09c4e7ff50fd",
+          "before_sha256": null,
+          "path": "research/runtime/surface-ownership-capture-20261006.json"
+        },
+        {
+          "after_sha256": "c01144134bc00e4a6aeaf53a514082d7d627141d0fd376576d6c57895ab252dd",
+          "before_sha256": null,
+          "path": "research/runtime/surface-ownership-final-capture-20261006.json"
+        },
+        {
+          "after_sha256": "8373f5e71ce99749e0f23e0c55a2d18fdb5f82aa9dbf543ec8b086a140eb8c1c",
+          "before_sha256": null,
+          "path": "research/runtime/surface-ownership-offline-20261006.json"
+        },
+        {
+          "after_sha256": "d5699c5bba8d3a6273893f6a9b30533b72e1f6f1f71d33486a72abb9f67df44d",
+          "before_sha256": null,
+          "path": "tests/render-surface-ownership-test.cpp"
+        },
+        {
+          "after_sha256": "0ff1a437b2228bd61aa181f3a0ee4f18b9a17fed22802138c1434084b2551ee8",
+          "before_sha256": null,
+          "path": "tests/surface-ownership-reference.c"
+        },
+        {
+          "after_sha256": "133cfc54a45dc2ff4f58ac09cf09467b830b1898ec825b5b5270116204c42930",
+          "before_sha256": null,
+          "path": "tests/test-surface-ownership.py"
+        },
+        {
+          "after_sha256": "f414c20e93f2397f036c8702b643c240866bd07bb1aa350b35c4a3b3441e2659",
+          "before_sha256": null,
+          "path": "tools/capture-surface-ownership.py"
+        },
+        {
+          "after_sha256": "8ea093225b760c0fd3829e58f0da6f782afe5e3a7689329f40b17c850413f55b",
+          "before_sha256": null,
+          "path": "tools/check-native-surface-ownership.py"
+        },
+        {
+          "after_sha256": "67800b21467e7b71f0bdcb22252bb2e2ad4de4c5093196daf9866b619c1aa9b3",
+          "before_sha256": null,
+          "path": "tools/check-surface-ownership.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-ownership.json.gz",
+          "before_sha256": null,
+          "after_sha256": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-ownership-final.json.gz",
+          "before_sha256": null,
+          "after_sha256": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839"
+        }
+      ],
+      "id": "surface-ownership-recovery-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:1d839782dbd29c11eb8eeb8a297237be2c97b47c9b9f46606b88683d8cbd1e91",
+        "behaviors_without_comparison:2013a503db940ed58d62857c578a49290f7e1d2e60f29c5289b8229e02edfdb0",
+        "stale_evidence:0432156353793dab64291d9a9c530fcc4073e2fa00434c62cbd023203c1b7327",
+        "stale_evidence:147ecfe65fcb5ff7b57f4a5d7c206790a79d3d790ebf2c94cac4c79c1fcf56a3",
+        "stale_evidence:21e44e2a92014755bd4e7588445d8c3a3dae984c0e350f5188eb74eeed7ca8c6",
+        "stale_evidence:3056c4fbc6ce3408003660ccc9009e5818fc59d03030ac0a5d9d8c291ef04f98",
+        "stale_evidence:3a71063a3e3e8d59e399560de221c73812d482a5980b99dffa3fd604f3488383",
+        "stale_evidence:3a7bddbf4a358f95421ccebfc34060a396c9341dc0f151f5f9e7ef76bb844f89",
+        "stale_evidence:3c08f5e9d0e2550357494dd995244074e489a0fc48512c8452981b4be1675248",
+        "stale_evidence:48cdd1ea2cba1e9363511dd5f5cad5896341afc9850350f8ea430505722f279d",
+        "stale_evidence:5259ed94e80385befeb7736034048f15d789e485d94d291d1d85c5eb9696ab7b",
+        "stale_evidence:629d3dc1d41f838c4e9550cc5e137e280e92fcf55d8036f3ffb618d82bced3fa",
+        "stale_evidence:645ea1f8cf51f3873ddd8776c1a7934e9acd1b612e031d191f80b7725dafc1f6",
+        "stale_evidence:674fdc0b2041cebfd92e309e4da66f3a141cfa528c7af4161319809cd586d047",
+        "stale_evidence:695e3d666f3a73c80bb43e1f5a418d735d28a117a2b9c5a85ba4572790009f12",
+        "stale_evidence:6b14fa42d45201b7a20cb239d76045f7489ee20188f097f81797047b337a7af0",
+        "stale_evidence:78e2ea5c28530ee2b6feb9c9745f960bfc803f916ab3640994bfb52f57484712",
+        "stale_evidence:83dca48e773fd26fe7985f18e343d9173e94707dd10a5266d6e0023c70a33043",
+        "stale_evidence:8bfd2ace46d5123d3de7fc34c78c609769b4938fb5ee8ed129096cec5a360e6e",
+        "stale_evidence:960a70f28a6014df8d4d963a4320f60870afdaff94181d3e1e8ecb61bcc8e78c",
+        "stale_evidence:a50b969ed554d856cbdcfec880f2418330456f5f78b08fab451f3ec7cb1685aa",
+        "stale_evidence:b1f90fba7001f781f47eaf337fd5bed7f7ed0769f1d85cf54884e0ac162a08ee",
+        "stale_evidence:b439aefcae3a0b8aa3233e5d4f51a3d6b4df0069d7dd7992fb2868b15d687098",
+        "stale_evidence:b663d34f473b349d89493d60af3e8a50e0ba037da84bde726d2a9218c9dc39ce",
+        "stale_evidence:c44f502fde20f31d96ec59913c2620cbfd85a56c98e9a6478663c78a9d6a2e0b",
+        "stale_evidence:c5eba4f98fd3b23751b5c5c82d394dae2fa2a59a28024b3bf6b5f0af29727533",
+        "stale_evidence:d015bb2a3c168f2a9170a8e3531102d42fbfae8d1068a3b782bada8c6ef33c77",
+        "stale_evidence:d86639662d76b9fd3b8f00a41600369b0e3dee35ebe6b2b2fd847cfebb582c2a",
+        "stale_evidence:dcd2b341d907c6e9bc4dcdeb9e91f8714eea275f73df7131adc7d0b9bcd0b938",
+        "stale_evidence:dd1fa6003583a60ab19adf447c28be5960d0f78d20051df8b5ff1bbbfe02988f",
+        "stale_evidence:de880ebc244774a36e693eee74d9fb6eb024b08339f92a8262ab3667fb740642",
+        "stale_evidence:dea57ad4aa2925449ee4656c7f92aed1a4fe3a7200c529cffdee0a3304151074",
+        "stale_evidence:e0adc2e3111b114ecb8bcb38f7ac29e0a037faa170d840a3ef816c76fbaa136c",
+        "stale_evidence:e5d253b61eadd00ad62ff2d47c177ce2f2ac18bedef0b47a8a4317346ca655cf",
+        "stale_evidence:e759dac94d135e01ab691b66fbf9c446e65384016414d258fd834d71cab0f480",
+        "stale_evidence:fd37be5c68c758913577d3512820475a9ae7f23765374ea4af75755592d438ae",
+        "stale_evidence:fef953fc9d8af42bc2530c8f29785778371be1e43808e67d75c49ab1a3fa528c"
+      ],
+      "reason": "Reviewed canonical ownership/attachment budgets and retirement, shared palette propagation/DC snapshots, loss/Restore validity, and CPU physical leases versus object-local cachedDC across driver flips including busy after mutation. Independent capture/oracle5647rows and11mutation tests, fresh native286checks/29refusals/11flips, indexed6656entries/864definedbytes,4480originalscheduler traces/1536bounded stops,16native recovery compositions/432inputpixels plus suppliedcursorBMPDC callback all pass. Existing5114draw results/538272pixels and15isolated renderer CTests pass. Original physical lost-draw/realCOM/flags/interleavings/formats/asset internals/live remain explicit. Source census and intervening exact committed history reviewed; preliminary source fingerprints kept historical.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh standalone driver outputs and scoped native ownership/recovery/presentation evidence validate changed code; isolated-original evidence supplies retained retry/operation comparisons only. Fifteen renderer CTests pass in ef5b5a4 archive with exact owned changes,11offline mutation tests. No original physical lost-draw or live/Windows equivalence claim.",
+        "evidence": [
+          "NR.surface-backend.ownership-recovery.final-20261006",
+          "ORIGINAL.surface-retry.ownership-replay-20261006",
+          "NR.surface-backend.ownership-recovery.regressions-20261006",
+          "NR.surface-backend.ownership-recovery.operations-20261006",
+          "ORIGINAL.surface-backend.ownership-recovery.operations-20261006",
+          "DRIVER.surface-ownership.capture-final-20261006",
+          "DRIVER.surface-ownership.offline-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "5f1bc68d8a394aeef6fb7cae280fbc2093a8366d51e7f73b6f1f69e18492e4bd",
+          "before_sha256": "5f1bc68d8a394aeef6fb7cae280fbc2093a8366d51e7f73b6f1f69e18492e4bd",
+          "id": "EXT.dependencies"
+        },
+        {
+          "after_sha256": "c0d3df8f86c6e562c9288060a934c262c2330b641586de8078a93d15f9dc8656",
+          "before_sha256": "363770dd2e73a9bb93f7cde1e4027677c51e1c5b3debc5a4efa5767d3fb230b8",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "2de6c7c49552549ce9d189c2ccd5914acfea9ecd066b4671a28ebe93bf6f6c60",
+          "before_sha256": "45e9b48e70e025ae7e4d52e8c851bbd294ede9c79aa71b4f2cf148081188ba64",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "87a57df3aaac3e590fec83d77de612322aee1d9c26b90c8ff35e92c3a32a540f",
+          "before_sha256": "b91885d18e48cdae692be2d2ab60e5818622840299f24545ba2f5ac052e76a1a",
+          "id": "NR.command-ring"
+        },
+        {
+          "after_sha256": "873fcc199a4179a3ebe15a61cb069e98f36692d7606907f6629dc439ecd66e80",
+          "before_sha256": "85a9663ad330df1e69e45437c7c14c2a6582a7e870d3af612cebfa3e76e1fbb9",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "52d3aead1f196dc57ab4623c8931ce172a70d9a2407245051d9ff472a5a98d22",
+          "before_sha256": "04469af6ee9321f05751600f35715c30d9833c24d2a99642cdcb4be4bac8680d",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "3e5a15e5ce7b0902208198f3de2fa0f1a3996bd92e1adb96d7da9f6251ae5aae",
+          "before_sha256": "79287930a8fdf5286a3d46fc057d51126dd998755ef75074b2edde96c36d0d93",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "0ea6d497ec004888aeea3c8b03a079304ab87a6fe89c7004e540035972d529b3",
+          "before_sha256": "a824486089e4ce0a2103625b65fd2f50aac05e37911837f5cb094d858eaef24d",
+          "id": "NR.surface-contents.validity"
+        },
+        {
+          "after_sha256": "936fc54ae9f6f358cff873fcb0db5148aef75bdc60a8ed37f27fd9af02990d48",
+          "before_sha256": "f8eeeb7878188ca3617b6a3a81a9211564eaf01f77d042d21d418fdf3c3249dd",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "bd07748080e869dc483338c64ef47ce3c33593ac9d5c7910a052b5672920fcf8",
+          "before_sha256": "2d22ff6ed91c84c2400dbcdccd016f50167655d160949a6b865543b975b46d86",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "ee4982b90c3811dfd8897423f89da4289948db241a5abc596198e39c84ef6b3e",
+          "before_sha256": "a411c05cfadc273f0f7ffe588450461d41d4528fbd53ce14a89304d4ca8fd40a",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "11eb344e92a7ee94dd379708207c41e752e5065edbaa9382b35706dfcf351b82",
+          "before_sha256": "181ea1566f3b2495c29491b41421a1149cf344333dfcfe9d750f8aa4fa5d1c09",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "3604024ec23bbdd27ce68d8386f70398874a0ec087ab210b1eb67dffc534ed38",
+          "before_sha256": "4b399bba3db3c544a5dd5e8f29ac5829015902a84421784bab624ec38e3b60fe",
+          "id": "NR.surface-reload.dc-regions"
+        },
+        {
+          "after_sha256": "86d502f1603b271ea6b9f4c7cdf55126738935a27d6312db416709e372d8d59d",
+          "before_sha256": "2bd3c81e04c3d073fb179e4534e7be8b4f5e48e76d3d51f04fb67ccb656a75cd",
+          "id": "NR.surface-reload.dib-indexed"
+        },
+        {
+          "after_sha256": "eee30d23033800aa93ff4ff37f7b670c2d544f4b7a981de3653835a7e0728db1",
+          "before_sha256": "65ea8bc0594d431b5943cd24336ee568319c7f5da1f0bde3238caaa8e5ca83fa",
+          "id": "NR.surface-reload.dib-rgb"
+        },
+        {
+          "after_sha256": "9536c35d935f792ab53697cc318846219f804cbf9cec896555327d36477f7342",
+          "before_sha256": "beefe4f93c53a08df475bb0530c875dd71b1230792bc2ad06ca532c4f46fa509",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "5ca20580338022621acc14cdbac98f3579852117fd4f6964733234bfb029d43c",
+          "before_sha256": "7a3a116634226f4dd3c589a52c3dafce4849e3dc71ea737e6857b0756562a3f1",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "bef5bce993d6fb3cc13c2db1b6c7a6bc7adc04a0c80ada87d4342370e4569909",
+          "before_sha256": "aca9684ce14028cabe66b3c19d45d46fe73e140d76a261d5192f8716bf1fef68",
+          "id": "RE.surface-copy.rgb565-keyed-overlap"
+        },
+        {
+          "after_sha256": "237481a06f931d3a189b9f365f4045983f60aec52a49d60eb1f07a450bc4d053",
+          "before_sha256": "d0237fe2a02046b629b71ae9d055691571a56b56b56ff1ac98897d4d0141d0e0",
+          "id": "RE.surface-copy.rgb565-overlap"
+        },
+        {
+          "after_sha256": "87abbdeaa3c80b37260c27c63151e44bac6ac5675ab8da2e63467ec71c422aaf",
+          "before_sha256": "0cf11c79a7a936067b01a349a3df3d3718613cfc974a8d566179271df48ae383",
+          "id": "RE.surface-driver.access"
+        },
+        {
+          "after_sha256": "552f4fe38ef48e2780a1f46fa1801f1a0218e26bfc9d442f5364567384a876d1",
+          "before_sha256": "d8d658d69df231f54b6702f32aeda5acca2bfe8f365555ecdda3cb40dc91be5a",
+          "id": "RE.surface-driver.borrowed-draw"
+        },
+        {
+          "after_sha256": "29918ee9b85551e2ac7f6d2ca1001c979085dd2f740bb9180df5ce772189b565",
+          "before_sha256": "ee161e56593a2228ccd3eb80ced0fac51477476c54f943ab44bb22390694cfcd",
+          "id": "RE.surface-driver.dc-palette-clip"
+        },
+        {
+          "after_sha256": "76d0a4b2d3c5741610d44b39aa96ac14fe5e87a0491250d60ec4e8dbe4bea128",
+          "before_sha256": "fa4c21b1449f5dde44eb17d740a48d3b12286e8fb2d26f9d26fabc82491c8e53",
+          "id": "RE.surface-driver.dc-raster"
+        },
+        {
+          "after_sha256": "2a88b9cf6653ff0b08a9736634c2500da9c53cdf356c96ff77f3dfaee98dfc5a",
+          "before_sha256": "9bb30b49727f4d208702bea5e24cb9fd136271f3724189a90b4d608a8de8d4cd",
+          "id": "RE.surface-driver.dc-reuse"
+        },
+        {
+          "after_sha256": "81c5279b5dad02bdbb4560311abf9bd679f4fab1c08e91049b31fb6d47c71200",
+          "before_sha256": "cd631d13f7be83fa7ad5492377d7150f975dc9a151e1818595b433d22e4dcfac",
+          "id": "RE.surface-driver.dib-raster"
+        },
+        {
+          "after_sha256": "d3f397a6f26bd41353dd4bce4393c68eb791aa7a1ceab1991137ffaaeb1965d2",
+          "before_sha256": "a796c4b34f9bbb28fee59156dae959a842d68b20719209f0f4f21e529f28612c",
+          "id": "RE.surface-fill.rgb565"
+        },
+        {
+          "after_sha256": "9352e85d4c6ff5a08c1857309d973e8daaf5c3de7b02c086674de6a9c790b39a",
+          "before_sha256": "73a3a596937e1fd6cde74476be96e193c652e7d15699962ecd30b196568e6bd1",
+          "id": "RE.surface-reload.cursor-sentinel"
+        },
+        {
+          "after_sha256": "f5b1cb8b5f9ac10d0c22f31f9c0bec68b838edf85e97847c41d1ab95fba956ef",
+          "before_sha256": "f5b1cb8b5f9ac10d0c22f31f9c0bec68b838edf85e97847c41d1ab95fba956ef",
+          "id": "RI.copies"
+        },
+        {
+          "after_sha256": "dbf4192987c15b91302ba559aee5f76d46e02eb7fdde4ae86d2fb5134168bca4",
+          "before_sha256": "dbf4192987c15b91302ba559aee5f76d46e02eb7fdde4ae86d2fb5134168bca4",
+          "id": "RI.effects"
+        },
+        {
+          "after_sha256": "12270b7785854c00fbb9b23ad9389f996e129b7ad21fd37dd84879bba2c1d8b6",
+          "before_sha256": "12270b7785854c00fbb9b23ad9389f996e129b7ad21fd37dd84879bba2c1d8b6",
+          "id": "RI.fills"
+        },
+        {
+          "after_sha256": "0c257000ef73522ad6f333d4133eae5c89af952c2ecc65ce1bf3c33be4e068f2",
+          "before_sha256": "0c257000ef73522ad6f333d4133eae5c89af952c2ecc65ce1bf3c33be4e068f2",
+          "id": "RI.gdi-text"
+        },
+        {
+          "after_sha256": "8d34d0cfc24ada6cee2ae06126d279461236dbad0f4c8bdae513a74da87b60b2",
+          "before_sha256": "8d34d0cfc24ada6cee2ae06126d279461236dbad0f4c8bdae513a74da87b60b2",
+          "id": "RI.locked-writes"
+        },
+        {
+          "after_sha256": "e61b90795b849de88d34d95dc5d7f363893b3433233dc7bac01f693122717cee",
+          "before_sha256": "e61b90795b849de88d34d95dc5d7f363893b3433233dc7bac01f693122717cee",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "7c440274a90b26978c0c5fbb0850c612dfaa5bc9fe474cf7034e5c1a6b35b279",
+          "before_sha256": "7c440274a90b26978c0c5fbb0850c612dfaa5bc9fe474cf7034e5c1a6b35b279",
+          "id": "RI.sprites"
+        },
+        {
+          "after_sha256": "5bc86a80ee458d3462e6cf53b094435c2a571d8dac8a83ce3c890972d4bacc1c",
+          "before_sha256": "5bc86a80ee458d3462e6cf53b094435c2a571d8dac8a83ce3c890972d4bacc1c",
+          "id": "RI.terrain"
+        },
+        {
+          "after_sha256": "d5fff450ebce9fd99acb97d23ae2d2abb09ef98ec46ae1a4e294a5b79c147351",
+          "before_sha256": "d5fff450ebce9fd99acb97d23ae2d2abb09ef98ec46ae1a4e294a5b79c147351",
+          "id": "RI.ui"
+        },
+        {
+          "after_sha256": "22a213e83ef8dc21d4ef35d678b4f6811cf647df32df5f9fbeb01ff75643277c",
+          "before_sha256": "22a213e83ef8dc21d4ef35d678b4f6811cf647df32df5f9fbeb01ff75643277c",
+          "id": "RT.render"
+        },
+        {
+          "after_sha256": "0fbf47f08aa315b5bc2e915d5b1a011c84e0bf6cb4c747b3b515d271b353d949",
+          "before_sha256": "0fbf47f08aa315b5bc2e915d5b1a011c84e0bf6cb4c747b3b515d271b353d949",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "a5d41336ee9371a7f43a364538b3157bd44ca7f7c3aeea42f55c1a72f69c1f35",
+          "before_sha256": null,
+          "path": "reconstruction/rendering/owned_surface_retry.hpp"
+        },
+        {
+          "after_sha256": "b83cb42298ebbfb2dad14545b44cb8f2f608e9206e97c7b556c29f10d50ad479",
+          "before_sha256": "5d0ebc8dd15963e17af25d564fa87ecf8bfa438331af76e246ffc93bbba342a3",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "29306563839b79760e26450d294fc75c4c3b057ffa81a64588bb42a98514fb16",
+          "before_sha256": "de30d7e2f74815f706d3cf158d0d981e0523e1f4d33fbb7ce6aa849439709c50",
+          "path": "renderer/surface_access.hpp"
+        },
+        {
+          "after_sha256": "281ec802b0c8996bae80665eceab0dad5b1cf4021f40eeefcac115f71754090e",
+          "before_sha256": "7b9172485a2d9309086bc857d078a4795ac8528259a1b2f262cd3a99f2bf2189",
+          "path": "renderer/surface_backend.cpp"
+        },
+        {
+          "after_sha256": "197e2033443d82b888df7073a3f7c198d0b366b71e13ff351b8b54b383bef338",
+          "before_sha256": "5346c612adf93a4a121cacfb6fd65b66712230c6eef48992e19b5865c17ac8f6",
+          "path": "renderer/surface_backend.hpp"
+        },
+        {
+          "after_sha256": "a41879fc9cf6aba9b78dc96d2dfc68fb3ffe9bf5ea58521277f8a319f5bb5793",
+          "before_sha256": "77504fbbd85765e9cccd07e6195c934e6525e3aeb74d96ebc173d72e1e9ac628",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "7c896e1b6fc670686177207f4a8cc350cae9b657fbaa99b7b79464dd08ec9ed4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-ownership-20261006.json"
+        },
+        {
+          "after_sha256": "3edf30be5314089045b615a5cf964f155da61d4db5d3163b86bbbbe176da7acc",
+          "before_sha256": "634fe3bd4b52f9c963bf6cd4bd615e7dc5ec1363f84499825de6a89aaf01b487",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "da48024ec93e757d70aa68d647590b92e675541a374aa7b569c79937b32f8f24",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-ownership-20261006.json"
+        },
+        {
+          "after_sha256": "067e8df984b6df619142fc30ac1fb1e1b660a863dc1116e762b0859e49efe51b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-ownership-20261006.md"
+        },
+        {
+          "after_sha256": "38ced2454a43f3eda11496bca068d6280970be16eb97d986e4b5182e9c652393",
+          "before_sha256": "0823dc609d8acc4ad74b571eb752a800973c078cae1e838d422b60da2a87cd1f",
+          "path": "research/runtime/native-surface-backend.md"
+        },
+        {
+          "after_sha256": "707670d5f3399cad8acb19bd98164d5618dfda6fec0173f24af2f5aaca2713a3",
+          "before_sha256": "c3f8f54f65853beaa9ceff2326a9f94f2781635638b2b62e7946fa964c09fe10",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "e1cbfea59ac28fc237f515249963f1fe1debbce76e1362399b8e7ea7a5d6f6fe",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-backend-regression-20261006.json"
+        },
+        {
+          "after_sha256": "3f97cb34da1686a74c25cd5103fc2366b4bbd3d10f1857334867381dafa35eb5",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-backend-regression-pre-guard-20261006.json"
+        },
+        {
+          "after_sha256": "14a5cba7adf928e5ce55a14a38ac41dc22f10e67a1876b20bc2a1f4ab1a380b4",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-final-20261006.json"
+        },
+        {
+          "after_sha256": "3c13e84552e353e79e6bd96e3aafa270aad483bd9ddde7ff63eb29623c54add1",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-final-pre-guard-20261006.json"
+        },
+        {
+          "after_sha256": "7b6190fe1a1efd092ab2173671f03c8fdb2d417b4e11eaa6b5954b608c932e64",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-initial-20261006.json"
+        },
+        {
+          "after_sha256": "e02ea8fec1362f0c14f97b7891bb242fcad23b6136738dd13480986936233fd7",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-recovery.md"
+        },
+        {
+          "after_sha256": "9e779254edf329cc1122b36ba54a4866657ee54a6b1bfcbf55cd3bea04f2dee9",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-regressions-20261006.json"
+        },
+        {
+          "after_sha256": "dd1d4735dce707af9c43beaa7729b8626177c8a40151649fdc517aa0f929c3c9",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-ownership-regressions-pre-guard-20261006.json"
+        },
+        {
+          "after_sha256": "9fad3da61bf7c9f6328a29c42818a1527d082c7ee3994708e32f1679adb5d8fb",
+          "before_sha256": "9fad3da61bf7c9f6328a29c42818a1527d082c7ee3994708e32f1679adb5d8fb",
+          "path": "research/runtime/render-drawing-inventory.md"
+        },
+        {
+          "after_sha256": "29243968d2659c8caf1feb70315a36ec4c599b594ba03c5ba64f09c4e7ff50fd",
+          "before_sha256": null,
+          "path": "research/runtime/surface-ownership-capture-20261006.json"
+        },
+        {
+          "after_sha256": "c01144134bc00e4a6aeaf53a514082d7d627141d0fd376576d6c57895ab252dd",
+          "before_sha256": null,
+          "path": "research/runtime/surface-ownership-final-capture-20261006.json"
+        },
+        {
+          "after_sha256": "8373f5e71ce99749e0f23e0c55a2d18fdb5f82aa9dbf543ec8b086a140eb8c1c",
+          "before_sha256": null,
+          "path": "research/runtime/surface-ownership-offline-20261006.json"
+        },
+        {
+          "after_sha256": "d5699c5bba8d3a6273893f6a9b30533b72e1f6f1f71d33486a72abb9f67df44d",
+          "before_sha256": null,
+          "path": "tests/render-surface-ownership-test.cpp"
+        },
+        {
+          "after_sha256": "0ff1a437b2228bd61aa181f3a0ee4f18b9a17fed22802138c1434084b2551ee8",
+          "before_sha256": null,
+          "path": "tests/surface-ownership-reference.c"
+        },
+        {
+          "after_sha256": "133cfc54a45dc2ff4f58ac09cf09467b830b1898ec825b5b5270116204c42930",
+          "before_sha256": null,
+          "path": "tests/test-surface-ownership.py"
+        },
+        {
+          "after_sha256": "f414c20e93f2397f036c8702b643c240866bd07bb1aa350b35c4a3b3441e2659",
+          "before_sha256": null,
+          "path": "tools/capture-surface-ownership.py"
+        },
+        {
+          "after_sha256": "8ea093225b760c0fd3829e58f0da6f782afe5e3a7689329f40b17c850413f55b",
+          "before_sha256": null,
+          "path": "tools/check-native-surface-ownership.py"
+        },
+        {
+          "after_sha256": "67800b21467e7b71f0bdcb22252bb2e2ad4de4c5093196daf9866b619c1aa9b3",
+          "before_sha256": null,
+          "path": "tools/check-surface-ownership.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-ownership.json.gz",
+          "before_sha256": null,
+          "after_sha256": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-ownership-final.json.gz",
+          "before_sha256": null,
+          "after_sha256": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839"
+        }
+      ],
+      "id": "surface-ownership-shared-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:1d839782dbd29c11eb8eeb8a297237be2c97b47c9b9f46606b88683d8cbd1e91",
+        "behaviors_without_comparison:2013a503db940ed58d62857c578a49290f7e1d2e60f29c5289b8229e02edfdb0",
+        "stale_evidence:0432156353793dab64291d9a9c530fcc4073e2fa00434c62cbd023203c1b7327",
+        "stale_evidence:147ecfe65fcb5ff7b57f4a5d7c206790a79d3d790ebf2c94cac4c79c1fcf56a3",
+        "stale_evidence:21e44e2a92014755bd4e7588445d8c3a3dae984c0e350f5188eb74eeed7ca8c6",
+        "stale_evidence:3056c4fbc6ce3408003660ccc9009e5818fc59d03030ac0a5d9d8c291ef04f98",
+        "stale_evidence:3a71063a3e3e8d59e399560de221c73812d482a5980b99dffa3fd604f3488383",
+        "stale_evidence:3a7bddbf4a358f95421ccebfc34060a396c9341dc0f151f5f9e7ef76bb844f89",
+        "stale_evidence:3c08f5e9d0e2550357494dd995244074e489a0fc48512c8452981b4be1675248",
+        "stale_evidence:48cdd1ea2cba1e9363511dd5f5cad5896341afc9850350f8ea430505722f279d",
+        "stale_evidence:5259ed94e80385befeb7736034048f15d789e485d94d291d1d85c5eb9696ab7b",
+        "stale_evidence:629d3dc1d41f838c4e9550cc5e137e280e92fcf55d8036f3ffb618d82bced3fa",
+        "stale_evidence:645ea1f8cf51f3873ddd8776c1a7934e9acd1b612e031d191f80b7725dafc1f6",
+        "stale_evidence:674fdc0b2041cebfd92e309e4da66f3a141cfa528c7af4161319809cd586d047",
+        "stale_evidence:695e3d666f3a73c80bb43e1f5a418d735d28a117a2b9c5a85ba4572790009f12",
+        "stale_evidence:6b14fa42d45201b7a20cb239d76045f7489ee20188f097f81797047b337a7af0",
+        "stale_evidence:78e2ea5c28530ee2b6feb9c9745f960bfc803f916ab3640994bfb52f57484712",
+        "stale_evidence:83dca48e773fd26fe7985f18e343d9173e94707dd10a5266d6e0023c70a33043",
+        "stale_evidence:8bfd2ace46d5123d3de7fc34c78c609769b4938fb5ee8ed129096cec5a360e6e",
+        "stale_evidence:960a70f28a6014df8d4d963a4320f60870afdaff94181d3e1e8ecb61bcc8e78c",
+        "stale_evidence:a50b969ed554d856cbdcfec880f2418330456f5f78b08fab451f3ec7cb1685aa",
+        "stale_evidence:b1f90fba7001f781f47eaf337fd5bed7f7ed0769f1d85cf54884e0ac162a08ee",
+        "stale_evidence:b439aefcae3a0b8aa3233e5d4f51a3d6b4df0069d7dd7992fb2868b15d687098",
+        "stale_evidence:b663d34f473b349d89493d60af3e8a50e0ba037da84bde726d2a9218c9dc39ce",
+        "stale_evidence:c44f502fde20f31d96ec59913c2620cbfd85a56c98e9a6478663c78a9d6a2e0b",
+        "stale_evidence:c5eba4f98fd3b23751b5c5c82d394dae2fa2a59a28024b3bf6b5f0af29727533",
+        "stale_evidence:d015bb2a3c168f2a9170a8e3531102d42fbfae8d1068a3b782bada8c6ef33c77",
+        "stale_evidence:d86639662d76b9fd3b8f00a41600369b0e3dee35ebe6b2b2fd847cfebb582c2a",
+        "stale_evidence:dcd2b341d907c6e9bc4dcdeb9e91f8714eea275f73df7131adc7d0b9bcd0b938",
+        "stale_evidence:dd1fa6003583a60ab19adf447c28be5960d0f78d20051df8b5ff1bbbfe02988f",
+        "stale_evidence:de880ebc244774a36e693eee74d9fb6eb024b08339f92a8262ab3667fb740642",
+        "stale_evidence:dea57ad4aa2925449ee4656c7f92aed1a4fe3a7200c529cffdee0a3304151074",
+        "stale_evidence:e0adc2e3111b114ecb8bcb38f7ac29e0a037faa170d840a3ef816c76fbaa136c",
+        "stale_evidence:e5d253b61eadd00ad62ff2d47c177ce2f2ac18bedef0b47a8a4317346ca655cf",
+        "stale_evidence:e759dac94d135e01ab691b66fbf9c446e65384016414d258fd834d71cab0f480",
+        "stale_evidence:fd37be5c68c758913577d3512820475a9ae7f23765374ea4af75755592d438ae",
+        "stale_evidence:fef953fc9d8af42bc2530c8f29785778371be1e43808e67d75c49ab1a3fa528c"
+      ],
+      "reason": "Reviewed canonical ownership/attachment budgets and retirement, shared palette propagation/DC snapshots, loss/Restore validity, and CPU physical leases versus object-local cachedDC across driver flips including busy after mutation. Independent capture/oracle5647rows and11mutation tests, fresh native286checks/29refusals/11flips, indexed6656entries/864definedbytes,4480originalscheduler traces/1536bounded stops,16native recovery compositions/432inputpixels plus suppliedcursorBMPDC callback all pass. Existing5114draw results/538272pixels and15isolated renderer CTests pass. Original physical lost-draw/realCOM/flags/interleavings/formats/asset internals/live remain explicit. Source census and intervening exact committed history reviewed; preliminary source fingerprints kept historical.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared backend/access/CMake/research source identities and affected links reviewed. Fresh bounded renderer regression does not establish other original/game/asset/protocol/live scopes. Preserve historical evidence fingerprints and existing statuses without promotion; current equivalence beyond named scopes remains pending.",
+        "evidence": []
+      }
     }
   ]
 }

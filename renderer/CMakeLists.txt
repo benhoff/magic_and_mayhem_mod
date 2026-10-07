@@ -23,6 +23,9 @@ if(BUILD_TESTING)
     add_executable(render-surface-backend-test ../tests/render-surface-backend-test.cpp)
     target_link_libraries(render-surface-backend-test PRIVATE mnm-renderer)
     target_compile_options(render-surface-backend-test PRIVATE -Wall -Wextra -Werror -pedantic)
+    add_executable(render-surface-ownership-test ../tests/render-surface-ownership-test.cpp)
+    target_link_libraries(render-surface-ownership-test PRIVATE mnm-renderer)
+    target_compile_options(render-surface-ownership-test PRIVATE -Wall -Wextra -Werror -pedantic)
     add_executable(render-clipping-stream-test ../tests/render-clipping-stream-test.cpp)
     target_link_libraries(render-clipping-stream-test PRIVATE mnm-renderer)
     target_compile_options(render-clipping-stream-test PRIVATE -Wall -Wextra -Werror -pedantic)
@@ -46,6 +49,10 @@ if(BUILD_TESTING)
                  "${CMAKE_CURRENT_SOURCE_DIR}/../tools/check-native-surface-backend.py" --combined
                  --build "${CMAKE_CURRENT_BINARY_DIR}" --executable $<TARGET_FILE:render-surface-backend-test>)
         set_tests_properties(opengl-owned-surface-backend PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=xcb;LIBGL_ALWAYS_SOFTWARE=1" TIMEOUT 180)
+        add_test(NAME opengl-owned-surface-ownership COMMAND "${XVFB_RUN}" -a "${Python3_EXECUTABLE}"
+                 "${CMAKE_CURRENT_SOURCE_DIR}/../tools/check-native-surface-ownership.py"
+                 --build "${CMAKE_CURRENT_BINARY_DIR}" --executable $<TARGET_FILE:render-surface-ownership-test>)
+        set_tests_properties(opengl-owned-surface-ownership PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=xcb;LIBGL_ALWAYS_SOFTWARE=1" TIMEOUT 180)
         add_test(NAME opengl-clipping-stream COMMAND "${XVFB_RUN}" -a "${Python3_EXECUTABLE}"
                  "${CMAKE_CURRENT_SOURCE_DIR}/../tools/check-native-clipping-stream.py" --build "${CMAKE_CURRENT_BINARY_DIR}")
         set_tests_properties(opengl-clipping-stream PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=xcb;LIBGL_ALWAYS_SOFTWARE=1" TIMEOUT 60)
