@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "scope": "Read-only retained user-run diagnostics; user reports input lag only after refusal. No new original execution, latency measurement or producer repair claim.",
+  "experiment": "working/experiments/opengl-render/run-f619ca_i",
+  "original_build_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "bridge_sha256": "0f30311ed8ac4bbe1ca290f957d075a729c72f0009404a5b01c9872f31c0e220",
+  "source_fingerprints_match": {
+    "lock_surfaces.h": true,
+    "lock_lifecycle.h": true
+  },
+  "artifact_sha256": {
+    "working/experiments/opengl-render/run-f619ca_i/manifest.json": "04fd06bc9e00fac605d5e3daceef77f03f99a76d65e6062452ad9867240f9e49",
+    "working/experiments/opengl-render/run-f619ca_i/bridge-build.json": "c3538f77d811de86378044b01c6c038a89e90cb960bdb83f993954ba3e08fd43",
+    "working/experiments/opengl-render/run-f619ca_i/lock-capture/lifecycle.log": "e01a2bc7345562f6cc30bc52516ac1e5c5eabed65e189f520220d15eb2324ceb",
+    "working/experiments/opengl-render/run-f619ca_i/presentation-rate.jsonl": "2d75fd1a6e4f74608e802a686e4f5c83f362df961a2fe808cbb9c40f127b0bf9"
+  },
+  "sessions": [
+    {
+      "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/runtime/render/frame-294f098a-467f-46fb-8095-692d5e73504a.bin.commands",
+      "header_sha256": "09bd0c47ffc8aed1fa7fed903a9310aa9b8775b6dfb809a8d0475c7a7a8024c4",
+      "session": 1707115743,
+      "state": 3,
+      "reason": 2,
+      "published_bytes": 8391240,
+      "acknowledged_bytes": 7736536
+    },
+    {
+      "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/runtime/render/frame-294f098a-467f-46fb-8095-692d5e73504a.bin.commands.retry-1",
+      "header_sha256": "d3f198e8f1f12c0e1aabf9fce8b01e7f88a13ea063245e3e0ca5e54a68788f48",
+      "session": 1707115744,
+      "state": 3,
+      "reason": 2,
+      "published_bytes": 16901836,
+      "acknowledged_bytes": 16711680
+    },
+    {
+      "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/runtime/render/frame-294f098a-467f-46fb-8095-692d5e73504a.bin.commands.retry-2",
+      "header_sha256": "5face25dea59d4addf92b72a7c2aa0963bf7ff9f0ec70bff1a79811ef5f896fe",
+      "session": 1707115745,
+      "state": 3,
+      "reason": 2,
+      "published_bytes": 6008226,
+      "acknowledged_bytes": 5881032
+    },
+    {
+      "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/runtime/render/frame-294f098a-467f-46fb-8095-692d5e73504a.bin.commands.retry-3",
+      "header_sha256": "55b09a062d8f47606cf8eabed525db64c1eb20285a02fb226a799ca7d600af5e",
+      "session": 1707115746,
+      "state": 3,
+      "reason": 2,
+      "published_bytes": 10307606,
+      "acknowledged_bytes": 10307142
+    }
+  ]
+}

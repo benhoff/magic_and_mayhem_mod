@@ -6,8 +6,9 @@
 ./tools/run-qt-shell.sh --fullscreen --scaling smooth
 ```
 
-Click **Launch game**, or use the same options with `--native-commands` for the
-existing experimental command renderer. The **Fullscreen** toolbar button or **F11** enters/exits fullscreen and
+Click **Launch game** to use the experimental native command/GPU renderer by
+default. Add `--frame-readback` to use frames copied from the original renderer.
+The **Fullscreen** toolbar button or **F9** enters/exits fullscreen and
 restores the previous window size, maximized state and launch log visibility.
 Fullscreen hides the shell toolbar, log and status bar while the viewport is
 active; launch/recovery controls remain available while waiting for a frame.
@@ -152,6 +153,7 @@ and Qt 6.11.2. No game is launched merely by opening the application.
 ./tools/run-qt-shell.sh
 ```
 
+For the original-renderer frame-copy path, launch with `--frame-readback`.
 Click **Launch game** to build the render DLL, stage a hash-checked disposable
 game copy, and run it through `tools/run-game.sh`. The game uses a separate
 800x600 Wine desktop. Its primary DirectDraw surface is copied after successful
@@ -613,11 +615,34 @@ readbacks; add `--command-checks` for explicit comparison. The complete bounded
 file is still validated before playback. This is an offline service, separate
 from a live engine channel. [Lifecycle and validation](../../research/runtime/opengl-incremental-commands.md).
 
-`--native-commands` opts into continuous live command/GPU presentation from the
+Ordinary OpenGL shell launches default to continuous live command/GPU presentation from the
 owned PE32 hooks and implies `--capture-locks`. It uses a fresh mapped command
 channel per launch, processes at most 32 commands per poll and refuses incomplete
-sessions. The original Wine window remains available after native refusal.
+sessions. After terminal native refusal, the shell reconnects the original Wine
+window and switches to direct game input. Forwarded input and native polling stop;
+missing or ambiguous original windows retain the Attach control. This fallback
+does not repair incomplete native drawing history. See
+[input fallback evidence](../../research/runtime/native-command-input-fallback.md).
 See [scope and validation](../../research/runtime/opengl-live-command-transport.md).
+
+`--native-commands` remains available to select this path explicitly.
+`--frame-readback` selects original-renderer frame copies from game-owned
+Lock/Unlock buffers and held DCs. It also implies `--capture-locks`, so it takes
+no extra DirectDraw surface locks. It cannot be combined with `--native-commands`.
+Both ordinary presentation modes avoid observer locks; see
+[surface contention diagnosis](../../research/runtime/render-surface-contention.md).
+Explicit `--capture-draws`,
+`--capture-history`, `--capture-locks` and `--no-readback` diagnostics keep their
+existing path unless `--native-commands` is also supplied. `--renderer native`
+and `--live-menus` continue to use Wine-window embedding. Driver selection is
+independent: `--software-rendering` still explicitly requests Mesa software rendering.
+
+Native command presentation queues the latest completed GPU frame instead of
+repainting synchronously for every captured PRESENT. Known command backlog drains
+through bounded Qt continuations, allowing input events between batches instead
+of adding a16 ms frame-timer wait to each batch. This addresses shell queueing;
+producer refusals and game/driver latency remain separate issues. See
+[responsiveness policy and tests](../../research/runtime/native-command-responsiveness.md).
 
 
 `./tools/run-qt-shell.sh --native-commands` selects a v2

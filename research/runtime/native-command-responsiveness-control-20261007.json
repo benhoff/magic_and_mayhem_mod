@@ -1,0 +1,9 @@
+{
+  "scope": "Regression sensitivity: old synchronous repaint implementation with current queued-presentation test. No original execution.",
+  "before_sha256": "246442c7f28b3caf12c00c04c61d1f0a43a1e7af8a23b9d92c4452ce1eb5bc21",
+  "test_sha256": "cfa397f36728a205800872a2d522ea447b3d61b91b969f633a64b0a932c39ee4",
+  "returncode": 1,
+  "stderr": "Burst poll 1: 27 presents, 1 synchronous Paint events\nlive channel test failed: Historical PRESENTs blocked the Qt event loop with a synchronous repaint\n",
+  "expected_failure_detected": true,
+  "source_after_sha256": "d697868025cd249fbe6da404557208bd49fd3d3a88a2c27b36c1261e22e1b3fa"
+}

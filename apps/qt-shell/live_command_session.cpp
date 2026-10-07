@@ -22,7 +22,10 @@ bool LiveCommandSession::attachCheckpoint(){
     return recover(true);
 }
 bool LiveCommandSession::recover(bool checkpoint){
-    if(version_!=2 || retries_>=MNM_RENDER_CONTROL_V1_MAX_RECOVERIES || session_==std::numeric_limits<quint32>::max())return fail("Rendering recovery unavailable or exhausted");
+    if(version_!=2 || retries_>=MNM_RENDER_CONTROL_V1_MAX_RECOVERIES || session_==std::numeric_limits<quint32>::max()){
+        const auto cause=renderer_?renderer_->error():QString();
+        return fail("Rendering recovery unavailable or exhausted"+(cause.isEmpty()?QString():": "+cause));
+    }
     renderer_->abort();renderer_.reset();viewport_.setGpuFrame({});
     ++retries_;++session_;const auto next=path_+QString(".retry-%1").arg(retries_);
     change(State::Recovering);

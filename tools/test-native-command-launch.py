@@ -35,10 +35,18 @@ import argparse,json,mmap,os,struct,time
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--stream');p.add_argument('--input');p.add_argument('--command-channel');p.add_argument('--render-control');p.add_argument('--capture-locks',action='store_true');a=p.parse_args()
 pack=lambda *v:struct.pack('<'+'I'*len(v),*v)
+if not a.command_channel:
+ assert a.capture_locks and not a.render_control
+ with Path(a.stream).open('r+b') as f:
+  m=mmap.mmap(f.fileno(),0);assert m[:8]==b'MNMGL001'
+  struct.pack_into('<I',m,16,1);m[64:112]=bytes([31,67,127,255])*12
+  struct.pack_into('<6I',m,20,4,3,16,1,1,1);struct.pack_into('<I',m,16,2)
+ Path('launched.json').write_text(json.dumps({'capture_locks':a.capture_locks,'control':False,'version':None,'continuous_environment':os.environ.get('MNM_RENDER_CONTINUOUS')}))
+ time.sleep(45);raise SystemExit(0)
 channel=Path(a.command_channel)
 with channel.open('r+b') as f:
  m=mmap.mmap(f.fileno(),0);version=struct.unpack_from('<I',m,8)[0]
- info={'continuous_environment':os.environ.get('MNM_RENDER_CONTINUOUS'),'version':version,'control':bool(a.render_control),'session':struct.unpack_from('<I',m,16)[0]}
+ info={'capture_locks':a.capture_locks,'continuous_environment':os.environ.get('MNM_RENDER_CONTINUOUS'),'version':version,'control':bool(a.render_control),'session':struct.unpack_from('<I',m,16)[0]}
  if a.render_control:
   d=Path(a.render_control).read_bytes();assert len(d)==576 and d[:8]==b'MNMRCV01';assert struct.unpack_from('<I',d,16)[0]==info['session']
  records=[(1,pack(1,4,3,24,0xff0000,0xff00,0xff)+bytes(36)),(6,pack(1))]
@@ -74,12 +82,24 @@ def check_case(binary, directory, mode, scale, fullscreen):
     launcher.chmod(0o755)
     env = dict(os.environ, QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1', QT_SCALE_FACTOR=scale)
     env.pop('MNM_RENDER_CONTINUOUS', None)
-    if mode is not None:
+    if mode is not None and mode != 'frame':
         env['MNM_RENDER_CONTINUOUS'] = mode
     x = C.CDLL('libX11.so.6')
     xt = C.CDLL('libXtst.so.6')
     display = api(x, 'XOpenDisplay', C.c_void_p, [C.c_char_p])(None)
     assert display, 'Run under Xvfb'
+    class XErrorEvent(C.Structure):
+        _fields_ = [('type', C.c_int), ('display', C.c_void_p), ('resourceid', C.c_ulong),
+                    ('serial', C.c_ulong), ('error_code', C.c_ubyte),
+                    ('request_code', C.c_ubyte), ('minor_code', C.c_ubyte)]
+    errors = []
+    callback_type = C.CFUNCTYPE(C.c_int, C.c_void_p, C.POINTER(XErrorEvent))
+    @callback_type
+    def handle_error(_display, event):
+        errors.append(event.contents.error_code)
+        return 0
+    set_error = api(x, 'XSetErrorHandler', C.c_void_p, [C.c_void_p])
+    previous_error = set_error(C.cast(handle_error, C.c_void_p))
     window_t = C.c_ulong
     root = api(x, 'XDefaultRootWindow', window_t, [C.c_void_p])(display)
     query = api(x, 'XQueryTree', C.c_int, [C.c_void_p, window_t, C.POINTER(window_t), C.POINTER(window_t), C.POINTER(C.POINTER(window_t)), C.POINTER(C.c_uint)])
@@ -95,7 +115,9 @@ def check_case(binary, directory, mode, scale, fullscreen):
 
     def windows(parent):
         rr, pp, children, count = window_t(), window_t(), C.POINTER(window_t)(), C.c_uint()
-        assert query(display, parent, C.byref(rr), C.byref(pp), C.byref(children), C.byref(count))
+        # Temporary Qt child windows can disappear between tree/property queries.
+        if not query(display, parent, C.byref(rr), C.byref(pp), C.byref(children), C.byref(count)):
+            return []
         found = [children[i] for i in range(count.value)]
         if children:
             free(children)
@@ -115,7 +137,11 @@ def check_case(binary, directory, mode, scale, fullscreen):
         assert geom(display, w, C.byref(rr), C.byref(xx), C.byref(yy), C.byref(ww), C.byref(hh), C.byref(border), C.byref(depth))
         return xx.value, yy.value, ww.value, hh.value
 
-    command = [str(binary), '--repo', str(directory), '--native-commands', '--scaling', 'smooth']
+    command = [str(binary), '--repo', str(directory), '--scaling', 'smooth']
+    if mode == 'frame':
+        command.append('--frame-readback')
+    elif mode is not None:
+        command.append('--native-commands')
     if fullscreen:
         command.append('--fullscreen')
     with (directory/'shell.log').open('w') as log:
@@ -143,10 +169,14 @@ def check_case(binary, directory, mode, scale, fullscreen):
                 time.sleep(.02)
             assert info.exists(), 'Launch button did not start the synthetic producer'
             result = json.loads(info.read_text())
-            continuous = mode != '0'
-            assert result['continuous_environment']==('1' if continuous else '0'), result
-            assert result['version']==(2 if continuous else 1) and result['control']==continuous, result
-            expected = 0x1f437f if continuous else 0
+            assert result['capture_locks'], 'Presentation must capture application-owned buffers'
+            continuous = mode not in ('0', 'frame')
+            if mode == 'frame':
+                assert result['version'] is None and not result['control'] and result['continuous_environment'] is None, result
+            else:
+                assert result['continuous_environment']==('1' if continuous else '0'), result
+                assert result['version']==(2 if continuous else 1) and result['control']==continuous, result
+            expected = 0x1f437f if continuous or mode == 'frame' else 0
             samples = []
             while time.monotonic()<deadline:
                 _, _, width, height = geometry(window)
@@ -163,11 +193,15 @@ def check_case(binary, directory, mode, scale, fullscreen):
                     retained = pixel(snapshot, 0, 0)&0xffffff
                     destroy(snapshot)
                     assert retained==expected, ('Retained native image disappeared', hex(retained))
-                    channel = next((directory/'working/runtime/render').glob('*.commands'))
-                    with channel.open('rb') as source:
-                        header = source.read(64)
-                    if continuous:
-                        assert struct.unpack_from('<I', header, 36)[0]==result['published'], 'Commands did not drain beyond the bounded limit'
+                    channels = list((directory/'working/runtime/render').glob('*.commands'))
+                    if mode == 'frame':
+                        assert not channels, 'Frame presentation unexpectedly selected command capture'
+                    else:
+                        assert len(channels) == 1
+                        with channels[0].open('rb') as source:
+                            header = source.read(64)
+                        if continuous:
+                            assert struct.unpack_from('<I', header, 36)[0]==result['published'], 'Commands did not drain beyond the bounded limit'
                     result['drained_beyond_bounded_limit'] = continuous
                     result.update(onscreen_rgb=hex(expected), scale=scale, fullscreen=fullscreen, mode=mode or 'default')
                     return result
@@ -177,6 +211,8 @@ def check_case(binary, directory, mode, scale, fullscreen):
             os.killpg(child.pid, signal.SIGTERM)
             child.wait(timeout=5)
             api(x, 'XCloseDisplay', C.c_int, [C.c_void_p])(display)
+            set_error(previous_error)
+            assert all(error == 3 for error in errors), ('Unexpected X11 errors', errors)
 
 
 def main():
@@ -193,12 +229,12 @@ def main():
     try:
         for captured in args.captured_run:
             report['captured_startups'].append(inspect_capture(captured))
-        for name, mode, scale, fullscreen in [('default', None, '1', False), ('explicit', '1', '1', True), ('bounded', '0', '1', False), ('default-hidpi', None, '1.5', True)]:
+        for name, mode, scale, fullscreen in [('default', None, '1', False), ('explicit', '1', '1', True), ('bounded', '0', '1', False), ('default-hidpi', None, '1.5', True), ('owned-frames', 'frame', '1', False), ('owned-frames-hidpi', 'frame', '1.5', True)]:
             result = check_case(binary, run/name, mode, scale, fullscreen)
             report['runs'].append(result)
         assert fingerprints=={p: sha(ROOT/p) for p in SOURCES}, 'Sources changed during validation'
         assert report['binary_sha256']==sha(binary), 'Binary changed during validation'
-        report.update(success=True, native_integration={'all_match': True, 'default_continuous': True, 'explicit_bounded': True, 'matching_child_environment_and_channels': True, 'beyond_bounded_command_limit': True, 'windowed_fullscreen_hidpi': True})
+        report.update(success=True, native_integration={'all_match': True, 'default_continuous': True, 'explicit_bounded': True, 'matching_child_environment_and_channels': True, 'beyond_bounded_command_limit': True, 'windowed_fullscreen_hidpi': True, 'application_owned_capture_all_modes': True, 'owned_frame_readback': True})
     except Exception as error:
         report.update(success=False, error=str(error))
     (run/'report.json').write_text(json.dumps(report, indent=2)+'\n')

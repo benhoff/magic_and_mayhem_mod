@@ -108,3 +108,14 @@ After fragmented decoder extraction, a separate [v2 native result](opengl-increm
 reruns all 64 normal/sanitizer sessions, 708 full-frame comparisons, 60 failure
 cases and production Qt Skip/Verify CLI checks against current sources. The old
 record remains immutable; live transport evidence is separately scoped.
+
+## Context batching and state reuse — 2026-10-07
+
+The consumer now retains the renderer context across each consecutive group of
+non-PRESENT commands within a submitted batch. It leaves that scope before
+PRESENT so callbacks still receive the caller's context and can paint or fail.
+Command ordering, admission, quotas, resource ownership and GPU lease fences are
+unchanged. Release driver errors are checked at the outer GL batch boundary;
+input validation stays per command. See [the scoped policy and new performance
+evidence](native-render-context-batching.md). Earlier shared-source results
+remain historical with their original hashes.

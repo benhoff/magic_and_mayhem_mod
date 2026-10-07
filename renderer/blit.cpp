@@ -43,10 +43,13 @@ struct Current {
     QOpenGLContext& context;
     QOpenGLContext* previous=QOpenGLContext::currentContext();
     QSurface* surface=previous?previous->surface():nullptr;
+    bool switched=false;
     Current(QOpenGLContext& context,QSurface* target):context(context){
+        if(previous==&context && surface==target)return;
         if(!context.makeCurrent(target))throw std::runtime_error("Cannot make the OpenGL context current");
+        switched=true;
     }
-    ~Current(){if(previous && surface)previous->makeCurrent(surface);else context.doneCurrent();}
+    ~Current(){if(switched){if(previous && surface)previous->makeCurrent(surface);else context.doneCurrent();}}
 };
 constexpr auto vertexSource=R"(#version 330 core
 void main(){
@@ -127,6 +130,12 @@ struct GlBlitter::Impl {
     QOpenGLFunctions_3_3_Core gl;
     std::unique_ptr<QOpenGLShaderProgram> program,presentation;
     GLuint vao=0,fbo=0;
+    GLuint attached=0,boundProgram=0;
+    QSize viewport;
+    bool scissor=false;
+    unsigned batchDepth=0;
+    struct CopyUniforms {GLint hasMask,sourceOrigin,destinationOrigin,hasKey,sourceKey,keyMask;} copyUniforms{};
+    struct PresentationUniforms {GLint indexed,rgb565,masks,lowBits,maxima;} presentationUniforms{};
     GLint maxTexture=0;
     Driver info;
     RenderStats counters;
@@ -159,42 +168,77 @@ struct GlBlitter::Impl {
             return result;
         };
         program=shader(fragmentSource);presentation=shader(presentationSource);
+        const auto location=[](QOpenGLShaderProgram& shader,const char* name){
+            const auto value=shader.uniformLocation(name);
+            if(value<0)throw std::runtime_error(std::string("Missing shader uniform: ")+name);
+            return value;
+        };
+        copyUniforms={location(*program,"hasMask"),location(*program,"sourceOrigin"),location(*program,"destinationOrigin"),
+                      location(*program,"hasKey"),location(*program,"sourceKey"),location(*program,"keyMask")};
+        presentationUniforms={location(*presentation,"indexed"),location(*presentation,"rgb565"),location(*presentation,"masks"),
+                              location(*presentation,"lowBits"),location(*presentation,"maxima")};
+        useProgram(program->programId());
+        gl.glUniform1i(location(*program,"sourcePixels"),0);gl.glUniform1i(location(*program,"sourceMask"),1);
+        useProgram(presentation->programId());
+        gl.glUniform1i(location(*presentation,"nativePixels"),0);gl.glUniform1i(location(*presentation,"palette"),1);
         gl.glGenVertexArrays(1,&vao);gl.glGenFramebuffers(1,&fbo);gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE,&maxTexture);
-        check();
-    }
-    void check(){if(const auto error=gl.glGetError();error!=GL_NO_ERROR)throw std::runtime_error("OpenGL error: "+std::to_string(error));}
-    void thread() const{if(QThread::currentThread()!=context.thread())throw std::runtime_error("OpenGL renderer used on a different thread");}
-    Surface& get(SurfaceId id){auto at=surfaces.find(id);if(at==surfaces.end())throw std::runtime_error("Unknown or destroyed surface");return at->second;}
-    void release(Surface& s){GLuint textures[3]={s.native,s.palette,s.rgba};gl.glDeleteTextures(3,textures);}
-    GLuint texture(GLint format,GLenum layout,GLenum type,int width,int height,const void* pixels){
-        GLuint id=0;gl.glGenTextures(1,&id);gl.glBindTexture(GL_TEXTURE_2D,id);
-        gl.glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);gl.glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-        gl.glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);gl.glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
-        gl.glTexImage2D(GL_TEXTURE_2D,0,format,width,height,0,layout,type,pixels);return id;
-    }
-    void attach(GLuint texture,int width,int height){
-        gl.glBindFramebuffer(GL_FRAMEBUFFER,fbo);gl.glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,texture,0);
+        // This context is private to the renderer; caller/viewport state lives
+        // in a different context and does not invalidate these bindings.
+        gl.glBindVertexArray(vao);gl.glBindFramebuffer(GL_FRAMEBUFFER,fbo);
         gl.glDrawBuffer(GL_COLOR_ATTACHMENT0);gl.glReadBuffer(GL_COLOR_ATTACHMENT0);
-        if(gl.glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)throw std::runtime_error("Integer framebuffer is incomplete");
-        gl.glViewport(0,0,width,height);
         gl.glDisable(GL_BLEND);gl.glDisable(GL_DITHER);gl.glDisable(GL_FRAMEBUFFER_SRGB);gl.glDisable(GL_DEPTH_TEST);
         gl.glDisable(GL_STENCIL_TEST);gl.glDisable(GL_CULL_FACE);gl.glDisable(GL_SCISSOR_TEST);
+        gl.glPixelStorei(GL_PACK_ALIGNMENT,4);gl.glPixelStorei(GL_UNPACK_ALIGNMENT,4);
+        check();
+    }
+    void check(bool immediate=false){
+#ifdef NDEBUG
+        if(batchDepth && !immediate)return;
+#else
+        (void)immediate;
+#endif
+        if(const auto error=gl.glGetError();error!=GL_NO_ERROR)throw std::runtime_error("OpenGL error: "+std::to_string(error));
+    }
+    void useProgram(GLuint id){if(boundProgram!=id){gl.glUseProgram(id);boundProgram=id;}}
+    void setScissor(bool enabled){if(scissor!=enabled){if(enabled)gl.glEnable(GL_SCISSOR_TEST);else gl.glDisable(GL_SCISSOR_TEST);scissor=enabled;}}
+    void deleteTextures(GLsizei count,const GLuint* textures){
+        for(GLsizei i=0;i<count;++i)if(textures[i]==attached)attached=0;
+        gl.glDeleteTextures(count,textures);
+    }
+    void thread() const{if(QThread::currentThread()!=context.thread())throw std::runtime_error("OpenGL renderer used on a different thread");}
+    Surface& get(SurfaceId id){auto at=surfaces.find(id);if(at==surfaces.end())throw std::runtime_error("Unknown or destroyed surface");return at->second;}
+    void release(Surface& s){GLuint textures[3]={s.native,s.palette,s.rgba};deleteTextures(3,textures);}
+    GLuint texture(GLint format,GLenum layout,GLenum type,int width,int height,const void* pixels){
+        GLuint id=0;
+        try {
+            gl.glGenTextures(1,&id);gl.glBindTexture(GL_TEXTURE_2D,id);
+            gl.glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);gl.glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+            gl.glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);gl.glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+            gl.glTexImage2D(GL_TEXTURE_2D,0,format,width,height,0,layout,type,pixels);check(true);return id;
+        }catch(...){deleteTextures(1,&id);throw;}
+    }
+    void attach(GLuint texture,int width,int height){
+        if(attached!=texture){
+            attached=0; // A failed attachment must not leave a valid old cache.
+            gl.glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,texture,0);
+            if(gl.glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)throw std::runtime_error("Integer framebuffer is incomplete");
+            attached=texture;
+        }
+        if(viewport!=QSize(width,height)){gl.glViewport(0,0,width,height);viewport={width,height};}
     }
     // Both samplers refer to storage distinct from the attached destination.
     void copyTexture(GLuint sourceTexture,GLuint maskTexture,Surface& dst,Rect r,int x,int y,
                      std::optional<std::uint32_t> key,std::uint32_t keyMask=UINT32_MAX){
         attach(dst.native,dst.width,dst.height);
-        gl.glEnable(GL_SCISSOR_TEST);gl.glScissor(x,y,r.right-r.left,r.bottom-r.top);
+        setScissor(true);gl.glScissor(x,y,r.right-r.left,r.bottom-r.top);
         gl.glActiveTexture(GL_TEXTURE0);gl.glBindTexture(GL_TEXTURE_2D,sourceTexture);
         gl.glActiveTexture(GL_TEXTURE1);gl.glBindTexture(GL_TEXTURE_2D,maskTexture?maskTexture:sourceTexture);
-        if(!program->bind())throw std::runtime_error("Cannot bind copy shader");
-        gl.glUniform1i(program->uniformLocation("sourcePixels"),0);
-        gl.glUniform1i(program->uniformLocation("sourceMask"),1);
-        gl.glUniform1i(program->uniformLocation("hasMask"),maskTexture!=0);
-        gl.glUniform2i(program->uniformLocation("sourceOrigin"),r.left,r.top);gl.glUniform2i(program->uniformLocation("destinationOrigin"),x,y);
-        gl.glUniform1i(program->uniformLocation("hasKey"),key.has_value());gl.glUniform1ui(program->uniformLocation("sourceKey"),key.value_or(0));
-        gl.glUniform1ui(program->uniformLocation("keyMask"),keyMask);
-        gl.glBindVertexArray(vao);gl.glDrawArrays(GL_TRIANGLES,0,3);gl.glBindVertexArray(0);program->release();gl.glDisable(GL_SCISSOR_TEST);
+        useProgram(program->programId());
+        gl.glUniform1i(copyUniforms.hasMask,maskTexture!=0);
+        gl.glUniform2i(copyUniforms.sourceOrigin,r.left,r.top);gl.glUniform2i(copyUniforms.destinationOrigin,x,y);
+        gl.glUniform1i(copyUniforms.hasKey,key.has_value());gl.glUniform1ui(copyUniforms.sourceKey,key.value_or(0));
+        gl.glUniform1ui(copyUniforms.keyMask,keyMask);
+        gl.glDrawArrays(GL_TRIANGLES,0,3);
         check();++counters.copies;
     }
     void copyShared(Surface& dst,const SurfaceCopyPiece& piece){
@@ -207,8 +251,8 @@ struct GlBlitter::Impl {
             gl.glBindTexture(GL_TEXTURE_2D,frozen);
             gl.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,r.left,r.top,width,height);check();
             copyTexture(frozen,0,dst,{0,0,width,height},piece.x,piece.y,std::nullopt);
-            gl.glDeleteTextures(1,&frozen);frozen=0;check();
-        }catch(...){gl.glDeleteTextures(1,&frozen);throw;}
+            deleteTextures(1,&frozen);frozen=0;check();
+        }catch(...){deleteTextures(1,&frozen);throw;}
     }
     // Measured keyed overlap reads its own preceding writes in row-major order.
     // A separate one-pixel texture avoids sampling the attached framebuffer.
@@ -225,8 +269,8 @@ struct GlBlitter::Impl {
                     copyTexture(pixel,0,dst,{0,0,1,1},piece.x+x-piece.source.left,
                                 piece.y+y-piece.source.top,key,keyMask);
                 }
-            gl.glDeleteTextures(1,&pixel);pixel=0;check();
-        }catch(...){gl.glDeleteTextures(1,&pixel);throw;}
+            deleteTextures(1,&pixel);pixel=0;check();
+        }catch(...){deleteTextures(1,&pixel);throw;}
     }
     ~Impl(){
         if(context.isValid() && surface.isValid()){
@@ -240,7 +284,7 @@ GpuFrame::Data::~Data(){
     owner->thread();Current current(owner->context,&owner->surface);
     if(produced)owner->gl.glDeleteSync(produced);
     if(consumed)owner->gl.glDeleteSync(consumed);
-    owner->gl.glDeleteTextures(1,&texture);
+    owner->deleteTextures(1,&texture);
 }
 QSize GpuFrame::size() const{return data_?data_->dimensions:QSize{};}
 unsigned GpuFrame::textureForCurrentContext() const{
@@ -271,18 +315,25 @@ GlBlitter::~GlBlitter(){
     }catch(const std::exception&){}
 }
 Driver GlBlitter::driver() const{return impl_->info;}
+void GlBlitter::batch(const std::function<void()>& operations){
+    auto& p=*impl_;p.thread();
+    if(!operations)throw std::runtime_error("Missing renderer batch operations");
+    Current current(p.context,&p.surface);++p.batchDepth;
+    try {operations();}catch(...){--p.batchDepth;throw;}
+    --p.batchDepth;p.check();
+}
 RenderStats GlBlitter::stats() const{impl_->thread();auto result=impl_->counters;result.surfaces=impl_->surfaces.size();return result;}
 SurfaceId GlBlitter::create(const Image& image,PixelFormat format){
     validateFormat(format);validateImage(image,format.bits);auto& p=*impl_;p.thread();
     if(image.width>p.maxTexture || image.height>p.maxTexture)throw std::runtime_error("Surface exceeds the OpenGL texture limit");
     if(p.surfaces.size()>=64 || image.pixels.size()>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded");
     const auto id=nextId();Current current(p.context,&p.surface);Impl::Surface s;s.width=image.width;s.height=image.height;s.format=format;s.validity=KnownPixels(s.width,s.height);
-    auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glPixelStorei(GL_UNPACK_ALIGNMENT,4);
+    auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);
     try {
         s.native=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,s.width,s.height,image.pixels.data());
         if(format.bits==8){std::array<std::uint8_t,1024> black{};for(unsigned i=0;i<256;++i)black[i*4+3]=255;
             s.palette=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,256,1,black.data());}
-        p.check();p.surfaces.emplace(id,s);
+        p.check(true);p.surfaces.emplace(id,s);
     }catch(...){p.release(s);throw;}
     ++p.counters.uploads;p.counters.pixels+=image.pixels.size();return id;
 }
@@ -294,7 +345,7 @@ void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
     auto& p=*impl_;p.thread();auto& s=p.get(id);validateImage(patch,s.format.bits);
     if(x<0 || y<0 || x>s.width-patch.width || y>s.height-patch.height)throw std::runtime_error("Update rectangle is out of bounds");
     Current current(p.context,&p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
-    g.glPixelStorei(GL_UNPACK_ALIGNMENT,4);g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.pixels.data());
+    g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.pixels.data());
     p.check();s.validity.define({x,y,x+patch.width,y+patch.height});++p.counters.uploads;
 }
 void GlBlitter::reloadDib(SurfaceId id,const DibInput& dib,const std::optional<std::vector<Rect>>& dcRegions){
@@ -425,31 +476,30 @@ void GlBlitter::setPalette(SurfaceId id,unsigned first,const std::vector<Rgb>& c
     std::vector<std::uint8_t> bytes;bytes.reserve(colors.size()*4);
     for(auto c:colors){bytes.push_back(c.red);bytes.push_back(c.green);bytes.push_back(c.blue);bytes.push_back(255);}
     Current current(p.context,&p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,s.palette);
-    g.glPixelStorei(GL_UNPACK_ALIGNMENT,4);g.glTexSubImage2D(GL_TEXTURE_2D,0,int(first),0,int(colors.size()),1,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,bytes.data());
+    g.glTexSubImage2D(GL_TEXTURE_2D,0,int(first),0,int(colors.size()),1,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,bytes.data());
     p.check();for(unsigned i=0;i<colors.size();++i){s.paletteColors[first+i]=colors[i];s.paletteKnown[first+i]=true;}++p.counters.paletteUpdates;
 }
 Image GlBlitter::read(SurfaceId id){
     auto& p=*impl_;p.thread();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,&p.surface);p.attach(s.native,s.width,s.height);
     Image out{s.width,s.height,std::vector<std::uint32_t>(std::size_t(s.width)*s.height)};
-    p.gl.glPixelStorei(GL_PACK_ALIGNMENT,4);p.gl.glReadPixels(0,0,s.width,s.height,GL_RED_INTEGER,GL_UNSIGNED_INT,out.pixels.data());
-    p.check();++p.counters.nativeReadbacks;return out;
+    p.gl.glReadPixels(0,0,s.width,s.height,GL_RED_INTEGER,GL_UNSIGNED_INT,out.pixels.data());
+    p.check(true);++p.counters.nativeReadbacks;return out;
 }
 namespace {
 // Kept local to the owning renderer; both output paths use identical conversion.
 template<class Owner,class Surface>
 void resolvePresentation(Owner& p,Surface& s,GLuint target){
     auto& g=p.gl;
-    p.attach(target,s.width,s.height);g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
+    p.attach(target,s.width,s.height);p.setScissor(false);g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
     g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,s.palette);
-    if(!p.presentation->bind())throw std::runtime_error("Cannot bind presentation shader");
-    g.glUniform1i(p.presentation->uniformLocation("nativePixels"),0);g.glUniform1i(p.presentation->uniformLocation("palette"),1);
-    g.glUniform1i(p.presentation->uniformLocation("indexed"),s.format.bits==8);
-    g.glUniform1i(p.presentation->uniformLocation("rgb565"),s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f});
+    p.useProgram(p.presentation->programId());
+    g.glUniform1i(p.presentationUniforms.indexed,s.format.bits==8);
+    g.glUniform1i(p.presentationUniforms.rgb565,s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f});
     std::array<GLuint,3> low{1,1,1},maximum{1,1,1};
     if(s.format.bits!=8)for(unsigned i=0;i<3;++i){low[i]=s.format.masks[i]&(~s.format.masks[i]+1);maximum[i]=s.format.masks[i]/low[i];}
-    g.glUniform3uiv(p.presentation->uniformLocation("masks"),1,s.format.masks.data());
-    g.glUniform3uiv(p.presentation->uniformLocation("lowBits"),1,low.data());g.glUniform3uiv(p.presentation->uniformLocation("maxima"),1,maximum.data());
-    g.glBindVertexArray(p.vao);g.glDrawArrays(GL_TRIANGLES,0,3);g.glBindVertexArray(0);p.presentation->release();
+    g.glUniform3uiv(p.presentationUniforms.masks,1,s.format.masks.data());
+    g.glUniform3uiv(p.presentationUniforms.lowBits,1,low.data());g.glUniform3uiv(p.presentationUniforms.maxima,1,maximum.data());
+    g.glDrawArrays(GL_TRIANGLES,0,3);
     p.check();
 }
 }
@@ -458,8 +508,8 @@ QImage GlBlitter::present(SurfaceId id){
     if(!s.rgba){g.glActiveTexture(GL_TEXTURE0);s.rgba=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);}
     resolvePresentation(p,s,s.rgba);
     QImage out(s.width,s.height,QImage::Format_RGBA8888);if(out.isNull())throw std::runtime_error("Cannot allocate presentation image");
-    g.glPixelStorei(GL_PACK_ALIGNMENT,4);g.glReadPixels(0,0,s.width,s.height,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,out.bits());
-    p.check();++p.counters.presentations;++p.counters.rgbaReadbacks;return out;
+    g.glReadPixels(0,0,s.width,s.height,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,out.bits());
+    p.check(true);++p.counters.presentations;++p.counters.rgbaReadbacks;return out;
 }
 GpuFrame GlBlitter::presentGpu(SurfaceId id){
     auto& p=*impl_;p.thread();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,&p.surface);auto& g=p.gl;

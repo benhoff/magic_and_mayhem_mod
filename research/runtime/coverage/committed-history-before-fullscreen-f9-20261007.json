@@ -1,0 +1,849 @@
+{
+  "schema": 1,
+  "base": "66744e92e78f5ca82f94694b31610cc4089d6df0",
+  "head": "32db1b85ce9eeddccf24980b14d8d2c7fd737c2b",
+  "scope": "Committed history inspected before the F9 update; compare exact parent/current file hashes with retained receipts. Separate from uncommitted workspace work. Missing receipts remain explicit prior accounting limitations; no retrospective gate pass or new engine validation is asserted.",
+  "files": [
+    {
+      "path": "apps/sprite-scene/CMakeLists.txt",
+      "before_sha256": "fb3e9c5bd95a1f5f202e8ed2336166db00e217830a9493104f484b55dd79c355",
+      "after_sha256": "17b05aaac64946d62fb0e79bec2ae855d42629ce61a20a8fcaac53cac3da0fe8",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "apps/sprite-scene/README.md",
+      "before_sha256": "9c708fecd8b7b655380a2368af33f5046ca7b7b541f7e74f5554c2a9a5e122da",
+      "after_sha256": "c0c6a8aeabef457d5e76ca12e885bede3ab0177a2e6584db7563bddd8ee5b1e1",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "apps/sprite-scene/main.cpp",
+      "before_sha256": "eaa9bc36347d2057ca94d2b22c121cd156164effb683b3ecf4b629581a2d5f19",
+      "after_sha256": "f0dfa119916c15a1f131a9b75f454baa36c49269359fbfe249165b9658382c74",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "apps/sprite-scene/scene.cpp",
+      "before_sha256": "2d4747e4e976774dc2ed2c534c0a23c5b4d2d87599c0d6c7489f8c45cdb20a98",
+      "after_sha256": "b85a0b18c6f708b52bb0dc9d4408e0eea2a4bc3968263ec0d973a4d48f9f5447",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "apps/sprite-scene/scene.hpp",
+      "before_sha256": "85defac68b301a9f2b21cc5041b93363757d8f7629293aa63deeebc3f0b7e0c3",
+      "after_sha256": "2693af7924c36daa55a10ec7d958dcadae4beef7d29ab5625edbecd65b0d2d2f",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "apps/world-scene/CMakeLists.txt",
+      "before_sha256": "5929f9601ae6d86aeceb1301f0502853c6baa0a4365e151ace578a9710f1b7e7",
+      "after_sha256": "1a49d78a0a0abd0a4a28b55dda48f868b37e4396c77a781437dd7e419cceb0d0",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "apps/world-scene/README.md",
+      "before_sha256": "7009f987159c6a30f401c0d0413134e76df7be850ea5acd808c5a455439ca0d6",
+      "after_sha256": "52c820f200efda7db8ebcdc6b0a68af4c39dad6e9401653506b294816f75bd32",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "apps/world-scene/main.cpp",
+      "before_sha256": "4387a59cc5e8cac4ce55083b10260d7ea4c52138d652687d5f5330d49988fc3c",
+      "after_sha256": "1a496b9200caa43c7cbe8e7d8c5b2fa962a6cca79a303587dcd071fd098ffc91",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "apps/world-scene/scene.cpp",
+      "before_sha256": "79b68d892e86f5666842cb504c215c2e1a598de9ca0bf85db4cf6dfa3d98d93f",
+      "after_sha256": "83b5558f7106aff82afbeac032f01b8f5ef072b012e30629a9a0977f7b2ce554",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "apps/world-scene/scene.hpp",
+      "before_sha256": "601736b6fffc82e4bdecbeaed0f80d3f361ce5df65869abd0b32a36184a15ddd",
+      "after_sha256": "4e5f7a980e4a63c55a1a4d69ff86438a98023ce2dc135c9b5ccbf8067b0fdb8f",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "assets/resources/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "da6130752ec59f30090e092c8e712ee45bbf4bacbfad1505201356bde9afcfba",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "assets/resources/README.md",
+      "before_sha256": null,
+      "after_sha256": "87e788e0a9adb306ecc93b05f9bc170f75af2d1706cbdcd96318a36e26f069bd",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "assets/resources/resource_manager.cpp",
+      "before_sha256": null,
+      "after_sha256": "2ae26f0317450cefb4348db0798b32c9c66e62a4169ce3a6687e3ade55396f0e",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "assets/resources/resource_manager.hpp",
+      "before_sha256": null,
+      "after_sha256": "5f82a10dadc3e880238059824d4d73c202629365d3b2914c90bb38bc43ab69b5",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "compat/legacy/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "739a983dab21872557ca47d45f67c70310b007334d63f7e236710fc992221ebd",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "compat/legacy/README.md",
+      "before_sha256": null,
+      "after_sha256": "8ecd4cd281c1a8696bca09654771e9dd52722acb686ac6ceba06bca760c80fab",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "compat/legacy/scene_snapshot.cpp",
+      "before_sha256": null,
+      "after_sha256": "6786082314af247cf97e5c5f9b4fe02361413bfa68969be39c62ab314f3f7bce",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "compat/legacy/scene_snapshot.hpp",
+      "before_sha256": null,
+      "after_sha256": "d22476a8c00d88860b7978aba3eef88b7979640ca5cb3a0ebd217970f40c9ca8",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "compat/legacy/snapshot_main.cpp",
+      "before_sha256": null,
+      "after_sha256": "433e62660994d0c268f6f64ee328d2e55a723ec3a1e76252ddd890066f42c665",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "docs/architecture.md",
+      "before_sha256": "c1efa87244c4438825089416464313013c18931b4c66fa85b1d26c16d0460bdb",
+      "after_sha256": "26624053b05e9a5811742a2dbefd9e18d447e14d6a580e28683d102db2fe36b7",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "protocols/include/mnm/scene_snapshot_v1.h",
+      "before_sha256": null,
+      "after_sha256": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "renderer/resources/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "c9a76a4978d2fc0a09b267de9c68f089bbfd3e2da5b035d812a6d8504c1cdce7",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "renderer/resources/preview_main.cpp",
+      "before_sha256": null,
+      "after_sha256": "4355079b26e3672cdd9028c40de62998802c0ccf6bf014f08393b7e1d595ff44",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "renderer/resources/resource_cache.cpp",
+      "before_sha256": null,
+      "after_sha256": "a4a3ef28ce73e24ae01044574dc42bf7365209bf7f3cbcb7f96b919a2dcf4fc0",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "renderer/resources/resource_cache.hpp",
+      "before_sha256": null,
+      "after_sha256": "3727f7706f400ea7696485f5070bc8b7f706555e6407ab141b4951a274e9fcd5",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "renderer/scenes/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "d7d8121e9c05a41e233845b4e05b832276b3ba9550f5164236bd47b7f99280c6",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "renderer/scenes/README.md",
+      "before_sha256": null,
+      "after_sha256": "b7450a2af3b89860d317eade60a17260ff25a6232f1eed8518c702f0fd15d88a",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "renderer/scenes/scene_renderer.cpp",
+      "before_sha256": null,
+      "after_sha256": "855076370549513d18e77d3f7589ac1deec8776d9b684b3549a64059ef7255e5",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "renderer/scenes/scene_renderer.hpp",
+      "before_sha256": null,
+      "after_sha256": "e1d61c75bf4d5d1cdedd32ac80f1475f904e46fbc9d965205216ab31b2155d07",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/formats/scene-snapshot-v1.md",
+      "before_sha256": null,
+      "after_sha256": "b3ea14ac9cf87c7be92656e618f7daca32626249dd470b3d22c6e4d3cb66334e",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "b6673fc5adb8be5dc980ca9aeeac7b56111e0295ea72171845e301da5dc71211",
+      "after_sha256": "1e761a5f636eb68707b516a1dc4c29ae27582860198155555153388a8a1ab4af",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "b131bfb529088ca76498f016c0de80f5611bea7e0d002ebf1e282e59843443d7",
+      "after_sha256": "345fa700a94ec0055dc6cb7f091da0f37ba9a29059f968d4813155d8d1ed08c1",
+      "receipts": []
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-native-resources-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "92dfdde58c79a2de2bab86470203a59d57bdab7587f77f2eaeeab1fa390bd6d8",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-native-scene-commit-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "77f4fe4b0106d9d650f3b1b834cc9121ade9ed36f88167ad410735b8d51e520b",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-native-scene-commit-final-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "70de7579b90b94dfc5d482324307350cfd4fe386de4a191e6f4f6b5ed2df13cd",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-native-scene-ui-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "38546dc80f6d9362fab4d52247cd32199bbf95056e0890cc4e31f423c9ee5add",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-scene-service-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "1ce3d5bf7ce05f891e6ba4da93ca08c10d188c179deffe3538bdb38972369593",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-scene-snapshot-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "273afc8f0eb5ef2d967bf8678b31819aa9dc4de141c7973ba9a2641c2e7a5d00",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/native-scene-workspace-reviews-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "8e063f6b11fba0e2fd53a4d09141f0279afbe2c9a19624ca8937df6e6ed9abe4",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "9f26b3dc0587131d243080c333a4e89a0320914354e14590489007a18c14418e",
+      "after_sha256": "5d156bef69e84f9c0d1f3c15cca8845186e73a72e7603c1e3311f80dae44031a",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-resources-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "b6c773cf49ea4ef881008eae22082c243c5389f25c74013c8fd99c7209abb755",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-scene-commit-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "2e8a91af2352ef748ce8eb6f66a40d5400b58ff545e13b94e3dd40e5ca64b380",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-scene-commit-475019f-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "73d33433a59b4205ea1e2be3b508da29afeb2b2530e15a853772dd5165f941ac",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-scene-commit-final-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "2e8a91af2352ef748ce8eb6f66a40d5400b58ff545e13b94e3dd40e5ca64b380",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-scene-commit-final-66744e9-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "b7dee97a5cb7ff22de3e1a9d9d024d32ab8dc544648af322c4dfdf950ef2c8c9",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-scene-commit-head-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "2e8a91af2352ef748ce8eb6f66a40d5400b58ff545e13b94e3dd40e5ca64b380",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-scene-service-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "5d722788d4afe22784ebe346efca25d83345d5f6e1f661619b6e2ec2a31eb4f1",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-scene-service-reconciled-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "e3db9df23a01974a42930ac0741c762bf27ee6e053d8cdb0af80384652b7ae4e",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-scene-snapshot-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "f87424e7c808a84db170fc7880acedae2492c53567156b024d01497ecbcfd789",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-scene-snapshot-closeout-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "6c91e3318afb7feda582f0b3ac65fd236b3556cb6ac44bc77c88d0f0e5133ef9",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-scene-snapshot-final-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "3723e3944867ca6aa4322deac1cc8b81afd6dfd5806907324f93f85dba6db29d",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-scene-snapshot-reconciled-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "3754092020e9db6016a53a0cb87eea0217919d73179794eada893950ea7c4143",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-scene-snapshot-verified-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "2649bd61d0049278252c3ca9fc80747234920802f56e61946cc7f82d04a55f17",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-resources-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "941be6749b8059a8fca4c701ab14c8a847e045a2763aae253cf9ebabd3214ff7",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-scene-commit-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "ab73ac876f2015da9eb09c8f51d0d3051140e33add46ea054dca43f677ecc93e",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-scene-commit-475019f-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "d1e070196c56317d525ccb481ea542cbcb4fa1330ad0a2e42b323d2d1a3e7485",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-scene-commit-final-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "9e9192ed7d202fdcbd1fd242539c641737f67bac6166d8d526948bb1ae357e7d",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-scene-commit-final-66744e9-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "266a0832779304fd5e7ca44d43277357fdb9c3ac92ab5efd9932f3bd9614991b",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-scene-commit-head-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "9e9192ed7d202fdcbd1fd242539c641737f67bac6166d8d526948bb1ae357e7d",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-scene-service-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "4a064e6eada40d9ae67e29051f26c3cbc672588f8da9c8f492a9ca6a9c515391",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-scene-service-reconciled-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "43f431a61b9414dc65a758dfd3e5cdd97f8939ad548bcc8e659ff68cbfe03c4b",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-scene-snapshot-20261006.md",
+      "before_sha256": null,
+      "after_sha256": "28a44bb8655f76dbbbf4761a8cff728ea247900c65232cd458effac3f7c43e0a",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-resource-manager-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "99345317f99cb696c8004c7e95c5649cf22069f9c7bccef575f6863dd0228c3a",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-resource-manager.md",
+      "before_sha256": null,
+      "after_sha256": "fef4d0647f761eefad121ae15af73ceb48bef73ec7cb720bc6483fb6a1f14e2e",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-commit-resources-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "4b38475e7b0d6066e6b68b2af0e8db457832148fdcef51e25e0aab8e4a0c88cf",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-commit-resources-final-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "f8f0c7f93ef3db6e9277eae4b7ecc3b81e1329b58a42e5e605c35162faeae6d3",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-commit-resources-head-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "51691382eb2318aa458e801c21c8367eef7336feb238ce31fa1c8a5a7a765992",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-commit-service-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "dfb4f8f4f167d927dbd2733a9feb8a59fee937a83d166448527254ae50b5bd3a",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-commit-service-final-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "b9f1b8176ec2a38c2de1369ab58e51c931efabae3c95b3cb934b1b4265fcfb96",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-commit-service-head-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "4f9af19c4199886635fb5ab3be9b7a299e59596dc973d76320cb090ebe09523d",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-commit-service-timeout-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "30b8d805063fdde2e9a6fd752b6da7e444f94798ba8b2f390af19bb7e3ccb7c3",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-commit-snapshot-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "63df0765897b1bf01b67a4895a64bd93f618aeb8999111f3a428c36d6987e076",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-commit-snapshot-final-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "407453efd7d8548ef53e093473394ab4e9733eedae452971e666dc18db4e5290",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-commit-snapshot-head-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "371fb49ff5a2aa796c56691410d2797e723c38dfdc548552aae9c4abe3d0dce3",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-snapshot-live-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "da25c052cef535cfc904148890f23de3476720c81d408a5be6a6bd8ea58f9fa7",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-snapshot-replay-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "a28017b80425766f1704cefe98b6ad64217a9136f239ea331444da8e242d7400",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-scene-snapshot.md",
+      "before_sha256": null,
+      "after_sha256": "260722a225148b3c6ed1c30a1a4e1f7827bfdde5a861f92a97ecad7c22408375",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-shared-scene-installed-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "318be60ede039f3bf1552e1c204edb17d472511fddc3a13b13a7393429af974d",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-shared-scene-renderer.md",
+      "before_sha256": null,
+      "after_sha256": "1cf9643fe0b4a5a64b92315686aae87ad3f1e057efb5e6c622f06ba97c045f7a",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/native-shared-scene-synthetic-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "9e64ff3433e9cde32dc70b1e9c177b4350c53d4d4f0fe3f5741002557dc7baa8",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "research/runtime/scene-snapshot-accounting-20261006.json",
+      "before_sha256": null,
+      "after_sha256": "4f6beac7916cb35e67a3b98ed6ea727a78e2d777d4131514093e09502664a486",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "runtime/scene/entry.S",
+      "before_sha256": null,
+      "after_sha256": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "runtime/scene/observer.c",
+      "before_sha256": null,
+      "after_sha256": "bd673f01724092f38cd5b246aa5bb2f00eb01a90b0a776483f63d78c8817a250",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "runtime/scene/selftest.c",
+      "before_sha256": null,
+      "after_sha256": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/resource-cache-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "d5c9acb5af84b77c3dd21e22da44667f5f16866e0fedd3d76ff610b0ee29dbf7",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/resource-fixtures.hpp",
+      "before_sha256": null,
+      "after_sha256": "80cfb1ed1b880c352c485e0188d97a6c95fed643ca11f35046f32ca0d3ea4b44",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/resource-manager-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "5a9e5fc72a06c642d0f6429c11de7a2d03fb7f83f31bbb8f004d966f882a2429",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/scene-renderer-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "1929f917ac94b80608a6d826079a69e20acf6c1e35739519906a303dadb6a20a",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/scene-resource-fixtures.hpp",
+      "before_sha256": null,
+      "after_sha256": "5ced8ef0997b85f1298f7239154c43c6af940dd5fcc38712c9894956d29882ea",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/scene-snapshot-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "e59210d380b8061241c126525665412082acb8bf96e90eec47f8aec2eb610264",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/sprite-scene-queue-test.cpp",
+      "before_sha256": "d5f540cdaac44eb44a7aec93f91a548c07a3858240fa456bdd1a1d3308d57e79",
+      "after_sha256": "da3c5a3fdaca9fdca6227858543347332f83c436540e79a4543c73806aab6948",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/sprite-scene-test.cpp",
+      "before_sha256": "e54a47f4241c476113ae02de68455400762e20b51dd28496a1ad139b5f072d84",
+      "after_sha256": "b6d346bed4cd964c2184620315130aa37b05198e3a2115432342d1671d641a24",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/test-resource-preview.py",
+      "before_sha256": null,
+      "after_sha256": "1e727f9b1273b58d70a10efbc54b9c40b74fcbfe516884fe0104c94ccdc0581f",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/world-picking-test.cpp",
+      "before_sha256": "ad16cba35c06e9c089d8d6be751de2d282f5f332c1a930aa54295253a9b9c0ce",
+      "after_sha256": "9e446cc67698f543ee4e12cc4ea24f796db07f42533590a6e4c6681bd2b2e030",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tests/world-scene-test.cpp",
+      "before_sha256": "2d0c048c968fd3735f2dc9cb92bb65f76167eeae0189c65436cf01c9b7021699",
+      "after_sha256": "33a5a7c6b6b78a5f4150a765b6ded6225a7f4c9ece5cb522b1c01de296964400",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tools/build-scene-observer.py",
+      "before_sha256": null,
+      "after_sha256": "37882db464a89b5c0a8efdf85485508c59dda3a2b0e3dcb6434cf11ba55d034d",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": null,
+      "after_sha256": "c6175171b31bbd27b77bcd4242b9cd9f64ec4d6a8628b0bf7301947072017893",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tools/index-scene-bindings.py",
+      "before_sha256": null,
+      "after_sha256": "4943f3b5966425b221e5d4c1b5f97e0bcb5ef1e860ffd409e6367a712f79ff64",
+      "receipts": [
+        "native-assets-scenes-final-pending-20261006"
+      ]
+    },
+    {
+      "path": "tools/prepare-scene-observer.py",
+      "before_sha256": null,
+      "after_sha256": "e4bcd0597c1204649041ec7ea62615596f514b22f4346ecd5b35737e0dd98a48",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tools/scene-game-runner.py",
+      "before_sha256": null,
+      "after_sha256": "9422fccfb4d62f25ddd55f2817b63a1c5a7a6596c068a7f7cbb23a253a3834fd",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-animation-layers.py",
+      "before_sha256": "12fbb518876c0c4817085954a0ee80d8523642d25935e75bdaf3e3785befd975",
+      "after_sha256": "b0f0f19bbcb2abfa9613ee1cd4c5e52c5c89bab308a7fb329c8c17d1ae5de29d",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-native-resources.py",
+      "before_sha256": null,
+      "after_sha256": "1fec91f84bf916abd922a8178c7eb20d79d85102d31da9ea5109371ef4f1aabd",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-native-scene-service.py",
+      "before_sha256": null,
+      "after_sha256": "37e1fac472738c95b03b917dfb2b1dbdc1d012faad38324c2e058364223986b1",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-scene-snapshot.py",
+      "before_sha256": null,
+      "after_sha256": "0728e90b3e1940c5cc45ec3e64a6ef8f64afdad13a5d6c6605a2b768f6c6cafa",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    },
+    {
+      "path": "tools/test-sprite-scene.py",
+      "before_sha256": "da04b35bf2db569823a302b94e11d0d2020a11a48cd14c234e2f13c3446f069c",
+      "after_sha256": "b2543ac36d2a720a5b35f7886b0fc07fd358d8741d680acea3114a3f6c6f5034",
+      "receipts": [
+        "native-assets-scenes-final-recorded-20261006"
+      ]
+    }
+  ],
+  "unresolved_gaps": [
+    "research/runtime/coverage/change-reviews.json"
+  ]
+}

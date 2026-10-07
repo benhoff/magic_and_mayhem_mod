@@ -4,6 +4,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QSurfaceFormat>
+#include <QOpenGLContext>
+#include <QOpenGLFunctions_3_3_Core>
 #include <algorithm>
 #include <cstdio>
 #include <stdexcept>
@@ -90,12 +92,17 @@ void stats(const CommandResult& out,const Prefix& expected,bool verify){
     require(out.stats.presentations==expected.presents+(verify?expected.colorChecks:0),"Resolved presentation count changed");
 }
 void run(GlViewport& viewport,const Fixture& f,const std::vector<std::size_t>& batches,bool verify){
-    viewport.setGpuFrame({});GlBlitter renderer(viewport.context());unsigned displayed=0;
-    CommandConsumer consumer(renderer,[&](GpuFrame frame){viewport.setGpuFrame(frame);compare(viewport,f.images.at(displayed++));}, {verify?CommandDiagnostics::Verify:CommandDiagnostics::Skip,false});
+    viewport.setGpuFrame({});viewport.makeCurrent();GlBlitter renderer(viewport.context());unsigned displayed=0;
+    CommandConsumer consumer(renderer,[&](GpuFrame frame){
+        require(QOpenGLContext::currentContext()==viewport.context(),"Presentation callback retained renderer context");
+        viewport.setGpuFrame(frame);compare(viewport,f.images.at(displayed++));viewport.makeCurrent();
+    }, {verify?CommandDiagnostics::Verify:CommandDiagnostics::Skip,false});
     consumer.submit(nullptr,0);std::size_t cursor=0,batch=0;
     while(cursor<f.commands.size()){
         const auto count=std::min(batches[batch++%batches.size()],f.commands.size()-cursor);
+        viewport.makeCurrent();
         consumer.submit(f.commands.data()+cursor,count);cursor+=count;stats(consumer.result(),f.prefixes[cursor-1],verify);
+        require(QOpenGLContext::currentContext()==viewport.context(),"Command batch did not restore caller context");
         require(consumer.result().commands==cursor,"Batch command accounting changed");
         require(consumer.state()==(cursor==f.commands.size()?CommandConsumerState::Ended:CommandConsumerState::Active),"Batch lifecycle changed");
         QApplication::processEvents();
@@ -103,6 +110,41 @@ void run(GlViewport& viewport,const Fixture& f,const std::vector<std::size_t>& b
     consumer.finish();consumer.finish();require(displayed==f.images.size(),"Missing or extra frames");
     bool refused=false;try {consumer.submit(f.commands.front());}catch(const std::runtime_error&){refused=true;}
     require(refused && consumer.state()==CommandConsumerState::Ended,"Closed consumer accepted commands");++sessions;
+}
+void batchContexts(GlViewport& viewport){
+    viewport.setGpuFrame({});viewport.makeCurrent();GlBlitter renderer(viewport.context());
+    QOpenGLFunctions_3_3_Core caller;require(caller.initializeOpenGLFunctions(),"Caller GL functions unavailable");
+    GLint framebuffer=0;caller.glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING,&framebuffer);
+    const auto restored=[&]{
+        require(QOpenGLContext::currentContext()==viewport.context(),"Batch context restoration failed");
+        GLint actual=0;caller.glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING,&actual);
+        require(actual==framebuffer,"Batch changed caller framebuffer state");
+    };
+    const PixelFormat format{16,{0xf800,0x7e0,0x1f}};
+    SurfaceId source=0,destination=0;
+    renderer.batch([&]{
+        auto* backend=QOpenGLContext::currentContext();require(backend && backend!=viewport.context(),"Batch did not enter renderer context");
+        source=renderer.create({2,1,{0xf800,0x07e0}},format);destination=renderer.create({2,1,{0,0}},format);
+        renderer.batch([&]{renderer.copy(source,destination,{0,0,2,1},0,0);});
+        require(QOpenGLContext::currentContext()==backend,"Nested batch released renderer context");
+        require(renderer.read(destination).pixels==std::vector<std::uint32_t>({0xf800,0x07e0}),"Nested batch pixels differ");
+    });restored();
+    bool refused=false;
+    try {renderer.batch([&]{renderer.update(destination,0,0,{1,1,{0x001f}});renderer.update(destination,2,0,{1,1,{0}});});}
+    catch(const std::runtime_error&){refused=true;}
+    require(refused,"Invalid operation in batch accepted");restored();
+    require(renderer.read(destination).pixels==std::vector<std::uint32_t>({0x001f,0x07e0}),"Failed batch rolled back preceding update");restored();
+    // Fault injection: Release checks must still catch driver errors when a
+    // batch returns, even though its ordinary operation checks are deferred.
+    refused=false;
+    try {renderer.batch([&]{
+        QOpenGLFunctions_3_3_Core backend;require(backend.initializeOpenGLFunctions(),"Backend GL functions unavailable");
+        backend.glEnable(GLenum(0xffffffff));
+    });}catch(const std::runtime_error&){refused=true;}
+    require(refused,"Batch boundary ignored GL error");restored();
+    renderer.batch([&]{renderer.destroy(source);renderer.destroy(destination);});restored();
+    viewport.doneCurrent();renderer.batch([&]{source=renderer.create({1,1,{0}},format);});
+    require(!QOpenGLContext::currentContext(),"Batch did not restore absent context");renderer.destroy(source);
 }
 void failures(GlViewport& viewport){
     const PixelFormat format{8,{}};const auto first=create(1,{1,1,{3}},format);
@@ -202,8 +244,9 @@ int main(int argc,char** argv){
         const PixelFormat formats[]={{8,{}},{16,{0xf800,0x7e0,0x1f}},{24,{0xff0000,0xff00,0xff}},{32,{0xff0000,0xff00,0xff}}};
         for(auto f:formats){const auto corpus=fixture(f);for(bool verify:{false,true})
             for(const auto& batches:std::vector<std::vector<std::size_t>>{{4096},{1},{7},{1,3,11,2,17}})run(viewport,corpus,batches,verify);}
-        failures(viewport);QJsonObject result{{"success",true},{"full_frame_comparisons",int(frames)},{"partitioned_sessions",int(sessions)},
+        batchContexts(viewport);failures(viewport);QJsonObject result{{"success",true},{"full_frame_comparisons",int(frames)},{"partitioned_sessions",int(sessions)},
             {"failure_cases",int(rejections)},{"ordinary_readbacks",0},{"gpu_viewport_uploads",0},{"prefix_resources_checked",true}};
+        result.insert("batch_context_restoration",true);result.insert("batch_error_boundary",true);
         std::puts(QJsonDocument(result).toJson(QJsonDocument::Compact).constData());return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"Incremental consumer test failed: %s\n",e.what());return 1;}
 }

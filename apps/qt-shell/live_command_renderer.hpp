@@ -15,6 +15,7 @@ public:
     void abort();
     std::function<void()> framePresented;
     bool ended() const{return ended_;}
+    bool hasPendingCommands() const{return !closed_ && (cursor_<pending_.size() || !channel_.drained());}
     QString error() const{return error_;}
     unsigned presentations() const;
     const mnm::render::CommandResult* result() const;

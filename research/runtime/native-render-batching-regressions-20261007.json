@@ -1,0 +1,409 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "apps/qt-shell/../../protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3",
+    "apps/qt-shell/../../protocols/include/mnm/render_commands_v1.h": "da3687442c203a85bbec98810c084346154a860bce2d3b65bb0f96c13dd66a0f",
+    "apps/qt-shell/../../protocols/include/mnm/render_commands_v2.h": "357e127e0601ae55c30b821403df1be2c714d467d9c185c13e14091c2899d7a3",
+    "apps/qt-shell/../../protocols/include/mnm/render_control_v1.h": "1d696c2a560e64fb9337f4ea77f9b73f284de889ba702ad3136612dcde8adbd6",
+    "apps/qt-shell/command_channel.cpp": "6973bca9fc624b62906b034dcc60c8f160614c98e2ebeccf54410beb11bf12f7",
+    "apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "apps/qt-shell/command_replay.cpp": "af609551d80dcd6e43fab3438a8621e7fcf0c0a598637077faa50d79727a756a",
+    "apps/qt-shell/command_replay.hpp": "a249a0038faac77de7df6f3627101deaeb1e22de4834d9cd4b10821188ca2385",
+    "apps/qt-shell/gl_viewport.cpp": "372bdf4b55fd7f9e6a00a411e2ebf916e58287294c0e0962b9dbd3f712843b45",
+    "apps/qt-shell/gl_viewport.hpp": "49f37c5d61b1d565eaff59fd68b2a17af77bd24d6625ed718c1697060a105c18",
+    "apps/qt-shell/live_command_renderer.cpp": "d697868025cd249fbe6da404557208bd49fd3d3a88a2c27b36c1261e22e1b3fa",
+    "apps/qt-shell/live_command_renderer.hpp": "8873a07c8bc3ed52a4c47cf2cd2915040d85e3313d9b807cdffc1c213bf0665a",
+    "apps/qt-shell/live_command_session.cpp": "49061f9e095de104ca70ea5b4ac6c33d113d2f211821e470d0dd55171e6fb4f4",
+    "apps/qt-shell/live_command_session.hpp": "6a36d84d8e352cd85738d0952178ec5b911709a2adf08ed48d6e5f291e92640c",
+    "apps/qt-shell/render_control.cpp": "4eae2c56fbeb93d84264b22622d1a3789bb138acb030914a7a0cf560eedc2eb8",
+    "apps/qt-shell/render_control.hpp": "c03459d7dfd58bb7c6764f84ce1d127742369656bc6ec7d8b1075b95aa5fd615",
+    "apps/qt-shell/viewport_presentation.cpp": "b4e5376ba29b9195f4f4de80287ae7cc56886945e899923eb518906040e50712",
+    "apps/qt-shell/viewport_presentation.hpp": "f479d86eec6e9aeda7f29351039502f60e211f14cd386145b39bb7594208ba37",
+    "renderer/../apps/qt-shell/../../protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3",
+    "renderer/../apps/qt-shell/../../protocols/include/mnm/render_commands_v1.h": "da3687442c203a85bbec98810c084346154a860bce2d3b65bb0f96c13dd66a0f",
+    "renderer/../apps/qt-shell/../../protocols/include/mnm/render_commands_v2.h": "357e127e0601ae55c30b821403df1be2c714d467d9c185c13e14091c2899d7a3",
+    "renderer/../apps/qt-shell/../../protocols/include/mnm/render_control_v1.h": "1d696c2a560e64fb9337f4ea77f9b73f284de889ba702ad3136612dcde8adbd6",
+    "renderer/../apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "renderer/../apps/qt-shell/command_replay.hpp": "a249a0038faac77de7df6f3627101deaeb1e22de4834d9cd4b10821188ca2385",
+    "renderer/../apps/qt-shell/gl_viewport.hpp": "49f37c5d61b1d565eaff59fd68b2a17af77bd24d6625ed718c1697060a105c18",
+    "renderer/../apps/qt-shell/live_command_renderer.hpp": "8873a07c8bc3ed52a4c47cf2cd2915040d85e3313d9b807cdffc1c213bf0665a",
+    "renderer/../apps/qt-shell/live_command_session.hpp": "6a36d84d8e352cd85738d0952178ec5b911709a2adf08ed48d6e5f291e92640c",
+    "renderer/../apps/qt-shell/render_control.hpp": "c03459d7dfd58bb7c6764f84ce1d127742369656bc6ec7d8b1075b95aa5fd615",
+    "renderer/../apps/qt-shell/viewport_presentation.hpp": "f479d86eec6e9aeda7f29351039502f60e211f14cd386145b39bb7594208ba37",
+    "renderer/../protocols/include/mnm/render_stream_v3.h": "5dcb2dcb44b2ab94c8800babe8cbddeec66fccf18ab2dcc9c7153d57d63bb152",
+    "renderer/CMakeLists.txt": "588be24c5f2f2f3ab15080814b9a91ce646084e419c19901ae69db361bc4a646",
+    "renderer/bitmap_dc.hpp": "c8fadb0fc0f4217960e08f067283b504a8dc918ef425de160df262798876fe29",
+    "renderer/blit.cpp": "d3b088460d585f339dec0531176dc9bba270ae522d4f5a15d70e8412a26870be",
+    "renderer/blit.hpp": "3d252d973c51092f83bdcb21c0d7003b7ba8d761bef28ccbf7b0d782a759b861",
+    "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+    "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+    "renderer/command_consumer.cpp": "9c6189b0493f2b4818e9c37215ca7612e98588d5b24cce6f8b831ac9b472ea9a",
+    "renderer/command_state.hpp": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/commands.hpp": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+    "renderer/commands_main.cpp": "91a5119315d2435ae3028da6393f104763f9da55c3862de56b8687bc57a3aacd",
+    "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "renderer/known_pixels.hpp": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+    "renderer/pixel_rows.cpp": "ffa72fac123001700e435112c7b09f39fc90ca4cb3308b1e4e4e31ef93027bfd",
+    "renderer/pixel_rows.hpp": "858459228fd19d19640a3d2fcefc0347952bdb07e6ccbdb0af3f3dce1637df88",
+    "renderer/replay_main.cpp": "c558bb1fcd387274e1727f97fb4f8ad4cb5eb349aab9839d0bb6e368fe7a37a2",
+    "renderer/surface_access.hpp": "95166e8226849e7302dffa9762b737ed5dd1381ffc8b392283763b1fc77854ad",
+    "renderer/surface_backend.cpp": "c5cb22ea00315d78d2bcb8b4c6a252f34b32fab087f045187816a954d6113bff",
+    "renderer/surface_backend.hpp": "f7b269b079dfb94b20fce31986a7464c403bec298c98756bb675369956992425",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "tests/../protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3",
+    "tests/../protocols/include/mnm/render_commands_v2.h": "357e127e0601ae55c30b821403df1be2c714d467d9c185c13e14091c2899d7a3",
+    "tests/../reconstruction/rendering/../../renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "tests/../reconstruction/rendering/owned_surface_retry.hpp": "a5d41336ee9371a7f43a364538b3157bd44ca7f7c3aeea42f55c1a72f69c1f35",
+    "tests/../reconstruction/rendering/surface_bitmap.hpp": "d115f4908653fdc05b745a1067a24a549e2c7dfc4fe969c15a5f9bc6db0c8334",
+    "tests/../reconstruction/rendering/surface_retry.hpp": "e3683f0aa2aecbe7b7f83df4db02c9240028e28c15e588e780ee04e365e89428",
+    "tests/command-replay-shell.cpp": "48767065e745c32cc3578717312674dfc4f9e793231dc6286d29ed9bb149eae6",
+    "tests/live-command-checkpoint-test.cpp": "ddd7fe37eadb44fdae01f4ae024ebd57b57256e83c1fcb437791e77d18163445",
+    "tests/live-command-recovery-test.cpp": "35acaf9566624eea2dac2d4a8146f6fcafbe5e46e5b7a45f723c3b1cf112ff83",
+    "tests/live-render-channel-test.cpp": "cfa397f36728a205800872a2d522ea447b3d61b91b969f633a64b0a932c39ee4",
+    "tests/live-render-recovery-probe.cpp": "c1bdd484029809bebc2087ed6cec6eefd7211456b386c61de0a34608d7981371",
+    "tests/live-render-route-probe.cpp": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+    "tests/render-blit-test.cpp": "1cbd3b85a3270f8ef52d8a5cb086d53531a8973853d8ca931ebb0bfdcc887f35",
+    "tests/render-clipping-stream-test.cpp": "d7382c80f30ee50128f8b792afa60cbfb128ab04d7496bc5bf8f319a51773360",
+    "tests/render-command-consumer-test.cpp": "2f076ff4f5b4b5beb5357f11e91ec2acfcf26c8f8b964aac4827a3f127fad6d0",
+    "tests/render-command-ring-gpu-test.cpp": "d9bd64b240d42314fc2d5210631b1ff695248d6c184f178d52c174b224459a73",
+    "tests/render-control-test.cpp": "1991b4592564492b56dcc4dd6d339d023919f7eb38fd720ef90be8e18b0d82b3",
+    "tests/render-palette-resources-test.cpp": "4e4c3e10074b318507682bf7a9f27f13d065b04e2e821b0f7684c6e784e9db38",
+    "tests/render-surface-backend-test.cpp": "279f88c3c8d07a07d43d20fa79f77895c35a9f28a5d000eb4e73dac47c2649d3",
+    "tests/render-surface-copy-fixtures.cpp": "e676443e82f419e77f200295424fdd4ae606c703a241db9abb7be200f18ec5d7",
+    "tests/render-surface-formats-test.cpp": "37653d16ce3d43b87cb75eed9b50c30c6d7aabdf85a2a5b0d9c48ede6e50f52e",
+    "tests/render-surface-ownership-test.cpp": "d5699c5bba8d3a6273893f6a9b30533b72e1f6f1f71d33486a72abb9f67df44d",
+    "tests/render-surfaces-test.cpp": "62c9962b8e4aa28e42fdc99a2a1a96e55dab4a9a6800710e6e276a8cfc88efc9",
+    "tests/test-opengl-replay.py": "a65a736eacc8f16d18105fd418d61d47b5c995f2878f274e9ebc0f3f5dbdccc3",
+    "tests/test-render-capture.py": "135aa5d0f3fc9f6e79b495f5052c872fd35aa4868d64670d462c2b047b52ea31",
+    "tests/test-render-commands.py": "ba42952b3cd657f9389c043c3652454710bfc41947dec82b67845a26f3407734",
+    "tests/test-render-stream-rate.py": "75951c94e2a478aa72afbdb6536d5506ade338b282cacc54ad9839ffe4412974",
+    "tools/check-native-clipping-stream.py": "76f3efcc309f20092a700163576ac51978aa281282870a590ab4391a78da4ad5",
+    "tools/check-native-surface-access.py": "87f314dfa1273d5ce54aaa3a7c617ee1a2c34806a3d25322074303fd40160679",
+    "tools/check-native-surface-backend.py": "241e950f1c9cedc07974ae548844970f7598b196c8d1f7d9582362b54bf89f5e",
+    "tools/check-native-surface-clipping.py": "829a24329a978fe3a719300e74f08c0eca16defc547f56f5ee4247e38d6fcab6",
+    "tools/check-native-surface-formats.py": "bc29e0bbd9c17d72fdb234fecda1e254d364b2b3d3c6e1add451b3ad5890c0c8",
+    "tools/check-native-surface-overlap.py": "6b4982c0cddaddb9f059d5d45d2ad478bd3cbece2427005cc294f05020613817",
+    "tools/check-native-surface-ownership.py": "8ea093225b760c0fd3829e58f0da6f782afe5e3a7689329f40b17c850413f55b",
+    "tools/check-native-surface-retry.py": "3bb2468a788228989b53209339dfe7b638b374062355714dbfcb39cbceed3f84",
+    "tools/check-surface-access.py": "8bef3406ccdc2f4c171518c18375fe4863bdecaca75d283bc6dbf4bd5ad6ef77",
+    "tools/check-surface-borrowed-draw.py": "35c3ee4f5012bfc09340740bc6be34fa424201198dfa424a72a650d46441ad1b",
+    "tools/check-surface-dc-palette-identity.py": "82950eeace785c33139070a2ea4e67bc2ce863db9aacbf7d9dfa0cb1e7da8fee",
+    "tools/check-surface-dc-palette.py": "88578d24576ca3f7a01663020e6fa94fa30d73352633347fb71039155963bd9c",
+    "tools/check-surface-dc-reuse.py": "536102c550c4eb4a0a153ef08e33722c8474b6b1b7ce77926c2829c1ec2bd979",
+    "tools/check-surface-dib-ddraw-rgb.py": "fcf125a1b14650874c6688841b721498b26e6568cf3b46280afdd57bcc2334b6",
+    "tools/check-surface-dib-ddraw.py": "31036dba35e0382c9734b7169d8f57bf2c3c47991c64360134fe832a1db748cd",
+    "tools/check-surface-dib-gdi.py": "b81c94c8e86c23f72189c1757d76d277985835130dbc2bf254e28db406ea0acc",
+    "tools/check-surface-driver-restore.py": "073182ce03ee3cf68af90aa05b2ccf851b459558af92adfe327239810e622fbd",
+    "tools/check-surface-fixtures.py": "039819f747816e52ff0e7053e04686794ba3c4e4264742081999f29471cbca10",
+    "tools/check-surface-formats.py": "43e4ff15e034f7c89c472945b25599985e2a16cbe96491dd90d4d803849d7abf",
+    "tools/check-surface-ownership.py": "67800b21467e7b71f0bdcb22252bb2e2ad4de4c5093196daf9866b619c1aa9b3",
+    "tools/check-surface-palette-restore.py": "40b525e732be91b5a27cc28214968f0149c67fd40418752da0ea03901e7b4ab8"
+  },
+  "scope": "Final Release renderer CTest suite and Debug incremental consumer on Mesa/Xvfb; retained offline original/standalone-driver surface fixtures, independent full-frame synthetic pixels, context nesting/restoration, GL boundary failure, resource lifetime and existing wire tests. Native Qt replay timer service Skip/Verify and poison/GAP refusal. No new original execution, Windows, hardware widget or whole-engine/live replacement claim.",
+  "ctest": {
+    "release-final": {
+      "summary": {
+        "name": "Linux-c++",
+        "tests": "16",
+        "failures": "0",
+        "disabled": "0",
+        "skipped": "0",
+        "hostname": "father",
+        "time": "75",
+        "timestamp": "2026-10-07T09:16:18"
+      },
+      "tests": [
+        {
+          "name": "render-control-client",
+          "status": "run",
+          "seconds": "0.0146708",
+          "output": "{\"success\":true,\"cases\":16}\n"
+        },
+        {
+          "name": "renderer-help",
+          "status": "run",
+          "seconds": "0.02203",
+          "output": "Usage: mnm-render-replay CAPTURE --output NATIVE_PIXELS [--preview PNG]\nRuns the native integer OpenGL blitter; never launches the game.\nOutput must be a new file. JSON diagnostics are written to stdout.\n"
+        },
+        {
+          "name": "native-capture-reference",
+          "status": "run",
+          "seconds": "0.108543",
+          "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.001s\n\nOK\n"
+        },
+        {
+          "name": "opengl-owned-surface-backend",
+          "status": "run",
+          "seconds": "18.087",
+          "output": "{\"draws\": 5114, \"hresult_checks\": 5114, \"pixel_checks\": 538272, \"reuse_cases\": 192, \"reuse_phases\": 576, \"palette_entries\": 258048, \"access_cases\": 96, \"access_steps\": 1182, \"access_descriptor_fields\": 8664, \"unstable_caps_excluded\": 84}\n"
+        },
+        {
+          "name": "opengl-owned-surface-formats",
+          "status": "run",
+          "seconds": "9.51769",
+          "output": "{\"success\": true, \"admitted_draws\": 1400, \"rejected_layout_cases\": 2100, \"word_checks\": 526400, \"driver_draws\": 1400, \"signed_row_draws\": 2800, \"native_checks\": 27259, \"native_refusals\": 60, \"native_word_checks\": 667800, \"packed_byte_checks\": 2150400, \"presentation_pixels\": 147000}\n"
+        },
+        {
+          "name": "opengl-owned-surface-ownership",
+          "status": "run",
+          "seconds": "4.29904",
+          "output": "{\"success\": true, \"ownership_word_checks\": 2128, \"driver_palette_entries\": 6656, \"driver_index_checks\": 864, \"driver_status_checks\": 66, \"flip_results\": 11, \"owned_recovery_cases\": 16, \"owned_recovery_input_pixel_checks\": 432, \"native_checks\": 286, \"native_refusals\": 29}\n"
+        },
+        {
+          "name": "opengl-clipping-stream",
+          "status": "run",
+          "seconds": "4.33619",
+          "output": "{\"success\": true, \"driver_cases\": 408, \"malformed_cases\": 16}\n"
+        },
+        {
+          "name": "opengl-surface-clipping",
+          "status": "run",
+          "seconds": "3.42566",
+          "output": "{\"success\": true, \"cases\": 408, \"matched\": 408, \"partial_failure_cases\": 2}\n"
+        },
+        {
+          "name": "opengl-command-ring",
+          "status": "run",
+          "seconds": "3.37849",
+          "output": "{\"success\":true,\"frames\":4,\"bytes\":4194548,\"full_retries\":49,\"ordinary_readbacks\":0,\"viewport_uploads\":0}\n"
+        },
+        {
+          "name": "opengl-palette-resources",
+          "status": "run",
+          "seconds": "3.65305",
+          "output": "{\"success\":true,\"full_frames\":21,\"rejections\":15,\"ordinary_readbacks\":0}\n"
+        },
+        {
+          "name": "opengl-incremental-consumer",
+          "status": "run",
+          "seconds": "6.56863",
+          "output": "{\"batch_context_restoration\":true,\"batch_error_boundary\":true,\"failure_cases\":30,\"full_frame_comparisons\":354,\"gpu_viewport_uploads\":0,\"ordinary_readbacks\":0,\"partitioned_sessions\":32,\"prefix_resources_checked\":true,\"success\":true}\n"
+        },
+        {
+          "name": "opengl-live-command-channel",
+          "status": "run",
+          "seconds": "4.21757",
+          "output": "{\"success\":true,\"full_frames\":18,\"checkpoint_budget_cases\":2,\"failures\":14,\"ordinary_readbacks\":0,\"viewport_uploads\":0,\"sustained_bytes\":74631284,\"sustained_commands\":5077,\"sustained_frames\":4,\"full_retries\":71,\"burst_presents\":70,\"burst_paints\":0,\"burst_polls\":3,\"input_between_polls\":true}\n"
+        },
+        {
+          "name": "opengl-command-stream",
+          "status": "run",
+          "seconds": "5.51005",
+          "output": "Ordered surface commands passed: /home/hoff/swdev/magic_and_mayhem_mod/working/tests/render-commands/run-w55ypjah\n"
+        },
+        {
+          "name": "opengl-native-blits",
+          "status": "run",
+          "seconds": "3.35325",
+          "output": "Mesa / llvmpipe (LLVM 22.1.8, 256 bits) / 4.6 (Core Profile) Mesa 26.2.1-arch1.1\n196 OpenGL draws match; command guards and caller context preserved\n"
+        },
+        {
+          "name": "opengl-persistent-surfaces",
+          "status": "run",
+          "seconds": "3.32148",
+          "output": "192 ordered updates/copies match; palette cycling, presentation and lifetimes pass\n"
+        },
+        {
+          "name": "opengl-capture-replay",
+          "status": "run",
+          "seconds": "5.98208",
+          "output": "OpenGL capture integration passed: /home/hoff/swdev/magic_and_mayhem_mod/working/tests/render-opengl/run-h8ygbtu0\n"
+        }
+      ],
+      "junit_sha256": "1b3a83f95ab8d0502bca1e72ef7e619c71a35d1ea66a811a909f80fb6bf2dcaf",
+      "log_sha256": "930c0d7ce790aabc024ae052d581cd2db54304e0a23e0c4b182b22fc10aa481e"
+    },
+    "debug": {
+      "summary": {
+        "name": "Linux-c++",
+        "tests": "1",
+        "failures": "0",
+        "disabled": "0",
+        "skipped": "0",
+        "hostname": "father",
+        "time": "6",
+        "timestamp": "2026-10-07T09:17:34"
+      },
+      "tests": [
+        {
+          "name": "opengl-incremental-consumer",
+          "status": "run",
+          "seconds": "6.76585",
+          "output": "{\"batch_context_restoration\":true,\"batch_error_boundary\":true,\"failure_cases\":30,\"full_frame_comparisons\":354,\"gpu_viewport_uploads\":0,\"ordinary_readbacks\":0,\"partitioned_sessions\":32,\"prefix_resources_checked\":true,\"success\":true}\n"
+        }
+      ],
+      "junit_sha256": "2927e74447c7e85b5559755efe32a3dcd346a0729a1954b5a423e0907d2ba9b0",
+      "log_sha256": "4cde5bab3d178c51be674955bea6ff290480b50904a088219d6bc0b370623e19"
+    }
+  },
+  "consumer": {
+    "release-final": {
+      "batch_context_restoration": true,
+      "batch_error_boundary": true,
+      "failure_cases": 30,
+      "full_frame_comparisons": 354,
+      "gpu_viewport_uploads": 0,
+      "ordinary_readbacks": 0,
+      "partitioned_sessions": 32,
+      "prefix_resources_checked": true,
+      "success": true
+    },
+    "debug": {
+      "batch_context_restoration": true,
+      "batch_error_boundary": true,
+      "failure_cases": 30,
+      "full_frame_comparisons": 354,
+      "gpu_viewport_uploads": 0,
+      "ordinary_readbacks": 0,
+      "partitioned_sessions": 32,
+      "prefix_resources_checked": true,
+      "success": true
+    }
+  },
+  "qt_service": {
+    "schema": 1,
+    "scope": "Synthetic decoded incremental native integration and Qt replay service; no live transport, original artifacts or performance equivalence.",
+    "source_sha256": {
+      "renderer/blit.cpp": "d3b088460d585f339dec0531176dc9bba270ae522d4f5a15d70e8412a26870be",
+      "renderer/blit.hpp": "3d252d973c51092f83bdcb21c0d7003b7ba8d761bef28ccbf7b0d782a759b861",
+      "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+      "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+      "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+      "renderer/commands.hpp": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+      "renderer/command_state.hpp": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+      "renderer/command_consumer.cpp": "9c6189b0493f2b4818e9c37215ca7612e98588d5b24cce6f8b831ac9b472ea9a",
+      "renderer/CMakeLists.txt": "588be24c5f2f2f3ab15080814b9a91ce646084e419c19901ae69db361bc4a646",
+      "apps/qt-shell/gl_viewport.cpp": "372bdf4b55fd7f9e6a00a411e2ebf916e58287294c0e0962b9dbd3f712843b45",
+      "apps/qt-shell/gl_viewport.hpp": "49f37c5d61b1d565eaff59fd68b2a17af77bd24d6625ed718c1697060a105c18",
+      "apps/qt-shell/command_replay.cpp": "af609551d80dcd6e43fab3438a8621e7fcf0c0a598637077faa50d79727a756a",
+      "apps/qt-shell/command_replay.hpp": "a249a0038faac77de7df6f3627101deaeb1e22de4834d9cd4b10821188ca2385",
+      "tests/render-command-consumer-test.cpp": "2f076ff4f5b4b5beb5357f11e91ec2acfcf26c8f8b964aac4827a3f127fad6d0",
+      "tests/command-replay-shell.cpp": "48767065e745c32cc3578717312674dfc4f9e793231dc6286d29ed9bb149eae6",
+      "tools/test-incremental-render-commands.py": "7d6be3ce54fb12644b65eb1ef2a387b19a0115d249d8a63f33c1cdb6e9153ec5"
+    },
+    "run_directory": "working/tests/incremental-render-commands/run-fol5nxep",
+    "runs": [
+      {
+        "name": "normal-partitions",
+        "command": [
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/build/render-batching/render-command-consumer-test"
+        ],
+        "returncode": 0,
+        "stdout_sha256": "13df00ba732e8a97580110715b75d7dabfb16435362f9e76a8e0a31af2102888",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "normal-qt-skipped",
+        "command": [
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/build/render-batching/command-replay-test-shell",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-fol5nxep/valid.bin"
+        ],
+        "returncode": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "5b4d66839664717940e4798493b1c2561722eaa14538b8518dcb996b2111b37f"
+      },
+      {
+        "name": "normal-qt-verified",
+        "command": [
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/build/render-batching/command-replay-test-shell",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-fol5nxep/valid.bin",
+          "--command-checks"
+        ],
+        "returncode": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "ecf86e9524d27765f25fc32813e43771b9e30c875a904335a0267d9f50a8deb1"
+      },
+      {
+        "name": "normal-qt-poison-refusal",
+        "command": [
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/build/render-batching/command-replay-test-shell",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-fol5nxep/poisoned.bin",
+          "--command-checks"
+        ],
+        "returncode": 8,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "8d063a6ce9e9b1d784bda7c8d5add57ed376ea18b8d5372781aefb035604fcd0"
+      },
+      {
+        "name": "normal-qt-gap-refusal",
+        "command": [
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/build/render-batching/command-replay-test-shell",
+          "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/incremental-render-commands/run-fol5nxep/gap.bin"
+        ],
+        "returncode": 8,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "b5aaaf74e93c576ccd0582c9abf7cb7cd658e1963d0139dcf1af485cb454ad92"
+      }
+    ],
+    "artifacts": {
+      "normal-consumer": "6746ac71a3297624014fdd9c284c843ef538eed686160443aa6bca520ad25f5a",
+      "normal-qt-service": "21f8c74a302c68daaeb483a04b5d20385418d91efc91a6deccdc57f647f18bcc"
+    },
+    "success": true,
+    "tests": [
+      {
+        "batch_context_restoration": true,
+        "batch_error_boundary": true,
+        "failure_cases": 30,
+        "full_frame_comparisons": 354,
+        "gpu_viewport_uploads": 0,
+        "ordinary_readbacks": 0,
+        "partitioned_sessions": 32,
+        "prefix_resources_checked": true,
+        "success": true
+      }
+    ],
+    "native_integration": {
+      "all_match": true,
+      "full_frame_comparisons": 354,
+      "partitioned_sessions": 32,
+      "failure_cases": 30,
+      "ordinary_readbacks": 0,
+      "gpu_viewport_uploads": 0,
+      "timer_batches": 4,
+      "diagnostics_explicit": true,
+      "qt_service_replay": true,
+      "normal_and_sanitized": false,
+      "production_qt_shell_checked": false
+    }
+  },
+  "checks": {
+    "all_ctests_pass": true,
+    "release_context_restoration": true,
+    "debug_context_restoration": true,
+    "boundary_gl_error_caught": true,
+    "independent_full_frames": true,
+    "ordinary_readbacks_zero": true,
+    "viewport_uploads_zero": true
+  },
+  "build_artifacts": {
+    "working/build/render-batching/live-render-channel-test": "14f4cf64f961deeecdf9483b6225868ec57b2da151252d9276a69636a4d46bfc",
+    "working/build/render-batching/live-command-checkpoint-test": "400ba958b98452b00db612c740002c6316002dff7491fc45f336fcdfc6af44cc",
+    "working/build/render-batching/command-replay-test-shell": "21f8c74a302c68daaeb483a04b5d20385418d91efc91a6deccdc57f647f18bcc",
+    "working/build/render-batching/render-control-test": "f6c6d949b74cefa7b9ab4d9732b31b573ca59c8bcb08a28a8a2fc3fcbcd7cb87",
+    "working/build/render-batching/live-command-recovery-test": "c4c4642d15dc51e57f8c878962ca6c1e56ac5470fdeeed9bd3f8128333458a78",
+    "working/build/render-batching/render-blit-test": "32863f791a654c940942c63c8b54b7e9bfd911374f0032bb7600634e327036b9",
+    "working/build/render-batching/render-clipping-stream-test": "5f93658d4039fb36bfda522d8d3d21c5380787353d659a40d72f4b26b849f93c",
+    "working/build/render-batching/render-surface-formats-test": "f85c50967111347b0548dbb93c94f819c09aa2e09e857d1e983c912bf85c4bd0",
+    "working/build/render-batching/render-command-consumer-test": "6746ac71a3297624014fdd9c284c843ef538eed686160443aa6bca520ad25f5a",
+    "working/build/render-batching/mnm-render-commands": "3495e44df21975bfba0817de8d8e3e04b8cf06f71dcc6bbadad2e0eca5ab081f",
+    "working/build/render-batching/render-palette-resources-test": "b303e20408c2670af3d9577be977bd73bd6e4fb4fe0df4db883061a8cb18f5e2",
+    "working/build/render-batching/render-command-ring-gpu-test": "669455cecd89c79a32a209119df7052e6ccf0286614cd92206d8ad83107d7b84",
+    "working/build/render-batching/mnm-render-replay": "7a2d86f8b0f8f5f2de2cdaed7adc28c17ea92fa1bd9ab0ae526587c2952a0aa1",
+    "working/build/render-batching/libmnm-renderer.a": "3f064869665e34bd701abedc4a3a7291adb974fd82407100904bb8c1dbf7d1ea",
+    "working/build/render-batching/render-surfaces-test": "fe84a196144e904dae2080a5e11fa876d2094cb31cbf457e603179a162f827a7",
+    "working/build/render-batching/render-surface-ownership-test": "598c10b64526b621a2a3118cf2c441a274c0ed35bedfb530080db908e7fa5bad",
+    "working/build/render-batching/render-surface-backend-test": "5e154018c4f352fdef13bb0e09e36a8c06172dbfced5d9212827d09219cbee17",
+    "working/build/render-batching-debug/render-command-consumer-test": "e3552849be85b64e458930f54e8e2efe09eb9db6f8cca3653eda7768d1748793",
+    "working/build/render-batching-debug/libmnm-renderer.a": "0da13758ba9b665315e6caca79ef9dd48b4b174d8e9ba19638ba01b85c405f05"
+  },
+  "commands": [
+    "ctest --test-dir working/build/render-batching --output-on-failure",
+    "ctest --test-dir working/build/render-batching-debug -R opengl-incremental-consumer --output-on-failure",
+    "python3 tools/test-incremental-render-commands.py working/build/render-batching"
+  ]
+}

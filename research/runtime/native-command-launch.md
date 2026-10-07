@@ -1,5 +1,26 @@
 # Native command launch mode
 
+2026-10-07 default selection: ordinary Qt OpenGL game launches now select native
+command presentation without requiring `--native-commands`. The same continuous
+v2, implied lock capture and recovery/fallback policy applies. `--frame-readback`
+selects the earlier original-renderer frame-copy path; combining it with
+`--native-commands` is rejected. Explicit draw/history/lock/no-readback diagnostic
+flags retain their earlier path unless native commands are explicitly requested.
+Wine-window embedding and live menus retain their existing selection. This is
+application policy; it does not force a GPU driver or bypass original drawing.
+The existing Launch-button harness now omits `--native-commands` in its default
+normal/high-DPI cases and retains it for explicit continuous/bounded cases.
+User-desktop NVIDIA launch, movies and sustained gameplay remain pending.
+The subsequent surface-contention fix also makes `--frame-readback` imply
+application-held capture, avoiding observer-created DirectDraw locks in both
+ordinary presentation modes. Legacy draw/history readback remains an explicit
+diagnostic. See [ownership evidence and remaining scope](render-surface-contention.md).
+Fresh evidence `native-render-selection-default-20261007.json` passes all four
+Launch-button cases (including default normal/fullscreen fractional-DPI frames
+and explicit continuous/bounded modes). Build and CLI smoke/conflict checks
+also pass. The first sandboxed Xvfb attempt could not open its display; the
+successful isolated execution ran outside the sandbox without original inputs.
+
 2026-10-06; intentional Qt application policy `HOST.native-command-launch`.
 No recovered original address or simulation behavior changes.
 

@@ -80,7 +80,7 @@ def main():
                                           'logical_input_preserved': True, 'fullscreen_restore': True,
                                           'onscreen_comparisons': sum(p['onscreen_comparisons'] for p in presentations),
                                           'empty_frame_controls': True,
-                                          'f11_consumed': True, 'escape_forwarded': True, 'cli_modes': True})
+                                          'f9_consumed': True, 'escape_forwarded': True, 'cli_modes': True})
     except Exception as error:
         report.update(success=False, error=str(error))
     (run/'report.json').write_text(json.dumps(report, indent=2)+'\n')

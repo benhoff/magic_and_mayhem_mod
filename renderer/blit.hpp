@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <functional>
 #include <QImage>
 #include <QSize>
 class QOpenGLContext;
@@ -66,6 +67,12 @@ public:
     GlBlitter& operator=(const GlBlitter&)=delete;
     Image draw(const Blit& command);
     Driver driver() const;
+    // Synchronous renderer operations only: retain the dedicated context until
+    // return, restoring the caller on success or exception. No event dispatch,
+    // presentation callbacks or foreign GL state changes inside this scope.
+    // Nested batches are allowed. Release builds check GL errors at the outer
+    // boundary; allocation checks and Debug operation checks remain immediate.
+    void batch(const std::function<void()>& operations);
     // Persistent, renderer-owned surfaces: max 2048x2048, 64 handles, 16M pixels.
     // Copies retain textures; read/present are explicit synchronization points.
     SurfaceId create(const Image& image,PixelFormat format);

@@ -15,6 +15,7 @@ public:
     bool finishProducer();
     void abort();
     bool ended() const{return state_==State::Ended;}
+    bool hasPendingCommands() const{return renderer_ && state_!=State::Recovering && state_!=State::Fallback && state_!=State::Ended && renderer_->hasPendingCommands();}
     QString error() const{return error_;}
     State state() const{return state_;}
     const mnm::render::CommandResult* result() const{return renderer_?renderer_->result():nullptr;}
