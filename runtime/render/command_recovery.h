@@ -38,7 +38,7 @@ static int command_candidate_open(struct CommandCandidate* c,const char* path){
     c->queue=HeapAlloc(GetProcessHeap(),0,COMMAND_QUEUE_CAPACITY);return c->queue!=0;
 }
 static int command_recovery_leases_quiet(void){
-    if(__atomic_load_n(&lock_capture_reserved,__ATOMIC_ACQUIRE))return 0;
+    if(!command_borrows_quiet() || __atomic_load_n(&lock_capture_reserved,__ATOMIC_ACQUIRE))return 0;
     for(u32 i=0;i<32;++i)if(game_locks[i].active || session_surfaces[i].dc_pending)return 0;
     for(u32 i=0;i<GAME_SURFACE_COUNT;++i)if(game_surfaces[i].dc)return 0;
     return 1;
@@ -116,20 +116,28 @@ static void command_recovery_checkpoints(int preserve){
     session_archive_sequence=session_archive_bytes=session_last_id=0;++session_archive_id;
 }
 enum { COMMAND_RECOVER_FRESH=0, COMMAND_RECOVER_CHECKPOINT=1, COMMAND_RECOVER_PREFER_CHECKPOINT=2 };
-static u32 command_recover_mode(const char* path,u32 expected_session,int checkpoint){
-    u32 error=GetLastError(),ready=0,stage=1;struct CommandCandidate next;zero(&next,sizeof(next));
+static u32 command_recover_mode(const char* path,u32 expected_session,int checkpoint,int exclusive){
+    u32 error=GetLastError(),ready=0,stage=1,owns_gate=0;struct CommandCandidate next;zero(&next,sizeof(next));
     struct CommandLifecycleLease lifecycle __attribute__((cleanup(command_lifecycle_leave)))=command_lifecycle_enter();
     if(!lifecycle.held){lock_diagnostic("command_recovery_lifecycle_busy",0,0,0,expected_session,0,0,0);SetLastError(error);return 0;}
     COMMAND_LIFECYCLE_PAUSE(3);
     if(!stream || !game_session_continuous || !lock_capture_path_length || !command_worker_joined ||
        command_worker || command_queue || command_channel || command_file_count>=16 ||
        (command_auto_shutdown() && !command_exit_installed))goto done;
+    if(!exclusive){
+        if(!command_gate_close()){lock_diagnostic("command_recovery_drawing_busy",0,0,0,expected_session,0,0,0);goto done;}
+        owns_gate=1;
+    }
+
+#ifdef MNM_RENDER_SELFTEST
+    if(!command_lifecycle_pause_for_test(4))goto done;
+#endif
     stage=2;
     if(!command_candidate_open(&next,path) || (expected_session && next.file.session!=expected_session))goto done;
     stage=3;
     if(!game_tracker_acquire())goto done;
     stage=4;
-    if(!command_recovery_quiet() || game_lock_epoch==0xffffffffu || game_metadata_epoch==0xffffffffu ||
+    if(__atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE) || !command_recovery_quiet() || game_lock_epoch==0xffffffffu || game_metadata_epoch==0xffffffffu ||
        game_surface_generation>0xffffffffu-GAME_SURFACE_COUNT || session_archive_id==0xffffffffu || (checkpoint==COMMAND_RECOVER_CHECKPOINT && !command_checkpoint_complete())){game_tracker_release();goto done;}
     /* Select once behind exclusive admission. Incomplete state can use fresh
      * observations; a failed claimed checkpoint must never retry that same file. */
@@ -168,6 +176,10 @@ static u32 command_recover_mode(const char* path,u32 expected_session,int checkp
     command_worker_started=command_worker_stop=command_worker_joined=command_shutdown_complete=0;
     __sync_lock_release(&command_queue_draining);
     game_session_enabled=1;
+
+#ifdef MNM_RENDER_SELFTEST
+    if(!command_lifecycle_pause_for_test(5)){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);game_session_enabled=0;command_worker_joined=1;command_channel_close();game_tracker_release();goto done;}
+#endif
     ready=!checkpoint || command_checkpoint_publish();
     if(ready)ready=command_scheduler_launch();
     game_session_enabled=ready;
@@ -177,9 +189,24 @@ static u32 command_recover_mode(const char* path,u32 expected_session,int checkp
     lock_diagnostic(ready?"command_recovery_started":"command_recovery_failed",0,0,writer.session,session_archive_id,0,0,0);
     game_tracker_release();
  done:if(!ready)lock_diagnostic("command_recovery_refused",0,0,stage,expected_session,command_file_count,command_worker_joined,0);
-    command_candidate_close(&next);SetLastError(error);return ready;
+    command_candidate_close(&next);
+    if(owns_gate){
+        /* No successful return after an original crossed the reset gate, even
+         * if it completed between the final collision check and release CAS.
+         * Claimed worker-visible storage remains owned until normal shutdown. */
+        int guard=__sync_bool_compare_and_swap(&command_gate_closing,0,1);
+        int released=__sync_bool_compare_and_swap(&command_gate,COMMAND_GATE_EXCLUSIVE,0);
+        int collision=__atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE);
+        if(!guard || !released || collision){
+            if(ready){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);command_channel_pump();}
+            ready=0;lock_diagnostic("command_recovery_drawing_collision",0,0,0,expected_session,0,0,0);
+        }
+        if(!released)__atomic_fetch_and(&command_gate,0x7fffffffu,__ATOMIC_RELEASE);
+        if(guard)__sync_lock_release(&command_gate_closing);
+    }
+    SetLastError(error);return ready;
 }
-static u32 command_recover(const char* path,u32 expected_session){return command_recover_mode(path,expected_session,0);}
+static u32 command_recover(const char* path,u32 expected_session){return command_recover_mode(path,expected_session,0,0);}
 __declspec(dllexport) u32 WIN RenderRecover(const char* path){return command_recover(path,0);}
 #ifdef MNM_RENDER_SELFTEST
 __declspec(dllexport) u32 WIN RenderRecoveryStorageForTest(u32* values){

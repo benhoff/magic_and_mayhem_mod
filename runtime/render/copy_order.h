@@ -50,3 +50,9 @@ static struct GameCopyLease game_copy_shutdown_enter(void){
     }
  done:SetLastError(error);return lease;
 }
+
+/* A gate timeout bypasses any callback family, including lifetime/property
+ * changes. Preserve no inferred identity or pixels across that original. */
+static void command_callback_missed(void){
+    u32 error=GetLastError();game_lifetime_invalidate();game_copy_unobserved(0);SetLastError(error);
+}

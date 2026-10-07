@@ -14165,13 +14165,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Explicit recovery into a fresh continuous producer session",
-      "scope": "Explicit quiescent PE32 fresh-session recovery after shutdown/join with distinct v2 files and higher session IDs. Synchronize lifetime/metadata uncertainty, discard owned surface pixels and require fresh complete input; retain current verified application aliases, descriptors/properties and palette state independently of consumer lifetime. Reset wire IDs/session counters. Synthetic cross-interface continuation and existing guard regressions; bounded original-game observation exposes missing source baselines, so sustained game recovery and original equivalence remain pending. Recovery now shares scoped lifecycle cleanup. Actual startup/shutdown/recovery ownership barriers verify all competing entry points refuse before mutation, candidate rings remain untouched and retry publishes distinct fresh sessions. This covers one pre-mutation point per transition; drawing during direct recovery, deeper stage collisions, abandoned owners and original-driver lifecycle equivalence remain pending.",
+      "scope": "Explicit quiescent PE32 fresh-session recovery after shutdown/join with distinct v2 files and higher session IDs. Synchronize lifetime/metadata uncertainty, discard owned surface pixels and require fresh complete input; retain current verified application aliases, descriptors/properties and palette state independently of consumer lifetime. Reset wire IDs/session counters. Synthetic cross-interface continuation and existing guard regressions; bounded original-game observation exposes missing source baselines, so sustained game recovery and original equivalence remain pending. Recovery now shares scoped lifecycle cleanup. Actual startup/shutdown/recovery ownership barriers verify all competing entry points refuse before mutation, candidate rings remain untouched and retry publishes distinct fresh sessions. This covers one pre-mutation point per transition; deeper stage collisions, abandoned owners and original-driver lifecycle equivalence remain pending. Continuous direct recovery now shares bounded callback admission with administrative recovery regardless of ordered drawing/control configuration. Gate timeout invalidates pixels/metadata/aliases on both sides of original-once forwarding; bypassed successful Lock/GetDC has finite opaque ownership until exact successful return. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until shutdown. Ten synthetic schedules cover short/prolonged/reentrant callbacks, admitted and bypassed borrows, failed DC return and fresh retry with independent complete pixels. Unobserved alias/borrow destruction, opaque capacity exhaustion, abandoned owners and original application/driver scheduling remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-recovery.md",
         "research/runtime/opengl-command-recovery-metadata.md",
-        "research/runtime/opengl-recovery-races.md"
+        "research/runtime/opengl-recovery-races.md",
+        "research/runtime/opengl-drawing-recovery.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -14207,7 +14208,8 @@
         "NR.command-recovery.metadata-queue-20261006",
         "NR.command-recovery.metadata-game-20261006",
         "NR.command-host-recovery.auto-checkpoint-explicit-20261006",
-        "NR.recovery-lifecycle-races.native-20261006"
+        "NR.recovery-lifecycle-races.native-20261006",
+        "NR.drawing-recovery.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14222,7 +14224,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Qt fresh-session recovery over a versioned producer control channel",
-      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending.",
+      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous direct recovery now shares bounded callback admission with administrative recovery regardless of ordered drawing/control configuration. Gate timeout invalidates pixels/metadata/aliases on both sides of original-once forwarding; bypassed successful Lock/GetDC has finite opaque ownership until exact successful return. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until shutdown. Ten synthetic schedules cover short/prolonged/reentrant callbacks, admitted and bypassed borrows, failed DC return and fresh retry with independent complete pixels. Unobserved alias/borrow destruction, opaque capacity exhaustion, abandoned owners and original application/driver scheduling remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14236,7 +14238,8 @@
         "research/runtime/opengl-resource-working-set.md",
         "research/runtime/opengl-world-observation.md",
         "research/runtime/opengl-world-summon-observation.md",
-        "research/runtime/opengl-cpu-handoff-order.md"
+        "research/runtime/opengl-cpu-handoff-order.md",
+        "research/runtime/opengl-drawing-recovery.md"
       ],
       "implementation": [
         "apps/qt-shell/render_control.cpp",
@@ -14290,7 +14293,8 @@
         "NR.continuous-resource-working-set.checkpoint-20261006",
         "NR.continuous-resource-working-set.game-20261006",
         "NR.command-world-observation.live-20261006",
-        "NR.cpu-handoff.live-20261006"
+        "NR.cpu-handoff.live-20261006",
+        "NR.drawing-recovery.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14357,7 +14361,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Complete owned checkpoint attachment to a fresh rendering session",
-      "scope": "Strict complete owned checkpoint attachment with finite state/ownership admission. Broader synthetic failure/format tests retained; bounded admission diagnostic identifies early primary layout without pixels. After an observed complete primary frame, actual-game checkpoint delivered one native frame before overflow and fallback. READY, first frame, sustained recovery and equivalence are separate milestones; sustained game recovery and external host takeover remain pending. Administrative RECOVER now prefers the same complete-state admission before candidate claim; incomplete state falls back to fresh pixels, while claimed checkpoint faults refuse. Bounded automatic game retries preserve initialized source baselines and present three frames before overflow/exhaustion; sustained recovery remains pending. Complete owned admission now follows the existing 128-entry CPU tracker rather than 32 resident consumer slots. All observed CPU state remains validated under prior aggregate/ownership guards; primary/palettes precede READY and complete dependencies materialize on use. Three 33-owned-surface checkpoints pass.",
+      "scope": "Strict complete owned checkpoint attachment with finite state/ownership admission. Broader synthetic failure/format tests retained; bounded admission diagnostic identifies early primary layout without pixels. After an observed complete primary frame, actual-game checkpoint delivered one native frame before overflow and fallback. READY, first frame, sustained recovery and equivalence are separate milestones; sustained game recovery and external host takeover remain pending. Administrative RECOVER now prefers the same complete-state admission before candidate claim; incomplete state falls back to fresh pixels, while claimed checkpoint faults refuse. Bounded automatic game retries preserve initialized source baselines and present three frames before overflow/exhaustion; sustained recovery remains pending. Complete owned admission now follows the existing 128-entry CPU tracker rather than 32 resident consumer slots. All observed CPU state remains validated under prior aggregate/ownership guards; primary/palettes precede READY and complete dependencies materialize on use. Three 33-owned-surface checkpoints pass. Continuous direct recovery now shares bounded callback admission with administrative recovery regardless of ordered drawing/control configuration. Gate timeout invalidates pixels/metadata/aliases on both sides of original-once forwarding; bypassed successful Lock/GetDC has finite opaque ownership until exact successful return. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until shutdown. Ten synthetic schedules cover short/prolonged/reentrant callbacks, admitted and bypassed borrows, failed DC return and fresh retry with independent complete pixels. Unobserved alias/borrow destruction, opaque capacity exhaustion, abandoned owners and original application/driver scheduling remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14367,7 +14371,8 @@
         "research/runtime/opengl-command-recovery-validation.md",
         "research/runtime/opengl-command-recovery-metadata.md",
         "research/runtime/opengl-automatic-checkpoint-recovery.md",
-        "research/runtime/opengl-resource-working-set.md"
+        "research/runtime/opengl-resource-working-set.md",
+        "research/runtime/opengl-drawing-recovery.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -14414,7 +14419,8 @@
         "NR.command-host-recovery.auto-checkpoint-strict-20261006",
         "NR.command-host-recovery.auto-checkpoint-game-20261006",
         "NR.continuous-resource-working-set.checkpoint-20261006",
-        "NR.continuous-resource-working-set.game-20261006"
+        "NR.continuous-resource-working-set.game-20261006",
+        "NR.drawing-recovery.native-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -16080,11 +16086,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Scoped recovery lifecycle ownership and overlapping-transition refusal",
-      "scope": "Recovery uses existing common scoped lifecycle lease across admission/candidate claim/reset/publication/worker launch and cleanup, preserving quiet ownership and finite file/session guards. Contended recovery returns false before opening/claiming and records lifecycle-busy diagnostic with preserved LastError. Three actual held startup/shutdown/recovery schedules reject all three competing entry points before mutation, preserve active or retired old streams and both candidate bytes, then publish independent complete pixels in distinct fresh sessions. SELFTEST-only bounded one-shot pre-mutation barriers are absent in production. Existing repeated/alias/guard/session-budget and failure recovery, lifecycle and administrative checkpoint regressions freshly rerun. Drawing during direct recovery, prolonged/abandoned original owners, simultaneous long/failed joins, deeper stage/repeated collisions, administrative worker shutdown/unloading and original application/driver/full-frame equivalence remain pending.",
+      "scope": "Recovery uses existing common scoped lifecycle lease across admission/candidate claim/reset/publication/worker launch and cleanup, preserving quiet ownership and finite file/session guards. Contended recovery returns false before opening/claiming and records lifecycle-busy diagnostic with preserved LastError. Three actual held startup/shutdown/recovery schedules reject all three competing entry points before mutation, preserve active or retired old streams and both candidate bytes, then publish independent complete pixels in distinct fresh sessions. SELFTEST-only bounded one-shot pre-mutation barriers are absent in production. Existing repeated/alias/guard/session-budget and failure recovery, lifecycle and administrative checkpoint regressions freshly rerun. Factory-specific direct recovery collisions, prolonged/abandoned original owners, simultaneous long/failed joins, deeper stage/repeated collisions, administrative worker shutdown/unloading and original application/driver/full-frame equivalence remain pending. Continuous direct recovery now shares bounded callback admission with administrative recovery regardless of ordered drawing/control configuration. Gate timeout invalidates pixels/metadata/aliases on both sides of original-once forwarding; bypassed successful Lock/GetDC has finite opaque ownership until exact successful return. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until shutdown. Ten synthetic schedules cover short/prolonged/reentrant callbacks, admitted and bypassed borrows, failed DC return and fresh retry with independent complete pixels. Unobserved alias/borrow destruction, opaque capacity exhaustion, abandoned owners and original application/driver scheduling remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-recovery-races.md"
+        "research/runtime/opengl-recovery-races.md",
+        "research/runtime/opengl-drawing-recovery.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -16105,7 +16112,8 @@
         "NR.recovery-lifecycle-races.native-20261006",
         "NR.recovery-lifecycle-races.recovery-20261006",
         "NR.recovery-lifecycle-races.lifecycle-20261006",
-        "NR.recovery-lifecycle-races.checkpoint-20261006"
+        "NR.recovery-lifecycle-races.checkpoint-20261006",
+        "NR.drawing-recovery.native-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16145,6 +16153,53 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.drawing-recovery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded direct recovery callback exclusion and independent bypassed borrow ownership",
+      "scope": "Continuous callbacks are counted independently of control/ordered drawing configuration. Direct recovery acquires existing250ms exclusive callback gate before candidate opening, administrative recovery passes existing ownership. Existing50ms callback timeout forwards original once, invalidates alias/metadata/pixel provenance before/after, and records collision. Contending closers cannot clear owner collision evidence; direct final release/check is protected by the same close-attempt guard. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until normal shutdown. Fixed64-slot atomic opaque table pins successful bypassed Lock/GetDC until exact successful Unlock/ReleaseDC, including ordered drawing timeout; failed return retains ownership. Uncertain output/capacity or unmatched unobserved alias release conservatively refuses until process restart. Ten real PE32 original schedules compare40 complete frames in distinct native sessions: short admitted recovery, prolonged callbacks with ordered drawing on/off, reentry, admitted Lock/DC, bypassed Lock on/off, bypassed DC failed/successful return and claimed reset collision. SELFTEST-only barriers excluded from production. Table exhaustion, unobserved aliases/borrow destruction, callback termination, arbitrary deeper/repeated reset collisions, administrative worker shutdown/unloading and original application/driver/full-frame equivalence remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-drawing-recovery.md"
+      ],
+      "implementation": [
+        "runtime/render/command_gate.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_control.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/bridge.c"
+      ],
+      "tests": [
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-drawing-recovery.py",
+        "tools/test-render-recovery.py",
+        "tools/test-render-recovery-races.py",
+        "tools/test-render-lifecycle-races.py",
+        "tools/test-render-checkpoint.py",
+        "tools/test-render-orchestration.py",
+        "tools/build-render-bridge.py"
+      ],
+      "evidence": [
+        "NR.drawing-recovery.native-20261006",
+        "NR.drawing-recovery.recovery-20261006",
+        "NR.drawing-recovery.transitions-20261006",
+        "NR.drawing-recovery.lifecycle-20261006",
+        "NR.drawing-recovery.checkpoint-20261006",
+        "NR.drawing-recovery.orchestration-20261006",
+        "NR.drawing-recovery.checkpoint-isolated-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -29369,6 +29424,132 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.drawing-recovery.native-20261006",
+      "kind": "native_integration",
+      "scope": "Ten direct drawing/recovery schedules with40 complete native frames, independent original pixels, ordered drawing on/off, short/prolonged/reentrant callbacks, admitted/bypassed borrows, failed DC release, unchanged unclaimed candidates and claimed candidate failure/new-session retry.",
+      "record": "research/runtime/opengl-drawing-recovery-native-20261006.json",
+      "sha256": "584f1822716a7a9d36fb302d723867cd1b60f44e238c8a72ab87d67a86e44c80",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 40
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-recovery.recovery-20261006",
+      "kind": "native_integration",
+      "scope": "Existing ten-case fresh-session recovery and finite identity/file budget regression.",
+      "record": "research/runtime/opengl-drawing-recovery-recovery-20261006.json",
+      "sha256": "a666be23ad1df2130ccc4ef6eca26bf3f18da5e1310892defaaf462d06d6e255",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 72
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-recovery.transitions-20261006",
+      "kind": "native_integration",
+      "scope": "Existing three actual startup/shutdown/recovery transition overlap schedules.",
+      "record": "research/runtime/opengl-drawing-recovery-transitions-20261006.json",
+      "sha256": "7555de05fc6369fb62dab7e20ae2996394c625d79a39b457f18371abe9a45fb8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 12
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-recovery.lifecycle-20261006",
+      "kind": "native_integration",
+      "scope": "Existing six lifecycle callback quiescence/refusal/cached completion schedules.",
+      "record": "research/runtime/opengl-drawing-recovery-lifecycle-20261006.json",
+      "sha256": "3417ecf0964c7b314a34f62e89c2dff4eb537dcc248a7dde647e3e20db2dff02",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 12
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-recovery.checkpoint-20261006",
+      "kind": "native_integration",
+      "scope": "Full twenty-case administrative checkpoint regression with312 independent complete frames. Shared-workspace execution fingerprints now match updated base856f6ef, which commits the independently owned-backend renderer build-file entry. This producer/checkpoint regression does not assert execution of the separately modeled owned backend. The earlier isolated prior-base rerun is retained separately.",
+      "record": "research/runtime/opengl-drawing-recovery-checkpoint-20261006.json",
+      "sha256": "0128d024a638a013cba3e3d13d08214ca62774d2652267d58aa296b0f2e0c522",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 312
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-recovery.orchestration-20261006",
+      "kind": "native_integration",
+      "scope": "Existing explicit startup/process-exit orchestration regression.",
+      "record": "research/runtime/opengl-drawing-recovery-orchestration-20261006.json",
+      "sha256": "dd29394a80dd3b686042047c58f0a14fa0982c87d50dda1259746ada000513b4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-recovery.checkpoint-isolated-20261006",
+      "kind": "native_integration",
+      "scope": "Full twenty-case administrative checkpoint regression rerun from the isolated staged tree with freshly built native checkpoint consumer;312 independent complete frames. All execution fingerprints match the intended commit sources, including its renderer/CMakeLists.txt; shared-workspace run remains separately retained. This isolated run used the previous renderer build file; a subsequently committed unrelated owned-backend CMake entry makes that fingerprint historical against the updated base. A new updated-base rerun is separate.",
+      "record": "research/runtime/opengl-drawing-recovery-checkpoint-isolated-20261006.json",
+      "sha256": "fa7176ba1a039f8c68b679094b1f38d44c537f2c1b406d4418e1469d18bb7ad9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 312
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -34126,6 +34307,37 @@
         "tests/render-surface-backend-test.cpp",
         "tools/check-native-surface-backend.py"
       ]
+    },
+    {
+      "id": "NR.drawing-recovery.native",
+      "level": "preview",
+      "scope": "Direct recovery excludes drawing callbacks and independently owns bypassed borrows; short completion permits recovery, prolonged/reentrant/borrowed refusal preserves unclaimed candidates, claimed reset collision fails and retries with new identity. Synthetic policy scope only; original-driver scheduling, opaque capacity/alias destruction and abandoned owners remain pending.",
+      "behaviors": [
+        "NR.drawing-recovery",
+        "NR.command-recovery",
+        "NR.command-host-recovery",
+        "NR.command-checkpoint-attachment"
+      ],
+      "evidence": [
+        "NR.drawing-recovery.native-20261006",
+        "NR.drawing-recovery.recovery-20261006",
+        "NR.drawing-recovery.transitions-20261006",
+        "NR.drawing-recovery.lifecycle-20261006",
+        "NR.drawing-recovery.checkpoint-20261006",
+        "NR.drawing-recovery.orchestration-20261006",
+        "NR.drawing-recovery.checkpoint-isolated-20261006"
+      ],
+      "tests": [
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/selftest.c",
+        "tools/test-render-drawing-recovery.py",
+        "tools/test-render-recovery.py",
+        "tools/test-render-recovery-races.py",
+        "tools/test-render-lifecycle-races.py",
+        "tools/test-render-checkpoint.py",
+        "tools/test-render-orchestration.py",
+        "tools/build-render-bridge.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -34373,7 +34585,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-surface-backend-base-20261006.json",
-    "sha256": "cf99088319a843b8884c7e446334570ca4b5e8adf418f39f1864b65ca35e72c1"
+    "path": "research/runtime/coverage/source-index-drawing-recovery-20261006.json",
+    "sha256": "f89f745ad59bbdbd9e90e25029599ba5557a196f91dfb4e31e257cd8ef0d6bcd"
   }
 }

@@ -1,0 +1,2685 @@
+{
+  "schema": 1,
+  "sources": {
+    "runtime/render/history_selftest.h": "077d923f30ff81d927fa770f6b841e0461a345e4fc4310ab3048fa284ec3bdb5",
+    "runtime/render/palette_history.h": "d298ee386d6a70c406dd3ec248eb071e79a0688daf5c7da8f91a43bc4a2cad72",
+    "runtime/render/command_idle_selftest.h": "efc9a0be0823c894a5693f748d7f171866e0d3efdc6bd1bf7888ceb3afb96c0b",
+    "runtime/render/lock_blit_selftest.h": "e0083a9c20400e058e0a914f80b9bcda79d13f81c070e39aa34f36bec59b64fa",
+    "runtime/render/mutation_selftest.h": "e22304bbcd997c8423abf4d04baf720280999f0ed9514c60bed66f81319dceea",
+    "runtime/render/indexed_owned_selftest.h": "7ab70e041a806281903ec11a5708fa9b3e69fe2e5bd6a54baa131793b19ba723",
+    "runtime/render/draw_capture.h": "7b6e113cc86c0015f855711fdd893fc6efc83d0fa4287f91d829847b9612b868",
+    "runtime/render/lock_aliases.h": "df4a344c6f010b8f8022c99ec1a1ce04cd708564248d18a3362d2ad165745a95",
+    "runtime/render/continuous_selftest.h": "d19b4b07522d2f4c3a528e8447fda37e6b3e5239bfa4e4041fef85965f5b9021",
+    "runtime/render/command_scheduler.h": "79292f7fec1f1f627ea555d2004be601d2366ef3bf1e557dd727fffb37a3f55d",
+    "runtime/render/copy_order.h": "7fce0c71de373f4496fceb4e50185a3061be8a91377c2a7dabb287b0ce7d6ebf",
+    "runtime/render/lock_updates.h": "4fd32d69ac6b2a8f6557e9bb3cc5ddd5540e4f6ea942fbebaf9b43f9725c78a3",
+    "runtime/render/command_gate.h": "e3dbb7601304402d80cb8d89d3f591281a9ebcc1d0b954e185aa6518e6782630",
+    "runtime/render/lifecycle_race_selftest.h": "7efb30260c04e28444b09acf87b298a76ddbc580862a749516e951ec2c30833d",
+    "runtime/render/command_lifecycle.h": "d37e421b26755a14012453148bfec8fe9109922f6e2a3452cab37a300d8219ce",
+    "runtime/render/working_set_selftest.h": "f6bbfcc44991193fa608e54b07cf79ea18d3ea8e34853946608b1bc6dcea733b",
+    "runtime/render/lock_surfaces.h": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+    "runtime/render/flip_history.h": "4c1910ed299700ba95e9b49923710b54817ab8dd2d2cba823b40ccf4dbc388d8",
+    "runtime/render/bootstrap_selftest.h": "3fca231aeeb189832182d36fe85a8ed58adab8f6a133499c48a5f5b1311215c7",
+    "runtime/render/checkpoint_selftest.h": "e0320f879bd79b43ca6d563b342fcf02edd5323fcb97c085a650c11351c751a4",
+    "runtime/render/partial_lock_selftest.h": "6b9df18d4b435e6adcce961abcb060b344a1a3bbc5f19b0266786775f08c3c7f",
+    "runtime/render/recovery_race_selftest.h": "f8fa8b3cdb19d9ab038b2452de54159c41ed62bed45b49f7fe5f9b331b1edda1",
+    "runtime/render/command_queue.h": "d96f125aa7a712f96d0745a993b48a19820a10470257a629ef0960e29c736877",
+    "runtime/render/owned_dc_selftest.h": "69ea01ac97f58887f9fd63614418974c9d8c925cbdde26c71117b2738fe34407",
+    "runtime/render/lock_diagnostics.h": "e21d9134b6f2d0a9d7624a017a2ea0b52ee05aae6a249a1c84ccf8740959b5a0",
+    "runtime/render/media_bridge.h": "dc7e64883ef491ac42f42a2f10c36dda1ca5a04eda993cdab04e9645df572e6f",
+    "runtime/render/owned_session_selftest.h": "a3ec9a32d9ca45919eb5c04b3362b4f1904b3a0e1b30174588f77eef5ae0e188",
+    "runtime/render/media_selftest.h": "9f9592dc30aeed9b8d0f7fa622c4335fd9fc6357b84d67eb5077ff795143e4b0",
+    "runtime/render/backpressure_selftest.h": "c007732548f9791058bdcd1b1778a1674f734f540077a477ea67f1818185380e",
+    "runtime/render/draw_startup_selftest.h": "c9622c9d870884a6179f0835bec379f5add8ebc46835b7ad328eed1b34e07f5f",
+    "runtime/render/selftest.c": "b38408c5de9ebb7c71e157825660155c54118e823f7bc3c93079d554e14b1dd7",
+    "runtime/render/input_polling.h": "95d53d43f99b3de9390b07a150db112ae7d280e7bb112ba5957e3ce62dca736c",
+    "runtime/render/bridge.c": "ce7c739088ee25c77dfadc8dcfda419b43fbe536b61c8c7cdfb7321aff4f198f",
+    "runtime/render/drawing_recovery_selftest.h": "dadebb93b1dd2d70439bf469b9760d83c869516fb36c1badfb1d202180d8ee95",
+    "runtime/render/owned_session.h": "8f7218f11f93f5286492c86385978a581b3f66c24d1ed87e0a2ff8493d47453b",
+    "runtime/render/failure_diagnostics.h": "97d72ef8174e01c80c4b3eb57f4fa80cedfd8f56f25f7b77904121d0996baf11",
+    "runtime/render/adapter_startup.h": "52457ffc947fbbf242a6949d4a871779a171aaafc8e0ae741868f33a20374192",
+    "runtime/render/lock_lifecycle.h": "eb1c2aa105c5d5a2b54f15e028122272acc24e190f076645f352be37708468d1",
+    "runtime/render/lifecycle_selftest.h": "f68113110b83b034ec94e89660df4a3feb3d283f7ae0e9844790c8cf4b785bcb",
+    "runtime/render/surface_history.h": "63976b18f13b5db96ca4385c30d6783769a7f25f32656888023171ce111ffa7d",
+    "runtime/render/resource_selftest.h": "69f5e270595583ea566bbe3e06a4a6b9a534fa42e255f8e342987b94b0f49942",
+    "runtime/render/command_control.h": "b0504d4d05753cb9e2a70ed93d426c7edf8eec372f3eebb0f0f74f5ee3c9ffce",
+    "runtime/render/surface_commands.h": "2353c4a1d704bef43594c0042c97d3f0c65927fb8d14abb60a10ec0b4c4bb8cf",
+    "runtime/render/lock_lifecycle_selftest.h": "ebdfe7dd2773746496a1b138e6309b0250e2207b67d4e2ba6f05f24843bcb406",
+    "runtime/render/flip_selftest.h": "f46d45004a39a82283021903e468730b365825c6efec1cbebe61d2fd875eb03b",
+    "runtime/render/dirty_region.h": "e5743b9c82b63debe1b0431269d576672fcfee83ca42817e21d5558ec1ba936b",
+    "runtime/render/draw_selftest.h": "03799a2bd9c3df1ac3b426c85b34b7f1d25b36791947ca95ac2af687d177d24f",
+    "runtime/render/host_recovery_selftest.h": "7981baf6069b7caab473461f33e49798d26ad6cc5bcb07731d4916d00f873024",
+    "runtime/render/recovery_selftest.h": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+    "runtime/render/command_channel.h": "3c0a2e177987cc499f4375deb662896bd320bacdaadce7d9d6537511027f0ebb",
+    "runtime/render/dc_selftest.h": "123bf310df0197f17a63df26349e14a5e5757b9a903c8924ef9ac711ee7ef13c",
+    "runtime/render/lock_dc.h": "c039565519593443bd2c00f17c305b59d19aa5c4583d2d1cd7a5dc7918977456",
+    "runtime/render/indexed_copy_selftest.h": "9d3fc4c7a0d8f66a7ba765172c920cb4889301b63dea02556c7eeb3ef5e45fb6",
+    "runtime/render/frame_pixels.h": "671110ec34e214010c51d2a13838cd56e08869ecebdf7d38c8aaaae9156109be",
+    "runtime/render/command_recovery.h": "67551305e7bd301bcf2f33c209856a7348fa50af7e4b424ecfabacef87d9b79f",
+    "runtime/render/input_selftest.h": "78d5c31ec213d5bd06daa667e38320671807a5700903a392fbb78f8cfeb9abab",
+    "runtime/render/lock_palette.h": "4215170fa390fb87b75877fd2af90b917514075abbc35ef192f75f220850d18d",
+    "runtime/render/lock_flip.h": "112c1a33cf20c0318d0b19289aba5dd2d9d0903013151d5c5759a86144cf8bf5",
+    "runtime/render/palette_selftest.h": "5d7e6f9c254d9ed634f4656b0256dda811adbc6cfe1f0c768abc8242aa43b73d",
+    "apps/qt-shell/render_control.cpp": "bdd72b25ca107f324faa737aa3abbd98cd566a77a3f7ecae289b73d4d5469a8b",
+    "apps/qt-shell/render_control.hpp": "1229d563b0e0fa27c325f4a8c1ed6698c0820ed43931a4b8b824408475c2c1e9",
+    "apps/qt-shell/live_command_session.cpp": "58cb29456d127106830ee6de114f8f49c88e4265f4908ba4ff9aa61a9f33b40c",
+    "apps/qt-shell/live_command_session.hpp": "a8fbf9010e4721463215b6621a7ea7baeadf48633064c8bb8a38e5b0e5f8dfa0",
+    "apps/qt-shell/live_command_renderer.cpp": "d5288ce683e65418a5e791781df33c5efbcb1f85558eda2feced7e2142e21dcc",
+    "apps/qt-shell/live_command_renderer.hpp": "b1f51a4a3ce767c6a4739e25a5cf4f9c82cc8b00f43e144c09bba82a8091a2ae",
+    "apps/qt-shell/command_channel.cpp": "cef42f0fb6e7d9dc7dafd032d5c52e384de94d97b06a8d6028c8c572ff3d0ba4",
+    "apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "apps/qt-shell/gl_viewport.cpp": "4e116045a89585822c0fe21fe30e6b647c6818deab666a7f306ae1b93217b513",
+    "apps/qt-shell/gl_viewport.hpp": "d02ace6749d41b2380d997ee967fbff61f681dd90aadc3480a0a3d131e2cde77",
+    "renderer/CMakeLists.txt": "73916c1eefffaa68652dff21553bf7b7b568cc56f68698c8e21f1f3c64b1eed0",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/commands.hpp": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+    "renderer/command_consumer.cpp": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+    "renderer/command_state.hpp": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+    "renderer/blit.cpp": "1c0aa177d59eea6116b8f0e733ee0b7d8b36e16b26a739868f229c548318edc8",
+    "renderer/blit.hpp": "d4d7229c0a7ee70a0fd2c6f0c63fb86835b77f6e7282e196cdcb17cb173aa0c3",
+    "tests/live-command-checkpoint-test.cpp": "ddd7fe37eadb44fdae01f4ae024ebd57b57256e83c1fcb437791e77d18163445",
+    "tools/test-render-checkpoint.py": "9bf79ed4503944592802da08f265d0d77ca50b01435983e484cb4210c04f1817",
+    "tools/test-render-mutations.py": "7bcbf9e3958de9cb473b808c1b7061fd824d88e76402a6ffbacf218c10f12024",
+    "tools/build-render-bridge.py": "2370fbfd16718c2818e96be32ad155a551374d21b1050c7553e55fcb0e24cf6e",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "protocols/schemas/render_control-v1.json": "4b045e0c914a952fd5c9389d062ff7688646dafd2abc9fa2b5d52decc81783dc",
+    "protocols/include/mnm/render_control_v1.h": "ab15450b9347c312062719bdc35f62adf6bff9f4298f88de250513a5651ffb8b",
+    "protocols/python/mnm_protocols/render_control_v1.py": "170f1be0cd49c21942fa547d48bb6bf4ed6741836128d8929ed1da9600377e7d",
+    "protocols/include/mnm/render_stream_v2.h": "4f8416f6dcdb5031b2f95f209e21e43dce0c0cad176c11ec8f2293c6c89c4101"
+  },
+  "cases": [
+    {
+      "failure_reasons": [],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        192,
+        0
+      ],
+      "mode": "rgb",
+      "success": true,
+      "valid": true,
+      "original_counts": [
+        14,
+        14,
+        1,
+        1,
+        1,
+        1,
+        12,
+        6,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "hash": "499fd58da9cfddbec0a5b5c658f4353b74e481e2c4e895fb3f29a6be7a2bb47e",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "5381b194257202fa10e9a1878f0debf9c7cb38374ece6a22e23f1859871f3f1d",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "04028dd7784da1581816e94b6a690eafd14c6c370088ce4ed60e438b3595f99d",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "f48595aec85c90bce79af68025c1d5f328c5b4458edc9307c77a500a27a7c64e",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "6552748d4b0ad3d0beb1044ca01895a49566fe436d196072d1d4492b813027bb",
+            "session": 3
+          }
+        ],
+        "requests": 3,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ]
+      },
+      "checkpoints": [
+        {
+          "session": 124,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 125,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 126,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": true,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 2,
+            "8": 1,
+            "11": 1
+          }
+        }
+      ],
+      "immutable_old_rings": 3
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        48,
+        0
+      ],
+      "mode": "indexed",
+      "success": true,
+      "valid": true,
+      "original_counts": [
+        14,
+        14,
+        1,
+        1,
+        1,
+        1,
+        12,
+        6,
+        9,
+        0
+      ],
+      "consumer": {
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "hash": "f6e54dcb2c4338dbdca7e260d623f3d04348e3b4c32a284e442a0b2df2c38086",
+            "session": 1
+          },
+          {
+            "hash": "e42e657fa96465514f83f82bdb9ef75037c00083f81f04bb4cc170b336bd2407",
+            "session": 1
+          },
+          {
+            "hash": "665a5c05a1a36c9abf7713e2315df183b8e8499aeb9d1dc7b0a7fbc70b078a46",
+            "session": 1
+          },
+          {
+            "hash": "e42e657fa96465514f83f82bdb9ef75037c00083f81f04bb4cc170b336bd2407",
+            "session": 1
+          },
+          {
+            "hash": "e42e657fa96465514f83f82bdb9ef75037c00083f81f04bb4cc170b336bd2407",
+            "session": 1
+          },
+          {
+            "hash": "a6071134eb7bbe18484cdb986b2cfb5aebb846d9c84e78a64f7cc9b6c0e1da98",
+            "session": 1
+          },
+          {
+            "hash": "a6071134eb7bbe18484cdb986b2cfb5aebb846d9c84e78a64f7cc9b6c0e1da98",
+            "session": 1
+          },
+          {
+            "hash": "a6071134eb7bbe18484cdb986b2cfb5aebb846d9c84e78a64f7cc9b6c0e1da98",
+            "session": 1
+          },
+          {
+            "hash": "a6071134eb7bbe18484cdb986b2cfb5aebb846d9c84e78a64f7cc9b6c0e1da98",
+            "session": 2
+          },
+          {
+            "hash": "4a3203df855f6a24b54a5a312eddb1af52a7805b49a4443435ea113bce5d6675",
+            "session": 2
+          },
+          {
+            "hash": "2db26a986ed05f062d3fee3d63d732f939e1b72105ee1fa0d1371933f46b004d",
+            "session": 2
+          },
+          {
+            "hash": "4a3203df855f6a24b54a5a312eddb1af52a7805b49a4443435ea113bce5d6675",
+            "session": 2
+          },
+          {
+            "hash": "4a3203df855f6a24b54a5a312eddb1af52a7805b49a4443435ea113bce5d6675",
+            "session": 2
+          },
+          {
+            "hash": "f48d6e87c0aa2ecdc0b8aab2cb878fd49fb16a5361aecff073cd6f1cd18a5271",
+            "session": 2
+          },
+          {
+            "hash": "f48d6e87c0aa2ecdc0b8aab2cb878fd49fb16a5361aecff073cd6f1cd18a5271",
+            "session": 2
+          },
+          {
+            "hash": "f48d6e87c0aa2ecdc0b8aab2cb878fd49fb16a5361aecff073cd6f1cd18a5271",
+            "session": 2
+          },
+          {
+            "hash": "f48d6e87c0aa2ecdc0b8aab2cb878fd49fb16a5361aecff073cd6f1cd18a5271",
+            "session": 3
+          },
+          {
+            "hash": "ce45d137614933a93202ee39a90fb929a3771da97c6b6d5b9e1cc8fbb33df9f5",
+            "session": 3
+          },
+          {
+            "hash": "35eaff907447929154fa05b20b5388316f407f579428dfe4c9ac511626e81e7e",
+            "session": 3
+          },
+          {
+            "hash": "ce45d137614933a93202ee39a90fb929a3771da97c6b6d5b9e1cc8fbb33df9f5",
+            "session": 3
+          },
+          {
+            "hash": "ce45d137614933a93202ee39a90fb929a3771da97c6b6d5b9e1cc8fbb33df9f5",
+            "session": 3
+          },
+          {
+            "hash": "05ec091f8e3aacba0b12d65ad9b7310ea5e021471b5a8d04d8b9796d29ace0a4",
+            "session": 3
+          },
+          {
+            "hash": "05ec091f8e3aacba0b12d65ad9b7310ea5e021471b5a8d04d8b9796d29ace0a4",
+            "session": 3
+          },
+          {
+            "hash": "05ec091f8e3aacba0b12d65ad9b7310ea5e021471b5a8d04d8b9796d29ace0a4",
+            "session": 3
+          }
+        ],
+        "requests": 3,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ]
+      },
+      "checkpoints": [
+        {
+          "session": 124,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 8,
+            "7": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 2
+          }
+        },
+        {
+          "session": 125,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 8,
+            "7": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 2
+          }
+        },
+        {
+          "session": 126,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": true,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 8,
+            "7": 2,
+            "8": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 2,
+            "15": 1
+          }
+        }
+      ],
+      "immutable_old_rings": 3
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        0,
+        0,
+        0,
+        1,
+        96,
+        0
+      ],
+      "mode": "incomplete",
+      "success": true,
+      "valid": false,
+      "original_counts": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [],
+        "requests": 1,
+        "same_context": true,
+        "states": [
+          2,
+          3
+        ]
+      },
+      "checkpoints": [],
+      "immutable_old_rings": 1
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        0,
+        0,
+        0,
+        1,
+        192,
+        0
+      ],
+      "mode": "partial",
+      "success": true,
+      "valid": false,
+      "original_counts": [
+        3,
+        3,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [],
+        "requests": 1,
+        "same_context": true,
+        "states": [
+          2,
+          3
+        ]
+      },
+      "checkpoints": [],
+      "immutable_old_rings": 1
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        0,
+        0,
+        0,
+        1,
+        48,
+        0
+      ],
+      "mode": "palette-incomplete",
+      "success": true,
+      "valid": false,
+      "original_counts": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [],
+        "requests": 1,
+        "same_context": true,
+        "states": [
+          2,
+          3
+        ]
+      },
+      "checkpoints": [],
+      "immutable_old_rings": 1
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        192,
+        0
+      ],
+      "mode": "held",
+      "success": true,
+      "valid": false,
+      "original_counts": [
+        3,
+        3,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [],
+        "requests": 1,
+        "same_context": true,
+        "states": [
+          2,
+          3
+        ]
+      },
+      "checkpoints": [],
+      "immutable_old_rings": 1
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        192,
+        0
+      ],
+      "mode": "dc",
+      "success": true,
+      "valid": false,
+      "original_counts": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        2
+      ],
+      "consumer": {
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [],
+        "requests": 1,
+        "same_context": true,
+        "states": [
+          2,
+          3
+        ]
+      },
+      "checkpoints": [],
+      "immutable_old_rings": 1
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        1184,
+        0
+      ],
+      "mode": "capacity",
+      "success": true,
+      "valid": true,
+      "original_counts": [
+        14,
+        14,
+        1,
+        1,
+        1,
+        1,
+        12,
+        6,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "hash": "499fd58da9cfddbec0a5b5c658f4353b74e481e2c4e895fb3f29a6be7a2bb47e",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "5381b194257202fa10e9a1878f0debf9c7cb38374ece6a22e23f1859871f3f1d",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "04028dd7784da1581816e94b6a690eafd14c6c370088ce4ed60e438b3595f99d",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "f48595aec85c90bce79af68025c1d5f328c5b4458edc9307c77a500a27a7c64e",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "6552748d4b0ad3d0beb1044ca01895a49566fe436d196072d1d4492b813027bb",
+            "session": 3
+          }
+        ],
+        "requests": 3,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ]
+      },
+      "checkpoints": [
+        {
+          "session": 124,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 125,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 126,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": true,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 2,
+            "8": 1,
+            "11": 1
+          }
+        }
+      ],
+      "immutable_old_rings": 3
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        0,
+        0,
+        0,
+        1,
+        33554624,
+        0
+      ],
+      "mode": "budget",
+      "success": true,
+      "valid": false,
+      "original_counts": [
+        3,
+        3,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [],
+        "requests": 1,
+        "same_context": true,
+        "states": [
+          2,
+          3
+        ]
+      },
+      "checkpoints": [],
+      "immutable_old_rings": 1
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        0,
+        0,
+        0,
+        1,
+        192,
+        0
+      ],
+      "mode": "uncertain",
+      "success": true,
+      "valid": false,
+      "original_counts": [
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [],
+        "requests": 1,
+        "same_context": true,
+        "states": [
+          2,
+          3
+        ]
+      },
+      "checkpoints": [],
+      "immutable_old_rings": 1
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        96,
+        0
+      ],
+      "mode": "rgb16",
+      "success": true,
+      "valid": true,
+      "original_counts": [
+        14,
+        14,
+        1,
+        1,
+        1,
+        1,
+        12,
+        6,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "hash": "e479b64c3d1abb25e1fb7913d47c86cd158a94dfa0230b4852eac8ef6135f148",
+            "session": 1
+          },
+          {
+            "hash": "8f48e057fc586d037e3e4fa832d030793acb08a88083aaa240036e0fd7f74b7e",
+            "session": 1
+          },
+          {
+            "hash": "8a7d853694a732f7a1077f9cef1b4532706bfa44525f9d1c0dc54b374c359e7b",
+            "session": 1
+          },
+          {
+            "hash": "8f48e057fc586d037e3e4fa832d030793acb08a88083aaa240036e0fd7f74b7e",
+            "session": 1
+          },
+          {
+            "hash": "8f48e057fc586d037e3e4fa832d030793acb08a88083aaa240036e0fd7f74b7e",
+            "session": 1
+          },
+          {
+            "hash": "94c6e9fa9291f305740d8f655d239cfab58314b875d5e9cb2013166630d39c77",
+            "session": 1
+          },
+          {
+            "hash": "94c6e9fa9291f305740d8f655d239cfab58314b875d5e9cb2013166630d39c77",
+            "session": 2
+          },
+          {
+            "hash": "b900bbda24ef04fe7b6714891f45a173d0f2a2f4d6f1afc0a57d6e114b3bcb14",
+            "session": 2
+          },
+          {
+            "hash": "a7c304bb2e3a6ddcd439c16529b8603544875df135aaba317e445402a98cb3d0",
+            "session": 2
+          },
+          {
+            "hash": "b900bbda24ef04fe7b6714891f45a173d0f2a2f4d6f1afc0a57d6e114b3bcb14",
+            "session": 2
+          },
+          {
+            "hash": "b900bbda24ef04fe7b6714891f45a173d0f2a2f4d6f1afc0a57d6e114b3bcb14",
+            "session": 2
+          },
+          {
+            "hash": "347c35ca8598282c49a1789d37a7ebb2d82048a6d458964dcff543b8e69d1172",
+            "session": 2
+          },
+          {
+            "hash": "347c35ca8598282c49a1789d37a7ebb2d82048a6d458964dcff543b8e69d1172",
+            "session": 3
+          },
+          {
+            "hash": "c39faa72ed86247b148cbb234fb4a821ff6a604f9beda4799f45b54bbf09bb0e",
+            "session": 3
+          },
+          {
+            "hash": "e18f51cf43257dd94c755522a02ec57b2b352d0b5a5809c4bef996874ca86186",
+            "session": 3
+          },
+          {
+            "hash": "c39faa72ed86247b148cbb234fb4a821ff6a604f9beda4799f45b54bbf09bb0e",
+            "session": 3
+          },
+          {
+            "hash": "c39faa72ed86247b148cbb234fb4a821ff6a604f9beda4799f45b54bbf09bb0e",
+            "session": 3
+          },
+          {
+            "hash": "ef92902a650209916fd73903ebf02f6b7d202abf4125ece21288cfe831f4159a",
+            "session": 3
+          }
+        ],
+        "requests": 3,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ]
+      },
+      "checkpoints": [
+        {
+          "session": 124,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 125,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 126,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": true,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 2,
+            "8": 1,
+            "11": 1
+          }
+        }
+      ],
+      "immutable_old_rings": 3
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        144,
+        0
+      ],
+      "mode": "rgb24",
+      "success": true,
+      "valid": true,
+      "original_counts": [
+        14,
+        14,
+        1,
+        1,
+        1,
+        1,
+        12,
+        6,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "hash": "499fd58da9cfddbec0a5b5c658f4353b74e481e2c4e895fb3f29a6be7a2bb47e",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "5381b194257202fa10e9a1878f0debf9c7cb38374ece6a22e23f1859871f3f1d",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "04028dd7784da1581816e94b6a690eafd14c6c370088ce4ed60e438b3595f99d",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "f48595aec85c90bce79af68025c1d5f328c5b4458edc9307c77a500a27a7c64e",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "6552748d4b0ad3d0beb1044ca01895a49566fe436d196072d1d4492b813027bb",
+            "session": 3
+          }
+        ],
+        "requests": 3,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ]
+      },
+      "checkpoints": [
+        {
+          "session": 124,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 125,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 126,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": true,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 2,
+            "8": 1,
+            "11": 1
+          }
+        }
+      ],
+      "immutable_old_rings": 3
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        288,
+        0
+      ],
+      "mode": "mixed",
+      "success": true,
+      "valid": true,
+      "original_counts": [
+        14,
+        14,
+        1,
+        1,
+        1,
+        1,
+        12,
+        6,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "hash": "499fd58da9cfddbec0a5b5c658f4353b74e481e2c4e895fb3f29a6be7a2bb47e",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "5381b194257202fa10e9a1878f0debf9c7cb38374ece6a22e23f1859871f3f1d",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "04028dd7784da1581816e94b6a690eafd14c6c370088ce4ed60e438b3595f99d",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "f48595aec85c90bce79af68025c1d5f328c5b4458edc9307c77a500a27a7c64e",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "6552748d4b0ad3d0beb1044ca01895a49566fe436d196072d1d4492b813027bb",
+            "session": 3
+          }
+        ],
+        "requests": 3,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ]
+      },
+      "checkpoints": [
+        {
+          "session": 124,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 125,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 126,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": true,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 2,
+            "8": 1,
+            "11": 1
+          }
+        }
+      ],
+      "immutable_old_rings": 3
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        48,
+        0
+      ],
+      "mode": "recreate",
+      "success": true,
+      "valid": true,
+      "original_counts": [
+        254,
+        254,
+        1,
+        4,
+        4,
+        4,
+        12,
+        6,
+        9,
+        0
+      ],
+      "consumer": {
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "hash": "f6e54dcb2c4338dbdca7e260d623f3d04348e3b4c32a284e442a0b2df2c38086",
+            "session": 1
+          },
+          {
+            "hash": "e42e657fa96465514f83f82bdb9ef75037c00083f81f04bb4cc170b336bd2407",
+            "session": 1
+          },
+          {
+            "hash": "665a5c05a1a36c9abf7713e2315df183b8e8499aeb9d1dc7b0a7fbc70b078a46",
+            "session": 1
+          },
+          {
+            "hash": "e42e657fa96465514f83f82bdb9ef75037c00083f81f04bb4cc170b336bd2407",
+            "session": 1
+          },
+          {
+            "hash": "e42e657fa96465514f83f82bdb9ef75037c00083f81f04bb4cc170b336bd2407",
+            "session": 1
+          },
+          {
+            "hash": "a6071134eb7bbe18484cdb986b2cfb5aebb846d9c84e78a64f7cc9b6c0e1da98",
+            "session": 1
+          },
+          {
+            "hash": "a6071134eb7bbe18484cdb986b2cfb5aebb846d9c84e78a64f7cc9b6c0e1da98",
+            "session": 1
+          },
+          {
+            "hash": "a6071134eb7bbe18484cdb986b2cfb5aebb846d9c84e78a64f7cc9b6c0e1da98",
+            "session": 1
+          },
+          {
+            "hash": "8828eae5ba8b68eab5b47d283e2e057e377063428f9fde4012aa270773e93a25",
+            "session": 1
+          },
+          {
+            "hash": "370ffba8f22cc065989a426cbde23e0b52ae2a8751a3b5e860a2600c8475f573",
+            "session": 1
+          },
+          {
+            "hash": "aec1dd9c703ed93c3f62ee13e7d4e34405cbd75482f28db26f3f1dddcdf3e2a2",
+            "session": 1
+          },
+          {
+            "hash": "dc41e23beedd6a40f179047ee74730092ed2d0e4f81437a16926db832f6fd069",
+            "session": 1
+          },
+          {
+            "hash": "bea117348f31d420cc4301d04613514980673b93c8eda52a736a8aa518513e39",
+            "session": 1
+          },
+          {
+            "hash": "22b97435300aceb71d06dd594922e4e84e439cdec0dc3fd17d79034360d8f591",
+            "session": 1
+          },
+          {
+            "hash": "7d2d131a422592f7ff50155538ab66c3af0930f236ad5252420c96986e05b360",
+            "session": 1
+          },
+          {
+            "hash": "c5f6f9306c8fe891e02711d5c72fb99f1919460f4d04be49cedda59f9e94ad46",
+            "session": 1
+          },
+          {
+            "hash": "e9ee00cc75f9edcecdcf55876357b6464865f0b6619723a43720c16f79d024b1",
+            "session": 1
+          },
+          {
+            "hash": "eb7f23e104eb7821b63dfbcf183aa26bfc6e76a25f0c526d408f53067da7426a",
+            "session": 1
+          },
+          {
+            "hash": "33adf7041f9353268de6220d19be8e799e012593b9a5a0760b11715b75af8351",
+            "session": 1
+          },
+          {
+            "hash": "7b7e8dd45747bbf5a85ccd12287c3415f96014776c7ca89123b8808e7370dab2",
+            "session": 1
+          },
+          {
+            "hash": "63a2ce05de3352d732fd2885e368c1fea7eed18ca590c35ea33137c67cb3b30c",
+            "session": 1
+          },
+          {
+            "hash": "824024b4f389290380dca2c6cb5bbfdc4b3283c614da064fa8eafae1c94de361",
+            "session": 1
+          },
+          {
+            "hash": "0658e9516a2d9c66c1a7c8d0d58fa070de4d73d2b934a1cf9846be67c8443d86",
+            "session": 1
+          },
+          {
+            "hash": "90120670bc5ded907bf5667d4dc4755b85b4f6855df2ce943a895528888e9cd0",
+            "session": 1
+          },
+          {
+            "hash": "e8f500620f3923b388b01eed06657cda7d1588eebf46b47415a889a831cbb04c",
+            "session": 1
+          },
+          {
+            "hash": "bf433d3acc92bbb4fb081ee7539d5233c415c01c2476d162d58fd7d2897643ef",
+            "session": 1
+          },
+          {
+            "hash": "e8653b6b87db1d500a42d6752d7966cafbc11e825b2da98ebf82235d54e04baa",
+            "session": 1
+          },
+          {
+            "hash": "687abc6653370d632abd9731bc45fb7821ac629e04a7c72465f11fb49f2995b3",
+            "session": 1
+          },
+          {
+            "hash": "d3687d53fd837817b69de3e086d9700347cac558a532da9d9256fa554bfd9070",
+            "session": 1
+          },
+          {
+            "hash": "c6691ac27b1f42c129c265dabf52623a202f55edf17c52d2e25b78c3a44c19df",
+            "session": 1
+          },
+          {
+            "hash": "4b32f428b2760c8471021ea3af74cda4d00a1206a3aed04cdb074d849c226496",
+            "session": 1
+          },
+          {
+            "hash": "d4d57dc11ec1ae6420c456df4f804a77e0b088f554c34dfb64bfdbd7538078ee",
+            "session": 1
+          },
+          {
+            "hash": "0c5cb6caa86137f99ee7e6e91e3ee9889036ac5f2e23fd1cba195bee0f321688",
+            "session": 1
+          },
+          {
+            "hash": "465c7d7238f255be70cc0ec40b0164b1c1f714c31185e88cb1f4871eddfcbd1b",
+            "session": 1
+          },
+          {
+            "hash": "ce8b7b25a1dad7a3ebaf7b6cb048eede024ca49fb2287382a04c3b1043aeb8bc",
+            "session": 1
+          },
+          {
+            "hash": "a3bb814a611a1ef369ff347ce45a6c8b417f4a73c5ec6b686ba00d0867641674",
+            "session": 1
+          },
+          {
+            "hash": "b460b41b532f44f3cc8fee2e12d5df8b1afdb9b9f4d81280a0f21ae333acc23d",
+            "session": 1
+          },
+          {
+            "hash": "18bb28f4228bb0aac3a009b16c13cf0040d7781fae794c3b3a66a86578252f6b",
+            "session": 1
+          },
+          {
+            "hash": "e915e2740ad8551a1cca6a053ed76f01a33fb8edad2092dc6b4543c091ee0fa5",
+            "session": 1
+          },
+          {
+            "hash": "980c442d3a2ab98db0fbb72d15ec22cd772ae7a6581b2d22acfc8c6cbe21db8d",
+            "session": 1
+          },
+          {
+            "hash": "73d552b300e3f559ffc1e1565ab8b90f3f61fc48a54196c667b97399520d6072",
+            "session": 1
+          },
+          {
+            "hash": "2ec0be84274c292033a11eb4a5778d3ebc731bc33fb47cd3ea4c508ecbdd8ad6",
+            "session": 1
+          },
+          {
+            "hash": "3e1ab54d244eaae59f79c7251a6b508c8248661f991527d84f59bfd9791e7650",
+            "session": 1
+          },
+          {
+            "hash": "73ea8bb01c250b8f27a988d088d9fa5cbe086fed4b134262956553078173ff36",
+            "session": 1
+          },
+          {
+            "hash": "1761a31925b8c905daa251a37611c870c81ae83ae82cb68ed6747fe2381f8250",
+            "session": 1
+          },
+          {
+            "hash": "cd075a5f08edb948d9e53c426c2346059766300a45cf784d86f4806abd06c709",
+            "session": 1
+          },
+          {
+            "hash": "abaf608f692c40a01e2d9fb75b1712cd2519d32d0ba3ea444a605e9d68d0c5b8",
+            "session": 1
+          },
+          {
+            "hash": "4861c6870461bd5e9a0156270d941a9c0de19aceb8b114a3773f4b452c52ecfc",
+            "session": 1
+          },
+          {
+            "hash": "4861c6870461bd5e9a0156270d941a9c0de19aceb8b114a3773f4b452c52ecfc",
+            "session": 2
+          },
+          {
+            "hash": "048b5a28e483b2992715fa912694633e27260c3a81a684d374d01a8293c29e8b",
+            "session": 2
+          },
+          {
+            "hash": "f6ec978e8177ef3ea2c707187f4c72d22c42b04a9d59d860eaf7523596df8932",
+            "session": 2
+          },
+          {
+            "hash": "048b5a28e483b2992715fa912694633e27260c3a81a684d374d01a8293c29e8b",
+            "session": 2
+          },
+          {
+            "hash": "048b5a28e483b2992715fa912694633e27260c3a81a684d374d01a8293c29e8b",
+            "session": 2
+          },
+          {
+            "hash": "ba6d047850dded7b0b3ebc9f437341eacbd8e98a474774d6906446761e88aa83",
+            "session": 2
+          },
+          {
+            "hash": "ba6d047850dded7b0b3ebc9f437341eacbd8e98a474774d6906446761e88aa83",
+            "session": 2
+          },
+          {
+            "hash": "ba6d047850dded7b0b3ebc9f437341eacbd8e98a474774d6906446761e88aa83",
+            "session": 2
+          },
+          {
+            "hash": "8828eae5ba8b68eab5b47d283e2e057e377063428f9fde4012aa270773e93a25",
+            "session": 2
+          },
+          {
+            "hash": "370ffba8f22cc065989a426cbde23e0b52ae2a8751a3b5e860a2600c8475f573",
+            "session": 2
+          },
+          {
+            "hash": "aec1dd9c703ed93c3f62ee13e7d4e34405cbd75482f28db26f3f1dddcdf3e2a2",
+            "session": 2
+          },
+          {
+            "hash": "dc41e23beedd6a40f179047ee74730092ed2d0e4f81437a16926db832f6fd069",
+            "session": 2
+          },
+          {
+            "hash": "bea117348f31d420cc4301d04613514980673b93c8eda52a736a8aa518513e39",
+            "session": 2
+          },
+          {
+            "hash": "22b97435300aceb71d06dd594922e4e84e439cdec0dc3fd17d79034360d8f591",
+            "session": 2
+          },
+          {
+            "hash": "7d2d131a422592f7ff50155538ab66c3af0930f236ad5252420c96986e05b360",
+            "session": 2
+          },
+          {
+            "hash": "c5f6f9306c8fe891e02711d5c72fb99f1919460f4d04be49cedda59f9e94ad46",
+            "session": 2
+          },
+          {
+            "hash": "e9ee00cc75f9edcecdcf55876357b6464865f0b6619723a43720c16f79d024b1",
+            "session": 2
+          },
+          {
+            "hash": "eb7f23e104eb7821b63dfbcf183aa26bfc6e76a25f0c526d408f53067da7426a",
+            "session": 2
+          },
+          {
+            "hash": "33adf7041f9353268de6220d19be8e799e012593b9a5a0760b11715b75af8351",
+            "session": 2
+          },
+          {
+            "hash": "7b7e8dd45747bbf5a85ccd12287c3415f96014776c7ca89123b8808e7370dab2",
+            "session": 2
+          },
+          {
+            "hash": "63a2ce05de3352d732fd2885e368c1fea7eed18ca590c35ea33137c67cb3b30c",
+            "session": 2
+          },
+          {
+            "hash": "824024b4f389290380dca2c6cb5bbfdc4b3283c614da064fa8eafae1c94de361",
+            "session": 2
+          },
+          {
+            "hash": "0658e9516a2d9c66c1a7c8d0d58fa070de4d73d2b934a1cf9846be67c8443d86",
+            "session": 2
+          },
+          {
+            "hash": "90120670bc5ded907bf5667d4dc4755b85b4f6855df2ce943a895528888e9cd0",
+            "session": 2
+          },
+          {
+            "hash": "e8f500620f3923b388b01eed06657cda7d1588eebf46b47415a889a831cbb04c",
+            "session": 2
+          },
+          {
+            "hash": "bf433d3acc92bbb4fb081ee7539d5233c415c01c2476d162d58fd7d2897643ef",
+            "session": 2
+          },
+          {
+            "hash": "e8653b6b87db1d500a42d6752d7966cafbc11e825b2da98ebf82235d54e04baa",
+            "session": 2
+          },
+          {
+            "hash": "687abc6653370d632abd9731bc45fb7821ac629e04a7c72465f11fb49f2995b3",
+            "session": 2
+          },
+          {
+            "hash": "d3687d53fd837817b69de3e086d9700347cac558a532da9d9256fa554bfd9070",
+            "session": 2
+          },
+          {
+            "hash": "c6691ac27b1f42c129c265dabf52623a202f55edf17c52d2e25b78c3a44c19df",
+            "session": 2
+          },
+          {
+            "hash": "4b32f428b2760c8471021ea3af74cda4d00a1206a3aed04cdb074d849c226496",
+            "session": 2
+          },
+          {
+            "hash": "d4d57dc11ec1ae6420c456df4f804a77e0b088f554c34dfb64bfdbd7538078ee",
+            "session": 2
+          },
+          {
+            "hash": "0c5cb6caa86137f99ee7e6e91e3ee9889036ac5f2e23fd1cba195bee0f321688",
+            "session": 2
+          },
+          {
+            "hash": "465c7d7238f255be70cc0ec40b0164b1c1f714c31185e88cb1f4871eddfcbd1b",
+            "session": 2
+          },
+          {
+            "hash": "ce8b7b25a1dad7a3ebaf7b6cb048eede024ca49fb2287382a04c3b1043aeb8bc",
+            "session": 2
+          },
+          {
+            "hash": "a3bb814a611a1ef369ff347ce45a6c8b417f4a73c5ec6b686ba00d0867641674",
+            "session": 2
+          },
+          {
+            "hash": "b460b41b532f44f3cc8fee2e12d5df8b1afdb9b9f4d81280a0f21ae333acc23d",
+            "session": 2
+          },
+          {
+            "hash": "18bb28f4228bb0aac3a009b16c13cf0040d7781fae794c3b3a66a86578252f6b",
+            "session": 2
+          },
+          {
+            "hash": "e915e2740ad8551a1cca6a053ed76f01a33fb8edad2092dc6b4543c091ee0fa5",
+            "session": 2
+          },
+          {
+            "hash": "980c442d3a2ab98db0fbb72d15ec22cd772ae7a6581b2d22acfc8c6cbe21db8d",
+            "session": 2
+          },
+          {
+            "hash": "73d552b300e3f559ffc1e1565ab8b90f3f61fc48a54196c667b97399520d6072",
+            "session": 2
+          },
+          {
+            "hash": "2ec0be84274c292033a11eb4a5778d3ebc731bc33fb47cd3ea4c508ecbdd8ad6",
+            "session": 2
+          },
+          {
+            "hash": "3e1ab54d244eaae59f79c7251a6b508c8248661f991527d84f59bfd9791e7650",
+            "session": 2
+          },
+          {
+            "hash": "73ea8bb01c250b8f27a988d088d9fa5cbe086fed4b134262956553078173ff36",
+            "session": 2
+          },
+          {
+            "hash": "1761a31925b8c905daa251a37611c870c81ae83ae82cb68ed6747fe2381f8250",
+            "session": 2
+          },
+          {
+            "hash": "cd075a5f08edb948d9e53c426c2346059766300a45cf784d86f4806abd06c709",
+            "session": 2
+          },
+          {
+            "hash": "abaf608f692c40a01e2d9fb75b1712cd2519d32d0ba3ea444a605e9d68d0c5b8",
+            "session": 2
+          },
+          {
+            "hash": "4861c6870461bd5e9a0156270d941a9c0de19aceb8b114a3773f4b452c52ecfc",
+            "session": 2
+          },
+          {
+            "hash": "4861c6870461bd5e9a0156270d941a9c0de19aceb8b114a3773f4b452c52ecfc",
+            "session": 3
+          },
+          {
+            "hash": "9ee2a9e91c6dd50bab284885fc29be9641962438fe2661b8170231e5097e54c4",
+            "session": 3
+          },
+          {
+            "hash": "45e6f25d5404bc1b7afca18b4c01951f23f431fd9c393b072efde99191cfcf21",
+            "session": 3
+          },
+          {
+            "hash": "9ee2a9e91c6dd50bab284885fc29be9641962438fe2661b8170231e5097e54c4",
+            "session": 3
+          },
+          {
+            "hash": "9ee2a9e91c6dd50bab284885fc29be9641962438fe2661b8170231e5097e54c4",
+            "session": 3
+          },
+          {
+            "hash": "59aae3a8feab52c8c4e79b39718297ba33b99254a5dca12b629e46e015b7ac10",
+            "session": 3
+          },
+          {
+            "hash": "59aae3a8feab52c8c4e79b39718297ba33b99254a5dca12b629e46e015b7ac10",
+            "session": 3
+          },
+          {
+            "hash": "59aae3a8feab52c8c4e79b39718297ba33b99254a5dca12b629e46e015b7ac10",
+            "session": 3
+          },
+          {
+            "hash": "8828eae5ba8b68eab5b47d283e2e057e377063428f9fde4012aa270773e93a25",
+            "session": 3
+          },
+          {
+            "hash": "370ffba8f22cc065989a426cbde23e0b52ae2a8751a3b5e860a2600c8475f573",
+            "session": 3
+          },
+          {
+            "hash": "aec1dd9c703ed93c3f62ee13e7d4e34405cbd75482f28db26f3f1dddcdf3e2a2",
+            "session": 3
+          },
+          {
+            "hash": "dc41e23beedd6a40f179047ee74730092ed2d0e4f81437a16926db832f6fd069",
+            "session": 3
+          },
+          {
+            "hash": "bea117348f31d420cc4301d04613514980673b93c8eda52a736a8aa518513e39",
+            "session": 3
+          },
+          {
+            "hash": "22b97435300aceb71d06dd594922e4e84e439cdec0dc3fd17d79034360d8f591",
+            "session": 3
+          },
+          {
+            "hash": "7d2d131a422592f7ff50155538ab66c3af0930f236ad5252420c96986e05b360",
+            "session": 3
+          },
+          {
+            "hash": "c5f6f9306c8fe891e02711d5c72fb99f1919460f4d04be49cedda59f9e94ad46",
+            "session": 3
+          },
+          {
+            "hash": "e9ee00cc75f9edcecdcf55876357b6464865f0b6619723a43720c16f79d024b1",
+            "session": 3
+          },
+          {
+            "hash": "eb7f23e104eb7821b63dfbcf183aa26bfc6e76a25f0c526d408f53067da7426a",
+            "session": 3
+          },
+          {
+            "hash": "33adf7041f9353268de6220d19be8e799e012593b9a5a0760b11715b75af8351",
+            "session": 3
+          },
+          {
+            "hash": "7b7e8dd45747bbf5a85ccd12287c3415f96014776c7ca89123b8808e7370dab2",
+            "session": 3
+          },
+          {
+            "hash": "63a2ce05de3352d732fd2885e368c1fea7eed18ca590c35ea33137c67cb3b30c",
+            "session": 3
+          },
+          {
+            "hash": "824024b4f389290380dca2c6cb5bbfdc4b3283c614da064fa8eafae1c94de361",
+            "session": 3
+          },
+          {
+            "hash": "0658e9516a2d9c66c1a7c8d0d58fa070de4d73d2b934a1cf9846be67c8443d86",
+            "session": 3
+          },
+          {
+            "hash": "90120670bc5ded907bf5667d4dc4755b85b4f6855df2ce943a895528888e9cd0",
+            "session": 3
+          },
+          {
+            "hash": "e8f500620f3923b388b01eed06657cda7d1588eebf46b47415a889a831cbb04c",
+            "session": 3
+          },
+          {
+            "hash": "bf433d3acc92bbb4fb081ee7539d5233c415c01c2476d162d58fd7d2897643ef",
+            "session": 3
+          },
+          {
+            "hash": "e8653b6b87db1d500a42d6752d7966cafbc11e825b2da98ebf82235d54e04baa",
+            "session": 3
+          },
+          {
+            "hash": "687abc6653370d632abd9731bc45fb7821ac629e04a7c72465f11fb49f2995b3",
+            "session": 3
+          },
+          {
+            "hash": "d3687d53fd837817b69de3e086d9700347cac558a532da9d9256fa554bfd9070",
+            "session": 3
+          },
+          {
+            "hash": "c6691ac27b1f42c129c265dabf52623a202f55edf17c52d2e25b78c3a44c19df",
+            "session": 3
+          },
+          {
+            "hash": "4b32f428b2760c8471021ea3af74cda4d00a1206a3aed04cdb074d849c226496",
+            "session": 3
+          },
+          {
+            "hash": "d4d57dc11ec1ae6420c456df4f804a77e0b088f554c34dfb64bfdbd7538078ee",
+            "session": 3
+          },
+          {
+            "hash": "0c5cb6caa86137f99ee7e6e91e3ee9889036ac5f2e23fd1cba195bee0f321688",
+            "session": 3
+          },
+          {
+            "hash": "465c7d7238f255be70cc0ec40b0164b1c1f714c31185e88cb1f4871eddfcbd1b",
+            "session": 3
+          },
+          {
+            "hash": "ce8b7b25a1dad7a3ebaf7b6cb048eede024ca49fb2287382a04c3b1043aeb8bc",
+            "session": 3
+          },
+          {
+            "hash": "a3bb814a611a1ef369ff347ce45a6c8b417f4a73c5ec6b686ba00d0867641674",
+            "session": 3
+          },
+          {
+            "hash": "b460b41b532f44f3cc8fee2e12d5df8b1afdb9b9f4d81280a0f21ae333acc23d",
+            "session": 3
+          },
+          {
+            "hash": "18bb28f4228bb0aac3a009b16c13cf0040d7781fae794c3b3a66a86578252f6b",
+            "session": 3
+          },
+          {
+            "hash": "e915e2740ad8551a1cca6a053ed76f01a33fb8edad2092dc6b4543c091ee0fa5",
+            "session": 3
+          },
+          {
+            "hash": "980c442d3a2ab98db0fbb72d15ec22cd772ae7a6581b2d22acfc8c6cbe21db8d",
+            "session": 3
+          },
+          {
+            "hash": "73d552b300e3f559ffc1e1565ab8b90f3f61fc48a54196c667b97399520d6072",
+            "session": 3
+          },
+          {
+            "hash": "2ec0be84274c292033a11eb4a5778d3ebc731bc33fb47cd3ea4c508ecbdd8ad6",
+            "session": 3
+          },
+          {
+            "hash": "3e1ab54d244eaae59f79c7251a6b508c8248661f991527d84f59bfd9791e7650",
+            "session": 3
+          },
+          {
+            "hash": "73ea8bb01c250b8f27a988d088d9fa5cbe086fed4b134262956553078173ff36",
+            "session": 3
+          },
+          {
+            "hash": "1761a31925b8c905daa251a37611c870c81ae83ae82cb68ed6747fe2381f8250",
+            "session": 3
+          },
+          {
+            "hash": "cd075a5f08edb948d9e53c426c2346059766300a45cf784d86f4806abd06c709",
+            "session": 3
+          },
+          {
+            "hash": "abaf608f692c40a01e2d9fb75b1712cd2519d32d0ba3ea444a605e9d68d0c5b8",
+            "session": 3
+          },
+          {
+            "hash": "4861c6870461bd5e9a0156270d941a9c0de19aceb8b114a3773f4b452c52ecfc",
+            "session": 3
+          }
+        ],
+        "requests": 3,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ]
+      },
+      "checkpoints": [
+        {
+          "session": 124,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 82,
+            "2": 3,
+            "3": 2,
+            "6": 48,
+            "7": 81,
+            "11": 1,
+            "12": 41,
+            "13": 1,
+            "14": 42,
+            "15": 40
+          }
+        },
+        {
+          "session": 125,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 82,
+            "2": 3,
+            "3": 2,
+            "6": 48,
+            "7": 81,
+            "11": 1,
+            "12": 41,
+            "13": 1,
+            "14": 42,
+            "15": 40
+          }
+        },
+        {
+          "session": 126,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": true,
+          "opcodes": {
+            "1": 82,
+            "2": 3,
+            "3": 2,
+            "6": 48,
+            "7": 82,
+            "8": 1,
+            "11": 1,
+            "12": 41,
+            "13": 1,
+            "14": 42,
+            "15": 41
+          }
+        }
+      ],
+      "immutable_old_rings": 3
+    },
+    {
+      "failure_reasons": [
+        1,
+        1,
+        1
+      ],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        262336,
+        0
+      ],
+      "mode": "overflow",
+      "success": true,
+      "valid": true,
+      "original_counts": [
+        14,
+        14,
+        1,
+        1,
+        1,
+        1,
+        12,
+        6,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "hash": "499fd58da9cfddbec0a5b5c658f4353b74e481e2c4e895fb3f29a6be7a2bb47e",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "5381b194257202fa10e9a1878f0debf9c7cb38374ece6a22e23f1859871f3f1d",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "04028dd7784da1581816e94b6a690eafd14c6c370088ce4ed60e438b3595f99d",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "f48595aec85c90bce79af68025c1d5f328c5b4458edc9307c77a500a27a7c64e",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "6552748d4b0ad3d0beb1044ca01895a49566fe436d196072d1d4492b813027bb",
+            "session": 3
+          }
+        ],
+        "requests": 3,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ]
+      },
+      "checkpoints": [
+        {
+          "session": 124,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 3,
+            "2": 134,
+            "3": 2,
+            "6": 6,
+            "11": 1
+          }
+        },
+        {
+          "session": 125,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 3,
+            "2": 134,
+            "3": 2,
+            "6": 6,
+            "11": 1
+          }
+        },
+        {
+          "session": 126,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": true,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 2,
+            "8": 1,
+            "11": 1
+          }
+        }
+      ],
+      "immutable_old_rings": 3
+    },
+    {
+      "failure_reasons": [
+        4,
+        4,
+        4
+      ],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        262336,
+        0
+      ],
+      "mode": "stall",
+      "success": true,
+      "valid": true,
+      "original_counts": [
+        14,
+        14,
+        1,
+        1,
+        1,
+        1,
+        12,
+        6,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "hash": "499fd58da9cfddbec0a5b5c658f4353b74e481e2c4e895fb3f29a6be7a2bb47e",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "5381b194257202fa10e9a1878f0debf9c7cb38374ece6a22e23f1859871f3f1d",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "04028dd7784da1581816e94b6a690eafd14c6c370088ce4ed60e438b3595f99d",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "f48595aec85c90bce79af68025c1d5f328c5b4458edc9307c77a500a27a7c64e",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "6552748d4b0ad3d0beb1044ca01895a49566fe436d196072d1d4492b813027bb",
+            "session": 3
+          }
+        ],
+        "requests": 3,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ]
+      },
+      "checkpoints": [
+        {
+          "session": 124,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 3,
+            "2": 12,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 125,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 3,
+            "2": 12,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 126,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": true,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 2,
+            "8": 1,
+            "11": 1
+          }
+        }
+      ],
+      "immutable_old_rings": 3
+    },
+    {
+      "failure_reasons": [
+        5,
+        5,
+        5
+      ],
+      "storage": [
+        1,
+        1,
+        1,
+        0,
+        192,
+        0
+      ],
+      "mode": "stale-ack",
+      "success": true,
+      "valid": true,
+      "original_counts": [
+        14,
+        14,
+        1,
+        1,
+        1,
+        1,
+        12,
+        6,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": true,
+        "error": "",
+        "frames": [
+          {
+            "hash": "499fd58da9cfddbec0a5b5c658f4353b74e481e2c4e895fb3f29a6be7a2bb47e",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "5381b194257202fa10e9a1878f0debf9c7cb38374ece6a22e23f1859871f3f1d",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "16767c144a5e99413e9fd11370bddfc15d83956427aeb245a3594a27249a3349",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 1
+          },
+          {
+            "hash": "8928289b234e0f25fde9e75b24bbd94d3c428ee218e39f1385b5bb3766e73213",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "04028dd7784da1581816e94b6a690eafd14c6c370088ce4ed60e438b3595f99d",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "cf0b0ee59d140e46dba498155da317cf566cbdf33508114391d5b0656876a7ad",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 2
+          },
+          {
+            "hash": "ab26ec57d545365734a0a22d2e61c0600abbf61bea30bcc0f263f0d562075034",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "f48595aec85c90bce79af68025c1d5f328c5b4458edc9307c77a500a27a7c64e",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "1fe3ddc8cf2f2d53555d891cee049ab09ba61667b10f7272e8c439e3b0251b19",
+            "session": 3
+          },
+          {
+            "hash": "6552748d4b0ad3d0beb1044ca01895a49566fe436d196072d1d4492b813027bb",
+            "session": 3
+          }
+        ],
+        "requests": 3,
+        "same_context": true,
+        "states": [
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          2,
+          0,
+          1,
+          4
+        ]
+      },
+      "checkpoints": [
+        {
+          "session": 124,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 125,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": false,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 1,
+            "11": 1
+          }
+        },
+        {
+          "session": 126,
+          "complete_primary_before_present": true,
+          "retained_dependencies_admitted_on_use": true,
+          "archive_complete": true,
+          "opcodes": {
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "6": 6,
+            "7": 2,
+            "8": 1,
+            "11": 1
+          }
+        }
+      ],
+      "immutable_old_rings": 3
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        0,
+        0,
+        0,
+        1,
+        192,
+        0
+      ],
+      "mode": "allocation",
+      "success": true,
+      "valid": false,
+      "original_counts": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [],
+        "requests": 1,
+        "same_context": true,
+        "states": [
+          2,
+          3
+        ]
+      },
+      "checkpoints": [],
+      "immutable_old_rings": 1
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        0,
+        0,
+        0,
+        1,
+        192,
+        0
+      ],
+      "mode": "mapping",
+      "success": true,
+      "valid": false,
+      "original_counts": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [],
+        "requests": 1,
+        "same_context": true,
+        "states": [
+          2,
+          3
+        ]
+      },
+      "checkpoints": [],
+      "immutable_old_rings": 1
+    },
+    {
+      "failure_reasons": [],
+      "storage": [
+        0,
+        0,
+        0,
+        1,
+        192,
+        0
+      ],
+      "mode": "worker",
+      "success": true,
+      "valid": false,
+      "original_counts": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "consumer": {
+        "ended": false,
+        "error": "Producer refused rendering recovery",
+        "frames": [],
+        "requests": 1,
+        "same_context": true,
+        "states": [
+          2,
+          3
+        ]
+      },
+      "checkpoints": [],
+      "immutable_old_rings": 1
+    }
+  ],
+  "scope": "Actual PE32 administrative checkpoint worker and deliberately delayed Qt consumer in one viewport/context. Complete independently owned original-fixture pixels/palettes, preserved metadata, partial/fill/copy/flip/shared palette continuation and three fresh sessions; strict incomplete/borrowed-state refusal. No original artifacts/game or driver equivalence.",
+  "success": true,
+  "full_frame_comparisons": 312
+}

@@ -11,7 +11,7 @@ static int command_control_identity(void){
 static void command_control_init(void){
     char path[512];u32 n=GetEnvironmentVariableA("MNM_RENDER_CONTROL",path,sizeof(path));
     if(!n)return;
-    command_control_configured=1;command_control_invalid=1;
+    command_control_configured=1;command_control_invalid=1;command_gate_enabled=1;
     if(n>=sizeof(path) || !game_session_continuous)return;
     HANDLE f=CreateFileA(path,0xc0000000,3,0,3,0x80,0);
     if(f==(HANDLE)-1)return;
@@ -54,7 +54,7 @@ static u32 WIN command_control_run(void* unused){
             char delay[8];if(GetEnvironmentVariableA("MNM_RENDER_CONTROL_DELAY_FOR_TEST",delay,sizeof(delay)))Sleep(200);
 #endif
             if(!mnm_ring_load(command_control+10) && !__atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE))
-                ready=command_recover_mode(path,target,operation==MNM_RENDER_CONTROL_V1_OPERATION_CHECKPOINT?COMMAND_RECOVER_CHECKPOINT:COMMAND_RECOVER_PREFER_CHECKPOINT);
+                ready=command_recover_mode(path,target,operation==MNM_RENDER_CONTROL_V1_OPERATION_CHECKPOINT?COMMAND_RECOVER_CHECKPOINT:COMMAND_RECOVER_PREFER_CHECKPOINT,1);
             if(mnm_ring_load(command_control+10) || !command_control_identity() ||
                mnm_ring_load(command_control+5)!=request || command_control[6]!=operation || command_control[7]!=target ||
                command_control[11]!=n || !same(path,(u8*)command_control+64,n+1) ||

@@ -276,9 +276,10 @@ static i32 WIN flip(void* object,void* target,u32 flags){
     if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_lock(void* object,void* rect,void* desc,u32 flags,HANDLE event){
-    COMMAND_CALLBACK(((Lock)lookup(object)->original[25])(object,rect,desc,flags,event));
+    struct CommandLease command_lease __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
+    if(!command_lease.observe){i32 result=((Lock)lookup(object)->original[25])(object,rect,desc,flags,event);if(result>=0)command_borrow_add(object,1,0);return result;}
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
-    if(!copy_lease.observe){i32 result=((Lock)lookup(object)->original[25])(object,rect,desc,flags,event);game_copy_unobserved(object);return result;}
+    if(!copy_lease.observe){i32 result=((Lock)lookup(object)->original[25])(object,rect,desc,flags,event);if(result>=0)command_borrow_add(object,1,0);game_copy_unobserved(object);return result;}
     u32 entry=GetLastError();struct Rect region;int region_valid=rect && readable(rect,16);if(region_valid)copy(&region,rect,16);
     int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Lock)t->original[25])(object,rect,desc,flags,event);u32 error=GetLastError();
     game_lock_observed(object,t,rect,region_valid?&region:0,desc,flags,status);
@@ -287,14 +288,14 @@ static i32 WIN surface_lock(void* object,void* rect,void* desc,u32 flags,HANDLE 
     draw_event(4,(u32)__builtin_return_address(0),object,0,flags,status,rect,0);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_unlock(void* object,void* rect){
-    COMMAND_CALLBACK(((Unlock)lookup(object)->original[32])(object,rect));
+    COMMAND_CALLBACK(command_borrow_release(object,1,0,((Unlock)lookup(object)->original[32])(object,rect)));
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
-    if(!copy_lease.observe){i32 result=((Unlock)lookup(object)->original[32])(object,rect);game_copy_unobserved(object);return result;}
+    if(!copy_lease.observe){i32 result=command_borrow_release(object,1,0,((Unlock)lookup(object)->original[32])(object,rect));game_copy_unobserved(object);return result;}
     u32 error=GetLastError();int token=history_enter();struct Snapshot pending;zero(&pending,sizeof(pending));
     struct Table* t=lookup(object);
     struct GameUnlock game_pending;game_unlock_before(object,t->kind,rect,&game_pending);
     if(token)history_unlock_before(object,rect,&pending);SetLastError(error);
-    i32 status=((Unlock)t->original[32])(object,rect);error=GetLastError();
+    i32 status=command_borrow_release(object,1,0,((Unlock)t->original[32])(object,rect));error=GetLastError();
     game_unlock_after(&game_pending,status);
     render_failure("application_unlock",status,object,t->kind,0);
     if(token)history_unlock_after(object,&pending,status);
@@ -310,21 +311,22 @@ static i32 WIN surface_restore(void* object){
     if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_dc(void* object,void** output){
-    COMMAND_CALLBACK(((i32 (WIN *)(void*,void**))lookup(object)->original[17])(object,output));
+    struct CommandLease command_lease __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
+    if(!command_lease.observe){i32 result=((GetObject)lookup(object)->original[17])(object,output);u32 error=GetLastError();if(result>=0)command_borrow_add(object,2,readable(output,4)?*output:0);SetLastError(error);return result;}
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
-    if(!copy_lease.observe){i32 result=((GetObject)lookup(object)->original[17])(object,output);game_copy_unobserved(object);return result;}
+    if(!copy_lease.observe){i32 result=((GetObject)lookup(object)->original[17])(object,output);u32 error=GetLastError();if(result>=0)command_borrow_add(object,2,readable(output,4)?*output:0);game_copy_unobserved(object);SetLastError(error);return result;}
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
     i32 status=((GetObject)t->original[17])(object,output);u32 error=GetLastError();
     if(status>=0)game_dc_acquired(object,readable(output,4)?*output:0);
     if(token && status>=0 && history_find(object))history_gap(6);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_release_dc(void* object,void* dc){
-    COMMAND_CALLBACK(((i32 (WIN *)(void*,void*))lookup(object)->original[26])(object,dc));
+    COMMAND_CALLBACK(command_borrow_release(object,2,dc,((i32 (WIN *)(void*,void*))lookup(object)->original[26])(object,dc)));
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
-    if(!copy_lease.observe){i32 result=((i32 (WIN *)(void*,void*))lookup(object)->original[26])(object,dc);game_copy_unobserved(object);return result;}
+    if(!copy_lease.observe){i32 result=command_borrow_release(object,2,dc,((i32 (WIN *)(void*,void*))lookup(object)->original[26])(object,dc));game_copy_unobserved(object);return result;}
     u32 entry=GetLastError();struct Table* t=lookup(object);
     struct GameDC pending;game_dc_before(object,dc,&pending);
-    SetLastError(entry);i32 status=((i32 (WIN *)(void*,void*))t->original[26])(object,dc);u32 error=GetLastError();
+    SetLastError(entry);i32 status=command_borrow_release(object,2,dc,((i32 (WIN *)(void*,void*))t->original[26])(object,dc));u32 error=GetLastError();
     game_dc_after(&pending,dc,status);SetLastError(error);return status;
 }
 static i32 surface_property(void* object,void* value,u32 slot){
