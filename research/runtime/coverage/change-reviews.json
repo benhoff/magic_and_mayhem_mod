@@ -51328,6 +51328,193 @@
         "reason": "Release fixture compilation and synthetic battle/audio checks are retained in prior review records; this commit keeps validation pending because no new immutable execution evidence is registered and does not promote engine/protocol integration.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "438b7be94a28bbbf6a13bd56fd673be9cb0b86ed734cb1d05c736d626ca44add",
+          "before_sha256": "438b7be94a28bbbf6a13bd56fd673be9cb0b86ed734cb1d05c736d626ca44add",
+          "id": "NR.command-streaming"
+        },
+        {
+          "after_sha256": "e1b779f399843eda40780254e7370d25a2e037c0de285101297eee1c631c9583",
+          "before_sha256": "e1b779f399843eda40780254e7370d25a2e037c0de285101297eee1c631c9583",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "529623deb70be32cc28ef1c5a1f5280ce63b33b9ee6c301f9221995061beffb8",
+          "before_sha256": null,
+          "id": "NR.headless-command-profile"
+        },
+        {
+          "after_sha256": "d7d7b27c09602b391ce66a776e75fbf85a1c93720b6626f5ea33a05fd47a56ab",
+          "before_sha256": "d7d7b27c09602b391ce66a776e75fbf85a1c93720b6626f5ea33a05fd47a56ab",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "4025e8fe61bd952d74ee8979205f561be8f38ff843de78d174e9995e448859a4",
+          "before_sha256": "4025e8fe61bd952d74ee8979205f561be8f38ff843de78d174e9995e448859a4",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "ad4a9fedc590d131f8a4cb9bced83d21a816c78c9ea48ceef7582e3d87252181",
+          "before_sha256": "ad4a9fedc590d131f8a4cb9bced83d21a816c78c9ea48ceef7582e3d87252181",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "91ae8d4fc11e9c2822f2d03ff99b3f78463e40c785eb12ba56fa0770739d4853",
+          "before_sha256": "91ae8d4fc11e9c2822f2d03ff99b3f78463e40c785eb12ba56fa0770739d4853",
+          "id": "NR.surface-backend.formats-pitch"
+        },
+        {
+          "after_sha256": "97f724b24deb0d767143239bdf2edd0bd3867de18d7434536217b60f89526c7b",
+          "before_sha256": "97f724b24deb0d767143239bdf2edd0bd3867de18d7434536217b60f89526c7b",
+          "id": "NR.surface-backend.owned"
+        },
+        {
+          "after_sha256": "288dea6ce5d01482878b159f52ade437dc5be2067ea51b7059159c04a687a070",
+          "before_sha256": "288dea6ce5d01482878b159f52ade437dc5be2067ea51b7059159c04a687a070",
+          "id": "NR.surface-colors.rgb565-dc"
+        },
+        {
+          "after_sha256": "642d50c24fc102f48ac491bebe796ab410fb985c6ab14448fe28f0756bd89ef3",
+          "before_sha256": "642d50c24fc102f48ac491bebe796ab410fb985c6ab14448fe28f0756bd89ef3",
+          "id": "NR.surface-contents.validity"
+        },
+        {
+          "after_sha256": "f115f0089e836dfba20edf078dbfbb146e6136f64a3e03a911a8e368aa16e7d4",
+          "before_sha256": "f115f0089e836dfba20edf078dbfbb146e6136f64a3e03a911a8e368aa16e7d4",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "c16bbab367e1786209dbcfbbcaa4da02bd57717c5546ee1542d1f64adb8f9f1a",
+          "before_sha256": "c16bbab367e1786209dbcfbbcaa4da02bd57717c5546ee1542d1f64adb8f9f1a",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "b2853286129b3101214ea083b72759b42b784cabc2eb4b8400feb81c917e1af9",
+          "before_sha256": "b2853286129b3101214ea083b72759b42b784cabc2eb4b8400feb81c917e1af9",
+          "id": "NR.surface-reload.dc-regions"
+        },
+        {
+          "after_sha256": "2c0a0cfbf7ed6c99015bdb30616fcfd34bc7e6108e87e94021b62c8fe37563fd",
+          "before_sha256": "2c0a0cfbf7ed6c99015bdb30616fcfd34bc7e6108e87e94021b62c8fe37563fd",
+          "id": "NR.surface-reload.dib-indexed"
+        },
+        {
+          "after_sha256": "c897829c08a6b913648ca8742b2e11676564c4d5643d31c8cb39eecd59588923",
+          "before_sha256": "c897829c08a6b913648ca8742b2e11676564c4d5643d31c8cb39eecd59588923",
+          "id": "NR.surface-reload.dib-rgb"
+        },
+        {
+          "after_sha256": "19588dd3597224b62730fd95574fab6b3315b8fd33e883db2db9e3ef8ebfef2f",
+          "before_sha256": "19588dd3597224b62730fd95574fab6b3315b8fd33e883db2db9e3ef8ebfef2f",
+          "id": "NR.surfaces"
+        },
+        {
+          "after_sha256": "bc41662b0bae256dfba1b345e05d0c8451844aac81c5fb7c3f51a09dd31b17dd",
+          "before_sha256": "bc41662b0bae256dfba1b345e05d0c8451844aac81c5fb7c3f51a09dd31b17dd",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "5d3b21cbb56f820f7f684154219fd267b3256df75620fc5600775b17e76df2e6",
+          "before_sha256": "5d3b21cbb56f820f7f684154219fd267b3256df75620fc5600775b17e76df2e6",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "3495739159fad7083f3ba80007aab5255410ad101572946760b56bff059268d5",
+          "before_sha256": "3495739159fad7083f3ba80007aab5255410ad101572946760b56bff059268d5",
+          "id": "RE.surface-copy.rgb565-keyed-overlap"
+        },
+        {
+          "after_sha256": "5aef6d55f2a992647ea5f5ce43d1a2f9ee8d0bea87645bcf0f4a1e27cdaa4f85",
+          "before_sha256": "5aef6d55f2a992647ea5f5ce43d1a2f9ee8d0bea87645bcf0f4a1e27cdaa4f85",
+          "id": "RE.surface-copy.rgb565-overlap"
+        },
+        {
+          "after_sha256": "c8fb92b804438e7d10ae76eda082d55b27a4ef423bc4fcfeb781d927a54c437c",
+          "before_sha256": "c8fb92b804438e7d10ae76eda082d55b27a4ef423bc4fcfeb781d927a54c437c",
+          "id": "RE.surface-driver.formats-pitch"
+        },
+        {
+          "after_sha256": "981d97abc9229798607a8d404fda48a655beff9cc955730236d6f2aab31d4525",
+          "before_sha256": "981d97abc9229798607a8d404fda48a655beff9cc955730236d6f2aab31d4525",
+          "id": "RE.surface-fill.rgb565"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "b3dd75480462463fda6fd23696a5e9bb2d4f98578614a7c05d69a34e102a9503",
+          "before_sha256": "b3dd75480462463fda6fd23696a5e9bb2d4f98578614a7c05d69a34e102a9503",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+          "before_sha256": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+          "path": "renderer/command_consumer.cpp"
+        },
+        {
+          "after_sha256": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+          "before_sha256": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+          "path": "renderer/commands.cpp"
+        },
+        {
+          "after_sha256": "7a38daac45b9f4acb6bdbd7100d39d41ee257f0281fcf82aa5438afc8ea8e34a",
+          "before_sha256": "be9548b0805e6a2b18647abc67d5057ab7fa43fe081ef284c56cb08b17f7b852",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9ecdd0e2a620583da8ab9bb805427627ebe2605fe3adb4d519da14f1240aa53a",
+          "before_sha256": "01968769dce55ecb08454ce07b697529372f89f3b9b3324ff63944161fc2a959",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "d8c0c07ba043cc2bd61283fd7ed754fdb9cd805735bfacd80416bf9769db3bc8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-commit-profile-20261007.json"
+        },
+        {
+          "after_sha256": "ce1f2c3c821b95aaed2b816c95281a4dcad294b8ebac5e58f30a267a4bda7e68",
+          "before_sha256": null,
+          "path": "tools/native-render-profile/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "13c5db8a7fe40ca6b22b584f5b9926ee9e74d2bc0f89feadf88b516c60a95acf",
+          "before_sha256": null,
+          "path": "tools/native-render-profile/README.md"
+        },
+        {
+          "after_sha256": "2eb54af0deddf5dc66993040bc03cd2d180709b130b4a5265d1067d4e0fed848",
+          "before_sha256": null,
+          "path": "tools/native-render-profile/egl_platform.cpp"
+        },
+        {
+          "after_sha256": "6b65371d03f423dbfc2e9a3bf1e73b99f47f5108a40a17e4aa0d26a49317c906",
+          "before_sha256": null,
+          "path": "tools/native-render-profile/headless.json"
+        },
+        {
+          "after_sha256": "60b219577f0281d05344d371edd1c9df29065c5a5598e4567c69eab2bdca275a",
+          "before_sha256": null,
+          "path": "tools/native-render-profile/profile.cpp"
+        },
+        {
+          "after_sha256": "22515b326be066cac6cf30e8618a6bf3ca2196528ef534876b6dee48f4921d05",
+          "before_sha256": null,
+          "path": "tools/native-render-profile/run.py"
+        }
+      ],
+      "id": "logical-commit-profile-20261007",
+      "pending_gaps": [
+        "behaviors_without_comparison:2145a39b6811f9888c664908bf118e7b3c451598bf5dc20ada69f9e55c5c85b1",
+        "behaviors_without_scenarios:2145a39b6811f9888c664908bf118e7b3c451598bf5dc20ada69f9e55c5c85b1"
+      ],
+      "reason": "Review the standalone profiling CMake target, private QPA EGL-device adapter, complete-prefix replay, driver assertions and independent keyed-copy/update fixture. Seed NR.headless-command-profile with partial implementation and pending validation; preserve existing renderer contracts and source provenance.",
+      "validation": {
+        "status": "pending",
+        "reason": "Standalone tool build and retained measurements are reviewed separately with the following renderer integration commit. This intermediate tool commit records no new current-code equivalence, integration or replacement assertion.",
+        "evidence": []
+      }
     }
   ]
 }
