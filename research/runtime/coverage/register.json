@@ -14629,7 +14629,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native RGB565 Surface2 clipping and partial-write result policy",
-      "scope": "Distinct RGB565 surfaces, bounded owned destination clip descriptors and one-to-one Blt/BltFast selected HRESULT/native pixel behavior modeled on408 retained Wine Surface2 outputs. Partial writes, empty/missing lists and18 native lifetime/admission checks; busy flags are caller observations only. Other formats, stretching, keyed/masked self-copy, successful keyed clipping, native locks/Restore, original game/Windows equivalence and live replacement remain pending. Opaque RGB565 same-ID overlap extension is separately compared under RE.surface-copy.rgb565-overlap; existing historical evidence retains its original source fingerprints. Owned backend derives busy observations from its admission state; all408retained driver results/outputs match without caller-supplied busy flags. Broader borrowed/keyed combinations stay pending.",
+      "scope": "Distinct RGB565 surfaces, bounded owned destination clip descriptors and one-to-one Blt/BltFast selected HRESULT/native pixel behavior modeled on408 retained Wine Surface2 outputs. Partial writes, empty/missing lists and18 native lifetime/admission checks; busy flags are caller observations only. Other formats, stretching, keyed/masked self-copy, successful keyed clipping, native locks/Restore, original game/Windows equivalence and live replacement remain pending. Opaque RGB565 same-ID overlap extension is separately compared under RE.surface-copy.rgb565-overlap; existing historical evidence retains its original source fingerprints. Owned backend derives busy observations from its admission state; all408retained driver results/outputs match without caller-supplied busy flags. Broader borrowed/keyed combinations stay pending. Empty explicit Blt clip lists succeed while borrowed; BltFast attached clippers still reject first.180sampled driver borrowed cases and2304keyed overlap calls freshly match through owned admission; broader mixed geometry/error precedence pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14657,7 +14657,10 @@
         "NR.surface-copy.clipping.after-stream-20261006",
         "NR.surface-copy.clipping-stream.v3-20261006",
         "NR.surface-backend.owned.base-20261006",
-        "ORIGINAL.surface-backend.owned.replay-base-20261006"
+        "ORIGINAL.surface-backend.owned.replay-base-20261006",
+        "NR.surface-backend.owned.final-20261006",
+        "ORIGINAL.surface-backend.owned.replay-final-20261006",
+        "NR.surface-backend.owned.regressions-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -14713,7 +14716,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original RGB565 exact source-key rectangle pixels",
-      "scope": "Unchanged original wrapper0x58ca90 through Wine Surface2:436 controlled RGB565 keyed calls;434 successful native/CPU full-pixel comparisons,144 second calls after actual key mutation. Two missing-key Blt E_INVALIDARG calls retained without native HRESULT equivalence. Not live gameplay, other wrappers/formats, clipped keys, original retry/Restore or Windows-driver equivalence. CPU missing-key admission now derives from input key/API state and independently compares actual HRESULT; native keyed HRESULT equivalence remains pending. Integrated owned exact-key API now matches all436original results/full outputs, including2missing-key Blt failures.144 second mutation phases retain the same IDs. Keyed overlap/new clip/busy combinations/live remain pending.",
+      "scope": "Unchanged original wrapper0x58ca90 through Wine Surface2:436 controlled RGB565 keyed calls;434 successful native/CPU full-pixel comparisons,144 second calls after actual key mutation. Two missing-key Blt E_INVALIDARG calls retained without native HRESULT equivalence. Not live gameplay, other wrappers/formats, clipped keys, original retry/Restore or Windows-driver equivalence. CPU missing-key admission now derives from input key/API state and independently compares actual HRESULT; native keyed HRESULT equivalence remains pending. Integrated owned exact-key API now matches all436original results/full outputs, including2missing-key Blt failures.144 second mutation phases retain the same IDs. Keyed overlap/new clip/busy combinations/live remain pending. Combined completion adds2304unchanged original keyed same-backing calls: forward current-storage row-major reads, unlike opaque snapshots. Resident GPU path bounded4096texels; larger calls intentionally refuse before writing.180driver borrowed cases close sampled busy/clip precedence; uncaptured combinations remain pending.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -14752,7 +14755,10 @@
         "ORIGINAL.surface-copy.rgb565-keyed.replay-20261006",
         "ORIGINAL.surface-copy.rgb565-keyed.after-fills-20261006",
         "NR.surface-backend.owned.base-20261006",
-        "ORIGINAL.surface-backend.owned.replay-base-20261006"
+        "ORIGINAL.surface-backend.owned.replay-base-20261006",
+        "NR.surface-backend.owned.final-20261006",
+        "ORIGINAL.surface-backend.owned.replay-final-20261006",
+        "NR.surface-backend.owned.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14767,7 +14773,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original RGB565 constant-fill input/result and output pixels",
-      "scope": "Unchanged original wrapper0x58bac0 through Wine Surface2:250 RGB565 fill input/result/full-destination cases, low16-bit color construction, five clipper states and selected error UI call counts. CPU model matches145 successes/65 invalid rectangles/40 missing lists; native argument-derived constant UPDATE pieces match145 successful full outputs. UI imports are bounded observers. Native fill HRESULTs, original loss/Restore/retry and0x58bc10, unknown initial storage, indexed/masked formats, live gameplay and Windows-driver equivalence pending. Integrated owned RGB565 fill API now matches all250original HRESULTs/full outputs, including105failures; low16 wrapper conversion remains explicit. Borrowed/new format/Restore/live policies remain pending.",
+      "scope": "Unchanged original wrapper0x58bac0 through Wine Surface2:250 RGB565 fill input/result/full-destination cases, low16-bit color construction, five clipper states and selected error UI call counts. CPU model matches145 successes/65 invalid rectangles/40 missing lists; native argument-derived constant UPDATE pieces match145 successful full outputs. UI imports are bounded observers. Native fill HRESULTs, original loss/Restore/retry and0x58bc10, unknown initial storage, indexed/masked formats, live gameplay and Windows-driver equivalence pending. Integrated owned RGB565 fill API now matches all250original HRESULTs/full outputs, including105failures; low16 wrapper conversion remains explicit. Borrowed/new format/Restore/live policies remain pending. Combined completion matches180standalone borrowed draws: mapped COLORFILL succeeds and CPU snapshots remain coherent. Existing250original fills still match. No negative-debt raster/recovery or broader formats claim.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -14813,7 +14819,10 @@
         "ORIGINAL.surface-fill.rgb565.capture-20261006",
         "ORIGINAL.surface-fill.rgb565.replay-20261006",
         "NR.surface-backend.owned.base-20261006",
-        "ORIGINAL.surface-backend.owned.replay-base-20261006"
+        "ORIGINAL.surface-backend.owned.replay-base-20261006",
+        "NR.surface-backend.owned.final-20261006",
+        "ORIGINAL.surface-backend.owned.replay-final-20261006",
+        "NR.surface-backend.owned.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -14878,7 +14887,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original opaque RGB565 same-surface overlap and alias outputs",
-      "scope": "Unchanged original0x58c360 Wine Surface2 opaque RGB565 same backing and verified Surface1 COM aliases,1536 controlled calls: direction/identity/ordered clipping/WAIT/errors. Input-derived CPU and GPU per-clip-piece snapshots compare actual HRESULT/full pixels including16 partial errors; v3 same-ID offline replay checks1536 results/shared outputs. Keyed/masked/other formats, loss/Restore/retry, live COM identity tracking/replacement and Windows equivalence pending. All1536original opaque same-ID overlap captures freshly compare through integrated owned backend. COM identity is pre-normalized input, not recovered live alias tracking.",
+      "scope": "Unchanged original0x58c360 Wine Surface2 opaque RGB565 same backing and verified Surface1 COM aliases,1536 controlled calls: direction/identity/ordered clipping/WAIT/errors. Input-derived CPU and GPU per-clip-piece snapshots compare actual HRESULT/full pixels including16 partial errors; v3 same-ID offline replay checks1536 results/shared outputs. Keyed/masked/other formats, loss/Restore/retry, live COM identity tracking/replacement and Windows equivalence pending. All1536original opaque same-ID overlap captures freshly compare through integrated owned backend. COM identity is pre-normalized input, not recovered live alias tracking. Fresh final combined replay retains1536opaque per-piece snapshot calls. Newly recovered keyed overlap is separately registered and uses forward mutations; opaque implementation semantics unchanged.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -14919,7 +14928,10 @@
         "ORIGINAL.surface-copy.rgb565-overlap.native-20261006",
         "ORIGINAL.surface-copy.rgb565-overlap.after-retry-20261006",
         "NR.surface-backend.owned.base-20261006",
-        "ORIGINAL.surface-backend.owned.replay-base-20261006"
+        "ORIGINAL.surface-backend.owned.replay-base-20261006",
+        "NR.surface-backend.owned.final-20261006",
+        "ORIGINAL.surface-backend.owned.replay-final-20261006",
+        "NR.surface-backend.owned.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -15892,7 +15904,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owned bitmap DC raster snapshots with supplied default palette context",
-      "scope": "Noncopyable owned BitmapDcState8/16/32 bounded context accepts explicit256-entry default environment palette and optional owned binding. Acquire resets regions/snapshots current binding/default; updates during active context are deferred to next acquire, direct DC edits current-only. Reload installs snapshot colors on associated GlBlitter raster target and delegates bounded DIB conversion/regions.192cases/576leases match55296 independent pixels/258048 entries with1928 native lifetime/range/region/unknown refusals and zero surfaces. Native exceptions/geometry/association are intentional policy, not COMHDC/global busy/lock or live/wire replacement. Missing default for unbound indexed acquire refuses; logical/flags/shared palettes/other GDI objects/primary-video/loss/Windows remain pending. Owned backend now associates192cases/576leases with the same persistent storage/admission/binding identity; deferred object/DC colors and clip reset compare all captured tables/frames. SharedCOM palette/lifetime remains separate.",
+      "scope": "Noncopyable owned BitmapDcState8/16/32 bounded context accepts explicit256-entry default environment palette and optional owned binding. Acquire resets regions/snapshots current binding/default; updates during active context are deferred to next acquire, direct DC edits current-only. Reload installs snapshot colors on associated GlBlitter raster target and delegates bounded DIB conversion/regions.192cases/576leases match55296 independent pixels/258048 entries with1928 native lifetime/range/region/unknown refusals and zero surfaces. Native exceptions/geometry/association are intentional policy, not COMHDC/global busy/lock or live/wire replacement. Missing default for unbound indexed acquire refuses; logical/flags/shared palettes/other GDI objects/primary-video/loss/Windows remain pending. Owned backend now associates192cases/576leases with the same persistent storage/admission/binding identity; deferred object/DC colors and clip reset compare all captured tables/frames. SharedCOM palette/lifetime remains separate. Fresh final combined replay still compares192same-ID DC cases/576leases/258048entries. Native mapped fills preserve DC ownership; realHDC/sharedCOM palette ownership and negative-debt raster remain separate.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -15913,7 +15925,10 @@
       "evidence": [
         "NR.surface-reload.bitmap-dc.native-20261006",
         "NR.surface-backend.owned.base-20261006",
-        "ORIGINAL.surface-backend.owned.replay-base-20261006"
+        "ORIGINAL.surface-backend.owned.replay-base-20261006",
+        "NR.surface-backend.owned.final-20261006",
+        "ORIGINAL.surface-backend.owned.replay-final-20261006",
+        "NR.surface-backend.owned.regressions-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16050,7 +16065,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owned Surface2-style lock and DC admission state",
-      "scope": "Bounded noncopyable single-thread owned state for supported full-surface lock and DC transitions with captured HRESULT/output mutation semantics for the recorded schedules; unstable busy-Lock caps word excluded. Native storage/DC tokens and depth budget are intentional policies.96 input sequences replay against independent driver outputs; no actual COM HDC/alias lifetime, attached raster adapter/global drawing admission, wire, loss, Windows or live replacement. New owned backend associates all96access sequences/1182transitions with actual GL storage/CPU snapshots;12poisoned cases require whole-owner cleanup. No actual HDC/COM pointer or live replacement.",
+      "scope": "Bounded noncopyable single-thread owned state for supported full-surface lock and DC transitions with captured HRESULT/output mutation semantics for the recorded schedules; unstable busy-Lock caps word excluded. Native storage/DC tokens and depth budget are intentional policies.96 input sequences replay against independent driver outputs; no actual COM HDC/alias lifetime, attached raster adapter/global drawing admission, wire, loss, Windows or live replacement. New owned backend associates all96access sequences/1182transitions with actual GL storage/CPU snapshots;12poisoned cases require whole-owner cleanup. No actual HDC/COM pointer or live replacement. Combined backend no longer conservatively refuses leased COLORFILL;12CPU-held destination fills compare active snapshot bytes.180standalone driver draws establish borrowed busy/clip branches, preserving lease state; negative debt raster/interleaving remain outside scope.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -16071,7 +16086,10 @@
       "evidence": [
         "NR.surface-access.native-20261006",
         "NR.surface-backend.owned.base-20261006",
-        "ORIGINAL.surface-backend.owned.replay-base-20261006"
+        "ORIGINAL.surface-backend.owned.replay-base-20261006",
+        "NR.surface-backend.owned.final-20261006",
+        "ORIGINAL.surface-backend.owned.replay-final-20261006",
+        "NR.surface-backend.owned.regressions-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16128,7 +16146,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Integrated owned surface operations and independent offline replay",
-      "scope": "One GUI-thread owner associates canonical8/16/32GL storage with admission, CPU snapshots, DC raster state/default-binding palette snapshots, clipper and RGB565 native fills/exact-key copies.2630draw HRESULTs/299808pixels/258048palette entries/8664stable descriptors compare historical independent outputs;39native guards and12poisoned owner resets. Full key/DC phases retain IDs;105fill and2keyed failures now match results/bytes. Native tokens/lease writes/default post-release display/conservative borrowed-fill admission are explicit policy. Keyed overlap and new combinations/other formats/sharedCOM alias lifetime/actual loss/Restore/live/wire remain pending.",
+      "scope": "One GUI-thread owner associates canonical8/16/32GL storage with admission, CPU snapshots, DC raster/default-binding palette snapshots, clipping and RGB565 fills/exact-key copies. Fresh5114draw results/538272pixels/258048palette entries/8664stable descriptors;40guards/12poisoned owner teardowns/84unstable caps excluded. Mapped COLORFILL preserves leases and CPU bytes; empty clipped Blt succeeds borrowed; keyed same-backing reads forward row-major via resident GPU scratch, intentionally bounded4096texels before writes. Explicit native token/default-palette policies; sharedCOM lifetime/palette objects/loss-Restore-retry/new formats/live/wire/uncaptured precedence/extra-Unlock DC raster remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -16138,7 +16156,9 @@
       "implementation": [
         "renderer/surface_backend.hpp",
         "renderer/surface_backend.cpp",
-        "renderer/CMakeLists.txt"
+        "renderer/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp"
       ],
       "tests": [
         "tests/render-surface-backend-test.cpp",
@@ -16146,7 +16166,15 @@
       ],
       "evidence": [
         "NR.surface-backend.owned.base-20261006",
-        "ORIGINAL.surface-backend.owned.replay-base-20261006"
+        "ORIGINAL.surface-backend.owned.replay-base-20261006",
+        "NR.surface-backend.owned.final-20261006",
+        "ORIGINAL.surface-backend.owned.replay-final-20261006",
+        "NR.surface-backend.owned.regressions-20261006",
+        "ORIGINAL.surface-copy.rgb565-keyed-overlap.capture-20261006",
+        "ORIGINAL.surface-copy.rgb565-keyed-overlap.cpu-20261006",
+        "DRIVER.surface-borrowed-draw.capture-20261006",
+        "DRIVER.surface-borrowed-draw.cpu-20261006",
+        "NR.surface-backend.owned.combined-initial-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16200,6 +16228,108 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-copy.rgb565-keyed-overlap",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Original RGB565 keyed same-backing ordered overlap",
+      "scope": "2304unchanged original0x58ca90 controlled Wine calls with real shared backing/verified Surface1 aliases across3keys,2patterns,8geometries,6clips,2APIs,WAITpairs. Forward row-major current-storage reads per ordered clip piece match110592destination words/24partial errors. Native GPU scratch reproduces captured bounded scope,4096texel intentional admission cap. Large cases/other formats/masked keys/COM lifetime/Restore/live/Windows remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819024,
+          "scope": "Unchanged keyed wrapper executed with controlled globals and Wine Surface2 backing/verified Surface1 alias; no retry wrapper."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-surface-backend.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "tools/check-original-surface-keyed-overlap.py",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/surface_backend.cpp"
+      ],
+      "tests": [
+        "tests/surface-keyed-overlap-reference.c",
+        "tools/capture-original-surface-keyed-overlap.py",
+        "tests/test-original-surface-keyed-overlap.py",
+        "tests/fixtures/surfaces/original-rgb565-keyed-overlap.json.gz",
+        "tests/fixtures/surfaces/original-rgb565-keyed-overlap-corpus.json",
+        "tests/render-surface-backend-test.cpp",
+        "tools/check-native-surface-backend.py"
+      ],
+      "evidence": [
+        "ORIGINAL.surface-copy.rgb565-keyed-overlap.capture-20261006",
+        "ORIGINAL.surface-copy.rgb565-keyed-overlap.cpu-20261006",
+        "NR.surface-backend.owned.final-20261006",
+        "ORIGINAL.surface-backend.owned.replay-final-20261006",
+        "NR.surface-backend.owned.regressions-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-driver.borrowed-draw",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Wine Surface2 draw admission with CPU and DC borrowers",
+      "scope": "External driver contract180standalone RGB565 cases:5draw families,6source/destination Lock-DC holds,6clip states with WAIT disabled. COLORFILL succeeds leased,empty clipped Blt succeeds borrowed,nonempty Blt busy andBltFast clipper error precedes busy.17280words compare;25borrowed-fill successes/10empty-Blt successes. Original addresses are caller anchors only; no game instructions executed. Native CPU snapshot fill coherence measured12held-destination cases. Uncaptured mixed geometry,WAITblocking,negative debt raster,Windows,realHDC/live remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814976,
+          "scope": "Original fill caller anchor; probe invokes standalone Surface2 only, no original instructions."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817184,
+          "scope": "Original opaque copy caller anchor; standalone Surface2 driver baseline only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819024,
+          "scope": "Original keyed copy caller anchor; standalone Surface2 driver baseline only."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-surface-backend.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "tools/check-surface-borrowed-draw.py",
+        "renderer/surface_backend.cpp"
+      ],
+      "tests": [
+        "tests/surface-borrowed-draw-reference.c",
+        "tools/capture-surface-borrowed-draw.py",
+        "tests/test-surface-borrowed-draw.py",
+        "tests/fixtures/surfaces/surface-borrowed-draw.json.gz",
+        "tests/render-surface-backend-test.cpp",
+        "tools/check-native-surface-backend.py"
+      ],
+      "evidence": [
+        "DRIVER.surface-borrowed-draw.capture-20261006",
+        "DRIVER.surface-borrowed-draw.cpu-20261006",
+        "NR.surface-backend.owned.final-20261006",
+        "NR.surface-backend.owned.regressions-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
         "replacement": "none"
       }
     }
@@ -29550,6 +29680,124 @@
           "equals": 312
         }
       ]
+    },
+    {
+      "id": "NR.surface-backend.owned.final-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh owned backend5114draw results/538272pixels,258048palette entries,8664stable descriptors,40guards.2304keyed original overlap,180driver borrowed draws,12CPU-held fill snapshots and resident copy transfer counters.4096texel keyed-self native bound; no live/recovery/formats completion.",
+      "record": "research/runtime/native-surface-backend-final-20261006.json",
+      "sha256": "4775eee9d279e98e7db0bdf6986453255299349ae7589fd62206040754d17c42",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-backend.owned.replay-final-20261006",
+      "kind": "isolated_original",
+      "scope": "Fresh offline native comparison to independently retained original250fill/436keyed/1536opaque overlap/2304keyed overlap outputs; original executable hash preserved. Driver/DC/access outputs are separate scopes; no new original execution by replay.",
+      "record": "research/runtime/native-surface-backend-final-20261006.json",
+      "sha256": "4775eee9d279e98e7db0bdf6986453255299349ae7589fd62206040754d17c42",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NR.surface-backend.owned.regressions-20261006",
+      "kind": "native_integration",
+      "scope": "All14renderer CTests pass in recorded isolated committed baseline with exact owned sources overlaid; root Qt/resource edits excluded. Synthetic native regression, not original/live equivalence.",
+      "record": "research/runtime/native-surface-backend-regressions-20261006.json",
+      "sha256": "40419cbd99d71a55c5b6eff1dc1e2f50ae019ced3b4f2c9fa0a155fce02b4f1e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-keyed-overlap.capture-20261006",
+      "kind": "isolated_original",
+      "scope": "2304unchanged original0x58ca90 same-backing RGB565 keyed calls on Wine Surface2 and verified Surface1 aliases: key/pattern/geometry/clip/API/WAIT. Actual full outputs and errors; serialized Wine and manifests before/after.",
+      "record": "research/runtime/original-surface-keyed-overlap-capture-20261006.json",
+      "sha256": "379a0b4d4df2016ccad6ffbdf72ab1f35503f5d6ee04839f558b6cb2858486bc",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "ORIGINAL.surface-copy.rgb565-keyed-overlap.cpu-20261006",
+      "kind": "isolated_original",
+      "scope": "Input-derived forward row-major current-storage model matches2304original results/110592destination words,24partial errors. No frozen-source approximation.",
+      "record": "research/runtime/original-surface-keyed-overlap-offline-20261006.json",
+      "sha256": "97018a8ae083d32a905320debc4df57a811b0f13ae98e165ac68816bcc6651d9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "DRIVER.surface-borrowed-draw.capture-20261006",
+      "kind": "native_integration",
+      "scope": "180standalone Wine Surface2 RGB565 draws,5families/6source-destination Lock-DC holds/6clip states,WAIT disabled. No original game instructions; recovered external driver contract only.",
+      "record": "research/runtime/surface-borrowed-draw-capture-20261006.json",
+      "sha256": "d5fd1fd18e344b917a5f10314b65ec073fbc833ea98ce1cf9e3cb9bed3609e66",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-borrowed-draw.cpu-20261006",
+      "kind": "native_integration",
+      "scope": "180input-derived driver results/17280words match independent outputs;25borrowed fill successes/10empty clipped Blt successes. Caller anchors do not assert original wrapper execution.",
+      "record": "research/runtime/surface-borrowed-draw-offline-20261006.json",
+      "sha256": "6a4c2a2fce3da6be8709811f6779143fe1e4c259bdfb055be1ca7db72ac9cdfe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-backend.owned.combined-initial-20261006",
+      "kind": "native_integration",
+      "scope": "Historical first combined replay before final checker/CTest wiring. Source hashes preserved and expected stale; final evidence supplies current validation.",
+      "record": "research/runtime/native-surface-backend-combined-20261006.json",
+      "sha256": "6275c4a5faeb71c9c6470e1d136aab7f371c302f6f94efc7a330bef29e46912f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -34289,7 +34537,7 @@
     {
       "id": "NR.surface-backend.owned.offline",
       "level": "headless",
-      "scope": "Integrated persistent native surfaces replay2630retained original/driver draws plus576DC phases/1182access transitions, with error outputs and same-ID continuation. No original re-execution/loss/COM live equivalence.",
+      "scope": "Combined owned backend5114original/driver results/538272native-DC pixels,576DCphases/1182access steps,2304keyed overlap/180borrowed draws,40guards.4096texel keyed-self admission policy; no live/recovery/formats completion.",
       "behaviors": [
         "NR.surface-backend.owned",
         "RE.surface-fill.rgb565",
@@ -34297,11 +34545,20 @@
         "NR.surface-access",
         "NR.surface-copy.clipping",
         "NR.surface-reload.bitmap-dc",
-        "RE.surface-copy.rgb565-overlap"
+        "RE.surface-copy.rgb565-overlap",
+        "RE.surface-copy.rgb565-keyed-overlap",
+        "RE.surface-driver.borrowed-draw"
       ],
       "evidence": [
         "NR.surface-backend.owned.base-20261006",
-        "ORIGINAL.surface-backend.owned.replay-base-20261006"
+        "ORIGINAL.surface-backend.owned.replay-base-20261006",
+        "NR.surface-backend.owned.final-20261006",
+        "ORIGINAL.surface-backend.owned.replay-final-20261006",
+        "NR.surface-backend.owned.regressions-20261006",
+        "ORIGINAL.surface-copy.rgb565-keyed-overlap.capture-20261006",
+        "ORIGINAL.surface-copy.rgb565-keyed-overlap.cpu-20261006",
+        "DRIVER.surface-borrowed-draw.capture-20261006",
+        "DRIVER.surface-borrowed-draw.cpu-20261006"
       ],
       "tests": [
         "tests/render-surface-backend-test.cpp",
@@ -34585,7 +34842,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-drawing-recovery-20261006.json",
-    "sha256": "f89f745ad59bbdbd9e90e25029599ba5557a196f91dfb4e31e257cd8ef0d6bcd"
+    "path": "research/runtime/coverage/source-index-surface-backend-combined-20261006.json",
+    "sha256": "35a29dfb0bae5fd08269f9ea9c6edfaca3ea1c4f7e2d6c5daa9ccc4f7fa2b109"
   }
 }

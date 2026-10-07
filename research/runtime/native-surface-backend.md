@@ -77,3 +77,60 @@ xvfb-run -a python3 tools/check-native-surface-backend.py --report working/tests
 
 This reproduction requires Qt/OpenGL/Xvfb but no Wine, game installation or
 original media. Choose a new report path; existing evidence is immutable.
+
+## Combined operation completion — 2026-10-06
+
+Two subsequent serialized Wine runs close the missing combined branches. The
+unchanged original keyed wrapper `0x58ca90` provides 2,304 same-backing RGB565
+calls: three keys, mixed/all-key pixels, same-pointer/Surface1 aliases, eight
+geometries, six clip states, both APIs and WAIT pairs. The offline model matches
+110,592 destination words, including 24 partial-error cases; six mutation tests
+pass. Independently, 180 standalone driver calls compare fills and opaque/keyed
+Blt/BltFast with source/destination Lock/DC or destination Lock+DC across all six
+clip states. Eight mutation tests pass. Immutable manifests verify before/after
+both runs, and no Wine sessions overlap.
+
+These measurements overturn the provisional mapped-fill refusal: COLORFILL
+succeeds with mapped destinations, preserving the active CPU/DC lease. The
+backend updates its CPU snapshot along with GPU storage when a CPU lease exists;
+twelve held-destination fill cases compare that snapshot with independent driver
+bytes. Copy with an explicitly empty Blt clip list performs no draw and succeeds
+even borrowed; BltFast still rejects the attached clipper first. Missing-list
+errors are retained. Other mixed geometry/error precedence remains unvalidated.
+
+Keyed same-backing reads are **forward row-major mutations**, unlike opaque
+per-piece snapshots: a later source pixel can observe an earlier destination
+write. A separate 1×1 GPU texture freezes each next source value before a keyed
+single-pixel draw, avoiding framebuffer feedback. No pixel uploads/readbacks
+occur during resident copies. The ordered path is intentionally capped at 4,096
+texels per operation; larger requests refuse before any writes. This bounded
+compatibility path is not a performance promise for large keyed overlap.
+Opaque overlap and distinct keyed copies retain their existing GPU paths.
+
+The [final current-source comparison](native-surface-backend-final-20261006.json)
+matches 5,114 draw results and 538,272 native/DC pixel values through one owned
+backend, plus 258,048 palette entries and 8,664 stable descriptors. Forty native
+guards pass, including pre-write overlap-budget refusal. Twelve poisoned owners
+still require explicit whole-owner teardown; 84 unstable failure caps words
+remain excluded. All 14 renderer CTests pass in an isolated committed baseline
+with the exact owned changes overlaid, preserving other contributors' Qt edits.
+The suite includes the new `opengl-owned-surface-backend` CTest.
+
+The first combined report predates checker/CTest wiring and remains historical;
+its source hashes are retained. Base integration evidence also remains historical
+where shared core/checker bytes changed. Fresh final evidence supplies current
+validation; no old evidence hash is refreshed.
+
+Chunk 1 is implemented within these recorded operation scopes. Shared palette
+objects, live COM alias lifetime, flips and loss/Restore/retry belong to ownership
+and recovery. Additional required formats/masks/pitch belong to format closure.
+Uncaptured combinations, larger keyed overlap, CPU/DC raster interleaving after
+extra Unlock, real HDCs, Windows hardware, live and wire replacement remain
+explicitly outside this step. This does not complete the whole surface milestone.
+
+```sh
+xvfb-run -a python3 tools/check-native-surface-backend.py --combined --report working/tests/new-combined-backend.json
+python3 tests/test-original-surface-keyed-overlap.py
+python3 tests/test-surface-borrowed-draw.py
+# Configure BUILD_TESTING=ON to include the combined suite in renderer CTest.
+```

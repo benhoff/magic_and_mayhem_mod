@@ -208,6 +208,24 @@ struct GlBlitter::Impl {
             gl.glDeleteTextures(1,&frozen);frozen=0;check();
         }catch(...){gl.glDeleteTextures(1,&frozen);throw;}
     }
+    // Measured keyed overlap reads its own preceding writes in row-major order.
+    // A separate one-pixel texture avoids sampling the attached framebuffer.
+    void copySharedKeyed(Surface& dst,const SurfaceCopyPiece& piece,std::uint32_t key){
+        GLuint pixel=0;
+        try {
+            gl.glActiveTexture(GL_TEXTURE0);
+            pixel=texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,1,1,nullptr);
+            for(int y=piece.source.top;y<piece.source.bottom;++y)
+                for(int x=piece.source.left;x<piece.source.right;++x){
+                    attach(dst.native,dst.width,dst.height);
+                    gl.glBindTexture(GL_TEXTURE_2D,pixel);
+                    gl.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,x,y,1,1);check();
+                    copyTexture(pixel,0,dst,{0,0,1,1},piece.x+x-piece.source.left,
+                                piece.y+y-piece.source.top,key);
+                }
+            gl.glDeleteTextures(1,&pixel);pixel=0;check();
+        }catch(...){gl.glDeleteTextures(1,&pixel);throw;}
+    }
     ~Impl(){
         if(context.isValid() && surface.isValid()){
             try {Current current(context,&surface);for(auto& pair:surfaces)release(pair.second);
@@ -361,22 +379,34 @@ void GlBlitter::setClipper(SurfaceId id,const ClipperState& clipper){
     auto& p=*impl_;p.thread();auto& s=p.get(id);
     validateClipper(clipper,s.width,s.height);s.clipper=clipper;
 }
-SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest& request){
+SurfaceCopyResult GlBlitter::surfaceCopy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest& request,
+                                       std::optional<std::uint32_t> nativeKey){
     auto& p=*impl_;p.thread();const auto& s=p.get(source);auto& d=p.get(destination);
     const std::array<std::uint32_t,3> rgb565{0xf800,0x7e0,0x1f};
     if(source==destination && request.flags!=0 && request.flags!=(request.api==SurfaceCopyApi::BltFast?0x10u:0x01000000u))
         throw std::runtime_error("Self-copy requires opaque flags");
     if(s.format.bits!=16 || d.format.bits!=16 || s.format.masks!=rgb565 || d.format.masks!=rgb565)
         throw std::runtime_error("Surface2 copy requires RGB565 surfaces");
+    if(nativeKey && *nativeKey>0xffff)throw std::runtime_error("RGB565 key exceeds its format");
     const auto plan=planSurfaceCopy(s.width,s.height,d.width,d.height,d.clipper,request);
     if(source==destination){
+        if(nativeKey){
+            std::size_t pixels=0;
+            for(const auto& piece:plan.pieces)
+                pixels+=std::size_t(piece.source.right-piece.source.left)*(piece.source.bottom-piece.source.top);
+            if(pixels>4096)throw std::runtime_error("Ordered keyed overlap pixel budget exceeded");
+        }
         Current current(p.context,&p.surface);
         // Each ordered clip piece sees preceding writes, then freezes its own source.
         for(const auto& piece:plan.pieces){
-            d.validity.require(piece.source);p.copyShared(d,piece);
+            d.validity.require(piece.source);
+            if(nativeKey){
+                d.validity.require({piece.x,piece.y,piece.x+piece.source.right-piece.source.left,piece.y+piece.source.bottom-piece.source.top});
+                p.copySharedKeyed(d,piece,*nativeKey);
+            }else p.copyShared(d,piece);
             d.validity.define({piece.x,piece.y,piece.x+piece.source.right-piece.source.left,piece.y+piece.source.bottom-piece.source.top});
         }
-    }else for(const auto& piece:plan.pieces)copy(source,destination,piece.source,piece.x,piece.y);
+    }else for(const auto& piece:plan.pieces)copy(source,destination,piece.source,piece.x,piece.y,nativeKey);
     return {plan.hresult,unsigned(plan.pieces.size())};
 }
 void GlBlitter::swapContents(SurfaceId first,SurfaceId second){

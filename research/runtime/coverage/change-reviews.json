@@ -39372,6 +39372,637 @@
         "reason": "Shared original/recovered contracts and historical comparisons are not newly validated by these synthetic schedules. Original application/driver scheduling and whole-frame equivalence, pointer reuse beyond observed lifetime boundaries, unobserved alias/final Release of bypassed borrows, opaque table exhaustion/invalid-output branches, abandoned callbacks, repeated collisions at arbitrary reset instructions, administrative worker shutdown/dynamic unloading and default enablement remain pending. Historical evidence remains historical; the retained prior-base isolated checkpoint has a known build-file fingerprint mismatch after independent commit856f6ef, while the earlier workspace result now exactly matches the updated staged sources.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "861cc1c17f586005c4079e8d56287b3a702bf2a0445fef4566010a9e3b772c10",
+          "before_sha256": "ce193697f52d8b1dc610de69fb74c6ee94071698f6a00e0b15854ab83514f569",
+          "id": "NR.surface-access"
+        },
+        {
+          "after_sha256": "e11b0cb53bae083087c24173d9b02d82a8929ace1ba703fef2ce92e36084c379",
+          "before_sha256": "96a1342e5e395fd30336f94ef161a9544222e5c1d950493c9f7076b1cb1ad72b",
+          "id": "NR.surface-backend.owned"
+        },
+        {
+          "after_sha256": "f8eeeb7878188ca3617b6a3a81a9211564eaf01f77d042d21d418fdf3c3249dd",
+          "before_sha256": "3fe042e87101d58cfca32abd3f85adfb6de5ba6b6f3b3aefa2c9dcb93f7fe0e3",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "869da0aebc29ba63849ece45f86a5293d17c27050e26cbf9970905ad4570e51a",
+          "before_sha256": "f2a59976e4212be4282d091edbd14d6e983ba903ba369fa973bb493302c7c955",
+          "id": "NR.surface-reload.bitmap-dc"
+        },
+        {
+          "after_sha256": "7a3a116634226f4dd3c589a52c3dafce4849e3dc71ea737e6857b0756562a3f1",
+          "before_sha256": "ad83703c65f888f0432a8e5af1812e192a9406ff39c7ba1fdc2a9134fa0b235c",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "aca9684ce14028cabe66b3c19d45d46fe73e140d76a261d5192f8716bf1fef68",
+          "before_sha256": null,
+          "id": "RE.surface-copy.rgb565-keyed-overlap"
+        },
+        {
+          "after_sha256": "d0237fe2a02046b629b71ae9d055691571a56b56b56ff1ac98897d4d0141d0e0",
+          "before_sha256": "5020891f4d507f24a97d12a61c430c709c03d1997ecf2d8179da09f0aa3f0f85",
+          "id": "RE.surface-copy.rgb565-overlap"
+        },
+        {
+          "after_sha256": "d8d658d69df231f54b6702f32aeda5acca2bfe8f365555ecdda3cb40dc91be5a",
+          "before_sha256": null,
+          "id": "RE.surface-driver.borrowed-draw"
+        },
+        {
+          "after_sha256": "a796c4b34f9bbb28fee59156dae959a842d68b20719209f0f4f21e529f28612c",
+          "before_sha256": "851374570340aae00c6d7b61629d994ed1692a7012a516d56c3fcdf79a43b7f9",
+          "id": "RE.surface-fill.rgb565"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "5d0ebc8dd15963e17af25d564fa87ecf8bfa438331af76e246ffc93bbba342a3",
+          "before_sha256": "73916c1eefffaa68652dff21553bf7b7b568cc56f68698c8e21f1f3c64b1eed0",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+          "before_sha256": "1c0aa177d59eea6116b8f0e733ee0b7d8b36e16b26a739868f229c548318edc8",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70",
+          "before_sha256": "d4d7229c0a7ee70a0fd2c6f0c63fb86835b77f6e7282e196cdcb17cb173aa0c3",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "7b9172485a2d9309086bc857d078a4795ac8528259a1b2f262cd3a99f2bf2189",
+          "before_sha256": "13e1828cd0e521aaa84fd88ba941127dc5417760d3fbb2f7c6a9fab6c52013d9",
+          "path": "renderer/surface_backend.cpp"
+        },
+        {
+          "after_sha256": "2d12c905fe16b1a90be62c317b05252ae44440db3c39f5e494813ca357de959c",
+          "before_sha256": "e11520875d5b950c58311780931eec9c2c8cafd93c17d5acc9eed8d00ed05146",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "a4dd4b48a122c2b13871f22729d5fce9b1e15adcc67347782c202707ec559700",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-backend-combined-20261006.json"
+        },
+        {
+          "after_sha256": "9a1d7416d601a958338142cc02646c15e8f7fe0a30db31b82ab26fff71d48a88",
+          "before_sha256": "4f6a68b8e2e996390470428f2c45600da8c4865797a6800296aebf70c0c2ed0f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "35a29dfb0bae5fd08269f9ea9c6edfaca3ea1c4f7e2d6c5daa9ccc4f7fa2b109",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-backend-combined-20261006.json"
+        },
+        {
+          "after_sha256": "3a760298f930d8f2fb59dacdd67df80514ed9a74c24751a322e2c9bb38b3b988",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-backend-combined-20261006.md"
+        },
+        {
+          "after_sha256": "6275c4a5faeb71c9c6470e1d136aab7f371c302f6f94efc7a330bef29e46912f",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-backend-combined-20261006.json"
+        },
+        {
+          "after_sha256": "4775eee9d279e98e7db0bdf6986453255299349ae7589fd62206040754d17c42",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-backend-final-20261006.json"
+        },
+        {
+          "after_sha256": "40419cbd99d71a55c5b6eff1dc1e2f50ae019ced3b4f2c9fa0a155fce02b4f1e",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-backend-regressions-20261006.json"
+        },
+        {
+          "after_sha256": "0823dc609d8acc4ad74b571eb752a800973c078cae1e838d422b60da2a87cd1f",
+          "before_sha256": "f19fec1dc2ccdcf50d16128fa621b220d27b5429f4e161384798943b496b91a3",
+          "path": "research/runtime/native-surface-backend.md"
+        },
+        {
+          "after_sha256": "c3f8f54f65853beaa9ceff2326a9f94f2781635638b2b62e7946fa964c09fe10",
+          "before_sha256": "2decc6080d3cf704f90d3fc886644b930f94cec1cb7e5d3c3084aa0d6cfa8cfc",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "379a0b4d4df2016ccad6ffbdf72ab1f35503f5d6ee04839f558b6cb2858486bc",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-keyed-overlap-capture-20261006.json"
+        },
+        {
+          "after_sha256": "97018a8ae083d32a905320debc4df57a811b0f13ae98e165ac68816bcc6651d9",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-keyed-overlap-offline-20261006.json"
+        },
+        {
+          "after_sha256": "d5fd1fd18e344b917a5f10314b65ec073fbc833ea98ce1cf9e3cb9bed3609e66",
+          "before_sha256": null,
+          "path": "research/runtime/surface-borrowed-draw-capture-20261006.json"
+        },
+        {
+          "after_sha256": "6a4c2a2fce3da6be8709811f6779143fe1e4c259bdfb055be1ca7db72ac9cdfe",
+          "before_sha256": null,
+          "path": "research/runtime/surface-borrowed-draw-offline-20261006.json"
+        },
+        {
+          "after_sha256": "f531b4880cbd016a0baa4f89c7e5654107875a3d20be66ce2d66784150951990",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/original-rgb565-keyed-overlap-corpus.json"
+        },
+        {
+          "after_sha256": "e93476f1df2382088c58b893c934b3bdef942f48811cf8f6e99a4db6133d758c",
+          "before_sha256": "944f36056cb2095c7e32b81ba111053a85978405fbe79b270732d5ad9d2c4b24",
+          "path": "tests/render-surface-backend-test.cpp"
+        },
+        {
+          "after_sha256": "dcf9b91c6cc885f1c9bac7adb7f1382b2159383549d82235f348ee221de5b963",
+          "before_sha256": null,
+          "path": "tests/surface-borrowed-draw-reference.c"
+        },
+        {
+          "after_sha256": "7fbcce35ddda99c916994a39b07467468177317ee2ee812394510a00bebf9f22",
+          "before_sha256": null,
+          "path": "tests/surface-keyed-overlap-reference.c"
+        },
+        {
+          "after_sha256": "c6b163f6d544423fd27bd1be5db82345c4cf60c6243f9dca670a72df5d635c79",
+          "before_sha256": null,
+          "path": "tests/test-original-surface-keyed-overlap.py"
+        },
+        {
+          "after_sha256": "eb4a14389ecd95f399b13ff68533be67be5787d549734f5d1f12d24e8454bcde",
+          "before_sha256": null,
+          "path": "tests/test-surface-borrowed-draw.py"
+        },
+        {
+          "after_sha256": "b4506ecb2fb53b6df7dc36123dd2d0cb8e7b7535b8f17e1c2e4c7e30e51d0748",
+          "before_sha256": null,
+          "path": "tools/capture-original-surface-keyed-overlap.py"
+        },
+        {
+          "after_sha256": "592dbe6eb7db2a166cb45ffbe18ae4de7faca99d0c1ca1840e6c660b5b88b3f5",
+          "before_sha256": null,
+          "path": "tools/capture-surface-borrowed-draw.py"
+        },
+        {
+          "after_sha256": "241e950f1c9cedc07974ae548844970f7598b196c8d1f7d9582362b54bf89f5e",
+          "before_sha256": "dd53be7eb351074347b993aa8631719e48dd1306e66ceca3c6f3b3671806d770",
+          "path": "tools/check-native-surface-backend.py"
+        },
+        {
+          "after_sha256": "b5701e792381582217472c6f16c63129b4047c278b0146def2fd5009ac1258d5",
+          "before_sha256": null,
+          "path": "tools/check-original-surface-keyed-overlap.py"
+        },
+        {
+          "after_sha256": "35c3ee4f5012bfc09340740bc6be34fa424201198dfa424a72a650d46441ad1b",
+          "before_sha256": null,
+          "path": "tools/check-surface-borrowed-draw.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-rgb565-keyed-overlap.json.gz",
+          "before_sha256": null,
+          "after_sha256": "dc197aeb330d8a8b2e21147442b319956816f9b230effcafe671849dc7b0766f"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-borrowed-draw.json.gz",
+          "before_sha256": null,
+          "after_sha256": "94a85e506856609174a669d5983abd03f0bf22138ba6012cb6d764ec419e53c2"
+        }
+      ],
+      "id": "surface-backend-owned-combined-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:364289bd61c2916373ed14adb8b20ba3eac4113a59f91b45c0c96667913db0df",
+        "stale_evidence:0f1b2ec9d7c20e6f554ebc61bf2063bc7da3e343130430f72f8a32d012da72f3",
+        "stale_evidence:1ab711f3ad39c005dbff53c8956a96d8ddfa2a086f415af35c8149abf8e5009d",
+        "stale_evidence:1bb961ab1b11f615029cf09a5fd930acf09e661ead62b7519a4e5645133d5242",
+        "stale_evidence:1cbb5590672791b9f02bbaf55b2fbea6121cc0b6c589276ef69f2b0760819d91",
+        "stale_evidence:20b3ce9b347f83e5d25826b257322e45865f959c2216050bf492119014019696",
+        "stale_evidence:22d1851b82db59a59073ae99b634470c3a016662fa2b6499728092b699fee848",
+        "stale_evidence:2b77cf1497a04b700c842c16450682c8cde8676d74fe9dc9e28ff60a372bc5e2",
+        "stale_evidence:2c5f6b8ed6a25f546dc5019259758d045dd29d80a5a2a8b13d858f9aebd16f96",
+        "stale_evidence:3144146c12573559d3c453679cac060006ae0cc1521984d63cdb6bc8e6fe5f3d",
+        "stale_evidence:383fef95f41224f3209d7476e1fc711b078eb469c1934261c932a87533a46ff4",
+        "stale_evidence:39303ed17fc96f72e6ee8cb5f2378b175268b14fefc868d475a839a6238c5cd2",
+        "stale_evidence:406cdf81b91ec21bb62480e7171322819925f8788703cd5b6b04f86fe3dea8e9",
+        "stale_evidence:5333be9bd22992f7dae202f62afdeffffb9aaa0058a9a3d4f3e4748fb7220e63",
+        "stale_evidence:53399e1fba0abdff56fd6ea3a75735fa1431d1626acdaab8ba3fb6ec5a2a5cd9",
+        "stale_evidence:556c6b8c700bb0ffcc2823351424668a0d0b5960ba06a3792af8469f10707841",
+        "stale_evidence:62db44e0948791661e03abed4cd4be4bae5b82d6c61c70c94a4ea0e48274597f",
+        "stale_evidence:6466c533c3ebe804200d0aca821ff6d4f7807bab584d9079f69116b8a425ad8d",
+        "stale_evidence:66438a4e1a05447683392da2fe3099edebb0309db84c43d4aaed957b703484e3",
+        "stale_evidence:688353f54a7a152d418406767bd3640107756413579b49bc226c4261352f3ec8",
+        "stale_evidence:6e476ee24e8f832d601fb43be9fddfd77f3bb6eb30dc27d2ad233b17a720eaa2",
+        "stale_evidence:6ef97d85bca75fde38620f40eb4c7e1b897a70fd9b35fc44a5a84e33159e9bab",
+        "stale_evidence:7bbf1f3c99654a2137c6a512ce0c1ab67f0c1a0e053e5acd6132d30dc0117141",
+        "stale_evidence:8133e86b291bd9e83a3e40c1207515cd4bfc6e0e961f9dc28d58e7a874d24ec1",
+        "stale_evidence:81c1eb940cc275123ddbe269edf6545e8b6ddd3b237fe5e99da28c7a564474be",
+        "stale_evidence:822ef9f1d7f8f948f89a5f5e80691ee263904b0e25f849f287c6094387b1e50d",
+        "stale_evidence:830a9f642b6b4327dff4b9369b82878f0cbb52c660b08bf7c2fe2a3583b8c6da",
+        "stale_evidence:84d984ff5d170c035b7c7f6b287a3fc7521cb2d76bf1f2d936c8bf0d76d8868c",
+        "stale_evidence:8707e4e1b07409b4b547b18c38387ab6f4ef436139585d5a7317f34caf3650d0",
+        "stale_evidence:8e8f8110a17034314e529e7e6ae7bc63c5494cfc952acc52dad43c8d5b46e120",
+        "stale_evidence:8f9488459e27d5cbe7e2bac8d16353e5bbddbe7e5e3104c5a990cd5d804fb8f2",
+        "stale_evidence:8fa0868ce8a3d0eea47e2faf48cfdc7fa0bbc79598ae85a56c91c5d062e89fa7",
+        "stale_evidence:9983f7b056de8e0f85ac6fed47ca844b3d52017d65bac4f943c3d6da3b6c5e6e",
+        "stale_evidence:a22d3626e8731fa3c95dff277894ea300b71dcf6d0612a7a84b9d2107bc70689",
+        "stale_evidence:aa928a6afaba2372022827ab15014eec5fd5c720925d5f5d03e8a74ae3b50afc",
+        "stale_evidence:aff74f68456b10fb8d10ea681a55ac00cf033570ac455651018df4a5c840c704",
+        "stale_evidence:b01af056d84672c9cc464797834029d4cd83eb1d203316a4a66cdc4d2ceaae30",
+        "stale_evidence:b0d83939123cff1a124fc84c5fbf29ed53ed6b4c6832e92fc4f36ca1d3daa2d2",
+        "stale_evidence:b2a887fd60b76e4f4e11ed02e478b727b4fd7225d9babbc5ec4fa87019f2613e",
+        "stale_evidence:be76e5cecbb82cb6fb9d70d50ca79add89a42a10fb8b680398a419ef9fe081a7",
+        "stale_evidence:c30fb51ac8a7d56cf38847e214b0d6e38b2f68279a63953a99047470e08ef935",
+        "stale_evidence:c4200dbf5948ec97c1711c7f1530fcb07764bab2aa32f4b306aee9b652f37b90",
+        "stale_evidence:c49af4cae3cd3016db3a0f7b1c87441c7cb7261f6cf8e26ace3edd2d1a898174",
+        "stale_evidence:c746c573a3eba13fc07be5041e147ad565fd6a982b9deb0aae46748b0db2ff88",
+        "stale_evidence:cb780532bf80916f6c0d8d6b39af4e50794457ca77faa1640d5b8b737bca67a1",
+        "stale_evidence:d06d2d1ed14630c965ad14975d24b4178c75afcc6e853c40778682b5e3538c87",
+        "stale_evidence:d4c1bf4eb624734b9f57a85cc454ebfc2b8c0d96d7e056750df58457ddec29aa",
+        "stale_evidence:e5ae7db609e33d655196a7054f6a5213bed5312cf83b1e62301fc52c45ee0585",
+        "stale_evidence:ead33b34076065a8e1ede65c7e620dc15302f0ecc9d1bdc9998fe63b5235f016",
+        "stale_evidence:f3a5e432215efae04faa98f69dd37089650826d672da83ea9af7e2ac92cd16aa",
+        "stale_evidence:f8f270f064d1e0e31634892f1dc4a4676b3d64488c37cc0dad7aae6a025290cb",
+        "stale_evidence:fad6f5bbe880f07f03953b4d1e753c525e0fc98854fa84956cb572e85a04ff46",
+        "stale_evidence:fd3424f8c3ae986e373efdb2e6323648527efd8960ae84eb9e6218242e54c31c",
+        "stale_evidence:feaec536067dd5cdea58fe4a11388056838abd34a774182dbbf5d7e71ce5110d"
+      ],
+      "reason": "Reviewed independent original and driver captures, input-derived current-storage keyed overlap oracle and borrowed-draw admission. Native GPU1x1scratch removes feedback, preserves ordered mutations, bounds4096texels before writes and uses no transfer; mapped fills update CPU lease snapshots. Fresh5114results/538272pixels/40guards and14renderer CTests close combined chunk1 within recorded scope. Fourteen mutation tests reject oracle corruption. Source census, new fixture hashes and intervening exact history reviewed. Shared ownership/recovery/formats/uncaptured precedence/negative debt raster/live remain explicit gaps.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh final native replay and isolated-original keyed overlap/retained original corpora support recorded comparisons; standalone driver evidence supports borrowed external contract only. All14renderer CTests passed with exact isolated owned sources. Historical preliminary/base hashes stay unchanged; no broad live/recovery/formats/Windows equivalence.",
+        "evidence": [
+          "NR.surface-backend.owned.final-20261006",
+          "ORIGINAL.surface-backend.owned.replay-final-20261006",
+          "NR.surface-backend.owned.regressions-20261006",
+          "ORIGINAL.surface-copy.rgb565-keyed-overlap.capture-20261006",
+          "ORIGINAL.surface-copy.rgb565-keyed-overlap.cpu-20261006",
+          "DRIVER.surface-borrowed-draw.capture-20261006",
+          "DRIVER.surface-borrowed-draw.cpu-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "3653074a5ebd5ff7f9d797af39fd7510523eea576f0362416806507114350d48",
+          "before_sha256": "4f36f8a6cdf86ffcae20134e418367022ff670f391b92f16070ef6eb6c1766dd",
+          "id": "NR.command-checkpoint-attachment"
+        },
+        {
+          "after_sha256": "764661f57869fb3260e6502fc19886a8a0e4cf67af9b603f5f8b886e3599a93a",
+          "before_sha256": "e5dedf7a95663af8a66594827dc7a1c6d2d1deefe83647fe05d93e1e956c55be",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "b91885d18e48cdae692be2d2ab60e5818622840299f24545ba2f5ac052e76a1a",
+          "before_sha256": "b24c59d14baea79c9f0a1ca50cc1054ca29522546abe612bd95965b1333dfd34",
+          "id": "NR.command-ring"
+        },
+        {
+          "after_sha256": "f855b610faf7c1dbf26bc78cbd24cd96388df348617df0861334e9d32fb0dfdf",
+          "before_sha256": "ed84cdde87e88fd888df1da2c30839fbf7b34f7a9d822c139e66bc00f80ced8b",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "70d74b32e0eaecd3bc83e5f6c494147baef18c0c69343f79951a668e6ff256b0",
+          "before_sha256": "ed0f9994dc83f3d947ecf47a4c7837b9998f9b05470710d7e7cc83645ffef2ea",
+          "id": "NR.incremental-command-consumer"
+        },
+        {
+          "after_sha256": "b442805a7dd433e927c3d1d84c35813c5df792365d79c6b2ca7969867d81291a",
+          "before_sha256": "593d4e723283f04a55a9397597388e4d7df065f0ea342aaa15225c1408a73edd",
+          "id": "NR.live-command-transport"
+        },
+        {
+          "after_sha256": "31b6017cbd5a6344174b0167bbf9fac45ec945297bfe9bccad025630a441bc8e",
+          "before_sha256": "47171c5ffa865827e292520837a3b89c0c3d6af186e29fca6537592ff88ee2cb",
+          "id": "NR.palette-resources"
+        },
+        {
+          "after_sha256": "dabe9fba41180161ae0a7006aeba530c7b0e0e8f49a4a1f641765655ffa3d00f",
+          "before_sha256": "ca6870dbcb082fb9a21524b3f949949bbb623233f6fe709aa7d547f3080cc6c8",
+          "id": "NR.surface-colors.rgb565-dc"
+        },
+        {
+          "after_sha256": "a824486089e4ce0a2103625b65fd2f50aac05e37911837f5cb094d858eaef24d",
+          "before_sha256": "51d5da796a87c840ca82459fa3cf9bd2198c6b7bc7c571ffa47f3e22bd8808b5",
+          "id": "NR.surface-contents.validity"
+        },
+        {
+          "after_sha256": "2d22ff6ed91c84c2400dbcdccd016f50167655d160949a6b865543b975b46d86",
+          "before_sha256": "d44c79cf873bec62ef976f325e5bc21029c011fd61639e0cb523b797b17966a9",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "a411c05cfadc273f0f7ffe588450461d41d4528fbd53ce14a89304d4ca8fd40a",
+          "before_sha256": "208cf84f8ca9e3ad17321fa72ed79d3045080dca59357178956de3c0978bcdc3",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "181ea1566f3b2495c29491b41421a1149cf344333dfcfe9d750f8aa4fa5d1c09",
+          "before_sha256": "810c28769ea92543f695815f4167a726268573d6f188b126a6a7db277d81f080",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "4b399bba3db3c544a5dd5e8f29ac5829015902a84421784bab624ec38e3b60fe",
+          "before_sha256": "d0319b09cd8fd0499f4f037ebcdce673c75612fd8d2d939d43dffec9c56486bf",
+          "id": "NR.surface-reload.dc-regions"
+        },
+        {
+          "after_sha256": "2bd3c81e04c3d073fb179e4534e7be8b4f5e48e76d3d51f04fb67ccb656a75cd",
+          "before_sha256": "094d8741937c215ec8a8ac3d93423bcbc9ec68a86ed4aafbfec5693e9ef81bef",
+          "id": "NR.surface-reload.dib-indexed"
+        },
+        {
+          "after_sha256": "65ea8bc0594d431b5943cd24336ee568319c7f5da1f0bde3238caaa8e5ca83fa",
+          "before_sha256": "8d5a55a8530aca55a61f572a5621353a18bdc8cd4e2d087a8b4bb8a4f0efeb5f",
+          "id": "NR.surface-reload.dib-rgb"
+        },
+        {
+          "after_sha256": "187192fadc15f405dfbad38701b3d8d57e52a0a0315e35377f0a0dc8738f7325",
+          "before_sha256": "056fd927c77328554df607abf98eed35c0c34d470905e0336fab63aea7e22243",
+          "id": "NR.surfaces"
+        },
+        {
+          "after_sha256": "cacc60ecb14c7ffff3c91fbd4d9066b91ea729cdb3dc9d7e6e47ecf295657ed4",
+          "before_sha256": "ed0dfed3953d49ecb0db406c369b4fa8a3aeec9893ba1f75321d0fa63f8900c9",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "beefe4f93c53a08df475bb0530c875dd71b1230792bc2ad06ca532c4f46fa509",
+          "before_sha256": "7e5f3c0e3ec1d1de69e7d95645d2972d798150e5666c0fbab7919ea620761ba8",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "0cf11c79a7a936067b01a349a3df3d3718613cfc974a8d566179271df48ae383",
+          "before_sha256": "6700f42b59094dd307032bca9ae83a59dc86328d713af1d1294a51c9b82d8cdc",
+          "id": "RE.surface-driver.access"
+        },
+        {
+          "after_sha256": "ee161e56593a2228ccd3eb80ced0fac51477476c54f943ab44bb22390694cfcd",
+          "before_sha256": "10061a4cb0e83d89034a3a9fbee8cb4c7949a4be6dc42fd0684b2365856ddca6",
+          "id": "RE.surface-driver.dc-palette-clip"
+        },
+        {
+          "after_sha256": "fa4c21b1449f5dde44eb17d740a48d3b12286e8fb2d26f9d26fabc82491c8e53",
+          "before_sha256": "f003a0a309235ff3957350adc914c16bcd02c25cd8ffe9777e17fdc4d054583c",
+          "id": "RE.surface-driver.dc-raster"
+        },
+        {
+          "after_sha256": "9bb30b49727f4d208702bea5e24cb9fd136271f3724189a90b4d608a8de8d4cd",
+          "before_sha256": "3500d3dbe4b8aa4fc13aa77c1644c6786e84b4875209ad9940a79ec0c52d0119",
+          "id": "RE.surface-driver.dc-reuse"
+        },
+        {
+          "after_sha256": "cd631d13f7be83fa7ad5492377d7150f975dc9a151e1818595b433d22e4dcfac",
+          "before_sha256": "8a42263a5785ecdc48881687b3375ecbc556ca65306a02dafcf5d99b2afd9523",
+          "id": "RE.surface-driver.dib-raster"
+        },
+        {
+          "after_sha256": "af733d8aeb3a768728a612669182675c23c7d8b872562561d0054f5efd657216",
+          "before_sha256": "2d5137919913b2674e9d27e06fbb278d5d128db7758ccb471fd245592bbbb73a",
+          "id": "RE.surface-driver.indexed-restore"
+        },
+        {
+          "after_sha256": "c8316e68d5307c13e5e360c2b9b4f2c2b3d449a56b3bfdaca756d2461f1c5821",
+          "before_sha256": "554f12e806304bde193062bf5a274a52e814e4704e52e7e5faf09b1c99351c77",
+          "id": "RE.surface-driver.loss-restore"
+        },
+        {
+          "after_sha256": "73a3a596937e1fd6cde74476be96e193c652e7d15699962ecd30b196568e6bd1",
+          "before_sha256": "a7c830c7f2281612b453dfb459ee9cb0c587edaf6bce3628c5ecf4dd9d05def3",
+          "id": "RE.surface-reload.cursor-sentinel"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "5d0ebc8dd15963e17af25d564fa87ecf8bfa438331af76e246ffc93bbba342a3",
+          "before_sha256": "73916c1eefffaa68652dff21553bf7b7b568cc56f68698c8e21f1f3c64b1eed0",
+          "path": "renderer/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+          "before_sha256": "1c0aa177d59eea6116b8f0e733ee0b7d8b36e16b26a739868f229c548318edc8",
+          "path": "renderer/blit.cpp"
+        },
+        {
+          "after_sha256": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70",
+          "before_sha256": "d4d7229c0a7ee70a0fd2c6f0c63fb86835b77f6e7282e196cdcb17cb173aa0c3",
+          "path": "renderer/blit.hpp"
+        },
+        {
+          "after_sha256": "7b9172485a2d9309086bc857d078a4795ac8528259a1b2f262cd3a99f2bf2189",
+          "before_sha256": "13e1828cd0e521aaa84fd88ba941127dc5417760d3fbb2f7c6a9fab6c52013d9",
+          "path": "renderer/surface_backend.cpp"
+        },
+        {
+          "after_sha256": "2d12c905fe16b1a90be62c317b05252ae44440db3c39f5e494813ca357de959c",
+          "before_sha256": "e11520875d5b950c58311780931eec9c2c8cafd93c17d5acc9eed8d00ed05146",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "a4dd4b48a122c2b13871f22729d5fce9b1e15adcc67347782c202707ec559700",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-backend-combined-20261006.json"
+        },
+        {
+          "after_sha256": "9a1d7416d601a958338142cc02646c15e8f7fe0a30db31b82ab26fff71d48a88",
+          "before_sha256": "4f6a68b8e2e996390470428f2c45600da8c4865797a6800296aebf70c0c2ed0f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "35a29dfb0bae5fd08269f9ea9c6edfaca3ea1c4f7e2d6c5daa9ccc4f7fa2b109",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-backend-combined-20261006.json"
+        },
+        {
+          "after_sha256": "3a760298f930d8f2fb59dacdd67df80514ed9a74c24751a322e2c9bb38b3b988",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-backend-combined-20261006.md"
+        },
+        {
+          "after_sha256": "6275c4a5faeb71c9c6470e1d136aab7f371c302f6f94efc7a330bef29e46912f",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-backend-combined-20261006.json"
+        },
+        {
+          "after_sha256": "4775eee9d279e98e7db0bdf6986453255299349ae7589fd62206040754d17c42",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-backend-final-20261006.json"
+        },
+        {
+          "after_sha256": "40419cbd99d71a55c5b6eff1dc1e2f50ae019ced3b4f2c9fa0a155fce02b4f1e",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-backend-regressions-20261006.json"
+        },
+        {
+          "after_sha256": "0823dc609d8acc4ad74b571eb752a800973c078cae1e838d422b60da2a87cd1f",
+          "before_sha256": "f19fec1dc2ccdcf50d16128fa621b220d27b5429f4e161384798943b496b91a3",
+          "path": "research/runtime/native-surface-backend.md"
+        },
+        {
+          "after_sha256": "c3f8f54f65853beaa9ceff2326a9f94f2781635638b2b62e7946fa964c09fe10",
+          "before_sha256": "2decc6080d3cf704f90d3fc886644b930f94cec1cb7e5d3c3084aa0d6cfa8cfc",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "379a0b4d4df2016ccad6ffbdf72ab1f35503f5d6ee04839f558b6cb2858486bc",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-keyed-overlap-capture-20261006.json"
+        },
+        {
+          "after_sha256": "97018a8ae083d32a905320debc4df57a811b0f13ae98e165ac68816bcc6651d9",
+          "before_sha256": null,
+          "path": "research/runtime/original-surface-keyed-overlap-offline-20261006.json"
+        },
+        {
+          "after_sha256": "d5fd1fd18e344b917a5f10314b65ec073fbc833ea98ce1cf9e3cb9bed3609e66",
+          "before_sha256": null,
+          "path": "research/runtime/surface-borrowed-draw-capture-20261006.json"
+        },
+        {
+          "after_sha256": "6a4c2a2fce3da6be8709811f6779143fe1e4c259bdfb055be1ca7db72ac9cdfe",
+          "before_sha256": null,
+          "path": "research/runtime/surface-borrowed-draw-offline-20261006.json"
+        },
+        {
+          "after_sha256": "f531b4880cbd016a0baa4f89c7e5654107875a3d20be66ce2d66784150951990",
+          "before_sha256": null,
+          "path": "tests/fixtures/surfaces/original-rgb565-keyed-overlap-corpus.json"
+        },
+        {
+          "after_sha256": "e93476f1df2382088c58b893c934b3bdef942f48811cf8f6e99a4db6133d758c",
+          "before_sha256": "944f36056cb2095c7e32b81ba111053a85978405fbe79b270732d5ad9d2c4b24",
+          "path": "tests/render-surface-backend-test.cpp"
+        },
+        {
+          "after_sha256": "dcf9b91c6cc885f1c9bac7adb7f1382b2159383549d82235f348ee221de5b963",
+          "before_sha256": null,
+          "path": "tests/surface-borrowed-draw-reference.c"
+        },
+        {
+          "after_sha256": "7fbcce35ddda99c916994a39b07467468177317ee2ee812394510a00bebf9f22",
+          "before_sha256": null,
+          "path": "tests/surface-keyed-overlap-reference.c"
+        },
+        {
+          "after_sha256": "c6b163f6d544423fd27bd1be5db82345c4cf60c6243f9dca670a72df5d635c79",
+          "before_sha256": null,
+          "path": "tests/test-original-surface-keyed-overlap.py"
+        },
+        {
+          "after_sha256": "eb4a14389ecd95f399b13ff68533be67be5787d549734f5d1f12d24e8454bcde",
+          "before_sha256": null,
+          "path": "tests/test-surface-borrowed-draw.py"
+        },
+        {
+          "after_sha256": "b4506ecb2fb53b6df7dc36123dd2d0cb8e7b7535b8f17e1c2e4c7e30e51d0748",
+          "before_sha256": null,
+          "path": "tools/capture-original-surface-keyed-overlap.py"
+        },
+        {
+          "after_sha256": "592dbe6eb7db2a166cb45ffbe18ae4de7faca99d0c1ca1840e6c660b5b88b3f5",
+          "before_sha256": null,
+          "path": "tools/capture-surface-borrowed-draw.py"
+        },
+        {
+          "after_sha256": "241e950f1c9cedc07974ae548844970f7598b196c8d1f7d9582362b54bf89f5e",
+          "before_sha256": "dd53be7eb351074347b993aa8631719e48dd1306e66ceca3c6f3b3671806d770",
+          "path": "tools/check-native-surface-backend.py"
+        },
+        {
+          "after_sha256": "b5701e792381582217472c6f16c63129b4047c278b0146def2fd5009ac1258d5",
+          "before_sha256": null,
+          "path": "tools/check-original-surface-keyed-overlap.py"
+        },
+        {
+          "after_sha256": "35c3ee4f5012bfc09340740bc6be34fa424201198dfa424a72a650d46441ad1b",
+          "before_sha256": null,
+          "path": "tools/check-surface-borrowed-draw.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/original-rgb565-keyed-overlap.json.gz",
+          "before_sha256": null,
+          "after_sha256": "dc197aeb330d8a8b2e21147442b319956816f9b230effcafe671849dc7b0766f"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-borrowed-draw.json.gz",
+          "before_sha256": null,
+          "after_sha256": "94a85e506856609174a669d5983abd03f0bf22138ba6012cb6d764ec419e53c2"
+        }
+      ],
+      "id": "surface-backend-combined-shared-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:364289bd61c2916373ed14adb8b20ba3eac4113a59f91b45c0c96667913db0df",
+        "stale_evidence:0f1b2ec9d7c20e6f554ebc61bf2063bc7da3e343130430f72f8a32d012da72f3",
+        "stale_evidence:1ab711f3ad39c005dbff53c8956a96d8ddfa2a086f415af35c8149abf8e5009d",
+        "stale_evidence:1bb961ab1b11f615029cf09a5fd930acf09e661ead62b7519a4e5645133d5242",
+        "stale_evidence:1cbb5590672791b9f02bbaf55b2fbea6121cc0b6c589276ef69f2b0760819d91",
+        "stale_evidence:20b3ce9b347f83e5d25826b257322e45865f959c2216050bf492119014019696",
+        "stale_evidence:22d1851b82db59a59073ae99b634470c3a016662fa2b6499728092b699fee848",
+        "stale_evidence:2b77cf1497a04b700c842c16450682c8cde8676d74fe9dc9e28ff60a372bc5e2",
+        "stale_evidence:2c5f6b8ed6a25f546dc5019259758d045dd29d80a5a2a8b13d858f9aebd16f96",
+        "stale_evidence:3144146c12573559d3c453679cac060006ae0cc1521984d63cdb6bc8e6fe5f3d",
+        "stale_evidence:383fef95f41224f3209d7476e1fc711b078eb469c1934261c932a87533a46ff4",
+        "stale_evidence:39303ed17fc96f72e6ee8cb5f2378b175268b14fefc868d475a839a6238c5cd2",
+        "stale_evidence:406cdf81b91ec21bb62480e7171322819925f8788703cd5b6b04f86fe3dea8e9",
+        "stale_evidence:5333be9bd22992f7dae202f62afdeffffb9aaa0058a9a3d4f3e4748fb7220e63",
+        "stale_evidence:53399e1fba0abdff56fd6ea3a75735fa1431d1626acdaab8ba3fb6ec5a2a5cd9",
+        "stale_evidence:556c6b8c700bb0ffcc2823351424668a0d0b5960ba06a3792af8469f10707841",
+        "stale_evidence:62db44e0948791661e03abed4cd4be4bae5b82d6c61c70c94a4ea0e48274597f",
+        "stale_evidence:6466c533c3ebe804200d0aca821ff6d4f7807bab584d9079f69116b8a425ad8d",
+        "stale_evidence:66438a4e1a05447683392da2fe3099edebb0309db84c43d4aaed957b703484e3",
+        "stale_evidence:688353f54a7a152d418406767bd3640107756413579b49bc226c4261352f3ec8",
+        "stale_evidence:6e476ee24e8f832d601fb43be9fddfd77f3bb6eb30dc27d2ad233b17a720eaa2",
+        "stale_evidence:6ef97d85bca75fde38620f40eb4c7e1b897a70fd9b35fc44a5a84e33159e9bab",
+        "stale_evidence:7bbf1f3c99654a2137c6a512ce0c1ab67f0c1a0e053e5acd6132d30dc0117141",
+        "stale_evidence:8133e86b291bd9e83a3e40c1207515cd4bfc6e0e961f9dc28d58e7a874d24ec1",
+        "stale_evidence:81c1eb940cc275123ddbe269edf6545e8b6ddd3b237fe5e99da28c7a564474be",
+        "stale_evidence:822ef9f1d7f8f948f89a5f5e80691ee263904b0e25f849f287c6094387b1e50d",
+        "stale_evidence:830a9f642b6b4327dff4b9369b82878f0cbb52c660b08bf7c2fe2a3583b8c6da",
+        "stale_evidence:84d984ff5d170c035b7c7f6b287a3fc7521cb2d76bf1f2d936c8bf0d76d8868c",
+        "stale_evidence:8707e4e1b07409b4b547b18c38387ab6f4ef436139585d5a7317f34caf3650d0",
+        "stale_evidence:8e8f8110a17034314e529e7e6ae7bc63c5494cfc952acc52dad43c8d5b46e120",
+        "stale_evidence:8f9488459e27d5cbe7e2bac8d16353e5bbddbe7e5e3104c5a990cd5d804fb8f2",
+        "stale_evidence:8fa0868ce8a3d0eea47e2faf48cfdc7fa0bbc79598ae85a56c91c5d062e89fa7",
+        "stale_evidence:9983f7b056de8e0f85ac6fed47ca844b3d52017d65bac4f943c3d6da3b6c5e6e",
+        "stale_evidence:a22d3626e8731fa3c95dff277894ea300b71dcf6d0612a7a84b9d2107bc70689",
+        "stale_evidence:aa928a6afaba2372022827ab15014eec5fd5c720925d5f5d03e8a74ae3b50afc",
+        "stale_evidence:aff74f68456b10fb8d10ea681a55ac00cf033570ac455651018df4a5c840c704",
+        "stale_evidence:b01af056d84672c9cc464797834029d4cd83eb1d203316a4a66cdc4d2ceaae30",
+        "stale_evidence:b0d83939123cff1a124fc84c5fbf29ed53ed6b4c6832e92fc4f36ca1d3daa2d2",
+        "stale_evidence:b2a887fd60b76e4f4e11ed02e478b727b4fd7225d9babbc5ec4fa87019f2613e",
+        "stale_evidence:be76e5cecbb82cb6fb9d70d50ca79add89a42a10fb8b680398a419ef9fe081a7",
+        "stale_evidence:c30fb51ac8a7d56cf38847e214b0d6e38b2f68279a63953a99047470e08ef935",
+        "stale_evidence:c4200dbf5948ec97c1711c7f1530fcb07764bab2aa32f4b306aee9b652f37b90",
+        "stale_evidence:c49af4cae3cd3016db3a0f7b1c87441c7cb7261f6cf8e26ace3edd2d1a898174",
+        "stale_evidence:c746c573a3eba13fc07be5041e147ad565fd6a982b9deb0aae46748b0db2ff88",
+        "stale_evidence:cb780532bf80916f6c0d8d6b39af4e50794457ca77faa1640d5b8b737bca67a1",
+        "stale_evidence:d06d2d1ed14630c965ad14975d24b4178c75afcc6e853c40778682b5e3538c87",
+        "stale_evidence:d4c1bf4eb624734b9f57a85cc454ebfc2b8c0d96d7e056750df58457ddec29aa",
+        "stale_evidence:e5ae7db609e33d655196a7054f6a5213bed5312cf83b1e62301fc52c45ee0585",
+        "stale_evidence:ead33b34076065a8e1ede65c7e620dc15302f0ecc9d1bdc9998fe63b5235f016",
+        "stale_evidence:f3a5e432215efae04faa98f69dd37089650826d672da83ea9af7e2ac92cd16aa",
+        "stale_evidence:f8f270f064d1e0e31634892f1dc4a4676b3d64488c37cc0dad7aae6a025290cb",
+        "stale_evidence:fad6f5bbe880f07f03953b4d1e753c525e0fc98854fa84956cb572e85a04ff46",
+        "stale_evidence:fd3424f8c3ae986e373efdb2e6323648527efd8960ae84eb9e6218242e54c31c",
+        "stale_evidence:feaec536067dd5cdea58fe4a11388056838abd34a774182dbbf5d7e71ce5110d"
+      ],
+      "reason": "Reviewed independent original and driver captures, input-derived current-storage keyed overlap oracle and borrowed-draw admission. Native GPU1x1scratch removes feedback, preserves ordered mutations, bounds4096texels before writes and uses no transfer; mapped fills update CPU lease snapshots. Fresh5114results/538272pixels/40guards and14renderer CTests close combined chunk1 within recorded scope. Fourteen mutation tests reject oracle corruption. Source census, new fixture hashes and intervening exact history reviewed. Shared ownership/recovery/formats/uncaptured precedence/negative debt raster/live remain explicit gaps.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared core/CMake/research fingerprints and renderer regressions reviewed. Broader original/game/wire/asset scenarios retain historical evidence and statuses without source-hash refresh or equivalence promotion. This receipt covers changed identities, not new original/live execution for unrelated scopes.",
+        "evidence": []
+      }
     }
   ]
 }

@@ -89,7 +89,8 @@ public:
     void invalidateContents(SurfaceId surface);
     void setClipper(SurfaceId destination,const ClipperState& clipper);
     SurfaceCopyResult surfaceCopy(SurfaceId source,SurfaceId destination,
-                                 const SurfaceCopyRequest& request);
+                                 const SurfaceCopyRequest& request,
+                                 std::optional<std::uint32_t> nativeKey=std::nullopt);
     // Optional indexed8 mask has source dimensions; zero discards the pixel.
     // Masks use source coordinates, retain destination pixels and do not read back.
     // Exchange native storage only; palettes and handles retain their identity.

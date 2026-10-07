@@ -122,6 +122,9 @@ SurfaceCopyResult SurfaceBackend::copy(SurfaceId source,SurfaceId destination,co
     if(s.format.bits!=16 || d.format.bits!=16)throw std::runtime_error("Owned draw contract requires RGB565");
     if(request.sourceBusy || request.destinationBusy)throw std::runtime_error("Owned admission cannot use supplied busy flags");
     auto r=request;r.sourceBusy=s.access.borrowed();r.destinationBusy=d.access.borrowed();
+    // An explicitly empty Blt clip list executes no driver draw, even borrowed.
+    if(r.api==SurfaceCopyApi::Blt && d.clipper.attached && d.clipper.regions && d.clipper.regions->empty())
+        r.sourceBusy=r.destinationBusy=false;
     const auto keyFlag=r.api==SurfaceCopyApi::BltFast?1u:0x8000u;
     const auto wait=r.api==SurfaceCopyApi::BltFast?0x10u:0x1000000u;
     if(r.flags & ~(wait|keyFlag))return gl_.surfaceCopy(source,destination,r);
@@ -129,23 +132,28 @@ SurfaceCopyResult SurfaceBackend::copy(SurfaceId source,SurfaceId destination,co
     if(!keyed)return gl_.surfaceCopy(source,destination,r);
     r.flags=s.key?(r.flags&wait):keyFlag;
     const auto plan=planSurfaceCopy(s.width,s.height,d.width,d.height,d.clipper,r);
-    if(source==destination && s.key)throw std::runtime_error("Keyed overlap awaits independent comparison");
-    for(const auto& p:plan.pieces)gl_.copy(source,destination,p.source,p.x,p.y,s.key);
-    return {plan.hresult,unsigned(plan.pieces.size())};
+    if(source==destination && !s.key){
+        if(r.api==SurfaceCopyApi::Blt)return {plan.hresult,unsigned(plan.pieces.size())};
+        r.flags=request.flags&wait; // Measured missing-key BltFast is opaque.
+    }
+    return gl_.surfaceCopy(source,destination,r,s.key?std::optional<std::uint32_t>(*s.key):std::nullopt);
 }
 SurfaceCopyResult SurfaceBackend::fill(SurfaceId id,std::optional<Rect> rectangle,std::uint16_t color,std::uint32_t flags){
     auto& e=entry(id);
     if(e.format.bits!=16 || (flags!=0x400 && flags!=0x1000400))throw std::runtime_error("Unvalidated owned fill format/flags");
+    if(e.access.poisoned())throw std::runtime_error("Fill after mapping debt is unvalidated");
     const auto r=rectangle.value_or(Rect{0,0,e.width,e.height});
     if(r.left>=r.right || r.top>=r.bottom)return {surfaceStatus::invalidRect,0};
     if(e.clipper.attached && !e.clipper.regions)return {surfaceStatus::noClipList,0};
     if(!e.clipper.attached && (r.left<0 || r.top<0 || r.right>e.width || r.bottom>e.height))return {surfaceStatus::invalidRect,0};
-    if(e.access.borrowed())return {surfaceStatus::busy,0};
     const std::vector<Rect> full{{0,0,e.width,e.height}};
     const auto& regions=e.clipper.attached?*e.clipper.regions:full;unsigned pieces=0;
     for(auto clip:regions){Rect p{std::max(r.left,clip.left),std::max(r.top,clip.top),std::min(r.right,clip.right),std::min(r.bottom,clip.bottom)};
         if(p.left>=p.right || p.top>=p.bottom)continue;
-        gl_.update(id,p.left,p.top,{p.right-p.left,p.bottom-p.top,std::vector<std::uint32_t>(std::size_t(p.right-p.left)*(p.bottom-p.top),color)});++pieces;
+        gl_.update(id,p.left,p.top,{p.right-p.left,p.bottom-p.top,std::vector<std::uint32_t>(std::size_t(p.right-p.left)*(p.bottom-p.top),color)});
+        if(e.locked)for(int y=p.top;y<p.bottom;++y)
+            std::fill(e.locked->pixels.begin()+std::size_t(y)*e.width+p.left,e.locked->pixels.begin()+std::size_t(y)*e.width+p.right,color);
+        ++pieces;
     }
     return {0,pieces};
 }
