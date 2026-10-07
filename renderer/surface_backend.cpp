@@ -19,12 +19,12 @@ struct SurfaceBackend::Entry {
     BitmapDcState dc;
     std::optional<Palette> defaults,binding;
     ClipperState clipper;
-    std::optional<std::uint16_t> key;
+    std::optional<std::uint32_t> key;
     std::optional<Image> locked;
     Entry(const Image& image,PixelFormat f,unsigned caps,std::uint32_t storage,
-          std::uint32_t token,std::optional<Palette> context)
+          std::uint32_t token,std::optional<Palette> context,std::optional<std::int32_t> pitch)
         :width(image.width),height(image.height),format(f),dcToken(token),
-         access(image.width,image.height,f.bits,caps,storage,token),
+         access(image.width,image.height,f.bits,caps,storage,token,f.masks,pitch),
          dc(image.width,image.height,f.bits,context),defaults(std::move(context)){}
 };
 SurfaceBackend::SurfaceBackend()=default;
@@ -50,14 +50,11 @@ void SurfaceBackend::raster(const Entry& e){
     if(!e.access.dcActive() || !e.access.dcMatchesStorage() || e.locked || e.access.poisoned())
         throw std::runtime_error("Owned DC raster requires an active unpoisoned DC without a CPU lease");
 }
-SurfaceId SurfaceBackend::create(const Image& image,PixelFormat format,unsigned caps,std::optional<Palette> defaults,bool primary){
-    const std::array<std::uint32_t,3> masks=format.bits==8?std::array<std::uint32_t,3>{}:
-        format.bits==16?std::array<std::uint32_t,3>{0xf800,0x7e0,31}:std::array<std::uint32_t,3>{0xff0000,0xff00,0xff};
-    if((format.bits!=8 && format.bits!=16 && format.bits!=32) || format.masks!=masks)
-        throw std::runtime_error("Owned backend requires indexed8/canonical RGB565/RGB32");
+SurfaceId SurfaceBackend::create(const Image& image,PixelFormat format,unsigned caps,std::optional<Palette> defaults,bool primary,std::optional<std::int32_t> rowPitch){
+    validateSurfaceFormat(format);
     if(nextToken_>std::numeric_limits<std::uint32_t>::max()-2)
         throw std::runtime_error("Owned surface tokens exhausted");
-    auto e=std::make_unique<Entry>(image,format,caps,nextToken_,nextToken_+1,std::move(defaults));
+    auto e=std::make_unique<Entry>(image,format,caps,nextToken_,nextToken_+1,std::move(defaults),rowPitch);
     // Sentinel values are never issued, and token identities never wrap/reuse.
     if(nextToken_==0xabababaa || nextToken_==0xabababab)throw std::runtime_error("Owned token sentinel reached");
     e->primary=primary;auto id=gl_.create(image,format);
@@ -65,6 +62,12 @@ SurfaceId SurfaceBackend::create(const Image& image,PixelFormat format,unsigned 
     catch(...){gl_.destroy(id);throw;}
     nextToken_+=2;return id;
 }
+SurfaceId SurfaceBackend::createRows(const PixelRows& rows,PixelFormat format,unsigned caps,std::optional<Palette> defaults){
+    return create(unpackPixelRows(rows,format),format,caps,std::move(defaults),false,rows.pitch);
+}
+void SurfaceBackend::updateRows(SurfaceId id,int x,int y,const PixelRows& rows){update(id,x,y,unpackPixelRows(rows,entry(id).format));}
+void SurfaceBackend::readRows(SurfaceId id,PixelRows& rows){packPixelRows(read(id),entry(id).format,rows);}
+void SurfaceBackend::writeLockedRows(SurfaceId id,int x,int y,const PixelRows& rows){writeLocked(id,x,y,unpackPixelRows(rows,entry(id).format));}
 void SurfaceBackend::destroy(SurfaceId id){
     if(entry(id).references!=1)throw std::runtime_error("Use release for retained surface aliases");
     (void)release(id);
@@ -155,7 +158,7 @@ std::uint32_t SurfaceBackend::restore(SurfaceId id,std::optional<Mode> mode){
     if(e.lost){gl_.invalidateContents(id);e.lost=false;}
     return 0;
 }
-std::optional<std::uint16_t> SurfaceBackend::sourceKey(SurfaceId id) const{return entry(id).key;}
+std::optional<std::uint32_t> SurfaceBackend::sourceKey(SurfaceId id) const{return entry(id).key;}
 void SurfaceBackend::update(SurfaceId id,int x,int y,const Image& patch){available(entry(id));gl_.update(id,x,y,patch);}
 std::uint32_t SurfaceBackend::lock(SurfaceId id,Descriptor& output){
     auto& e=entry(id);
@@ -218,12 +221,14 @@ void SurfaceBackend::updatePalette(SurfaceId id,unsigned first,const std::vector
 }
 void SurfaceBackend::reloadDib(SurfaceId id,const DibInput& dib){auto& e=entry(id);raster(e);e.dc.reload(gl_,id,dib);}
 void SurfaceBackend::setClipper(SurfaceId id,const ClipperState& clip){auto& e=entry(id);gl_.setClipper(id,clip);e.clipper=clip;}
-void SurfaceBackend::setSourceKey(SurfaceId id,std::optional<std::uint16_t> key){
-    auto& e=entry(id);if((e.format.bits!=16 && e.format.bits!=8) || (e.format.bits==8 && key && *key>255))throw std::runtime_error("Owned source-key metadata outside indexed8/RGB565");e.key=key;
+void SurfaceBackend::setSourceKey(SurfaceId id,std::optional<std::uint32_t> key){
+    auto& e=entry(id);const auto maximum=e.format.bits==32?UINT32_MAX:(std::uint32_t{1}<<e.format.bits)-1;
+    if(key && *key>maximum)throw std::runtime_error("Owned source key exceeds native storage width");
+    e.access.setSourceKey(key);e.key=key;
 }
 SurfaceCopyResult SurfaceBackend::copy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest& request){
     auto& s=entry(source);auto& d=entry(destination);
-    if(s.format.bits!=16 || d.format.bits!=16)throw std::runtime_error("Owned draw contract requires RGB565");
+    if(s.format.bits!=d.format.bits || s.format.masks!=d.format.masks)throw std::runtime_error("Owned draw requires identical native formats");
     if(request.sourceBusy || request.destinationBusy)throw std::runtime_error("Owned admission cannot use supplied busy flags");
     if(s.lost || d.lost)return {0x887601c2,0};
     auto r=request;r.sourceBusy=s.access.borrowed();r.destinationBusy=d.access.borrowed();
@@ -237,16 +242,23 @@ SurfaceCopyResult SurfaceBackend::copy(SurfaceId source,SurfaceId destination,co
     if(!keyed)return gl_.surfaceCopy(source,destination,r);
     r.flags=s.key?(r.flags&wait):keyFlag;
     const auto plan=planSurfaceCopy(s.width,s.height,d.width,d.height,d.clipper,r);
+    // Valid, idle keyed Blt rejects a missing key before NOCLIPLIST. Keep
+    // malformed/busy combinations at their separately captured planner boundary.
+    if(!s.key && r.api==SurfaceCopyApi::Blt && plan.hresult==surfaceStatus::noClipList){
+        const auto bare=planSurfaceCopy(s.width,s.height,d.width,d.height,{},r);
+        if(bare.hresult==surfaceStatus::invalidArgument)return {bare.hresult,0};
+    }
     if(source==destination && !s.key){
         if(r.api==SurfaceCopyApi::Blt)return {plan.hresult,unsigned(plan.pieces.size())};
         r.flags=request.flags&wait; // Measured missing-key BltFast is opaque.
     }
     return gl_.surfaceCopy(source,destination,r,s.key?std::optional<std::uint32_t>(*s.key):std::nullopt);
 }
-SurfaceCopyResult SurfaceBackend::fill(SurfaceId id,std::optional<Rect> rectangle,std::uint16_t color,std::uint32_t flags){
+SurfaceCopyResult SurfaceBackend::fill(SurfaceId id,std::optional<Rect> rectangle,std::uint32_t color,std::uint32_t flags){
     auto& e=entry(id);
-    if(e.format.bits!=16 || (flags!=0x400 && flags!=0x1000400))throw std::runtime_error("Unvalidated owned fill format/flags");
+    if(flags!=0x400 && flags!=0x1000400)throw std::runtime_error("Unvalidated owned fill format/flags");
     if(e.access.poisoned())throw std::runtime_error("Fill after mapping debt is unvalidated");
+    color&=e.format.bits==8?255u:e.format.masks[0]|e.format.masks[1]|e.format.masks[2];
     const auto r=rectangle.value_or(Rect{0,0,e.width,e.height});
     if(r.left>=r.right || r.top>=r.bottom)return {surfaceStatus::invalidRect,0};
     if(e.clipper.attached && !e.clipper.regions)return {surfaceStatus::noClipList,0};

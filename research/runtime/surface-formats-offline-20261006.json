@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "research/runtime/surface-formats-final-capture-20261006.json": "16500e6d9fde369085313fcde3d4f309259c0c1560bb7bbeafc36eddf7a0290c",
+    "tests/surface-formats-reference.c": "609eac62dc75c25cab9b489464081d6cfb4124b0693cf67f814abba73c6688c1",
+    "tests/surface-access-reference.c": "e9e30a5c1db9f67e67699c6c193054b4a5d9db384c963446e4a4988589dd24d2",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-formats.py": "fe18187933b6a3333d3373ecd1e25b32a442dba04e2d3b288088abcf4dfd4e52",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tests/fixtures/surfaces/surface-formats-final.json.gz": "d955207662df6b62c1c57b7abc6a4777df2807d52298940cd19d318cf1ed00eb",
+    "tools/check-surface-formats.py": "43e4ff15e034f7c89c472945b25599985e2a16cbe96491dd90d4d803849d7abf",
+    "tests/test-surface-formats.py": "89bdd27c10ba32a6cb2a7fd18f1094bb30af9f60e374cf61f417fbfa8805965f"
+  },
+  "admitted_draws": 1400,
+  "rejected_layout_cases": 2100,
+  "word_checks": 526400,
+  "scope": "Independent standalone DirectDraw2/Surface2 words/results/descriptors only. Caller LPSURFACE creation rejected; Surface3 SetSurfaceDesc admits sampled positive padded indexed/16/32 rows and tight RGB32; RGB24/negative/other tight layouts rejected, not manufactured. No original game format reachability or negative-driver-pitch acceptance."
+}

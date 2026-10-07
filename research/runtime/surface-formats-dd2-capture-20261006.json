@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-formats-reference.c": "f1b9e2cd9318df729b07cddccaef4e8c8640a74e76e3396b0a9aca7f072fffbd",
+    "tests/surface-access-reference.c": "e9e30a5c1db9f67e67699c6c193054b4a5d9db384c963446e4a4988589dd24d2",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-formats.py": "1e9af978f4240b96a73fcb01ce83dbe9bcde1f125c1ffdb96766c5145706bf75",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tests/fixtures/surfaces/surface-formats-dd2.json.gz": "8bab0fad9e2f6edf613e72cc046496d6bd8f398d0c982de55b04777a552f3aa7"
+  },
+  "cases": 3500,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-formats-dd2.json.gz",
+    "sha256": "8bab0fad9e2f6edf613e72cc046496d6bd8f398d0c982de55b04777a552f3aa7"
+  },
+  "inputs_sha256": "6412963eaaebaa6feb296186175ef75d31345b79187640cb0e234f12303f59d4",
+  "outputs_sha256": "90d9917caa8b16b906049a28433763a2004c138d0d12ce3c3789854c6f95bc10",
+  "probe_sha256": "00a17a5ff8246fe5b410796faefbc08ae804bc5c601c10854e7adec27efe1e5a",
+  "artifacts": "working/tests/surface-formats/run-ntovlg20",
+  "environment": {
+    "wine": "wine-11.16",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b"
+  },
+  "original_game_executed": false,
+  "original_manifest_verified_before_after": true,
+  "scope": "Historical DirectDraw2/Surface2 native format capture. 3500 cases, 700 draws, all caller-memory creation requests rejected. Collector completed driver/provenance/manifest checks but failed report creation for a relative corpus argument; reconstructed from unchanged sources and retained artifacts before fixing collector. No original game instructions or driver negative-pitch claim."
+}

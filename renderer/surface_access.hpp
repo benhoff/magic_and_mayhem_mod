@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <stdexcept>
 #include <utility>
+#include <optional>
 
 namespace mnm::render {
 // Single-thread admission model, not a COM surface or a borrowed pixel pointer.
@@ -24,25 +25,42 @@ private:
     }
 public:
     SurfaceAccessState(unsigned width,unsigned height,unsigned bits,unsigned caps,
-                       std::uint32_t storageToken,std::uint32_t dcToken):dcToken_(dcToken){
+                       std::uint32_t storageToken,std::uint32_t dcToken,
+                       std::optional<std::array<std::uint32_t,3>> masks=std::nullopt,
+                       std::optional<std::int32_t> rowPitch=std::nullopt):dcToken_(dcToken){
         if(!width || !height || width>2048 || height>2048 ||
-           (bits!=8 && bits!=16 && bits!=32) || (caps!=0x840 && caps!=0x40) ||
+           (bits!=8 && bits!=16 && bits!=24 && bits!=32) || (caps!=0x840 && caps!=0x40) ||
            !storageToken || !dcToken || storageToken==dcToken ||
            storageToken==0xabababab || dcToken==0xabababab)
             throw std::runtime_error("Unsupported owned surface access context");
         layout_[0]=108;layout_[1]=0x100f;layout_[2]=height;layout_[3]=width;
-        layout_[4]=(width*(bits/8)+3)&~3u;layout_[9]=storageToken;
+        layout_[4]=(width*(bits/8)+7)&~7u;layout_[9]=storageToken;
         layout_[18]=32;layout_[19]=bits==8?0x60:0x40;layout_[21]=bits;
-        layout_[22]=bits==16?0xf800:bits==32?0xff0000:0;
-        layout_[23]=bits==16?0x7e0:bits==32?0xff00:0;
-        layout_[24]=bits==16?0x1f:bits==32?0xff:0;layout_[26]=caps==0x840?0x840:0x10004040;
+        layout_[22]=bits==16?0xf800:bits>=24?0xff0000:0;
+        layout_[23]=bits==16?0x7e0:bits>=24?0xff00:0;
+        layout_[24]=bits==16?0x1f:bits>=24?0xff:0;layout_[26]=caps==0x840?0x840:0x10004040;
+        if(masks)for(unsigned i=0;i<3;++i)layout_[22+i]=(*masks)[i];
+        const auto canonical=bits==8?std::array<std::uint32_t,3>{}:bits==16?std::array<std::uint32_t,3>{0xf800,0x7e0,31}:std::array<std::uint32_t,3>{0xff0000,0xff00,0xff};
+        const std::array<std::uint32_t,3> actual{layout_[22],layout_[23],layout_[24]};
+        if(actual!=canonical && !(bits==16 && actual==std::array<std::uint32_t,3>{0x7c00,0x3e0,31}))
+            throw std::runtime_error("Unsupported access pixel masks");
+        if(rowPitch){
+            const auto value=std::int64_t(*rowPitch),magnitude=value<0?-value:value;
+            if(magnitude<std::int64_t(width)*(bits/8) || magnitude>32768)
+                throw std::runtime_error("Invalid access row pitch");
+            layout_[4]=std::uint32_t(*rowPitch);
+        }
     }
     SurfaceAccessState(const SurfaceAccessState&)=delete;
     SurfaceAccessState& operator=(const SurfaceAccessState&)=delete;
     void exchangeStorageLease(SurfaceAccessState& other){
-        if(layout_[2]!=other.layout_[2] || layout_[3]!=other.layout_[3] || layout_[21]!=other.layout_[21] || poisoned() || other.poisoned())
+        if(layout_[2]!=other.layout_[2] || layout_[3]!=other.layout_[3] || layout_[21]!=other.layout_[21] || layout_[22]!=other.layout_[22] || layout_[23]!=other.layout_[23] || layout_[24]!=other.layout_[24] || poisoned() || other.poisoned())
             throw std::runtime_error("Incompatible storage lease exchange");
-        std::swap(balance_,other.balance_);std::swap(storageDcToken_,other.storageDcToken_);std::swap(layout_[9],other.layout_[9]);
+        std::swap(balance_,other.balance_);std::swap(storageDcToken_,other.storageDcToken_);std::swap(layout_[9],other.layout_[9]);std::swap(layout_[4],other.layout_[4]);
+    }
+    void setSourceKey(std::optional<std::uint32_t> key){
+        if(key)layout_[1]|=0x10000;else layout_[1]&=~0x10000u;
+        layout_[16]=layout_[17]=key.value_or(0);
     }
     bool dcMatchesStorage() const {return dc_ && storageDcToken_==dcToken_;}
     bool storageDcActive() const {return storageDcToken_!=0;}

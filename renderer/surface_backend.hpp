@@ -1,6 +1,7 @@
 #pragma once
 #include "bitmap_dc.hpp"
 #include "surface_access.hpp"
+#include "pixel_rows.hpp"
 #include <unordered_map>
 
 namespace mnm::render {
@@ -16,7 +17,13 @@ public:
     SurfaceBackend(const SurfaceBackend&)=delete;
     SurfaceBackend& operator=(const SurfaceBackend&)=delete;
     SurfaceId create(const Image&,PixelFormat,unsigned caps=0x840,
-                     std::optional<Palette> defaults=std::nullopt,bool primary=false);
+                     std::optional<Palette> defaults=std::nullopt,bool primary=false,
+                     std::optional<std::int32_t> rowPitch=std::nullopt);
+    SurfaceId createRows(const PixelRows&,PixelFormat,unsigned caps=0x840,
+                         std::optional<Palette> defaults=std::nullopt);
+    void updateRows(SurfaceId,int x,int y,const PixelRows&);
+    void readRows(SurfaceId,PixelRows&);
+    void writeLockedRows(SurfaceId,int x,int y,const PixelRows&);
     void destroy(SurfaceId);
     // Canonical aliases retain one object identity; IDs never recycle.
     SurfaceId alias(SurfaceId);
@@ -36,7 +43,7 @@ public:
     void markLost(SurfaceId);
     std::uint32_t isLost(SurfaceId) const;
     std::uint32_t restore(SurfaceId,std::optional<Mode> currentMode=std::nullopt);
-    std::optional<std::uint16_t> sourceKey(SurfaceId) const;
+    std::optional<std::uint32_t> sourceKey(SurfaceId) const;
     void update(SurfaceId,int x,int y,const Image&);
     std::uint32_t lock(SurfaceId,Descriptor&);
     const Image& lockedPixels(SurfaceId) const;
@@ -52,11 +59,11 @@ public:
     void updatePalette(SurfaceId,unsigned first,const std::vector<Rgb>&);
     void reloadDib(SurfaceId,const DibInput&);
     void setClipper(SurfaceId,const ClipperState&);
-    void setSourceKey(SurfaceId,std::optional<std::uint16_t>);
+    void setSourceKey(SurfaceId,std::optional<std::uint32_t>);
     SurfaceCopyResult copy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest&);
-    // Canonical RGB565 native word; the original wrapper truncates its argument
-    // before this API. Supported flags: COLORFILL, optionally WAIT.
-    SurfaceCopyResult fill(SurfaceId,std::optional<Rect>,std::uint16_t color,
+    // API native color truncates to active RGB masks (indexed depth); the recovered WORD wrapper
+    // performs its own truncation before this API. COLORFILL optionally WAIT.
+    SurfaceCopyResult fill(SurfaceId,std::optional<Rect>,std::uint32_t color,
                            std::uint32_t flags=0x01000400);
     Image read(SurfaceId);
     QImage present(SurfaceId);

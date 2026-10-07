@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-formats-reference.c": "edaf9d52e2d758aca468b74ff6bd92c3a900e4cb683e1eb26601be47d78acde1",
+    "tests/surface-access-reference.c": "e9e30a5c1db9f67e67699c6c193054b4a5d9db384c963446e4a4988589dd24d2",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/capture-surface-formats.py": "950f925c7d7ea863a760add1111174ef450f33591ddd4a8cfdc81928b14e3619",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tests/fixtures/surfaces/surface-formats.json.gz": "891323de9f75b12e5e402e8f14d71622dfc53e313d93e4704b053fce99b8dfd0"
+  },
+  "cases": 2625,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-formats.json.gz",
+    "sha256": "891323de9f75b12e5e402e8f14d71622dfc53e313d93e4704b053fce99b8dfd0"
+  },
+  "inputs_sha256": "30ce2f473d9bd73e5f3571b621698ffadb3cd11e63fca97bf1a9d7690cbbb798",
+  "outputs_sha256": "c133db3b654de386092cadffadb4947863f699f8366582ef0d721f7d2bf60154",
+  "probe_sha256": "ed88be4c1acafea8b44b651d81be2d20eee5fdcc119343a182cdd624e9a81d5c",
+  "artifacts": "working/tests/surface-formats/run-5aw8ontr",
+  "environment": {
+    "wine": "wine-11.16",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b"
+  },
+  "original_game_executed": false,
+  "scope": "Standalone Wine Surface2 five explicit indexed8/RGB555/RGB565/RGB24/RGB32 formats, five default/padded/tight/negative layouts, seven fill/copy/self-keyed operation families, five clip states and three key states. Independent results/normalized descriptors/complete native pixels and caller-storage padding/guards. Actual creation failures retained. No original game instructions, original format reachability, cross-format conversion, physical display/Windows/live equivalence.",
+  "original_manifest_verified_before_after": true
+}

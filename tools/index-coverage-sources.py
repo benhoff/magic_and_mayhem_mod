@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_ROOTS = ('assets', 'audio', 'renderer', 'reconstruction', 'runtime', 'apps', 'game', 'protocols', 'tools', 'tests')
+SOURCE_ROOTS = ('assets', 'audio', 'renderer', 'reconstruction', 'runtime', 'compat', 'apps', 'game', 'protocols', 'tools', 'tests')
 SUFFIXES = {'.cpp', '.hpp', '.c', '.h', '.inc', '.S', '.py', '.java', '.sh', '.json', '.html', '.css', '.js'}
 
 
@@ -21,7 +21,7 @@ def index(root, register):
     for path in source_paths(root):
         references = [{'behavior': b['id'], 'role': role} for b in register['behaviors']
                       for role in ('implementation', 'tests') if path in b[role]]
-        prefix = '/'.join(Path(path).parts[:2]) if path.startswith(('apps/', 'runtime/', 'reconstruction/')) else Path(path).parts[0]
+        prefix = '/'.join(Path(path).parts[:2]) if path.startswith(('apps/', 'runtime/', 'reconstruction/', 'compat/')) else Path(path).parts[0]
         role = 'build' if Path(path).name == 'CMakeLists.txt' else ('test' if path.startswith('tests/') else
                'tool' if path.startswith('tools/') else 'protocol' if path.startswith('protocols/') else 'code')
         rows.append({'path': path, 'sha256': hashlib.sha256((root/path).read_bytes()).hexdigest(),
