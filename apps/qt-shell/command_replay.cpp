@@ -5,10 +5,11 @@
 #include <QFile>
 #include <QTimer>
 #include <algorithm>
+#include <cmath>
 #include <cstdio>
 #include <stdexcept>
 
-int runCommandReplay(const QString& path,bool smokeTest,bool verifyChecks){
+int runCommandReplay(const QString& path,bool smokeTest,bool verifyChecks,PresentationOptions presentation){
     auto* application=qobject_cast<QApplication*>(QCoreApplication::instance());
     if(!application){std::fputs("Command replay requires QApplication\n",stderr);return 8;}
     auto& app=*application;
@@ -18,7 +19,7 @@ int runCommandReplay(const QString& path,bool smokeTest,bool verifyChecks){
             throw std::runtime_error("Cannot read bounded command stream");
         const auto commands=mnm::render::decodeCommands(file.read(mnm::render::maxCommandBytes+1));
         GlViewport viewport;viewport.setWindowTitle("Magic & Mayhem — incremental GPU command replay");
-        viewport.resize(640,480);viewport.show();
+        viewport.resize(640,480);ViewportPresentation display(viewport,viewport,presentation);display.show();
         QImage expected;if(smokeTest)expected=mnm::render::replayCommands(commands).presentation;
         std::unique_ptr<mnm::render::GlBlitter> renderer;
         std::unique_ptr<mnm::render::CommandConsumer> consumer;
@@ -44,7 +45,8 @@ int runCommandReplay(const QString& path,bool smokeTest,bool verifyChecks){
                 if(smokeTest)QTimer::singleShot(0,&viewport,[&]{
                     if(!viewport.ready() || !viewport.error().isEmpty()){app.exit(6);return;}
                     const auto actual=viewport.grabFramebuffer();const auto& image=expected;
-                    const auto scale=qMin(double(actual.width())/image.width(),double(actual.height())/image.height());
+                    auto scale=qMin(double(actual.width())/image.width(),double(actual.height())/image.height());
+                    if(presentation.scaling==GlViewport::Scaling::Integer && scale>=1)scale=std::floor(scale);
                     const int w=qRound(image.width()*scale),h=qRound(image.height()*scale);
                     const int left=(actual.width()-w)/2,top=actual.height()-h-(actual.height()-h)/2;
                     bool ok=viewport.imageUploads()==0;
@@ -52,7 +54,21 @@ int runCommandReplay(const QString& path,bool smokeTest,bool verifyChecks){
                         const int px=(2*x+1)*w/6,py=(2*y+1)*h/6;
                         const int ix=qMin(image.width()-1,int((px+0.5)*image.width()/w));
                         const int iy=qMin(image.height()-1,int((py+0.5)*image.height()/h));
-                        if(actual.pixelColor(left+px,top+py)!=image.pixelColor(ix,iy))ok=false;
+                        QColor color=image.pixelColor(ix,iy);
+                        if(presentation.scaling==GlViewport::Scaling::Smooth){
+                            const double sx=(px+0.5)*image.width()/w-0.5,sy=(py+0.5)*image.height()/h-0.5;
+                            const int x0=int(std::floor(sx)),y0=int(std::floor(sy));const double fx=sx-x0,fy=sy-y0;
+                            double channels[4]={};
+                            for(int dy=0;dy<2;++dy)for(int dx=0;dx<2;++dx){
+                                const auto c=image.pixelColor(qBound(0,x0+dx,image.width()-1),qBound(0,y0+dy,image.height()-1));
+                                const double weight=(dx?fx:1-fx)*(dy?fy:1-fy);
+                                const int values[]={c.red(),c.green(),c.blue(),c.alpha()};
+                                for(int channel=0;channel<4;++channel)channels[channel]+=weight*values[channel];
+                            }
+                            color=QColor(qRound(channels[0]),qRound(channels[1]),qRound(channels[2]),qRound(channels[3]));
+                        }
+                        const auto got=actual.pixelColor(left+px,top+py);
+                        if(qAbs(got.red()-color.red())>1 || qAbs(got.green()-color.green())>1 || qAbs(got.blue()-color.blue())>1 || qAbs(got.alpha()-color.alpha())>1)ok=false;
                     }
                     app.exit(ok?0:7);
                 });

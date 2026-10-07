@@ -5657,7 +5657,15 @@
         "tests/frame-stream-test.cpp"
       ],
       "evidence": [
-        "REVIEW.HOST.session"
+        "REVIEW.HOST.session",
+        "HOST.presentation.native-20261006",
+        "HOST.presentation.fullscreen-button-20261006",
+        "HOST.presentation.link-fix-20261006",
+        "HOST.presentation.fullscreen-ready-20261006",
+        "HOST.native-command-default.synthetic-20261006",
+        "HOST.command-refusal.native-20261006",
+        "HOST.fullscreen-native-commit.native-20261007",
+        "HOST.fullscreen-native-commit.final-native-20261007"
       ],
       "status": {
         "understanding": "partial",
@@ -5688,7 +5696,15 @@
         "tests/qt-input-test.cpp"
       ],
       "evidence": [
-        "REVIEW.HOST.input"
+        "REVIEW.HOST.input",
+        "HOST.presentation.native-20261006",
+        "HOST.presentation.fullscreen-button-20261006",
+        "HOST.presentation.link-fix-20261006",
+        "HOST.presentation.fullscreen-ready-20261006",
+        "HOST.native-command-default.synthetic-20261006",
+        "HOST.command-refusal.native-20261006",
+        "HOST.fullscreen-native-commit.native-20261007",
+        "HOST.fullscreen-native-commit.final-native-20261007"
       ],
       "status": {
         "understanding": "partial",
@@ -10474,7 +10490,15 @@
       "evidence": [
         "NR.gpu-presentation.native",
         "NR.gpu-presentation.native-v2",
-        "NR.surface-colors.rgb565-dc.regressions-20261006"
+        "NR.surface-colors.rgb565-dc.regressions-20261006",
+        "HOST.presentation.native-20261006",
+        "HOST.presentation.fullscreen-button-20261006",
+        "HOST.presentation.link-fix-20261006",
+        "HOST.presentation.fullscreen-ready-20261006",
+        "HOST.native-command-default.synthetic-20261006",
+        "HOST.command-refusal.native-20261006",
+        "HOST.fullscreen-native-commit.native-20261007",
+        "HOST.fullscreen-native-commit.final-native-20261007"
       ],
       "status": {
         "understanding": "scoped",
@@ -11588,7 +11612,10 @@
       "evidence": [
         "NR.live-command-transport.native",
         "NR.live-command-transport.unlock-regression",
-        "NR.live-command-transport.startup-regression"
+        "NR.live-command-transport.startup-regression",
+        "HOST.command-refusal.native-20261006",
+        "HOST.fullscreen-native-commit.native-20261007",
+        "HOST.fullscreen-native-commit.final-native-20261007"
       ],
       "status": {
         "understanding": "scoped",
@@ -13343,7 +13370,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Mapped native ring reader and cooperative owned producer queue",
-      "scope": "Version2 mapped adapter and bounded queue. Qt polls consume the caller byte budget across at-most64KiB fragments and submit at-most32 decoded commands per call; checkpoint first-frame delivery and bounded cleanup are tested. v1 retained; sustained original traffic can overflow, with explicit fallback. Original-driver/pixel equivalence remains pending.",
+      "scope": "Version2 mapped adapter and bounded queue. Qt polls consume the caller byte budget across at-most64KiB fragments and submit at-most32 decoded commands per call; checkpoint first-frame delivery and bounded cleanup are tested. v1 retained; sustained original traffic can overflow, with explicit fallback. Original-driver/pixel equivalence remains pending. Terminal failure diagnostics preserve identity-checked producer reasons. User continuous GAP is retained negative evidence; bounded isolated ordered campaign publication and recovery do not establish repeatable user-hardware/movie operation.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -13381,7 +13408,10 @@
         "NR.command-ring-adapter.live",
         "NR.command-streaming.live",
         "NR.command-recovery.metadata-channel-20261006",
-        "NR.command-recovery.metadata-game-20261006"
+        "NR.command-recovery.metadata-game-20261006",
+        "NR.command-refusal.startup-20261006",
+        "NR.command-refusal.ordered-route-20261006",
+        "NR.command-refusal.user-command-scope-20261007"
       ],
       "status": {
         "understanding": "scoped",
@@ -13953,7 +13983,10 @@
         "NR.command-route-observation.live-20261006",
         "NR.continuous-resource-working-set.native-20261006",
         "NR.continuous-resource-working-set.continuous-20261006",
-        "NR.continuous-resource-working-set.game-20261006"
+        "NR.continuous-resource-working-set.game-20261006",
+        "NR.command-refusal.startup-20261006",
+        "NR.command-refusal.ordered-route-20261006",
+        "NR.command-refusal.user-command-scope-20261007"
       ],
       "status": {
         "understanding": "scoped",
@@ -14299,7 +14332,10 @@
         "NR.continuous-resource-working-set.game-20261006",
         "NR.command-world-observation.live-20261006",
         "NR.cpu-handoff.live-20261006",
-        "NR.drawing-recovery.native-20261006"
+        "NR.drawing-recovery.native-20261006",
+        "NR.command-refusal.startup-20261006",
+        "NR.command-refusal.ordered-route-20261006",
+        "NR.command-refusal.user-command-scope-20261007"
       ],
       "status": {
         "understanding": "scoped",
@@ -16806,6 +16842,115 @@
         "implementation": "partial",
         "comparison": "none",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.command-refusal-diagnostics",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Identity-checked native producer refusal diagnostics",
+      "scope": "Terminal v2 FAILED reasons carry session, known reason name or unknown numeric code. Invalid identities cannot supply trusted producer reason. Cancellation and clearing retained; no history reconstruction, retry-policy, engine rule or simulation change.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-command-refusal.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/command_channel.cpp"
+      ],
+      "tests": [
+        "tests/live-render-channel-test.cpp"
+      ],
+      "evidence": [
+        "HOST.command-refusal.native-20261006",
+        "HOST.fullscreen-native-commit.native-20261007",
+        "HOST.fullscreen-native-commit.final-native-20261007"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-command-launch",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Continuous native command application launch default",
+      "scope": "Qt native-command Launch action defaults to continuous v2 and matching child environment/control channel, explicit environment0 retains bounded diagnostics. Synthetic actual-shell visible startup/streaming beyond4096 commands in normal/fullscreen/fractional-DPI windows; prior bounded black startup captures inspected independently. Original-game retry on user hardware, movies, sustained gameplay and native replacement remain pending. Subsequent continuous user GAP is a separate capture ownership/history failure; ordered drawing remains an explicit independent opt-in.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-command-launch.md",
+        "apps/qt-shell/README.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "tools/test-native-command-launch.py"
+      ],
+      "evidence": [
+        "HOST.native-command-default.synthetic-20261006",
+        "HOST.command-refusal.native-20261006",
+        "HOST.fullscreen-native-commit.native-20261007",
+        "HOST.fullscreen-native-commit.final-native-20261007"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.presentation",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Display-only scaling and fullscreen",
+      "scope": "Qt physical-pixel sharp/smooth aspect fit, integer enlargement with small-window fallback, F11 fullscreen with geometry/chrome restoration and original logical input mapping. Fullscreen chrome waits for a usable frame; deferred layout/redraw covers startup and retained/changing GPU frames in synthetic onscreen checks. Source dimensions, engine preferences and simulation remain unchanged. Original-game interaction, other displays/backends and user graphics hardware remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/viewport-presentation.md",
+        "apps/qt-shell/README.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/viewport_presentation.cpp",
+        "apps/qt-shell/viewport_presentation.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/command_replay.cpp",
+        "apps/qt-shell/command_replay.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "renderer/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/viewport-presentation-test.cpp",
+        "tests/qt-input-test.cpp",
+        "tools/test-viewport-presentation.py",
+        "tests/command-replay-shell.cpp"
+      ],
+      "evidence": [
+        "HOST.presentation.native-20261006",
+        "HOST.presentation.fullscreen-button-20261006",
+        "HOST.presentation.link-fix-20261006",
+        "HOST.presentation.fullscreen-ready-20261006",
+        "HOST.native-command-default.synthetic-20261006",
+        "HOST.command-refusal.native-20261006",
+        "HOST.fullscreen-native-commit.native-20261007",
+        "HOST.fullscreen-native-commit.final-native-20261007"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -30828,6 +30973,332 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.presentation.native-20261006",
+      "kind": "native_integration",
+      "scope": "Synthetic Xvfb/Mesa at DPI scales 1 and 1.5: complete CPU/GPU framebuffer oracles for sharp/smooth/integer scaling, resize/fullscreen/chrome/geometry/F11/Escape, actual targeted XCB logical input, upload and existing GPU lease regressions, all fullscreen CLI replay modes and invalid-option refusal. No original-game or hardware performance claim.",
+      "record": "research/runtime/viewport-presentation-20261006.json",
+      "sha256": "6fc3cf87dc65b1861fcfce575ff8399ed07a2e00d5250776cf0de159d5721c24",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/full_frame_comparisons",
+          "equals": 240
+        },
+        {
+          "pointer": "/native_integration/presentation_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/gpu_scaling_uploads",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_integration/logical_input_preserved",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.presentation.fullscreen-button-20261006",
+      "kind": "native_integration",
+      "scope": "Explicit text fullscreen button: click entry/exit, label/checked state synchronization with F11, geometry and chrome restoration at device scales 1 and 1.5, plus existing CPU/GPU scaling, targeted XCB input and fullscreen replay/startup regressions. Synthetic Xvfb/Mesa only.",
+      "record": "research/runtime/viewport-fullscreen-button-20261006.json",
+      "sha256": "ac598758698c6a689bc81a9ed0ed245723d1542caaf924490fa1135dd1f09d96",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/full_frame_comparisons",
+          "equals": 240
+        },
+        {
+          "pointer": "/native_integration/fullscreen_restore",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.presentation.link-fix-20261006",
+      "kind": "native_integration",
+      "scope": "Default launcher all-target build, standalone command-replay test shell link and synthetic GPU replay, native-command shell smoke without original launch, and existing normal/high-DPI 240-frame presentation/input regression matrix. Build dependency fix only; no original-equivalence claim.",
+      "record": "research/runtime/viewport-presentation-link-fix-20261006.json",
+      "sha256": "8b25a718af1bf4a450bc7889414203d842e3a20833bab8805eee55907d19ede2",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/linker_fix/full_launcher_build",
+          "equals": true
+        },
+        {
+          "pointer": "/linker_fix/standalone_replay",
+          "equals": true
+        },
+        {
+          "pointer": "/linker_fix/native_command_shell_smoke",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/full_frame_comparisons",
+          "equals": 240
+        }
+      ]
+    },
+    {
+      "id": "HOST.presentation.fullscreen-ready-20261006",
+      "kind": "native_integration",
+      "scope": "Synthetic actual-window startup, retained/changing shared GPU frames, fullscreen transitions and empty-frame chrome recovery, normal/high-DPI 240 framebuffer and 34 onscreen checks, and full launcher build. No original-game or user-driver claim.",
+      "record": "research/runtime/viewport-fullscreen-ready-20261006.json",
+      "sha256": "9548cf0b6620bc47ce2c08d2d3dfd7ad2233d028ceb808ae63dc1f43ecb8a674",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/full_frame_comparisons",
+          "equals": 240
+        },
+        {
+          "pointer": "/native_integration/onscreen_comparisons",
+          "equals": 34
+        },
+        {
+          "pointer": "/native_integration/empty_frame_controls",
+          "equals": true
+        },
+        {
+          "pointer": "/fullscreen_readiness/full_launcher_build",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-command-default.synthetic-20261006",
+      "kind": "native_integration",
+      "scope": "Real Qt Launch button with synthetic producer: default/explicit continuous, explicit bounded diagnostics, matching launcher environment and v2/control channels, visible retained normal/fullscreen/high-DPI frames after first black frame, all4202 commands drained. Fresh display/input/upload/CLI matrix; prior captures inspected separately, no new original game/driver equivalence.",
+      "record": "research/runtime/native-command-default-20261006.json",
+      "sha256": "dca7182323a98a278df4aff6ef3ff4e57abef1bee0513e3eb4ec1acfd6bb2631",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/default_continuous",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/explicit_bounded",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/matching_child_environment_and_channels",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/beyond_bounded_command_limit",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/windowed_fullscreen_hidpi",
+          "equals": true
+        },
+        {
+          "pointer": "/presentation_regression/native_integration/full_frame_comparisons",
+          "equals": 240
+        },
+        {
+          "pointer": "/presentation_regression/native_integration/onscreen_comparisons",
+          "equals": 34
+        }
+      ]
+    },
+    {
+      "id": "HOST.command-refusal.native-20261006",
+      "kind": "native_integration",
+      "scope": "Identity-checked native terminal-reason diagnostics: five known reasons, unknown code and malformed identity. Complete-frame/checkpoint/fragmentation/sustained native regressions and actual Qt Launch button streaming/windowed/fullscreen/high-DPI checks. No original-driver or live replacement claim.",
+      "record": "research/runtime/native-command-refusal-native-20261006.json",
+      "sha256": "0f95c5b950715988fad9f3aa1931391fe6fdae82ee39f9e2ba259a0abb0ab007",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/producer_refusal_cases",
+          "equals": 7
+        }
+      ]
+    },
+    {
+      "id": "NR.command-refusal.startup-20261006",
+      "kind": "live_observation",
+      "scope": "Bounded original-game startup observation; original rendering retained. No independent pixel equivalence or replacement claim.",
+      "record": "research/runtime/native-command-refusal-startup-20261006.json",
+      "sha256": "0bf3d46586a41923e06d4ee9af6eca10ba3955280c1d4af862fd062e69388156",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_state",
+          "equals": 2
+        },
+        {
+          "pointer": "/native_consumer/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_consumer/presentations",
+          "equals": 1
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "NR.command-refusal.ordered-route-20261006",
+      "kind": "live_observation",
+      "scope": "Bounded isolated original campaign ingress with opt-in drawing/CPU handoff ordering, software rendering and movies disabled: 328 native frames, independent stable menu regions and forced region/World recovery with27 further World frames over3106ms. Original drawing retained; no synchronized animated/full-frame or hardware-driver equivalence, movie playback, unrestricted repeatability or replacement claim.",
+      "record": "research/runtime/native-command-refusal-ordered-route-20261006.json",
+      "sha256": "b51c5473efc8817067035785d3d402cb8821049f9c86d0b2d2759174da978907",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ordered_copies",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/world_active_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.command-refusal.user-command-scope-20261007",
+      "kind": "live_observation",
+      "scope": "Historical read-only user continuous-command GAP inspection, scoped to available command/hosting code provenance. Full original inspection record and its unrelated scene-protocol fingerprint are preserved separately; no new execution, current-source equivalence or scene validation claim.",
+      "record": "research/runtime/native-command-refusal-user-command-scope-20261007.json",
+      "sha256": "3c5ae046afa73fc1c72c6ca92198319cbf952a39ae778e544fc6d39c8d47415f",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/continuous_commands",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_gap_confirmed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_sha256"
+    },
+    {
+      "id": "HOST.fullscreen-native-commit.native-20261007",
+      "kind": "native_integration",
+      "scope": "Exact selected commit candidate based on fc65636, excluding unrelated resource/scene work. Fresh synthetic fullscreen/scaling/input/replay and native default-launch/refusal integration. No new original-game execution, user-driver, latency/performance or live replacement claim.",
+      "record": "research/runtime/fullscreen-native-commit-validation-20261007.json",
+      "sha256": "a59d6a6b8f548c156f8b799fdfa18dbcac07bf75f8573846ce818db6fce56d9d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/full_frame_comparisons",
+          "equals": 240
+        },
+        {
+          "pointer": "/native_integration/onscreen_comparisons",
+          "equals": 34
+        },
+        {
+          "pointer": "/native_integration/producer_refusal_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_integration/default_continuous",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.fullscreen-native-commit.final-native-20261007",
+      "kind": "native_integration",
+      "scope": "Exact selected fullscreen/native-command commit candidate based on 475019f, retaining committed streaming and surface-format work while excluding unrelated resources/scenes. Fresh synthetic fullscreen/scaling/input/replay and actual-shell default-launch/refusal integration. No new original-game execution, user-driver, latency/performance or live replacement claim.",
+      "record": "research/runtime/fullscreen-native-commit-final-validation-20261007.json",
+      "sha256": "cb4cf8e69ca9e0a20fa91cd1cdd6c41165b5f538277b83a3e5e01f144c3a8e4a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/all_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_integration/full_frame_comparisons",
+          "equals": 240
+        },
+        {
+          "pointer": "/native_integration/onscreen_comparisons",
+          "equals": 34
+        },
+        {
+          "pointer": "/native_integration/producer_refusal_cases",
+          "equals": 7
+        },
+        {
+          "pointer": "/native_integration/default_continuous",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -35768,6 +36239,97 @@
         "tools/check-surface-formats.py",
         "tests/test-surface-formats.py"
       ]
+    },
+    {
+      "id": "hosting.display-only-presentation",
+      "level": "preview",
+      "scope": "Synthetic normal/high-DPI fullscreen and scaling without original artifacts; engine resolution and original equivalence are not promoted.",
+      "behaviors": [
+        "HOST.presentation",
+        "HOST.input",
+        "HOST.session",
+        "NR.gpu-presentation"
+      ],
+      "evidence": [
+        "HOST.presentation.native-20261006",
+        "HOST.presentation.fullscreen-button-20261006",
+        "HOST.presentation.link-fix-20261006",
+        "HOST.presentation.fullscreen-ready-20261006"
+      ],
+      "tests": [
+        "tests/viewport-presentation-test.cpp",
+        "tests/qt-input-test.cpp",
+        "tools/test-viewport-presentation.py",
+        "tests/command-replay-shell.cpp"
+      ]
+    },
+    {
+      "id": "hosting.native-command-launch-default",
+      "level": "preview",
+      "scope": "Actual Qt Launch button with fake repository and synthetic mapped producer, default and explicit mode selection, complete stream acknowledgment beyond bounded limits, composed pixels in normal/fullscreen/high-DPI windows; no original game launch.",
+      "behaviors": [
+        "HOST.native-command-launch",
+        "HOST.presentation",
+        "HOST.session",
+        "HOST.input",
+        "NR.gpu-presentation"
+      ],
+      "evidence": [
+        "HOST.native-command-default.synthetic-20261006"
+      ],
+      "tests": [
+        "tools/test-native-command-launch.py",
+        "tools/test-viewport-presentation.py"
+      ]
+    },
+    {
+      "id": "hosting.native-command-refusal",
+      "title": "Identity-checked native producer failure and ordered route observation",
+      "behaviors": [
+        "HOST.command-refusal-diagnostics",
+        "HOST.native-command-launch",
+        "NR.command-ring-adapter",
+        "NR.command-host-recovery"
+      ],
+      "evidence": [
+        "HOST.command-refusal.native-20261006",
+        "NR.command-refusal.startup-20261006",
+        "NR.command-refusal.ordered-route-20261006",
+        "NR.command-refusal.user-command-scope-20261007"
+      ],
+      "scope": "Native five known/unknown/malformed failures; actual-shell default streaming; bounded original startup and opt-in ordered campaign recovery. User continuous GAP is preserved negative evidence. No unrestricted driver/gameplay/full-frame replacement claim.",
+      "level": "preview",
+      "tests": [
+        "tests/live-render-channel-test.cpp",
+        "tools/test-native-command-launch.py",
+        "tools/test-live-render-game.py",
+        "tools/test-live-render-routes.py"
+      ]
+    },
+    {
+      "id": "hosting.fullscreen-native-commit",
+      "scope": "Exact selected commit candidate based on fc65636, excluding unrelated resource/scene work. Fresh synthetic fullscreen/scaling/input/replay and native default-launch/refusal integration. No new original-game execution, user-driver, latency/performance or live replacement claim.",
+      "level": "preview",
+      "behaviors": [
+        "HOST.presentation",
+        "HOST.native-command-launch",
+        "HOST.command-refusal-diagnostics",
+        "HOST.input",
+        "HOST.session",
+        "NR.gpu-presentation",
+        "NR.live-command-transport"
+      ],
+      "evidence": [
+        "HOST.fullscreen-native-commit.native-20261007",
+        "HOST.fullscreen-native-commit.final-native-20261007"
+      ],
+      "tests": [
+        "tests/viewport-presentation-test.cpp",
+        "tests/qt-input-test.cpp",
+        "tests/live-render-channel-test.cpp",
+        "tools/test-viewport-presentation.py",
+        "tools/test-native-command-launch.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -36015,7 +36577,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-surface-formats-20261006.json",
-    "sha256": "d315cee202321dfc254619a241fc4ac1198010b015032c12c4511a64ec5fe11c"
+    "path": "research/runtime/coverage/source-index-fullscreen-native-commit-final-base-20261007.json",
+    "sha256": "976b374aa536cbc49053882f6b01d9752c6d82154e1a1807eea554ce60e5799c"
   }
 }

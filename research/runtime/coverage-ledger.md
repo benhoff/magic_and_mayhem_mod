@@ -1860,3 +1860,37 @@ independent pending presentation/resource/scene workspace changes are excluded.
 ## Native surface formats and pitch — 2026-10-06
 
 [Chunk3](native-surface-formats-pitch.md) implements indexed8/RGB555/RGB565/RGB24/RGB32 same-format fills/keys/copies/clips/overlap and explicit owned signed byte rows. Standalone serialized Wine capture records3500cases:1400admitteddraws/2100rejectedsetups, complete nativewords/descriptors/keyoutputs/callerpadding/guards. LPSURFACE creation rejects; Surface3 positivepadded indexed/16/32 and tightRGB32 bindings admit; negative and sampled RGB24 memory bindings reject. Native signed imports copy caller bytes and compare2800additional variants against recorded logicaloutputs, separately from driver acceptance. Active-mask fill/key semantics retain installed highkeybits and copiedunusedbits; descriptor keyflags/range and storage-following pitch are explicit. Fresh667800nativeword/descriptor/presentation values,2150400packedbytes,27259checks/60refusals,13oracle tests and all16renderer cases pass across latest suite/serial Xvfb cleanup rechecks; coverage audit/gate suites pass. Existing5114drawresults/538272pixels/258048entries/8664descriptors and11flips/4480originalretrytraces/1536boundedstops freshly compare. Tested tree is isolated fc65636 plus ownchanges; foreign shared-worktree changes excluded. Game captures establishRGB565; static setup8/non8/WORDcreation/pitchLock boundaries do not prove whole requiredformat reachability. Presentation/signed layouts/defaultpitch are native policies; requiredcaller/descriptor census, remaining flags/uncaptured recovery/DC/asset branches and live/wire/Windows are acceptance boundaries. The full surface milestone remains incomplete.
+
+### Display scaling, fullscreen and native-command launch/refusal (2026-10-06)
+
+Qt presentation now supports sharp/smooth/integer physical-pixel scaling, a
+Fullscreen button and F11, restoring geometry/chrome and preserving logical game
+input. Chrome hides only after a usable frame; layout/redraw is deferred. The
+standalone replay target links the shared presentation controller. The engine
+canvas and simulation rules are unchanged.
+
+Native-command launches default to continuous v2 with matching child environment
+and control/session channels; explicit environment0 retains bounded diagnostics.
+Prior bounded captures contained one black startup frame. Subsequent continuous
+user capture failed with GAP after an8ms tracker timeout; both recovered streams
+refused. Identity-checked diagnostics now name the producer reason and session,
+with known/unknown/malformed refusal fixtures. The opt-in ordered drawing policy
+passes a bounded isolated software-rendered campaign through328 native frames and
+region/World recovery; movies/user graphics hardware, unrestricted repeatability,
+synchronized full-frame comparison and replacement remain pending. Synthetic
+display/input/launch validation and original observation are separate milestones.
+Historical execution fingerprints and committed review receipts are preserved.
+See viewport-presentation.md, native-command-launch.md and native-command-refusal.md.
+
+The exact selected commit candidate based on `fc65636` passes fresh synthetic
+240 complete framebuffer and34 visible-window comparisons, logical input and
+replay checks, seven identity/reason refusal cases, native channel/streaming
+regressions and four actual-shell mode/window/DPI launch cases. The shell and
+standalone replay target build in Release. The immutable record is
+`fullscreen-native-commit-validation-20261007.json`; no new original execution,
+hardware performance or input-latency result is asserted for this commit.
+
+After the committed surface-format update (`475019f`), the same selected Release
+build and synthetic matrix were rerun successfully. Fresh immutable evidence is
+`fullscreen-native-commit-final-validation-20261007.json`; prior records retain
+their original hashes. This rerun retains the same hardware/live/latency limits.

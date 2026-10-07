@@ -13,6 +13,13 @@ commands. The native creation API accepts explicit version2; default remainsv1.
 Invalid identity, reserved fields, ownership/counters and terminal state refuse
 through the ring primitive. Existing v1 validation remains active.
 
+The native reader now preserves the terminal producer reason and session in its
+error after validating identity and FAILED state. Known GAP/OVERFLOW/CANCELLED/
+INTERRUPTED/INVALID reasons remain distinct; unknown numeric codes remain visible.
+Invalid session identities cannot supply trusted reason labels. See the
+[source-bound refusal diagnosis](native-command-refusal.md); this diagnostic
+branch does not relax wire checks, recover missing history or alter retry policy.
+
 The producer claims a fresh v2 channel and allocates one32MiB private byte queue.
 Admitted command header/fields/pixels are copied completely into owned queue
 storage while the existing tracker serializes producers. Published queue bytes

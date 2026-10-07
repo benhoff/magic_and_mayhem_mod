@@ -26,6 +26,7 @@
 #include "media_cli.hpp"
 #include "media_broker.hpp"
 #include "gl_viewport.hpp"
+#include "viewport_presentation.hpp"
 #include "frame_stream.hpp"
 #include "input_forwarder.hpp"
 #include "blit.hpp"
@@ -62,7 +63,8 @@
 
 class Shell final:public QMainWindow {
 public:
-    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
+    void showPresentation(){if(presentation_)presentation_->show();else show();}
+    explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={}):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
         viewport_=new QWidget(this);layout_=new QVBoxLayout(viewport_);
         layout_->setContentsMargins(0,0,0,0);viewport_->setMinimumSize(800,600);
@@ -138,6 +140,11 @@ public:
             connect(fallback_,&QPushButton::clicked,this,[this]{liveMenus_->fallback("Original menus active for this session.");});}
         auto* dock=new QDockWidget("Launch log",this);log_=new QPlainTextEdit(dock);
         log_->setReadOnly(true);log_->setMaximumBlockCount(2000);dock->setWidget(log_);addDockWidget(Qt::BottomDockWidgetArea,dock);
+        if(gl_){
+            presentation_=std::make_unique<ViewportPresentation>(*this,*gl_,presentation);
+            presentation_->addControls(*toolbar);presentation_->hideInFullscreen(*toolbar);
+            presentation_->hideInFullscreen(*dock);presentation_->hideInFullscreen(*statusBar());
+        }
         process_.setProcessChannelMode(QProcess::MergedChannels);
         connect(launch_,&QPushButton::clicked,this,[this]{start(false);});
         connect(check_,&QPushButton::clicked,this,[this]{start(true);});
@@ -236,6 +243,10 @@ private:
         auto env=QProcessEnvironment::systemEnvironment();
         // An inherited custom runner could bypass the windowed Wine launch.
         env.remove("MNM_RUNNER");env.insert("WINEDEBUG",env.value("WINEDEBUG","fixme-all"));
+        // A native game view must keep publishing after the short startup sample.
+        // Pass the same selection to the launcher and the command/control channels.
+        const bool continuous=nativeCommands_ && env.value("MNM_RENDER_CONTINUOUS","1")==QStringLiteral("1");
+        if(nativeCommands_)env.insert("MNM_RENDER_CONTINUOUS",continuous?"1":"0");
         process_.setProcessEnvironment(env);process_.setWorkingDirectory(repo_);
         QStringList arguments{check?"check":"launch","--no-gamescope","--window-size","800x600","--prefix",QDir(repo_).filePath("working/wineprefix-x86_64")};
         log_->appendPlainText(check?"Checking installation…":"Starting game…");
@@ -271,7 +282,6 @@ private:
                 commands_=std::make_unique<LiveCommandSession>(*gl_);
                 commands_->stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
                 commands_->framePresented=[this]{input_->suspend(media_ && media_->movieActive());placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
-                const bool continuous=qEnvironmentVariable("MNM_RENDER_CONTINUOUS")==QStringLiteral("1");
                 if(!commands_->create(path+".commands",(QRandomGenerator::global()->generate()&0x7fffffffu)|1u,continuous?2:1)){const auto error=commands_->error();finished();statusBar()->showMessage(error);return;}
                 arguments.append({"--command-channel",path+".commands"});
                 if(continuous){input_->suspend(true);arguments.append({"--render-control",path+".commands.control"});}
@@ -319,6 +329,7 @@ private:
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
     QPushButton *launch_=nullptr,*check_=nullptr,*detach_=nullptr,*retry_=nullptr;
     QPlainTextEdit* log_=nullptr;
+    std::unique_ptr<ViewportPresentation> presentation_;
 };
 
 int main(int argc,char** argv){
@@ -362,7 +373,9 @@ int main(int argc,char** argv){
                     "  --media FILE          Preview AVI/WAV media without the game\n"
                     "  --media-test          Decode a preview silently and write --media-report FILE\n"
                     "  --software-rendering  Use Mesa software rendering for Qt and Wine\n"
-                    "  --native-commands     Bounded live native command/GPU presentation\n"
+                    "  --native-commands     Continuous live native command/GPU presentation\n"
+                    "  --fullscreen          Start OpenGL presentation fullscreen; F11 toggles\n"
+                    "  --scaling MODE        sharp (default), smooth, or integer; display only\n"
                     "  --capture-locks       Capture bounded game-owned Lock/Unlock buffers\n"
                     "  --no-readback         Diagnostic: disable extra surface locks; use the Wine window\n"
                     "  --skip-movies         Disable movies in the disposable OpenGL installation\n"
@@ -420,7 +433,9 @@ int main(int argc,char** argv){
     parser.addOption({"menu-command-line","Show CommandLine Battle in the menu preview."});
     parser.addOption({"software-rendering","Use Mesa software rendering for this shell and its Wine child."});
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
-    parser.addOption({"native-commands","Opt in to bounded live native command presentation; implies capture-locks."});
+    parser.addOption({"fullscreen","Start the OpenGL viewport fullscreen; F11 toggles."});
+    parser.addOption({"scaling","Display scaling: sharp, smooth or integer; preserves game resolution.","mode","sharp"});
+    parser.addOption({"native-commands","Opt in to continuous live native command presentation; implies capture-locks. MNM_RENDER_CONTINUOUS=0 selects the bounded diagnostic sample."});
     parser.addOption({"capture-locks","Capture bounded game-owned locks; disables observer readback."});
     parser.addOption({"no-readback","Diagnostic: log game calls without extra surface locks or Qt frames."});
     parser.addOption({"skip-movies","Disable movies only in the disposable OpenGL installation."});
@@ -436,12 +451,25 @@ int main(int argc,char** argv){
     parser.addOption({"smoke-test","Open the shell briefly without launching the game."});
     parser.addOption({"embedding-test","Test an external fixture window; does not run the game."});
     parser.addOption({"fixture-window","Internal external-window fixture."});parser.process(app);
+    PresentationOptions presentation;
+    const auto scaling=parser.value("scaling");
+    if(scaling=="smooth")presentation.scaling=GlViewport::Scaling::Smooth;
+    else if(scaling=="integer")presentation.scaling=GlViewport::Scaling::Integer;
+    else if(scaling!="sharp"){std::fputs("--scaling must be sharp, smooth or integer\n",stderr);return 2;}
+    presentation.fullscreen=parser.isSet("fullscreen");
+    const bool displayOptions=parser.isSet("fullscreen") || parser.isSet("scaling");
+    if(displayOptions && (parser.isSet("audio-catalog") || parser.isSet("media") || parser.isSet("media-server-test") ||
+        parser.isSet("live-menus") || parser.isSet("embedding-test") || parser.isSet("fixture-window") ||
+        parser.isSet("opengl-test") || parser.isSet("stream-test") || parser.isSet("surface-test") || parser.value("renderer")!="opengl")){
+        std::fputs("Fullscreen/scaling options require the OpenGL shell, --commands or --surface-demo.\n",stderr);return 2;
+    }
     if(parser.isSet("audio-catalog"))return runAudio(app,parser);
     if(parser.isSet("audio-preflight") || parser.isSet("audio-path-policy") || parser.isSet("audio-map") || parser.isSet("audio-sound") || parser.isSet("audio-report"))parser.showHelp(2);
     if(parser.isSet("media") || parser.isSet("media-server-test"))return runMedia(app,parser);
     if(parser.isSet("media-test") || parser.isSet("media-probe"))parser.showHelp(2);
     if(parser.isSet("live-menu-test")&&(!parser.isSet("live-menus")||parser.isSet("smoke-test")||QFileInfo::exists(parser.value("live-menu-test"))))parser.showHelp(2);
     const bool menuPreview=parser.isSet("main-menu") || parser.isSet("quick-battle-menu") || parser.isSet("mini-menu") || parser.isSet("battle-results") || parser.isSet("quick-battle-results") || parser.isSet("map-selection") || parser.isSet("load-game") || parser.isSet("save-game") || parser.isSet("preferences") || parser.isSet("join-multiplayer") || parser.isSet("create-multiplayer") || parser.isSet("multiplayer-game-selection") || parser.isSet("single-player-battle") || parser.isSet("multiplayer-lobby") || parser.isSet("region-entry") || parser.isSet("character-screen") || parser.isSet("grimoire") || parser.isSet("spellbox") || parser.isSet("spell-research") || parser.isSet("realm-viewer");
+    if(displayOptions && menuPreview){std::fputs("Fullscreen/scaling options apply to the OpenGL viewport.\n",stderr);return 2;}
     if((parser.isSet("menu-assets") || parser.isSet("menu-command-line")) && !menuPreview)parser.showHelp(2);
     if((parser.isSet("menu-audio") || parser.isSet("menu-music")) && !menuPreview)parser.showHelp(2);
     if((parser.isSet("menu-audio-policy") || parser.isSet("menu-click-sound") || parser.isSet("menu-page-sound")) && !parser.isSet("menu-audio"))parser.showHelp(2);
@@ -543,7 +571,7 @@ int main(int argc,char** argv){
         auto* layout=new QVBoxLayout(&fixture);layout->addWidget(new QLabel("External viewport fixture",&fixture));fixture.show();
         QTimer::singleShot(10000,&app,&QCoreApplication::quit);return app.exec();
     }
-    if(parser.isSet("commands"))return runCommandReplay(parser.value("commands"),parser.isSet("smoke-test"),parser.isSet("command-checks"));
+    if(parser.isSet("commands"))return runCommandReplay(parser.value("commands"),parser.isSet("smoke-test"),parser.isSet("command-checks"),presentation);
     if(parser.isSet("opengl-test") || parser.isSet("stream-test") || parser.isSet("surface-test") || parser.isSet("surface-demo")){
         FrameStream stream;QImage image;
         std::unique_ptr<mnm::render::GlBlitter> renderer;mnm::render::SurfaceId surface=0;
@@ -566,7 +594,8 @@ int main(int argc,char** argv){
             for(int y=0;y<2;++y)for(int x=0;x<4;++x)
                 image.setPixelColor(x,y,y?(x<2?Qt::blue:Qt::white):(x<2?Qt::red:Qt::green));
         }
-        GlViewport viewport;viewport.resize(640,480);viewport.setFrame(image);viewport.show();
+        GlViewport viewport;viewport.resize(640,480);viewport.setFrame(image);
+        ViewportPresentation display(viewport,viewport,presentation);display.show();
         QTimer paletteTimer;
         if(parser.isSet("surface-demo")){
             viewport.setWindowTitle("Magic & Mayhem — native surface palette demo");
@@ -600,7 +629,7 @@ int main(int argc,char** argv){
     const auto renderer=parser.isSet("live-menus")?QString("native"):parser.value("renderer");
     if(renderer!="opengl" && renderer!="native")parser.showHelp(2);
     if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback") || parser.isSet("capture-locks") || parser.isSet("native-commands") || parser.isSet("native-media") || parser.isSet("native-voices")) && renderer!="opengl")parser.showHelp(2);
-    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),parser.isSet("capture-locks")||parser.isSet("native-commands"),parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"),parser.isSet("native-commands"));shell.show();
+    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),parser.isSet("capture-locks")||parser.isSet("native-commands"),parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"),parser.isSet("native-commands"),presentation);shell.showPresentation();
     if(parser.isSet("live-menu-test"))installLiveMenuTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"));
     if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);
     if(parser.isSet("embedding-test")){

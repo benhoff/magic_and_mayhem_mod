@@ -44,6 +44,15 @@ QByteArray CommandChannel::poll(quint32 budget){
         if(version_==2){
             QByteArray result(qMin(budget,quint32(MNM_RENDER_COMMANDS_V2_POLL_BYTES)),0);
             const auto count=mnm_ring_read(&ring_,result.data(),quint32(result.size()));
+            if(count<0 && mnm_ring_identity(reinterpret_cast<const uint32_t*>(mapping_),session_) && load(mapping_,24)==MNM_RENDER_COMMANDS_V2_STATE_FAILED){
+                reason_=load(mapping_,28);
+                const char* reason=reason_==MNM_RENDER_COMMANDS_V2_REASON_GAP?"GAP (surface snapshot or drawing history became incomplete)":
+                    reason_==MNM_RENDER_COMMANDS_V2_REASON_OVERFLOW?"OVERFLOW":
+                    reason_==MNM_RENDER_COMMANDS_V2_REASON_CANCELLED?"CANCELLED":
+                    reason_==MNM_RENDER_COMMANDS_V2_REASON_INTERRUPTED?"INTERRUPTED":
+                    reason_==MNM_RENDER_COMMANDS_V2_REASON_INVALID?"INVALID":"UNKNOWN";
+                throw std::runtime_error(QString("Native command producer refused session %1: %2 (reason %3)").arg(session_).arg(reason).arg(reason_).toStdString());
+            }
             require(count>=0,"Command ring failed, cancelled or invalid");result.resize(count);
             state_=ring_.state;published_=ring_.published;consumed_=ring_.consumed;reason_=state_>=2?load(mapping_,28):0;return result;
         }

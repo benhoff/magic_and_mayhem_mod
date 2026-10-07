@@ -6,14 +6,19 @@ GlViewport::~GlViewport(){if(context()){disconnect(context(),nullptr,this,nullpt
 void GlViewport::release(){if(texture_)glDeleteTextures(1,&texture_);texture_=0;textureSize_={};vertices_.destroy();vao_.destroy();shader_.removeAllShaders();gpuShader_.removeAllShaders();ready_=false;}
 void GlViewport::setFrame(QImage image){if(ready_)error_.clear();gpuFrame_={};frame_=image.convertToFormat(QImage::Format_RGBA8888);dirty_=true;update();}
 void GlViewport::setGpuFrame(mnm::render::GpuFrame frame){if(ready_)error_.clear();gpuFrame_=std::move(frame);frame_={};dirty_=false;update();}
-QRectF GlViewport::imageRect() const{
+QRect GlViewport::physicalImageRect() const{
     if(frameSize().isEmpty())return {};
     const double ratio=devicePixelRatioF();
     const int width=qRound(this->width()*ratio),height=qRound(this->height()*ratio);
-    const double scale=qMin(double(width)/frameSize().width(),double(height)/frameSize().height());
+    double scale=qMin(double(width)/frameSize().width(),double(height)/frameSize().height());
+    // Integer enlargement uses physical pixels. Small windows still fit the whole frame.
+    if(scaling_==Scaling::Integer && scale>=1)scale=std::floor(scale);
     const int w=qRound(frameSize().width()*scale),h=qRound(frameSize().height()*scale);
-    // OpenGL measures the viewport's vertical offset from the bottom.
-    return QRectF((width-w)/2/ratio,(height-h-(height-h)/2)/ratio,w/ratio,h/ratio);
+    return QRect((width-w)/2,height-h-(height-h)/2,w,h);
+}
+QRectF GlViewport::imageRect() const{
+    const auto rect=physicalImageRect();const auto ratio=devicePixelRatioF();
+    return QRectF(rect.x()/ratio,rect.y()/ratio,rect.width()/ratio,rect.height()/ratio);
 }
 bool GlViewport::imagePoint(QPointF position,QPoint& point,bool clamp) const{
     const auto rect=imageRect();if(rect.isEmpty())return false;
@@ -28,13 +33,22 @@ void GlViewport::initializeGL(){
     if(!shader_.addShaderFromSourceCode(QOpenGLShader::Vertex,
         "#version 330 core\nlayout(location=0) in vec2 position;layout(location=1) in vec2 uv;out vec2 texcoord;void main(){gl_Position=vec4(position,0,1);texcoord=uv;}") ||
        !shader_.addShaderFromSourceCode(QOpenGLShader::Fragment,
-        "#version 330 core\nin vec2 texcoord;out vec4 color;uniform sampler2D frame;void main(){color=texture(frame,texcoord);}") || !shader_.link()){
+        "#version 330 core\nin vec2 texcoord;out vec4 color;uniform sampler2D frame;uniform bool smoothScaling;"
+        "vec4 pixel(ivec2 p){return texelFetch(frame,clamp(p,ivec2(0),textureSize(frame,0)-1),0);}"
+        "void main(){if(!smoothScaling){color=texture(frame,texcoord);return;}"
+        "vec2 p=texcoord*vec2(textureSize(frame,0))-0.5;ivec2 lo=ivec2(floor(p));vec2 f=fract(p);"
+        "color=mix(mix(pixel(lo),pixel(lo+ivec2(1,0)),f.x),mix(pixel(lo+ivec2(0,1)),pixel(lo+ivec2(1,1)),f.x),f.y);}") || !shader_.link()){
         error_=shader_.log();return;
     }
     if(!gpuShader_.addShaderFromSourceCode(QOpenGLShader::Vertex,
         "#version 330 core\nlayout(location=0) in vec2 position;layout(location=1) in vec2 uv;out vec2 texcoord;void main(){gl_Position=vec4(position,0,1);texcoord=uv;}") ||
        !gpuShader_.addShaderFromSourceCode(QOpenGLShader::Fragment,
-        "#version 330 core\nin vec2 texcoord;out vec4 color;uniform usampler2D frame;void main(){color=vec4(texture(frame,texcoord))/255.0;}") || !gpuShader_.link()){
+        // Integer textures cannot use GL_LINEAR; filter in the presentation shader only.
+        "#version 330 core\nin vec2 texcoord;out vec4 color;uniform usampler2D frame;uniform bool smoothScaling;"
+        "vec4 pixel(ivec2 p){return vec4(texelFetch(frame,clamp(p,ivec2(0),textureSize(frame,0)-1),0))/255.0;}"
+        "void main(){if(!smoothScaling){color=vec4(texture(frame,texcoord))/255.0;return;}"
+        "vec2 p=texcoord*vec2(textureSize(frame,0))-0.5;ivec2 lo=ivec2(floor(p));vec2 f=fract(p);"
+        "color=mix(mix(pixel(lo),pixel(lo+ivec2(1,0)),f.x),mix(pixel(lo+ivec2(0,1)),pixel(lo+ivec2(1,1)),f.x),f.y);}") || !gpuShader_.link()){
         error_=gpuShader_.log();return;
     }
     const float data[]={-1,-1,0,1, 1,-1,1,1, -1,1,0,0, 1,1,1,0};
@@ -59,11 +73,11 @@ void GlViewport::paintGL(){
             glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,frameSize().width(),frameSize().height(),0,GL_RGBA,GL_UNSIGNED_BYTE,frame_.constBits());textureSize_=frame_.size();
         }else glTexSubImage2D(GL_TEXTURE_2D,0,0,0,frameSize().width(),frameSize().height(),GL_RGBA,GL_UNSIGNED_BYTE,frame_.constBits());
         ++imageUploads_;dirty_=false;}
-    const auto scale=qMin(double(width)/frameSize().width(),double(height)/frameSize().height());
-    const int w=qRound(frameSize().width()*scale),h=qRound(frameSize().height()*scale);
-    glViewport((width-w)/2,(height-h)/2,w,h);
+    const auto rect=physicalImageRect();
+    glViewport(rect.x(),height-rect.y()-rect.height(),rect.width(),rect.height());
     auto& shader=gpuFrame_.valid()?gpuShader_:shader_;
-    shader.bind();shader.setUniformValue("frame",0);vao_.bind();glDrawArrays(GL_TRIANGLE_STRIP,0,4);vao_.release();shader.release();
+    shader.bind();shader.setUniformValue("frame",0);shader.setUniformValue("smoothScaling",scaling_==Scaling::Smooth);
+    vao_.bind();glDrawArrays(GL_TRIANGLE_STRIP,0,4);vao_.release();shader.release();
     if(gpuFrame_.valid())try {gpuFrame_.samplingComplete();}
     catch(const std::exception& e){error_=QString::fromUtf8(e.what());}
 }
