@@ -1,12 +1,17 @@
 # Magic & Mayhem Qt shell
 
+Ordinary launches use native capture/replay presentation. The original game
+continues its simulation and drawing; complete live drawing replacement is
+unavailable. The [authoritative replacement plan](../../docs/live-drawing-replacement.md)
+defines the remaining work and criteria for enabling a complete launcher mode.
+
 ## Fullscreen and display scaling
 
 ```bash
 ./tools/run-qt-shell.sh --fullscreen --scaling smooth
 ```
 
-Click **Launch game** to use the experimental native command/GPU renderer by
+Click **Launch game** to use experimental native command/GPU capture/replay by
 default. Add `--frame-readback` to use frames copied from the original renderer.
 The **Fullscreen** toolbar button or **F9** enters/exits fullscreen and
 restores the previous window size, maximized state and launch log visibility.

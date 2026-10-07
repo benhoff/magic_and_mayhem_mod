@@ -14,6 +14,8 @@ preserving gameplay behavior does not require preserving the original UI code.
 
 The current application is a hybrid: a native Qt host cooperates with the
 original PE32 game through Wine, injected adapters, and shared channels.
+The [complete live drawing replacement plan](live-drawing-replacement.md) owns
+rendering takeover scope, implementation order and the complete-mode release gates.
 Reconstructed algorithms and native services exist, but their presence does not
 establish complete live replacement of a gameplay subsystem. Consult the
 [coverage ledger](../research/runtime/coverage-ledger.md) for implementation,
@@ -276,6 +278,8 @@ validated behavioral scope.
 ## Documentation ownership
 
 - This document owns the overall architecture and migration direction.
+- [Complete live drawing replacement](live-drawing-replacement.md) owns the
+  authoritative drawing replacement plan and launcher readiness criteria.
 - `AGENTS.md` holds concise contributor rules and directory responsibilities.
 - Component READMEs describe implemented interfaces, local ownership, builds,
   and checks; link here for cross-component design.

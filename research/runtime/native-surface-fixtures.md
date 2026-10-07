@@ -1,5 +1,9 @@
 # Native surface operation matrix and original fixtures
 
+The [complete live drawing replacement plan](../../docs/live-drawing-replacement.md)
+owns the live takeover roadmap. This matrix and fixture milestone cover its
+surface-operation dependencies; they do not complete scene or CPU-raster replacement.
+
 Milestone 3.1, 2026-10-06. The [operation matrix](native-surface-operation-matrix.json)
 separates required work, conditional discovery backlog, implemented native
 operations and available independent original output. It is not a percentage of

@@ -1,5 +1,9 @@
 # Original scene observation adapter
 
+The [complete live drawing replacement plan](../../docs/live-drawing-replacement.md)
+owns the cross-subsystem implementation order and takeover gates. This adapter
+currently provides bounded observation and replay while original drawing continues.
+
 This host adapter decodes owned `MNMSCNE1` snapshots and maps normalized SPR
 frame content to explicit, SHA-256-pinned native resource bindings. It consumes
 original draw order and anchors without importing original pointers into native

@@ -1,5 +1,9 @@
 # Rendering inventory, callers and unsupported branches
 
+The [complete live drawing replacement plan](../../docs/live-drawing-replacement.md)
+owns cross-subsystem scope, implementation order and launcher readiness. This
+inventory owns drawing-route classifications and their build-specific evidence.
+
 ## Current rendering inventory — 2026-10-06
 
 Scope: No-CD SHA-256

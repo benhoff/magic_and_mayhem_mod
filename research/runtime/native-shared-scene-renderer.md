@@ -1,5 +1,9 @@
 # Shared native scene rendering
 
+The [complete live drawing replacement plan](../../docs/live-drawing-replacement.md)
+owns live integration milestones and release gates; this document retains the
+scene service's scoped implementation and comparison evidence.
+
 Step 2 connects the sprite and world previews to the native resource manager
 and one persistent GPU scene service. Recovered animation, projection, terrain
 submission, exact depth sorting and visibility remain in application/reconstruction
@@ -61,8 +65,9 @@ every contract sharing these adapter sources.
 ## Remaining boundaries
 
 Original live scene snapshots and live rendering replacement remain outside
-this milestone. The next step needs an observed, versioned display snapshot and
-explicit original-identity-to-resource mapping; this service can consume the
-mapped ordered display records. Complete original camera/world admission,
+this service milestone. The subsequent [bounded scene adapter](native-scene-snapshot.md)
+provides observed display records and explicit identity-to-resource mapping;
+continuous complete scene delivery and takeover follow the replacement plan.
+Complete original camera/world admission,
 lighting, animated palettes, text/cursor policies, effect/action production,
 context recovery and broader installed scene coverage remain independent gaps.
