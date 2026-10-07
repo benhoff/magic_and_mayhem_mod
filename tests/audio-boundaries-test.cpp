@@ -7,18 +7,20 @@
 #include <stdexcept>
 using namespace mnm::audio;
 // Fail each allocation in turn, including the map node/rehash after storage.
+// Keep replacement allocation functions out of line so optimized builds retain
+// the fault-injection boundary and do not diagnose the paired malloc/free bodies.
 static long allocationCountdown=-1;
-void* operator new(std::size_t n){
+[[gnu::noinline]] void* operator new(std::size_t n){
     if(allocationCountdown==0)throw std::bad_alloc();
     if(allocationCountdown>0)--allocationCountdown;
     if(void* p=std::malloc(n?n:1))return p;
     throw std::bad_alloc();
 }
-void* operator new[](std::size_t n){return ::operator new(n);}
-void operator delete(void* p) noexcept{std::free(p);}
-void operator delete[](void* p) noexcept{std::free(p);}
-void operator delete(void* p,std::size_t) noexcept{std::free(p);}
-void operator delete[](void* p,std::size_t) noexcept{std::free(p);}
+[[gnu::noinline]] void* operator new[](std::size_t n){return ::operator new(n);}
+[[gnu::noinline]] void operator delete(void* p) noexcept{std::free(p);}
+[[gnu::noinline]] void operator delete[](void* p) noexcept{std::free(p);}
+[[gnu::noinline]] void operator delete(void* p,std::size_t) noexcept{std::free(p);}
+[[gnu::noinline]] void operator delete[](void* p,std::size_t) noexcept{std::free(p);}
 namespace {
 void check(bool value,const char* message){if(!value)throw std::runtime_error(message);}
 void ok(Error e){check(e==Error::ok,"unexpected Device error");}
