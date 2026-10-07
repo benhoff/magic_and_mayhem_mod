@@ -10,7 +10,8 @@
     "research/runtime/native-surface-clipping.md",
     "research/formats/render-surface-commands-v3.md",
     "research/runtime/original-surface-keys.md",
-    "research/runtime/original-surface-fills.md"
+    "research/runtime/original-surface-fills.md",
+    "research/runtime/native-surface-ownership-recovery.md"
   ],
   "operations": [
     {
@@ -177,7 +178,9 @@
       "native_backend": "implemented_scoped",
       "wire_support": "v1 PALETTE; v2 palette CREATE/UPDATE/BIND/DELETE",
       "behavior_ids": [
-        "NR.palette-resources"
+        "NR.palette-resources",
+        "NR.surface-backend.ownership-recovery",
+        "RE.surface-driver.ownership-flip"
       ],
       "original": [
         {
@@ -195,7 +198,7 @@
         "indices unchanged"
       ],
       "original_fixture_ids": [],
-      "remaining_gap": "No independently captured original indexed colors/state sequence in this corpus; native lifetime policy is separate from original semantics."
+      "remaining_gap": "No independently captured original indexed colors/state sequence in this corpus; native lifetime policy is separate from original semantics. Chunk2 now supplies scoped native shared ownership/attachment/recovery and11independent standalone primary flips including busy-after-swap CPU/DC lease effects. Fresh6656palette entries/864definedindices/4480originalfault schedules compare; no unknown restored bytes invented. Flags/logical palettes/longchains/mixed flips/physical original lost-draw/asset internals/live/wire/Windows remain pending."
     },
     {
       "id": "SURF.clip.rectangles",
@@ -423,7 +426,9 @@
         "NR.surface-reload.bitmap-dc",
         "NR.surface-backend.owned",
         "RE.surface-copy.rgb565-keyed-overlap",
-        "RE.surface-driver.borrowed-draw"
+        "RE.surface-driver.borrowed-draw",
+        "NR.surface-backend.ownership-recovery",
+        "RE.surface-driver.ownership-flip"
       ],
       "original": [
         {
@@ -461,7 +466,7 @@
         "surface-dc-palette-identity.json.gz",
         "surface-dc-reuse.json.gz"
       ],
-      "remaining_gap": "1456 explicit cursor/callback/none route traces and12 exact submitted-buffer cases compare original captures;36 nativeRGB24/32 cases compare1346928 independent real GDI RGB pixels,12 scripted recovery compositions preserve triggering-surface invalidity.4480 legacy callback schedules and30 validity checks freshly pass. DirectDraw GetDC formats/RGB565/indexed conversion/clipping/palettes, other reload callback bodies, malformed/second allocation failures, actual-lost-draw composition, Windows/live/wire recovery remain pending. Subsequent72 real Surface2RGB565/RGB32 native/DC frames now captured independently; native matches2693856 pixels and24 scripted cursor compositions. RGB565 conversion/presentation is validated within this DC scope. Native DC admission, indexed destination palettes/DC clipping, actual loss/other callback bodies/Windows/live/wire recovery and runtime CPU floor-color alignment remain pending. Subsequent450 native DC palette/region cases match43200 independent native/DC outputs; explicit indexed palettes/identity/ties/24-bit-bin centers and application GDI clipping now validated within8x6 system-memory probes. Attached DirectDraw clippers separately do not constrain measured DC reload. Absent palettes, arbitrary GDI geometry/lease reuse/sharedCOM identity/flag semantics, indexed original cursor composition/native DC admission/actual loss/Windows/live/wire remain pending. Subsequent192cases/576 repeated DC leases now compare owned raster snapshots/default context55296 pixels/258048 entries. Application clips reset and direct DC edits are lease-local; binding updates during leases defer. Default environment input is explicit, primitive full-palette admission unchanged. COMDC/global lock/busy ownership, logical/shared/flag palettes/other GDI state/primary-video/original real lost-draw/loss/Windows/live/wire remain pending. Integrated owned backend now matches2630draw HRESULTs/299808pixels across retained fill/keyed/clipping/opaque-overlap/DC/access fixtures, including all105fill/2keyed failures and same-ID continuation. Borrowed-fill/keyed overlap/new combinations/shared ownership/loss/new formats/live remain pending. Combined closure supersedes provisional borrowed-fill/keyed-overlap gaps within sampled scopes:5114results/538272pixels,2304original keyed overlap and180driver borrowed draws. Forward row-major keyed path bounded4096texels; mapped fill/empty-Blt branches match. Shared ownership/recovery/new formats/uncaptured combinations/live remain pending."
+      "remaining_gap": "1456 explicit cursor/callback/none route traces and12 exact submitted-buffer cases compare original captures;36 nativeRGB24/32 cases compare1346928 independent real GDI RGB pixels,12 scripted recovery compositions preserve triggering-surface invalidity.4480 legacy callback schedules and30 validity checks freshly pass. DirectDraw GetDC formats/RGB565/indexed conversion/clipping/palettes, other reload callback bodies, malformed/second allocation failures, actual-lost-draw composition, Windows/live/wire recovery remain pending. Subsequent72 real Surface2RGB565/RGB32 native/DC frames now captured independently; native matches2693856 pixels and24 scripted cursor compositions. RGB565 conversion/presentation is validated within this DC scope. Native DC admission, indexed destination palettes/DC clipping, actual loss/other callback bodies/Windows/live/wire recovery and runtime CPU floor-color alignment remain pending. Subsequent450 native DC palette/region cases match43200 independent native/DC outputs; explicit indexed palettes/identity/ties/24-bit-bin centers and application GDI clipping now validated within8x6 system-memory probes. Attached DirectDraw clippers separately do not constrain measured DC reload. Absent palettes, arbitrary GDI geometry/lease reuse/sharedCOM identity/flag semantics, indexed original cursor composition/native DC admission/actual loss/Windows/live/wire remain pending. Subsequent192cases/576 repeated DC leases now compare owned raster snapshots/default context55296 pixels/258048 entries. Application clips reset and direct DC edits are lease-local; binding updates during leases defer. Default environment input is explicit, primitive full-palette admission unchanged. COMDC/global lock/busy ownership, logical/shared/flag palettes/other GDI state/primary-video/original real lost-draw/loss/Windows/live/wire remain pending. Integrated owned backend now matches2630draw HRESULTs/299808pixels across retained fill/keyed/clipping/opaque-overlap/DC/access fixtures, including all105fill/2keyed failures and same-ID continuation. Borrowed-fill/keyed overlap/new combinations/shared ownership/loss/new formats/live remain pending. Combined closure supersedes provisional borrowed-fill/keyed-overlap gaps within sampled scopes:5114results/538272pixels,2304original keyed overlap and180driver borrowed draws. Forward row-major keyed path bounded4096texels; mapped fill/empty-Blt branches match. Shared ownership/recovery/new formats/uncaptured combinations/live remain pending. Chunk2 now supplies scoped native shared ownership/attachment/recovery and11independent standalone primary flips including busy-after-swap CPU/DC lease effects. Fresh6656palette entries/864definedindices/4480originalfault schedules compare; no unknown restored bytes invented. Flags/logical palettes/longchains/mixed flips/physical original lost-draw/asset internals/live/wire/Windows remain pending."
     },
     {
       "id": "SURF.lifetime_updates",
@@ -477,7 +482,9 @@
         "NR.surface-access",
         "NR.surface-backend.owned",
         "RE.surface-copy.rgb565-keyed-overlap",
-        "RE.surface-driver.borrowed-draw"
+        "RE.surface-driver.borrowed-draw",
+        "NR.surface-backend.ownership-recovery",
+        "RE.surface-driver.ownership-flip"
       ],
       "original": [
         {
@@ -502,7 +509,7 @@
       "original_fixture_ids": [
         "surface-access.json.gz"
       ],
-      "remaining_gap": "Synthetic foundation exists; game-driver sequences and unobserved leases remain outside this fixture set. Standalone96 driver lock/DC sequences now compare HRESULT/normalized output/stable descriptor fields and readable final bytes, replayed by owned native admission state. Drawing while borrowed, integration with bitmap raster/storage, pointer/alias ownership, other flags/rectangles, cross-thread behavior, original game/actual loss/Windows/live remain pending. Integrated owned backend now matches2630draw HRESULTs/299808pixels across retained fill/keyed/clipping/opaque-overlap/DC/access fixtures, including all105fill/2keyed failures and same-ID continuation. Borrowed-fill/keyed overlap/new combinations/shared ownership/loss/new formats/live remain pending. Combined closure supersedes provisional borrowed-fill/keyed-overlap gaps within sampled scopes:5114results/538272pixels,2304original keyed overlap and180driver borrowed draws. Forward row-major keyed path bounded4096texels; mapped fill/empty-Blt branches match. Shared ownership/recovery/new formats/uncaptured combinations/live remain pending."
+      "remaining_gap": "Synthetic foundation exists; game-driver sequences and unobserved leases remain outside this fixture set. Standalone96 driver lock/DC sequences now compare HRESULT/normalized output/stable descriptor fields and readable final bytes, replayed by owned native admission state. Drawing while borrowed, integration with bitmap raster/storage, pointer/alias ownership, other flags/rectangles, cross-thread behavior, original game/actual loss/Windows/live remain pending. Integrated owned backend now matches2630draw HRESULTs/299808pixels across retained fill/keyed/clipping/opaque-overlap/DC/access fixtures, including all105fill/2keyed failures and same-ID continuation. Borrowed-fill/keyed overlap/new combinations/shared ownership/loss/new formats/live remain pending. Combined closure supersedes provisional borrowed-fill/keyed-overlap gaps within sampled scopes:5114results/538272pixels,2304original keyed overlap and180driver borrowed draws. Forward row-major keyed path bounded4096texels; mapped fill/empty-Blt branches match. Shared ownership/recovery/new formats/uncaptured combinations/live remain pending. Chunk2 now supplies scoped native shared ownership/attachment/recovery and11independent standalone primary flips including busy-after-swap CPU/DC lease effects. Fresh6656palette entries/864definedindices/4480originalfault schedules compare; no unknown restored bytes invented. Flags/logical palettes/longchains/mixed flips/physical original lost-draw/asset internals/live/wire/Windows remain pending."
     },
     {
       "id": "SURF.flip",
@@ -512,7 +519,9 @@
       "wire_support": "SWAP/PRESENT",
       "behavior_ids": [
         "NR.surfaces",
-        "NR.continuous-mutations"
+        "NR.continuous-mutations",
+        "NR.surface-backend.ownership-recovery",
+        "RE.surface-driver.ownership-flip"
       ],
       "original": [
         {
@@ -527,8 +536,10 @@
         "failed Flip",
         "attached alias ownership"
       ],
-      "original_fixture_ids": [],
-      "remaining_gap": "No original paired front/back output fixtures here; longer chains are conditional scope."
+      "original_fixture_ids": [
+        "surface-ownership-final.json.gz"
+      ],
+      "remaining_gap": "No original paired front/back output fixtures here; longer chains are conditional scope. Chunk2 now supplies scoped native shared ownership/attachment/recovery and11independent standalone primary flips including busy-after-swap CPU/DC lease effects. Fresh6656palette entries/864definedindices/4480originalfault schedules compare; no unknown restored bytes invented. Flags/logical palettes/longchains/mixed flips/physical original lost-draw/asset internals/live/wire/Windows remain pending."
     },
     {
       "id": "SURF.key.ranged_destination",

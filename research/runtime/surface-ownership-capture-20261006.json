@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tests/surface-ownership-reference.c": "0ff1a437b2228bd61aa181f3a0ee4f18b9a17fed22802138c1434084b2551ee8",
+    "tests/surface-palette-restore-reference.c": "3b9c55ff7856bde2d3313df6f0b62343ba367395238f45bf156479292727ff12",
+    "tools/capture-surface-ownership.py": "79bb4df3838478c001cecfdeeb502d03b6aba730059bd8e81892c79e9860cfd9",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/fixtures/surfaces/surface-ownership.json.gz": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839"
+  },
+  "scope": "Standalone Wine Surface2 indexed8 alias/palette lifetime, shared partial update/detach/rebind, actual primary two-buffer flips, held Lock/DC refusal and attached-buffer reacquisition. No original game instructions or native/live/Windows equivalence.",
+  "original_game_executed": false,
+  "original_manifest_verified_before_after": true,
+  "environment": {
+    "wine": "wine-11.16",
+    "ddraw_sha256": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "override": "ddraw=b",
+    "display": ":110",
+    "virtual_desktop": "restore-probe,1024x768",
+    "display_bpp": 8,
+    "cooperative_level": "EXCLUSIVE|FULLSCREEN"
+  },
+  "artifacts": "working/tests/surface-ownership/run-ia3n61sw",
+  "probe_sha256": "f1c59f87e7a1c5d7d9d77b057bdb1f90960d3f62298c2e233cf70bffd575cf05",
+  "outputs_sha256": "03d4065dc5ea4906aede2a74473229633ec54bac7e2042501b41f2bb326c960a",
+  "row_fields": [
+    "kind",
+    "phase",
+    "surface",
+    "result",
+    "a",
+    "b"
+  ],
+  "kinds": {
+    "1": "CreateSurface",
+    "2": "IsLost",
+    "3": "GetColorKey",
+    "4": "Lock",
+    "5": "pixel",
+    "6": "pixel_hash",
+    "7": "Unlock",
+    "8": "BltFill",
+    "9": "SetCooperativeLevel",
+    "10": "SetDisplayMode",
+    "11": "SetColorKey",
+    "12": "Restore",
+    "13": "RestoreDisplayMode",
+    "14": "SetForegroundWindow",
+    "15": "format_dimensions",
+    "16": "RGB_masks",
+    "17": "complete",
+    "18": "GetDisplayMode",
+    "19": "display_dimensions",
+    "20": "CreatePalette",
+    "21": "GetPalette_identity",
+    "22": "palette_entry",
+    "23": "SetEntries",
+    "24": "SetPalette",
+    "25": "GetEntries",
+    "26": "reload_Lock",
+    "27": "reload_Unlock"
+  },
+  "surface_caps": [
+    2112,
+    16448,
+    64,
+    512
+  ],
+  "row_count": 5647,
+  "corpus": {
+    "path": "tests/fixtures/surfaces/surface-ownership.json.gz",
+    "sha256": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839",
+    "raw_sha256": "03d4065dc5ea4906aede2a74473229633ec54bac7e2042501b41f2bb326c960a",
+    "raw_bytes": 135528
+  }
+}

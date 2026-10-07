@@ -134,3 +134,15 @@ python3 tests/test-original-surface-keyed-overlap.py
 python3 tests/test-surface-borrowed-draw.py
 # Configure BUILD_TESTING=ON to include the combined suite in renderer CTest.
 ```
+
+## Chunk 2: ownership and recovery — 2026-10-06
+
+The backend now retains canonical aliases/shared palettes and two-buffer
+attachments, swaps storage including CPU/DC lease state, and exposes explicit
+loss/Restore over content validity. A recovered wrapper adapter routes bounded
+retry/key/reload actions and the global cursor BMP/DC path with supplied bytes.
+See [ownership and recovery](native-surface-ownership-recovery.md) for the measured
+busy-after-swap cases, independent driver/original trace comparisons, and native
+policies. This supersedes chunk 1's provisional ownership/recovery gap within the
+listed offline scopes. Formats/pitch, uncaptured interleavings, actual asset and
+physical original lost-draw composition, and live/wire replacement remain pending.

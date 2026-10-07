@@ -2,6 +2,7 @@
 #include <array>
 #include <cstdint>
 #include <stdexcept>
+#include <utility>
 
 namespace mnm::render {
 // Single-thread admission model, not a COM surface or a borrowed pixel pointer.
@@ -13,7 +14,7 @@ public:
     static constexpr std::uint32_t noDc=0x8876024a,dcAlreadyCreated=0x8876026c,badDc=0x8876086c;
 private:
     Descriptor layout_{};
-    std::uint32_t dcToken_;
+    std::uint32_t dcToken_,storageDcToken_=0;
     int balance_=0;
     bool dc_=false;
     void adjust(int delta){
@@ -38,14 +39,22 @@ public:
     }
     SurfaceAccessState(const SurfaceAccessState&)=delete;
     SurfaceAccessState& operator=(const SurfaceAccessState&)=delete;
+    void exchangeStorageLease(SurfaceAccessState& other){
+        if(layout_[2]!=other.layout_[2] || layout_[3]!=other.layout_[3] || layout_[21]!=other.layout_[21] || poisoned() || other.poisoned())
+            throw std::runtime_error("Incompatible storage lease exchange");
+        std::swap(balance_,other.balance_);std::swap(storageDcToken_,other.storageDcToken_);std::swap(layout_[9],other.layout_[9]);
+    }
+    bool dcMatchesStorage() const {return dc_ && storageDcToken_==dcToken_;}
+    bool storageDcActive() const {return storageDcToken_!=0;}
+    bool storageBorrowed() const {return balance_!=0 || storageDcToken_!=0;}
     bool dcActive() const {return dc_;}
-    bool borrowed() const {return dc_ || balance_!=0;}
+    bool borrowed() const {return dc_ || balance_!=0 || storageDcToken_!=0;}
     bool poisoned() const {return balance_<0;}
     int mapBalance() const {return balance_;}
     std::uint32_t lock(Descriptor& output){
         // Busy Lock clears the descriptor. Its trailing caps word is not a
         // stable driver output on this failure branch; use owned caps policy.
-        if(balance_!=0 || dc_){output={};output[0]=108;output[26]=layout_[26];return busy;}
+        if(balance_!=0 || dc_ || storageDcToken_){output={};output[0]=108;output[26]=layout_[26];return busy;}
         adjust(1);output=layout_;return 0;
     }
     std::uint32_t unlock(){
@@ -54,14 +63,15 @@ public:
     }
     std::uint32_t acquireDc(std::uint32_t& output){
         if(dc_)return dcAlreadyCreated; // Failed GetDC preserves output token.
-        adjust(1);dc_=true;output=dcToken_;return 0;
+        if(storageDcToken_)throw std::runtime_error("DC acquire on storage with a foreign lease is unvalidated");
+        adjust(1);dc_=true;storageDcToken_=dcToken_;output=dcToken_;return 0;
     }
     std::uint32_t releaseDc(std::uint32_t suppliedToken){
         if(!dc_)return noDc;
-        if(suppliedToken!=dcToken_)return badDc;
+        if(suppliedToken!=dcToken_ || storageDcToken_!=dcToken_)return badDc;
         // Represent an over-unlocked DC as explicit signed debt, never unsigned
         // arithmetic wraparound or an actual invalid memory mapping.
-        adjust(-1);dc_=false;return 0;
+        adjust(-1);dc_=false;storageDcToken_=0;return 0;
     }
 };
 }

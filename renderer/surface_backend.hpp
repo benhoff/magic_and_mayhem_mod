@@ -8,14 +8,35 @@ namespace mnm::render {
 class SurfaceBackend final {
 public:
     using Palette=BitmapDcState::Palette;
+    using PaletteId=std::uint64_t;
+    struct Mode {int width,height;PixelFormat format;};
     using Descriptor=SurfaceAccessState::Descriptor;
     SurfaceBackend();
     ~SurfaceBackend();
     SurfaceBackend(const SurfaceBackend&)=delete;
     SurfaceBackend& operator=(const SurfaceBackend&)=delete;
     SurfaceId create(const Image&,PixelFormat,unsigned caps=0x840,
-                     std::optional<Palette> defaults=std::nullopt);
+                     std::optional<Palette> defaults=std::nullopt,bool primary=false);
     void destroy(SurfaceId);
+    // Canonical aliases retain one object identity; IDs never recycle.
+    SurfaceId alias(SurfaceId);
+    unsigned release(SurfaceId);
+    unsigned references(SurfaceId) const;
+    PaletteId createPalette(const Palette&);
+    unsigned retainPalette(PaletteId);
+    unsigned releasePalette(PaletteId);
+    void bindPaletteObject(SurfaceId,std::optional<PaletteId>);
+    void updatePaletteObject(PaletteId,unsigned,const std::vector<Rgb>&);
+    std::uint32_t getPaletteObject(SurfaceId,PaletteId&);
+    std::optional<PaletteId> paletteIdentity(SurfaceId) const;
+    std::size_t paletteObjects() const;
+    void attachBackBuffer(SurfaceId front,SurfaceId back);
+    SurfaceId getBackBuffer(SurfaceId front);
+    std::uint32_t flip(SurfaceId front,std::uint32_t flags=1);
+    void markLost(SurfaceId);
+    std::uint32_t isLost(SurfaceId) const;
+    std::uint32_t restore(SurfaceId,std::optional<Mode> currentMode=std::nullopt);
+    std::optional<std::uint16_t> sourceKey(SurfaceId) const;
     void update(SurfaceId,int x,int y,const Image&);
     std::uint32_t lock(SurfaceId,Descriptor&);
     const Image& lockedPixels(SurfaceId) const;
@@ -50,12 +71,18 @@ public:
     Driver driver() const;
 private:
     struct Entry;
+    struct PaletteObject;
     GlBlitter gl_;
     std::unordered_map<SurfaceId,std::unique_ptr<Entry>> entries_;
+    std::unordered_map<PaletteId,std::shared_ptr<PaletteObject>> palettes_;
     std::uint32_t nextToken_=1;
     Entry& entry(SurfaceId);
     const Entry& entry(SurfaceId) const;
+    static void idle(const Entry&);
     static void available(const Entry&);
+    void retire(SurfaceId);
+    std::shared_ptr<PaletteObject> paletteObject(PaletteId) const;
+    void propagatePalette(const std::shared_ptr<PaletteObject>&,unsigned,const std::vector<Rgb>&);
     static void raster(const Entry&);
     void installBinding(SurfaceId,const Entry&);
 };

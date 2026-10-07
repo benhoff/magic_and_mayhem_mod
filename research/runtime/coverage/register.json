@@ -14949,7 +14949,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original surface loss/Restore/retry wrapper scheduling",
-      "scope": "Four unchanged original fill/copy wrappers,4480 scripted draw/Restore/key result schedules and bounded reload/UI endpoints. CPU ordering and consumed-result counts match; selected source-before-destination recovery, no/one/unbounded retry differences and ignored key failure. Driver loss/Restore pixel validity, palette, asset/sentinel reload, null mutation/window retries and native/live replacement pending. Portable C++ adapter scheduling now matches4480 captured traces; explicit budget stops preserve original event prefixes and never claim original success. Test-only fill adapters compose this with native content invalidation/explicit reload; real driver/live recovery remains pending. Separate standalone real Wine API loss/Restore/key observations are now linked; lost COLORFILL returns success in that driver probe, so original-wrapper composition with real lost draw results remains pending. Original -1 global cursor sentinel and bounded bitmap-to-DC nested call traces are independently registered as RE.surface-reload.cursor-sentinel. Portable C++ callback-only adapter does not yet route the global cursor resource or restore asset pixels; real GDI/native/live composition remains pending. Explicit cursor/none/callback routing extends the portable adapter; old4480 callback schedules freshly match with1536 budget stops. Actual-lost-draw, DirectDraw DC and live recovery remain pending.",
+      "scope": "Four unchanged original fill/copy wrappers,4480 scripted draw/Restore/key result schedules and bounded reload/UI endpoints. CPU ordering and consumed-result counts match; selected source-before-destination recovery, no/one/unbounded retry differences and ignored key failure. Driver loss/Restore pixel validity, palette, asset/sentinel reload, null mutation/window retries and native/live replacement pending. Portable C++ adapter scheduling now matches4480 captured traces; explicit budget stops preserve original event prefixes and never claim original success. Test-only fill adapters compose this with native content invalidation/explicit reload; real driver/live recovery remains pending. Separate standalone real Wine API loss/Restore/key observations are now linked; lost COLORFILL returns success in that driver probe, so original-wrapper composition with real lost draw results remains pending. Original -1 global cursor sentinel and bounded bitmap-to-DC nested call traces are independently registered as RE.surface-reload.cursor-sentinel. Portable C++ callback-only adapter does not yet route the global cursor resource or restore asset pixels; real GDI/native/live composition remains pending. Explicit cursor/none/callback routing extends the portable adapter; old4480 callback schedules freshly match with1536 budget stops. Actual-lost-draw, DirectDraw DC and live recovery remain pending. Owned backend adapter now composes16native loss/reload schedules and global supplied BMP cursor resource/DC path, with unknown contents afterRestore and explicit bytes. Fresh4480original fault traces/1536budget prefixes still match. Original physical lost-draw/asset-loader internals/reentrant callbacks/live/Windows remain pending; native lost-wrapper fill admission differs from standaloneWineCOLORFILL.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -14983,11 +14983,16 @@
         "research/runtime/native-surface-operation-matrix.json",
         "research/runtime/surface-driver-restore.md",
         "research/runtime/original-surface-sentinel.md",
-        "research/runtime/native-cursor-reload.md"
+        "research/runtime/native-cursor-reload.md",
+        "research/runtime/native-surface-ownership-recovery.md"
       ],
       "implementation": [
         "tools/check-original-surface-retry.py",
-        "reconstruction/rendering/surface_retry.hpp"
+        "reconstruction/rendering/surface_retry.hpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_access.hpp",
+        "reconstruction/rendering/owned_surface_retry.hpp"
       ],
       "tests": [
         "tests/surface-retry-reference.cpp",
@@ -14997,7 +15002,11 @@
         "tests/fixtures/surfaces/original-retry-corpus.json",
         "tests/surface-retry-model.cpp",
         "tools/check-native-surface-retry.py",
-        "tests/render-restoration-test.cpp"
+        "tests/render-restoration-test.cpp",
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py"
       ],
       "evidence": [
         "ORIGINAL.surface-copy.restore-retry.capture-20261006",
@@ -15008,13 +15017,16 @@
         "DRIVER.surface-loss.restore.offline-20261006",
         "ORIGINAL.surface-reload.cursor-sentinel.capture-20261006",
         "ORIGINAL.surface-reload.cursor-sentinel.cpu-20261006",
-        "ORIGINAL.surface-copy.restore-retry.cursor-regression-20261006"
+        "ORIGINAL.surface-copy.restore-retry.cursor-regression-20261006",
+        "NR.surface-backend.ownership-recovery.final-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006",
+        "ORIGINAL.surface-retry.ownership-replay-20261006"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "recorded",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -15168,7 +15180,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Wine Surface2 loss/Restore observations at the original driver boundary",
-      "scope": "Two standalone API probes, four requested cap classes and16/32 display formats: system-memory unaffected by mode changes; other surfaces IsLost/Lock lost; offscreen Restore succeeds in changed dimensions, primary wrong dimensions refused then succeeds in original mode; repeated Restore and source-key retention. Lost COLORFILL still returns success. Original anchors identify the external Restore caller boundary only; original functions are not executed here. Unknown restored bytes/XRGB padding are excluded from portable equivalence. Original-wrapper composition, palette/clipper/flip-chain and Windows driver/asset/live recovery remain pending. Indexed8 driver palette and explicit index reload findings are registered separately as RE.surface-driver.indexed-restore; standalone APIs do not close original asset/wrapper/live recovery gaps.",
+      "scope": "Two standalone API probes, four requested cap classes and16/32 display formats: system-memory unaffected by mode changes; other surfaces IsLost/Lock lost; offscreen Restore succeeds in changed dimensions, primary wrong dimensions refused then succeeds in original mode; repeated Restore and source-key retention. Lost COLORFILL still returns success. Original anchors identify the external Restore caller boundary only; original functions are not executed here. Unknown restored bytes/XRGB padding are excluded from portable equivalence. Original-wrapper composition, palette/clipper/flip-chain and Windows driver/asset/live recovery remain pending. Indexed8 driver palette and explicit index reload findings are registered separately as RE.surface-driver.indexed-restore; standalone APIs do not close original asset/wrapper/live recovery gaps. Owned native loss/Restore/retained shared palette metadata and explicit reload states compare6656entries/864definedindices/66statuses from indexed driver capture; cap classes and unspecified restored bytes are excluded. Primary explicit mode policy/unknown-content guards are native; physical original wrapper/asset/live recovery pending.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -15181,28 +15193,38 @@
         "research/runtime/surface-driver-restore.md",
         "research/runtime/original-surface-retry.md",
         "research/runtime/native-surface-operation-matrix.json",
-        "research/runtime/surface-palette-restore.md"
+        "research/runtime/surface-palette-restore.md",
+        "research/runtime/native-surface-ownership-recovery.md"
       ],
-      "implementation": [],
+      "implementation": [
+        "renderer/surface_backend.hpp",
+        "renderer/surface_backend.cpp"
+      ],
       "tests": [
         "tests/surface-driver-restore-reference.c",
         "tests/test-surface-driver-restore.py",
         "tools/capture-surface-driver-restore.py",
         "tools/check-surface-driver-restore.py",
-        "tests/fixtures/surfaces/surface-driver-restore-corpus.json"
+        "tests/fixtures/surfaces/surface-driver-restore-corpus.json",
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py"
       ],
       "evidence": [
         "DRIVER.surface-loss.restore.16-capture-20261006",
         "DRIVER.surface-loss.restore.32-capture-20261006",
         "DRIVER.surface-loss.restore.offline-20261006",
         "DRIVER.surface-palette.restore.capture-20261006",
-        "DRIVER.surface-palette.restore.offline-20261006"
+        "DRIVER.surface-palette.restore.offline-20261006",
+        "NR.surface-backend.ownership-recovery.final-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -15211,7 +15233,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Indexed driver palette retention and explicit reload across Restore",
-      "scope": "Standalone Wine11.16 indexed8 Surface2 API probe with two palettes/four requested cap classes. GetPalette refuses lost surfaces; Restore retains within-run palette interface identity and all RGB entries including partial shared palette-object updates made during loss. Independent palette remains unchanged; full explicit index writes and later full palette update/rebind preserve index bytes.8233 ordered rows/6656 entries, nine defined reload/update/rebind states. Original Restore anchor identifies external caller boundary only; no original function executed. Unknown restored bytes, driver RGB presentation, flags/detach/release, asset/sentinel reload and live/Windows equivalence remain pending.",
+      "scope": "Standalone Wine11.16 indexed8 Surface2 API probe with two palettes/four requested cap classes. GetPalette refuses lost surfaces; Restore retains within-run palette interface identity and all RGB entries including partial shared palette-object updates made during loss. Independent palette remains unchanged; full explicit index writes and later full palette update/rebind preserve index bytes.8233 ordered rows/6656 entries, nine defined reload/update/rebind states. Original Restore anchor identifies external caller boundary only; no original function executed. Unknown restored bytes, driver RGB presentation, flags/detach/release, asset/sentinel reload and live/Windows equivalence remain pending. Owned native loss/Restore/retained shared palette metadata and explicit reload states compare6656entries/864definedindices/66statuses from indexed driver capture; cap classes and unspecified restored bytes are excluded. Primary explicit mode policy/unknown-content guards are native; physical original wrapper/asset/live recovery pending.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -15223,25 +15245,35 @@
       "documents": [
         "research/runtime/surface-palette-restore.md",
         "research/runtime/surface-driver-restore.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/native-surface-ownership-recovery.md"
       ],
-      "implementation": [],
+      "implementation": [
+        "renderer/surface_backend.hpp",
+        "renderer/surface_backend.cpp"
+      ],
       "tests": [
         "tests/surface-palette-restore-reference.c",
         "tests/test-surface-palette-restore.py",
         "tools/capture-surface-palette-restore.py",
         "tools/check-surface-palette-restore.py",
-        "tests/fixtures/surfaces/surface-palette-restore.json.gz"
+        "tests/fixtures/surfaces/surface-palette-restore.json.gz",
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py"
       ],
       "evidence": [
         "DRIVER.surface-palette.restore.capture-20261006",
-        "DRIVER.surface-palette.restore.offline-20261006"
+        "DRIVER.surface-palette.restore.offline-20261006",
+        "NR.surface-backend.ownership-recovery.final-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -15290,7 +15322,7 @@
       "subsystem": "rendering_surfaces",
       "kind": "recovered",
       "title": "Original global cursor sentinel and bounded bitmap-to-DC reload",
-      "scope": "Recovered object+40 zero/callback/-1 routes in four wrappers, fixed global cursor/path sentinel returning0, original bitmap/DC loader returning file-load status while ignoring DC/GDI results, bounded1/4/8/24-bit file reads/cleanup including installed cursor.1698 original x86 traces/20060 endpoint events independently compared offline. Scripted CRT/COM/GDI boundaries, submitted buffers only; second allocation failure, malformed/extreme BMP semantics, real GDI raster pixels, native resource routing/conversion, other reload bodies and live recovery remain pending. Explicit global cursor route and bounded sequential BMP input parser now compare1456 projected original dispatch traces/12 submitted-buffer cases;813 budget stops preserve prefixes.12 scripted native GL recovery compositions bind a global cursor and retain triggering-surface invalidity. DirectDraw DC/other formats/loss/live remain pending; current native RGB raster coverage is separate from original control flow. Subsequent72 nativeRGB565/RGB32 cases match real standalone Surface2 DC outputs and24 scripted recovered/global-cursor compositions pass.1456 original projections/12 exact buffers freshly compare. No native DC admission, real original lost-draw/live composition. After native indexed/DC region extension1456 original dispatch projections/12 exact buffers freshly match and RGB72/36 native compatibility passes. Indexed original cursor/recovery composition remains pending.",
+      "scope": "Recovered object+40 zero/callback/-1 routes in four wrappers, fixed global cursor/path sentinel returning0, original bitmap/DC loader returning file-load status while ignoring DC/GDI results, bounded1/4/8/24-bit file reads/cleanup including installed cursor.1698 original x86 traces/20060 endpoint events independently compared offline. Scripted CRT/COM/GDI boundaries, submitted buffers only; second allocation failure, malformed/extreme BMP semantics, real GDI raster pixels, native resource routing/conversion, other reload bodies and live recovery remain pending. Explicit global cursor route and bounded sequential BMP input parser now compare1456 projected original dispatch traces/12 submitted-buffer cases;813 budget stops preserve prefixes.12 scripted native GL recovery compositions bind a global cursor and retain triggering-surface invalidity. DirectDraw DC/other formats/loss/live remain pending; current native RGB raster coverage is separate from original control flow. Subsequent72 nativeRGB565/RGB32 cases match real standalone Surface2 DC outputs and24 scripted recovered/global-cursor compositions pass.1456 original projections/12 exact buffers freshly compare. No native DC admission, real original lost-draw/live composition. After native indexed/DC region extension1456 original dispatch projections/12 exact buffers freshly match and RGB72/36 native compatibility passes. Indexed original cursor/recovery composition remains pending. Owned callback routes supplied indexed BMP through existing fixed-path sequential reader and global cursor DC raster/ReleaseDC; triggering destination remains unknown. Native composition only; retained original nested call evidence is unchanged, actual file resolver/GDI/live failure internals remain pending.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -15355,12 +15387,16 @@
         "research/runtime/native-surface-operation-matrix.json",
         "research/runtime/native-cursor-reload.md",
         "research/runtime/surface-dib-ddraw.md",
-        "research/runtime/surface-dc-palette.md"
+        "research/runtime/surface-dc-palette.md",
+        "research/runtime/native-surface-ownership-recovery.md"
       ],
       "implementation": [
         "tools/check-original-surface-sentinel.py",
         "reconstruction/rendering/surface_retry.hpp",
-        "reconstruction/rendering/surface_bitmap.hpp"
+        "reconstruction/rendering/surface_bitmap.hpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_backend.cpp",
+        "reconstruction/rendering/owned_surface_retry.hpp"
       ],
       "tests": [
         "tests/surface-sentinel-reference.py",
@@ -15375,7 +15411,11 @@
         "tests/render-ddraw-dib-test.cpp",
         "tools/check-native-ddraw-dib.py",
         "tests/render-dc-palette-test.cpp",
-        "tools/check-native-dc-palette.py"
+        "tools/check-native-dc-palette.py",
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py"
       ],
       "evidence": [
         "ORIGINAL.surface-reload.cursor-sentinel.capture-20261006",
@@ -15387,7 +15427,9 @@
         "NR.surface-reload.dib-rgb.ddraw-20261006",
         "ORIGINAL.surface-reload.cursor-sentinel.dc-palette-20261006",
         "NR.surface-reload.dib-rgb.after-dc-palette-20261006",
-        "NR.surface-reload.dib-rgb.cursor-after-dc-palette-20261006"
+        "NR.surface-reload.dib-rgb.cursor-after-dc-palette-20261006",
+        "NR.surface-backend.ownership-recovery.final-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006"
       ],
       "status": {
         "understanding": "partial",
@@ -15907,13 +15949,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owned bitmap DC raster snapshots with supplied default palette context",
-      "scope": "Noncopyable owned BitmapDcState8/16/32 bounded context accepts explicit256-entry default environment palette and optional owned binding. Acquire resets regions/snapshots current binding/default; updates during active context are deferred to next acquire, direct DC edits current-only. Reload installs snapshot colors on associated GlBlitter raster target and delegates bounded DIB conversion/regions.192cases/576leases match55296 independent pixels/258048 entries with1928 native lifetime/range/region/unknown refusals and zero surfaces. Native exceptions/geometry/association are intentional policy, not COMHDC/global busy/lock or live/wire replacement. Missing default for unbound indexed acquire refuses; logical/flags/shared palettes/other GDI objects/primary-video/loss/Windows remain pending. Owned backend now associates192cases/576leases with the same persistent storage/admission/binding identity; deferred object/DC colors and clip reset compare all captured tables/frames. SharedCOM palette/lifetime remains separate. Fresh final combined replay still compares192same-ID DC cases/576leases/258048entries. Native mapped fills preserve DC ownership; realHDC/sharedCOM palette ownership and negative-debt raster remain separate.",
+      "scope": "Noncopyable owned BitmapDcState8/16/32 bounded context accepts explicit256-entry default environment palette and optional owned binding. Acquire resets regions/snapshots current binding/default; updates during active context are deferred to next acquire, direct DC edits current-only. Reload installs snapshot colors on associated GlBlitter raster target and delegates bounded DIB conversion/regions.192cases/576leases match55296 independent pixels/258048 entries with1928 native lifetime/range/region/unknown refusals and zero surfaces. Native exceptions/geometry/association are intentional policy, not COMHDC/global busy/lock or live/wire replacement. Missing default for unbound indexed acquire refuses; logical/flags/shared palettes/other GDI objects/primary-video/loss/Windows remain pending. Owned backend now associates192cases/576leases with the same persistent storage/admission/binding identity; deferred object/DC colors and clip reset compare all captured tables/frames. SharedCOM palette/lifetime remains separate. Fresh final combined replay still compares192same-ID DC cases/576leases/258048entries. Native mapped fills preserve DC ownership; realHDC/sharedCOM palette ownership and negative-debt raster remain separate. Ownership chunk shared palette objects propagate bindings while activeDCsnapshots remain frozen; supplied cursor BMP follows native DC reload callback. Fresh576oldDCleases/258048entries retained. RealHDC/palette flags/mixed flipped DC palettes/asset internals/live remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/surface-dc-reuse.md",
         "research/runtime/native-surface-operation-matrix.json",
-        "research/runtime/native-surface-backend.md"
+        "research/runtime/native-surface-backend.md",
+        "research/runtime/native-surface-ownership-recovery.md"
       ],
       "implementation": [
         "renderer/bitmap_dc.hpp"
@@ -15923,7 +15966,11 @@
         "tools/check-native-dc-reuse.py",
         "tests/test-surface-dc-reuse.py",
         "tests/render-surface-backend-test.cpp",
-        "tools/check-native-surface-backend.py"
+        "tools/check-native-surface-backend.py",
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py"
       ],
       "evidence": [
         "NR.surface-reload.bitmap-dc.native-20261006",
@@ -15931,7 +15978,11 @@
         "ORIGINAL.surface-backend.owned.replay-base-20261006",
         "NR.surface-backend.owned.final-20261006",
         "ORIGINAL.surface-backend.owned.replay-final-20261006",
-        "NR.surface-backend.owned.regressions-20261006"
+        "NR.surface-backend.owned.regressions-20261006",
+        "NR.surface-backend.ownership-recovery.final-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006",
+        "NR.surface-backend.ownership-recovery.operations-20261006",
+        "ORIGINAL.surface-backend.ownership-recovery.operations-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16068,13 +16119,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owned Surface2-style lock and DC admission state",
-      "scope": "Bounded noncopyable single-thread owned state for supported full-surface lock and DC transitions with captured HRESULT/output mutation semantics for the recorded schedules; unstable busy-Lock caps word excluded. Native storage/DC tokens and depth budget are intentional policies.96 input sequences replay against independent driver outputs; no actual COM HDC/alias lifetime, attached raster adapter/global drawing admission, wire, loss, Windows or live replacement. New owned backend associates all96access sequences/1182transitions with actual GL storage/CPU snapshots;12poisoned cases require whole-owner cleanup. No actual HDC/COM pointer or live replacement. Combined backend no longer conservatively refuses leased COLORFILL;12CPU-held destination fills compare active snapshot bytes.180standalone driver draws establish borrowed busy/clip branches, preserving lease state; negative debt raster/interleaving remain outside scope.",
+      "scope": "Bounded noncopyable single-thread owned state for supported full-surface lock and DC transitions with captured HRESULT/output mutation semantics for the recorded schedules; unstable busy-Lock caps word excluded. Native storage/DC tokens and depth budget are intentional policies.96 input sequences replay against independent driver outputs; no actual COM HDC/alias lifetime, attached raster adapter/global drawing admission, wire, loss, Windows or live replacement. New owned backend associates all96access sequences/1182transitions with actual GL storage/CPU snapshots;12poisoned cases require whole-owner cleanup. No actual HDC/COM pointer or live replacement. Combined backend no longer conservatively refuses leased COLORFILL;12CPU-held destination fills compare active snapshot bytes.180standalone driver draws establish borrowed busy/clip branches, preserving lease state; negative debt raster/interleaving remain outside scope. Ownership chunk separates physical storage DC/CPU lease from logical cachedDC identity across11sampled primary flips; wrong-surface returns preserve state and DC flipback returns original handle.96old schedules/1182transitions freshly match. Mixed leases, cached-DC Lock/reacquisition after flip and negative-debt raster remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/surface-access.md",
         "research/runtime/native-surface-operation-matrix.json",
-        "research/runtime/native-surface-backend.md"
+        "research/runtime/native-surface-backend.md",
+        "research/runtime/native-surface-ownership-recovery.md"
       ],
       "implementation": [
         "renderer/surface_access.hpp"
@@ -16084,7 +16136,11 @@
         "tools/check-native-surface-access.py",
         "tests/test-surface-access.py",
         "tests/render-surface-backend-test.cpp",
-        "tools/check-native-surface-backend.py"
+        "tools/check-native-surface-backend.py",
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py"
       ],
       "evidence": [
         "NR.surface-access.native-20261006",
@@ -16092,7 +16148,11 @@
         "ORIGINAL.surface-backend.owned.replay-base-20261006",
         "NR.surface-backend.owned.final-20261006",
         "ORIGINAL.surface-backend.owned.replay-final-20261006",
-        "NR.surface-backend.owned.regressions-20261006"
+        "NR.surface-backend.owned.regressions-20261006",
+        "NR.surface-backend.ownership-recovery.final-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006",
+        "NR.surface-backend.ownership-recovery.operations-20261006",
+        "ORIGINAL.surface-backend.ownership-recovery.operations-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16150,12 +16210,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Integrated owned surface operations and independent offline replay",
-      "scope": "One GUI-thread owner associates canonical8/16/32GL storage with admission, CPU snapshots, DC raster/default-binding palette snapshots, clipping and RGB565 fills/exact-key copies. Fresh5114draw results/538272pixels/258048palette entries/8664stable descriptors;40guards/12poisoned owner teardowns/84unstable caps excluded. Mapped COLORFILL preserves leases and CPU bytes; empty clipped Blt succeeds borrowed; keyed same-backing reads forward row-major via resident GPU scratch, intentionally bounded4096texels before writes. Explicit native token/default-palette policies; sharedCOM lifetime/palette objects/loss-Restore-retry/new formats/live/wire/uncaptured precedence/extra-Unlock DC raster remain pending.",
+      "scope": "GUI-thread owned canonical8/16/32GL storage, CPU/DC leases, binding/default palette snapshots, clipping and RGB565 fill/exact-key/overlap. Fresh5114results/538272pixels/258048palette entries/8664stable descriptors; mapped fill/empty-Blt success and4096texel ordered keyed-self bound. Chunk2 adds retained canonical aliases/shared palette identities/two-buffer attachments and actual storage/validity/CPU-lease swaps with cachedDC kept object-local;11sampled driver flips include busy after swap. Explicit loss/Restore retains metadata but unknown pixels until reload/overwrite; recovered retry/globalcursor BMP-DC callback composition. Native counts/tokens/default palette/budgets/lost-wrapper admission are intentional policies. COM pointers/realHDC/flagged palettes/new-format draws/pitch/long chains/mixed flipped leases/error precedence/negative-debt raster/physical original lost-draw/asset internals/live/wire/Windows remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-surface-backend.md",
-        "research/runtime/native-surface-operation-matrix.json"
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/native-surface-ownership-recovery.md"
       ],
       "implementation": [
         "renderer/surface_backend.hpp",
@@ -16166,7 +16227,11 @@
       ],
       "tests": [
         "tests/render-surface-backend-test.cpp",
-        "tools/check-native-surface-backend.py"
+        "tools/check-native-surface-backend.py",
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py"
       ],
       "evidence": [
         "NR.surface-backend.owned.base-20261006",
@@ -16178,7 +16243,11 @@
         "ORIGINAL.surface-copy.rgb565-keyed-overlap.cpu-20261006",
         "DRIVER.surface-borrowed-draw.capture-20261006",
         "DRIVER.surface-borrowed-draw.cpu-20261006",
-        "NR.surface-backend.owned.combined-initial-20261006"
+        "NR.surface-backend.owned.combined-initial-20261006",
+        "NR.surface-backend.ownership-recovery.final-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006",
+        "NR.surface-backend.ownership-recovery.operations-20261006",
+        "ORIGINAL.surface-backend.ownership-recovery.operations-20261006"
       ],
       "status": {
         "understanding": "scoped",
@@ -16397,6 +16466,102 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.surface-backend.ownership-recovery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned shared identities, two-buffer storage leases and explicit recovery",
+      "scope": "Canonical aliases/shared palette binding ownership, bounded caller budgets, attachment retention/reacquisition/retirement and two-buffer swaps with independent validity/CPU/DC lease state.11driver flip results/2128ownershipwords;6656entries/864knownindices/66loss-palette statuses.16controlled recovered-wrapper callbacks/432inputpixels and global supplied indexedBMP DC reload. Native reference counts/default context/lost-wrapper admission and conservative guards are policies; no original physical lost-draw, realCOM/HDC, flags/longchains/uncaptured interleavings/asset internals/live/wire/Windows equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-surface-ownership-recovery.md",
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/native-surface-backend.md"
+      ],
+      "implementation": [
+        "renderer/surface_backend.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_access.hpp",
+        "reconstruction/rendering/owned_surface_retry.hpp",
+        "renderer/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py"
+      ],
+      "evidence": [
+        "NR.surface-backend.ownership-recovery.final-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006",
+        "NR.surface-backend.ownership-recovery.operations-20261006",
+        "DRIVER.surface-ownership.capture-final-20261006",
+        "DRIVER.surface-ownership.offline-20261006",
+        "NR.surface-backend.ownership-recovery.initial-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RE.surface-driver.ownership-flip",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Standalone Surface2 alias/palette ownership and primary flip lease effects",
+      "scope": "Standalone Wine11.16 API corpus5647rows/11flips for indexed8 primary640x480two-buffer caps0x218 and two0x840offscreens. Surviving Surface1 alias/IUnknown identity, caller-released retained palettes/partialupdate/detach/rebind, attachment reacquisition; storage swaps even when Flip returnsBUSY, CPU leases migrate while cachedDC stays object-local, flipback enables DC release. Native replay compares recorded output subsets; COM AddRef/Release returns diagnostic only. Addresses mark external setup/DC caller context, no original game instructions. Flagged palettes/longchains/mixed leases/Windows/timing/originalwrapper/live remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810608,
+          "scope": "DirectDraw fullscreen setup context only; standalone primary creation/Flip probe executes no original game function or Flip wrapper."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745856,
+          "scope": "Original bitmap loader external GetDC/ReleaseDC caller boundary only; no original instructions execute in this capture."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-surface-ownership-recovery.md",
+        "research/runtime/native-surface-operation-matrix.json",
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [
+        "tools/check-surface-ownership.py",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_access.hpp"
+      ],
+      "tests": [
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py",
+        "tests/surface-ownership-reference.c",
+        "tools/capture-surface-ownership.py",
+        "tests/fixtures/surfaces/surface-ownership-final.json.gz",
+        "tests/fixtures/surfaces/surface-ownership.json.gz"
+      ],
+      "evidence": [
+        "DRIVER.surface-ownership.capture-final-20261006",
+        "DRIVER.surface-ownership.offline-20261006",
+        "NR.surface-backend.ownership-recovery.final-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006",
+        "DRIVER.surface-ownership.capture-initial-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -29963,6 +30128,178 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRIVER.surface-ownership.capture-final-20261006",
+      "kind": "native_integration",
+      "scope": "Standalone Wine11.16 Surface2:5647rows, normalizedIUnknown/Surface1 alias survival, caller-released bound/shared palettes, detach/rebind/attachment reacquisition,11primary flips including busy-after-storage-swap and CPU/DC lease returns. No original game instructions, COM return-count equivalence or Windows claim.",
+      "record": "research/runtime/surface-ownership-final-capture-20261006.json",
+      "sha256": "c01144134bc00e4a6aeaf53a514082d7d627141d0fd376576d6c57895ab252dd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-ownership.offline-20261006",
+      "kind": "native_integration",
+      "scope": "Offline input-derived oracle/provenance:34frames/1632indexbytes/3840palette entries and11flip results/cleanup sequences match independent standalone capture. Native counts separate; original/live/Windows pending.",
+      "record": "research/runtime/surface-ownership-offline-20261006.json",
+      "sha256": "8373f5e71ce99749e0f23e0c55a2d18fdb5f82aa9dbf543ec8b086a140eb8c1c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-backend.ownership-recovery.final-20261006",
+      "kind": "native_integration",
+      "scope": "Owned native shared lifetimes/attachments,11flips+leases/2128ownership words;6656palette entries/864defined indices/66statuses from independent prior recovery capture.16native wrapper compositions/432input pixels plus supplied global cursor BMP/DC reload;286checks/29refusals. Unspecified Restore pixels excluded; physical original lost-draw/asset internals/live pending.",
+      "record": "research/runtime/native-surface-ownership-final-20261006.json",
+      "sha256": "14a5cba7adf928e5ce55a14a38ac41dc22f10e67a1876b20bc2a1f4ab1a380b4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-retry.ownership-replay-20261006",
+      "kind": "isolated_original",
+      "scope": "Fresh offline existing recovered scheduler matches4480 independently retained unchanged-original scripted fault traces and1536bounded prefixes. Original build hash retained; owned native recovery/driver corpus is separate scope, not independently original physical lost-draw composition.",
+      "record": "research/runtime/native-surface-ownership-final-20261006.json",
+      "sha256": "14a5cba7adf928e5ce55a14a38ac41dc22f10e67a1876b20bc2a1f4ab1a380b4",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NR.surface-backend.ownership-recovery.operations-20261006",
+      "kind": "native_integration",
+      "scope": "Fresh changed-backend regression5114draw results/538272pixels/258048palette entries/8664stable descriptor fields,576DCleases/1182access transitions,40guards; shared lifetimes/new recovery validated in separate final report.",
+      "record": "research/runtime/native-surface-ownership-backend-regression-20261006.json",
+      "sha256": "e1cbfea59ac28fc237f515249963f1fe1debbce76e1362399b8e7ea7a5d6f6fe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL.surface-backend.ownership-recovery.operations-20261006",
+      "kind": "isolated_original",
+      "scope": "Fresh changed-backend offline retained250original fills/436keyed/1536opaque-overlap/2304keyed-overlap outputs compare; no new original execution. Driver andDC/access scope remains separate.",
+      "record": "research/runtime/native-surface-ownership-backend-regression-20261006.json",
+      "sha256": "e1cbfea59ac28fc237f515249963f1fe1debbce76e1362399b8e7ea7a5d6f6fe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NR.surface-backend.ownership-recovery.regressions-20261006",
+      "kind": "native_integration",
+      "scope": "All15renderer CTests in ef5b5a4 isolated archive with exact owned changes pass,11offline oracle tests. Foreign uncommitted Qt/resource work excluded; later terminal-shutdown commit is accounting base only, not this execution baseline.",
+      "record": "research/runtime/native-surface-ownership-regressions-20261006.json",
+      "sha256": "9e779254edf329cc1122b36ba54a4866657ee54a6b1bfcbf55cd3bea04f2dee9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-ownership.capture-initial-20261006",
+      "kind": "native_integration",
+      "scope": "Historical preliminary complete capture; unused inherited caps/catalog fields superseded by final corrected collector/capture. Preserve original hashes; collector source now stale. Not current validation.",
+      "record": "research/runtime/surface-ownership-capture-20261006.json",
+      "sha256": "29243968d2659c8caf1feb70315a36ec4c599b594ba03c5ba64f09c4e7ff50fd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-backend.ownership-recovery.initial-20261006",
+      "kind": "native_integration",
+      "scope": "Historical recovery-only intermediate; no ownership/flip driver comparison. Final source hashes differ; not current validation.",
+      "record": "research/runtime/native-surface-ownership-initial-20261006.json",
+      "sha256": "7b6190fe1a1efd092ab2173671f03c8fdb2d417b4e11eaa6b5954b608c932e64",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-backend.ownership-recovery.pre-guard-final-20261006",
+      "kind": "native_integration",
+      "scope": "Historical successful development run before conservative unmatched-DC-Unlock flip guard and final source changes; source hashes preserved and stale, not current validation.",
+      "record": "research/runtime/native-surface-ownership-final-pre-guard-20261006.json",
+      "sha256": "3c13e84552e353e79e6bd96e3aafa270aad483bd9ddde7ff63eb29623c54add1",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-backend.ownership-recovery.pre-guard-backend-regression-20261006",
+      "kind": "native_integration",
+      "scope": "Historical successful development run before conservative unmatched-DC-Unlock flip guard and final source changes; source hashes preserved and stale, not current validation.",
+      "record": "research/runtime/native-surface-ownership-backend-regression-pre-guard-20261006.json",
+      "sha256": "3f97cb34da1686a74c25cd5103fc2366b4bbd3d10f1857334867381dafa35eb5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-backend.ownership-recovery.pre-guard-regressions-20261006",
+      "kind": "native_integration",
+      "scope": "Historical successful development run before conservative unmatched-DC-Unlock flip guard and final source changes; source hashes preserved and stale, not current validation.",
+      "record": "research/runtime/native-surface-ownership-regressions-pre-guard-20261006.json",
+      "sha256": "dd1d4735dce707af9c43beaa7729b8626177c8a40151649fdc517aa0f929c3c9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -34712,7 +35049,9 @@
         "NR.surface-reload.bitmap-dc",
         "RE.surface-copy.rgb565-overlap",
         "RE.surface-copy.rgb565-keyed-overlap",
-        "RE.surface-driver.borrowed-draw"
+        "RE.surface-driver.borrowed-draw",
+        "NR.surface-backend.ownership-recovery",
+        "RE.surface-driver.ownership-flip"
       ],
       "evidence": [
         "NR.surface-backend.owned.base-20261006",
@@ -34723,11 +35062,18 @@
         "ORIGINAL.surface-copy.rgb565-keyed-overlap.capture-20261006",
         "ORIGINAL.surface-copy.rgb565-keyed-overlap.cpu-20261006",
         "DRIVER.surface-borrowed-draw.capture-20261006",
-        "DRIVER.surface-borrowed-draw.cpu-20261006"
+        "DRIVER.surface-borrowed-draw.cpu-20261006",
+        "NR.surface-backend.ownership-recovery.operations-20261006",
+        "ORIGINAL.surface-backend.ownership-recovery.operations-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006"
       ],
       "tests": [
         "tests/render-surface-backend-test.cpp",
-        "tools/check-native-surface-backend.py"
+        "tools/check-native-surface-backend.py",
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py"
       ]
     },
     {
@@ -34795,6 +35141,37 @@
         "tools/test-render-recovery.py",
         "tools/test-render-recovery-races.py",
         "tools/test-render-drawing-recovery.py"
+      ]
+    },
+    {
+      "id": "NR.surface-backend.ownership-recovery.offline",
+      "scope": "Offline owned lifetimes/two-buffer flips, independently retained indexed recovery states and controlled retry/cursorBMPDC callbacks. Original fault scheduler replay4480traces separate from native lost-draw policy; no live replacement.",
+      "level": "headless",
+      "behaviors": [
+        "NR.surface-backend.ownership-recovery",
+        "RE.surface-driver.ownership-flip",
+        "NR.surface-backend.owned",
+        "NR.surface-access",
+        "NR.surface-reload.bitmap-dc",
+        "RE.surface-copy.restore-retry",
+        "RE.surface-driver.indexed-restore",
+        "RE.surface-driver.loss-restore",
+        "RE.surface-reload.cursor-sentinel"
+      ],
+      "evidence": [
+        "NR.surface-backend.ownership-recovery.final-20261006",
+        "NR.surface-backend.ownership-recovery.regressions-20261006",
+        "DRIVER.surface-ownership.capture-final-20261006",
+        "DRIVER.surface-ownership.offline-20261006",
+        "NR.surface-backend.ownership-recovery.operations-20261006",
+        "ORIGINAL.surface-backend.ownership-recovery.operations-20261006",
+        "ORIGINAL.surface-retry.ownership-replay-20261006"
+      ],
+      "tests": [
+        "tests/render-surface-ownership-test.cpp",
+        "tools/check-native-surface-ownership.py",
+        "tests/test-surface-ownership.py",
+        "tools/check-surface-ownership.py"
       ]
     }
   ],
@@ -35043,7 +35420,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-application-shutdown-20261006.json",
-    "sha256": "0f69b35b4427e52686fde13f3dd8e9f72d00bbfe7423854f0ac53fde9b0b3e33"
+    "path": "research/runtime/coverage/source-index-surface-ownership-20261006.json",
+    "sha256": "da48024ec93e757d70aa68d647590b92e675541a374aa7b569c79937b32f8f24"
   }
 }

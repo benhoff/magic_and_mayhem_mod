@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "success": true,
+  "base": "ef5b5a4925f04c3a4ea944b13542e2e6457ffc7b",
+  "sources": {
+    "tests/surface-retry-model.cpp": "a5a991c503c05c464b5440dd17e8edf538eea3aedb8bc4baa9d18fe1684bd76f",
+    "tools/check-original-surface-retry.py": "c8da795ff99a2438d80e8e77fa8e30a8dee643c940a5df252c1336d46961741f",
+    "tests/fixtures/surfaces/original-retry.json.gz": "c111fde6a0364d564d1c059fc6eed5e406518e7799997d62435a4e93553ebad5",
+    "tests/fixtures/surfaces/original-retry-corpus.json": "ad58af4ddb3c5d09a8c1d6a58ebc958fd37711d45d24047abbec81e72f550e9c",
+    "renderer/surface_backend.hpp": "197e2033443d82b888df7073a3f7c198d0b366b71e13ff351b8b54b383bef338",
+    "renderer/surface_backend.cpp": "281ec802b0c8996bae80665eceab0dad5b1cf4021f40eeefcac115f71754090e",
+    "renderer/surface_access.hpp": "29306563839b79760e26450d294fc75c4c3b057ffa81a64588bb42a98514fb16",
+    "renderer/bitmap_dc.hpp": "df2ddb4a1c8547a184788053e4d925528b984a7ba7bbb0d4ff630dd926f0e456",
+    "renderer/blit.cpp": "1a42bf05a73cd017ac5591b65c5507e0712e876d682435180ab7e241bceb6fa7",
+    "renderer/blit.hpp": "20dd1fd1b64e452550503bf3ce7aa4a9add2fd73fc0f480e2be46eba7fd5fd70",
+    "renderer/known_pixels.hpp": "d9bda33d67096cc899f38ba8c6983beecee5ebdfa95a6d7c23bbbd99e66109d0",
+    "renderer/CMakeLists.txt": "b83cb42298ebbfb2dad14545b44cb8f2f608e9206e97c7b556c29f10d50ad479",
+    "reconstruction/rendering/surface_retry.hpp": "e3683f0aa2aecbe7b7f83df4db02c9240028e28c15e588e780ee04e365e89428",
+    "reconstruction/rendering/owned_surface_retry.hpp": "a5d41336ee9371a7f43a364538b3157bd44ca7f7c3aeea42f55c1a72f69c1f35",
+    "tests/render-surface-ownership-test.cpp": "d5699c5bba8d3a6273893f6a9b30533b72e1f6f1f71d33486a72abb9f67df44d",
+    "tools/check-native-surface-ownership.py": "8ea093225b760c0fd3829e58f0da6f782afe5e3a7689329f40b17c850413f55b",
+    "tools/check-surface-ownership.py": "67800b21467e7b71f0bdcb22252bb2e2ad4de4c5093196daf9866b619c1aa9b3",
+    "tests/test-surface-ownership.py": "133cfc54a45dc2ff4f58ac09cf09467b830b1898ec825b5b5270116204c42930",
+    "research/runtime/surface-ownership-final-capture-20261006.json": "c01144134bc00e4a6aeaf53a514082d7d627141d0fd376576d6c57895ab252dd",
+    "tests/fixtures/surfaces/surface-ownership-final.json.gz": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839",
+    "tools/check-surface-palette-restore.py": "40b525e732be91b5a27cc28214968f0149c67fd40418752da0ea03901e7b4ab8",
+    "research/runtime/surface-palette-restore-capture-20261006.json": "c4a71a0033b934217905484473234161b0b9c82aa078d7effbea7a597154202b",
+    "tests/fixtures/surfaces/surface-palette-restore.json.gz": "9e6d00cb9c360702cd00b9cc43930985887131bfe741bf87c262b88d537fa52b",
+    "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "reconstruction/rendering/surface_bitmap.hpp": "d115f4908653fdc05b745a1067a24a549e2c7dfc4fe969c15a5f9bc6db0c8334",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/command_consumer.cpp": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+    "tests/render-surface-backend-test.cpp": "e93476f1df2382088c58b893c934b3bdef942f48811cf8f6e99a4db6133d758c",
+    "tools/check-native-surface-backend.py": "241e950f1c9cedc07974ae548844970f7598b196c8d1f7d9582362b54bf89f5e"
+  },
+  "count": 15,
+  "offline_mutation_tests": 11,
+  "tests": [
+    {
+      "name": "render-control-client",
+      "time": "0.0118554"
+    },
+    {
+      "name": "renderer-help",
+      "time": "0.0220271"
+    },
+    {
+      "name": "native-capture-reference",
+      "time": "0.0928942"
+    },
+    {
+      "name": "opengl-owned-surface-backend",
+      "time": "15.6878"
+    },
+    {
+      "name": "opengl-owned-surface-ownership",
+      "time": "4.37181"
+    },
+    {
+      "name": "opengl-clipping-stream",
+      "time": "4.45064"
+    },
+    {
+      "name": "opengl-surface-clipping",
+      "time": "3.40391"
+    },
+    {
+      "name": "opengl-command-ring",
+      "time": "3.51101"
+    },
+    {
+      "name": "opengl-palette-resources",
+      "time": "3.57493"
+    },
+    {
+      "name": "opengl-incremental-consumer",
+      "time": "6.41482"
+    },
+    {
+      "name": "opengl-live-command-channel",
+      "time": "5.48433"
+    },
+    {
+      "name": "opengl-command-stream",
+      "time": "5.56173"
+    },
+    {
+      "name": "opengl-native-blits",
+      "time": "3.45941"
+    },
+    {
+      "name": "opengl-persistent-surfaces",
+      "time": "3.31031"
+    },
+    {
+      "name": "opengl-capture-replay",
+      "time": "5.76274"
+    }
+  ],
+  "tree": "/tmp/mnm-surface-ownership-ma6ws71f",
+  "junit_sha256": "1ebe8eed8213c9e158993246edb66975a22c25fddd997b875d16e2d18466aa3a",
+  "log_sha256": "342c4d12ee924b3e4638ce75eebeb2ac8956034814c9a210c8a553e1bf97b066",
+  "scope": "All15renderer CTests in isolated ef5b5a4 archive with exact final owned ownership/recovery sources,11offline driver oracle tests. Foreign uncommitted Qt/resource work excluded. Later terminal-shutdown commit is accounting base only, not execution baseline. Native offline regressions; no original/live/Windows claim."
+}

@@ -1,10 +1,17 @@
 #include "surface_backend.hpp"
 #include "dib.hpp"
 #include <algorithm>
+#include <atomic>
 #include <limits>
 
 namespace mnm::render {
+struct SurfaceBackend::PaletteObject {
+    PaletteId id;Palette colors;unsigned references=1;
+};
 struct SurfaceBackend::Entry {
+    unsigned references=1;bool primary=false,lost=false;
+    std::optional<SurfaceId> back,front;
+    std::shared_ptr<PaletteObject> palette;
     int width,height;
     PixelFormat format;
     std::uint32_t dcToken;
@@ -24,22 +31,26 @@ SurfaceBackend::SurfaceBackend()=default;
 SurfaceBackend::~SurfaceBackend()=default; // Whole owner teardown also drops poisoned leases.
 SurfaceBackend::Entry& SurfaceBackend::entry(SurfaceId id){
     gl_.stats();auto at=entries_.find(id);
-    if(at==entries_.end())throw std::runtime_error("Unknown or foreign owned surface");
+    if(at==entries_.end() || !at->second->references)throw std::runtime_error("Unknown or foreign owned surface");
     return *at->second;
 }
 const SurfaceBackend::Entry& SurfaceBackend::entry(SurfaceId id) const {
     gl_.stats();auto at=entries_.find(id);
-    if(at==entries_.end())throw std::runtime_error("Unknown or foreign owned surface");
+    if(at==entries_.end() || !at->second->references)throw std::runtime_error("Unknown or foreign owned surface");
     return *at->second;
 }
-void SurfaceBackend::available(const Entry& e){
+void SurfaceBackend::idle(const Entry& e){
     if(e.access.borrowed())throw std::runtime_error("Owned surface is borrowed or poisoned");
 }
+void SurfaceBackend::available(const Entry& e){
+    idle(e);if(e.lost)throw std::runtime_error("Owned surface contents are lost");
+}
 void SurfaceBackend::raster(const Entry& e){
-    if(!e.access.dcActive() || e.locked || e.access.poisoned())
+    if(e.lost)throw std::runtime_error("Owned DC raster target is lost");
+    if(!e.access.dcActive() || !e.access.dcMatchesStorage() || e.locked || e.access.poisoned())
         throw std::runtime_error("Owned DC raster requires an active unpoisoned DC without a CPU lease");
 }
-SurfaceId SurfaceBackend::create(const Image& image,PixelFormat format,unsigned caps,std::optional<Palette> defaults){
+SurfaceId SurfaceBackend::create(const Image& image,PixelFormat format,unsigned caps,std::optional<Palette> defaults,bool primary){
     const std::array<std::uint32_t,3> masks=format.bits==8?std::array<std::uint32_t,3>{}:
         format.bits==16?std::array<std::uint32_t,3>{0xf800,0x7e0,31}:std::array<std::uint32_t,3>{0xff0000,0xff00,0xff};
     if((format.bits!=8 && format.bits!=16 && format.bits!=32) || format.masks!=masks)
@@ -49,15 +60,106 @@ SurfaceId SurfaceBackend::create(const Image& image,PixelFormat format,unsigned 
     auto e=std::make_unique<Entry>(image,format,caps,nextToken_,nextToken_+1,std::move(defaults));
     // Sentinel values are never issued, and token identities never wrap/reuse.
     if(nextToken_==0xabababaa || nextToken_==0xabababab)throw std::runtime_error("Owned token sentinel reached");
-    auto id=gl_.create(image,format);
+    e->primary=primary;auto id=gl_.create(image,format);
     try {if(e->defaults)gl_.setPalette(id,0,{e->defaults->begin(),e->defaults->end()});entries_.emplace(id,std::move(e));}
     catch(...){gl_.destroy(id);throw;}
     nextToken_+=2;return id;
 }
-void SurfaceBackend::destroy(SurfaceId id){available(entry(id));gl_.destroy(id);entries_.erase(id);}
+void SurfaceBackend::destroy(SurfaceId id){
+    if(entry(id).references!=1)throw std::runtime_error("Use release for retained surface aliases");
+    (void)release(id);
+}
+SurfaceId SurfaceBackend::alias(SurfaceId id){auto& e=entry(id);if(e.references==1024)throw std::runtime_error("Surface reference budget exceeded");++e.references;return id;}
+unsigned SurfaceBackend::references(SurfaceId id) const{return entry(id).references;}
+void SurfaceBackend::retire(SurfaceId id){
+    auto& e=*entries_.at(id);const auto back=e.back;gl_.destroy(id);entries_.erase(id);
+    if(back){auto& b=*entries_.at(*back);b.front.reset();if(!b.references)retire(*back);}
+}
+unsigned SurfaceBackend::release(SurfaceId id){
+    auto& e=entry(id);
+    if(e.references==1){idle(e);if(e.back){const auto& b=*entries_.at(*e.back);if(!b.references)idle(b);}}
+    const auto remaining=--e.references;
+    if(!remaining && !e.front)retire(id);
+    return remaining;
+}
+SurfaceBackend::PaletteId SurfaceBackend::createPalette(const Palette& colors){
+    gl_.stats();if(paletteObjects()>=256)throw std::runtime_error("Palette object budget exceeded");
+    static std::atomic<PaletteId> serial{1};auto id=serial.load();
+    do {if(!id || id==std::numeric_limits<PaletteId>::max())throw std::runtime_error("Palette identity exhausted");}
+    while(!serial.compare_exchange_weak(id,id+1));
+    auto p=std::make_shared<PaletteObject>();p->id=id;p->colors=colors;palettes_.emplace(id,std::move(p));return id;
+}
+std::shared_ptr<SurfaceBackend::PaletteObject> SurfaceBackend::paletteObject(PaletteId id) const{
+    gl_.stats();auto at=palettes_.find(id);if(at==palettes_.end())throw std::runtime_error("Unknown or foreign palette object");return at->second;
+}
+unsigned SurfaceBackend::retainPalette(PaletteId id){gl_.stats();auto p=paletteObject(id);if(p->references==1024)throw std::runtime_error("Palette reference budget exceeded");return ++p->references;}
+unsigned SurfaceBackend::releasePalette(PaletteId id){gl_.stats();auto p=paletteObject(id);const auto count=--p->references;if(!count)palettes_.erase(id);return count;}
+std::size_t SurfaceBackend::paletteObjects() const{
+    gl_.stats();std::vector<PaletteId> ids;for(const auto& pair:palettes_)ids.push_back(pair.first);
+    for(const auto& pair:entries_)if(pair.second->palette)ids.push_back(pair.second->palette->id);
+    std::sort(ids.begin(),ids.end());return std::unique(ids.begin(),ids.end())-ids.begin();
+}
+void SurfaceBackend::bindPaletteObject(SurfaceId id,std::optional<PaletteId> palette){
+    auto& e=entry(id);std::shared_ptr<PaletteObject> object;if(palette)object=paletteObject(*palette);
+    bindPalette(id,object?std::optional<Palette>(object->colors):std::nullopt);e.palette=std::move(object);
+}
+void SurfaceBackend::propagatePalette(const std::shared_ptr<PaletteObject>& p,unsigned first,const std::vector<Rgb>& colors){
+    if(colors.empty() || first>=256 || colors.size()>256-first)throw std::runtime_error("Palette update outside table");
+    std::copy(colors.begin(),colors.end(),p->colors.begin()+first);
+    for(auto& pair:entries_){auto& e=*pair.second;if(e.palette!=p)continue;
+        e.dc.updateBoundPalette(first,colors);std::copy(colors.begin(),colors.end(),e.binding->begin()+first);
+        if(!e.access.dcActive())gl_.setPalette(pair.first,first,colors);
+    }
+}
+void SurfaceBackend::updatePaletteObject(PaletteId id,unsigned first,const std::vector<Rgb>& colors){gl_.stats();propagatePalette(paletteObject(id),first,colors);}
+std::uint32_t SurfaceBackend::getPaletteObject(SurfaceId id,PaletteId& output){
+    auto& e=entry(id);if(e.lost)return 0x887601c2;
+    if(!e.palette)return 0x8876023c; // DDERR_NOPALETTEATTACHED.
+    if(e.palette->references==1024)throw std::runtime_error("Palette reference budget exceeded");
+    palettes_.emplace(e.palette->id,e.palette);++e.palette->references;output=e.palette->id;return 0;
+}
+std::optional<SurfaceBackend::PaletteId> SurfaceBackend::paletteIdentity(SurfaceId id) const{const auto& p=entry(id).palette;return p?std::optional<PaletteId>(p->id):std::nullopt;}
+void SurfaceBackend::attachBackBuffer(SurfaceId front,SurfaceId back){
+    auto& f=entry(front);auto& b=entry(back);idle(f);idle(b);
+    if(front==back || f.back || f.front || b.front || b.back || f.width!=b.width || f.height!=b.height || f.format.bits!=b.format.bits || f.format.masks!=b.format.masks)
+        throw std::runtime_error("Unsupported two-buffer attachment");
+    f.back=back;b.front=front;f.primary=true;
+}
+SurfaceId SurfaceBackend::getBackBuffer(SurfaceId front){
+    const auto id=entry(front).back;if(!id)throw std::runtime_error("No attached back buffer");
+    auto& b=*entries_.at(*id);if(b.references==1024)throw std::runtime_error("Surface reference budget exceeded");++b.references;return *id;
+}
+std::uint32_t SurfaceBackend::flip(SurfaceId front,std::uint32_t flags){
+    auto& f=entry(front);if(!f.back || (flags!=0 && flags!=1))throw std::runtime_error("Unsupported two-buffer flip");
+    auto& b=*entries_.at(*f.back);if(f.lost || b.lost)return 0x887601c2;
+    if(f.access.poisoned() || b.access.poisoned())throw std::runtime_error("Flip after mapping debt is unvalidated");
+    if((f.access.storageDcActive() && f.access.mapBalance()!=1) ||
+       (b.access.storageDcActive() && b.access.mapBalance()!=1))
+        throw std::runtime_error("Flip after unmatched DC Unlock is unvalidated");
+    gl_.swapContents(front,*f.back);
+    f.access.exchangeStorageLease(b.access);std::swap(f.locked,b.locked);
+    for(const auto id:{front,*f.back}){const auto& e=*entries_.at(id);if(e.format.bits!=8)continue;
+        if(e.access.dcActive()){const auto& p=e.dc.palette();gl_.setPalette(id,0,{p.begin(),p.end()});}
+        else installBinding(id,e);
+    }
+    return f.access.storageBorrowed()?SurfaceAccessState::busy:0;
+}
+void SurfaceBackend::markLost(SurfaceId id){auto& e=entry(id);idle(e);gl_.invalidateContents(id);e.lost=true;}
+std::uint32_t SurfaceBackend::isLost(SurfaceId id) const{return entry(id).lost?0x887601c2:0;}
+std::uint32_t SurfaceBackend::restore(SurfaceId id,std::optional<Mode> mode){
+    auto& e=entry(id);idle(e);
+    if(e.primary && e.lost){
+        if(!mode)throw std::runtime_error("Primary Restore requires display context");
+        if(mode->width!=e.width || mode->height!=e.height || mode->format.bits!=e.format.bits || mode->format.masks!=e.format.masks)return 0x8876024b;
+    }
+    if(e.lost){gl_.invalidateContents(id);e.lost=false;}
+    return 0;
+}
+std::optional<std::uint16_t> SurfaceBackend::sourceKey(SurfaceId id) const{return entry(id).key;}
 void SurfaceBackend::update(SurfaceId id,int x,int y,const Image& patch){available(entry(id));gl_.update(id,x,y,patch);}
 std::uint32_t SurfaceBackend::lock(SurfaceId id,Descriptor& output){
     auto& e=entry(id);
+    if(e.lost)return 0x887601c2;
     if(e.access.borrowed())return e.access.lock(output);
     // Unknown contents refuse before changing admission or the output descriptor.
     auto pixels=gl_.read(id);auto result=e.access.lock(output);
@@ -83,15 +185,17 @@ void SurfaceBackend::installBinding(SurfaceId id,const Entry& e){
 }
 std::uint32_t SurfaceBackend::acquireDc(SurfaceId id,std::uint32_t& output){
     auto& e=entry(id);
+    if(e.lost)return 0x887601c2;
     if(e.access.dcActive())return e.access.acquireDc(output);
     if(e.access.poisoned())throw std::runtime_error("DC reacquisition after mapping debt is unvalidated");
+    if(e.access.storageDcActive())throw std::runtime_error("DC reacquisition on foreign flipped storage is unvalidated");
     e.dc.acquire();
     try {if(e.format.bits==8){const auto& p=e.dc.palette();gl_.setPalette(id,0,{p.begin(),p.end()});}return e.access.acquireDc(output);}
     catch(...){e.dc.release();throw;}
 }
 std::uint32_t SurfaceBackend::releaseDc(SurfaceId id,std::uint32_t token){
     auto& e=entry(id);
-    if(!e.access.dcActive() || token!=e.dcToken)return e.access.releaseDc(token);
+    if(!e.access.dcActive() || token!=e.dcToken || !e.access.dcMatchesStorage())return e.access.releaseDc(token);
     if(e.access.mapBalance()<=-64)throw std::runtime_error("Owned DC release budget exceeded");
     installBinding(id,e);const auto result=e.access.releaseDc(token);e.dc.release();return result;
 }
@@ -105,22 +209,23 @@ void SurfaceBackend::bindPalette(SurfaceId id,std::optional<Palette> palette){
     auto& e=entry(id);
     if(e.format.bits!=8)throw std::runtime_error("Palette binding requires indexed8");
     if(!palette && !e.defaults)throw std::runtime_error("Palette detach requires explicit default context");
-    e.dc.bindPalette(palette);e.binding=std::move(palette);if(!e.access.dcActive())installBinding(id,e);
+    e.palette.reset();e.dc.bindPalette(palette);e.binding=std::move(palette);if(!e.access.dcActive())installBinding(id,e);
 }
 void SurfaceBackend::updatePalette(SurfaceId id,unsigned first,const std::vector<Rgb>& colors){
-    auto& e=entry(id);e.dc.updateBoundPalette(first,colors);
+    auto& e=entry(id);if(e.palette){propagatePalette(e.palette,first,colors);return;}e.dc.updateBoundPalette(first,colors);
     std::copy(colors.begin(),colors.end(),e.binding->begin()+first);
     if(!e.access.dcActive())gl_.setPalette(id,first,colors);
 }
 void SurfaceBackend::reloadDib(SurfaceId id,const DibInput& dib){auto& e=entry(id);raster(e);e.dc.reload(gl_,id,dib);}
 void SurfaceBackend::setClipper(SurfaceId id,const ClipperState& clip){auto& e=entry(id);gl_.setClipper(id,clip);e.clipper=clip;}
 void SurfaceBackend::setSourceKey(SurfaceId id,std::optional<std::uint16_t> key){
-    auto& e=entry(id);if(e.format.bits!=16)throw std::runtime_error("Owned source-key contract requires RGB565");e.key=key;
+    auto& e=entry(id);if((e.format.bits!=16 && e.format.bits!=8) || (e.format.bits==8 && key && *key>255))throw std::runtime_error("Owned source-key metadata outside indexed8/RGB565");e.key=key;
 }
 SurfaceCopyResult SurfaceBackend::copy(SurfaceId source,SurfaceId destination,const SurfaceCopyRequest& request){
     auto& s=entry(source);auto& d=entry(destination);
     if(s.format.bits!=16 || d.format.bits!=16)throw std::runtime_error("Owned draw contract requires RGB565");
     if(request.sourceBusy || request.destinationBusy)throw std::runtime_error("Owned admission cannot use supplied busy flags");
+    if(s.lost || d.lost)return {0x887601c2,0};
     auto r=request;r.sourceBusy=s.access.borrowed();r.destinationBusy=d.access.borrowed();
     // An explicitly empty Blt clip list executes no driver draw, even borrowed.
     if(r.api==SurfaceCopyApi::Blt && d.clipper.attached && d.clipper.regions && d.clipper.regions->empty())

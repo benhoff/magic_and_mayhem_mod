@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "research/runtime/surface-ownership-final-capture-20261006.json": "c01144134bc00e4a6aeaf53a514082d7d627141d0fd376576d6c57895ab252dd",
+    "tests/surface-ownership-reference.c": "0ff1a437b2228bd61aa181f3a0ee4f18b9a17fed22802138c1434084b2551ee8",
+    "tests/surface-palette-restore-reference.c": "3b9c55ff7856bde2d3313df6f0b62343ba367395238f45bf156479292727ff12",
+    "tools/capture-surface-ownership.py": "f414c20e93f2397f036c8702b643c240866bd07bb1aa350b35c4a3b3441e2659",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/fixtures/surfaces/surface-ownership-final.json.gz": "e671c17ce2d7d80246abfea1653a6c9297a9769e68aa78b8a9b8aee155836839",
+    "tools/check-surface-ownership.py": "67800b21467e7b71f0bdcb22252bb2e2ad4de4c5093196daf9866b619c1aa9b3",
+    "tests/test-surface-ownership.py": "133cfc54a45dc2ff4f58ac09cf09467b830b1898ec825b5b5270116204c42930"
+  },
+  "rows": 5647,
+  "frames": 34,
+  "pixels": 1632,
+  "palette_entries": 3840,
+  "flips": 11,
+  "scope": "Offline standalone Wine Surface2 ownership/flip observation and provenance. Independent pixel/table/results and normalized IUnknown identity, surviving aliases, caller-released bound palettes, detach/rebind and attachment reacquisition. COM reference-count return values retained diagnostically; native canonical counts are separate policy. No original wrapper/live/Windows comparison."
+}
