@@ -39,5 +39,13 @@ int main(int argc,char** argv){QCoreApplication app(argc,argv);try{
     {QTemporaryDir dir;const auto path=dir.filePath("checkpoint");RenderControl host;check(host.create(path,123),"checkpoint create");Peer peer(path);
      check(host.checkpoint(dir.filePath("late"),124),"checkpoint request");check(peer.get(24)==2 && peer.get(20)==1 && peer.get(28)==124,"literal checkpoint operation");
      check(host.poll()==0,"checkpoint before readiness");peer.set(36,1);peer.set(32,1);check(host.poll()==1,"checkpoint matching ready");host.cancel();check(peer.get(40)==1,"checkpoint cancellation");}
-    std::puts("{\"success\":true,\"cases\":11}");return 0;
+    for(unsigned mode=0;mode<5;++mode){QTemporaryDir dir;const auto path=dir.filePath("stop");RenderControl host;check(host.create(path,123),"stop create");Peer peer(path);
+        if(mode==1)for(unsigned i=1;i<=3;++i){check(host.recover(dir.filePath("next"),123+i),"before stop recovery");peer.set(36,1);peer.set(32,i);check(host.poll()==1,"before stop response");}
+        if(mode==2){check(host.recover(dir.filePath("pending"),124),"pending request");check(!host.stop() && peer.get(40)==1,"pending stop refuses and cancels");continue;}
+        check(host.stop() && host.stop(),"idempotent stop request");check(peer.get(20)==(mode==1?4u:1u) && peer.get(24)==3 && !peer.get(28) && !peer.get(44),"literal terminal stop header");
+        for(unsigned i=64;i<576;++i)check(!peer.p[i],"empty stop payload");
+        check(host.poll()==0,"stop waits for response");peer.set(48,2);peer.set(36,mode==3?2:1);peer.set(32,peer.get(20));if(mode==4)peer.set(16,125);
+        check(host.poll()==(mode>=3?-1:1),"stop response and stopped worker ordering");check(!host.recover(dir.filePath("late"),130),"terminal stop never recovers");
+    }
+    std::puts("{\"success\":true,\"cases\":16}");return 0;
 }catch(const std::exception& e){std::fprintf(stderr,"%s\n",e.what());return 1;}}

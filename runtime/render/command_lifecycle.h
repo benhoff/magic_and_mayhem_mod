@@ -1,12 +1,16 @@
 /* Native lifecycle policy; resolved PE32 main-image imports only. No worker
  * creation or join from DllMain. Original ExitProcess code/error pass through. */
 __declspec(dllexport) u32 WIN RenderShutdown(u32);
+__declspec(dllexport) u32 WIN RenderStop(u32);
 typedef void (WIN *CommandExit)(u32);
 static CommandExit command_original_exit;
 static u32 command_exit_installed;
 static void WIN command_exit(u32 code){
     u32 error=GetLastError();
-    u32 complete=RenderShutdown(3000);
+    u32 complete=RenderStop(3000);
+    /* Refused ownership cannot produce END. Normal process exit explicitly
+     * interrupts publication while retaining live storage for OS teardown. */
+    if(!complete){command_channel_fail(MNM_RENDER_COMMANDS_V2_REASON_GAP);command_channel_pump();}
     lock_diagnostic("command_lifecycle_shutdown",0,0,complete,code,0,0,0);
     SetLastError(error);command_original_exit(code);
 }
@@ -55,6 +59,7 @@ static int command_auto_shutdown(void){
 }
 __declspec(dllexport) u32 WIN RenderStartup(void){
     u32 error=GetLastError();
+    if(__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE)){SetLastError(error);return 0;}
     struct CommandLifecycleLease lease __attribute__((cleanup(command_lifecycle_leave)))=command_lifecycle_enter();
     if(!lease.held){SetLastError(error);return 0;}
     COMMAND_LIFECYCLE_PAUSE(1);

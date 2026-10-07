@@ -1,0 +1,1618 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "runtime/render/adapter_startup.h": "52457ffc947fbbf242a6949d4a871779a171aaafc8e0ae741868f33a20374192",
+    "runtime/render/application_stop_selftest.h": "b7e2d77f1a04ce94c56db14d87a02baf5105fd5432c4896428535c8807de8aa0",
+    "runtime/render/backpressure_selftest.h": "c007732548f9791058bdcd1b1778a1674f734f540077a477ea67f1818185380e",
+    "runtime/render/bootstrap_selftest.h": "3fca231aeeb189832182d36fe85a8ed58adab8f6a133499c48a5f5b1311215c7",
+    "runtime/render/bridge.c": "f7bc0400d3f8ab1dd3d1536ce4827bdd28c5e34c86b02a21ae3f531c9cad2798",
+    "runtime/render/checkpoint_selftest.h": "e0320f879bd79b43ca6d563b342fcf02edd5323fcb97c085a650c11351c751a4",
+    "runtime/render/command_application_stop.h": "c7027ada062b5157e31918bb67a9f497c4e9b0406ac64713e93a8f70e097004c",
+    "runtime/render/command_channel.h": "3c0a2e177987cc499f4375deb662896bd320bacdaadce7d9d6537511027f0ebb",
+    "runtime/render/command_control.h": "876ed2c234ab8068169bc0402f680c454f3fbed226f66c49444f343e32977fda",
+    "runtime/render/command_gate.h": "6f746ad652a52f5ef0ecd7f48438c854cda40e20c6ad0989927addea2234f272",
+    "runtime/render/command_idle_selftest.h": "efc9a0be0823c894a5693f748d7f171866e0d3efdc6bd1bf7888ceb3afb96c0b",
+    "runtime/render/command_lifecycle.h": "db8dcb65784bc123a463bb672efdf653f0d765cc1858dfb2dc42c88b892e8521",
+    "runtime/render/command_queue.h": "d96f125aa7a712f96d0745a993b48a19820a10470257a629ef0960e29c736877",
+    "runtime/render/command_recovery.h": "6fb515b02faffb12afec48d08cc231675068f091e73307d22997e7a68408684a",
+    "runtime/render/command_scheduler.h": "ef2fc8751a9a2f5a1e67d08a98eb687b333c474f6ee1d5123db725db7893e224",
+    "runtime/render/continuous_selftest.h": "d19b4b07522d2f4c3a528e8447fda37e6b3e5239bfa4e4041fef85965f5b9021",
+    "runtime/render/copy_order.h": "7fce0c71de373f4496fceb4e50185a3061be8a91377c2a7dabb287b0ce7d6ebf",
+    "runtime/render/dc_selftest.h": "123bf310df0197f17a63df26349e14a5e5757b9a903c8924ef9ac711ee7ef13c",
+    "runtime/render/dirty_region.h": "e5743b9c82b63debe1b0431269d576672fcfee83ca42817e21d5558ec1ba936b",
+    "runtime/render/draw_capture.h": "7b6e113cc86c0015f855711fdd893fc6efc83d0fa4287f91d829847b9612b868",
+    "runtime/render/draw_selftest.h": "03799a2bd9c3df1ac3b426c85b34b7f1d25b36791947ca95ac2af687d177d24f",
+    "runtime/render/draw_startup_selftest.h": "c9622c9d870884a6179f0835bec379f5add8ebc46835b7ad328eed1b34e07f5f",
+    "runtime/render/drawing_recovery_selftest.h": "dadebb93b1dd2d70439bf469b9760d83c869516fb36c1badfb1d202180d8ee95",
+    "runtime/render/failure_diagnostics.h": "97d72ef8174e01c80c4b3eb57f4fa80cedfd8f56f25f7b77904121d0996baf11",
+    "runtime/render/flip_history.h": "4c1910ed299700ba95e9b49923710b54817ab8dd2d2cba823b40ccf4dbc388d8",
+    "runtime/render/flip_selftest.h": "f46d45004a39a82283021903e468730b365825c6efec1cbebe61d2fd875eb03b",
+    "runtime/render/frame_pixels.h": "671110ec34e214010c51d2a13838cd56e08869ecebdf7d38c8aaaae9156109be",
+    "runtime/render/history_selftest.h": "077d923f30ff81d927fa770f6b841e0461a345e4fc4310ab3048fa284ec3bdb5",
+    "runtime/render/host_recovery_selftest.h": "7981baf6069b7caab473461f33e49798d26ad6cc5bcb07731d4916d00f873024",
+    "runtime/render/indexed_copy_selftest.h": "9d3fc4c7a0d8f66a7ba765172c920cb4889301b63dea02556c7eeb3ef5e45fb6",
+    "runtime/render/indexed_owned_selftest.h": "7ab70e041a806281903ec11a5708fa9b3e69fe2e5bd6a54baa131793b19ba723",
+    "runtime/render/input_polling.h": "95d53d43f99b3de9390b07a150db112ae7d280e7bb112ba5957e3ce62dca736c",
+    "runtime/render/input_selftest.h": "78d5c31ec213d5bd06daa667e38320671807a5700903a392fbb78f8cfeb9abab",
+    "runtime/render/lifecycle_race_selftest.h": "7efb30260c04e28444b09acf87b298a76ddbc580862a749516e951ec2c30833d",
+    "runtime/render/lifecycle_selftest.h": "f68113110b83b034ec94e89660df4a3feb3d283f7ae0e9844790c8cf4b785bcb",
+    "runtime/render/lock_aliases.h": "df4a344c6f010b8f8022c99ec1a1ce04cd708564248d18a3362d2ad165745a95",
+    "runtime/render/lock_blit_selftest.h": "e0083a9c20400e058e0a914f80b9bcda79d13f81c070e39aa34f36bec59b64fa",
+    "runtime/render/lock_dc.h": "c039565519593443bd2c00f17c305b59d19aa5c4583d2d1cd7a5dc7918977456",
+    "runtime/render/lock_diagnostics.h": "e21d9134b6f2d0a9d7624a017a2ea0b52ee05aae6a249a1c84ccf8740959b5a0",
+    "runtime/render/lock_flip.h": "112c1a33cf20c0318d0b19289aba5dd2d9d0903013151d5c5759a86144cf8bf5",
+    "runtime/render/lock_lifecycle.h": "eb1c2aa105c5d5a2b54f15e028122272acc24e190f076645f352be37708468d1",
+    "runtime/render/lock_lifecycle_selftest.h": "ebdfe7dd2773746496a1b138e6309b0250e2207b67d4e2ba6f05f24843bcb406",
+    "runtime/render/lock_palette.h": "4215170fa390fb87b75877fd2af90b917514075abbc35ef192f75f220850d18d",
+    "runtime/render/lock_surfaces.h": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+    "runtime/render/lock_updates.h": "4fd32d69ac6b2a8f6557e9bb3cc5ddd5540e4f6ea942fbebaf9b43f9725c78a3",
+    "runtime/render/media_bridge.h": "dc7e64883ef491ac42f42a2f10c36dda1ca5a04eda993cdab04e9645df572e6f",
+    "runtime/render/media_selftest.h": "9f9592dc30aeed9b8d0f7fa622c4335fd9fc6357b84d67eb5077ff795143e4b0",
+    "runtime/render/mutation_selftest.h": "e22304bbcd997c8423abf4d04baf720280999f0ed9514c60bed66f81319dceea",
+    "runtime/render/owned_dc_selftest.h": "69ea01ac97f58887f9fd63614418974c9d8c925cbdde26c71117b2738fe34407",
+    "runtime/render/owned_session.h": "de7136a6148e0c0d226db41f48145b5bcd86901546aca91d9c452b3957003892",
+    "runtime/render/owned_session_selftest.h": "a3ec9a32d9ca45919eb5c04b3362b4f1904b3a0e1b30174588f77eef5ae0e188",
+    "runtime/render/palette_history.h": "d298ee386d6a70c406dd3ec248eb071e79a0688daf5c7da8f91a43bc4a2cad72",
+    "runtime/render/palette_selftest.h": "5d7e6f9c254d9ed634f4656b0256dda811adbc6cfe1f0c768abc8242aa43b73d",
+    "runtime/render/partial_lock_selftest.h": "6b9df18d4b435e6adcce961abcb060b344a1a3bbc5f19b0266786775f08c3c7f",
+    "runtime/render/recovery_race_selftest.h": "f8fa8b3cdb19d9ab038b2452de54159c41ed62bed45b49f7fe5f9b331b1edda1",
+    "runtime/render/recovery_selftest.h": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+    "runtime/render/resource_selftest.h": "69f5e270595583ea566bbe3e06a4a6b9a534fa42e255f8e342987b94b0f49942",
+    "runtime/render/selftest.c": "48499b295725fe5b67c5dd84e7c4ad05fd981100e6a8eae6bce050161ee55662",
+    "runtime/render/surface_commands.h": "2353c4a1d704bef43594c0042c97d3f0c65927fb8d14abb60a10ec0b4c4bb8cf",
+    "runtime/render/surface_history.h": "63976b18f13b5db96ca4385c30d6783769a7f25f32656888023171ce111ffa7d",
+    "runtime/render/working_set_selftest.h": "f6bbfcc44991193fa608e54b07cf79ea18d3ea8e34853946608b1bc6dcea733b",
+    "tools/test-render-recovery.py": "0e5a3dd71d43668f5a6a9d63910848ff753b5ad6f4c6b0d717766fe662cb65b9",
+    "tools/build-render-bridge.py": "3873455feffcf93af8a253f20de21f75a183068da6128bf58fb4c27577b5510c",
+    "tools/test-live-render-channel.py": "67e53e5580ee45eae7bc5d046917eee6eb1cd03efacf907a698474686a08ba44",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/live-render-channel-test.cpp": "a9079c5b6146cf2b5c28a9d5fc204512ad187fe3d749db581f6b49104f337a4c",
+    "apps/qt-shell/live_command_renderer.cpp": "d5288ce683e65418a5e791781df33c5efbcb1f85558eda2feced7e2142e21dcc",
+    "apps/qt-shell/live_command_renderer.hpp": "b1f51a4a3ce767c6a4739e25a5cf4f9c82cc8b00f43e144c09bba82a8091a2ae",
+    "apps/qt-shell/command_channel.cpp": "cef42f0fb6e7d9dc7dafd032d5c52e384de94d97b06a8d6028c8c572ff3d0ba4",
+    "apps/qt-shell/command_channel.hpp": "e3e863c0ae75b065712f63cda4bc26a7005657d8e4635bcb75973caa043832d2",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/command_consumer.cpp": "51a759564c93f9d6d980fdc9e50a6d513f5ce84677e0dba16d757a3bf36c4685",
+    "protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3"
+  },
+  "cases": [
+    {
+      "mode": "orderly",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": true,
+          "session": 123,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "effe07aa650c7590d743392909e694b57d9ba6dceb8ffa0a01cca53a8fb9bfd2",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 6,
+      "original_unlocks": 6,
+      "immutable_terminal_files": 4,
+      "rejected_candidates_unchanged": 0
+    },
+    {
+      "mode": "cancel",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": false,
+          "session": 123,
+          "state": 3,
+          "reason": 3,
+          "published": 2097344,
+          "archive": {
+            "sha256": "e4436ce7a6038df1eb1e71cd5a6ccf3090dd7b96935edf7e433b777e1cab6db5",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 5,
+            "error": "Command ring failed, cancelled or invalid",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": false,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 6,
+      "original_unlocks": 6,
+      "immutable_terminal_files": 4,
+      "rejected_candidates_unchanged": 0
+    },
+    {
+      "mode": "stall",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": false,
+          "session": 123,
+          "state": 3,
+          "reason": 4,
+          "published": 3145920,
+          "archive": {
+            "sha256": "98c01c77ebf5b030728925a4648c3453452938eb60990bd2d124b8a3ea381f08",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              2,
+              6,
+              7
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 5,
+            "error": "Command ring failed, cancelled or invalid",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": false,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 7,
+      "original_unlocks": 7,
+      "immutable_terminal_files": 4,
+      "rejected_candidates_unchanged": 0
+    },
+    {
+      "mode": "invalid",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": false,
+          "session": 123,
+          "state": 3,
+          "reason": 5,
+          "published": 2097344,
+          "archive": {
+            "sha256": "e4436ce7a6038df1eb1e71cd5a6ccf3090dd7b96935edf7e433b777e1cab6db5",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 5,
+            "error": "Command ring failed, cancelled or invalid",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": false,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 6,
+      "original_unlocks": 6,
+      "immutable_terminal_files": 4,
+      "rejected_candidates_unchanged": 0
+    },
+    {
+      "mode": "held",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": false,
+          "session": 123,
+          "state": 3,
+          "reason": 2,
+          "published": 2097344,
+          "archive": {
+            "sha256": "cc592f9814b5554f35d936635398c0b73f2c2fce785041b02b2c797a5fb71144",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              9
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 5,
+            "error": "Command ring failed, cancelled or invalid",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": false,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 7,
+      "original_unlocks": 7,
+      "immutable_terminal_files": 4,
+      "rejected_candidates_unchanged": 0
+    },
+    {
+      "mode": "early",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": true,
+          "session": 123,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "effe07aa650c7590d743392909e694b57d9ba6dceb8ffa0a01cca53a8fb9bfd2",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 6,
+      "original_unlocks": 6,
+      "immutable_terminal_files": 4,
+      "rejected_candidates_unchanged": 0
+    },
+    {
+      "mode": "guards",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": true,
+          "session": 123,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "effe07aa650c7590d743392909e694b57d9ba6dceb8ffa0a01cca53a8fb9bfd2",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 6,
+      "original_unlocks": 6,
+      "immutable_terminal_files": 4,
+      "rejected_candidates_unchanged": 6
+    },
+    {
+      "mode": "repeat",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": true,
+          "session": 123,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "effe07aa650c7590d743392909e694b57d9ba6dceb8ffa0a01cca53a8fb9bfd2",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 2,
+          "valid": true,
+          "session": 125,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0e647a064c73c710df35b8d3879b3f57eeb1075fa290a54fe0d2be8a22cf2721",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "02ed53ca3363b3810fcc7e30a7ecd273f45fad040e80b27c8825159703efd55c",
+              "b011e18feb4a5f05d0d933d026d2e05efb617f1fcb27b336190abd4f5fe7db68"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 9,
+      "original_unlocks": 9,
+      "immutable_terminal_files": 6,
+      "rejected_candidates_unchanged": 0
+    },
+    {
+      "mode": "alias",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": true,
+          "session": 123,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "effe07aa650c7590d743392909e694b57d9ba6dceb8ffa0a01cca53a8fb9bfd2",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 2,
+          "valid": true,
+          "session": 125,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0e647a064c73c710df35b8d3879b3f57eeb1075fa290a54fe0d2be8a22cf2721",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "02ed53ca3363b3810fcc7e30a7ecd273f45fad040e80b27c8825159703efd55c",
+              "b011e18feb4a5f05d0d933d026d2e05efb617f1fcb27b336190abd4f5fe7db68"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 9,
+      "original_unlocks": 9,
+      "immutable_terminal_files": 6,
+      "rejected_candidates_unchanged": 0
+    },
+    {
+      "mode": "budget",
+      "success": true,
+      "sessions": [
+        {
+          "phase": 0,
+          "valid": true,
+          "session": 123,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "effe07aa650c7590d743392909e694b57d9ba6dceb8ffa0a01cca53a8fb9bfd2",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+              "8bbc4b97babfb04655e1067771bb2a09c50933eaf893e88743c9cc1c84390a89"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 1,
+          "valid": true,
+          "session": 124,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0f8d0852047fc8aaf5155efe2dd3e5632d3a587874e954c3d9963f3c2bdc9359",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "cadfebc28617ccee702a966a2d378b3ca2847b4c0b87faa7c40213f3a7a29407",
+              "59edd5851bda3bad2b73f62ab7e1c66e71c15721916d7f73634f9737b495e0f2"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 2,
+          "valid": true,
+          "session": 125,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0e647a064c73c710df35b8d3879b3f57eeb1075fa290a54fe0d2be8a22cf2721",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "02ed53ca3363b3810fcc7e30a7ecd273f45fad040e80b27c8825159703efd55c",
+              "b011e18feb4a5f05d0d933d026d2e05efb617f1fcb27b336190abd4f5fe7db68"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 3,
+          "valid": true,
+          "session": 126,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "20199cd013914fe73809d7d9b59831622bf304d2ff449cee18d3a2ea26a6db5d",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "8a33f461ee18036839798fabce31e7e8e72c698c10ff2469b00c96d722fc15d6",
+              "fef0505e714508d44d24be7387d9d6e8af383440c5c5e21aba9f59094cb27d23"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 4,
+          "valid": true,
+          "session": 127,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "72611525ebc1c3bc35fef694379a1dec1ce1715f76babb046c87ccfd89aef935",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "bfee52f3e3a0402473a372ab3cbd8d430d0ffd8bdd1f9f77efd12c735df6ee20",
+              "b617776d3743672b81945f7ccf617510e99b668d7204844cba5af8259549d411"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 5,
+          "valid": true,
+          "session": 128,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "2f1ccb7667ee0708e7ede2954f377b46ea0b22a5f277deea55676b8bc962b0d9",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "1a6b9d75ffb2e58bb1284dacb7c6885ab50e8c668e50b292fb64955939b04056",
+              "e07ebb6f1ca7833ef3510cbb89f55804a4235318e076eefa62753706c23e36fe"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 6,
+          "valid": true,
+          "session": 129,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "9f5f6d42797a6f7938e9abe0129fc1a95a3b3a5d75b5f637e90d99245babe5dd",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "a7f04ab602c7ee35a329f8ad283eab3346e1b219a6d72e150e24d55450e8c063",
+              "7efbabc65a628d4aa156a1224533b53472a15bbfc6e89936eac591357cf4d9f7"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 7,
+          "valid": true,
+          "session": 130,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "77ff2d5a2b51a9f898bead8046db606282a6a457f523af78f8e8d2c244280b97",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "5f66203b67d3813d000beb1b9f56810afc2687a2aade77bcb2d658c6818e057c",
+              "8685fe84b63fef6ca37f7fff72e35827ebe75ecc37e6fbd2a51e0c34ae3c52ca"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 8,
+          "valid": true,
+          "session": 131,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "04cd8da7708e422d96b2ddf896d4c7ece6543727984a9b740a4d732c1d63b80d",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "327c7b8f544b467bea14ac92934edb38495c3cb5ceaf10bfb9d64c82c0cd87ff",
+              "985cef60c87ca9b9ed8c9b08fbd2107224a0d46ddb52743c249a0b334d891931"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 9,
+          "valid": true,
+          "session": 132,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "4388f9da26516b3d5c6fe1d6deee3df189147b000102ad4d7d89955a5af8f4a7",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "5a36404d8933614b1c65b951eec28c2c9ce5ceb74fa688043073f2f8b161a04e",
+              "f8621f34dcc79287c668f9bb9c02c7448f88970cf91a6bd114d54e6759406c4f"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 10,
+          "valid": true,
+          "session": 133,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "04fc3875475845d0e3c149e1651d82da9797cdf13382bf1effeb3e858810a518",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "8c376683112c1d836c7f6ab49840e219c18787da1fca4973c6e25f57c75b64de",
+              "22fd9047903ffed0b3137f1f15532d999a21ceeaf4b27936c2aeeadd926ff88c"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 11,
+          "valid": true,
+          "session": 134,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "cba9da994d28dc03720e1c095518bff71ac778230ad9b58c4e9acdbe3f09a876",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "fb010846f9002b7677c7c8afc8baa6fec3cf89271dd360f53dc3a8e77f24ae09",
+              "0a4635731e34a86af08c4f7ee76a04bd1599a74ac2a6e4bf621dc0ca3aa05f19"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 12,
+          "valid": true,
+          "session": 135,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "0e601b233b2c1cb9e97a7ece050f4825bb390937fb98329f888f8d8470e2f980",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "47f8e95796b18c5c7bee986d5f57be64e0645436707bd7cb5d1e7883230920d3",
+              "e212aa4102e873fc58ab4ff7cf27b83a0a663bfb41df5c1e1ce4872674c148c4"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 13,
+          "valid": true,
+          "session": 136,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "59037ffd74058b65f9cce376d086b51cf33af9e7eb6b230fa0f0b2abf698daad",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "a6740b1e9654893633e33d916dde966dc75966e19556a38832bc7a2abbf57b20",
+              "38aadaa09be198e1a794438fb881bcd6bfb43c4c9b4f78dacd09af27f011f986"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 14,
+          "valid": true,
+          "session": 137,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "be6f3f63c2e74cc5c93f9296ab78dd21b8577cb83155a34e6ca172052cdfa954",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "302102fe5a29ff7d3b4f7f4538fec8e092ce84cb3707f6deeed0e324cc995ce3",
+              "ff9d59b3b9f4da0032f5d60ed97ec3253f249e2e475e93758cc81ad98c3abe30"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        },
+        {
+          "phase": 15,
+          "valid": true,
+          "session": 138,
+          "state": 2,
+          "reason": 0,
+          "published": 2097388,
+          "archive": {
+            "sha256": "85a03ecdb802f16505d9fc86f4e361c560b170afc11262466149fa1a4905490d",
+            "opcodes": [
+              1,
+              1,
+              6,
+              2,
+              6,
+              7,
+              7,
+              8
+            ],
+            "create_ids": [
+              1,
+              2
+            ]
+          },
+          "consumer": {
+            "before_producer_exit": true,
+            "decoded_commands": 8,
+            "error": "",
+            "frames": [
+              "15a11e44293533215b4c7c6863883d59a8672f11376271332489c7e1c23143a8",
+              "8ed6a1946b3eff50dbda3d3c3293478cd811cc71a75134a03047822708925b06"
+            ],
+            "live_surfaces": 0,
+            "native_readbacks": 0,
+            "presentations": 2,
+            "rgba_readbacks": 0,
+            "success": true,
+            "viewport_uploads": 0
+          }
+        }
+      ],
+      "original_locks": 48,
+      "original_unlocks": 48,
+      "immutable_terminal_files": 32,
+      "rejected_candidates_unchanged": 0
+    }
+  ],
+  "scope": "Quiescent actual same-process PE32 RenderShutdown/RenderRecover with distinct v2 file identities and strictly increasing session IDs; poisoned borrowed rows and independent complete GPU frames. Fresh consumer per session, sticky immutable old rings/archives, lifecycle and ownership guards. No original game, automatic IPC negotiation, in-flight callback stress, partial checkpoint/palette reconstruction or real-driver equivalence.",
+  "full_frame_comparisons": 72
+}

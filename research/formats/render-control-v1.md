@@ -52,3 +52,18 @@ request budget and cancellation rules. The producer serializes a complete
 independently owned checkpoint into bounded storage behind exclusive callback
 admission before replying. Incomplete or borrowed state refuses. See the
 [native policy and validation boundary](../runtime/opengl-command-checkpoint.md).
+
+## Terminal stop addition (2026-10-06)
+
+Operation 3 is a terminal application stop. Its target session, path length and
+all 512 path bytes must be zero. It uses the next sequence after zero to three
+completed recovery requests (at most sequence four). The producer latches stop,
+refuses further startup/recovery, quiesces observed borrowing and drains cleanup
+through END with an owned-copy ACK deadline. READY records successful terminal
+publication cleanup; REFUSED records inability to establish it. Matching reply
+and renderer END are independently observed. The worker publishes ONLINE_STOPPED
+when returning; the normal public stop/ExitProcess path still owns joining its
+handle and releasing its control view. A pending recovery cannot be overwritten
+with STOP: the host cancels and reports refusal instead. Old v1 producers reject
+the unknown operation and the host falls back explicitly. No wire layout or status
+numbers changed. See [ownership and validation](../runtime/opengl-application-shutdown.md).

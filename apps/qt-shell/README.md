@@ -612,3 +612,12 @@ exhaustion preserves original-window fallback. Synthetic validation uses the
 same Qt viewport/context; actual-game recovery remains pending. See
 [host recovery](../../research/runtime/opengl-command-host-recovery.md) and the
 [producer recovery contract](../../research/runtime/opengl-command-recovery.md).
+
+Continuous native command window close requests terminal producer stop while Qt
+keeps draining cleanup/END. Stop and END acknowledgment can arrive in either
+order; recovery stays disabled and input stays suspended. The original game's
+Quit action still owns game process exit. The PE32 normal ExitProcess wrapper
+joins both producer workers and releases rendering storage after borrowed owners
+return; refusal retains storage for retry or OS process teardown. Dynamic DLL
+unloading remains unsupported; installed hook code is pinned. See
+[terminal ownership and synthetic validation](../../research/runtime/opengl-application-shutdown.md).

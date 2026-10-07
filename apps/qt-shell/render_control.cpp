@@ -16,11 +16,17 @@ bool RenderControl::create(const QString& path,quint32 launch){
     map_=file_.map(0,MNM_RENDER_CONTROL_V1_SIZE);if(!map_){error_="Cannot map rendering control channel";return false;}
     std::memset(map_,0,MNM_RENDER_CONTROL_V1_SIZE);std::memcpy(map_,MNM_RENDER_CONTROL_V1_MAGIC,8);store(8,1);store(12,MNM_RENDER_CONTROL_V1_SIZE);store(16,launch);return true;
 }
+bool RenderControl::stop(){
+    if(stopping_)return true;
+    if(!identity() || cancelled_ || pending_){error_="Rendering stop request unavailable";cancel();return false;}
+    std::memset(map_+64,0,512);store(24,MNM_RENDER_CONTROL_V1_OPERATION_STOP);store(28,0);store(44,0);
+    stopping_=true;pending_=true;deadline_.start();store(20,++sequence_);return true;
+}
 bool RenderControl::recover(const QString& path,quint32 session){return request(path,session,MNM_RENDER_CONTROL_V1_OPERATION_RECOVER);}
 bool RenderControl::checkpoint(const QString& path,quint32 session){return request(path,session,MNM_RENDER_CONTROL_V1_OPERATION_CHECKPOINT);}
 bool RenderControl::request(const QString& path,quint32 session,quint32 operation){
     const auto native=QString("Z:")+QString(path).replace('/','\\');const auto bytes=native.toLatin1();
-    if(!identity() || cancelled_ || pending_ || !session || sequence_>=MNM_RENDER_CONTROL_V1_MAX_RECOVERIES ||
+    if(!identity() || cancelled_ || stopping_ || pending_ || !session || sequence_>=MNM_RENDER_CONTROL_V1_MAX_RECOVERIES ||
        bytes.isEmpty() || bytes.size()>MNM_RENDER_CONTROL_V1_MAX_PATH_LENGTH || QString::fromLatin1(bytes)!=native || bytes.contains('\0')){
         error_="Invalid rendering recovery request";cancel();return false;
     }

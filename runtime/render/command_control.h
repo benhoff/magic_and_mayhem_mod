@@ -1,6 +1,8 @@
 /* Persistent administrative worker. Never created/joined in DllMain. It owns
  * no application pointers; exclusive callback admission precedes recovery. */
+static int command_application_finish(u32);
 static u32* command_control;
+static u32 command_control_thread;
 static u32 command_control_launch,command_control_stop,command_control_started;
 static HANDLE command_control_worker;
 static int command_control_identity(void){
@@ -32,12 +34,26 @@ static int command_observers_quiet(void){
     int quiet=command_recovery_leases_quiet();game_tracker_release();return quiet;
 }
 static u32 WIN command_control_run(void* unused){
-    (void)unused;u32 sequence=0;
+    (void)unused;u32 sequence=0;command_control_thread=GetCurrentThreadId();
     __atomic_store_n(command_control+12,MNM_RENDER_CONTROL_V1_ONLINE_RUNNING,__ATOMIC_RELEASE);
     while(!__atomic_load_n(&command_control_stop,__ATOMIC_ACQUIRE)){
         if(!command_control_identity() || mnm_ring_load(command_control+10))break;
         u32 request=mnm_ring_load(command_control+5);
         if(request==sequence){Sleep(5);continue;}
+        if(command_control[6]==MNM_RENDER_CONTROL_V1_OPERATION_STOP){
+            int valid=request==sequence+1 && sequence<=MNM_RENDER_CONTROL_V1_MAX_RECOVERIES &&
+                !command_control[7] && !command_control[11];
+            for(u32 i=64;valid && i<MNM_RENDER_CONTROL_V1_SIZE;++i)if(((u8*)command_control)[i])valid=0;
+            __atomic_thread_fence(__ATOMIC_ACQUIRE);
+            if(!command_control_identity() || mnm_ring_load(command_control+5)!=request || mnm_ring_load(command_control+10) || command_control[6]!=MNM_RENDER_CONTROL_V1_OPERATION_STOP)valid=0;
+            __atomic_store_n(&command_application_stop_requested,1,__ATOMIC_RELEASE);
+            int complete=valid && command_application_finish(3000);
+            __atomic_thread_fence(__ATOMIC_ACQUIRE);
+            if(!command_control_identity() || mnm_ring_load(command_control+5)!=request || mnm_ring_load(command_control+10) || command_control[6]!=MNM_RENDER_CONTROL_V1_OPERATION_STOP || command_control[7] || command_control[11])complete=0;
+            for(u32 i=64;complete && i<MNM_RENDER_CONTROL_V1_SIZE;++i)if(((u8*)command_control)[i])complete=0;
+            __atomic_store_n(command_control+9,complete?MNM_RENDER_CONTROL_V1_STATUS_READY:MNM_RENDER_CONTROL_V1_STATUS_REFUSED,__ATOMIC_RELAXED);
+            __atomic_store_n(command_control+8,request,__ATOMIC_RELEASE);break;
+        }
         char path[512];u32 n=command_control[11],target=command_control[7],operation=command_control[6];
         int valid=request==sequence+1 && sequence<MNM_RENDER_CONTROL_V1_MAX_RECOVERIES &&
             (operation==MNM_RENDER_CONTROL_V1_OPERATION_RECOVER || operation==MNM_RENDER_CONTROL_V1_OPERATION_CHECKPOINT) && target && n && n<sizeof(path) &&
@@ -53,9 +69,9 @@ static u32 WIN command_control_run(void* unused){
 #ifdef MNM_RENDER_SELFTEST
             char delay[8];if(GetEnvironmentVariableA("MNM_RENDER_CONTROL_DELAY_FOR_TEST",delay,sizeof(delay)))Sleep(200);
 #endif
-            if(!mnm_ring_load(command_control+10) && !__atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE))
+            if(!__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE) && !mnm_ring_load(command_control+10) && !__atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE))
                 ready=command_recover_mode(path,target,operation==MNM_RENDER_CONTROL_V1_OPERATION_CHECKPOINT?COMMAND_RECOVER_CHECKPOINT:COMMAND_RECOVER_PREFER_CHECKPOINT,1);
-            if(mnm_ring_load(command_control+10) || !command_control_identity() ||
+            if(__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE) || mnm_ring_load(command_control+10) || !command_control_identity() ||
                mnm_ring_load(command_control+5)!=request || command_control[6]!=operation || command_control[7]!=target ||
                command_control[11]!=n || !same(path,(u8*)command_control+64,n+1) ||
                __atomic_load_n(&command_gate_collision,__ATOMIC_ACQUIRE))ready=0;
@@ -74,9 +90,17 @@ static u32 WIN command_control_run(void* unused){
         __atomic_store_n(command_control+8,sequence,__ATOMIC_RELEASE);
         if(!valid || !ready)break;
     }
+    if(mnm_ring_load(command_control+10)){
+        __atomic_store_n(&command_application_stop_requested,1,__ATOMIC_RELEASE);
+        command_application_finish(0);
+    }
+#ifdef MNM_RENDER_SELFTEST
+    command_stop_worker_pause_for_test(1);
+#endif
     __atomic_store_n(command_control+12,MNM_RENDER_CONTROL_V1_ONLINE_STOPPED,__ATOMIC_RELEASE);return 0;
 }
 static int command_control_start(void){
+    if(__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE))return 0;
     if(!command_control_configured)return 1;
     if(command_control_invalid)return 0;
     if(!__sync_bool_compare_and_swap(&command_control_started,0,1))return command_control_worker!=0;

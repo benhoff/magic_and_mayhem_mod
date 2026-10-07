@@ -5,6 +5,18 @@ API u32 WIN WaitForSingleObject(HANDLE,u32);
 static HANDLE command_worker;
 static u32 command_worker_started,command_worker_stop,command_worker_joined,command_shutdown_busy,command_shutdown_complete;
 static u32 command_pressure_logged;
+#ifdef MNM_RENDER_SELFTEST
+static void command_stop_worker_pause_for_test(u32 kind){
+    char value[8];u32 n=GetEnvironmentVariableA("MNM_RENDER_STOP_JOIN_FOR_TEST",value,sizeof(value));
+    if(n!=1 || value[0]!=(kind==1?'c':'p'))return;
+    char entered[32],release[32];zero(entered,sizeof(entered));zero(release,sizeof(release));
+    copy(entered,kind==1?"control-join-enter.bin":"publish-join-enter.bin",22);
+    copy(release,kind==1?"control-join-go.bin":"publish-join-go.bin",19);
+    u32 written,start=GetTickCount();HANDLE file=CreateFileA(entered,0x40000000,1,0,1,0x80,0);
+    if(file!=(HANDLE)-1){WriteFile(file,&kind,4,&written,0);CloseHandle(file);}
+    while(GetTickCount()-start<10000){file=CreateFileA(release,0x80000000,3,0,3,0x80,0);if(file!=(HANDLE)-1){CloseHandle(file);break;}Sleep(1);}
+}
+#endif
 static u32 WIN command_worker_run(void* unused){
     (void)unused;
     while(!__atomic_load_n(&command_worker_stop,__ATOMIC_ACQUIRE)){
@@ -19,7 +31,11 @@ static u32 WIN command_worker_run(void* unused){
         Sleep(__atomic_load_n(&command_queue_read,__ATOMIC_ACQUIRE)!=__atomic_load_n(&command_queue_written,__ATOMIC_ACQUIRE) &&
               !__atomic_load_n(&command_queue_blocked,__ATOMIC_ACQUIRE)?1:10);
     }
-    command_channel_pump();return 0;
+    command_channel_pump();
+#ifdef MNM_RENDER_SELFTEST
+    command_stop_worker_pause_for_test(2);
+#endif
+    return 0;
 }
 /* Caller owns lifecycle serialization; no tracker/original pointers here. */
 static int command_scheduler_launch(void){
@@ -81,7 +97,15 @@ static int command_scheduler_shutdown_locked(u32 milliseconds){
     if(command_queue){
         do {
             command_channel_pump();
-            if(mnm_ring_load(command_ring.map+6)>=2)break;
+            if(__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE) &&
+               (!mnm_ring_identity(command_ring.map,command_ring.session) || mnm_ring_load(command_ring.map+8))){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INTERRUPTED);break;}
+            u32 state=mnm_ring_load(command_ring.map+6);
+            if(state>=2){
+                if(state!=MNM_RENDER_COMMANDS_V2_STATE_ENDED || !__atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE))break;
+                u32 ack=mnm_ring_load(command_ring.map+9);
+                if(ack==command_ring.published)break;
+                if(ack>command_ring.published || ack<command_ring.acknowledged){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);break;}
+            }
             if(GetTickCount()-start>=milliseconds){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INTERRUPTED);command_channel_pump();break;}
             Sleep(1);
         }while(1);
@@ -89,12 +113,16 @@ static int command_scheduler_shutdown_locked(u32 milliseconds){
     __atomic_store_n(&command_worker_stop,1,__ATOMIC_RELEASE);
     if(command_worker){
         /* Retry work is bounded; a timed-out join retains mapping/queue. */
-        if(WaitForSingleObject(command_worker,1000)!=0)return 0;
+        u32 joined=WaitForSingleObject(command_worker,1000);
+        if(joined!=0){lock_diagnostic("command_publication_join_refused",0,0,joined,GetLastError(),0,1000,0);return 0;}
         CloseHandle(command_worker);command_worker=0;
     }
     command_worker_joined=1;
     command_shutdown_complete=!command_channel_refused && (!command_channel || (mnm_ring_load(command_channel+6)==MNM_RENDER_COMMANDS_V2_STATE_ENDED &&
         !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE)));
+    if(command_channel && command_queue && __atomic_load_n(&command_application_stop_requested,__ATOMIC_ACQUIRE) &&
+       (!mnm_ring_identity(command_channel,command_ring.session) || mnm_ring_load(command_channel+8) ||
+        mnm_ring_load(command_channel+5)!=command_ring.published || mnm_ring_load(command_channel+9)!=command_ring.published))command_shutdown_complete=0;
     command_channel_close();return command_shutdown_complete;
 }
 /* Process teardown cannot join. Retain worker-visible storage until OS cleanup.
@@ -104,9 +132,9 @@ static void command_scheduler_detach(void){
     if(command_worker_started && !command_worker_joined && command_queue){
         if(mnm_ring_load(command_ring.map+6)==1){
             command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INTERRUPTED);
-            command_channel_pump();
         }
         return;
     }
-    command_channel_close();
+    /* Process teardown owns views/heap and handles. No pump, wait or free
+     * under loader lock, including when a worker did not join. */
 }

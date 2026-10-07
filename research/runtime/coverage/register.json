@@ -14115,14 +14115,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous producer startup and orderly process-exit orchestration",
-      "scope": "Explicit startup readiness and guarded resolved PE32 main-image ExitProcess IAT admission for continuous mode; application callback closes producer admission, emits cleanup and drains/joins outside DllMain. Configured transport failures cannot become optional or report successful shutdown. Native synthetic integration only; original exit branch coverage, forced termination, dynamic unloading, OS scheduling guarantees and recovery excluded. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending. Recovery now shares scoped lifecycle cleanup. Actual startup/shutdown/recovery ownership barriers verify all competing entry points refuse before mutation, candidate rings remain untouched and retry publishes distinct fresh sessions. This covers one pre-mutation point per transition; drawing during direct recovery, deeper stage collisions, abandoned owners and original-driver lifecycle equivalence remain pending.",
+      "scope": "Explicit startup readiness and guarded resolved PE32 main-image ExitProcess IAT admission for continuous mode; application callback closes producer admission, emits cleanup and drains/joins outside DllMain. Configured transport failures cannot become optional or report successful shutdown. Native synthetic integration only; original exit branch coverage, forced termination, dynamic unloading, OS scheduling guarantees and recovery excluded. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending. Recovery now shares scoped lifecycle cleanup. Actual startup/shutdown/recovery ownership barriers verify all competing entry points refuse before mutation, candidate rings remain untouched and retry publishes distinct fresh sessions. This covers one pre-mutation point per transition; drawing during direct recovery, deeper stage collisions, abandoned owners and original-driver lifecycle equivalence remain pending. Terminal application stop is now separate from recoverable RenderShutdown: public RenderStop joins the administrative worker before shared lifecycle/callback ownership, refuses live borrows, drains cleanup through owned-copy END ACK, joins publication and retires independent storage. Stop permanently blocks startup/recovery; process detach only signals and OS-reclaims retained storage. DLL pinning makes dynamic unload unsupported. Synthetic application-stop policy is registered separately; prior evidence retains its recorded hashes and original/live boundaries.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-orchestration.md",
         "research/runtime/opengl-draw-startup-order.md",
         "research/runtime/opengl-lifecycle-races.md",
-        "research/runtime/opengl-recovery-races.md"
+        "research/runtime/opengl-recovery-races.md",
+        "research/runtime/opengl-application-shutdown.md"
       ],
       "implementation": [
         "runtime/render/bridge.c",
@@ -14165,14 +14166,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Explicit recovery into a fresh continuous producer session",
-      "scope": "Explicit quiescent PE32 fresh-session recovery after shutdown/join with distinct v2 files and higher session IDs. Synchronize lifetime/metadata uncertainty, discard owned surface pixels and require fresh complete input; retain current verified application aliases, descriptors/properties and palette state independently of consumer lifetime. Reset wire IDs/session counters. Synthetic cross-interface continuation and existing guard regressions; bounded original-game observation exposes missing source baselines, so sustained game recovery and original equivalence remain pending. Recovery now shares scoped lifecycle cleanup. Actual startup/shutdown/recovery ownership barriers verify all competing entry points refuse before mutation, candidate rings remain untouched and retry publishes distinct fresh sessions. This covers one pre-mutation point per transition; deeper stage collisions, abandoned owners and original-driver lifecycle equivalence remain pending. Continuous direct recovery now shares bounded callback admission with administrative recovery regardless of ordered drawing/control configuration. Gate timeout invalidates pixels/metadata/aliases on both sides of original-once forwarding; bypassed successful Lock/GetDC has finite opaque ownership until exact successful return. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until shutdown. Ten synthetic schedules cover short/prolonged/reentrant callbacks, admitted and bypassed borrows, failed DC return and fresh retry with independent complete pixels. Unobserved alias/borrow destruction, opaque capacity exhaustion, abandoned owners and original application/driver scheduling remain pending.",
+      "scope": "Explicit quiescent PE32 fresh-session recovery after shutdown/join with distinct v2 files and higher session IDs. Synchronize lifetime/metadata uncertainty, discard owned surface pixels and require fresh complete input; retain current verified application aliases, descriptors/properties and palette state independently of consumer lifetime. Reset wire IDs/session counters. Synthetic cross-interface continuation and existing guard regressions; bounded original-game observation exposes missing source baselines, so sustained game recovery and original equivalence remain pending. Recovery now shares scoped lifecycle cleanup. Actual startup/shutdown/recovery ownership barriers verify all competing entry points refuse before mutation, candidate rings remain untouched and retry publishes distinct fresh sessions. This covers one pre-mutation point per transition; deeper stage collisions, abandoned owners and original-driver lifecycle equivalence remain pending. Continuous direct recovery now shares bounded callback admission with administrative recovery regardless of ordered drawing/control configuration. Gate timeout invalidates pixels/metadata/aliases on both sides of original-once forwarding; bypassed successful Lock/GetDC has finite opaque ownership until exact successful return. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until shutdown. Ten synthetic schedules cover short/prolonged/reentrant callbacks, admitted and bypassed borrows, failed DC return and fresh retry with independent complete pixels. Unobserved alias/borrow destruction, opaque capacity exhaustion, abandoned owners and original application/driver scheduling remain pending. Terminal application stop is now separate from recoverable RenderShutdown: public RenderStop joins the administrative worker before shared lifecycle/callback ownership, refuses live borrows, drains cleanup through owned-copy END ACK, joins publication and retires independent storage. Stop permanently blocks startup/recovery; process detach only signals and OS-reclaims retained storage. DLL pinning makes dynamic unload unsupported. Synthetic application-stop policy is registered separately; prior evidence retains its recorded hashes and original/live boundaries.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-command-recovery.md",
         "research/runtime/opengl-command-recovery-metadata.md",
         "research/runtime/opengl-recovery-races.md",
-        "research/runtime/opengl-drawing-recovery.md"
+        "research/runtime/opengl-drawing-recovery.md",
+        "research/runtime/opengl-application-shutdown.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -14224,7 +14226,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Qt fresh-session recovery over a versioned producer control channel",
-      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous direct recovery now shares bounded callback admission with administrative recovery regardless of ordered drawing/control configuration. Gate timeout invalidates pixels/metadata/aliases on both sides of original-once forwarding; bypassed successful Lock/GetDC has finite opaque ownership until exact successful return. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until shutdown. Ten synthetic schedules cover short/prolonged/reentrant callbacks, admitted and bypassed borrows, failed DC return and fresh retry with independent complete pixels. Unobserved alias/borrow destruction, opaque capacity exhaustion, abandoned owners and original application/driver scheduling remain pending.",
+      "scope": "Versioned administrative fresh-file/higher-session recovery behind finite callback/ownership admission and shutdown/join. Prefer complete independently owned checkpoints under the tracker, preserving initialized source pixels and queuing resources/PRESENT before READY; incomplete pre-claim state uses fresh observations, while failed claimed checkpoints refuse without retry. Synthetic sixteen-case guards/static continuation and bounded actual-game repeated first frames; sustained throughput, gameplay/movies, unobserved leases and original equivalence remain pending. Bounded startup observation after compact owned unlocks presents208/235 frames after strict attachment/automatic recovery, one healthy session each for12 seconds; this does not establish gameplay/movie or original-pixel equivalence. Bounded original Region Entry failed-reader recovery restores an Active session and independently matched title. World loading exceeds the 32-surface checkpoint budget at 33 observed resources; fresh-observation recovery invalidates untracked copies and falls back before a complete frame. Original World remains active. Bounded required World reader failure restores an Active session from complete retained CPU state with lazy consumer residency, then 29 further frames over 3.02 seconds in the same session. Strict incomplete/borrowed/budget/failure guards remain separate. Subsequent 30-second guided idle World observation remains Active after forced reader recovery with331 more frames over32.398 seconds;11 independent World guidance/terrain/portrait regions and4 menu regions match within one channel value. Opening guidance advances to Select Zombie Spell; active tutorial actions, animated/full-frame pixels, movies and replacement remain pending. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous direct recovery now shares bounded callback admission with administrative recovery regardless of ordered drawing/control configuration. Gate timeout invalidates pixels/metadata/aliases on both sides of original-once forwarding; bypassed successful Lock/GetDC has finite opaque ownership until exact successful return. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until shutdown. Ten synthetic schedules cover short/prolonged/reentrant callbacks, admitted and bypassed borrows, failed DC return and fresh retry with independent complete pixels. Unobserved alias/borrow destruction, opaque capacity exhaustion, abandoned owners and original application/driver scheduling remain pending. Terminal application stop is now separate from recoverable RenderShutdown: public RenderStop joins the administrative worker before shared lifecycle/callback ownership, refuses live borrows, drains cleanup through owned-copy END ACK, joins publication and retires independent storage. Stop permanently blocks startup/recovery; process detach only signals and OS-reclaims retained storage. DLL pinning makes dynamic unload unsupported. Synthetic application-stop policy is registered separately; prior evidence retains its recorded hashes and original/live boundaries.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -14239,7 +14241,8 @@
         "research/runtime/opengl-world-observation.md",
         "research/runtime/opengl-world-summon-observation.md",
         "research/runtime/opengl-cpu-handoff-order.md",
-        "research/runtime/opengl-drawing-recovery.md"
+        "research/runtime/opengl-drawing-recovery.md",
+        "research/runtime/opengl-application-shutdown.md"
       ],
       "implementation": [
         "apps/qt-shell/render_control.cpp",
@@ -16104,12 +16107,13 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Scoped recovery lifecycle ownership and overlapping-transition refusal",
-      "scope": "Recovery uses existing common scoped lifecycle lease across admission/candidate claim/reset/publication/worker launch and cleanup, preserving quiet ownership and finite file/session guards. Contended recovery returns false before opening/claiming and records lifecycle-busy diagnostic with preserved LastError. Three actual held startup/shutdown/recovery schedules reject all three competing entry points before mutation, preserve active or retired old streams and both candidate bytes, then publish independent complete pixels in distinct fresh sessions. SELFTEST-only bounded one-shot pre-mutation barriers are absent in production. Existing repeated/alias/guard/session-budget and failure recovery, lifecycle and administrative checkpoint regressions freshly rerun. Factory-specific direct recovery collisions, prolonged/abandoned original owners, simultaneous long/failed joins, deeper stage/repeated collisions, administrative worker shutdown/unloading and original application/driver/full-frame equivalence remain pending. Continuous direct recovery now shares bounded callback admission with administrative recovery regardless of ordered drawing/control configuration. Gate timeout invalidates pixels/metadata/aliases on both sides of original-once forwarding; bypassed successful Lock/GetDC has finite opaque ownership until exact successful return. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until shutdown. Ten synthetic schedules cover short/prolonged/reentrant callbacks, admitted and bypassed borrows, failed DC return and fresh retry with independent complete pixels. Unobserved alias/borrow destruction, opaque capacity exhaustion, abandoned owners and original application/driver scheduling remain pending.",
+      "scope": "Recovery uses existing common scoped lifecycle lease across admission/candidate claim/reset/publication/worker launch and cleanup, preserving quiet ownership and finite file/session guards. Contended recovery returns false before opening/claiming and records lifecycle-busy diagnostic with preserved LastError. Three actual held startup/shutdown/recovery schedules reject all three competing entry points before mutation, preserve active or retired old streams and both candidate bytes, then publish independent complete pixels in distinct fresh sessions. SELFTEST-only bounded one-shot pre-mutation barriers are absent in production. Existing repeated/alias/guard/session-budget and failure recovery, lifecycle and administrative checkpoint regressions freshly rerun. Factory-specific direct recovery collisions, prolonged/abandoned original owners, simultaneous long/failed joins, deeper stage/repeated collisions, administrative worker shutdown/unloading and original application/driver/full-frame equivalence remain pending. Continuous direct recovery now shares bounded callback admission with administrative recovery regardless of ordered drawing/control configuration. Gate timeout invalidates pixels/metadata/aliases on both sides of original-once forwarding; bypassed successful Lock/GetDC has finite opaque ownership until exact successful return. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until shutdown. Ten synthetic schedules cover short/prolonged/reentrant callbacks, admitted and bypassed borrows, failed DC return and fresh retry with independent complete pixels. Unobserved alias/borrow destruction, opaque capacity exhaustion, abandoned owners and original application/driver scheduling remain pending. Terminal application stop is now separate from recoverable RenderShutdown: public RenderStop joins the administrative worker before shared lifecycle/callback ownership, refuses live borrows, drains cleanup through owned-copy END ACK, joins publication and retires independent storage. Stop permanently blocks startup/recovery; process detach only signals and OS-reclaims retained storage. DLL pinning makes dynamic unload unsupported. Synthetic application-stop policy is registered separately; prior evidence retains its recorded hashes and original/live boundaries.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/opengl-recovery-races.md",
-        "research/runtime/opengl-drawing-recovery.md"
+        "research/runtime/opengl-drawing-recovery.md",
+        "research/runtime/opengl-application-shutdown.md"
       ],
       "implementation": [
         "runtime/render/command_recovery.h",
@@ -16189,11 +16193,12 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded direct recovery callback exclusion and independent bypassed borrow ownership",
-      "scope": "Continuous callbacks are counted independently of control/ordered drawing configuration. Direct recovery acquires existing250ms exclusive callback gate before candidate opening, administrative recovery passes existing ownership. Existing50ms callback timeout forwards original once, invalidates alias/metadata/pixel provenance before/after, and records collision. Contending closers cannot clear owner collision evidence; direct final release/check is protected by the same close-attempt guard. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until normal shutdown. Fixed64-slot atomic opaque table pins successful bypassed Lock/GetDC until exact successful Unlock/ReleaseDC, including ordered drawing timeout; failed return retains ownership. Uncertain output/capacity or unmatched unobserved alias release conservatively refuses until process restart. Ten real PE32 original schedules compare40 complete frames in distinct native sessions: short admitted recovery, prolonged callbacks with ordered drawing on/off, reentry, admitted Lock/DC, bypassed Lock on/off, bypassed DC failed/successful return and claimed reset collision. SELFTEST-only barriers excluded from production. Table exhaustion, unobserved aliases/borrow destruction, callback termination, arbitrary deeper/repeated reset collisions, administrative worker shutdown/unloading and original application/driver/full-frame equivalence remain pending.",
+      "scope": "Continuous callbacks are counted independently of control/ordered drawing configuration. Direct recovery acquires existing250ms exclusive callback gate before candidate opening, administrative recovery passes existing ownership. Existing50ms callback timeout forwards original once, invalidates alias/metadata/pixel provenance before/after, and records collision. Contending closers cannot clear owner collision evidence; direct final release/check is protected by the same close-attempt guard. Before-claim collision refuses an untouched candidate; after-claim collision fails/spends it and retains worker storage until normal shutdown. Fixed64-slot atomic opaque table pins successful bypassed Lock/GetDC until exact successful Unlock/ReleaseDC, including ordered drawing timeout; failed return retains ownership. Uncertain output/capacity or unmatched unobserved alias release conservatively refuses until process restart. Ten real PE32 original schedules compare40 complete frames in distinct native sessions: short admitted recovery, prolonged callbacks with ordered drawing on/off, reentry, admitted Lock/DC, bypassed Lock on/off, bypassed DC failed/successful return and claimed reset collision. SELFTEST-only barriers excluded from production. Table exhaustion, unobserved aliases/borrow destruction, callback termination, arbitrary deeper/repeated reset collisions, administrative worker shutdown/unloading and original application/driver/full-frame equivalence remain pending. Terminal application stop is now separate from recoverable RenderShutdown: public RenderStop joins the administrative worker before shared lifecycle/callback ownership, refuses live borrows, drains cleanup through owned-copy END ACK, joins publication and retires independent storage. Stop permanently blocks startup/recovery; process detach only signals and OS-reclaims retained storage. DLL pinning makes dynamic unload unsupported. Synthetic application-stop policy is registered separately; prior evidence retains its recorded hashes and original/live boundaries.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/opengl-drawing-recovery.md"
+        "research/runtime/opengl-drawing-recovery.md",
+        "research/runtime/opengl-application-shutdown.md"
       ],
       "implementation": [
         "runtime/render/command_gate.h",
@@ -16330,6 +16335,68 @@
         "implementation": "partial",
         "comparison": "none",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.application-shutdown",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Terminal application ownership of render admission, two workers and independent storage",
+      "scope": "Permanent stop distinct from recoverable session retirement. Qt semantic stop and PE32 ExitProcess orchestration exclude future startup/recovery and new publication, retain admitted original borrow bookkeeping, refuse borrowed/inflight resources without fabricated release, order administrative join outside lifecycle/tracker/gate ownership, drain valid DELETE/END through owned-copy ACK deadline, join publication before mapping/queue/CPU pixel retirement and cache completion/refusal. Active recovery cannot reply READY after stop; unclaimed candidate stays unchanged. Failed joins retain worker-visible storage for retry; cancellation/reader loss/ACK timeout refuse clean completion but safely joined failed streams retire storage. Closed callbacks forward originals once, preserve LastError and leave retired streams/candidate unchanged. DLL is pinned before hooks; loader detach does not wait/pump/free. Dynamic unload is unsupported and OS process teardown owns any refused live storage and separate frame/input/media/diagnostic views. Eleven synthetic real PE32/Qt cases compare22 complete frames and actual resource/worker states; native/sanitized literal control tests include pending-stop refusal, fourth terminal sequence, idempotency and stale/refused reply. Original game/driver shutdown, abrupt-exit END, arbitrary abandoned callbacks/borrows, opaque exhaustion/alias uncertainty, arbitrary peer mutation schedules and dynamic unloading remain outside validated scope.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/opengl-application-shutdown.md",
+        "research/formats/render-control-v1.md",
+        "apps/qt-shell/README.md"
+      ],
+      "implementation": [
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/bridge.c",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/main.cpp",
+        "protocols/schemas/render_control-v1.json",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/python/mnm_protocols/render_control_v1.py"
+      ],
+      "tests": [
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/selftest.c",
+        "tests/live-command-stop-test.cpp",
+        "tests/render-control-test.cpp",
+        "tools/test-render-application-stop.py",
+        "tools/build-render-bridge.py",
+        "tools/test-render-orchestration.py",
+        "tools/test-render-host-recovery.py",
+        "tools/test-render-checkpoint.py",
+        "tools/test-render-recovery.py",
+        "tools/test-render-recovery-races.py",
+        "tools/test-render-drawing-recovery.py"
+      ],
+      "evidence": [
+        "NR.application-shutdown.native-20261006",
+        "NR.application-shutdown.orchestration-20261006",
+        "NR.application-shutdown.host-20261006",
+        "NR.application-shutdown.checkpoint-20261006",
+        "NR.application-shutdown.recovery-20261006",
+        "NR.application-shutdown.transitions-20261006",
+        "NR.application-shutdown.drawing-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -29798,6 +29865,104 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.application-shutdown.native-20261006",
+      "kind": "native_integration",
+      "scope": "Real PE32 final application stop separate from recoverable session shutdown, actual persistent control/publication worker ownership, Qt semantic stop and independent native frames. Borrowed Lock/DC refusal/resolution including failed original DC return; stop while real checkpoint recovery owns admission; cancellation, reader loss, unacknowledged END, failed joins with retained storage/retry; module pin and original-only post-stop callbacks. No original artifacts/game, hardware driver, arbitrary abandoned owners or dynamic unloading support.",
+      "record": "research/runtime/opengl-application-shutdown-native-20261006.json",
+      "sha256": "77f3630464ba6cb086e9886f5db6f290d75d55a5aac263aa5571895383a68113",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.application-shutdown.orchestration-20261006",
+      "kind": "native_integration",
+      "scope": "Actual synthetic PE32 resolved main-image ExitProcess IAT dispatch, explicit startup/idempotent shutdown and native GPU cleanup. Independent full frames. No original game/driver, crashes, forced termination, dynamic hook unloading or recovery.",
+      "record": "research/runtime/opengl-application-shutdown-orchestration-20261006.json",
+      "sha256": "796e86634cb90c0497bdaa94d5077adf635768273ef9bfa067ea7f4731dacaa5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.application-shutdown.host-20261006",
+      "kind": "native_integration",
+      "scope": "Actual PE32 administrative recovery worker and Qt single-viewport/context native consumer handoffs with independent full original-fixture pixels. No original artifacts/game, original-driver equivalence, dynamic unloading or unobserved leases.",
+      "record": "research/runtime/opengl-application-shutdown-host-20261006.json",
+      "sha256": "641deeb4f873394082c18c771aa9caa6a22e921659bc0b129cbe22eaea169fa2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.application-shutdown.checkpoint-20261006",
+      "kind": "native_integration",
+      "scope": "Actual PE32 administrative checkpoint worker and deliberately delayed Qt consumer in one viewport/context. Complete independently owned original-fixture pixels/palettes, preserved metadata, partial/fill/copy/flip/shared palette continuation and three fresh sessions; strict incomplete/borrowed-state refusal. No original artifacts/game or driver equivalence.",
+      "record": "research/runtime/opengl-application-shutdown-checkpoint-20261006.json",
+      "sha256": "846f96bacc585c9eaf04e6404c548c91b964cfd7c22edcb22cd86d283bf74bf5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.application-shutdown.recovery-20261006",
+      "kind": "native_integration",
+      "scope": "Quiescent actual same-process PE32 RenderShutdown/RenderRecover with distinct v2 file identities and strictly increasing session IDs; poisoned borrowed rows and independent complete GPU frames. Fresh consumer per session, sticky immutable old rings/archives, lifecycle and ownership guards. No original game, automatic IPC negotiation, in-flight callback stress, partial checkpoint/palette reconstruction or real-driver equivalence.",
+      "record": "research/runtime/opengl-application-shutdown-recovery-20261006.json",
+      "sha256": "0e317874e63e78d595749b032bb536443748d1a300cf1ab24a120296a091cf90",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.application-shutdown.transitions-20261006",
+      "kind": "native_integration",
+      "scope": "Actual held PE32 startup/shutdown/recovery transitions reject all three competing entry points without candidate claim or state mutation. Barrier is SELFTEST-only and precedes mutation. Retry establishes distinct sessions with independent complete native frames, immutable old rings/archives and unspent rejected candidate. No original game/driver, callback-owner termination or administrative recovery collision guarantees.",
+      "record": "research/runtime/opengl-application-shutdown-transitions-20261006.json",
+      "sha256": "e4c6d2ae1ace10b38a0e07e01d44a9e54d48322f524471cb5ad282e96070a4f7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.application-shutdown.drawing-20261006",
+      "kind": "native_integration",
+      "scope": "Real PE32 Lock/Unlock callbacks, same-thread reentry, admitted Lock/DC and timed-out bypassed Lock/DC intervals refuse recovery without candidate claim. Failed DC release retains ownership. A collision after claim fails that candidate and fresh retry uses a new session. Both drawing-admission opt-in settings covered. Independent complete native frames and frozen retired rings/archives; no original game/driver or abandoned-thread guarantees.",
+      "record": "research/runtime/opengl-application-shutdown-drawing-20261006.json",
+      "sha256": "d8b090f4f82bea30443bb4d0ea3ac3d519f2d91f74bd6e8336cc64bd750a9708",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -34595,6 +34760,42 @@
         "tools/test-render-orchestration.py",
         "tools/build-render-bridge.py"
       ]
+    },
+    {
+      "id": "NR.application-shutdown.native",
+      "level": "preview",
+      "scope": "Permanent stop distinct from recoverable session retirement. Qt semantic stop and PE32 ExitProcess orchestration exclude future startup/recovery and new publication, retain admitted original borrow bookkeeping, refuse borrowed/inflight resources without fabricated release, order administrative join outside lifecycle/tracker/gate ownership, drain valid DELETE/END through owned-copy ACK deadline, join publication before mapping/queue/CPU pixel retirement and cache completion/refusal. Active recovery cannot reply READY after stop; unclaimed candidate stays unchanged. Failed joins retain worker-visible storage for retry; cancellation/reader loss/ACK timeout refuse clean completion but safely joined failed streams retire storage. Closed callbacks forward originals once, preserve LastError and leave retired streams/candidate unchanged. DLL is pinned before hooks; loader detach does not wait/pump/free. Dynamic unload is unsupported and OS process teardown owns any refused live storage and separate frame/input/media/diagnostic views. Eleven synthetic real PE32/Qt cases compare22 complete frames and actual resource/worker states; native/sanitized literal control tests include pending-stop refusal, fourth terminal sequence, idempotency and stale/refused reply. Original game/driver shutdown, abrupt-exit END, arbitrary abandoned callbacks/borrows, opaque exhaustion/alias uncertainty, arbitrary peer mutation schedules and dynamic unloading remain outside validated scope.",
+      "behaviors": [
+        "NR.application-shutdown",
+        "NR.command-orchestration",
+        "NR.command-host-recovery",
+        "NR.command-recovery",
+        "NR.recovery-lifecycle-races",
+        "NR.drawing-recovery"
+      ],
+      "evidence": [
+        "NR.application-shutdown.native-20261006",
+        "NR.application-shutdown.orchestration-20261006",
+        "NR.application-shutdown.host-20261006",
+        "NR.application-shutdown.checkpoint-20261006",
+        "NR.application-shutdown.recovery-20261006",
+        "NR.application-shutdown.transitions-20261006",
+        "NR.application-shutdown.drawing-20261006"
+      ],
+      "tests": [
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/selftest.c",
+        "tests/live-command-stop-test.cpp",
+        "tests/render-control-test.cpp",
+        "tools/test-render-application-stop.py",
+        "tools/build-render-bridge.py",
+        "tools/test-render-orchestration.py",
+        "tools/test-render-host-recovery.py",
+        "tools/test-render-checkpoint.py",
+        "tools/test-render-recovery.py",
+        "tools/test-render-recovery-races.py",
+        "tools/test-render-drawing-recovery.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -34842,7 +35043,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-surface-backend-combined-20261006.json",
-    "sha256": "35a29dfb0bae5fd08269f9ea9c6edfaca3ea1c4f7e2d6c5daa9ccc4f7fa2b109"
+    "path": "research/runtime/coverage/source-index-application-shutdown-20261006.json",
+    "sha256": "0f69b35b4427e52686fde13f3dd8e9f72d00bbfe7423854f0ac53fde9b0b3e33"
   }
 }

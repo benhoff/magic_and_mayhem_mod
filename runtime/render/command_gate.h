@@ -34,26 +34,28 @@ static int command_borrows_quiet(void){
     return 1;
 }
 static int command_observers_quiet(void);
-struct CommandLease {u32 counted,observe;};
+struct CommandLease {u32 counted,observe,retired;};
 static struct CommandLease command_gate_enter(void){
-    u32 error=GetLastError(),start=GetTickCount();struct CommandLease lease={0,1};
+    u32 error=GetLastError(),start=GetTickCount();struct CommandLease lease={0,1,0};
+    if(__atomic_load_n(&command_application_closed,__ATOMIC_ACQUIRE)){lease.observe=0;lease.retired=1;goto done;}
     if(!command_gate_enabled)goto done;
     for(;;){
+        if(__atomic_load_n(&command_application_closed,__ATOMIC_ACQUIRE)){lease.observe=0;lease.retired=1;goto done;}
         u32 state=__atomic_load_n(&command_gate,__ATOMIC_ACQUIRE);
         if((state&0x7fffffffu)==0x7fffffffu){lease.observe=0;goto done;}
         if(!(state&COMMAND_GATE_EXCLUSIVE)){
-            if(__sync_bool_compare_and_swap(&command_gate,state,state+1)){lease.counted=1;break;}
+            if(__sync_bool_compare_and_swap(&command_gate,state,state+1)){lease.counted=1;if(__atomic_load_n(&command_application_closed,__ATOMIC_ACQUIRE)){lease.observe=0;lease.retired=1;}break;}
         }else if(GetTickCount()-start>=MNM_RENDER_CONTROL_V1_CALLBACK_WAIT_MS){
             if(__sync_bool_compare_and_swap(&command_gate,state,state+1)){
                 __atomic_store_n(&command_gate_collision,1,__ATOMIC_RELEASE);lease.counted=1;lease.observe=0;break;
             }
         }else Sleep(1);
     }
- done:if(!lease.observe)command_callback_missed();SetLastError(error);return lease;
+ done:if(!lease.observe && !lease.retired)command_callback_missed();SetLastError(error);return lease;
 }
 static void command_gate_leave(struct CommandLease* lease){
     u32 error=GetLastError();
-    if(!lease->observe)command_callback_missed();
+    if(!lease->observe && !lease->retired)command_callback_missed();
     if(lease->counted)__atomic_fetch_sub(&command_gate,1,__ATOMIC_RELEASE);
     SetLastError(error);
 }

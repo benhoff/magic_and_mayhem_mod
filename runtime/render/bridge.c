@@ -21,6 +21,7 @@ typedef i32 (WIN *Lock)(void*,void*,void*,u32,HANDLE);
 typedef i32 (WIN *Unlock)(void*,void*);
 typedef i32 (WIN *CreateDraw)(void*,void**,void*);
 static CreateDraw original_create;
+static u32 command_application_stop_requested,command_application_closed;
 static u32* stream;
 static u32 readback_disabled;
 static volatile i32 capture_busy,table_busy;
@@ -66,6 +67,7 @@ static int command_control_start(void);
 #include "command_lifecycle.h"
 #include "command_recovery.h"
 #include "command_control.h"
+#include "command_application_stop.h"
 static u32 guid_kind(const u8* guid){
     static const u8 ids[8][16]={
       {0x80,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},
@@ -277,7 +279,7 @@ static i32 WIN flip(void* object,void* target,u32 flags){
 }
 static i32 WIN surface_lock(void* object,void* rect,void* desc,u32 flags,HANDLE event){
     struct CommandLease command_lease __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
-    if(!command_lease.observe){i32 result=((Lock)lookup(object)->original[25])(object,rect,desc,flags,event);if(result>=0)command_borrow_add(object,1,0);return result;}
+    if(!command_lease.observe){i32 result=((Lock)lookup(object)->original[25])(object,rect,desc,flags,event);if(result>=0 && !command_lease.retired)command_borrow_add(object,1,0);return result;}
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
     if(!copy_lease.observe){i32 result=((Lock)lookup(object)->original[25])(object,rect,desc,flags,event);if(result>=0)command_borrow_add(object,1,0);game_copy_unobserved(object);return result;}
     u32 entry=GetLastError();struct Rect region;int region_valid=rect && readable(rect,16);if(region_valid)copy(&region,rect,16);
@@ -312,7 +314,7 @@ static i32 WIN surface_restore(void* object){
 }
 static i32 WIN surface_dc(void* object,void** output){
     struct CommandLease command_lease __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
-    if(!command_lease.observe){i32 result=((GetObject)lookup(object)->original[17])(object,output);u32 error=GetLastError();if(result>=0)command_borrow_add(object,2,readable(output,4)?*output:0);SetLastError(error);return result;}
+    if(!command_lease.observe){i32 result=((GetObject)lookup(object)->original[17])(object,output);u32 error=GetLastError();if(result>=0 && !command_lease.retired)command_borrow_add(object,2,readable(output,4)?*output:0);SetLastError(error);return result;}
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
     if(!copy_lease.observe){i32 result=((GetObject)lookup(object)->original[17])(object,output);u32 error=GetLastError();if(result>=0)command_borrow_add(object,2,readable(output,4)?*output:0);game_copy_unobserved(object);SetLastError(error);return result;}
     u32 entry=GetLastError();int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);
@@ -515,7 +517,7 @@ __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
-    if(reason==0){game_session_finish();history_finish();command_control_detach();command_scheduler_detach();return 1;}
+    if(reason==0){command_control_detach();command_scheduler_detach();return 1;}
     if(reason!=1)return 1;
     char path[512];u32 size=GetEnvironmentVariableA("MNM_RENDER_STREAM",path,sizeof(path));
     if(!size || size>=sizeof(path))return 1;
@@ -526,6 +528,11 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     if(!mapping)return 1;
     stream=MapViewOfFile(mapping,2,0,0,STREAM_SIZE);CloseHandle(mapping);
     if(!stream || !same(stream,MNM_FRAME_V1_MAGIC,MNM_FRAME_V1_MAGIC_SIZE) || stream[MNM_FRAME_V1_VERSION_OFFSET/4]!=MNM_FRAME_V1_VERSION || stream[MNM_FRAME_V1_DECLARED_SIZE_OFFSET/4]!=MNM_FRAME_V1_DECLARED_SIZE){stream=0;return 1;}
+    /* Installed callbacks make dynamic unloading unsupported. Pin this module
+     * before installing any callback or starting any worker. */
+    typedef u32 (WIN *PinModule)(u32,const char*,void**);void* pinned=0;
+    PinModule pin=(PinModule)GetProcAddress(GetModuleHandleA("kernel32.dll"),"GetModuleHandleExA");
+    if(!pin || !pin(5,(const char*)&RenderAnchor,&pinned)){stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_HOOK_FAILED;return 1;}
     input_init();media_init();command_channel_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();

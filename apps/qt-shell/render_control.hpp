@@ -8,6 +8,7 @@ public:
     ~RenderControl();
     bool create(const QString& path,quint32 launch);
     bool recover(const QString& path,quint32 session);
+    bool stop();
     bool checkpoint(const QString& path,quint32 session);
     // 0 waiting, 1 accepted, -1 refused/invalid/timed out.
     int poll();
@@ -19,5 +20,5 @@ private:
     void store(unsigned offset,quint32 value);
     bool identity() const;
     QFile file_;uchar* map_=nullptr;quint32 launch_=0,sequence_=0;
-    bool cancelled_=false,pending_=false;QString error_;QElapsedTimer deadline_;
+    bool cancelled_=false,pending_=false,stopping_=false;QString error_;QElapsedTimer deadline_;
 };
