@@ -473,6 +473,7 @@ __declspec(dllexport) u32 WIN RenderShutdown(u32 milliseconds){
     u32 error=GetLastError();
     struct CommandLifecycleLease lifecycle __attribute__((cleanup(command_lifecycle_leave)))=command_lifecycle_enter();
     if(!lifecycle.held){SetLastError(error);return 0;}
+    COMMAND_LIFECYCLE_PAUSE(2);
     if(command_worker_joined){u32 complete=command_shutdown_complete;SetLastError(error);return complete;}
     struct GameCopyLease admission __attribute__((cleanup(game_copy_leave)))=game_copy_shutdown_enter();
     if(!admission.observe || !game_tracker_acquire()){SetLastError(error);return 0;}
@@ -483,6 +484,7 @@ __declspec(dllexport) u32 WIN RenderShutdown(u32 milliseconds){
     int complete=command_scheduler_shutdown_locked(milliseconds);SetLastError(error);return complete;
 }
 #ifdef MNM_RENDER_SELFTEST
+__declspec(dllexport) void WIN RenderLifecyclePauseForTest(u32 phase){__atomic_store_n(&command_lifecycle_pause,phase,__ATOMIC_RELEASE);}
 /* Deterministic full-transition contention without production wait controls. */
 __declspec(dllexport) void WIN RenderLifecycleGuardForTest(u32 held){
     __atomic_store_n(&command_shutdown_busy,held!=0,__ATOMIC_RELEASE);

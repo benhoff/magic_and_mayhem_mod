@@ -118,7 +118,9 @@ static void command_recovery_checkpoints(int preserve){
 enum { COMMAND_RECOVER_FRESH=0, COMMAND_RECOVER_CHECKPOINT=1, COMMAND_RECOVER_PREFER_CHECKPOINT=2 };
 static u32 command_recover_mode(const char* path,u32 expected_session,int checkpoint){
     u32 error=GetLastError(),ready=0,stage=1;struct CommandCandidate next;zero(&next,sizeof(next));
-    if(!__sync_bool_compare_and_swap(&command_shutdown_busy,0,1)){SetLastError(error);return 0;}
+    struct CommandLifecycleLease lifecycle __attribute__((cleanup(command_lifecycle_leave)))=command_lifecycle_enter();
+    if(!lifecycle.held){lock_diagnostic("command_recovery_lifecycle_busy",0,0,0,expected_session,0,0,0);SetLastError(error);return 0;}
+    COMMAND_LIFECYCLE_PAUSE(3);
     if(!stream || !game_session_continuous || !lock_capture_path_length || !command_worker_joined ||
        command_worker || command_queue || command_channel || command_file_count>=16 ||
        (command_auto_shutdown() && !command_exit_installed))goto done;
@@ -175,7 +177,7 @@ static u32 command_recover_mode(const char* path,u32 expected_session,int checkp
     lock_diagnostic(ready?"command_recovery_started":"command_recovery_failed",0,0,writer.session,session_archive_id,0,0,0);
     game_tracker_release();
  done:if(!ready)lock_diagnostic("command_recovery_refused",0,0,stage,expected_session,command_file_count,command_worker_joined,0);
-    command_candidate_close(&next);__sync_lock_release(&command_shutdown_busy);SetLastError(error);return ready;
+    command_candidate_close(&next);SetLastError(error);return ready;
 }
 static u32 command_recover(const char* path,u32 expected_session){return command_recover_mode(path,expected_session,0);}
 __declspec(dllexport) u32 WIN RenderRecover(const char* path){return command_recover(path,0);}

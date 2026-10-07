@@ -40,6 +40,26 @@ static struct CommandLifecycleLease command_lifecycle_enter(void){
 static void command_lifecycle_leave(struct CommandLifecycleLease* lease){
     if(lease->held)__sync_lock_release(&command_shutdown_busy);
 }
+#ifdef MNM_RENDER_SELFTEST
+/* One-shot fixture barrier inside actual transition ownership, before mutation.
+ * No production export, pixel state or additional production waits. */
+static u32 command_lifecycle_pause;
+static int command_lifecycle_pause_for_test(u32 phase){
+    if(!__sync_bool_compare_and_swap(&command_lifecycle_pause,phase,0))return 1;
+    u32 error=GetLastError(),written,start=GetTickCount();
+    HANDLE file=CreateFileA("transition-enter.bin",0x40000000,1,0,1,0x80,0);
+    int ready=file!=(HANDLE)-1 && WriteFile(file,&phase,4,&written,0) && written==4;
+    if(file!=(HANDLE)-1)CloseHandle(file);
+    while(ready && GetTickCount()-start<5000){
+        file=CreateFileA("transition-release.bin",0x80000000,3,0,3,0x80,0);
+        if(file!=(HANDLE)-1){CloseHandle(file);SetLastError(error);return 1;}Sleep(1);
+    }
+    SetLastError(error);return 0;
+}
+#define COMMAND_LIFECYCLE_PAUSE(phase) do{if(!command_lifecycle_pause_for_test(phase)){SetLastError(error);return 0;}}while(0)
+#else
+#define COMMAND_LIFECYCLE_PAUSE(phase) do{}while(0)
+#endif
 /* Startup, shutdown and recovery serialize their entire state transition. */
 static int command_scheduler_start_locked(void){
     if(command_worker_joined)return 0;
