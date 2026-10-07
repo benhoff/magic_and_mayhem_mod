@@ -37606,6 +37606,353 @@
         "reason": "External recovery/transition collisions, simultaneous shutdown callers during long drain/join, tracker closure contention, abandoned or terminated callback owners, administrative worker shutdown ownership/dynamic unloading, broader drawing and original game/driver/full-frame equivalence remain pending. Existing source fingerprints/evidence hashes are preserved; current-source assertions are limited to new recorded lifecycle policy scenarios.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "08ee71b1a557c6519e4455b7d70053f64e329cbfa5810cbf75555312adbdb9aa",
+          "before_sha256": null,
+          "id": "NR.surface-access"
+        },
+        {
+          "after_sha256": "1cf87ba8778f75d3131d8f97d86732233f8f9b246457b93b1d8e6cdd5dd4d76a",
+          "before_sha256": null,
+          "id": "RE.surface-driver.access"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "de30d7e2f74815f706d3cf158d0d981e0523e1f4d33fbb7ce6aa849439709c50",
+          "before_sha256": null,
+          "path": "renderer/surface_access.hpp"
+        },
+        {
+          "after_sha256": "702f8ac0631b886d06e2d7d56e4b756f38ba24bba40bfde444029137ffbed1ed",
+          "before_sha256": "65f55cb023eaab78a7ba13e5deeb4f94effeec44cea6799ff5956b003300f4dd",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9f4eff5aa2dff99df5d4933bf7fad9d7cc3f3bb4d8319e8bb0f4e6b6e61a34e0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-access-20261006.json"
+        },
+        {
+          "after_sha256": "2ca47f06cb6fbf402ff1d9352b383180901b16300e39e708a0b20cc3f135f525",
+          "before_sha256": "66ca1cbdbc3e1e9c31ad829b7e645caa1714bdc9f9ae1bde6936c8aa5718f742",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f2812d3ad20be42a22471ee3eb49a957ef413f8ae3fcbe5037c4b69d57267e6d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-access-20261006.json"
+        },
+        {
+          "after_sha256": "df5ddf2ae85074753c3c8a17d1181866c373125744156015f3019786678d8044",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-access-20261006.md"
+        },
+        {
+          "after_sha256": "1c016473eeb881deaccf4d297c3f9645e6eefa2541b6e769ab17ae8600ffe087",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-access-20261006.json"
+        },
+        {
+          "after_sha256": "5971357850a1fe8d8a5dc43de76a9f22c8132ec69c6ff5a6ca99b6135760c1c2",
+          "before_sha256": "50f0cd8d9d96238ab0e41666ad0d87b1c161cf7fba2d6ae2c8073b9c66032788",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "6880dbb12a014635aa07033757934ea0cfcc304b67c8d931a903183731503916",
+          "before_sha256": "6880dbb12a014635aa07033757934ea0cfcc304b67c8d931a903183731503916",
+          "path": "research/runtime/original-surface-sentinel.md"
+        },
+        {
+          "after_sha256": "4646e929641cae1360ede4b44de770d2da03ca7b9f94ed030aec40f2cdf9d70c",
+          "before_sha256": null,
+          "path": "research/runtime/surface-access-capture-20261006.json"
+        },
+        {
+          "after_sha256": "7b16f8e37f7ab2e01dd5914f530623a2611b4c8f2e548b2bfd4cc0c8de175f0a",
+          "before_sha256": null,
+          "path": "research/runtime/surface-access-offline-20261006.json"
+        },
+        {
+          "after_sha256": "14baf6374516e28718faa95ab7479fff08a27b77233e23e45752d83cdea69ba1",
+          "before_sha256": null,
+          "path": "research/runtime/surface-access.md"
+        },
+        {
+          "after_sha256": "0b9bf7d8682b7eb844e420183b867f1d83e12b8874482f962f260d1c4d96dd73",
+          "before_sha256": null,
+          "path": "tests/render-surface-access-test.cpp"
+        },
+        {
+          "after_sha256": "e9e30a5c1db9f67e67699c6c193054b4a5d9db384c963446e4a4988589dd24d2",
+          "before_sha256": null,
+          "path": "tests/surface-access-reference.c"
+        },
+        {
+          "after_sha256": "b2d10f6675475b15ead350659399ca245d2fe654b10c2d95cc9d0d05b34b169d",
+          "before_sha256": null,
+          "path": "tests/test-surface-access.py"
+        },
+        {
+          "after_sha256": "69d22322aaaff04377cf963bcf9f83c4e6909052f17c1187f311cdde50766a68",
+          "before_sha256": null,
+          "path": "tools/capture-surface-access.py"
+        },
+        {
+          "after_sha256": "87f314dfa1273d5ce54aaa3a7c617ee1a2c34806a3d25322074303fd40160679",
+          "before_sha256": null,
+          "path": "tools/check-native-surface-access.py"
+        },
+        {
+          "after_sha256": "8bef3406ccdc2f4c171518c18375fe4863bdecaca75d283bc6dbf4bd5ad6ef77",
+          "before_sha256": null,
+          "path": "tools/check-surface-access.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-access.json.gz",
+          "before_sha256": null,
+          "after_sha256": "b80055aef41fffe9b3a3b6c9fed7f8f0ab4aa06b669ac4ad3f4d553e6e670def"
+        }
+      ],
+      "id": "surface-access-state-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:18c2902f0c89c10789b12e3de920039911aba2b41284456713778392d5499038",
+        "behaviors_without_comparison:d978d31c85b88df9357b7c0c3a8bbc4c20be5be3c26188f23afc6e491a5172b3",
+        "behaviors_without_implementation:18c2902f0c89c10789b12e3de920039911aba2b41284456713778392d5499038",
+        "behaviors_without_scenarios:18c2902f0c89c10789b12e3de920039911aba2b41284456713778392d5499038"
+      ],
+      "reason": "Reviewed bounded real Surface2 full-surface lock/DC sequences, normalized pointer/output descriptors and readable final-word preservation;96cases/1182transitions/8664stable descriptor fields/4032words/12terminal-busy cases with84unstable failure caps excluded; serialized standalone capture and source-bound provenance. Independent offline/native transition comparisons plus11 offline mutation tests and10 native policy guards. Unsupported COM/raster/global draw/alias/cross-thread/loss/game/Windows/live boundaries explicit. Census and intervening exact committed receipts reviewed; prior evidence hashes retained.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh standalone driver capture and independent offline/native transition comparisons justify supported admission/output mutation policy only. No actual HDC, native drawing while borrowed or original game/loss/live equivalence. Existing raster snapshot evidence retained without source changes.",
+        "evidence": [
+          "DRIVER.surface-access.capture-20261006",
+          "DRIVER.surface-access.offline-20261006",
+          "NR.surface-access.native-20261006"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "8f72a66d5902e79c4621d1eaa025c7681dabf29df585fcfc37e13b3d82c34caf",
+          "before_sha256": "f71d9e9d663efbb1ad43fa93f44c6e43a39e8e6fb53d607c38c4d1e668eb0a19",
+          "id": "NR.surface-contents.validity"
+        },
+        {
+          "after_sha256": "4ff69417ae4618eadc4fdf8e5677e2cb0a394d1eb80a5232fdbef33058f62fbd",
+          "before_sha256": "8827a00bc76b700e5d3d2cea640a0e17ab40f6cac7f33bb07ae5b7d016c0e0f6",
+          "id": "NR.surface-copy.clipping"
+        },
+        {
+          "after_sha256": "cd5e66f96130132d3af23b789e4a26931e6873518881d7d99842a67b3f026333",
+          "before_sha256": "bfb95bad4aab62ed23af0fdeb4c11044895cbfd391587daacc93f3f607b66d67",
+          "id": "NR.surface-copy.clipping-stream"
+        },
+        {
+          "after_sha256": "65a9db3b44e9468fbbe60b61e2877e22fdfafe11c403a5212620ee1049d06513",
+          "before_sha256": "9b9894d5b5efa80cf4ec31bd93bb2bade2eff50094bd67ef96fc3421ab2f8fa3",
+          "id": "NR.surface-driver-fixtures"
+        },
+        {
+          "after_sha256": "f259a1710570795431c0dc2ded8d12edc74b3382fa17c84d2ceaa0f7f4ba60f9",
+          "before_sha256": "52e854c3fd622c44ddfc26d7637324628bcb5625cd1e32e2eec822516fe80f31",
+          "id": "NR.surface-fixture-corpus"
+        },
+        {
+          "after_sha256": "4a7dfb5996a15e233f3bde13b8a4a302d5664a9cf3ea091e1165a9d61d0f9a59",
+          "before_sha256": "f5c1479dc30d07cbbcf79f26425fa239ac454a11686f87c48362af58cf9b4851",
+          "id": "NR.surface-reload.bitmap-dc"
+        },
+        {
+          "after_sha256": "be98d04ac9a2d468abb101305aabf00cbda8a6d119d8db2fb1582a9582a1f7bc",
+          "before_sha256": "96006f7ea800484710d2e5a68b79bfce10495e13d262be27f883f50b34a30636",
+          "id": "NR.surface-reload.dc-regions"
+        },
+        {
+          "after_sha256": "876d64c228ff5cef5dec23f41adc28931735476d5298e2e2a52096c7c8da806c",
+          "before_sha256": "671cf282294b76fbed245765a93c6472df889ab5320bd583ac4d2fa7ed804ef2",
+          "id": "NR.surface-reload.dib-indexed"
+        },
+        {
+          "after_sha256": "ceda4cc56a33b1b88d88cfcda4b631ac6dee4e484835b642fc33c92aae4d7e0e",
+          "before_sha256": "8c61bcd855f981cc2dcc2633fad5fad7f56b28a8a1bb916a5e6f85475c056c9d",
+          "id": "NR.surface-reload.dib-rgb"
+        },
+        {
+          "after_sha256": "f75776059d0df9cd6d078629cfc69eff972303f65802a5161f2b238362409b3d",
+          "before_sha256": "e30d34142e5802bbbb8fc090de175efc10de2609694639f102f716285676292d",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "994a9ee31322ecefc3a808e0b5a9b1240618eca0d75fe26cf237d714f3114ba7",
+          "before_sha256": "2f0411563108d0cc42512628e4d4f7484d5885eb848e9ea42fc0694b0e35105c",
+          "id": "RE.surface-copy.rgb565-bltfast"
+        },
+        {
+          "after_sha256": "fe58f7b25065601fbf7e293411f334fa29b4fab67b804b50b76cca82b1d71255",
+          "before_sha256": "ea555b7b937255d9412ce41fed58cabbf4cefed384449a5206be9868992caad7",
+          "id": "RE.surface-copy.rgb565-keyed"
+        },
+        {
+          "after_sha256": "999a5bcb856f6fe47f5b9a7d61ce8861d83af9de58ba9e27da4156a5d1495d12",
+          "before_sha256": "62c751fd62567061a4d9fad6544a1b9ae5ab8d850feaa0c2454e5fd07c8be529",
+          "id": "RE.surface-copy.rgb565-overlap"
+        },
+        {
+          "after_sha256": "80153b5893d917e4f9bf6028b9bcbc4cd016fcc875ae1b04a29bd57554d9fa97",
+          "before_sha256": "f25add3908e20ee8b4f490cc7572b32481d84232bd9201301395eccbe805383f",
+          "id": "RE.surface-driver.dc-palette-clip"
+        },
+        {
+          "after_sha256": "516435199d6fe92d55d990576d86075f5d11bf37d132ff39ce30967531f21a3b",
+          "before_sha256": "0a3433e870dcd3d46ca9f456feee0ca8e982f5fe36b97c11d97ce15da4798a1b",
+          "id": "RE.surface-driver.dc-raster"
+        },
+        {
+          "after_sha256": "ff1a13d314986dac87c06aab5742c5834d4468c32458e8565c6a3f2e5a237d7f",
+          "before_sha256": "634c2ea6a51ba6a73758fe3971aa91b648cc561dba1dcaa9ef4ea9f979066127",
+          "id": "RE.surface-driver.dc-reuse"
+        },
+        {
+          "after_sha256": "085e32a98a5b2b5104b9a02422c077293eb8c4021f4f908cf9e574b8f053438f",
+          "before_sha256": "09178e3adfa0331f09818922d7944bb83ffb74dd604c699222a4c8eb256839f4",
+          "id": "RE.surface-driver.dib-raster"
+        },
+        {
+          "after_sha256": "4897905330651fc0601e3b0e4a851f74efdb5f6cbf4e52ed98195b19b194c264",
+          "before_sha256": "3126c8b153820dc4ff7f5e6954f0c9b9a3daf865f604431ebc5b6b72049b0343",
+          "id": "RE.surface-driver.indexed-restore"
+        },
+        {
+          "after_sha256": "a90d702f9797115922dca60cdfd3ad500d774948f0d8d1dc5ad158d6bc5da672",
+          "before_sha256": "1cf377eb0912cd929a85c1828288edc4b0146cfaa6e29cb7ca383c61aec5a86a",
+          "id": "RE.surface-driver.loss-restore"
+        },
+        {
+          "after_sha256": "ef0cb600de225bd0db4393a262cff0dff166ea4d80a95a595fcb6bb4aa19688e",
+          "before_sha256": "6a86ce363e26086031020203450d6ed676266c1e1c70b2adde2a12390974aaa7",
+          "id": "RE.surface-fill.rgb565"
+        },
+        {
+          "after_sha256": "bbb3351b675a51bf6cab974ee5ad99ff3faece9620b900f16c7a3c943a01ee9f",
+          "before_sha256": "8a8cca6964eeee5a6ece031f0a41c94c46495adbcd64ed9f31e0fbf12f5aeea3",
+          "id": "RE.surface-reload.cursor-sentinel"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "de30d7e2f74815f706d3cf158d0d981e0523e1f4d33fbb7ce6aa849439709c50",
+          "before_sha256": null,
+          "path": "renderer/surface_access.hpp"
+        },
+        {
+          "after_sha256": "702f8ac0631b886d06e2d7d56e4b756f38ba24bba40bfde444029137ffbed1ed",
+          "before_sha256": "65f55cb023eaab78a7ba13e5deeb4f94effeec44cea6799ff5956b003300f4dd",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9f4eff5aa2dff99df5d4933bf7fad9d7cc3f3bb4d8319e8bb0f4e6b6e61a34e0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-surface-access-20261006.json"
+        },
+        {
+          "after_sha256": "2ca47f06cb6fbf402ff1d9352b383180901b16300e39e708a0b20cc3f135f525",
+          "before_sha256": "66ca1cbdbc3e1e9c31ad829b7e645caa1714bdc9f9ae1bde6936c8aa5718f742",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f2812d3ad20be42a22471ee3eb49a957ef413f8ae3fcbe5037c4b69d57267e6d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-surface-access-20261006.json"
+        },
+        {
+          "after_sha256": "df5ddf2ae85074753c3c8a17d1181866c373125744156015f3019786678d8044",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-surface-access-20261006.md"
+        },
+        {
+          "after_sha256": "1c016473eeb881deaccf4d297c3f9645e6eefa2541b6e769ab17ae8600ffe087",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-access-20261006.json"
+        },
+        {
+          "after_sha256": "5971357850a1fe8d8a5dc43de76a9f22c8132ec69c6ff5a6ca99b6135760c1c2",
+          "before_sha256": "50f0cd8d9d96238ab0e41666ad0d87b1c161cf7fba2d6ae2c8073b9c66032788",
+          "path": "research/runtime/native-surface-operation-matrix.json"
+        },
+        {
+          "after_sha256": "6880dbb12a014635aa07033757934ea0cfcc304b67c8d931a903183731503916",
+          "before_sha256": "6880dbb12a014635aa07033757934ea0cfcc304b67c8d931a903183731503916",
+          "path": "research/runtime/original-surface-sentinel.md"
+        },
+        {
+          "after_sha256": "4646e929641cae1360ede4b44de770d2da03ca7b9f94ed030aec40f2cdf9d70c",
+          "before_sha256": null,
+          "path": "research/runtime/surface-access-capture-20261006.json"
+        },
+        {
+          "after_sha256": "7b16f8e37f7ab2e01dd5914f530623a2611b4c8f2e548b2bfd4cc0c8de175f0a",
+          "before_sha256": null,
+          "path": "research/runtime/surface-access-offline-20261006.json"
+        },
+        {
+          "after_sha256": "14baf6374516e28718faa95ab7479fff08a27b77233e23e45752d83cdea69ba1",
+          "before_sha256": null,
+          "path": "research/runtime/surface-access.md"
+        },
+        {
+          "after_sha256": "0b9bf7d8682b7eb844e420183b867f1d83e12b8874482f962f260d1c4d96dd73",
+          "before_sha256": null,
+          "path": "tests/render-surface-access-test.cpp"
+        },
+        {
+          "after_sha256": "e9e30a5c1db9f67e67699c6c193054b4a5d9db384c963446e4a4988589dd24d2",
+          "before_sha256": null,
+          "path": "tests/surface-access-reference.c"
+        },
+        {
+          "after_sha256": "b2d10f6675475b15ead350659399ca245d2fe654b10c2d95cc9d0d05b34b169d",
+          "before_sha256": null,
+          "path": "tests/test-surface-access.py"
+        },
+        {
+          "after_sha256": "69d22322aaaff04377cf963bcf9f83c4e6909052f17c1187f311cdde50766a68",
+          "before_sha256": null,
+          "path": "tools/capture-surface-access.py"
+        },
+        {
+          "after_sha256": "87f314dfa1273d5ce54aaa3a7c617ee1a2c34806a3d25322074303fd40160679",
+          "before_sha256": null,
+          "path": "tools/check-native-surface-access.py"
+        },
+        {
+          "after_sha256": "8bef3406ccdc2f4c171518c18375fe4863bdecaca75d283bc6dbf4bd5ad6ef77",
+          "before_sha256": null,
+          "path": "tools/check-surface-access.py"
+        },
+        {
+          "path": "tests/fixtures/surfaces/surface-access.json.gz",
+          "before_sha256": null,
+          "after_sha256": "b80055aef41fffe9b3a3b6c9fed7f8f0ab4aa06b669ac4ad3f4d553e6e670def"
+        }
+      ],
+      "id": "surface-access-shared-pending-20261006",
+      "pending_gaps": [
+        "behaviors_without_comparison:18c2902f0c89c10789b12e3de920039911aba2b41284456713778392d5499038",
+        "behaviors_without_comparison:d978d31c85b88df9357b7c0c3a8bbc4c20be5be3c26188f23afc6e491a5172b3",
+        "behaviors_without_implementation:18c2902f0c89c10789b12e3de920039911aba2b41284456713778392d5499038",
+        "behaviors_without_scenarios:18c2902f0c89c10789b12e3de920039911aba2b41284456713778392d5499038"
+      ],
+      "reason": "Reviewed bounded real Surface2 full-surface lock/DC sequences, normalized pointer/output descriptors and readable final-word preservation;96cases/1182transitions/8664stable descriptor fields/4032words/12terminal-busy cases with84unstable failure caps excluded; serialized standalone capture and source-bound provenance. Independent offline/native transition comparisons plus11 offline mutation tests and10 native policy guards. Unsupported COM/raster/global draw/alias/cross-thread/loss/game/Windows/live boundaries explicit. Census and intervening exact committed receipts reviewed; prior evidence hashes retained.",
+      "validation": {
+        "status": "pending",
+        "reason": "Shared research/matrix/register source fingerprints reviewed. Broader historical renderer/asset/original/COM/protocol scenarios retain their scope/source hashes without fresh execution or status promotion; new owned admission state does not assert their original/live equivalence.",
+        "evidence": []
+      }
     }
   ]
 }

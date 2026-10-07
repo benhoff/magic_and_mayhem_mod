@@ -15968,6 +15968,76 @@
         "integration": "preview",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RE.surface-driver.access",
+      "subsystem": "rendering_surfaces",
+      "kind": "recovered",
+      "title": "Standalone Surface2 lock and bitmap DC admission",
+      "scope": "Wine11.16 Surface2 normal-mode8x6 indexed8/RGB565/RGB32 and system/default offscreen caps;96 recorded operation sequences compare HRESULTs, normalized outputs/stable Lock descriptor fields and readable post-sequence native bytes. See research for observed transitions and an input-derived signed mapping-balance/DC model and argument behavior. No original game instructions/caller mapping, partial rectangles/other flags/primary/video/aliases/cross-thread race/loss/Windows/live claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4745856,
+          "scope": "Existing original bitmap loader GetDC/ReleaseDC caller anchor only, documented by original-surface-sentinel research; standalone admission executes no original instructions and does not validate that caller or its Lock scheduling."
+        }
+      ],
+      "documents": [
+        "research/runtime/surface-access.md",
+        "research/runtime/original-surface-sentinel.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/surface-access-reference.c",
+        "tools/capture-surface-access.py",
+        "tools/check-surface-access.py",
+        "tests/test-surface-access.py",
+        "tests/fixtures/surfaces/surface-access.json.gz"
+      ],
+      "evidence": [
+        "DRIVER.surface-access.capture-20261006",
+        "DRIVER.surface-access.offline-20261006"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.surface-access",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned Surface2-style lock and DC admission state",
+      "scope": "Bounded noncopyable single-thread owned state for supported full-surface lock and DC transitions with captured HRESULT/output mutation semantics for the recorded schedules; unstable busy-Lock caps word excluded. Native storage/DC tokens and depth budget are intentional policies.96 input sequences replay against independent driver outputs; no actual COM HDC/alias lifetime, attached raster adapter/global drawing admission, wire, loss, Windows or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/surface-access.md",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "implementation": [
+        "renderer/surface_access.hpp"
+      ],
+      "tests": [
+        "tests/render-surface-access-test.cpp",
+        "tools/check-native-surface-access.py",
+        "tests/test-surface-access.py"
+      ],
+      "evidence": [
+        "NR.surface-access.native-20261006"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -29046,6 +29116,48 @@
           "equals": 186
         }
       ]
+    },
+    {
+      "id": "DRIVER.surface-access.capture-20261006",
+      "kind": "native_integration",
+      "scope": "Standalone Wine11.16 Surface2 indexed8/RGB565/RGB32 system/default offscreen96cases full-surface Lock/Unlock/DC transitions. Independent HRESULT/output descriptors and post-sequence pixels. No original game, actual loss, Windows/live equivalence.",
+      "record": "research/runtime/surface-access-capture-20261006.json",
+      "sha256": "4646e929641cae1360ede4b44de770d2da03ca7b9f94ed030aec40f2cdf9d70c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRIVER.surface-access.offline-20261006",
+      "kind": "native_integration",
+      "scope": "Input-derived full sequence state/HRESULT/output-descriptor comparison and untouched pixel checks; mutation tests verify branch/output/sequence corruption is detected. Driver build scoped; no game/live equivalence.",
+      "record": "research/runtime/surface-access-offline-20261006.json",
+      "sha256": "7b16f8e37f7ab2e01dd5914f530623a2611b4c8f2e548b2bfd4cc0c8de175f0a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.surface-access.native-20261006",
+      "kind": "native_integration",
+      "scope": "Native owned single-thread admission state replay versus complete independent captured HRESULT/output descriptors and final words. Intentional token/storage identity and unsupported-argument guards separate; no real HDC/GPU/DC raster/COM alias lifetime/live replacement.",
+      "record": "research/runtime/native-surface-access-20261006.json",
+      "sha256": "1c016473eeb881deaccf4d297c3f9645e6eefa2541b6e769ab17ae8600ffe087",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -33743,6 +33855,21 @@
         "tools/test-render-draw-startup.py",
         "tools/test-render-checkpoint.py"
       ]
+    },
+    {
+      "id": "NR.surface-access.headless",
+      "level": "headless",
+      "scope": "Owned admission state replay compares all independently captured Surface2 transition outputs; native argument/storage/depth guards separate. No native raster/real HDC/game/live replacement.",
+      "behaviors": [
+        "NR.surface-access"
+      ],
+      "evidence": [
+        "NR.surface-access.native-20261006"
+      ],
+      "tests": [
+        "tests/render-surface-access-test.cpp",
+        "tools/check-native-surface-access.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -33990,7 +34117,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-lifecycle-races-20261006.json",
-    "sha256": "992d315cb8d223c0c9b8af8d0b3d8c2dae551e7254a396edecf7a6c28fcab14d"
+    "path": "research/runtime/coverage/source-index-surface-access-20261006.json",
+    "sha256": "f2812d3ad20be42a22471ee3eb49a957ef413f8ae3fcbe5037c4b69d57267e6d"
   }
 }

@@ -1760,3 +1760,7 @@ SELFTEST DLLs build. External recovery collisions, simultaneous long joins,
 tracker closure contention, abandoned owners, administrative worker shutdown and
 original game/driver/full-frame equivalence remain pending; see
 [lifecycle race findings](opengl-lifecycle-races.md).
+
+## Surface lock/DC admission — 2026-10-06
+
+One serialized Wine capture96 standalone Surface2 sequences spans indexed8/RGB565/RGB32 and system/default offscreen caps. Offline and native state replay compare independently captured HRESULTs/normalized output descriptors and readable unchanged final words; terminal busy cases supply no invented bytes and unstable failure caps words are excluded. Mutation checks verify corruption detection. Native tokens/storage bounds/single-thread state are intentional policies; DC raster association/drawing while borrowed, aliases/other flags/rectangles/cross-thread/original game/loss/Windows/live remain pending. Manifests verified before/after; initial sandbox socket and terminal-success-assumption failures yielded no evidence.96cases/1182transitions/8664stable descriptor fields/4032readable words compare with11offline tests/10native guards;84unstable caps words excluded and12terminal busy cases have no final frame. See [lock/DC findings](surface-access.md).
