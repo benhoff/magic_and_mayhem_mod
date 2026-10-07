@@ -20,7 +20,12 @@ int main(int argc,char** argv){
     std::memcpy(data+MNM_MENU_V2_MAP_NAMES,"First map",10);
     std::memcpy(data+MNM_MENU_V2_MAP_NAMES+128,"Second map",11);
     for(int i=0;i<13;++i)put(MNM_MENU_V2_RULES+i*4,50);
-    for(int i=0;i<4;++i){const int offset=MNM_MENU_V2_PLAYERS+i*48;put(offset,i<2);put(offset+4,i<2?i:UINT32_MAX);put(offset+8,i<2?i:UINT32_MAX);std::memcpy(data+offset+16,i<2?"M\x80rlin":"No Player",i<2?8:10);}
+    for(int i=0;i<4;++i){
+        const int offset=MNM_MENU_V2_PLAYERS+i*48;
+        put(offset,i<2);put(offset+4,i<2?i:UINT32_MAX);put(offset+8,i<2?i:UINT32_MAX);
+        const char* name=i<2?"M\x80rlin":"No Player";
+        std::memcpy(data+offset+16,name,std::strlen(name)+1);
+    }
     MenuBridge::State state;require(!bridge.read(state));put(128,2);
     require(bridge.read(state)&&state.battle.map==2&&state.battle.maps.size()==2&&state.battle.players[0].name==QString::fromUtf8("M€rlin"));
     require(!bridge.request(MNM_MENU_SETUP_START,state)); // Full settings required.

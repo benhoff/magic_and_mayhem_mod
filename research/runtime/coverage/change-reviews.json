@@ -51260,6 +51260,74 @@
         "reason": "Existing broader contracts and source-only evidence staleness remain explicit. No original comparison, gameplay implementation, unbounded asset population or live renderer replacement is claimed by these shared-source changes.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "cac4929b3e1b068f88845d2465aa5d30554cf0e341577fa26fe2f4815fa1bff0",
+          "before_sha256": "baad7698a89f23cc9c5074d93ea140654f62b0c5dc1ff74016f5510b3791c763",
+          "id": "BR.battle"
+        },
+        {
+          "after_sha256": "b67a649cc1950dcc8bcb6c774b482ec72fde72c6bbfd4b8b308a0fe3b6dde39b",
+          "before_sha256": "f8308399e7533c0644d920fdef53df0ff2bf6011f4e4ace43da2a3740af46f2f",
+          "id": "NA.buffers"
+        },
+        {
+          "after_sha256": "26627568d58e69861f46956aff90c81e920f566885a17e81142da4301194f150",
+          "before_sha256": "87d9879138e994b05fe64172a8e1697efc7f483449032708a7119b6e83a019e9",
+          "id": "NA.mixer"
+        },
+        {
+          "after_sha256": "6ae73250c250495834810857c73939946a4a9388f12f671e71f144c83998a026",
+          "before_sha256": "3005a7025db96b3ca883c7dd64589d4d1aca63404dd6afe2281bc435e4282d83",
+          "id": "NA.voices"
+        },
+        {
+          "after_sha256": "61075105e414b8d8dd1bc137f6043cec88360db50610f0706bc968f3c2d59694",
+          "before_sha256": "56b5e725818dd4aa7c56a9256d155b7c6588f2397f7200ed7f836dd6a1356d71",
+          "id": "NA.wave"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "be9548b0805e6a2b18647abc67d5057ab7fa43fe081ef284c56cb08b17f7b852",
+          "before_sha256": "1e761a5f636eb68707b516a1dc4c29ae27582860198155555153388a8a1ab4af",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "01968769dce55ecb08454ce07b697529372f89f3b9b3324ff63944161fc2a959",
+          "before_sha256": "5d156bef69e84f9c0d1f3c15cca8845186e73a72e7603c1e3311f80dae44031a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "066cdf7486fdd2fa1ea70536f5243b3e574a1d23a39fd27487398f620f8633ee",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-commit-fixtures-20261007.json"
+        },
+        {
+          "after_sha256": "181f3b42c59a21bf28d19e0c41f86b54208f96ff500ae59fcb6f172b6cbc66b6",
+          "before_sha256": "c13bf6fbc492440d2a5e5f322bff2dfaaf4f89496f9343ee264587539dedd582",
+          "path": "tests/audio-boundaries-test.cpp"
+        },
+        {
+          "after_sha256": "a83cc64ee0e5458fd7601100d461b7d3631b784a118acae5cb7acb04afaacc3b",
+          "before_sha256": "d58606383f222128687bba1481d37fdd4ba6fe10556df5ccc4a19277a508328e",
+          "path": "tests/menu-battle-bridge-test.cpp"
+        }
+      ],
+      "id": "logical-commit-fixtures-20261007",
+      "pending_gaps": [
+        "stale_evidence:30e09eac04d5f0257d32ec1627c9f8b857a6353751c7506dc91ed354d6a4afa1",
+        "stale_evidence:347a9403b736fe17828771b526f70ff24dcca41d5e82c6afcf6c2db13e875036",
+        "stale_evidence:ba2ed75591ae0dcbc0f46cb7b6770df1e1d30ae2a136e50310d3efbb6fa1365d"
+      ],
+      "reason": "Review the bounded battle fixture copy and GNU noinline allocation overrides as independent test reliability fixes. Source/census/ledger accounting is limited to those files; historical original and native evidence hashes remain unchanged.",
+      "validation": {
+        "status": "pending",
+        "reason": "Release fixture compilation and synthetic battle/audio checks are retained in prior review records; this commit keeps validation pending because no new immutable execution evidence is registered and does not promote engine/protocol integration.",
+        "evidence": []
+      }
     }
   ]
 }

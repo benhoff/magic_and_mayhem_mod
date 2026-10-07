@@ -1,5 +1,12 @@
 # Engine modernization coverage ledger
 
+## Test fixture reliability — 2026-10-07
+
+Player-name fixture copies now use the actual NUL-terminated string length.
+Allocation fault-injection overrides stay out of line in optimized builds.
+These are synthetic fixture corrections; historical source fingerprints remain
+unchanged, and original comparison/live validation is not promoted.
+
 ## Version3 native clipping replay — 2026-10-06
 
 [Protocol and evidence](../formats/render-surface-commands-v3.md):v3 carries owned
