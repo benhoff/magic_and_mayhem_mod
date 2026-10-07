@@ -190,7 +190,17 @@ void CommandConsumer::submit(const SurfaceCommand* commands,std::size_t count){
     auto& p=*impl_;p.active();p.executing=true;
     try {
         require(!count || commands,"Null command batch");require(count<=4096,"Oversized command batch");
-        for(std::size_t i=0;i<count;++i){require(p.state==CommandConsumerState::Active,"Commands after END");p.execute(commands[i]);}
+        std::size_t i=0;
+        while(i<count){
+            if(commands[i].operation==6){
+                // PRESENT callbacks may synchronously paint or throw. Deliver
+                // them with the caller's context restored, outside a GL batch.
+                require(p.state==CommandConsumerState::Active,"Commands after END");p.execute(commands[i++]);
+            }else p.renderer.batch([&]{
+                do {require(p.state==CommandConsumerState::Active,"Commands after END");p.execute(commands[i++]);}
+                while(i<count && commands[i].operation!=6);
+            });
+        }
         p.executing=false;
     }catch(...){p.executing=false;p.state=CommandConsumerState::Failed;p.cleanup();throw;}
 }

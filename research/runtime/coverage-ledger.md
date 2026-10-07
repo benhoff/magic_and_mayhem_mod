@@ -1,19 +1,21 @@
 # Engine modernization coverage ledger
 
-## Standalone native render profiling tool — 2026-10-07
+## Surface contention and application-held presentation — 2026-10-07
 
-The EGL-device diagnostic tool replays complete captured frame prefixes with
-serial/completed-throughput measurements and an independent pixel fixture.
-It is isolated from application widgets and the original producer. Execution
-evidence and batching/hosting integration are reconciled in the following change;
-this intermediate snapshot leaves validation pending and adds no equivalence claim.
-
-## Test fixture reliability — 2026-10-07
-
-Player-name fixture copies now use the actual NUL-terminated string length.
-Allocation fault-injection overrides stay out of line in optimized builds.
-These are synthetic fixture corrections; historical source fingerprints remain
-unchanged, and original comparison/live validation is not promoted.
+[Diagnosis and retained evidence](render-surface-contention.md) records four
+original BltFast `DDERR_SURFACEBUSY` failures in the user's legacy observer-readback
+run. Exact lock/DC ownership was not traced. Ordinary native-command launches
+already imply application-held capture; explicit `--frame-readback` now does too,
+removing observer DirectDraw locks from both ordinary presentation modes.
+Six actual-shell synthetic launch cases, fourteen PE32 ownership cases and fresh
+queue/input/fallback regressions pass. An isolated original campaign completes
+120 seconds in the idle World,1393 native frames/104127 commands with no logged
+surface failures or recovery requests, no ordinary native readbacks/uploads and
+zero terminal resources. Original inputs verify before/after. This is bounded
+Xvfb/Mesa observation with stable menu comparisons; hours-long active battles,
+movies, user's physical driver and replacement remain pending. Explicit legacy
+draw/history readback diagnostics retain their observational boundary. Historical
+shared launch/test evidence keeps its original hashes; no status promotion.
 
 ## Version3 native clipping replay — 2026-10-06
 
@@ -1819,9 +1821,38 @@ whole-frame comparison remain pending. Historical evidence/statuses are retained
 
 One native SurfaceBackend associates storage/admission/palettes/clipping/DC reload and RGB565 fills/exact-key copies.2630original/driver HRESULTs/299808pixels/258048palette entries/8664stable descriptors compare retained independent outputs, including105fill/2keyed failures, same-ID key/DC continuations and39native guards.84unstable caps excluded;12poisoned access cases release whole owners. Historical reports stay unchanged; this is fresh native reuse, not new original execution. Keyed overlap/borrowed-fill and new combinations/sharedCOM identity/recovery/other formats/live remain pending. See [owned backend](native-surface-backend.md).
 
+## Display-only fullscreen and scaling — 2026-10-06
+
+Qt OpenGL presentation now offers sharp/smooth aspect fit, physical-pixel integer
+enlargement with small-window fallback, and F11 fullscreen with chrome/geometry/
+maximized-state restoration. Launch controls stay available while waiting for a
+frame. Source textures, logical input coordinates, engine display preferences,
+simulation and field of view remain unchanged. Synthetic Xvfb/Mesa at DPI scales
+1 and 1.5 passes 240 independent complete framebuffers plus targeted XCB input,
+CPU-upload/GPU-lease regressions, all fullscreen CLI scaling modes and incompatible
+option refusal. Display policy adds zero renderer readbacks or GPU-frame uploads;
+smooth interpolation runs only in the viewport shader. Original-game interaction,
+other display backends/scales and hardware performance remain pending. Historical
+shared-source evidence retains its hashes/status; this fresh native integration
+promotes only scoped `HOST.presentation`, not original equivalence or replacement.
+See [policy and evidence](viewport-presentation.md).
+
+The presentation toolbar now has an explicit Fullscreen / Exit fullscreen push
+button before scaling. Fresh normal/high-DPI button clicks, checked/label state
+synchronization with F11, geometry restoration and the existing presentation/input
+matrix pass; see `viewport-fullscreen-button-20261006.json`. Earlier evidence is
+preserved; original-game/hardware boundaries remain pending.
+
 ## Combined owned surface operations — 2026-10-06
 
 Chunk1 is implemented within the measured operation scopes:5114draw HRESULTs/538272pixels,258048palette entries/8664stable descriptors,576DC phases/1182access transitions and40native guards.2304new unchanged-original keyed overlap calls establish forward row-major current-storage reads;180standalone driver calls establish leased COLORFILL success and borrowed empty-Blt success. Native CPU snapshots remain coherent for12held-destination fills. GPU copies use no pixel uploads/readbacks; keyed self-overlap has an intentional4096texel pre-write admission cap. Both captures serialize Wine and verify immutable manifests before/after. Six keyed-overlap and eight borrowed-draw mutation tests pass, plus all14renderer CTests in an isolated committed baseline with exact owned changes. Final fresh evidence supersedes validation of shared sources; preliminary/base evidence hashes remain historical. Shared palette/COM ownership, flip/loss/Restore/retry, additional formats/pitch, uncaptured precedence/negative-debt raster and live/wire/Windows equivalence remain pending; the whole milestone is not complete. See [owned backend](native-surface-backend.md).
+
+Standalone command-replay test hosting now links the fullscreen presentation
+controller, fixing the default launcher all-target linker failure. The full Qt
+build succeeds; synthetic standalone GPU replay and native-command shell startup
+pass without running the original game. Full presentation regression evidence is
+retained separately in `viewport-presentation-link-fix-20261006.json`; original
+comparison/live replacement statuses remain unchanged.
 
 ### Terminal application shutdown ownership (2026-10-06)
 
@@ -1841,9 +1872,97 @@ hardware-driver shutdown, abandoned callbacks/borrows, opaque capacity/alias
 uncertainty and arbitrary hostile-peer mutation schedules remain pending.
 See [ownership, phase bounds and evidence](opengl-application-shutdown.md).
 
+Fullscreen readiness correction (2026-10-06): native-command context startup
+shows an empty GL widget. A reproduced visibility-only chrome check hid launch
+controls before a usable frame existed. Chrome now waits for an initialized,
+nonempty, error-free frame and returns when that frame clears; layout changes
+and redraws are deferred. The full launcher build, 34 actual composited-window
+checks with retained/changing GPU frames and 240 framebuffer comparisons pass
+at scales 1 and 1.5 on a 1920×1440 Xvfb/Mesa screen. Evidence:
+`viewport-fullscreen-ready-20261006.json`. Original-game and user-driver
+fullscreen behavior remain pending; historical results keep their original hashes.
+
+## Continuous native-command launch default — 2026-10-06
+
+2026-10-07 selection update: ordinary Qt OpenGL game launches now default to
+native command presentation, with `--frame-readback` selecting the earlier
+original-renderer mirror. Explicit capture/readback diagnostics and Wine-window
+embedding retain their existing paths. Existing continuous-v2 and terminal
+fallback policies apply. The Launch-button harness exercises native selection
+without the old opt-in flag. This application default does not force NVIDIA,
+bypass original drawing or establish original/live equivalence; user-driver,
+movies and sustained gameplay validation remain pending.
+Fresh synthetic evidence `native-render-selection-default-20261007.json` passes
+ordinary native launch, matching child channels, 4,202-command drain and retained
+visible normal/fullscreen/fractional-DPI frames, plus explicit native continuous
+and bounded modes. The shell builds and frame-readback/embedding CLI smoke and
+conflicting-selection checks pass. Historical shared-source results remain
+historical; no status promotion or original-driver equivalence is asserted.
+
+The three latest completed native-command captures used bounded v1 and each
+recorded exactly one entirely black 800×600 RGB565 startup PRESENT before END.
+The supplied launch instructions omitted the continuous setting used in the
+earlier run. Qt `--native-commands` now defaults to continuous v2 and passes a
+matching child environment/control channel; explicit `MNM_RENDER_CONTINUOUS=0`
+retains bounded diagnostics. Direct producer/experiment defaults stay bounded.
+Actual-shell synthetic Launch-button tests drain 4,202 commands and retain
+visible composed frames in normal/fullscreen/fractional-DPI windows; the fresh
+240 framebuffer/34 window/input/CLI matrix also passes. This validates application
+policy only; original-game retry, hardware, movies, sustained gameplay and native
+replacement remain pending. See [findings and boundaries](native-command-launch.md)
+and `native-command-default-20261006.json`.
+
 ## Owned surface ownership and recovery — 2026-10-06
 
 Chunk2 is implemented within the offline scopes in [ownership and recovery](native-surface-ownership-recovery.md): canonical aliases, caller-released retained/shared palettes, detach/rebind, attached-back reacquisition/retirement, and two-buffer storage/validity/CPU-DC lease swaps. A serialized standalone Wine capture records5647rows/11flips, including busy after swap and object-local cachedDC return failures/flipback recovery; no original game instructions run. Fresh native replay compares2128ownershipwords,6656palette entries/864definedindexbytes/66loss-palette statuses.4480retained original fault traces and1536bounded prefixes freshly match the existing scheduler, separately from16native wrapper/reloader compositions/432input pixels and supplied globalcursor BMP/DC reload. Restore never invents content. Existing5114draw results/538272pixels/258048entries/8664stable descriptors and all15renderer CTests pass in isolated ef5b5a4 baseline with exact own changes;11oracle tests pass. Native counts/budgets/defaults/lost-wrapper fill admission are explicit policies; initial reports/hashes remain historical. Formats/pitch, flagged palettes, longchains, uncaptured interleavings/negative-debt raster, physical original lost-draw/asset internals and live/wire/Windows remain pending; the full surface milestone is not complete.
+
+### Native command refusal and ordered startup (2026-10-06)
+
+The continuous user run `run-b_9tbgld` failed with producer GAP after an8ms
+tracker timeout and incomplete snapshot history; both recovered streams also
+refused. This is separate from bounded black startup or fullscreen presentation.
+Identity-checked native reader diagnostics now preserve the session and terminal
+reason; five known/unknown/malformed refusal cases and native pixel/streaming
+regressions pass. The actual Qt Launch-button fixture passes all four launch
+mode/window/DPI cases.
+
+A fresh bounded original v2 startup completes one native PRESENT with original
+drawing retained. Software rendering and skipped movies alone did not complete
+the early-checkpoint recovery attempt; that failure is retained. With the
+existing explicit `MNM_RENDER_ORDERED_COPIES=1` drawing/CPU handoff policy, a fresh
+isolated software-rendered campaign passes328 frames, stable menu region
+comparisons, forced region/World recovery, and27 further World frames over3106ms.
+All original manifests verify before/after. This intentional scheduling policy
+remains opt-in; user hardware/movie playback, unrestricted gameplay, synchronized
+full-frame comparison and replacement remain pending. See
+[native refusal diagnosis](native-command-refusal.md) and its four immutable
+execution/inspection records. Historical fingerprints and statuses are retained.
+Committed accounting range `2f95b25..b48b2a9` has no unresolved exact receipt gaps.
+
+## Original display snapshot to native resources — 2026-10-06
+
+`NR.scene-snapshot` observes the pinned original queue consumer at `0x005002a0`
+without replacing simulation or drawing. Its bounded immutable v1 protocol owns
+ordered display records and normalized frame identities; snapshot-local tokens
+replace original pointers. The host adapter resolves explicit pinned SPR assets
+through native storage/resource services and renders supported records using
+`SceneRenderer`. Readable frame admission, malformed/truncated wire refusal,
+alias ambiguity, changed-asset detection, ordering, hidden draws and terminal
+surface ownership are tested. The PE32 fixture also checks original forwarding,
+return/LastError, sample bounds, x87/XMM/MXCSR state and unchanged queue inputs.
+
+A fresh original Single Player battle produced four complete 800x600 snapshots.
+Native replay resolves every supported frame; independent Python SPR decoding
+checks all native RGB565 pixels and byte-exact observed frame identities. This
+is native diagnostic-policy comparison, not original shaded-frame equivalence.
+Strict replay refuses the observed special modes/sentinel adjustments; partial
+preview requires explicit `--supported-only`, and embedded-palette replay always
+requires `--unshaded`. Shade parameters and omitted record indices remain in
+reports. Continuous host streaming, original palette remaps/effects, background,
+HUD and live original-renderer replacement remain pending. Existing historical
+source fingerprints are preserved. [Scope and reproduction](native-scene-snapshot.md)
+and [wire admission](../formats/scene-snapshot-v1.md) document the measured limits.
+The source census now includes `compat/` so the host adapter is accounted for.
 
 ### Sustained publication and bounded unlock partitions (2026-10-06)
 
@@ -1875,27 +1994,6 @@ independent pending presentation/resource/scene workspace changes are excluded.
 ## Native surface formats and pitch — 2026-10-06
 
 [Chunk3](native-surface-formats-pitch.md) implements indexed8/RGB555/RGB565/RGB24/RGB32 same-format fills/keys/copies/clips/overlap and explicit owned signed byte rows. Standalone serialized Wine capture records3500cases:1400admitteddraws/2100rejectedsetups, complete nativewords/descriptors/keyoutputs/callerpadding/guards. LPSURFACE creation rejects; Surface3 positivepadded indexed/16/32 and tightRGB32 bindings admit; negative and sampled RGB24 memory bindings reject. Native signed imports copy caller bytes and compare2800additional variants against recorded logicaloutputs, separately from driver acceptance. Active-mask fill/key semantics retain installed highkeybits and copiedunusedbits; descriptor keyflags/range and storage-following pitch are explicit. Fresh667800nativeword/descriptor/presentation values,2150400packedbytes,27259checks/60refusals,13oracle tests and all16renderer cases pass across latest suite/serial Xvfb cleanup rechecks; coverage audit/gate suites pass. Existing5114drawresults/538272pixels/258048entries/8664descriptors and11flips/4480originalretrytraces/1536boundedstops freshly compare. Tested tree is isolated fc65636 plus ownchanges; foreign shared-worktree changes excluded. Game captures establishRGB565; static setup8/non8/WORDcreation/pitchLock boundaries do not prove whole requiredformat reachability. Presentation/signed layouts/defaultpitch are native policies; requiredcaller/descriptor census, remaining flags/uncaptured recovery/DC/asset branches and live/wire/Windows are acceptance boundaries. The full surface milestone remains incomplete.
-
-### Display scaling, fullscreen and native-command launch/refusal (2026-10-06)
-
-Qt presentation now supports sharp/smooth/integer physical-pixel scaling, a
-Fullscreen button and F11, restoring geometry/chrome and preserving logical game
-input. Chrome hides only after a usable frame; layout/redraw is deferred. The
-standalone replay target links the shared presentation controller. The engine
-canvas and simulation rules are unchanged.
-
-Native-command launches default to continuous v2 with matching child environment
-and control/session channels; explicit environment0 retains bounded diagnostics.
-Prior bounded captures contained one black startup frame. Subsequent continuous
-user capture failed with GAP after an8ms tracker timeout; both recovered streams
-refused. Identity-checked diagnostics now name the producer reason and session,
-with known/unknown/malformed refusal fixtures. The opt-in ordered drawing policy
-passes a bounded isolated software-rendered campaign through328 native frames and
-region/World recovery; movies/user graphics hardware, unrestricted repeatability,
-synchronized full-frame comparison and replacement remain pending. Synthetic
-display/input/launch validation and original observation are separate milestones.
-Historical execution fingerprints and committed review receipts are preserved.
-See viewport-presentation.md, native-command-launch.md and native-command-refusal.md.
 
 The exact selected commit candidate based on `fc65636` passes fresh synthetic
 240 complete framebuffer and34 visible-window comparisons, logical input and
@@ -2004,3 +2102,142 @@ source hashes remain historical when excluded shared build changes differ.
 Original queue observation remains independently recorded; new synthetic
 validation does not establish shaded output equivalence or live replacement.
 Unrelated Qt presentation, command producer and surface-format work is excluded.
+
+### Input after native command refusal (2026-10-07)
+
+`HOST.command-input-fallback` adds original-window attachment and direct input
+after terminal native command failure. The supplied `run-f619ca_i` headers show
+GAP in the initial session and all three retries; the user reports lag only
+after refusal. Two actual-shell synthetic windowed/fullscreen fixtures exhaust
+three retries, attach an independent X11 client, clear forwarded input and
+deliver direct mouse/key events. The full Qt build and continuous/bounded launch
+regression pass. [Evidence and remaining boundaries](native-command-input-fallback.md)
+keep user-driver/game input latency, native media interactions, missing/ambiguous
+window execution and producer history repair separate. No original comparisons,
+engine behavior or live replacement statuses are promoted. Shared historical
+main/session source evidence retains its hashes and may now be stale.
+
+## Native command responsiveness — 2026-10-07
+
+The command reader queues display updates instead of synchronously repainting
+inside every PRESENT; the shell continues known backlog through bounded Qt
+callbacks, yielding between batches. Every wire command/resource transition
+remains ordered, with existing byte/work limits. Synthetic validation passes70
+changing PRESENTs in three polls with zero synchronous reader Paint events and
+an event delivered between polls; the old implementation fails the new guard.
+The last complete pixels survive DELETE/END. Existing fragmentation/checkpoint/
+failure/5,077-command streaming tests, targeted input, two actual-shell4,202-record
+final-frame fixtures and normal/fullscreen GAP retry/direct-input fallback pass.
+No ordinary readbacks/uploads are added. Original game/user-driver latency,
+producer contention/GAP repair and live replacement remain pending. Historical
+source hashes/statuses remain unchanged. See [policy and evidence](native-command-responsiveness.md).
+
+Performance observation (2026-10-07): two bounded original-game startup/Main-menu
+sessions using the real native command reader and viewport under Xvfb/llvmpipe
+delivered approximately 19.5/19.6 captured PRESENT intervals/sec. Busy polls were
+about 3 ms median and 8 ms p95; about 94% of consumer CPU samples were in Mesa
+graphics/JIT code. No measured producer refusal or ordinary native/RGBA readback
+or viewport upload occurred. Hardware acceleration is the first diagnostic step;
+desktop GPU, battles, producer CPU and end-to-end latency remain unmeasured.
+Original drawing remains active. [Immutable timings, provenance and reproduction](native-render-profile-20261007.json)
+are linked to the responsiveness, live transport and partitioned-update behaviors
+without status promotion or equivalence/replacement claims.
+
+## Headless GPU rendering baseline — 2026-10-07
+
+A profiling-only EGL device adapter now replays the exact retained 15-frame
+startup prefix through the unchanged native decoder, consumer, renderer and
+shared GPU leases without a desktop. Twelve measured replays per
+hardware/software and serial/throughput combination follow two warmups.
+Independent RGB565/keyed-copy/update final pixels and complete capture final
+pixels match across NVIDIA TITAN RTX and llvmpipe; cleanup retires all native
+surfaces and renderer diagnostic readback counters stay zero during timing.
+
+NVIDIA queued completed-output throughput is 96.3 frames/sec median. After the
+initial checkpoint, serial frame completion is 10.66 ms median, 13.83 ms p95 and
+18.75 ms maximum; remaining GPU wait after submission is 0.033 ms median. Matching
+software rendering reaches 132.9 frames/sec, with 7.74 ms median completion.
+Approximately 70% of sampled CPU time is under OpenGL context switching and 84%
+under surface update (inclusive shares overlap). Each replay executes 3,987
+commands including 3,898 uploads; the native update enters/restores its context
+per call. Context batching remains an unmeasured optimization candidate.
+
+This qualifies `NR.headless-command-profile` as a scoped headless diagnostic
+policy, without changing existing renderer or original comparison/replacement
+statuses. GPU timeline intervals include host feeding and synchronization, not
+pure shader busy time. These unpaced prefix results are separate from the earlier
+Xvfb live startup observation. Desktop GLX, battles, producer/IPC queue age,
+actual Qt widgets, compositor/scanout and input-to-screen latency remain pending.
+See [tool, reproduction and timing boundaries](../../tools/native-render-profile/README.md)
+and the [immutable source-bound execution](native-render-headless-profile-20261007.json).
+
+## Bounded renderer context batching and GL state reuse — 2026-10-07
+
+Native policy `NR.command-context-batching` retains the dedicated renderer context
+across consecutive non-PRESENT commands in each already bounded consumer submit.
+PRESENT callbacks run with the caller restored. Private FBO attachment/viewport,
+shader/VAO/raster state and uniform setup are reused; texture deletion invalidates
+the attachment cache. Release ordinary GL errors are checked at batch boundaries,
+while resource allocation, explicit readback and Debug checks remain immediate.
+FIFO commands, per-command input admission, poll/work quotas, resource ownership,
+producer ACKs and GPU lease fences are unchanged.
+
+[Fresh before/after headless evidence](native-render-batching-profile-20261007.json)
+uses the same 15-frame/3,987-command/3,898-upload RGB565 startup prefix on the TITAN
+RTX. Median completion falls from 10.785 to 0.774 ms, p95 from 18.031 to 1.161 ms;
+queued completed throughput rises from 96.9 to 1,061.6 frames/sec. All hardware/
+software/mode final pixels match the immutable earlier baseline; independent
+keyed-copy/update fixture pixels match. This validates the combined optimization
+for finite EGL workload capacity, not desktop GLX, live FPS or input latency.
+
+[Final native regressions](native-render-batching-regressions-20261007.json) pass
+16 Release CTests, the Debug consumer test, 708 combined full-frame checks and
+context nesting/restoration/error guards. Qt timer replay Skip/Verify and failure
+cases pass; ordinary readbacks and viewport image uploads remain zero. The actual
+Release shell is rebuilt and its [synthetic CLI checks](native-render-batching-qt-cli-20261007.json)
+pass. No original media or executable is consumed by this increment.
+
+Shared `blit.cpp`/`blit.hpp`/`command_consumer.cpp` and consumer-test edits leave
+older linked evidence historical/stale; retained records and source hashes are
+not rewritten. New regressions cover only their named retained fixtures. Other
+original comparisons, sanitizers, hardware widgets, live producer/IPC, battles,
+loss/recovery, compositor/vsync/scanout and whole-engine replacement remain
+pending, with no gameplay change or original equivalence promotion. The previously
+reviewed committed range still ends at unchanged HEAD `32db1b85`; the retained
+history audit remains `working/native-render-profile-20261007/history-review.json`.
+
+The [renewed hosting guards](native-render-batching-hosting-20261007.json) retain
+current synthetic validation for `HOST.native-command-responsiveness` and
+`HOST.command-input-fallback`: 70 queued presentations/three bounded polls,
+intervening input, complete >4096-record final-frame drain, high DPI/fullscreen
+and terminal GAP direct-input fallback. Earlier shared-source synthetic evidence
+is preserved as historical, with no assertion of original or hardware latency.
+
+2026-10-07 fullscreen shortcut: `HOST.presentation` reserves F9 for entry/exit
+(previously F11). Existing synthetic presentation tests cover the new key,
+repeat suppression, chrome and geometry restoration. This is native display
+policy; original-game interaction and physical desktop input remain pending.
+Historical F11 evidence is retained unchanged.
+
+## User native tracker refusal investigation — 2026-10-07
+
+[Exact-source investigation](native-tracker-investigation.md) retains the
+run-tvc6w3zj negative observation under a new evidence ID. Both original/retry
+rings refuse GAP; retry acknowledges zero bytes. All 61 captured runtime C/header
+hashes match. Wait tags implicate post-blit commit competing with pre-Unlock
+capture, then successful-Lock admission competing with post-blit commit.
+Recorded holds of 9–16 ms exceed the 8 ms admission budget. Remote samples can
+race ownership turnover and include scheduler pauses; CPU/disk/driver causality
+remains unproven. Native mode still publishes an RGBA mirror under the tracker;
+its contribution is a performance hypothesis, not measured attribution.
+
+Fresh four synthetic ordering/timeout cases pass six complete-frame comparisons.
+Paired isolated original Main-menu runs with movies configured enabled both
+retain Active native publication after deliberate reader cancellation/recovery:
+212 frames/55,035 commands without ordering, 215/55,561 with ordering. Neither
+reproduces incidental GAP; sampled movie playback is unconfirmed. All 2,927
+original inputs verify before/after both runs. This validates bounded observations
+and synthetic policy only. Ordered callbacks remain opt-in; no default, engine
+code, wait budget, status promotion or original replacement changes. User NVIDIA
+reproduction, callback-stage timing, active gameplay and full-frame equivalence
+remain pending. Prior reports and hashes remain untouched.

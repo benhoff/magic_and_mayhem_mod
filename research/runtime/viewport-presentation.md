@@ -80,3 +80,14 @@ the default 640×480 virtual screen clipped captures and was a test setup issue.
 Evidence is retained separately in `viewport-fullscreen-ready-20261006.json`.
 Original-game transitions and the user's graphics driver remain unverified;
 passing synthetic composition does not establish the cause of every black screen.
+
+Fullscreen shortcut update (2026-10-07): F9 now toggles fullscreen, including
+exiting during gameplay with hidden chrome. Unmodified F9 press/release and
+shortcut override are reserved by the presentation controller; autorepeat does
+not toggle. Earlier F11 records remain historical. Original-game and user-driver
+interaction remain pending; the existing synthetic fixture now exercises F9.
+
+Fresh F9 execution: `viewport-presentation-f9-20261007.json` retains successful
+Xvfb/Mesa normal and high-DPI tests, 240 complete framebuffer comparisons,
+F9 consumption/repeat suppression, geometry/chrome restoration, input and
+fullscreen CLI regressions. The shell and standalone replay targets rebuilt.

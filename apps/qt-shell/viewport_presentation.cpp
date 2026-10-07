@@ -21,7 +21,7 @@ void ViewportPresentation::addControls(QToolBar& toolbar){
     toolbar.addSeparator();
     fullscreenButton_=new QPushButton("Fullscreen",&toolbar);
     fullscreenButton_->setObjectName("fullscreenButton");fullscreenButton_->setCheckable(true);
-    fullscreenButton_->setToolTip("Toggle fullscreen (F11)");
+    fullscreenButton_->setToolTip("Toggle fullscreen (F9)");
     connect(fullscreenButton_,&QPushButton::clicked,this,&ViewportPresentation::setFullscreen);
     toolbar.addWidget(fullscreenButton_);setFullscreen(window_.isFullScreen());
     toolbar.addWidget(new QLabel(" Scaling: ",&toolbar));
@@ -84,7 +84,7 @@ bool ViewportPresentation::eventFilter(QObject* object,QEvent* event){
     const auto* widget=qobject_cast<QWidget*>(object);
     if(!widget || widget->window()!=&window_)return false;
     const auto* key=static_cast<QKeyEvent*>(event);
-    if(key->key()!=Qt::Key_F11 || key->modifiers()!=Qt::NoModifier)return false;
+    if(key->key()!=Qt::Key_F9 || key->modifiers()!=Qt::NoModifier)return false;
     if(event->type()==QEvent::KeyPress && !key->isAutoRepeat())setFullscreen(!window_.isFullScreen());
     event->accept();return true;
 }

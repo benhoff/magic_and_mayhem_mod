@@ -65,8 +65,12 @@ class XInput:
         self.xt.XTestFakeButtonEvent(self.d,button,0,0);self.x.XFlush(self.d);time.sleep(.15)
     def close(self):self.x.XCloseDisplay(self.d)
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64');parser.add_argument('--mode',choices=['campaign','movies-enabled','both'],default='both');parser.add_argument('--require-world-active',action='store_true',help='Require native World frames before/after failed-reader recovery and at least20 additional frames over2 seconds');parser.add_argument('--world-seconds',type=int,default=3,help='Bounded post-recovery World observation, 3..60 seconds');parser.add_argument('--require-world-pixels',action='store_true',help='Compare independent stable World terrain and portrait regions, dismissing the initial guidance dialog');parser.add_argument('--require-world-summon',action='store_true',help='Select and right-click the original tutorial Zombie summon; require independently read control count and stable pixels');parser.add_argument('--observe-world-summon',action='store_true',help='Require an original tutorial summon and record any native refusal with owned-state diagnostics');parser.add_argument('--ordered-copies',action='store_true',help='Opt into bounded native scheduling across original copy calls');parser.add_argument('--require-route-pixels',action='store_true',help='Require every independent menu and World region comparison to match');args=parser.parse_args()
-    if not 3<=args.world_seconds<=60:parser.error('--world-seconds must be 3..60')
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('build',type=Path);parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64');parser.add_argument('--mode',choices=['campaign','movies-enabled','both'],default='both');parser.add_argument('--require-world-active',action='store_true',help='Require native World frames before/after failed-reader recovery and at least20 additional frames over2 seconds');parser.add_argument('--world-seconds',type=int,default=3,help='Bounded post-recovery World observation, 3..120 seconds');parser.add_argument('--require-world-pixels',action='store_true',help='Compare independent stable World terrain and portrait regions, dismissing the initial guidance dialog');parser.add_argument('--require-world-summon',action='store_true',help='Select and right-click the original tutorial Zombie summon; require independently read control count and stable pixels');parser.add_argument('--observe-world-summon',action='store_true',help='Require an original tutorial summon and record any native refusal with owned-state diagnostics');parser.add_argument('--ordered-copies',action='store_true',help='Opt into bounded native scheduling across original copy calls');parser.add_argument('--require-route-pixels',action='store_true',help='Require every independent menu and World region comparison to match')
+    parser.add_argument('--observe-surface-busy',action='store_true',help='Observe original drawing without injected reader failures; record native refusal and require no application DDERR_SURFACEBUSY')
+    args=parser.parse_args()
+    # Leave time for menu ingress/recovery within the native probe's 180s lease.
+    if args.observe_surface_busy and (args.mode=='movies-enabled' or args.require_world_active or args.require_world_pixels or args.require_world_summon or args.observe_world_summon):parser.error('--observe-surface-busy requires an ordinary campaign observation')
+    if not 3<=args.world_seconds<=120:parser.error('--world-seconds must be 3..120')
     if args.require_world_summon and args.observe_world_summon:parser.error('Choose strict or diagnostic summon observation')
     if args.require_world_summon or args.observe_world_summon:args.require_world_pixels=True
     if args.require_world_pixels:args.require_world_active=True
@@ -92,6 +96,7 @@ def main():
     cache=args.build.resolve()/'CMakeCache.txt'
     build_type=next((line.split('=',1)[1] for line in cache.read_text().splitlines() if line.startswith('CMAKE_BUILD_TYPE:STRING=')),None)
     report['native_build']=dict(type=build_type,probe_sha256=helper.sha(probe))
+    report['surface_busy_observation']=args.observe_surface_busy
     if args.require_world_summon or args.observe_world_summon:
         assert build_type in ['Release','RelWithDebInfo'],'Active World fixture requires an optimized consumer build'
         report['ocr_version']=subprocess.run(['tesseract','--version'],capture_output=True,text=True,check=True,timeout=5).stdout.splitlines()[0]
@@ -119,6 +124,7 @@ def main():
                     events=case/'events.bin';campaign=case/'campaign.bin'
                     child.update(MNM_MENU_OBSERVE=winpath(events),MNM_MENU_CAMPAIGN_OBSERVE=winpath(campaign))
                     for key,path in [('MNM_RENDER_STREAM',frame),('MNM_RENDER_COMMAND_CHANNEL',case/'commands.bin'),('MNM_RENDER_CONTROL',case/'commands.bin.control'),('MNM_RENDER_LOCK_CAPTURE_DIR',experiment/'lock-capture'),('MNM_RENDER_CAPTURE_DIR',experiment/'draw-capture'),('MNM_RENDER_FAILURE_LOG',experiment/'surface-failures.log')]:child[key]=winpath(path)
+                    if args.observe_surface_busy:(case/'attach').write_bytes(b'attach')
                     wine=subprocess.Popen(['wine','explorer','/desktop=RouteObservation,800x600',str(game/'Chaos.exe')],cwd=game,env=child,stdout=wlog,stderr=wlog,start_new_session=True)
                     def rows():
                         data=events.read_bytes() if events.exists() else b''
@@ -126,8 +132,9 @@ def main():
                     def ready(mid):return any(r['event'] in (1,4,9,10) and r['menu_id']==mid and r['initialized'] and not r['next_screen'] and not r['returning'] and not r['fade_active'] for r in rows())
                     wait(lambda:ready(3),wine,90,'Original Main readiness');inputs=XInput(env['DISPLAY']);record['original_client']=inputs.locate()
                     # A late reader joins through the failed-session recovery handshake.
-                    with (case/'commands.bin').open('r+b') as f:f.seek(32);f.write(struct.pack('<I',1))
-                    wait(lambda:struct.unpack_from('<I',(case/'commands.bin').read_bytes(),24)[0]==3,wine,10,'Producer failure acknowledgment');(case/'attach').write_bytes(b'attach')
+                    if not args.observe_surface_busy:
+                        with (case/'commands.bin').open('r+b') as f:f.seek(32);f.write(struct.pack('<I',1))
+                        wait(lambda:struct.unpack_from('<I',(case/'commands.bin').read_bytes(),24)[0]==3,wine,10,'Producer failure acknowledgment');(case/'attach').write_bytes(b'attach')
                     request_id=0
                     def request(op):
                         nonlocal request_id
@@ -164,14 +171,14 @@ def main():
                         click_cfg('Interface/MainScreen/screen (MainMenu).cfg','TEXTBUTTON_1');wait(lambda:ready(18),wine,20,'Region Entry readiness');time.sleep(1)
                         compare('region-title',(45,40,220,80));compare('region-difficulty',(45,92,620,114))
                         before=phase('region-before-forced-failure')
-                        if before['state']==1:
+                        if before['state']==1 and not args.observe_surface_busy:
                             ring=case/('commands.bin.retry-'+str(before['recoveries']));assert ring.exists()
                             with ring.open('r+b') as f:f.seek(32);f.write(struct.pack('<I',1))
                             time.sleep(2);phase('region-after-forced-failure');compare('region-recovered-title',(45,40,220,80))
                         click_cfg('Interface/RegionEntry/screen (Region Entry).cfg','TEXTBUTTON_1')
                         def world():return [r for r in rows() if r['event']==12 and r['menu_id']==2 and r['initialized']==1 and r['active_screen']==0x6cbb78]
                         wait(lambda:len(world())==3,wine,45,'Three original World ticks');record['world_ticks']=world();time.sleep(2);before=phase('world-before-forced-failure')
-                        if before['state']==1:
+                        if before['state']==1 and not args.observe_surface_busy:
                             ring=case/('commands.bin.retry-'+str(before['recoveries']));assert ring.exists()
                             with ring.open('r+b') as f:f.seek(32);f.write(struct.pack('<I',1))
                             time.sleep(4);phase('world-after-forced-failure')
@@ -211,7 +218,8 @@ def main():
                             time.sleep(min(5,args.world_seconds-(time.monotonic()-started)))
                             sample+=1;value=phase('world-sustained-'+str(sample))
                             if args.observe_world_summon and value['state']==3:break
-                            assert value['state']==1 and not value['error'],'Sustained World publication refused'
+                            if not args.observe_surface_busy:assert value['state']==1 and not value['error'],'Sustained World publication refused'
+                            else:assert wine.poll() is None,'Original exited during surface-busy observation'
                             if args.require_world_pixels:
                                 for label,rect in [('terrain',(0,0,160,180)),('portrait',(700,500,778,561))]:
                                     compare('world-'+label+'-'+str(sample),rect)
@@ -236,7 +244,13 @@ def main():
                         time.sleep(8);phase('movie-enabled-main-end')
                     record['original_process_alive']=wine.poll() is None;assert record['original_process_alive']
                     record['menu_records']=rows();record['consumer']=request('finish');assert qt.wait(timeout=5)==0
+                    failures=experiment/'surface-failures.log'
+                    record['surface_failures']=failures.read_text().splitlines() if failures.exists() else []
+                    record['application_surface_busy_count']=sum(
+                        len(fields)>=2 and fields[0].startswith('application_') and fields[1].lower()=='887601ae'
+                        for fields in (line.split() for line in record['surface_failures']))
                     diagnostics=experiment/'lock-capture/lifecycle.log';record['lifecycle']=diagnostics.read_text().splitlines() if diagnostics.exists() else []
+                    if args.observe_surface_busy:assert not record['application_surface_busy_count'],'Original drawing encountered DDERR_SURFACEBUSY'
                     record['ring_headers']={p.name:list(struct.unpack('<16I',p.read_bytes()[:64])) for p in case.glob('commands.bin*') if not p.name.endswith('.control')}
                     record['copy_conflicts']=[dict(zip(['target','thread','source','prepared','before_epoch','after_epoch','before_source_generation','after_source_generation','before_target_generation','after_target_generation','fill','bootstrap','direct','result','source_origin','target_origin','caller','source_caller','source_owner'],[int(x,16) for x in line.split()[1:]])) for line in record['lifecycle'] if line.startswith('blit_commit_refused ')]
                     if args.observe_world_summon and not record['world_active_validated']:
@@ -258,6 +272,7 @@ def main():
                     record['original_movie_sample_calls']=movie_calls;record['movie_playback_confirmed']=bool(movie_calls)
                     artifacts=[case/'summary.json',case/'events.bin',case/'stage.log',case/'qt.log',experiment/'manifest.json',experiment/'bridge-build.json',*case.glob('*.png')]
                     if diagnostics.exists():artifacts.append(diagnostics)
+                    if failures.exists():artifacts.append(failures)
                     record['artifacts']={str(p.relative_to(ROOT)):helper.sha(p) for p in artifacts};record['success']=True
             finally:
                 if inputs:inputs.close()

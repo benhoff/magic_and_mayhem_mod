@@ -112,7 +112,7 @@ struct KeyObserver:QObject {
     unsigned presses=0,releases=0,fullscreenKeys=0;
     bool eventFilter(QObject*,QEvent* event) override {
         if(event->type()==QEvent::KeyPress || event->type()==QEvent::KeyRelease){
-            if(static_cast<QKeyEvent*>(event)->key()==Qt::Key_F11)++fullscreenKeys;
+            if(static_cast<QKeyEvent*>(event)->key()==Qt::Key_F9)++fullscreenKeys;
             if(event->type()==QEvent::KeyPress)++presses;else ++releases;
             return true;
         }
@@ -160,16 +160,16 @@ int main(int argc,char** argv){
         fullscreen->click();settle();require(!window.isFullScreen() && !fullscreen->isChecked() && fullscreen->text()=="Fullscreen","Fullscreen button did not exit fullscreen");
         viewport->show();settle();require(window.size()==normalSize,"Button toggle lost normal window size");
         auto key=[&](QEvent::Type type,int code,bool repeat=false){QKeyEvent event(type,code,Qt::NoModifier,QString(),repeat);QApplication::sendEvent(viewport,&event);};
-        key(QEvent::KeyPress,Qt::Key_F11);key(QEvent::KeyRelease,Qt::Key_F11);settle();
+        key(QEvent::KeyPress,Qt::Key_F9);key(QEvent::KeyRelease,Qt::Key_F9);settle();
         require(window.isFullScreen() && toolbar->isHidden() && log->isHidden() && hidden->isHidden(),"Fullscreen chrome failed");
-        require(fullscreen->isChecked() && fullscreen->text()=="Exit fullscreen","F11 did not synchronize button state");
+        require(fullscreen->isChecked() && fullscreen->text()=="Exit fullscreen","F9 did not synchronize button state");
         require(viewport->frameSize()==frameSize,"Fullscreen changed logical dimensions");compare(*viewport,image);
-        key(QEvent::KeyPress,Qt::Key_F11,true);require(window.isFullScreen(),"F11 repeat toggled fullscreen");
+        key(QEvent::KeyPress,Qt::Key_F9,true);require(window.isFullScreen(),"F9 repeat toggled fullscreen");
         key(QEvent::KeyPress,Qt::Key_Escape);key(QEvent::KeyRelease,Qt::Key_Escape);
         require(window.isFullScreen() && observer.presses==1 && observer.releases==1,"Escape was consumed by host");
-        key(QEvent::KeyPress,Qt::Key_F11);key(QEvent::KeyRelease,Qt::Key_F11);settle();
+        key(QEvent::KeyPress,Qt::Key_F9);key(QEvent::KeyRelease,Qt::Key_F9);settle();
         require(!window.isFullScreen() && !toolbar->isHidden() && !log->isHidden() && hidden->isHidden(),"Fullscreen restore changed chrome");
-        if(window.size()!=normalSize || observer.fullscreenKeys!=0)std::fprintf(stderr,"Restored size %dx%d, previous %dx%d, F11 deliveries %u\n",window.width(),window.height(),normalSize.width(),normalSize.height(),observer.fullscreenKeys);
+        if(window.size()!=normalSize || observer.fullscreenKeys!=0)std::fprintf(stderr,"Restored size %dx%d, previous %dx%d, F9 deliveries %u\n",window.width(),window.height(),normalSize.width(),normalSize.height(),observer.fullscreenKeys);
         require(window.size()==normalSize && observer.fullscreenKeys==0,"Window geometry or reserved key forwarding failed");compare(*viewport,image);
         controls.setFullscreen(true);viewport->hide();settle();
         require(!toolbar->isHidden() && !log->isHidden() && hidden->isHidden(),"Launch controls unavailable without a frame");
@@ -181,6 +181,6 @@ int main(int argc,char** argv){
         QImage large(800,600,QImage::Format_RGBA8888);large.fill(QColor(31,63,127));viewport->setFrame(large);
         window.resize(350,350);viewport->setScaling(GlViewport::Scaling::Integer);compare(*viewport,large);
         require(viewport->imageRect().width()<=viewport->width() && viewport->imageRect().height()<=viewport->height(),"Integer fallback cropped frame");
-        std::printf("{\"success\":true,\"full_frame_comparisons\":%u,\"onscreen_comparisons\":%u,\"empty_frame_controls\":true,\"cpu_gpu_scaling\":true,\"logical_input_preserved\":true,\"fullscreen_restore\":true,\"f11_consumed\":true,\"escape_forwarded\":true,\"presentation_readbacks\":0,\"gpu_scaling_uploads\":0}\n",comparisons,onscreenComparisons);
+        std::printf("{\"success\":true,\"full_frame_comparisons\":%u,\"onscreen_comparisons\":%u,\"empty_frame_controls\":true,\"cpu_gpu_scaling\":true,\"logical_input_preserved\":true,\"fullscreen_restore\":true,\"f9_consumed\":true,\"escape_forwarded\":true,\"presentation_readbacks\":0,\"gpu_scaling_uploads\":0}\n",comparisons,onscreenComparisons);
     }catch(const std::exception& error){std::fprintf(stderr,"Presentation test failed: %s\n",error.what());return 1;}
 }

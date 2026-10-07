@@ -163,18 +163,21 @@ public:
         });
         poll_.setInterval(250);connect(&poll_,&QTimer::timeout,this,[this]{discover();});
         inputTimer_.setInterval(50);connect(&inputTimer_,&QTimer::timeout,this,[this]{if(input_)input_->heartbeat();});
-        frames_.setInterval(16);connect(&frames_,&QTimer::timeout,this,[this]{
+        frames_.setInterval(16);commandDrain_.setSingleShot(true);commandDrain_.setInterval(0);
+        const auto pollFrame=[this]{
             if(!stream_ || (media_ && media_->movieActive()))return;
-            if(!gl_->error().isEmpty()){frames_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
+            if(!gl_->error().isEmpty()){frames_.stop();commandDrain_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
             if(commands_){
                 if(!commands_->ended() && commands_->error().isEmpty()){
                     if(!commands_->poll()){
                         log_->appendPlainText("Native command session refused: "+commands_->error());
-                        statusBar()->showMessage("Native command session ended; use the original game window.");
-                        input_->suspend(true);gl_->setGpuFrame({});gl_->hide();placeholder_->show();
-                        placeholder_->setText("Native command session incomplete. Use the original game window.");
+                        useOriginalPresentation();
                     }else if(commands_->ended()){
                         input_->suspend(true);statusBar()->showMessage("Native preview finished. Continue in the original game window.");
+                    }else if(commands_->hasPendingCommands()){
+                        // Continue after Qt can service input; retain each poll's
+                        // byte/work bounds without another idle16ms frame wait.
+                        commandDrain_.start();
                     }
                 }
                 return;
@@ -186,7 +189,9 @@ public:
                 const QString diagnostic=(noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":stream_->diagnostic();statusBar()->showMessage(diagnostic);
                 if(placeholder_->isVisible())placeholder_->setText(diagnostic);
             }
-        });
+        };
+        connect(&frames_,&QTimer::timeout,this,pollFrame);
+        connect(&commandDrain_,&QTimer::timeout,this,pollFrame);
         if(!host_.available() && !opengl_){
             launch_->setEnabled(false);placeholder_->setText("Game embedding requires an X11 session or XWayland.\nStart this shell with QT_QPA_PLATFORM=xcb.");
             statusBar()->showMessage("Viewport unavailable on this display backend.");
@@ -201,7 +206,8 @@ public:
         if(liveMenus_){container_->setFixedSize(800,600);viewport_->setStyleSheet("background: black; color: white;");}
         layout_->addWidget(container_);if(liveMenus_)layout_->setAlignment(container_,Qt::AlignCenter);placeholder_->hide();container_->show();
         poll_.stop();detach_->setEnabled(true);retry_->setEnabled(false);
-        statusBar()->showMessage("Game attached. Click the viewport to focus game input.");return true;
+        if(nativeFallback_)container_->setFocus(Qt::OtherFocusReason);
+        statusBar()->showMessage(nativeFallback_?"Original game presentation active. Click the game to control it.":"Game attached. Click the viewport to focus game input.");return true;
     }
     void detach(){
         poll_.stop();
@@ -229,8 +235,18 @@ protected:
         detach();event->accept();
     }
 private:
+    void useOriginalPresentation(){
+        nativeFallback_=true;
+        frames_.stop();commandDrain_.stop();inputTimer_.stop();input_->suspend(true);input_->setTarget(0);
+        gl_->setGpuFrame({});gl_->hide();placeholder_->show();
+        placeholder_->setText("Native presentation stopped. Reconnecting to the original game window…");
+        statusBar()->showMessage("Reconnecting to original game presentation and input.");
+        detach_->show();retry_->show();elapsed_.restart();poll_.start();discover();
+    }
     void start(bool check){
         if(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()))return;
+        nativeFallback_=false;
+        if(opengl_){detach_->hide();retry_->hide();}
         if(liveMenus_&&!check){
             excluded_=host_.windows();launch_->setEnabled(false);check_->setEnabled(false);fallback_->setEnabled(true);
             placeholder_->setText("Verifying original files and preparing the game…\nStartup may take a few minutes. See the launch log below.");
@@ -294,7 +310,7 @@ private:
     }
     void discover(){
         const auto candidates=host_.desktops(excluded_);
-        if(opengl_){
+        if(opengl_ && !nativeFallback_){
             xcb_window_t target=0;
             if(candidates.size()==1 && !gl_->frameSize().isEmpty())target=host_.inputWindow(candidates.front(),gl_->frameSize());
             input_->setTarget(target);return;
@@ -311,7 +327,7 @@ private:
         inputTimer_.stop();inputState_.reset();
         if(opengl_ && !checking_ && stream_ && placeholder_->isVisible())
             placeholder_->setText((noReadback_ && !captureLocks_)?"Diagnostic game launcher stopped. Qt frame capture was disabled.":"Game launcher stopped before a frame was captured. Last state:\n"+stream_->diagnostic());
-        detach();poll_.stop();frames_.stop();retry_->setEnabled(false);checking_=false;
+        detach();poll_.stop();frames_.stop();commandDrain_.stop();retry_->setEnabled(false);checking_=false;
         launch_->setEnabled(opengl_ || host_.available());check_->setEnabled(true);
     }
     SinglePlayerBattleWidget* liveSetup_=nullptr;MapSelectionWidget* liveMap_=nullptr;
@@ -323,7 +339,7 @@ private:
     SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;
     std::unique_ptr<LiveBattleMenuController> battleMenus_;
     std::unique_ptr<LiveMenuSession> liveMenus_;QStackedWidget* menuStack_=nullptr;MainMenuWidget* liveMain_=nullptr;QuickBattleMenuWidget* liveQuick_=nullptr;QPushButton* fallback_=nullptr;bool menuAssetsLoaded_=false,closeAfterGame_=false;
-    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false;std::unique_ptr<LiveCommandSession> commands_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::unique_ptr<LiveCommandSession> commands_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
@@ -373,8 +389,9 @@ int main(int argc,char** argv){
                     "  --media FILE          Preview AVI/WAV media without the game\n"
                     "  --media-test          Decode a preview silently and write --media-report FILE\n"
                     "  --software-rendering  Use Mesa software rendering for Qt and Wine\n"
-                    "  --native-commands     Continuous live native command/GPU presentation\n"
-                    "  --fullscreen          Start OpenGL presentation fullscreen; F11 toggles\n"
+                    "  --native-commands     Native command/GPU presentation (default for game launches)\n"
+                    "  --frame-readback      Present frames copied from the original renderer instead\n"
+                    "  --fullscreen          Start OpenGL presentation fullscreen; F9 toggles\n"
                     "  --scaling MODE        sharp (default), smooth, or integer; display only\n"
                     "  --capture-locks       Capture bounded game-owned Lock/Unlock buffers\n"
                     "  --no-readback         Diagnostic: disable extra surface locks; use the Wine window\n"
@@ -433,9 +450,10 @@ int main(int argc,char** argv){
     parser.addOption({"menu-command-line","Show CommandLine Battle in the menu preview."});
     parser.addOption({"software-rendering","Use Mesa software rendering for this shell and its Wine child."});
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
-    parser.addOption({"fullscreen","Start the OpenGL viewport fullscreen; F11 toggles."});
+    parser.addOption({"fullscreen","Start the OpenGL viewport fullscreen; F9 toggles."});
     parser.addOption({"scaling","Display scaling: sharp, smooth or integer; preserves game resolution.","mode","sharp"});
-    parser.addOption({"native-commands","Opt in to continuous live native command presentation; implies capture-locks. MNM_RENDER_CONTINUOUS=0 selects the bounded diagnostic sample."});
+    parser.addOption({"native-commands","Native command presentation (default for ordinary OpenGL game launches); implies capture-locks. MNM_RENDER_CONTINUOUS=0 selects the bounded diagnostic sample."});
+    parser.addOption({"frame-readback","Present original-renderer frames captured from game-owned buffers; implies capture-locks."});
     parser.addOption({"capture-locks","Capture bounded game-owned locks; disables observer readback."});
     parser.addOption({"no-readback","Diagnostic: log game calls without extra surface locks or Qt frames."});
     parser.addOption({"skip-movies","Disable movies only in the disposable OpenGL installation."});
@@ -628,8 +646,15 @@ int main(int argc,char** argv){
     }
     const auto renderer=parser.isSet("live-menus")?QString("native"):parser.value("renderer");
     if(renderer!="opengl" && renderer!="native")parser.showHelp(2);
-    if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback") || parser.isSet("capture-locks") || parser.isSet("native-commands") || parser.isSet("native-media") || parser.isSet("native-voices")) && renderer!="opengl")parser.showHelp(2);
-    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),parser.isSet("capture-locks")||parser.isSet("native-commands"),parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"),parser.isSet("native-commands"),presentation);shell.showPresentation();
+    if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback") || parser.isSet("capture-locks") || parser.isSet("native-commands") || parser.isSet("frame-readback") || parser.isSet("native-media") || parser.isSet("native-voices")) && renderer!="opengl")parser.showHelp(2);
+    if(parser.isSet("frame-readback") && parser.isSet("native-commands")){
+        std::fputs("--frame-readback and --native-commands select different rendering paths.\n",stderr);return 2;
+    }
+    // Explicit capture/readback diagnostics retain their existing launch policy.
+    const bool captureDiagnostic=parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("capture-locks") || parser.isSet("no-readback");
+    const bool nativeCommands=parser.isSet("native-commands") || (renderer=="opengl" && !parser.isSet("embedding-test") && !parser.isSet("frame-readback") && !captureDiagnostic);
+    const bool captureLocks=parser.isSet("capture-locks") || nativeCommands || parser.isSet("frame-readback");
+    Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"),nativeCommands,presentation);shell.showPresentation();
     if(parser.isSet("live-menu-test"))installLiveMenuTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"));
     if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);
     if(parser.isSet("embedding-test")){

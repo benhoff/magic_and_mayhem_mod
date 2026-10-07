@@ -20,8 +20,9 @@ bool LiveCommandRenderer::poll(quint32 budget){
         if(!consumer_){
             renderer_=std::make_unique<mnm::render::GlBlitter>(viewport_.context());
             consumer_=std::make_unique<mnm::render::CommandConsumer>(*renderer_,[this](auto frame){
-                viewport_.setGpuFrame(std::move(frame));viewport_.repaint();
-                if(!viewport_.error().isEmpty())throw std::runtime_error(viewport_.error().toStdString());
+                // setGpuFrame queues an update. Qt coalesces historical frames
+                // and composes the latest lease after this bounded poll yields.
+                viewport_.setGpuFrame(std::move(frame));
                 if(framePresented)framePresented();
             },mnm::render::CommandConsumerOptions{verify_?mnm::render::CommandDiagnostics::Verify:mnm::render::CommandDiagnostics::Skip,false,channel_.version()==2?mnm::render::CommandStreamMode::Streaming:mnm::render::CommandStreamMode::Bounded});
         }
@@ -50,6 +51,9 @@ bool LiveCommandRenderer::poll(quint32 budget){
             if(cursor_==pending_.size()){pending_.clear();cursor_=0;}
             else break; // The next command exceeds this poll's remaining work.
         }
+        // Diagnostic callbacks may paint explicitly. Normal execution never
+        // waits for a display repaint in the command reader.
+        if(!viewport_.error().isEmpty())throw std::runtime_error(viewport_.error().toStdString());
         if(channel_.state()==MNM_RENDER_COMMANDS_V1_STATE_ENDED && channel_.drained() && pending_.empty()){
             // poll() can expose terminal state before all bounded bytes drain.
             decoder_->finish();consumer_->finish();ended_=true;closed_=true;
