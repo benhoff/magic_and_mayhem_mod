@@ -1,5 +1,13 @@
 # Engine modernization coverage ledger
 
+## Standalone native render profiling tool — 2026-10-07
+
+The EGL-device diagnostic tool replays complete captured frame prefixes with
+serial/completed-throughput measurements and an independent pixel fixture.
+It is isolated from application widgets and the original producer. Execution
+evidence and batching/hosting integration are reconciled in the following change;
+this intermediate snapshot leaves validation pending and adds no equivalence claim.
+
 ## Test fixture reliability — 2026-10-07
 
 Player-name fixture copies now use the actual NUL-terminated string length.

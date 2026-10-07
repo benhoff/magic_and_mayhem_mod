@@ -17152,6 +17152,39 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.headless-command-profile",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Headless EGL native-command performance baseline",
+      "scope": "Standalone diagnostic EGL device adapter and captured complete-PRESENT prefix profiler with an independent RGB565/keyed-copy/update fixture. Serial and throughput modes separate native service time from live-game cadence. Hardware/software driver assertions and bounded source/artifact provenance are implemented. Retained execution evidence will be reconciled with the renderer batching and hosting changes in the following commit; this commit alone does not assert current-code execution validation, desktop GLX performance, original equivalence or live replacement.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "tools/native-render-profile/README.md"
+      ],
+      "implementation": [
+        "tools/native-render-profile/CMakeLists.txt",
+        "tools/native-render-profile/egl_platform.cpp",
+        "tools/native-render-profile/headless.json",
+        "tools/native-render-profile/profile.cpp",
+        "tools/native-render-profile/run.py",
+        "renderer/blit.cpp",
+        "renderer/commands.cpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tools/native-render-profile/run.py"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -37195,7 +37228,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-commit-fixtures-20261007.json",
-    "sha256": "066cdf7486fdd2fa1ea70536f5243b3e574a1d23a39fd27487398f620f8633ee"
+    "path": "research/runtime/coverage/source-index-commit-profile-20261007.json",
+    "sha256": "d8c0c07ba043cc2bd61283fd7ed754fdb9cd805735bfacd80416bf9769db3bc8"
   }
 }
