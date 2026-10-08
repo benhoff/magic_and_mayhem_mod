@@ -16,6 +16,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
 from coverage_gate import BASELINE, REGISTER, REVIEWS, check, changes, digest, draft, snapshot, source_index
+from coverage_claims import behavior_contract
 
 spec = importlib.util.spec_from_file_location('gate_cli', ROOT/'tools/check-re-coverage.py')
 cli = importlib.util.module_from_spec(spec)
@@ -23,6 +24,9 @@ spec.loader.exec_module(cli)
 spec = importlib.util.spec_from_file_location('hook_install', ROOT/'tools/install-coverage-hook.py')
 hook_install = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(hook_install)
+spec = importlib.util.spec_from_file_location('claim_draft', ROOT/'tools/draft-coverage-claims.py')
+claim_draft = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(claim_draft)
 
 
 class GateTests(unittest.TestCase):
@@ -38,7 +42,8 @@ class GateTests(unittest.TestCase):
                           {'entry': 4128, 'name': 'unknown', 'ranges': [[4128, 4136]], 'data_references': [], 'sha256': 'd'*64}],
             'unassigned_executable_ranges': [[4106, 4128]], 'imports': [], 'flows': []}
         self.json('research/inventory.json', self.inventory)
-        self.record = {'source_sha256': 'a'*64, 'success': True, 'sources': {'assets/model.cpp': self.sha('assets/model.cpp')}}
+        self.record = {'source_sha256': 'a'*64, 'success': True, 'sources': {
+            'assets/model.cpp': self.sha('assets/model.cpp'), 'tests/model.py': self.sha('tests/model.py')}}
         self.json('research/record.json', self.record)
         ev = {'id': 'old-original', 'kind': 'isolated_original', 'scope': 'bounded helper', 'build': 'fixture',
               'record': 'research/record.json', 'sha256': self.sha('research/record.json'), 'sources_pointer': '/sources',
@@ -48,10 +53,14 @@ class GateTests(unittest.TestCase):
              'documents': ['research/finding.md'], 'implementation': ['assets/model.cpp'], 'tests': ['tests/model.py'],
              'evidence': ['old-original'], 'status': {'understanding': 'partial', 'implementation': 'partial',
                                                    'comparison': 'recorded', 'integration': 'none', 'replacement': 'none'}}
-        self.register = {'schema': 1, 'builds': [{'id': 'fixture', 'source_sha256': 'a'*64, 'inventory': 'research/inventory.json',
+        self.register = {'schema': 1, 'claim_bindings_required': True, 'builds': [{'id': 'fixture', 'source_sha256': 'a'*64, 'inventory': 'research/inventory.json',
                                                 'inventory_sha256': self.sha('research/inventory.json')}],
                          'behaviors': [b], 'evidence': [ev], 'scenarios': [], 'dispatch_tables': [],
                          'classifications': [], 'api_bindings': [], 'recovered_ranges': []}
+        self.record['claims'] = [{'behavior': b['id'],
+                                 'contract_sha256': behavior_contract(b, {'fixture': self.register['builds'][0]})}]
+        self.json('research/record.json', self.record)
+        ev.update(sha256=self.sha('research/record.json'), claims_pointer='/claims')
         self.sync()
         self.before, self.audit_before = snapshot(self.root)
 
@@ -181,7 +190,8 @@ class GateTests(unittest.TestCase):
     def test_rename_can_rebind_same_historical_source_key(self):
         (self.root/'assets/model.cpp').rename(self.root/'assets/renamed.cpp')
         self.register['behaviors'][0]['implementation'] = ['assets/renamed.cpp']
-        self.register['evidence'][0]['source_bindings'] = {'assets/model.cpp': 'assets/renamed.cpp'}
+        self.register['evidence'][0]['source_bindings'] = {'assets/model.cpp': 'assets/renamed.cpp',
+                                                        'tests/model.py': 'tests/model.py'}
         result = self.result(self.receipt())
         self.assertEqual(result['errors'], [])
         self.assertEqual({f['change'] for f in result['changes']['files'] if f['path'].startswith('assets/')}, {'added', 'removed'})
@@ -230,6 +240,7 @@ class GateTests(unittest.TestCase):
         receipt['reviews'][0]['validation'].update(status='recorded', evidence=['old-original'])
         self.assert_error(self.result(receipt), 'validation evidence missing, static or stale')
         self.register['evidence'][0]['kind'] = 'static'
+        self.register['evidence'][0].pop('claims_pointer')
         self.register['behaviors'][0]['status']['comparison'] = 'none'
         receipt = self.receipt()
         receipt['reviews'][0]['validation'].update(status='recorded', evidence=['old-original'])
@@ -238,7 +249,8 @@ class GateTests(unittest.TestCase):
     def test_fresh_execution_evidence_can_validate_a_change(self):
         self.write('assets/model.cpp', 'changed\n')
         new = {**self.register['evidence'][0], 'id': 'new-original', 'record': 'research/new-record.json'}
-        record = {**self.record, 'sources': {'assets/model.cpp': self.sha('assets/model.cpp')}}
+        record = {**self.record, 'sources': {'assets/model.cpp': self.sha('assets/model.cpp'),
+                                           'tests/model.py': self.sha('tests/model.py')}}
         self.json(new['record'], record)
         new['sha256'] = self.sha(new['record'])
         self.register['evidence'].append(new)
@@ -325,6 +337,71 @@ class GateTests(unittest.TestCase):
         self.write('AGENTS.md', 'Changed workflow\n')
         self.assert_error(self.result(), 'Unreviewed source change: AGENTS.md')
 
+    def test_root_build_and_dependency_files_are_watched(self):
+        self.write('CMakeLists.txt', 'add_subdirectory(assets)\n')
+        self.write('Makefile', 'all:\n\tfalse\n')
+        self.write('tools/compiler.cmake', 'set(CMAKE_C_FLAGS unsafe)\n')
+        result = self.result()
+        for path in ('CMakeLists.txt', 'Makefile', 'tools/compiler.cmake'):
+            self.assert_error(result, 'Unreviewed source change: ' + path)
+
+    def test_execution_claim_policy_cannot_be_disabled_after_adoption(self):
+        self.register['claim_bindings_required'] = False
+        self.assert_error(self.result(self.receipt()), 'Execution-claim policy cannot be disabled')
+
+    def test_pre_adoption_history_keeps_its_accounting_contract(self):
+        self.register['claim_bindings_required'] = False
+        before, _ = self.current()
+        self.register['behaviors'][0]['scope'] += ' Historical scope clarification.'
+        after, report = self.current()
+        self.assertTrue(report['findings']['validation_gaps'])
+        self.assertFalse(any(g['kind'] == 'validation_gaps' for g in changes(before, after)['new_gaps'].values()))
+        self.assertEqual(self.result(self.receipt(before=before), before=before)['errors'], [])
+
+    def test_claim_declaration_names_exact_scope_without_success_assertions(self):
+        value = claim_draft.declaration(self.root, self.register, ['MV.test'], [])
+        self.assertNotIn('success', value)
+        self.assertEqual(value['sources'], {'assets/model.cpp': self.sha('assets/model.cpp'),
+                                           'tests/model.py': self.sha('tests/model.py')})
+        self.assertEqual(value['claims'][0]['contract_sha256'], self.record['claims'][0]['contract_sha256'])
+        with self.assertRaisesRegex(ValueError, 'Unknown behavior'):
+            claim_draft.declaration(self.root, self.register, ['unknown'], [])
+
+    def test_parent_receipts_compose_without_a_new_branch_receipt(self):
+        self.write('assets/model.cpp', 'middle\n')
+        middle, _ = self.current()
+        first = self.receipt(after=middle)
+        self.write('assets/model.cpp', 'final\n')
+        second = self.receipt(before=middle)
+        result = self.result({'schema': 1, 'reviews': first['reviews'] + second['reviews']})
+        self.assertEqual(result['errors'], [])
+        self.assertIn(first['reviews'][0]['id'], result['receipt_chains'][second['reviews'][0]['id']])
+
+    def test_broken_or_unreviewed_receipt_chain_cannot_approve(self):
+        self.write('assets/model.cpp', 'middle\n')
+        middle, _ = self.current()
+        first = self.receipt(after=middle)
+        self.write('assets/model.cpp', 'final\n')
+        second = self.receipt(before=middle)
+        self.assert_error(self.result(second), 'Unreviewed source change: assets/model.cpp')
+        first['reviews'][0]['reason'] = ''
+        self.assert_error(self.result({'schema': 1, 'reviews': first['reviews'] + second['reviews']}),
+                          'Unreviewed source change: assets/model.cpp')
+
+    def test_recorded_receipt_requires_bound_scope_even_with_fresh_sources(self):
+        self.write('assets/model.cpp', 'new implementation\n')
+        record = copy.deepcopy(self.record)
+        record['sources']['assets/model.cpp'] = self.sha('assets/model.cpp')
+        self.json('research/unbound.json', record)
+        ev = {**self.register['evidence'][0], 'id': 'fresh-unbound', 'record': 'research/unbound.json',
+              'sha256': self.sha('research/unbound.json')}
+        ev.pop('claims_pointer')
+        self.register['evidence'].append(ev)
+        self.register['behaviors'][0]['evidence'].append(ev['id'])
+        receipt = self.receipt()
+        receipt['reviews'][0]['validation'].update(status='recorded', evidence=[ev['id']])
+        self.assert_error(self.result(receipt), 'requires scope-bound execution evidence')
+
     def test_unreconciled_census_fails_before_approval(self):
         self.write('assets/model.cpp', 'changed\n')
         with self.assertRaisesRegex(ValueError, 'Reconcile source'):
@@ -404,7 +481,7 @@ class GateTests(unittest.TestCase):
         self.assertIn('Reconcile source', out.getvalue())
 
     def prepare_hook(self):
-        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'index-coverage-sources.py'):
+        for name in ('check-re-coverage.py', 'coverage_gate.py', 'coverage_audit.py', 'coverage_claims.py', 'index-coverage-sources.py'):
             self.write('tools/' + name, (ROOT/'tools'/name).read_text())
         self.write('.githooks/pre-commit', (ROOT/'.githooks/pre-commit').read_text())
         (self.root/'.githooks/pre-commit').chmod(0o755)

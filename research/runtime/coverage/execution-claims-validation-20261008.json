@@ -1,0 +1,124 @@
+{
+  "id": "COV01.execution-claims-20261008",
+  "recorded_at": "2026-10-08T10:29:28.497613+00:00",
+  "scope": "Executed synthetic accounting guards and read-only coverage dashboard preview. No original artifacts consumed; no engine comparison/integration/replacement promoted. Claims were declared before execution.",
+  "success": true,
+  "sources_stable": true,
+  "sources": {
+    "apps/coverage-ui/app.js": "4f5503d08e48ac36cd44e270db68191f043c8a84b6c35f3442fec01f21c0b660",
+    "apps/coverage-ui/index.html": "cbd0b3e5dc331009ef9fb4e569071e2ed28a51e93c9baae62abf2d016642f8ef",
+    "apps/coverage-ui/style.css": "8768c3880e58024a4cd71b03c2b8be5d0a26fd5137d9f6b7c61edfc43fe25889",
+    "apps/coverage-ui/tracks.json": "b3d9110880960e413854cb530940d263f2485bcfc2893f55e897ff183839fdd6",
+    "tests/test-coverage-gate.py": "e8eb63208aba77ec05d328a06403821d28a12b4c0b126ee234e80b2bbde93bbe",
+    "tests/test-coverage-ui-browser.py": "98f6eb379ddf4e4c8ab40815eb8ccab02ec2506806c5808b6f0133a85472df2e",
+    "tests/test-coverage-ui.py": "8ce5cb8ed282cf88d1bf856308de2364ca5c701f54ee2ead1646f1141e2d37f1",
+    "tests/test-re-coverage.py": "284872049be59ab00e15540994b8be816916f384a959b0d4de73948b3b8a176b",
+    "tools/audit-re-coverage.py": "1789cf8d11a39b7cb5fc4023b2f69a3d36240359059df9629492fcdffcaada19",
+    "tools/check-re-coverage.py": "ae205fc6464dff496aab51bbdeca6d37a11e0bc196014892e86957afb684a118",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/coverage_gate.py": "6ac2c23bccffd41cfb5c9b86bce45f8eeb003231a9b34430766e1193ab008d29",
+    "tools/coverage_ui.py": "3262e9cf6917c63dbba52712e88986dcc776aeb46963ffa2e6717e9801b54f18",
+    "tools/draft-coverage-claims.py": "9be1bfbc2101ce9c33515a61ec9e19738db9705ab93193a38af25fbf3331d942",
+    "tools/index-coverage-sources.py": "0a86bf63d4c6be04a8f4c7128ab40c0c7406540fcb06ab4766f3ecbe99665aaa",
+    "tools/serve-coverage-ui.py": "b02fadf94fa6bc8ca5a21953c0dc770d06ea23564a0941043051fa927e3280d5"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.coverage-accounting",
+      "contract_sha256": "3f0bfd64da506143c99b290e9e507de0be64c3d8065bcff16a4334a77a4f4779",
+      "scenarios": {
+        "tooling.execution-claim-guards-20261008": "bc1b597091efba45025055f6509716365e53eac3e99aed10ce39e081b27fdf41"
+      }
+    },
+    {
+      "behavior": "TOOL.coverage-ui",
+      "contract_sha256": "a0ca4506471330386ee839c9ac6c6ad6ec8bb4c5fe0c7001880224101bbd599c",
+      "scenarios": {
+        "tooling.scope-bound-dashboard-preview-20261008": "b03e40a9c8b03518a3424b201e38cc4224f94009eafe42c8500ecc758d4f0b8e"
+      }
+    }
+  ],
+  "checks": {
+    "audit_guards": {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-re-coverage.py"
+      ],
+      "returncode": 0,
+      "checks": 60,
+      "output": "............................................................\n----------------------------------------------------------------------\nRan 60 tests in 0.105s\n\nOK\n"
+    },
+    "gate_guards": {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-coverage-gate.py"
+      ],
+      "returncode": 0,
+      "checks": 51,
+      "output": "...................................................\n----------------------------------------------------------------------\nRan 51 tests in 1.457s\n\nOK\n"
+    },
+    "ui_guards": {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-coverage-ui.py"
+      ],
+      "returncode": 0,
+      "checks": 18,
+      "output": "..................\n----------------------------------------------------------------------\nRan 18 tests in 2.075s\n\nOK\n"
+    }
+  },
+  "browser": {
+    "url": "http://127.0.0.1:8791",
+    "checks": [
+      "native rendering is the default permanent view",
+      "native focus keeps live ownership and initial canvas blockers visible",
+      "rendering milestone states match registered contracts",
+      "current comparison follows exact execution claims",
+      "historical source freshness cannot substitute for current validation",
+      "native focus opens exact behavior evidence and stage boundaries",
+      "rendering gaps include original and native contracts",
+      "native rendering bookmark restores the focus view",
+      "default view shows all major tracks with named milestone percentages",
+      "audio card follows its current registered roadmap",
+      "track dialog shows concrete next milestones and historical evidence boundary",
+      "track drilldown includes native policies and recovered contracts",
+      "baseline scoped percentage matches register",
+      "binary percentage matches global function links",
+      "partial work view has correct total and scope",
+      "feature detail shows exact scope, research, addresses and gaps",
+      "registered research file opens",
+      "Escape closes detail dialog",
+      "interior hexadecimal address finds owning function",
+      "function details include direct call edges and limits",
+      "native policies exclude original-comparison denominator",
+      "subsystem drilldown filters work list",
+      "behavior pagination limits large lists",
+      "next page works",
+      "refresh rebuilds current snapshot without losing filters",
+      "mobile viewport has no horizontal page overflow",
+      "native rendering mobile view fits and exposes roadmap and research",
+      "mobile track dialog fits viewport and exposes replacement boundary",
+      "no uncaught browser errors"
+    ],
+    "browser_errors": [],
+    "register_sha256": "ce25b60d21967100caff80d55b983263a56be62cf0483a12c79f617cf196624c",
+    "recorded_at": "2026-10-08T10:29:28.433Z",
+    "screenshots": [
+      "native-rendering-desktop.png",
+      "native-rendering-mobile.png",
+      "desktop.png",
+      "mobile.png"
+    ]
+  },
+  "artifacts": "working/tests/coverage-hardening-validation-v3-20261008",
+  "limitations": [
+    "Human scientific scope review remains required.",
+    "Transitive dependencies are explicit, not inferred.",
+    "Legacy execution records remain unbound historical results.",
+    "Concurrent native/resource work is outside this validation."
+  ]
+}

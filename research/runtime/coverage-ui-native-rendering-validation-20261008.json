@@ -1,0 +1,70 @@
+{
+  "id": "UI05.native-rendering",
+  "scope": "UI-only permanent native rendering focus, register-derived milestone/freshness boundaries, exact contract/evidence drilldowns, bookmarks, rendering gaps, preserved detailed views, loopback HTTP and desktop/mobile layout. No original artifacts consumed; no engine validation/status promotion.",
+  "recorded_at": "2026-10-08T10:04:17.224505+00:00",
+  "sources": {
+    "tools/coverage_ui.py": "3c0bc511363eb2fde0a8e075f1b1e9f377a36508fb57b8eb2eefbb49c836f0f2",
+    "tools/serve-coverage-ui.py": "35d61abdd323ab944c82c7ff92009344af6a18307f0609224862ea19ab330f7d",
+    "apps/coverage-ui/index.html": "cbd0b3e5dc331009ef9fb4e569071e2ed28a51e93c9baae62abf2d016642f8ef",
+    "apps/coverage-ui/style.css": "8768c3880e58024a4cd71b03c2b8be5d0a26fd5137d9f6b7c61edfc43fe25889",
+    "apps/coverage-ui/app.js": "e3b85251908442667c8a0bd991a337e45a7a987d0becc859556afb071db1edba",
+    "apps/coverage-ui/tracks.json": "f6988261f8a987663265aae4c29bcc4b6945a90a390f7b3b7c42d6d52e5ab890",
+    "tests/test-coverage-ui.py": "2feca4357f7d3ddd4e2f5a6052eb9866266c01f75e319f0c11f0fbcd2179f322",
+    "tests/test-coverage-ui-browser.py": "ebed4267fe0fb3be166b662e419c41f318c6cd8b674336ae18017272a5b5cd7c",
+    "apps/coverage-ui/README.md": "4ceebf2baf7b1027a57038d9050d0401dd2ef7b752db8601450a9a066acd64f7"
+  },
+  "unit_tests": {
+    "command": [
+      "python3",
+      "-B",
+      "tests/test-coverage-ui.py"
+    ],
+    "success": true,
+    "checks": 13,
+    "output": ".............\n----------------------------------------------------------------------\nRan 13 tests in 1.060s\n\nOK\n"
+  },
+  "browser": {
+    "success": true,
+    "checks_count": 27,
+    "url": "http://127.0.0.1:8787",
+    "checks": [
+      "native rendering is the default permanent view",
+      "native focus keeps live ownership and initial canvas blockers visible",
+      "rendering milestone states match registered contracts",
+      "native focus opens exact behavior evidence and stage boundaries",
+      "rendering gaps include original and native contracts",
+      "native rendering bookmark restores the focus view",
+      "default view shows all major tracks with named milestone percentages",
+      "audio card follows its current registered roadmap",
+      "track dialog shows concrete next milestones and historical evidence boundary",
+      "track drilldown includes native policies and recovered contracts",
+      "baseline scoped percentage matches register",
+      "binary percentage matches global function links",
+      "partial work view has correct total and scope",
+      "feature detail shows exact scope, research, addresses and gaps",
+      "registered research file opens",
+      "Escape closes detail dialog",
+      "interior hexadecimal address finds owning function",
+      "function details include direct call edges and limits",
+      "native policies exclude original-comparison denominator",
+      "subsystem drilldown filters work list",
+      "behavior pagination limits large lists",
+      "next page works",
+      "refresh rebuilds current snapshot without losing filters",
+      "mobile viewport has no horizontal page overflow",
+      "native rendering mobile view fits and exposes roadmap and research",
+      "mobile track dialog fits viewport and exposes replacement boundary",
+      "no uncaught browser errors"
+    ],
+    "browser_errors": [],
+    "register_sha256": "6706af7c3c5ceb9997b1659afdd7cc20a356cba4896abb9a47eacc5c42368d09",
+    "recorded_at": "2026-10-08T10:02:42.034Z",
+    "screenshots": [
+      "native-rendering-desktop.png",
+      "native-rendering-mobile.png",
+      "desktop.png",
+      "mobile.png"
+    ]
+  },
+  "artifacts": "working/coverage-ui-native-rendering-20261008/browser-v4"
+}

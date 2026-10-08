@@ -15,6 +15,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
 from coverage_audit import FunctionRangeIndex, audit, markdown, pointer
+from coverage_claims import behavior_contract, scenario_contract
 
 spec = importlib.util.spec_from_file_location('binary_inventory', ROOT/'tools/inventory-binary.py')
 inventory_tool = importlib.util.module_from_spec(spec)
@@ -62,6 +63,16 @@ class CoverageTests(unittest.TestCase):
                 'entries':[{'value':0,'behaviors':['MV.test']},{'value':1,'behaviors':[]}]}],
             'scenarios':[{'id':'headless','level':'headless','scope':'synthetic session',
                          'behaviors':['MV.test'],'evidence':['native'],'tests':['test.py']}]}
+        self.record['sources']['test.py'] = self.digest('test.py')
+        self.record['claims'] = [{'behavior': behavior['id'],
+                                 'contract_sha256': behavior_contract(behavior, {'fixture': self.register['builds'][0]}),
+                                 'scenarios': {'headless': scenario_contract(self.register['scenarios'][0])}}]
+        self.write_json('record.json', self.record)
+        for item in self.register['evidence']:
+            item['claims_pointer'] = '/claims'
+            item['sha256'] = self.digest('record.json')
+        # Shared evidence can name a scenario only if its ID is linked there.
+        self.register['scenarios'][0]['evidence'].append('original')
 
     def write_json(self, name, value):
         (self.root/name).write_text(json.dumps(value))
@@ -374,8 +385,91 @@ class CoverageTests(unittest.TestCase):
         self.assert_invalid('native policy must not claim')
 
     def test_comparison_must_fingerprint_implementation(self):
-        self.register['behaviors'][0]['implementation']=['test.py']
+        self.register['behaviors'][0]['implementation']=['finding.md']
         self.assert_invalid('does not fingerprint')
+
+    def support(self, stage):
+        return self.report()['behaviors'][0]['current_validation'][stage]
+
+    def bind_current_record(self):
+        self.record['claims'][0]['contract_sha256'] = behavior_contract(
+            self.register['behaviors'][0], {'fixture': self.register['builds'][0]})
+        self.refresh_record()
+
+    def test_unfingerprinted_header_cannot_supply_current_validation(self):
+        (self.root/'header.hpp').write_text('changed semantics\n')
+        self.register['behaviors'][0]['implementation'].append('header.hpp')
+        self.bind_current_record()
+        self.assertEqual(self.report()['errors'], [])
+        self.assertEqual(self.support('comparison')['state'], 'pending')
+        self.assertIn('incomplete_sources', self.support('comparison')['limitations'])
+
+    def test_expanding_scope_retains_only_historical_comparison(self):
+        self.register['behaviors'][0]['scope'] += ' All failure paths and full sessions.'
+        self.assertEqual(self.report()['errors'], [])
+        self.assertEqual(self.register['behaviors'][0]['status']['comparison'], 'recorded')
+        self.assertIn('scope_changed', self.support('comparison')['limitations'])
+
+    def test_legacy_fingerprints_do_not_imply_scope_binding(self):
+        for ev in self.register['evidence']:
+            ev.pop('claims_pointer')
+        self.assertEqual(self.report()['findings']['stale_evidence'], [])
+        self.assertIn('unbound', self.support('comparison')['limitations'])
+        self.assertIn('unbound', self.support('integration')['limitations'])
+
+    def test_scenario_scope_and_test_inputs_are_bound_independently(self):
+        self.assertEqual(self.support('integration')['state'], 'current')
+        self.register['scenarios'][0]['scope'] += ' And a full live session.'
+        self.assertIn('scenario_unbound', self.support('integration')['limitations'])
+        self.assertEqual(self.support('comparison')['state'], 'current')
+
+    def test_scenario_claim_requires_shared_behavior_evidence_links(self):
+        self.register['scenarios'][0]['evidence'].remove('native')
+        unrelated = {**self.register['evidence'][1], 'id': 'unrelated'}
+        unrelated.pop('claims_pointer')
+        self.register['evidence'].append(unrelated)
+        self.register['scenarios'][0]['evidence'].append('unrelated')
+        self.assertEqual(self.report()['errors'], [])
+        self.assertIn('scenario_unbound', self.support('integration')['limitations'])
+        self.assertEqual(self.report()['findings']['retired_execution_claims'][0]['reason'], 'link_removed')
+
+    def test_changed_test_input_invalidates_current_comparison(self):
+        (self.root/'test.py').write_text('different input domain\n')
+        self.assertIn('stale', self.support('comparison')['limitations'])
+
+    def test_explicit_dependency_must_be_fingerprinted(self):
+        (self.root/'dependency.hpp').write_text('dependency\n')
+        self.register['behaviors'][0]['validation_dependencies'] = ['dependency.hpp']
+        self.bind_current_record()
+        self.assertIn('incomplete_sources', self.support('comparison')['limitations'])
+        self.record['sources']['dependency.hpp'] = self.digest('dependency.hpp')
+        self.refresh_record()
+        self.assertEqual(self.support('comparison')['state'], 'current')
+        (self.root/'dependency.hpp').write_text('different dependency\n')
+        self.assertIn('stale', self.support('comparison')['limitations'])
+
+    def test_new_current_result_can_supersede_stale_history(self):
+        (self.root/'code.cpp').write_text('new implementation\n')
+        new = copy.deepcopy(self.record)
+        new['sources']['code.cpp'] = self.digest('code.cpp')
+        new['claims'][0]['scenarios'] = {}
+        self.write_json('new-result.json', new)
+        ev = {**self.register['evidence'][0], 'id': 'renewed', 'record': 'new-result.json',
+              'sha256': self.digest('new-result.json')}
+        self.register['evidence'].append(ev)
+        self.register['behaviors'][0]['evidence'].append('renewed')
+        self.assertEqual(self.support('comparison')['state'], 'current')
+        self.assertEqual(self.support('comparison')['evidence'], ['renewed'])
+        self.assertEqual(len(self.report()['findings']['stale_evidence']), 2)
+
+    def test_duplicate_or_malformed_execution_claims_fail(self):
+        self.record['claims'].append(copy.deepcopy(self.record['claims'][0]))
+        self.refresh_record()
+        self.assert_invalid('duplicate behavior claim')
+        self.record['claims'] = [self.record['claims'][0]]
+        self.record['claims'][0]['contract_sha256'] = 'invalid'
+        self.refresh_record()
+        self.assert_invalid('malformed behavior contract digest')
 
     def test_replacement_needs_live_bypass_evidence(self):
         self.register['behaviors'][0]['status']['replacement']='scoped_live'

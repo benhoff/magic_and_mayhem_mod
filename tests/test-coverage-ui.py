@@ -11,12 +11,14 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from coverage_ui import binary_view, enrich_behaviors, measure, safe_file, summarize, union_size, track_view, CoverageServer, ROOT, TRACKS
+from coverage_ui import binary_view, enrich_behaviors, measure, safe_file, summarize, union_size, track_view, request_authority_allowed, CoverageServer, ROOT, TRACKS
 
 
 def behavior(bid='one', kind='recovered', implementation='partial'):
     return {'id': bid, 'kind': kind, 'subsystem': 'fixture', 'title': bid, 'scope': 'Selected arithmetic only',
             'confidence': 'provisional', 'original': [], 'documents': [], 'implementation': [], 'tests': [], 'evidence': [],
+            'current_validation': {stage: {'state': 'current', 'evidence': ['proof', 'original', 'native', 'fresh-original']}
+                                   for stage in ('implementation', 'comparison', 'integration', 'replacement')},
             'status': {'understanding': 'partial', 'implementation': implementation,
                        'comparison': 'none', 'integration': 'none', 'replacement': 'none'}}
 
@@ -70,11 +72,13 @@ class MetricsTest(unittest.TestCase):
         evidence=[{'id':'old-static','kind':'static'},{'id':'fresh-original','kind':'isolated_original'},
                   {'id':'old-original','kind':'isolated_original'}]
         report={'findings':{'stale_evidence':[{'id':'old-static','changed_sources':['notes.md']},
-                                             {'id':'old-original','changed_sources':['engine.cpp']}]}}
+                                             {'id':'old-original','changed_sources':['engine.cpp']}]},
+                'behaviors': [a, b, native]}
         rows,_=enrich_behaviors({'behaviors':[a,b,native],'evidence':evidence,'scenarios':[]},report)
         self.assertEqual(rows[0]['comparison_freshness'],'current')
         self.assertIn('stale',rows[0]['gaps'])
-        self.assertEqual(rows[1]['comparison_freshness'],'mixed')
+        self.assertEqual(rows[1]['comparison_freshness'],'current')
+        self.assertEqual(rows[1]['comparison_source_freshness'],'mixed')
         self.assertNotIn('comparison',rows[2]['gaps'])
         self.assertNotIn('replacement',rows[2]['gaps'])
 
@@ -108,6 +112,30 @@ class TracksTest(unittest.TestCase):
         self.assertEqual(t['milestones'][0]['state'],'unknown')
         self.assertEqual(t['milestones'][0]['missing'],['b'])
         self.assertEqual(t['progress']['count'],0)
+
+    def test_invalid_status_targets_fail_before_progress_is_generated(self):
+        definition = self.definition([{'behaviors': ['one'], 'status': {'integration': ['scoped_live']}}])
+        with self.assertRaisesRegex(ValueError, 'invalid integration target'):
+            track_view(definition, [], [])
+
+    def test_live_equivalence_retains_an_accepted_integration_milestone(self):
+        a = behavior(implementation='scoped')
+        a['status']['integration'] = 'live_equivalence'
+        a['evidence'] = ['proof']
+        d = self.definition([{'behaviors': ['one'], 'status': {
+            'integration': ['headless', 'preview', 'live_observation', 'live_equivalence']}}])
+        e = [{'id': 'proof', 'kind': 'live_equivalence', 'freshness': 'current'}]
+        self.assertEqual(track_view(d, [a], e)[0]['current'], 1)
+
+    def test_unbound_fresh_sources_do_not_count_as_current_execution(self):
+        a = behavior(implementation='scoped')
+        a['evidence'] = ['proof']
+        a['current_validation'] = {}
+        d = self.definition([{'behaviors': ['one'], 'status': {'implementation': 'scoped'}}])
+        e = [{'id': 'proof', 'kind': 'native_integration', 'freshness': 'current'}]
+        result = track_view(d, [a], e)[0]
+        self.assertEqual(result['progress']['count'], 1)  # historical stage remains visible
+        self.assertEqual(result['current'], 0)
 
     def test_recorded_achievement_and_current_proof_are_independent(self):
         a=behavior(implementation='scoped');a['status'].update(comparison='recorded',integration='headless')
@@ -154,6 +182,37 @@ class TracksTest(unittest.TestCase):
         self.assertEqual({bid for m in planned[0]['milestones'] for r in m['requirements'] for bid in r['behaviors']},
                          {'GP.commander','GP.veterancy','GP.mana'})
 
+    def test_native_rendering_focus_links_and_replacement_requirements(self):
+        definition=json.loads((ROOT/TRACKS).read_text())
+        register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
+        track=next(t for t in definition['tracks'] if t['id']=='rendering')
+        focus=track['focus']
+        by_id={b['id']:b for b in register['behaviors']}
+        self.assertIn('RS.world-initial-state',focus['next_behaviors'])
+        self.assertTrue(set(focus['next_behaviors'])<=by_id.keys())
+        documents={p for b in register['behaviors'] for p in b['documents']}
+        self.assertTrue(set(focus['documents'])<=documents)
+        goals={m['id']:m for m in track['milestones']}
+        self.assertEqual(goals['word-takeover']['requirements'][0]['status']['replacement'],'scoped_live')
+        self.assertEqual(goals['complete-replacement']['requirements'][0]['behaviors'],['NR.live-drawing-replacement'])
+        self.assertEqual(goals['world-initialization']['requirements'][0]['status']['understanding'],'scoped')
+        # Native preview must not earn an original comparison or replacement gate.
+        self.assertNotIn('replacement',goals['world-shadow']['requirements'][0]['status'])
+        self.assertNotIn('comparison',goals['canvas-history']['requirements'][0]['status'])
+
+
+class BindAuthorityTest(unittest.TestCase):
+    def test_wildcard_and_specific_ipv4_hosts(self):
+        for host in ('192.168.1.20:8786','10.0.0.2:8786','127.0.0.1:8786','localhost:8786'):
+            self.assertTrue(request_authority_allowed('0.0.0.0',8786,host))
+        self.assertTrue(request_authority_allowed('192.168.1.20',8786,'192.168.1.20:8786'))
+        self.assertFalse(request_authority_allowed('192.168.1.20',8786,'10.0.0.2:8786'))
+        self.assertFalse(request_authority_allowed('127.0.0.1',8786,'192.168.1.20:8786'))
+        for host in ('outside.example:8786','192.168.1.20:80','user@192.168.1.20:8786',
+                     '192.168.1.20:8786/path','192.168.1.20:8786#x','192.168.1.20',
+                     '[::1]:8786','999.1.1.1:8786','192.168.1.20:bad',''):
+            self.assertFalse(request_authority_allowed('0.0.0.0',8786,host),host)
+
 
 class HTTPTest(unittest.TestCase):
     def setUp(self):
@@ -185,6 +244,19 @@ class HTTPTest(unittest.TestCase):
             self.assertEqual(self.request(path)[0],404)
         self.assertEqual(self.request('/api/coverage',headers={'Host':'outside.example'})[0],403)
         self.assertEqual(self.request('/api/refresh','POST',{'Origin':'https://outside.example'})[0],403)
+
+    def test_wildcard_bind_accepts_lan_url_and_same_origin_refresh(self):
+        # Rebind a real wildcard listener; connect over loopback with LAN headers.
+        self.server.shutdown();self.server.server_close();self.thread.join()
+        self.server=CoverageServer(('0.0.0.0',0),self.root)
+        self.thread=threading.Thread(target=self.server.serve_forever,daemon=True);self.thread.start()
+        host=f'192.168.1.20:{self.server.server_port}'
+        self.assertEqual(self.request('/',headers={'Host':host})[0],200)
+        self.assertEqual(self.request('/api/coverage',headers={'Host':host})[0],200)
+        self.assertEqual(self.request('/api/refresh','POST',{'Host':host,'Origin':'http://'+host})[0],200)
+        self.assertEqual(self.request('/api/refresh','POST',{'Host':host,'Origin':'http://outside.example'})[0],403)
+        self.assertEqual(self.request('/api/refresh','POST',{'Host':host,'Origin':f'http://10.0.0.2:{self.server.server_port}'})[0],403)
+        self.assertEqual(self.request('/api/coverage',headers={'Host':f'outside.example:{self.server.server_port}'})[0],403)
 
     def test_explicit_refresh_and_failed_refresh_preserve_snapshot(self):
         self.builder.return_value=({'schema':1,'version':2},{'finding.md'})

@@ -9,11 +9,13 @@ from datetime import datetime, timezone
 import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
+from ipaddress import IPv4Address
 from pathlib import Path
 import threading
 from urllib.parse import parse_qs, urlsplit
 
 from coverage_audit import audit, STAGES
+from coverage_claims import stage_kinds
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTER = 'research/runtime/coverage/register.json'
@@ -56,6 +58,7 @@ def track_view(definition, behaviors, evidence):
     Recorded achievements survive source staleness, shown independently from
     current execution fingerprints. Missing IDs are visible accounting gaps.
     """
+    validate_tracks(definition)
     by_id = {b['id']: b for b in behaviors}
     by_evidence = {e['id']: e for e in evidence}
     tracks = []
@@ -80,19 +83,16 @@ def track_view(definition, behaviors, evidence):
                                   for stage, target in expected.items())
                     if b['kind'] == 'native_policy' and any(s in expected for s in ('comparison', 'replacement')):
                         matched = False
-                    kinds = []
-                    if 'comparison' in expected: kinds.append(ORIGINAL_EVIDENCE)
-                    if 'replacement' in expected: kinds.append({'live_replacement'})
-                    if 'integration' in expected:
-                        kinds.append({'live_observation', 'live_equivalence', 'live_replacement'}
-                                     if expected['integration'] == ['live_observation', 'scoped_live'] else
-                                     {'native_integration', 'live_observation', 'live_equivalence', 'live_replacement'})
-                    if not kinds: kinds.append({'native_integration', *ORIGINAL_EVIDENCE, 'live_observation'})
+                    stages = [s for s in expected if s in {'comparison', 'replacement', 'integration'}
+                              and b['status'][s] != 'none'] or ['implementation']
+                    kinds = [stage_kinds(s, b['status'][s]) for s in stages]
                     proofs = [[by_evidence[eid] for eid in b['evidence']
                                if eid in by_evidence and by_evidence[eid]['kind'] in bucket] for bucket in kinds]
                     checks.append({'behavior': bid, 'expected': expected,
                                    'met': matched and all(proofs),
-                                   'fresh': matched and all(any(e['freshness'] == 'current' for e in proof) for proof in proofs)})
+                                   'fresh': matched and all(any(e['freshness'] == 'current'
+                                       and e['id'] in b.get('current_validation', {}).get(stage, {}).get('evidence', [])
+                                       for e in proof) for stage, proof in zip(stages, proofs))})
             ids = sorted({c['behavior'] for c in checks})
             ready = bool(checks) and not missing and all(c['met'] for c in checks)
             started = any(by_id[bid]['status']['implementation'] != 'none' for bid in ids)
@@ -107,18 +107,49 @@ def track_view(definition, behaviors, evidence):
     return tracks
 
 
+def validate_tracks(definition):
+    """Reject misspelled stages/targets before deriving roadmap progress."""
+    if definition.get('schema', 1) != 1:
+        raise ValueError('Unsupported track schema')
+    seen = set()
+    for track in definition['tracks']:
+        if track['id'] in seen:
+            raise ValueError('Duplicate track ID: ' + track['id'])
+        seen.add(track['id'])
+        milestones = set()
+        for milestone in track['milestones']:
+            if milestone['id'] in milestones:
+                raise ValueError('Duplicate milestone ID: ' + milestone['id'])
+            milestones.add(milestone['id'])
+            for requirement in milestone['requirements']:
+                if ('behaviors' in requirement) == ('subsystem' in requirement):
+                    raise ValueError('Track requirement needs exactly one behavior/subsystem selector')
+                if not requirement['status']:
+                    raise ValueError('Track requirement needs explicit statuses')
+                for stage, target in requirement['status'].items():
+                    values = target if isinstance(target, list) else [target]
+                    if stage not in STAGES or not values or any(v not in STAGES[stage] for v in values):
+                        raise ValueError(f'{track["id"]}/{milestone["id"]}: invalid {stage} target {target}')
+
+
 def enrich_behaviors(register, report):
     stale = {e['id']: e['changed_sources'] for e in report['findings']['stale_evidence']}
     evidence = {e['id']: e for e in register['evidence']}
+    audited = {b['id']: b for b in report.get('behaviors', [])}
     rows = []
     for behavior in register['behaviors']:
         row = {**behavior}
+        row['current_validation'] = audited.get(row['id'], {}).get('current_validation', {})
         row['scenarios'] = [s['id'] for s in register['scenarios'] if row['id'] in s['behaviors']]
         comparisons = [eid for eid in row['evidence'] if eid in evidence and evidence[eid]['kind'] in ORIGINAL_EVIDENCE]
         current = [eid for eid in comparisons if eid not in stale]
-        row['comparison_freshness'] = ('not_applicable' if row['kind'] == 'native_policy' else
+        row['comparison_source_freshness'] = ('not_applicable' if row['kind'] == 'native_policy' else
                                        'none' if row['status']['comparison'] != 'recorded' or not comparisons else
                                        'current' if len(current) == len(comparisons) else 'mixed' if current else 'stale')
+        support = row['current_validation'].get('comparison', {})
+        row['comparison_freshness'] = ('not_applicable' if row['kind'] == 'native_policy' else
+                                       'none' if row['status']['comparison'] != 'recorded' else
+                                       'current' if support.get('state') == 'current' else 'pending')
         row['stale_evidence'] = {eid: stale[eid] for eid in row['evidence'] if eid in stale}
         row['gaps'] = []
         status = row['status']
@@ -127,6 +158,8 @@ def enrich_behaviors(register, report):
         if status['understanding'] != 'scoped': row['gaps'].append('understanding')
         if row['kind'] == 'recovered' and status['comparison'] == 'none': row['gaps'].append('comparison')
         if row['stale_evidence']: row['gaps'].append('stale')
+        if any(s.get('state') == 'pending' for s in row['current_validation'].values()):
+            row['gaps'].append('validation')
         if status['implementation'] != 'none' and not row['tests']: row['gaps'].append('tests')
         if status['integration'] == 'none': row['gaps'].append('integration')
         if row['kind'] == 'recovered' and status['replacement'] == 'none': row['gaps'].append('replacement')
@@ -202,6 +235,8 @@ def build_snapshot(root=ROOT):
     inventories = {b['id']: json.loads(safe_file(root, b['inventory'], {b['inventory']}).read_text())
                    for b in register['builds']}
     report = audit(root, register)
+    if report['errors']:
+        raise ValueError('Coverage audit failed: ' + '; '.join(report['errors']))
     behaviors, stale = enrich_behaviors(register, report)
     snapshot = {
         'schema': 1, 'generated_at': datetime.now(timezone.utc).isoformat(),
@@ -222,6 +257,19 @@ def build_snapshot(root=ROOT):
     allowed.update(t['document'] for t in register['dispatch_tables'])
     allowed.update(r['document'] for r in register['recovered_ranges'])
     return snapshot, allowed
+
+
+def request_authority_allowed(bind_host, port, authority):
+    """Admit explicit IPv4 URLs on wildcard binds; keep DNS hosts constrained."""
+    if authority in {f'127.0.0.1:{port}', f'localhost:{port}'}:
+        return True
+    try:
+        parsed = urlsplit('//'+authority)
+        address = str(IPv4Address(parsed.hostname))
+        return (authority == f'{address}:{port}' and
+                (bind_host == '0.0.0.0' or address == bind_host))
+    except (ValueError, TypeError):
+        return False
 
 
 class CoverageServer(ThreadingHTTPServer):
@@ -253,13 +301,13 @@ class CoverageHandler(BaseHTTPRequestHandler):
 
     def local_request(self):
         host = self.headers.get('Host', '')
-        accepted = {f'127.0.0.1:{self.server.server_port}', f'localhost:{self.server.server_port}'}
         origin = self.headers.get('Origin')
-        return host in accepted and (not origin or origin in {f'http://{h}' for h in accepted})
+        return (request_authority_allowed(self.server.server_address[0], self.server.server_port, host)
+                and (not origin or origin == f'http://{host}'))
 
     def do_GET(self):
         if not self.local_request():
-            return self.json_response({'error': 'Use the local dashboard URL'}, 403)
+            return self.json_response({'error': 'Use the dashboard IPv4 URL and a matching origin'}, 403)
         request = urlsplit(self.path)
         if request.path == '/api/coverage':
             with self.server.refresh_lock:
@@ -281,7 +329,7 @@ class CoverageHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         if not self.local_request():
-            return self.json_response({'error': 'Use the local dashboard URL'}, 403)
+            return self.json_response({'error': 'Use the dashboard IPv4 URL and a matching origin'}, 403)
         if self.path != '/api/refresh':
             return self.json_response({'error': 'Unknown route'}, 404)
         try:

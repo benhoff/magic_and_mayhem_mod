@@ -8,3 +8,6 @@
 @media(min-width:1800px){.track-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:1000px){.track-grid{grid-template-columns:1fr}}
 @media(max-width:720px){.track-summary{grid-template-columns:repeat(2,minmax(0,1fr));padding:18px;gap:20px}.track-summary strong{font-size:29px}.track-card{padding:20px}.track-card h2 .feature-button{font-size:22px}.track-percent{font-size:30px}.track-goal{min-height:0}.milestone-heading{align-items:flex-start}.sidebar{gap:10px}.roadmap-note{font-size:11px}}
+
+.render-roadmap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.render-milestone{margin:0;padding:18px}.render-milestone .milestone-heading{align-items:flex-start;flex-wrap:wrap}.render-milestone h3{margin:0}.render-contract{padding:12px 0;border-bottom:1px solid var(--line)}.render-contract:last-child{border-bottom:0}.render-boundary{border-left:3px solid var(--green)}
+@media(max-width:900px){.render-roadmap{grid-template-columns:1fr}}

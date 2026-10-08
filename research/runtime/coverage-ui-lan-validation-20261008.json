@@ -1,0 +1,69 @@
+{
+  "id": "UI06.lan-binding",
+  "recorded_at": "2026-10-08T10:10:25.151547+00:00",
+  "scope": "UI-only IPv4 authority admission, wildcard/specific interface request rules and same-origin refresh;15 semantic/HTTP tests and27 actual desktop/mobile Chromium checks on loopback. The wildcard HTTP fixture uses synthetic data only; launching repository payload on a real LAN was not executed because automatic approval review denied the smoke test pending explicit exposure approval. No game artifacts or engine validation.",
+  "sources": {
+    "tools/coverage_ui.py": "0656f3b2f0a3f1c696f0171f35bc1ce9c86c87a988c0b013d8d31e57fdc9cea6",
+    "tools/serve-coverage-ui.py": "b02fadf94fa6bc8ca5a21953c0dc770d06ea23564a0941043051fa927e3280d5",
+    "apps/coverage-ui/index.html": "cbd0b3e5dc331009ef9fb4e569071e2ed28a51e93c9baae62abf2d016642f8ef",
+    "apps/coverage-ui/style.css": "8768c3880e58024a4cd71b03c2b8be5d0a26fd5137d9f6b7c61edfc43fe25889",
+    "apps/coverage-ui/app.js": "e3b85251908442667c8a0bd991a337e45a7a987d0becc859556afb071db1edba",
+    "apps/coverage-ui/tracks.json": "f6988261f8a987663265aae4c29bcc4b6945a90a390f7b3b7c42d6d52e5ab890",
+    "tests/test-coverage-ui.py": "2dbf9e36b619516e608a48abd98036ee532144349c51b0231f4276dd95080755",
+    "tests/test-coverage-ui-browser.py": "ebed4267fe0fb3be166b662e419c41f318c6cd8b674336ae18017272a5b5cd7c",
+    "apps/coverage-ui/README.md": "520cc4cc0ae8d9c7a1512355249c07e1c9cb5aa52a9d847bb65ff94be25658c1"
+  },
+  "unit_tests": {
+    "success": true,
+    "checks": 15,
+    "command": [
+      "python3",
+      "-B",
+      "tests/test-coverage-ui.py"
+    ],
+    "output": "...............\n----------------------------------------------------------------------\nRan 15 tests in 2.182s\n\nOK\n"
+  },
+  "browser": {
+    "success": true,
+    "checks_count": 27,
+    "url": "http://127.0.0.1:8788",
+    "checks": [
+      "native rendering is the default permanent view",
+      "native focus keeps live ownership and initial canvas blockers visible",
+      "rendering milestone states match registered contracts",
+      "native focus opens exact behavior evidence and stage boundaries",
+      "rendering gaps include original and native contracts",
+      "native rendering bookmark restores the focus view",
+      "default view shows all major tracks with named milestone percentages",
+      "audio card follows its current registered roadmap",
+      "track dialog shows concrete next milestones and historical evidence boundary",
+      "track drilldown includes native policies and recovered contracts",
+      "baseline scoped percentage matches register",
+      "binary percentage matches global function links",
+      "partial work view has correct total and scope",
+      "feature detail shows exact scope, research, addresses and gaps",
+      "registered research file opens",
+      "Escape closes detail dialog",
+      "interior hexadecimal address finds owning function",
+      "function details include direct call edges and limits",
+      "native policies exclude original-comparison denominator",
+      "subsystem drilldown filters work list",
+      "behavior pagination limits large lists",
+      "next page works",
+      "refresh rebuilds current snapshot without losing filters",
+      "mobile viewport has no horizontal page overflow",
+      "native rendering mobile view fits and exposes roadmap and research",
+      "mobile track dialog fits viewport and exposes replacement boundary",
+      "no uncaught browser errors"
+    ],
+    "browser_errors": [],
+    "register_sha256": "541ef9b9370b9216969cdfb9e541c01c209b81f1ab199f1f69b8a92413bebe59",
+    "recorded_at": "2026-10-08T10:09:34.416Z",
+    "screenshots": [
+      "native-rendering-desktop.png",
+      "native-rendering-mobile.png",
+      "desktop.png",
+      "mobile.png"
+    ]
+  }
+}

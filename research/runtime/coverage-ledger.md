@@ -6,6 +6,34 @@ remaining dependencies and complete launcher-mode criteria. This ledger and the
 coverage register retain achieved milestones and their evidence. Current default
 launches retain original drawing through native capture/replay presentation.
 
+
+## Execution-claim accounting hardening — 2026-10-08
+
+Coverage now distinguishes retained historical stages and source fingerprints
+from exact current validation. New recorded-validation receipts require an
+immutable execution claim bound to the behavior's scope/build/path identity,
+all implementation and declared dependency fingerprints, and the exercised
+scenario/test identity for integration or replacement. Scope expansion,
+unrelated evidence and omitted source inputs cannot establish current readiness.
+Existing unbound results remain historical; no original comparison was rerun or
+retroactively rebound by this tooling change.
+
+Exact parent receipts compose across a branch while final status promotions still
+need current execution proof. Root build inputs enter the source census. Track
+requirements use the correct independent integration/replacement values, and
+dashboard current counts follow bound proof rather than merely fresh hashes.
+The regression suite exercises these accounting failures with isolated fixtures.
+It does not establish new engine equivalence, supported-session coverage or live
+replacement. Full player-journey corpus, scientific scope review, transitive
+dependency review and additional binary mappings remain outstanding.
+
+[`COV01.execution-claims-20261008`](coverage/execution-claims-validation-20261008.json)
+records 60 audit guards, 51 gate guards, 18 UI/HTTP tests and 29 desktop/mobile
+browser checks with stable declared sources/scopes. It binds the toolkit and
+coverage UI only; unrelated concurrent native/resource work remains outside the
+execution result. The previously failing committed `HEAD~2..HEAD` comparison
+also passes through exact receipt composition with historical accounting rules.
+
 ## Scoped direct-word sprite raster MVP — 2026-10-07
 
 `RS.word-raster`, `RS.word-route` and `NR.word-admission` add an opt-in native CPU

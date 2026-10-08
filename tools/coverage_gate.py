@@ -1,5 +1,7 @@
 """Deterministic coverage deltas and hash-bound change accounting (stdlib only)."""
 import hashlib
+import copy
+from collections import deque
 import importlib.util
 import json
 from pathlib import Path
@@ -47,6 +49,8 @@ def gap_items(report):
     for kind, items in sorted(report['findings'].items()):
         if kind in DRIFT:
             continue
+        if kind in {'validation_gaps', 'retired_execution_claims'} and not report.get('claim_bindings_required'):
+            continue  # Historical trees retain their pre-adoption accounting contract.
         for item in items:
             expanded = ([{'id': item['id'], 'source': p} for p in item['changed_sources']]
                         if kind == 'stale_evidence' else [item])
@@ -102,7 +106,8 @@ def snapshot(root, register=None):
     for behavior in register['behaviors']:
         bid = behavior['id']
         contract = {'behavior': behavior,
-                    'sources': {p: file_digest(root/p) for role in ('implementation', 'tests', 'documents') for p in behavior[role]},
+                    'sources': {p: file_digest(root/p) for role in ('implementation', 'tests', 'documents', 'validation_dependencies')
+                                for p in behavior.get(role, [])},
                     'builds': [builds[k] for k in sorted({ref['build'] for ref in behavior['original']})],
                     'evidence': sorted((evidence[e] for e in behavior['evidence']), key=lambda e: e['id']),
                     'scenarios': sorted((s for s in register['scenarios'] if bid in s['behaviors']), key=lambda s: s['id'])}
@@ -116,6 +121,7 @@ def snapshot(root, register=None):
                                    if p.relative_to(root).as_posix() not in {BASELINE, REVIEWS}},
             'builds': {b['id']: b['source_sha256'] for b in register['builds']},
             'historical_reviews': load_json(root, REVIEWS)['reviews'] if (root/REVIEWS).is_file() else [],
+            'claim_bindings_required': register.get('claim_bindings_required', False),
             'gaps': gap_items(report)}, report
 
 
@@ -159,6 +165,8 @@ def changes(before, after):
 
 def immutable_errors(before, after):
     errors = []
+    if before.get('claim_bindings_required') and not after.get('claim_bindings_required'):
+        errors.append('Execution-claim policy cannot be disabled after adoption')
     for path, sha in before['inventories'].items():
         if after['research_artifacts'].get(path) != sha:
             errors.append(f'Pinned original inventory removed or overwritten: {path}; retain it and export a new snapshot')
@@ -256,10 +264,81 @@ def review_errors(review, delta, before, after, audit_report):
                     required.append({'live_replacement'})
                 if any(not kinds & linked for kinds in required):
                     errors.append(f'{label}: fresh evidence kind does not support current validation levels for {bid}')
+                support = next((row['current_validation'] for row in audit_report.get('behaviors', [])
+                                if row['id'] == bid), {})
+                stages = ['implementation'] + [stage for stage in ('comparison', 'integration', 'replacement')
+                                               if b['status'][stage] != 'none']
+                for stage in stages if after.get('claim_bindings_required', True) else []:
+                    if not set(support.get(stage, {}).get('evidence', [])) & set(fresh):
+                        errors.append(f'{label}: {bid}/{stage} requires scope-bound execution evidence with complete sources and scenario links')
         for f in matched_files:
             if f['after_sha256'] and f['role'] not in {'control', 'research'} and not any(after['evidence_sources'][eid].get(f['path']) == f['after_sha256'] for eid in fresh):
                 errors.append(f'{label}: fresh validation does not fingerprint changed source {f["path"]}')
     return errors, matched_files, matched_behaviors
+
+
+def receipt_chains(delta, reviews, before, after, audit_report):
+    """Compose exact receipt edges without claiming intermediate validation.
+
+    Final receipts still undergo current-source evidence checks in check().
+    This composes content/contract accounting only; it is not a Git history audit.
+    """
+    valid = []
+    for review in reviews:
+        problems, _, _ = review_errors(review, {'files': [], 'behaviors': []}, before, after, audit_report)
+        validation = review.get('validation', {})
+        recorded = validation.get('status') == 'recorded'
+        evidence_ids = validation.get('evidence', [])
+        historical_proof = bool(evidence_ids) and all(e in after['evidence'] and after['evidence'][e]['kind'] != 'static'
+                                                     for e in evidence_ids)
+        if not problems and (not recorded or historical_proof):
+            valid.append(review)
+    graphs = {}
+    for field, key in (('files', 'path'), ('behaviors', 'id')):
+        for review in valid:
+            for item in review.get(field, []):
+                if review['validation']['status'] == 'not_required':
+                    if field == 'files':
+                        change = next((f for f in delta['files'] if f['path'] == item[key]), None)
+                        if change and change['role'] not in {'tool', 'test', 'build', 'control', 'research'}:
+                            continue
+                    else:
+                        b = after['behaviors'].get(item[key], before['behaviors'].get(item[key]))
+                        if b and (b['record']['kind'] == 'recovered' or any(
+                                b['record']['status'][s] != 'none' for s in ('comparison', 'integration', 'replacement'))):
+                            continue
+                graphs.setdefault((field, item[key]), {}).setdefault(item['before_sha256'], []).append(
+                    (item['after_sha256'], review))
+
+    def path(field, name, start, end):
+        queue = deque([(start, [])])
+        seen = {start}
+        while queue:
+            value, chain = queue.popleft()
+            if value == end:
+                return chain
+            for target, review in graphs.get((field, name), {}).get(value, []):
+                if target not in seen:
+                    seen.add(target)
+                    queue.append((target, chain + [review]))
+        return None
+
+    adapted = []
+    for review in reviews:
+        value = copy.deepcopy(review)
+        prefixes = []
+        for field, key in (('files', 'path'), ('behaviors', 'id')):
+            targets = {item[key]: item for item in delta[field]}
+            for item in value.get(field, []):
+                target = targets.get(item[key])
+                if not target or item['after_sha256'] != target['after_sha256']:
+                    continue
+                chain = path(field, item[key], target['before_sha256'], item['before_sha256'])
+                if chain is not None:
+                    item['before_sha256'] = target['before_sha256']
+                    prefixes.extend(chain)
+        adapted.append((value, prefixes))
+    return adapted
 
 
 def check(before, after, reviews, audit_report):
@@ -274,7 +353,9 @@ def check(before, after, reviews, audit_report):
         if current_reviews.get(old['id']) != old:
             errors.append(f'Historical change review removed or rewritten: {old["id"]}; append a new receipt')
     seen = set()
-    for review in reviews['reviews']:
+    composed = receipt_chains(delta, reviews['reviews'], before, after, audit_report)
+    used_chains = {}
+    for review, prefixes in composed:
         rid = review['id']
         if rid in seen:
             errors.append(f'Duplicate change-review ID: {rid}')
@@ -290,6 +371,10 @@ def check(before, after, reviews, audit_report):
         # Gap acknowledgements count only in a receipt matching this change.
         if files or behaviors:
             covered_gaps.update(review.get('pending_gaps', []))
+            for prefix in prefixes:
+                covered_gaps.update(prefix.get('pending_gaps', []))
+            if prefixes:
+                used_chains[rid] = sorted({p['id'] for p in prefixes})
     for f in delta['files']:
         if f['path'] not in covered_files:
             errors.append(f'Unreviewed source change: {f["path"]}')
@@ -313,7 +398,7 @@ def check(before, after, reviews, audit_report):
     # hash-bound receipt. No blanket acknowledgement exempts future edits.
     return {'schema': SCHEMA, 'scope': 'Change accounting; no whole-engine completeness claim',
             'baseline_sha256': digest(before), 'errors': sorted(set(errors)),
-            'warnings': audit_report['warnings'], 'changes': delta,
+            'warnings': audit_report['warnings'], 'changes': delta, 'receipt_chains': used_chains,
             'counts': {'changed_files': len(delta['files']), 'affected_behaviors': len(delta['behaviors']),
                        'new_gaps': len(delta['new_gaps']), 'existing_gaps': len(set(before['gaps']) & set(after['gaps']))}}
 
