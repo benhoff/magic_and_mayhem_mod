@@ -2494,3 +2494,31 @@ test restoration. The unsupported paths, original startup ownership, complete
 queue history, public manual scenario and full replacement boundaries remain
 pending. Coverage is checked against dd3205a; historical shared-source staleness
 and earlier evidence fingerprints remain visible.
+
+
+## Coverage audit performance — 2026-10-08
+
+The offline audit reuses validated paths and SHA-256 results within each call
+and indexes half-open function-body ranges. Nested/fragmented overlaps retain
+inventory ownership order. Each audit starts with empty caches, including
+staged and Git-base checks; source edits, evidence tampering, missing files and
+symlink changes are rechecked on the next call. No persistent cache or gate
+exemption is introduced.
+
+All 51 audit and 44 gate guard tests pass. Two same-tree comparisons against the
+prior audit produced identical full audit and staged/HEAD gate reports. Median
+local elapsed time fell from 3.65 to 0.77 seconds for the audit and from 11.72 to
+6.03 seconds for the staged gate. Timings include both staged/base audits and
+materialization for the gate; they are host-specific measurements, not a
+whole-turn speed guarantee. The immutable report is
+`coverage/audit-performance-20261008.json`. Original game artifacts were not
+consumed, historical fingerprints/statuses remain unchanged, and no engine
+comparison, integration or live replacement milestone is advanced.
+
+Committed-history review covers dd3205a..e3d3c69, with exact parent/current file
+and affected behavior-contract receipts and committed reference/evidence links
+checked; there are no missing receipts. See
+`coverage/committed-history-audit-performance-20261008.json`. This is separate
+from uncommitted performance work and asserts no retrospective gate/execution
+result. Concurrent uncommitted canvas-startup work is excluded from this change
+and its staged census; its owner retains its accounting and validation scope.

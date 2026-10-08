@@ -9389,12 +9389,13 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Binary inventory, source census and traceability audit",
-      "scope": "Reproducible discovery and accounting tools; semantic mappings require contributor review. Synthetic guard tests do not establish original engine behavior.",
+      "scope": "Reproducible discovery and accounting tools; semantic mappings require contributor review. Synthetic guard tests do not establish original engine behavior. Per-invocation validated-path and fingerprint reuse plus indexed half-open function-body lookup preserve overlap ownership order; caches are discarded between calls.",
       "confidence": "provisional",
       "original": [],
       "documents": [
         "research/runtime/coverage/README.md",
-        "research/runtime/render-drawing-inventory.md"
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/coverage/audit-performance-20261008.json"
       ],
       "implementation": [
         "tools/inventory-binary.py",
@@ -9410,7 +9411,8 @@
       ],
       "evidence": [
         "REVIEW.TOOL.traceability",
-        "TOOL.traceability.scene-root-20261006"
+        "TOOL.traceability.scene-root-20261006",
+        "TOOL.traceability.audit-performance-20261008"
       ],
       "status": {
         "understanding": "partial",
@@ -9999,7 +10001,8 @@
         "research/runtime/coverage/README.md",
         "docs/architecture.md",
         "AGENTS.md",
-        "tests/README.md"
+        "tests/README.md",
+        "research/runtime/coverage/audit-performance-20261008.json"
       ],
       "implementation": [
         "tools/coverage_gate.py",
@@ -10013,7 +10016,8 @@
         "tests/test-tooling.sh"
       ],
       "evidence": [
-        "TOOL.traceability.scene-root-20261006"
+        "TOOL.traceability.scene-root-20261006",
+        "TOOL.traceability.audit-performance-20261008"
       ],
       "status": {
         "understanding": "partial",
@@ -34879,6 +34883,48 @@
           "equals": 66
         }
       ]
+    },
+    {
+      "id": "TOOL.traceability.audit-performance-20261008",
+      "kind": "native_integration",
+      "scope": "Offline coverage guard execution: 51 audit and 44 gate tests pass; two same-tree old/new full audit and staged/HEAD gate comparisons produce identical reports. Local elapsed timings only; no original game artifacts, engine equivalence, status promotions or persistent cache.",
+      "record": "research/runtime/coverage/audit-performance-20261008.json",
+      "sha256": "f78fe27c035d098c7edce4cffae72cc47ace8462ba2c8c89a54cbc7182a934b0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/audit_reports_identical",
+          "equals": true
+        },
+        {
+          "pointer": "/gate_reports_identical",
+          "equals": true
+        },
+        {
+          "pointer": "/gate_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/audit/count",
+          "equals": 51
+        },
+        {
+          "pointer": "/tests/audit/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/gate/count",
+          "equals": 44
+        },
+        {
+          "pointer": "/tests/gate/passed",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -40886,7 +40932,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-recovery-20261008.json",
-    "sha256": "90eb53fe220826d9cebee5d40ef7c75b031c3201c4935f015f626406b79bc6c8"
+    "path": "research/runtime/coverage/source-index-audit-performance-20261008.json",
+    "sha256": "ecd1ea5aa2aee504254c0c2b04caf65f3629fc99050a500d2c7b0d03e075cfa9"
   }
 }

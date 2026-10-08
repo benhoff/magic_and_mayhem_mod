@@ -4,6 +4,7 @@ import copy
 import hashlib
 import importlib.util
 import json
+import random
 from pathlib import Path
 import struct
 import sys
@@ -13,7 +14,7 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
-from coverage_audit import audit, markdown, pointer
+from coverage_audit import FunctionRangeIndex, audit, markdown, pointer
 
 spec = importlib.util.spec_from_file_location('binary_inventory', ROOT/'tools/inventory-binary.py')
 inventory_tool = importlib.util.module_from_spec(spec)
@@ -106,6 +107,37 @@ class CoverageTests(unittest.TestCase):
         self.assertEqual(report['errors'],[])
         self.assertEqual(report['counts']['stale_evidence'],2)
         self.assertEqual(report['behaviors'][0]['evidence_freshness'],'stale')
+
+    def test_audit_caches_do_not_hide_changes_between_invocations(self):
+        self.assertEqual(self.report()['findings']['stale_evidence'], [])
+        (self.root/'code.cpp').write_text('changed after the first audit\n')
+        self.assertEqual(self.report()['counts']['stale_evidence'], 2)
+        (self.root/'record.json').write_text('{}')
+        self.assert_invalid('evidence record hash mismatch')
+        self.refresh_record()
+        (self.root/'code.cpp').unlink()
+        self.assert_invalid('Missing or escaping')
+
+    def test_shared_evidence_sources_are_hashed_once_per_audit(self):
+        def fingerprint(path):
+            return hashlib.sha256(path.read_bytes()).hexdigest()
+
+        with patch('coverage_audit.sha', wraps=fingerprint) as hashes:
+            for invocation in range(2):
+                self.assertEqual(self.report()['errors'], [])
+                paths = [call.args[0] for call in hashes.call_args_list]
+                self.assertEqual(paths.count(self.root/'code.cpp'), invocation + 1)
+                self.assertEqual(paths.count(self.root/'record.json'), invocation + 1)
+
+    def test_audit_rechecks_symlinks_between_invocations(self):
+        source = self.root/'code.cpp'
+        alias = self.root/'alias.cpp'
+        alias.symlink_to(source)
+        self.register['behaviors'][0]['documents'] = ['alias.cpp']
+        self.assertEqual(self.report()['errors'], [])
+        alias.unlink()
+        alias.symlink_to(self.root.parent/'outside.cpp')
+        self.assert_invalid('Missing or escaping')
 
     def test_evidence_tamper(self):
         (self.root/'record.json').write_text('{}')
@@ -398,6 +430,40 @@ class CoverageTests(unittest.TestCase):
 
     def test_json_pointer_escaping(self):
         self.assertEqual(pointer({'a/b':{'~':[5]}},'/a~1b/~0/0'),5)
+
+
+class FunctionRangeIndexTests(unittest.TestCase):
+    def test_boundaries_nested_overlaps_and_inventory_order(self):
+        functions = [
+            {'entry': 20, 'ranges': [[20, 30], [25, 28], [40, 45]]},
+            {'entry': 10, 'ranges': [[10, 50]]},
+            {'entry': 22, 'ranges': [[22, 24]]},
+            {'entry': 50, 'ranges': [[50, 60]]},
+        ]
+        index = FunctionRangeIndex(functions)
+        self.assertEqual(index.owners(23), [20, 10, 22])
+        self.assertEqual(index.owners(27), [20, 10])
+        self.assertEqual(index.owners(30), [10])
+        self.assertEqual(index.owners(50), [50])
+        self.assertEqual(index.owners(60), [])
+        self.assertEqual(index.owners(9), [])
+        self.assertEqual(FunctionRangeIndex([]).owners(0), [])
+
+    def test_index_matches_linear_lookup_across_fragmented_ranges(self):
+        rng = random.Random(1998)
+        functions = []
+        for entry in rng.sample(range(200), 80):
+            ranges = [[entry, entry + rng.randrange(1, 40)]]
+            for _ in range(rng.randrange(4)):
+                start = rng.randrange(200)
+                ranges.append([start, start + rng.randrange(1, 40)])
+            functions.append({'entry': entry, 'ranges': ranges})
+        index = FunctionRangeIndex(functions)
+        for address in range(-1, 241):
+            with self.subTest(address=address):
+                expected = [f['entry'] for f in functions
+                            if any(start <= address < end for start, end in f['ranges'])]
+                self.assertEqual(index.owners(address), expected)
 
 
 class InventoryTests(unittest.TestCase):
