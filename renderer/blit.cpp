@@ -75,6 +75,28 @@ void main(){
 })";
 }
 namespace {
+constexpr auto compositeSource=R"(#version 330 core
+uniform usampler2D sourcePixels;
+uniform usampler2D sourceMask;
+uniform usampler2D oldPixels;
+uniform ivec2 sourceOrigin;
+uniform ivec2 destinationOrigin;
+uniform int mode;
+uniform int rowOffsets[16];
+uniform int rowPeriod;
+layout(location=0) out uint nativePixel;
+void main(){
+    ivec2 destination=ivec2(gl_FragCoord.xy);
+    ivec2 at=destination-destinationOrigin+sourceOrigin;
+    if(texelFetch(sourceMask,at,0).r==0u)discard;
+    uint s=texelFetch(sourcePixels,at,0).r;
+    uint d=texelFetch(oldPixels,destination,0).r;
+    uint m=0x7befu;
+    if(mode==1)nativePixel=((s>>1u)&m)+((d>>1u)&m);
+    else if(mode==2){uint halfway=(d>>1u)&m;nativePixel=halfway+((halfway>>1u)&m)+((s>>2u)&(m>>1u)&m);}
+    else if(mode==4){uint halfway=(s>>1u)&m;nativePixel=halfway+((halfway>>1u)&m)+((d>>2u)&(m>>1u)&m);}
+    else nativePixel=texelFetch(oldPixels,destination+ivec2(rowOffsets[destination.y%rowPeriod],0),0).r;
+})";
 constexpr auto presentationSource=R"(#version 330 core
 uniform usampler2D nativePixels;
 uniform usampler2D palette;
@@ -128,7 +150,7 @@ struct GlBlitter::Impl {
     QOffscreenSurface surface;
     QOpenGLContext context;
     QOpenGLFunctions_3_3_Core gl;
-    std::unique_ptr<QOpenGLShaderProgram> program,presentation;
+    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing;
     GLuint vao=0,fbo=0;
     GLuint attached=0,boundProgram=0;
     QSize viewport;
@@ -136,6 +158,7 @@ struct GlBlitter::Impl {
     unsigned batchDepth=0;
     struct CopyUniforms {GLint hasMask,sourceOrigin,destinationOrigin,hasKey,sourceKey,keyMask;} copyUniforms{};
     struct PresentationUniforms {GLint indexed,rgb565,masks,lowBits,maxima;} presentationUniforms{};
+    struct CompositeUniforms {GLint sourceOrigin,destinationOrigin,mode,rowOffsets,rowPeriod;} compositeUniforms{};
     GLint maxTexture=0;
     Driver info;
     RenderStats counters;
@@ -167,7 +190,7 @@ struct GlBlitter::Impl {
                 throw std::runtime_error(result->log().toStdString());
             return result;
         };
-        program=shader(fragmentSource);presentation=shader(presentationSource);
+        program=shader(fragmentSource);presentation=shader(presentationSource);compositing=shader(compositeSource);
         const auto location=[](QOpenGLShaderProgram& shader,const char* name){
             const auto value=shader.uniformLocation(name);
             if(value<0)throw std::runtime_error(std::string("Missing shader uniform: ")+name);
@@ -181,6 +204,8 @@ struct GlBlitter::Impl {
         gl.glUniform1i(location(*program,"sourcePixels"),0);gl.glUniform1i(location(*program,"sourceMask"),1);
         useProgram(presentation->programId());
         gl.glUniform1i(location(*presentation,"nativePixels"),0);gl.glUniform1i(location(*presentation,"palette"),1);
+        compositeUniforms={location(*compositing,"sourceOrigin"),location(*compositing,"destinationOrigin"),location(*compositing,"mode"),location(*compositing,"rowOffsets"),location(*compositing,"rowPeriod")};
+        useProgram(compositing->programId());gl.glUniform1i(location(*compositing,"sourcePixels"),0);gl.glUniform1i(location(*compositing,"sourceMask"),1);gl.glUniform1i(location(*compositing,"oldPixels"),2);
         gl.glGenVertexArrays(1,&vao);gl.glGenFramebuffers(1,&fbo);gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE,&maxTexture);
         // This context is private to the renderer; caller/viewport state lives
         // in a different context and does not invalidate these bindings.
@@ -275,7 +300,7 @@ struct GlBlitter::Impl {
     ~Impl(){
         if(context.isValid() && surface.isValid()){
             try {Current current(context,&surface);for(auto& pair:surfaces)release(pair.second);
-                program.reset();presentation.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
+                program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
             catch(const std::exception&){}
         }
     }
@@ -424,6 +449,31 @@ void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,s
     Current current(p.context,&p.surface);
     p.copyTexture(src.native,mask?p.get(*mask).native:0,dst,r,x,y,key,keyMask);
     dst.validity.define({x,y,x+r.right-r.left,y+r.bottom-r.top});
+}
+void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,int y,SurfaceId mask,const SpriteComposite& c){
+    if(c.mode==CompositeMode::copy){copy(source,destination,r,x,y,std::nullopt,mask);return;}
+    auto& p=*impl_;p.thread();auto& src=p.get(source);auto& dst=p.get(destination);auto& coverage=p.get(mask);
+    const PixelFormat rgb565{16,{0xf800,0x7e0,0x1f}};
+    if(source==destination||mask==destination||src.format.bits!=rgb565.bits||src.format.masks!=rgb565.masks||dst.format.bits!=rgb565.bits||dst.format.masks!=rgb565.masks||coverage.format.bits!=8||coverage.width!=src.width||coverage.height!=src.height)
+        throw std::invalid_argument("Sprite composition requires distinct RGB565 source/destination and matching coverage");
+    if(r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right>src.width||r.bottom>src.height||x<0||y<0||x>dst.width-(r.right-r.left)||y>dst.height-(r.bottom-r.top))throw std::invalid_argument("Composition rectangle outside storage");
+    if(c.mode!=CompositeMode::half&&c.mode!=CompositeMode::quarterSource&&c.mode!=CompositeMode::quarterDestination&&c.mode!=CompositeMode::displace)throw std::invalid_argument("Unsupported sprite composite mode");
+    int reach=0;
+    if(c.mode==CompositeMode::displace){
+        if(!c.rowPeriod||c.rowPeriod>16)throw std::invalid_argument("Displacement row period outside bounds");
+        for(unsigned i=0;i<c.rowPeriod;++i){if(c.rowOffsets[i]<0||c.rowOffsets[i]>16)throw std::invalid_argument("Backward or excessive displacement unsupported");reach=std::max(reach,c.rowOffsets[i]);}
+        if(x+r.right-r.left+reach>dst.width)throw std::invalid_argument("Displacement sample outside destination");
+    }
+    src.validity.require(r);coverage.validity.require(r);dst.validity.require({0,0,dst.width,dst.height});
+    Current current(p.context,&p.surface);auto& g=p.gl;GLuint frozen=0;
+    try{
+        g.glActiveTexture(GL_TEXTURE2);frozen=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,dst.width,dst.height,nullptr);
+        p.attach(dst.native,dst.width,dst.height);g.glBindTexture(GL_TEXTURE_2D,frozen);g.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,0,0,dst.width,dst.height);p.check();
+        p.setScissor(true);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);
+        g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,src.native);g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,coverage.native);g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,frozen);
+        p.useProgram(p.compositing->programId());g.glUniform2i(p.compositeUniforms.sourceOrigin,r.left,r.top);g.glUniform2i(p.compositeUniforms.destinationOrigin,x,y);g.glUniform1i(p.compositeUniforms.mode,int(c.mode));g.glUniform1iv(p.compositeUniforms.rowOffsets,16,c.rowOffsets.data());g.glUniform1i(p.compositeUniforms.rowPeriod,int(c.rowPeriod));
+        g.glDrawArrays(GL_TRIANGLES,0,3);p.check();++p.counters.copies;p.deleteTextures(1,&frozen);frozen=0;
+    }catch(...){p.deleteTextures(1,&frozen);throw;}
 }
 void GlBlitter::invalidateContents(SurfaceId id){
     auto& p=*impl_;p.thread();p.get(id).validity.invalidate();

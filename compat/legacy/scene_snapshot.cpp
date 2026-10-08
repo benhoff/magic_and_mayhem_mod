@@ -79,10 +79,10 @@ void SnapshotResources::add(const assets::ResourceId& id,const std::string& path
     for(auto& addition:additions)index_[addition.first].push_back(std::move(addition.second));
     ++files_;frames_+=sprite.frames.size();
 }
-BoundFrame SnapshotResources::resolve(const SnapshotFrame& frame) const{
+BoundFrame SnapshotResources::resolve(const SnapshotFrame& frame,bool ownedColours) const{
     const auto it=index_.find(frameIdentity(frame.encoded,frame.indexed));if(it==index_.end())throw std::out_of_range("Unmapped observed frame content");
     const auto& candidates=it->second;
-    for(const auto& c:candidates)if(c.visual!=candidates.front().visual)
+    for(const auto& c:candidates)if(c.visual!=candidates.front().visual&&!(ownedColours&&frame.indexed))
         throw std::out_of_range("Ambiguous observed frame with different native palette pixels");
     const auto& choice=candidates.front();const auto& owned=resources_.load(choice.binding.resource);
     const auto& sprite=std::get<assets::Sprite>(owned.image);

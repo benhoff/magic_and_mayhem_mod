@@ -23,7 +23,7 @@ public:
     ResourceCache& operator=(const ResourceCache&)=delete;
     void draw(const assets::ResourceId&,std::size_t frame,SurfaceId destination,
               int anchorX,int anchorY,std::optional<Rect> viewport=std::nullopt,
-              const SpriteColourTable* colours=nullptr);
+              const SpriteColourTable* colours=nullptr,const SpriteComposite& composite={});
     void release(const assets::ResourceId&); // GPU only
     void retire(const assets::ResourceId&); // GPU + manager decoded data
     void clear(); // GPU only; bindings/decoded resources remain

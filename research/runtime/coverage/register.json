@@ -15961,13 +15961,14 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Shared resource-backed ordered scene service",
-      "scope": "Persistent RGB565 background/canvas and ResourceCache ownership; caller-ordered visible resource/frame/projected anchor/colour entries with optional clipping. Whole-list admission preserves previous completed pixels; execution failures refuse partial presentation until a complete retry. Sprite/world preview adapters preserve recovered clocks/order/visibility. Explicit owned checkpoint ANI recipe bytes have separate encoded capacity budgets. Live snapshots, full scene admission/lighting/effects and original replacement remain pending.",
+      "scope": "Persistent RGB565 background/canvas and ResourceCache ownership; caller-ordered visible resource/frame/projected anchor/colour entries with optional clipping. Whole-list admission preserves previous completed pixels; execution failures refuse partial presentation until a complete retry. Sprite/world preview adapters preserve recovered clocks/order/visibility. Explicit owned checkpoint ANI recipe bytes have separate encoded capacity budgets. Live snapshots, full scene admission/lighting/effects and original replacement remain pending. Native beginFrame/drawNext and retainedCanvas source are now present; intermediate commit preserves historical validation only, with current runtime integration accounted separately.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-shared-scene-renderer.md",
         "renderer/scenes/README.md",
-        "docs/live-drawing-replacement.md"
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-renderer-commit-boundaries-20261007.md"
       ],
       "implementation": [
         "renderer/scenes/scene_renderer.hpp",
@@ -17468,6 +17469,280 @@
       ],
       "tests": [
         "tests/word-raster-test.c"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.world-frame",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Owned effective World raster inputs and complete native canvas comparison",
+      "scope": "Finite selected Quick Battle World consumer canvases from ordered owned raster requests, actual selected colours/clips and every pinned native SPR binding. Comparison with separately captured whole original output; original pixels cannot drive native rendering. Later HUD/window composition, alternate dispatch, continuous delivery, consumer side effects and whole-scene bypass remain pending. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: initial canvas or untraced writes remain unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5851058,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5853722,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5856071,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5857342,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758464,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5760320,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5762192,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5763312,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5764592,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5768944,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5854839,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5858448,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5859492,
+          "scope": "Selected effective raster requests and complete consumer output for the declared indexed scenario; full functions/dispatch/side effects are not recovered."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/world_frame_v1.h",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_frame_main.cpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/world-frame-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/scene-history-test.cpp"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.world-composition",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Selected native integer World raster composition",
+      "scope": "Actual RGB565 colour tables and separate coverage; selected indexed copy, half/quarter-source/quarter-destination, nonnegative rightward displacement and alternating-row projected shadow. Six-mode clipped fixtures and captured indexed World requests; full original raster family, RGB555, negative displacement, palette generation and direct-word live World routes remain outside scope. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: selected retained pre-consumer pixels are confirmed; upstream initialization/ownership remains unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758464,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5762192,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5763312,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5764592,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5768944,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5760320,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5858448,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5859492,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5856071,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5857342,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5851058,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5853722,
+          "scope": "Selected indexed RGB565 pixel arithmetic, coverage and clipping; whole function/ABI contracts not claimed."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp"
+      ],
+      "tests": [
+        "tests/world-frame-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/scene-history-test.cpp"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.world-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Strict complete owned World frame admission",
+      "scope": "Pointer-free bounded closed files, exact extents/build/format/operation checks, actual-colour palette aliases, all-resource binding and atomic scene preflight. Native refusal of malformed/unknown/unsafe sampling input, separate independent background and oracle outputs; no malformed original semantics, continuous IPC or silent supported-only preview. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: initial canvas or untraced writes remain unresolved; broad equivalence/replacement not promoted. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+      ],
+      "implementation": [
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_frame_main.cpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/CMakeLists.txt",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "protocols/include/mnm/world_frame_v1.h"
+      ],
+      "tests": [
+        "tests/world-frame-test.cpp",
+        "tests/scene-renderer-test.cpp"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.scene-history",
+      "subsystem": "native_rendering",
+      "title": "Owned native canvas history with contiguous source admission",
+      "scope": "Native GPU canvas retention from an explicit caller-owned initial background; nonzero logical canvas identity and contiguous source sequence, refusal of gaps/reuse without reset, incomplete/failed-frame refusal. This does not recover original startup initialization or producer history. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+      "confidence": "provisional",
+      "kind": "native_policy",
+      "original": [],
+      "documents": [
+        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+      ],
+      "implementation": [
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "compat/legacy/world_history_main.cpp",
+        "compat/legacy/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/scene-history-test.cpp"
       ],
       "evidence": [],
       "status": {
@@ -38224,7 +38499,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-commit-chunk-1-20261007.json",
-    "sha256": "6edb6f9170c3d52d5bd846b2ecbfdd7fbfddc6880e5f020790e654131b1c68e0"
+    "path": "research/runtime/coverage/source-index-commit-chunk-2-20261007.json",
+    "sha256": "db53fd1a642adf2c11714ad1a29be498b9328b873063276a35b1079ac4d2976b"
   }
 }

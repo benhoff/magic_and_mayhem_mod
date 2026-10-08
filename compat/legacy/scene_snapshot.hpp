@@ -23,7 +23,7 @@ class SnapshotResources final {
 public:
     SnapshotResources(const assets::AssetStore&,assets::ResourceManager&);
     void add(const assets::ResourceId&,const std::string& sprite,const QByteArray& expectedSha256);
-    BoundFrame resolve(const SnapshotFrame&) const;
+    BoundFrame resolve(const SnapshotFrame&,bool ownedColours=false) const;
 private:
     struct Candidate {BoundFrame binding;QByteArray visual;};
     const assets::AssetStore& store_;
