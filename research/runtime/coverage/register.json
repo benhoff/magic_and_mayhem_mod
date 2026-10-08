@@ -20530,7 +20530,7 @@
       "kind": "recovered",
       "title": "Bounded complete World raster queue replacement with recovered AX fallback",
       "scope": "Replace every observed admitted outer raster request in a selected complete World queue, then the contiguous1..16 prefix. Preserve original traversal, AX-triggered clipped fallback and callee argument cleanup; native source-only CPU/GPU completions, exact original routine comparisons at every request. Retain non-drawing lazy wave-table preparation separately. Unknown callers, raster modes, clips, reply identities and incomplete queues refuse. Scratch globals and unobserved caller/error paths remain gaps.",
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -20757,14 +20757,18 @@
         "RS.world-raster-queue.abi-boundary-20261008",
         "RS.world-raster-queue.boundary-fixture-diagnostics-20261008",
         "RS.world-raster-queue.preflight-boundary-20261008",
-        "RS.world-raster-queue.preflight-boundary-native-20261008"
+        "RS.world-raster-queue.preflight-boundary-native-20261008",
+        "RS.world-raster-queue.prefix-early-queue1-20261008",
+        "RS.world-raster-queue.prefix16-boundary-live-20261008",
+        "RS.world-raster-queue.prefix16-boundary-comparison-20261008",
+        "RS.world-raster-queue.prefix16-boundary-replacement-20261008"
       ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
-        "integration": "none",
-        "replacement": "none"
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "scoped_live"
       }
     },
     {
@@ -40397,6 +40401,148 @@
           "equals": 70
         }
       ]
+    },
+    {
+      "id": "RS.world-raster-queue.prefix-early-queue1-20261008",
+      "kind": "isolated_original",
+      "scope": "Early progress only: all2514 completed queue1 native before/reply canvases and low16AX match precise actual original entries, including wave/blend routes. Owned stream prefix and actual live entry addresses; complete16queue replacement still pending.",
+      "record": "research/runtime/native-world-raster-prefix-early-queue1-20261008.json",
+      "sha256": "c120f39ff2de1bc8992f032e12b98960742f30b217dec5d8edddebbbeacb951d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/bypass_equal",
+          "equals": 2514
+        },
+        {
+          "pointer": "/caller_ax_equal",
+          "equals": 2514
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.world-raster-queue.prefix16-boundary-live-20261008",
+      "kind": "live_observation",
+      "scope": "Complete selected raster queues only; every live native intermediate matched actual skipped original entry and low16AX. Original traversal, menu/HUD work outside queues, palette preparation and non-drawing lazy wave table preparation retained. No full native simulation or real-time performance claim.",
+      "record": "research/runtime/native-world-raster-prefix16-boundary-live-20261008.json",
+      "sha256": "4cf2d62aff9f100b41bbf66b336e9712b11a8f1ab444ba59c07c6a2e33dccb1b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.world-raster-queue.prefix16-boundary-comparison-20261008",
+      "kind": "isolated_original",
+      "scope": "Complete selected raster queues only; every live native intermediate matched actual skipped original entry and low16AX. Original traversal, menu/HUD work outside queues, palette preparation and non-drawing lazy wave table preparation retained. No full native simulation or real-time performance claim.",
+      "record": "research/runtime/native-world-raster-prefix16-boundary-comparison-20261008.json",
+      "sha256": "103532bddb9830e2686c27b15ae8aeefc4afec24d815c047536e9f2b363ced8f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/bypass_equal",
+          "equals": 36556
+        },
+        {
+          "pointer": "/contiguous_native_before_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/canonical_entry_preflight",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.world-raster-queue.prefix16-boundary-replacement-20261008",
+      "kind": "live_replacement",
+      "scope": "Complete selected raster queues only; every live native intermediate matched actual skipped original entry and low16AX. Original traversal, menu/HUD work outside queues, palette preparation and non-drawing lazy wave table preparation retained. No full native simulation or real-time performance claim.",
+      "record": "research/runtime/native-world-raster-prefix16-boundary-replacement-20261008.json",
+      "sha256": "dbca0dfbc1adf8c23ae2a8de784ff2118e08d21c59db86880fee814834d9069e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/bypassed_rasters",
+          "equals": 36556
+        },
+        {
+          "pointer": "/caller_ax_equal",
+          "equals": 36556
+        }
+      ],
+      "equivalence_pointer": "/equivalent_intermediates",
+      "bypass_pointer": "/original_work_bypassed"
     }
   ],
   "classifications": [],
@@ -46926,7 +47072,11 @@
         "RS.world-raster-queue.queue16-replacement-20261008",
         "RS.world-raster-queue.abi-boundary-20261008",
         "RS.world-raster-queue.preflight-boundary-20261008",
-        "RS.world-raster-queue.preflight-boundary-native-20261008"
+        "RS.world-raster-queue.preflight-boundary-native-20261008",
+        "RS.world-raster-queue.prefix-early-queue1-20261008",
+        "RS.world-raster-queue.prefix16-boundary-live-20261008",
+        "RS.world-raster-queue.prefix16-boundary-comparison-20261008",
+        "RS.world-raster-queue.prefix16-boundary-replacement-20261008"
       ]
     }
   ],
@@ -47247,7 +47397,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-rendering-commit-20261008.json",
+    "path": "research/runtime/coverage/source-index-world-raster-prefix16-20261008.json",
     "sha256": "903bf83b5dfa72da3499d6767f3e11a16489a1c36df9c6dd8a8c8748fd5cf954"
   },
   "claim_bindings_required": true

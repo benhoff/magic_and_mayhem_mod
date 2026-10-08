@@ -2952,7 +2952,14 @@ now bounds suppression, and the following original HUD raster is covered by a
 body-counter regression. All13synthetic body skips,49forwards and strict
 identity/checksum refusals pass. The current frozen125-source preflight matches
 1817canonical queue16 intermediates/AX,1062checkpoints and16World returns.
-The current whole16-prefix retry remains pending.
+The current complete prefix now passes: all 16 queues replace 36,556 raster
+bodies. Independent actual-entry execution matches every native canvas and AX
+result over 17,546,880,000 pixels; all 16 final World canvases, 1,062 checkpoints
+and the full before/reply continuity chain also match. Four focused native tests
+pass, all 125 source fingerprints remain stable, and the original manifests
+verify 2,927 unchanged files before/after. See the immutable
+[prefix replacement](native-world-raster-prefix16-boundary-replacement-20261008.json)
+and [exact comparison](native-world-raster-prefix16-boundary-comparison-20261008.json).
 
 Original traversal, simulation, menu/HUD raster work outside selected queues,
 palette preparation and non-drawing lazy wave initialization remain active.
@@ -2985,3 +2992,23 @@ performance claim is inferred from the general regression run. Coverage guard
 suites pass 60 audit tests and 51 gate tests. The latest committed range
 `8e43ed5..63f32b1` has exact existing file/behavior receipts, retained in
 `coverage/committed-history-native-rendering-commit-20261008.json`.
+
+### Complete-prefix evidence and remaining scope (2026-10-08)
+
+The successful current complete-prefix result supersedes the pending retry noted
+in the earlier commit-readiness snapshot. `RS.world-raster-queue-replacement`
+now has scoped implementation, recorded original comparison, live-equivalence
+integration and scoped live replacement. Understanding remains partial. Original
+traversal/simulation, menu/HUD bodies outside World, palette preparation and one
+non-drawing lazy wave initialization remain active. Three admitted entries were
+unobserved in live suppression; vertically top-clipped displacement table phase,
+other formats/callers/errors and volatile/scratch-global equality remain unverified.
+No whole-dispatcher, native simulation or real-time performance claim is made.
+
+The newly landed `63f32b1..e94f344` range was reviewed before final accounting.
+The [retained committed-history report](coverage/committed-history-world-raster-prefix-20261008.json)
+finds exact receipt chains for 436 source/link and 138 behavior transitions,
+preserves prior receipt objects and lists no unresolved transitions. Historical
+accounting is separate from this new uncommitted execution evidence and does not
+assert a retrospective gate pass. Historical evidence retains its original
+fingerprints and separate current-readiness limitations.
