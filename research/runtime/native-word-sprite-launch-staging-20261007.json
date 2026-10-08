@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Actual Qt launcher staging entry point with explicit inherited takeover mode, valid frame stream and skip-movies. Fresh word diagnostics directory, pinned MnmWord import/DLL, original source hash and partial scope manifest checked. Qt Launch-button integration and presentation were not executed in this result.",
+  "sources": {
+    "tools/run-opengl-game.py": "7e7c002c27946560ee8403da632a764cc89cc6946bada47a0457759457e7fdf9",
+    "tools/render-game-runner.py": "3ebd48598261a7dbd2afba7ef94403f02d55f2c838a5e3f61ee9f23bea8ab553",
+    "tools/build-word-sprites.py": "7508933e5ad1f42b2e20864a2d9667342fa4eee72fd254a2aa89e173b9c27e61",
+    "tools/prepare-scene-observer.py": "d7d7bd9727631fdeb7cbf326d5a0570b8626068d3c2a176fe7655b1b8277ed63",
+    "tools/scene-game-runner.py": "fcad1e94961cb030b1dbb2ea8116558267fd50c55fd4f4e4b70c5943349e79d7",
+    "tools/capture-scene-game.py": "715d0401e5fdce8b8038b46edde48aa5162e42c83c3523962271a6a90e89515f"
+  },
+  "command": "MNM_WORD_SPRITES=takeover python3 tools/run-opengl-game.py --stream working/native-word-mvp/qt-frame.bin --skip-movies --stage-only",
+  "experiment": "working/experiments/opengl-render/run-ypgunjo5",
+  "manifest_sha256": "4564e094de210cfb77d82b7fab8bba1ea640d2120715475e1a26cd6e6b0c702c",
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "stage_mode": "takeover",
+  "dll_sha256": "b62c0e1aecfd08101ad8bbdc2242842a0d5a7bc2b9fe42a8517a6923cc78a8f3",
+  "staged_executable_sha256": "3740f83a87935cb834288574227c2deac5157bead6c8da7c0529b81e215086b0",
+  "original_manifest_before_after_passed": true,
+  "live_replacement": false
+}

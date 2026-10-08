@@ -24,7 +24,10 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def prepare(menu=False):
+def prepare(menu=False,word_mode=None,world_frames=False,world_live=False):
+    if world_live and not world_frames:raise ValueError('Continuous World needs the World input observer')
+    if world_frames and word_mode:raise ValueError('World observation and word takeover use separate experiments')
+    if word_mode not in (None,'shadow','takeover'):raise ValueError('Unsupported word-sprite mode')
     source=ROOT/'working/game-nocd'
     data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:
@@ -47,6 +50,19 @@ def prepare(menu=False):
     manifest={'origin':'scene_observation_only','source_sha256':HASH,'scene_dll_sha256':sha(dll),
               'game_copy':str(game),'scope':'Opt-in queue observation; original simulation and drawing remain in control',
               'capture':str(output/'capture'),'menu_driver':menu}
+    if world_frames:manifest.update(world_frames=True,world_scope='Owned effective raster inputs and separate full-canvas original oracle; original drawing remains active')
+    if world_live:manifest.update(world_live=True,world_channel=str(output/'world-channel.bin'))
+    if word_mode:
+        for address in (0x597086,0x596cb8):
+            at=exporter.image_offset(data,address,6)
+            if data[at:at+6]!=bytes.fromhex('558bec565753'):raise ValueError('Unsupported direct-word backend entry')
+        word_dll=load('scene_word_build','tools/build-word-sprites.py').build()
+        staged=patch(staged,'MnmWord.dll','WordAnchor',b'.mnword')
+        shutil.copy2(word_dll,game/word_dll.name)
+        shutil.copy2(word_dll.parent/'manifest.json',output/'word-bridge-build.json')
+        (output/'word-sprites').mkdir()
+        manifest.update(word_sprites_mode=word_mode,word_dll_sha256=sha(word_dll),word_directory=str(output/'word-sprites'))
+        manifest['scope']+='; explicit partial direct-word '+word_mode+' route'
     if menu:
         menu_dll=load('scene_menu_build','tools/build-menu-observer.py').build()
         staged=patch(staged,'MnmMenu.dll','MenuAnchor',b'.mnmenu')
@@ -75,9 +91,10 @@ def prepare(menu=False):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--menu-driver',action='store_true',help='Include the established opt-in menu adapter for bounded automatic battle startup')
+    parser.add_argument('--word-sprites',choices=['shadow','takeover'],help='Explicit partial direct-word raster experiment')
     args=parser.parse_args()
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
-        print(prepare(args.menu_driver))
+        print(prepare(args.menu_driver,args.word_sprites))
     finally:
         subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)

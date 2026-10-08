@@ -5,6 +5,35 @@ continues its simulation and drawing; complete live drawing replacement is
 unavailable. The [authoritative replacement plan](../../docs/live-drawing-replacement.md)
 defines the remaining work and criteria for enabling a complete launcher mode.
 
+A standalone continuous native World shadow viewer is available with:
+
+```bash
+./tools/run-native-world.py
+./tools/run-native-world.py --verify
+```
+
+It renders owned World requests from native sprite assets into the Qt GPU
+viewport. Use the original window for menus and input. Ordinary mode uses an
+independent zero background and performs no CPU pixel readback; verification
+compares a separate original oracle and refuses differences. Some live canvases
+contain pixels outside that reconstructed initial state, so full baseline
+equivalence and whole-scene bypass remain pending. See the
+[implementation](../../research/runtime/native-world-live-rendering.md) and
+[initial-background boundary](../../research/runtime/native-world-live-background-gap.md).
+
+An explicit partial sprite raster MVP is available with:
+
+```bash
+MNM_WORD_SPRITES=takeover ./tools/run-qt-shell.sh --frame-readback --skip-movies
+```
+
+It replaces fully in-bounds direct-word SPR drawing with the native CPU backend.
+Indexed sprites, clipping, auxiliary passes and other frame producers retain
+original drawing. Use `MNM_WORD_SPRITES=shadow` for native/original comparison.
+The launch log identifies the mode; the fresh render experiment contains its
+manifest, bypass/fallback counters and eight independent comparison samples.
+See [scope, tests and remaining work](../../research/runtime/native-word-sprite-mvp.md).
+
 ## Fullscreen and display scaling
 
 ```bash

@@ -1,0 +1,118 @@
+{
+  "success": true,
+  "live_observation": true,
+  "live_replacement": false,
+  "original_pixels_compared": false,
+  "scope": "Original Single Player battle setup and ordered queue consumer entry. Original simulation/drawing remain active; bounded immutable snapshots, no whole-scene visual equivalence.",
+  "sources": {
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/observer.c": "a2012556c0d6d2fbb9bbd41cc93d497bd9780d7f318a5b508da62090f29c734b",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/scene/word_entry.S": "f4ad46c7c503212db820bbdcea7570f33d8d6735b8837db034e3bf52ad18d1f7",
+    "runtime/scene/word_route.c": "f8a39a190ef1350d54a0119a0d72f981accc634add1c4534cb85d5c4aea58a6d",
+    "runtime/scene/world_entry.S": "9794f755731a8a8d3df973a71d99a91ddf24855be25e8c1d39a9716054e95b3d",
+    "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+    "runtime/scene/world_stream.c": "fde846e9107ef7372dd1fe41658b3c100b779953f34f03e2b93ff47d336bed2d",
+    "runtime/scene/world_trace.c": "323f01ca3a062f2a389d4a90cb0e376ac60803178c086af042b8546c300e2982",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "tools/build-scene-observer.py": "954fa0de3b7744a6831cf1829828627935a064e50071ceb7bd99101e3b8c469f",
+    "tools/prepare-scene-observer.py": "f650c14d7b212e551e545eb8a067cccf4068c31961cf75b5c5b2fe466dc67975",
+    "tools/capture-scene-game.py": "608aa8d92376da47ef7ef4ca0cd5939685f03287f650c84e84af7c0160941d76",
+    "tools/scene-game-runner.py": "600a3a3bb79c40507b56d250413fffd667ef904e7beea292a6e3fb7558fa00f2",
+    "protocols/include/mnm/world_frame_v1.h": "8dd0ba1fde1dacd312cbabe9cf85a6fecbcd3fce2c2bdcbcdc5fa80b8efb1488",
+    "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c"
+  },
+  "sources_stable": true,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "samples": 4,
+  "map_selection": 2,
+  "menu_trace": [
+    {
+      "screen": 3,
+      "action": 1,
+      "argument": 0,
+      "ack": 1,
+      "status": 1
+    },
+    {
+      "screen": 22,
+      "action": 4,
+      "argument": 0,
+      "ack": 2,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 6,
+      "argument": 0,
+      "ack": 3,
+      "status": 1
+    },
+    {
+      "screen": 25,
+      "action": 9,
+      "argument": 2,
+      "ack": 4,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 7,
+      "argument": 0,
+      "ack": 5,
+      "status": 1
+    }
+  ],
+  "snapshots": {
+    "capture/scene-0001.bin": "1e40bb33f06720e107905f587fe797205ae0e44ab90c9f87c12b06a35ed1f1ee",
+    "capture/scene-0002.bin": "3e719116c9601dbd6ce1d343657f2218a595af21b4dc87e984858626cf91e42c",
+    "capture/scene-0003.bin": "f3500396705a31ad37b09878a0bb76d778122807ef8a831d5e45287ee3dcbe87",
+    "capture/scene-0004.bin": "08d7330bbc24972e75fe1c5c893b02d05ddc913861ae72c71db2ee1c2b7c8f23"
+  },
+  "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-jerxkytp",
+  "world_frames": {
+    "capture/world-0001.after.565": "52b999daa5d06c698dfafcc23be357bff41688aecda94b66136ee7ece69c6b3c",
+    "capture/world-0001.before.565": "cdcd3b44a5a6b830da56b8af9632ca7050ab0f5941cd1844fe6522d0ec8f5a66",
+    "capture/world-0001.bin": "1bb1b583c59f477f7b76867c32c3700539b6e9a924fe63d0e62d31a99c129b37",
+    "capture/world-0002.after.565": "eefabeefa39b63bbc15ec7a5f8e0d565cf3f82513622ab93acc8a4803426a65f",
+    "capture/world-0002.before.565": "07be0f1d7412241000456026ab75410d1879a59341c6a9c3ce03f4a1938437f0",
+    "capture/world-0002.bin": "c1c80988674dc07f8828c5964d3440a15889ece06a94d2655182276a3a724995",
+    "capture/world-0003.after.565": "0300e7710fb4d7ae902ef8c723d4c7d0ef45e7d910fc12eebd3353a077f169a6",
+    "capture/world-0003.before.565": "a0ec7418b407c02d592b2f7eedf96a1add813dd6f4d4257a71446c31615ef2d0",
+    "capture/world-0003.bin": "03a66685531911e47c9a3b425f58683b3d40ee4df7153d2a74c42169978d5fc7",
+    "capture/world-0004.after.565": "bc29b3eb8cd09fe0ca8f1d680687e79d7e6bc6d8bcd12d75ec02667f99a4e105",
+    "capture/world-0004.before.565": "67e7292072f8f532c68680271cf6c6b8cace65a437312ea1465712b01dd39fe5",
+    "capture/world-0004.bin": "e6957d4349d5aa84beb061090a4d40b53c56a5e6183e4ec22b4c05b659bc9ce4"
+  },
+  "skip_queues": 0,
+  "queue_interval": 1,
+  "world_refusals": [
+    {
+      "snapshot": "capture/world-0001.bin",
+      "reason": 7,
+      "captured_draws": 587
+    },
+    {
+      "snapshot": "capture/world-0003.bin",
+      "reason": 8,
+      "captured_draws": 0
+    },
+    {
+      "snapshot": "capture/world-0004.bin",
+      "reason": 8,
+      "captured_draws": 0
+    }
+  ],
+  "complete_native_admission": false,
+  "canvas_lifetime": {
+    "path": "capture/canvas-lifetime.bin",
+    "sha256": "767dd1315193a718df9f4c14b387f4b63a5132ddec0c2679b9d296e9e508af90",
+    "records": 8,
+    "pointer_tokens": [
+      1
+    ],
+    "first_nonzero_pixels": 365306,
+    "allocation_generations_observed": false,
+    "original_pixels_used_as_native_inputs": false
+  }
+}

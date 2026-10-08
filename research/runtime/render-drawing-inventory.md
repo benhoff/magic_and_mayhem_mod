@@ -79,6 +79,25 @@ The complete binary census is preserved unchanged. Selected instructions do not
 recover a complete rasterizer dispatch table or justify classifying unknown
 functions as unused. The inventory registers no function-wide exclusion.
 
+The scoped [direct-word MVP](native-word-sprite-mvp.md) now owns `RS.word-raster`,
+`RS.word-route` and `NR.word-admission`. Its two backend entry hooks cover only
+fully in-bounds direct-word SPR draws. The first call-site-only live experiment
+saw no calls; its first World queue contained only indexed frames. Backend-entry
+shadow/takeover tests subsequently exercised direct-colour UI raster work through
+battle startup. This does not classify indexed World dispatch, entire consumer
+branches or complete scenes. Other raster routes and computed flows remain open.
+
+The [complete World canvas increment](native-world-frame-rendering.md) adds
+`RS.world-frame`, `RS.world-composition` and `NR.world-admission`. Four bounded
+800x600 consumer outputs now have complete native pixel comparisons from owned
+effective requests and pinned native assets, including actual colour tables,
+horizontal/vertical clipping, three blends, displacement and projected shadows.
+Their 1,920,000 pixels match separate live output and private original raster
+execution. Original consumer/raster work remains active during capture; later
+HUD/window output, complete consumer side effects and continuous takeover remain
+open. Generic/terrain selected backends internally clip horizontally; black and
+selected distortion entries instead return1 without pixels at those bounds.
+
 The queue consumer calls a larger raster family directly: `0x57dc60`,
 `0x57de00`, `0x57e540`, `0x57e8e0`, `0x57f5f0`, `0x57ec90`, `0x57f0f0`,
 `0x57fe10`, `0x580a90`, `0x580260`, `0x581200`, `0x5806f0`, plus indirect
@@ -90,12 +109,12 @@ remain explicitly incomplete dispatch records:
 
 | Jump site | Table address | Scope / unresolved branch |
 | --- | --- | --- |
-| `0x5003fc` | `0x501184` | First consumer path, following draw-kind comparisons 33/34; value-to-backend semantics and default path unclassified. |
+| `0x5003fc` | `0x501184` | Selected kinds 0/31,1,2,3,4,5,6,22 now link to bounded raster contracts; kind33 terrain is handled before the table. Other values/defaults and complete consumer semantics remain open. |
 | `0x50093d` | `0x501210` | Alternate consumer path; do not assume identical behavior to the first table. |
 | `0x500d69` | `0x50129c` | Later consumer path; remaining admission and backend semantics unclassified. |
 
-Their presence is confirmed by disassembly, but no table entries are claimed
-recovered by this inventory. Existing binary candidate flows remain preserved.
+The first table's selected links are described in the World canvas research;
+the other two tables remain unclassified. Existing binary candidate flows remain preserved.
 Direct per-pixel drawing can bypass DirectDraw method logging until Unlock.
 The selected JPEG import and unassigned WORD-copy window are concrete examples
 of why a Blt-only inventory would omit original drawing work.

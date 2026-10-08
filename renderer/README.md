@@ -12,6 +12,29 @@ a presentation shader. Replay compares native output and displayed colors with
 the CPU reference. Live game capture/replay command routing is available within
 its registered scope; original drawing replacement remains outstanding.
 
+The [direct-word sprite MVP](../research/runtime/native-word-sprite-mvp.md) now
+provides scoped native CPU raster replacement at selected original word-backend
+entries. Its portable `mnm-word-raster` library builds independently from Qt:
+
+```bash
+cmake -S renderer/sprites/word-raster -B working/build/word-raster
+cmake --build working/build/word-raster --parallel 4
+ctest --test-dir working/build/word-raster --output-on-failure
+```
+
+This partial route keeps original clipping, indexed drawing and other frame
+producers. Complete live drawing replacement remains outstanding.
+
+The [complete World canvas comparison](../research/runtime/native-world-frame-rendering.md)
+adds owned effective raster inputs, actual indexed colour tables, per-draw clips,
+integer blending, displacement and projected shadows. `mnm-world-frame-preview`
+in `compat/legacy` binds every request to pinned native SPR assets and composes
+the canvas through `SceneRenderer`. Original output is a separate comparison
+oracle. This finite capture/replay milestone precedes continuous Qt presentation
+and complete scene takeover. Reproduce with `tools/capture-scene-game.py
+--world-frames` and `tools/test-world-frames.py --capture-report REPORT` under
+Xvfb as documented in the linked research.
+
 ## Replay a capture
 
 ```bash
@@ -193,3 +216,11 @@ Add `--command-checks` to compare diagnostic native/RGBA bytes. See
 retaining framing/state until complete records arrive. `finish()` requires END;
 `abort()` discards partial state and closes the decoder. Live channel adapters
 remain outside the renderer; see [transport scope](../research/runtime/opengl-live-command-transport.md).
+# Native canvas history
+
+`scenes/scene_history.hpp` provides explicit native canvas retention across
+contiguous source frames. It requires a caller-owned initial background, logical
+canvas identity and source sequence; gaps, incomplete drawing and poisoned
+continuation are refused. See
+[the recovery boundary](../research/runtime/native-world-canvas-history.md).
+This service does not infer original initialization from a publication counter.

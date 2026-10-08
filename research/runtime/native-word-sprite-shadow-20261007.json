@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Backend-entry shadow comparison through Quick Battle setup and World entry. Every admitted draw compares full destination bytes and the selected 16-word workspace; no bypass or whole-scene pixel equivalence.",
+  "sources": {
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/observer.c": "bd673f01724092f38cd5b246aa5bb2f00eb01a90b0a776483f63d78c8817a250",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/scene/word_entry.S": "f4ad46c7c503212db820bbdcea7570f33d8d6735b8837db034e3bf52ad18d1f7",
+    "runtime/scene/word_route.c": "f8a39a190ef1350d54a0119a0d72f981accc634add1c4534cb85d5c4aea58a6d",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "tools/build-scene-observer.py": "37882db464a89b5c0a8efdf85485508c59dda3a2b0e3dcb6434cf11ba55d034d",
+    "tools/prepare-scene-observer.py": "d7d7bd9727631fdeb7cbf326d5a0570b8626068d3c2a176fe7655b1b8277ed63",
+    "tools/capture-scene-game.py": "715d0401e5fdce8b8038b46edde48aa5162e42c83c3523962271a6a90e89515f",
+    "tools/scene-game-runner.py": "fcad1e94961cb030b1dbb2ea8116558267fd50c55fd4f4e4b70c5943349e79d7",
+    "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+    "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/build-word-sprites.py": "7508933e5ad1f42b2e20864a2d9667342fa4eee72fd254a2aa89e173b9c27e61"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "shadow_pixels_workspace_match": true,
+  "compared_draws": 12608,
+  "mismatches": 0,
+  "refused_forwarded": 940,
+  "stats": [
+    1464684109,
+    825246802,
+    1,
+    64,
+    1,
+    1,
+    13548,
+    12608,
+    0,
+    13548,
+    12608,
+    0,
+    940,
+    0,
+    0,
+    0
+  ],
+  "capture_report": "working/experiments/scene-observer/run-_o268pke/report.json",
+  "capture_report_sha256": "375e0195aa9d16c168d52c56a5205944f0dcacf30a88803bd65b767f1e40b423",
+  "original_scene_observation_claims": {
+    "snapshots": {
+      "capture/scene-0001.bin": "d9345937068039153a4da7f28108bca9929d43a394f14795ad17827aa856ddad",
+      "capture/scene-0002.bin": "f757b24aff6954b871e7e3174cb80c52e1379e794c6087daaaecb9d1b0543f03",
+      "capture/scene-0003.bin": "fc8856b4b91633dbb1252a87c911a2beadabe496f81eb84c8e37fec63798700b",
+      "capture/scene-0004.bin": "d67eb097c547b7cf743aad4bccaef37c74c871f5ba1a40141e5d44ef69567add"
+    },
+    "menu_trace": [
+      {
+        "screen": 3,
+        "action": 1,
+        "argument": 0,
+        "ack": 1,
+        "status": 1
+      },
+      {
+        "screen": 22,
+        "action": 4,
+        "argument": 0,
+        "ack": 2,
+        "status": 1
+      },
+      {
+        "screen": 14,
+        "action": 6,
+        "argument": 0,
+        "ack": 3,
+        "status": 1
+      },
+      {
+        "screen": 25,
+        "action": 9,
+        "argument": 2,
+        "ack": 4,
+        "status": 1
+      },
+      {
+        "screen": 14,
+        "action": 7,
+        "argument": 0,
+        "ack": 5,
+        "status": 1
+      }
+    ],
+    "live_replacement": false
+  },
+  "bounded_stop": "Experiment stopped after four World queue snapshots; not a sustained gameplay or shutdown equivalence result."
+}

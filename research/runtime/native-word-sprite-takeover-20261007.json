@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+    "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+    "runtime/scene/word_route.c": "f8a39a190ef1350d54a0119a0d72f981accc634add1c4534cb85d5c4aea58a6d",
+    "runtime/scene/word_entry.S": "f4ad46c7c503212db820bbdcea7570f33d8d6735b8837db034e3bf52ad18d1f7",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/word-sprite-reference.cpp": "cfecefe2101e2de029e4bd1f56f70444f4308428ab3a9e80273c44c7dda1fc21",
+    "renderer/sprites/word-raster/CMakeLists.txt": "949132dedb0210f6c0781777d0d3ab34165743f7f3061728295ac8fd5f66bbb1",
+    "tests/word-raster-test.c": "c6e28331724bc90d710c20738495524336bde401b61809deb304581faeeabcbe",
+    "tools/build-word-sprites.py": "7508933e5ad1f42b2e20864a2d9667342fa4eee72fd254a2aa89e173b9c27e61",
+    "tools/test-word-sprites.py": "b72007824fa68eb82be928b1032ebd29a985844974907ae6c054a4be89affc00"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "experiment": "working/tests/word-sprites/run-7_mgbb3s",
+  "live_replacement": true,
+  "scope": "Fully in-bounds direct-word contiguous SPR rows only; selected backend entries. Clipped/empty/indexed/unknown routes excluded; original auxiliary passes and other rendering remain active.",
+  "live_original_pixels_match": true,
+  "original_work_bypassed": true,
+  "live_samples": [
+    {
+      "sample": "working/experiments/scene-observer/run-i_suvlzy/word-sprites/word-0001.bin",
+      "sha256": "f4856811c870dff80276f3ca393c55abc9a742e78982b9c1d7b7a9848b9267b2",
+      "pixels_match": true,
+      "workspace_match": true,
+      "pixels": 60800
+    },
+    {
+      "sample": "working/experiments/scene-observer/run-i_suvlzy/word-sprites/word-0002.bin",
+      "sha256": "d4adf21a470195be34d6d2aa0162184a3c6a1f35722a70e99c8d1df4a0250e40",
+      "pixels_match": true,
+      "workspace_match": true,
+      "pixels": 64800
+    },
+    {
+      "sample": "working/experiments/scene-observer/run-i_suvlzy/word-sprites/word-0003.bin",
+      "sha256": "000ed1f3264b530bfe516bc7a62678ee704a563c8a9c6709f04b08251c2a6850",
+      "pixels_match": true,
+      "workspace_match": true,
+      "pixels": 160800
+    },
+    {
+      "sample": "working/experiments/scene-observer/run-i_suvlzy/word-sprites/word-0004.bin",
+      "sha256": "bed13a6ed7278988c1b58001beec327358e545d3f41904a03b799a8875cdfe59",
+      "pixels_match": true,
+      "workspace_match": true,
+      "pixels": 220800
+    },
+    {
+      "sample": "working/experiments/scene-observer/run-i_suvlzy/word-sprites/word-0005.bin",
+      "sha256": "b6ca6b570d0b3edd13ffafe5340f06854bfe630760c48fdaeb34b219bff19588",
+      "pixels_match": true,
+      "workspace_match": true,
+      "pixels": 140800
+    },
+    {
+      "sample": "working/experiments/scene-observer/run-i_suvlzy/word-sprites/word-0006.bin",
+      "sha256": "726a5de3e2522bf0858398bc56ced58408ed8d782253f0a1602099f2d75dd7dc",
+      "pixels_match": true,
+      "workspace_match": true,
+      "pixels": 140800
+    },
+    {
+      "sample": "working/experiments/scene-observer/run-i_suvlzy/word-sprites/word-0007.bin",
+      "sha256": "c1dbee76ba9f3ebb3e463e33a37654a005015e4b3e9e128a70005034dabf3baa",
+      "pixels_match": true,
+      "workspace_match": true,
+      "pixels": 140800
+    },
+    {
+      "sample": "working/experiments/scene-observer/run-i_suvlzy/word-sprites/word-0008.bin",
+      "sha256": "5fbcbab789e56daec522948bde46e73553f9b0d06c51eeb05723121b13249667",
+      "pixels_match": true,
+      "workspace_match": true,
+      "pixels": 140800
+    }
+  ],
+  "live_stats": [
+    1464684109,
+    825246802,
+    1,
+    64,
+    2,
+    1,
+    13313,
+    12608,
+    12608,
+    705,
+    0,
+    0,
+    705,
+    8,
+    0,
+    0
+  ],
+  "stats_sha256": "c84852a69ecd0d86b6bdbcfbf19577b21cbb92e684d5c2785ba8a6d74300b777",
+  "synthetic_original_matches": 256,
+  "compared_pixels": 119288,
+  "native_refusals": 647,
+  "sources_stable": true,
+  "binary_sha256": "5729164195f4e886a484fdde4351b808abde543d7d231bcaea8d4b406b59666e",
+  "dll_sha256": "b62c0e1aecfd08101ad8bbdc2242842a0d5a7bc2b9fe42a8517a6923cc78a8f3",
+  "host_ctest_passed": true,
+  "host_test_sha256": "26a5dbae9c62960d21bd190c214833209835ac3a11094fd659abbebba1f4563a"
+}

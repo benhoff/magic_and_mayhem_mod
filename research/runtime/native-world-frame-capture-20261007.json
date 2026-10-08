@@ -1,0 +1,86 @@
+{
+  "success": true,
+  "live_observation": true,
+  "live_replacement": false,
+  "original_pixels_compared": false,
+  "scope": "Original Single Player battle setup and ordered queue consumer entry. Original simulation/drawing remain active; bounded immutable snapshots, no whole-scene visual equivalence.",
+  "sources": {
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/observer.c": "5e6fac77e11e0233dcbb92296d160dffda5fc67703f75e748b4e89b2a1363c76",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/scene/word_entry.S": "f4ad46c7c503212db820bbdcea7570f33d8d6735b8837db034e3bf52ad18d1f7",
+    "runtime/scene/word_route.c": "f8a39a190ef1350d54a0119a0d72f981accc634add1c4534cb85d5c4aea58a6d",
+    "runtime/scene/world_entry.S": "9794f755731a8a8d3df973a71d99a91ddf24855be25e8c1d39a9716054e95b3d",
+    "runtime/scene/world_trace.c": "2a982716be8cd6717a8ff6989408093cd2dc46f20e9a5bc333c7ee2cd686bc0a",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "tools/build-scene-observer.py": "8bd60142dda654de23932f727a9cfb72f4d5506a706fd780b6a3897756cea6d8",
+    "tools/prepare-scene-observer.py": "488e9e9abf31a73332700aea8533340fa70c9aa6044e59899f75484c20b33561",
+    "tools/capture-scene-game.py": "c7690b739633a2aa63152ad744d4757b66816d3fd2a6f3b6a08f3ef606c7c9ae",
+    "tools/scene-game-runner.py": "4dce3da70ac46d3be0d64d61df5a3105f5c5f593f9f918bb726ba4bbcd3f692f",
+    "protocols/include/mnm/world_frame_v1.h": "8dd0ba1fde1dacd312cbabe9cf85a6fecbcd3fce2c2bdcbcdc5fa80b8efb1488"
+  },
+  "sources_stable": true,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "samples": 4,
+  "map_selection": 2,
+  "menu_trace": [
+    {
+      "screen": 3,
+      "action": 1,
+      "argument": 0,
+      "ack": 1,
+      "status": 1
+    },
+    {
+      "screen": 22,
+      "action": 4,
+      "argument": 0,
+      "ack": 2,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 6,
+      "argument": 0,
+      "ack": 3,
+      "status": 1
+    },
+    {
+      "screen": 25,
+      "action": 9,
+      "argument": 2,
+      "ack": 4,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 7,
+      "argument": 0,
+      "ack": 5,
+      "status": 1
+    }
+  ],
+  "snapshots": {
+    "capture/scene-0001.bin": "275f6afeb881bc6445642e4713ec146fe26642883f14439298010ee566405c1c",
+    "capture/scene-0002.bin": "c8de1a0a715d48cf63f3aea6e4835d2633a0e8095ab4975918dcf0d35633fcc5",
+    "capture/scene-0003.bin": "622cbb878f22c808918fe3d0b84f423f3246c40738efbb2e88e3606ff0db14c7",
+    "capture/scene-0004.bin": "301ad7eafefe7c70870cb8dbe858a944620fbd53724f83026da7890578583c86"
+  },
+  "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-daryxvhl",
+  "world_frames": {
+    "capture/world-0001.after.565": "79e2807cef4d420a00b10382dc7b0711f868818970b5dd24e34b7ebd3481598b",
+    "capture/world-0001.before.565": "106d1d09647c4dbf1865c7ecab40e6050abbdf378f5a06e6b79bcd4e2fddb42e",
+    "capture/world-0001.bin": "ff177d2f39254e15428ca3ab406a9adb272f5ed8db46d9fd83807487bfe73596",
+    "capture/world-0002.after.565": "6f442ef7d83f4076a03b4036c103e4b8aff3e41349c5cbdb9eb621d7066ddde7",
+    "capture/world-0002.before.565": "ccf35a6ba1ef756ddb8bf49ed389275c6c9085565ef0af56e1e63c94411e1feb",
+    "capture/world-0002.bin": "63318701cc541ac43ec0c8d9612db02c76669946711dc19bfa776b4100e288f8",
+    "capture/world-0003.after.565": "5404f86910e77404ca75044183259e4552d22a305b12cb0a042646bfeda3cafa",
+    "capture/world-0003.before.565": "3ed9fe676e57b66a74ca30048cc757540c5a1d7772ac4cc960fe3c5ced10590a",
+    "capture/world-0003.bin": "f51abf23d5b6e45171ad9d7ef2558b35fb0c5b650c6acbe219f62479a5b115ab",
+    "capture/world-0004.after.565": "6f7822a837d6522601567fe5337898c65447de6f1925e118b63a6ac70c01922c",
+    "capture/world-0004.before.565": "52c6e5e7157a25d110cd0a73cf06b8851078f20a6bffc1896af3acfb93577626",
+    "capture/world-0004.bin": "4bbdb5ce9429b994d1791c39d81dc61845501c09d6c038d1c02160b91f11c184"
+  },
+  "skip_queues": 120,
+  "queue_interval": 10
+}

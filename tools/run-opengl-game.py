@@ -79,6 +79,8 @@ def main():
     parser.add_argument('--no-readback',action='store_true',help='Diagnostic: log game calls without extra surface locks or Qt frames')
     parser.add_argument('--skip-movies',action='store_true',help='Disable movie playback only in the disposable staged preferences')
     args=parser.parse_args();args.capture_draws |= args.capture_history
+    word_mode=os.environ.get('MNM_WORD_SPRITES','')
+    if word_mode not in ('','shadow','takeover'):raise ValueError('MNM_WORD_SPRITES must be shadow or takeover')
     args.capture_locks |= bool(args.command_channel)
     stream=args.stream.resolve()
     if not stream.is_relative_to(REPO/'working'):raise ValueError('Frame stream must be under working/')
@@ -123,6 +125,17 @@ def main():
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
     if hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest()!=stage.HASH:raise ValueError('Copied game hash changed')
     patched=stage.add_import(data,dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl')
+    word_dll=None
+    if word_mode:
+        exporter=load('word_site','tools/export-menu-support.py')
+        for address in (0x597086,0x596cb8):
+            at=exporter.image_offset(data,address,6)
+            if data[at:at+6]!=bytes.fromhex('558bec565753'):raise ValueError('Unsupported direct-word backend entry')
+        word_dll=load('word_build','tools/build-word-sprites.py').build()
+        patched=stage.add_import(patched,dll='MnmWord.dll',symbol_name='WordAnchor',section_name=b'.mnword')
+        shutil.copy2(word_dll,game/word_dll.name)
+        shutil.copy2(word_dll.parent/'manifest.json',root/'word-bridge-build.json')
+        (root/'word-sprites').mkdir()
     audio_dll=None
     if voice_path:
         audio_dll=load('audio_build','tools/build-audio-bridge.py').build()
@@ -144,6 +157,11 @@ def main():
     metadata['continuous_commands']=continuous
     metadata['command_archive']=not continuous or os.environ.get('MNM_RENDER_SESSION_ARCHIVE')=='1'
     metadata['input_channel']=str(input_path) if input_path else None
+    metadata['word_sprites_mode']=word_mode or None
+    metadata['word_dll_sha256']=hashlib.sha256(word_dll.read_bytes()).hexdigest() if word_dll else None
+    metadata['word_directory']=str(root/'word-sprites') if word_dll else None
+    if word_mode:metadata['word_scope']='Partial direct-word backend raster replacement: fully in-bounds contiguous rows only; original clipping, auxiliary passes and other rendering remain active'
+    if word_mode:print(f'Word sprites: {word_mode}. {metadata["word_scope"]}',flush=True)
     if args.capture_locks:
         lock_capture=root/'lock-capture';lock_capture.mkdir();metadata['lock_capture_directory']=str(lock_capture);metadata['lock_lifecycle_log']=str(lock_capture/'lifecycle.log')
         metadata['presentation_rate_log']=str(root/'presentation-rate.jsonl')
@@ -155,6 +173,8 @@ def main():
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n');print(f'Render experiment: {root}',flush=True)
     if args.stage_only:return 0
     env=os.environ.copy();env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\');env['MNM_RENDER_EXPERIMENT']=str(root);env.pop('MNM_RUNNER',None)
+    env.pop('MNM_WORD_DIRECTORY',None)
+    if word_mode:env['MNM_WORD_DIRECTORY']='Z:'+metadata['word_directory'].replace('/','\\')
     env.pop('MNM_AUDIO_CHANNEL',None)
     if voice_path:env['MNM_AUDIO_CHANNEL']='Z:'+str(voice_path).replace('/','\\')
     env.pop('MNM_RENDER_MEDIA',None)
@@ -179,9 +199,15 @@ def main():
     if args.capture_draws:env['MNM_RENDER_CAPTURE_DIR']='Z:'+str(capture).replace('/','\\')
     result=subprocess.run([str(REPO/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',str(REPO/'working/wineprefix-x86_64'),'--runner',str(REPO/'tools/render-game-runner.py')],env=env,check=False)
     binaries=[('Chaos.exe','staged_sha256'),('MnmRender.dll','dll_sha256')]
+    if word_dll:binaries.append(('MnmWord.dll','word_dll_sha256'))
     if audio_dll:binaries.append(('MnmAudio.dll','audio_dll_sha256'))
     for name,key in binaries:
         if hashlib.sha256((game/name).read_bytes()).hexdigest()!=metadata[key]:raise ValueError(f'{name} changed')
     if hashlib.sha256((source/'Chaos.exe').read_bytes()).hexdigest()!=stage.HASH:raise ValueError('Source game changed')
     return result.returncode
-if __name__=='__main__':raise SystemExit(main())
+if __name__=='__main__':
+    if os.environ.get('MNM_WORD_SPRITES'):
+        subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
+        try:raise SystemExit(main())
+        finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
+    else:raise SystemExit(main())
