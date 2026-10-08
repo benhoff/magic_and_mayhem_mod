@@ -17411,6 +17411,72 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RS.word-raster",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Selected unclipped direct-word SPR rasterization",
+      "scope": "Fully in-bounds positive direct-word frames with contiguous skip/opaque and WORD streams; signed origins, opaque zero, complete destination padding and guards. Clipping, empty/indexed/auxiliary execution and malformed original semantics remain outside scope. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Selected unclipped direct-word branch only; complete clipping paths excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Selected unclipped direct-word branch only; complete clipping paths excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+      ],
+      "implementation": [
+        "renderer/sprites/word_raster.h",
+        "renderer/sprites/word_raster.c",
+        "renderer/sprites/word-raster/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/word-raster-test.c"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.word-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded native word-sprite refusal and diagnostics",
+      "scope": "Preflight entire stable borrowed frame and canvas before any writes; bounded dimensions/extents, contiguous rows, exact right/bottom-edge and malformed refusals, explicit shadow/takeover modes and separate fallback/bypass counters. Does not reproduce unsafe original malformed acceptance. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+      ],
+      "implementation": [
+        "renderer/sprites/word_raster.h",
+        "renderer/sprites/word_raster.c"
+      ],
+      "tests": [
+        "tests/word-raster-test.c"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -38158,7 +38224,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-live-drawing-replacement-plan-20261007.json",
-    "sha256": "a771e6569d8cd4b293bd498c7d669d0d6814e8a64412ab158cedb585792ae8fa"
+    "path": "research/runtime/coverage/source-index-commit-chunk-1-20261007.json",
+    "sha256": "6edb6f9170c3d52d5bd846b2ecbfdd7fbfddc6880e5f020790e654131b1c68e0"
   }
 }

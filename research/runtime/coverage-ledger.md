@@ -2247,3 +2247,7 @@ and synthetic policy only. Ordered callbacks remain opt-in; no default, engine
 code, wait budget, status promotion or original replacement changes. User NVIDIA
 reproduction, callback-stage timing, active gameplay and full-frame equivalence
 remain pending. Prior reports and hashes remain untouched.
+
+## Renderer source split, 2026-10-07
+
+Portable word raster source and synthetic host test are committed independently. Runtime/original/live evidence remains pending in this intermediate tree. See [commit boundaries](native-renderer-commit-boundaries-20261007.md).
