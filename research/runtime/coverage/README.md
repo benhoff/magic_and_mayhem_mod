@@ -129,6 +129,13 @@ when recorded. The audit never reruns a comparison or silently refreshes evidenc
 `tests/test-tooling.sh` includes the normal audit and its synthetic regression
 tests. No original artifact is consumed by these offline checks.
 
+Within one audit, validated paths and file fingerprints are reused. Every new
+audit creates fresh caches, including calls made for a staged tree or Git base;
+there is no persistent cache or previous-pass exemption. Function body lookup
+uses an index of half-open ranges, preserving inventory order when bodies
+overlap and retaining all owners of nested or fragmented ranges. The guard
+suite checks boundaries, overlap ordering and changes between audit calls.
+
 Write new reports without overwriting earlier evidence:
 
 ```sh

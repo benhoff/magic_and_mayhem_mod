@@ -1,0 +1,51 @@
+{
+  "scope": "Offline accounting-tool execution only; no original game artifacts consumed, engine equivalence or status promotion. Full old/new outputs compared on the same trees. Timing is monotonic elapsed seconds on this host; gate includes staged materialization, HEAD archive, both audits and receipt validation.",
+  "base_commit": "e3d3c69425552bf57b47fc85f3ceb5a454778974",
+  "sources": {
+    "tools/coverage_audit.py": "d1026d89046383f146a0a78eb3413e15448173fb4168b9f6a9a260b16a6f4b6a",
+    "tests/test-re-coverage.py": "399655c221f691fb1894cc2fc6da472a5c076ec1cab716ca6be18f366908efdf",
+    "tools/coverage_gate.py": "1c474eecb267f4368df128fa2abc23d0f02bff6f1a617aeaf5a795fd92d1acd2",
+    "tools/check-re-coverage.py": "ae205fc6464dff496aab51bbdeca6d37a11e0bc196014892e86957afb684a118"
+  },
+  "baseline_audit_sha256": "6ae69d07be7125353368fe9d65b91b3a0c8fd4f8eb67ba304bb6d7e298a1e1a2",
+  "audit": {
+    "before": [
+      3.6162459919999037,
+      3.683673886999941
+    ],
+    "after": [
+      0.7595559110000067,
+      0.7849375680000321
+    ],
+    "before_median": 3.6499599394999223,
+    "after_median": 0.7722467395000194
+  },
+  "gate": {
+    "before": [
+      11.703213330999915,
+      11.729681793000054
+    ],
+    "after": [
+      6.0640592889999425,
+      6.0034709610001755
+    ],
+    "before_median": 11.716447561999985,
+    "after_median": 6.033765125000059
+  },
+  "audit_reports_identical": true,
+  "gate_reports_identical": true,
+  "gate_passed": true,
+  "tests": {
+    "audit": {
+      "passed": true,
+      "count": 51,
+      "log": "working/tests/coverage-performance-20261008/audit-tests.log"
+    },
+    "gate": {
+      "passed": true,
+      "count": 44,
+      "log": "working/tests/coverage-performance-20261008/gate-tests.log"
+    }
+  },
+  "success": true
+}

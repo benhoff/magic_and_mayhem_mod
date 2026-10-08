@@ -64763,6 +64763,82 @@
         "evidence": [],
         "reason": "Current executions cover declared Word/World native policies and bounded original comparisons/startup only. The earlier failed user launch had reason8 with0presentations, but its exact kind/scenario and a repeat of the manual launcher UI lifecycle remain unverified. Launcher error format and graceful refusal policy do not implement unknown drawing. Original startup writes, canvas ownership/generations/clear/reuse, all-queue retained history, unadmitted draw kinds, HUD/native input, transitions, long-running resource retirement, hardware/driver behavior and full original drawing replacement remain pending. Shared observer/header/build/renderer/adapter/research changes leave older registered surface/UI/original/live comparisons stale at their historical hashes. All new pending gap identities are retained; no evidence hash is refreshed and no unrelated validation/replacement status is advanced."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "6193b0cc27302c960f3040d29edfc3c151239a879092a1bfb1f34ea5fdcfe339",
+          "before_sha256": "245c527dd320c9922c8c4937d65a64afc39a180025a2c174f435c0f0b1b6c2a7",
+          "id": "TOOL.coverage-gate"
+        },
+        {
+          "after_sha256": "2c8e34e915769269392fd6961c4bc069485fbae0d2df8ae5aa8e0ef4bf8aa5f5",
+          "before_sha256": "8c1a2a39b951eac488b7e4fffbee72fca60a6e86fef53e2e0251eaa4228f6360",
+          "id": "TOOL.traceability"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "bba3dfcfcc41631359c2c943504bdb712cfa8e6a9ac437f54c473083dc2f0dda",
+          "before_sha256": "f5fdd34d2e80374ef5a44d9103aa3f2efad1f401d9d23df09f17af760d3dfd08",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8968edc04fce79fb859be39d792aba0fabef18c7cba3f195738d32ac600ada8c",
+          "before_sha256": "e4c2af60fc7f536624eeb3579a71125f1c85a6249159df82666f73bb300604e6",
+          "path": "research/runtime/coverage/README.md"
+        },
+        {
+          "after_sha256": "f78fe27c035d098c7edce4cffae72cc47ace8462ba2c8c89a54cbc7182a934b0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/audit-performance-20261008.json"
+        },
+        {
+          "after_sha256": "9ecfcb21add4f34ed8f0567acc922d5451c73ba1c2de99e03325f43ed3165921",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-audit-performance-20261008.json"
+        },
+        {
+          "after_sha256": "6706af7c3c5ceb9997b1659afdd7cc20a356cba4896abb9a47eacc5c42368d09",
+          "before_sha256": "b8ee2c5b0add06d8a4810f45d2c24eb39f947c50975c313074b4ad1dfc85fb40",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "ecd1ea5aa2aee504254c0c2b04caf65f3629fc99050a500d2c7b0d03e075cfa9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-audit-performance-20261008.json"
+        },
+        {
+          "after_sha256": "e7049de71c2c81e427b959cc3f8e44ce786c02b1995e97503a39e477353b190c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-audit-performance-20261008.md"
+        },
+        {
+          "after_sha256": "399655c221f691fb1894cc2fc6da472a5c076ec1cab716ca6be18f366908efdf",
+          "before_sha256": "2b6042c5deeea9ad948dd246bb2e53fd90e68b46cd26e019e43f2d4e65a9c7e8",
+          "path": "tests/test-re-coverage.py"
+        },
+        {
+          "after_sha256": "d1026d89046383f146a0a78eb3413e15448173fb4168b9f6a9a260b16a6f4b6a",
+          "before_sha256": "6ae69d07be7125353368fe9d65b91b3a0c8fd4f8eb67ba304bb6d7e298a1e1a2",
+          "path": "tools/coverage_audit.py"
+        }
+      ],
+      "id": "coverage-audit-performance-20261008",
+      "pending_gaps": [
+        "stale_evidence:0a85496e94150bda6f317a8a073bc7a89d23b5a1197ef727dd03b71b04725a87",
+        "stale_evidence:192c73130a1c067d5d47ad47fc659d6416983206c0e0f76b507e62d8283f5a1b",
+        "stale_evidence:1b2b10fb8ce073b9d3e27913155b0f3cc59d9276b5259c90c062e8224d02f7ac",
+        "stale_evidence:a3e468c08ca0640fabab05c4e5e12b700177e9e9d0879b9cd13e80da48d03779"
+      ],
+      "reason": "Reviewed invocation-local path validation/fingerprint caches and half-open indexed anchor lookup, including nested/disjoint/overlapping bodies, duplicate ranges and inventory ownership order. Confirmed no persistent cache, gate exemption, historical fingerprint rewrite or engine status promotion. Reviewed explicit TOOL.traceability/TOOL.coverage-gate links, immutable performance evidence, isolated source census and summary, retained historical tool staleness and exact new pending gaps. Committed dd3205a..e3d3c69 parent/current file and behavior receipts plus evidence/reference links were reviewed separately with zero missing receipts; no retrospective gate or execution claim. The staged census excludes concurrent uncommitted canvas-startup sources and captures only this coverage-tool increment.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "TOOL.traceability.audit-performance-20261008"
+        ],
+        "reason": "All 51 audit and 44 coverage-gate synthetic guard tests pass. New checks cover per-audit hash reuse, changed sources/evidence, deletions and symlink retargets across invocations, half-open range edges, nested/fragmented overlap ordering and a deterministic linear reference comparison. Two same-tree full audit and staged/HEAD gate comparisons against the prior audit matched exactly and passed: median 3.65 to 0.77 seconds for audit, 11.72 to 6.03 for gate. Fresh execution sources fingerprint the final audit/tests/gate/CLI. This validates offline tooling only; original engine comparisons, historical source freshness and all gameplay/live replacement boundaries remain unchanged. Four new historical tool-evidence/source staleness gaps are explicitly retained."
+      }
     }
   ]
 }

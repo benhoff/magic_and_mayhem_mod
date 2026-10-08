@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import re
 from bisect import bisect_right
+from functools import cache
 
 STAGES = {
     'understanding': {'unknown', 'partial', 'scoped'},
@@ -56,6 +57,32 @@ def source_hashes(value):
     raise ValueError('Expected source hash map/list')
 
 
+class FunctionRangeIndex:
+    """Half-open body lookup retaining inventory order for overlapping owners."""
+
+    def __init__(self, functions):
+        self.spans = sorted((a, b, order, f['entry'])
+                            for order, f in enumerate(functions) for a, b in f['ranges'])
+        self.starts = [a for a, _, _, _ in self.spans]
+        self.max_ends = []
+        highest = float('-inf')
+        for _, end, _, _ in self.spans:
+            highest = max(highest, end)
+            self.max_ends.append(highest)
+
+    def owners(self, address):
+        index = bisect_right(self.starts, address) - 1
+        found = set()
+        # Prefix maxima keep nested/overlapping ranges visible while allowing
+        # the search to stop once every earlier range ends before the address.
+        while index >= 0 and self.max_ends[index] > address:
+            start, end, order, entry = self.spans[index]
+            if start <= address < end:
+                found.add((order, entry))
+            index -= 1
+        return [entry for _, entry in sorted(found)]
+
+
 def audit(root, register):
     root = Path(root).resolve()
     errors, warnings = [], []
@@ -68,17 +95,26 @@ def audit(root, register):
                 'behaviors_without_implementation': [], 'behaviors_without_comparison': [], 'behaviors_without_tests': [],
                 'stale_evidence': []}
     findings['behavior_anchors_outside_discovered_functions'] = []
+    # An invocation observes each file once. Never retain cached paths/hashes
+    # across audits: working files, staged trees and Git bases are independent.
+    files = {}
+    cached_sha = cache(sha)
 
     def require(condition, message):
         if not condition:
             errors.append(message)
 
     def file(path):
-        if not isinstance(path, str) or Path(path).is_absolute():
+        if not isinstance(path, str):
+            raise ValueError(f'Expected repository-relative file: {path}')
+        if path in files:
+            return files[path]
+        if Path(path).is_absolute():
             raise ValueError(f'Expected repository-relative file: {path}')
         result = (root/path).resolve()
         if not result.is_relative_to(root) or not result.is_file():
             raise ValueError(f'Missing or escaping repository file: {path}')
+        files[path] = result
         return result
 
     def unique(items, label):
@@ -96,10 +132,10 @@ def audit(root, register):
         behaviors = unique(register['behaviors'], 'behavior')
         evidence = unique(register['evidence'], 'evidence')
         scenarios = unique(register['scenarios'], 'scenario')
-        inventories, entries = {}, {}
+        inventories, entries, range_indexes = {}, {}, {}
         for build_id, build in builds.items():
             inventory_file = file(build['inventory'])
-            require(sha(inventory_file) == build['inventory_sha256'], f'{build_id}: inventory hash mismatch')
+            require(cached_sha(inventory_file) == build['inventory_sha256'], f'{build_id}: inventory hash mismatch')
             inventory = json.loads(inventory_file.read_text())
             require(inventory['schema'] == 1 and inventory['build'] == build_id, f'{build_id}: inventory identity mismatch')
             require(inventory['source_sha256'] == build['source_sha256'], f'{build_id}: original binary hash mismatch')
@@ -175,8 +211,9 @@ def audit(root, register):
                         f'{label}: data address outside file-backed image')
                 require(bool(ref['scope'].strip()), f'{label}: original scope missing')
                 return None
-            owners = [f['entry'] for f in entries[build_id].values()
-                      if any(a <= address < b for a, b in f['ranges'])]
+            if build_id not in range_indexes:
+                range_indexes[build_id] = FunctionRangeIndex(entries[build_id].values())
+            owners = range_indexes[build_id].owners(address)
             if not owners and ref.get('recovered_range') in recovered_ranges:
                 recovered = recovered_ranges[ref['recovered_range']]
                 require(recovered['build'] == build_id and recovered['start'] <= address < recovered['end'],
@@ -194,7 +231,7 @@ def audit(root, register):
             require(bool(ev['scope'].strip()), f'{eid}: evidence scope missing')
             require(bool(ev['assertions']), f'{eid}: evidence requires explicit success assertions')
             record_file = file(ev['record'])
-            require(sha(record_file) == ev['sha256'], f'{eid}: evidence record hash mismatch')
+            require(cached_sha(record_file) == ev['sha256'], f'{eid}: evidence record hash mismatch')
             record = json.loads(record_file.read_text())
             for assertion in ev['assertions']:
                 require(pointer(record, assertion['pointer']) == assertion['equals'], f'{eid}: failed evidence assertion {assertion["pointer"]}')
@@ -237,7 +274,7 @@ def audit(root, register):
             changed = []
             for path, digest in sources.items():
                 require(bool(re.fullmatch(r'[0-9a-f]{64}', digest)), f'{eid}: malformed source digest')
-                if sha(file(path)) != digest:
+                if cached_sha(file(path)) != digest:
                     changed.append(path)
             if changed:
                 findings['stale_evidence'].append({'id': eid, 'changed_sources': sorted(changed)})
@@ -377,7 +414,7 @@ def audit(root, register):
             for imported in register['register_imports']:
                 require(bool(imported['scope'].strip()), 'Focused-register import scope missing')
                 require(bool(re.fullmatch(r'[0-9a-f]{64}', imported['sha256'])), 'Malformed focused-register import digest')
-                if sha(file(imported['path'])) != imported['sha256']:
+                if cached_sha(file(imported['path'])) != imported['sha256']:
                     findings['changed_focused_registers'].append(imported['path'])
             if findings['changed_focused_registers']:
                 warnings.append('Focused register changed since consolidation; reconcile its entries into the central register.')
@@ -388,7 +425,7 @@ def audit(root, register):
             source_tool = module_from_spec(spec)
             spec.loader.exec_module(source_tool)
             index_file = file(register['code_index']['path'])
-            require(sha(index_file) == register['code_index']['sha256'], 'Source index hash mismatch')
+            require(cached_sha(index_file) == register['code_index']['sha256'], 'Source index hash mismatch')
             catalog = json.loads(index_file.read_text())
             require(catalog['schema'] == 1, 'Unsupported source index schema')
             # Retained Git bases predate the host adapter root. Accept their
@@ -426,7 +463,7 @@ def audit(root, register):
                 require(item['references'] == expected, f'{path}: source index/register link drift')
                 if not expected:
                     findings['sources_without_behavior_links'].append(path)
-                if path in current_paths and sha(file(path)) != item['sha256']:
+                if path in current_paths and cached_sha(file(path)) != item['sha256']:
                     findings['changed_indexed_sources'].append(path)
             if findings['new_sources_without_index'] or findings['removed_indexed_sources'] or findings['changed_indexed_sources']:
                 warnings.append('Source census differs from current tree; review and refresh affected index entries.')
