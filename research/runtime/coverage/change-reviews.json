@@ -111741,6 +111741,97 @@
           "RS.world-kind8.native-final-20261008"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "460add3abd4a8abc89eae411c69e6f6c716b056b3c143281b0d2506269108356",
+          "before_sha256": "a426942812e31566611bfa90c79edb468fd71113f24286ced45507536f978ce6",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [],
+      "id": "world-raster-prefix16-coverage-document-link-20261008",
+      "pending_gaps": [],
+      "reason": "Exact incidental coverage-accounting contract hash change from its linked coverage ledger. Reviewed the new census, history report, generated summary and bound rendering result; coverage tools and guard implementations remain unchanged. No new coverage-tool status promotion or execution assertion is made; rendering execution belongs to RS.world-raster-queue-replacement through the separate recorded receipt.",
+      "validation": {
+        "status": "pending",
+        "reason": "No fresh coverage guard execution is asserted for this documentation-only ledger transition. Existing guard/tool evidence retains its original fingerprints and readiness; new raster execution does not stand in for guard validation. No new machine gap identities were introduced. The rendering limitations for unobserved entries, vertical top clipping, caller/scratch state and timing remain explicit in the companion review and research."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "211397510dd8842448aeb81e8474679f09af72bfb1e88b9b19a23a47d887a514",
+          "before_sha256": "058e2a21ffa73c4e9f1cafd620bb0d292b2a847533a8013612d49e536179f742",
+          "id": "RS.world-raster-queue-replacement"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "cf3ccf48ea3cfee408c31d64f20f28ac6948184929af2c1a11423a1268cc9da7",
+          "before_sha256": "f4e478f84b67011e34853b739bf6d2a4a1a1c9e17ecc11ca56afabf1847b6a8e",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "aed1be68ef667ca58bb783fa197fb6de7fa9faa1c71ba36295a207350d85c40e",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-world-raster-prefix-20261008.json"
+        },
+        {
+          "after_sha256": "8b10cd72a019d9fef82c839a016f63fd554b892670f3cd74648db69f437ebacc",
+          "before_sha256": "fc06a56c44a50b9f473c25b9f11db4c00df46d5a183c0437a5d47e1cf6189149",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "903bf83b5dfa72da3499d6767f3e11a16489a1c36df9c6dd8a8c8748fd5cf954",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-world-raster-prefix16-20261008.json"
+        },
+        {
+          "after_sha256": "f660e6eb2d13330b6cc36197e333a0366d183b1d77a1acdf1167796c1ddeed83",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-world-raster-prefix16-20261008.md"
+        },
+        {
+          "after_sha256": "c120f39ff2de1bc8992f032e12b98960742f30b217dec5d8edddebbbeacb951d",
+          "before_sha256": null,
+          "path": "research/runtime/native-world-raster-prefix-early-queue1-20261008.json"
+        },
+        {
+          "after_sha256": "103532bddb9830e2686c27b15ae8aeefc4afec24d815c047536e9f2b363ced8f",
+          "before_sha256": null,
+          "path": "research/runtime/native-world-raster-prefix16-boundary-comparison-20261008.json"
+        },
+        {
+          "after_sha256": "4cf2d62aff9f100b41bbf66b336e9712b11a8f1ab444ba59c07c6a2e33dccb1b",
+          "before_sha256": null,
+          "path": "research/runtime/native-world-raster-prefix16-boundary-live-20261008.json"
+        },
+        {
+          "after_sha256": "dbca0dfbc1adf8c23ae2a8de784ff2118e08d21c59db86880fee814834d9069e",
+          "before_sha256": null,
+          "path": "research/runtime/native-world-raster-prefix16-boundary-replacement-20261008.json"
+        },
+        {
+          "after_sha256": "7a08039b077fab9cca394dc564052d43f60900b02e2f44701e22c0b5958a1b93",
+          "before_sha256": "58d59386b14571b3eeafa1ad686fe5ee666eb6c8f3babe4802c740a83809b0b3",
+          "path": "research/runtime/native-world-raster-queue.md"
+        }
+      ],
+      "id": "world-raster-prefix16-exact-replacement-20261008",
+      "pending_gaps": [],
+      "reason": "Reviewed complete contiguous startup prefix1..16 replacement separately from retained original traversal. Actual entry addresses, complete raster membership, before/reply continuity, prescribed low16AX and per-callee cleanup are recorded, with suppression closed after World return. Immutable current source-bound results supersede pending current stages; earlier evidence hashes are preserved. Reviewed current census and exact committed63f32b1..e94f344 receipt chains; no unresolved transition or retrospective gate-pass claim. Actual10entry counts and unobserved admitted entries are documented, together with the unverified vertically top-clipped displacement phase, other callers/formats, volatile/scratch-global effects and real-time boundaries. Prospective behavior/scenario identities remain unchanged.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh live replacement and independent unmodified original execution match all36556native canvases and low16AX results over17546880000pixels, including1937AX1refusals. All16final World canvases/7680000pixels,1062checkpoints/474236912pixels and every native-before continuity transition match. All125declared source hashes and input hashes are stable;76normalized compiler dependencies are declared and the actual live binary matches the frozen preflight. All4focused CTests and13synthetic ABI body skips/49forwards, including post-World HUD forwarding and malformed replies, pass. All2927original files verify before/after. Original traversal/menu/HUD bodies and one non-drawing wave-table preparation remain active; only this bounded domain is promoted.",
+        "evidence": [
+          "RS.world-raster-queue.prefix16-boundary-comparison-20261008",
+          "RS.world-raster-queue.prefix16-boundary-replacement-20261008",
+          "RS.world-raster-queue.abi-boundary-20261008",
+          "RS.world-raster-queue.preflight-boundary-20261008"
+        ]
+      }
     }
   ]
 }

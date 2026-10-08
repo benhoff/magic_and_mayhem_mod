@@ -99,8 +99,65 @@ increases, bypass count stays fixed. Its13body skips and49forwards pass. The
 all1817canonical intermediates,AX results,1062checkpoints and16final World
 canvases with zero differences after this fix. Earlier source fingerprints and
 [fixture/source-drift diagnostics](native-world-raster-boundary-fixture-diagnostics-20261008.json)
-remain unchanged. The current live whole16-prefix retry is pending. There is
-no real-time performance claim. Original traversal, menu/HUD raster work outside
-selected queues, palette preparation, lazy table preparation, driver/error
+remain unchanged. The current complete-prefix retry and independent comparison
+both pass: queues 1–16 suppress 36,556 original raster bodies, and every
+native intermediate canvas and low16AX matches its actual original entry over
+17,546,880,000 pixels. All 16 independently replayed final World canvases
+(7,680,000 pixels) and all 1,062 observed checkpoints (474,236,912 pixels) also
+match. Every native before-image equals the preceding native reply in its queue;
+the first equals the reconstructed native World entry. No original oracle pixels
+serve as native inputs. There is no real-time performance claim. Original traversal,
+menu/HUD raster work outside selected queues, palette preparation, lazy table preparation, driver/error
 behavior, unsampled raster/global paths and native simulation remain separate
 milestones. Historical evidence/source fingerprints remain unchanged.
+
+## Complete contiguous prefix result
+
+The immutable [live record](native-world-raster-prefix16-boundary-live-20261008.json),
+[exact comparison](native-world-raster-prefix16-boundary-comparison-20261008.json)
+and [replacement summary](native-world-raster-prefix16-boundary-replacement-20261008.json)
+retain the prospective behavior/scenario claims, stable 125-source closure,
+unmodified original executable hash, input fingerprints and queue returns.
+All four focused native CTests pass. The live binary matches the reviewed frozen
+preflight binary; its 76 normalized compiler dependencies are declared.
+Original manifests verify all 2,927 files before and after execution/comparison.
+The earlier [queue-1 comparison](native-world-raster-prefix-early-queue1-20261008.json)
+remains separate historical evidence from the same capture.
+
+| Actual original entry | Draw kind | Native body replacements |
+| --- | --- | ---: |
+| `0x595677` | Black | 5,415 |
+| `0x57de00` | Clipped fallback | 1,862 |
+| `0x57f5f0` | Quarter blend | 20 |
+| `0x57f0f0` | Three-quarter blend | 20 |
+| `0x57ec90` | Half blend | 20 |
+| `0x5806f0` | Wave | 16 |
+| `0x59603e` | Indexed copy, four-byte palette stride | 27,450 |
+| `0x596490` | Destination displacement | 1,710 |
+| `0x59521a` | Indexed copy | 35 |
+| `0x57e540` | Shadow | 8 |
+
+The exact comparisons include 1,937 AX=1 refusals
+and 34,619 AX=0 returns. Every recorded raster inside
+the selected queues has a corresponding native reply; the stream retains
+13,741 observed raster requests outside World,
+where suppression is closed and original work continues. Exactly one original
+non-drawing lazy wave-table preparation occurred; it is counted separately.
+The original World dispatcher and object traversal remain active.
+
+The admitted entries `0x5947b2`, `0x595b47`, `0x5968a4`
+were not exercised by live suppression in this prefix. Their synthetic ABI
+admission and separate canonical preflight evidence do not establish actual-entry
+live replacement here. All 1,710 destination-displacement
+requests avoid vertical top clipping. The reconstructed table phase for vertical
+top clipping remains unverified; no broader clipping claim follows from this
+result. Unknown callers, formats, indirect routes, error paths, volatile output
+registers/flags and original scratch-global effects remain gaps. Understanding
+stays partial while implementation and live replacement are scoped to this
+executed domain.
+
+The committed range `63f32b1..e94f344` was reviewed separately in
+[committed-history accounting](coverage/committed-history-world-raster-prefix-20261008.json):
+436 file/link transitions and 138 behavior transitions have exact receipt chains;
+prior receipt contents are preserved, with no unresolved exact transitions.
+This historical accounting does not assert a past gate pass or new execution.
